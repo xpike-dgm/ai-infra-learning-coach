@@ -108,3 +108,20 @@ Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek.
 Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; aynı adımın altına tarihli **tamamlanma notu** yazılacak. Bu not ne yapıldığını, hangi kararın çıktığını, hangi dosyanın üretildiğini ve sonraki adıma etkisini açıklayacak. Oturumların kronolojik özeti ayrıca `docs/PROGRESS_LOG.md` içinde tutulacak.
 
 Gerekçe: Proje uzun süreli olduğu için sohbet bağlamına veya hafızaya güvenmeden, neyin neden yapıldığını GitHub üzerinden yeniden kurabilmek.
+
+## D-016 — Araştırma, kodlama ve test için ayrı AI rolleri kullanılacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+Proje geliştirmesinde mevcut AI araçları uzman rollere ayrılacak:
+
+- **Araştırma AI:** dış bilgi, güncel teknoloji, öğrenme bilimi, curriculum ve karşılaştırmalı araştırmalar.
+- **Kodlama AI:** yalnız onaylanmış/spec'i netleştirilmiş işleri implement etme, refactor ve bug fix.
+- **Test/QA AI:** kodlama AI'dan bağımsız acceptance criteria, edge case ve regression doğrulaması.
+- **Ana yönetici/koordinatör:** hangi işin yapılacağını belirleme, araştırmayı karara dönüştürme, görev paketleme, test sonucunu değerlendirme ve GitHub proje hafızasını güncelleme.
+
+Kodlama AI'ın kendi implementasyonunu 'çalışıyor' olarak raporlaması tek başına tamamlanma sayılmayacak. Kritik geliştirme işleri bağımsız QA'dan geçecek. FAIL durumunda görev kodlama AI'a geri dönecek; PASS sonrası ilgili `MASTER_PLAN.md` adımı tamamlanabilecek.
+
+Her iş zorunlu olarak üç AI'dan geçmeyecek. Dış araştırma gerektirmeyen küçük ve net işler doğrudan Kodlama → QA akışına gidebilir. Mastery algoritması, teknoloji seçimi, curriculum veya güncel bağımlılık kararları gibi riskli konularda Araştırma → Spec → Kodlama → QA akışı tercih edilecek.
+
+Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
