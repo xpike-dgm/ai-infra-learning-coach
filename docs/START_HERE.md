@@ -19,12 +19,13 @@ Bu nedenle `1095 gün`, yüzde kariyer tamamlandı, yalnızca ders izleme/işare
 1. `docs/START_HERE.md` — bu dosya.
 2. `docs/PROJECT_MASTER_CONTEXT.md` — ürünün uzun ve ayrıntılı amacı, felsefesi, hedefi, kullanıcı deneyimi ve nedenleri.
 3. `docs/HANDOFF_STATE.md` — şu anda proje nerede, neler tamamlandı, açık kararlar ve sıradaki kesin adım.
-4. `PROJECT_CONTEXT.md` — orijinal kalıcı proje hafızası ve kariyer rotası.
-5. `docs/DECISIONS.md` — kabul edilmiş kalıcı kararlar ve gelecekte değişirse değişiklik gerekçeleri.
-6. `docs/MASTER_PLAN.md` — aşama ve alt adım bazlı ana yürütme planı.
-7. `docs/AI_AGENT_WORKFLOW.md` — araştırma, kodlama, test/QA ve ana yönetici rollerinin iş bölümü ve görev devri protokolü.
-8. `docs/PROGRESS_LOG.md` — kronolojik ilerleme günlüğü.
-9. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md`.
+4. `docs/EXECUTION_INDEX.md` — proje boyunca kullanılacak sabit `1A / 1B / 2A / ...` adım kodları ve güncel yürütme haritası.
+5. `PROJECT_CONTEXT.md` — orijinal kalıcı proje hafızası ve kariyer rotası.
+6. `docs/DECISIONS.md` — kabul edilmiş kalıcı kararlar ve gelecekte değişirse değişiklik gerekçeleri.
+7. `docs/MASTER_PLAN.md` — her aşama/adımın ayrıntılı checklist, çıktı ve kabul kriterleri.
+8. `docs/AI_AGENT_WORKFLOW.md` — araştırma, kodlama, test/QA ve ana yönetici rollerinin iş bölümü ve görev devri protokolü.
+9. `docs/PROGRESS_LOG.md` — kronolojik ilerleme günlüğü.
+10. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md`.
 
 ## 3. Yeni sohbet nasıl devam etmeli?
 
@@ -32,8 +33,10 @@ Yeni sohbet/agent şu kurallara uymalı:
 
 - Önce yukarıdaki dosyaları okumadan projeyi yeniden tasarlamaya çalışma.
 - Kullanıcıya daha önce kararlaştırılmış şeyleri tekrar tekrar sordurma.
+- Güncel çalışma konumunu `HANDOFF_STATE.md` ve `EXECUTION_INDEX.md` üzerinden belirle.
+- Proje adımlarından söz ederken mümkün olduğunca sabit `1A`, `3C`, `11F` gibi kodları kullan.
 - Yeni bir kalıcı karar alınırsa `docs/DECISIONS.md` güncellensin.
-- Bir plan adımı gerçekten tamamlandıysa `docs/MASTER_PLAN.md` içinde `[x]` yapılıp altına tarihli tamamlanma notu yazılsın.
+- Bir plan adımı gerçekten tamamlandıysa hem `docs/EXECUTION_INDEX.md` hem de `docs/MASTER_PLAN.md` güncellensin; ayrıntılı planda tarihli tamamlanma notu yazılsın.
 - Her önemli çalışma oturumunda `docs/PROGRESS_LOG.md` güncellensin.
 - Güncel durum değiştiğinde `docs/HANDOFF_STATE.md` de güncellensin.
 - Büyük ürün amacı veya ürün felsefesi değişirse `docs/PROJECT_MASTER_CONTEXT.md` güncellensin.
@@ -76,8 +79,14 @@ Bu uygulama kişisel kullanım içindir. Şimdilik şu alanlara zaman harcanmaya
 
 Veri kaybını önleme, yedekleme ve uygulama kararlılığı yine önemlidir.
 
-## 7. Yeni sohbet için kısa komut
+## 7. Güncel çalışma konumu
+
+**Aktif aşama:** AŞAMA 1 — Ürün Çerçevesini Kilitle
+
+**Sıradaki kesin adım:** **1A — Ana ürün amacı**
+
+## 8. Yeni sohbet için kısa komut
 
 Yeni bir ChatGPT sohbetinde repo bağlandıktan sonra şu şekilde devam edilebilir:
 
-> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md dosyasından başlayarak belirtilen proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. HANDOFF_STATE.md içindeki mevcut durum ve sonraki kesin adımdan devam et. Daha önce kabul edilen kararları yeniden açma; yeni bir karar alınırsa ilgili GitHub dokümanlarını güncelle. Araştırma/kodlama/test işleri için AI_AGENT_WORKFLOW.md protokolünü uygula.`
+> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md dosyasından başlayarak belirtilen proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. HANDOFF_STATE.md ve EXECUTION_INDEX.md içindeki mevcut adım kodundan devam et. Daha önce kabul edilen kararları yeniden açma; yeni bir karar alınırsa ilgili GitHub dokümanlarını güncelle. Araştırma/kodlama/test işleri için AI_AGENT_WORKFLOW.md protokolünü uygula.`
