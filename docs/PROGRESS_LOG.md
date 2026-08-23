@@ -59,7 +59,7 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 - Mobil teknoloji seçimi henüz yapılmadı.
 
 **Sonraki kesin adım**
-- `MASTER_PLAN.md` içindeki **Aşama 0 — Proje Çerçevesini Kilitle** tamamlanacak.
+- Ürün çerçevesini kilitleme aşaması tamamlanacak.
 
 ---
 
@@ -67,57 +67,77 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 
 **Tamamlananlar**
 - Önceki üst seviye aşama listesi detaylandırıldı.
-- Proje Aşama 0–18 olmak üzere toplam 19 ana aşamaya ayrıldı.
-- Her aşama; amaç, numaralı alt adımlar, üretilecek çıktılar, tamamlanma kapısı ve aşama sonundaki ürün durumu ile yeniden yazıldı.
+- Proje toplam 19 ana aşamaya ayrıldı.
+- Her aşama; amaç, alt adımlar, üretilecek çıktılar, tamamlanma kapısı ve aşama sonundaki ürün durumu ile yeniden yazıldı.
 - M0–M6 milestone sistemi eklendi.
-- Release APK’nin Aşama 17 sonunda hazır kabul edileceği; Aşama 18’in uzun vadeli curriculum ve kariyer genişletmesi olduğu netleştirildi.
+- Release APK’nin temel ürünün hazır olduğu nokta, sonrasının uzun vadeli curriculum/kariyer genişletmesi olduğu netleştirildi.
 - Her adım tamamlandığında `[x]` işaretinin yanında tarihli tamamlanma açıklaması tutulması zorunlu hale getirildi.
-- Her aşamada Analyse → Decide → Document → Implement → Test → Mark → Completion Note → Progress Log protokolü tanımlandı.
 
 **Alınan kararlar**
-- Bir aşama yalnızca işler yazılmış olduğu için değil, ilgili acceptance/kabul kriterleri test edildiğinde tamamlanmış sayılacak.
-- Ana plan artık feature listesi değil, projenin yürütme ve kalite kontrol belgesidir.
-- Uygulama Aşama 9’da ilk kez günlük kullanılabilir hale gelmeye başlayacak, Aşama 10’da gerçek adaptif sistem olacak, Aşama 17’de release hazır kabul edilecek.
+- Bir aşama yalnız ilgili acceptance kriterleri test edildiğinde tamamlanmış sayılacak.
+- Ana plan feature listesi değil, projenin yürütme ve kalite kontrol belgesi olacak.
 
 **Üretilen / güncellenen dosyalar**
-- `docs/MASTER_PLAN.md` kapsamlı biçimde genişletildi.
-- `docs/PROGRESS_LOG.md` bu kayıtla güncellendi.
+- `docs/MASTER_PLAN.md`
+- `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- Aşama 0 henüz tamamlanmadı.
-- V1 kapsamı ve success criteria maddeleri birlikte kesinleştirilecek.
-- Mastery/Planner tasarımına Aşama 0 tamamlanmadan geçilmeyecek.
+- İlk ürün aşaması henüz tamamlanmadı.
+- V1 kapsamı ve success criteria birlikte kesinleştirilecek.
 
 **Sonraki kesin adım**
-- **Aşama 0.1 Ana ürün amacı** ve ardından **0.2 V1 kapsamı** birlikte kesinleştirilecek.
+- Ana ürün amacı kesinleştirilecek.
 
 ---
 
 ### 2026-08-24 — Sohbet aktarımı ve kalıcı handoff sistemi güçlendirildi
 
 **Tamamlananlar**
-- Uzun sohbetlerin zamanla yavaşlaması veya yeni sohbete geçme ihtiyacı için tek noktadan devralma sistemi oluşturuldu.
-- Yeni sohbet/agent için ilk okunacak `docs/START_HERE.md` oluşturuldu.
-- Uygulamanın neden var olduğunu, kariyer bağlamını, ürün felsefesini, adaptif öğrenme yaklaşımını, sınav/retention/AI tutor mantığını ve uzun vadeli hedefi ayrıntılı anlatan `docs/PROJECT_MASTER_CONTEXT.md` oluşturuldu.
-- Projenin tam olarak hangi aşamada olduğunu, açık kararları ve sıradaki kesin adımı gösteren `docs/HANDOFF_STATE.md` oluşturuldu.
-- `README.md` yeni handoff yapısını öne çıkaracak şekilde güncellendi.
+- Yeni sohbet/agent için `docs/START_HERE.md` oluşturuldu.
+- Ayrıntılı ürün bağlamı için `docs/PROJECT_MASTER_CONTEXT.md` oluşturuldu.
+- Güncel devralma durumu için `docs/HANDOFF_STATE.md` oluşturuldu.
 
 **Alınan kararlar**
-- Sohbet geçmişi hiçbir zaman projenin tek bilgi kaynağı olmayacak.
-- Yeni sohbet veya agent ilk olarak `docs/START_HERE.md` okuyacak ve belirtilen doküman sırasını takip edecek.
-- Büyük ürün amacı `PROJECT_MASTER_CONTEXT.md`, güncel durum `HANDOFF_STATE.md`, kalıcı kararlar `DECISIONS.md`, yürütme `MASTER_PLAN.md`, kronolojik ilerleme `PROGRESS_LOG.md` üzerinden korunacak.
-- Yeni bir sohbete geçmeden önce `HANDOFF_STATE.md` mümkün olduğunca güncel tutulacak.
+- Sohbet geçmişi projenin tek bilgi kaynağı olmayacak.
+- Yeni sohbet önce `START_HERE.md` üzerinden repo hafızasını okuyacak.
 
 **Üretilen / güncellenen dosyalar**
 - `docs/START_HERE.md`
 - `docs/PROJECT_MASTER_CONTEXT.md`
 - `docs/HANDOFF_STATE.md`
 - `README.md`
+
+**Açık kalan noktalar**
+- Ürün geliştirme açısından henüz ilk adım tamamlanmadı.
+
+**Sonraki kesin adım**
+- Ana ürün amacı.
+
+---
+
+### 2026-08-24 — Sabit 1A/1B yürütme numaralandırması eklendi
+
+**Tamamlananlar**
+- 19 ana aşama kullanıcıyla konuşurken Aşama 1–19 olarak standardize edildi.
+- Her aşamanın ana alt adımlarına kalıcı kodlar verildi: `1A`, `1B`, `1C`, `2A`, `3C`, `11F` vb.
+- Tüm eski ayrıntılı master plan başlıklarının yeni kodlarla eşleştirildiği `docs/EXECUTION_INDEX.md` oluşturuldu.
+- `START_HERE.md`, `HANDOFF_STATE.md` ve `DECISIONS.md` yeni numaralandırma protokolüne göre güncellendi.
+
+**Alınan kararlar**
+- Bundan sonra konuşma ve görev devrinde mümkün olduğunca sabit adım kodu kullanılacak.
+- Bir adım tamamlandığında `EXECUTION_INDEX.md` ve ayrıntılı `MASTER_PLAN.md` birlikte güncellenecek.
+- Bir kodun anlamı sonradan mümkün olduğunca değiştirilmeyecek; böylece yeni sohbetler ve farklı AI agent’lar aynı referansı kullanabilecek.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/EXECUTION_INDEX.md`
+- `docs/DECISIONS.md`
+- `docs/START_HERE.md`
+- `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- Ürün geliştirme açısından yeni bir aşama tamamlanmadı; halen Aşama 0’dayız.
-- V1 kapsamı, success criteria ve mastery/planner ayrıntıları henüz kesinleşmedi.
+- `1A` henüz tamamlanmadı.
+- V1 kapsamı, success criteria, mastery ve planner ayrıntıları hâlâ sıradaki aşamalarda kesinleştirilecek.
 
 **Sonraki kesin adım**
-- `docs/MASTER_PLAN.md` içindeki **Aşama 0.1 — Ana ürün amacı** ile devam et.
+- **`1A — Ana ürün amacı`**.
