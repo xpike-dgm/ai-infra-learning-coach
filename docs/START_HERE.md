@@ -22,8 +22,9 @@ Bu nedenle `1095 gün`, yüzde kariyer tamamlandı, yalnızca ders izleme/işare
 4. `PROJECT_CONTEXT.md` — orijinal kalıcı proje hafızası ve kariyer rotası.
 5. `docs/DECISIONS.md` — kabul edilmiş kalıcı kararlar ve gelecekte değişirse değişiklik gerekçeleri.
 6. `docs/MASTER_PLAN.md` — aşama ve alt adım bazlı ana yürütme planı.
-7. `docs/PROGRESS_LOG.md` — kronolojik ilerleme günlüğü.
-8. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md`.
+7. `docs/AI_AGENT_WORKFLOW.md` — araştırma, kodlama, test/QA ve ana yönetici rollerinin iş bölümü ve görev devri protokolü.
+8. `docs/PROGRESS_LOG.md` — kronolojik ilerleme günlüğü.
+9. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md`.
 
 ## 3. Yeni sohbet nasıl devam etmeli?
 
@@ -36,6 +37,8 @@ Yeni sohbet/agent şu kurallara uymalı:
 - Her önemli çalışma oturumunda `docs/PROGRESS_LOG.md` güncellensin.
 - Güncel durum değiştiğinde `docs/HANDOFF_STATE.md` de güncellensin.
 - Büyük ürün amacı veya ürün felsefesi değişirse `docs/PROJECT_MASTER_CONTEXT.md` güncellensin.
+- Araştırma, implementasyon ve bağımsız test işleri `docs/AI_AGENT_WORKFLOW.md` içindeki rol ayrımına göre dağıtılsın.
+- Kodlama AI'ın kendi kodunu başarılı ilan etmesi kritik görevlerde yeterli kabul edilmesin; bağımsız QA sonucu aranmalıdır.
 
 ## 4. Şu anki ana kariyer/öğrenme yönü
 
@@ -77,6 +80,4 @@ Veri kaybını önleme, yedekleme ve uygulama kararlılığı yine önemlidir.
 
 Yeni bir ChatGPT sohbetinde repo bağlandıktan sonra şu şekilde devam edilebilir:
 
-> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md dosyasından başlayarak belirtilen proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. HANDOFF_STATE.md içindeki mevcut durum ve sonraki kesin adımdan devam et. Daha önce kabul edilen kararları yeniden açma; yeni bir karar alınırsa ilgili GitHub dokümanlarını güncelle.`
-
-Bu yöntem, sohbet uzayıp yavaşladığında yeni sohbete geçişte bağlam kaybını minimuma indirmek için tasarlanmıştır.
+> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md dosyasından başlayarak belirtilen proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. HANDOFF_STATE.md içindeki mevcut durum ve sonraki kesin adımdan devam et. Daha önce kabul edilen kararları yeniden açma; yeni bir karar alınırsa ilgili GitHub dokümanlarını güncelle. Araştırma/kodlama/test işleri için AI_AGENT_WORKFLOW.md protokolünü uygula.`
