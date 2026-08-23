@@ -109,6 +109,21 @@ Ana ekranın temel sorusu:
 
 Ana başarı göstergesi mastery/skill durumu olacak; streak veya gün sayısı değil.
 
+## 2.11 Multi-agent geliştirme düzeni
+
+Kullanıcının elinde ayrı amaçlar için kullanılabilecek AI araçları bulunuyor ve proje bunları uzman rollere ayıracak:
+
+- **Araştırma AI:** güncel dış bilgi, teknoloji karşılaştırması, öğrenme bilimi, curriculum ve teknik araştırmalar.
+- **Kodlama AI:** onaylanmış spesifikasyonların implementasyonu, refactor ve bug fix.
+- **Test/QA AI:** kodlama AI'dan bağımsız acceptance criteria, edge case ve regression testi.
+- **Ana yönetici/koordinatör:** sıradaki işi seçer, araştırmayı karara dönüştürür, görev/spec hazırlar, QA sonucuna göre işi kabul veya geri gönderir ve GitHub hafızasını günceller.
+
+Kritik özelliklerde varsayılan akış:
+
+**Yönetici → gerekirse Araştırma → Spec → Kodlama → Bağımsız QA → PASS ise kabul / FAIL ise kodlamaya geri dönüş → GitHub kayıtları**
+
+Her küçük iş araştırma AI'a gönderilmek zorunda değildir. Ayrıntılı protokol `docs/AI_AGENT_WORKFLOW.md` içindedir.
+
 ---
 
 # 3. GitHub'da Oluşturulmuş Dokümanlar
@@ -132,6 +147,7 @@ Ana başarı göstergesi mastery/skill durumu olacak; streak veya gün sayısı 
 
 - `docs/DECISIONS.md`
 - `docs/MASTER_PLAN.md`
+- `docs/AI_AGENT_WORKFLOW.md`
 - `docs/PROGRESS_LOG.md`
 - `docs/TODO.md`
 
@@ -223,13 +239,15 @@ Sonrasında doğrudan:
 
 Daha önce alınmış büyük kararlar tekrar tartışmaya açılmamalıdır; kullanıcı açıkça değiştirmek isterse değişiklik `DECISIONS.md` içine gerekçesiyle yazılmalıdır.
 
+Araştırma/kodlama/test görevleri `AI_AGENT_WORKFLOW.md` protokolüne göre ilgili AI rolüne dağıtılmalıdır.
+
 ---
 
 # 8. Sohbet Aktarımında Kullanılacak Önerilen Mesaj
 
 Yeni sohbete şu mesaj gönderilebilir:
 
-> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. Önce docs/START_HERE.md dosyasını, sonra onun belirttiği sırayla PROJECT_MASTER_CONTEXT.md, HANDOFF_STATE.md, PROJECT_CONTEXT.md, DECISIONS.md, MASTER_PLAN.md ve PROGRESS_LOG.md dosyalarını oku. Önceki sohbetin devamı gibi davran. Daha önce alınmış kararları yeniden sordurma. HANDOFF_STATE.md içindeki “Şu Anda Bulunulan Kesin Aşama” ve “Yeni Sohbetin Yapması Gereken İlk İş” bölümünden devam et. Yeni kalıcı karar ve tamamlanan adımları tekrar GitHub'a kaydet.`
+> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. Önce docs/START_HERE.md dosyasını, sonra onun belirttiği sırayla proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. Daha önce alınmış kararları yeniden sordurma. HANDOFF_STATE.md içindeki mevcut aşamadan devam et. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kalıcı karar ve tamamlanan adımları tekrar GitHub'a kaydet.`
 
 ---
 
@@ -245,6 +263,7 @@ Her önemli milestone veya sohbet değişiminde bu dosya güncellenmelidir.
 - ilk APK çıktığında
 - mastery/planner algoritması değiştiğinde
 - curriculum yönü değiştiğinde
+- AI agent iş bölümü değiştiğinde
 - yeni sohbete geçmeden hemen önce
 
 Amaç, bu dosyanın her zaman “şu anda nerede kaldık?” sorusunun güncel cevabı olmasıdır.
