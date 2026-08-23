@@ -13,24 +13,24 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 
 | Adım | Durum | Açıklama |
 |---|---|---|
-| **1A — Ana ürün amacı** | ✅ Tamamlandı | Ürünün tek cümlelik amacı, günlük değer önerisi, klasik kurs/todo sistemlerinden farkı, kanıtlanmış öğrenme ilkesi, adaptif davranış, kariyer rotası, English/AI rolü ve ilerleme felsefesi `docs/PRODUCT_REQUIREMENTS.md` içinde kilitlendi. |
-| **1B — V1 kapsamı** | 🟡 Aktif | V1’de kesin olacak ve özellikle sonraya bırakılacak özellikler belirlenecek. |
-| **1C — Başarı kriterleri** | ⬜ Bekliyor | 1B sonrası ölçülebilir acceptance kriterleri yazılacak. |
-| **1D — Non-goals** | ⬜ Bekliyor | 1B/1C sonrası kapsam dışı hedefler son kez kilitlenecek. |
+| **1A — Ana ürün amacı** | ✅ Tamamlandı | Ürünün amacı, günlük değer önerisi ve ana ürün ilkeleri `docs/PRODUCT_REQUIREMENTS.md` içinde kilitlendi. |
+| **1B — V1 kapsamı** | ✅ Tamamlandı | V1'in zorunlu yetenekleri ve bilinçli olarak sonraya bırakılan alanlar `docs/V1_SCOPE.md` içinde kilitlendi. |
+| **1C — Başarı kriterleri** | 🟡 Aktif | V1 kapsamındaki kritik davranışlar ölçülebilir acceptance testlerine dönüştürülecek. |
+| **1D — Non-goals** | ⬜ Bekliyor | 1C sonrası kapsam dışı hedefler son kez konsolide edilip kilitlenecek. |
 | **2A ve sonrası** | ⬜ Bekliyor | Aşama 1 tamamlanmadan başlanmayacak. |
 
 ## Son tamamlanan adım
 
-### 1A — Ana ürün amacı
+### 1B — V1 kapsamı
 
 **Tamamlanma tarihi:** 2026-08-24
 
-**Ana çıktı:** `docs/PRODUCT_REQUIREMENTS.md`
+**Ana çıktı:** `docs/V1_SCOPE.md`
 
-**Özet:** Ürün sabit kurs veya görev takip uygulaması olarak değil; kullanıcının mevcut gerçek bilgi durumuna göre günlük çalışma üreten, öğrenme oturumunu yürüten, öğrenmeyi çoklu kanıtlarla ölçen ve performansa göre gelecekteki programı yeniden düzenleyen kişisel adaptif mobil öğrenme koçu olarak tanımlandı.
+**Özet:** V1; günlük adaptif planner, task runner, mastery/prerequisite, günlük mikro değerlendirme, haftalık ve aylık sınav, retention, remediation, AI Tutor, paralel teknik İngilizce, ilk 8–12 haftalık gerçek curriculum, progress/weakness görünümü, local-first persistence, bildirimler, modern UI ve backup/restore içeren Android odaklı kişisel release olarak sınırlandı. Tam 3 yıllık curriculum, sosyal/ticari sistemler, cloud multi-device sync, tam voice tutor, uygulama içi tam IDE/compiler ve gelişmiş career-market engine sonraya bırakıldı.
 
 ## Aktif adım
 
-### 1B — V1 kapsamı
+### 1C — Başarı kriterleri
 
-Bu adımda yapılacak iş: Ürün vizyonunun ilk gerçek sürümüne hangi yeteneklerin girmesi gerektiğini belirlemek ve V1’i gereksiz büyütmeden, adaptif öğrenme döngüsünü gerçekten doğrulayacak minimum ama eksiksiz kapsamı kilitlemek.
+Bu adımda yapılacak iş: V1'in sadece 'özellikleri var' diye başarılı sayılmasını önlemek için daily plan, mastery, prerequisite, assessment, replan, retention, remediation, AI Tutor, English track, persistence ve release davranışlarını ölçülebilir acceptance kriterlerine dönüştürmek.
