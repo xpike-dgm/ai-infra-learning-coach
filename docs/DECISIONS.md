@@ -98,3 +98,13 @@ Araştırmalardaki 12 aylık yoğun planın konu sırası referans alınabilir; 
 **Durum:** Kabul edildi
 
 C++ Systems / Systems Software / Linux Infrastructure / Distributed Systems / Performance / uygun SRE-Cloud rolü, AI Infrastructure'a geçiş için köprü olabilir.
+
+## D-015 — Geliştirme aşamalı master plan üzerinden yürütülecek
+
+**Durum:** Kabul edildi — 2026-08-24
+
+Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek. Kodlama başlamadan önce ürün çerçevesi, öğrenme motoru, adaptif planner, assessment sistemi, curriculum/knowledge graph, English track, UX ve teknik mimari yeterince netleştirilecek.
+
+Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; aynı adımın altına tarihli **tamamlanma notu** yazılacak. Bu not ne yapıldığını, hangi kararın çıktığını, hangi dosyanın üretildiğini ve sonraki adıma etkisini açıklayacak. Oturumların kronolojik özeti ayrıca `docs/PROGRESS_LOG.md` içinde tutulacak.
+
+Gerekçe: Proje uzun süreli olduğu için sohbet bağlamına veya hafızaya güvenmeden, neyin neden yapıldığını GitHub üzerinden yeniden kurabilmek.
