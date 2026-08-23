@@ -90,3 +90,34 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 
 **Sonraki kesin adım**
 - **Aşama 0.1 Ana ürün amacı** ve ardından **0.2 V1 kapsamı** birlikte kesinleştirilecek.
+
+---
+
+### 2026-08-24 — Sohbet aktarımı ve kalıcı handoff sistemi güçlendirildi
+
+**Tamamlananlar**
+- Uzun sohbetlerin zamanla yavaşlaması veya yeni sohbete geçme ihtiyacı için tek noktadan devralma sistemi oluşturuldu.
+- Yeni sohbet/agent için ilk okunacak `docs/START_HERE.md` oluşturuldu.
+- Uygulamanın neden var olduğunu, kariyer bağlamını, ürün felsefesini, adaptif öğrenme yaklaşımını, sınav/retention/AI tutor mantığını ve uzun vadeli hedefi ayrıntılı anlatan `docs/PROJECT_MASTER_CONTEXT.md` oluşturuldu.
+- Projenin tam olarak hangi aşamada olduğunu, açık kararları ve sıradaki kesin adımı gösteren `docs/HANDOFF_STATE.md` oluşturuldu.
+- `README.md` yeni handoff yapısını öne çıkaracak şekilde güncellendi.
+
+**Alınan kararlar**
+- Sohbet geçmişi hiçbir zaman projenin tek bilgi kaynağı olmayacak.
+- Yeni sohbet veya agent ilk olarak `docs/START_HERE.md` okuyacak ve belirtilen doküman sırasını takip edecek.
+- Büyük ürün amacı `PROJECT_MASTER_CONTEXT.md`, güncel durum `HANDOFF_STATE.md`, kalıcı kararlar `DECISIONS.md`, yürütme `MASTER_PLAN.md`, kronolojik ilerleme `PROGRESS_LOG.md` üzerinden korunacak.
+- Yeni bir sohbete geçmeden önce `HANDOFF_STATE.md` mümkün olduğunca güncel tutulacak.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/START_HERE.md`
+- `docs/PROJECT_MASTER_CONTEXT.md`
+- `docs/HANDOFF_STATE.md`
+- `README.md`
+- `docs/PROGRESS_LOG.md`
+
+**Açık kalan noktalar**
+- Ürün geliştirme açısından yeni bir aşama tamamlanmadı; halen Aşama 0’dayız.
+- V1 kapsamı, success criteria ve mastery/planner ayrıntıları henüz kesinleşmedi.
+
+**Sonraki kesin adım**
+- `docs/MASTER_PLAN.md` içindeki **Aşama 0.1 — Ana ürün amacı** ile devam et.
