@@ -107,8 +107,6 @@ Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek.
 
 Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; aynı adımın altına tarihli **tamamlanma notu** yazılacak. Bu not ne yapıldığını, hangi kararın çıktığını, hangi dosyanın üretildiğini ve sonraki adıma etkisini açıklayacak. Oturumların kronolojik özeti ayrıca `docs/PROGRESS_LOG.md` içinde tutulacak.
 
-Gerekçe: Proje uzun süreli olduğu için sohbet bağlamına veya hafızaya güvenmeden, neyin neden yapıldığını GitHub üzerinden yeniden kurabilmek.
-
 ## D-016 — Araştırma, kodlama ve test için ayrı AI rolleri kullanılacak
 
 **Durum:** Kabul edildi — 2026-08-24
@@ -120,9 +118,7 @@ Proje geliştirmesinde mevcut AI araçları uzman rollere ayrılacak:
 - **Test/QA AI:** kodlama AI'dan bağımsız acceptance criteria, edge case ve regression doğrulaması.
 - **Ana yönetici/koordinatör:** hangi işin yapılacağını belirleme, araştırmayı karara dönüştürme, görev paketleme, test sonucunu değerlendirme ve GitHub proje hafızasını güncelleme.
 
-Kodlama AI'ın kendi implementasyonunu 'çalışıyor' olarak raporlaması tek başına tamamlanma sayılmayacak. Kritik geliştirme işleri bağımsız QA'dan geçecek. FAIL durumunda görev kodlama AI'a geri dönecek; PASS sonrası ilgili `MASTER_PLAN.md` adımı tamamlanabilecek.
-
-Her iş zorunlu olarak üç AI'dan geçmeyecek. Dış araştırma gerektirmeyen küçük ve net işler doğrudan Kodlama → QA akışına gidebilir. Mastery algoritması, teknoloji seçimi, curriculum veya güncel bağımlılık kararları gibi riskli konularda Araştırma → Spec → Kodlama → QA akışı tercih edilecek.
+Kodlama AI'ın kendi implementasyonunu 'çalışıyor' olarak raporlaması tek başına tamamlanma sayılmayacak. Kritik geliştirme işleri bağımsız QA'dan geçecek. FAIL durumunda görev kodlama AI'a geri dönecek; PASS sonrası ilgili plan adımı tamamlanabilecek.
 
 Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
 
@@ -130,10 +126,48 @@ Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
 
 **Durum:** Kabul edildi — 2026-08-24
 
-19 ana aşama bundan sonra kullanıcıyla konuşurken **Aşama 1–19** olarak anılacak. Her aşamanın ana alt adımları aşama numarası + harf biçiminde sabit bir kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
+19 ana aşama bundan sonra Aşama 1–19 olarak anılacak. Her aşamanın ana alt adımları aşama numarası + harf biçiminde sabit kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
 
-Ayrıntılı eski `MASTER_PLAN.md` yapısı korunur; numaralı yürütme karşılıkları `docs/EXECUTION_INDEX.md` içinde tutulur. Örneğin eski `Aşama 0 / 0.1 Ana ürün amacı`, yeni yürütme dilinde **`1A — Ana ürün amacı`**dır.
+Ayrıntılı eski `MASTER_PLAN.md` yapısı korunur; numaralı yürütme karşılıkları `docs/EXECUTION_INDEX.md` içinde tutulur.
 
-Bir kod bir kez verildikten sonra anlamı mümkün olduğunca değiştirilmez. Böylece sohbet değişse veya başka bir AI/agent projeyi devralsa bile “şu an 3C’deyiz” ifadesi tek anlam taşır.
+## D-018 — V1 kapsamı ana adaptif öğrenme döngüsünü eksiksiz çalıştıracak şekilde sınırlandı
 
-Tamamlanma durumunda hem `EXECUTION_INDEX.md` hem ilgili ayrıntılı `MASTER_PLAN.md` checklist’i güncellenir ve tarihli tamamlanma notu tutulur.
+**Durum:** Kabul edildi — 2026-08-24
+
+V1, yalnız ekranları olan bir prototip değil; kişisel günlük kullanım için gerçekten çalışan Android release'i hedefler.
+
+V1'de zorunlu ana yetenekler:
+
+- Today/daily plan,
+- knowledge graph + prerequisite,
+- adaptive planner/replan,
+- task runner,
+- mastery engine,
+- günlük mikro değerlendirme,
+- weekly/monthly assessments,
+- retention/spaced repetition,
+- remediation,
+- AI Tutor v1,
+- paralel technical English,
+- ilk 8–12 haftalık production curriculum,
+- progress/weakness görünümü,
+- local-first persistence,
+- bildirimler,
+- modern UI,
+- backup/export/restore.
+
+V1 release şartı olmayanlar:
+
+- 3 yıllık curriculum'un tamamı,
+- sosyal/ticari özellikler,
+- auth ve multi-tenant SaaS,
+- cloud multi-device live sync,
+- iOS/web/desktop istemcileri,
+- gelişmiş career-market engine,
+- tam voice-first tutor,
+- uygulama içine gömülü tam C/C++ IDE/compiler/sandbox,
+- aşırı gamification.
+
+AI, explanation/feedback/evaluation için kullanılabilir; ancak mastery/prerequisite/planner gibi çekirdek kurallar tamamen LLM'nin keyfi kararlarına bırakılmayacaktır.
+
+Ayrıntılı kapsam: `docs/V1_SCOPE.md`.
