@@ -1,106 +1,44 @@
 # TODO / Next Steps
 
-## Faz 0 — Ürünü Kodlamadan Önce
+Bu dosya yalnızca **aktif çalışma kuyruğunu** gösterir. Projenin tüm aşamaları, adımları, kabul kriterleri ve ilerleme notu formatı için ana kaynak: `docs/MASTER_PLAN.md`.
 
-- [ ] Teknoloji seçimini netleştir: Flutter vs Kotlin/Compose vs React Native
-- [ ] Offline-first veri modelini tasarla
-- [ ] Knowledge graph şemasını tanımla
-- [ ] Topic / prerequisite / mastery / assessment modellerini kesinleştir
-- [ ] Günlük planlayıcının kurallarını yaz
-- [ ] Haftalık ve aylık sınav üretim mantığını yaz
-- [ ] Spaced repetition yaklaşımını seç
-- [ ] AI tutor'un hangi aşamada ve nasıl kullanılacağını tanımla
-- [ ] AI sağlayıcı bağımlılığını mümkün olduğunca gevşek tasarla
-- [ ] Tasarım sistemi ve ekran wireframe'lerini çıkar
+## Aktif Aşama — AŞAMA 0: Proje Çerçevesini Kilitle
 
-## Faz 1 — MVP
+### 0.1 Ürün amacı
+- [ ] Uygulamanın tek cümlelik ana amacını kesinleştir.
+- [ ] Kullanıcının uygulamayı açtığında aldığı temel değeri tanımla.
+- [ ] “Zaman geçirmek ilerleme değildir; kanıtlanmış öğrenme ilerlemedir” ilkesini ürün gereksinimine dönüştür.
 
-- [ ] Ana ekran: Bugünkü çalışma
-- [ ] Yol haritası / knowledge graph görünümü
-- [ ] Ders/konu ekranı
-- [ ] Günlük görev akışı
-- [ ] Quiz motoru
-- [ ] Kodlama görevi kayıt/değerlendirme temeli
-- [ ] Mastery engine v0
-- [ ] Prerequisite kilitleri
-- [ ] Local persistence
-- [ ] Gün sonu yeniden planlama
-- [ ] İlerleme ekranı
+### 0.2 Kapsam
+- [ ] V1’de kesin olacak özellikleri listele.
+- [ ] V1’de kesin olmayacak özellikleri listele.
+- [ ] Kişisel kullanım sınırını teknik ve ürün açısından tanımla.
+- [ ] 3 yıllık hedefin bir sayaç değil, arka plan curriculum ufku olduğunu kesinleştir.
 
-## Faz 2 — Adaptif Öğrenme
+### 0.3 Başarı kriterleri
+- [ ] Ölçülebilir V1 başarı kriterlerini yaz.
+- [ ] Günlük görev üretiminin doğruluk kriterini belirle.
+- [ ] Mastery ölçümünün minimum güven şartlarını belirle.
+- [ ] Haftalık/aylık sınavların planı gerçekten değiştirdiğini doğrulayan kriterleri yaz.
 
-- [ ] Remediation paketleri
-- [ ] Haftalık sınav
-- [ ] Aylık yeterlilik sınavı
-- [ ] Retention / spaced repetition
-- [ ] Kaçırılan gün sonrası yeniden planlama
-- [ ] Hızlı öğrenme / content skip doğrulaması
-- [ ] Zayıf konu analizi
-- [ ] Neden plan değişti açıklaması
+## Sonraki Aşamalar
 
-## Faz 3 — AI Tutor
+1. Aşama 1 — Öğrenme sisteminin kuralları
+2. Aşama 2 — Adaptif planlama motoru
+3. Aşama 3 — Sınav ve değerlendirme sistemi
+4. Aşama 4 — Curriculum / knowledge graph
+5. Aşama 5 — İngilizce paralel hat
+6. Aşama 6 — Ürün gereksinimleri ve UX
+7. Aşama 7 — Teknik mimari
+8. Aşama 8 — Çekirdek MVP geliştirme
 
-- [ ] Seviyeye göre açıklama
-- [ ] İpucu sistemi
-- [ ] Yanlış kök neden analizi
-- [ ] Alternatif anlatım
-- [ ] Kod açıklatma
-- [ ] AI-generated code comprehension check
-- [ ] Transfer soruları
-- [ ] Açık uçlu cevap değerlendirme
+Kodlama, Aşama 0–7 arasındaki temel kararlar yeterince netleşmeden başlatılmayacaktır.
 
-## Faz 4 — İngilizce Paralel Hat
+## İlerleme Kayıt Kuralı
 
-- [ ] A0 başlangıç görevleri
-- [ ] Teknik vocabulary
-- [ ] Compiler/terminal reading
-- [ ] README/commit writing
-- [ ] GitHub issue/PR practice
-- [ ] Documentation reading
-- [ ] Technical speaking/mock interview
-- [ ] CEFR + teknik alt beceri takibi
+Bir adım tamamlandığında:
 
-## Faz 5 — İlk Curriculum Paketi
-
-İlk etapta 8–12 haftalık kaliteli içerik hazırlanacak.
-
-- [ ] Computer Fundamentals
-- [ ] C Foundations
-- [ ] Memory Foundations
-- [ ] Linux Fundamentals
-- [ ] Data Structures başlangıcı
-- [ ] Paralel English A0→A1/A2 içerikleri
-- [ ] Günlük mikro değerlendirme havuzu
-- [ ] Haftalık sınav havuzu
-- [ ] İlk aylık yeterlilik sınavı
-
-## Faz 6 — Polish
-
-- [ ] Light/Dark theme
-- [ ] Animasyonlar
-- [ ] Erişilebilir tipografi
-- [ ] Bildirimler
-- [ ] İlerleme görselleri
-- [ ] Backup/export
-- [ ] APK release
-- [ ] Gerçek günlük kullanım testi
-
-## Sonraki Büyük Curriculum Modülleri
-
-- [ ] Modern C++
-- [ ] Operating Systems
-- [ ] Concurrency
-- [ ] Networking
-- [ ] Distributed Systems
-- [ ] GPU Architecture
-- [ ] CUDA
-- [ ] Triton
-- [ ] LLM Systems
-- [ ] Inference Engines
-- [ ] Multi-GPU / NCCL / RDMA
-- [ ] AI Infrastructure
-- [ ] Open Source / Career readiness
-
-## Şu An En Doğru Sonraki Adım
-
-Kodlamaya hemen başlamadan önce **ürün gereksinim dokümanı + veri modeli + adaptif algoritmanın v0 spesifikasyonunu** çıkarmak. Bunlar netleşince coding agent'a uygulanabilir bir master geliştirme promptu hazırlanmalı.
+1. `docs/MASTER_PLAN.md` içindeki checkbox `[x]` yapılır.
+2. Aynı adımın altına tarihli kısa tamamlanma açıklaması eklenir.
+3. Oturum özeti `docs/PROGRESS_LOG.md` içine yazılır.
+4. Kalıcı ürün kararı çıktıysa `docs/DECISIONS.md` güncellenir.
