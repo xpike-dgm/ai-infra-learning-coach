@@ -125,3 +125,15 @@ Kodlama AI'ın kendi implementasyonunu 'çalışıyor' olarak raporlaması tek b
 Her iş zorunlu olarak üç AI'dan geçmeyecek. Dış araştırma gerektirmeyen küçük ve net işler doğrudan Kodlama → QA akışına gidebilir. Mastery algoritması, teknoloji seçimi, curriculum veya güncel bağımlılık kararları gibi riskli konularda Araştırma → Spec → Kodlama → QA akışı tercih edilecek.
 
 Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
+
+## D-017 — Proje adımları sabit `1A / 1B / ...` kodlarıyla takip edilecek
+
+**Durum:** Kabul edildi — 2026-08-24
+
+19 ana aşama bundan sonra kullanıcıyla konuşurken **Aşama 1–19** olarak anılacak. Her aşamanın ana alt adımları aşama numarası + harf biçiminde sabit bir kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
+
+Ayrıntılı eski `MASTER_PLAN.md` yapısı korunur; numaralı yürütme karşılıkları `docs/EXECUTION_INDEX.md` içinde tutulur. Örneğin eski `Aşama 0 / 0.1 Ana ürün amacı`, yeni yürütme dilinde **`1A — Ana ürün amacı`**dır.
+
+Bir kod bir kez verildikten sonra anlamı mümkün olduğunca değiştirilmez. Böylece sohbet değişse veya başka bir AI/agent projeyi devralsa bile “şu an 3C’deyiz” ifadesi tek anlam taşır.
+
+Tamamlanma durumunda hem `EXECUTION_INDEX.md` hem ilgili ayrıntılı `MASTER_PLAN.md` checklist’i güncellenir ve tarihli tamamlanma notu tutulur.
