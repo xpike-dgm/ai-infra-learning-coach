@@ -33,111 +33,91 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 - “Zaman geçirmek ilerleme değildir; yalnızca kanıtlanmış öğrenme ilerlemedir” ilkesi ana ürün prensibi olarak kaydedildi.
 - Knowledge graph, mastery, haftalık/aylık assessment, remediation, spaced repetition ve İngilizce paralel hat ana bileşenleri tanımlandı.
 - Kişisel kullanım nedeniyle auth, ödeme, sosyal özellik ve çok kullanıcılı SaaS karmaşıklığının kapsam dışı olduğu kaydedildi.
-- Geliştirme başlamadan önce izlenecek kapsamlı aşamalı master plan oluşturuldu.
 
 **Alınan kararlar**
-- Kodlamadan önce ürün, öğrenme motoru, planner, assessment, curriculum, English track, UX ve teknik mimari sırasıyla netleştirilecek.
-- Tamamlanan her adım `MASTER_PLAN.md` içinde `[x]` yapılacak ve hemen altında tamamlanma notu bulunacak.
-- Kalıcı karar değişiklikleri `DECISIONS.md` içine ayrıca eklenecek.
-
-**Üretilen / güncellenen dosyalar**
-- `PROJECT_CONTEXT.md`
-- `docs/DECISIONS.md`
-- `docs/PRODUCT_VISION.md`
-- `docs/LEARNING_ENGINE.md`
-- `docs/CURRICULUM.md`
-- `docs/ENGLISH_TRACK.md`
-- `docs/RESEARCH_NOTES.md`
-- `docs/TODO.md`
-- `docs/MASTER_PLAN.md`
-- `docs/PROGRESS_LOG.md`
-
-**Açık kalan noktalar**
-- V1 ürün kapsamının son hali henüz maddeler halinde kilitlenmedi.
-- Mastery formülü ve threshold değerleri henüz tasarlanmadı.
-- Adaptive planner karar tablosu henüz tasarlanmadı.
-- Mobil teknoloji seçimi henüz yapılmadı.
-
-**Sonraki kesin adım**
-- Ürün çerçevesini kilitleme aşaması tamamlanacak.
+- Kodlamadan önce ürün, öğrenme motoru, planner, assessment, curriculum, English track, UX ve teknik mimari netleştirilecek.
+- Tamamlanan işler GitHub üzerinde kalıcı notlarla tutulacak.
 
 ---
 
 ### 2026-08-24 — Master plan 19 aşamalı ayrıntılı yürütme planına dönüştürüldü
 
 **Tamamlananlar**
-- Önceki üst seviye aşama listesi detaylandırıldı.
 - Proje toplam 19 ana aşamaya ayrıldı.
-- Her aşama; amaç, alt adımlar, üretilecek çıktılar, tamamlanma kapısı ve aşama sonundaki ürün durumu ile yeniden yazıldı.
-- M0–M6 milestone sistemi eklendi.
-- Release APK’nin temel ürünün hazır olduğu nokta, sonrasının uzun vadeli curriculum/kariyer genişletmesi olduğu netleştirildi.
-- Her adım tamamlandığında `[x]` işaretinin yanında tarihli tamamlanma açıklaması tutulması zorunlu hale getirildi.
+- Her aşama amaç, alt adım, çıktı ve tamamlanma kapısıyla tanımlandı.
+- Release APK'nin temel ürünün hazır olduğu nokta olduğu netleştirildi.
 
 **Alınan kararlar**
-- Bir aşama yalnız ilgili acceptance kriterleri test edildiğinde tamamlanmış sayılacak.
-- Ana plan feature listesi değil, projenin yürütme ve kalite kontrol belgesi olacak.
-
-**Üretilen / güncellenen dosyalar**
-- `docs/MASTER_PLAN.md`
-- `docs/PROGRESS_LOG.md`
-
-**Açık kalan noktalar**
-- İlk ürün aşaması henüz tamamlanmadı.
-- V1 kapsamı ve success criteria birlikte kesinleştirilecek.
-
-**Sonraki kesin adım**
-- Ana ürün amacı kesinleştirilecek.
+- Bir aşama yalnız acceptance kriterleri sağlandığında tamamlanmış sayılacak.
 
 ---
 
 ### 2026-08-24 — Sohbet aktarımı ve kalıcı handoff sistemi güçlendirildi
 
 **Tamamlananlar**
-- Yeni sohbet/agent için `docs/START_HERE.md` oluşturuldu.
-- Ayrıntılı ürün bağlamı için `docs/PROJECT_MASTER_CONTEXT.md` oluşturuldu.
-- Güncel devralma durumu için `docs/HANDOFF_STATE.md` oluşturuldu.
+- `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md` ve `HANDOFF_STATE.md` oluşturuldu.
 
 **Alınan kararlar**
 - Sohbet geçmişi projenin tek bilgi kaynağı olmayacak.
-- Yeni sohbet önce `START_HERE.md` üzerinden repo hafızasını okuyacak.
-
-**Üretilen / güncellenen dosyalar**
-- `docs/START_HERE.md`
-- `docs/PROJECT_MASTER_CONTEXT.md`
-- `docs/HANDOFF_STATE.md`
-- `README.md`
-
-**Açık kalan noktalar**
-- Ürün geliştirme açısından henüz ilk adım tamamlanmadı.
-
-**Sonraki kesin adım**
-- Ana ürün amacı.
+- GitHub kalıcı proje hafızası olarak kullanılacak.
 
 ---
 
 ### 2026-08-24 — Sabit 1A/1B yürütme numaralandırması eklendi
 
 **Tamamlananlar**
-- 19 ana aşama kullanıcıyla konuşurken Aşama 1–19 olarak standardize edildi.
-- Her aşamanın ana alt adımlarına kalıcı kodlar verildi: `1A`, `1B`, `1C`, `2A`, `3C`, `11F` vb.
-- Tüm eski ayrıntılı master plan başlıklarının yeni kodlarla eşleştirildiği `docs/EXECUTION_INDEX.md` oluşturuldu.
-- `START_HERE.md`, `HANDOFF_STATE.md` ve `DECISIONS.md` yeni numaralandırma protokolüne göre güncellendi.
+- 19 ana aşama Aşama 1–19 olarak standardize edildi.
+- Alt adımlara `1A`, `1B`, `2A`, `3C`, `11F` gibi sabit kodlar verildi.
+- `docs/EXECUTION_INDEX.md` ve `docs/STEP_STATUS.md` oluşturuldu.
 
 **Alınan kararlar**
-- Bundan sonra konuşma ve görev devrinde mümkün olduğunca sabit adım kodu kullanılacak.
-- Bir adım tamamlandığında `EXECUTION_INDEX.md` ve ayrıntılı `MASTER_PLAN.md` birlikte güncellenecek.
-- Bir kodun anlamı sonradan mümkün olduğunca değiştirilmeyecek; böylece yeni sohbetler ve farklı AI agent’lar aynı referansı kullanabilecek.
+- Sohbetlerde ve AI görevlerinde sabit adım kodları kullanılacak.
+
+---
+
+### 2026-08-24 — 1A Ana ürün amacı tamamlandı
+
+**Tamamlananlar**
+- Ürünün tek cümlelik resmi amacı yazıldı.
+- Kullanıcının günlük temel değeri tanımlandı.
+- Klasik kurs/todo uygulamasından farkı netleştirildi.
+- Kanıtlanmış öğrenme ilkesi ürün gereksinimine dönüştürüldü.
+- Kariyer rotası, English ve AI Tutor ürün amacıyla bağlandı.
 
 **Üretilen / güncellenen dosyalar**
-- `docs/EXECUTION_INDEX.md`
+- `docs/PRODUCT_REQUIREMENTS.md`
+- `docs/STEP_STATUS.md`
+
+**Sonraki kesin adım**
+- `1B — V1 kapsamı`.
+
+---
+
+### 2026-08-24 — 1B V1 kapsamı tamamlandı
+
+**Tamamlananlar**
+- V1'in ana ürün vaadini eksiltmeden minimum ama eksiksiz kapsamı kilitlendi.
+- V1'in Android odaklı, kişisel ve local-first günlük kullanım release'i olması kararlaştırıldı.
+- Daily planner, task runner, mastery, prerequisite, daily assessment, weekly/monthly exams, retention, remediation, AI Tutor, parallel English, progress, notifications ve backup/restore V1 kapsamına alındı.
+- İlk release curriculum kapsamı ilk 8–12 haftalık production-quality içerikle sınırlandı.
+- V1 dışında bırakılan başlıca alanlar netleştirildi: tam 3 yıllık curriculum, social/commerce, cloud multi-device sync, iOS/web/desktop, gelişmiş career-market engine, tam voice tutor, gömülü tam IDE/compiler ve aşırı gamification.
+- AI'nın çekirdek planner/mastery/prerequisite kurallarını keyfi biçimde kontrol etmemesi kararlaştırıldı.
+
+**Alınan kararlar**
+- V1 yalnız prototip değil, gerçek günlük kullanım için release adayıdır.
+- Telefon uygulaması tam IDE olmaya çalışmayacak; coding görevleri gerektiğinde PC üzerinde uygulanabilir.
+- İlk release motoru genişlemeye hazır olacak ancak tüm ileri curriculum release ön koşulu olmayacak.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/V1_SCOPE.md`
+- `docs/STEP_STATUS.md`
 - `docs/DECISIONS.md`
-- `docs/START_HERE.md`
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- `1A` henüz tamamlanmadı.
-- V1 kapsamı, success criteria, mastery ve planner ayrıntıları hâlâ sıradaki aşamalarda kesinleştirilecek.
+- V1 başarı kriterleri henüz ölçülebilir testlere çevrilmedi.
+- Mastery formülü/threshold ve planner algoritması sonraki aşamalarda kesinleşecek.
 
 **Sonraki kesin adım**
-- **`1A — Ana ürün amacı`**.
+- **`1C — Başarı kriterleri`**.
