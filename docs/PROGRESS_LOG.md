@@ -60,3 +60,33 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 
 **Sonraki kesin adım**
 - `MASTER_PLAN.md` içindeki **Aşama 0 — Proje Çerçevesini Kilitle** tamamlanacak.
+
+---
+
+### 2026-08-24 — Master plan 19 aşamalı ayrıntılı yürütme planına dönüştürüldü
+
+**Tamamlananlar**
+- Önceki üst seviye aşama listesi detaylandırıldı.
+- Proje Aşama 0–18 olmak üzere toplam 19 ana aşamaya ayrıldı.
+- Her aşama; amaç, numaralı alt adımlar, üretilecek çıktılar, tamamlanma kapısı ve aşama sonundaki ürün durumu ile yeniden yazıldı.
+- M0–M6 milestone sistemi eklendi.
+- Release APK’nin Aşama 17 sonunda hazır kabul edileceği; Aşama 18’in uzun vadeli curriculum ve kariyer genişletmesi olduğu netleştirildi.
+- Her adım tamamlandığında `[x]` işaretinin yanında tarihli tamamlanma açıklaması tutulması zorunlu hale getirildi.
+- Her aşamada Analyse → Decide → Document → Implement → Test → Mark → Completion Note → Progress Log protokolü tanımlandı.
+
+**Alınan kararlar**
+- Bir aşama yalnızca işler yazılmış olduğu için değil, ilgili acceptance/kabul kriterleri test edildiğinde tamamlanmış sayılacak.
+- Ana plan artık feature listesi değil, projenin yürütme ve kalite kontrol belgesidir.
+- Uygulama Aşama 9’da ilk kez günlük kullanılabilir hale gelmeye başlayacak, Aşama 10’da gerçek adaptif sistem olacak, Aşama 17’de release hazır kabul edilecek.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/MASTER_PLAN.md` kapsamlı biçimde genişletildi.
+- `docs/PROGRESS_LOG.md` bu kayıtla güncellendi.
+
+**Açık kalan noktalar**
+- Aşama 0 henüz tamamlanmadı.
+- V1 kapsamı ve success criteria maddeleri birlikte kesinleştirilecek.
+- Mastery/Planner tasarımına Aşama 0 tamamlanmadan geçilmeyecek.
+
+**Sonraki kesin adım**
+- **Aşama 0.1 Ana ürün amacı** ve ardından **0.2 V1 kapsamı** birlikte kesinleştirilecek.
