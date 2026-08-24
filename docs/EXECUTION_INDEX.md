@@ -24,18 +24,15 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [x] **2B — Topic durumları** — `docs/TOPIC_STATE_MACHINE.md`
 - [x] **2C — Mastery sinyalleri** — `docs/MASTERY_SIGNALS_SPEC.md`
 - [x] **2D — AI/ipucu etkisi** — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-- [x] **2E — Mastery formülü v0** — `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`
-  - `GRE-v0 — Gated Recent Evidence`, D-031.
-- [x] **2F — Unutma modeli** — `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`
-  - **Tamamlanma notu — 2026-08-24:** Research AI raporu doğrulandı; final `RVR-v0 — Retention Verification & Risk`. Time-based mastery decay reddedildi; mastery/retention ayrıldı; review_due/verification/natural reuse/critical-prereq/backlog davranışı kilitlendi. D-032.
-
-**Aşama 2 çıktısı:** öğrenme birimleri + Topic state + evidence + assistance + GRE-v0 mastery + RVR-v0 retention/forgetting modeli.
+- [x] **2E — Mastery formülü v0** — `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — GRE-v0 / D-031
+- [x] **2F — Unutma modeli** — `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — RVR-v0 / D-032
 
 ---
 
 # AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
-- [ ] **3A — Günlük kapasite** **AKTİF**
-- [ ] **3B — Görev kategorileri**
+- [x] **3A — Günlük kapasite** — `docs/ADAPTIVE_PLANNER_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** Explicit günlük süre hard budget; editable short/normal/intensive presets; reserve/min-block heuristics; no auto-overrun; no fixed category percentages; remaining-time replan; split/defer; no backlog debt; duration/pacing contract. D-033.
+- [ ] **3B — Görev kategorileri** **AKTİF**
 - [ ] **3C — Öncelik puanı**
 - [ ] **3D — Prerequisite davranışı**
 - [ ] **3E — Hızlı öğrenme**
@@ -43,7 +40,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [ ] **3G — Açıklanabilir planner**
 - [ ] **3H — Planner simülasyonu**
 
-**Çıktı:** `ADAPTIVE_PLANNER_SPEC.md`, decision table, pseudocode, simulation suite.
+**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, decision table, pseudocode, simulation suite.
 
 ---
 
@@ -203,8 +200,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # Güncel Konum
-**Tamamlanan:** `1A–1D`, `2A–2F`  
-**AŞAMA 2:** ✅ TAMAMLANDI  
-**Aktif:** **`3A — Günlük kapasite`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A`  
+**Aktif:** **`3B — Görev kategorileri`**
 
-3A başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+3B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
