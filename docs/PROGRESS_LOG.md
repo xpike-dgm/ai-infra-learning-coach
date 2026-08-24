@@ -29,154 +29,72 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — Aşama 1 tamamlandı
-- `1A` ürün amacı → `docs/PRODUCT_REQUIREMENTS.md`.
-- `1B` V1 kapsamı → `docs/V1_SCOPE.md`.
-- `1C` P0/P1/P2 success criteria → `docs/V1_SUCCESS_CRITERIA.md`.
-- `1D` non-goals → `docs/NON_GOALS.md`.
+- `1A–1D` ürün amacı, V1 scope, success criteria ve non-goals tamamlandı.
 
 ---
 
-### 2026-08-24 — 2A Bilgi birimleri tamamlandı
-- `Domain → Module → Topic → Skill → Learning Objective` modeli kesinleştirildi.
-- Skill canonical mastery/prerequisite seviyesi; Topic/Module/Domain derived.
-- Topic ↔ Skill many-to-many ve Skill→Skill prerequisite yönü kilitlendi.
-- Çıktı: `docs/LEARNING_ENGINE_SPEC.md`.
-- Karar: D-021.
-
----
-
-### 2026-08-24 — Öğrenme davranışı kuralları kalıcılaştırıldı
-- Uygulama öğretir → uygulatır → ölçer → remediation/retest yapar.
-- Coverage/mastery ayrımı, prerequisite-aware assessment, no exact immediate repeat, adaptive difficulty, no uncontrolled remediation time, delayed retention ve controlled AI soru genişletmesi kilitlendi.
-- Çıktı: `docs/LEARNING_BEHAVIOR_RULES.md`.
-- Karar: D-022.
-
----
-
-### 2026-08-24 — 2B Topic state machine tamamlandı
-- State'ler: `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.
-- Topic state Skill mastery/coverage/retention/remediation'dan derived orchestration state.
-- Çıktı: `docs/TOPIC_STATE_MACHINE.md`.
-- Karar: D-023.
+### 2026-08-24 — 2A–2D öğrenme/mastery davranışı tamamlandı
+- Learning-unit hiyerarşisi, Topic state machine, mastery evidence taxonomy ve AI/hint provenance kuralları kilitlendi.
+- Çıktılar: `LEARNING_ENGINE_SPEC`, `TOPIC_STATE_MACHINE`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`.
+- Kararlar: D-021, D-023, D-025, D-026.
 
 ---
 
 ### 2026-08-24 — Zorunlu GitHub beyin tazeleme protokolü kilitlendi
-- `PRE-STEP GitHub refresh → çalışma → gerekirse Research/Coding/QA → POST-STEP GitHub sync` zorunlu.
-- Aynı sohbet içinde yeni adımda bile refresh tekrarlanacak.
-- Çıktı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
-- Karar: D-024.
-
----
-
-### 2026-08-24 — English A0 prerequisite davranışı netleştirildi
-- Öğretilmemiş grammar/function-word yapılarından free production beklenmeyecek.
-- Teknik assessment bilinmeyen English grammar'ı gizli prerequisite yapmayacak.
-- Çıktı: `docs/ENGLISH_FOUNDATION_RULES.md`.
-
----
-
-### 2026-08-24 — 2C Mastery sinyalleri tamamlandı
-- Direct/corroborating/contextual evidence ayrımı.
-- Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project türleri.
-- Coding mastery gerçek user artifact ister.
-- Same-family repetition ve invalid/contaminated evidence guardrail'leri.
-- Çıktı: `docs/MASTERY_SIGNALS_SPEC.md`.
-- Karar: D-025.
-
----
-
-### 2026-08-24 — 2D AI / ipucu etkisi tamamlandı
-- H0–H4, timing, artifact provenance, independent/assisted/practice-only/recheck sınıfları.
-- AI-generated code production mastery değildir.
-- H3/H4 sonrası fresh/unseen recheck.
-- Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`.
-- Karar: D-026.
-
----
-
-### 2026-08-24 — MASTER_PLAN sync zorunluluğu güçlendirildi
-- `MASTER_PLAN` canonical indeksle senkron tutulacak.
-- Karar: D-027.
+- Her adım PRE-STEP refresh + POST-STEP sync ile yürütülüyor.
+- Kararlar: D-024, D-027.
 
 ---
 
 ### 2026-08-24 — Mobil performans/akıcılık first-class requirement oldu
-- UI thread ağır mastery/planner/DB/network/AI/code execution ile bloke edilmeyecek.
-- Incremental/cache/index/lazy rendering ve gerçek cihaz performance QA yönü bağlayıcı.
+- Local/incremental/async tasarım ve gerçek cihaz QA yönü bağlayıcı.
 - Karar: D-028.
 
 ---
 
-### 2026-08-24 — 2E ilk candidate mastery formülü üretildi
-- Ana yönetici kendi dış/web araştırmasıyla Beta-style weighted evidence accumulator + hard gates candidate'ı hazırladı.
-- Candidate içinde direct/corroborating, H0–H4 ve AI evaluator numeric multiplier'ları vardı.
-- Bu aşama ilk kez yanlışlıkla tamamlandı işaretlendi.
-
----
-
-### 2026-08-24 — 2E workflow hatası düzeltildi ve yeniden açıldı
-- Ayrı Research AI turu yapılmadan 2E'nin yanlışlıkla kapatıldığı fark edildi.
-- 2E yeniden aktif yapıldı, 2F beklemeye alındı.
-- D-029 provisional, D-030 ayrı Research AI kapanış şartı oldu.
-
----
-
-### 2026-08-24 — 2E bağımsız Research AI validation tamamlandı; GRE-v0 finalleştirildi
-- Research AI raporu otomatik kabul edilmedi; BKT/PFA/IRT/assistance/testlet/programming education/LLM grading ayrı değerlendirildi.
-- Beta-style accumulator ve sabit assistance/AI-evaluator multiplier'ları kaldırıldı.
+### 2026-08-24 — 2E Research AI validation sonrası GRE-v0 finalleştirildi
+- İlk Beta-style candidate ve sabit assistance/evaluator multiplier'ları kaldırıldı.
 - Final `GRE-v0 — Gated Recent Evidence`.
-- Çıktılar: `MASTERY_FORMULA_V0.md`, `2E_RESEARCH_VALIDATION.md`, D-031.
+- Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
+- Karar: D-031.
 
 ---
 
-### 2026-08-24 — 2F Retention / Forgetting araştırması başlatıldı
+### 2026-08-24 — 2F Research AI validation sonrası RVR-v0 finalleştirildi
+- Mastery-retention ayrıldı, time-based mastery decay reddedildi, review/verification/natural reuse/critical-prereq/backlog davranışı kilitlendi.
+- Final `RVR-v0 — Retention Verification & Risk`.
+- Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
+- Karar: D-032.
+- **AŞAMA 2 tamamlandı.**
+
+---
+
+### 2026-08-24 — 3A Günlük kapasite tamamlandı
 
 **PRE-STEP**
-- Handoff/index/status/decisions/master plan ve GRE-v0 / Topic state / learning behavior yeniden okundu.
-- Aktif adımın 2F olduğu doğrulandı.
-- `docs/2F_RESEARCH_BRIEF.md` oluşturuldu.
-- Separate Deep Research raporu gelmeden adımın kapanmaması kararlaştırıldı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_BEHAVIOR_RULES` ve `RETENTION_FORGETTING_SPEC` yeniden okundu.
+- Aktif adımın 3A olduğu ve Aşama 2 GRE/RVR kararlarıyla çelişki olmadığı doğrulandı.
+- Ayrı Research AI kullanılmadı; adım bilimsel optimum çalışma süresi seçmek yerine user-controlled capacity contract tasarımıydı. Exact dakika değerleri science constant olarak sunulmadı.
 
----
+**Final 3A capacity contract**
+- Kullanıcının explicit günlük süresi planner'ın hard envelope'u.
+- Capacity source: today override → selected profile → scheduled default → normal profile.
+- V0 editable presetler `30/60/90 dk`; engineering default.
+- V0 `10%` planning reserve ve `10 dk` minimum plannable block; engineering heuristic.
+- Fixed task-category yüzdeleri yok.
+- Remediation/retention ortaya çıkınca gün otomatik uzamaz; remaining capacity replan edilir.
+- Kullanıcı session ortasında daha az/fazla süre söylerse remaining plan yeniden üretilir.
+- Unfinished veya planned-but-not-started task failure/mastery evidence değildir.
+- Task sığmıyorsa safe split → smaller alternative → defer.
+- Deferred task lineer next-day debt değildir; current-state replan yapılır.
+- Critical task bile user explicit extension olmadan budget'ı aşmaz.
+- Duration metadata, future user pace adaptation ve active-vs-wall-clock timing contract'ı tanımlandı.
+- Capacity resolver deterministic/versioned ve LLM'den bağımsız.
 
-### 2026-08-24 — 2F Research AI validation tamamlandı; RVR-v0 finalleştirildi
+**Çıktı**
+- `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A.
+- `docs/DECISIONS.md` — D-033.
+- Canonical state files + `MASTER_PLAN` senkronlandı.
 
-**Research AI girdisi**
-- Kullanıcı kapsamlı Deep Research raporu sağladı.
-- Rapor spacing/retrieval, Bjork storage/retrieval, SM-2, FSRS, HLR, ACT-R, DAS3H, BKT forgetting, R-PFA, complex-skill retention, natural reuse, backlog ve prerequisite policy başlıklarını inceledi.
-
-**Yönetici doğrulaması / düzeltmeleri**
-- Cepeda spacing çalışmasının tek evrensel `%10–20` interval kuralı vermediği ayrıldı.
-- Expanding spacing'in her koşulda equal spacing'den üstün olmadığı korundu.
-- Güncel FSRS-6'nın 21 parametre kullandığı ve personal history azsa default params ile çalışabildiği doğrulandı; buna rağmen flashcard-domain defaults complex coding Skill'lerine canonical model yapılmadı.
-- DAS3H multi-skill attribution'a referans oldu; fakat global project success → all Skills refresh çıkarımı reddedildi.
-- `24–48h`, `1–2/3–5/5–7 gün`, EF, max interval, 1.5x overdue ve daily 8–10 gibi sayılar research constant değil heuristic/calibration olarak sınıflandı.
-- Root/cluster refresh propagation reddedildi.
-- Confirmed forgetting'te GRE score'u elle `0.50` yapma reddedildi; yeni evidence GRE-v0'u doğal yeniden hesaplar.
-
-**Final `RVR-v0 — Retention Verification & Risk`**
-- mastery ve retention ayrı eksen,
-- time-based GRE score decay yok,
-- retention states `untracked/fresh/stable/review_due/verification_due/at_risk`,
-- review_due forgetting değil,
-- delayed verification Skill türüne uygun H0 direct verified evidence,
-- first failure → verification_due; recheck fail → GRE recalc/remediation,
-- natural reuse strict structural + H0 + separate attribution + context diversity ile strong evidence,
-- auto cluster refresh yok,
-- critical verification_due unresolved iken dependent new work bekleyebilir,
-- missed-day backlog dump yok,
-- bounded/incremental local state,
-- interval defaults versioned heuristic + 17C calibration.
-
-**Çıktılar**
-- `docs/RETENTION_FORGETTING_SPEC.md`
-- `docs/2F_RESEARCH_VALIDATION.md`
-- `docs/2F_RESEARCH_BRIEF.md` fulfilled
-- `docs/DECISIONS.md` — D-032
-- canonical POST-STEP state dosyaları senkronlandı.
-
-**AŞAMA 2:** ✅ TAMAMLANDI.
-
-**Sonraki kesin adım:** `3A — Günlük kapasite`.
-3A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3B — Görev kategorileri`.
+3B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
