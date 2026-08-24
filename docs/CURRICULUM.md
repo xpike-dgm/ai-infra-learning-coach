@@ -1,346 +1,324 @@
-# Curriculum Backbone
+# Curriculum Backbone — Planning Draft
 
-Bu belge müfredatın **konu sırasını** tanımlar. Süreler sabit değildir; uygulama mastery ve günlük kapasiteye göre ilerlemeyi adapte eder.
+**Durum:** BACKBONE / DETAYLI MAP HENÜZ ÜRETİLMEDİ  
+**Canonical kararlar:** D-041, D-042, D-044  
+**Detaylı decomposition:** AŞAMA 6 / `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-## Ana Kariyer Rotası
+Bu belge müfredatın yüksek seviyeli omurgasını gösterir. **Gerçek canonical Module/Topic/Skill/Learning Objective dataset'i değildir.**
 
-1. Computer Fundamentals
-2. C
-3. Linux
-4. Data Structures & Algorithms
-5. Modern C++
-6. Operating Systems & Memory
-7. Concurrency
-8. Networking
-9. Distributed Systems
-10. GPU Architecture
-11. CUDA
-12. Triton
-13. ML/LLM Systems Fundamentals
-14. Inference Engines
-15. Multi-GPU / Distributed AI
-16. AI Infrastructure
-17. Open Source & Interview Readiness
+D-044 sonrası bu dosyadaki broad alanlar mastery atomu veya tam curriculum kabul edilmez. Ayrıntılı curriculum haritası AŞAMA 5 graph/schema backbone üzerine AŞAMA 6'da üretilecektir.
 
-## Track 0 — Computer Fundamentals
+## Güncel Ana Kariyer Rotası
 
-- CPU nedir?
-- RAM nedir?
-- disk/storage nedir?
-- process/program ayrımı
-- binary / bits / bytes
-- compilation temel mantığı
-- source code → compiler → executable
-- terminal ve filesystem temel kavramları
+1. Technical English — paralel
+2. Python
+3. C
+4. Linux + Git + Shell
+5. Data Structures & Algorithms foundations
+6. Modern C++
+7. Computer Architecture
+8. Operating Systems + Memory
+9. Concurrency / Parallel Programming
+10. Networking
+11. Distributed Systems + Storage / Databases foundations
+12. Containers / Cloud / Observability
+13. Performance Engineering & Profiling
+14. GPU Architecture
+15. CUDA
+16. Triton
+17. ML + Transformer foundations
+18. LLM Inference Internals
+19. vLLM / SGLang / TensorRT-LLM-style serving systems
+20. KV Cache / Batching / Scheduling / Quantization
+21. Multi-GPU + NCCL + RDMA
+22. AI Infrastructure / GPU Infrastructure
+23. Open Source contributions + real large projects + professional capstones
 
-## Track 1 — C
+Bu sıra tek bir katı linear calendar değildir. AŞAMA 6 gerçek prerequisites, cross-domain shared Skills ve branchable dependencies'i haritalayacaktır.
 
-### Foundations
-- variables
-- primitive types
-- operators
-- conditions
+---
+
+# D-044 Granularity Kuralı
+
+Canonical hierarchy:
+
+`Domain → Module → Topic → Skill → Learning Objective`
+
+Örnek:
+
+```text
+Domain: Python
+└── Module: Control Flow
+    ├── Topic: Conditional Logic
+    │   ├── Skill: boolean condition evaluation
+    │   └── Skill: if/elif/else branching
+    └── Topic: Loops
+        ├── Skill: for iteration
+        ├── Skill: while termination
+        ├── Skill: break/continue control
+        └── Skill: loop bug diagnosis
+```
+
+Uygulama `Python zayıf` sonucuyla yetinmemeli; hangi Skill/Objective'in zayıf olduğunu ayırt edebilmelidir.
+
+---
+
+# Backbone Family Notes
+
+Aşağıdaki notlar yalnız AŞAMA 6 araştırması için başlangıç family'leridir; final topic/skill listesi değildir.
+
+## Technical English
+- foundational grammar/function words
+- technical vocabulary
+- compiler/terminal English
+- docs/README/man pages
+- GitHub issues/PRs
+- design docs/RFCs
+- papers/documentation
+- technical interviews/team communication
+
+## Python
+- values/types/variables
+- operators/expressions
+- I/O
+- conditionals
 - loops
-- functions
+- strings/collections
+- functions/scope
+- modules/imports
+- files/paths
+- exceptions/debugging
+- iteration/comprehensions
+- typing/testing
+- environments/dependencies/packaging
+- CLI/automation/subprocess
+- networking
+- async/concurrency
+- multiprocessing
+- profiling
+- NumPy/tensor/PyTorch-facing Python
+- benchmark/infra scripting
 
-### Memory Foundations
-- addresses
-- stack
-- heap
-- pointer basics
-- dereference
-- arrays and pointers
-- pointer arithmetic
-- strings
+## C
+- syntax/types/control flow/functions
+- compilation model
+- pointers/addresses
+- arrays/strings
+- stack/heap/lifetime
 - dynamic allocation
-- malloc/calloc/realloc/free
-- lifetime
-- memory leaks
-- dangling pointers
-- buffer overflow kavramı
-
-### Structured Programming
-- structs
-- enums
-- headers
-- compilation units
-- Make/CMake temel
+- structs/enums
+- headers/translation units
 - file I/O
+- debugging/sanitizers
+- build tooling
 
-### İlk Sistem Projeleri
-- küçük CLI araçları
-- dynamic array
-- hash map
-- basit memory allocator (ilerleyen aşamada)
-
-## Track 2 — Linux
-
-- shell kullanımı
-- filesystem
-- permissions
-- processes
-- signals
-- pipes
-- redirection
-- environment variables
+## Linux + Git + Shell
+- filesystem/permissions
+- shell/navigation/redirection/pipes
+- processes/signals/environment
 - package/build tools
-- gcc/clang
-- gdb
-- valgrind/sanitizers
-- procfs temel
-- system calls giriş
+- Git commits/branches/merge/rebase basics
+- debugger/profiler tooling
+- procfs/syscalls foundations
+- scripting/automation
 
-### Projeler
-- mini shell
-- process monitor
-- file utility
-
-## Track 3 — Data Structures & Algorithms
-
-- arrays
-- linked lists
-- stacks/queues
+## DS&A Foundations
+- complexity reasoning
+- arrays/lists/stacks/queues
 - hash tables
-- trees
-- heaps
-- graphs
+- trees/heaps/graphs
 - sorting/searching
-- Big-O
-- time vs space trade-offs
-- cache locality giriş
+- memory/cache locality implications
+- problem decomposition
 
-LeetCode/algoritma çalışması amaç değil, sistem mülakatları ve problem çözme için araçtır.
-
-## Track 4 — Modern C++
-
-- references
-- classes
-- RAII
-- constructors/destructors
+## Modern C++
+- references/value categories
+- RAII/ownership
+- classes/lifetime
 - move semantics
 - smart pointers
-- STL
-- templates
-- concepts temel
-- error handling
-- build systems
-- testing
-- benchmarking
+- STL/iterators
+- templates/concepts where relevant
+- errors/exceptions
+- build/test/benchmark/tooling
 
-## Track 5 — Operating Systems & Memory
-
-- process/thread
-- virtual memory
-- pages/page tables
-- TLB
-- context switch
-- syscalls
-- file descriptors
-- memory mapping
+## Computer Architecture
+- ISA/execution
+- pipeline
 - cache hierarchy
-- cache coherence giriş
-- alignment/padding
+- memory hierarchy
+- branch prediction foundations
+- SIMD/vectorization
+- latency/throughput
+
+## OS + Memory
+- process/thread
+- virtual memory/pages/TLB
+- syscalls/file descriptors
+- memory mapping
+- scheduling
+- I/O
 - allocators
+- synchronization foundations
 
-## Track 6 — Concurrency
-
-- threads
-- mutex
-- condition variables
+## Concurrency / Parallel Programming
+- threads/tasks
+- mutex/condition variable
 - atomics
-- race conditions
-- deadlocks
+- race/deadlock
 - memory ordering
-- lock-free basics
 - producer/consumer
 - thread pools
+- parallel decomposition
 
-### Projeler
-- thread pool
-- bounded queue
-- SPSC/MPMC queue
-- concurrent server component
-
-## Track 7 — Networking
-
+## Networking
 - TCP/IP
+- DNS/HTTP/TLS foundations
 - sockets
-- DNS temel
-- HTTP temel
 - blocking/non-blocking I/O
-- select/poll/epoll
-- io_uring giriş
-- serialization
-- protobuf
-- RPC/gRPC
+- epoll/io_uring foundations where relevant
+- serialization/RPC
 - latency/bandwidth
 
-### Projeler
-- TCP server
-- async HTTP/RPC server
-
-## Track 8 — Distributed Systems
-
+## Distributed Systems + Storage/Databases
 - replication
 - partitioning/sharding
 - consistency
-- CAP
-- consensus
-- Raft
-- leader election
-- logs
-- failure detection
-- retries/idempotency
-- distributed tracing giriş
+- consensus/leader election
+- failures/timeouts/retries/idempotency
+- transactions/WAL/recovery
+- indexes/storage engines foundations
+- queues/streaming
 
-### Proje
-- Raft tabanlı küçük KV store
+## Containers / Cloud / Observability
+- processes/namespaces/cgroups
+- containers/images
+- Kubernetes foundations
+- deployment/configuration
+- logs/metrics/traces
+- SLO/reliability foundations
+- cloud compute/network/storage concepts
 
-## Track 9 — GPU Architecture
+## Performance Engineering & Profiling
+- measurement methodology
+- latency/throughput/tail latency
+- CPU/memory profiling
+- flame graphs/perf/eBPF foundations
+- benchmark design
+- bottleneck attribution
+- capacity/cost trade-offs
 
-Prerequisite: C/C++, memory, concurrency, computer architecture temeli.
-
+## GPU Architecture
 - CPU vs GPU
-- SIMT
-- SM
-- warp
-- occupancy
+- SIMT/warps/SMs
 - memory hierarchy
-- global/shared/register memory
-- memory bandwidth
-- divergence
-- coalescing
-- tensor cores giriş
+- divergence/coalescing
+- occupancy
+- tensor cores foundations
+- bandwidth/compute limits
 
-## Track 10 — CUDA
-
-- kernel launch
-- grid/block/thread
-- memory transfers
-- shared memory
+## CUDA
+- execution model
+- grids/blocks/threads
+- memory spaces/transfers
 - synchronization
+- shared memory
 - streams
-- profiling
-- Nsight
-- roofline düşüncesi
+- correctness/debugging
+- Nsight/profiling
 - optimization patterns
 
-### Projeler
-- vector add
-- transpose
-- convolution
-- GEMM
-- softmax
-
-## Track 11 — Triton
-
-- Triton execution model
+## Triton
+- execution/programming model
 - blocked programming
 - memory access
 - kernel authoring
 - benchmarking
 - PyTorch integration
+- fusion/attention-relevant kernels
 
-### Projeler
-- fused kernels
-- optimized softmax
-- attention bileşenleri
-
-## Track 12 — ML/LLM Systems Fundamentals
-
-Ana hedef model araştırmacısı olmak değildir; optimize edilen iş yükünü anlamaktır.
-
-- tensor
-- neural network temel
-- transformer
-- attention
+## ML + Transformer Foundations
+- tensors
+- linear algebra needed for inference
+- neural-network basics
+- transformer/attention
 - training vs inference
 - precision formats
-- quantization
-- batching
+- model architecture needed for systems reasoning
+
+## LLM Inference Internals
+- prefill/decode
+- tokenization foundations
+- memory/compute bottlenecks
 - KV cache
-- tokenization temel
+- attention execution
+- latency/throughput trade-offs
 
-## Track 13 — Inference Engines
-
-- inference bottlenecks
+## Serving Engines
+- request lifecycle
 - continuous batching
-- KV cache management
-- PagedAttention
-- quantization
-- throughput vs latency
-- model serving
-- vLLM
-- SGLang
-- llama.cpp mimari inceleme
+- PagedAttention-style memory management
+- scheduling
+- model loading/runtime
+- vLLM/SGLang/TensorRT-LLM architecture reading
+- failure/reliability/observability
 
-### Proje
-- mini inference server veya mevcut açık kaynak motoruna anlamlı katkı
+## KV Cache / Batching / Scheduling / Quantization
+- KV layout/growth/reuse
+- batching policies
+- scheduling/fairness
+- memory pressure
+- FP8/INT8/INT4 foundations
+- accuracy/performance trade-offs
 
-## Track 14 — Multi-GPU / Distributed AI
-
-- data parallelism
-- tensor parallelism
-- pipeline parallelism
+## Multi-GPU + NCCL + RDMA
 - collective communication
-- AllReduce
+- AllReduce/AllGather/etc.
+- topology
 - NCCL
-- RDMA
-- RoCE / InfiniBand kavramsal giriş
-- distributed profiling
-- failure handling
+- RDMA/RoCE/InfiniBand concepts
+- tensor/pipeline/data/expert parallel concepts
+- distributed profiling/failure handling
 
-## Track 15 — AI Infrastructure
-
+## AI Infrastructure / GPU Infrastructure
 - GPU scheduling
 - cluster orchestration
-- Kubernetes temel/orta seviye
-- observability
-- model serving architecture
-- autoscaling
-- cost/performance
-- reliability
+- serving architecture
+- autoscaling/load shedding
+- observability/reliability
 - capacity planning
+- cost/performance
 - deployment pipelines
+- production incidents/postmortems
 
-## Track 16 — Open Source & Career
+## Open Source + Large Projects + Capstones
+- repository/source-tree reading
+- issue reproduction
+- test/benchmark contributions
+- PR/code review workflow
+- technical writing/design docs
+- integrated systems projects
+- reproducible benchmarks
+- professional capstone evidence
 
-- Git/GitHub professional workflow
-- issues
-- PR review
-- contribution etiquette
-- benchmark report
-- technical writing
-- architecture RFC
-- systems interview prep
-- C++ interview prep
-- CUDA interview prep
-- distributed systems design
+---
 
-## Portföy Hedefleri
+# Müfredat Tasarım Kuralı
 
-Zaman içinde aşağıdaki sınıflarda kanıt üretilecek:
-
-1. C/Linux sistemi projesi
-2. C++ concurrency/performance projesi
-3. distributed systems projesi
-4. CUDA/Triton benchmark projesi
-5. gerçek open-source merged PR
-
-## Müfredat Tasarım Kuralı
-
-Her topic nesnesi en az şu bilgileri taşımalıdır:
-
-- id
-- domain
-- title
+AŞAMA 6'da gerçek nodes en az şu bağlamı taşıyacak şekilde planlanır:
+- stable canonical ID
+- parent/placement
 - prerequisites
-- learning objectives
-- estimated effort
-- assessment types
-- mastery threshold
-- remediation strategy
-- retention priority
-- resource references
+- required/criticality
+- Learning Objectives
+- evidence/assessment requirements
+- retention relevance
+- remediation/diagnostic mapping
+- professional capability tags
+- cross-domain reuse
+- project/capstone attribution
+- version/source/freshness
 
-Müfredat mobil uygulama koduna gömülü dev bir sabit liste olmamalı; ayrı veri katmanı olarak yönetilmelidir.
+Müfredat mobil uygulama koduna gömülü dev sabit liste olmamalı; ayrı, versionlanabilir veri katmanı olarak yönetilmelidir.
+
+> **Bu dosya high-level backbone'dur. Ayrıntılı final capability taxonomy AŞAMA 6 tamamlanmadan burada “bitmiş curriculum” olarak kabul edilmez.**
