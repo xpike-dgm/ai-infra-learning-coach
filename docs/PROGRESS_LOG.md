@@ -16,18 +16,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 ---
 
-### 2026-08-24 — Sohbet aktarımı ve kalıcı handoff sistemi güçlendirildi
-- `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md`, `HANDOFF_STATE.md` oluşturuldu.
-- Sohbet geçmişinin tek bilgi kaynağı olmaması kararlaştırıldı.
-
----
-
-### 2026-08-24 — Sabit 1A/1B yürütme numaralandırması eklendi
-- Aşamalar 1–19 olarak standardize edildi.
-- `EXECUTION_INDEX.md` ve `STEP_STATUS.md` devreye alındı.
-
----
-
 ### 2026-08-24 — Aşama 1 tamamlandı
 - `1A–1D` ürün amacı, V1 scope, success criteria ve non-goals tamamlandı.
 
@@ -35,7 +23,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 ### 2026-08-24 — 2A–2D öğrenme/mastery davranışı tamamlandı
 - Learning-unit hiyerarşisi, Topic state machine, mastery evidence taxonomy ve AI/hint provenance kuralları kilitlendi.
-- Çıktılar: `LEARNING_ENGINE_SPEC`, `TOPIC_STATE_MACHINE`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`.
 - Kararlar: D-021, D-023, D-025, D-026.
 
 ---
@@ -53,7 +40,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 2E Research AI validation sonrası GRE-v0 finalleştirildi
-- İlk Beta-style candidate ve sabit assistance/evaluator multiplier'ları kaldırıldı.
 - Final `GRE-v0 — Gated Recent Evidence`.
 - Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
 - Karar: D-031.
@@ -61,7 +47,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 2F Research AI validation sonrası RVR-v0 finalleştirildi
-- Mastery-retention ayrıldı, time-based mastery decay reddedildi, review/verification/natural reuse/critical-prereq/backlog davranışı kilitlendi.
 - Final `RVR-v0 — Retention Verification & Risk`.
 - Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
 - Karar: D-032.
@@ -70,57 +55,50 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 3A Günlük kapasite tamamlandı
-
-**PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_BEHAVIOR_RULES` ve `RETENTION_FORGETTING_SPEC` yeniden okundu.
-- Aktif adımın 3A olduğu ve Aşama 2 GRE/RVR kararlarıyla çelişki olmadığı doğrulandı.
-- Ayrı Research AI kullanılmadı; adım bilimsel optimum çalışma süresi seçmek yerine user-controlled capacity contract tasarımıydı.
-
-**Final 3A capacity contract**
-- Kullanıcının explicit günlük süresi planner'ın hard envelope'u.
-- Capacity source: today override → selected profile → scheduled default → normal profile.
-- V0 editable presetler `30/60/90 dk`; `10%` planning reserve ve `10 dk` minimum plannable block engineering heuristic.
-- Fixed task-category yüzdeleri yok.
-- Remediation/retention ortaya çıkınca gün otomatik uzamaz; remaining capacity replan edilir.
-- Kullanıcı session ortasında daha az/fazla süre söylerse remaining plan yeniden üretilir.
-- Unfinished veya planned-but-not-started task failure/mastery evidence değildir.
-- Task sığmıyorsa safe split → smaller alternative → defer.
-- Deferred task lineer next-day debt değildir; current-state replan yapılır.
-- Critical task bile user explicit extension olmadan budget'ı aşmaz.
-- Duration metadata, future user pace adaptation ve active-vs-wall-clock timing contract'ı tanımlandı.
-- Capacity resolver deterministic/versioned ve LLM'den bağımsız.
-
-**Çıktı**
-- `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A.
-- `docs/DECISIONS.md` — D-033.
+- Explicit günlük süre hard budget.
+- Remediation/retention günü otomatik uzatmaz.
+- Safe split → smaller alternative → defer; deferred task next-day debt değildir.
+- Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
+- Karar: D-033.
 
 ---
 
 ### 2026-08-24 — 3B Görev kategorileri / TaskCandidate contract tamamlandı
+- `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent` canonical oldu.
+- Purpose/activity/track/evidence eksenleri ayrıldı.
+- Unresolved LearningNeed kalıcı; old task ID homework debt değildir.
+- Multi-Skill attribution, provenance, variant/dependency, prerequisite ve duration contract tanımlandı.
+- Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
+- Karar: D-034.
+
+---
+
+### 2026-08-24 — 3C Priority / Selection Policy tamamlandı
 
 **PRE-STEP**
-- 3A sonrası yeni GitHub refresh yapıldı; `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `ADAPTIVE_PLANNER_SPEC`, mastery/assistance ve English prerequisite kuralları yeniden okundu.
-- Aktif adımın 3B olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; 3B mevcut bağlayıcı learning/mastery davranışlarını planner primitive'lerine dönüştüren ürün/mimari adımıydı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `TASK_TAXONOMY_SPEC`, `RETENTION_FORGETTING_SPEC` ve `LEARNING_BEHAVIOR_RULES` yeniden okundu.
+- Aktif adımın 3C olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; sahte bilimsel numeric weight aramak yerine mevcut bağlayıcı state/evidence/capacity modelini deterministik selection policy'ye dönüştürme adımıydı.
 
-**Final 3B modeli**
-- `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent` zinciri canonical oldu.
-- Ertelenen task'ın kendisi kalıcı borç değildir; unresolved `LearningNeed` kalır ve sonraki planda fresh candidate doğurabilir.
-- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
-- `activity_kind` ayrı eksendir: explanation, worked example, recall, coding, debugging, hands-on system task, transfer, integrated project, language activity vb.
-- English ayrı purpose değil curriculum track; coding/debugging/project purpose değil activity türüdür.
-- Task category evidence değildir; completion mastery üretmez.
-- Guided/independent/H0 requirement ayrı assistance/independence metadata'sıdır.
-- Multi-Skill task'ta global project success component Skills'e otomatik evidence vermez; Objective bazlı structural essentiality + separate observability/attribution gerekir.
-- Task provenance/validation, variant/dependency, prerequisite/tools ve 3A duration/splittable/checkpoint metadata'sı contract'a bağlandı.
-- `paused_progress` gerçek checkpoint'i koruyabilir; `deferred_candidate` ephemeral'dır ve debt değildir.
-- 3C'nin kullanacağı ham priority sinyalleri TaskCandidate'a eklendi fakat 3B priority weight uydurmadı.
-- Candidate generation bounded/deterministic ve D-028 performans kuralıyla uyumlu.
+**Final `PBR-v0 — Priority Bands & Rank Vector`**
+- Priority open LearningNeed seviyesinde başlar; old task ID priority taşımaz.
+- Eligibility/trust priority'den önce gelir.
+- P0 integrity blocker, P1 repair/verify, P2 maintain/continue, P3 planned progress, P4 reinforce/optimize.
+- Critical etiketi tek başına P0 yapmaz; gerçek dependency blocking gerekir.
+- `review_due` forgetting değildir; standard due normal progress/maintenance bandında kalır, actual failure verification'a yükseltir.
+- Aynı band içi weighted sum değil lexicographic rank vector: blocking → criticality → evidence severity → urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break.
+- `score/minute`, task-count maximization ve opak knapsack canonical değildir.
+- Starvation guard eligible ama sürekli ertelenen soft need'leri korur; task debt üretmez.
+- Parallel English fixed yüzde değil due + starvation/track-balance ile korunur.
+- Capacity yetmezse safe split → smaller alternative → defer; daha yüksek priority fiziksel olarak sığmıyorsa gün boş bırakılmaz, sonraki fit need seçilebilir.
+- Same-need duplicate alternatives bastırılır; açık teach→practice→assess mini-chain exception olabilir.
+- `PriorityDecisionTrace` explainability için zorunlu machine-readable ara çıktı.
+- Policy deterministic/bounded ve D-028 ile uyumlu.
 
 **Çıktılar**
-- `docs/TASK_TAXONOMY_SPEC.md`
-- `docs/DECISIONS.md` — D-034
+- `docs/PRIORITY_POLICY_SPEC.md`
+- `docs/DECISIONS.md` — D-035
 - canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3C — Öncelik puanı`.
-3C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3D — Prerequisite davranışı`.
+3D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
