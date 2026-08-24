@@ -2,509 +2,469 @@
 
 Bu dosya projenin **uzun biçimli ana bağlam belgesidir**. Sohbet geçmişi kaybolsa veya proje başka bir ChatGPT/coding agent oturumuna taşınsa bile, bu dosya okunarak projenin neden var olduğu, neyi çözmek istediği, hangi deneyimi hedeflediği ve hangi kararların arkasında hangi mantığın bulunduğu yeniden kurulabilmelidir.
 
+**Son büyük kapsam güncellemesi:** 2026-08-24 — D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`
+
 ---
 
 # 1. Projenin Kökeni
 
-Başlangıç problemi, 2026 sonrasında yapay zekâ araçlarının yazılım geliştirme, hata ayıklama, veritabanı sorunlarını çözme, backend kurma, deployment yapma ve benzeri birçok teknik görevi giderek daha fazla otomatikleştirmesi karşısında uzun vadeli kariyer için hangi teknik alana yatırım yapılmasının mantıklı olduğuydu.
-
-Bu amaçla yapılan kapsamlı araştırmalardan çıkan ortak yön, yalnızca yüksek seviyeli uygulama geliştirmeye veya belirli framework/syntax bilgisine yatırım yapmak yerine, yapay zekâ sistemlerinin çalıştığı daha zor ve fiziksel/altyapısal katmanlara yönelmenin daha dayanıklı olduğu yönündeydi.
+Başlangıç problemi, yapay zekâ araçlarının yüksek seviyeli yazılım geliştirme görevlerini giderek daha fazla otomatikleştirmesi karşısında uzun vadeli kariyer için hangi teknik alana yatırım yapılmasının daha dayanıklı olduğuydu.
 
 Seçilen uzun vadeli uzmanlaşma yönü:
 
 **Low-Level Systems → Distributed Systems → GPU/CUDA → AI Infrastructure / ML Systems / GPU Systems**
 
-Öğrenme omurgası:
+Ana öğrenme omurgası:
 
-**C → Linux → Modern C++ → Operating Systems / Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
+**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
 
-Machine Learning tamamen dışlanmayacaktır. Ancak ana kariyer hedefi klasik model eğitme tarafı değil, modellerin nasıl çalıştırıldığı, hızlandırıldığı, servis edildiği, dağıtıldığı, optimize edildiği ve yüksek performanslı altyapı üzerinde nasıl ölçeklendiği tarafıdır.
-
----
-
-# 2. İngilizce Gerçeği ve Paralel Eğitim Kararı
-
-Başlangıç İngilizce seviyesi A0/sıfır kabul edilmektedir.
-
-Kritik karar: İngilizce teknik eğitime başlamadan önce bitirilmesi gereken ayrı bir ön koşul değildir.
-
-Yanlış yaklaşım:
-
-> Önce 1 yıl İngilizce öğren, sonra teknik eğitime başla.
-
-Seçilen yaklaşım:
-
-> İngilizce ve teknik eğitim ilk günden itibaren birlikte ilerler.
-
-Örnek gelişim mantığı:
-
-- A0→A1: temel günlük İngilizce, teknik temel kelimeler, compiler/terminal hata mesajlarını fark etmeye başlama.
-- A1→A2: Git, man page, basit dokümantasyon ve kısa teknik açıklamalar.
-- A2→B1: GitHub issue/PR, teknik yazılar, RFC ve dokümantasyon.
-- B1→B2: NVIDIA/CUDA dokümantasyonu, paper okuma, proje anlatma, teknik mülakat ve global ekip iletişimi.
-
-Uygulama, İngilizceyi ayrı bir menüde duran bağımsız kurs olmaktan çok teknik görevlerin içine entegre etmelidir.
+Machine Learning dışlanmaz; fakat ana uzmanlık klasik model eğitmek değildir. ML/transformer bilgisi, inference sistemlerini, tensor hesaplarını, serving ve GPU performansını gerçekten anlayacak derinlikte destek katmanı olarak öğretilir.
 
 ---
 
-# 3. Uygulama Neden Gerekiyor?
+# 2. 2026-08-24 Kapsam Genişletmesi — Professional Readiness
 
-Klasik yol haritaları genellikle şöyle görünür:
+İlk plan yaklaşık üç yıllık bir öğrenme ufkuna dayanıyordu. Bu sınır kaldırıldı.
 
-- 3 ay C öğren.
-- Sonraki 3 ay C++ öğren.
-- 2 ay Linux çalış.
-- Sonra networking öğren.
-- Daha sonra CUDA'ya geç.
+Yeni ana hedef:
 
-Bu yaklaşım kullanıcı açısından yetersizdir; çünkü günlük düzeyde şu soruyu cevaplamaz:
+> **Sıfırdan başlayan kullanıcıyı, gerektiğinde 4+ yıl veya daha uzun sürebilecek kapsamlı, mastery-gated bir rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek teknik seviyeye taşımak.**
 
-> **Bugün tam olarak ne yapacağım?**
+`4+ yıl` bir mezuniyet sayacı değildir. Süre kullanıcının kapasitesine, öğrenme hızına, mevcut bilgisine, remediation/retention ihtiyacına ve yaşam koşullarına göre değişebilir.
 
-Ayrıca takvim temelli program, kullanıcı bir konuyu anlayamadığında bile ilerleyebilir. Örneğin pointer temelleri oturmadan dynamic memory veya linked list konularına geçmek, ilerleme görüntüsü oluşturur ama gerçek öğrenme oluşturmaz.
+Bağlayıcı eşitlik:
 
-Bu uygulama bu problemi çözmek için tasarlanmaktadır.
+```text
+elapsed_time != progress
+elapsed_time != professional_readiness
+professional_readiness = verified capability
+```
 
-Uygulama kullanıcıya uzun bir kurs listesi değil, her gün **uygulanabilir çalışma seansı** vermelidir.
+Kullanıcı 4 yıl uygulamayı açtı diye profesyonel sayılmaz. Tersine gerekli Skill, transfer, debugging, performance ve capstone evidence'ını daha farklı bir sürede tamamlarsa takvim onu gereksiz yere bekletmez.
 
-Örnek günlük deneyim:
-
-- 20 dakika teknik İngilizce
-- 25 dakika kısa kavram anlatımı
-- 30 dakika uygulama
-- 20 dakika debugging
-- 10 dakika eski konu tekrarı
-- 10 dakika günlük mini değerlendirme
-
-Kullanıcı uygulamayı açtığında “bugün ne çalışsam?” diye karar vermek zorunda kalmamalıdır. Planlama yükünü uygulama üstlenmelidir.
+Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
 ---
 
-# 4. Projenin En Önemli Ürün İlkesi
+# 3. “Profesyonel Olmak” Bu Projede Ne Demektir?
 
-Ana ilke:
+Bu ürün `profesyonel` kelimesini yalnız içerik coverage'ı veya sertifika anlamında kullanmaz.
+
+Uzun rotanın çıkışında kullanıcı mümkün olduğunca bağımsız biçimde:
+
+- C/C++ ile systems-level kod yazabilmeli,
+- Linux üzerinde gerçek debugging/tooling kullanabilmeli,
+- memory/OS/concurrency davranışını açıklayıp sorun çözebilmeli,
+- networking ve distributed systems trade-off'larını anlayabilmeli,
+- performance bottleneck ölçüp profiler/benchmark kullanabilmeli,
+- GPU architecture ve CUDA execution/memory modelini uygulayabilmeli,
+- Triton/CUDA kernel üretip değerlendirebilmeli,
+- LLM inference stack'inin ana bileşenlerini anlayabilmeli,
+- KV cache, batching, scheduling, quantization ve serving trade-off'larını test edebilmeli,
+- vLLM/SGLang/TensorRT-LLM-benzeri sistemleri kullanmanın ötesinde davranışlarını inceleyebilmeli,
+- multi-GPU / multi-node inference temel problemlerini çözebilmeli,
+- observability/reliability/capacity yaklaşımı geliştirebilmeli,
+- design decision, benchmark ve debugging sonucunu teknik olarak açıklayabilmeli,
+- dokümantasyon/source code okuyup tutorial dışı probleme transfer yapabilmeli.
+
+Bu hedef **senior engineer unvanı, iş teklifi veya maaş garantisi değildir**. Gerçek ekip, code review, production incident ve organizasyon deneyiminin tamamı uygulama içinde simüle edilemez. Ürün bunun yerine bu ortamlara girmeye yetecek teknik readiness ve güçlü evidence/portfolio üretmeyi hedefler.
+
+---
+
+# 4. Üniversite / İş Deneyimi Gerçeği
+
+Ürün teknik yetkinliği geliştirebilir fakat şirketlerin diploma veya deneyim filtrelerini kontrol edemez.
+
+Bu nedenle uzun vadeli career-readiness katmanı yalnız “konuları öğrendin” dememeli; mümkün olduğunca şu kanıtları üretmeye yardım etmelidir:
+
+- ciddi GitHub projects,
+- reproducible benchmarks,
+- systems/GPU case studies,
+- capstone artifacts,
+- open-source contribution hazırlığı ve katkılar,
+- teknik yazı/design docs,
+- interview-ready problem solving.
+
+Bunlar diploma filtresini garantiyle aşmaz; ancak teknik yetkinliği görünür hale getirir.
+
+---
+
+# 5. İngilizce Paralel Eğitim Kararı
+
+Başlangıç English seviyesi A0/sıfır kabul edilir.
+
+Kritik karar:
+
+> **English, teknik eğitime başlamadan önce bitirilmesi gereken ayrı bir prerequisite değildir.**
+
+English ve teknik eğitim ilk günden paralel ilerler. Öğretilmemiş grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz.
+
+Uzun vadeli hedef yalnız grammar tamamlamak değil, kullanıcının:
+
+- compiler/terminal messages,
+- man pages/docs,
+- GitHub issues/PRs,
+- design docs/RFCs,
+- CUDA/NVIDIA documentation,
+- technical papers,
+- code review,
+- technical interview,
+- global team communication
+
+gibi gerçek bağlamlarda çalışabilecek Technical English seviyesine ilerlemesidir.
+
+Exact CEFR progression 6A–6E'de araştırma/curriculum design ile kesinleştirilecektir.
+
+---
+
+# 6. Uygulama Neden Gerekiyor?
+
+Klasik yol haritaları “3 ay C, sonra C++, sonra Linux...” gibi sabit takvim verir. Bu yaklaşım iki temel sorunu çözmez:
+
+1. Kullanıcı bugün ne yapacağını hâlâ kendisi planlamak zorundadır.
+2. Takvim ilerlerken gerçek prerequisite/mastery eksikleri saklanabilir.
+
+Uygulamanın günlük sorusu:
+
+> **Bugün tam olarak ne yapmalıyım?**
+
+Sistem bunu current mastery, retention, prerequisite, remediation, assessment ve günlük capacity üzerinden çözmelidir.
+
+Kullanıcı uzun course listesi değil, uygulanabilir günlük çalışma seansı görmelidir.
+
+---
+
+# 7. En Önemli Ürün İlkesi
 
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
-Bunun sonucu olarak:
+Bunun sonucu:
 
-- Bir videoyu izlemek ilerleme sayılmaz.
-- Bir ders kartını “tamamlandı” yapmak ilerleme sayılmaz.
-- 30 gün uygulamaya girmiş olmak tek başına ilerleme sayılmaz.
-- 1095 günlük takvimde gün ilerletmek başarı değildir.
+- video izlemek mastery değildir,
+- lesson complete mastery değildir,
+- streak mastery değildir,
+- self-confidence mastery değildir,
+- task completion mastery değildir,
+- AI'nın kullanıcı adına çözüm üretmesi independent mastery değildir.
 
-İlerleme, kullanıcının ilgili beceriyi gerçekten gösterebilmesine bağlıdır.
-
-Örneğin bir `Basic Pointers` konusu şu sinyallerle ölçülebilir:
-
-- teori soruları
-- kod yazma
-- debugging
-- kendi cümlesiyle açıklama
-- transfer sorusu
-- birkaç gün sonra gecikmeli tekrar
-
-Kullanıcı teorik testte %95 yapıp kodlama görevinde başarısızsa konu otomatik olarak öğrenilmiş sayılmamalıdır.
+Canonical mastery modeli GRE-v0'dır: yalnız uygun, prerequisite-valid, H0, direct, verified ve bağımsız evidence gereken gate'leri karşılayabilir.
 
 ---
 
-# 5. Neden 1095 Gün Sayacı Yok?
+# 8. Curriculum Takvim Değil Knowledge Graph'tır
 
-Yaklaşık 3 yıllık hedef yalnızca arka plandaki planlama ufkudur.
+Ana hiyerarşi:
 
-Kullanıcı arayüzünde:
+```text
+Domain → Module → Topic → Skill → Learning Objective
+```
 
-`Gün 47 / 1095`
+Canonical mastery/prerequisite ana seviyesi Skill'dir; evidence atomik Objective'e bağlanabilir.
 
-veya
+Runtime prerequisite mümkün olduğunca `Skill → Skill` çözülür. Hard prerequisite hazır değilse yalnız ona gerçekten bağımlı branch bekler; Linux/English veya başka bağımsız work devam edebilir.
 
-`Kariyerin %12 tamamlandı`
-
-gibi ifadeler kullanılmayacaktır.
-
-Çünkü bu göstergeler geçen zamanı gerçek yeterlilikle karıştırır.
-
-Bunun yerine kullanıcı şunları görmelidir:
-
-- bugün ne çalışacağı
-- hangi konuda olduğu
-- konu hakimiyet düzeyi
-- hangi becerilerin güçlü/zayıf olduğu
-- hangi tekrarların yaklaştığı
-- hangi değerlendirmelerin geleceği
-
-Örnek:
-
-- C / Memory & Pointers
-- Basic Pointers — Mastery %64
-- Hedef: %80
-- Bugünkü plan: 1s 45dk
-- Zayıf alan: dereference mantığı
+`review_due` forgetting değildir ve tek başına hard lock üretmez.
 
 ---
 
-# 6. Müfredat Takvim Değil, Knowledge Graph Olmalı
+# 9. Adaptif Learning / Planner Motoru
 
-Uygulamanın temel veri yapısı “Gün 1, Gün 2, Gün 3” değildir.
+Ana öğrenme döngüsü:
 
-Müfredat bir bilgi grafiği olarak modellenmelidir.
+```text
+App teaches
+→ user practices
+→ system measures
+→ EvidenceEvent
+→ GRE/RVR state update
+→ prerequisite / Topic state
+→ LearningNeed
+→ planner priority + capacity
+→ next tasks / remediation / retention / verification
+```
 
-Örnek:
+Planner'ın temel kararları deterministik ve explainable olmalıdır; LLM keyfi olarak mastery/prerequisite/priority yazamaz.
 
-Memory Addresses
-→ Basic Pointers
-→ Pointer Arithmetic
-→ Dynamic Memory
-→ Linked Lists
+Aşama 3 canonical modelleri:
 
-Her node/konu için:
+- D-033 — hard daily capacity / no task debt
+- D-034 — LearningNeed / TaskCandidate / Evidence ayrımı
+- PBR-v0 / D-035 — semantic priority bands + deterministic rank
+- PRG-v0 / D-036 — prerequisite readiness
+- VDW-v0 / D-037 — validated diagnostic waiver
+- SRR-v0 / D-038 — state-based re-entry / no absence debt
+- PDT-v0 / D-039 — structured decision trace
 
-- öğrenme hedefleri
-- prerequisite'ler
-- mastery durumu
-- assessment türleri
-- retention geçmişi
-- remediation seçenekleri
-
-bulunmalıdır.
-
-Bir prerequisite öğrenilmemişse ona bağlı konu açılmaz.
-
-Fakat bağımsız dallar gereksiz yere durmaz.
-
-Örneğin pointer konusunda zayıflık varsa pointer'a bağlı C konuları bekleyebilirken, paralel Linux veya İngilizce hattı devam edebilir.
-
----
-
-# 7. Adaptif Öğrenme Motorunun Rolü
-
-Adaptif öğrenme motoru uygulamanın karar mekanizmasıdır.
-
-Görevi:
-
-> Kullanıcının geçmiş performansına bakıp bugün hangi görevin ne kadar süreyle ve hangi sırada verilmesi gerektiğine karar vermek.
-
-Girdi sinyalleri ileride şunları içerebilir:
-
-- teori quiz sonucu
-- coding task sonucu
-- debugging başarısı
-- açıklayabilme/Feynman değerlendirmesi
-- gecikmeli tekrar sonucu
-- cevaplama süresi
-- kaç ipucu kullanıldığı
-- AI yardım miktarı
-- prerequisite topic mastery
-- çalışma kapasitesi
-- son haftalık/aylık sınav sonucu
-
-Motorun davranışı açıklanabilir olmalıdır.
-
-Örnek:
-
-> “Bugün pointer tekrarına 25 dakika eklendi çünkü son iki debugging görevinde pointer dereference hataları yaptın ve 7 günlük retention testin %52 çıktı.”
-
-Uygulama rastgele veya sadece LLM kararına dayalı bir sistem olmamalıdır. Temel planner kuralları deterministik/ölçülebilir olmalı; AI daha çok açıklama, içerik çeşitlendirme ve tutor görevlerinde kullanılabilir.
+3H spec simulation sonucu: 16/16 scenarios PASS, 20/20 invariants PASS.
 
 ---
 
-# 8. Haftalık ve Aylık Sınavların Gerçek Görevi
+# 10. Günlük Kapasite ve 4+ Yıllık Horizon
 
-Sınavlar yalnızca not göstermek için yapılmayacaktır.
+Uzun curriculum, günlük planı büyütme hakkı vermez.
 
-Haftalık sınav örneği:
+Kullanıcının ayırdığı günlük süre hard budget'tır. Remediation, retention veya “4 yıllık hedefe yetişme” gerekçesiyle gün otomatik uzatılmaz.
 
-- teori
-- coding
-- debugging
-- teknik İngilizce
-- eski konulardan retrieval
+Tamamlanmamış task ertesi gün borç değildir. Current state'ten fresh plan üretilir.
 
-Sonuç:
-
-- Functions %91
-- Arrays %84
-- Memory %58
-- Pointers %49
-- Linux %88
-- English %71
-
-Sistem buradan bir sonraki haftayı değiştirmelidir.
-
-Örneğin:
-
-- pointer tekrar süresini artır
-- memory için remediation ekle
-- pointer prerequisite isteyen yeni konuyu ertele
-- Linux hattına normal devam et
-
-Aylık sınav daha geniş yeterlilik değerlendirmesi olmalıdır:
-
-- teori
-- uygulamalı coding
-- debugging
-- kendi cümlesiyle teknik açıklama
-- teknik İngilizce
-- retention
+Bu nedenle 4+ yıllık horizon kullanıcıya baskı yapan countdown değil, curriculum depth için açık alan sağlar.
 
 ---
 
-# 9. Unutma ve Spaced Repetition
+# 11. Assessment'ın Rolü
 
-Bir konu bir kez yüksek puan aldı diye sonsuza kadar tamamlandı kabul edilmemelidir.
+Assessment yalnız not üretmez; future state ve planı değiştirir.
 
-Uygulama belirli aralıklarla tekrar ölçüm yapmalıdır.
+Daily micro assessment DMA-v0'a göre sabit günlük quiz değildir. Gerçek measurement need varsa, Objective'e uygun modality ile capacity içinde seçilir.
 
-Yaklaşık mantık:
+Weekly/monthly assessment daha geniş evidence coverage sağlayacaktır; tasarımı Aşama 4'te tamamlanır.
 
-- kısa aralık
-- birkaç gün sonra
-- 1 hafta civarı
-- birkaç hafta
-- 1 ay
-- daha uzun dönem
-
-Kesin algoritma daha sonra tasarlanacaktır.
-
-Retention düşerse topic mastery yeniden düşebilir ve konu plana geri girebilir.
-
-Bu sistemin amacı kurs tamamlama değil, uzun süreli gerçek bilgi tutma olmalıdır.
+Assessment invalid/ambiguous/prerequisite-contaminated ise kullanıcıya mastery credit/penalty yazamaz.
 
 ---
 
-# 10. Remediation: Öğrenemeyince Ne Olacak?
+# 12. Retention / Forgetting
 
-Kullanıcı bir konuyu anlamadığında aynı içeriği tekrar tekrar göstermenin yeterli olmadığı kabul edilmektedir.
+Canonical RVR-v0 ilkesi:
 
-Sistem farklı müdahale türleri kullanmalıdır:
+> **Zamanın geçmesi negative evidence değildir. Zaman yalnız yeniden doğrulama ihtiyacını artırabilir.**
 
-- daha basit açıklama
-- farklı örnek
-- görsel/şematik anlatım
-- mikro alıştırma
-- kod tamamlama
-- debugging
-- yanlış örnek analizi
-- kendi cümlesiyle açıklama
-- prerequisite geri dönüşü
+`review_due` = forgetting değildir.
 
-Örneğin pointer konusunda üç kez başarısız olan kullanıcıya sadece aynı pointer dersini yeniden göstermek yerine, `memory address` prerequisite'ine geri dönmek gerekebilir.
+İlk clean post-mastery contradiction instant unmastery üretmez; `verification_due` ve fresh recheck gerekir. Repeated valid evidence GRE gate'lerini gerçekten düşürürse remediation oluşabilir.
+
+Uzun absence task debt veya mastery cezası değildir.
 
 ---
 
-# 11. AI Tutor'un Rolü
+# 13. Remediation
 
-AI uygulamanın tamamı değildir. AI, öğrenme motorunun üzerinde çalışan öğretmen katmanıdır.
+Kullanıcı zorlandığında aynı içeriği körlemesine tekrar etmek yerine sistem uygun müdahaleyi seçmelidir:
 
-AI Tutor ileride:
+- daha sade açıklama,
+- farklı mental model/analogy,
+- worked example,
+- micro-drill,
+- coding/debugging,
+- prerequisite repair,
+- farklı modality,
+- fresh independent verification.
 
-- kullanıcı seviyesine göre konu anlatabilir
-- ipucu verebilir
-- doğrudan cevabı söylemeden Socratic yönlendirme yapabilir
-- yanlışın kök nedenini analiz edebilir
-- farklı örnek üretebilir
-- açık uçlu cevapları değerlendirebilir
-- kodu açıklatabilir
-- debugging görevi oluşturabilir
-
-AI kullanıcının kodunu yazabilir; ancak bu durumda mastery verilmemelidir.
-
-Örneğin kullanıcı AI ile bir kodlama görevini tamamladıysa sistem şunları sorabilir:
-
-- Bu satır neden burada?
-- Bu `free()` kaldırılırsa ne olur?
-- Bu değişkenin lifetime'ı nedir?
-- Burada race condition olabilir mi?
-- Aynı mantığı farklı veri yapısında uygula.
-
-Amaç AI kullanımını yasaklamak değil, **AI'nın kullanıcı yerine öğrenmesini engellemektir**.
+Remediation günlük kapasite içine girer; günü otomatik uzatmaz.
 
 ---
 
-# 12. Günlük Kullanıcı Deneyimi
+# 14. AI Tutor'un Rolü
 
-Ana ekranın temel sorusu:
+AI öğretmen/feedback katmanıdır, canonical learning state'in sahibi değildir.
 
-> **Bugün ne yapmalıyım?**
+AI:
+- açıklama,
+- hint,
+- alternatif örnek,
+- root-cause analysis,
+- code/open response feedback,
+- remediation content,
+- comprehension/transfer check
 
-Ana ekran mümkün olduğunca sade olmalıdır.
+sağlayabilir.
 
-Öncelikli öğeler:
-
-1. Bugünkü toplam çalışma süresi
-2. Devam eden konu
-3. Günlük görev kartları
-4. Mastery durumu
-5. Yaklaşan değerlendirme
-6. Zayıf veya güçlendirilmesi gereken alan
-7. Tek ana CTA: Çalışmaya Başla / Devam Et
-
-Uygulama dashboard kalabalığına dönüşmemelidir.
+H1–H4 assistance positive independent mastery değildir. AI-generated/copy artifact production mastery yerine geçmez.
 
 ---
 
-# 13. Kişisel Kullanım Kapsamı
+# 15. Daha Kapsamlı Öğretim İlkesi
 
-Uygulama şu an yalnızca tek kullanıcı için geliştirilecektir.
+Yeni kapsamın anlamı yalnız daha fazla başlık eklemek değildir.
 
-Bu nedenle ilk sürümde gereksizdir:
+Kritik domain'lerde öğretim mümkün olduğunca şu progression'ı taşır:
 
-- auth/login sistemi
-- kullanıcı profilleri sistemi
-- organizasyonlar
-- arkadaş ekleme
-- sosyal feed
-- ödeme
-- abonelik
-- admin paneli
-- multi-tenant backend
-- kurumsal rol yetkilendirme
+```text
+conceptual model
+→ guided application
+→ independent application
+→ debugging
+→ explanation
+→ transfer
+→ delayed retention
+→ integrated project
+→ performance / production context
+```
 
-Bu karar, geliştirme süresini doğrudan öğrenme deneyimine ayırmak içindir.
+Örneğin C++ yalnız syntax listesi olmayacak; memory ownership, RAII, concurrency, tooling, debugging, build/test ve performance bağlamına taşınacaktır.
 
-Bununla birlikte veri kaybını önleme, local persistence, backup/export ve stabilite önemlidir.
+CUDA yalnız kernel syntax olmayacak; execution model, memory hierarchy, profiling, occupancy/bandwidth/latency, correctness ve inference bağlantısıyla öğretilmelidir.
 
----
-
-# 14. Tasarım Beklentisi
-
-Uygulama profesyonel ve modern görünmelidir.
-
-Beklentiler:
-
-- mobil odaklı
-- sade
-- temiz tipografi
-- açık/koyu tema düşünülebilir
-- iyi spacing
-- görsel hierarchy
-- küçük ama anlamlı animasyonlar
-- skill/mastery odaklı grafikler
-- gereksiz gamification yok
-
-Streak olabilir; ancak ana başarı metriği olmamalıdır.
-
-Kullanıcı 3 gün ara verdiğinde uygulama onu cezalandırmak yerine planı yeniden hesaplamalıdır.
+LLM inference yalnız API kullanmak olmayacak; serving engine internals, KV cache, batching/scheduling, quantization, GPU memory/performance ve distributed inference davranışlarına ilerlemelidir.
 
 ---
 
-# 15. İlk Curriculum Paketi Neden 3 Yıl Değil?
+# 16. Professional Engineering Evidence
 
-Uygulama kullanılmaya başlamadan önce tüm 3 yıllık ders içeriğini üretmek gereksiz ve risklidir.
+Uzun rotada yalnız küçük Objective evidence'ı yeterli değildir. Professional-readiness için katmanlı evidence gerekir:
 
-İlk hedef:
+1. **Foundation evidence** — Skill/Objective mastery + retention.
+2. **Applied evidence** — user-authored code, debugging, system task, test artifacts.
+3. **Integrated systems evidence** — multi-component project ve trade-off reasoning.
+4. **Performance/GPU evidence** — profiler, benchmark, CUDA/Triton/inference experiments.
+5. **Professional capstone evidence** — realistic constraints altında independent design + implementation + test + profiling + documentation + postmortem/decision explanation.
 
-- öğrenme motoru
-- knowledge graph
-- assessment sistemi
-- adaptive planner
-- ilk 8–12 haftalık yüksek kaliteli curriculum
-
-Bu ilk dönem gerçek kullanımla doğrulandıktan sonra sonraki modüller eklenir.
-
-Bu sayede yanlış pedagojik kararlar 3 yıllık dev içerik üretildikten sonra fark edilmez.
+Exact capstone sayısı şimdiden uydurulmaz; coverage/diversity 5/14/19 aşamalarında tasarlanır.
 
 ---
 
-# 16. Uzun Vadeli Curriculum Omurgası
+# 17. Uzun Vadeli Curriculum Omurgası
 
-Ana teknik alanlar:
+Yeni genişletilmiş alanlar:
 
 1. Technical English
 2. Computer Fundamentals
-3. C Foundations
-4. Memory Foundations
-5. Linux
-6. Data Structures & Algorithms
+3. Programming Foundations / problem solving
+4. C
+5. Linux / tooling
+6. Data Structures & Algorithms foundations
 7. Modern C++
-8. Operating Systems
-9. Concurrency
-10. Networking
-11. Distributed Systems
-12. GPU Architecture
-13. CUDA
-14. Triton
-15. ML/LLM Systems Fundamentals
-16. LLM Inference Engines
-17. Multi-GPU / NCCL / RDMA
-18. AI Infrastructure
-19. Open Source Contribution
-20. Career Readiness / Technical Interview
+8. Computer Architecture
+9. Operating Systems / Memory
+10. Concurrency / Parallel Programming
+11. Networking
+12. Distributed Systems
+13. Databases / Storage — infra için gerekli depth
+14. Containers / Cloud / Observability foundations
+15. Performance Engineering
+16. GPU Architecture
+17. CUDA
+18. Triton
+19. ML / Transformer fundamentals needed for inference
+20. LLM Inference Internals
+21. Serving engines: vLLM / SGLang / TensorRT-LLM style systems
+22. Quantization / KV Cache / Batching / Scheduling
+23. Multi-GPU / NCCL / RDMA / distributed inference
+24. AI Infrastructure / GPU Infrastructure
+25. Reliability / capacity / benchmarking
+26. Open Source / technical communication
+27. Career readiness / technical interview
+28. Professional capstone / integrated readiness
 
-Bu sıra sabit zaman dilimleri anlamına gelmez. Süre, kullanıcının mastery hızına göre değişebilir.
-
----
-
-# 17. İlk İş ve Kariyer Köprüsü
-
-Uzun vadeli hedef AI Infrastructure olsa da ilk işin doğrudan CUDA Engineer olması zorunlu değildir.
-
-Muhtemel köprü roller:
-
-- C++ Systems Engineer
-- Systems Software Engineer
-- Linux/Infrastructure Engineer
-- Performance Engineer
-- Distributed Systems Engineer
-- uygun SRE/Cloud Infrastructure rolü
-
-Türkiye'de C/C++/Linux ve systems tarafı başlangıç köprüsü olabilir. Sonrasında GPU/CUDA ve global AI Infrastructure tarafına yönelmek hedeflenmektedir.
+Bu bir sabit calendar değildir. Aşama 5 gerçek prerequisite graph yapısını, Aşama 14 ilk production package'ı, Aşama 19 full professional expansion'ı taşır.
 
 ---
 
-# 18. Uygulamanın Başarılı Sayılması İçin Temel Felsefi Kriter
+# 18. V1 Neden Tüm 4+ Yıllık Curriculum'u Beklemiyor?
 
-Bu uygulama kullanıcının yalnızca daha fazla içerik tüketmesine neden oluyorsa başarısızdır.
+V1 release'in amacı motorun gerçek çalıştığını kanıtlamaktır.
 
-Başarılı uygulama:
+V1:
+- adaptive planner,
+- mastery/prerequisite,
+- assessment,
+- retention/remediation,
+- AI Tutor,
+- English parallel track,
+- local persistence,
+- ilk 8–12 haftalık production-quality curriculum
 
-- kullanıcının karar yükünü azaltır
-- doğru sırada öğrenmesini sağlar
-- öğrenmediği konuyu saklamaz
-- zayıflığı tespit eder
-- unutmayı fark eder
-- günlük programı buna göre değiştirir
-- AI kullanımına rağmen gerçek anlama seviyesini ölçer
-- uzun vadede kullanıcıyı gerçek teknik beceri ve işe hazır portföye taşır
+ile release edilebilir.
 
----
+Full 4+ year professional curriculum V1 ön koşulu değildir.
 
-# 19. Geliştirme Felsefesi
-
-Kodlamaya başlamadan önce öğrenme ve ürün kuralları yeterince netleştirilecektir.
-
-Ana sıralama:
-
-1. Ürün kapsamını kilitle.
-2. Mastery modelini tasarla.
-3. Adaptive planner kurallarını tasarla.
-4. Assessment sistemini tasarla.
-5. Curriculum graph yapısını kur.
-6. English track'i kesinleştir.
-7. UI/UX akışlarını tasarla.
-8. Teknik mimariyi seç.
-9. Uygulamayı geliştir.
-10. Gerçek kullanıcı pilotu ile kalibre et.
-11. Release APK üret.
-12. Curriculum'u zamanla genişlet.
-
-Ayrıntılı uygulama planı `docs/MASTER_PLAN.md` içindedir.
+Bu ayrım iki riski önler:
+- uygulama hiçbir zaman release olmadan yıllarca içerik yazmak,
+- henüz doğrulanmamış learning engine üzerine dev curriculum inşa etmek.
 
 ---
 
-# 20. Proje Hafızası Kuralı
+# 19. Gerçek Dünya Çalışma Alışkanlıkları
 
-Bu proje uzun süreli olduğundan sohbet bağlamına güvenilmeyecektir.
+Professional curriculum zaman içinde şunları da öğretmelidir:
 
-Kalıcı kaynaklar:
+- Git / branches / PR workflow,
+- code review,
+- tests,
+- build systems,
+- debugger/profiler,
+- documentation,
+- issue decomposition,
+- design docs,
+- reproducible benchmarks,
+- logs/metrics/tracing,
+- incident/postmortem thinking,
+- reliability/security fundamentals,
+- open-source source tree okuma ve contribution workflow.
 
-- `docs/PROJECT_MASTER_CONTEXT.md` — bu dosya, uzun ürün bağlamı.
-- `docs/HANDOFF_STATE.md` — güncel proje durumu ve sıradaki kesin adım.
-- `PROJECT_CONTEXT.md` — önceki ana bağlam özeti.
-- `docs/DECISIONS.md` — alınan kalıcı kararlar.
-- `docs/MASTER_PLAN.md` — aşama/adım planı.
-- `docs/PROGRESS_LOG.md` — kronolojik ilerleme.
+Bunlar yan beceri değil, professional engineering davranışının parçasıdır.
 
-Yeni bir önemli karar alındığında yalnız sohbet içinde bırakılmamalıdır; ilgili GitHub dokümanına yazılmalıdır.
+---
 
-Bu dosyanın amacı, aylar sonra projeye dönüldüğünde bile “biz ne yapıyorduk?” sorusunun tekrar sorulmamasını sağlamaktır.
+# 20. İlk İş ve Kariyer Köprüsü
+
+Nihai hedef AI Infrastructure olsa da ilk işin doğrudan CUDA/Inference Engineer olması zorunlu değildir.
+
+Uygun bridge alanlar:
+- C/C++ development,
+- Systems Software,
+- Linux/Infrastructure,
+- Backend/Distributed Systems — systems depth varsa,
+- Performance Engineering,
+- uygun SRE/Cloud Infrastructure,
+- ML/AI Infrastructure intern/junior fırsatları.
+
+Career strategy teknoloji rotasını bozmaz; ilk iş, final hedefe useful engineering experience taşıyan bir köprü olabilir.
+
+---
+
+# 21. Başarı Felsefesi
+
+Bu uygulama yalnız daha fazla içerik tüketimine neden oluyorsa başarısızdır.
+
+Başarılı ürün:
+- karar yükünü azaltır,
+- doğru prerequisite sırasını korur,
+- gerçek mastery'yi ölçer,
+- zayıflığı saklamaz,
+- retention'ı yeniden doğrular,
+- yanlışta remediation üretir,
+- AI yardımını provenance ile yorumlar,
+- gerçek code/debugging/performance/transfer yaptırır,
+- yıllar içinde integrated engineering depth oluşturur,
+- kullanıcıyı güçlü professional portfolio/capstone evidence'a taşır.
+
+---
+
+# 22. Geliştirme Felsefesi
+
+Kodlamadan önce behavior/spec katmanı yeterince netleştirilir.
+
+Canonical yürütme:
+
+`PRE-STEP GitHub refresh → gerekirse Research/Coding/QA → spec/implementation → değerlendirme → POST-STEP GitHub sync`
+
+Ana 1–19 yürütme planı korunur. Yeni 4+ yıl kapsamı özellikle Aşama 5, 14 ve 19'u daha derin hale getirir; mevcut 4B assessment tasarım akışı devam eder.
+
+---
+
+# 23. Proje Hafızası Kuralı
+
+Kalıcı source of truth GitHub'dır.
+
+Özellikle:
+- `docs/START_HERE.md`
+- `docs/PROJECT_MEMORY_PROTOCOL.md`
+- `docs/HANDOFF_STATE.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/STEP_STATUS.md`
+- `docs/DECISIONS.md`
+- `docs/PRODUCT_REQUIREMENTS.md`
+- `docs/PROFESSIONAL_READINESS_TARGET.md`
+- `docs/MASTER_PLAN.md`
+- `docs/PROGRESS_LOG.md`
+
+Yeni önemli kararlar yalnız sohbet içinde bırakılmaz.
+
+---
+
+# 24. Güncel Kapsam Özeti
+
+> **AI Infra Learning Coach artık yalnız birkaç yıllık bir roadmap uygulaması değildir. Sıfırdan başlayıp yıllar boyunca kanıt-temelli, adaptif ve kapsamlı biçimde ilerleyen; finalde AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek engineering capability üretmeyi hedefleyen kişisel öğrenme sistemidir.**
+
+> **Takvim hedef değildir. 4+ yıl yalnız esnek horizon'dır. Final gate; mastery + retention + transfer + debugging + performance + integrated capstone evidence'dır.**
