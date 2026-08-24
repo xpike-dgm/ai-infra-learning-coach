@@ -1,151 +1,96 @@
-# HANDOFF STATE — Güncel Proje Durumu ve Sohbet Aktarım Özeti
+# HANDOFF STATE — Güncel Proje Durumu
 
 **Son güncelleme:** 2026-08-24  
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
----
+## 0. Zorunlu protokol
 
-# 0. Zorunlu çalışma protokolü
+Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`, D-024, D-027.
 
-Bağlayıcı kaynak: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-024 / D-027.
+> Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra ana çıktı + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN` ve gerekiyorsa `DECISIONS` senkronu zorunludur.
 
-> **Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra ana çıktı + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN` ve gerekiyorsa `DECISIONS` senkronu zorunludur.**
+## 1. Ürün
 
-Aynı sohbet içinde bile yeni adımda refresh tekrarlanır.
+Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan, yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
 
----
-
-# 1. Ana ürün
-
-Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük olarak yöneten, uygulama içinde öğreten/uygulatan, yalnız kanıtlanmış öğrenmeyi ilerleme sayan ve mastery/retention/prerequisite sonuçlarıyla gelecek planı yeniden oluşturan kişisel adaptif Android öğrenme koçu.
-
-Ana ilke:
-
-> **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
-
-Kariyer yönü:
+Ana rota:
 
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
 
----
+## 2. Bağlayıcı ana kurallar
 
-# 2. Büyük bağlayıcı kurallar
-
-- Curriculum takvim değil prerequisite ilişkili knowledge graph.
-- Canonical mastery/prerequisite seviyesi Skill; atomik evidence Learning Objective'e bağlanabilir.
-- Coverage mastery değildir.
-- Tek quiz/task completion/streak/time mastery değildir.
-- Kritik Skill için çok kaynaklı, objective-fit, bağımsız evidence gerekir.
-- Coding mastery gerçek kullanıcı coding artifact'ı ister.
-- Bilinmeyen prerequisite içeren soru kullanıcıyı cezalandırmaz.
-- Aynı exact/familya tekrarları mastery'yi şişiremez.
-- AI yardımı serbesttir ama assisted performance independent mastery ile aynı değildir.
+- Curriculum takvim değil prerequisite graph.
+- Canonical mastery/prerequisite seviyesi Skill; evidence Objective'e bağlanabilir.
+- Coverage/time/streak/task completion mastery değildir.
+- Öğretilmemiş prerequisite yüzünden kullanıcı başarısız sayılmaz.
+- Coding mastery gerçek user artifact ister.
+- Same-item/family tekrarları mastery'yi şişiremez.
+- AI yardımı serbest; assisted performance independent mastery değildir.
 - AI-generated/copied code production mastery değildir.
-- Tek yeni yanlış mastered Skill'i anında silmez; doğrulama gerekir.
-- English A0 teknik eğitimle paralel ilerler; öğretilmemiş grammar gizli prerequisite olamaz.
-- Çekirdek mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
-- Uygulama performansı D-028 gereği first-class requirement'tır; UI thread ağır iş/AI/network/code execution ile bloke edilmez.
+- Tek yeni yanlış mastered Skill'i anında silmez.
+- English A0 paralel gider; öğretilmemiş grammar gizli prerequisite olamaz.
+- Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
+- D-028: uygulama akıcı olmalı; bounded/incremental hesap ve async ağır işler.
 
----
+## 3. Tamamlanan adımlar
 
-# 3. Tamamlanan Aşama 1
+- `1A–1D` ✅ Ürün çerçevesi
+- `2A` ✅ Bilgi birimleri — `docs/LEARNING_ENGINE_SPEC.md`
+- `2B` ✅ Topic state — `docs/TOPIC_STATE_MACHINE.md`
+- `2C` ✅ Mastery signals — `docs/MASTERY_SIGNALS_SPEC.md`
+- `2D` ✅ AI/hint — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+- `2E` ✅ Mastery Formula v0 — `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`
 
-`1A–1D` ✅ — ürün amacı, V1 scope, success criteria, non-goals.
+## 4. 2E final — GRE-v0
 
----
+İlk Beta-style candidate ayrı Research AI doğrulaması sonrası finalden çıkarıldı. D-029 artık historical candidate; final karar D-031.
 
-# 4. Aşama 2 tamamlanan adımlar
+### Canonical final davranış
 
-## 2A ✅ Bilgi birimleri
-
-`Domain → Module → Topic → Skill → Learning Objective`  
-Ana spec: `docs/LEARNING_ENGINE_SPEC.md`  
-Karar: D-021.
-
-## 2B ✅ Topic state machine
-
-`locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`  
-Ana spec: `docs/TOPIC_STATE_MACHINE.md`  
-Karar: D-023.
-
-## 2C ✅ Mastery sinyalleri
-
-Direct/corroborating/contextual; recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project evidence; validity/dedup/quality.  
-Ana spec: `docs/MASTERY_SIGNALS_SPEC.md`  
-Karar: D-025.
-
-## 2D ✅ AI / ipucu etkisi
-
-H0–H4, timing, artifact origin, independent/assisted/practice-only/recheck, solution exposure ve fresh recheck.  
-Ana spec: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`  
-Karar: D-026.
-
-## 2E 🟡 Mastery formülü v0 — RESEARCH AI DOĞRULAMASI BEKLİYOR
-
-Ana spec: `docs/MASTERY_FORMULA_V0.md`  
-Durum: **candidate/draft**.
-
-### Düzeltme
-
-2E'nin ilk candidate formülü ana yöneticinin kendi web/dış araştırmasıyla hazırlandı. Proje planında 2E için ayrı Research AI kullanılması gerektiği halde ayrı agent turu yapılmadan adım yanlışlıkla tamamlandı olarak işaretlendi. Bu nedenle 2E yeniden açıldı; 2F beklemeye alındı.
-
-### Candidate model
+- Mastery score'a yalnız `valid + prerequisite-valid + H0 + direct + verified + independent` evidence group girer.
+- H1–H4 formative/remediation/recheck sinyalidir; positive independent mastery score'a girmez.
+- Corroborating evidence direct evidence'ı numeric accumulation ile ikame etmez.
+- `dependency_group_id/testlet_id` correlated item'ları tek group yapar; `variant_family_id` diversity için kullanılır.
+- Objective score:
 
 ```text
-alpha = 1 + Σ(w_i × q_i)
-beta  = 1 + Σ(w_i × (1-q_i))
-objective_score = alpha / (alpha + beta)
+W_o = son en fazla 5 eligible independent H0 direct evidence group
+recent_direct_score = mean(q_g for g in W_o)
 ```
 
-Şu değerler **candidate** ve Research AI tarafından sorgulanacak:
+- `threshold = 0.80`, `window max = 5` cold-start engineering heuristics; probability veya `% learned` değildir.
+- Standard default: score >=0.80 + en az 2 independent group + default 2 family/context + required direct type + no recheck.
+- Critical default: en az 3 independent group + 2 family/context + non-basic/objective-specific gate.
+- Critical production → H0 user-authored coding artifact.
+- Critical debugging → H0 diagnosis/fix evidence.
+- Skill mastered = tüm required Objective PASS + tüm critical Objective PASS + unresolved critical recheck yok. Compensatory high average yok.
+- İlk clean post-mastery H0 direct negative → `verification_due` + fresh/unseen recheck.
+- Difficulty numeric multiplier değildir.
+- AI evaluator fixed numeric weight kaldırıldı: `verified | provisional | invalid`; provisional LLM grade critical mastery'yi tek başına geçiremez.
+- Bounded sufficient-state D-028 performans gereksinimine uygundur.
 
-- direct `1.00`, corroborating `0.50`, contextual `0`.
-- H0/H1/H2/H3/H4 `1.00 / 0.85 / 0.65 / 0.35-or-0 / 0`.
-- AI evaluator high-confidence candidate `0.80`.
-- operational mastery threshold candidate `0.80`.
-- standard/critical Objective minimum independent evidence gates.
-- critical production için en az bir H0 user-authored direct artifact.
-- single clean negative sonrası `verification_due` hysteresis.
-- difficulty'nin numeric multiplier değil gate/item-eligibility olarak kullanılması.
+Research ayrımı: `0.80`, window `5`, minimum group/family defaultları 17C pilotunda kalibre edilecek.
 
-Bu değerler şu anda bağlayıcı final 2E kararı değildir.
+## 5. Şu anda aktif adım
 
----
+**AŞAMA 2 — 2F Unutma modeli — AKTİF**
 
-# 5. Şu anda bulunulan kesin adım
+2F başlamadan yeni PRE-STEP refresh + ayrı Research AI turu zorunlu.
 
-**AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla**
+Kesinleştirilecek:
 
-- `2A` ✅
-- `2B` ✅
-- `2C` ✅
-- `2D` ✅
-- `2E` 🟡 **Mastery formülü v0 / Research AI doğrulaması — AKTİF**
-- `2F` ⬜ Bekliyor
+- spaced repetition yaklaşımı,
+- review interval başlangıcı/büyümesi,
+- successful/failed delayed retrieval,
+- time-based retention risk / forgetting,
+- `mastered → weakening → mastered/remediation_required`,
+- natural reuse'un retention evidence sayılması,
+- GRE-v0 current mastery ile retention state'in birlikte çalışması,
+- tek delayed failure'da instant mastery reset olmaması.
 
-## Aktif iş: 2E Research AI validation
+Research raporundaki Half-Life Regression önerisi yalnız bir adaydır; 2F Research AI bunu SM-2/FSRS/HLR/ACT-R vb. uygun alternatiflerle karşılaştırmalıdır.
 
-Research AI en az şu başlıkları incelemeli:
-
-- Beta-style accumulator uygun mu; daha iyi explainable alternatif var mı?
-- BKT / IRT / AFM / PFA / mastery-learning modelleriyle karşılaştırma.
-- `0.80` threshold candidate değerinin riskleri.
-- direct/corroborating ve H0–H4 katsayılarının kanıt temeli.
-- minimum independent/diverse evidence gate'leri.
-- critical production için H0 artifact şartı.
-- negative evidence + `verification_due` davranışı.
-- AI evaluator provenance weight yaklaşımı.
-- false-positive / false-negative mastery riskleri.
-- V1'de az kullanıcı datasıyla en güvenli yaklaşım.
-- hangi parametrelerin yalnız config/pilot calibration olarak kalması gerektiği.
-
-Research raporu ana yöneticinin kendi başına yaptığı web araştırmasının yerine geçen bağımsız doğrulama girdisi olacak; otomatik ürün kararı olmayacak.
-
-2E ancak rapor değerlendirildikten, candidate spec gerekirse revize edildikten ve POST-STEP sync yapıldıktan sonra kapanır.
-
----
-
-# 6. İlk okuma sırası
+## 6. İlk okuma sırası
 
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
@@ -153,23 +98,18 @@ Research raporu ana yöneticinin kendi başına yaptığı web araştırmasını
 4. `docs/EXECUTION_INDEX.md`
 5. `docs/STEP_STATUS.md`
 6. `docs/DECISIONS.md`
-7. `docs/PRODUCT_REQUIREMENTS.md`
-8. `docs/V1_SCOPE.md`
-9. `docs/V1_SUCCESS_CRITERIA.md`
-10. `docs/NON_GOALS.md`
-11. `docs/LEARNING_ENGINE_SPEC.md`
-12. `docs/LEARNING_BEHAVIOR_RULES.md`
-13. `docs/TOPIC_STATE_MACHINE.md`
-14. `docs/MASTERY_SIGNALS_SPEC.md`
-15. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-16. `docs/MASTERY_FORMULA_V0.md`
-17. `docs/ENGLISH_FOUNDATION_RULES.md`
-18. `docs/MASTER_PLAN.md`
-19. `docs/AI_AGENT_WORKFLOW.md`
-20. `docs/PROGRESS_LOG.md`
+7. `docs/LEARNING_ENGINE_SPEC.md`
+8. `docs/LEARNING_BEHAVIOR_RULES.md`
+9. `docs/TOPIC_STATE_MACHINE.md`
+10. `docs/MASTERY_SIGNALS_SPEC.md`
+11. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+12. `docs/MASTERY_FORMULA_V0.md`
+13. `docs/2E_RESEARCH_VALIDATION.md`
+14. `docs/ENGLISH_FOUNDATION_RULES.md`
+15. `docs/MASTER_PLAN.md`
+16. `docs/AI_AGENT_WORKFLOW.md`
+17. `docs/PROGRESS_LOG.md`
 
----
+## 7. Yeni sohbetin ilk işi
 
-# 7. Yeni sohbetin yapacağı ilk iş
-
-Repo hafızasını okuduktan sonra aktif adımı doğrula ve **2E Research AI doğrulaması**ndan devam et. Research raporu gelmeden 2F'ye geçme. 2A–2D kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Aktif adımı repo üzerinden doğrula ve **2F — Unutma modeli** için PRE-STEP refresh yap. Sonra ayrı Research AI retention/spaced-repetition raporu al; raporu otomatik kabul etme, ürüne sentezle.
