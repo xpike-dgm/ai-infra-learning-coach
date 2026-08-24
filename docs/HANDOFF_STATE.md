@@ -80,12 +80,16 @@ H0–H4, timing, artifact origin, independent/assisted/practice-only/recheck, so
 Ana spec: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`  
 Karar: D-026.
 
-## 2E ✅ Mastery formülü v0
+## 2E 🟡 Mastery formülü v0 — RESEARCH AI DOĞRULAMASI BEKLİYOR
 
 Ana spec: `docs/MASTERY_FORMULA_V0.md`  
-Karar: D-029.
+Durum: **candidate/draft**.
 
-### 2E canonical model
+### Düzeltme
+
+2E'nin ilk candidate formülü ana yöneticinin kendi web/dış araştırmasıyla hazırlandı. Proje planında 2E için ayrı Research AI kullanılması gerektiği halde ayrı agent turu yapılmadan adım yanlışlıkla tamamlandı olarak işaretlendi. Bu nedenle 2E yeniden açıldı; 2F beklemeye alındı.
+
+### Candidate model
 
 ```text
 alpha = 1 + Σ(w_i × q_i)
@@ -93,26 +97,18 @@ beta  = 1 + Σ(w_i × (1-q_i))
 objective_score = alpha / (alpha + beta)
 ```
 
-- `q_i`: objective rubric quality `[0,1]`.
-- `w_i = role_weight × assistance_weight × provenance_weight`.
+Şu değerler **candidate** ve Research AI tarafından sorgulanacak:
+
 - direct `1.00`, corroborating `0.50`, contextual `0`.
-- H0/H1/H2/H3/H4 v0: `1.00 / 0.85 / 0.65 / 0.35-or-0 / 0`.
-- AI evaluator high-confidence rubric v0 `0.80`; low-confidence/invalid `0` + recheck.
-- Operational threshold `0.80`; bilimsel sabit veya “%80 öğrendi” değildir.
-- Difficulty score multiplier değildir; critical gate/item eligibility için kullanılır.
-- Same family/exact repeat independent evidence sayısını şişiremez.
-- Required/critical Objective hard gate; yüksek average kritik açığı gizleyemez.
-- Critical Objective: HIGH support, en az 3 independent group, 2 family/context, non-basic evidence; production için en az bir H0 user-authored direct artifact.
-- Skill mastered: tüm required/critical Objective gate'leri PASS + skill_score >=0.80 + unresolved recheck yok.
-- Bir mastered Objective'te ilk clean independent negative → `verification_due`; anında reset yok.
-- Formula versioned ve pilot 17C'de false-positive/false-negative verisine göre kalibre edilecek.
-- D-028 için incremental aggregate/sufficient-state yaklaşımı tasarlandı; full-history scan her ekranda zorunlu olmayacak.
+- H0/H1/H2/H3/H4 `1.00 / 0.85 / 0.65 / 0.35-or-0 / 0`.
+- AI evaluator high-confidence candidate `0.80`.
+- operational mastery threshold candidate `0.80`.
+- standard/critical Objective minimum independent evidence gates.
+- critical production için en az bir H0 user-authored direct artifact.
+- single clean negative sonrası `verification_due` hysteresis.
+- difficulty'nin numeric multiplier değil gate/item-eligibility olarak kullanılması.
 
-### 2E research sonucu
-
-- BKT/knowledge-tracing yaklaşımları değerlendirildi; common `0.95` threshold'un evrensel olmadığı ve bağlama göre kalibrasyon gerektiği görüldü.
-- IRT'nin item difficulty/discrimination'ı veriyle kalibre ettiği dikkate alınarak v0'da keyfi difficulty multiplier kullanılmadı.
-- V1 için explainable gate + Beta-style evidence accumulator seçildi; BKT/IRT fitting yeterli veri oluşana kadar ertelendi.
+Bu değerler şu anda bağlayıcı final 2E kararı değildir.
 
 ---
 
@@ -124,26 +120,28 @@ objective_score = alpha / (alpha + beta)
 - `2B` ✅
 - `2C` ✅
 - `2D` ✅
-- `2E` ✅
-- `2F` 🟡 **Unutma modeli — AKTİF**
+- `2E` 🟡 **Mastery formülü v0 / Research AI doğrulaması — AKTİF**
+- `2F` ⬜ Bekliyor
 
-## Aktif iş: 2F
+## Aktif iş: 2E Research AI validation
 
-Kesinleştirilecek:
+Research AI en az şu başlıkları incelemeli:
 
-- spaced repetition yaklaşımı,
-- ilk review interval'leri,
-- successful delayed retrieval sonrası interval büyümesi,
-- failed review sonrası interval/remediation,
-- time/retention risk ve decay davranışı,
-- `mastered → weakening → mastered/remediation_required`,
-- doğal ileri-topic reuse'un retention evidence sayılması,
-- 2E `MasteryEvidenceScore` ile retention state'in birlikte kullanımı,
-- tek retention yanlışında otomatik mastery reset olmaması.
+- Beta-style accumulator uygun mu; daha iyi explainable alternatif var mı?
+- BKT / IRT / AFM / PFA / mastery-learning modelleriyle karşılaştırma.
+- `0.80` threshold candidate değerinin riskleri.
+- direct/corroborating ve H0–H4 katsayılarının kanıt temeli.
+- minimum independent/diverse evidence gate'leri.
+- critical production için H0 artifact şartı.
+- negative evidence + `verification_due` davranışı.
+- AI evaluator provenance weight yaklaşımı.
+- false-positive / false-negative mastery riskleri.
+- V1'de az kullanıcı datasıyla en güvenli yaklaşım.
+- hangi parametrelerin yalnız config/pilot calibration olarak kalması gerektiği.
 
-**2F için Research AI / dış learning-science araştırması kullanılmalıdır.**
+Research raporu ana yöneticinin kendi başına yaptığı web araştırmasının yerine geçen bağımsız doğrulama girdisi olacak; otomatik ürün kararı olmayacak.
 
-2F başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+2E ancak rapor değerlendirildikten, candidate spec gerekirse revize edildikten ve POST-STEP sync yapıldıktan sonra kapanır.
 
 ---
 
@@ -174,4 +172,4 @@ Kesinleştirilecek:
 
 # 7. Yeni sohbetin yapacağı ilk iş
 
-Repo hafızasını okuduktan sonra aktif adımı doğrula ve **2F — Unutma modeli** adımına geç. Önce D-024 PRE-STEP refresh yap; ardından retention/spaced-repetition Research AI turu yürüt. 2A–2E kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo hafızasını okuduktan sonra aktif adımı doğrula ve **2E Research AI doğrulaması**ndan devam et. Research raporu gelmeden 2F'ye geçme. 2A–2D kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
