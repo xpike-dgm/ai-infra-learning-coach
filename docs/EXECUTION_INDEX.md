@@ -29,23 +29,23 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 ---
 
-# AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
+# AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla ✅
 - [x] **3A — Günlük kapasite** — `docs/ADAPTIVE_PLANNER_SPEC.md` — D-033
 - [x] **3B — Görev kategorileri** — `docs/TASK_TAXONOMY_SPEC.md` — D-034
 - [x] **3C — Öncelik puanı** — `docs/PRIORITY_POLICY_SPEC.md` — PBR-v0 / D-035
 - [x] **3D — Prerequisite davranışı** — `docs/PREREQUISITE_POLICY_SPEC.md` — PRG-v0 / D-036
 - [x] **3E — Hızlı öğrenme** — `docs/DIAGNOSTIC_WAIVER_SPEC.md` — VDW-v0 / D-037
 - [x] **3F — Kaçırılan günler** — `docs/MISSED_DAY_RECOVERY_SPEC.md` — SRR-v0 / D-038
-- [x] **3G — Açıklanabilir planner** — `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** `PDT-v0`; structured reason codes + need/candidate decision trace, user-facing/internal explanation ayrımı, versioned replan chain, deterministic 3A–3G pseudocode ve 3H invariant set'i. D-039.
-- [ ] **3H — Planner simülasyonu** **AKTİF**
+- [x] **3G — Açıklanabilir planner** — `docs/PLANNER_EXPLAINABILITY_SPEC.md` — PDT-v0 / D-039
+- [x] **3H — Planner simülasyonu** — `docs/PLANNER_SIMULATION_SUITE.md`
+  - **Tamamlanma notu — 2026-08-24:** 16/16 policy scenarios PASS, 20/20 PDT-v0 invariant PASS, 0 critical cross-spec contradiction. Bu sonuç production runtime testi değildir; 11F/17E doğrulaması ayrıca zorunlu.
 
-**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, `docs/PLANNER_EXPLAINABILITY_SPEC.md`, simulation suite.
+**AŞAMA 3 sonucu:** ✅ PASS / TAMAMLANDI.
 
 ---
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
-- [ ] **4A — Günlük mikro değerlendirme**
+- [ ] **4A — Günlük mikro değerlendirme** **AKTİF**
 - [ ] **4B — Haftalık sınav**
 - [ ] **4C — Aylık yeterlilik sınavı**
 - [ ] **4D — Soru bankası**
@@ -201,7 +201,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3G`  
-**Aktif:** **`3H — Planner simülasyonu`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`  
+**Aktif:** **`4A — Günlük mikro değerlendirme`**
 
-3H başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+4A başlamadan yeni PRE-STEP GitHub refresh zorunludur.
