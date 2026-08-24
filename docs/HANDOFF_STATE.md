@@ -37,56 +37,42 @@ Aşama 2 canonical omurgası:
 ## 4. AŞAMA 3 ilerlemesi
 
 ### 3A ✅ Günlük kapasite — D-033
-- explicit daily time hard budget,
-- no auto-overrun,
-- split/defer,
-- deferred task debt değildir.
+Explicit daily time hard budget; no auto-overrun; split/defer; no task debt.
 
 ### 3B ✅ Task taxonomy — D-034
-- `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
-- purpose/activity/track/evidence ayrı,
-- unresolved need kalıcı; old task ID debt değildir.
+`LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`; purpose/activity/track/evidence ayrı.
 
 ### 3C ✅ Priority — PBR-v0 / D-035
-- eligibility priority'den önce,
-- P0–P4 semantic bands,
-- deterministic rank vector,
-- starvation/track-balance guard,
-- duration semantic priority'den sonra.
+P0–P4 semantic bands + deterministic rank vector; eligibility priority'den önce; starvation/track balance; duration priority'den sonra.
 
 ### 3D ✅ Prerequisite — PRG-v0 / D-036
-- runtime prerequisite `Skill → Skill`,
-- `hard | soft`,
-- readiness `ready | ready_due | uncertain | not_ready`,
-- `review_due` hard lock değildir,
-- yalnız affected dependent branch bekler,
-- prerequisite contamination target negative evidence değildir.
+Skill-level hard/soft edges, `ready | ready_due | uncertain | not_ready`, branch-local blocking, review_due no-lock, contamination guard.
 
 ### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
-- diagnostic GRE-v0'dan daha gevşek mastery yolu değildir,
-- Objective-level validated coverage waiver + partial waiver,
-- critical H0/evidence/prerequisite guard korunur,
-- waiver mastery/retention değildir.
+Diagnostic GRE-v0'dan daha kolay değildir; Objective-level validated coverage waiver + partial waiver; critical false-skip guards.
 
 ### 3F ✅ Kaçırılan günler — SRR-v0 / D-038
-Ana çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
+Absence failure/mastery decay/debt değildir; stale plan replay yok; current-state re-entry; due inventory ≠ DailyPlan; starvation ≠ absence.
+
+### 3G ✅ Açıklanabilir planner — PDT-v0 / D-039
+Ana çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
 
 Canonical davranış:
-- absence failure, mastery decay veya task debt değildir,
-- stale PlannedTask/TaskCandidate replay edilmez,
-- current state'ten fresh LearningNeed/candidate üretilir,
-- RVR time yalnız due/urgency'yi etkiler; review_due tek başına forgetting değildir,
-- unresolved verification/remediation absence ile silinmez,
-- safe paused checkpoint continuation adayı olabilir ama otomatik seçilmez,
-- incomplete high-stakes H0 attempt negative evidence değildir; gerekiyorsa fresh candidate gelir,
-- due-state inventory DailyPlan değildir; yüzlerce review tek güne yığılmaz,
-- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur,
-- absence günleri starvation sayılmaz; overdue ayrı zaman sinyalidir,
-- integrated recovery evidence ayrı observability/attribution ister; cluster refresh yoktur,
-- recovery PBR-v0 + PRG-v0 + 3A hard capacity ile çalışır,
-- long absence new learning'i globally dondurmaz,
-- self-report automatic retention refresh değildir,
-- deterministic/bounded implementation beklenir.
+- planner açıklaması sonradan serbest metinle uydurulmaz,
+- `PlannerDecisionTrace` plan generation/replan sırasında structured reason code üretir,
+- private chain-of-thought tutulmaz/gösterilmez; canonical state refs + policy outputs + disposition kaydedilir,
+- need-level ve candidate-level trace ayrıdır,
+- selected/blocked/invalid/lower-priority/capacity-deferred/split/smaller-alternative/superseded sonuçları explicit'tir,
+- reason code namespaces: need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection, replan,
+- user-facing açıklama trace'in alt kümesidir; trace'te olmayan factual neden ekleyemez,
+- PRG eligibility → PBR priority → capacity fit sırası korunur,
+- `review_due` forgetting/failure değildir; absence debt/failure/starvation değildir,
+- higher-priority task fit olmadığı için lower-priority task seçildiyse gerçek fit nedeni açıklanır,
+- replan yeni plan version/event üretir; completed evidence korunur,
+- LLM yalnız reason trace'i paraphrase edebilir; template fallback zorunludur,
+- 3A–3G deterministic end-to-end pseudocode tanımlıdır,
+- 3H için 20 temel simulation invariant'ı hazırlanmıştır,
+- trace bounded/ref-based ve D-028 ile uyumludur.
 
 ## 5. Güncel kesin konum
 
@@ -98,20 +84,29 @@ Canonical davranış:
 - `3D` ✅
 - `3E` ✅
 - `3F` ✅
-- `3G` 🟡 **Açıklanabilir planner — AKTİF**
-- `3H` ⬜ Bekliyor
+- `3G` ✅
+- `3H` 🟡 **Planner simülasyonu — AKTİF**
 
-## 6. 3G'de kesinleştirilecekler
-- machine-readable reason codes,
-- selected/skipped/blocked/deferred decision trace,
-- PBR/PRG/RVR/capacity/diagnostic/re-entry girdilerinin tek açıklanabilir modelde birleşmesi,
-- user-facing kısa açıklamalar ile internal audit trace ayrımı,
-- `neden bugün bu görev?`, `neden diğer görev gelmedi?`, `neden branch bekliyor?` cevapları,
-- replan reason chain,
-- deterministic end-to-end planner pseudocode,
-- 3H simulation'ın doğrulayacağı trace/invariant beklentileri.
+## 6. 3H'de kesinleştirilecek/doğrulanacaklar
+- sanal kullanıcı profilleri,
+- normal progress,
+- remediation ve fresh verification,
+- critical prerequisite block,
+- review_due/retention,
+- low/high capacity,
+- higher-priority task fit etmeyince lower-priority task seçimi,
+- partial diagnostic fast path,
+- long absence/re-entry,
+- paused continuation,
+- mid-session capacity change,
+- new remediation/verification sonrası replan,
+- same-input determinism,
+- decision trace ve user explanation tutarlılığı,
+- 3A–3G acceptance/invariant suite PASS/FAIL,
+- gerekiyorsa spec düzeltme döngüsü,
+- bütün senaryolar geçerse **AŞAMA 3 kapanışı** ve 4A aktivasyonu.
 
-3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+3H yeni bir pedagojik model icat etme adımı değildir; mevcut planner contract'larını simulation ile kırmaya/validate etmeye odaklanır.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -133,9 +128,10 @@ Canonical davranış:
 17. `docs/PREREQUISITE_POLICY_SPEC.md`
 18. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
 19. `docs/MISSED_DAY_RECOVERY_SPEC.md`
-20. `docs/ENGLISH_FOUNDATION_RULES.md`
-21. `docs/MASTER_PLAN.md`
-22. `docs/PROGRESS_LOG.md`
+20. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+21. `docs/ENGLISH_FOUNDATION_RULES.md`
+22. `docs/MASTER_PLAN.md`
+23. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3G — Açıklanabilir planner** için yeni PRE-STEP GitHub refresh yap. 3A–3F kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3H — Planner simülasyonu** için yeni PRE-STEP GitHub refresh yap. 3A–3G D-033–D-039 kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
