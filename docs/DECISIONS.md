@@ -161,7 +161,6 @@ Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`
 **Durum:** Kabul edildi — 2026-08-24
 
 3A final capacity contract:
-
 - Günlük `available_minutes` planner'ın hard envelope'udur; explicit today override en yüksek önceliğe sahiptir.
 - Short/normal/intensive yalnız editable UI presetleridir. V0 önerileri `30/60/90 dk`; bilimsel optimum değildir.
 - Planner süre tahmin hatası için V0'da `10%` reserve bırakır; bu da versioned engineering heuristic'tir.
@@ -180,23 +179,34 @@ Ayrıntı: `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.
 ## D-034 — Planner'da kalıcı olan eski task değil açık LearningNeed'dir; task purpose/activity/track/evidence ayrı eksenlerdir
 **Durum:** Kabul edildi — 2026-08-24
 
-3B final task contract:
-
 - Canonical akış: `state → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`.
 - Ertelenen/seçilmemiş TaskCandidate failure değildir ve ertesi güne `task debt` olarak taşınmaz; onu doğuran LearningNeed çözülmediyse fresh candidate üretilebilir.
 - `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
-- `activity_kind` ayrı eksendir: explanation, worked example, recall, coding, debugging, hands-on system task, transfer, project, language activity vb.
-- English bir purpose değildir; curriculum track/domain metadata'sıdır.
-- Coding/debugging/project de primary purpose değil activity türüdür.
+- `activity_kind` ayrı eksendir; English curriculum track'tir.
 - Task category evidence değildir; gerçek evidence Attempt/Artifact sonrası GRE/RVR kurallarıyla oluşur.
-- Guided/independent/H0 requirement ayrı `independence_mode` metadata'sıdır.
-- Multi-Skill/integrated task global success ile bütün component Skill'lere otomatik evidence vermez; Objective bazlı structural essentiality + separate observability/attribution gerekir.
-- Task provenance ve validation status tutulur; AI-generated high-stakes task otomatik trusted assessment değildir.
-- Variant/dependency metadata same-family guard ve retention novelty ile uyumludur.
-- TaskCandidate 3A duration/splittable/checkpoint/atomic evidence boundary metadata'sını taşır.
-- `paused_progress` ile `deferred_candidate` ayrıdır; pause edilen gerçek checkpoint saklanabilir fakat ertesi gün priority/eligibility yeniden değerlendirilir.
-- Candidate lifecycle (`planned/completed/deferred/...`) mastery evidence değildir.
-- 3C'nin kullanacağı priority ham sinyalleri TaskCandidate contract'ında vardır fakat 3B hiçbir sabit priority weight tanımlamaz.
-- Candidate generation bounded/deterministic ve D-028 performans kuralına uygun olmalıdır.
+- Multi-Skill integrated task component evidence için structural essentiality + separate observability/attribution gerekir.
+- Provenance/validation, variant/dependency, prerequisite/tools, duration/splitting metadata zorunlu contract parçalarıdır.
+- `paused_progress` ile `deferred_candidate` ayrıdır; candidate lifecycle mastery evidence değildir.
+- 3C priority ham sinyalleri TaskCandidate contract'ında vardır; 3B sabit weight belirlemez.
 
 Ayrıntı: `docs/TASK_TAXONOMY_SPEC.md`.
+
+## D-035 — Planner priority modeli PBR-v0: semantic priority bands + deterministic rank vector
+**Durum:** Kabul edildi — 2026-08-24
+
+- Final 3C modeli `PBR-v0 — Priority Bands & Rank Vector`.
+- Priority task ID'den değil açık `LearningNeed`'den başlar.
+- Eligibility/trust priority'den önce gelir; priority prerequisite'i bypass edemez.
+- Bandlar: `P0 integrity_blocker`, `P1 repair_or_verify`, `P2 maintain_or_continue`, `P3 planned_progress`, `P4 reinforce_or_optimize`.
+- `review_due` tek başına negative evidence/P0 değildir; critical veya overdue olduğunda maintenance priority yükselir.
+- Critical prerequisite verification/remediation ancak gerçekten dependent path'i bloke ediyorsa P0 olur.
+- Aynı band içi sıralama weighted sum değil lexicographic rank vector ile yapılır: blocking scope → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break.
+- Duration fit semantic priority'den sonra gelir; `score/duration` veya task-count maximization kullanılmaz.
+- Eligible ama sürekli ertelenen açık LearningNeed için starvation guard vardır; task debt yoktur.
+- Parallel English gibi track'ler fixed yüzdeyle değil due + starvation/track-balance sinyaliyle korunur.
+- Same-need duplicate alternatives bir planning round'da bastırılır; safe teach→practice→assess chain istisnadır.
+- Capacity yetmezse safe split → smaller eligible alternative → defer; kalan LearningNeed açık kalır.
+- `PriorityDecisionTrace` ile band/rank/fit/selection reconstruct edilebilir.
+- Aynı state + config → aynı plan sırası; random tie-break ve LLM keyfi priority değişimi yoktur.
+
+Ayrıntı: `docs/PRIORITY_POLICY_SPEC.md`.
