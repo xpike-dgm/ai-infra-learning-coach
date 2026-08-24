@@ -14,50 +14,85 @@ Ana ürün ilkesi:
 
 Bu nedenle `1095 gün`, yüzde kariyer tamamlandı, yalnızca ders izleme/işaretleme gibi sahte ilerleme göstergeleri ürünün merkezinde olmayacaktır.
 
-## 2. Yeni bir sohbet/agent hangi dosyaları hangi sırayla okumalı?
+---
+
+## 2. Zorunlu GitHub beyin tazeleme protokolü
+
+**Bağlayıcı kaynak:** `docs/PROJECT_MEMORY_PROTOCOL.md`
+
+> **Hiçbir numaralı proje adımı (`1A`, `2C`, `3A`, `11F` vb.) GitHub beyin tazelemesi yapılmadan başlatılmaz; hiçbir adım gerekli GitHub hafıza dosyaları güncellenmeden tamamlanmış sayılmaz.**
+
+Bu kural yeni sohbetle sınırlı değildir. Aynı sohbet içinde art arda iki adıma geçilirken bile uygulanır.
+
+Her yeni adım öncesi minimum PRE-STEP kontrolü:
+
+1. `docs/HANDOFF_STATE.md`
+2. `docs/EXECUTION_INDEX.md`
+3. `docs/STEP_STATUS.md`
+4. `docs/DECISIONS.md`
+5. başlanacak adımla ilgili en güncel spec/davranış dosyaları
+
+Adım sonunda POST-STEP GitHub sync yapılır. Durum değişikliğini yansıtan `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` kontrol edilir/güncellenir; yeni kalıcı karar varsa `DECISIONS.md`, adımın ana çıktısı varsa ilgili spec dosyası güncellenir.
+
+---
+
+## 3. Yeni bir sohbet/agent hangi dosyaları hangi sırayla okumalı?
 
 1. `docs/START_HERE.md` — bu dosya.
-2. `docs/PROJECT_MASTER_CONTEXT.md` — ürünün uzun ve ayrıntılı amacı, felsefesi, hedefi, kullanıcı deneyimi ve nedenleri.
-3. `docs/HANDOFF_STATE.md` — şu anda proje nerede, neler tamamlandı, açık kararlar ve sıradaki kesin adım.
-4. `docs/EXECUTION_INDEX.md` — proje boyunca kullanılacak sabit `1A / 1B / 2A / ...` adım kodları ve güncel yürütme haritası.
-5. `PROJECT_CONTEXT.md` — orijinal kalıcı proje hafızası ve kariyer rotası.
-6. `docs/DECISIONS.md` — kabul edilmiş kalıcı kararlar ve gelecekte değişirse değişiklik gerekçeleri.
-7. `docs/MASTER_PLAN.md` — her aşama/adımın ayrıntılı checklist, çıktı ve kabul kriterleri.
-8. `docs/AI_AGENT_WORKFLOW.md` — araştırma, kodlama, test/QA ve ana yönetici rollerinin iş bölümü ve görev devri protokolü.
-9. `docs/PROGRESS_LOG.md` — kronolojik ilerleme günlüğü.
-10. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md`.
+2. `docs/PROJECT_MEMORY_PROTOCOL.md` — her adım için zorunlu PRE-STEP / POST-STEP GitHub hafıza döngüsü.
+3. `docs/PROJECT_MASTER_CONTEXT.md` — ürünün uzun ve ayrıntılı amacı, felsefesi ve hedefi.
+4. `docs/HANDOFF_STATE.md` — proje nerede, neler tamamlandı, açık kararlar ve sıradaki kesin adım.
+5. `docs/EXECUTION_INDEX.md` — sabit `1A / 1B / 2A / ...` adım kodları ve yürütme haritası.
+6. `docs/STEP_STATUS.md` — güncel aktif adımın hızlı doğrulaması.
+7. `PROJECT_CONTEXT.md` — orijinal kalıcı proje hafızası ve kariyer rotası.
+8. `docs/DECISIONS.md` — kabul edilmiş kalıcı kararlar.
+9. `docs/PRODUCT_REQUIREMENTS.md`
+10. `docs/V1_SCOPE.md`
+11. `docs/V1_SUCCESS_CRITERIA.md`
+12. `docs/NON_GOALS.md`
+13. `docs/LEARNING_ENGINE_SPEC.md`
+14. `docs/LEARNING_BEHAVIOR_RULES.md`
+15. `docs/TOPIC_STATE_MACHINE.md`
+16. `docs/MASTER_PLAN.md`
+17. `docs/AI_AGENT_WORKFLOW.md`
+18. `docs/PROGRESS_LOG.md`
+19. Gerekli konuya göre `PRODUCT_VISION.md`, `LEARNING_ENGINE.md`, `CURRICULUM.md`, `ENGLISH_TRACK.md`, `RESEARCH_NOTES.md` ve yeni alan-spec dosyaları.
 
-## 3. Yeni sohbet nasıl devam etmeli?
+---
 
-Yeni sohbet/agent şu kurallara uymalı:
+## 4. Yeni sohbet / ana yönetici nasıl devam etmeli?
 
-- Önce yukarıdaki dosyaları okumadan projeyi yeniden tasarlamaya çalışma.
+- Önce GitHub hafızasını tazelemeden projeyi yeniden tasarlamaya çalışma.
 - Kullanıcıya daha önce kararlaştırılmış şeyleri tekrar tekrar sordurma.
-- Güncel çalışma konumunu `HANDOFF_STATE.md` ve `EXECUTION_INDEX.md` üzerinden belirle.
-- Proje adımlarından söz ederken mümkün olduğunca sabit `1A`, `3C`, `11F` gibi kodları kullan.
-- Yeni bir kalıcı karar alınırsa `docs/DECISIONS.md` güncellensin.
-- Bir plan adımı gerçekten tamamlandıysa hem `docs/EXECUTION_INDEX.md` hem de `docs/MASTER_PLAN.md` güncellensin; ayrıntılı planda tarihli tamamlanma notu yazılsın.
-- Her önemli çalışma oturumunda `docs/PROGRESS_LOG.md` güncellensin.
-- Güncel durum değiştiğinde `docs/HANDOFF_STATE.md` de güncellensin.
+- Güncel çalışma konumunu `HANDOFF_STATE.md`, `EXECUTION_INDEX.md` ve `STEP_STATUS.md` üzerinden doğrula.
+- Her yeni numaralı adım başlamadan `PROJECT_MEMORY_PROTOCOL.md` PRE-STEP kontrolünü uygula.
+- Proje adımlarından söz ederken sabit `1A`, `3C`, `11F` gibi kodları kullan.
+- Yeni kalıcı karar alınırsa `docs/DECISIONS.md` güncellensin.
+- Bir plan adımı gerçekten tamamlandıysa ilgili spec/çıktı ile birlikte `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` senkronize edilsin.
+- `MASTER_PLAN.md` ilgili ayrıntılı checklist/completion notu için gerekiyorsa güncellensin.
 - Büyük ürün amacı veya ürün felsefesi değişirse `docs/PROJECT_MASTER_CONTEXT.md` güncellensin.
 - Araştırma, implementasyon ve bağımsız test işleri `docs/AI_AGENT_WORKFLOW.md` içindeki rol ayrımına göre dağıtılsın.
 - Kodlama AI'ın kendi kodunu başarılı ilan etmesi kritik görevlerde yeterli kabul edilmesin; bağımsız QA sonucu aranmalıdır.
 
-## 4. Şu anki ana kariyer/öğrenme yönü
+---
+
+## 5. Şu anki ana kariyer/öğrenme yönü
 
 Temel teknik rota:
 
-**A0 İngilizce + C/Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
+**A0 İngilizce + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
 
-Doğrudan CUDA ile başlanmayacaktır. İngilizce de önce bitirilmesi gereken ayrı bir kurs değildir; teknik eğitimle paralel ilerler.
+Doğrudan CUDA ile başlanmayacaktır. İngilizce önce bitirilmesi gereken ayrı bir kurs değildir; teknik eğitimle paralel ilerler.
 
-## 5. Uygulamanın temel davranışı
+---
+
+## 6. Uygulamanın temel davranışı
 
 Uygulama:
 
 - Her gün görev listesi üretir.
 - Her görevi süre, amaç ve beklenen çıktı ile gösterir.
-- Quiz, coding, debugging, açıklama ve gecikmeli tekrar gibi sinyallerle mastery ölçer.
+- Quiz, coding, debugging, açıklama, transfer ve gecikmeli tekrar gibi sinyallerle mastery ölçer.
 - Bir konu gerçekten öğrenilmediyse ona bağlı konuları açmaz.
 - Bağımsız konuları gereksiz yere durdurmaz.
 - Haftalık ve aylık sınav sonuçlarına göre gelecekteki planı değiştirir.
@@ -66,7 +101,9 @@ Uygulama:
 - Çok hızlı öğrenilen konularda doğrulama yaparak ilerlemeyi hızlandırabilir.
 - AI kullanımını yasaklamaz; fakat AI yardımıyla yapılan işi kullanıcının gerçekten anlayıp anlamadığını ayrıca ölçer.
 
-## 6. Kapsam sınırı
+---
+
+## 7. Kapsam sınırı
 
 Bu uygulama kişisel kullanım içindir. Şimdilik şu alanlara zaman harcanmayacaktır:
 
@@ -79,14 +116,22 @@ Bu uygulama kişisel kullanım içindir. Şimdilik şu alanlara zaman harcanmaya
 
 Veri kaybını önleme, yedekleme ve uygulama kararlılığı yine önemlidir.
 
-## 7. Güncel çalışma konumu
+---
 
-**Aktif aşama:** AŞAMA 1 — Ürün Çerçevesini Kilitle
+## 8. Güncel çalışma konumu
 
-**Sıradaki kesin adım:** **1A — Ana ürün amacı**
+**Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla
 
-## 8. Yeni sohbet için kısa komut
+Tamamlanan:
+- `2A` ✅ Bilgi birimleri
+- `2B` ✅ Topic durumları
 
-Yeni bir ChatGPT sohbetinde repo bağlandıktan sonra şu şekilde devam edilebilir:
+**Sıradaki/aktif kesin adım:** **`2C — Mastery sinyalleri`**
 
-> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md dosyasından başlayarak belirtilen proje hafızası dosyalarını oku. Önceki sohbetin devamı gibi davran. HANDOFF_STATE.md ve EXECUTION_INDEX.md içindeki mevcut adım kodundan devam et. Daha önce kabul edilen kararları yeniden açma; yeni bir karar alınırsa ilgili GitHub dokümanlarını güncelle. Araştırma/kodlama/test işleri için AI_AGENT_WORKFLOW.md protokolünü uygula.`
+2C'ye başlanmadan önce `PROJECT_MEMORY_PROTOCOL.md` uyarınca tekrar GitHub PRE-STEP refresh yapılmalıdır.
+
+---
+
+## 9. Yeni sohbet için kısa komut
+
+> `xpike-dgm/ai-infra-learning-coach reposundaki docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md dosyalarından başlayarak belirtilen proje hafızasını oku. Önceki sohbetin devamı gibi davran. Her numaralı adımın başında PRE-STEP GitHub beyin tazelemesi, sonunda POST-STEP GitHub sync yap. HANDOFF_STATE.md, EXECUTION_INDEX.md ve STEP_STATUS.md içindeki mevcut adım kodundan devam et. Daha önce kabul edilen kararları yeniden açma; yeni kararları ve tamamlanan adımları ilgili GitHub dokümanlarına işle. Araştırma/kodlama/test işleri için AI_AGENT_WORKFLOW.md protokolünü uygula.`
