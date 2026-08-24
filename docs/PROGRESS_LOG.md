@@ -193,3 +193,27 @@ Kullanıcı daha kapsamlı öğretim ve uzun vadede uygulama curriculum'unu tama
 - `docs/START_HERE.md`
 
 **Execution durumu değişmedi:** 4A ✅, **4B Haftalık sınav aktif fakat henüz yürütülmedi**. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-25 — Python foundation + specialization track aşaması eklendi
+
+Kullanıcı önce Python'ın da öğrenme rotasında resmi olarak bulunmasını, ardından uzun professional rotanın tek düz çizgi yerine alt uzmanlık dallarına ayrılmasını istedi.
+
+**PRE-SYNC GitHub refresh**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` ve `PROFESSIONAL_READINESS_TARGET` yeniden okundu.
+- Aktif adımın hâlâ `4B — Haftalık sınav` olduğu ve 4B'nin yürütülmediği doğrulandı.
+
+**D-042 — Python foundation**
+- Python common programming foundation'a resmi olarak eklendi.
+- C/C++ yerine geçmez; automation, testing, benchmark scripting, ML/PyTorch ve infra tooling için tamamlayıcı ana dildir.
+
+**D-043 — AŞAMA 20 / specialization tracks**
+- Mevcut AŞAMA 1–19 kodları renumber edilmeden proje **1–20** ana aşamaya genişletildi.
+- Yeni aşama: **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi**.
+- İlk candidate track'ler: GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
+- Track selection kullanıcı tercihi + verified capability + prerequisites + gerçek kariyer kısıtlarına dayanacak.
+- Track switching önceki valid mastery/evidence'ı silmeyecek; yalnız branch-local açıklar tamamlanacak.
+- Her track kendi project/debugging/benchmark/capstone evidence contract'ını taşıyacak.
+
+**Execution durumu değişmedi:** `4B` hâlâ aktif ve yürütülmemiştir. Bu scope/plan sync 4B execution değildir; 4B başlamadan fresh PRE-STEP GitHub refresh yine zorunludur.
