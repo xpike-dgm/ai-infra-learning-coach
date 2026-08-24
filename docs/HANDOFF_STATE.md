@@ -1,18 +1,14 @@
 # HANDOFF STATE — Güncel Proje Durumu ve Sohbet Aktarım Özeti
 
-Bu dosya yeni bir ChatGPT sohbetine veya başka bir agent'a geçerken mevcut çalışma durumunu hızlıca devretmek için tutulur. Büyük ürün bağlamı için `PROJECT_MASTER_CONTEXT.md`, sabit çalışma kodları için `EXECUTION_INDEX.md`, ayrıntılı plan için `MASTER_PLAN.md`, kalıcı kararlar için `DECISIONS.md` okunmalıdır.
+Bu dosya yeni bir ChatGPT sohbetine veya başka bir agent'a geçerken mevcut çalışma durumunu hızlıca devretmek için tutulur.
 
 **Son güncelleme:** 2026-08-24
 
----
-
-# 1. Projenin Şu Anki Durumu
-
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
-Proje henüz kodlama aşamasında değildir. Ürün çerçevesi kilitlenmektedir.
+---
 
-Ana ürün:
+# 1. Ana Ürün
 
 > Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering kariyer rotasında günlük olarak yöneten; her gün ne çalışacağını mevcut bilgi durumuna göre belirleyen; yalnız kanıtlanmış öğrenmeyi ilerleme kabul eden; mastery, retention, assessment ve prerequisite sonuçlarına göre gelecekteki programı yeniden düzenleyen kişisel adaptif Android öğrenme koçu.
 
@@ -20,60 +16,24 @@ Ana ilke:
 
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
----
-
-# 2. Kesinleşen Büyük Kararlar
-
-## Kariyer yönü
+Ana teknik yön:
 
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
 
-Doğrudan CUDA ile başlanmayacak.
+---
 
-## İngilizce
+# 2. Kesinleşen Büyük Kurallar
 
-Başlangıç A0 kabul edilir. İngilizce teknik eğitimin ön koşulu değildir; teknik programla paralel A0→A1→A2→B1→B2 ilerler.
-
-## İlerleme
-
-Ders izlemek, görev kartını tamamlamak veya gün geçirmek tek başına mastery vermez. Mastery; teori, coding, debugging, açıklama, transfer ve retention gibi kanıtlarla ölçülür.
-
-## 1095 gün
-
-`Gün X / 1095` gösterilmeyecek. 3 yıl yalnız yaklaşık planlama/curriculum ufkudur.
-
-## Knowledge graph
-
-Curriculum sabit günlük liste değildir. Prerequisite ilişkili graph kullanılır; eksik konu yalnız bağımlı dalları bekletir.
-
-## Adaptif planner
-
-Mastery, retention, assessment, prerequisite ve günlük kapasiteye göre görevler seçilir. Kaçırılan günler ceza değil replan tetikleyicisidir.
-
-## Assessment
-
-Günlük mikro değerlendirme + haftalık sınav + aylık yeterlilik sınavı bulunur. Sonuçlar gelecekteki programı gerçekten değiştirir.
-
-## AI Tutor
-
-AI yardımına izin vardır; fakat AI ile tamamlanan iş gerçek anlama yerine geçmez. Comprehension/transfer doğrulaması gerekir.
-
-## Kişisel kullanım
-
-Auth, ödeme, abonelik, sosyal sistem, admin paneli ve multi-tenant SaaS yoktur.
-
-## Multi-agent geliştirme
-
-- Araştırma AI
-- Kodlama AI
-- bağımsız Test/QA AI
-- ana yönetici/koordinatör
-
-Kritik akış: **Yönetici → gerekirse Araştırma → Spec → Kodlama → QA → PASS/FAIL → GitHub kayıtları**.
-
-## Sabit yürütme kodları
-
-Aşamalar 1–19; alt adımlar `1A`, `1B`, `2A`, `3C` vb. sabit kodlarla takip edilir.
+- İngilizce A0'dan teknik eğitimle paralel ilerler; önce bitirilmesi gereken ayrı ön koşul değildir.
+- `Gün X / 1095` ve sahte kariyer yüzde ilerlemesi ana metrik olmayacaktır.
+- Curriculum sabit takvim değil prerequisite ilişkili knowledge graph olacaktır.
+- Eksik bir konu yalnız kendisine bağlı dalları bekletir; bağımsız dallar devam eder.
+- Daily planner mastery, retention, assessment, prerequisite ve günlük kapasiteye göre plan üretir.
+- Günlük mikro assessment + haftalık sınav + aylık yeterlilik sınavı gelecekteki programı değiştirir.
+- AI yardımı yasak değildir; ancak AI ile tamamlanan iş gerçek anlama yerine geçmez.
+- Uygulama kişisel kullanım içindir; auth, ödeme, abonelik, sosyal sistem, admin paneli ve multi-tenant SaaS kapsam dışıdır.
+- Kritik geliştirme akışı: **Yönetici → gerekirse Araştırma AI → Spec → Kodlama AI → bağımsız Test/QA AI → PASS/FAIL → GitHub kaydı**.
+- Proje Aşama 1–19 ve `1A / 1B / ...` sabit kodlarıyla yürütülür.
 
 ---
 
@@ -81,46 +41,37 @@ Aşamalar 1–19; alt adımlar `1A`, `1B`, `2A`, `3C` vb. sabit kodlarla takip e
 
 ## ✅ 1A — Ana ürün amacı
 
-Ana çıktı: `docs/PRODUCT_REQUIREMENTS.md`
+Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
 
-Ürünün tek cümlelik amacı, günlük değer önerisi, klasik kurs/todo uygulamasından farkı, kanıtlanmış öğrenme ilkesi, adaptif davranış ve kariyer rotası kilitlendi.
+Ürünün amacı, günlük değer önerisi, kanıtlanmış öğrenme ilkesi, adaptif davranış ve kariyer rotası kilitlendi.
 
 ## ✅ 1B — V1 kapsamı
 
-Ana çıktı: `docs/V1_SCOPE.md`
+Çıktı: `docs/V1_SCOPE.md`
 
-V1, Android odaklı günlük kullanılabilir kişisel release olarak sınırlandı.
+V1 Android odaklı günlük kullanım release'i olarak sınırlandı. Daily planner, knowledge graph/prerequisite, mastery, assessments, retention, remediation, AI Tutor, parallel English, ilk 8–12 haftalık curriculum, local-first persistence, polished UI ve backup/restore V1 kapsamındadır.
 
-V1'de kesin olacak ana yetenekler:
+## ✅ 1C — Başarı kriterleri
 
-- Today/daily plan,
-- knowledge graph + prerequisite,
-- adaptive planner/replan,
-- task runner,
-- mastery engine,
-- daily micro assessment,
-- weekly/monthly exams,
-- retention/spaced repetition,
-- remediation,
-- AI Tutor v1,
-- parallel technical English,
-- ilk 8–12 haftalık production curriculum,
-- progress/weakness,
-- local-first persistence,
-- notifications,
-- polished UI,
-- backup/export/restore.
+Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
 
-V1 dışında bırakılan başlıca alanlar:
+V1 için 49 acceptance kriteri tanımlandı ve P0/P1/P2 olarak sınıflandırıldı.
 
-- 3 yıllık curriculum'un tamamı,
-- sosyal/ticari özellikler,
-- cloud multi-device live sync,
-- iOS/web/desktop,
-- gelişmiş career-market engine,
-- tam voice tutor,
-- gömülü tam IDE/compiler/sandbox,
-- aşırı gamification.
+Kritik release kuralları:
+
+- tüm P0 kriterleri PASS,
+- kritik P1 fonksiyon hatası yok,
+- hard prerequisite bypass yok,
+- progress data loss yok,
+- task completion/tek quiz ile yanlış mastery yok,
+- weekly/monthly sınav sonuçları planner'ı gerçekten değiştiriyor,
+- missed-day replan backlog yığmıyor,
+- AI çekirdek mastery/planner/prerequisite kurallarını keyfi aşamıyor,
+- backup/restore/migration güvenilir,
+- final kritik akışlar bağımsız QA tarafından doğrulanıyor,
+- gerçek Android cihaz ve pilot testleri geçiliyor.
+
+Mastery threshold, assessment ağırlıkları, spaced repetition interval'leri ve planner oranları 1C'de rastgele sabitlenmedi; ilgili sonraki aşamalarda araştırma/simülasyon/pilot ile belirlenecek.
 
 ---
 
@@ -130,36 +81,28 @@ V1 dışında bırakılan başlıca alanlar:
 
 - `1A` ✅ Ana ürün amacı
 - `1B` ✅ V1 kapsamı
-- `1C` 🟡 **Başarı kriterleri — AKTİF**
-- `1D` ⬜ Non-goals
+- `1C` ✅ Başarı kriterleri
+- `1D` 🟡 **Non-goals — AKTİF**
 
-## Aktif iş: 1C
+## Aktif iş: 1D
 
-V1 kapsamındaki özellikleri ölçülebilir acceptance kriterlerine dönüştürmek.
+V1 ve projenin özellikle ne olmaya çalışmadığını tek bir kalıcı listede konsolide etmek. Amaç scope creep'i önlemektir.
 
-Özellikle:
+1D tamamlandığında **Aşama 1 tamamen kapanacak** ve sonraki aktif adım:
 
-- daily planner doğru mu,
-- mastery yanlış pozitif üretmiyor mu,
-- prerequisite doğru kilitliyor mu,
-- weekly/monthly assessment gerçekten planner'ı değiştiriyor mu,
-- retention ve remediation çalışıyor mu,
-- kaçırılan gün sağlıklı replan oluyor mu,
-- AI Tutor ana sistemi bozuyor mu,
-- English track kayboluyor mu,
-- local data restart/update sonrası korunuyor mu,
-- release APK gerçek cihazda stabil mi
+> **`2A — Bilgi birimleri`**
 
-soruları test edilebilir kriterlere çevrilecek.
+olacaktır.
 
 ---
 
 # 5. Hâlâ Açık Ana Konular
 
-- V1 success/acceptance criteria (`1C`)
 - consolidated non-goals (`1D`)
-- mastery formülü ve threshold'lar
+- Domain → Module → Topic → Skill → Learning Objective modeli
 - topic state machine
+- mastery formula / threshold / evidence weights
+- AI-help impact
 - spaced repetition algoritması
 - adaptive planner decision table
 - assessment composition
@@ -172,7 +115,7 @@ soruları test edilebilir kriterlere çevrilecek.
 
 ---
 
-# 6. Temel Doküman Okuma Sırası
+# 6. İlk Okuma Sırası
 
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MASTER_CONTEXT.md`
@@ -184,7 +127,7 @@ soruları test edilebilir kriterlere çevrilecek.
 8. `docs/MASTER_PLAN.md`
 9. `docs/AI_AGENT_WORKFLOW.md`
 10. `docs/PROGRESS_LOG.md`
-11. İlgili ürün/spec dosyaları
+11. İlgili spec dosyaları (`PRODUCT_REQUIREMENTS.md`, `V1_SCOPE.md`, `V1_SUCCESS_CRITERIA.md`, vb.)
 
 ---
 
@@ -192,11 +135,11 @@ soruları test edilebilir kriterlere çevrilecek.
 
 Repo hafızasını okuduktan sonra doğrudan:
 
-> **`1C — Başarı kriterleri`**
+> **`1D — Non-goals`**
 
 adımından devam et.
 
-Daha önce kilitlenen `1A` ve `1B` kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
+Daha önce kilitlenen `1A`, `1B`, `1C` kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
