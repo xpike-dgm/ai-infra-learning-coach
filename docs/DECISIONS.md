@@ -183,3 +183,32 @@ Kullanıcıyla yapılan ayrıntılı ürün soru-cevaplarından çıkan aşağı
 - AI provider/model ve sayısal mastery/retention/planner parametreleri henüz kalıcı olarak kilitlenmemiştir; ilgili ileriki adımlarda kararlaştırılacaktır.
 
 Ayrıntılı davranış spesifikasyonu: `docs/LEARNING_BEHAVIOR_RULES.md`.
+
+## D-023 — Topic state machine Skill verilerinden türetilen açıklanabilir bir durum modeli olacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+V1 Topic state'leri:
+
+- `locked`
+- `available`
+- `learning`
+- `mastered`
+- `weakening`
+- `remediation_required`
+
+Bağlayıcı kararlar:
+
+- Topic state mastery'nin kendisi değildir; prerequisite uygunluğu, coverage, canonical Skill mastery, retention ve remediation verilerinden türetilir.
+- `locked`, esas olarak henüz başlanmamış Topic'in hard prerequisite giriş kapısıdır.
+- Bir Topic başladıktan veya mastered olduktan sonra prerequisite Skill sonradan zayıfladı diye geriye dönük `locked` yapılmaz; Skill-level gating ile `weakening` / `remediation_required` davranışı kullanılır.
+- `available`, giriş prerequisite'leri karşılanmış fakat henüz başlanmamış Topic'tir.
+- `learning`, çalışma başlamış ancak coverage + mastery çıkış koşulları henüz tamamlanmamış Topic'tir.
+- `mastered`, required coverage veya validated diagnostic waiver ile birlikte required/critical Skill mastery gate'leri sağlandığında oluşur; lesson/task completion tek başına yeterli değildir.
+- `weakening`, daha önce mastered olmuş Topic'te doğrulanmış retention riskini gösterir ve bütün Topic'in sıfırlandığı anlamına gelmez.
+- `remediation_required`, bir veya daha fazla required/critical Skill için hedefli onarım gerektiğini gösterir; coverage'ı sıfırlamaz ve bağımsız curriculum dallarını durdurmaz.
+- Topic state tek başına ileri Topic kilidi değildir; canonical prerequisite yetkisi Skill mastery'dedir.
+- State transition'lar deterministik ve reason/history ile açıklanabilir olmalıdır.
+- Sayısal mastery/remediation/retention eşikleri 2C–2F tamamlanmadan Topic state içine keyfi olarak gömülmeyecektir.
+
+Ayrıntılı state machine: `docs/TOPIC_STATE_MACHINE.md`.
