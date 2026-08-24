@@ -2,162 +2,190 @@
 
 ## Ürün Tanımı
 
-AI Infra Learning Coach, kişisel kullanım için tasarlanmış adaptif mobil öğrenme uygulamasıdır. Kullanıcıya uzun bir kurs kataloğu sunmak yerine, o gün ne çalışması gerektiğini seçer, çalıştırır, ölçer ve bir sonraki planı performansa göre yeniden oluşturur.
+AI Infra Learning Coach, kişisel kullanım için tasarlanmış adaptif mobil öğrenme uygulamasıdır. Kullanıcıya uzun bir kurs kataloğu sunmak yerine, o gün ne çalışması gerektiğini current Skill/mastery/retention/prerequisite state'ine göre seçer, çalıştırır, ölçer ve sonraki planı evidence'a göre yeniden oluşturur.
+
+## Uzun Vadeli Vizyon — D-041
+
+Ürün yalnız temel bir roadmap veya birkaç yıllık başlangıç koçu değildir.
+
+> **Nihai hedef, sıfırdan başlayan kullanıcıyı gerektiğinde 4+ yıl veya daha uzun sürebilecek mastery-gated bir curriculum ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability seviyesine taşımaktır.**
+
+4+ yıl bir countdown değildir. Final readiness zamanla değil mastery, retention, debugging, transfer, performance ve integrated project/capstone evidence ile belirlenir.
+
+Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
 ## Ana Kullanıcı Sorusu
 
-Uygulama her açıldığında tek soruya cevap vermelidir:
+Uygulama her açıldığında öncelikle şu soruya cevap vermelidir:
 
-> Bugün ne yapmalıyım?
+> **Bugün ne yapmalıyım?**
 
 ## Ana Ekran
 
-Ana ekranda uzun vadeli gün sayacı yerine şunlar görünmelidir:
+Uzun vadeli gün sayacı yerine:
+- bugünkü toplam çalışma süresi,
+- devam eden ana Topic/Skill,
+- discrete learning state,
+- bugünkü görev listesi,
+- yaklaşan assessment/retention,
+- gerektiğinde `neden bugün?` açıklaması
 
-- Bugünkü toplam çalışma süresi
-- Devam eden ana konu
-- O konudaki mastery / hakimiyet
-- Bugünkü görev listesi
-- Yaklaşan haftalık veya aylık değerlendirme
-- Gerekirse kısa bir “program neden değişti?” açıklaması
+gösterilir.
 
 Örnek:
+- `C · Bellek ve Pointerlar`
+- `Pointer Dereference — Doğrulama Bekliyor`
+- `15 dk remediation`
+- `12 dk fresh coding check`
+- `20 dk English`
 
-- C · Bellek ve Pointerlar
-- Pointer Temelleri — %64 mastery
-- Hedef — %80
-- 20 dk görsel anlatım
-- 25 dk alıştırma
-- 35 dk kodlama görevi
-- 25 dk İngilizce
-- 10 dk eski konu tekrarı
+UI `Mastery %64 / hedef %80` gibi score'u gerçek öğrenme yüzdesiymiş gibi sunmak zorunda değildir; GRE-v0 internal operational score olabilir, kullanıcıya semantik state tercih edilir.
 
 ## Navigasyon
 
-İlk tasarım için sade alt menü:
-
+İlk tasarım için olası sade alt menü:
 1. **Bugün**
-2. **Yol Haritası**
+2. **Yol Haritası / Knowledge Graph**
 3. **İlerleme**
 4. **Sınavlar**
 5. **Ayarlar**
 
+Exact navigation 7A'da kesinleşir.
+
 ## Bugün Ekranı
 
-Büyük bir `Çalışmaya Başla` CTA'sı bulunmalı. Görevler sıra halinde tamamlanır. Kullanıcının “hangi dersi seçeyim?” kararı minimuma indirilir.
+Büyük `Çalışmaya Başla / Devam Et` CTA'sı bulunur. Kullanıcının `hangi dersi seçeyim?` karar yükü minimuma indirilir.
 
 ## Yol Haritası
 
-1095 günlük timeline değil, bilgi ağacı gösterilir.
+Timeline değil knowledge graph gösterilir.
 
-Örneğin:
-
+Örnek üst seviye rota:
+- Computer Fundamentals
 - C
-  - Variables ✓
-  - Conditions ✓
-  - Loops ✓
-  - Functions ✓
-  - Arrays — güçleniyor
-  - Memory — güçleniyor
-  - Pointers — %64
-  - Dynamic Memory — prerequisite bekliyor
 - Linux
-- C++
-- Operating Systems
+- Modern C++
+- Computer Architecture / OS / Memory
 - Concurrency
 - Networking
 - Distributed Systems
+- Performance Engineering
 - GPU Architecture
 - CUDA
 - Triton
-- AI Infrastructure
+- LLM Inference
+- Multi-GPU / AI Infrastructure
+- Open Source / Professional Readiness
 
-Kilitler tarihe göre değil prerequisite/mastery durumuna göre oluşur.
+Kilitler tarihe göre değil canonical prerequisite/readiness durumuna göre oluşur.
 
 ## İlerleme Ekranı
 
-Gösterilecek ilerleme türleri:
+Gösterilebilecek anlamlı ilerleme türleri:
+- mastered / learning / verification / remediation state'leri,
+- required Skill coverage,
+- retention due/risk state,
+- assessment evidence,
+- coding/debugging/transfer capability,
+- integrated project/capstone evidence,
+- Technical English capability,
+- güçlü/zayıf alanlar,
+- çalışma süresi trendi — ikincil metrik.
 
-- alan bazlı mastery
-- konu bazlı mastery
-- retention / unutma riski
-- son sınav performansı
-- kodlama başarısı
-- İngilizce seviyesi
-- güçlü ve zayıf alanlar
-- çalışma süresi trendi (ikincil metrik)
+`Kariyerin %12 tamamlandı` veya `Gün X / 1460` gibi sahte kesinlik kullanılmaz.
 
-`%12 kariyer tamamlandı` gibi yanıltıcı bir metrik kullanılmaz.
+Uzun vadede professional-readiness dimensions gösterilebilir; exact UX 7E/15C'de tasarlanır.
 
 ## Sınavlar Ekranı
 
-- Günlük mikro değerlendirmeler
-- Haftalık sınav geçmişi
-- Aylık yeterlilik sınavları
-- Yeniden test bekleyen konular
-- Sonuçlara bağlı yapılan program değişiklikleri
+- Daily micro assessment history,
+- weekly assessment,
+- monthly comprehensive assessment,
+- verification/recheck,
+- retention checks,
+- programı değiştiren sonuçların açıklaması.
+
+Daily assessment DMA-v0'a göre her gün zorunlu quiz değildir.
 
 ## Öğrenme Oturumu Deneyimi
 
-Bir oturum sadece içerik tüketimi değildir.
+Bir oturum yalnız content consumption değildir. Görev türüne göre:
 
-Önerilen akış:
+```text
+conceptual model
+→ example / guided practice
+→ independent attempt
+→ feedback / error analysis
+→ explanation
+→ fresh verification / transfer
+```
 
-1. Ön bilgi sorusu
-2. Kısa açıklama
-3. Örnek
-4. Etkileşimli soru
-5. Uygulama
-6. Hata analizi
-7. Kendi cümlesiyle açıklama
-8. Mini ölçme
-
-Yanlış cevapta aynı metni tekrar göstermek yerine farklı açıklama stratejisi denenir.
+Uzun curriculum'da kritik Skills ileride debugging, delayed retention, integrated project ve performance/production context ile yeniden kullanılır.
 
 ## AI Tutor Davranışı
 
-AI öğretmen:
+AI:
+- seviyeye göre açıklar,
+- hint verir,
+- root cause analiz eder,
+- farklı örnek/remediation üretir,
+- code/open answer feedback verir,
+- AI-assisted artifact sonrası comprehension/transfer kontrolü üretir.
 
-- seviyeye göre anlatır
-- doğrudan cevabı vermeden önce ipucu verir
-- yanlışın nedenini teşhis eder
-- aynı kavram için farklı örnek üretir
-- kodu açıklatır
-- kullanıcının AI'a yazdırdığı kodu gerçekten anlayıp anlamadığını test eder
-- gerektiğinde yeni remedial çalışma önerir
+AI tek başına mastery/prerequisite/planner state yazamaz. H1–H4 assisted performance positive independent mastery değildir.
 
-AI öğretmen “tamamlandı” kararını tek başına keyfi vermemeli; mastery engine ile birlikte çalışmalıdır.
+## Professional Öğretim Derinliği
+
+D-041 sonrası kapsam yalnız daha fazla Topic değildir. Kritik technical domains için hedef progression:
+
+`concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context`
+
+Uzun rota Git/testing/build/debug/profiling/design docs/observability/open-source workflow gibi professional engineering practices'i de kapsar.
+
+## V1 ile Full Curriculum Ayrımı
+
+V1, full 4+ year content bitmeden release edilir.
+
+V1 hedefi:
+- gerçek adaptive learning engine,
+- assessment/mastery/prerequisite/planner,
+- retention/remediation,
+- AI Tutor,
+- parallel English,
+- ilk 8–12 haftalık production-quality curriculum,
+- güvenilir Android release.
+
+Full professional curriculum aynı engine üzerinde yıllar içinde genişler.
 
 ## Kişisel Kullanım Nedeniyle Bilerek Eklenmeyecekler
 
-- hesap oluşturma
-- sosyal feed
-- arkadaş ekleme
-- liderlik tablosu
-- ödeme
-- abonelik
-- admin paneli
-- organizasyon/rol sistemi
-- çok kullanıcılı SaaS altyapısı
+- çok kullanıcılı SaaS ihtiyaçları,
+- social feed/friends/leaderboard,
+- payment/subscription/admin,
+- gereksiz enterprise role system.
 
 ## Tasarım Dili
 
-- modern, premium ama sade
-- okunabilir tipografi
-- açık/koyu tema
-- minimal kart kullanımı
-- ilerleme renkleri ve grafikler anlamlı olmalı
-- gereksiz gamification yok
-- streak olabilir fakat mastery'den daha önemli gösterilmez
-- başarısızlık cezalandırıcı değil, yönlendirici görünür
+- modern ve sade,
+- profesyonel,
+- iyi typography/spacing,
+- dark/light,
+- anlamlı visual hierarchy,
+- no fake gamification pressure,
+- başarısızlığı ceza değil learning signal olarak gösterme,
+- D-028 gereği akıcı/performance-first mobil deneyim.
 
 ## Başarı Tanımı
 
 Ürün başarılıysa kullanıcı:
+- bugün ne çalışacağını planlamak zorunda kalmaz,
+- eksikleri state/evidence ile görünür olur,
+- untaught prerequisite yüzünden cezalandırılmaz,
+- critical Skill kanıtlanmadan dependent work'a kör geçmez,
+- retention ve remediation doğru zamanda gelir,
+- AI yardımına rağmen independent ability ayrı ölçülür,
+- yıllar içinde C/C++/systems/GPU/inference tarafında gerçek engineering artifacts üretir,
+- professional capstone ve portfolio seviyesinde kanıt biriktirir,
+- AI Infrastructure / ML Systems / GPU Systems işlerine hazırlanabilecek teknik capability'ye yaklaşır.
 
-- bugün ne çalışacağını düşünmez
-- eksiklerini sistem otomatik fark eder
-- öğrenmeden yeni kritik konuya geçmez
-- uzun süre önce öğrendiklerini unutmaz
-- teknik İngilizceyi ayrı bir yük gibi değil, eğitimin parçası olarak geliştirir
-- zaman içinde gerçek işe hazırlık göstergeleri üretir
+Bu başarı job offer/seniority garantisi değildir; `docs/PROFESSIONAL_READINESS_TARGET.md` sınırları geçerlidir.
