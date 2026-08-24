@@ -48,10 +48,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 20. `docs/PRIORITY_POLICY_SPEC.md`
 21. `docs/PREREQUISITE_POLICY_SPEC.md`
 22. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-23. `docs/ENGLISH_FOUNDATION_RULES.md`
-24. `docs/MASTER_PLAN.md`
-25. `docs/AI_AGENT_WORKFLOW.md`
-26. `docs/PROGRESS_LOG.md`
+23. `docs/MISSED_DAY_RECOVERY_SPEC.md`
+24. `docs/ENGLISH_FOUNDATION_RULES.md`
+25. `docs/MASTER_PLAN.md`
+26. `docs/AI_AGENT_WORKFLOW.md`
+27. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -90,16 +91,19 @@ Eligibility priority'den önce; P0–P4 semantic bands; deterministic rank vecto
 
 ### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
 - Diagnostic GRE-v0'dan daha kolay ayrı mastery yolu değildir.
-- Self-report yalnız diagnostic trigger/scope'tur.
-- Tek kolay quiz whole-topic skip yapamaz.
-- Objective-level validated coverage waiver ve partial waiver vardır.
-- Waiver current mastery/retention değildir.
-- `available → mastered` yalnız coverage + GRE required/critical gates birlikte sağlanınca mümkündür.
-- Critical H0 coding/debugging/transfer/diversity şartları korunur.
-- PRG prerequisite/contamination guard diagnostic'te de çalışır.
-- Diagnostic daily capacity içindedir ve GRE → waiver → PRG → Topic → Planner replan akışına bağlanır.
+- Objective-level validated coverage waiver + partial waiver vardır.
+- Critical evidence/prerequisite false-skip guard korunur.
 
-Ana çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
+### 3F ✅ Kaçırılan günler — SRR-v0 / D-038
+- Absence failure/mastery decay/task debt değildir.
+- Stale plan replay edilmez; current state'ten fresh need/candidate üretilir.
+- Review_due forgetting değildir; absence yalnız due/urgency bağlamını değiştirebilir.
+- Due inventory DailyPlan değildir; günlük hard capacity korunur.
+- Absence starvation değildir.
+- Integrated recovery evidence ayrı attribution ister.
+- Long absence new learning'i globally dondurmaz.
+
+Ana çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
 
 ## 7. Güncel çalışma konumu
 
@@ -112,26 +116,26 @@ Ana çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 - `3C` ✅
 - `3D` ✅
 - `3E` ✅
-- `3F` 🟡 **Kaçırılan günler — AKTİF**
-- `3G–3H` ⬜ bekliyor
+- `3F` ✅
+- `3G` 🟡 **Açıklanabilir planner — AKTİF**
+- `3H` ⬜ bekliyor
 
-## 8. 3F'de yapılacaklar
+## 8. 3G'de yapılacaklar
 
 Ana soru:
-> Kullanıcı birkaç gün, birkaç hafta veya daha uzun süre uygulamaya girmediyse yüzlerce eski görevi borç gibi yüklemeden nasıl güvenilir biçimde geri döndürürüz?
+> Planner bugün neden tam olarak bu görevleri seçti, diğerlerini neden seçmedi ve bunu hem kullanıcıya hem debug/QA'ya nasıl açıklayacağız?
 
 Kesinleştirilecek:
-- kısa/orta/uzun absence sonrası current-state recovery,
-- eski PlannedTask/TaskCandidate backlog'unu taşımama,
-- overdue retention/remediation/verification ihtiyaçlarını güncel state'ten yeniden üretme,
-- bounded re-entry planı,
-- critical P0/P1 ve prerequisite risklerinin recovery'deki davranışı,
-- starvation ile absence ayrımı,
-- daily capacity içinde recovery,
-- no-debt kullanıcı deneyimi,
-- 3A–3E ile deterministic entegrasyon.
+- machine-readable reason code taxonomy,
+- selected / skipped / blocked / deferred karar trace'i,
+- PBR/PRG/RVR/capacity/diagnostic/re-entry reason input'larının tek trace'te birleşmesi,
+- user-facing kısa açıklama ile internal audit/debug ayrımı,
+- `neden bugün bu görev?`, `neden diğeri yok?`, `neden branch bekliyor?` cevapları,
+- replan reason chain,
+- deterministic end-to-end planner pseudocode,
+- 3H simulation için doğrulanacak invariants/trace expectations.
 
-3F başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 9. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ile 3A D-033, 3B D-034, 3C D-035, 3D D-036 ve 3E VDW-v0/D-037 kararlarını koru. Şu an aktif adım 3F — Kaçırılan günler.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ve 3A–3F D-033–D-038 kararlarını koru. Şu an aktif adım 3G — Açıklanabilir planner.`
