@@ -5,8 +5,9 @@ Bu belge ürün gereksinimlerinin kilitlendiği ana kayıttır. `docs/EXECUTION_
 ## Durum
 
 - **1A — Ana ürün amacı:** TAMAMLANDI
-- **Güncel ürün hedefi:** 2026-08-24 kapsam genişletmesiyle professional-readiness odaklı 4+ yıllık esnek curriculum horizon'ı
+- **Güncel ürün hedefi:** professional-readiness odaklı 4+ yıllık esnek curriculum horizon'ı
 - **Bağlayıcı ayrıntı:** `docs/PROFESSIONAL_READINESS_TARGET.md`
+- **Granular curriculum charter:** `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 ---
 
@@ -18,17 +19,15 @@ Bu belge ürün gereksinimlerinin kilitlendiği ana kayıttır. `docs/EXECUTION_
 
 ## Kullanıcının günlük aldığı temel değer
 
-Kullanıcı uygulamayı açtığında uzun bir kurs listesi, aylara bölünmüş statik yol haritası veya “bugün ne çalışsam?” kararıyla karşılaşmamalıdır. Uygulama o gün için ayrılabilecek süreyi, daha önceki görev ve sınav performansını, unutulma riski taşıyan konuları, prerequisite durumlarını, teknik İngilizce gelişimini ve mevcut mastery seviyelerini dikkate alarak uygulanabilir bir günlük çalışma planı sunmalıdır.
-
-Kullanıcının temel deneyimi şu olmalıdır:
+Kullanıcı uygulamayı açtığında uzun bir kurs listesi, aylara bölünmüş statik yol haritası veya “bugün ne çalışsam?” kararıyla karşılaşmamalıdır. Uygulama o gün için ayrılabilecek süreyi, daha önceki görev ve sınav performansını, unutulma riski taşıyan konuları, prerequisite durumlarını, teknik İngilizce gelişimini ve mevcut mastery seviyelerini dikkate alarak uygulanabilir günlük çalışma planı sunmalıdır.
 
 > **“Uygulamayı açıyorum; bugün ne yapmam gerektiğini düşünüp planlamıyorum. Sistem bana doğru sıradaki işi veriyor, beni çalıştırıyor, gerçekten öğrenip öğrenmediğimi ölçüyor ve yarını buna göre değiştiriyor.”**
 
-Bu nedenle ürün yalnızca plan yapan bir uygulama değildir. Öğrenme oturumunu yürütür, ölçer, eksikliği tespit eder, gerektiğinde konuyu farklı biçimde yeniden çalıştırır ve yeterlilik kanıtlanmadan bağımlı konulara geçiş vermez.
+Ürün yalnızca plan yapan uygulama değildir. Öğrenme oturumunu yürütür, ölçer, eksikliği tespit eder, gerektiğinde konuyu farklı biçimde yeniden çalıştırır ve yeterlilik kanıtlanmadan bağımlı konulara geçiş vermez.
 
 ## Ürünün çözmek istediği ana problem
 
-Uzun teknik kariyer yollarında sorun yalnızca “hangi konuları öğrenmeliyim?” değildir. Asıl sorunlar şunlardır:
+Uzun teknik kariyer yollarında sorun yalnızca “hangi konuları öğrenmeliyim?” değildir. Asıl sorunlar:
 
 - bugün tam olarak ne çalışılacağının belirsiz olması,
 - uzun roadmap'lerin uygulanabilir günlük görevlere dönüşmemesi,
@@ -37,20 +36,21 @@ Uzun teknik kariyer yollarında sorun yalnızca “hangi konuları öğrenmeliyi
 - öğrenilen bilginin zaman içinde unutulması,
 - sınav veya hataların sonraki çalışma planını değiştirmemesi,
 - kişinin güçlü ve zayıf alanlarına rağmen herkes için aynı sabit programın uygulanması,
+- geniş bir başlığın içinde **tam olarak hangi alt becerinin zayıf olduğunun görülememesi**,
 - teknik eğitim ile İngilizcenin birbirinden kopuk yürütülmesi,
 - AI araçlarıyla bir görevi tamamlamanın o görevi gerçekten anlamakla karıştırılması,
-- birkaç gün ara verildiğinde programın bozulması veya biriken görevlerin kullanıcıya yığılması,
+- birkaç gün ara verildiğinde programın bozulması veya görev borcu oluşması,
 - yıllar süren ileri uzmanlaşma yolunda teorinin gerçek engineering yetkinliğine dönüşmemesi.
 
 Ürün bu sorunları tek sistem içinde çözmeyi hedefler.
 
 ## Klasik kurs uygulamasından farkı
 
-Klasik sistem çoğunlukla şu modeli kullanır:
+Klasik sistem:
 
 `Ders 1 tamamlandı → Ders 2 açıldı → Ders 3 açıldı`
 
-AI Infra Learning Coach ise şu modeli kullanır:
+AI Infra Learning Coach:
 
 `Çalış → ölç → mastery güncelle → retention kontrol et → prerequisite kontrol et → gerekiyorsa remediation uygula → uygun sıradaki görevi seç`
 
@@ -60,36 +60,58 @@ Bir videoyu izlemek, metni okumak, görev kartını işaretlemek veya uygulamada
 
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
-Kanıtlanmış öğrenme yalnız quiz değil; hedefe göre şunların uygun kombinasyonuna dayanır:
-
+Kanıtlanmış öğrenme hedefe göre şunların uygun kombinasyonuna dayanabilir:
 - teori soruları,
 - uygulamalı coding görevleri,
 - debugging,
 - kod/konu açıklayabilme,
 - transfer soruları,
 - gecikmeli retention testleri,
-- gerçekçi proje/capstone çıktıları,
+- gerçekçi project/capstone çıktıları,
 - profiling/benchmarking ve production-context evidence.
 
-Tek bir kolay quiz veya kullanıcının “öğrendim” demesi kritik bir beceriyi mastered yapmak için yeterli değildir.
+Tek bir kolay quiz veya “öğrendim” demek kritik beceriyi mastered yapmaz.
 
 ## Adaptif davranış
 
-Uygulama kullanıcının performansına göre programı değiştirmelidir. Örneğin kullanıcı pointer konusunda zorlanıyorsa pointer'a bağlı yeni konular ertelenebilir; ancak bağımsız Linux görevleri devam edebilir. Kullanıcı daha önce öğrendiği bir bilgiyi gecikmeli testte doğrulayamıyorsa bu konu yeniden günlük plana girebilir. Kullanıcı çok hızlı ilerliyorsa doğrulama testlerinden sonra gereksiz içeriği atlayabilmelidir.
+Kullanıcı pointer konusunda zorlanıyorsa pointer'a bağlı yeni konular ertelenebilir; bağımsız Linux görevleri devam edebilir. Kullanıcı daha önce öğrendiği bilgiyi gecikmeli testte doğrulayamıyorsa ilgili Skill yeniden plana girebilir. Kullanıcı hızlı ilerliyorsa doğrulama sonrası gereksiz içeriği atlayabilmelidir.
 
-Dolayısıyla curriculum bir takvim değil, prerequisite ilişkileri bulunan bir bilgi haritasıdır. Takvim yalnızca günlük kapasiteyi belirler; hangi konunun sıradaki doğru konu olduğunu mastery ve knowledge graph belirler.
+Curriculum bir takvim değil, prerequisite ilişkileri bulunan bilgi haritasıdır. Takvim günlük capacity'yi; mastery + knowledge graph sıradaki doğru işi belirler.
+
+## Granular weakness localization — D-044
+
+Ürün `Python zayıf`, `Linux zayıf` gibi yalnız geniş Domain seviyesi sonuçlarla yetinmemelidir.
+
+Canonical curriculum/diagnosis yapısı:
+
+`Domain → Module → Topic → Skill → Learning Objective`
+
+Gerçek weakness, mastery, prerequisite ve remediation mümkün olduğunca Skill/Objective seviyesinde tutulur.
+
+Örnek:
+
+```text
+Python overall: learning
+  Conditionals: mastered
+  Loops: remediation_required
+    for iteration: weak
+    while termination: weak
+    break/continue: stable
+```
+
+Böylece sistem tüm Python'ı yeniden öğretmek yerine yalnız eksik alt capability'ye hedefli reteach/practice/retest uygulayabilir.
+
+Bu kapsamı tasarlayan ayrı planlama aşaması: **AŞAMA 6 — Granular Capability Map**.
 
 ## Uzun vadeli kariyer hedefiyle ilişki
 
-Ürün genel amaçlı “her şeyi öğreten” bir eğitim uygulaması değildir. Uzun vadeli hedef **AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek teknik derinlik** oluşturmaktır.
+Ürün genel amaçlı “her şeyi öğreten” eğitim uygulaması değildir. Uzun vadeli hedef **AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek teknik derinlik** oluşturmaktır.
 
-Ana yön:
+Güncel ana yön:
 
-**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS / Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
+**Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A foundations → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases → Containers / Cloud / Observability → Performance Engineering / Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM/SGLang/TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
 
-2026-08-24 kapsam genişletmesiyle bu rota yalnız yaklaşık üç yıllık bir horizon ile sınırlı değildir. Gerekli öğretim, practice, assessment, retention, proje ve professional-readiness evidence'ı için rota **4+ yıl veya daha uzun** sürebilir.
-
-Bu süre hedef değil, esnek bir planlama ufkudur:
+Rota **4+ yıl veya daha uzun** sürebilir. Bu süre hedef değil, esnek planlama ufkudur:
 
 ```text
 elapsed_time != readiness
@@ -100,77 +122,75 @@ Bir konunun ne zaman geçileceğini takvim değil yeterlilik belirler.
 
 ## Professional readiness çıkış hedefi
 
-Uzun curriculum'u tamamlamanın anlamı yalnız içerik coverage'ı bitirmek değildir. Kullanıcı final seviyede mümkün olduğunca bağımsız biçimde:
-
-- C/C++/Linux systems geliştirme,
+Kullanıcı final seviyede mümkün olduğunca bağımsız biçimde:
+- Python/C/C++/Linux systems geliştirme,
 - debugging ve profiling,
 - concurrency/networking/distributed reasoning,
 - GPU/CUDA/Triton geliştirme,
 - LLM inference serving ve optimizasyon,
-- latency/throughput/memory benchmark analizi,
+- latency/throughput/memory/cost benchmark analizi,
 - multi-GPU / AI Infrastructure temel tasarım ve operasyon,
 - teknik dokümantasyon, design decision ve troubleshooting iletişimi
 
 gibi alanlarda gerçek artifact ve transfer evidence üretmelidir.
 
-Bu hedef `senior engineer` unvanı, iş teklifi veya belirli maaş garantisi değildir. Gerçek ekip/production iş deneyimi ayrıca oluşur. Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+Bu hedef senior title, iş teklifi veya belirli maaş garantisi değildir. Gerçek ekip/production deneyimi ayrıca oluşur.
 
 ## İngilizcenin ürün içindeki rolü
 
-Başlangıç İngilizce seviyesi A0 kabul edilir. İngilizce, teknik eğitimin başlaması için önce tamamlanması gereken ayrı bir ön koşul değildir. Teknik eğitimle paralel ilerler ve zaman içinde compiler/terminal mesajlarından dokümantasyona, GitHub iletişimine, design docs/paper okumaya ve teknik mülakata kadar gerçek kullanım bağlamına bağlanır.
+Başlangıç İngilizce seviyesi A0 kabul edilebilir. İngilizce teknik eğitimin başlaması için önce tamamlanması gereken ayrı ön koşul değildir. Teknik eğitimle paralel ilerler; zaman içinde compiler/terminal mesajlarından docs, GitHub iletişimi, design docs/papers ve teknik mülakata kadar bağlanır.
 
 ## AI'nın ürün içindeki rolü
 
-AI, kullanıcının yerine öğrenen veya sürekli doğrudan cevabı veren bir kestirme olarak konumlandırılmaz. AI Tutor gerektiğinde:
-
+AI Tutor:
 - açıklama yapar,
 - farklı anlatım uygular,
 - ipucu verir,
 - yanlışın kök nedenini analiz eder,
 - açık uçlu cevap ve kodu değerlendirir,
-- kullanıcının AI ile üretilmiş kodu gerçekten anlayıp anlamadığını kontrol eder.
+- AI ile üretilmiş kodun gerçekten anlaşılıp anlaşılmadığını kontrol eder.
 
 AI kullanımı yasak değildir; ancak dış AI yardımıyla görev tamamlanmışsa mastery için Objective'e uygun independent comprehension/transfer/production doğrulaması gerekir.
 
 ## Kullanıcıya gösterilecek ilerleme anlayışı
 
-4+ yıllık uzun rota ürünün **takvimsel başarı metriği değildir**. UI'da `Gün 47 / 1460+` veya benzeri bir ana ilerleme metriği kullanılmaz. Aynı şekilde “kariyerin %12'si tamamlandı” gibi sahte kesinlik oluşturan göstergeler ana başarı metriği değildir.
+4+ yıllık rota takvimsel başarı metriği değildir. UI'da `Gün 47 / 1460+` veya “kariyerin %12'si tamamlandı” ana başarı metriği değildir.
 
-Kullanıcıya anlamlı olan şeyler gösterilir:
-
-- hangi becerileri gerçekten mastered ettiği,
-- hangi becerileri geliştirdiği,
+Kullanıcıya anlamlı olan:
+- hangi becerileri mastered ettiği,
+- hangi **alt beceride** zorlandığı,
 - hangi bilgilerin yeniden doğrulama zamanı geldiği,
-- hangi alanlarda zorlandığı,
 - bugün neden belirli görevleri yaptığı,
-- hangi prerequisite'in bir sonraki konuyu tuttuğu,
-- professional-readiness için hangi engineering capability katmanlarının henüz kanıtlanmadığı.
+- hangi prerequisite'in bir sonraki işi tuttuğu,
+- professional-readiness için hangi capability katmanlarının henüz kanıtlanmadığıdır.
 
 ## V1 release ile tam curriculum ayrımı
 
-Uzun rota genişledi diye ilk release yıllarca bekletilmez.
-
 - **V1 release:** learning engine, planner, assessment, retention/remediation ve ilk production-quality curriculum paketi.
-- **Tam professional curriculum:** aynı ürün motoru üzerinde yıllar boyunca kapsamı genişleyen C/C++ → systems → distributed → GPU/CUDA → inference → AI Infrastructure rotası.
+- **Tam professional curriculum:** aynı ürün motoru üzerinde yıllar boyunca kapsamı genişleyen systems → distributed → GPU/CUDA → inference → AI Infrastructure rotası.
 
-Bu nedenle ilk 8–12 haftalık production-quality curriculum paketi V1 release için geçerli yaklaşım olarak kalır; fakat ürünün nihai eğitim kapsamı artık bu paket veya yaklaşık üç yıllık rota ile sınırlı değildir.
+D-044 sonrası curriculum üretim ayrımı:
+
+```text
+AŞAMA 5 = graph/schema backbone
+AŞAMA 6 = full granular capability map
+AŞAMA 15 = first 8–12 week production content
+AŞAMA 20 = full professional content expansion + OSS + career + capstones
+```
 
 ## Ürünün kişiliği
 
-Uygulama kullanıcıyı suçlayan, streak kaybıyla baskılayan veya gereksiz gamification ile yöneten bir ürün olmayacaktır. Birkaç gün ara verilirse görev borcu yığmak yerine mevcut durum yeniden hesaplanacaktır.
+Uygulama kullanıcıyı suçlayan, streak kaybıyla baskılayan veya gereksiz gamification ile yöneten ürün olmayacaktır. Birkaç gün ara verilirse görev borcu yığmak yerine current state yeniden hesaplanacaktır.
 
-Ürün deneyiminin karakteri:
-
+Ürün deneyimi:
 - sakin,
 - profesyonel,
 - net,
 - modern,
 - gereksiz kalabalıktan uzak,
 - karar yükünü azaltan,
-- öğrenme kalitesini zaman geçirilen süreden daha önemli gören bir sistemdir.
+- öğrenme kalitesini geçirilen süreden daha önemli gören bir sistemdir.
 
 ## 1A kabul kontrolü
 
-1A'nın ana ürün ilkeleri korunmaktadır. 2026-08-24 kapsam genişletmesi 1A'yı iptal etmez; uzun vadeli çıkış hedefini büyütür.
-
-> **Kapsam genişletme notu — 2026-08-24:** Nihai curriculum horizon'ı 4+ yıla açıldı ve çıkış hedefi `professional_readiness` olarak yükseltildi. Takvim yine mastery yerine geçmez. V1 ilk production curriculum paketiyle daha erken release edilir; uzun curriculum Aşama 19 dahilinde genişletilir.
+1A'nın ana ürün ilkeleri korunmaktadır. D-041/D-042/D-044 1A'yı iptal etmez; uzun vadeli çıkış hedefini, route kapsamını ve weakness granularity'sini netleştirir.
