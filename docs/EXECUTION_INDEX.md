@@ -1,6 +1,6 @@
 # AI Infra Learning Coach — Numaralı Yürütme İndeksi
 
-Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlarını** tanımlar. Ayrıntılı checklist ve teknik açıklamalar `docs/MASTER_PLAN.md` içinde tutulur.
+Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlarını** tanımlar. Ayrıntılı checklist ve teknik açıklamalar `docs/MASTER_PLAN.md` ve ilgili spec dosyalarında tutulur.
 
 ## Kullanım kuralı
 
@@ -8,32 +8,33 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - Alt adımlar `1A`, `1B`, `2A`, `3C` biçiminde sabit kimliğe sahiptir.
 - Bir kodun anlamı sonradan mümkün olduğunca değiştirilmez.
 - Tamamlanan adım `[x]`, bekleyen `[ ]` olarak işaretlenir.
-- Aktif adım ayrıca `docs/STEP_STATUS.md` ve `docs/HANDOFF_STATE.md` içinde gösterilir.
+- Aktif adım `docs/STEP_STATUS.md` ve `docs/HANDOFF_STATE.md` içinde de gösterilir.
 - Her tamamlanma için ilgili spec + tarihli completion note + `PROGRESS_LOG.md` kaydı tutulur.
 
 ---
 
 # AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
 
-- [x] **1A — Ana ürün amacı** — Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
-- [x] **1B — V1 kapsamı** — Çıktı: `docs/V1_SCOPE.md`
-- [x] **1C — Başarı kriterleri** — Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
-- [x] **1D — Non-goals** — Çıktı: `docs/NON_GOALS.md`
+- [x] **1A — Ana ürün amacı** — `docs/PRODUCT_REQUIREMENTS.md`
+- [x] **1B — V1 kapsamı** — `docs/V1_SCOPE.md`
+- [x] **1C — Başarı kriterleri** — `docs/V1_SUCCESS_CRITERIA.md`
+- [x] **1D — Non-goals** — `docs/NON_GOALS.md`
 
-**Aşama 1 tamamlanma notu — 2026-08-24:** Ürünün amacı, V1 kapsamı, 49 acceptance kriteri ve ürün/V1 non-goals kilitlendi. Ürün çerçevesi artık implementasyon öncesi kararlar için sabit temel kabul edilecektir.
+**Tamamlanma notu — 2026-08-24:** Ürün amacı, V1 kapsamı, acceptance kriterleri ve scope sınırları kilitlendi.
 
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla
 
-- [ ] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. **AKTİF**
-- [ ] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required.
+- [x] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. — `docs/LEARNING_ENGINE_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu `Domain/Module/Topic`, gerçek öğrenme/ölçüm katmanı `Skill/Learning Objective` olarak ayrıldı. Skill canonical mastery ve prerequisite katmanı; Topic/Module/Domain mastery derived olarak tanımlandı. Runtime prerequisite ana olarak Skill → Skill çalışacak.
+- [ ] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. **AKTİF**
 - [ ] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre.
 - [ ] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check.
 - [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence.
 - [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay.
 
-**Çıktı:** `LEARNING_ENGINE_SPEC.md`, mastery formula v0, topic state machine.
+**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, mastery formula v0 ve topic state machine.
 
 ---
 
@@ -249,6 +250,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 # Güncel Konum
 
-**Tamamlanan aşama:** AŞAMA 1 — Ürün Çerçevesini Kilitle ✅  
 **Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Aktif adım:** **`2A — Bilgi birimleri`**
+**Tamamlanan:** `2A`  
+**Aktif:** **`2B — Topic durumları`**
