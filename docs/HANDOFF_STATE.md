@@ -9,7 +9,7 @@ Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`, D-024, D-027.
 > Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra ana çıktı + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN` ve gerekiyorsa `DECISIONS` senkronu zorunludur.
 
 ## 1. Ürün
-Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan, yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
+Tek kullanıcı için, sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan ve yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
 
 Ana rota:
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
@@ -24,91 +24,87 @@ Ana rota:
 - Tek yeni yanlış mastered Skill'i anında silmez.
 - English paralel gider; global technical blocker değildir.
 - Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
-- D-028: bounded/incremental hesap ve async ağır işler.
+- D-028: bounded/incremental hesap, async ağır işler, gerçek cihaz performance QA.
 
-## 3. Tamamlanan ana aşamalar
-- **AŞAMA 1** `1A–1D` ✅
-- **AŞAMA 2** `2A–2F` ✅
+## 3. Tamamlanan aşamalar
 
-Aşama 2 canonical omurgası:
-- `GRE-v0 — Gated Recent Evidence` — D-031.
-- `RVR-v0 — Retention Verification & Risk` — D-032.
+### AŞAMA 1 ✅
+`1A–1D` tamamlandı.
 
-## 4. AŞAMA 3 ilerlemesi
+### AŞAMA 2 ✅ — Öğrenme/Mastery
+Canonical omurga:
+- `GRE-v0 — Gated Recent Evidence` — D-031
+- `RVR-v0 — Retention Verification & Risk` — D-032
 
-### 3A ✅ Günlük kapasite — D-033
-Explicit daily time hard budget; no auto-overrun; split/defer; no task debt.
+Kritik: zaman mastery'yi otomatik düşürmez; `review_due` forgetting değildir; assistance independent mastery değildir.
 
-### 3B ✅ Task taxonomy — D-034
-`LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`; purpose/activity/track/evidence ayrı.
+### AŞAMA 3 ✅ — Adaptive Planner
+- `3A` ✅ D-033 — hard daily capacity; no auto-overrun / no task debt
+- `3B` ✅ D-034 — LearningNeed / TaskCandidate / Evidence ayrımı
+- `3C` ✅ PBR-v0 / D-035 — semantic P0–P4 + deterministic rank
+- `3D` ✅ PRG-v0 / D-036 — hard/soft Skill prerequisites; branch-local blocking
+- `3E` ✅ VDW-v0 / D-037 — validated Objective-level diagnostic waiver
+- `3F` ✅ SRR-v0 / D-038 — state-based re-entry; no absence debt
+- `3G` ✅ PDT-v0 / D-039 — structured planner decision trace
+- `3H` ✅ `docs/PLANNER_SIMULATION_SUITE.md`
 
-### 3C ✅ Priority — PBR-v0 / D-035
-P0–P4 semantic bands + deterministic rank vector; eligibility priority'den önce; starvation/track balance; duration priority'den sonra.
+### 3H final sonucu
+```text
+16 / 16 scenarios PASS
+20 / 20 PDT-v0 invariants PASS
+0 critical cross-spec contradiction
+```
 
-### 3D ✅ Prerequisite — PRG-v0 / D-036
-Skill-level hard/soft edges, `ready | ready_due | uncertain | not_ready`, branch-local blocking, review_due no-lock, contamination guard.
+Doğrulanan kritik planner davranışları:
+- same input + versions → same selected order + semantically equivalent trace,
+- invalid/blocked candidate selected olmaz,
+- explicit extension yoksa hard capacity aşılmaz,
+- review_due forgetting değildir ve hard prerequisite'i otomatik bloklamaz,
+- critical metadata tek başına P0 değildir,
+- capacity'ye sığmayan higher-priority task gerçek fit nedeni ile defer edilir; lower-priority task sığarsa seçilebilir,
+- prerequisite yalnız dependent branch'i bekletir,
+- partial diagnostic yalnız validated Objective'leri waive eder,
+- long absence stale task backlog'u replay etmez,
+- absence failure/debt/starvation değildir,
+- replan completed evidence'ı korur,
+- deferred task tomorrow debt değildir,
+- user-facing explanation internal trace dışına çıkmaz.
 
-### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
-Diagnostic GRE-v0'dan daha kolay değildir; Objective-level validated coverage waiver + partial waiver; critical false-skip guards.
+**Sınır:** 3H PASS policy/spec-level'dır. Production runtime sanal-user testleri 11F'te, gerçek cihaz/performance benchmark 17E'de ayrıca zorunludur.
 
-### 3F ✅ Kaçırılan günler — SRR-v0 / D-038
-Absence failure/mastery decay/debt değildir; stale plan replay yok; current-state re-entry; due inventory ≠ DailyPlan; starvation ≠ absence.
+## 4. Güncel kesin konum
 
-### 3G ✅ Açıklanabilir planner — PDT-v0 / D-039
-Ana çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
+**AŞAMA 1:** ✅  
+**AŞAMA 2:** ✅  
+**AŞAMA 3:** ✅  
+**AŞAMA 4:** başladı
 
-Canonical davranış:
-- planner açıklaması sonradan serbest metinle uydurulmaz,
-- `PlannerDecisionTrace` plan generation/replan sırasında structured reason code üretir,
-- private chain-of-thought tutulmaz/gösterilmez; canonical state refs + policy outputs + disposition kaydedilir,
-- need-level ve candidate-level trace ayrıdır,
-- selected/blocked/invalid/lower-priority/capacity-deferred/split/smaller-alternative/superseded sonuçları explicit'tir,
-- reason code namespaces: need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection, replan,
-- user-facing açıklama trace'in alt kümesidir; trace'te olmayan factual neden ekleyemez,
-- PRG eligibility → PBR priority → capacity fit sırası korunur,
-- `review_due` forgetting/failure değildir; absence debt/failure/starvation değildir,
-- higher-priority task fit olmadığı için lower-priority task seçildiyse gerçek fit nedeni açıklanır,
-- replan yeni plan version/event üretir; completed evidence korunur,
-- LLM yalnız reason trace'i paraphrase edebilir; template fallback zorunludur,
-- 3A–3G deterministic end-to-end pseudocode tanımlıdır,
-- 3H için 20 temel simulation invariant'ı hazırlanmıştır,
-- trace bounded/ref-based ve D-028 ile uyumludur.
+- `4A` 🟡 **Günlük mikro değerlendirme — AKTİF**
+- `4B–4E` ⬜ bekliyor
 
-## 5. Güncel kesin konum
+## 5. 4A'da kesinleştirilecekler
 
-**AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla**
+Ana soru:
+> Günlük öğrenme içinde kullanıcıyı gereksiz sınava boğmadan, hangi Skill/Objective'lerin gerçekten ne kadar öğrenildiğini güvenilir biçimde nasıl ölçeceğiz?
 
-- `3A` ✅
-- `3B` ✅
-- `3C` ✅
-- `3D` ✅
-- `3E` ✅
-- `3F` ✅
-- `3G` ✅
-- `3H` 🟡 **Planner simülasyonu — AKTİF**
+Kesinleştirilecek:
+- daily micro assessment purpose ve sınırı,
+- teach/practice/assessment separation,
+- Skill/Objective selection logic,
+- capacity-aware composition,
+- sabit bilimsel soru/dakika optimumu uydurmama,
+- GRE-v0 direct/corroborating evidence uyumu,
+- H0/H1–H4 assistance/provenance,
+- prerequisite validation / contamination guard,
+- retention/remediation ile çakışma/entegrasyon,
+- low-capacity day davranışı,
+- invalid/ambiguous item sonucu,
+- assessment sonucu → mastery/remediation/replan akışı,
+- 4B weekly, 4C monthly, 4D bank ve 4E AI-generated validation için ortak contract.
 
-## 6. 3H'de kesinleştirilecek/doğrulanacaklar
-- sanal kullanıcı profilleri,
-- normal progress,
-- remediation ve fresh verification,
-- critical prerequisite block,
-- review_due/retention,
-- low/high capacity,
-- higher-priority task fit etmeyince lower-priority task seçimi,
-- partial diagnostic fast path,
-- long absence/re-entry,
-- paused continuation,
-- mid-session capacity change,
-- new remediation/verification sonrası replan,
-- same-input determinism,
-- decision trace ve user explanation tutarlılığı,
-- 3A–3G acceptance/invariant suite PASS/FAIL,
-- gerekiyorsa spec düzeltme döngüsü,
-- bütün senaryolar geçerse **AŞAMA 3 kapanışı** ve 4A aktivasyonu.
+4A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
-3H yeni bir pedagojik model icat etme adımı değildir; mevcut planner contract'larını simulation ile kırmaya/validate etmeye odaklanır.
-
-## 7. İlk okuma sırası
+## 6. İlk okuma sırası
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
 3. `docs/HANDOFF_STATE.md`
@@ -129,9 +125,10 @@ Canonical davranış:
 18. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
 19. `docs/MISSED_DAY_RECOVERY_SPEC.md`
 20. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-21. `docs/ENGLISH_FOUNDATION_RULES.md`
-22. `docs/MASTER_PLAN.md`
-23. `docs/PROGRESS_LOG.md`
+21. `docs/PLANNER_SIMULATION_SUITE.md`
+22. `docs/ENGLISH_FOUNDATION_RULES.md`
+23. `docs/MASTER_PLAN.md`
+24. `docs/PROGRESS_LOG.md`
 
-## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3H — Planner simülasyonu** için yeni PRE-STEP GitHub refresh yap. 3A–3G D-033–D-039 kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+## 7. Yeni sohbetin ilk işi
+Repo üzerinden aktif adımı doğrula ve **4A — Günlük mikro değerlendirme** için yeni PRE-STEP GitHub refresh yap. Aşama 2 GRE/RVR ve Aşama 3 D-033–D-039 + 3H PASS kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
