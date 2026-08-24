@@ -103,22 +103,20 @@ C++ Systems / Systems Software / Linux Infrastructure / Distributed Systems / Pe
 
 **Durum:** Kabul edildi — 2026-08-24
 
-Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek. Kodlama başlamadan önce ürün çerçevesi, öğrenme motoru, adaptif planner, assessment sistemi, curriculum/knowledge graph, English track, UX ve teknik mimari yeterince netleştirilecek.
+Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek. Kodlamadan önce ürün çerçevesi, öğrenme motoru, adaptif planner, assessment sistemi, curriculum/knowledge graph, English track, UX ve teknik mimari yeterince netleştirilecek.
 
-Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; aynı adımın altına tarihli **tamamlanma notu** yazılacak. Bu not ne yapıldığını, hangi kararın çıktığını, hangi dosyanın üretildiğini ve sonraki adıma etkisini açıklayacak. Oturumların kronolojik özeti ayrıca `docs/PROGRESS_LOG.md` içinde tutulacak.
+Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; ilgili spec, tarihli tamamlanma notu ve `docs/PROGRESS_LOG.md` kaydı tutulacak.
 
 ## D-016 — Araştırma, kodlama ve test için ayrı AI rolleri kullanılacak
 
 **Durum:** Kabul edildi — 2026-08-24
 
-Proje geliştirmesinde mevcut AI araçları uzman rollere ayrılacak:
-
 - **Araştırma AI:** dış bilgi, güncel teknoloji, öğrenme bilimi, curriculum ve karşılaştırmalı araştırmalar.
-- **Kodlama AI:** yalnız onaylanmış/spec'i netleştirilmiş işleri implement etme, refactor ve bug fix.
-- **Test/QA AI:** kodlama AI'dan bağımsız acceptance criteria, edge case ve regression doğrulaması.
-- **Ana yönetici/koordinatör:** hangi işin yapılacağını belirleme, araştırmayı karara dönüştürme, görev paketleme, test sonucunu değerlendirme ve GitHub proje hafızasını güncelleme.
+- **Kodlama AI:** onaylanmış/spec'i netleştirilmiş işleri implement etme, refactor ve bug fix.
+- **Test/QA AI:** kodlama AI'dan bağımsız acceptance, edge case ve regression doğrulaması.
+- **Ana yönetici/koordinatör:** işi seçer, araştırmayı karara dönüştürür, spec hazırlar, QA sonucuna göre kabul/geri dönüş verir ve GitHub hafızasını günceller.
 
-Kodlama AI'ın kendi implementasyonunu 'çalışıyor' olarak raporlaması tek başına tamamlanma sayılmayacak. Kritik geliştirme işleri bağımsız QA'dan geçecek. FAIL durumunda görev kodlama AI'a geri dönecek; PASS sonrası ilgili plan adımı tamamlanabilecek.
+Kodlama AI'ın kendi implementasyonunu başarılı ilan etmesi tek başına tamamlanma sayılmayacak. Kritik işler bağımsız QA'dan geçecek.
 
 Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
 
@@ -126,9 +124,9 @@ Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
 
 **Durum:** Kabul edildi — 2026-08-24
 
-19 ana aşama bundan sonra Aşama 1–19 olarak anılacak. Her aşamanın ana alt adımları aşama numarası + harf biçiminde sabit kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
+19 ana aşama Aşama 1–19 olarak anılacak. Her ana alt adım aşama numarası + harf biçiminde sabit kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
 
-Ayrıntılı eski `MASTER_PLAN.md` yapısı korunur; numaralı yürütme karşılıkları `docs/EXECUTION_INDEX.md` içinde tutulur.
+Sabit yürütme indeksinin kaynağı: `docs/EXECUTION_INDEX.md`.
 
 ## D-018 — V1 kapsamı ana adaptif öğrenme döngüsünü eksiksiz çalıştıracak şekilde sınırlandı
 
@@ -168,6 +166,26 @@ V1 release şartı olmayanlar:
 - uygulama içine gömülü tam C/C++ IDE/compiler/sandbox,
 - aşırı gamification.
 
-AI, explanation/feedback/evaluation için kullanılabilir; ancak mastery/prerequisite/planner gibi çekirdek kurallar tamamen LLM'nin keyfi kararlarına bırakılmayacaktır.
+AI explanation/feedback/evaluation için kullanılabilir; ancak mastery/prerequisite/planner çekirdek kuralları tamamen LLM'nin keyfi kararlarına bırakılmayacaktır.
 
 Ayrıntılı kapsam: `docs/V1_SCOPE.md`.
+
+## D-019 — V1 release kabulü ölçülebilir acceptance kriterlerine ve bağımsız QA'ya bağlı olacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+V1 yalnızca özelliklerin mevcut olmasıyla hazır sayılmayacaktır. `docs/V1_SUCCESS_CRITERIA.md` içindeki acceptance kriterleri P0/P1/P2 olarak sınıflandırılır.
+
+Release için:
+
+- tüm P0 kriterleri PASS olmalı,
+- açık kritik P1 fonksiyon hatası olmamalı,
+- hard prerequisite ihlali, progress data loss ve kritik yanlış mastery gibi çekirdek kural hataları kabul edilmemeli,
+- final kritik akışlar bağımsız Test/QA AI tarafından doğrulanmalı,
+- gerçek Android cihazında fresh/update install testleri geçmeli,
+- backup/restore ve migration veri kaybı üretmemeli,
+- gerçek kullanım pilotu yapılmalıdır.
+
+Mastery threshold, assessment ağırlığı, spaced repetition interval'i ve planner oranları gibi henüz araştırılmamış sayısal parametreler 1C'de keyfi biçimde sabitlenmeyecek; ilgili sonraki aşamalarda araştırma, simülasyon ve pilot verisiyle kesinleştirilecektir.
+
+Ayrıntılı kriterler: `docs/V1_SUCCESS_CRITERIA.md`.
