@@ -3,12 +3,14 @@
 Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı checklist `docs/MASTER_PLAN.md`, anlık durum `docs/STEP_STATUS.md` içindedir.
 
 ## Kullanım kuralı
-- Ana aşamalar **1–19**.
+- Ana aşamalar **1–20**.
 - Alt adımlar `1A`, `2E`, `11F` biçiminde sabittir.
 - Tamamlanan `[x]`, bekleyen `[ ]`.
 - Her adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
 - `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` canonical durumla senkron tutulur.
-- D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi; adım numaraları değişmedi.
+- D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi.
+- D-042: Python ana technical foundation rotasına resmi olarak eklendi.
+- D-043: mevcut 1–19 kodları bozulmadan **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi** eklendi.
 
 ---
 
@@ -53,7 +55,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph
-- [ ] **5A — Ana domain haritası** — 4+ year professional domain envelope
+- [ ] **5A — Ana domain haritası** — 4+ year professional domain envelope; Python dahil common foundation
 - [ ] **5B — Topic metadata** — mastery/evidence/professional capability metadata
 - [ ] **5C — İlk 8–12 haftalık curriculum graph** — V1 production subgraph
 - [ ] **5D — Curriculum QA** — prerequisite + professional-target coverage QA
@@ -146,6 +148,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [ ] **14E — English A0→A1/A2**
 - [ ] **14F — Assessment content**
 - [ ] **14G — Content QA**
+- [ ] **14H — Python Foundations integration** — ilk pakete uygun derinlikte; nihai kapsam 5A/19/20 graph'ında
 
 > D-041: Aşama 14 full curriculum değil, V1 first production package'tır.
 
@@ -190,7 +193,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # AŞAMA 19 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
-- [ ] **19A — Modern C++ + Professional Tooling paketi**
+- [ ] **19A — Modern C++ + Python + Professional Tooling paketi**
 - [ ] **19B — Systems + Architecture + Performance paketi**
 - [ ] **19C — Networking + Distributed Systems + Storage paketi**
 - [ ] **19D — GPU Architecture + CUDA paketi**
@@ -200,6 +203,19 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [ ] **19H — Career + Professional Readiness**
 - [ ] **19I — Sürekli Curriculum QA + Professional Capstones**
 
+> AŞAMA 19 ortak profesyonel omurgayı üretir. Her ileri alanda eşit derinlik zorunlu değildir; uzmanlık derinliği AŞAMA 20'de dallanır.
+
+---
+
+# AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi
+- [ ] **20A — Ortak çekirdek çıkış kapısı** — hangi shared systems/GPU/inference capability'leri dallanmadan önce zorunlu?
+- [ ] **20B — Uzmanlık dal haritası** — GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
+- [ ] **20C — Track seçim politikası** — kullanıcı tercihi + verified capability + prerequisite readiness + kariyer kısıtları; tek başına hype/maaş veya LLM önerisi otomatik seçim yapmaz.
+- [ ] **20D — Dal-specific curriculum/evidence contracts** — her dal için Skill graph, required/critical evidence, project ve benchmark gereksinimleri.
+- [ ] **20E — Secondary track / track değiştirme kuralları** — ortak core korunur; dal değişimi sıfırdan başlatmaz, yalnız eksik prerequisite'leri açar.
+- [ ] **20F — Uzmanlık capstone ve readiness gate** — seçilen dalda bağımsız design + implementation + debugging + profiling/benchmark + documentation evidence.
+- [ ] **20G — Track freshness / market QA** — teknoloji ve rol isimleri değişse bile değişmeyen systems capability'leri koruyarak düzenli güncelleme.
+
 ---
 
 # Güncel Konum
@@ -207,6 +223,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
 **Aktif:** **`4B — Haftalık sınav`**
 
-**Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.
+**Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
+**Route updates:** D-042 Python foundation, D-043 specialization tracks / AŞAMA 20.
 
 4B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
