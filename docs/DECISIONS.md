@@ -186,7 +186,7 @@ Ayrıntı: `docs/PRIORITY_POLICY_SPEC.md`.
 - Prerequisite readiness: `ready | ready_due | uncertain | not_ready`.
 - `review_due` = `ready_due`; hard lock üretmez.
 - Hard `not_ready` dependent candidate'ı bloke eder.
-- `verification_due` source Skill'i `uncertain` yapar; critical prerequisite veya strict task'ta dependent yeni work verification çözülene kadar bekler.
+- `verification_due` source Skill'i `uncertain` yapar; critical prerequisite veya strict task'ta dependent new work verification çözülene kadar bekler.
 - Normal non-strict hard dependency'de `uncertain` conditional eligibility olabilir; tüm curriculum durmaz.
 - Task-level `required_skill_ids` exact candidate eligibility için hard requirement'tır.
 - Priority prerequisite gate'i bypass edemez. Canonical sıra: state/need → candidate → validation/trust → PRG-v0 eligibility → PBR-v0 priority → capacity fit.
@@ -238,3 +238,23 @@ Ayrıntı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 - Candidate generation/query bounded/incremental olmalı ve D-028 performans kuralını korumalıdır.
 
 Ayrıntı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
+
+## D-039 — Final planner explainability modeli = PDT-v0 Planner Decision Trace
+**Durum:** Kabul edildi — 2026-08-24
+
+- Planner açıklaması sonradan serbest metinle uydurulmaz; karar sırasında structured reason code + decision trace üretilir.
+- Explainability private chain-of-thought değildir; yalnız canonical state refs, policy sonuçları, disposition ve decisive reason code'lar tutulur.
+- Internal audit trace ile user-facing kısa açıklama ayrı katmandır; user-facing metindeki her factual neden trace'te bulunmalıdır.
+- Need-level ve Candidate-level karar izleri ayrıdır.
+- Selected, blocked, invalid, lower-priority, capacity-deferred, split, smaller-alternative ve same-need-superseded disposition'ları açıkça kaydedilir.
+- Reason code family'leri need, validation, prerequisite, retention, priority, capacity, diagnostic, re-entry, selection ve replan namespace'lerine ayrılır.
+- PRG eligibility PBR priority'den önce, capacity fit priority'den sonra çalışır; trace bu farkları korur.
+- `review_due` açıklaması forgetting/failure iddiası yapamaz; absence debt/failure/starvation diye sunulamaz.
+- Higher-priority task capacity'ye sığmadığı için lower-priority task seçildiyse açıklama priority'yi ters çevirmiş gibi davranmaz; gerçek fit nedeni kaydedilir.
+- Replan yeni `plan_version` + `PlannerReplanEvent` üretir; completed evidence korunur, remaining plan yeniden çözülür.
+- LLM yalnız trace'i paraphrase edebilir; priority/eligibility/capacity nedenini değiştiremez. Template fallback zorunludur.
+- 3A–3G canonical end-to-end deterministic planner pseudocode'u tanımlandı.
+- Trace bounded/ref-based olmalı; full-history scan/private reasoning log'u gerektirmez ve D-028 performans kuralını korur.
+- 3H simulation için selected/blocked/capacity/review_due/absence/diagnostic/replan dahil test edilebilir invariant set'i tanımlandı.
+
+Ayrıntı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
