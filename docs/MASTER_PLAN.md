@@ -19,6 +19,8 @@ Ana ürün ilkesi:
 ### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
 ### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
+> **AŞAMA 1 tamamlandı.**
+
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla ✅
@@ -33,125 +35,149 @@ Ana ürün ilkesi:
 
 ---
 
-# AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
+# AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla ✅
 
-### [x] 3A — Günlük kapasite
+### [x] 3A — Günlük kapasite — D-033
 - explicit daily time = hard budget,
 - no auto-overrun,
-- split/defer,
-- no backlog debt.
+- split / smaller alternative / defer,
+- no task/backlog debt,
+- editable short/normal/intensive presets,
+- replan only remaining capacity.
 
-Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.  
-Karar: D-033.
+Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
 
-### [x] 3B — Görev kategorileri
-- `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
+### [x] 3B — Görev kategorileri — D-034
+- `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
 - purpose/activity/track/evidence ayrı,
 - unresolved LearningNeed kalıcı; old task debt değil,
 - multi-Skill attribution/provenance/prerequisite/duration contract.
 
-Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.  
-Karar: D-034.
+Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
 
-### [x] 3C — Öncelik puanı
-**Final: `PBR-v0 — Priority Bands & Rank Vector`**
+### [x] 3C — Öncelik puanı — PBR-v0 / D-035
 - eligibility priority'den önce,
 - P0–P4 semantic bands,
 - deterministic lexicographic rank vector,
 - starvation/track-balance guard,
 - duration semantic priority'den sonra,
-- no task debt.
+- no fake weighted score / no priority-per-minute.
 
-Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.  
-Karar: D-035.
+Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
 
-### [x] 3D — Prerequisite davranışı
-**Final: `PRG-v0 — Prerequisite Readiness Gate`**
-- runtime prerequisite `Skill → Skill`,
-- `hard | soft` edge semantics,
-- readiness: `ready | ready_due | uncertain | not_ready`,
+### [x] 3D — Prerequisite davranışı — PRG-v0 / D-036
+- runtime `Skill → Skill`,
+- hard/soft edges,
+- readiness `ready | ready_due | uncertain | not_ready`,
 - `review_due` hard lock değildir,
-- hard `not_ready` dependent candidate'ı bloke eder,
-- critical/strict `verification_due` dependent new work'u bekletebilir,
-- task-level `required_skill_ids` exact task eligibility'yi belirler,
-- yalnız affected branch bekler; independent branches devam eder,
-- started Topic regression ile `locked` olmaz,
-- prerequisite contamination target negative evidence değildir,
-- priority prerequisite'i bypass edemez,
-- deterministic/bounded resolver.
+- exact dependent branch blocking,
+- contamination guard,
+- priority prerequisite'i bypass edemez.
 
-Çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.  
-Karar: D-036.
+Çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 
-### [x] 3E — Hızlı öğrenme
-**Final: `VDW-v0 — Validated Diagnostic Waiver`**
-- diagnostic GRE-v0'dan daha kolay ayrı mastery standardı değildir,
+### [x] 3E — Hızlı öğrenme — VDW-v0 / D-037
+- diagnostic GRE-v0'dan daha kolay değildir,
 - Objective-level validated coverage waiver,
-- partial diagnostic yalnız kanıtlanan Objective'leri waive eder,
+- partial diagnostic canonical,
 - critical H0/provenance/evaluator/prerequisite guards,
 - GRE → waiver → PRG → Topic → replan entegrasyonu.
 
-Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.  
-Karar: D-037.
+Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 
-### [x] 3F — Kaçırılan günler
-**Final: `SRR-v0 — State-based Re-entry & Recovery`**
+### [x] 3F — Kaçırılan günler — SRR-v0 / D-038
 - absence failure/mastery decay/task debt değildir,
 - stale plan replay edilmez,
-- current state'ten fresh LearningNeed/candidate üretimi,
+- current-state re-entry,
 - due inventory ≠ DailyPlan,
 - starvation ≠ absence,
 - recovery hard capacity + PRG + PBR ile çalışır,
-- bounded/incremental implementation.
+- safe branch'lerde new learning globally dondurulmaz.
 
-Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.  
-Karar: D-038.
+Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
 
-### [x] 3G — Açıklanabilir planner
-**Final: `PDT-v0 — Planner Decision Trace`**
-- planner karar anında structured reason code + decision trace üretir,
-- private chain-of-thought değil canonical state/policy/disposition kaydı tutulur,
-- internal audit trace ile user-facing kısa explanation ayrılır,
-- need-level + candidate-level trace,
-- selected/blocked/invalid/deferred/split/smaller-alternative/superseded dispositions,
-- reason code namespaces: need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection, replan,
-- PRG eligibility → PBR priority → capacity fit sırası açıklamada korunur,
-- `review_due` forgetting değildir; absence debt/failure/starvation değildir,
-- versioned `PlannerReplanEvent`, completed evidence preservation,
-- LLM yalnız trace'i paraphrase edebilir; template fallback zorunlu,
-- 3A–3G deterministic end-to-end planner pseudocode,
-- 3H için test edilebilir invariant set'i,
-- bounded/ref-based trace; D-028 uyumlu.
+### [x] 3G — Açıklanabilir planner — PDT-v0 / D-039
+- structured reason code + decision trace,
+- private chain-of-thought değil canonical state/policy/disposition kaydı,
+- internal audit vs user-facing explanation,
+- need/candidate dispositions,
+- PRG → PBR → capacity sırası korunur,
+- versioned replan chain,
+- LLM yalnız paraphrase; template fallback,
+- deterministic end-to-end planner pseudocode.
 
-Çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.  
-Karar: D-039.
+Çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
 
-> **Tamamlandı — 2026-08-24:** planner'ın gerçek seçim/gating/capacity/replan nedenleri structured trace ile reconstruct edilebilir hale geldi.
+### [x] 3H — Planner simülasyonu
+**Final:** `docs/PLANNER_SIMULATION_SUITE.md`
+- 8 sanal profil sınıfı,
+- 16 zorlayıcı policy senaryosu,
+- 20/20 PDT-v0 invariant coverage,
+- critical prerequisite block,
+- `review_due` no-lock semantics,
+- high-priority-not-fit capacity açıklaması,
+- partial diagnostic,
+- 30 günlük absence + büyük due inventory,
+- paused checkpoint,
+- mid-session capacity change,
+- new remediation replan,
+- invalid candidate,
+- duplicate semantic need,
+- critical-label-no-P0,
+- same-input determinism,
+- explanation trace integrity.
 
-### [ ] 3H — Planner simülasyonu — **AKTİF**
-Kesinleştirilecek/doğrulanacak:
-- sanal kullanıcı profilleri,
-- normal progress, remediation, verification, retention, prerequisite-block, diagnostic, re-entry ve replan scenario suite,
-- same input → same plan + equivalent trace,
-- blocked/invalid candidate never selected,
-- hard capacity invariant,
-- branch-local blocking,
-- no task debt / no absence debt,
-- review_due semantics,
-- higher-priority-not-fit açıklaması,
-- reason trace doğruluğu,
-- Aşama 3 PASS/FAIL kapanış kararı.
+**3H sonucu:**
+```text
+16 / 16 scenarios PASS
+20 / 20 invariants PASS
+0 critical cross-spec contradiction
+```
 
-**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, `docs/PLANNER_EXPLAINABILITY_SPEC.md`, simulation suite.
+Not: Bu spec-level simulation PASS'tir. Production planner runtime/sanal kullanıcı testleri 11F'te, gerçek cihaz/performance doğrulaması 17E'de ayrıca yapılacaktır.
+
+> **AŞAMA 3 tamamlandı — 2026-08-24.** Planner design contract implementation'a taşınabilecek seviyede tanımlandı.
 
 ---
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
-### [ ] 4A — Günlük mikro değerlendirme
+
+### [ ] 4A — Günlük mikro değerlendirme — **AKTİF**
+Kesinleştirilecek:
+- günlük mikro assessment'ın amacı ve sınırı,
+- teach/practice/assessment ayrımı,
+- günlük ölçülecek Skill/Objective seçimi,
+- capacity-aware assessment composition,
+- soru sayısı/süre için bilimsel sabit uydurmama,
+- GRE-v0 evidence compatibility,
+- H0/H1–H4 ve AI assistance davranışı,
+- PRG prerequisite validation,
+- retention/remediation/replan entegrasyonu,
+- low-capacity day davranışı,
+- invalid/ambiguous item güvenliği,
+- result contract'ın 4B–4E'ye taşınması.
+
 ### [ ] 4B — Haftalık sınav
+- multi-Skill coverage,
+- independent evidence diversity,
+- current weaknesses + progress balance,
+- programı gerçekten değiştiren sonuçlar.
+
 ### [ ] 4C — Aylık yeterlilik sınavı
+- daha geniş transfer/integration,
+- critical prerequisite revalidation,
+- false-positive mastery riskini azaltma.
+
 ### [ ] 4D — Soru bankası
+- trusted item metadata,
+- variant family / dependency group,
+- objective attribution,
+- difficulty/complexity,
+- validation/versioning.
+
 ### [ ] 4E — AI-generated soru doğrulaması
+- AI candidate generation trusted bank'e otomatik giriş değildir,
+- correctness/ambiguity/prerequisite/duplicate/target-fit validator.
 
 ---
 
@@ -195,7 +221,6 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ---
 
 # AŞAMA 9 — Mobil Proje İskeleti
-> **Ana production uygulama kodlamasının başladığı aşama.**
 ### [ ] 9A — Proje kurulumu
 ### [ ] 9B — Navigation
 ### [ ] 9C — Design system implementation
@@ -305,7 +330,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3G`  
-**Aktif:** **`3H — Planner simülasyonu`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`  
+**Aktif:** **`4A — Günlük mikro değerlendirme`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3H planner simulation/invariant suite → POST-STEP sync ve Aşama 3 kapanış kararı.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 4A assessment policy → POST-STEP sync.
