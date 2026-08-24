@@ -14,41 +14,39 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
-| **3A — Günlük kapasite** | 🟡 Aktif | Kısa/normal/yoğun gün, capacity budget, minimum block, overflow/remediation/retention sınırı tasarlanacak. |
-| **3B ve sonrası** | ⬜ Bekliyor | 3A kapanışından sonra. |
+| **3A — Günlük kapasite** | ✅ | Hard daily budget, editable presets, reserve/min-block, no auto-overrun, dynamic remaining-time replan, no backlog debt. `docs/ADAPTIVE_PLANNER_SPEC.md`, D-033. |
+| **3B — Görev kategorileri** | 🟡 Aktif | Planner'ın üretebileceği task taxonomy ve ortak task contract tasarlanacak. |
+| **3C ve sonrası** | ⬜ Bekliyor | 3B kapanışından sonra. |
 
-## Son tamamlanan adım — 2F
+## Son tamamlanan adım — 3A
 
-Ana çıktılar:
-- `docs/RETENTION_FORGETTING_SPEC.md`
-- `docs/2F_RESEARCH_VALIDATION.md`
-- D-032
+Ana çıktı:
+- `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü
+- D-033
 
-### Final RVR-v0 özeti
-- Mastery ve retention ayrı eksen.
-- Time-based GRE score decay yok.
-- Retention: `untracked | fresh | stable | review_due | verification_due | at_risk`.
-- `review_due` forgetting değildir; Topic weakening/hard prereq block üretmez.
-- Delayed verification target Skill'e uygun H0 direct verified evidence ister.
-- First failure → `verification_due`; fresh recheck.
-- Recheck failure → normal GRE evidence + gates yeniden hesaplanır; score elle resetlenmez.
-- Natural reuse strict attribution ile planned review yerine geçebilir.
-- Automatic component/cluster refresh yok.
-- Critical `verification_due` unresolved iken dependent yeni work bekleyebilir.
-- Missed-day backlog dump yok.
-- Initial intervals/growth/max değerleri v0 engineering heuristic ve 17C calibration girdisi.
-- Bounded/incremental implementation D-028 ile uyumlu.
+### 3A final capacity özeti
+- Kullanıcının explicit günlük süresi hard budget.
+- V0 editable short/normal/intensive presetler: 30/60/90 dk; bilimsel optimum değil.
+- V0 10% planning reserve ve 10 dk minimum plannable block engineering heuristic.
+- Fixed kategori yüzdeleri yok.
+- Remediation/retention ortaya çıkınca gün uzamaz; kalan budget replan edilir.
+- Time override session ortasında da yapılabilir.
+- Unfinished/planned-but-not-started task negative evidence değildir.
+- Task sığmazsa safe split → smaller eligible alternative → defer.
+- Deferred task ertesi gün borç kuyruğu değildir.
+- Duration estimates future user pace adaptation destekler.
+- Wall-clock ve active-learning süreleri ayrılabilir.
+- Capacity calculation deterministic/versioned ve LLM'den bağımsız.
 
-## Aktif adım — 3A Günlük kapasite
+## Aktif adım — 3B Görev kategorileri
 
-3A başlamadan `PROJECT_MEMORY_PROTOCOL.md` gereği yeni PRE-STEP refresh yapılacaktır.
+3B başlamadan `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh yapılacak.
 
-3A'da kesinleştirilecek:
-- günlük capacity modeli,
-- kısa/normal/yoğun gün profilleri,
-- minimum viable study block,
-- new learning vs remediation vs retention capacity davranışı,
-- planın hedef sürenin üstüne kontrolsüz büyümemesi,
-- overflow/defer davranışı,
-- kullanıcı o gün daha az/fazla zamanı olduğunu söylediğinde replan,
-- ileride 3B–3G'nin kullanacağı capacity contract.
+3B'de kesinleştirilecek:
+- canonical task categories,
+- teach / practice / assessment / coding / debugging / retention / remediation / English / project gibi kategorilerin ayrımı,
+- bir task'ın primary purpose ile evidence type ayrımı,
+- task metadata/contract,
+- splittable / duration / prerequisite / target Skill-Objective alanları,
+- multi-Skill/integrated task attribution sınırları,
+- 3C priority'nin kullanacağı task candidate primitive.
