@@ -110,3 +110,31 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Sonraki kesin adım**
 - **`2B — Topic durumları`**.
+
+---
+
+### 2026-08-24 — Ayrıntılı öğrenme davranışı soru-cevapları kalıcılaştırıldı
+
+**Tamamlananlar**
+- Uygulamanın yalnız test eden değil, uygulama içinde öğretip uygulatıp ölçen bir ürün olması netleştirildi.
+- Bir Topic'in gerekli temel Learning Objective'leri coverage açısından atlamaması; ileri detayların doğru sonraki Topic/Skill'e bırakılması kararlaştırıldı.
+- Yanlış cevabın ceza değil evidence/remediation sinyali olduğu ve birebir aynı sorunun hemen tekrar edilerek ezber ödüllendirilmemesi kilitlendi.
+- AssessmentItem'ların prerequisite-aware olması; henüz öğretilmemiş kavram gerektiren soruların kullanıcıyı başarısız sayamaması kararlaştırıldı.
+- Basit/orta/zor zorluk davranışı ve zorluğun bilinen kavramların daha karmaşık kullanımıyla artması ilkesi kaydedildi.
+- Kritik prerequisite'in süre dolduğu için terk edilmemesi; yalnız bağımlı dalın beklemesi ve bağımsız dalların devam etmesi kalıcılaştırıldı.
+- Başarısız test sonrası remediation'ın mevcut günlük kapasite içine yerleştirilmesi; günün kontrolsüz uzatılmaması ve planın dinamik replan edilmesi kaydedildi.
+- Gecikmeli retention'ın aylar sonra da yapılabilmesi; tek retention hatasının tüm mastery'yi sıfırlamaması ve hedefli doğrulama/onarma akışı kilitlendi.
+- Bilgi havuzunun doğrulanmış çekirdeğe, soru havuzunun doğrulanmış çekirdek + question family/variants + kontrollü AI üretimine dayanması kararlaştırıldı.
+- Kullanıcıya özel misconception/hata geçmişinin remediation ve soru seçimini besleyebilmesi kaydedildi.
+- AI API'nin destek katmanı olduğu; çekirdek mastery/prerequisite/planner'ın LLM'nin keyfi kontrolüne verilmemesi tekrar kilitlendi.
+- Belirli model adı, mastery yüzdesi, retention günleri ve benzeri sayısal detayların ileriki ilgili adımlarda kesinleştirilmesi kararlaştırıldı.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/LEARNING_BEHAVIOR_RULES.md`
+- `docs/DECISIONS.md` — D-022
+- `docs/HANDOFF_STATE.md`
+- `docs/PROGRESS_LOG.md`
+
+**Durum etkisi**
+- Aktif adım değişmedi: **`2B — Topic durumları`**.
+- 2B ve sonraki planner/assessment/retention tasarımları `LEARNING_BEHAVIOR_RULES.md` ile çelişemez.
