@@ -1,482 +1,685 @@
 # Mastery Formula v0 — AI Infra Learning Coach
 
 **Adım:** 2E — Mastery formülü v0  
-**Durum:** CANDIDATE / RESEARCH AI DOĞRULAMASI BEKLİYOR  
-**Tarih:** 2026-08-24
+**Durum:** TAMAMLANDI  
+**Tarih:** 2026-08-24  
+**Final model:** `GRE-v0 — Gated Recent Evidence`
 
-> **Düzeltme notu — 2026-08-24:** Bu dosyanın ilk sürümü ana yöneticinin kendi web/dış araştırmasıyla hazırlanmıştır. Proje iş akışında 2E için ayrıca Research AI kullanılması kararlaştırılmış olmasına rağmen ayrı Research AI turu yapılmadan adım yanlışlıkla tamamlandı olarak işaretlenmiştir. Bu nedenle 2E yeniden açılmıştır. Aşağıdaki model candidate v0'dır; Research AI raporu değerlendirilip gerekli revizyonlar yapılmadan bağlayıcı final 2E kararı sayılmaz.
+Bu belge 2A–2D'de tanımlanan öğrenme birimleri, evidence türleri ve AI/ipucu davranışını deterministik, açıklanabilir, cold-start uyumlu ve sonradan kalibre edilebilir bir mastery karar modeline dönüştürür.
 
-Bu belge 2A–2D'de tanımlanan öğrenme birimleri, evidence türleri ve AI/ipucu davranışını açıklanabilir, deterministik ve ileride kalibre edilebilir bir mastery karar modeline dönüştürmek için hazırlanmış candidate tasarımdır.
-
-Bu belge şu kaynaklarla birlikte değerlendirilmelidir:
+Bağlayıcı kaynaklarla birlikte okunur:
 
 - `docs/LEARNING_ENGINE_SPEC.md`
 - `docs/LEARNING_BEHAVIOR_RULES.md`
 - `docs/TOPIC_STATE_MACHINE.md`
 - `docs/MASTERY_SIGNALS_SPEC.md`
 - `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+- `docs/2E_RESEARCH_VALIDATION.md`
 - `docs/V1_SUCCESS_CRITERIA.md`
 
 Ana ilke:
 
-> **Mastery tek bir yüzde değildir. Bir `MasteryEvidenceScore` + zorunlu evidence gate'leri + confidence/verification kuralları birlikte karar vermelidir.**
+> **Mastery tek bir yüzde değildir. Son dönemdeki bağımsız ve target-matched direct evidence + Objective'e özgü hard gates + diversity + verification birlikte karar verir.**
 
 İkinci ilke:
 
-> **v0 sayıları bilimsel sabit değil, açıkça versionlanan başlangıç kalibrasyon adaylarıdır. Research AI doğrulaması ve daha sonra pilot verisi olmadan kalıcı gerçek kabul edilmez.**
+> **Assisted performance öğrenme için değerlidir fakat bağımsız mastery'nin yerine geçmez.**
+
+Üçüncü ilke:
+
+> **V0'daki `0.80`, `5 grup` gibi sayılar bilimsel sabit değil, açıkça versionlanan cold-start mühendislik ayarlarıdır.**
 
 ---
 
-# 1. Neden yalnız weighted average kullanmıyoruz?
+# 1. Candidate Beta formül neden kaldırıldı?
 
-Yalnız `doğru sayısı / soru sayısı` veya tek weighted average şu hatalara açıktır:
+İlk candidate model şu çekirdeği kullanıyordu:
 
-- 10 kolay recognition sorusu gerçek coding mastery gibi görünebilir,
-- aynı soru familyası tekrar tekrar çözülerek puan şişebilir,
-- AI tarafından üretilmiş kod doğru çalıştığı için kullanıcı mastered sanılabilir,
-- bir production objective yalnız explanation ile geçebilir,
-- bir tek çok yüksek puan kritik prerequisite'i açabilir.
+```text
+alpha = 1 + Σ(w_i × q_i)
+beta  = 1 + Σ(w_i × (1-q_i))
+objective_score = alpha / (alpha + beta)
+```
 
-Bu nedenle candidate 2E iki ayrı katman kullanır:
+Research AI doğrulaması ve yönetici incelemesi sonrası bu çekirdek finalden çıkarıldı.
 
-1. **Score katmanı:** evidence'ın genel yönünü ve gücünü toplar.
-2. **Gate katmanı:** objective'in gerçekten gerekli davranışlarla, bağımsız ve çeşitli kanıtla doğrulandığını kontrol eder.
+Gerekçeler:
 
-Score yüksek olsa bile gate eksikse mastery verilmez.
+- role / assistance / evaluator gibi farklı kavramları tek çarpansal ağırlıkta karıştırıyordu,
+- `H1=0.85`, `H2=0.65`, `AI evaluator=0.80` gibi ampirik olarak kalibre edilmemiş katsayılara sahte hassasiyet veriyordu,
+- tüm geçmiş sonsuza kadar biriktiği için çok eski evidence yeni evidence'ın etkisini giderek sönümletebiliyordu,
+- score yanlışlıkla posterior knowledge probability gibi algılanabilirdi.
 
----
-
-# 2. İlk yönetici araştırması ve candidate model seçimi
-
-Ana yöneticinin yaptığı ilk dış/web araştırmasında üç ana yaklaşım karşılaştırıldı:
-
-## 2.1 Mastery Learning
-
-Bloom'un mastery yaklaşımı açık hedefler, formative assessment, feedback/corrective ve yeniden doğrulamayı öne çıkarır. Farklı uygulamalarda farklı criterion değerleri kullanılmıştır; tek evrensel mastery yüzdesi yoktur.
-
-## 2.2 Bayesian Knowledge Tracing (BKT)
-
-BKT, kullanıcı Skill bilgisini latent bir learned/unlearned state olarak takip eden açıklanabilir klasik bir knowledge tracing yaklaşımıdır. Uygulamalarda örneğin `0.95` gibi mastery probability threshold'ları kullanılabilir; ancak threshold bağlama/model kalibrasyonuna bağlıdır.
-
-Bu ürünün şu anki durumunda BKT'yi doğrudan canonical motor yapmak için yeterli kalibre edilmiş öğrenci/item datası yoktur. Ayrıca bizim evidence modelimiz binary quiz'den daha geniştir: coding, debugging, explanation, transfer, AI assistance, provenance ve project evidence birlikte kullanılır.
-
-## 2.3 Item Response Theory (IRT)
-
-IRT item difficulty/discrimination gibi özellikleri veriyle modelleyebilir. Bu nedenle `hard soru = otomatik 1.3x puan` gibi keyfi bir multiplier psychometric calibration varmış gibi sahte hassasiyet yaratabilir.
-
-### Candidate 2E kararı
-
-V1 için araştırma doğrulamasına sunulan aday yaklaşım:
-
-- açıklanabilir,
-- local/deterministic,
-- az veriyle çalışabilir,
-- farklı evidence türlerini destekleyebilir,
-- daha sonra BKT/IRT veya başka modelle karşılaştırılabilir
-
-bir **Beta-style weighted evidence accumulator + hard mastery gates** modelidir.
-
-Bu score **kalibre edilmiş “öğrenmiş olma olasılığı” değildir**. UI'da `84% ihtimalle biliyorsun` gibi sunulmaz.
-
-Bu bölümdeki yaklaşım ayrı Research AI tarafından kaynaklı biçimde doğrulanacaktır.
+Not: Kesirli Beta shape değerleri matematiksel olarak tek başına yasak değildir. Sorun bizim candidate katsayılarımızın kalibre edilmiş bir generative/likelihood modelinden gelmemesi ve score'un psychometric probability olarak savunulamamasıdır.
 
 ---
 
-# 3. Mastery hesaplama pipeline'ı
+# 2. Final v0 mimarisi — GRE-v0
 
-Candidate canonical akış:
+Canonical pipeline:
 
 ```text
 Raw Attempt / Artifact
     ↓
-Eligibility & contamination validation
+Eligibility + prerequisite + contamination validation
     ↓
-Evidence classification / deduplication
+Assistance / provenance classification
     ↓
-Outcome quality q_i ∈ [0,1]
+Dependency group / testlet aggregation
     ↓
-Effective evidence weight w_i
+Eligible independent H0 direct evidence groups
     ↓
-Objective MasteryEvidenceScore
+Recent bounded Objective score
     ↓
-Objective mastery gates
+Objective hard gates
     ↓
-Skill aggregation + Skill gates
+Skill required/critical Objective gates
+    ↓
+Verification / hysteresis
     ↓
 SkillMasteryDecision
     ↓
 Prerequisite / Topic state / Planner
 ```
 
-Invalid evidence score hesabına girmez.
-
-Contextual signal score üretmez.
+Invalid evidence hesaplamaya girmez.
 
 ---
 
-# 4. Evidence eligibility — formülden önce
+# 3. Mastery score'a hangi evidence girer?
 
-Bir event formüle girmeden önce:
+## 3.1 Eligible mastery evidence
 
-- target Skill/Objective doğru mu,
-- required prerequisite'ler kullanıcı tarafından daha önce öğrenilmiş mi,
-- item teknik olarak geçerli/ambiguous değil mi,
-- answer leakage/solution exposure var mı,
-- evaluator/provenance kabul edilebilir mi,
-- artifact origin target Objective için anlamlı mı,
-- aynı evidence'ın duplicate/correlated kopyası mı
+Bir evidence group Objective mastery score'una ancak hepsi sağlanıyorsa girebilir:
 
-kontrol edilir.
+1. target `LearningObjective` doğru attribution edilmiş,
+2. item/task teknik olarak geçerli ve ambiguous değil,
+3. required prerequisite'ler daha önce öğretilmiş/eligible,
+4. answer leakage / solution exposure yok,
+5. assistance seviyesi **H0**,
+6. Objective profile'a göre **direct/primary evidence**,
+7. artifact gerekiyorsa provenance target davranışın kullanıcı tarafından üretildiğini gösteriyor,
+8. dependency/testlet grouping sonrası bağımsız evidence group olarak kabul edilebilir,
+9. evaluator sonucu `verified` durumunda.
 
-`invalid` veya target Skill'e güvenilir biçimde attribution yapılamayan evidence mastery score'a eklenmez.
+## 3.2 Assisted evidence — H1–H4
+
+H1–H4:
+
+- learning history'de tutulur,
+- misconception / remediation / hint dependence / task selection için kullanılabilir,
+- fresh independent recheck tetikleyebilir,
+- fakat **positive independent mastery score'una girmez**.
+
+Bu bir ceza değildir. Yardımın amacı öğrenmeyi ilerletmektir; mastery sorusu ise `yardımsız yapabiliyor mu?` sorusudur.
+
+H3/H4 solution exposure sonrası 2D'deki fresh/unseen independent recheck zorunluluğu korunur.
+
+## 3.3 Corroborating evidence
+
+Corroborating evidence:
+
+- diagnostic confidence,
+- remediation seçimi,
+- explanation/debugging yönü,
+- verification scheduling
+
+için kullanılabilir; ancak direct evidence eksikliğini puan biriktirerek telafi edemez.
+
+Final v0'da `corroborating = 0.50` mastery multiplier'ı yoktur.
+
+## 3.4 Contextual signals
+
+Time, completion, streak, self-confidence, hint count gibi contextual sinyaller mastery score üretmez.
 
 ---
 
-# 5. Evidence outcome değeri `q_i`
+# 4. Problem family / Testlet / Local-dependence guard
 
-Her kullanılabilir evidence için hedef Objective'e yönelik başarı kalitesi:
+Aynı exact soru veya çok yakın varyantların independent evidence gibi sayılmasını engellemek için iki metadata seviyesi kullanılır:
 
 ```text
-q_i ∈ [0,1]
+variant_family_id
+dependency_group_id / testlet_id
 ```
 
-olarak normalize edilir.
+Kurallar:
 
-- tamamen doğru / rubric tam karşılandı → `1.0`
-- tamamen yanlış → `0.0`
-- partial/mixed → rubric'in gerçekten karşılanan oranı
+1. Aynı `dependency_group_id/testlet_id` içindeki correlated alt item'lar **tek evidence group** üretir.
+2. Exact solution-exposed item yeni positive independent group oluşturamaz.
+3. Aynı session'da yakın varyantlar bağımsız group sayısını şişiremez.
+4. `variant_family_id` diversity gate için kullanılır.
+5. Yalnız sayı/değişken adı değiştirilmiş kopya yeni family/context değildir.
+6. İleri Topic'te gerçek farklı bağlamda aynı Skill'in doğal kullanımı yeni family/context olabilir.
 
-Partial için kör biçimde her zaman `0.5` kullanılmaz. Mümkün olduğunda objective-specific rubric sonucu kullanılır.
-
----
-
-# 6. Effective evidence weight `w_i`
-
-Candidate v0'da difficulty'ye numeric multiplier verilmez. Weight evidence'ın **target Objective'e ne kadar doğrudan bağlı olduğu**, **yardım seviyesi** ve **evaluator güveni** üzerinden oluşturulur.
+Bir testlet'in group-level kalite sonucu:
 
 ```text
-w_i = role_weight × assistance_weight × provenance_weight
+group_quality q_g ∈ [0,1]
 ```
 
-`w_i` maksimum `1.0` olarak tutulur.
-
-## 6.1 Evidence role weight — candidate
-
-| Evidence role | Weight |
-|---|---:|
-| `direct / primary` | `1.00` |
-| `corroborating` | `0.50` |
-| `contextual` | `0.00` |
-
-## 6.2 Assistance weight — candidate
-
-| Yardım | Candidate v0 weight | Not |
-|---|---:|---|
-| `H0` | `1.00` | bağımsız |
-| `H1` | `0.85` | hafif orientation |
-| `H2` | `0.65` | targeted conceptual hint |
-| `H3` | `0.35` veya `0` | target davranış kullanıcıda kalmışsa; aksi halde practice-only |
-| `H4` | `0.00` | full solution exposure |
-
-Ek kurallar:
-
-- `practice_only` → positive mastery weight `0`.
-- `requires_independent_recheck` → recheck tamamlanana kadar target mastery gate'ini karşılayamaz.
-- `generated_or_copied` artifact, production/coding Objective'i için direct positive weight `0`.
-- `mixed_authorship` target davranışın önemli bölümünü AI yaptıysa direct production gate'ini karşılayamaz.
-
-**Bu katsayılar özellikle Research AI tarafından sorgulanacak candidate değerlerdir.**
-
-## 6.3 Evaluator / provenance weight — candidate
-
-| Kaynak | Candidate v0 weight |
-|---|---:|
-| deterministic compiler/test + doğru target attribution | `1.00` |
-| prevalidated item + deterministic answer key | `1.00` |
-| açık rubric ile güvenilir değerlendirme | `1.00` |
-| AI evaluator + açık rubric + high confidence | `0.80` |
-| AI evaluator low confidence / ambiguous | `0.00` ve recheck |
-| invalid/hatalı item | `0.00` |
-
-Bu değerler de 4E/13F yanında Research AI değerlendirmesine tabidir.
+olarak objective-specific rubric ile hesaplanır.
 
 ---
 
-# 7. Difficulty score multiplier değildir — candidate
+# 5. Recent bounded Objective score
 
-Candidate v0'da `easy/basic`, `medium`, `hard/transfer` etiketleri score'u doğrudan çarpmaz.
+V0, sonsuz tüm-history accumulation kullanmaz.
 
-Difficulty şu işlerde kullanılır:
-
-- item eligibility,
-- critical mastery gate,
-- soru seçimi,
-- transfer/diversity doğrulaması.
-
-Kritik Skill'in bütün evidence'ı yalnız basic item'lardan oluşamaz.
-
----
-
-# 8. Duplicate / same-family inflation guard
-
-1. Aynı `evidence_group_id` içindeki correlated kayıtlar tek bağımsız kanıt olarak görülür.
-2. Exact aynı item solution-exposed ise yeni positive mastery evidence olarak kullanılmaz.
-3. Aynı assessment/session içinde aynı `variant_family` tekrarları independent group sayısını artırmaz.
-4. Farklı session'da aynı family tekrar kullanılabilir; diversity gate için hâlâ aynı family sayılır.
-5. Yalnız sayı/değişken adı değişen kopyalar gerçek transfer sayılmaz.
-
----
-
-# 9. Objective MasteryEvidenceScore — candidate
+Her Objective için zaman sırasına göre son en fazla `M` eligible independent H0 direct evidence group tutulur.
 
 ```text
-alpha = 1 + Σ(w_i × q_i)
-beta  = 1 + Σ(w_i × (1 - q_i))
-objective_score = alpha / (alpha + beta)
+RECENT_WINDOW_MAX_GROUPS_V0 = 5
 ```
 
-Bu internal score probability of knowledge olarak yorumlanmaz.
+Bu sayı **engineering heuristic**'tir ve 17C'de kalibre edilir.
+
+Objective score:
+
+```text
+W_o = Objective için son en fazla 5 eligible independent direct evidence group
+
+recent_direct_score(o) = mean(q_g for g in W_o)
+```
+
+Equal weighting kullanılır. V0'da:
+
+- assistance multiplier yok,
+- evidence-role multiplier yok,
+- evaluator multiplier yok,
+- difficulty multiplier yok,
+- recency multiplier yok.
+
+Recency etkisi bounded window seçimiyle sağlanır. Time-based forgetting/decay 2F'ye aittir.
+
+## Neden basit mean?
+
+Cold-start'ta kalibre edilmemiş katsayılar uydurmak yerine her eligible bağımsız direct group eşit oy hakkına sahiptir. Karmaşıklık hard gates ve Objective profile'da tutulur.
 
 ---
 
-# 10. Candidate mastery threshold
+# 6. Operational score threshold
 
 ```text
-MASTERY_SCORE_THRESHOLD_V0 = 0.80
+OBJECTIVE_MASTERY_THRESHOLD_V0 = 0.80
 ```
 
 Bu değer:
 
-- yalnız başlangıç karar sınırı adayıdır,
-- bilimsel sabit değildir,
+- V1 cold-start için engineering heuristic,
+- BKT `P(L)` değildir,
+- IRT ability probability değildir,
 - `kullanıcı %80 öğrendi` anlamına gelmez,
-- tek başına mastery kararı vermez,
-- Research AI raporu sonrasında değişebilir,
-- pilot 17C'de tekrar kalibre edilebilir.
+- UI'da mastery yüzdesi olarak sunulmaz.
+
+UI ayrık state gösterebilir:
+
+- Geliştiriliyor
+- Doğrulama Bekliyor
+- Yetkin
+- Zayıflıyor / Pekiştirme Gerekli
+
+Threshold 17C pilotunda false-positive / false-negative sonuçlarına göre değişebilir.
 
 ---
 
-# 11. Confidence — candidate support bands
+# 7. Objective profile
 
-## LOW
-- effective evidence mass `< 2.0`, veya
-- iki independent evidence group yok, veya
-- gerekli direct evidence yok.
-
-## MEDIUM
-- effective mass `>= 2.0`,
-- en az 2 independent group,
-- required direct evidence mevcut.
-
-## HIGH
-- effective mass `>= 3.0`,
-- en az 3 independent group,
-- en az 2 anlamlı variant/problem family veya context,
-- required direct independent evidence mevcut,
-- unresolved solution-exposure recheck yok.
-
-Bu eşikler de candidate kalibrasyondur.
-
----
-
-# 12. Objective mastery gate — candidate
-
-Her Objective authoring profile'ında en az:
+Her Objective authoring sırasında en az şu davranış metadata'sına sahip olabilir:
 
 ```text
 required: true | false
 criticality: standard | critical
 acceptable_evidence_types
 direct_evidence_types
-required_direct_type (varsa)
-requires_independent_evidence
+required_direct_type
+min_independent_groups
+min_variant_families
 requires_non_basic_evidence
-requires_transfer (varsa)
+requires_transfer
+requires_user_authored_artifact
+allowed_tools_policy
 ```
 
-## Standard required Objective candidate gate
+Defaults aşağıdadır; Objective gereği farklı değer gerekiyorsa açık authoring gerekçesi tutulur.
 
-1. `objective_score >= 0.80`
-2. en az bir target-matched direct independent evidence
-3. en az 2 independent evidence group
-4. gerekli evidence type varsa karşılanmış
+---
+
+# 8. Standard required Objective gate
+
+V0 default PASS için hepsi gerekir:
+
+1. `recent_direct_score >= 0.80`
+2. en az **2 eligible independent H0 direct evidence group**
+3. default en az **2 anlamlı variant family/context**
+4. Objective'in `required_direct_type` şartı varsa karşılanmış
 5. unresolved `requires_independent_recheck` yok
-6. evidence prerequisite-valid
+6. unresolved `verification_due` yok
+7. evidence prerequisite-valid
+8. evaluator status score'a giren gruplar için `verified`
 
-## Critical Objective candidate gate
-
-Standard gate'lere ek olarak:
-
-1. confidence `HIGH`
-2. en az 3 independent evidence group
-3. en az 2 problem/variant family veya farklı context
-4. yalnız basic/easy evidence'dan oluşmama
-5. production/coding ise en az bir gerçek `H0 user_authored` target production artifact
-6. debugging ise en az bir bağımsız debugging/diagnosis evidence
-7. transfer gerekiyorsa unseen transfer evidence
+Çok atomik bir Objective için iki family üretmek anlamsızsa `min_variant_families` authoring sırasında gerekçeli olarak düşürülebilir; bu global varsayılan değildir.
 
 ---
 
-# 13. Objective archetype örnekleri
+# 9. Critical Objective gate
 
-Concept/recall objective için recall/explanation direct; recognition/code reading corroborating olabilir.
+Standard şartlara ek olarak:
 
-Coding/production objective için coding direct olmalı ve candidate critical gate en az bir H0 user-authored artifact ister.
+1. en az **3 eligible independent H0 direct evidence group**
+2. en az **2 farklı problem family/context**
+3. yalnız basic/easy evidence'dan oluşmama
+4. Objective `coding/production` ise en az bir gerçek **H0 user-authored coding artifact**
+5. Objective `debugging/diagnosis` ise en az bir bağımsız H0 diagnosis/fix evidence
+6. Objective transfer gerektiriyorsa unseen transfer evidence
+7. allowed-tools policy ihlali yok
 
-Debugging objective için diagnosis + fix direct evidence olabilir.
+Critical Objective'in başka recognition/corroborating başarılarla matematiksel olarak telafi edilmesi mümkün değildir.
 
 ---
 
-# 14. Skill aggregation — candidate
+# 10. Coding / production özel kuralı
+
+Objective:
+
+> `Pointer üzerinden bir int değeri değiştiren kısa C kodunu kendisi yazabilir.`
+
+Mastery için:
+
+- doğru kod seçeneğini işaretlemek yeterli değil,
+- kod çıktısı tahmini yeterli değil,
+- AI'nın yazdığı kodu çalıştırmak yeterli değil,
+- explanation tek başına production yerine geçmez.
+
+En az bir H0 user-authored coding artifact şarttır; kritik Objective ise diğer diversity/recent-score gate'leri de geçer.
+
+Compiler/test runner artifact'ı doğrulayabilir; fakat compiler sonucu yalnız hedef davranış gerçekten test ediliyorsa `verified` production group üretir.
+
+---
+
+# 11. Debugging özel kuralı
+
+Debugging direct evidence en az target objective'in rubric'ine göre şu davranışlardan gerekli olanlarını gözlemlemelidir:
+
+- semptomu tanıma,
+- nedeni/bug bölgesini izole etme,
+- uygun fix üretme,
+- gerektiğinde nedeni açıklama.
+
+Yalnız `hangi satır hatalı?` MCQ'su full debugging mastery değildir.
+
+Critical debugging Objective en az bir bağımsız H0 debugging evidence ister.
+
+---
+
+# 12. AI evaluator güvenilirlik modeli
+
+İlk candidate'taki sabit:
 
 ```text
-skill_score = arithmetic_mean(required_objective_scores)
+AI evaluator high confidence = 0.80
 ```
 
-Skill mastered candidate şartları:
+**kaldırılmıştır.**
 
-1. tüm `required` Objective'ler PASS,
-2. tüm `critical` Objective'ler critical gate PASS,
-3. `skill_score >= 0.80`,
-4. unresolved independent recheck yok,
-5. invalid/contaminated evidence üzerine kurulmuş gate yok.
-
-Candidate sonuç:
+Evaluator sonucu numeric confidence multiplier yerine şu operasyonel statülerden biriyle tutulur:
 
 ```text
-SkillMasteryDecision = mastered | not_mastered | verification_due
+verified
+provisional
+invalid
 ```
+
+## `verified`
+
+Örnekler:
+
+- prevalidated deterministic answer key,
+- compiler + objective-specific tests,
+- deterministic rubric check,
+- ileride benchmark sonucu izin verilen iyi kalibre edilmiş evaluator policy.
+
+## `provisional`
+
+- yalnız LLM rubric değerlendirmesi,
+- ambiguity ihtimali,
+- partial/open-ended cevapta güvenilir cross-check yok.
+
+`provisional` evidence critical mastery gate'ini tek başına karşılayamaz.
+
+Sistem fresh farklı-modality check, deterministic check veya ileride 13F'de kalibre edilmiş evaluator policy isteyebilir.
+
+## `invalid`
+
+- evaluator/system failure,
+- ambiguous item,
+- wrong rubric/answer key,
+- attribution yapılamıyor.
+
+Score'a girmez.
+
+13F'de gerçek benchmark ile LLM evaluator policy yeniden ele alınacaktır.
 
 ---
 
-# 15. Prerequisite-ready gate — candidate
+# 13. Difficulty davranışı
+
+Difficulty numeric score multiplier değildir.
+
+V0 labels:
 
 ```text
-prerequisite_ready = skill_mastered AND no_unresolved_critical_recheck
+basic
+authentic/application
+transfer/integration
 ```
 
-2F retention modeli sonrası güncellenecektir.
+veya Aşama 4'te kesinleşecek eşdeğer sınıflar.
+
+Difficulty şu işlerde kullanılır:
+
+- item eligibility,
+- Objective hard gate,
+- critical Objective'in yalnız basic evidence ile geçmesini engelleme,
+- planner/question selection,
+- transfer diversity.
+
+Gerçek item data oluşursa ileride IRT/Elo/başka calibration ile difficulty estimate eklenebilir.
 
 ---
 
-# 16. Negative evidence / hysteresis — candidate
+# 14. Skill mastery aggregation
 
-Daha önce mastered Skill tek bir yeni yanlış yüzünden anında unmastered olmaz.
+Skill mastery **yüksek average ile kritik eksikleri kapatan compensatory score** kullanmaz.
 
-İlk clean independent direct negative evidence candidate davranışı:
+Canonical karar:
 
 ```text
-mastery_state = mastered
+skill_mastered =
+    all required Objectives PASS
+    AND all critical Objectives PASS
+    AND no unresolved critical recheck
+```
+
+`skill_recent_score` analytics/UI-internal özet olarak required Objective recent scores'tan derived edilebilir; fakat mastery gate değildir.
+
+Bu sayede bir Objective'teki çok yüksek performans başka required Objective açığını gizleyemez.
+
+---
+
+# 15. Prerequisite-ready gate
+
+2E sonunda başlangıç kuralı:
+
+```text
+prerequisite_ready =
+    skill_mastered
+    AND no_unresolved_critical_recheck
+```
+
+2F retention/forgetting geldiğinde buna retention state/risk koşulları eklenecektir.
+
+LLM doğrudan `prerequisite_ready=true` yazamaz.
+
+---
+
+# 16. Negative evidence ve hysteresis
+
+## 16.1 Mastery öncesi
+
+Eligible H0 direct negative/partial evidence recent window'a normal `q_g` değeriyle girer.
+
+Assisted H1–H4 failure mastery score'a doğrudan negative yazılmaz; misconception/remediation sinyali olabilir ve bağımsız recheck tetikleyebilir.
+
+## 16.2 Mastered Objective/Skill sonrası tek contradiction
+
+İlk temiz, prerequisite-valid, bağımsız H0 direct anlamlı failure:
+
+```text
 verification_due = true
 ```
 
-Fresh doğrulama da negative ise weakness/remediation değerlendirilir.
+Mastery anında silinmez.
 
-Bu davranış da Research AI tarafından false-negative/false-positive riski açısından değerlendirilecektir.
+Fresh/unseen H0 doğrulama planlanır.
+
+### Recheck positive
+
+- recent window güncellenir,
+- `verification_due` temizlenebilir,
+- mastered korunur.
+
+### Recheck de negative
+
+- confirmed weakness vardır,
+- current recent window/gates tekrar değerlendirilir,
+- sonuç 2B/2F davranışına göre `weakening` veya `remediation_required` üretebilir.
+
+Bu model slip/measurement-noise ile gerçek zayıflığı ayırmaya çalışır.
 
 ---
 
-# 17. Explainability contract
+# 17. Support band — istatistiksel confidence değildir
+
+UI/engine için explainable support band tutulabilir.
+
+## LOW
+
+- Objective minimum independent group gate'i eksik veya
+- direct evidence eksik veya
+- evaluator verification eksik.
+
+## MEDIUM
+
+- standard Objective default gate'leri için yeterli bağımsız direct support var.
+
+## HIGH
+
+- critical default support şartları,
+- 3+ independent group,
+- 2+ family/context,
+- gerekli non-basic/production/debugging/transfer evidence,
+- unresolved recheck yok.
+
+Bu `95% confidence` gibi istatistiksel güven aralığı değildir.
+
+---
+
+# 18. False-positive guardrails
+
+## Tek kolay quiz doğru
+
+- direct Objective gate/diversity/min-group yok
+- **NOT MASTERED**
+
+## Aynı soru 10 kez doğru
+
+- dependency/family guard
+- bağımsız evidence sayısı şişmez
+- **NOT MASTERED**
+
+## H2 ile beş doğru
+
+- assisted formative evidence
+- mastery recent score'a girmez
+- **NOT MASTERED** bağımsız H0 kanıt yoksa
+
+## AI tüm kodu yazdı ve test geçti
+
+- production provenance kullanıcıya ait değil
+- coding gate karşılanmaz
+- **NOT MASTERED**
+
+## Theory güçlü, coding yok
+
+- required production Objective gate eksik
+- **NOT MASTERED**
+
+## Bilinmeyen prerequisite nedeniyle yanlış
+
+- invalid/contaminated for target Objective
+- kullanıcı cezalandırılmaz
+
+---
+
+# 19. False-negative guardrails
+
+- Tek clean hata instant mastery reset yapmaz.
+- Prerequisite contamination negative evidence olmaz.
+- Assisted practice başarısızlığı bağımsız mastery skoruna otomatik ceza değildir.
+- Objective-specific authoring, anlamsız family/difficulty gate'lerinin gereksiz uygulanmasını engeller.
+- AI evaluator ambiguity durumunda kullanıcı doğrudan başarısız sayılmaz; `provisional` + recheck kullanılır.
+- Kritik olmayan Objective'lerde unnecessary over-gating pilotta ölçülür.
+
+---
+
+# 20. Explainability contract
+
+Her karar en az şu trace'i üretmelidir:
 
 ```text
 MasteryDecisionTrace
 - skill_id
-- formula_version
-- skill_score
-- objective_scores
-- confidence_band(s)
+- mastery_formula_version
+- objective_recent_scores
+- window_evidence_group_ids
+- dependency/testlet aggregation
 - passed_gates
 - failed_gates
-- effective_evidence_ids
 - excluded_evidence_ids + reasons
+- assisted/formative evidence summary
 - unresolved_rechecks
+- evaluator_status_summary
 - decision
 - reason_codes
 ```
 
+Kullanıcıya sade açıklama örneği:
+
+> “Pointer mantığında ilerledin; fakat farklı bir soruda yardım almadan kod yazabildiğine dair yeterli bağımsız kanıt henüz yok.”
+
 ---
 
-# 18. Incremental / performans dostu hesaplama
+# 21. Performans dostu implementation contract
 
-D-028 gereği Objective bazında versioned aggregate/sufficient-state tutulabilmelidir:
+D-028 gereği her ekran açılışında tüm Attempt history taranmaz.
+
+Objective için sufficient-state/cache tutulabilir:
 
 ```text
-alpha
-beta
-effective_mass
+recent_eligible_groups[<=5]
+recent_direct_score
 independent_group_count
 variant_family_count
 required_direct_flags
 verification_due
+support_band
 formula_version
 ```
 
-Kesin DB/schema 8C, implementation 11A'dadır.
+Yeni evidence geldiğinde küçük bounded yapı güncellenir.
+
+Correction/invalidation durumunda güvenli targeted recalculation yolu bulunur.
+
+Kesin DB schema 8C, implementation 11A'da.
 
 ---
 
-# 19. Versioning ve calibration
-
-Candidate config:
+# 22. Versioned v0 config
 
 ```text
-mastery_formula_version = "v0-candidate"
-score_threshold = 0.80
-role_weight_direct = 1.00
-role_weight_corroborating = 0.50
-assistance_H0 = 1.00
-assistance_H1 = 0.85
-assistance_H2 = 0.65
-assistance_H3 = 0.35
-assistance_H4 = 0.00
-ai_evaluator_high_confidence = 0.80
+mastery_formula_version = "GRE-v0"
+objective_mastery_threshold = 0.80
+recent_window_max_groups = 5
+standard_min_independent_groups = 2
+standard_default_min_variant_families = 2
+critical_min_independent_groups = 3
+critical_min_variant_families = 2
+assisted_positive_mastery_score = false
+corroborating_can_replace_direct = false
+ai_evaluator_fixed_weight = none
+single_clean_post_mastery_failure = verification_due
 ```
 
-Bu değerler Research AI doğrulaması tamamlanana kadar bağlayıcı değildir.
+Bu parametrelerin `0.80`, `5`, `2`, `3` gibi numeric bölümleri calibration candidate'larıdır.
 
 ---
 
-# 20. Research AI doğrulama kapısı
+# 23. Pilot calibration — 17C
 
-2E ancak ayrı Research AI raporu alındıktan ve ana yönetici tarafından değerlendirildikten sonra kapanabilir.
+Loglanacak ve analiz edilecek ana çıktılar:
 
-Research AI en az şunları incelemelidir:
+- false-positive mastery: mastered sonrası fresh H0 transfer/production failure,
+- false-negative mastery: kullanıcı tekrar tekrar bağımsız başarılı iken gate nedeniyle gereksiz bekleme,
+- average attempts before mastery,
+- hint dependence before independent success,
+- problem-family diversity etkisi,
+- mastered prerequisite sonrası dependent Skill öğrenme performansı,
+- retention recheck başarısı,
+- remediation frequency,
+- LLM evaluator ile deterministic/fresh cross-check uyuşmazlığı,
+- over-practice.
 
-- Beta-style accumulator seçiminin pedagojik/istatistiksel artı ve eksileri,
-- BKT/IRT/AFM/PFA/elo/heuristic gate modelleriyle karşılaştırma,
-- `0.80` threshold candidate değerinin olası false-positive/negative etkileri,
-- direct/corroborating `1.0/0.5` ayrımının gerekçelendirilip gerekçelendirilemeyeceği,
-- H0–H4 `1/.85/.65/.35/0` katsayılarının evidence-based olup olmadığı ve daha güvenli alternatif,
-- minimum evidence group / family diversity gate'lerinin mantığı,
-- critical production için H0 artifact şartı,
-- negative evidence + verification_due/hysteresis davranışı,
-- AI evaluator provenance weight yaklaşımı,
-- az kullanıcı datasıyla V1 için hangi modelin en güvenli olduğu,
-- hangi değerlerin sabit değil configurable/calibrated tutulması gerektiği,
-- pilot sırasında hangi metriklerin izlenmesi gerektiği.
+`0.80`, window `5` ve min-group/family defaultları bu verilerle değişebilir.
 
-Raporda mümkün olduğunca birincil/akademik kaynak, kaynak tarihi, DOI/URL, bulgu, sınırlılık ve güven seviyesi istenmelidir.
+Tek kullanıcı V1'de gerçek population psychometric calibration yapılamayacağı açıkça kabul edilir; amaç güvenli, explainable cold-start motorudur.
 
 ---
 
-# 21. 2E tamamlanma kapısı — ŞU AN KARŞILANMADI
+# 24. 2E'de bilinçli olarak yapılmayanlar
 
-2E şu anda **tamamlanmış değildir**.
+2F veya sonraya bırakılanlar:
 
-Kapanması için:
-
-1. ayrı Research AI raporu alınmalı,
-2. rapor mevcut 2A–2D bağlayıcı kararlarla karşılaştırılmalı,
-3. candidate formül gerekirse revize edilmeli,
-4. kalıcı karar kaydı güncellenmeli,
-5. acceptance/false-positive senaryoları tekrar kontrol edilmeli,
-6. POST-STEP GitHub + MASTER_PLAN sync yapılmalı,
-7. ancak sonra 2F aktif yapılmalıdır.
+- half-life / time decay,
+- spaced repetition interval'leri,
+- retention risk threshold,
+- mastered → weakening time trigger,
+- recency dışında explicit time weighting,
+- fitted PFA/R-PFA coefficients,
+- BKT parameter fitting,
+- IRT item calibration,
+- Elo difficulty fitting,
+- LLM evaluator benchmark/calibration,
+- assessment composition,
+- exact DB schema.
 
 ---
 
-# 22. Sıradaki işlem
+# 25. 2E kabul kriterleri
 
-**2E Research AI doğrulaması.**
+2E tamamlandı çünkü:
 
-2F'ye henüz geçilmez.
+- ayrı Research AI raporu alındı ve otomatik kabul edilmeden değerlendirildi,
+- candidate Beta-style accumulator finalden çıkarıldı,
+- sabit assistance ve AI evaluator numeric weights kaldırıldı,
+- mastery score yalnız eligible H0 direct evidence'a bağlandı,
+- same-family/dependency için testlet grouping tanımlandı,
+- bounded recent window ile saturation riski sınırlandı,
+- v0 recent score formülü tanımlandı,
+- `0.80` ve `M=5` açıkça engineering heuristic olarak versionlandı,
+- standard/critical Objective hard gates tanımlandı,
+- coding/debugging bağımsız artifact şartları korundu,
+- Skill aggregation non-compensatory gate olarak sadeleştirildi,
+- single-error hysteresis/verification_due korundu,
+- AI evaluator numeric trust yerine verified/provisional/invalid modeli getirildi,
+- difficulty numeric multiplier olmaktan çıkarılmış halde korundu,
+- explainability ve performance-friendly bounded state tanımlandı,
+- 2F sınırı açık bırakıldı.
+
+---
+
+# 26. Sıradaki adım
+
+## 2F — Unutma modeli
+
+2F için yeni PRE-STEP GitHub refresh ve ayrı Research AI turu yapılacaktır.
+
+Araştırılacak/tasarlanacak:
+
+- spaced repetition model yaklaşımı,
+- review interval başlangıcı ve büyümesi,
+- successful/failed delayed retrieval,
+- retention risk / time decay,
+- `mastered → weakening → mastered/remediation_required`,
+- natural reuse'un retention evidence sayılması,
+- GRE-v0 recent mastery state ile retention state'in birlikte çalışması.
