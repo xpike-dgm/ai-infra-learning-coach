@@ -34,14 +34,13 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [x] **3B — Görev kategorileri** — `docs/TASK_TAXONOMY_SPEC.md` — D-034
 - [x] **3C — Öncelik puanı** — `docs/PRIORITY_POLICY_SPEC.md` — PBR-v0 / D-035
 - [x] **3D — Prerequisite davranışı** — `docs/PREREQUISITE_POLICY_SPEC.md` — PRG-v0 / D-036
-- [x] **3E — Hızlı öğrenme** — `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** `VDW-v0`; diagnostic GRE-v0'dan daha kolay değildir, Objective-level validated coverage waiver, partial skip, H0/provenance/evaluator/prerequisite false-skip guard, GRE→PRG→Topic→replan entegrasyonu. D-037.
-- [x] **3F — Kaçırılan günler** — `docs/MISSED_DAY_RECOVERY_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** `SRR-v0`; absence failure/debt/mastery decay değildir, stale plan replay edilmez, current-state re-entry, overdue retention normal RVR/PBR sinyali, starvation≠absence, bounded capacity recovery, branch-local blockers, integrated evidence için ayrı attribution. D-038.
-- [ ] **3G — Açıklanabilir planner** **AKTİF**
-- [ ] **3H — Planner simülasyonu**
+- [x] **3E — Hızlı öğrenme** — `docs/DIAGNOSTIC_WAIVER_SPEC.md` — VDW-v0 / D-037
+- [x] **3F — Kaçırılan günler** — `docs/MISSED_DAY_RECOVERY_SPEC.md` — SRR-v0 / D-038
+- [x] **3G — Açıklanabilir planner** — `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** `PDT-v0`; structured reason codes + need/candidate decision trace, user-facing/internal explanation ayrımı, versioned replan chain, deterministic 3A–3G pseudocode ve 3H invariant set'i. D-039.
+- [ ] **3H — Planner simülasyonu** **AKTİF**
 
-**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, reason-code/pseudocode, simulation suite.
+**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, `docs/PLANNER_EXPLAINABILITY_SPEC.md`, simulation suite.
 
 ---
 
@@ -202,7 +201,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3F`  
-**Aktif:** **`3G — Açıklanabilir planner`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3G`  
+**Aktif:** **`3H — Planner simülasyonu`**
 
-3G başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+3H başlamadan yeni PRE-STEP GitHub refresh zorunludur.
