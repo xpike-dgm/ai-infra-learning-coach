@@ -14,9 +14,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 | Adım | Durum | Açıklama |
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ Tamamlandı | `1A–1D` tamamlandı. Product requirements, V1 scope, success criteria ve non-goals kilitli. |
-| **2A — Bilgi birimleri** | ✅ Tamamlandı | `Domain → Module → Topic → Skill → Learning Objective` modeli `docs/LEARNING_ENGINE_SPEC.md` içinde kilitlendi. Curriculum organizasyonu ile gerçek learning/mastery katmanı ayrıldı. |
-| **2B — Topic durumları** | 🟡 Aktif | Topic state machine; locked/available/learning/mastered/weakening/remediation_required durumları ve geçişleri tasarlanacak. |
-| **2C — Mastery sinyalleri** | ⬜ Bekliyor | 2B sonrası teori/coding/debugging/explanation/transfer/retention evidence modeli tasarlanacak. |
+| **2A — Bilgi birimleri** | ✅ Tamamlandı | `Domain → Module → Topic → Skill → Learning Objective` modeli `docs/LEARNING_ENGINE_SPEC.md` içinde kilitlendi. |
+| **2B — Topic durumları** | ✅ Tamamlandı | `locked / available / learning / mastered / weakening / remediation_required` state machine ve geçişleri `docs/TOPIC_STATE_MACHINE.md` içinde kilitlendi. |
+| **2C — Mastery sinyalleri** | 🟡 Aktif | Teori, coding, debugging, explanation, transfer, retention, proje ve süre evidence türlerinin neyi kanıtladığı ve neyi tek başına kanıtlayamayacağı tasarlanacak. |
 | **2D — AI/ipucu etkisi** | ⬜ Bekliyor | Hint ve AI-assisted task etkisi. |
 | **2E — Mastery formülü v0** | ⬜ Bekliyor | Ağırlık, threshold, minimum evidence ve confidence. |
 | **2F — Unutma modeli** | ⬜ Bekliyor | Retention, interval ve decay. |
@@ -24,25 +24,25 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 
 ## Son tamamlanan adım
 
-### 2A — Bilgi birimleri
+### 2B — Topic durumları
 
 **Tamamlanma tarihi:** 2026-08-24  
-**Ana çıktı:** `docs/LEARNING_ENGINE_SPEC.md`
+**Ana çıktı:** `docs/TOPIC_STATE_MACHINE.md`
 
 **Kilitleyen kararlar:**
 
-- `Domain → Module → Topic` curriculum organizasyon katmanıdır.
-- `Skill → Learning Objective` gerçek öğrenme ve ölçüm katmanıdır.
-- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill`'dir.
-- Evidence en atomik olarak `Learning Objective` seviyesine bağlanabilir.
-- Topic/Module/Domain mastery doğrudan bağımsız gerçeklik değil, Skill verilerinden türetilen derived görünümlerdir.
-- Aynı Skill birden fazla Topic içinde teach/practice/assess/reinforce rolüyle kullanılabilir; duplicate mastery yaratılmaz.
-- Runtime prerequisite ana olarak `Skill → Skill` çalışır.
-- Cross-domain bağlantılar mümkündür; Technical English varsayılan olarak teknik ilerlemeyi global hard-lock etmez.
-- Learning Objective gözlemlenebilir ve ölçülebilir eylem olarak yazılmalıdır; `oku/izle/tamamla` tek başına objective değildir.
+- Topic state mastery'nin kendisi değil; prerequisite, coverage, Skill mastery, retention ve remediation'dan türetilen planner/UX state'idir.
+- Canonical state'ler: `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.
+- `locked` esas olarak henüz başlanmamış Topic'in hard prerequisite giriş kapısıdır.
+- Başlanmış/mastered Topic prerequisite sonradan zayıfladı diye geriye dönük `locked` yapılmaz.
+- `mastered` için coverage/validated waiver + required Skill mastery gate gerekir; task/lesson completion yetmez.
+- `weakening` daha önce öğrenilmiş Topic'te retention riskini; `remediation_required` hedefli müdahale gerektiren doğrulanmış Skill eksikliğini ifade eder.
+- Remediation coverage'ı sıfırlamaz ve bütün curriculum'u durdurmaz.
+- Topic state ileri Topic'leri tek başına kilitlemez; canonical prerequisite kararı Skill mastery üzerinden çalışır.
+- State transition'lar reason/history ile açıklanabilir olmalıdır.
 
 ## Aktif adım
 
-### 2B — Topic durumları
+### 2C — Mastery sinyalleri
 
-Şimdi Topic'in `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required` gibi durumlarının kesin anlamı ve state transition kuralları oluşturulacaktır. Topic state, coverage ile mastery'nin birbirine karıştırılmasına izin vermeyecek şekilde tasarlanacaktır.
+Şimdi her evidence türünün gerçek öğrenme hakkında ne kadar ve hangi yönden bilgi verdiği tanımlanacak. Amaç 2E'deki formülü yazmadan önce `quiz doğru = öğrendi` gibi yanlış pozitifleri yapısal olarak engelleyecek evidence modelini kurmaktır.
