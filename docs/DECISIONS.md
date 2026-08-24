@@ -26,7 +26,7 @@ Yalnız bağımlı dallar bekler.
 
 ## D-007 — Ana kariyer rotası systems → GPU → AI infrastructure
 **Durum:** Kabul edildi / D-042 ile Python foundation eklendi  
-Computer/Programming Foundations → Python + C → Linux/Tooling → Modern C++ → DS&A → Computer Architecture → OS/Memory → Concurrency/Parallelism → Networking → Distributed Systems/Storage → Cloud/Observability → Performance → GPU Architecture → CUDA → Triton → ML/Transformer fundamentals → LLM Inference → Multi-GPU → AI Infrastructure.
+Technical English paralel → Python → C → Linux/Git/Shell → DS&A foundations → Modern C++ → Computer Architecture → OS/Memory → Concurrency/Parallelism → Networking → Distributed Systems/Storage → Containers/Cloud/Observability → Performance → GPU Architecture → CUDA → Triton → ML/Transformer fundamentals → LLM Inference → serving systems → KV/batching/scheduling/quantization → Multi-GPU/NCCL/RDMA → AI Infrastructure → Open Source/projects/capstone.
 
 ## D-008 — Uygulama kişisel kullanım için
 **Durum:** Kabul edildi  
@@ -61,9 +61,9 @@ C++ Systems / Systems Software / Linux Infrastructure / Distributed Systems / Pe
 **Durum:** Kabul edildi — 2026-08-24  
 Research AI dış araştırma; Coding AI implementasyon; Test/QA AI bağımsız doğrulama; ana yönetici karar/spec/GitHub hafızasıdır. Ayrıntı: `docs/AI_AGENT_WORKFLOW.md`.
 
-## D-017 — Sabit `1A / 1B / ...` adım kodları kullanılacak
-**Durum:** Kabul edildi — 2026-08-24  
-Canonical indeks: `docs/EXECUTION_INDEX.md`. D-043 mevcut kodları renumber etmeden AŞAMA 20'yi sona ekler.
+## D-017 — Sabit adım kodları canonical indeks üzerinden yürütülecek
+**Durum:** Kabul edildi / D-044 ile gelecekteki adımlar için kontrollü reindex istisnası eklendi  
+Canonical indeks: `docs/EXECUTION_INDEX.md`. Tamamlanmış adımlar sessizce renumber edilmez. Kullanıcının açık plan değişikliği ile henüz başlanmamış future stages topluca yeniden indekslenebilir; D-044 bu istisnayı bir kez kullanır.
 
 ## D-018 — V1 adaptif öğrenme döngüsünü gerçek Android release olarak çalıştıracak
 **Durum:** Kabul edildi — 2026-08-24  
@@ -236,56 +236,59 @@ Ayrıntı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
 **Durum:** Kabul edildi — 2026-08-24
 - Daily micro assessment zorunlu günlük quiz/kota değildir; yalnız state'te gerçek measurement ihtiyacı varsa planner candidate'ı olur.
 - Fixed soru sayısı, fixed assessment süresi veya günlük yüzde yoktur; assessment 3A hard capacity + PBR priority içinde yaşar.
-- `practice`, `assess`, `retain`, `diagnose` purpose'ları canonical olarak ayrıdır; soru-benzeri UI purpose'ı belirlemez.
+- `practice`, `assess`, `retain`, `diagnose` purpose'ları canonical olarak ayrıdır.
 - Assessment mevcut LearningNeed/evidence gap bağlamından türetilir; ayrı assessment backlog/debt yoktur.
-- Target Objective coverage ve PRG prerequisite açısından adil olmalıdır; undeclared/unknown prerequisite target negative evidence üretemez.
-- Mastery/verification iddiası için varsayılan H0 independent attempt'tir. H1–H4 yardım öğrenmeye izin verir fakat positive independent mastery evidence değildir; yardım istemek negative H0 evidence sayılmaz.
-- Submit sonrası feedback önceki H0 attempt'i geriye dönük contaminate etmez; solution exposure sonrası fresh/unseen recheck gerekir.
+- Target Objective coverage ve PRG prerequisite açısından adil olmalıdır.
+- Mastery/verification iddiası için varsayılan H0 independent attempt'tir; H1–H4 positive independent mastery değildir.
 - Invalid/ambiguous/prerequisite-contaminated/evaluator-invalid item mastery credit veya penalty üretemez.
-- Provisional evaluator critical mastery/remediation kararını tek başına belirleyemez.
-- Tek doğru micro item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir, verification hysteresis korunur.
+- Tek doğru item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir.
 - Coding/debugging/transfer Objective evidence standardı düşük capacity nedeniyle recognition/MCQ'ya düşürülemez.
 - Multi-Skill assessment yalnız separately observable/attributable component'lere evidence verir.
-- Assessment sonucu `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → remaining-plan replan` zincirini kullanır; yeni remediation günü otomatik uzatmaz.
+- Assessment sonucu `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → remaining-plan replan` zincirini kullanır.
 - Technical assessment'ta bilinmeyen English grammar/vocabulary gizli prerequisite olamaz.
-- 4B–4E için minimum assessment item/result contract ve canonical `assessment.*` reason-code namespace'i tanımlanmıştır.
 
 Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
 
 ## D-041 — Uzun vadeli ürün hedefi 4+ yıllık professional-readiness curriculum'a genişletildi
 **Durum:** Kabul edildi — 2026-08-24
-
-- Nihai öğrenme rotası artık yaklaşık üç yıllık horizon ile sınırlı değildir; gereken derinlik için **4+ yıl veya daha uzun** sürebilir.
-- `4+ yıl` takvimsel mezuniyet, garanti süre veya progress metriği değildir; mastery/evidence yine canonical gate'tir.
-- Final ürün hedefi yalnız course completion değil, **AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability** oluşturmaktır.
-- Professional readiness; C/C++/Linux, OS/memory, concurrency, networking, distributed systems, performance, GPU/CUDA/Triton, LLM inference, serving ve AI Infrastructure alanlarında required capability'lerin kanıtlanmasını ister.
+- Nihai rota gereken derinlik için **4+ yıl veya daha uzun** sürebilir; süre progress/readiness gate'i değildir.
+- Final hedef course completion değil verified engineering capability'dir.
+- Professional readiness; systems, performance, GPU/CUDA/Triton, inference, serving ve AI Infrastructure capability'lerinin kanıtlanmasını ister.
 - Öğretim derinliği `concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context` yönünde genişletilir.
-- Final readiness yalnız küçük quizlerle verilemez; integrated systems, debugging, performance ve professional capstone evidence gerekir.
-- V1 release bu genişleme nedeniyle 4+ yıl beklemez; ilk 8–12 haftalık production curriculum + gerçek learning engine ile daha erken release edilir.
-- Aşama 5 curriculum graph yeni uzun horizon'ı destekleyecek extensible yapı kurar; Aşama 14 ilk production package'tır; Aşama 19 full professional curriculum expansion + open source + career readiness katmanıdır.
-- Product teknik yeterliliği geliştirebilir fakat job offer, maaş, seniority veya üniversite/HR filtrelerini garanti edemez; gerçek ekip/production deneyimi ayrıca oluşur.
-- Güçlü GitHub projects, reproducible benchmarks, capstones, open-source readiness/contributions ve technical communication uzun vadeli evidence/portfolio hedeflerine dahil edilir.
-- D-001'in no-countdown ilkesi ve D-012'nin V1/full-curriculum ayrımı korunur; yalnız eski yaklaşık üç yıllık süre ufku D-041 ile genişletilmiştir.
+- Final readiness integrated systems, debugging, performance ve professional capstone evidence ister.
+- V1 full 4+ year curriculum'u beklemez.
+- **D-044 sonrası stage mapping:** AŞAMA 5 graph/schema backbone, AŞAMA 6 granular capability map, AŞAMA 15 first production content package, AŞAMA 20 full professional curriculum expansion + open source + career readiness + capstones.
+- Product job offer, maaş, seniority veya üniversite/HR filtrelerini garanti edemez.
 
-Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`, `docs/PRODUCT_REQUIREMENTS.md`, `docs/PROJECT_MASTER_CONTEXT.md`, `docs/V1_SCOPE.md`.
+Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
 ## D-042 — Python ana öğrenme rotasının resmi foundation dilidir
 **Durum:** Kabul edildi — 2026-08-25
-
 - Python, C/C++'ın yerine geçmez; systems/AI infrastructure rotasında tamamlayıcı ana dildir.
 - Temel programlama, otomasyon, test/benchmark scripting, veri işleme, ML/PyTorch ekosistemi ve infrastructure tooling için curriculum'a resmi olarak eklenir.
-- Python yalnız syntax seviyesinde bırakılmaz; ilerleyen curriculum'da typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML bağlamında gerçek kullanım içerir.
+- Python yalnız syntax seviyesinde bırakılmaz; typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML bağlamında gerçek kullanım içerir.
 - Common core Python + C ile başlar; düşük seviye sistem derinliği Modern C++/C ve daha sonra CUDA/Triton ile devam eder.
 
-## D-043 — Professional rota ortak çekirdekten sonra uzmanlık dallarına ayrılacak
-**Durum:** Kabul edildi — 2026-08-25
+## D-043 — Standalone specialization-track aşaması
+**Durum:** **GERİ ÇEKİLDİ / YANLIŞ YORUM — 2026-08-25**
 
-- Mevcut AŞAMA 1–19 kodları renumber edilmez; sona **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi** eklenir.
-- Kullanıcı önce ortak systems/distributed/GPU/inference çekirdeğinde gerekli capability gates'i karşılar; sonra tek bir uzmanlık derinliğine mahkûm olmayan track sistemi kullanılır.
-- İlk candidate track aileleri: GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
-- Track seçimi yalnız LLM önerisi, maaş veya hype ile otomatik yapılmaz; kullanıcı tercihi + verified capability + prerequisite readiness + gerçek kariyer kısıtları birlikte değerlendirilir.
-- Ortak core korunur; track değiştirmek sıfırdan başlatmaz. Yalnız yeni dalın eksik prerequisite/required evidence'ı açılır.
-- Her track kendi critical Skill, project, benchmark/profiling, debugging, transfer ve specialization capstone evidence contract'ına sahip olacaktır.
-- Track isimleri zamanla değişebilir; canonical değer framework adlarından çok kalıcı systems capability'lerinde tutulur.
+Önceki kullanıcı talebi yanlış yorumlanarak sona “AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi” eklenmişti. Kullanıcı bunun talep ettiği şey olmadığını açıkladı. Bu karar canonical değildir ve yürütme planından kaldırılmıştır.
 
-Ayrıntı: `docs/EXECUTION_INDEX.md`, `docs/MASTER_PLAN.md`.
+Uzmanlık dalları ileride tekrar tartışılabilir; ancak yeni bir kullanıcı kararı olmadan ayrı bir yürütme aşaması sayılmaz.
+
+## D-044 — Ana öğrenme rotası granular capability map'e ayrılacak; AŞAMA 6 planlama aşamalarının arasına eklendi
+**Durum:** KABUL EDİLDİ — 2026-08-25
+
+- Ana teknik rota yalnız `Python`, `Linux`, `CUDA`, `Networking` gibi geniş başlıklardan oluşamaz.
+- Her büyük alan `Domain → Module → Topic → Skill → Learning Objective` seviyesinde kapsamlı biçimde parçalanacaktır.
+- Gerçek weakness/mastery/remediation mümkün olduğunca canonical Skill / Objective seviyesinde lokalize edilir; Domain/Module/Topic daha geniş derived summary olabilir.
+- Örnek hedef: `Python zayıf` yerine `Python → Control Flow → Loops → while termination` zayıflığının ayrı görülmesi.
+- Python decomposition; variables, types, operators, I/O, conditionals, loops, collections, functions, scope, modules, files, exceptions, debugging, typing, testing, packaging, async, multiprocessing, networking, profiling, automation, data/tensor/ML-infra usage gibi gerçek capability family'lerini kapsayacak şekilde araştırılacaktır; liste AŞAMA 6 QA ile kesinleşir.
+- Aynı decomposition standardı Technical English'ten AI Infrastructure, Multi-GPU, serving systems ve capstone'a kadar bütün rotaya uygulanır.
+- AŞAMA 5 graph/schema/backbone'u tasarlar; **AŞAMA 6 detailed capability taxonomy + weakness-addressable map'i üretir**.
+- AŞAMA 6'da prerequisite, required/criticality, evidence family, diagnostic/remediation, retention, project/capstone ve freshness metadata bağlanır.
+- AŞAMA 6 bağımsız Research AI coverage/prerequisite QA içerir.
+- Tamamlanmış AŞAMA 1–4 kodları korunur. Henüz başlanmamış old 6–19 stages birer sıra kaydırılmıştır; old mistaken specialization AŞAMA 20 kaldırıldığı için toplam aşama sayısı yine 20'dir.
+- Yeni stage mapping: 7 English, 8 UX, 9 Architecture, 10 Skeleton, 11 Daily MVP, 12 Mastery/Planner implementation, 13 Assessment implementation, 14 AI Tutor, 15 first content, 16 analytics, 17 polish, 18 pilot, 19 release, 20 full professional curriculum/career.
+
+Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`, `docs/EXECUTION_INDEX.md`, `docs/MASTER_PLAN.md`.
