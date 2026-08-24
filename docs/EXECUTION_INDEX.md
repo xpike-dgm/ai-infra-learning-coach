@@ -8,6 +8,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - Tamamlanan `[x]`, bekleyen `[ ]`.
 - Her adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
 - `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` canonical durumla senkron tutulur.
+- D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi; adım numaraları değişmedi.
 
 ---
 
@@ -38,15 +39,12 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [x] **3F — Kaçırılan günler** — `docs/MISSED_DAY_RECOVERY_SPEC.md` — SRR-v0 / D-038
 - [x] **3G — Açıklanabilir planner** — `docs/PLANNER_EXPLAINABILITY_SPEC.md` — PDT-v0 / D-039
 - [x] **3H — Planner simülasyonu** — `docs/PLANNER_SIMULATION_SUITE.md`
-  - **Tamamlanma notu — 2026-08-24:** 16/16 policy scenarios PASS, 20/20 PDT-v0 invariant PASS, 0 critical cross-spec contradiction. Bu sonuç production runtime testi değildir; 11F/17E doğrulaması ayrıca zorunlu.
-
-**AŞAMA 3 sonucu:** ✅ PASS / TAMAMLANDI.
+  - 16/16 scenarios PASS, 20/20 invariants PASS, 0 critical contradiction.
 
 ---
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
 - [x] **4A — Günlük mikro değerlendirme** — `docs/DAILY_MICRO_ASSESSMENT_SPEC.md` — DMA-v0 / D-040
-  - **Tamamlanma notu — 2026-08-24:** daily assessment calendar quota değildir; state-driven + capacity-aware; practice/assess/retain/diagnose ayrımı, H0/assistance, prerequisite contamination, invalid item, evaluator ve evidence→replan contract'ları kilitlendi.
 - [ ] **4B — Haftalık sınav** **AKTİF**
 - [ ] **4C — Aylık yeterlilik sınavı**
 - [ ] **4D — Soru bankası**
@@ -55,16 +53,16 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph
-- [ ] **5A — Ana domain haritası**
-- [ ] **5B — Topic metadata**
-- [ ] **5C — İlk 8–12 haftalık curriculum graph**
-- [ ] **5D — Curriculum QA**
+- [ ] **5A — Ana domain haritası** — 4+ year professional domain envelope
+- [ ] **5B — Topic metadata** — mastery/evidence/professional capability metadata
+- [ ] **5C — İlk 8–12 haftalık curriculum graph** — V1 production subgraph
+- [ ] **5D — Curriculum QA** — prerequisite + professional-target coverage QA
 
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
 - [ ] **6A — Başlangıç ölçümü**
-- [ ] **6B — A1/A2/B1/B2 teknik hedefleri**
+- [ ] **6B — A1/A2/B1/B2+ teknik hedefleri**
 - [ ] **6C — Günlük English bileşeni**
 - [ ] **6D — Teknik entegrasyon**
 - [ ] **6E — English mastery**
@@ -149,6 +147,8 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [ ] **14F — Assessment content**
 - [ ] **14G — Content QA**
 
+> D-041: Aşama 14 full curriculum değil, V1 first production package'tır.
+
 ---
 
 # AŞAMA 15 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
@@ -185,18 +185,20 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [ ] **18D — APK / gerçek cihaz testleri**
 - [ ] **18E — Release dokümantasyonu**
 
+> V1 release ≠ full professional curriculum completion.
+
 ---
 
-# AŞAMA 19 — Uzun Vadeli Curriculum ve Kariyer Katmanı
-- [ ] **19A — Modern C++ paketi**
-- [ ] **19B — Systems paketi**
-- [ ] **19C — Distributed Systems paketi**
-- [ ] **19D — GPU/CUDA paketi**
-- [ ] **19E — Triton/Inference paketi**
-- [ ] **19F — Multi-GPU / AI Infrastructure**
-- [ ] **19G — Open source**
-- [ ] **19H — Career readiness**
-- [ ] **19I — Sürekli curriculum QA**
+# AŞAMA 19 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
+- [ ] **19A — Modern C++ + Professional Tooling paketi**
+- [ ] **19B — Systems + Architecture + Performance paketi**
+- [ ] **19C — Networking + Distributed Systems + Storage paketi**
+- [ ] **19D — GPU Architecture + CUDA paketi**
+- [ ] **19E — Triton + ML/Transformer + LLM Inference paketi**
+- [ ] **19F — Multi-GPU / AI Infrastructure paketi**
+- [ ] **19G — Open Source + Engineering Practice**
+- [ ] **19H — Career + Professional Readiness**
+- [ ] **19I — Sürekli Curriculum QA + Professional Capstones**
 
 ---
 
@@ -204,5 +206,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
 **Aktif:** **`4B — Haftalık sınav`**
+
+**Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
 4B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
