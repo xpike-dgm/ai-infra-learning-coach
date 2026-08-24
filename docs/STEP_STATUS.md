@@ -13,41 +13,42 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 
 | Adım | Durum | Açıklama |
 |---|---|---|
-| **AŞAMA 1 — Ürün Çerçevesi** | ✅ Tamamlandı | `1A–1D` tamamlandı. Product requirements, V1 scope, success criteria ve non-goals kilitli. |
-| **2A — Bilgi birimleri** | ✅ Tamamlandı | `Domain → Module → Topic → Skill → Learning Objective` modeli `docs/LEARNING_ENGINE_SPEC.md` içinde kilitlendi. |
-| **2B — Topic durumları** | ✅ Tamamlandı | State machine `docs/TOPIC_STATE_MACHINE.md` içinde kilitlendi. |
-| **2C — Mastery sinyalleri** | ✅ Tamamlandı | Evidence taxonomy ve false-positive guardrail'leri `docs/MASTERY_SIGNALS_SPEC.md` içinde kilitlendi. |
-| **2D — AI/ipucu etkisi** | ✅ Tamamlandı | H0–H4 yardım seviyeleri, timing, artifact authorship, solution exposure, recheck ve objective-specific tool policy `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` içinde kilitlendi. |
-| **2E — Mastery formülü v0** | 🟡 Aktif | Evidence aggregation, threshold, minimum independent/diverse evidence, assistance etkisi ve confidence araştırılıp deterministik v0 formülü tasarlanacak. |
-| **2F — Unutma modeli** | ⬜ Bekliyor | Retention, interval ve decay. |
+| **AŞAMA 1 — Ürün Çerçevesi** | ✅ Tamamlandı | `1A–1D` tamamlandı. |
+| **2A — Bilgi birimleri** | ✅ Tamamlandı | Canonical learning-unit modeli `docs/LEARNING_ENGINE_SPEC.md`. |
+| **2B — Topic durumları** | ✅ Tamamlandı | State machine `docs/TOPIC_STATE_MACHINE.md`. |
+| **2C — Mastery sinyalleri** | ✅ Tamamlandı | Evidence taxonomy `docs/MASTERY_SIGNALS_SPEC.md`. |
+| **2D — AI/ipucu etkisi** | ✅ Tamamlandı | H0–H4 yardım/evidence davranışı `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`. |
+| **2E — Mastery formülü v0** | ✅ Tamamlandı | Beta-style weighted evidence accumulator + hard gates + confidence/verification modeli `docs/MASTERY_FORMULA_V0.md` içinde kilitlendi. |
+| **2F — Unutma modeli** | 🟡 Aktif | Spaced repetition, retention interval, decay/weakening ve doğal reuse davranışı araştırılıp tasarlanacak. |
 | **3A ve sonrası** | ⬜ Bekliyor | Aşama 2 tamamlandıktan sonra ilerleyecek. |
 
 ## Son tamamlanan adım
 
-### 2D — AI / ipucu etkisi
+### 2E — Mastery formülü v0
 
 **Tamamlanma tarihi:** 2026-08-24  
-**Ana çıktı:** `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+**Ana çıktı:** `docs/MASTERY_FORMULA_V0.md`
 
 **Kilitleyen kararlar:**
 
-- Assistance content H0–H4 olarak sınıflandırıldı.
-- Yardım timing'i ve artifact authorship ayrı metadata olarak tutulacak.
-- `independent_evidence`, `assisted_evidence`, `practice_only`, `requires_independent_recheck` yorum sınıfları tanımlandı.
-- AI-generated/copied kodun çalışması kullanıcı için direct coding mastery evidence değildir.
-- Full/partial solution exposure sonrası fresh/unseen independent recheck gerekir.
-- Submit sonrası AI feedback önceki tamamlanmış attempt'i geriye dönük kirletmez.
-- Explanation/comprehension, coding production objective'inin yerine geçmez.
-- Compiler/test/docs/autocomplete kullanımı objective-specific allowed-tools policy'ye bağlıdır; otomatik penalty değildir.
-- Hint istemek tek başına negative mastery değildir.
-- External AI için surveillance/cheat-detection yaklaşımı kullanılmayacak.
-- AI helper provenance ile AI evaluator provenance ayrıldı.
-- Sayısal yardım etkisi 2E'ye bırakıldı.
+- Mastery yalnız score değildir; `MasteryEvidenceScore + hard gates + confidence/verification` birlikte karar verir.
+- Objective score için Beta-style accumulator kullanılır: `alpha = 1 + Σ(wq)`, `beta = 1 + Σ(w(1-q))`, `score = alpha/(alpha+beta)`.
+- Operational v0 threshold `0.80`; bilimsel sabit veya “%80 öğrendi” anlamına gelmez ve pilotta kalibre edilir.
+- `direct=1.0`, `corroborating=0.5`, contextual evidence score üretmez.
+- H0–H4 assistance v0 katsayıları `1.00 / 0.85 / 0.65 / 0.35-or-0 / 0` olarak versionlanır.
+- Difficulty'ye keyfi score multiplier verilmez; critical gate ve item eligibility için kullanılır.
+- Same-item/same-family tekrarları bağımsız evidence'ı şişiremez.
+- Required/critical Objective'ler hard gate'tir; yüksek average kritik eksiği gizleyemez.
+- Critical production Objective en az bir H0 user-authored direct artifact gerektirir.
+- Skill mastered için tüm required/critical Objective gate'leri geçmelidir.
+- Tek yeni yanlış mastered Skill'i anında silmez; `verification_due` ile fresh doğrulama gerekir.
+- Formula incremental hesaplamaya uygun tasarlandı; D-028 performans gereksinimi korundu.
+- Numeric constants `mastery_formula_version=v0` olarak kalibre edilebilir konfigürasyondur.
 
 ## Aktif adım
 
-### 2E — Mastery formülü v0
+### 2F — Unutma modeli
 
-2E'de artık nitel evidence modelini deterministik hesaplama/gate modeline çevireceğiz. Bu adım öğrenme bilimi ve mastery model karşılaştırması gerektirdiği için `AI_AGENT_WORKFLOW.md` uyarınca Research AI kullanılacak; araştırma sonucu doğrudan karar değil, ana yöneticinin spec girdisi olacak.
+2F'de 2E'nin mastery state'i zaman ve gecikmeli retrieval ile birleştirilecek. Spaced repetition aralıkları, successful/failed delayed review, `mastered → weakening`, doğal reuse ve review scheduling için Research AI / dış araştırma kullanılacak.
 
-**2E başlamadan önce `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.**
+**2F başlamadan önce `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.**
