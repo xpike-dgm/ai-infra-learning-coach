@@ -14,39 +14,38 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
-| **3A — Günlük kapasite** | ✅ | Hard daily budget, editable presets, reserve/min-block, no auto-overrun, dynamic remaining-time replan, no backlog debt. `docs/ADAPTIVE_PLANNER_SPEC.md`, D-033. |
-| **3B — Görev kategorileri** | 🟡 Aktif | Planner'ın üretebileceği task taxonomy ve ortak task contract tasarlanacak. |
-| **3C ve sonrası** | ⬜ Bekliyor | 3B kapanışından sonra. |
+| **3A — Günlük kapasite** | ✅ | Hard daily budget, editable presets, no auto-overrun/backlog debt. `docs/ADAPTIVE_PLANNER_SPEC.md`, D-033. |
+| **3B — Görev kategorileri** | ✅ | LearningNeed/TaskCandidate/Evidence ayrımı, purpose/activity/track/evidence eksenleri, multi-Skill attribution ve task contract. `docs/TASK_TAXONOMY_SPEC.md`, D-034. |
+| **3C — Öncelik puanı** | 🟡 Aktif | Capacity'ye sığmayan açık ihtiyaçlar arasında deterministic/explainable priority ve selection policy tasarlanacak. |
+| **3D ve sonrası** | ⬜ Bekliyor | 3C kapanışından sonra. |
 
-## Son tamamlanan adım — 3A
+## Son tamamlanan adım — 3B
 
 Ana çıktı:
-- `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü
-- D-033
+- `docs/TASK_TAXONOMY_SPEC.md`
+- D-034
 
-### 3A final capacity özeti
-- Kullanıcının explicit günlük süresi hard budget.
-- V0 editable short/normal/intensive presetler: 30/60/90 dk; bilimsel optimum değil.
-- V0 10% planning reserve ve 10 dk minimum plannable block engineering heuristic.
-- Fixed kategori yüzdeleri yok.
-- Remediation/retention ortaya çıkınca gün uzamaz; kalan budget replan edilir.
-- Time override session ortasında da yapılabilir.
-- Unfinished/planned-but-not-started task negative evidence değildir.
-- Task sığmazsa safe split → smaller eligible alternative → defer.
-- Deferred task ertesi gün borç kuyruğu değildir.
-- Duration estimates future user pace adaptation destekler.
-- Wall-clock ve active-learning süreleri ayrılabilir.
-- Capacity calculation deterministic/versioned ve LLM'den bağımsız.
+### 3B final özeti
+- `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent` ayrımı canonical.
+- Deferred candidate ertesi gün borç değildir; open LearningNeed çözülmediyse fresh candidate üretilir.
+- Purpose: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
+- Coding/debugging/project activity; English curriculum track'tir.
+- Task completion mastery değildir.
+- Multi-Skill task component evidence'ı ayrı attribution ister.
+- Provenance/validation, variant/dependency, prerequisite/tools ve 3A duration metadata contract'a dahildir.
+- Paused progress gerçek checkpoint ile saklanabilir; priority/eligibility ertesi gün yeniden değerlendirilir.
+- 3B priority weight belirlemez; ham sinyalleri 3C'ye verir.
 
-## Aktif adım — 3B Görev kategorileri
+## Aktif adım — 3C Öncelik puanı
 
-3B başlamadan `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh yapılacak.
+3C başlamadan `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh yapılacaktır.
 
-3B'de kesinleştirilecek:
-- canonical task categories,
-- teach / practice / assessment / coding / debugging / retention / remediation / English / project gibi kategorilerin ayrımı,
-- bir task'ın primary purpose ile evidence type ayrımı,
-- task metadata/contract,
-- splittable / duration / prerequisite / target Skill-Objective alanları,
-- multi-Skill/integrated task attribution sınırları,
-- 3C priority'nin kullanacağı task candidate primitive.
+3C'de kesinleştirilecek:
+- critical prerequisite / verification / remediation / retention / continuing learning / new learning / English gibi ihtiyaçların priority ilişkisi,
+- urgency vs importance ayrımı,
+- duration/capacity-aware seçim,
+- ertelenen ama açık kalan LearningNeed'in starvation yaşamaması,
+- aynı gün çok sayıda kritik işte tie-break,
+- fixed category percentages olmadan dengeli progress,
+- deterministic priority score veya decision hierarchy,
+- user-visible reason inputs (final reason-code metinleri 3G'de).
