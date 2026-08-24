@@ -112,13 +112,11 @@ UI thread ağır mastery/planner/DB/network/AI/code-execution ile bloke edilmez;
 **Durum:** **YERİNE D-031 GEÇTİ — 2026-08-24**
 
 İlk candidate:
-
 ```text
 alpha = 1 + Σ(wq)
 beta  = 1 + Σ(w(1-q))
 score = alpha/(alpha+beta)
 ```
-
 ve direct/corroborating, H0–H4, AI-evaluator numeric multiplier'ları önerilmişti. Bu model ayrı Research AI doğrulamasından sonra finalden çıkarıldı. Tarihsel candidate ayrıntısı Git history ve `docs/2E_RESEARCH_VALIDATION.md` içinde açıklanır.
 
 ## D-030 — 2E ayrı Research AI raporu alınmadan kapatılamaz
@@ -128,24 +126,33 @@ Kullanıcı bağımsız Research AI raporunu sağladı; ana yönetici raporu oto
 ## D-031 — Final Mastery Formula v0 = Gated Recent Evidence (GRE-v0)
 **Durum:** Kabul edildi — 2026-08-24
 
-2E final modeli:
+- Mastery score'a yalnız eligible, prerequisite-valid, H0, direct/primary, verified, bağımsız evidence group girer.
+- H1–H4 positive independent mastery score'a girmez.
+- Same/near items dependency/testlet grouping ile kontrol edilir.
+- Objective score son en fazla 5 eligible H0 direct group'un ortalaması; threshold 0.80, window 5 heuristic/calibration değeridir.
+- Required/critical Objective hard gates; critical coding H0 user-authored artifact, debugging H0 diagnosis/fix ister.
+- İlk clean post-mastery failure instant reset değil `verification_due` üretir.
+- Difficulty multiplier değildir; fixed AI-evaluator trust multiplier yoktur.
+- Bounded/incremental implementation D-028'e uygundur.
 
-- Mastery score'a yalnız **eligible, prerequisite-valid, H0, direct/primary, verified, bağımsız evidence group** girer.
-- H1–H4 assisted evidence öğrenme/remediation/recheck için saklanır fakat positive independent mastery score'a girmez.
-- Corroborating evidence direct evidence eksikliğini numeric birikimle telafi edemez; diagnostic/support katmanında kullanılır.
-- Same-item/near-variant correlation `dependency_group_id/testlet_id` ile gruplanır; `variant_family_id` diversity için kullanılır.
-- Objective score son en fazla `5` eligible independent H0 direct evidence group'un `q_g` ortalamasıdır:
-  `recent_direct_score = mean(q_g)`.
-- `recent_window_max_groups_v0 = 5` ve `objective_mastery_threshold_v0 = 0.80` **engineering heuristic** olup 17C pilotunda kalibre edilir; probability veya `% learned` değildir.
-- Standard required Objective default: score `>=0.80`, en az 2 bağımsız H0 direct group, default 2 family/context, required direct type, no unresolved recheck.
-- Critical Objective default: en az 3 bağımsız H0 direct group, en az 2 family/context, non-basic evidence ve Objective-specific production/debugging/transfer gate'leri.
-- Coding/production critical Objective en az bir gerçek H0 user-authored coding artifact gerektirir.
-- Debugging critical Objective en az bir bağımsız H0 diagnosis/fix evidence gerektirir.
-- Skill mastered: **tüm required Objective PASS + tüm critical Objective PASS + unresolved critical recheck yok**. Yüksek average kritik açığı telafi edemez.
-- İlk temiz post-mastery H0 direct failure mastery'yi anında silmez; `verification_due` açar ve fresh/unseen recheck ister.
-- Difficulty numeric multiplier değildir; item eligibility / non-basic / transfer gate olarak kullanılır.
-- Sabit `AI evaluator = 0.80` kaldırıldı. Evaluator sonucu `verified | provisional | invalid` olarak tutulur; provisional LLM grading critical mastery'yi tek başına geçiremez.
-- Explainability trace ve bounded/incremental sufficient-state zorunludur; D-028 korunur.
-- Time decay / half-life / spaced repetition 2F kapsamıdır.
+Ayrıntı: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
 
-Ayrıntı: `docs/MASTERY_FORMULA_V0.md` ve `docs/2E_RESEARCH_VALIDATION.md`.
+## D-032 — Final Retention/Forgetting modeli = RVR-v0
+**Durum:** Kabul edildi — 2026-08-24
+
+`RVR-v0 — Retention Verification & Risk` 2F final modelidir.
+
+- GRE-v0 mastery ve retention scheduling ayrı eksenlerdir.
+- Zaman geçişi GRE/mastery score'u otomatik düşürmez; `review_due` üretir.
+- Retention states: `untracked`, `fresh`, `stable`, `review_due`, `verification_due`, `at_risk`.
+- `review_due` unutma değildir; Topic'i otomatik `weakening` yapmaz ve prerequisite'i tek başına hard-block etmez.
+- Retention verification target Skill'e uygun active H0 evidence ister; coding/debugging/transfer flashcard ile ikame edilmez.
+- İlk clean delayed failure → `verification_due`; fresh/unseen recheck. Recheck failure sonrası yeni evidence GRE-v0'a girer ve gates doğal yeniden hesaplanır; score elle `0.50` gibi değere atanmaz.
+- Natural reuse ancak target Skill structurally essential + H0 + separately verified + context-diverse ise planned retention evidence sayılabilir.
+- Global project/task success bütün component Skills'i refresh etmez; automatic cluster/descendant refresh yoktur.
+- Critical prerequisite `review_due` iken hard lock yok; actual negative evidence nedeniyle `verification_due` varsa unresolved critical recheck boyunca dependent yeni work bekleyebilir.
+- Long absence sonrası backlog dump yok; representative/integrated verification yalnız ayrı Skill attribution mümkünse kullanılır. Daily capacity 3A–3F'de belirlenir.
+- V0 interval defaults (`2/4/7 gün`, critical cap 3, growth `2.0/1.6`, max `180/90`) ve 1 günlük verification separation bilimsel sabit değil versioned engineering heuristic + pilot calibration ayarıdır.
+- Model bounded/incremental/local uygulanabilir; ağır history scan veya population-trained model V1 şartı değildir.
+
+Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
