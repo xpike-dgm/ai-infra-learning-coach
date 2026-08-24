@@ -86,18 +86,10 @@ Karar: D-036.
 ### [x] 3E — Hızlı öğrenme
 **Final: `VDW-v0 — Validated Diagnostic Waiver`**
 - diagnostic GRE-v0'dan daha kolay ayrı mastery standardı değildir,
-- self-report yalnız diagnostic trigger/scope,
-- tek easy quiz / recognition-only whole-topic skip yok,
-- Objective-level `DiagnosticCoverageWaiver`,
+- Objective-level validated coverage waiver,
 - partial diagnostic yalnız kanıtlanan Objective'leri waive eder,
-- `available → mastered` yalnız coverage + GRE required/critical gates birlikte geçince,
-- critical coding/debugging/transfer/diversity gate'leri diagnostic'te düşürülemez,
-- H0/provenance/evaluator/prerequisite guard,
-- integrated diagnostic component evidence için ayrı attribution,
-- diagnostic fail prior-knowledge yolunda otomatik remediation değildir,
-- waiver mastery/retention state değildir ve curriculum version'a bağlıdır,
-- GRE → waiver → PRG → Topic → Planner replan entegrasyonu,
-- deterministic/bounded.
+- critical H0/provenance/evaluator/prerequisite guards,
+- GRE → waiver → PRG → Topic → replan entegrasyonu.
 
 Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.  
 Karar: D-037.
@@ -105,38 +97,52 @@ Karar: D-037.
 ### [x] 3F — Kaçırılan günler
 **Final: `SRR-v0 — State-based Re-entry & Recovery`**
 - absence failure/mastery decay/task debt değildir,
-- stale PlannedTask/TaskCandidate replay edilmez,
+- stale plan replay edilmez,
 - current state'ten fresh LearningNeed/candidate üretimi,
-- time yalnız RVR due/urgency sinyalini değiştirir,
-- unresolved verification/remediation korunur,
 - due inventory ≠ DailyPlan,
-- 1/7/30/60+ gün için ayrı pedagojik threshold yok,
-- starvation ile absence kesin ayrıdır,
-- integrated recovery evidence ayrı attribution ister,
-- recovery 3A hard capacity + PRG eligibility + PBR priority ile çalışır,
-- safe branch'lerde new learning tamamen dondurulmaz,
+- starvation ≠ absence,
+- recovery hard capacity + PRG + PBR ile çalışır,
 - bounded/incremental implementation.
 
 Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.  
 Karar: D-038.
 
-> **Tamamlandı — 2026-08-24:** uzun ara sonrası backlog replay yerine state-based bounded re-entry canonical hale geldi.
+### [x] 3G — Açıklanabilir planner
+**Final: `PDT-v0 — Planner Decision Trace`**
+- planner karar anında structured reason code + decision trace üretir,
+- private chain-of-thought değil canonical state/policy/disposition kaydı tutulur,
+- internal audit trace ile user-facing kısa explanation ayrılır,
+- need-level + candidate-level trace,
+- selected/blocked/invalid/deferred/split/smaller-alternative/superseded dispositions,
+- reason code namespaces: need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection, replan,
+- PRG eligibility → PBR priority → capacity fit sırası açıklamada korunur,
+- `review_due` forgetting değildir; absence debt/failure/starvation değildir,
+- versioned `PlannerReplanEvent`, completed evidence preservation,
+- LLM yalnız trace'i paraphrase edebilir; template fallback zorunlu,
+- 3A–3G deterministic end-to-end planner pseudocode,
+- 3H için test edilebilir invariant set'i,
+- bounded/ref-based trace; D-028 uyumlu.
 
-### [ ] 3G — Açıklanabilir planner — **AKTİF**
-Kesinleştirilecek:
-- machine-readable reason codes,
-- selected/skipped/blocked/deferred karar trace'i,
-- PBR/PRG/RVR/capacity/diagnostic/re-entry reason input'larının tek modelde birleşmesi,
-- user-facing kısa açıklama vs internal audit trace,
-- neden bu görev bugün var / neden diğeri gelmedi / neden branch bekliyor soruları,
-- deterministic end-to-end planner pseudocode,
-- replan reason chain,
-- 3H simulation invariants.
+Çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.  
+Karar: D-039.
 
-### [ ] 3H — Planner simülasyonu
-Sanal kullanıcı profilleri ve scenario suite.
+> **Tamamlandı — 2026-08-24:** planner'ın gerçek seçim/gating/capacity/replan nedenleri structured trace ile reconstruct edilebilir hale geldi.
 
-**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, reason-code/pseudocode, simulation suite.
+### [ ] 3H — Planner simülasyonu — **AKTİF**
+Kesinleştirilecek/doğrulanacak:
+- sanal kullanıcı profilleri,
+- normal progress, remediation, verification, retention, prerequisite-block, diagnostic, re-entry ve replan scenario suite,
+- same input → same plan + equivalent trace,
+- blocked/invalid candidate never selected,
+- hard capacity invariant,
+- branch-local blocking,
+- no task debt / no absence debt,
+- review_due semantics,
+- higher-priority-not-fit açıklaması,
+- reason trace doğruluğu,
+- Aşama 3 PASS/FAIL kapanış kararı.
+
+**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, `docs/PLANNER_EXPLAINABILITY_SPEC.md`, simulation suite.
 
 ---
 
@@ -158,6 +164,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
+Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 6A — Başlangıç ölçümü
 ### [ ] 6B — A1/A2/B1/B2 teknik hedefleri
 ### [ ] 6C — Günlük English bileşeni
@@ -188,6 +195,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 ---
 
 # AŞAMA 9 — Mobil Proje İskeleti
+> **Ana production uygulama kodlamasının başladığı aşama.**
 ### [ ] 9A — Proje kurulumu
 ### [ ] 9B — Navigation
 ### [ ] 9C — Design system implementation
@@ -297,7 +305,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3F`  
-**Aktif:** **`3G — Açıklanabilir planner`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3G`  
+**Aktif:** **`3H — Planner simülasyonu`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3G reason-code/trace/pseudocode policy → POST-STEP sync.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3H planner simulation/invariant suite → POST-STEP sync ve Aşama 3 kapanış kararı.
