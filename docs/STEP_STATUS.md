@@ -13,34 +13,36 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 
 | Adım | Durum | Açıklama |
 |---|---|---|
-| **1A — Ana ürün amacı** | ✅ Tamamlandı | Ürünün amacı ve ana ilkeleri `docs/PRODUCT_REQUIREMENTS.md` içinde kilitlendi. |
-| **1B — V1 kapsamı** | ✅ Tamamlandı | V1 zorunlu yetenekleri ve deferred alanlar `docs/V1_SCOPE.md` içinde kilitlendi. |
-| **1C — Başarı kriterleri** | ✅ Tamamlandı | 49 P0/P1/P2 acceptance kriteri `docs/V1_SUCCESS_CRITERIA.md` içinde tanımlandı. |
-| **1D — Non-goals** | ✅ Tamamlandı | Ürün seviyesi non-goals ile V1'den ertelenen özellikler `docs/NON_GOALS.md` içinde konsolide edildi. |
-| **2A — Bilgi birimleri** | 🟡 Aktif | Domain → Module → Topic → Skill → Learning Objective hiyerarşisi, her katmanın sorumluluğu ve ölçülebilir öğrenme hedefi standardı tasarlanacak. |
-| **2B ve sonrası** | ⬜ Bekliyor | 2A tamamlandıktan sonra sırayla ilerleyecek. |
+| **AŞAMA 1 — Ürün Çerçevesi** | ✅ Tamamlandı | `1A–1D` tamamlandı. Product requirements, V1 scope, success criteria ve non-goals kilitli. |
+| **2A — Bilgi birimleri** | ✅ Tamamlandı | `Domain → Module → Topic → Skill → Learning Objective` modeli `docs/LEARNING_ENGINE_SPEC.md` içinde kilitlendi. Curriculum organizasyonu ile gerçek learning/mastery katmanı ayrıldı. |
+| **2B — Topic durumları** | 🟡 Aktif | Topic state machine; locked/available/learning/mastered/weakening/remediation_required durumları ve geçişleri tasarlanacak. |
+| **2C — Mastery sinyalleri** | ⬜ Bekliyor | 2B sonrası teori/coding/debugging/explanation/transfer/retention evidence modeli tasarlanacak. |
+| **2D — AI/ipucu etkisi** | ⬜ Bekliyor | Hint ve AI-assisted task etkisi. |
+| **2E — Mastery formülü v0** | ⬜ Bekliyor | Ağırlık, threshold, minimum evidence ve confidence. |
+| **2F — Unutma modeli** | ⬜ Bekliyor | Retention, interval ve decay. |
+| **3A ve sonrası** | ⬜ Bekliyor | Aşama 2 tamamlandıktan sonra ilerleyecek. |
 
-## Tamamlanan milestone
-
-### AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
-
-**Tamamlanma tarihi:** 2026-08-24
-
-Çıktılar:
-
-- `docs/PRODUCT_REQUIREMENTS.md`
-- `docs/V1_SCOPE.md`
-- `docs/V1_SUCCESS_CRITERIA.md`
-- `docs/NON_GOALS.md`
-
-**Özet:** Ürünün amacı, V1 kapsamı, release başarı kriterleri ve kapsam dışı alanları artık ayrı ve kalıcı dokümanlarda kilitlidir.
-
-## Aktif adım
+## Son tamamlanan adım
 
 ### 2A — Bilgi birimleri
 
-Bu adımda öğrenme sisteminin veri/pedagoji omurgası kurulacak:
+**Tamamlanma tarihi:** 2026-08-24  
+**Ana çıktı:** `docs/LEARNING_ENGINE_SPEC.md`
 
-`Domain → Module → Topic → Skill → Learning Objective`
+**Kilitleyen kararlar:**
 
-Amaç yalnız isim vermek değil; her katmanın neyi temsil ettiğini, prerequisite ve mastery'nin hangi seviyede tutulacağını ve öğrenme hedeflerinin nasıl ölçülebilir yazılacağını kesinleştirmektir.
+- `Domain → Module → Topic` curriculum organizasyon katmanıdır.
+- `Skill → Learning Objective` gerçek öğrenme ve ölçüm katmanıdır.
+- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill`'dir.
+- Evidence en atomik olarak `Learning Objective` seviyesine bağlanabilir.
+- Topic/Module/Domain mastery doğrudan bağımsız gerçeklik değil, Skill verilerinden türetilen derived görünümlerdir.
+- Aynı Skill birden fazla Topic içinde teach/practice/assess/reinforce rolüyle kullanılabilir; duplicate mastery yaratılmaz.
+- Runtime prerequisite ana olarak `Skill → Skill` çalışır.
+- Cross-domain bağlantılar mümkündür; Technical English varsayılan olarak teknik ilerlemeyi global hard-lock etmez.
+- Learning Objective gözlemlenebilir ve ölçülebilir eylem olarak yazılmalıdır; `oku/izle/tamamla` tek başına objective değildir.
+
+## Aktif adım
+
+### 2B — Topic durumları
+
+Şimdi Topic'in `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required` gibi durumlarının kesin anlamı ve state transition kuralları oluşturulacaktır. Topic state, coverage ile mastery'nin birbirine karıştırılmasına izin vermeyecek şekilde tasarlanacaktır.
