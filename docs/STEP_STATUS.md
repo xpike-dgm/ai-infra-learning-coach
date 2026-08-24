@@ -14,51 +14,48 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
-| **3A — Günlük kapasite** | ✅ | Hard daily budget, no auto-overrun/backlog debt. D-033. |
-| **3B — Görev kategorileri** | ✅ | LearningNeed/TaskCandidate/Evidence ayrımı ve canonical task contract. D-034. |
-| **3C — Öncelik puanı** | ✅ | PBR-v0 semantic bands + deterministic rank vector. D-035. |
-| **3D — Prerequisite davranışı** | ✅ | PRG-v0 hard/soft Skill prerequisites, readiness gate, branch-local blocking. D-036. |
-| **3E — Hızlı öğrenme** | ✅ | VDW-v0 validated diagnostic waiver ve false-skip guard. D-037. |
-| **3F — Kaçırılan günler** | ✅ | SRR-v0 current-state re-entry, no absence penalty/debt. D-038. |
-| **3G — Açıklanabilir planner** | ✅ | `PDT-v0`: structured decision trace, reason-code taxonomy, user/internal explanation split, deterministic end-to-end pseudocode. `docs/PLANNER_EXPLAINABILITY_SPEC.md`, D-039. |
-| **3H — Planner simülasyonu** | 🟡 Aktif | 3A–3G planner invariants sanal kullanıcı/scenario suite ile doğrulanacak. |
-| **AŞAMA 4 ve sonrası** | ⬜ Bekliyor | 3H kapanışından sonra. |
+| **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 3H spec-level simulation: 16/16 scenario + 20/20 invariant PASS. |
+| **4A — Günlük mikro değerlendirme** | 🟡 Aktif | Günlük öğrenme akışında düşük maliyetli ama güvenilir mikro assessment davranışı tasarlanacak. |
+| **4B ve sonrası** | ⬜ Bekliyor | 4A kapanışından sonra. |
 
-## Son tamamlanan adım — 3G
+## AŞAMA 3 final omurgası
 
-Ana çıktı:
-- `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-- D-039
+- `3A` ✅ — hard daily capacity / no auto-overrun / no task debt — D-033
+- `3B` ✅ — LearningNeed / TaskCandidate / Evidence ayrımı — D-034
+- `3C` ✅ — PBR-v0 semantic bands + deterministic rank — D-035
+- `3D` ✅ — PRG-v0 prerequisite readiness / branch-local blocking — D-036
+- `3E` ✅ — VDW-v0 validated diagnostic waiver — D-037
+- `3F` ✅ — SRR-v0 state-based re-entry / no absence debt — D-038
+- `3G` ✅ — PDT-v0 structured decision trace — D-039
+- `3H` ✅ — `docs/PLANNER_SIMULATION_SUITE.md`; 16/16 scenarios PASS, 20/20 invariants PASS
 
-### 3G final özeti
-- Açıklama planner kararından sonra uydurulmaz; structured trace'ten türetilir.
-- Internal audit trace ile user-facing kısa açıklama ayrıdır.
-- Private chain-of-thought tutulmaz/gösterilmez; yalnız canonical state refs + policy sonuçları + disposition/reason code saklanır.
-- Need-level ve Candidate-level decision trace ayrıdır.
-- Selected / blocked / invalid / lower-priority / capacity-deferred / split / smaller-alternative / superseded durumları explicit disposition taşır.
-- Reason code namespace'leri need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection ve replan olarak tanımlandı.
-- User-facing her factual explanation internal trace'te bulunmak zorundadır.
-- PRG eligibility → PBR priority → capacity fit sırası trace'te korunur.
-- `review_due` forgetting/failure diye; absence debt/failure/starvation diye açıklanamaz.
-- Higher-priority task sığmadığı için lower-priority task seçildiyse gerçek capacity-fit nedeni kaydedilir.
-- Replan versioned event chain üretir ve completed evidence'ı korur.
-- LLM yalnız trace'i paraphrase edebilir; canonical decision source of truth değildir.
-- 3A–3G deterministic planner pseudocode'u ve 3H invariant set'i tanımlandı.
-- Trace bounded/ref-based ve D-028 ile uyumludur.
+### 3H doğrulanan kritik davranışlar
+- aynı canonical input + versions → aynı selected order + semantik eşdeğer trace,
+- blocked/invalid candidate selected olmaz,
+- explicit extension yoksa hard capacity aşılmaz,
+- `review_due` forgetting/failure değildir ve prerequisite'i otomatik hard-block yapmaz,
+- critical metadata tek başına P0 değildir,
+- higher-priority task süreye sığmazsa lower-priority task seçilebilir fakat trace gerçek capacity nedenini korur,
+- yalnız dependent branch prerequisite yüzünden bekler,
+- partial diagnostic yalnız validated Objective'leri waive eder,
+- re-entry stale task backlog'unu replay etmez,
+- absence debt/failure/starvation değildir,
+- replan completed evidence'ı korur,
+- user-facing explanation internal trace dışına çıkmaz,
+- deferred task tomorrow debt değildir,
+- bounded/ref-based yaklaşım policy-level PASS; gerçek runtime performance 11F/17E'de ayrıca test edilecek.
 
-## Aktif adım — 3H Planner simülasyonu
+## Aktif adım — 4A Günlük mikro değerlendirme
 
-3H başlamadan `PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh yapılacaktır.
+4A başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
 
-3H'de kesinleştirilecek/doğrulanacak:
-- sanal kullanıcı profilleri,
-- normal progress, remediation, verification, retention, prerequisite block, partial diagnostic, low/high capacity, long absence ve mid-session replan senaryoları,
-- aynı input → aynı plan + eşdeğer trace,
-- blocked/invalid candidate seçilmeme,
-- hard capacity aşılmama,
-- branch-local blocking,
-- no task debt / no absence debt,
-- review_due semantics,
-- reason trace doğruluğu,
-- 3A–3G acceptance/invariant suite PASS/FAIL sonuçları,
-- Aşama 3'ün kapanış kararı.
+4A'da kesinleştirilecek:
+- günlük mikro assessment'ın amacı ve sınırı,
+- lesson/practice ile assessment ayrımı,
+- hangi Skill/Objective'lerin hangi gün ölçüleceği,
+- soru/görev sayısı için sabit bilimsel optimum uydurmadan capacity-aware kompozisyon,
+- GRE-v0 / assistance / prerequisite / retention kurallarıyla entegrasyon,
+- düşük günlük sürede assessment davranışı,
+- invalid/ambiguous item güvenliği,
+- sonuçların remediation/replan'e etkisi,
+- Aşama 4'ün 4B–4E adımlarına girdi contract'ı.
