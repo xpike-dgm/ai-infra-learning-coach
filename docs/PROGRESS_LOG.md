@@ -117,9 +117,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
-**Durum etkisi**
-- Aktif adım değişmedi: `2B — Topic durumları`.
-
 ---
 
 ### 2026-08-24 — 2B Topic state machine tamamlandı
@@ -136,16 +133,9 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `mastered` için required coverage veya validated diagnostic waiver + required/critical Skill mastery gate birlikte zorunlu hale getirildi.
 - Remediation'ın geçmiş coverage'ı sıfırlamaması ve bütün curriculum'u durdurmaması kararlaştırıldı.
 - Topic state'in ileri Topic kilidinin canonical kaynağı olmadığı; gerçek prerequisite yetkisinin Skill mastery'de kalacağı tekrar kilitlendi.
-- Topic state ile coverage'ın ayrı veri kavramları olması belirlendi.
 - State transition'ların deterministik ve reason/history ile açıklanabilir olması zorunlu tutuldu.
 - Curriculum update ile yeni required objective/skill gelirse mastered Topic'in açıklanabilir biçimde yeniden değerlendirilebilmesi tanımlandı.
 - 2B içine mastery/remediation/retention için keyfi sayısal eşik gömülmedi; 2C–2F'ye bırakıldı.
-
-**Alınan kararlar**
-- Topic state, Skill mastery'nin üstünde kullanıcı/planner için derived orchestration katmanıdır.
-- `weakening` öğrenmenin silinmesi değil retention riskidir.
-- `remediation_required` ceza değil hedefli onarım ihtiyacıdır.
-- Bir Topic'in state'i tek başına bağımlı Topic'leri kilitlemez; Skill-level prerequisite gate karar verir.
 
 **Üretilen / güncellenen dosyalar**
 - `docs/TOPIC_STATE_MACHINE.md`
@@ -155,10 +145,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
-**Açık kalan noktalar**
-- Hangi evidence türünün neyi ne kadar güçlü kanıtladığı henüz tanımlanmadı.
-- AI/hint etkisi, sayısal mastery formula ve retention algoritması açık.
-
 **Sonraki kesin adım**
 - **`2C — Mastery sinyalleri`**.
 
@@ -166,26 +152,70 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 ### 2026-08-24 — Her adım için zorunlu GitHub beyin tazeleme protokolü kilitlendi
 
-**Kullanıcı talebi**
-- Her numaralı proje adımına başlamadan GitHub'daki proje beyninin tazelenmesi.
-- Adım bittikten sonra sonraki sohbet/agent'ın doğru bağlamla devam edebilmesi için gerekli hafıza dosyalarının güncellenmesi.
-- Bu davranışın isteğe bağlı değil, ana yöneticinin kesin görevi olması.
-
-**Alınan karar**
 - `PRE-STEP GitHub refresh → adımı yürüt → gerekirse Research/Coding/QA → POST-STEP GitHub sync → sonraki adımı aktif yap` akışı tüm proje için zorunlu hale getirildi.
-- Aynı sohbet içinde bir sonraki numaralı adıma geçilirken bile PRE-STEP refresh tekrarlanacak.
+- Aynı sohbet içinde yeni numaralı adıma geçilirken bile PRE-STEP refresh tekrarlanacak.
 - Minimum PRE-STEP okuması `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS` ve ilgili güncel spec/davranış dosyalarıdır.
-- POST-STEP'te `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` yeni durumu yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmayacak; yeni kalıcı karar varsa `DECISIONS.md` güncellenecek.
 - Yeni sohbetin yalnız GitHub hafızasını okuyarak doğru yerden devam edebilmesi adım kapanış kriteri olarak kabul edildi.
 
 **Üretilen / güncellenen dosyalar**
-- `docs/PROJECT_MEMORY_PROTOCOL.md` — yeni canonical protokol
+- `docs/PROJECT_MEMORY_PROTOCOL.md`
 - `docs/START_HERE.md`
 - `docs/AI_AGENT_WORKFLOW.md`
 - `docs/DECISIONS.md` — D-024
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
-**Durum etkisi**
-- Aktif ürün adımı değişmedi: **`2C — Mastery sinyalleri`**.
-- 2C'ye başlanmadan önce yeni protokole göre PRE-STEP GitHub refresh yapılacak.
+---
+
+### 2026-08-24 — English A0 prerequisite davranışı netleştirildi
+
+**Kullanıcı geri bildirimi**
+- `a/an`, `the`, `to`, temel cümle yapısı gibi İngilizce yapılarını öğretmeden teknik İngilizce cümle üretimi beklemek ürünün kendi prerequisite kuralıyla çelişir.
+
+**Kilitlenen davranış**
+- A0 kullanıcıdan henüz öğretilmemiş grammar/function-word yapısını kullanması beklenmeyecek.
+- English progression `recognition → controlled production → free production → technical use → transfer/retention` yönünde ilerleyecek.
+- Teknik task'in amacı C/Linux bilgisini ölçmekse bilinmeyen English grammar gizli prerequisite olmayacak; gerektiğinde Türkçe/bilingual scaffold kullanılacak.
+- English grammar/vocabulary kendi prerequisite graph'ına sahip olacak.
+- Kesin grammar sırası ve CEFR tasarımı 6A–6E'ye bırakıldı.
+
+**Çıktı**
+- `docs/ENGLISH_FOUNDATION_RULES.md`
+
+---
+
+### 2026-08-24 — 2C Mastery sinyalleri tamamlandı
+
+**PRE-STEP**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `LEARNING_ENGINE_SPEC`, `LEARNING_BEHAVIOR_RULES`, `TOPIC_STATE_MACHINE`, `PROJECT_MEMORY_PROTOCOL` ve `AI_AGENT_WORKFLOW` yeniden okundu.
+- Aktif adımın 2C olduğu ve 2A–2B kararlarıyla çelişki bulunmadığı doğrulandı.
+- Mastery evidence konusu kritik olduğu için retrieval practice / delayed retention / transfer üzerine kısa dış araştırma doğrulaması yapıldı; araştırma sonucu exact weight/threshold belirlemek için kullanılmadı.
+
+**Tamamlananlar**
+- Evidence rolleri `direct/primary`, `corroborating`, `contextual` olarak ayrıldı.
+- Concept recognition, concept recall, code reading/output prediction, coding/production, debugging/diagnosis, explanation/justification, transfer/novel application, retention/delayed retrieval ve integrated project/task ayrı mastery sinyalleri olarak tanımlandı.
+- Her evidence türünün neyi kanıtlayıp neyi tek başına kanıtlayamayacağı yazıldı.
+- Coding mastery için gerçek kullanıcı kod artifact'ı üretme zorunluluğu kilitlendi; MCQ ile doğru kod seçmek coding evidence sayılmayacak.
+- Transfer evidence'ın yalnız daha önce öğrenilmiş prerequisite'lerle geçerli olduğu ve bilinmeyen prerequisite contamination'ının target Skill'i cezalandırmaması kilitlendi.
+- Retention immediate practice başarısından ayrıldı; ileri Topic'te doğal kullanımın retention/reinforcement evidence olabilmesi tanımlandı.
+- Project completion'ın projedeki tüm Skill'leri otomatik mastered yapmaması ve evidence'ın objective bazında ayrıştırılması kararlaştırıldı.
+- Time, completion, streak ve self-confidence mastery dışı contextual sinyal olarak sınıflandırıldı.
+- Aynı soru/familya tekrarlarının bağımsız evidence gibi mastery'yi şişirmesi engellendi.
+- Evidence quality boyutları: correctness/rubric, independence/assistance context, novelty, difficulty, evidence-type fit, prerequisite validity, delay/recency ve evaluator/provenance olarak tanımlandı.
+- Invalid/contaminated evidence nedenleri tanımlandı.
+- Objective-specific evidence profile yaklaşımı tanımlandı.
+- Negative evidence ve misconception tagging yönü tanımlandı.
+- AI/hint etkisi 2D'ye; weight/threshold/minimum evidence/confidence 2E'ye bırakıldı.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/MASTERY_SIGNALS_SPEC.md`
+- `docs/STEP_STATUS.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/DECISIONS.md` — D-025
+- `docs/HANDOFF_STATE.md`
+- `docs/START_HERE.md`
+- `docs/PROGRESS_LOG.md`
+
+**Sonraki kesin adım**
+- **`2D — AI / ipucu etkisi`**.
+- 2D başlamadan önce D-024 uyarınca yeni PRE-STEP GitHub refresh yapılacak.
