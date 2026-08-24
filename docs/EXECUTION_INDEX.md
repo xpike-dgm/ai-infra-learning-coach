@@ -1,17 +1,14 @@
 # AI Infra Learning Coach — Numaralı Yürütme İndeksi
 
-Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlarını** tanımlar. Ayrıntılı checklist ve teknik açıklamalar `docs/MASTER_PLAN.md` ve ilgili spec dosyalarında tutulur.
+Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı checklist `docs/MASTER_PLAN.md`, anlık durum `docs/STEP_STATUS.md` içindedir.
 
 ## Kullanım kuralı
 
 - Ana aşamalar **1–19**.
-- Alt adımlar `1A`, `1B`, `2A`, `3C` biçiminde sabit kimliğe sahiptir.
-- Bir kodun anlamı sonradan mümkün olduğunca değiştirilmez.
-- Tamamlanan adım `[x]`, bekleyen `[ ]` olarak işaretlenir.
-- Aktif adım `docs/STEP_STATUS.md` ve `docs/HANDOFF_STATE.md` içinde de gösterilir.
-- Her tamamlanma için ilgili spec + tarihli completion note + `PROGRESS_LOG.md` kaydı tutulur.
-- Her numaralı adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
-- `docs/MASTER_PLAN.md` karşılık gelen checklist ve completion note ile senkron tutulur.
+- Alt adımlar `1A`, `2E`, `11F` biçiminde sabittir.
+- Tamamlanan `[x]`, bekleyen `[ ]`.
+- Her adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
+- `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` canonical durumla senkron tutulur.
 
 ---
 
@@ -22,25 +19,19 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [x] **1C — Başarı kriterleri** — `docs/V1_SUCCESS_CRITERIA.md`
 - [x] **1D — Non-goals** — `docs/NON_GOALS.md`
 
-**Tamamlanma notu — 2026-08-24:** Ürün amacı, V1 kapsamı, acceptance kriterleri ve scope sınırları kilitlendi.
-
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla
 
-- [x] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. — `docs/LEARNING_ENGINE_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu ile gerçek Skill/Objective measurement katmanı ayrıldı; Skill canonical mastery/prerequisite seviyesi oldu.
-- [x] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. — `docs/TOPIC_STATE_MACHINE.md`
-  - **Tamamlanma notu — 2026-08-24:** Topic state Skill mastery/coverage/retention/remediation'dan derived orchestration state olarak kilitlendi.
-- [x] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre. — `docs/MASTERY_SIGNALS_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** Direct/corroborating/contextual evidence, quality/validity ve false-positive guardrail'leri tanımlandı.
-- [x] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check. — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** H0–H4, assistance timing, artifact authorship, solution exposure ve fresh independent recheck davranışı kilitlendi.
-- [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence. **AKTİF — RESEARCH AI DOĞRULAMASI BEKLİYOR** — `docs/MASTERY_FORMULA_V0.md`
-  - **Düzeltme notu — 2026-08-24:** Candidate formül ana yöneticinin kendi web/dış araştırmasıyla hazırlandı; ayrı Research AI turu yapılmadan yanlışlıkla tamamlandı işaretlendi. 2E yeniden açıldı. Research AI raporu değerlendirilip candidate model gerekirse revize edilmeden adım kapanmayacak.
-- [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay. 2E kapanışından sonra başlayacak.
+- [x] **2A — Bilgi birimleri** — `docs/LEARNING_ENGINE_SPEC.md`
+- [x] **2B — Topic durumları** — `docs/TOPIC_STATE_MACHINE.md`
+- [x] **2C — Mastery sinyalleri** — `docs/MASTERY_SIGNALS_SPEC.md`
+- [x] **2D — AI/ipucu etkisi** — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+- [x] **2E — Mastery formülü v0** — `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`
+  - **Tamamlanma notu — 2026-08-24:** Ayrı Research AI raporu değerlendirildi. İlk Beta-style candidate ve sabit assistance/AI-evaluator numeric weight'leri finalden çıkarıldı. `GRE-v0 — Gated Recent Evidence`: son bounded bağımsız H0 direct evidence + testlet/family diversity + hard gates + `verification_due` modeline geçildi. `0.80`, window `5`, min-group defaults versioned engineering heuristics olarak tutuldu. D-031.
+- [ ] **2F — Unutma modeli:** Spaced repetition, interval, retention risk/decay, weakening, natural reuse. **AKTİF**
 
-**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, `AI_ASSISTANCE_EVIDENCE_SPEC.md`, doğrulanmış `MASTERY_FORMULA_V0.md` ve forgetting/retention spec.
+**Aşama 2 çıktısı:** öğrenme birimleri + Topic state + evidence + assistance + GRE-v0 mastery + forgetting/retention spec.
 
 ---
 
@@ -104,7 +95,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **7F — Tasarım sistemi**
 - [ ] **7G — Wireframe/prototip**
 
-**Çıktı:** `UX_SPEC.md`, screen inventory, navigation map, wireframes, design system.
+**Çıktı:** `UX_SPEC.md`, navigation, wireframes, design system.
 
 ---
 
@@ -117,7 +108,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **8E — AI entegrasyon mimarisi**
 - [ ] **8F — Test stratejisi**
 
-**Çıktı:** `TECH_ARCHITECTURE.md`, `DATA_MODEL.md`, architecture diagram, ADR.
+**Çıktı:** `TECH_ARCHITECTURE.md`, `DATA_MODEL.md`, ADR.
 
 ---
 
@@ -129,8 +120,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **9D — Local database**
 - [ ] **9E — Temel uygulama sağlığı**
 
-**Çıktı:** İlk çalışan mobil iskelet / debug build.
-
 ---
 
 # AŞAMA 10 — Çekirdek Günlük Öğrenme Akışı MVP’sini Geliştir
@@ -140,8 +129,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **10C — Session state**
 - [ ] **10D — Günlük mikro quiz**
 - [ ] **10E — Gün sonu**
-
-**Çıktı:** Daily learning MVP, Task Engine v1, Quiz v1.
 
 ---
 
@@ -154,8 +141,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **11E — Explanation / reason codes**
 - [ ] **11F — Sanal kullanıcı testleri**
 
-**Çıktı:** Mastery + Prerequisite + Adaptive Planner v1.
-
 ---
 
 # AŞAMA 12 — Haftalık/Aylık Sınav, Retention ve Remediation’ı Geliştir
@@ -165,8 +150,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **12C — Spaced repetition**
 - [ ] **12D — Remediation Engine**
 - [ ] **12E — Program değişiklik raporu**
-
-**Çıktı:** Weekly/Monthly Exam v1, Retention Engine, Remediation Engine.
 
 ---
 
@@ -180,8 +163,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **13F — Açık uçlu cevap değerlendirme**
 - [ ] **13G — Provider abstraction / fallback**
 
-**Çıktı:** AI Tutor v1 + evaluators.
-
 ---
 
 # AŞAMA 14 — İlk 8–12 Haftalık Gerçek Eğitim İçeriğini Üret ve QA Et
@@ -193,8 +174,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **14E — English A0→A1/A2**
 - [ ] **14F — Assessment content**
 - [ ] **14G — Content QA**
-
-**Çıktı:** Production curriculum v1 + Assessment Bank v1.
 
 ---
 
@@ -236,8 +215,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - [ ] **18D — APK / gerçek cihaz testleri**
 - [ ] **18E — Release dokümantasyonu**
 
-**Çıktı:** Release APK — temel ürün kullanıma hazır.
-
 ---
 
 # AŞAMA 19 — Uzun Vadeli Curriculum ve Kariyer Katmanı
@@ -256,8 +233,8 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 # Güncel Konum
 
-**Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Tamamlanan:** `2A`, `2B`, `2C`, `2D`  
-**Aktif:** **`2E — Mastery formülü v0 / Research AI doğrulaması`**
+**Aktif aşama:** AŞAMA 2  
+**Tamamlanan:** `1A–1D`, `2A–2E`  
+**Aktif:** **`2F — Unutma modeli`**
 
-2E kapanmadan 2F başlamaz.
+2F başlamadan yeni PRE-STEP GitHub refresh ve ayrı retention/spaced-repetition Research AI turu zorunludur.
