@@ -1,172 +1,112 @@
 # Project Progress Log
 
-Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. `MASTER_PLAN.md` ana planı gösterir; bu dosya ise ne zaman ne yapıldığını ve neden yapıldığını kronolojik olarak kaydeder.
-
-## Kayıt Formatı
-
-Her önemli çalışma oturumu sonunda:
-
-- tamamlananlar,
-- alınan kararlar,
-- üretilen/güncellenen dosyalar,
-- açık kalan noktalar,
-- sonraki kesin adım
-
-kaydedilir.
+Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntılı plan `MASTER_PLAN.md` / `EXECUTION_INDEX.md`; bu dosya ise ne zaman ne yapıldığını ve neden yapıldığını kronolojik olarak kaydeder.
 
 ---
 
 ### 2026-08-24 — Proje hafızası ve yürütme sistemi kuruldu
 
-**Tamamlananlar**
-- Projenin amacı, kariyer rotası ve uygulamanın temel felsefesi kalıcı dokümana alındı.
-- “1095 gün gösterilmeyecek” kararı kaydedildi.
-- “Zaman geçirmek ilerleme değildir; yalnızca kanıtlanmış öğrenme ilerlemedir” ilkesi ana ürün prensibi olarak kaydedildi.
-- Knowledge graph, mastery, haftalık/aylık assessment, remediation, spaced repetition ve İngilizce paralel hat ana bileşenleri tanımlandı.
-- Kişisel kullanım nedeniyle auth, ödeme, sosyal özellik ve çok kullanıcılı SaaS karmaşıklığı kapsam dışı bırakıldı.
-
-**Alınan kararlar**
-- Kodlamadan önce ürün, öğrenme motoru, planner, assessment, curriculum, English track, UX ve teknik mimari netleştirilecek.
-- Tamamlanan işler GitHub üzerinde kalıcı notlarla tutulacak.
+- Proje amacı, kariyer rotası, mastery ilkesi, knowledge graph, assessment, retention ve parallel English yönü kalıcı hale getirildi.
+- GitHub kalıcı proje hafızası olarak belirlendi.
 
 ---
 
 ### 2026-08-24 — Master plan 19 aşamalı yürütme planına dönüştürüldü
 
-**Tamamlananlar**
-- Proje 19 ana aşamaya ayrıldı.
-- Her aşama amaç, alt adım, çıktı ve tamamlanma kapısıyla tanımlandı.
+- Proje 19 ana aşamaya ve acceptance kapılarına ayrıldı.
 - Release APK'nin temel ürünün hazır olduğu nokta olduğu netleştirildi.
-
-**Alınan kararlar**
-- Bir aşama yalnız acceptance kriterleri sağlandığında tamamlanmış sayılacak.
 
 ---
 
 ### 2026-08-24 — Sohbet aktarımı ve kalıcı handoff sistemi güçlendirildi
 
-**Tamamlananlar**
-- `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md` ve `HANDOFF_STATE.md` oluşturuldu.
-
-**Alınan kararlar**
-- Sohbet geçmişi projenin tek bilgi kaynağı olmayacak.
-- GitHub kalıcı proje hafızası olarak kullanılacak.
+- `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md`, `HANDOFF_STATE.md` oluşturuldu.
+- Sohbet geçmişinin tek bilgi kaynağı olmaması kararlaştırıldı.
 
 ---
 
 ### 2026-08-24 — Sabit 1A/1B yürütme numaralandırması eklendi
 
-**Tamamlananlar**
-- 19 ana aşama Aşama 1–19 olarak standardize edildi.
-- Alt adımlara `1A`, `1B`, `2A`, `3C`, `11F` gibi sabit kodlar verildi.
-- `docs/EXECUTION_INDEX.md` ve `docs/STEP_STATUS.md` oluşturuldu.
-
-**Alınan kararlar**
-- Sohbetlerde ve AI görevlerinde sabit adım kodları kullanılacak.
+- Aşamalar 1–19 olarak standardize edildi.
+- `1A`, `1B`, `2A`, `3C`, `11F` gibi sabit adım kodları oluşturuldu.
+- `EXECUTION_INDEX.md` ve `STEP_STATUS.md` devreye alındı.
 
 ---
 
 ### 2026-08-24 — 1A Ana ürün amacı tamamlandı
 
-**Tamamlananlar**
-- Ürünün tek cümlelik resmi amacı yazıldı.
-- Kullanıcının günlük temel değeri tanımlandı.
-- Klasik kurs/todo uygulamasından farkı netleştirildi.
-- Kanıtlanmış öğrenme ilkesi ürün gereksinimine dönüştürüldü.
-- Kariyer rotası, English ve AI Tutor ürün amacıyla bağlandı.
-
-**Üretilen / güncellenen dosyalar**
-- `docs/PRODUCT_REQUIREMENTS.md`
-- `docs/STEP_STATUS.md`
-
-**Sonraki kesin adım**
-- `1B — V1 kapsamı`.
+- Ürünün resmi amacı, günlük değer önerisi, klasik course/todo farkı, kanıtlanmış öğrenme ilkesi ve kariyer rotası ilişkisi kilitlendi.
+- Çıktı: `docs/PRODUCT_REQUIREMENTS.md`.
 
 ---
 
 ### 2026-08-24 — 1B V1 kapsamı tamamlandı
 
-**Tamamlananlar**
-- V1'in ana ürün vaadini eksiltmeden minimum ama eksiksiz kapsamı kilitlendi.
-- V1'in Android odaklı, kişisel ve local-first günlük kullanım release'i olması kararlaştırıldı.
-- Daily planner, task runner, mastery, prerequisite, daily assessment, weekly/monthly exams, retention, remediation, AI Tutor, parallel English, progress, notifications ve backup/restore V1 kapsamına alındı.
-- İlk release curriculum kapsamı ilk 8–12 haftalık production-quality içerikle sınırlandı.
-- V1 dışında bırakılan başlıca alanlar netleştirildi: tam 3 yıllık curriculum, social/commerce, cloud multi-device sync, iOS/web/desktop, gelişmiş career-market engine, tam voice tutor, gömülü tam IDE/compiler ve aşırı gamification.
-- AI'nın çekirdek planner/mastery/prerequisite kurallarını keyfi biçimde kontrol etmemesi kararlaştırıldı.
-
-**Alınan kararlar**
-- V1 yalnız prototip değil, gerçek günlük kullanım için release adayıdır.
-- Telefon uygulaması tam IDE olmaya çalışmayacak; coding görevleri gerektiğinde PC üzerinde uygulanabilir.
-- İlk release motoru genişlemeye hazır olacak ancak tüm ileri curriculum release ön koşulu olmayacak.
-
-**Üretilen / güncellenen dosyalar**
-- `docs/V1_SCOPE.md`
-- `docs/STEP_STATUS.md`
-- `docs/DECISIONS.md`
-- `docs/HANDOFF_STATE.md`
-
-**Sonraki kesin adım**
-- `1C — Başarı kriterleri`.
+- V1 Android odaklı gerçek günlük kullanım release'i olarak sınırlandı.
+- Daily planner, mastery/prerequisite, assessments, retention, remediation, AI Tutor, parallel English, ilk production curriculum, local persistence, notifications, UI ve backup/restore V1 kapsamına alındı.
+- Tam 3 yıllık curriculum, cloud sync, diğer platformlar, full voice tutor, full IDE/compiler ve career-market engine sonraya bırakıldı.
+- Çıktı: `docs/V1_SCOPE.md`.
 
 ---
 
 ### 2026-08-24 — 1C V1 başarı kriterleri tamamlandı
 
-**Tamamlananlar**
-- V1 için P0/P1/P2 öncelik seviyeleri tanımlandı.
-- PASS / PASS WITH NOTES / FAIL / BLOCKED test sonuç modeli tanımlandı.
-- Yeni kullanıcı, tek prerequisite'te zayıf kullanıcı, retention kaybı, 7 günlük ara, AI-assisted coding, hızlı öğrenen ve English/technical asimetrisi için standart test profilleri oluşturuldu.
-- Daily planner, prerequisite, mastery, assessment, retention, remediation, replan, English, AI Tutor sınırları, curriculum graph, local persistence, backup/restore, migration, UI, release ve pilot için toplam 49 acceptance kriteri yazıldı.
-- Hard prerequisite bypass, progress data loss, task completion/tek kolay quiz ile yanlış mastery ve AI'nın çekirdek kuralları atlaması P0 release blocker olarak tanımlandı.
-- Haftalık ve aylık assessment'ın yalnız puan göstermesi değil, sonraki planı gerçekten değiştirmesi zorunlu acceptance davranışı yapıldı.
-- 7+ gün ara sonrası eski görevlerin kullanıcıya borç olarak yığılması yasaklandı; replan zorunlu hale getirildi.
-- AI provider kapalıyken deterministic planner/mastery/prerequisite ve local progress'in çalışmaya devam etmesi P0 kriteri yapıldı.
-- Fresh install, update install, backup/restore, migration ve bağımsız QA final release kapısına eklendi.
-
-**Alınan kararlar**
-- Tüm P0 acceptance kriterleri PASS olmadan V1 release edilmeyecek.
-- Kodlama AI'ın kendi “testler geçti” raporu kritik kabul için yeterli olmayacak; bağımsız Test/QA AI doğrulaması aranacak.
-- Mastery threshold, evidence weight, AI-help penalty, spaced repetition interval, planner oranları ve English payı gibi sayısal parametreler ilgili sonraki aşamalarda araştırma, simülasyon ve pilot ile belirlenecek.
-
-**Üretilen / güncellenen dosyalar**
-- `docs/V1_SUCCESS_CRITERIA.md`
-- `docs/STEP_STATUS.md`
-- `docs/EXECUTION_INDEX.md`
-- `docs/DECISIONS.md`
-- `docs/HANDOFF_STATE.md`
-
-**Sonraki kesin adım**
-- `1D — Non-goals`.
+- V1 için P0/P1/P2 acceptance modeli ve PASS / PASS WITH NOTES / FAIL / BLOCKED test sonuçları tanımlandı.
+- Toplam 49 acceptance kriteri yazıldı.
+- Tüm P0 kriterleri PASS olmadan release yapılmaması kararlaştırıldı.
+- Kritik final akışları için bağımsız Test/QA AI zorunlu hale getirildi.
+- Çıktı: `docs/V1_SUCCESS_CRITERIA.md`.
 
 ---
 
 ### 2026-08-24 — 1D Non-goals tamamlandı ve Aşama 1 kapandı
 
+- Ürün seviyesi non-goals ile yalnız V1'e ertelenen özellikler ayrıldı.
+- Sabit kurs, time/streak progress, tamamen LLM controlled curriculum, SaaS/social scope creep, missed-day task debt, full mobile IDE kimliği, sahte bilimsel kesinlik ve kariyer garantisi reddedildi.
+- Çıktı: `docs/NON_GOALS.md`.
+- **AŞAMA 1 tamamlandı.**
+
+---
+
+### 2026-08-24 — 2A Bilgi birimleri tamamlandı
+
 **Tamamlananlar**
-- Ürün seviyesi kalıcı non-goals ile yalnız V1'e ertelenen özellikler birbirinden ayrıldı.
-- Zaman/streak/task completion'ın mastery yerine geçmemesi tekrar kilitlendi.
-- Sabit takvimli kurs, tamamen LLM kontrollü curriculum ve AI'nın kullanıcı yerine öğrenmiş sayılması reddedildi.
-- Ürünün genel amaçlı eğitim platformuna, sosyal ağa veya ticari SaaS'a dönüşmesi varsayılan kapsam dışı yapıldı.
-- Gamification'ın öğrenmenin önüne geçmesi, missed-day görev borcu, mobil uygulamanın full IDE kimliğine dönüşmesi, sahte bilimsel kesinlik ve kariyer garantisi açıkça non-goal olarak yazıldı.
-- V1'e ertelenen alanlar tek yerde toplandı: tüm 3 yıllık curriculum, iOS/web/desktop, live cloud sync, full voice tutor, full code sandbox, career-market engine, social/community, payment/admin ve gereksiz backend/DevOps karmaşıklığı.
-- Yeni özellikler için scope-creep karar kuralı oluşturuldu.
-- AŞAMA 1 — Ürün Çerçevesini Kilitle tamamen tamamlandı.
+- Öğrenme motorunun resmî yapısı `Domain → Module → Topic → Skill → Learning Objective` olarak kesinleştirildi.
+- Yapının katı bir ağaç olmadığı; `Domain/Module/Topic` ile `Skill/Learning Objective` katmanlarının farklı sorumlulukları olduğu tanımlandı.
+- Curriculum organizasyon katmanı `Domain → Module → Topic` olarak ayrıldı.
+- Gerçek öğrenme/ölçüm katmanı `Skill → Learning Objective` olarak ayrıldı.
+- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill` olarak belirlendi.
+- Evidence'ın en atomik olarak `Learning Objective` seviyesine bağlanabilmesi kararlaştırıldı.
+- Topic/Module/Domain mastery'nin ayrı bağımsız puanlar değil, Skill verilerinden derived görünüm olması kararlaştırıldı.
+- Aynı Skill'in birden fazla Topic içinde `teach / practice / assess / reinforce` rolüyle kullanılabileceği ve duplicate mastery yaratılmayacağı kesinleştirildi.
+- Topic ↔ Skill ilişkisinin many-to-many olabilmesi kararlaştırıldı.
+- Runtime prerequisite ana olarak `Skill → Skill` edge şeklinde tanımlandı; Topic prerequisite authoring kolaylığı olabilir fakat gerçek kilit Skill mastery üzerinden çalışacak.
+- Module/Domain seviyesinde kaba hard-lock varsayılan yaklaşım olmaktan çıkarıldı.
+- Cross-domain Skill dependency desteklendi.
+- Technical English'in aynı skill modelinde yer alacağı fakat gerçek bağımlılık yoksa teknik rotayı global hard-lock etmeyeceği kilitlendi.
+- Learning Objective için gözlemlenebilir/ölçülebilir yazım standardı oluşturuldu; yalnız `oku`, `izle`, `tamamla` objective sayılmayacak.
+- LearningTask ve AssessmentItem'ın yalnız Topic'e değil hedeflediği Skill/Learning Objective'e bağlanması zorunlu tasarım ilkesi yapıldı.
+- C pointers ve Technical English compiler-error örnekleriyle model doğrulandı.
+- Stable canonical ID yaklaşımı tanımlandı; kesin DB şeması 8C'ye bırakıldı.
 
 **Alınan kararlar**
-- Non-goal “asla yapılamaz” anlamına gelmez; fakat kapsam içine alınacaksa yeni decision kaydı, etkilenen adım ve acceptance kriteri güncellemesi zorunludur.
-- Aşama 1'in dört çıktısı bundan sonraki ürün/mimari kararlarının bağlayıcı başlangıç çerçevesidir.
+- Topic completion hiçbir zaman doğrudan mastery değildir.
+- Mastery ve prerequisite için ana gerçeklik Skill katmanıdır.
+- Topic/Module/Domain progress, raporlama/UX için derived olacaktır.
+- Duplicate skill yaratmak yerine farklı topic'ler aynı canonical skill'e bağlanacaktır.
+- 2A'da mastery threshold, evidence weight, state machine veya spaced repetition değeri uydurulmadı; bunlar 2B–2F'ye bırakıldı.
 
 **Üretilen / güncellenen dosyalar**
-- `docs/NON_GOALS.md`
+- `docs/LEARNING_ENGINE_SPEC.md`
 - `docs/STEP_STATUS.md`
 - `docs/EXECUTION_INDEX.md`
-- `docs/DECISIONS.md`
+- `docs/DECISIONS.md` — D-021
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- Öğrenme motorunun gerçek bilgi birimi yapısı henüz tasarlanmadı.
-- Mastery, topic state, AI-help ve retention ayrıntıları Aşama 2'de kesinleştirilecek.
+- Topic state machine henüz tasarlanmadı.
+- Mastery evidence, AI-help impact, mastery formula ve forgetting model sonraki 2B–2F adımlarında kesinleştirilecek.
 
 **Sonraki kesin adım**
-- **`2A — Bilgi birimleri`**.
+- **`2B — Topic durumları`**.
