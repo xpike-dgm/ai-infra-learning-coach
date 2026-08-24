@@ -45,8 +45,9 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
-- [ ] **4A — Günlük mikro değerlendirme** **AKTİF**
-- [ ] **4B — Haftalık sınav**
+- [x] **4A — Günlük mikro değerlendirme** — `docs/DAILY_MICRO_ASSESSMENT_SPEC.md` — DMA-v0 / D-040
+  - **Tamamlanma notu — 2026-08-24:** daily assessment calendar quota değildir; state-driven + capacity-aware; practice/assess/retain/diagnose ayrımı, H0/assistance, prerequisite contamination, invalid item, evaluator ve evidence→replan contract'ları kilitlendi.
+- [ ] **4B — Haftalık sınav** **AKTİF**
 - [ ] **4C — Aylık yeterlilik sınavı**
 - [ ] **4D — Soru bankası**
 - [ ] **4E — AI-generated soru doğrulaması**
@@ -201,7 +202,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`  
-**Aktif:** **`4A — Günlük mikro değerlendirme`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
+**Aktif:** **`4B — Haftalık sınav`**
 
-4A başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+4B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
