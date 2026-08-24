@@ -8,23 +8,23 @@ Sabit adım kimliklerinin canonical kaynağı `docs/EXECUTION_INDEX.md` dosyası
 Ana ürün ilkesi:
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
-## 2026-08-24 kapsam genişletmesi — D-041
-
-Uzun vadeli curriculum artık yaklaşık üç yıllık bir horizon ile sınırlı değildir. Nihai hedef:
+## Uzun vadeli hedef — D-041
 
 > **Gerektiğinde 4+ yıl veya daha uzun sürebilecek mastery-gated bir rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability oluşturmak.**
 
 `4+ yıl` countdown değildir. Final readiness; required Skill mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ile verilir.
 
-Bağlayıcı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+V1 ayrımı korunur: full professional curriculum bitmeden, learning engine + ilk 8–12 haftalık production-quality içerik ile release edilir.
 
-V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçek learning engine ile release edilir; full professional curriculum V1 ön koşulu değildir.
+## 2026-08-25 rota/plan güncellemeleri — D-042 / D-044
 
-## 2026-08-25 rota güncellemeleri — D-042 / D-043
+- **D-042:** Python common foundation'ın resmi parçasıdır; C/C++ yerine geçmez.
+- **D-043:** önceki “sona specialization stage ekle” yorumu kullanıcı talebini yanlış anlamıştır ve geri çekilmiştir.
+- **D-044:** asıl ihtiyaç, ana öğrenme rotasındaki her büyük domain'i uygulamanın ayrı ayrı öğretebileceği ve zayıflığı lokalize edebileceği `Module → Topic → Skill → Objective` seviyesine kapsamlı biçimde bölmektir.
+- Bu nedenle **AŞAMA 6 — Granular Capability Map** AŞAMA 5'ten sonra planlama aşamalarının arasına eklenmiştir.
+- Henüz başlanmamış eski 6–19 aşamaları birer sıra kaydırılmış; eski yanlış AŞAMA 20 kaldırılmıştır. Toplam aşama sayısı yine 20'dir.
 
-- **Python** common foundation rotasına resmi olarak eklendi; C/C++ yerine değil, automation/testing/benchmark/ML-infra tooling tarafında tamamlayıcı ana dil olarak kullanılacak.
-- Proje yürütme planı **1–20** ana aşamaya genişletildi; mevcut 1–19 kodları korunarak sona **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi** eklendi.
-- Uzun rota tek düz çizgi olarak bitmeyecek: ortak systems/distributed/GPU/inference çekirdeğinden sonra specialization tracks açılacak.
+Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → checklist/completion note → sonraki adım`
@@ -37,7 +37,7 @@ V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçe
 ### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
 ### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
-> **AŞAMA 1 tamamlandı.** D-041, ürünün uzun vadeli çıkış hedefini genişletmiştir; Aşama 1'in V1/product-core kararlarını iptal etmez.
+> **AŞAMA 1 tamamlandı.** D-041 uzun vadeli çıkış hedefini genişletti; V1 ayrımı değişmedi.
 
 ---
 
@@ -46,10 +46,12 @@ V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçe
 ### [x] 2B — Topic durumları — `docs/TOPIC_STATE_MACHINE.md` — D-023
 ### [x] 2C — Mastery sinyalleri — `docs/MASTERY_SIGNALS_SPEC.md` — D-025
 ### [x] 2D — AI / ipucu etkisi — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026
-### [x] 2E — Mastery formülü v0 — `GRE-v0` — D-031
-### [x] 2F — Unutma modeli — `RVR-v0` — D-032
+### [x] 2E — Mastery formülü v0 — GRE-v0 — D-031
+### [x] 2F — Unutma modeli — RVR-v0 — D-032
 
-> **AŞAMA 2 tamamlandı — 2026-08-24.**
+**D-044 clarification:** D-021 hiyerarşisi korunur; geniş Domain/Topic başlıkları tanı atomu değildir. Zayıflık ve remediation mümkün olduğunca canonical Skill / Objective seviyesinde lokalize edilir.
+
+> **AŞAMA 2 tamamlandı — yeniden açılmadı; yalnız D-044 ile tutarlı granularity clarification eklendi.**
 
 ---
 
@@ -59,50 +61,35 @@ V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçe
 - explicit daily time = hard budget,
 - no auto-overrun,
 - split / smaller alternative / defer,
-- no task/backlog debt,
-- editable short/normal/intensive presets,
-- replan only remaining capacity.
-
-Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
+- no task/backlog debt.
 
 ### [x] 3B — Görev kategorileri — D-034
 - `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
 - purpose/activity/track/evidence ayrı,
-- unresolved LearningNeed kalıcı; old task debt değil,
-- multi-Skill attribution/provenance/prerequisite/duration contract.
-
-Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
+- unresolved LearningNeed kalıcı; old task debt değil.
 
 ### [x] 3C — Öncelik puanı — PBR-v0 / D-035
 - eligibility priority'den önce,
 - P0–P4 semantic bands,
-- deterministic lexicographic rank vector,
-- starvation/track-balance guard,
-- duration semantic priority'den sonra.
+- deterministic rank vector.
 
 ### [x] 3D — Prerequisite davranışı — PRG-v0 / D-036
 - runtime `Skill → Skill`,
 - hard/soft edges,
-- readiness `ready | ready_due | uncertain | not_ready`,
-- review_due no-lock,
 - branch-local blocking,
 - contamination guard.
 
 ### [x] 3E — Hızlı öğrenme — VDW-v0 / D-037
-- validated Objective-level diagnostic waiver,
-- partial waiver,
-- GRE/prerequisite false-skip guards.
+- Objective-level validated coverage waiver,
+- diagnostic mastery'nin kolay alternatifi değildir.
 
 ### [x] 3F — Kaçırılan günler — SRR-v0 / D-038
 - absence failure/debt değildir,
-- stale plan replay edilmez,
-- current-state re-entry.
+- current-state fresh replan.
 
 ### [x] 3G — Açıklanabilir planner — PDT-v0 / D-039
-- structured decision trace,
-- internal/user-facing explanation ayrımı,
-- deterministic pseudocode,
-- LLM source of truth değildir.
+- structured reason trace,
+- deterministic/explainable core.
 
 ### [x] 3H — Planner simülasyonu
 **Final:** `docs/PLANNER_SIMULATION_SUITE.md`
@@ -113,7 +100,7 @@ V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçe
 0 critical cross-spec contradiction
 ```
 
-> **AŞAMA 3 tamamlandı — 2026-08-24.**
+> **AŞAMA 3 tamamlandı.**
 
 ---
 
@@ -128,8 +115,6 @@ V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçe
 - invalid/provisional item safety,
 - evidence→GRE/RVR→replan integration.
 
-> **4A tamamlandı — 2026-08-24.**
-
 ### [ ] 4B — Haftalık sınav — **AKTİF**
 Kesinleştirilecek:
 - weekly assessment amacı ve DMA-v0'dan farkı,
@@ -137,26 +122,24 @@ Kesinleştirilecek:
 - required/critical coverage,
 - modality/family/context diversity,
 - weakness + recent progress + prerequisite risk dengesi,
-- fixed sahte optimum olmadan composition,
 - capacity / pause / incomplete,
 - H0/H1–H4,
 - invalid/provisional item safety,
-- weekly result → GRE/RVR/remediation/PRG/planner,
-- 4C monthly assessment ortak contract.
+- result → GRE/RVR/remediation/PRG/planner,
+- 4C ortak contract.
+
+> D-044 etkisi: 4B policy şimdi tasarlanabilir; gerçek item blueprint'leri ileride AŞAMA 6'nın granular Skill/Objective IDs'lerini kullanacaktır.
 
 ### [ ] 4C — Aylık yeterlilik sınavı
 - daha geniş transfer/integration,
 - critical prerequisite revalidation,
-- professional readiness'e doğru daha geniş evidence aggregation,
 - tek final puanla mastery vermeme.
 
 ### [ ] 4D — Soru bankası
 - trusted item metadata,
-- variant family / dependency group,
+- variant/dependency group,
 - Objective attribution,
-- difficulty/complexity,
-- validation/versioning,
-- uzun curriculum'da scalable bank/authoring contract.
+- validation/versioning.
 
 ### [ ] 4E — AI-generated soru doğrulaması
 - AI candidate trusted bank'e otomatik giriş değildir,
@@ -164,328 +147,290 @@ Kesinleştirilecek:
 
 ---
 
-# AŞAMA 5 — Curriculum ve Knowledge Graph
+# AŞAMA 5 — Curriculum ve Knowledge Graph İskeleti
 
-D-041 sonrası Aşama 5'in ek görevi: **4+ yıllık professional curriculum'u taşıyabilecek extensible graph/metadata tasarlamak.** İlk etapta tüm node'lar yazılmayacak; yapı buna hazır olacak. D-042 Python'ı common foundation içine, D-043 ise future specialization track metadata'sını graph tasarımına dahil eder.
+AŞAMA 5 artık özellikle **schema/backbone** aşamasıdır; full ayrıntılı konu listesi burada yazılmaz.
 
 ### [ ] 5A — Ana domain haritası
-- full professional domain envelope,
-- foundation → systems → GPU → inference → AI Infrastructure,
-- Python + C common programming foundations,
-- infra-relevant DS&A, architecture, storage, cloud/observability/performance,
-- professional engineering/tooling tracks,
-- future specialization branch points.
+- 4+ year professional domain envelope,
+- Technical English paralel hat,
+- Python + C foundation,
+- systems → distributed → performance → GPU → inference → AI infra omurgası,
+- open source / projects / capstone professional layer.
 
-### [ ] 5B — Topic metadata
+### [ ] 5B — Graph / metadata sözleşmesi
+- Domain / Module / Topic / Skill / Objective relations,
 - prerequisite,
 - required/criticality,
 - evidence contracts,
-- retention profile,
-- professional capability tags,
-- specialization-track applicability,
+- retention,
+- remediation / diagnostic tags,
 - project/capstone attribution,
-- curriculum versioning.
+- curriculum versioning / freshness.
 
-### [ ] 5C — İlk 8–12 haftalık curriculum graph
-- V1 production package,
-- full route'un başlangıç alt grafiği,
-- ileride genişlemeyi/branching'i engellemeyen canonical IDs.
+### [ ] 5C — İlk 8–12 haftalık curriculum backbone
+- V1 production subgraph iskeleti,
+- canonical IDs,
+- full route'a sonradan genişleyebilir yapı.
 
-### [ ] 5D — Curriculum QA
-- prerequisite integrity,
-- missing foundations,
-- hidden knowledge,
-- professional-target coverage mapping,
-- branch reachability / dead-end kontrolü.
+### [ ] 5D — Graph architecture QA
+- cycle/dead-end,
+- hidden prerequisite,
+- duplicate canonical Skill,
+- scalability / versioning kontrolü.
 
----
-
-# AŞAMA 6 — İngilizce Paralel Hattı
-Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
-### [ ] 6A — Başlangıç ölçümü
-### [ ] 6B — A1/A2/B1/B2+ teknik hedefleri
-- exact CEFR çıkış gate research/curriculum design ile belirlenir,
-- final hedef technical docs/papers/design review/interview/global team work.
-### [ ] 6C — Günlük English bileşeni
-### [ ] 6D — Teknik entegrasyon
-### [ ] 6E — English mastery
+**Çıkış:** AŞAMA 6'nın detaylı capability taxonomy'sini taşıyacak sağlam graph sözleşmesi.
 
 ---
 
-# AŞAMA 7 — UX ve Ekranlar
-### [ ] 7A — Bilgi mimarisi
-### [ ] 7B — Ana ekran
-### [ ] 7C — Günlük çalışma akışı
-### [ ] 7D — Sınav UX
-### [ ] 7E — Skill/progress UX
-### [ ] 7F — Tasarım sistemi
-### [ ] 7G — Wireframe/prototip
+# AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl
+
+Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+
+Amaç: uygulamanın `Python zayıf` demesi yerine örneğin `Python → Control Flow → Loops → while termination` düzeyinde zayıflığı görebilmesi ve yalnız gerekli parçaya reteach/practice/retest uygulayabilmesi.
+
+### [ ] 6A — Granularity + naming standardı
+- Domain/Module/Topic/Skill/Objective sınırları,
+- canonical ID convention,
+- over-fragmentation ve too-broad Skill guard.
+
+### [ ] 6B — Full-route decomposition blueprint
+Şu ana rotanın tamamı için ortak decomposition şablonu:
+
+`Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A foundations → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel → Networking → Distributed Systems + Storage/DB → Containers / Cloud / Observability → Performance Engineering / Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM/SGLang/TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → OSS + large projects + capstone`
+
+### [ ] 6C — Foundations detailed map
+- Technical English,
+- Python,
+- C,
+- Linux / Git / Shell,
+- DS&A foundations.
+
+**Python örnek decomposition beklentisi:** values/types, variables, operators, I/O, conditionals, loops, strings, collections, functions, scope, modules/imports, files, exceptions, debugging, iteration/comprehensions, classes where needed, typing, testing, environments/dependencies, packaging, CLI/automation, subprocess/OS, networking, async, multiprocessing, profiling, data/NumPy/tensor-facing Python, benchmark/infra scripting.
+
+### [ ] 6D — Systems detailed map
+- Modern C++,
+- Computer Architecture,
+- OS / Memory,
+- Concurrency / Parallelism,
+- Networking,
+- Distributed Systems,
+- Storage / Databases,
+- Containers / Cloud / Observability,
+- Performance / Profiling.
+
+### [ ] 6E — GPU / ML / Inference detailed map
+- GPU Architecture,
+- CUDA,
+- Triton,
+- ML / Transformer foundations,
+- LLM Inference Internals,
+- vLLM/SGLang/TensorRT-LLM-style serving systems,
+- KV Cache / batching / scheduling / quantization,
+- Multi-GPU / NCCL / RDMA,
+- AI Infrastructure / GPU Infrastructure.
+
+### [ ] 6F — Professional engineering / project map
+- Git workflow / code review,
+- testing/build/debug/profiling,
+- documentation/design docs,
+- reproducible benchmarks,
+- open-source contribution workflow,
+- integrated projects,
+- capstone capability decomposition.
+
+### [ ] 6G — Weakness localization + remediation mapping
+- error/evidence → exact Skill/Objective attribution,
+- broad-domain overreaction guard,
+- targeted reteach / practice / verification,
+- derived Domain/Topic summary ayrı, canonical weakness ayrı.
+
+### [ ] 6H — Coverage + prerequisite + external Research QA
+- missing-domain audit,
+- hidden prerequisite audit,
+- duplicate/cycle/dead-end audit,
+- technology freshness audit,
+- bağımsız Research AI coverage validation.
+
+**Acceptance:** bütün rota sufficiently granular Skill/Objective haritasına ayrılmış, weakness localization ve targeted remediation mümkün, sonraki UX/data/content aşamaları bu ID'leri tüketebilir durumda.
 
 ---
 
-# AŞAMA 8 — Teknik Mimari ve Veri Modeli
-### [ ] 8A — Mobil teknoloji seçimi
-### [ ] 8B — Veri saklama/local-first
-### [ ] 8C — Domain veri modeli
-- years-long curriculum/user history scalability,
+# AŞAMA 7 — İngilizce Paralel Hattı
+Bağlayıcı: `docs/ENGLISH_FOUNDATION_RULES.md` + AŞAMA 6 Technical English capability map.
+
+### [ ] 7A — Başlangıç ölçümü
+### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri
+### [ ] 7C — Günlük English bileşeni
+### [ ] 7D — Teknik entegrasyon
+### [ ] 7E — English mastery
+
+> AŞAMA 6 English'in neye bölündüğünü; AŞAMA 7 ise English'in nasıl öğretileceği/ölçüleceği davranışını tasarlar.
+
+---
+
+# AŞAMA 8 — UX ve Ekranlar
+### [ ] 8A — Bilgi mimarisi
+### [ ] 8B — Ana ekran
+### [ ] 8C — Günlük çalışma akışı
+### [ ] 8D — Sınav UX
+### [ ] 8E — Skill/progress/weakness UX
+- broad domain summary + granular weakness drill-down,
+- kullanıcıya aşırı node karmaşası göstermeden doğru derinliği açma.
+### [ ] 8F — Tasarım sistemi
+### [ ] 8G — Wireframe/prototip
+
+---
+
+# AŞAMA 9 — Teknik Mimari ve Veri Modeli
+### [ ] 9A — Mobil teknoloji seçimi
+### [ ] 9B — Veri saklama/local-first
+### [ ] 9C — Domain veri modeli
+- canonical Skill/Objective state,
+- granular weakness/remediation state,
+- years-long curriculum/user history,
 - curriculum versions/migrations,
-- capstone/project evidence references,
-- common-core + specialization-track state.
-### [ ] 8D — Servis sınırları
-### [ ] 8E — AI entegrasyon mimarisi
-### [ ] 8F — Test stratejisi
+- project/capstone evidence references.
+### [ ] 9D — Servis sınırları
+### [ ] 9E — AI entegrasyon mimarisi
+### [ ] 9F — Test stratejisi / performance budgets
 
 ---
 
-# AŞAMA 9 — Mobil Proje İskeleti
-### [ ] 9A — Proje kurulumu
-### [ ] 9B — Navigation
-### [ ] 9C — Design system implementation
-### [ ] 9D — Local database
-### [ ] 9E — Temel uygulama sağlığı
+# AŞAMA 10 — Mobil Proje İskeleti
+### [ ] 10A — Proje kurulumu
+### [ ] 10B — Navigation
+### [ ] 10C — Design system implementation
+### [ ] 10D — Local database
+### [ ] 10E — Temel uygulama sağlığı
 
 ---
 
-# AŞAMA 10 — Günlük Öğrenme MVP
-### [ ] 10A — Today
-### [ ] 10B — Task runner
-### [ ] 10C — Session state
-### [ ] 10D — Günlük mikro quiz
-### [ ] 10E — Gün sonu
+# AŞAMA 11 — Günlük Öğrenme MVP
+### [ ] 11A — Today
+### [ ] 11B — Task runner
+### [ ] 11C — Session state
+### [ ] 11D — Günlük mikro quiz
+### [ ] 11E — Gün sonu
 
 ---
 
-# AŞAMA 11 — Mastery + Planner Implementasyonu
-### [ ] 11A — Mastery Engine v1
-### [ ] 11B — Prerequisite Engine
-### [ ] 11C — Planner Engine v1
-### [ ] 11D — Replan
-### [ ] 11E — Reason codes
-### [ ] 11F — Sanal kullanıcı testleri
+# AŞAMA 12 — Mastery + Planner Implementasyonu
+### [ ] 12A — Mastery Engine v1
+### [ ] 12B — Prerequisite Engine
+### [ ] 12C — Planner Engine v1
+### [ ] 12D — Replan
+### [ ] 12E — Reason codes
+### [ ] 12F — Sanal kullanıcı testleri
+
+> Runtime granular weakness davranışı AŞAMA 6 IDs üzerinde test edilir.
 
 ---
 
-# AŞAMA 12 — Assessment + Retention + Remediation Implementasyonu
-### [ ] 12A — Haftalık sınav
-### [ ] 12B — Aylık sınav
-### [ ] 12C — Spaced repetition
-### [ ] 12D — Remediation Engine
-### [ ] 12E — Program değişiklik raporu
+# AŞAMA 13 — Assessment + Retention + Remediation Implementasyonu
+### [ ] 13A — Haftalık sınav
+### [ ] 13B — Aylık sınav
+### [ ] 13C — Spaced repetition
+### [ ] 13D — Remediation Engine
+### [ ] 13E — Program değişiklik raporu
 
 ---
 
-# AŞAMA 13 — AI Tutor ve Akıllı Değerlendirme
-### [ ] 13A — Tutor davranış sözleşmesi
-### [ ] 13B — Yanlış analizi
-### [ ] 13C — Alternatif anlatım
-### [ ] 13D — Kod değerlendirme
-### [ ] 13E — AI-generated code comprehension check
-### [ ] 13F — Açık uçlu cevap değerlendirme
-### [ ] 13G — Provider abstraction/fallback
+# AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme
+### [ ] 14A — Tutor davranış sözleşmesi
+### [ ] 14B — Yanlış analizi
+### [ ] 14C — Alternatif anlatım
+### [ ] 14D — Kod değerlendirme
+### [ ] 14E — AI-generated code comprehension check
+### [ ] 14F — Açık uçlu cevap değerlendirme
+### [ ] 14G — Provider abstraction/fallback
 
 ---
 
-# AŞAMA 14 — İlk Gerçek Eğitim İçeriği
+# AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriği
 
-D-041 sonrası Aşama 14 **tam 4+ yıllık curriculum değildir**; V1 için ilk production package'tır.
+AŞAMA 15 **tam 4+ yıllık curriculum değildir**; AŞAMA 6 map'inin başlangıç bölümünü production-quality içeriğe dönüştürür.
 
-### [ ] 14A — Computer Fundamentals
-### [ ] 14B — C Foundations
-### [ ] 14C — Memory Foundations
-### [ ] 14D — Linux Foundations
-### [ ] 14E — English A0→A1/A2 başlangıç paketi
-### [ ] 14F — Assessment content
-### [ ] 14G — Content QA
-### [ ] 14H — Python Foundations integration
-- temel syntax ezberiyle sınırlı değil,
-- automation/testing/benchmark scripting ve ileride ML/infra tooling'e köprü,
-- V1 haftalarına sığan kapsam 5C sırasında kesinleştirilir; full Python depth daha sonra genişler.
+### [ ] 15A — Computer / Programming Fundamentals
+### [ ] 15B — Python Foundations
+### [ ] 15C — C Foundations
+### [ ] 15D — Memory Foundations
+### [ ] 15E — Linux / Git / Shell Foundations
+### [ ] 15F — English A0→A1/A2 başlangıç paketi
+### [ ] 15G — Assessment content
+### [ ] 15H — Content QA
 
-Her paket mümkün olduğunca `concept → guided → independent → debugging → explanation → transfer → retention → project` derinlik modelini desteklemelidir.
+Her paket mümkün olduğunca `concept → guided → independent → debugging → explanation → transfer → retention → project` derinlik modelini destekler.
 
 ---
 
-# AŞAMA 15 — İlerleme / Analitik / Ayarlar
-### [ ] 15A — Skill analytics
-### [ ] 15B — Öğrenme geçmişi
-### [ ] 15C — Progress kuralları
+# AŞAMA 16 — İlerleme / Analitik / Ayarlar
+### [ ] 16A — Skill analytics
+### [ ] 16B — Öğrenme geçmişi
+### [ ] 16C — Progress / weakness kuralları
 - gün/year countdown yerine verified capability,
-- professional-readiness dimensions ileride desteklenebilir,
-- specialization track ilerlemesi common-core ilerlemesinden ayrı gösterilebilir.
-### [ ] 15D — Ayarlar
-### [ ] 15E — Bildirimler
+- `Python overall` gibi derived summary + alt Skill detayları,
+- zayıflık hangi alt capability'de açıkça görülebilir.
+### [ ] 16D — Ayarlar
+### [ ] 16E — Bildirimler
 
 ---
 
-# AŞAMA 16 — UI/UX Polish
-### [ ] 16A — Görsel polish
-### [ ] 16B — Motion
-### [ ] 16C — Kullanılabilirlik
-### [ ] 16D — Accessibility
+# AŞAMA 17 — UI/UX Polish
+### [ ] 17A — Görsel polish
+### [ ] 17B — Motion
+### [ ] 17C — Kullanılabilirlik
+### [ ] 17D — Accessibility
 
 ---
 
-# AŞAMA 17 — Pilot / Kalibrasyon / QA
-### [ ] 17A — Pilot başlangıcı
-### [ ] 17B — Planner gözlemi
-### [ ] 17C — Mastery kalibrasyonu
-### [ ] 17D — Assessment kalibrasyonu
-### [ ] 17E — Teknik QA
-### [ ] 17F — Düzeltme döngüsü
+# AŞAMA 18 — Pilot / Kalibrasyon / QA
+### [ ] 18A — Pilot başlangıcı
+### [ ] 18B — Planner gözlemi
+### [ ] 18C — Mastery kalibrasyonu
+### [ ] 18D — Assessment kalibrasyonu
+### [ ] 18E — Teknik / performance QA
+### [ ] 18F — Düzeltme döngüsü
 
-Pilot yalnız app UX'ini değil, ilk curriculum'un gerçek öğrenme/evidence davranışını da kalibre eder. Bu motor doğrulanmadan full 4+ year content'e kör üretim yapılmaz.
-
----
-
-# AŞAMA 18 — Release APK
-### [ ] 18A — Release hazırlığı
-### [ ] 18B — Veri güvenilirliği
-### [ ] 18C — Final regression
-### [ ] 18D — APK / gerçek cihaz
-### [ ] 18E — Release dokümantasyonu
-
-**AŞAMA 18 V1 release = professional curriculum completion değildir.**
+Pilot, granular Skill diagnosis'ın gerçekten doğru remediation üretip üretmediğini de test eder.
 
 ---
 
-# AŞAMA 19 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
+# AŞAMA 19 — Release APK
+### [ ] 19A — Release hazırlığı
+### [ ] 19B — Veri güvenilirliği
+### [ ] 19C — Final regression
+### [ ] 19D — APK / gerçek cihaz
+### [ ] 19E — Release dokümantasyonu
 
-D-041 sonrası Aşama 19'un amacı full professional route'un **ortak profesyonel omurgasını** modül modül üretmek, QA etmek ve professional readiness evidence'ına bağlamaktır. D-043 sonrası her ileri domain'de aynı derinlik zorunlu değildir; specialization depth AŞAMA 20'de dallanır.
+**AŞAMA 19 V1 release = professional curriculum completion değildir.**
 
-### [ ] 19A — Modern C++ + Python + Professional Tooling paketi
-- modern C++ language depth,
-- Python: typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML automation,
-- ownership/RAII/templates where relevant,
-- build/test/debug/profiling,
-- production-quality code habits.
+---
 
-### [ ] 19B — Systems + Architecture + Performance paketi
-- computer architecture,
-- OS/memory,
-- concurrency/parallelism,
-- Linux internals/tooling,
-- performance engineering.
+# AŞAMA 20 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
 
-### [ ] 19C — Networking + Distributed Systems + Storage paketi
-- networking,
-- distributed coordination/failure thinking,
-- storage/database fundamentals where infra-relevant,
-- observability/reliability foundations.
+AŞAMA 20'nin amacı AŞAMA 6'da haritalanan full professional route'u modül modül gerçek content/evidence/project paketlerine dönüştürmek ve sürekli QA etmektir.
 
-### [ ] 19D — GPU Architecture + CUDA paketi
-- execution/memory model,
-- kernels,
-- profiling,
-- bandwidth/latency/occupancy reasoning,
-- correctness/performance exercises.
+### [ ] 20A — Modern C++ + Advanced Python + Professional Tooling
+### [ ] 20B — Systems + Architecture + Performance
+### [ ] 20C — Networking + Distributed Systems + Storage
+### [ ] 20D — GPU Architecture + CUDA
+### [ ] 20E — Triton + ML/Transformer + LLM Inference
+### [ ] 20F — Serving Engines + KV Cache / Batching / Scheduling / Quantization
+### [ ] 20G — Multi-GPU / NCCL / RDMA / AI Infrastructure
+### [ ] 20H — Open Source + Engineering Practice + Career Readiness
+### [ ] 20I — Sürekli Curriculum QA + Büyük Entegre Projeler + Professional Capstones
 
-### [ ] 19E — Triton + ML/Transformer + LLM Inference paketi
-- transformer/inference fundamentals,
-- Triton kernels,
-- quantization,
-- KV cache,
-- batching/scheduling,
-- serving engine internals.
-
-### [ ] 19F — Multi-GPU / AI Infrastructure paketi
-- NCCL/RDMA concepts,
-- tensor/pipeline/data/expert parallel concepts as relevant,
-- distributed inference,
-- GPU scheduling/capacity,
-- serving reliability/observability,
-- vLLM/SGLang/TensorRT-LLM-style systems.
-
-### [ ] 19G — Open Source + Engineering Practice
 - repository/source-tree reading,
 - issue reproduction,
-- tests/benchmark contribution,
-- PR/code-review workflow,
-- technical writing/design docs.
+- accepted OSS contribution hazırlığı,
+- test/benchmark contributions,
+- design docs / technical writing,
+- realistic failure/debugging exercises,
+- final capstone families,
+- professional readiness evidence mapping.
 
-### [ ] 19H — Career + Professional Readiness
-- technical interview,
-- portfolio/case-study packaging,
-- job-skill mapping,
-- degree/experience filters hakkında gerçekçi strategy,
-- bridge-role readiness,
-- professional capability gaps.
-
-### [ ] 19I — Sürekli Curriculum QA + Professional Capstones
-- technology freshness,
-- prerequisite/evidence QA,
-- integrated common-core capstone families,
-- design + implementation + test + debugging + profiling + documentation + postmortem evidence,
-- final professional-readiness gate'in gelecekte ayrı deterministic spec'e bağlanması.
-
-> **Final curriculum completion takvimle değil professional-readiness evidence ile tanımlanacaktır.**
-
----
-
-# AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi
-
-D-043 sonrası amaç, ortak systems/distributed/GPU/inference temelini korurken kullanıcıyı tek düz rotada sonsuza kadar ilerletmek yerine profesyonel uzmanlık derinliğine dallandırmaktır.
-
-### [ ] 20A — Ortak çekirdek çıkış kapısı
-- specialization başlamadan önce hangi common Skills kesin required?
-- systems, Linux, architecture, concurrency, networking, distributed fundamentals, performance, GPU/inference literacy için minimum verified gates,
-- unresolved critical verification varsa branch depth'e geçiş yok.
-
-### [ ] 20B — Uzmanlık dal haritası
-İlk candidate family'ler:
-1. **GPU Kernel & Performance Engineering**
-2. **LLM Inference / Serving Systems**
-3. **Distributed AI Infrastructure / Cluster & Scheduling**
-4. **High-Speed Networking & Multi-GPU Systems**
-5. **ML Compilers / Runtime Systems**
-6. **AI Platform / Reliability / Capacity Engineering**
-
-Bu liste final değildir; Research AI + gerçek iş rolü incelemesiyle değişebilir. Track adları framework-hype yerine kalıcı capability kümelerine dayanmalıdır.
-
-### [ ] 20C — Track seçim politikası
-- kullanıcı ilgisi/tercihi,
-- verified strengths/weaknesses,
-- prerequisite readiness,
-- evidence quality,
-- erişilebilir bridge roles / gerçek kariyer kısıtları,
-- gerektiğinde güncel job-market research.
-
-LLM, maaş veya popülerlik tek başına otomatik track seçemez. Final seçim kullanıcı tarafından onaylanır.
-
-### [ ] 20D — Dal-specific curriculum/evidence contracts
-Her track için:
-- Skill/Objective graph,
-- required/critical capability set,
-- production-style projects,
-- debugging/transfer requirements,
-- profiling/benchmark requirements,
-- open-source contribution targets,
-- track-specific assessment/evidence.
-
-### [ ] 20E — Secondary track / track değiştirme
-- common core kaybolmaz,
-- önceki valid mastery/evidence korunur,
-- yeni track'e geçince yalnız eksik prerequisite ve required evidence açılır,
-- primary + secondary specialization mümkün olabilir,
-- track switching ceza/debt değildir.
-
-### [ ] 20F — Uzmanlık capstone ve readiness gate
-Selected track professional readiness en az:
-- bağımsız design,
-- implementation,
-- testing,
-- debugging,
-- profiling/benchmark,
-- trade-off explanation,
-- documentation/design doc,
-- postmortem/decision explanation
-
-evidence'ı ister. Tek sınav veya tutorial project yeterli değildir.
-
-### [ ] 20G — Track freshness / market QA
-- framework/tool değişimleri düzenli izlenir,
-- curriculum rol isimlerine kör bağlanmaz,
-- değişmeyen systems capability'leri canonical tutulur,
-- önemli market/technology shift'lerinde track map versionlanır.
+> Full curriculum completion takvimle değil professional-readiness evidence ile tanımlanır.
 
 ---
 
@@ -494,7 +439,7 @@ evidence'ı ister. Tek sınav veya tutorial project yeterli değildir.
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
 **Aktif:** **`4B — Haftalık sınav`**
 
-**Bağlayıcı long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
-**Yeni route kararları:** D-042 Python foundation; D-043 AŞAMA 20 specialization tracks.
+**Bağlayıcı:** D-041 professional target; D-042 Python foundation; D-044 granular capability map.  
+**Geri çekilen:** D-043 specialization-stage yorumu.
 
 Bir sonraki yürütme: **4B başlamadan yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.**
