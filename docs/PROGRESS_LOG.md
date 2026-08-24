@@ -106,50 +106,16 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 3G Açıklanabilir planner / decision trace tamamlandı
-
-**PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `ADAPTIVE_PLANNER_SPEC`, `TASK_TAXONOMY_SPEC`, `PRIORITY_POLICY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `DIAGNOSTIC_WAIVER_SPEC` ve `MISSED_DAY_RECOVERY_SPEC` yeniden okundu.
-- Aktif adımın 3G olduğu ve 3A–3F'nin canonical olarak kapalı olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; 3G yeni pedagojik threshold seçmek yerine mevcut deterministik planner kararlarını explainability/audit contract'ına bağlayan ürün/mimari adımıydı.
-
-**Final `PDT-v0 — Planner Decision Trace`**
-- Planner açıklaması sonradan freeform AI rationale olarak uydurulmaz; karar sırasında structured reason code + decision trace üretilir.
-- Explainability private chain-of-thought değildir; yalnız canonical state refs, policy outputs, selection disposition ve decisive reason'lar tutulur.
-- Internal audit trace ile user-facing kısa explanation ayrıldı.
-- Need-level ve Candidate-level trace contract'ları tanımlandı.
-- Selected / blocked / invalid / lower-priority / capacity-deferred / split / smaller alternative / same-need superseded durumları explicit hale geldi.
-- Reason code family'leri need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection ve replan namespace'lerine ayrıldı.
-- User-facing her factual explanation internal trace'te bulunmak zorundadır.
-- PRG eligibility → PBR priority → 3A capacity fit karar sırası korunur; priority blocked candidate'ı kurtaramaz, capacity semantic priority'yi yeniden yazmaz.
-- `review_due` forgetting/failure diye; absence debt/failure/starvation diye açıklanamaz.
-- Higher-priority task kalan capacity'ye sığmadığı için lower-priority task seçilirse trace gerçek fit nedenini korur.
-- `PlannerReplanEvent` + plan versioning tanımlandı; completed evidence korunarak yalnız remaining plan yeniden çözülür.
-- LLM yalnız structured trace'i paraphrase edebilir; template fallback zorunlu ve canonical source trace'tir.
-- 3A–3G için deterministic end-to-end planner pseudocode yazıldı.
-- 3H'nin doğrulayacağı 20 temel invariant tanımlandı.
-- Trace bounded/ref-based ve D-028 performans şartıyla uyumlu tutuldu.
-
-**Çıktılar**
-- `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-- `docs/DECISIONS.md` — D-039
-- canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
-
-**Sonraki kesin adım:** `3H — Planner simülasyonu`.
-3H başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+- Final `PDT-v0 — Planner Decision Trace`.
+- Structured reason codes, internal/user explanation ayrımı, versioned replan chain ve deterministic planner pseudocode kilitlendi.
+- Çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
+- Karar: D-039.
 
 ---
 
 ### 2026-08-24 — 3H Planner simülasyonu tamamlandı / AŞAMA 3 kapatıldı
-
-**PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `TASK_TAXONOMY_SPEC`, `ADAPTIVE_PLANNER_SPEC`, `PRIORITY_POLICY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `RETENTION_FORGETTING_SPEC`, `DIAGNOSTIC_WAIVER_SPEC`, `MISSED_DAY_RECOVERY_SPEC` ve `PLANNER_EXPLAINABILITY_SPEC` yeniden okundu.
-- Aktif adımın 3H olduğu ve 3A–3G'nin canonical olarak kapalı olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; 3H dış pedagojik threshold araştırması değil mevcut planner contract'larını adversarial policy senaryolarıyla doğrulama adımıydı.
-
-**Simulation suite**
-- 8 sanal kullanıcı profil sınıfı tanımlandı.
-- 16 zorlayıcı scenario çalıştırıldı: normal progress, critical prerequisite verification, review_due no-lock, high-priority-not-fit, micro-session, partial diagnostic, 30-day re-entry + large due inventory, paused checkpoint, mid-session capacity reduction, new remediation replan, invalid/untrusted candidate, duplicate need alternatives, critical-label-no-P0, determinism, trace/explanation integrity ve incomplete high-stakes re-entry.
-- PDT-v0'daki 20 invariant'ın tamamı scenario coverage ile kontrol edildi.
+- 8 sanal kullanıcı profil sınıfı ve 16 zorlayıcı scenario çalıştırıldı.
+- 20/20 PDT-v0 invariant kontrol edildi.
 
 **Sonuç**
 ```text
@@ -158,16 +124,44 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 0 critical cross-spec contradiction
 ```
 
-**Önemli sınır**
-- Bu sonuç spec/policy-level PASS'tir.
-- Production Planner Engine sanal kullanıcı/runtime testleri 11F'te zorunlu.
-- Real device latency/RAM/CPU/performance doğrulaması 17E'de zorunlu.
+- Bu spec/policy-level PASS'tir; runtime testleri 11F, gerçek cihaz/performance 17E'de ayrıca zorunlu.
+- Çıktı: `docs/PLANNER_SIMULATION_SUITE.md`.
+- **AŞAMA 3 tamamlandı.**
+
+---
+
+### 2026-08-24 — 4A Günlük mikro değerlendirme tamamlandı
+
+**PRE-STEP**
+- `PROJECT_MEMORY_PROTOCOL`, `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_BEHAVIOR_RULES`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `MASTERY_FORMULA_V0`, `RETENTION_FORGETTING_SPEC`, `TASK_TAXONOMY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `PLANNER_EXPLAINABILITY_SPEC` ve `ENGLISH_FOUNDATION_RULES` yeniden okundu.
+- Aktif adımın 4A olduğu, Aşama 3'ün 3H PASS ile kapalı olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; 4A bilimsel sabit soru/dakika optimumu seçmek yerine mevcut evidence/mastery/planner contract'larını günlük assessment davranışına bağlayan ürün/policy adımıydı.
+
+**Final `DMA-v0 — Daily Micro Assessment`**
+- Daily micro assessment zorunlu günlük quiz/kota değildir.
+- Fixed soru sayısı, fixed assessment süresi veya günlük yüzde yoktur.
+- `practice`, `assess`, `retain`, `diagnose` purpose'ları ayrı tutulur.
+- Assessment existing LearningNeed + Objective evidence-gap bağlamından üretilir; ayrı assessment backlog/debt yoktur.
+- Assessment intent'leri: `checkpoint`, `mastery_evidence`, `verification`, `integration_check`.
+- Objective-matched evidence modality seçilir; düşük capacity evidence standardını düşürmez.
+- Mastery/verification için H0 independent measurement varsayılandır.
+- H1–H4 yardım öğrenmeye izin verir fakat positive independent mastery değildir; yardım istemek negative H0 evidence değildir.
+- Submit sonrası feedback önceki H0 attempt'i geriye dönük contaminate etmez; solution exposure sonrası fresh/unseen recheck gerekir.
+- PRG prerequisite fairness assessment öncesi zorunludur; prerequisite contamination target negative evidence değildir.
+- Invalid/ambiguous/evaluator-invalid item mastery credit veya penalty üretmez.
+- Provisional evaluator critical mastery/remediation kararını tek başına belirleyemez.
+- Tek doğru item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir.
+- Coding/debugging/transfer Objective evidence standardı kısa görev uğruna MCQ/recognition'a düşürülemez.
+- Multi-Skill task yalnız separately observable/attributable component'lere evidence verir.
+- Assessment sonucu canonical `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → remaining-plan replan` zincirini kullanır.
+- New remediation günü otomatik uzatmaz.
+- Technical assessment'ta bilinmeyen English grammar/vocabulary gizli prerequisite olamaz.
+- 4B–4E için minimum assessment item/result contract ve `assessment.*` reason-code namespace'i tanımlandı.
 
 **Çıktılar**
-- `docs/PLANNER_SIMULATION_SUITE.md`
-- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `START_HERE`, `PROGRESS_LOG` canonical olarak senkronlandı.
+- `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+- `docs/DECISIONS.md` — D-040
+- canonical POST-STEP state dosyaları + `MASTER_PLAN` senkronlandı.
 
-**AŞAMA 3:** ✅ TAMAMLANDI.
-
-**Sonraki kesin adım:** `4A — Günlük mikro değerlendirme`.
-4A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `4B — Haftalık sınav`.
+4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
