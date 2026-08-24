@@ -7,7 +7,7 @@ Bu belge AI Infra Learning Coach projesinde her numaralı adımın (`1A`, `2C`, 
 
 Ana kural:
 
-> **Hiçbir numaralı proje adımı GitHub beyin tazelemesi yapılmadan başlatılmaz; hiçbir numaralı proje adımı gerekli GitHub hafıza dosyaları güncellenmeden tamamlanmış sayılmaz.**
+> **Hiçbir numaralı proje adımı GitHub beyin tazelemesi yapılmadan başlatılmaz; hiçbir numaralı proje adımı gerekli GitHub hafıza dosyaları ve MASTER_PLAN ilerleme kaydı güncellenmeden tamamlanmış sayılmaz.**
 
 ---
 
@@ -22,6 +22,7 @@ Minimum zorunlu kontrol seti:
 3. `docs/STEP_STATUS.md` — aktif adımın hızlı doğrulaması.
 4. `docs/DECISIONS.md` — ilgili bağlayıcı kararların kontrolü.
 5. Başlanacak adımla doğrudan ilgili en güncel spec/davranış dosyaları.
+6. `docs/MASTER_PLAN.md` — ilgili ayrıntılı checklist'in canonical indeksle uyumlu olduğunun kontrolü.
 
 Gerekirse ayrıca:
 
@@ -45,6 +46,7 @@ Amaç her defasında bütün repoyu körlemesine okumak değil; **önce canonica
 
 - Gerçek aktif adım hangisi?
 - Önceki adım gerçekten tamamlandı mı?
+- `EXECUTION_INDEX` ile `MASTER_PLAN` ilerleme durumu uyuşuyor mu?
 - Kullanıcı tarafından kabul edilmiş ve yeni adımı sınırlayan kararlar neler?
 - Yeni adımın beklenen çıktısı nedir?
 - Hangi konular bilinçli olarak sonraki adıma bırakılmıştır?
@@ -71,19 +73,25 @@ Adım uygulanırken:
 
 Bir numaralı adım ancak çıktı kabul edilebilir hale geldikten sonra kapatılır.
 
-Adım sonunda en az şu dosyalar **gerekiyorsa** güncellenir:
+Adım sonunda zorunlu kontrol/güncelleme seti:
 
 - adımın ana spec/çıktı dosyası,
 - `docs/EXECUTION_INDEX.md` — checkbox/durum ve completion note,
 - `docs/STEP_STATUS.md` — son tamamlanan ve yeni aktif adım,
 - `docs/HANDOFF_STATE.md` — güncel proje konumu ve yeni bağlayıcı bilgiler,
 - `docs/PROGRESS_LOG.md` — tarihli çalışma/tamamlanma kaydı,
+- `docs/MASTER_PLAN.md` — karşılık gelen checklist/completion note ve current-state senkronizasyonu.
+
+Gerektiğinde ayrıca:
+
 - `docs/DECISIONS.md` — yeni kalıcı karar oluştuysa,
 - `docs/START_HERE.md` — başlangıç/handoff davranışı veya güncel yönü etkileyen değişiklik varsa,
 - `docs/PROJECT_MASTER_CONTEXT.md` — yalnız büyük ürün amacı/felsefesi değiştiyse,
-- `docs/MASTER_PLAN.md` — ilgili ayrıntılı checklist/completion notu güncel tutulması gerekiyorsa.
+- diğer etkilenen canonical spec dosyaları.
 
-Her dosya her adımda zorunlu olarak değiştirilmez; **gerçekten etkilenen canonical dosyalar güncellenir.** Ancak `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` ve `EXECUTION_INDEX` adım kapanışında durum değişikliğini yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmaz.
+`MASTER_PLAN.md` her adımda yeniden yazılmak zorunda değildir; ancak karşılık gelen checklist ve current-state canonical indeksle **mutlaka kontrol edilir** ve durum değiştiyse güncellenir.
+
+`STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `EXECUTION_INDEX` ve `MASTER_PLAN` kontrol edilmeden adım tamamlanmış sayılmaz.
 
 ---
 
@@ -93,6 +101,7 @@ Adım `✅ Tamamlandı` yapılmadan önce ana yönetici şu soruların hepsine c
 
 - Ana çıktı/spec GitHub'da mevcut mu?
 - Yeni kararlar karar günlüğüne işlendi mi?
+- `EXECUTION_INDEX` ve `MASTER_PLAN` aynı ilerleme durumunu gösteriyor mu?
 - Aktif adım bir sonrakine taşındı mı?
 - Yeni sohbet yalnız GitHub'ı okuyarak doğru yerden devam edebilir mi?
 - Önceki sohbet bilinmese bile adımın sonucu ve gerekçesi anlaşılabiliyor mu?
@@ -134,6 +143,6 @@ oluşursa yeni karar gündeme getirilir.
 
 # 7. Canonical protokol özeti
 
-`PRE-STEP GitHub refresh → adımı yürüt → gerekirse research/coding/QA → sonucu değerlendir → POST-STEP GitHub sync → sonraki adımı aktif yap`
+`PRE-STEP GitHub refresh → MASTER_PLAN/INDEX tutarlılık kontrolü → adımı yürüt → gerekirse research/coding/QA → sonucu değerlendir → POST-STEP GitHub + MASTER_PLAN sync → sonraki adımı aktif yap`
 
 Bu döngü tüm proje boyunca zorunludur.
