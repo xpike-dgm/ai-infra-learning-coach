@@ -30,18 +30,17 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 ---
 
 # AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
-- [x] **3A — Günlük kapasite** — `docs/ADAPTIVE_PLANNER_SPEC.md`
-  - Explicit günlük süre hard budget; no auto-overrun; split/defer; no backlog debt. D-033.
-- [x] **3B — Görev kategorileri** — `docs/TASK_TAXONOMY_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** LearningNeed/TaskCandidate/Evidence ayrıldı; purpose/activity/track/evidence orthogonal taxonomy, multi-Skill attribution, provenance, capacity/prerequisite/evidence contract ve no-task-debt modeli kilitlendi. D-034.
-- [ ] **3C — Öncelik puanı** **AKTİF**
-- [ ] **3D — Prerequisite davranışı**
+- [x] **3A — Günlük kapasite** — `docs/ADAPTIVE_PLANNER_SPEC.md` — D-033
+- [x] **3B — Görev kategorileri** — `docs/TASK_TAXONOMY_SPEC.md` — D-034
+- [x] **3C — Öncelik puanı** — `docs/PRIORITY_POLICY_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** `PBR-v0`; P0–P4 semantic bands, deterministic rank vector, starvation/track-balance guard, duration-fit-after-priority, no task debt. D-035.
+- [ ] **3D — Prerequisite davranışı** **AKTİF**
 - [ ] **3E — Hızlı öğrenme**
 - [ ] **3F — Kaçırılan günler**
 - [ ] **3G — Açıklanabilir planner**
 - [ ] **3H — Planner simülasyonu**
 
-**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, decision table, pseudocode, simulation suite.
+**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, prerequisite/decision policy, pseudocode, simulation suite.
 
 ---
 
@@ -202,7 +201,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3B`  
-**Aktif:** **`3C — Öncelik puanı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3C`  
+**Aktif:** **`3D — Prerequisite davranışı`**
 
-3C başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+3D başlamadan yeni PRE-STEP GitHub refresh zorunludur.
