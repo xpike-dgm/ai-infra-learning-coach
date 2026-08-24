@@ -176,3 +176,27 @@ Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`
 - Capacity resolution ve output deterministic/versioned olmalı; LLM günlük süreyi keyfi değiştiremez.
 
 Ayrıntı: `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.
+
+## D-034 — Planner'da kalıcı olan eski task değil açık LearningNeed'dir; task purpose/activity/track/evidence ayrı eksenlerdir
+**Durum:** Kabul edildi — 2026-08-24
+
+3B final task contract:
+
+- Canonical akış: `state → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`.
+- Ertelenen/seçilmemiş TaskCandidate failure değildir ve ertesi güne `task debt` olarak taşınmaz; onu doğuran LearningNeed çözülmediyse fresh candidate üretilebilir.
+- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
+- `activity_kind` ayrı eksendir: explanation, worked example, recall, coding, debugging, hands-on system task, transfer, project, language activity vb.
+- English bir purpose değildir; curriculum track/domain metadata'sıdır.
+- Coding/debugging/project de primary purpose değil activity türüdür.
+- Task category evidence değildir; gerçek evidence Attempt/Artifact sonrası GRE/RVR kurallarıyla oluşur.
+- Guided/independent/H0 requirement ayrı `independence_mode` metadata'sıdır.
+- Multi-Skill/integrated task global success ile bütün component Skill'lere otomatik evidence vermez; Objective bazlı structural essentiality + separate observability/attribution gerekir.
+- Task provenance ve validation status tutulur; AI-generated high-stakes task otomatik trusted assessment değildir.
+- Variant/dependency metadata same-family guard ve retention novelty ile uyumludur.
+- TaskCandidate 3A duration/splittable/checkpoint/atomic evidence boundary metadata'sını taşır.
+- `paused_progress` ile `deferred_candidate` ayrıdır; pause edilen gerçek checkpoint saklanabilir fakat ertesi gün priority/eligibility yeniden değerlendirilir.
+- Candidate lifecycle (`planned/completed/deferred/...`) mastery evidence değildir.
+- 3C'nin kullanacağı priority ham sinyalleri TaskCandidate contract'ında vardır fakat 3B hiçbir sabit priority weight tanımlamaz.
+- Candidate generation bounded/deterministic ve D-028 performans kuralına uygun olmalıdır.
+
+Ayrıntı: `docs/TASK_TAXONOMY_SPEC.md`.
