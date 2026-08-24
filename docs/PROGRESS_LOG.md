@@ -136,3 +136,38 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Sonraki kesin adım:** `3H — Planner simülasyonu`.
 3H başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-24 — 3H Planner simülasyonu tamamlandı / AŞAMA 3 kapatıldı
+
+**PRE-STEP**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `TASK_TAXONOMY_SPEC`, `ADAPTIVE_PLANNER_SPEC`, `PRIORITY_POLICY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `RETENTION_FORGETTING_SPEC`, `DIAGNOSTIC_WAIVER_SPEC`, `MISSED_DAY_RECOVERY_SPEC` ve `PLANNER_EXPLAINABILITY_SPEC` yeniden okundu.
+- Aktif adımın 3H olduğu ve 3A–3G'nin canonical olarak kapalı olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; 3H dış pedagojik threshold araştırması değil mevcut planner contract'larını adversarial policy senaryolarıyla doğrulama adımıydı.
+
+**Simulation suite**
+- 8 sanal kullanıcı profil sınıfı tanımlandı.
+- 16 zorlayıcı scenario çalıştırıldı: normal progress, critical prerequisite verification, review_due no-lock, high-priority-not-fit, micro-session, partial diagnostic, 30-day re-entry + large due inventory, paused checkpoint, mid-session capacity reduction, new remediation replan, invalid/untrusted candidate, duplicate need alternatives, critical-label-no-P0, determinism, trace/explanation integrity ve incomplete high-stakes re-entry.
+- PDT-v0'daki 20 invariant'ın tamamı scenario coverage ile kontrol edildi.
+
+**Sonuç**
+```text
+16 / 16 scenarios PASS
+20 / 20 invariants PASS
+0 critical cross-spec contradiction
+```
+
+**Önemli sınır**
+- Bu sonuç spec/policy-level PASS'tir.
+- Production Planner Engine sanal kullanıcı/runtime testleri 11F'te zorunlu.
+- Real device latency/RAM/CPU/performance doğrulaması 17E'de zorunlu.
+
+**Çıktılar**
+- `docs/PLANNER_SIMULATION_SUITE.md`
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `START_HERE`, `PROGRESS_LOG` canonical olarak senkronlandı.
+
+**AŞAMA 3:** ✅ TAMAMLANDI.
+
+**Sonraki kesin adım:** `4A — Günlük mikro değerlendirme`.
+4A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
