@@ -36,11 +36,11 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
   - **Tamamlanma notu — 2026-08-24:** Direct/corroborating/contextual evidence, quality/validity ve false-positive guardrail'leri tanımlandı.
 - [x] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check. — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
   - **Tamamlanma notu — 2026-08-24:** H0–H4, assistance timing, artifact authorship, solution exposure ve fresh independent recheck davranışı kilitlendi.
-- [x] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence. — `docs/MASTERY_FORMULA_V0.md`
-  - **Tamamlanma notu — 2026-08-24:** Research turu sonrası Beta-style weighted evidence accumulator + hard Objective/Skill gates seçildi. V0 threshold `0.80`; direct/corroborating ve H0–H4 katsayıları versionlandı; difficulty multiplier yerine gate kullanıldı; confidence bands, same-family dedup, critical H0 production gate, one-error hysteresis ve incremental calculation tanımlandı. Sayılar pilotta yeniden kalibre edilecek.
-- [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay. **AKTİF**
+- [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence. **AKTİF — RESEARCH AI DOĞRULAMASI BEKLİYOR** — `docs/MASTERY_FORMULA_V0.md`
+  - **Düzeltme notu — 2026-08-24:** Candidate formül ana yöneticinin kendi web/dış araştırmasıyla hazırlandı; ayrı Research AI turu yapılmadan yanlışlıkla tamamlandı işaretlendi. 2E yeniden açıldı. Research AI raporu değerlendirilip candidate model gerekirse revize edilmeden adım kapanmayacak.
+- [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay. 2E kapanışından sonra başlayacak.
 
-**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, `AI_ASSISTANCE_EVIDENCE_SPEC.md`, `MASTERY_FORMULA_V0.md` ve forgetting/retention spec.
+**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, `AI_ASSISTANCE_EVIDENCE_SPEC.md`, doğrulanmış `MASTERY_FORMULA_V0.md` ve forgetting/retention spec.
 
 ---
 
@@ -257,7 +257,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 # Güncel Konum
 
 **Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Tamamlanan:** `2A`, `2B`, `2C`, `2D`, `2E`  
-**Aktif:** **`2F — Unutma modeli`**
+**Tamamlanan:** `2A`, `2B`, `2C`, `2D`  
+**Aktif:** **`2E — Mastery formülü v0 / Research AI doğrulaması`**
 
-`2F` başlamadan önce `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh ve retention/spaced-repetition için Research AI turu yapılmalıdır.
+2E kapanmadan 2F başlamaz.
