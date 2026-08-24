@@ -41,14 +41,12 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 ### 2026-08-24 — 2E Research AI validation sonrası GRE-v0 finalleştirildi
 - Final `GRE-v0 — Gated Recent Evidence`.
-- Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
 - Karar: D-031.
 
 ---
 
 ### 2026-08-24 — 2F Research AI validation sonrası RVR-v0 finalleştirildi
 - Final `RVR-v0 — Retention Verification & Risk`.
-- Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
 - Karar: D-032.
 - **AŞAMA 2 tamamlandı.**
 
@@ -67,38 +65,48 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent` canonical oldu.
 - Purpose/activity/track/evidence eksenleri ayrıldı.
 - Unresolved LearningNeed kalıcı; old task ID homework debt değildir.
-- Multi-Skill attribution, provenance, variant/dependency, prerequisite ve duration contract tanımlandı.
 - Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
 - Karar: D-034.
 
 ---
 
 ### 2026-08-24 — 3C Priority / Selection Policy tamamlandı
+- Final `PBR-v0 — Priority Bands & Rank Vector`.
+- Eligibility priority'den önce; P0–P4 semantic bands + deterministic rank vector.
+- Starvation/track-balance guard; duration semantic priority'den sonra.
+- Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
+- Karar: D-035.
+
+---
+
+### 2026-08-24 — 3D Prerequisite davranışı tamamlandı
 
 **PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `TASK_TAXONOMY_SPEC`, `RETENTION_FORGETTING_SPEC` ve `LEARNING_BEHAVIOR_RULES` yeniden okundu.
-- Aktif adımın 3C olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; sahte bilimsel numeric weight aramak yerine mevcut bağlayıcı state/evidence/capacity modelini deterministik selection policy'ye dönüştürme adımıydı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_ENGINE_SPEC`, `TOPIC_STATE_MACHINE`, `RETENTION_FORGETTING_SPEC`, `PRIORITY_POLICY_SPEC`, `TASK_TAXONOMY_SPEC` ve `LEARNING_BEHAVIOR_RULES` yeniden okundu.
+- Aktif adımın 3D olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; 3D mevcut Skill-level prerequisite, GRE/RVR ve PBR kararlarını deterministic eligibility sözleşmesine dönüştüren ürün/mimari adımıydı.
 
-**Final `PBR-v0 — Priority Bands & Rank Vector`**
-- Priority open LearningNeed seviyesinde başlar; old task ID priority taşımaz.
-- Eligibility/trust priority'den önce gelir.
-- P0 integrity blocker, P1 repair/verify, P2 maintain/continue, P3 planned progress, P4 reinforce/optimize.
-- Critical etiketi tek başına P0 yapmaz; gerçek dependency blocking gerekir.
-- `review_due` forgetting değildir; standard due normal progress/maintenance bandında kalır, actual failure verification'a yükseltir.
-- Aynı band içi weighted sum değil lexicographic rank vector: blocking → criticality → evidence severity → urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break.
-- `score/minute`, task-count maximization ve opak knapsack canonical değildir.
-- Starvation guard eligible ama sürekli ertelenen soft need'leri korur; task debt üretmez.
-- Parallel English fixed yüzde değil due + starvation/track-balance ile korunur.
-- Capacity yetmezse safe split → smaller alternative → defer; daha yüksek priority fiziksel olarak sığmıyorsa gün boş bırakılmaz, sonraki fit need seçilebilir.
-- Same-need duplicate alternatives bastırılır; açık teach→practice→assess mini-chain exception olabilir.
-- `PriorityDecisionTrace` explainability için zorunlu machine-readable ara çıktı.
-- Policy deterministic/bounded ve D-028 ile uyumlu.
+**Final `PRG-v0 — Prerequisite Readiness Gate`**
+- Runtime prerequisite canonical `Skill → Skill`.
+- Edge semantics `hard | soft`.
+- Readiness `ready | ready_due | uncertain | not_ready`.
+- `review_due` = ready_due; hard lock değil.
+- Hard not_ready dependent candidate'ı bloke eder.
+- Critical/strict verification_due dependent yeni work'u fresh verification çözülene kadar bekletebilir.
+- Normal uncertain hard dependency conditional eligibility olabilir; tek contradiction tüm curriculum'u dondurmaz.
+- Task-level `required_skill_ids` exact candidate hard requirement'tır.
+- Exact planner order: state/need → candidate → validation/trust → prerequisite eligibility → PBR priority → capacity fit.
+- Yalnız affected dependent branch bekler; independent branches devam eder.
+- Started/mastered Topic prerequisite regression ile `locked` yapılmaz.
+- Prerequisite contamination target Skill için invalid/unusable evidence'dır; negative mastery yazılmaz.
+- Missing prerequisite repair/review/verification LearningNeed olarak planner'a geri beslenir.
+- Technical English gerçek dependency değilse global technical blocker değildir.
+- Resolver deterministic/bounded ve D-028 ile uyumlu.
 
 **Çıktılar**
-- `docs/PRIORITY_POLICY_SPEC.md`
-- `docs/DECISIONS.md` — D-035
+- `docs/PREREQUISITE_POLICY_SPEC.md`
+- `docs/DECISIONS.md` — D-036
 - canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3D — Prerequisite davranışı`.
-3D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3E — Hızlı öğrenme`.
+3E başlamadan yeni PRE-STEP GitHub refresh zorunlu.
