@@ -1,38 +1,32 @@
 # PROJECT MASTER CONTEXT — Uzun Proje Amacı, Felsefe ve Ürün Tanımı
 
-Bu dosya projenin **uzun biçimli ana bağlam belgesidir**. Sohbet geçmişi kaybolsa veya proje başka bir ChatGPT/coding agent oturumuna taşınsa bile, bu dosya okunarak projenin neden var olduğu, neyi çözmek istediği, hangi deneyimi hedeflediği ve hangi kararların arkasında hangi mantığın bulunduğu yeniden kurulabilmelidir.
+Bu dosya projenin uzun biçimli ana bağlam belgesidir. Sohbet geçmişi kaybolsa bile, projenin neden var olduğu, neyi çözmek istediği ve hangi kararların bağlayıcı olduğu buradan yeniden kurulabilmelidir.
 
-**Son büyük kapsam güncellemesi:** 2026-08-24 — D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`
+**Son kapsam/plan güncellemesi:** 2026-08-25 — D-041 / D-042 / D-044
 
 ---
 
 # 1. Projenin Kökeni
 
-Başlangıç problemi, yapay zekâ araçlarının yüksek seviyeli yazılım geliştirme görevlerini giderek daha fazla otomatikleştirmesi karşısında uzun vadeli kariyer için hangi teknik alana yatırım yapılmasının daha dayanıklı olduğuydu.
+Başlangıç problemi, AI araçlarının yüksek seviyeli yazılım geliştirme görevlerini giderek daha fazla otomatikleştirmesi karşısında uzun vadeli kariyer için hangi teknik alana yatırım yapılmasının daha dayanıklı olduğuydu.
 
-Seçilen uzun vadeli uzmanlaşma yönü:
+Seçilen uzun vadeli yön:
 
-**Low-Level Systems → Distributed Systems → GPU/CUDA → AI Infrastructure / ML Systems / GPU Systems**
+**Low-Level Systems → Distributed Systems → GPU/CUDA → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
 
-Ana öğrenme omurgası:
+Güncel ana öğrenme omurgası:
 
-**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
+**Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A foundations → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases → Containers / Cloud / Observability → Performance Engineering / Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM/SGLang/TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
 
-Machine Learning dışlanmaz; fakat ana uzmanlık klasik model eğitmek değildir. ML/transformer bilgisi, inference sistemlerini, tensor hesaplarını, serving ve GPU performansını gerçekten anlayacak derinlikte destek katmanı olarak öğretilir.
+ML dışlanmaz; fakat ana uzmanlık klasik model eğitmek değildir. ML/transformer bilgisi inference sistemlerini, tensor hesaplarını, serving ve GPU performansını gerçekten anlayacak kadar destek katmanı olarak öğretilir.
 
 ---
 
-# 2. 2026-08-24 Kapsam Genişletmesi — Professional Readiness
+# 2. Professional Readiness — D-041
 
-İlk plan yaklaşık üç yıllık bir öğrenme ufkuna dayanıyordu. Bu sınır kaldırıldı.
-
-Yeni ana hedef:
+İlk yaklaşık üç yıllık üst ufuk kaldırıldı.
 
 > **Sıfırdan başlayan kullanıcıyı, gerektiğinde 4+ yıl veya daha uzun sürebilecek kapsamlı, mastery-gated bir rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek teknik seviyeye taşımak.**
-
-`4+ yıl` bir mezuniyet sayacı değildir. Süre kullanıcının kapasitesine, öğrenme hızına, mevcut bilgisine, remediation/retention ihtiyacına ve yaşam koşullarına göre değişebilir.
-
-Bağlayıcı eşitlik:
 
 ```text
 elapsed_time != progress
@@ -40,97 +34,79 @@ elapsed_time != professional_readiness
 professional_readiness = verified capability
 ```
 
-Kullanıcı 4 yıl uygulamayı açtı diye profesyonel sayılmaz. Tersine gerekli Skill, transfer, debugging, performance ve capstone evidence'ını daha farklı bir sürede tamamlarsa takvim onu gereksiz yere bekletmez.
-
-Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+4+ yıl countdown değildir. Skill, transfer, debugging, performance, retention ve capstone evidence gerçek gate'tir.
 
 ---
 
 # 3. “Profesyonel Olmak” Bu Projede Ne Demektir?
 
-Bu ürün `profesyonel` kelimesini yalnız içerik coverage'ı veya sertifika anlamında kullanmaz.
-
 Uzun rotanın çıkışında kullanıcı mümkün olduğunca bağımsız biçimde:
-
-- C/C++ ile systems-level kod yazabilmeli,
-- Linux üzerinde gerçek debugging/tooling kullanabilmeli,
+- Python/C/C++ ile uygun seviyede engineering code yazabilmeli,
+- Linux üzerinde debugging/tooling kullanabilmeli,
 - memory/OS/concurrency davranışını açıklayıp sorun çözebilmeli,
 - networking ve distributed systems trade-off'larını anlayabilmeli,
-- performance bottleneck ölçüp profiler/benchmark kullanabilmeli,
+- profiler/benchmark ile bottleneck ölçebilmeli,
 - GPU architecture ve CUDA execution/memory modelini uygulayabilmeli,
 - Triton/CUDA kernel üretip değerlendirebilmeli,
 - LLM inference stack'inin ana bileşenlerini anlayabilmeli,
 - KV cache, batching, scheduling, quantization ve serving trade-off'larını test edebilmeli,
 - vLLM/SGLang/TensorRT-LLM-benzeri sistemleri kullanmanın ötesinde davranışlarını inceleyebilmeli,
-- multi-GPU / multi-node inference temel problemlerini çözebilmeli,
+- multi-GPU / NCCL / RDMA / distributed inference temel problemlerini anlayabilmeli,
 - observability/reliability/capacity yaklaşımı geliştirebilmeli,
 - design decision, benchmark ve debugging sonucunu teknik olarak açıklayabilmeli,
 - dokümantasyon/source code okuyup tutorial dışı probleme transfer yapabilmeli.
 
-Bu hedef **senior engineer unvanı, iş teklifi veya maaş garantisi değildir**. Gerçek ekip, code review, production incident ve organizasyon deneyiminin tamamı uygulama içinde simüle edilemez. Ürün bunun yerine bu ortamlara girmeye yetecek teknik readiness ve güçlü evidence/portfolio üretmeyi hedefler.
+Bu hedef senior title, iş teklifi veya maaş garantisi değildir. Gerçek ekip/production deneyimi ayrıca oluşur.
 
 ---
 
-# 4. Üniversite / İş Deneyimi Gerçeği
+# 4. Python — D-042
 
-Ürün teknik yetkinliği geliştirebilir fakat şirketlerin diploma veya deneyim filtrelerini kontrol edemez.
+Python resmi common foundation dilidir. C/C++ yerine geçmez.
 
-Bu nedenle uzun vadeli career-readiness katmanı yalnız “konuları öğrendin” dememeli; mümkün olduğunca şu kanıtları üretmeye yardım etmelidir:
+Python:
+- programlama temeli,
+- automation,
+- testing,
+- benchmark scripting,
+- data/tensor işlemleri,
+- PyTorch/ML ekosistemi,
+- infrastructure tooling
 
+için kullanılır.
+
+İleri Python; typing, testing, packaging, async/concurrency, multiprocessing, networking, profiling ve infra/ML bağlamına kadar gider.
+
+---
+
+# 5. Üniversite / İş Deneyimi Gerçeği
+
+Ürün teknik yetkinliği geliştirebilir fakat diploma veya deneyim filtrelerini kontrol edemez.
+
+Bu nedenle uzun career-readiness katmanı mümkün olduğunca:
 - ciddi GitHub projects,
 - reproducible benchmarks,
 - systems/GPU case studies,
 - capstone artifacts,
-- open-source contribution hazırlığı ve katkılar,
+- open-source contribution hazırlığı/katkıları,
 - teknik yazı/design docs,
-- interview-ready problem solving.
+- interview-ready problem solving
 
-Bunlar diploma filtresini garantiyle aşmaz; ancak teknik yetkinliği görünür hale getirir.
+üretmeye yardım eder.
 
----
-
-# 5. İngilizce Paralel Eğitim Kararı
-
-Başlangıç English seviyesi A0/sıfır kabul edilir.
-
-Kritik karar:
-
-> **English, teknik eğitime başlamadan önce bitirilmesi gereken ayrı bir prerequisite değildir.**
-
-English ve teknik eğitim ilk günden paralel ilerler. Öğretilmemiş grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz.
-
-Uzun vadeli hedef yalnız grammar tamamlamak değil, kullanıcının:
-
-- compiler/terminal messages,
-- man pages/docs,
-- GitHub issues/PRs,
-- design docs/RFCs,
-- CUDA/NVIDIA documentation,
-- technical papers,
-- code review,
-- technical interview,
-- global team communication
-
-gibi gerçek bağlamlarda çalışabilecek Technical English seviyesine ilerlemesidir.
-
-Exact CEFR progression 6A–6E'de araştırma/curriculum design ile kesinleştirilecektir.
+Bunlar diploma filtresini garantiyle aşmaz; teknik yetkinliği görünür hale getirir.
 
 ---
 
-# 6. Uygulama Neden Gerekiyor?
+# 6. İngilizce Paralel Eğitim
 
-Klasik yol haritaları “3 ay C, sonra C++, sonra Linux...” gibi sabit takvim verir. Bu yaklaşım iki temel sorunu çözmez:
+English teknik eğitime başlamadan önce bitirilmesi gereken prerequisite değildir.
 
-1. Kullanıcı bugün ne yapacağını hâlâ kendisi planlamak zorundadır.
-2. Takvim ilerlerken gerçek prerequisite/mastery eksikleri saklanabilir.
+Başlangıç seviyesi A0/sıfır olabilir. Öğretilmemiş grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz.
 
-Uygulamanın günlük sorusu:
+Uzun hedef; compiler/terminal messages, docs, GitHub issues/PRs, design docs/RFCs, CUDA/NVIDIA docs, papers, code review, technical interview ve global team communication bağlamında iş görebilmektir.
 
-> **Bugün tam olarak ne yapmalıyım?**
-
-Sistem bunu current mastery, retention, prerequisite, remediation, assessment ve günlük capacity üzerinden çözmelidir.
-
-Kullanıcı uzun course listesi değil, uygulanabilir günlük çalışma seansı görmelidir.
+Exact CEFR progression artık **AŞAMA 7**'de kesinleştirilecektir.
 
 ---
 
@@ -139,7 +115,6 @@ Kullanıcı uzun course listesi değil, uygulanabilir günlük çalışma seans�
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
 Bunun sonucu:
-
 - video izlemek mastery değildir,
 - lesson complete mastery değildir,
 - streak mastery değildir,
@@ -147,7 +122,7 @@ Bunun sonucu:
 - task completion mastery değildir,
 - AI'nın kullanıcı adına çözüm üretmesi independent mastery değildir.
 
-Canonical mastery modeli GRE-v0'dır: yalnız uygun, prerequisite-valid, H0, direct, verified ve bağımsız evidence gereken gate'leri karşılayabilir.
+Canonical mastery modeli GRE-v0; retention modeli RVR-v0'dır.
 
 ---
 
@@ -159,17 +134,51 @@ Ana hiyerarşi:
 Domain → Module → Topic → Skill → Learning Objective
 ```
 
-Canonical mastery/prerequisite ana seviyesi Skill'dir; evidence atomik Objective'e bağlanabilir.
+Canonical mastery/prerequisite ana seviyesi Skill'dir; evidence Objective'e bağlanabilir.
 
-Runtime prerequisite mümkün olduğunca `Skill → Skill` çözülür. Hard prerequisite hazır değilse yalnız ona gerçekten bağımlı branch bekler; Linux/English veya başka bağımsız work devam edebilir.
-
-`review_due` forgetting değildir ve tek başına hard lock üretmez.
+Runtime prerequisite mümkün olduğunca `Skill → Skill` çözülür. Eksik bir Skill yalnız gerçekten bağımlı branch'i bekletir.
 
 ---
 
-# 9. Adaptif Learning / Planner Motoru
+# 9. Granular Capability Map — D-044
 
-Ana öğrenme döngüsü:
+Ana rotanın yalnız `Python`, `Linux`, `CUDA` gibi geniş başlıklardan oluşması yeterli değildir.
+
+Uygulama, gerçek zayıflığı mümkün olduğunda Skill/Objective düzeyinde görmelidir.
+
+Örnek:
+
+```text
+Python overall: learning
+  Variables: strong
+  Conditionals: mastered
+  Loops: remediation_required
+    for iteration: weak
+    while termination: weak
+    break/continue: stable
+  Functions: learning
+```
+
+Bu yüzden yeni **AŞAMA 6 — Granular Capability Map**, Technical English'ten AI Infrastructure ve capstone'a kadar bütün rotayı `Module → Topic → Skill → Objective` seviyesinde kapsamlı şekilde bölecektir.
+
+AŞAMA 6 ayrıca:
+- canonical IDs,
+- prerequisite edges,
+- required/criticality,
+- evidence type,
+- retention relevance,
+- diagnostic/remediation tags,
+- cross-domain reuse,
+- project/capstone mapping,
+- freshness/version metadata
+
+tasarlayacaktır.
+
+Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+
+---
+
+# 10. Adaptif Learning / Planner Motoru
 
 ```text
 App teaches
@@ -186,63 +195,53 @@ App teaches
 Planner'ın temel kararları deterministik ve explainable olmalıdır; LLM keyfi olarak mastery/prerequisite/priority yazamaz.
 
 Aşama 3 canonical modelleri:
+- D-033 hard daily capacity / no task debt
+- D-034 LearningNeed / TaskCandidate / Evidence ayrımı
+- PBR-v0 / D-035 semantic priority bands
+- PRG-v0 / D-036 prerequisite readiness
+- VDW-v0 / D-037 validated diagnostic waiver
+- SRR-v0 / D-038 state-based re-entry
+- PDT-v0 / D-039 structured decision trace
 
-- D-033 — hard daily capacity / no task debt
-- D-034 — LearningNeed / TaskCandidate / Evidence ayrımı
-- PBR-v0 / D-035 — semantic priority bands + deterministic rank
-- PRG-v0 / D-036 — prerequisite readiness
-- VDW-v0 / D-037 — validated diagnostic waiver
-- SRR-v0 / D-038 — state-based re-entry / no absence debt
-- PDT-v0 / D-039 — structured decision trace
-
-3H spec simulation sonucu: 16/16 scenarios PASS, 20/20 invariants PASS.
-
----
-
-# 10. Günlük Kapasite ve 4+ Yıllık Horizon
-
-Uzun curriculum, günlük planı büyütme hakkı vermez.
-
-Kullanıcının ayırdığı günlük süre hard budget'tır. Remediation, retention veya “4 yıllık hedefe yetişme” gerekçesiyle gün otomatik uzatılmaz.
-
-Tamamlanmamış task ertesi gün borç değildir. Current state'ten fresh plan üretilir.
-
-Bu nedenle 4+ yıllık horizon kullanıcıya baskı yapan countdown değil, curriculum depth için açık alan sağlar.
+3H: 16/16 scenarios PASS, 20/20 invariants PASS.
 
 ---
 
-# 11. Assessment'ın Rolü
+# 11. Günlük Kapasite
+
+Kullanıcının ayırdığı günlük süre hard budget'tır. Remediation, retention veya uzun hedef gerekçesiyle gün otomatik uzatılmaz.
+
+Tamamlanmamış task ertesi gün borç değildir; current state'ten fresh plan üretilir.
+
+---
+
+# 12. Assessment
 
 Assessment yalnız not üretmez; future state ve planı değiştirir.
 
-Daily micro assessment DMA-v0'a göre sabit günlük quiz değildir. Gerçek measurement need varsa, Objective'e uygun modality ile capacity içinde seçilir.
+DMA-v0 sabit günlük quiz değildir. Gerçek measurement need varsa Objective'e uygun modality ile capacity içinde seçilir.
 
-Weekly/monthly assessment daha geniş evidence coverage sağlayacaktır; tasarımı Aşama 4'te tamamlanır.
+Weekly/monthly assessment daha geniş evidence coverage sağlar; policy tasarımı AŞAMA 4'tedir.
 
-Assessment invalid/ambiguous/prerequisite-contaminated ise kullanıcıya mastery credit/penalty yazamaz.
+D-044 sonrası gerçek item blueprint'leri AŞAMA 6'nın granular Skill/Objective IDs'lerini tüketmelidir.
 
 ---
 
-# 12. Retention / Forgetting
-
-Canonical RVR-v0 ilkesi:
+# 13. Retention / Forgetting
 
 > **Zamanın geçmesi negative evidence değildir. Zaman yalnız yeniden doğrulama ihtiyacını artırabilir.**
 
-`review_due` = forgetting değildir.
-
-İlk clean post-mastery contradiction instant unmastery üretmez; `verification_due` ve fresh recheck gerekir. Repeated valid evidence GRE gate'lerini gerçekten düşürürse remediation oluşabilir.
-
-Uzun absence task debt veya mastery cezası değildir.
+`review_due` forgetting değildir. First clean contradiction instant unmastery üretmez; verification gerekir.
 
 ---
 
-# 13. Remediation
+# 14. Remediation
 
-Kullanıcı zorlandığında aynı içeriği körlemesine tekrar etmek yerine sistem uygun müdahaleyi seçmelidir:
+Remediation geniş Domain'i körlemesine tekrar ettirmemelidir. D-044 sonrası müdahale mümkün olduğunca exact Skill/Objective weakness'e hedeflenir.
 
-- daha sade açıklama,
-- farklı mental model/analogy,
+Müdahaleler:
+- sade açıklama,
+- farklı mental model,
 - worked example,
 - micro-drill,
 - coding/debugging,
@@ -250,34 +249,19 @@ Kullanıcı zorlandığında aynı içeriği körlemesine tekrar etmek yerine si
 - farklı modality,
 - fresh independent verification.
 
-Remediation günlük kapasite içine girer; günü otomatik uzatmaz.
+---
+
+# 15. AI Tutor'un Rolü
+
+AI öğretmen/feedback katmanıdır; canonical learning state'in sahibi değildir.
+
+AI açıklama, hint, alternatif örnek, root-cause analysis, code/open response feedback, remediation content ve comprehension/transfer check sağlayabilir.
+
+H1–H4 assistance positive independent mastery değildir.
 
 ---
 
-# 14. AI Tutor'un Rolü
-
-AI öğretmen/feedback katmanıdır, canonical learning state'in sahibi değildir.
-
-AI:
-- açıklama,
-- hint,
-- alternatif örnek,
-- root-cause analysis,
-- code/open response feedback,
-- remediation content,
-- comprehension/transfer check
-
-sağlayabilir.
-
-H1–H4 assistance positive independent mastery değildir. AI-generated/copy artifact production mastery yerine geçmez.
-
----
-
-# 15. Daha Kapsamlı Öğretim İlkesi
-
-Yeni kapsamın anlamı yalnız daha fazla başlık eklemek değildir.
-
-Kritik domain'lerde öğretim mümkün olduğunca şu progression'ı taşır:
+# 16. Daha Kapsamlı Öğretim İlkesi
 
 ```text
 conceptual model
@@ -291,68 +275,38 @@ conceptual model
 → performance / production context
 ```
 
-Örneğin C++ yalnız syntax listesi olmayacak; memory ownership, RAII, concurrency, tooling, debugging, build/test ve performance bağlamına taşınacaktır.
-
-CUDA yalnız kernel syntax olmayacak; execution model, memory hierarchy, profiling, occupancy/bandwidth/latency, correctness ve inference bağlantısıyla öğretilmelidir.
-
-LLM inference yalnız API kullanmak olmayacak; serving engine internals, KV cache, batching/scheduling, quantization, GPU memory/performance ve distributed inference davranışlarına ilerlemelidir.
+C++ syntax listesiyle, CUDA kernel syntax ile, LLM inference API kullanımıyla sınırlı kalmaz.
 
 ---
 
-# 16. Professional Engineering Evidence
+# 17. Professional Engineering Evidence
 
-Uzun rotada yalnız küçük Objective evidence'ı yeterli değildir. Professional-readiness için katmanlı evidence gerekir:
+1. Foundation evidence — Skill/Objective mastery + retention.
+2. Applied evidence — user-authored code, debugging, system tasks, tests.
+3. Integrated systems evidence — multi-component projects + trade-offs.
+4. Performance/GPU evidence — profiler, benchmark, CUDA/Triton/inference experiments.
+5. Professional capstone evidence — independent design + implementation + test + profiling + documentation + postmortem.
 
-1. **Foundation evidence** — Skill/Objective mastery + retention.
-2. **Applied evidence** — user-authored code, debugging, system task, test artifacts.
-3. **Integrated systems evidence** — multi-component project ve trade-off reasoning.
-4. **Performance/GPU evidence** — profiler, benchmark, CUDA/Triton/inference experiments.
-5. **Professional capstone evidence** — realistic constraints altında independent design + implementation + test + profiling + documentation + postmortem/decision explanation.
-
-Exact capstone sayısı şimdiden uydurulmaz; coverage/diversity 5/14/19 aşamalarında tasarlanır.
+Exact capstone sayısı şimdiden uydurulmaz; coverage/diversity AŞAMA 6/15/20'de tasarlanır.
 
 ---
 
-# 17. Uzun Vadeli Curriculum Omurgası
+# 18. Curriculum Planning / Production Ayrımı
 
-Yeni genişletilmiş alanlar:
+D-044 sonrası canonical ayrım:
 
-1. Technical English
-2. Computer Fundamentals
-3. Programming Foundations / problem solving
-4. C
-5. Linux / tooling
-6. Data Structures & Algorithms foundations
-7. Modern C++
-8. Computer Architecture
-9. Operating Systems / Memory
-10. Concurrency / Parallel Programming
-11. Networking
-12. Distributed Systems
-13. Databases / Storage — infra için gerekli depth
-14. Containers / Cloud / Observability foundations
-15. Performance Engineering
-16. GPU Architecture
-17. CUDA
-18. Triton
-19. ML / Transformer fundamentals needed for inference
-20. LLM Inference Internals
-21. Serving engines: vLLM / SGLang / TensorRT-LLM style systems
-22. Quantization / KV Cache / Batching / Scheduling
-23. Multi-GPU / NCCL / RDMA / distributed inference
-24. AI Infrastructure / GPU Infrastructure
-25. Reliability / capacity / benchmarking
-26. Open Source / technical communication
-27. Career readiness / technical interview
-28. Professional capstone / integrated readiness
+```text
+AŞAMA 5 = graph/schema/domain backbone
+AŞAMA 6 = detailed capability taxonomy / weakness-addressable map
+AŞAMA 15 = first 8–12 week production content package
+AŞAMA 20 = full professional content expansion + open source + career + capstones
+```
 
-Bu bir sabit calendar değildir. Aşama 5 gerçek prerequisite graph yapısını, Aşama 14 ilk production package'ı, Aşama 19 full professional expansion'ı taşır.
+Bu ayrım, henüz taxonomy netleşmeden binlerce lesson/task üretme riskini azaltır.
 
 ---
 
-# 18. V1 Neden Tüm 4+ Yıllık Curriculum'u Beklemiyor?
-
-V1 release'in amacı motorun gerçek çalıştığını kanıtlamaktır.
+# 19. V1 Neden Full Curriculum'u Beklemiyor?
 
 V1:
 - adaptive planner,
@@ -368,35 +322,15 @@ ile release edilebilir.
 
 Full 4+ year professional curriculum V1 ön koşulu değildir.
 
-Bu ayrım iki riski önler:
-- uygulama hiçbir zaman release olmadan yıllarca içerik yazmak,
-- henüz doğrulanmamış learning engine üzerine dev curriculum inşa etmek.
+---
+
+# 20. Gerçek Dünya Çalışma Alışkanlıkları
+
+Professional curriculum zaman içinde Git/branches/PR, code review, tests, build systems, debugger/profiler, documentation, issue decomposition, design docs, reproducible benchmarks, logs/metrics/tracing, incident/postmortem, reliability/security ve open-source contribution workflow öğretmelidir.
 
 ---
 
-# 19. Gerçek Dünya Çalışma Alışkanlıkları
-
-Professional curriculum zaman içinde şunları da öğretmelidir:
-
-- Git / branches / PR workflow,
-- code review,
-- tests,
-- build systems,
-- debugger/profiler,
-- documentation,
-- issue decomposition,
-- design docs,
-- reproducible benchmarks,
-- logs/metrics/tracing,
-- incident/postmortem thinking,
-- reliability/security fundamentals,
-- open-source source tree okuma ve contribution workflow.
-
-Bunlar yan beceri değil, professional engineering davranışının parçasıdır.
-
----
-
-# 20. İlk İş ve Kariyer Köprüsü
+# 21. İlk İş ve Kariyer Köprüsü
 
 Nihai hedef AI Infrastructure olsa da ilk işin doğrudan CUDA/Inference Engineer olması zorunlu değildir.
 
@@ -409,45 +343,44 @@ Uygun bridge alanlar:
 - uygun SRE/Cloud Infrastructure,
 - ML/AI Infrastructure intern/junior fırsatları.
 
-Career strategy teknoloji rotasını bozmaz; ilk iş, final hedefe useful engineering experience taşıyan bir köprü olabilir.
+---
+
+# 22. Güncel Stage Mapping — D-044
+
+- 1–5 değişmedi.
+- 6 Granular Capability Map
+- 7 English
+- 8 UX
+- 9 Architecture/Data Model
+- 10 Mobile Skeleton
+- 11 Daily MVP
+- 12 Mastery/Planner implementation
+- 13 Assessment/Retention/Remediation implementation
+- 14 AI Tutor
+- 15 First 8–12 week production content
+- 16 Analytics/Settings
+- 17 Polish
+- 18 Pilot/Calibration/QA
+- 19 Release APK
+- 20 Full Professional Curriculum/Career/Capstones
+
+D-043 standalone specialization AŞAMA 20 kararı geri çekilmiştir.
 
 ---
 
-# 21. Başarı Felsefesi
-
-Bu uygulama yalnız daha fazla içerik tüketimine neden oluyorsa başarısızdır.
-
-Başarılı ürün:
-- karar yükünü azaltır,
-- doğru prerequisite sırasını korur,
-- gerçek mastery'yi ölçer,
-- zayıflığı saklamaz,
-- retention'ı yeniden doğrular,
-- yanlışta remediation üretir,
-- AI yardımını provenance ile yorumlar,
-- gerçek code/debugging/performance/transfer yaptırır,
-- yıllar içinde integrated engineering depth oluşturur,
-- kullanıcıyı güçlü professional portfolio/capstone evidence'a taşır.
-
----
-
-# 22. Geliştirme Felsefesi
-
-Kodlamadan önce behavior/spec katmanı yeterince netleştirilir.
+# 23. Geliştirme Felsefesi
 
 Canonical yürütme:
 
 `PRE-STEP GitHub refresh → gerekirse Research/Coding/QA → spec/implementation → değerlendirme → POST-STEP GitHub sync`
 
-Ana 1–19 yürütme planı korunur. Yeni 4+ yıl kapsamı özellikle Aşama 5, 14 ve 19'u daha derin hale getirir; mevcut 4B assessment tasarım akışı devam eder.
+Aktif adım hâlâ **4B — Haftalık sınav**; D-044 plan correction 4B execution değildir.
 
 ---
 
-# 23. Proje Hafızası Kuralı
+# 24. Proje Hafızası Kuralı
 
-Kalıcı source of truth GitHub'dır.
-
-Özellikle:
+Kalıcı source of truth GitHub'dır. Özellikle:
 - `docs/START_HERE.md`
 - `docs/PROJECT_MEMORY_PROTOCOL.md`
 - `docs/HANDOFF_STATE.md`
@@ -456,6 +389,7 @@ Kalıcı source of truth GitHub'dır.
 - `docs/DECISIONS.md`
 - `docs/PRODUCT_REQUIREMENTS.md`
 - `docs/PROFESSIONAL_READINESS_TARGET.md`
+- `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - `docs/MASTER_PLAN.md`
 - `docs/PROGRESS_LOG.md`
 
@@ -463,8 +397,8 @@ Yeni önemli kararlar yalnız sohbet içinde bırakılmaz.
 
 ---
 
-# 24. Güncel Kapsam Özeti
+# 25. Güncel Kapsam Özeti
 
-> **AI Infra Learning Coach artık yalnız birkaç yıllık bir roadmap uygulaması değildir. Sıfırdan başlayıp yıllar boyunca kanıt-temelli, adaptif ve kapsamlı biçimde ilerleyen; finalde AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek engineering capability üretmeyi hedefleyen kişisel öğrenme sistemidir.**
+> **AI Infra Learning Coach sıfırdan başlayıp yıllar boyunca kanıt-temelli, adaptif ve kapsamlı biçimde ilerleyen; finalde AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek engineering capability üretmeyi hedefleyen kişisel öğrenme sistemidir.**
 
-> **Takvim hedef değildir. 4+ yıl yalnız esnek horizon'dır. Final gate; mastery + retention + transfer + debugging + performance + integrated capstone evidence'dır.**
+> **Takvim hedef değildir. Final gate; granular Skill/Objective mastery + retention + transfer + debugging + performance + integrated capstone evidence'dır.**
