@@ -47,10 +47,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 19. `docs/TASK_TAXONOMY_SPEC.md`
 20. `docs/PRIORITY_POLICY_SPEC.md`
 21. `docs/PREREQUISITE_POLICY_SPEC.md`
-22. `docs/ENGLISH_FOUNDATION_RULES.md`
-23. `docs/MASTER_PLAN.md`
-24. `docs/AI_AGENT_WORKFLOW.md`
-25. `docs/PROGRESS_LOG.md`
+22. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
+23. `docs/ENGLISH_FOUNDATION_RULES.md`
+24. `docs/MASTER_PLAN.md`
+25. `docs/AI_AGENT_WORKFLOW.md`
+26. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -83,16 +84,22 @@ Eligibility priority'den önce; P0–P4 semantic bands; deterministic rank vecto
 ### 3D ✅ Prerequisite — PRG-v0 / D-036
 - Runtime prerequisite `Skill → Skill`.
 - Hard/soft edge ayrımı.
-- Readiness `ready | ready_due | uncertain | not_ready`.
 - `review_due` hard lock değildir.
-- Hard `not_ready` dependent task'i bloklar.
-- Critical/strict `verification_due` dependent yeni work'u bekletebilir.
 - Yalnız affected branch bekler; independent branches devam eder.
-- Started Topic prerequisite regression ile `locked` olmaz.
 - Prerequisite contamination target negative evidence değildir.
-- Priority prerequisite'i bypass edemez.
 
-Ana çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
+### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
+- Diagnostic GRE-v0'dan daha kolay ayrı mastery yolu değildir.
+- Self-report yalnız diagnostic trigger/scope'tur.
+- Tek kolay quiz whole-topic skip yapamaz.
+- Objective-level validated coverage waiver ve partial waiver vardır.
+- Waiver current mastery/retention değildir.
+- `available → mastered` yalnız coverage + GRE required/critical gates birlikte sağlanınca mümkündür.
+- Critical H0 coding/debugging/transfer/diversity şartları korunur.
+- PRG prerequisite/contamination guard diagnostic'te de çalışır.
+- Diagnostic daily capacity içindedir ve GRE → waiver → PRG → Topic → Planner replan akışına bağlanır.
+
+Ana çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 
 ## 7. Güncel çalışma konumu
 
@@ -104,26 +111,27 @@ Ana çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 - `3B` ✅
 - `3C` ✅
 - `3D` ✅
-- `3E` 🟡 **Hızlı öğrenme — AKTİF**
-- `3F–3H` ⬜ bekliyor
+- `3E` ✅
+- `3F` 🟡 **Kaçırılan günler — AKTİF**
+- `3G–3H` ⬜ bekliyor
 
-## 8. 3E'de yapılacaklar
+## 8. 3F'de yapılacaklar
 
 Ana soru:
-> Kullanıcı bir Skill/Topic'i zaten biliyorsa gereksiz dersi tekrar etmeden bunu nasıl güvenilir biçimde kanıtlayıp geçebilir?
+> Kullanıcı birkaç gün, birkaç hafta veya daha uzun süre uygulamaya girmediyse yüzlerce eski görevi borç gibi yüklemeden nasıl güvenilir biçimde geri döndürürüz?
 
 Kesinleştirilecek:
-- diagnostic/placement task yapısı,
-- validated coverage waiver / skip semantics,
-- `available → mastered` güvenilir diagnostic yolu,
-- tek kolay quiz ile skip yasağı,
-- partial diagnostic: yalnız kanıtlanan Objective/Skill kısımlarının waive edilmesi,
-- critical Skill diagnostic için stronger evidence,
-- diagnostic assistance/provenance ve H0 gereksinimi,
-- false-positive skip guard,
-- diagnostic sonucu GRE-v0/PRG-v0/planner replan entegrasyonu.
+- kısa/orta/uzun absence sonrası current-state recovery,
+- eski PlannedTask/TaskCandidate backlog'unu taşımama,
+- overdue retention/remediation/verification ihtiyaçlarını güncel state'ten yeniden üretme,
+- bounded re-entry planı,
+- critical P0/P1 ve prerequisite risklerinin recovery'deki davranışı,
+- starvation ile absence ayrımı,
+- daily capacity içinde recovery,
+- no-debt kullanıcı deneyimi,
+- 3A–3E ile deterministic entegrasyon.
 
-3E başlamadan yeni PRE-STEP GitHub refresh zorunlu. Diagnostic/placement konusunda dış pedagojik kanıt gerekiyorsa Research AI kullanımı PRE-STEP sonrası değerlendirilecek.
+3F başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 9. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ile 3A D-033, 3B D-034, 3C D-035 ve 3D PRG-v0/D-036 kararlarını koru. Şu an aktif adım 3E — Hızlı öğrenme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ile 3A D-033, 3B D-034, 3C D-035, 3D D-036 ve 3E VDW-v0/D-037 kararlarını koru. Şu an aktif adım 3F — Kaçırılan günler.`
