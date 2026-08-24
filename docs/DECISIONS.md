@@ -117,96 +117,84 @@ alpha = 1 + Σ(wq)
 beta  = 1 + Σ(w(1-q))
 score = alpha/(alpha+beta)
 ```
-ve direct/corroborating, H0–H4, AI-evaluator numeric multiplier'ları önerilmişti. Bu model ayrı Research AI doğrulamasından sonra finalden çıkarıldı. Tarihsel candidate ayrıntısı Git history ve `docs/2E_RESEARCH_VALIDATION.md` içinde açıklanır.
+ve direct/corroborating, H0–H4, AI-evaluator numeric multiplier'ları önerilmişti. Bu model ayrı Research AI doğrulamasından sonra finalden çıkarıldı.
 
 ## D-030 — 2E ayrı Research AI raporu alınmadan kapatılamaz
-**Durum:** UYGULANDI / TAMAMLANDI — 2026-08-24  
-Kullanıcı bağımsız Research AI raporunu sağladı; ana yönetici raporu otomatik kabul etmeyip mevcut 2A–2D kararları ve seçili akademik kaynaklarla değerlendirdi.
+**Durum:** UYGULANDI / TAMAMLANDI — 2026-08-24
 
 ## D-031 — Final Mastery Formula v0 = Gated Recent Evidence (GRE-v0)
 **Durum:** Kabul edildi — 2026-08-24
-
-- Mastery score'a yalnız eligible, prerequisite-valid, H0, direct/primary, verified, bağımsız evidence group girer.
-- H1–H4 positive independent mastery score'a girmez.
-- Same/near items dependency/testlet grouping ile kontrol edilir.
-- Objective score son en fazla 5 eligible H0 direct group'un ortalaması; threshold 0.80, window 5 heuristic/calibration değeridir.
-- Required/critical Objective hard gates; critical coding H0 user-authored artifact, debugging H0 diagnosis/fix ister.
+- Yalnız eligible, prerequisite-valid, H0, direct/primary, verified, independent evidence groups score'a girer.
+- H1–H4 independent positive mastery değildir.
+- Same/near item dependency/testlet grouping uygulanır.
+- Required/critical Objective hard gates vardır.
 - İlk clean post-mastery failure instant reset değil `verification_due` üretir.
-- Difficulty multiplier değildir; fixed AI-evaluator trust multiplier yoktur.
-- Bounded/incremental implementation D-028'e uygundur.
+- Bounded/incremental uygulanır.
 
 Ayrıntı: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
 
 ## D-032 — Final Retention/Forgetting modeli = RVR-v0
 **Durum:** Kabul edildi — 2026-08-24
-
-`RVR-v0 — Retention Verification & Risk` 2F final modelidir.
-
-- GRE-v0 mastery ve retention scheduling ayrı eksenlerdir.
-- Zaman geçişi GRE/mastery score'u otomatik düşürmez; `review_due` üretir.
-- Retention states: `untracked`, `fresh`, `stable`, `review_due`, `verification_due`, `at_risk`.
-- `review_due` unutma değildir; Topic'i otomatik `weakening` yapmaz ve prerequisite'i tek başına hard-block etmez.
-- Retention verification target Skill'e uygun active H0 evidence ister; coding/debugging/transfer flashcard ile ikame edilmez.
-- İlk clean delayed failure → `verification_due`; fresh/unseen recheck. Recheck failure sonrası yeni evidence GRE-v0'a girer ve gates doğal yeniden hesaplanır; score elle `0.50` gibi değere atanmaz.
-- Natural reuse ancak target Skill structurally essential + H0 + separately verified + context-diverse ise planned retention evidence sayılabilir.
-- Global project/task success bütün component Skills'i refresh etmez; automatic cluster/descendant refresh yoktur.
-- Critical prerequisite `review_due` iken hard lock yok; actual negative evidence nedeniyle `verification_due` varsa unresolved critical recheck boyunca dependent yeni work bekleyebilir.
-- Long absence sonrası backlog dump yok; representative/integrated verification yalnız ayrı Skill attribution mümkünse kullanılır. Daily capacity 3A–3F'de belirlenir.
-- V0 interval defaults (`2/4/7 gün`, critical cap 3, growth `2.0/1.6`, max `180/90`) ve 1 günlük verification separation bilimsel sabit değil versioned engineering heuristic + pilot calibration ayarıdır.
-- Model bounded/incremental/local uygulanabilir; ağır history scan veya population-trained model V1 şartı değildir.
+- Mastery ve retention ayrı eksenlerdir.
+- Zaman GRE/mastery score'u otomatik düşürmez; `review_due` üretir.
+- `review_due` forgetting/hard lock değildir.
+- First clean delayed failure → `verification_due`; recheck sonrası GRE doğal yeniden hesaplanır.
+- Natural reuse strict attribution ile planned retention evidence olabilir.
+- Critical unresolved verification dependent new work'u bekletebilir.
+- Missed-day backlog dump yoktur.
 
 Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
 
 ## D-033 — Günlük kapasite planner için hard zaman bütçesidir; ihtiyaç oluştu diye gün otomatik uzamaz
 **Durum:** Kabul edildi — 2026-08-24
+- Explicit günlük süre hard envelope'dur.
+- Fixed kategori yüzdesi yoktur.
+- Remediation/retention day length'i otomatik büyütmez.
+- Safe split → smaller alternative → defer.
+- Deferred task ertesi gün borç değildir.
+- Capacity deterministic/versioned'dır.
 
-3A final capacity contract:
-- Günlük `available_minutes` planner'ın hard envelope'udur; explicit today override en yüksek önceliğe sahiptir.
-- Short/normal/intensive yalnız editable UI presetleridir. V0 önerileri `30/60/90 dk`; bilimsel optimum değildir.
-- Planner süre tahmin hatası için V0'da `10%` reserve bırakır; bu da versioned engineering heuristic'tir.
-- `minimum_plannable_block_minutes_v0 = 10`; daha az süre failure/ceza değildir, yalnız uygun micro-task varsa planlanır.
-- Capacity sabit kategori yüzdelerine bölünmez; new learning / remediation / retention / English payı gerçek state ve 3C priority ile belirlenir.
-- Yeni remediation veya retention işi mevcut günün üstüne eklenip süreyi otomatik büyütmez; remaining capacity yeniden paketlenir.
-- Kullanıcı session sırasında süreyi azaltır/artırırsa yalnız kalan plan current state'ten replan edilir; completed evidence korunur.
-- Başlanmamış veya yarım bırakılmış task otomatik negative mastery evidence değildir.
-- Task sığmıyorsa pedagogically safe split → smaller eligible alternative → defer sırası uygulanır; critical task bile kullanıcı izni olmadan hard budget'ı aşmaz.
-- Deferred işler ertesi güne “borç kuyruğu” olarak taşınmaz; current-state candidate generation yapılır.
-- Task duration metadata ve gelecekte user pace adaptation desteklenir; wall-clock ile active-learning duration ayrılabilir.
-- Capacity resolution ve output deterministic/versioned olmalı; LLM günlük süreyi keyfi değiştiremez.
-
-Ayrıntı: `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.
+Ayrıntı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
 
 ## D-034 — Planner'da kalıcı olan eski task değil açık LearningNeed'dir; task purpose/activity/track/evidence ayrı eksenlerdir
 **Durum:** Kabul edildi — 2026-08-24
-
-- Canonical akış: `state → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`.
-- Ertelenen/seçilmemiş TaskCandidate failure değildir ve ertesi güne `task debt` olarak taşınmaz; onu doğuran LearningNeed çözülmediyse fresh candidate üretilebilir.
-- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
-- `activity_kind` ayrı eksendir; English curriculum track'tir.
-- Task category evidence değildir; gerçek evidence Attempt/Artifact sonrası GRE/RVR kurallarıyla oluşur.
-- Multi-Skill integrated task component evidence için structural essentiality + separate observability/attribution gerekir.
-- Provenance/validation, variant/dependency, prerequisite/tools, duration/splitting metadata zorunlu contract parçalarıdır.
-- `paused_progress` ile `deferred_candidate` ayrıdır; candidate lifecycle mastery evidence değildir.
-- 3C priority ham sinyalleri TaskCandidate contract'ında vardır; 3B sabit weight belirlemez.
+- Canonical akış `state → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`.
+- Deferred TaskCandidate debt değildir; unresolved LearningNeed fresh candidate üretebilir.
+- Purpose/activity/track/evidence ayrı eksenlerdir.
+- Multi-Skill component evidence ayrı attribution ister.
+- Provenance/validation + prerequisite + duration metadata TaskCandidate contract'ındadır.
 
 Ayrıntı: `docs/TASK_TAXONOMY_SPEC.md`.
 
 ## D-035 — Planner priority modeli PBR-v0: semantic priority bands + deterministic rank vector
 **Durum:** Kabul edildi — 2026-08-24
-
-- Final 3C modeli `PBR-v0 — Priority Bands & Rank Vector`.
-- Priority task ID'den değil açık `LearningNeed`'den başlar.
-- Eligibility/trust priority'den önce gelir; priority prerequisite'i bypass edemez.
-- Bandlar: `P0 integrity_blocker`, `P1 repair_or_verify`, `P2 maintain_or_continue`, `P3 planned_progress`, `P4 reinforce_or_optimize`.
-- `review_due` tek başına negative evidence/P0 değildir; critical veya overdue olduğunda maintenance priority yükselir.
-- Critical prerequisite verification/remediation ancak gerçekten dependent path'i bloke ediyorsa P0 olur.
-- Aynı band içi sıralama weighted sum değil lexicographic rank vector ile yapılır: blocking scope → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break.
-- Duration fit semantic priority'den sonra gelir; `score/duration` veya task-count maximization kullanılmaz.
-- Eligible ama sürekli ertelenen açık LearningNeed için starvation guard vardır; task debt yoktur.
-- Parallel English gibi track'ler fixed yüzdeyle değil due + starvation/track-balance sinyaliyle korunur.
-- Same-need duplicate alternatives bir planning round'da bastırılır; safe teach→practice→assess chain istisnadır.
-- Capacity yetmezse safe split → smaller eligible alternative → defer; kalan LearningNeed açık kalır.
-- `PriorityDecisionTrace` ile band/rank/fit/selection reconstruct edilebilir.
-- Aynı state + config → aynı plan sırası; random tie-break ve LLM keyfi priority değişimi yoktur.
+- Eligibility/trust priority'den önce gelir.
+- P0 integrity blocker, P1 repair/verify, P2 maintain/continue, P3 planned progress, P4 reinforce/optimize.
+- `review_due` negative evidence/P0 değildir.
+- Same-band sorting lexicographic rank vector ile yapılır.
+- Starvation guard ve track balance vardır.
+- Duration semantic priority'den sonra gelir.
+- Priority prerequisite'i bypass edemez.
 
 Ayrıntı: `docs/PRIORITY_POLICY_SPEC.md`.
+
+## D-036 — Final prerequisite modeli = PRG-v0 Prerequisite Readiness Gate
+**Durum:** Kabul edildi — 2026-08-24
+
+- Runtime prerequisite canonical olarak `Skill → Skill` düzeyindedir.
+- Edge semantics `hard | soft` olarak ayrılır; hard gerçek öğretim/çözüm/evidence zorunluluğudur, soft destekleyicidir ve tek başına kilit üretmez.
+- Prerequisite readiness: `ready | ready_due | uncertain | not_ready`.
+- `review_due` = `ready_due`; hard lock üretmez.
+- Hard `not_ready` dependent candidate'ı bloke eder.
+- `verification_due` source Skill'i `uncertain` yapar; critical prerequisite veya strict task'ta dependent yeni work verification çözülene kadar bekler.
+- Normal non-strict hard dependency'de `uncertain` conditional eligibility olabilir; tüm curriculum durmaz.
+- Task-level `required_skill_ids` exact candidate eligibility için hard requirement'tır.
+- Priority prerequisite gate'i bypass edemez. Canonical sıra: state/need → candidate → validation/trust → PRG-v0 eligibility → PBR-v0 priority → capacity fit.
+- Yalnız affected dependent branch bekler; independent Linux/English/diğer branches devam eder.
+- Started/mastered Topic prerequisite regression nedeniyle geriye `locked` yapılmaz.
+- Öğretilmemiş/eksik hard prerequisite içeren task failure'ı target Skill için `invalid/unusable` evidence'dır; negative mastery yazılmaz.
+- Missing prerequisite repair/review/verification LearningNeed olarak planner'a geri beslenir.
+- Technical English gerçek dependency olmadığı sürece global technical hard blocker değildir.
+- Deterministic/bounded readiness output `PrerequisiteDecision` ile açıklanabilir ve ileride 11B Prerequisite Engine'e taşınabilir.
+
+Ayrıntı: `docs/PREREQUISITE_POLICY_SPEC.md`.
