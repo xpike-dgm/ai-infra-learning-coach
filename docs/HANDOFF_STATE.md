@@ -4,21 +4,17 @@
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ## 0. Zorunlu protokol
-
 Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`, D-024, D-027.
 
 > Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra ana çıktı + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN` ve gerekiyorsa `DECISIONS` senkronu zorunludur.
 
 ## 1. Ürün
-
 Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan, yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
 
 Ana rota:
-
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
 
-## 2. Bağlayıcı ana kurallar
-
+## 2. Büyük bağlayıcı kurallar
 - Curriculum takvim değil prerequisite graph.
 - Canonical mastery/prerequisite seviyesi Skill; evidence Objective'e bağlanabilir.
 - Coverage/time/streak/task completion mastery değildir.
@@ -26,72 +22,78 @@ Ana rota:
 - Coding mastery gerçek user artifact ister.
 - Same-item/family tekrarları mastery'yi şişiremez.
 - AI yardımı serbest; assisted performance independent mastery değildir.
-- AI-generated/copied code production mastery değildir.
 - Tek yeni yanlış mastered Skill'i anında silmez.
 - English A0 paralel gider; öğretilmemiş grammar gizli prerequisite olamaz.
 - Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
-- D-028: uygulama akıcı olmalı; bounded/incremental hesap ve async ağır işler.
+- D-028: uygulama akıcı; bounded/incremental hesap ve async ağır işler.
 
-## 3. Tamamlanan adımlar
+## 3. Tamamlanan AŞAMA 1
+`1A–1D` ✅
 
-- `1A–1D` ✅ Ürün çerçevesi
-- `2A` ✅ Bilgi birimleri — `docs/LEARNING_ENGINE_SPEC.md`
-- `2B` ✅ Topic state — `docs/TOPIC_STATE_MACHINE.md`
-- `2C` ✅ Mastery signals — `docs/MASTERY_SIGNALS_SPEC.md`
-- `2D` ✅ AI/hint — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-- `2E` ✅ Mastery Formula v0 — `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`
+## 4. Tamamlanan AŞAMA 2
+`2A–2F` ✅
 
-## 4. 2E final — GRE-v0
+### 2A
+`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical. `docs/LEARNING_ENGINE_SPEC.md` — D-021.
 
-İlk Beta-style candidate ayrı Research AI doğrulaması sonrası finalden çıkarıldı. D-029 artık historical candidate; final karar D-031.
+### 2B
+Topic states: `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`. `docs/TOPIC_STATE_MACHINE.md` — D-023.
 
-### Canonical final davranış
+### 2C
+Mastery evidence taxonomy, direct/corroborating/contextual, coding/debugging/transfer/retention/project. `docs/MASTERY_SIGNALS_SPEC.md` — D-025.
 
-- Mastery score'a yalnız `valid + prerequisite-valid + H0 + direct + verified + independent` evidence group girer.
-- H1–H4 formative/remediation/recheck sinyalidir; positive independent mastery score'a girmez.
-- Corroborating evidence direct evidence'ı numeric accumulation ile ikame etmez.
-- `dependency_group_id/testlet_id` correlated item'ları tek group yapar; `variant_family_id` diversity için kullanılır.
-- Objective score:
+### 2D
+H0–H4 assistance/provenance/recheck. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026.
 
-```text
-W_o = son en fazla 5 eligible independent H0 direct evidence group
-recent_direct_score = mean(q_g for g in W_o)
-```
+### 2E — GRE-v0
+`docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
 
-- `threshold = 0.80`, `window max = 5` cold-start engineering heuristics; probability veya `% learned` değildir.
-- Standard default: score >=0.80 + en az 2 independent group + default 2 family/context + required direct type + no recheck.
-- Critical default: en az 3 independent group + 2 family/context + non-basic/objective-specific gate.
-- Critical production → H0 user-authored coding artifact.
-- Critical debugging → H0 diagnosis/fix evidence.
-- Skill mastered = tüm required Objective PASS + tüm critical Objective PASS + unresolved critical recheck yok. Compensatory high average yok.
-- İlk clean post-mastery H0 direct negative → `verification_due` + fresh/unseen recheck.
-- Difficulty numeric multiplier değildir.
-- AI evaluator fixed numeric weight kaldırıldı: `verified | provisional | invalid`; provisional LLM grade critical mastery'yi tek başına geçiremez.
-- Bounded sufficient-state D-028 performans gereksinimine uygundur.
+- score yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence,
+- bounded recent window max 5, threshold 0.80; heuristic/calibration,
+- required/critical hard gates,
+- critical coding H0 user artifact, debugging H0 diagnosis/fix,
+- first contradiction → verification_due,
+- no fixed AI trust or difficulty multiplier.
 
-Research ayrımı: `0.80`, window `5`, minimum group/family defaultları 17C pilotunda kalibre edilecek.
+### 2F — RVR-v0
+`docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
 
-## 5. Şu anda aktif adım
+- mastery ve retention ayrı eksen,
+- time-based GRE score decay yok,
+- retention states: `untracked`, `fresh`, `stable`, `review_due`, `verification_due`, `at_risk`,
+- `review_due` forgetting değildir,
+- delayed retention Skill'e uygun H0 evidence ister,
+- first delayed failure → verification; repeated clean failure → GRE gates recalc/remediation,
+- natural reuse yalnız structurally essential + H0 + separately verified + context-diverse ise strong retention evidence,
+- automatic cluster refresh yok,
+- critical `verification_due` unresolved iken dependent yeni work bekleyebilir,
+- long absence backlog dump yok,
+- interval defaults heuristic/calibration,
+- local bounded/incremental state.
 
-**AŞAMA 2 — 2F Unutma modeli — AKTİF**
+## 5. Güncel kesin konum
 
-2F başlamadan yeni PRE-STEP refresh + ayrı Research AI turu zorunlu.
+**AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla**
 
-Kesinleştirilecek:
+- `3A` 🟡 **Günlük kapasite — AKTİF**
+- `3B–3H` ⬜ Bekliyor
 
-- spaced repetition yaklaşımı,
-- review interval başlangıcı/büyümesi,
-- successful/failed delayed retrieval,
-- time-based retention risk / forgetting,
-- `mastered → weakening → mastered/remediation_required`,
-- natural reuse'un retention evidence sayılması,
-- GRE-v0 current mastery ile retention state'in birlikte çalışması,
-- tek delayed failure'da instant mastery reset olmaması.
+3A başlamadan yeni PRE-STEP GitHub refresh zorunludur.
 
-Research raporundaki Half-Life Regression önerisi yalnız bir adaydır; 2F Research AI bunu SM-2/FSRS/HLR/ACT-R vb. uygun alternatiflerle karşılaştırmalıdır.
+## 6. 3A'da kesinleştirilecekler
+- kullanıcının günlük gerçek zaman/capacity modeli,
+- kısa/normal/yoğun gün profilleri,
+- minimum viable study block,
+- plan hedef süresinin üstüne remediation/retention nedeniyle kontrolsüz büyümemesi,
+- capacity'nin new learning / practice / retention / remediation arasında nasıl harcanacağına temel contract,
+- user `bugün 20 dk var` / `bugün 2 saat var` dediğinde replan,
+- overflow: ertelenecek işler ve carry-over yerine current-state replan,
+- planner'ın süre tahminlerinin belirsizlik toleransı,
+- 3B–3G için kullanılacak deterministic capacity output.
 
-## 6. İlk okuma sırası
+3A'da Research AI yalnız learning-session duration / cognitive fatigue / planning trade-off gibi gerçekten dış kanıt gerekiyorsa kullanılmalıdır; keyfi optimum dakika bilimsel gerçek diye kilitlenmemelidir.
 
+## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
 3. `docs/HANDOFF_STATE.md`
@@ -105,11 +107,12 @@ Research raporundaki Half-Life Regression önerisi yalnız bir adaydır; 2F Rese
 11. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
 12. `docs/MASTERY_FORMULA_V0.md`
 13. `docs/2E_RESEARCH_VALIDATION.md`
-14. `docs/ENGLISH_FOUNDATION_RULES.md`
-15. `docs/MASTER_PLAN.md`
-16. `docs/AI_AGENT_WORKFLOW.md`
-17. `docs/PROGRESS_LOG.md`
+14. `docs/RETENTION_FORGETTING_SPEC.md`
+15. `docs/2F_RESEARCH_VALIDATION.md`
+16. `docs/ENGLISH_FOUNDATION_RULES.md`
+17. `docs/MASTER_PLAN.md`
+18. `docs/AI_AGENT_WORKFLOW.md`
+19. `docs/PROGRESS_LOG.md`
 
-## 7. Yeni sohbetin ilk işi
-
-Aktif adımı repo üzerinden doğrula ve **2F — Unutma modeli** için PRE-STEP refresh yap. Sonra ayrı Research AI retention/spaced-repetition raporu al; raporu otomatik kabul etme, ürüne sentezle.
+## 8. Yeni sohbetin ilk işi
+Repo üzerinden aktif adımı doğrula ve **3A — Günlük kapasite** için PRE-STEP refresh yap. Aşama 2'nin GRE-v0 + RVR-v0 kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
