@@ -2,7 +2,7 @@
 
 **Durum:** CANONICAL PRODUCT TARGET  
 **Tarih:** 2026-08-24  
-**Karar adayı:** D-041
+**Karar:** D-041
 
 Bu belge AI Infra Learning Coach'un uzun vadeli öğrenme rotasının yeni çıkış hedefini tanımlar.
 
