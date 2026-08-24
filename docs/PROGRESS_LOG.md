@@ -106,7 +106,36 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 **Çıktılar**
 - `docs/PREREQUISITE_POLICY_SPEC.md`
 - `docs/DECISIONS.md` — D-036
+
+---
+
+### 2026-08-24 — 3E Hızlı öğrenme / validated diagnostic waiver tamamlandı
+
+**PRE-STEP**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `MASTERY_FORMULA_V0`, `TOPIC_STATE_MACHINE`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `PREREQUISITE_POLICY_SPEC` ve ilgili planner kuralları yeniden okundu.
+- Aktif adımın 3E olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; yeni diagnostic mastery threshold'u seçmek yerine mevcut GRE-v0 evidence standardını hızlı fakat güvenilir placement/waiver yoluna uygulama kararı alındı.
+
+**Final `VDW-v0 — Validated Diagnostic Waiver`**
+- Diagnostic GRE-v0'dan daha kolay ikinci mastery sistemi değildir.
+- Kullanıcı self-report'u yalnız diagnostic'i başlatır; evidence değildir.
+- Tek kolay quiz / recognition-only whole-topic skip yoktur.
+- Skip Objective-level `DiagnosticCoverageWaiver` olarak modellenir; waiver mastery/retention değildir.
+- Partial diagnostic yalnız kanıtlanan Objective'leri waive eder.
+- `available → mastered` yalnız bütün required coverage + required/critical GRE gates birlikte sağlanınca mümkündür.
+- Critical coding/debugging/transfer/diversity gate'leri diagnostic için düşürülemez.
+- Waiver kanıtı H0, prerequisite-valid, verified ve provenance-clean olmalıdır.
+- Integrated diagnostic birden çok Objective'i hızlandırabilir fakat component attribution ayrı doğrulanır.
+- Prior-knowledge diagnostic fail otomatik remediation cezası değildir; normal learning'e dönülür.
+- PRG-v0 diagnostic'te de eligibility/contamination guard sağlar.
+- Diagnostic günlük capacity içindedir ve sonuç GRE → waiver → PRG → Topic → Planner replan zincirine girer.
+- Waiver curriculum/objective version'a bağlıdır; yeni requirement eski waiver ile otomatik geçmez.
+- Policy bounded/deterministic ve D-028 ile uyumlu.
+
+**Çıktılar**
+- `docs/DIAGNOSTIC_WAIVER_SPEC.md`
+- `docs/DECISIONS.md` — D-037
 - canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3E — Hızlı öğrenme`.
-3E başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3F — Kaçırılan günler`.
+3F başlamadan yeni PRE-STEP GitHub refresh zorunlu.
