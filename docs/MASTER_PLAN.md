@@ -14,48 +14,22 @@ Ana ürün ilkesi:
 ---
 
 # AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
-
-### [x] 1A — Ana ürün amacı
-Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
-
-### [x] 1B — V1 kapsamı
-Çıktı: `docs/V1_SCOPE.md`
-
-### [x] 1C — Başarı kriterleri
-Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
-
-### [x] 1D — Non-goals
-Çıktı: `docs/NON_GOALS.md`
-
-> **Tamamlandı — 2026-08-24:** ürün amacı, V1 sınırı, acceptance ve non-goals kilitlendi.
+### [x] 1A — Ana ürün amacı — `docs/PRODUCT_REQUIREMENTS.md`
+### [x] 1B — V1 kapsamı — `docs/V1_SCOPE.md`
+### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
+### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla ✅
+### [x] 2A — Bilgi birimleri — `docs/LEARNING_ENGINE_SPEC.md` — D-021
+### [x] 2B — Topic durumları — `docs/TOPIC_STATE_MACHINE.md` — D-023
+### [x] 2C — Mastery sinyalleri — `docs/MASTERY_SIGNALS_SPEC.md` — D-025
+### [x] 2D — AI / ipucu etkisi — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026
+### [x] 2E — Mastery formülü v0 — `GRE-v0` — D-031
+### [x] 2F — Unutma modeli — `RVR-v0` — D-032
 
-### [x] 2A — Bilgi birimleri
-`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical mastery/prerequisite seviyesi.  
-Çıktı: `docs/LEARNING_ENGINE_SPEC.md` — D-021.
-
-### [x] 2B — Topic durumları
-`locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.  
-Çıktı: `docs/TOPIC_STATE_MACHINE.md` — D-023.
-
-### [x] 2C — Mastery sinyalleri
-Çıktı: `docs/MASTERY_SIGNALS_SPEC.md` — D-025.
-
-### [x] 2D — AI / ipucu etkisi
-Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026.
-
-### [x] 2E — Mastery formülü v0
-Final: `GRE-v0 — Gated Recent Evidence`.  
-Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
-
-### [x] 2F — Unutma modeli
-Final: `RVR-v0 — Retention Verification & Risk`.  
-Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
-
-> **AŞAMA 2 tamamlandı — 2026-08-24:** GRE-v0 mastery + RVR-v0 retention canonical.
+> **AŞAMA 2 tamamlandı — 2026-08-24.**
 
 ---
 
@@ -63,13 +37,9 @@ Final: `RVR-v0 — Retention Verification & Risk`.
 
 ### [x] 3A — Günlük kapasite
 - explicit daily time = hard budget,
-- editable short/normal/intensive profiles,
-- reserve/min block heuristic,
 - no auto-overrun,
-- dynamic remaining-time replan,
 - split/defer,
-- no backlog debt,
-- duration/pacing contract.
+- no backlog debt.
 
 Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.  
 Karar: D-033.
@@ -78,44 +48,53 @@ Karar: D-033.
 - `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
 - purpose/activity/track/evidence ayrı,
 - unresolved LearningNeed kalıcı; old task debt değil,
-- multi-Skill attribution/provenance/variant/prerequisite/duration contract.
+- multi-Skill attribution/provenance/prerequisite/duration contract.
 
 Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.  
 Karar: D-034.
 
 ### [x] 3C — Öncelik puanı
-
 **Final: `PBR-v0 — Priority Bands & Rank Vector`**
-- priority açık LearningNeed seviyesinde,
 - eligibility priority'den önce,
-- P0 `integrity_blocker`, P1 `repair_or_verify`, P2 `maintain_or_continue`, P3 `planned_progress`, P4 `reinforce_or_optimize`,
-- critical etiketi tek başına P0 değil; gerçek blocking gerekir,
-- `review_due` forgetting/negative evidence değildir,
-- aynı band içinde lexicographic rank vector: blocking → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break,
-- additive sahte-hassas score ve score/minute yok,
-- starvation guard + parallel-track balance,
-- safe split/smaller alternative/defer 3A ile uyumlu,
-- kalan LearningNeed açık kalır; task debt yok,
-- `PriorityDecisionTrace` açıklanabilirlik için tutulur.
+- P0–P4 semantic bands,
+- deterministic lexicographic rank vector,
+- starvation/track-balance guard,
+- duration semantic priority'den sonra,
+- no task debt.
 
 Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.  
 Karar: D-035.
 
-> **Tamamlandı — 2026-08-24:** 80 dk ihtiyaç / 50 dk capacity problemi semantic priority + deterministic rank + capacity fit ile çözülebilir hale geldi.
+### [x] 3D — Prerequisite davranışı
+**Final: `PRG-v0 — Prerequisite Readiness Gate`**
+- runtime prerequisite `Skill → Skill`,
+- `hard | soft` edge semantics,
+- readiness: `ready | ready_due | uncertain | not_ready`,
+- `review_due` hard lock değildir,
+- hard `not_ready` dependent candidate'ı bloke eder,
+- critical/strict `verification_due` dependent yeni work'u bekletebilir,
+- task-level `required_skill_ids` exact task eligibility'yi belirler,
+- yalnız affected branch bekler; independent branches devam eder,
+- started Topic regression ile `locked` olmaz,
+- prerequisite contamination target negative evidence değildir,
+- priority prerequisite'i bypass edemez,
+- deterministic/bounded resolver.
 
-### [ ] 3D — Prerequisite davranışı — **AKTİF**
+Çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.  
+Karar: D-036.
+
+> **Tamamlandı — 2026-08-24:** eligibility ve prerequisite gating PBR-v0 priority'nin önüne bağlandı; branch-local blocking ve contamination guard canonical hale geldi.
+
+### [ ] 3E — Hızlı öğrenme — **AKTİF**
 Kesinleştirilecek:
-- hard/soft prerequisite edge semantics,
-- task eligibility,
-- critical unresolved verification/remediation nedeniyle dependent wait,
-- `review_due` tek başına hard lock olmaması,
-- bağımsız branch'lerin devam etmesi,
-- prerequisite contamination guard,
-- prerequisite state değişince replan,
-- 3D eligibility filter ile 3C priority sırası.
-
-### [ ] 3E — Hızlı öğrenme
-Diagnostic/skip/validated waiver; no single-easy-quiz skip.
+- diagnostic/skip/validated waiver,
+- `available → mastered` güvenilir diagnostic yolu,
+- no single-easy-quiz skip,
+- partial waiver,
+- critical Skill diagnostic evidence,
+- assistance/provenance,
+- false-positive skip guard,
+- diagnostic sonrası GRE/PRG/replan.
 
 ### [ ] 3F — Kaçırılan günler
 Long absence sonrası backlog dump yok; current-state recovery.
@@ -126,7 +105,7 @@ Reason codes + deterministic selection pseudocode.
 ### [ ] 3H — Planner simülasyonu
 Sanal kullanıcı profilleri ve scenario suite.
 
-**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, prerequisite/decision policy, pseudocode, simulation suite.
+**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, diagnostic/decision policy, pseudocode, simulation suite.
 
 ---
 
@@ -148,7 +127,6 @@ Sanal kullanıcı profilleri ve scenario suite.
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
-Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 6A — Başlangıç ölçümü
 ### [ ] 6B — A1/A2/B1/B2 teknik hedefleri
 ### [ ] 6C — Günlük English bileşeni
@@ -179,7 +157,6 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ---
 
 # AŞAMA 9 — Mobil Proje İskeleti
-> **Ana production uygulama kodlamasının başladığı aşama.**
 ### [ ] 9A — Proje kurulumu
 ### [ ] 9B — Navigation
 ### [ ] 9C — Design system implementation
@@ -289,7 +266,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3C`  
-**Aktif:** **`3D — Prerequisite davranışı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3D`  
+**Aktif:** **`3E — Hızlı öğrenme`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3D prerequisite/eligibility policy → POST-STEP sync.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3E diagnostic/skip/waiver policy → POST-STEP sync.
