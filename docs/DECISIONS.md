@@ -135,7 +135,7 @@ Mastery threshold, evidence weight, spaced repetition interval ve planner oranla
 
 Scope creep'i önlemek için ürün seviyesi non-goals ile yalnız V1'den ertelenen özellikler birbirinden ayrıldı.
 
-Ana sınırlar: zaman/streak/task completion mastery yerine geçmeyecek; ürün sabit takvimli kurs, tamamen LLM kontrollü curriculum, genel amaçlı eğitim platformu, sosyal/ticari SaaS veya tam mobil IDE olmayacak; missed-day görev borcu, sahte bilimsel kesinlik ve kariyer garantisi kullanılmayacak.
+Ana sınırlar: zaman/streak/task completion mastery yerine geçmeyecek; ürün sabit takvimli kurs, tamamen LLM kontrollü curriculum, genel amaçlı eğitim platformu, sosyal/ticari SaaS veya tam mobil IDE olmayacak; missed-day task debt, sahte bilimsel kesinlik ve kariyer garantisi kullanılmayacak.
 
 Ayrıntı: `docs/NON_GOALS.md`.
 
@@ -212,3 +212,23 @@ Bağlayıcı kararlar:
 - Sayısal mastery/remediation/retention eşikleri 2C–2F tamamlanmadan Topic state içine keyfi olarak gömülmeyecektir.
 
 Ayrıntılı state machine: `docs/TOPIC_STATE_MACHINE.md`.
+
+## D-024 — Her numaralı adım öncesi ve sonrası GitHub proje hafızası senkronizasyonu zorunludur
+
+**Durum:** Kabul edildi — 2026-08-24
+
+GitHub bu projenin durable source of truth kaynağıdır. Bu nedenle her `1A / 2C / 3A / ...` adımı için aşağıdaki çalışma döngüsü zorunludur:
+
+`PRE-STEP GitHub refresh → adımı yürüt → gerekirse Research/Coding/QA → POST-STEP GitHub sync → sonraki adımı aktif yap`
+
+Bağlayıcı kurallar:
+
+- Aynı sohbet içinde bir sonraki numaralı adıma geçilse bile PRE-STEP refresh atlanmaz.
+- PRE-STEP sırasında minimum `HANDOFF_STATE.md`, `EXECUTION_INDEX.md`, `STEP_STATUS.md`, `DECISIONS.md` ve ilgili güncel spec/davranış dosyaları okunur.
+- Amaç kullanıcının daha önce verdiği cevapları tekrar sordurmamak, stale sohbet bağlamıyla karar vermemek ve repo/sohbet drift'ini engellemektir.
+- Adım sonunda ana çıktı ve etkilenen canonical hafıza dosyaları güncellenir.
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` yeni durumu yansıttığı kontrol edilmeden numaralı adım tamamlanmış sayılmaz.
+- Yeni kalıcı karar varsa `DECISIONS.md` güncellenir; büyük ürün amacı değişirse ilgili üst seviye context dosyaları da senkronize edilir.
+- Önceki sohbet hiç bilinmese bile yalnız GitHub hafızasını okuyarak projenin doğru noktadan devam edebilmesi bir adım kapanış kriteridir.
+
+Ayrıntılı protokol: `docs/PROJECT_MEMORY_PROTOCOL.md`.
