@@ -142,26 +142,41 @@ Not: Bu spec-level simulation PASS'tir. Production planner runtime/sanal kullan�
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
 
-### [ ] 4A — Günlük mikro değerlendirme — **AKTİF**
-Kesinleştirilecek:
-- günlük mikro assessment'ın amacı ve sınırı,
-- teach/practice/assessment ayrımı,
-- günlük ölçülecek Skill/Objective seçimi,
-- capacity-aware assessment composition,
-- soru sayısı/süre için bilimsel sabit uydurmama,
-- GRE-v0 evidence compatibility,
-- H0/H1–H4 ve AI assistance davranışı,
-- PRG prerequisite validation,
-- retention/remediation/replan entegrasyonu,
-- low-capacity day davranışı,
-- invalid/ambiguous item güvenliği,
-- result contract'ın 4B–4E'ye taşınması.
+### [x] 4A — Günlük mikro değerlendirme — DMA-v0 / D-040
+**Final:** `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+- daily micro assessment zorunlu günlük quiz/kota değildir,
+- `practice / assess / retain / diagnose` purpose'ları ayrıdır,
+- assessment existing LearningNeed + evidence gap bağlamından türetilir; ayrı assessment backlog/debt yoktur,
+- checkpoint / mastery_evidence / verification / integration_check intent'leri,
+- fixed soru sayısı/süre/yüzde yok; 3A hard capacity + PBR priority,
+- Objective-matched evidence modality,
+- H0 default independent measurement; H1–H4 yardım learning'e izin verir ama independent mastery evidence değildir,
+- submit sonrası feedback önceki attempt'i contaminate etmez,
+- PRG prerequisite fairness + contamination guard,
+- invalid/ambiguous/provisional evaluator güvenliği,
+- coding/debugging/transfer evidence standardı düşük süre için düşürülemez,
+- assessment → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → replan,
+- new remediation günü otomatik uzatmaz,
+- English hidden prerequisite guard,
+- 4B–4E common item/result contract + `assessment.*` reason codes.
 
-### [ ] 4B — Haftalık sınav
-- multi-Skill coverage,
-- independent evidence diversity,
-- current weaknesses + progress balance,
-- programı gerçekten değiştiren sonuçlar.
+> **4A tamamlandı — 2026-08-24.**
+
+### [ ] 4B — Haftalık sınav — **AKTİF**
+Kesinleştirilecek:
+- weekly assessment'ın amacı ve DMA-v0'dan farkı,
+- hangi Skill/Objective'lerin haftalık sınavda temsil edileceği,
+- required/critical Skill coverage,
+- multi-Skill composition,
+- evidence type / family / context diversity,
+- current weakness + new progress + critical prerequisite risk dengesi,
+- fixed bilimsel soru sayısı/puan uydurmadan test blueprint yaklaşımı,
+- sınav süresi/capacity ve bölünebilirlik,
+- H0/H1–H4 assistance, pause/incomplete davranışı,
+- invalid/ambiguous/provisional item güvenliği,
+- weekly result'ın GRE/RVR/remediation/prerequisite/planner'a etkisi,
+- programı gerçekten değiştiren ama tek sınavla aşırı tepki vermeyen hysteresis,
+- 4C monthly assessment'a ortak result/blueprint contract.
 
 ### [ ] 4C — Aylık yeterlilik sınavı
 - daha geniş transfer/integration,
@@ -330,7 +345,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`  
-**Aktif:** **`4A — Günlük mikro değerlendirme`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
+**Aktif:** **`4B — Haftalık sınav`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 4A assessment policy → POST-STEP sync.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.
