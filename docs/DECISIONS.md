@@ -156,3 +156,23 @@ Ayrıntı: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md`.
 - Model bounded/incremental/local uygulanabilir; ağır history scan veya population-trained model V1 şartı değildir.
 
 Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md`.
+
+## D-033 — Günlük kapasite planner için hard zaman bütçesidir; ihtiyaç oluştu diye gün otomatik uzamaz
+**Durum:** Kabul edildi — 2026-08-24
+
+3A final capacity contract:
+
+- Günlük `available_minutes` planner'ın hard envelope'udur; explicit today override en yüksek önceliğe sahiptir.
+- Short/normal/intensive yalnız editable UI presetleridir. V0 önerileri `30/60/90 dk`; bilimsel optimum değildir.
+- Planner süre tahmin hatası için V0'da `10%` reserve bırakır; bu da versioned engineering heuristic'tir.
+- `minimum_plannable_block_minutes_v0 = 10`; daha az süre failure/ceza değildir, yalnız uygun micro-task varsa planlanır.
+- Capacity sabit kategori yüzdelerine bölünmez; new learning / remediation / retention / English payı gerçek state ve 3C priority ile belirlenir.
+- Yeni remediation veya retention işi mevcut günün üstüne eklenip süreyi otomatik büyütmez; remaining capacity yeniden paketlenir.
+- Kullanıcı session sırasında süreyi azaltır/artırırsa yalnız kalan plan current state'ten replan edilir; completed evidence korunur.
+- Başlanmamış veya yarım bırakılmış task otomatik negative mastery evidence değildir.
+- Task sığmıyorsa pedagogically safe split → smaller eligible alternative → defer sırası uygulanır; critical task bile kullanıcı izni olmadan hard budget'ı aşmaz.
+- Deferred işler ertesi güne “borç kuyruğu” olarak taşınmaz; current-state candidate generation yapılır.
+- Task duration metadata ve gelecekte user pace adaptation desteklenir; wall-clock ile active-learning duration ayrılabilir.
+- Capacity resolution ve output deterministic/versioned olmalı; LLM günlük süreyi keyfi değiştiremez.
+
+Ayrıntı: `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.
