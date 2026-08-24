@@ -24,82 +24,75 @@ Ana teknik yön:
 
 # 2. Kesinleşen Büyük Kurallar
 
-- İngilizce A0'dan teknik eğitimle paralel ilerler; önce bitirilmesi gereken ayrı ön koşul değildir.
-- `Gün X / 1095` ve sahte kariyer yüzde ilerlemesi ana metrik olmayacaktır.
-- Curriculum sabit takvim değil prerequisite ilişkili knowledge graph olacaktır.
-- Eksik bir konu yalnız kendisine bağlı dalları bekletir; bağımsız dallar devam eder.
-- Daily planner mastery, retention, assessment, prerequisite ve günlük kapasiteye göre plan üretir.
-- Günlük mikro assessment + haftalık sınav + aylık yeterlilik sınavı gelecekteki programı değiştirir.
-- AI yardımı yasak değildir; ancak AI ile tamamlanan iş gerçek anlama yerine geçmez.
-- Uygulama kişisel kullanım içindir; auth, ödeme, abonelik, sosyal sistem, admin paneli ve multi-tenant SaaS kapsam dışıdır.
+- İngilizce A0'dan teknik eğitimle paralel ilerler.
+- `Gün X / 1095` ve sahte kariyer yüzde ilerlemesi ana metrik değildir.
+- Curriculum sabit takvim değil prerequisite ilişkili knowledge graph'tır.
+- Eksik konu yalnız bağımlı dalları bekletir; bağımsız dallar devam eder.
+- Planner mastery, retention, assessment, prerequisite ve günlük kapasiteye göre plan üretir.
+- Günlük mikro assessment + haftalık + aylık sınav gelecekteki programı değiştirir.
+- AI yardımı mümkündür; fakat AI ile tamamlanan iş gerçek anlama yerine geçmez.
+- Uygulama kişisel kullanım içindir; auth/payment/social/admin/multi-tenant SaaS varsayılan kapsam dışıdır.
 - Kritik geliştirme akışı: **Yönetici → gerekirse Araştırma AI → Spec → Kodlama AI → bağımsız Test/QA AI → PASS/FAIL → GitHub kaydı**.
 - Proje Aşama 1–19 ve `1A / 1B / ...` sabit kodlarıyla yürütülür.
+- Non-goals kapsam değişikliği sessizce yapılamaz; yeni decision kaydı gerekir.
 
 ---
 
-# 3. Tamamlanan Ürün Adımları
+# 3. Tamamlanan Ürün Aşaması
 
-## ✅ 1A — Ana ürün amacı
+## ✅ AŞAMA 1 — Ürün Çerçevesini Kilitle
 
+### ✅ 1A — Ana ürün amacı
 Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
 
-Ürünün amacı, günlük değer önerisi, kanıtlanmış öğrenme ilkesi, adaptif davranış ve kariyer rotası kilitlendi.
-
-## ✅ 1B — V1 kapsamı
-
+### ✅ 1B — V1 kapsamı
 Çıktı: `docs/V1_SCOPE.md`
 
-V1 Android odaklı günlük kullanım release'i olarak sınırlandı. Daily planner, knowledge graph/prerequisite, mastery, assessments, retention, remediation, AI Tutor, parallel English, ilk 8–12 haftalık curriculum, local-first persistence, polished UI ve backup/restore V1 kapsamındadır.
-
-## ✅ 1C — Başarı kriterleri
-
+### ✅ 1C — Başarı kriterleri
 Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
 
-V1 için 49 acceptance kriteri tanımlandı ve P0/P1/P2 olarak sınıflandırıldı.
+49 acceptance kriteri P0/P1/P2 olarak tanımlandı. Tüm P0 kriterleri PASS olmadan release yoktur.
 
-Kritik release kuralları:
+### ✅ 1D — Non-goals
+Çıktı: `docs/NON_GOALS.md`
 
-- tüm P0 kriterleri PASS,
-- kritik P1 fonksiyon hatası yok,
-- hard prerequisite bypass yok,
-- progress data loss yok,
-- task completion/tek quiz ile yanlış mastery yok,
-- weekly/monthly sınav sonuçları planner'ı gerçekten değiştiriyor,
-- missed-day replan backlog yığmıyor,
-- AI çekirdek mastery/planner/prerequisite kurallarını keyfi aşamıyor,
-- backup/restore/migration güvenilir,
-- final kritik akışlar bağımsız QA tarafından doğrulanıyor,
-- gerçek Android cihaz ve pilot testleri geçiliyor.
+Ürün seviyesi non-goals ile yalnız V1'e ertelenen özellikler ayrıldı. Sabit kurs, time/streak progress, tamamen LLM kontrollü curriculum, SaaS/social/payment scope creep, tam IDE kimliği ve sahte bilimsel kesinlik reddedildi. Tam curriculum, diğer platformlar, live cloud sync, full voice tutor, full sandbox ve career-market engine V1 sonrasına bırakıldı.
 
-Mastery threshold, assessment ağırlıkları, spaced repetition interval'leri ve planner oranları 1C'de rastgele sabitlenmedi; ilgili sonraki aşamalarda araştırma/simülasyon/pilot ile belirlenecek.
+**Aşama 1 sonucu:** Ne inşa ettiğimiz, V1'de ne olduğu, ne zaman başarılı sayıldığı ve ne yapmayacağımız artık kilitlidir.
 
 ---
 
 # 4. Şu Anda Bulunulan Kesin Adım
 
-**AŞAMA 1 — Ürün Çerçevesini Kilitle**
+**AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla**
 
-- `1A` ✅ Ana ürün amacı
-- `1B` ✅ V1 kapsamı
-- `1C` ✅ Başarı kriterleri
-- `1D` 🟡 **Non-goals — AKTİF**
+- `2A` 🟡 **Bilgi birimleri — AKTİF**
+- `2B` ⬜ Topic durumları
+- `2C` ⬜ Mastery sinyalleri
+- `2D` ⬜ AI/ipucu etkisi
+- `2E` ⬜ Mastery formülü v0
+- `2F` ⬜ Unutma modeli
 
-## Aktif iş: 1D
+## Aktif iş: 2A
 
-V1 ve projenin özellikle ne olmaya çalışmadığını tek bir kalıcı listede konsolide etmek. Amaç scope creep'i önlemektir.
+`Domain → Module → Topic → Skill → Learning Objective` modelini kesinleştirmek.
 
-1D tamamlandığında **Aşama 1 tamamen kapanacak** ve sonraki aktif adım:
+2A'da netleşmesi gerekenler:
 
-> **`2A — Bilgi birimleri`**
-
-olacaktır.
+- her katmanın kesin anlamı,
+- hangi katmanın curriculum organizasyonu için olduğu,
+- mastery'nin hangi seviyede tutulacağı,
+- prerequisite edge'in hangi birimler arasında kurulabileceği,
+- bir topic ile skill arasındaki fark,
+- learning objective'in nasıl ölçülebilir yazılacağı,
+- aynı skill'in birden fazla topic/module ile ilişkisi gerekiyorsa nasıl temsil edileceği,
+- English ve teknik domainlerin aynı modele nasıl oturacağı.
 
 ---
 
 # 5. Hâlâ Açık Ana Konular
 
-- consolidated non-goals (`1D`)
-- Domain → Module → Topic → Skill → Learning Objective modeli
+- bilgi birimi modeli (`2A`)
 - topic state machine
 - mastery formula / threshold / evidence weights
 - AI-help impact
@@ -124,10 +117,13 @@ olacaktır.
 5. `docs/STEP_STATUS.md`
 6. `PROJECT_CONTEXT.md`
 7. `docs/DECISIONS.md`
-8. `docs/MASTER_PLAN.md`
-9. `docs/AI_AGENT_WORKFLOW.md`
-10. `docs/PROGRESS_LOG.md`
-11. İlgili spec dosyaları (`PRODUCT_REQUIREMENTS.md`, `V1_SCOPE.md`, `V1_SUCCESS_CRITERIA.md`, vb.)
+8. `docs/PRODUCT_REQUIREMENTS.md`
+9. `docs/V1_SCOPE.md`
+10. `docs/V1_SUCCESS_CRITERIA.md`
+11. `docs/NON_GOALS.md`
+12. `docs/MASTER_PLAN.md`
+13. `docs/AI_AGENT_WORKFLOW.md`
+14. `docs/PROGRESS_LOG.md`
 
 ---
 
@@ -135,20 +131,14 @@ olacaktır.
 
 Repo hafızasını okuduktan sonra doğrudan:
 
-> **`1D — Non-goals`**
+> **`2A — Bilgi birimleri`**
 
 adımından devam et.
 
-Daha önce kilitlenen `1A`, `1B`, `1C` kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
+Aşama 1 kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
 # 8. Sohbet Aktarım Mesajı
 
 > `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
-
----
-
-# 9. Güncelleme Kuralı
-
-Bu dosya aktif adım değiştiğinde, ana karar alındığında, milestone tamamlandığında veya sohbet devredilmeden önce güncellenir.
