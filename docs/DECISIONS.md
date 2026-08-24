@@ -6,7 +6,7 @@ Bu dosya kalıcı ürün kararlarını kaydeder. Yeni kararlar eklendikçe eski 
 
 **Durum:** Kabul edildi
 
-`Gün 47 / 1095` gibi bir gösterim kullanılmayacak. Geçen zaman öğrenme değildir.
+`Gün X / 1095` gösterilmeyecek. Geçen zaman öğrenme değildir.
 
 ## D-002 — İlerleme mastery tabanlı olacak
 
@@ -135,33 +135,29 @@ Mastery threshold, evidence weight, spaced repetition interval ve planner oranla
 
 Scope creep'i önlemek için ürün seviyesi non-goals ile yalnız V1'den ertelenen özellikler birbirinden ayrıldı.
 
-Ürün seviyesi temel sınırlar:
-
-- zaman/streak/task completion mastery yerine geçmeyecek,
-- ürün sabit takvimli kurs olmayacak,
-- tamamen LLM kontrollü curriculum olmayacak,
-- AI kullanıcı yerine öğrenmiş sayılmayacak,
-- genel amaçlı tüm dersleri öğreten platforma dönüşmeyecek,
-- sosyal ağ veya ticari SaaS olarak tasarlanmayacak,
-- gamification öğrenmenin önüne geçmeyecek,
-- kaçırılan günler görev borcu/ceza olmayacak,
-- telefon uygulaması tam IDE kimliğine dönüşmeyecek,
-- bilimsel dayanağı olmayan sahte kesinlik ve kariyer garantisi verilmeyecek,
-- İngilizce teknik eğitimin ön koşulu yapılmayacak.
-
-V1'e ertelenen başlıca alanlar:
-
-- tüm 3 yıllık curriculum,
-- iOS/web/desktop,
-- cloud account + live multi-device sync,
-- full voice tutor,
-- tam code-execution sandbox,
-- canlı career/job-market engine,
-- community/social,
-- payment/admin,
-- ağır gamification,
-- gereksiz backend/DevOps karmaşıklığı.
-
-Yeni bir non-goal kapsam içine alınacaksa gerekçe, etkilenen adım ve acceptance kriterleriyle yeni karar kaydı gerektirir.
+Ana sınırlar: zaman/streak/task completion mastery yerine geçmeyecek; ürün sabit takvimli kurs, tamamen LLM kontrollü curriculum, genel amaçlı eğitim platformu, sosyal/ticari SaaS veya tam mobil IDE olmayacak; missed-day görev borcu, sahte bilimsel kesinlik ve kariyer garantisi kullanılmayacak.
 
 Ayrıntı: `docs/NON_GOALS.md`.
+
+## D-021 — Öğrenme birimleri organizasyon ve mastery katmanı olarak ayrılacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+Öğrenme modeli `Domain → Module → Topic → Skill → Learning Objective` olarak tanımlandı; ancak bu yapı katı bir ağaç olarak yorumlanmayacak.
+
+Bağlayıcı kararlar:
+
+- `Domain → Module → Topic` curriculum organizasyon katmanıdır.
+- `Skill → Learning Objective` gerçek öğrenme ve ölçüm katmanıdır.
+- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill`'dir.
+- Evidence en atomik olarak `Learning Objective` seviyesine bağlanabilir.
+- Topic/Module/Domain mastery değerleri bağımsız gerçeklik değil, Skill verilerinden **derived** edilir.
+- Aynı Skill birden fazla Topic içinde kullanılabilir; duplicate Skill/mastery oluşturulmaz. Topic ↔ Skill ilişkisi many-to-many destekler.
+- Runtime prerequisite'in ana birimi `Skill → Skill` edge'dir. Topic prerequisite authoring kolaylığı olabilir fakat gerçek kilit Skill mastery üzerinden çalışır.
+- Module/Domain seviyesinde kaba hard-lock varsayılan değildir.
+- Cross-domain Skill bağlantıları mümkündür.
+- Technical English ayrı Skill'lerle aynı modele oturur; gerçek bir teknik bağımlılık yoksa teknik ilerlemeyi global hard-lock etmez.
+- Learning Objective gözlemlenebilir/ölçülebilir eylem olarak yazılır; yalnız `oku`, `izle`, `tamamla` objective sayılmaz.
+- LearningTask ve AssessmentItem hedeflediği Skill/Learning Objective'lere bağlanmalıdır; task completion tek başına mastery değildir.
+
+Ayrıntılı spesifikasyon: `docs/LEARNING_ENGINE_SPEC.md`.
