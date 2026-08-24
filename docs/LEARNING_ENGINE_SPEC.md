@@ -2,8 +2,9 @@
 
 **Aşama:** 2 — Öğrenme ve Mastery Modelini Tasarla  
 **Tamamlanan adım:** 2A — Bilgi birimleri  
-**Durum:** 2A TAMAMLANDI / 2B AKTİF  
-**Tarih:** 2026-08-24
+**Durum:** 2A TAMAMLANDI / AŞAMA 2 TAMAMLANDI  
+**Tarih:** 2026-08-24  
+**Granularity clarification:** 2026-08-25 — D-044
 
 Bu belge öğrenme motorunun bağlayıcı teknik/pedagojik spesifikasyonudur. Eski `docs/LEARNING_ENGINE.md` kavramsal taslak olarak kalabilir; uygulama kararlarında bu dosya daha güncel ve daha kesin kaynaktır.
 
@@ -24,7 +25,8 @@ Ana ürün ilkesi:
 - Bir `Topic` ile `Skill` arasındaki fark nedir?
 - Bir beceri birden fazla topic'te kullanılırsa mastery nasıl tekil tutulur?
 - Learning Objective ne zaman gerçekten ölçülebilir kabul edilir?
-- Technical English ile C/Linux gibi teknik alanlar aynı modelde nasıl birlikte yaşar?
+- Technical English ile Python/C/Linux gibi teknik alanlar aynı modelde nasıl birlikte yaşar?
+- Geniş bir domain içindeki gerçek zayıflık hangi seviyede tutulur?
 
 ---
 
@@ -54,6 +56,10 @@ Kritik karar:
 
 > **Mastery'nin gerçek kaynağı Topic tamamlanması değil, Skill ve onun Learning Objective'lerinden gelen kanıtlardır.**
 
+D-044 clarification:
+
+> **Weakness ve remediation da mümkün olduğunca Skill / Learning Objective seviyesinde lokalize edilir. `Python zayıf`, `Linux zayıf` gibi Domain-level sonuçlar yalnız derived summary olabilir.**
+
 ---
 
 # 3. Domain
@@ -64,19 +70,24 @@ Uzun vadeli büyük yetkinlik alanıdır.
 
 Örnekler:
 
-- Computer Fundamentals
+- Technical English
+- Python
 - C Programming
-- Linux
+- Linux / Git / Shell
 - Data Structures & Algorithms
 - Modern C++
+- Computer Architecture
 - OS & Memory
 - Concurrency
 - Networking
 - Distributed Systems
+- Storage / Databases
+- Cloud / Observability
+- Performance Engineering
 - GPU Architecture
 - CUDA
 - Triton
-- Technical English
+- LLM Inference
 - AI Infrastructure
 
 ## Sorumluluğu
@@ -89,13 +100,12 @@ Uzun vadeli büyük yetkinlik alanıdır.
 
 - tek başına öğrenme kanıtı değildir,
 - kullanıcı bir domain kartını bitirdi diye mastered sayılmaz,
-- runtime prerequisite'in ana birimi değildir.
+- runtime prerequisite'in ana birimi değildir,
+- tek başına weakness diagnosis atomu değildir.
 
 ## Domain mastery
 
-Doğrudan bağımsız bir puan olarak üretilmez. Altındaki canonical skill'lerin ağırlıklı/kurallı özetinden **derived** olarak hesaplanır.
-
-Kesin aggregation formülü 2E'de kararlaştırılacaktır.
+Doğrudan bağımsız bir puan olarak üretilmez. Altındaki canonical skill'lerin kurallı özetinden **derived** olarak hesaplanır.
 
 ---
 
@@ -106,6 +116,13 @@ Kesin aggregation formülü 2E'de kararlaştırılacaktır.
 Bir domain içindeki anlamlı öğrenme kümesidir.
 
 Örnek:
+
+- Domain: `Python`
+- Module: `Programming Foundations`
+- Module: `Control Flow`
+- Module: `Functions & Modularity`
+
+veya:
 
 - Domain: `C Programming`
 - Module: `C Foundations`
@@ -134,16 +151,25 @@ Runtime'da Module → Module hard prerequisite ana mekanizma değildir. Gerekirs
 
 Kullanıcının çalıştığı öğretim bağlamı/paketidir. Bir topic bir veya daha fazla canonical skill'i öğretir, uygulatır ve ölçer.
 
-Örnek:
+Örnek C:
 
 `Basic Pointers`
 
 Bu topic altında şu skill'ler ele alınabilir:
-
 - address ile value farkını ayırt etme,
 - pointer declaration kullanma,
 - dereference uygulama,
 - pointer üzerinden değeri değiştirme.
+
+Örnek Python:
+
+`Loops`
+
+Bu topic altında ayrı canonical skill'ler bulunabilir:
+- `for` ile iterable üzerinde doğru iteration,
+- `while` termination condition kurma,
+- `break` / `continue` davranışını uygulama,
+- common infinite-loop bug'larını teşhis etme.
 
 ## Topic'in rolü
 
@@ -158,18 +184,15 @@ Bu topic altında şu skill'ler ele alınabilir:
 
 Topic bir "mastery atomu" değildir.
 
-`Basic Pointers dersi tamamlandı` demek, pointer skill'lerinin öğrenildiği anlamına gelmez.
+`Loops dersi tamamlandı` demek bütün loop skill'lerinin öğrenildiği anlamına gelmez.
 
 ## Topic progress vs mastery
 
 Topic için iki kavram ayrılmalıdır:
-
 - **coverage/progress:** içerik/aktivite açısından ne kadarı görüldü,
 - **mastery status:** bağlı skill/objective kanıtlarına göre öğrenme durumu.
 
 Coverage mastery yerine geçmez.
-
-Topic durum state machine'i 2B'de kesinleştirilecektir.
 
 ---
 
@@ -183,12 +206,15 @@ Skill bir ders başlığı değil, **yapabilme/bilme kapasitesidir**.
 
 İyi örnekler:
 
+- `Python'da while döngüsü için doğru termination condition kurabilmek`
 - `C'de pointer ile bir değişkenin değerini güvenli biçimde okuyup değiştirebilmek`
 - `Linux'ta relative ve absolute path kullanarak filesystem içinde gezinebilmek`
 - `Bir compiler error mesajında dosya/satır ve temel hata nedenini ayırt edebilmek`
 
 Zayıf skill isimleri:
 
+- `Python`
+- `Loops`
 - `Pointers`
 - `Linux`
 - `Chapter 3`
@@ -202,7 +228,6 @@ Aynı beceri farklı topic/module içinde tekrar kullanılabilir. Bu durumda yen
 Örnek:
 
 `dereference_pointer` skill'i:
-
 - Basic Pointers topic'inde öğretilir,
 - Functions with Pointers topic'inde tekrar kullanılır,
 - Linked Lists topic'inde yeniden test edilir.
@@ -217,8 +242,7 @@ Kullanıcının üç farklı mastery kaydı olmaz. Tek canonical skill mastery s
 
 `TopicSkillLink`
 
-Alanlar ileride veri modelinde kesinleştirilecek; kavramsal olarak en az:
-
+Kavramsal olarak en az:
 - `topic_id`
 - `skill_id`
 - `role`: `teach | practice | assess | reinforce`
@@ -252,7 +276,7 @@ Objective mümkün olduğunca:
 
 ### İyi örnek
 
-> Bir `int` değişkenini pointer üzerinden değiştiren kısa C kodunu, çözüm kopyalamadan yazabilir.
+> Verilen bir Python `while` döngüsünde termination condition'ın hangi state değişimine bağlı olduğunu belirler ve infinite-loop riskini doğru açıklar.
 
 ### Kötü örnek
 
@@ -267,46 +291,52 @@ Her objective:
 1. tek bir ana beceriye bağlı olmalı,
 2. ölçülebilir bir fiil içermeli,
 3. en az bir assessment/evidence türüyle doğrulanabilmeli,
-4. gereksiz şekilde iki-üç farklı yeteneği tek cümlede birleştirmemeli,
-5. sadece içerik tüketimini tarif etmemeli (`videoyu izle`, `dokümanı oku` objective değildir),
+4. gereksiz şekilde farklı yetenekleri tek cümlede birleştirmemeli,
+5. sadece içerik tüketimini tarif etmemeli,
 6. mümkünse transfer/uygulama bağlamına izin vermelidir.
 
 ## Objective mastery
 
 Evidence en küçük seviyede Learning Objective'e bağlanabilir. Objective durumu, Skill mastery hesabının temel girdilerinden biridir.
 
-2E'de objective → skill aggregation ve threshold kuralları kesinleştirilecektir.
-
 ---
 
-# 8. Mastery nerede tutulacak?
+# 8. Mastery ve weakness nerede tutulacak?
 
 ## 8.1 Canonical mastery seviyeleri
 
-Gerçek mastery state'inin iki temel seviyesi vardır:
-
 1. **Learning Objective evidence/state** — en atomik ölçüm katmanı.
-2. **Skill Mastery State** — kullanıcının tekrar kullanılabilir beceri durumu; ana planner/prerequisite karar katmanı.
+2. **Skill Mastery State** — ana planner/prerequisite/remediation karar katmanı.
 
-## 8.2 Derived mastery seviyeleri
+## 8.2 Derived seviyeler
 
 Aşağıdakiler ayrı bağımsız gerçeklik değil, skill verilerinden türetilen görünümlerdir:
+- Topic mastery / weakness summary
+- Module mastery / weakness summary
+- Domain mastery / weakness summary
 
-- Topic mastery
-- Module mastery
-- Domain mastery
+## 8.3 D-044 weakness localization kuralı
 
-Bu kararın amacı aynı öğrenme durumunun beş farklı yerde birbirinden kopuk puanlar üretmesini engellemektir.
+Bir Domain'de bir alt skill zayıfsa bütün Domain otomatik zayıf/remediation_required sayılmaz.
 
-## 8.3 Neden Skill ana seviyedir?
+Örnek:
 
-Çünkü planner şu tür bir karar vermelidir:
+```text
+Python overall: learning
+  Variables: strong
+  Conditionals: mastered
+  Loops: remediation_required
+    for_iteration: weak
+    while_termination: weak
+    break_continue: stable
+  Functions: learning
+```
 
-> "Kullanıcı `Basic Pointers` videosunu bitirdi mi?" değil,
+Planner/remediation şu tür karar vermelidir:
+
+> "Python'ı baştan tekrar et" değil,
 >
-> "Kullanıcı pointer dereference becerisini yeterli kanıtla gösterebiliyor mu?"
-
-Prerequisite ve remediation kararları mümkün olduğunca canonical skill mastery üzerinden alınacaktır.
+> "while termination + loop debugging için hedefli remediation üret."
 
 ---
 
@@ -322,17 +352,17 @@ Ana prerequisite edge:
 
 `understand_memory_address` → `dereference_pointer` → `dynamic_memory_basic`
 
-Bu yapı gerçek öğrenme bağımlılığını temsil eder.
+veya:
+
+`evaluate_boolean_condition` → `while_termination_condition` → `debug_infinite_loop`
 
 ## 9.2 Learning Objective prerequisite
 
-Çok ince taneli özel durumlarda objective düzeyinde dependency gerekebilir; ancak V1'de varsayılan değildir. Gereksiz graph karmaşıklığı yaratmamak için önce Skill-level edge kullanılacaktır.
+Çok ince taneli özel durumlarda objective düzeyinde dependency gerekebilir; ancak varsayılan ana mekanizma Skill-level edge'dir.
 
 ## 9.3 Topic prerequisite
 
 Topic-level prerequisite authoring kolaylığı için bulunabilir fakat **tek başına gerçek mastery kilidi sayılmaz**.
-
-Örneğin "Dynamic Memory topic'i Basic Pointers topic'inden sonra" ifadesi authoring kuralı olabilir; runtime'daki gerçek kilit Dynamic Memory'nin entry skill'lerinin ihtiyaç duyduğu pointer skill mastery üzerinden çalışır.
 
 ## 9.4 Module/Domain prerequisite
 
@@ -340,7 +370,7 @@ Runtime hard lock olarak kullanılmaz. Çok kaba olduğu için bağımsız dalla
 
 ## 9.5 Hard ve soft prerequisite
 
-Edge'in `hard` veya `soft` olması 3D ile birlikte detaylandırılacaktır. 2A seviyesinde karar:
+Canonical detay PRG-v0 / D-036'dadır.
 
 - prerequisite'in canonical hedefi Skill'dir,
 - bir alandaki eksik skill tüm domain'i otomatik kilitlemez.
@@ -352,7 +382,6 @@ Edge'in `hard` veya `soft` olması 3D ile birlikte detaylandırılacaktır. 2A s
 Teknik alanlar birbirinden tamamen yalıtılmış değildir.
 
 Örnek:
-
 - C'de compiler error okuma,
 - Linux terminal kullanım becerisi,
 - Technical English error vocabulary
@@ -361,11 +390,9 @@ aynı günlük görevde etkileşebilir.
 
 Bu nedenle cross-domain Skill → Skill edge desteklenir.
 
-Ancak önemli ürün kuralı:
+> **Technical English zayıflığı, gerçek teknik prerequisite olmadığı sürece teknik ilerlemeyi gereksiz yere hard-lock etmemelidir.**
 
-> **Technical English zayıflığı, gerçek teknik prerequisite olmadığı sürece C/Linux ilerlemesini gereksiz yere hard-lock etmemelidir.**
-
-English parallel track ayrı skill'ler olarak ilerler; teknik görevlerle ilişkilendirilebilir fakat varsayılan olarak kariyer yolunu bloke eden global kapı değildir.
+English parallel track ayrı skill'ler olarak ilerler; teknik görevlerle ilişkilendirilebilir fakat varsayılan global kapı değildir.
 
 ---
 
@@ -375,20 +402,15 @@ Bir `LearningTask` veya `AssessmentItem`, sadece Topic'e değil hedeflediği Lea
 
 Örnek:
 
-`Debug this pointer code` görevi:
-
+`Debug this pointer code`:
 - Topic: Basic Pointers
 - Skill: dereference_pointer
 - Objective: invalid dereference hatasını bulup nedenini açıklama
 - Evidence type: debugging
 
-Böylece task tamamlandı bilgisi ile öğrenme kanıtı birbirinden ayrılır.
-
-## Çoklu hedefli görev
-
 Bir görev birden fazla objective'i test edebilir; fakat hangi evidence'ın hangi hedefe katkı verdiği açık olmalıdır.
 
-Detaylı scoring/weighting 2C–2E ve Aşama 4'te kesinleştirilecektir.
+Detaylı evidence semantics D-025/D-031/D-040 ve ilgili assessment spec'lerindedir.
 
 ---
 
@@ -403,33 +425,28 @@ Detaylı scoring/weighting 2C–2E ve Aşama 4'te kesinleştirilecektir.
 ## Topic
 `Basic Pointers`
 
-## Canonical Skills
-
 ### Skill C-MEM-PTR-01
 `Address ile value farkını ayırt edebilmek`
 
-Learning Objectives:
-
-- verilen kodda bir değişkenin value'su ile address'ini doğru işaretleyebilir,
-- `&` operatörünün ürettiği şeyin adres olduğunu kendi cümlesiyle açıklayabilir.
+Objectives:
+- verilen kodda value ile address'i doğru işaretleyebilir,
+- `&` operatörünün ürettiği şeyin adres olduğunu açıklayabilir.
 
 ### Skill C-MEM-PTR-02
 `Bir pointer'ı declare, assign ve dereference edebilmek`
 
-Learning Objectives:
-
+Objectives:
 - uygun pointer declaration yazabilir,
 - pointer'a geçerli address atayabilir,
 - `*ptr` ile değeri okuyabilir,
-- pointer üzerinden değişken değerini değiştirebilir.
+- pointer üzerinden değeri değiştirebilir.
 
 ### Skill C-MEM-PTR-03
 `Basit invalid pointer kullanımını teşhis edebilmek`
 
-Learning Objectives:
-
-- verilen kısa örnekte geçersiz dereference riskini tespit edebilir,
-- hatanın nedenini kısa biçimde açıklayabilir,
+Objectives:
+- invalid dereference riskini tespit edebilir,
+- nedenini açıklayabilir,
 - uygun düzeltmeyi uygulayabilir.
 
 Topic tamamlandı bilgisi bu üç skill'i otomatik mastered yapmaz.
@@ -447,18 +464,15 @@ Topic tamamlandı bilgisi bu üç skill'i otomatik mastered yapmaz.
 ## Topic
 `Reading Basic Compiler Errors`
 
-## Skills
-
 ### Skill ENG-COMP-01
 `Basit compiler error mesajında temel yapıyı ayırt edebilmek`
 
-Learning Objectives:
-
-- mesajdan filename ve line number bilgisini bulabilir,
+Objectives:
+- filename ve line number bilgisini bulabilir,
 - `error`, `warning`, `expected`, `undeclared` gibi temel kelimeleri bağlam içinde ayırt edebilir,
-- çok basit bir hata mesajının ana anlamını Türkçe veya basit İngilizce ile açıklayabilir.
+- hata mesajının ana anlamını Türkçe veya basit İngilizce ile açıklayabilir.
 
-Bu skill daha sonra C görevlerinde `reinforce` olarak tekrar kullanılabilir; yeni bir kopyası oluşturulmaz.
+Bu skill C görevlerinde `reinforce` olarak tekrar kullanılabilir; duplicate yaratılmaz.
 
 ---
 
@@ -467,28 +481,30 @@ Bu skill daha sonra C görevlerinde `reinforce` olarak tekrar kullanılabilir; y
 Her canonical birimin insan tarafından okunabilir isminden bağımsız stabil bir ID'si olmalıdır.
 
 Örnek:
+- `domain.python`
+- `module.python.control_flow`
+- `topic.python.loops`
+- `skill.python.while_termination`
+- `objective.python.while_termination.detect_infinite_loop`
 
+ve:
 - `domain.c`
 - `module.c.memory_foundations`
 - `topic.c.basic_pointers`
 - `skill.c.pointer_dereference`
-- `objective.c.pointer_dereference.modify_int_via_pointer`
 
 İsim/metin daha sonra değişse bile ID mümkün olduğunca değişmez.
 
 Sebep:
-
 - mastery history bozulmaması,
-- curriculum content güncellendiğinde eski kullanıcı verisinin bağını koruması,
-- migration ve analytics'in güvenilir kalması.
+- curriculum update'lerinde eski kullanıcı verisinin bağını korumak,
+- migration/analytics'in güvenilir kalması.
 
-Kesin veri şeması Aşama 8C'de tasarlanacaktır.
+Kesin veri şeması **AŞAMA 9C**'de tasarlanacaktır.
 
 ---
 
 # 15. Authoring kalite kuralları
-
-Yeni curriculum içeriği eklenirken şu kontroller zorunludur:
 
 1. Her Topic en az bir canonical Skill'e bağlanmalı.
 2. Her Skill en az bir ölçülebilir Learning Objective içermeli.
@@ -500,22 +516,29 @@ Yeni curriculum içeriği eklenirken şu kontroller zorunludur:
 8. Domain/Module seviyesinde kaba hard-lock kullanılmamalı.
 9. Cross-domain bağlantılar desteklenmeli.
 10. English skill'leri teknik programı yalnız gerçekten gerekli olduğunda hard-lock edebilmeli.
+11. **Granularity, hedefli weakness diagnosis/remediation sağlayacak kadar ince; anlamsız keyword-level atom patlaması yaratmayacak kadar anlamlı olmalı.**
+12. Geniş Domain/Topic adları canonical Skill yerine kullanılmamalı.
 
 ---
 
-# 16. 2A'da bilinçli olarak kararlaştırılmayanlar
+# 16. 2A'da bilinçli olarak kararlaştırılmayanlar / sonradan bağlanan aşamalar
 
-Aşağıdakiler sonraki sabit adımlara aittir ve 2A'da uydurulmamıştır:
+2A yapısal modeli tanımlar. Ayrıntılar:
 
-- Topic state'lerinin tam state machine'i → **2B**
-- Hangi evidence türünün mastery'ye nasıl katkı verdiği → **2C**
-- Hint/AI yardım seviyeleri ve etkisi → **2D**
-- Mastery ağırlıkları, threshold ve confidence → **2E**
-- Retention / decay / spaced repetition → **2F**
-- Planner priority ve prerequisite runtime davranış detayları → **Aşama 3**
-- Soru/scoring rubrics → **Aşama 4**
-- Gerçek curriculum dataset → **Aşama 5 / 14**
-- Database schema → **8C**
+- Topic state machine → **2B**
+- mastery evidence taxonomy → **2C**
+- Hint/AI assistance → **2D**
+- mastery formula → **2E / GRE-v0**
+- retention → **2F / RVR-v0**
+- planner runtime → **AŞAMA 3**
+- assessment policies → **AŞAMA 4**
+- graph/schema backbone → **AŞAMA 5**
+- full-route granular capability decomposition → **AŞAMA 6 / D-044**
+- database schema → **AŞAMA 9C**
+- first production curriculum content → **AŞAMA 15**
+- full professional curriculum production → **AŞAMA 20**
+
+D-044, 2A'yı yeniden açmaz; 2A'nın hiyerarşisini gerçek profesyonel rotanın tamamına uygulayacak ayrı authoring/planning aşaması ekler.
 
 ---
 
@@ -523,26 +546,28 @@ Aşağıdakiler sonraki sabit adımlara aittir ve 2A'da uydurulmamıştır:
 
 2A aşağıdaki koşullar sağlandığı için tamamlanmıştır:
 
-- `Domain → Module → Topic → Skill → Learning Objective` katmanlarının her birinin tek anlamı tanımlandı.
+- `Domain → Module → Topic → Skill → Learning Objective` katmanlarının tek anlamı tanımlandı.
 - Curriculum organizasyonu ile gerçek öğrenme/ölçüm katmanı ayrıldı.
-- Topic ile Skill arasındaki fark netleştirildi.
+- Topic ile Skill farkı netleştirildi.
 - Skill'in canonical ve topic'lerden bağımsız tekrar kullanılabilir olması kararlaştırıldı.
 - Topic ↔ Skill many-to-many ilişki ihtiyacı tanımlandı.
 - Mastery'nin canonical olarak Objective evidence + Skill state üzerinde tutulması kararlaştırıldı.
 - Topic/Module/Domain mastery'nin derived olması kararlaştırıldı.
-- Runtime prerequisite'in ana biriminin Skill → Skill olması kararlaştırıldı.
+- Runtime prerequisite ana birimi Skill → Skill olarak belirlendi.
 - Cross-domain skill/prerequisite desteklendi.
-- Technical English'in aynı modele oturması ancak global teknik hard-lock olmaması ilkesi korundu.
+- Technical English'in aynı modele oturması ancak global teknik hard-lock olmaması korundu.
 - Learning Objective için ölçülebilir yazım standardı oluşturuldu.
 - Task/assessment'in objective/skill'e bağlanması zorunlu hale getirildi.
 - Duplicate skill ve topic-completion kaynaklı sahte mastery önleyici authoring kuralları yazıldı.
 
-> **Tamamlanma notu — 2026-08-24:** 2A ile öğrenme motorunun yapısal omurgası kilitlendi. Domain/Module/Topic curriculum organizasyon katmanı; Skill/Learning Objective ise gerçek öğrenme ve ölçüm katmanı olarak ayrıldı. Mastery'nin ana karar seviyesi canonical Skill, en atomik evidence seviyesi Learning Objective olarak belirlendi. Topic/Module/Domain mastery değerleri derived olacak. Runtime prerequisite ana olarak Skill → Skill çalışacak. Bu karar 2B topic state machine ve 2C–2E mastery tasarımının temelidir.
+> **Tamamlanma notu — 2026-08-24:** 2A ile öğrenme motorunun yapısal omurgası kilitlendi.
+
+> **D-044 clarification — 2026-08-25:** Bu omurga, kullanıcı zayıflığını gerçek alt beceride görebilecek granularity'de authoring yapılmasını gerektirir. Ayrıntılı full-route decomposition AŞAMA 6'da yapılacaktır.
 
 ---
 
-# 18. Sıradaki adım
+# 18. Güncel proje ilişkisi
 
-## 2B — Topic durumları
+AŞAMA 2 tamamlanmıştır; current active adım AŞAMA 4 içindeki **4B — Haftalık sınav**dır.
 
-Bir sonraki adımda `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required` gibi durumların **kesin anlamı, geçiş koşulları ve mastery/retention ile ilişkisi** state machine olarak tasarlanacaktır.
+Bu dosyanın yapısal modeli AŞAMA 5 graph schema, AŞAMA 6 granular capability map, AŞAMA 12 runtime mastery/planner implementation ve AŞAMA 15/20 content production tarafından tüketilecektir.
