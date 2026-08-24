@@ -2,203 +2,191 @@
 
 **Adım:** 1B — V1 kapsamı  
 **Durum:** TAMAMLANDI  
-**Tarih:** 2026-08-24  
-**Kapsam genişletme notu:** 4+ yıllık professional curriculum hedefi V1 release kapsamından ayrıdır; ayrıntı `docs/PROFESSIONAL_READINESS_TARGET.md`.
+**Tarih:** 2026-08-25  
+**Bağlayıcı:** D-041, D-042, D-044
 
-Bu belge, ilk gerçek release sürümünün hangi yetenekleri içereceğini ve hangi alanların bilinçli olarak sonraya bırakılacağını kilitler.
+Bu belge ilk gerçek release'in hangi yetenekleri içereceğini ve hangi alanların bilinçli olarak sonraya bırakılacağını kilitler.
 
 ## V1 kapsam ilkesi
 
-V1'in amacı olabildiğince fazla özellik toplamak değildir. V1, ürünün ana vaadini uçtan uca gerçek biçimde çalıştırmalıdır:
+V1'in amacı olabildiğince fazla özellik toplamak değildir. V1 ürünün ana vaadini uçtan uca gerçek biçimde çalıştırmalıdır:
 
-> Kullanıcı uygulamayı açar → bugün ne çalışacağını görür → çalışma görevlerini tamamlar → uygulama gerçekten öğrenip öğrenmediğini ölçer → mastery/retention/prerequisite durumu güncellenir → sonraki plan performansa göre değişir.
+> Kullanıcı uygulamayı açar → bugün ne çalışacağını görür → çalışır → sistem gerçekten öğrenip öğrenmediğini ölçer → mastery/retention/prerequisite durumu güncellenir → sonraki plan performansa göre değişir.
 
-Bir özellik bu ana döngüyü doğrulamak veya günlük kullanımı güvenilir hale getirmek için gerekmiyorsa V1'e zorunlu olarak alınmayacaktır.
-
-Yeni uzun vadeli hedef professional readiness olsa da V1, tüm 4+ yıllık içeriğin bitmesini beklemez. V1 motorun gerçek çalıştığını ve ilk production curriculum paketinin güvenilir olduğunu kanıtlayan release'tir.
+Yeni long-term hedef professional readiness olsa da V1 tüm 4+ yıllık content'i beklemez. V1 motorun gerçek çalıştığını ve ilk production curriculum paketinin güvenilir olduğunu kanıtlayan release'tir.
 
 ---
 
 # V1'DE KESİN OLACAKLAR
 
-## 1. Tek kullanıcı ve kişisel kullanım
+## 1. Tek kullanıcı / kişisel kullanım
 - Android odaklı kişisel mobil uygulama.
-- Hesap açma zorunluluğu yok.
-- Çok kullanıcılı SaaS mimarisi yok.
-- Kullanıcının başlangıç teknik seviyesi ve İngilizce seviyesi yerel profilde tutulur.
-- Günlük çalışma süresi ve temel tercihler ayarlanabilir.
+- Auth/payment/multi-tenant SaaS zorunluluğu yok.
+- Başlangıç teknik ve English state local profilde tutulur.
+- Günlük çalışma süresi ayarlanabilir.
 
-## 2. Today / Bugünkü Çalışma ekranı
-Ana ekranın birincil amacı `Bugün ne yapmalıyım?` sorusunu cevaplamaktır.
+## 2. Today / Bugünkü Çalışma
+Ana ekran `Bugün ne yapmalıyım?` sorusunu cevaplar.
 
-Kesin bulunacaklar:
-- bugünkü toplam tahmini çalışma süresi,
+En az:
+- bugünkü çalışma süresi,
 - sıradaki görev,
-- günün görev listesi,
-- mevcut topic/skill,
-- ilgili mastery durumu,
-- yaklaşan retention/assessment uyarısı,
-- büyük `Çalışmaya Başla / Devam Et` CTA,
-- görevin neden bugün seçildiğine dair sade açıklama.
+- görev listesi,
+- current topic/skill,
+- mastery/retention durumu,
+- büyük başlat/devam CTA,
+- görevin neden seçildiği
 
-`Gün X / toplam gün` veya kariyerin yüzde kaçının tamamlandığı gibi sahte kesinlik oluşturan metrikler olmayacaktır.
+gösterilir.
 
-## 3. Knowledge graph ve prerequisite sistemi
-V1 curriculum sabit takvim olmayacaktır.
+`Gün X / toplam gün` veya career-completion yüzdesi ana metric değildir.
 
-Sistem en az şunları destekleyecek:
-- Domain / Module / Topic / Skill / Learning Objective yapısı,
-- hard prerequisite,
-- soft prerequisite,
-- topic durumları,
-- prerequisite başarısızsa bağımlı konuyu bekletme,
-- bağımsız öğrenme dallarını devam ettirme.
+## 3. Knowledge graph / prerequisite
+V1 en az:
+- `Domain → Module → Topic → Skill → Learning Objective`,
+- hard/soft prerequisites,
+- Topic states,
+- dependent branch blocking,
+- independent branch continuation
 
-İlk release için graph'ın tamamı 4+ yıllık professional curriculum olmak zorunda değildir; ilk gerçek 8–12 haftalık curriculum yüksek kalitede hazırlanacaktır. Veri modeli ileride tüm professional rota eklenebilecek kadar extensible olmalıdır.
+destekler.
+
+D-044 gereği V1'in gerçek content node'ları, yalnız `Python` / `C` gibi broad labels değil, mümkün olduğunca weakness-addressable canonical Skill/Objective IDs kullanır.
+
+Full 4+ year graph data V1'de tamamlanmak zorunda değildir; schema/backbone tüm rota için extensible olmalıdır.
 
 ## 4. Günlük adaptif planner
-Planner en az şu sinyalleri dikkate alacaktır:
-- mastery,
-- zayıf skill/topic,
-- due retention review,
-- prerequisite durumu,
-- günlük kullanılabilir süre,
-- paralel English ihtiyacı,
-- son assessment sonuçları,
-- kaçırılmış günler.
+Planner mastery, granular weakness, retention, prerequisite, daily capacity, English, assessment ve missed-day state'i dikkate alır.
 
-Planner yeni konu, remediation, retention, branch blocking/continuation ve missed-day replan davranışlarını destekler.
-
-## 5. Günlük çalışma akışı / Task Runner
-V1 en az şu görev türlerini çalıştırabilmelidir:
-- kısa lesson/anlatım,
+## 5. Task Runner
+En az:
+- lesson/explanation,
 - reading,
-- uygulama/practice,
+- practice,
 - quiz,
 - coding,
 - debugging,
-- Feynman/kendi cümlesiyle açıklama,
+- explanation/Feynman,
 - English,
-- retention/retrieval.
+- retention/retrieval
 
-Start / pause / resume / complete desteklenir; uygulama kapanırsa devam eden oturum mümkün olduğunca geri yüklenir.
+görevleri çalıştırabilir.
+
+Pause/resume ve app restart sonrası session recovery desteklenir.
 
 ## 6. Mastery Engine V1
-Bir görev kartının tamamlanması tek başına ilerleme sayılmaz.
-
-V1 mastery sistemi teori, coding, debugging, explanation, transfer ve delayed retention evidence'ını desteklemelidir. Kritik teknik beceriler yalnız kolay quiz ile `mastered` yapılamaz.
-
-Canonical model GRE-v0'dır.
+Task completion mastery değildir. Teori, coding, debugging, explanation, transfer ve delayed retention evidence desteklenir. Canonical model GRE-v0'dır.
 
 ## 7. Günlük mikro değerlendirme
-Daily assessment sabit quiz kotası değildir. Canonical model DMA-v0'dır; Objective'e uygun assessment, assistance/provenance/prerequisite guard ve evidence→replan davranışı desteklenir.
+DMA-v0 kullanılır. Sabit günlük quiz kotası değildir; Objective-matched evidence ve assistance/provenance/prerequisite safety uygulanır.
 
-## 8. Haftalık sınav
-V1'de haftalık assessment bulunur ve yalnız not üretmez; new learning, eski Skill'ler, coding/debugging, English, weakness ve planner değişikliği için evidence üretir.
+## 8. Haftalık assessment
+Yalnız not üretmez; Skill/Objective evidence ve sonraki planner değişikliği üretir.
 
-## 9. Aylık yeterlilik sınavı
-V1'de daha geniş comprehensive assessment bulunur. Teori, uygulama/coding, debugging, explanation, retention ve Technical English boyutları curriculum/planner'a geri beslenir.
+## 9. Aylık assessment
+Daha geniş theory/application/debugging/explanation/retention/English evidence üretir ve curriculum state'e geri beslenir.
 
-## 10. Retention / spaced repetition
-Mastered bir konu sonsuza kadar bitmiş kabul edilmez. Review scheduling, delayed evidence, verification ve planner entegrasyonu desteklenir. Canonical RVR-v0 davranışı korunur.
+## 10. Retention
+RVR-v0 davranışı korunur. Time mastery'yi otomatik düşürmez; delayed verification ve planner entegrasyonu vardır.
 
 ## 11. Remediation
-V1 daha sade açıklama, alternatif örnek, micro-practice, debugging, prerequisite dönüşü ve fresh recheck gibi hedefli remediation yöntemlerini destekler.
+Remediation broad Domain'i kör tekrar ettirmez. D-044 doğrultusunda mümkün olduğunca exact weak Skill/Objective'e hedeflenir: simpler explanation, alternative example, micro-practice, debugging, prerequisite repair, fresh recheck.
 
 ## 12. AI Tutor V1
-AI Tutor açıklama, hint, alternatif anlatım, root-cause feedback, code/open response feedback ve AI-assisted artifact sonrası comprehension/transfer kontrolü sağlayabilir. Core mastery/planner kurallarını keyfi değiştiremez.
+AI açıklama/hint/alternative explanation/root-cause/code/open-response feedback sağlayabilir; canonical mastery/planner state'i keyfi değiştiremez.
 
-## 13. Teknik İngilizce paralel hattı
-İngilizce ilk günden teknik eğitimle paralel ilerler. İlk pakette A0 başlangıç, temel grammar/vocabulary, teknik vocabulary, compiler/terminal messages, README/docs okuma ve basit teknik yazma bulunur.
+## 13. Technical English parallel line
+English ilk günden paralel ilerler. İlk paket A0 başlangıç, temel grammar/vocabulary, technical vocabulary, compiler/terminal messages, README/docs reading ve basic writing içerir.
 
-## 14. İlk 8–12 haftalık gerçek curriculum
-V1 release için ilk 8–12 haftalık rota production kalitesinde olmalıdır.
-
-İlk paket ağırlıklı olarak:
-- Computer Fundamentals,
+## 14. İlk 8–12 haftalık production curriculum
+D-042/D-044 sonrası ilk paket ağırlıklı olarak:
+- Computer / Programming Fundamentals,
+- **Python Foundations**,
 - C Foundations,
 - Memory Foundations,
-- Linux Foundations,
-- başlangıç Data Structures,
-- paralel A0→A1/A2 English
+- Linux + Git + Shell Foundations,
+- başlangıç DS&A,
+- parallel A0→A1/A2 English
 
-konularını içerir.
+içerir.
 
-`8–12 hafta` sabit takvim değildir; içerik kapsam büyüklüğüdür.
+`8–12 hafta` sabit takvim değil içerik kapsam büyüklüğüdür. Gerçek content AŞAMA 15'te, AŞAMA 6 granular map'ine bağlı olarak üretilir.
 
 ## 15. Progress / Weakness görünümü
-V1 en az domain/topic mastery, zayıf/güçlenen alanlar, retention risk/due durumu, assessment/remediation geçmişi ve `henüz başlamadı` ile `başarısız` ayrımını göstermelidir.
+V1 en az:
+- broad Domain/Topic derived summary,
+- granular weak/strong Skill görünümü,
+- retention/verification state,
+- assessment/remediation history,
+- `not_started` ile `failed/weak` ayrımı
 
-## 16. Local-first veri saklama
-App restart sonrası progress korunur; curriculum ve user state ayrılır; migration desteklenir; AI servisi çalışmasa bile temel öğrenme verileri erişilebilir kalır.
+gösterebilmelidir.
 
-## 17. Bildirimler ve günlük kullanım ayarları
-Daily reminder, due retention, weekly exam, monthly exam ve temel çalışma süresi/profile/theme ayarları bulunur.
+## 16. Local-first persistence
+Restart/update sonrası progress korunur; curriculum data ile user state ayrılır; migration desteklenir.
 
-## 18. Modern ve profesyonel UI
-V1 yalnız çalışan prototip değildir. Modern/sade UI, tutarlı typography/spacing, dark/light theme, loading/empty/error states, accessibility ve uygun micro-motion bulunur.
+## 17. Bildirim / ayarlar
+Daily reminder, retention due, weekly/monthly assessment ve çalışma süresi/profile/theme ayarları bulunur.
+
+## 18. Modern/professional UI
+Tutarlı typography/spacing, dark/light, loading/empty/error states, accessibility ve uygun motion bulunur.
 
 ## 19. Backup / export / restore
-Progress backup/export/restore ve migration sonrası veri koruma temel düzeyde bulunur.
+Temel progress backup/export/restore ve migration veri koruması bulunur.
 
 ---
 
 # V1'DE BİLİNÇLİ OLARAK OLMAYACAK / SONRAYA BIRAKILACAKLAR
 
 ## 1. Tam 4+ yıllık professional curriculum
-V1 release için Modern C++ → Systems → Distributed Systems → GPU/CUDA → Triton → LLM Inference → Multi-GPU / AI Infrastructure ve professional capstone katmanlarının bütün production içeriği hazırlanmayacaktır.
+Modern C++ → systems → distributed → GPU/CUDA → Triton → inference/serving → multi-GPU/AI Infrastructure → OSS → professional capstone production content'inin tamamı V1 ön koşulu değildir.
 
-Uygulama motoru bu rotayı destekleyecek şekilde tasarlanır; curriculum daha sonra QA edilmiş paketler halinde genişletilir. Nihai kapsam `docs/PROFESSIONAL_READINESS_TARGET.md` ile tanımlanır.
+AŞAMA 6 full capability map'i tasarlar; **AŞAMA 20** full professional content expansion'ı üretir.
 
-## 2. Sosyal ve ticari özellikler
-V1'de community, friend system, leaderboard, public profile, subscription/payment/store/admin/organization sistemi yoktur.
+## 2. Sosyal/ticari özellikler
+Community/friends/leaderboard/public profile/subscription/payment/admin yoktur.
 
-## 3. Bulut hesabı ve çok cihazlı canlı senkron
-İlk release local-first'tür; cloud account/realtime multi-device sync zorunlu değildir.
+## 3. Realtime multi-device cloud sync
+V1 local-first'tür.
 
-## 4. iOS / web / desktop istemcisi
+## 4. iOS/web/desktop istemcileri
 V1 Android odaklıdır.
 
-## 5. Tam kariyer ve iş piyasası motoru
-Canlı iş ilanı tarama, skill-gap matching, CV/company recommendation ve gelişmiş mock interview/career-readiness sistemi Aşama 19'a bırakılır.
+## 5. Tam kariyer / canlı iş piyasası motoru
+Continuous job scraping, ATS optimization, company recommendation ve comprehensive career engine V1 şartı değildir; uzun vadeli AŞAMA 20 career-readiness katmanında değerlendirilebilir.
 
-## 6. Tam gelişmiş voice tutor
-Realtime pronunciation/voice-first tutor V1 release şartı değildir.
+## 6. Full voice-first tutor
+V1 şartı değildir.
 
-## 7. Uygulama içine tam C/C++ compiler/sandbox gömmek
-Telefon tam IDE olmak zorunda değildir. Coding task uygulamada verilebilir; kullanıcı bilgisayarda editor/terminal kullanıp artifact/result döndürebilir. Güvenli remote/local execution daha sonra değerlendirilebilir.
+## 7. Telefona tam C/C++ IDE/sandbox gömmek
+Mobil uygulama full workstation değildir; coding artifact PC/editor/terminal ile üretilebilir.
 
 ## 8. Aşırı gamification
-XP economy, coin, loot, competitive leaderboard ve streak cezası ana odak değildir.
+XP economy/coin/loot/competitive leaderboard/streak cezası ana odak değildir.
 
-## 9. Tamamen LLM tarafından kontrol edilen curriculum
-LLM curriculum/prerequisite/mastery kurallarını keyfi değiştiremez.
+## 9. Tamamen LLM kontrollü curriculum
+LLM prerequisite/mastery/planner/curriculum source of truth değildir.
 
 ---
 
 # V1 RELEASE TANIMI
 
-Bir build'e `V1` diyebilmek için:
-1. ilk 8–12 haftalık gerçek curriculum ile çalışmalı,
-2. daily plan → task → assessment → mastery → replan döngüsünü uçtan uca işletmeli,
-3. weekly/monthly assessment sonuçlarını gelecekteki plana yansıtmalı,
+Bir build'e `V1` denebilmesi için:
+1. ilk 8–12 haftalık production curriculum ile çalışmalı,
+2. daily plan → task → assessment → mastery → replan döngüsü uçtan uca çalışmalı,
+3. weekly/monthly assessment gelecek planı değiştirmeli,
 4. retention/remediation çalışmalı,
-5. English parallel track daily planner içinde görünmeli,
-6. kullanıcı verisi restart/update sonrası korunmalı,
-7. AI Tutor olmadan temel local sistem çökmemeli,
-8. ana akışlar gerçek Android cihazında bağımsız QA'dan geçmeli,
-9. release APK kurulabilir olmalıdır.
+5. English parallel track planner içinde görünmeli,
+6. granular Skill weakness doğru attribution ile saklanıp hedefli remediation üretebilmeli,
+7. user data restart/update sonrası korunmalı,
+8. AI Tutor yokken deterministic local core çökmemeli,
+9. kritik akışlar gerçek Android cihazında bağımsız QA'dan geçmeli,
+10. release APK kurulabilir olmalı.
 
-V1 release **professional curriculum completion** anlamına gelmez. V1, profesyonel rotayı yıllar boyunca çalıştırabilecek ürün motorunun ilk güvenilir release'idir.
+V1 release **professional curriculum completion** anlamına gelmez.
 
 ---
 
 # 1B KABUL KONTROLÜ
 
-1B'nin ana sınırları korunmuştur. 2026-08-24 kapsam genişletmesi yalnız uzun vadeli curriculum hedefini büyütmüştür:
-
-- V1 ilk production curriculum paketiyle release edilir,
-- tam 4+ yıllık professional curriculum V1 ön koşulu değildir,
-- long-term professional-readiness hedefi Aşama 19 ve curriculum expansion üzerinden ilerler.
-
-> **Kapsam genişletme notu — 2026-08-24:** Önceki `tam 3 yıllık curriculum V1 dışında` ifadesi, `tam 4+ yıllık professional curriculum V1 dışında` olarak güncellendi. V1 scope dar ve uygulanabilir kalırken nihai eğitim hedefi büyütüldü.
+1B'nin ana sınırları korunmuştur. D-041 long-term hedefi, D-042 Python foundation'ı ve D-044 granular diagnosis/content mapping'i netleştirmiştir; full professional content hâlâ V1'e yüklenmez.
