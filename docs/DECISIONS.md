@@ -25,8 +25,8 @@ Yalnız bağımlı dallar bekler.
 **Durum:** Kabul edildi
 
 ## D-007 — Ana kariyer rotası systems → GPU → AI infrastructure
-**Durum:** Kabul edildi  
-C → Linux → C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure.
+**Durum:** Kabul edildi / D-042 ile Python foundation eklendi  
+Computer/Programming Foundations → Python + C → Linux/Tooling → Modern C++ → DS&A → Computer Architecture → OS/Memory → Concurrency/Parallelism → Networking → Distributed Systems/Storage → Cloud/Observability → Performance → GPU Architecture → CUDA → Triton → ML/Transformer fundamentals → LLM Inference → Multi-GPU → AI Infrastructure.
 
 ## D-008 — Uygulama kişisel kullanım için
 **Durum:** Kabul edildi  
@@ -63,7 +63,7 @@ Research AI dış araştırma; Coding AI implementasyon; Test/QA AI bağımsız 
 
 ## D-017 — Sabit `1A / 1B / ...` adım kodları kullanılacak
 **Durum:** Kabul edildi — 2026-08-24  
-Canonical indeks: `docs/EXECUTION_INDEX.md`.
+Canonical indeks: `docs/EXECUTION_INDEX.md`. D-043 mevcut kodları renumber etmeden AŞAMA 20'yi sona ekler.
 
 ## D-018 — V1 adaptif öğrenme döngüsünü gerçek Android release olarak çalıştıracak
 **Durum:** Kabul edildi — 2026-08-24  
@@ -268,3 +268,24 @@ Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
 - D-001'in no-countdown ilkesi ve D-012'nin V1/full-curriculum ayrımı korunur; yalnız eski yaklaşık üç yıllık süre ufku D-041 ile genişletilmiştir.
 
 Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`, `docs/PRODUCT_REQUIREMENTS.md`, `docs/PROJECT_MASTER_CONTEXT.md`, `docs/V1_SCOPE.md`.
+
+## D-042 — Python ana öğrenme rotasının resmi foundation dilidir
+**Durum:** Kabul edildi — 2026-08-25
+
+- Python, C/C++'ın yerine geçmez; systems/AI infrastructure rotasında tamamlayıcı ana dildir.
+- Temel programlama, otomasyon, test/benchmark scripting, veri işleme, ML/PyTorch ekosistemi ve infrastructure tooling için curriculum'a resmi olarak eklenir.
+- Python yalnız syntax seviyesinde bırakılmaz; ilerleyen curriculum'da typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML bağlamında gerçek kullanım içerir.
+- Common core Python + C ile başlar; düşük seviye sistem derinliği Modern C++/C ve daha sonra CUDA/Triton ile devam eder.
+
+## D-043 — Professional rota ortak çekirdekten sonra uzmanlık dallarına ayrılacak
+**Durum:** Kabul edildi — 2026-08-25
+
+- Mevcut AŞAMA 1–19 kodları renumber edilmez; sona **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi** eklenir.
+- Kullanıcı önce ortak systems/distributed/GPU/inference çekirdeğinde gerekli capability gates'i karşılar; sonra tek bir uzmanlık derinliğine mahkûm olmayan track sistemi kullanılır.
+- İlk candidate track aileleri: GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
+- Track seçimi yalnız LLM önerisi, maaş veya hype ile otomatik yapılmaz; kullanıcı tercihi + verified capability + prerequisite readiness + gerçek kariyer kısıtları birlikte değerlendirilir.
+- Ortak core korunur; track değiştirmek sıfırdan başlatmaz. Yalnız yeni dalın eksik prerequisite/required evidence'ı açılır.
+- Her track kendi critical Skill, project, benchmark/profiling, debugging, transfer ve specialization capstone evidence contract'ına sahip olacaktır.
+- Track isimleri zamanla değişebilir; canonical değer framework adlarından çok kalıcı systems capability'lerinde tutulur.
+
+Ayrıntı: `docs/EXECUTION_INDEX.md`, `docs/MASTER_PLAN.md`.
