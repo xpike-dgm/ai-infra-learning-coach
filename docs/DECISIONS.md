@@ -218,3 +218,23 @@ Ayrıntı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 - Policy bounded/deterministic ve D-028 ile uyumludur.
 
 Ayrıntı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
+
+## D-038 — Final missed-day / re-entry modeli = SRR-v0 State-based Re-entry & Recovery
+**Durum:** Kabul edildi — 2026-08-24
+
+- Absence failure, mastery decay, remediation trigger veya task debt değildir.
+- Geri dönüşte geçmiş başlanmamış `PlannedTask` ve ephemeral `TaskCandidate` current plan'a replay edilmez; current state'ten fresh `LearningNeed → TaskCandidate` üretimi yapılır.
+- Zaman yalnız RVR-v0 retention due/temporal urgency sinyallerini değiştirebilir; sırf uzun ara nedeniyle `review_due → verification_due/at_risk` veya mastered → unmastered olmaz.
+- Unresolved verification/remediation ihtiyaçları absence ile silinmez.
+- Safe/version-valid paused checkpoint continuation adayı olabilir fakat eligibility/priority/capacity yeniden hesaplanır; otomatik seçilmez.
+- Incomplete high-stakes H0/diagnostic/retention attempt negative evidence değildir; gerekiyorsa fresh/unseen candidate üretilir.
+- Due-state inventory DailyPlan değildir; çok sayıda due Skill bugünün kapasitesine topluca yığılmaz.
+- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur; aynı state-driven recovery policy çalışır. Absence duration informational/urgency bağlamıdır.
+- Recovery ayrı gizli priority score üretmez; PBR-v0 P0–P4, PRG-v0 eligibility ve 3A hard capacity korunur.
+- Absence günleri starvation counter artırmaz; starvation eligible need'in aktif planlama günlerinde ertelenmesi, retention overdue ise ayrı zaman sinyalidir.
+- Integrated recovery task yalnız separately observable/attributable Skill'ler için evidence üretir; sibling/cluster auto-refresh yoktur.
+- Uzun ara sonrası new learning globally dondurulmaz; gerçek blocker yoksa güvenli branch'lerde devam edebilir.
+- Self-report (`bu arada C kullandım`) automatic retention refresh değildir; diagnostic/verified artifact normal evidence pipeline'ına girebilir.
+- Candidate generation/query bounded/incremental olmalı ve D-028 performans kuralını korumalıdır.
+
+Ayrıntı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
