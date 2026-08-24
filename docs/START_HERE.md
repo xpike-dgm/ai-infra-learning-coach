@@ -46,10 +46,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 18. `docs/ADAPTIVE_PLANNER_SPEC.md`
 19. `docs/TASK_TAXONOMY_SPEC.md`
 20. `docs/PRIORITY_POLICY_SPEC.md`
-21. `docs/ENGLISH_FOUNDATION_RULES.md`
-22. `docs/MASTER_PLAN.md`
-23. `docs/AI_AGENT_WORKFLOW.md`
-24. `docs/PROGRESS_LOG.md`
+21. `docs/PREREQUISITE_POLICY_SPEC.md`
+22. `docs/ENGLISH_FOUNDATION_RULES.md`
+23. `docs/MASTER_PLAN.md`
+24. `docs/AI_AGENT_WORKFLOW.md`
+25. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -58,13 +59,12 @@ English teknik eğitimle paralel ilerler; doğrudan CUDA ile başlanmaz.
 
 ## 5. Tamamlanan öğrenme/mastery omurgası — AŞAMA 2 ✅
 
-### GRE-v0 — Gated Recent Evidence
-- Canonical mastery Skill seviyesinde; evidence Learning Objective'e bağlanır.
-- Yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence mastery score'a girer.
-- Hard gates, diversity, H0 coding/debugging, verification_due.
+### GRE-v0 — Gated Recent Evidence — D-031
+- Canonical mastery Skill seviyesinde.
+- Yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence mastery'ye girer.
 
-### RVR-v0 — Retention Verification & Risk
-- Mastery ve retention ayrı eksen.
+### RVR-v0 — Retention Verification & Risk — D-032
+- Mastery/retention ayrı.
 - Time-based mastery decay yok.
 - `review_due` forgetting değildir.
 - First failure → verification; strict natural reuse; no backlog dump.
@@ -72,33 +72,27 @@ English teknik eğitimle paralel ilerler; doğrudan CUDA ile başlanmaz.
 ## 6. Adaptive Planner ilerlemesi
 
 ### 3A ✅ Günlük kapasite — D-033
-- Explicit daily minutes = hard budget.
-- Remediation/retention planı otomatik uzatmaz.
-- Safe split / smaller alternative / defer.
-- Deferred task debt/backlog değildir.
-
-Ana çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
+Explicit günlük süre hard budget; no auto-overrun; split/defer; task debt yok.
 
 ### 3B ✅ Task taxonomy — D-034
-- `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`.
-- Deferred candidate debt değildir; unresolved LearningNeed fresh candidate üretebilir.
-- Purpose/activity/track/evidence ayrı eksenlerdir.
-- Multi-Skill attribution ayrı doğrulanır.
-
-Ana çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
+`State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`; purpose/activity/track/evidence ayrı.
 
 ### 3C ✅ Priority — PBR-v0 / D-035
-- Priority LearningNeed seviyesinde başlar.
-- Eligibility/trust priority'den önce gelir.
-- P0 integrity blocker; P1 repair/verify; P2 maintain/continue; P3 planned progress; P4 reinforce/optimize.
-- `review_due` forgetting değildir; critical etiketi tek başına P0 yapmaz.
-- Aynı band içi weighted score değil lexicographic rank vector.
-- Starvation guard eligible need'in süresiz ertelenmesini önler.
-- English fixed yüzde değil due + track-balance/starvation ile korunur.
-- Duration fit priority'den sonra gelir; short-task bias yok.
-- Capacity dolunca kalan LearningNeed açık kalır, task debt oluşmaz.
+Eligibility priority'den önce; P0–P4 semantic bands; deterministic rank vector; starvation/track balance; duration priority'den sonra.
 
-Ana çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
+### 3D ✅ Prerequisite — PRG-v0 / D-036
+- Runtime prerequisite `Skill → Skill`.
+- Hard/soft edge ayrımı.
+- Readiness `ready | ready_due | uncertain | not_ready`.
+- `review_due` hard lock değildir.
+- Hard `not_ready` dependent task'i bloklar.
+- Critical/strict `verification_due` dependent yeni work'u bekletebilir.
+- Yalnız affected branch bekler; independent branches devam eder.
+- Started Topic prerequisite regression ile `locked` olmaz.
+- Prerequisite contamination target negative evidence değildir.
+- Priority prerequisite'i bypass edemez.
+
+Ana çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 
 ## 7. Güncel çalışma konumu
 
@@ -109,22 +103,27 @@ Ana çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
 - `3A` ✅
 - `3B` ✅
 - `3C` ✅
-- `3D` 🟡 **Prerequisite davranışı — AKTİF**
-- `3E–3H` ⬜ bekliyor
+- `3D` ✅
+- `3E` 🟡 **Hızlı öğrenme — AKTİF**
+- `3F–3H` ⬜ bekliyor
 
-## 8. 3D'de yapılacaklar
+## 8. 3E'de yapılacaklar
+
+Ana soru:
+> Kullanıcı bir Skill/Topic'i zaten biliyorsa gereksiz dersi tekrar etmeden bunu nasıl güvenilir biçimde kanıtlayıp geçebilir?
 
 Kesinleştirilecek:
-- hard vs soft prerequisite edge semantics,
-- TaskCandidate eligibility,
-- critical unresolved verification/remediation nedeniyle yalnız dependent branch'in beklemesi,
-- `review_due` tek başına hard lock olmaması,
-- independent branches'in devamı,
-- öğretilmemiş prerequisite contamination guard,
-- prerequisite state değişince replan,
-- 3D eligibility filter ile 3C PBR-v0 priority'nin kesin yürütme sırası.
+- diagnostic/placement task yapısı,
+- validated coverage waiver / skip semantics,
+- `available → mastered` güvenilir diagnostic yolu,
+- tek kolay quiz ile skip yasağı,
+- partial diagnostic: yalnız kanıtlanan Objective/Skill kısımlarının waive edilmesi,
+- critical Skill diagnostic için stronger evidence,
+- diagnostic assistance/provenance ve H0 gereksinimi,
+- false-positive skip guard,
+- diagnostic sonucu GRE-v0/PRG-v0/planner replan entegrasyonu.
 
-3D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+3E başlamadan yeni PRE-STEP GitHub refresh zorunlu. Diagnostic/placement konusunda dış pedagojik kanıt gerekiyorsa Research AI kullanımı PRE-STEP sonrası değerlendirilecek.
 
 ## 9. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0, 3A D-033, 3B D-034 ve 3C PBR-v0/D-035 kararlarını koru. Şu an aktif adım 3D — Prerequisite davranışı.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ile 3A D-033, 3B D-034, 3C D-035 ve 3D PRG-v0/D-036 kararlarını koru. Şu an aktif adım 3E — Hızlı öğrenme.`
