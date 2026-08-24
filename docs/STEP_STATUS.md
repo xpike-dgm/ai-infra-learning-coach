@@ -8,7 +8,7 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 - ⬜ Bekliyor
 - 🔴 Bloke
 
-## Güncel durum — 2026-08-24
+## Güncel durum — 2026-08-25
 
 | Adım | Durum | Açıklama |
 |---|---|---|
@@ -17,20 +17,31 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 | **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 3H: 16/16 scenario + 20/20 invariant PASS. |
 | **4A — Günlük mikro değerlendirme** | ✅ | DMA-v0 / D-040 tamamlandı. |
 | **4B — Haftalık sınav** | 🟡 Aktif | Weekly multi-Skill assessment composition ve sonuçların programı nasıl değiştireceği tasarlanacak. |
-| **4C ve sonrası** | ⬜ Bekliyor | 4B kapanışından sonra. |
+| **4C–19I** | ⬜ Bekliyor | Canonical sırayla yürütülecek; V1 ve uzun professional core bu aralıkta. |
+| **AŞAMA 20 — Uzmanlık Dalları / Track Sistemi** | ⬜ Bekliyor | D-043 ile eklendi; ortak core sonrası specialization mapping, seçim, track curriculum ve capstone gates tasarlanacak. |
 
-## Proje çapı kapsam değişikliği — D-041
+## Proje çapı kapsam / rota kararları
 
-**Durum:** KABUL EDİLDİ / CANONICAL SYNC TAMAMLANDI
+### D-041 — Professional-readiness kapsamı
+**Durum:** KABUL EDİLDİ / CANONICAL
 
-- Full curriculum artık yaklaşık üç yıllık horizon ile sınırlı değil; **4+ yıl veya daha uzun** sürebilir.
-- 4+ yıl progress/countdown değildir.
+- Full curriculum **4+ yıl veya daha uzun** sürebilir.
 - Final target = AI Infrastructure / ML Systems / GPU Systems için professional-readiness seviyesinde verified engineering capability.
-- Daha kapsamlı öğretim: concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production.
-- Final readiness integrated systems + debugging + performance + professional capstone evidence ister.
-- V1 full 4+ year curriculum'u beklemez; first 8–12 week production package + learning engine release ayrımı korunur.
-- Aşama 5/14/19 kapsamları buna göre genişletildi.
-- Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`, D-041.
+- V1 full curriculum'u beklemez; first 8–12 week production package + learning engine release ayrımı korunur.
+
+### D-042 — Python foundation
+**Durum:** KABUL EDİLDİ / CANONICAL
+
+- Python common programming foundation'a eklendi.
+- C/C++ yerine geçmez; automation, testing, benchmark, ML/PyTorch ve infra tooling için tamamlayıcı ana dildir.
+
+### D-043 — Specialization tracks / AŞAMA 20
+**Durum:** KABUL EDİLDİ / CANONICAL
+
+- Mevcut 1–19 kodları korunarak AŞAMA 20 eklendi.
+- Ortak systems/distributed/GPU/inference core sonrası rota uzmanlık dallarına ayrılacak.
+- Candidate track'ler: GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
+- Track değişimi önceki valid mastery'yi silmez; yalnız eksik prerequisites/evidence açılır.
 
 ## Son tamamlanan numaralı adım — 4A
 
@@ -48,7 +59,7 @@ DMA-v0:
 
 ## Aktif adım — 4B Haftalık sınav
 
-**4B henüz yürütülmedi.** D-041 scope sync, 4B execution değildir.
+**4B henüz yürütülmedi.** D-041/D-042/D-043 scope-route sync, 4B execution değildir.
 
 4B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh zorunludur.
 
@@ -62,5 +73,5 @@ DMA-v0:
 - assistance / pause / incomplete davranışı,
 - weekly result'ın mastery/remediation/planner/curriculum akışına etkisi,
 - false-positive/false-negative korumaları,
-- D-041 professional-readiness hedefiyle future integrated/capstone evidence uyumu,
+- D-041 professional-readiness ve D-043 future specialization evidence yapısıyla uyum,
 - 4C monthly assessment'a ortak contract.
