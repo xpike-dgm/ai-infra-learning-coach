@@ -29,17 +29,18 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla
 
 - [x] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. — `docs/LEARNING_ENGINE_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu `Domain/Module/Topic`, gerçek öğrenme/ölçüm katmanı `Skill/Learning Objective` olarak ayrıldı. Skill canonical mastery ve prerequisite katmanı; Topic/Module/Domain mastery derived olarak tanımlandı. Runtime prerequisite ana olarak Skill → Skill çalışacak.
+  - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu ile gerçek Skill/Objective measurement katmanı ayrıldı; Skill canonical mastery/prerequisite seviyesi oldu.
 - [x] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. — `docs/TOPIC_STATE_MACHINE.md`
-  - **Tamamlanma notu — 2026-08-24:** Topic state'in mastery'nin kendisi değil, prerequisite/coverage/Skill mastery/retention/remediation girdilerinden türetilen açıklanabilir planner/UX durumu olması kilitlendi. Başlanmış Topic'in prerequisite regression ile geriye dönük `locked` olmaması ve remediation/weakening onarım yolları tanımlandı.
+  - **Tamamlanma notu — 2026-08-24:** Topic state Skill mastery/coverage/retention/remediation'dan derived orchestration state olarak kilitlendi.
 - [x] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre. — `docs/MASTERY_SIGNALS_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** Evidence `direct/primary`, `corroborating`, `contextual` rollere ayrıldı. Concept recognition/recall, code reading, coding, debugging, explanation, transfer, retention ve integrated project sinyalleri tanımlandı. Time/completion/streak/self-confidence mastery dışı contextual sinyal olarak ayrıldı; prerequisite contamination ve tekrar-item şişirmesine karşı guardrail'ler kilitlendi.
+  - **Tamamlanma notu — 2026-08-24:** Direct/corroborating/contextual evidence, quality/validity ve false-positive guardrail'leri tanımlandı.
 - [x] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check. — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** H0–H4 yardım seviyesi, assistance timing, artifact authorship, independent/assisted/practice-only/recheck evidence sınıfları, AI-generated code guardrail'i ve solution exposure sonrası fresh recheck davranışı kilitlendi. Compiler/docs/test runner gibi araçların etkisi objective-specific tool policy'ye bağlandı; exact sayısal etki 2E'ye bırakıldı.
-- [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence. **AKTİF**
-- [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay.
+  - **Tamamlanma notu — 2026-08-24:** H0–H4, assistance timing, artifact authorship, solution exposure ve fresh independent recheck davranışı kilitlendi.
+- [x] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence. — `docs/MASTERY_FORMULA_V0.md`
+  - **Tamamlanma notu — 2026-08-24:** Research turu sonrası Beta-style weighted evidence accumulator + hard Objective/Skill gates seçildi. V0 threshold `0.80`; direct/corroborating ve H0–H4 katsayıları versionlandı; difficulty multiplier yerine gate kullanıldı; confidence bands, same-family dedup, critical H0 production gate, one-error hysteresis ve incremental calculation tanımlandı. Sayılar pilotta yeniden kalibre edilecek.
+- [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay. **AKTİF**
 
-**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, `AI_ASSISTANCE_EVIDENCE_SPEC.md`, mastery formula v0 ve forgetting model.
+**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, `AI_ASSISTANCE_EVIDENCE_SPEC.md`, `MASTERY_FORMULA_V0.md` ve forgetting/retention spec.
 
 ---
 
@@ -256,7 +257,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 # Güncel Konum
 
 **Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Tamamlanan:** `2A`, `2B`, `2C`, `2D`  
-**Aktif:** **`2E — Mastery formülü v0`**
+**Tamamlanan:** `2A`, `2B`, `2C`, `2D`, `2E`  
+**Aktif:** **`2F — Unutma modeli`**
 
-`2E` başlamadan önce `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh ve mastery/learning-science için Research AI turu yapılmalıdır.
+`2F` başlamadan önce `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh ve retention/spaced-repetition için Research AI turu yapılmalıdır.
