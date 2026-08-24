@@ -63,25 +63,30 @@ Aşama 2 canonical omurgası:
 - prerequisite contamination target negative evidence değildir.
 
 ### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
-Ana çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
+- diagnostic GRE-v0'dan daha gevşek mastery yolu değildir,
+- Objective-level validated coverage waiver + partial waiver,
+- critical H0/evidence/prerequisite guard korunur,
+- waiver mastery/retention değildir.
+
+### 3F ✅ Kaçırılan günler — SRR-v0 / D-038
+Ana çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
 
 Canonical davranış:
-- diagnostic GRE-v0'dan daha gevşek mastery yolu değildir,
-- self-report yalnız diagnostic trigger/scope'tur,
-- tek kolay quiz whole-topic skip yapamaz,
-- Objective-level `DiagnosticCoverageWaiver`,
-- partial waiver canonical,
-- coverage waiver mastery/retention değildir,
-- `available → mastered` yalnız coverage + bütün required/critical GRE gates birlikte sağlanınca,
-- critical coding/debugging/transfer/diversity şartları korunur,
-- waiver üretecek evidence H0 + prerequisite-valid + verified + provenance-clean,
-- integrated diagnostic component evidence ayrı attribution ister,
-- diagnostic fail prior-knowledge yolunda otomatik remediation cezası değildir,
-- PRG-v0 diagnostic'te de önce çalışır,
-- diagnostic daily capacity içindedir,
-- sonuç GRE → waiver → PRG → Topic → LearningNeed/PBR → replan akışına girer,
-- waiver curriculum/objective versiyonuna bağlıdır,
-- deterministic/bounded.
+- absence failure, mastery decay veya task debt değildir,
+- stale PlannedTask/TaskCandidate replay edilmez,
+- current state'ten fresh LearningNeed/candidate üretilir,
+- RVR time yalnız due/urgency'yi etkiler; review_due tek başına forgetting değildir,
+- unresolved verification/remediation absence ile silinmez,
+- safe paused checkpoint continuation adayı olabilir ama otomatik seçilmez,
+- incomplete high-stakes H0 attempt negative evidence değildir; gerekiyorsa fresh candidate gelir,
+- due-state inventory DailyPlan değildir; yüzlerce review tek güne yığılmaz,
+- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur,
+- absence günleri starvation sayılmaz; overdue ayrı zaman sinyalidir,
+- integrated recovery evidence ayrı observability/attribution ister; cluster refresh yoktur,
+- recovery PBR-v0 + PRG-v0 + 3A hard capacity ile çalışır,
+- long absence new learning'i globally dondurmaz,
+- self-report automatic retention refresh değildir,
+- deterministic/bounded implementation beklenir.
 
 ## 5. Güncel kesin konum
 
@@ -92,19 +97,21 @@ Canonical davranış:
 - `3C` ✅
 - `3D` ✅
 - `3E` ✅
-- `3F` 🟡 **Kaçırılan günler — AKTİF**
-- `3G–3H` ⬜ Bekliyor
+- `3F` ✅
+- `3G` 🟡 **Açıklanabilir planner — AKTİF**
+- `3H` ⬜ Bekliyor
 
-## 6. 3F'de kesinleştirilecekler
-- kısa/orta/uzun absence sonrası current-state recovery,
-- eski PlannedTask/TaskCandidate backlog'unu taşımama,
-- overdue retention/remediation/verification ihtiyaçlarını yeniden üretme,
-- yüzlerce review/task yığılmasını engelleme,
-- critical prerequisite ve P0/P1 işlerin recovery'deki davranışı,
-- starvation ile absence ayrımı,
-- daily capacity içinde recovery planı,
-- kullanıcıya `borcun var` hissi yaratmadan tekrar ritme sokma,
-- 3A–3E ile deterministik entegrasyon.
+## 6. 3G'de kesinleştirilecekler
+- machine-readable reason codes,
+- selected/skipped/blocked/deferred decision trace,
+- PBR/PRG/RVR/capacity/diagnostic/re-entry girdilerinin tek açıklanabilir modelde birleşmesi,
+- user-facing kısa açıklamalar ile internal audit trace ayrımı,
+- `neden bugün bu görev?`, `neden diğer görev gelmedi?`, `neden branch bekliyor?` cevapları,
+- replan reason chain,
+- deterministic end-to-end planner pseudocode,
+- 3H simulation'ın doğrulayacağı trace/invariant beklentileri.
+
+3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -125,9 +132,10 @@ Canonical davranış:
 16. `docs/PRIORITY_POLICY_SPEC.md`
 17. `docs/PREREQUISITE_POLICY_SPEC.md`
 18. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-19. `docs/ENGLISH_FOUNDATION_RULES.md`
-20. `docs/MASTER_PLAN.md`
-21. `docs/PROGRESS_LOG.md`
+19. `docs/MISSED_DAY_RECOVERY_SPEC.md`
+20. `docs/ENGLISH_FOUNDATION_RULES.md`
+21. `docs/MASTER_PLAN.md`
+22. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3F — Kaçırılan günler** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035, 3D D-036, 3E D-037 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3G — Açıklanabilir planner** için yeni PRE-STEP GitHub refresh yap. 3A–3F kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
