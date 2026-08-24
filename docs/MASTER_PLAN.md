@@ -42,11 +42,9 @@ Ana ürün ilkesi:
 Çıktı: `docs/TOPIC_STATE_MACHINE.md` — D-023.
 
 ### [x] 2C — Mastery sinyalleri
-Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project; direct/corroborating/contextual; prerequisite contamination ve same-family guard.  
 Çıktı: `docs/MASTERY_SIGNALS_SPEC.md` — D-025.
 
 ### [x] 2D — AI / ipucu etkisi
-H0–H4, timing, provenance, independent/assisted/practice-only/recheck, generated-code guardrail.  
 Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026.
 
 ### [x] 2E — Mastery formülü v0
@@ -54,7 +52,7 @@ Final: `GRE-v0 — Gated Recent Evidence`.
 Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
 
 ### [x] 2F — Unutma modeli
-Final: `RVR-v0 — Retention Verification & Risk`. Mastery/retention ayrı; time-decay mastery yok; review/verification/natural reuse/backlog davranışı.  
+Final: `RVR-v0 — Retention Verification & Risk`.  
 Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
 
 > **AŞAMA 2 tamamlandı — 2026-08-24:** GRE-v0 mastery + RVR-v0 retention canonical.
@@ -76,40 +74,45 @@ Final: `RVR-v0 — Retention Verification & Risk`. Mastery/retention ayrı; time
 Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.  
 Karar: D-033.
 
-> **Tamamlandı — 2026-08-24:** capacity planner'ın kullanıcı kontrollü zaman envelope'u olarak kilitlendi.
-
 ### [x] 3B — Görev kategorileri
-
-**Canonical ayrımlar:**
 - `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
-- purpose/activity/track/evidence ayrı eksen,
-- purpose: `teach | practice | assess | remediate | retain | diagnose | reinforce`,
-- coding/debugging/project activity; English curriculum track,
-- deferred task debt değil; unresolved LearningNeed kalır ve fresh candidate doğurabilir,
-- multi-Skill component attribution ayrı,
-- provenance/validation + variant/dependency + prerequisite/tools + duration/splitting metadata,
-- paused progress vs deferred candidate ayrımı,
-- task lifecycle mastery evidence değildir,
-- priority weight 3C'ye bırakıldı.
+- purpose/activity/track/evidence ayrı,
+- unresolved LearningNeed kalıcı; old task debt değil,
+- multi-Skill attribution/provenance/variant/prerequisite/duration contract.
 
 Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.  
 Karar: D-034.
 
-> **Tamamlandı — 2026-08-24:** planner'ın aday görev primitive'i ve kalan-plan/no-debt davranışı yapısal hale getirildi.
+### [x] 3C — Öncelik puanı
 
-### [ ] 3C — Öncelik puanı — **AKTİF**
+**Final: `PBR-v0 — Priority Bands & Rank Vector`**
+- priority açık LearningNeed seviyesinde,
+- eligibility priority'den önce,
+- P0 `integrity_blocker`, P1 `repair_or_verify`, P2 `maintain_or_continue`, P3 `planned_progress`, P4 `reinforce_or_optimize`,
+- critical etiketi tek başına P0 değil; gerçek blocking gerekir,
+- `review_due` forgetting/negative evidence değildir,
+- aynı band içinde lexicographic rank vector: blocking → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break,
+- additive sahte-hassas score ve score/minute yok,
+- starvation guard + parallel-track balance,
+- safe split/smaller alternative/defer 3A ile uyumlu,
+- kalan LearningNeed açık kalır; task debt yok,
+- `PriorityDecisionTrace` açıklanabilirlik için tutulur.
+
+Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.  
+Karar: D-035.
+
+> **Tamamlandı — 2026-08-24:** 80 dk ihtiyaç / 50 dk capacity problemi semantic priority + deterministic rank + capacity fit ile çözülebilir hale geldi.
+
+### [ ] 3D — Prerequisite davranışı — **AKTİF**
 Kesinleştirilecek:
-- 80 dk ihtiyaç / 50 dk capacity gibi durumda hangi 50 dk seçilir,
-- critical prerequisite / verification / remediation / retention / current learning / new learning / English priority ilişkisi,
-- urgency vs importance,
-- starvation guard,
-- duration-aware selection,
-- tie-break,
-- fixed category percentages olmadan balanced progress,
-- deterministic priority policy ve reason inputs.
-
-### [ ] 3D — Prerequisite davranışı
-Hard/soft dependency scheduling; dependent wait, independent continue.
+- hard/soft prerequisite edge semantics,
+- task eligibility,
+- critical unresolved verification/remediation nedeniyle dependent wait,
+- `review_due` tek başına hard lock olmaması,
+- bağımsız branch'lerin devam etmesi,
+- prerequisite contamination guard,
+- prerequisite state değişince replan,
+- 3D eligibility filter ile 3C priority sırası.
 
 ### [ ] 3E — Hızlı öğrenme
 Diagnostic/skip/validated waiver; no single-easy-quiz skip.
@@ -123,7 +126,7 @@ Reason codes + deterministic selection pseudocode.
 ### [ ] 3H — Planner simülasyonu
 Sanal kullanıcı profilleri ve scenario suite.
 
-**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, priority/decision policy, pseudocode, simulation suite.
+**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, prerequisite/decision policy, pseudocode, simulation suite.
 
 ---
 
@@ -286,7 +289,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3B`  
-**Aktif:** **`3C — Öncelik puanı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3C`  
+**Aktif:** **`3D — Prerequisite davranışı`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3C priority/selection policy → POST-STEP sync.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3D prerequisite/eligibility policy → POST-STEP sync.
