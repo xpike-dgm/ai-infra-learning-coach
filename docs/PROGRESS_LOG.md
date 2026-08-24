@@ -4,24 +4,15 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. `MASTER_PL
 
 ## Kayıt Formatı
 
-Her önemli çalışma oturumu sonunda şu format kullanılır:
+Her önemli çalışma oturumu sonunda:
 
-### YYYY-MM-DD — Oturum başlığı
+- tamamlananlar,
+- alınan kararlar,
+- üretilen/güncellenen dosyalar,
+- açık kalan noktalar,
+- sonraki kesin adım
 
-**Tamamlananlar**
-- ...
-
-**Alınan kararlar**
-- ...
-
-**Üretilen / güncellenen dosyalar**
-- ...
-
-**Açık kalan noktalar**
-- ...
-
-**Sonraki kesin adım**
-- ...
+kaydedilir.
 
 ---
 
@@ -32,7 +23,7 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 - “1095 gün gösterilmeyecek” kararı kaydedildi.
 - “Zaman geçirmek ilerleme değildir; yalnızca kanıtlanmış öğrenme ilerlemedir” ilkesi ana ürün prensibi olarak kaydedildi.
 - Knowledge graph, mastery, haftalık/aylık assessment, remediation, spaced repetition ve İngilizce paralel hat ana bileşenleri tanımlandı.
-- Kişisel kullanım nedeniyle auth, ödeme, sosyal özellik ve çok kullanıcılı SaaS karmaşıklığının kapsam dışı olduğu kaydedildi.
+- Kişisel kullanım nedeniyle auth, ödeme, sosyal özellik ve çok kullanıcılı SaaS karmaşıklığı kapsam dışı bırakıldı.
 
 **Alınan kararlar**
 - Kodlamadan önce ürün, öğrenme motoru, planner, assessment, curriculum, English track, UX ve teknik mimari netleştirilecek.
@@ -40,10 +31,10 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 
 ---
 
-### 2026-08-24 — Master plan 19 aşamalı ayrıntılı yürütme planına dönüştürüldü
+### 2026-08-24 — Master plan 19 aşamalı yürütme planına dönüştürüldü
 
 **Tamamlananlar**
-- Proje toplam 19 ana aşamaya ayrıldı.
+- Proje 19 ana aşamaya ayrıldı.
 - Her aşama amaç, alt adım, çıktı ve tamamlanma kapısıyla tanımlandı.
 - Release APK'nin temel ürünün hazır olduğu nokta olduğu netleştirildi.
 
@@ -113,11 +104,44 @@ Her önemli çalışma oturumu sonunda şu format kullanılır:
 - `docs/STEP_STATUS.md`
 - `docs/DECISIONS.md`
 - `docs/HANDOFF_STATE.md`
+
+**Açık kalan noktalar**
+- V1 başarı kriterleri henüz ölçülebilir testlere çevrilmemişti.
+
+**Sonraki kesin adım**
+- `1C — Başarı kriterleri`.
+
+---
+
+### 2026-08-24 — 1C V1 başarı kriterleri tamamlandı
+
+**Tamamlananlar**
+- V1 için P0/P1/P2 öncelik seviyeleri tanımlandı.
+- PASS / PASS WITH NOTES / FAIL / BLOCKED test sonuç modeli tanımlandı.
+- Yeni kullanıcı, tek prerequisite'te zayıf kullanıcı, retention kaybı, 7 günlük ara, AI-assisted coding, hızlı öğrenen ve English/technical asimetrisi için standart test profilleri oluşturuldu.
+- Daily planner, prerequisite, mastery, assessment, retention, remediation, replan, English, AI Tutor sınırları, curriculum graph, local persistence, backup/restore, migration, UI, release ve pilot için toplam **49 acceptance kriteri** yazıldı.
+- Hard prerequisite bypass, progress data loss, task completion/tek kolay quiz ile yanlış mastery ve AI'nın çekirdek kuralları atlaması P0 release blocker olarak tanımlandı.
+- Haftalık ve aylık assessment'ın yalnız puan göstermesi değil, sonraki planı gerçekten değiştirmesi zorunlu acceptance davranışı yapıldı.
+- 7+ gün ara sonrası eski görevlerin kullanıcıya borç olarak yığılması yasaklandı; replan zorunlu hale getirildi.
+- AI provider kapalıyken deterministic planner/mastery/prerequisite ve local progress'in çalışmaya devam etmesi P0 kriteri yapıldı.
+- Fresh install, update install, backup/restore, migration ve bağımsız QA final release kapısına eklendi.
+- En az 14 günlük gerçek pilotta hard-rule ihlali sıfır hedefi ve planların en az %90'ında manuel yapısal düzeltme gerekmemesi başlangıç kalite hedefi olarak tanımlandı.
+
+**Alınan kararlar**
+- Tüm P0 acceptance kriterleri PASS olmadan V1 release edilmeyecek.
+- Kodlama AI'ın kendi “testler geçti” raporu tek başına kritik kabul için yeterli olmayacak; bağımsız Test/QA AI doğrulaması aranacak.
+- Mastery threshold, evidence weight, AI-help penalty, spaced repetition interval, planner oranları ve English payı gibi sayısal parametreler 1C'de rastgele sabitlenmeyecek. İlgili Aşama 2/3/4/6/17 çalışmalarında araştırma, simülasyon ve pilot ile belirlenecek.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/V1_SUCCESS_CRITERIA.md`
+- `docs/STEP_STATUS.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/DECISIONS.md`
+- `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- V1 başarı kriterleri henüz ölçülebilir testlere çevrilmedi.
-- Mastery formülü/threshold ve planner algoritması sonraki aşamalarda kesinleşecek.
+- Aşama 1'in son adımı olan consolidated non-goals henüz kilitlenmedi.
 
 **Sonraki kesin adım**
-- **`1C — Başarı kriterleri`**.
+- **`1D — Non-goals`**.
