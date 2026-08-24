@@ -131,29 +131,33 @@ Uygulama ağır, takılan veya gereksiz kaynak tüketen yapıya dönüşmeyecek.
 
 ## D-029 — Mastery Formula v0 score + hard gate + verification modeli olacak
 
-**Durum:** Kabul edildi — 2026-08-24
+**Durum:** PROVISIONAL / Research AI doğrulaması bekliyor — 2026-08-24
 
-2E araştırma ve tasarımıyla aşağıdaki model kilitlendi:
+Bu karar 2E'nin candidate tasarımıdır; henüz kalıcı bağlayıcı final karar değildir. Candidate model:
 
-- V1 başlangıç modeli, kalibre edilmiş BKT/IRT yerine açıklanabilir **Beta-style weighted evidence accumulator + hard mastery gates** kullanır.
-- Objective score:
+- Beta-style weighted evidence accumulator + hard mastery gates.
+- Objective score candidate formülü:
   - `alpha = 1 + Σ(w_i × q_i)`
   - `beta = 1 + Σ(w_i × (1-q_i))`
   - `objective_score = alpha/(alpha+beta)`
 - `q_i` rubric doğruluğu `[0,1]`; invalid evidence hesaba girmez.
 - `w_i = role_weight × assistance_weight × provenance_weight`.
-- V0 role weight: direct `1.00`, corroborating `0.50`, contextual `0`.
-- V0 assistance: H0 `1.00`, H1 `0.85`, H2 `0.65`, H3 `0.35` yalnız target davranış hâlâ kullanıcı tarafından anlamlı biçimde üretildiyse; aksi halde `0`; H4 `0`.
-- AI evaluator + rubric + high confidence v0 provenance `0.80`; low confidence/ambiguous `0` ve recheck.
-- Operational `MASTERY_SCORE_THRESHOLD_V0 = 0.80`; bu bilimsel sabit, BKT probability veya `%80 öğrendi` anlamına gelmez.
-- Difficulty'ye keyfi score multiplier verilmez; difficulty critical gate/item eligibility için kullanılır ve ileride gerçek veride kalibre edilebilir.
-- Same-item/same-family tekrarları bağımsız evidence sayısını şişiremez.
-- Standard Objective için score threshold + direct independent evidence + yeterli independent group + unresolved recheck olmaması gerekir.
-- Critical Objective ayrıca HIGH support, en az 3 independent group, en az 2 family/context ve non-basic evidence gerektirir; coding/production için en az bir H0 user-authored direct artifact zorunludur.
-- Skill mastered olmak için bütün required/critical Objective gate'leri geçmeli, `skill_score >= 0.80` olmalı ve unresolved recheck bulunmamalıdır.
-- Tek clean negative evidence daha önce mastered Skill'i anında sıfırlamaz; `verification_due` açar. Fresh doğrulama da negative ise gerçek weakness/remediation değerlendirilir.
-- Mastery kararı traceable/versioned olmalıdır; formula constants `mastery_formula_version=v0` olarak tutulur.
-- D-028 gereği implementation incremental aggregate/sufficient-state kullanabilecek şekilde tasarlanmıştır.
-- Threshold ve multiplier'lar 17C pilotunda false-positive/false-negative mastery verisiyle yeniden kalibre edilebilir.
+- Candidate role weight: direct `1.00`, corroborating `0.50`, contextual `0`.
+- Candidate assistance: H0 `1.00`, H1 `0.85`, H2 `0.65`, H3 `0.35` veya `0`, H4 `0`.
+- Candidate AI evaluator high-confidence provenance `0.80`.
+- Candidate operational mastery threshold `0.80`.
+- Difficulty candidate modelde numeric score multiplier değil, gate/item-eligibility girdisi.
+- Same-item/same-family inflation engellenir.
+- Required/critical Objective'lerde hard gates; critical production için en az bir H0 user-authored direct artifact adayı.
+- Tek clean negative evidence sonrası anında reset yerine `verification_due` candidate davranışı.
+- Formula traceable/versioned ve incremental hesaplamaya uygun tasarlanır.
 
-Ayrıntılı spesifikasyon: `docs/MASTERY_FORMULA_V0.md`.
+**Düzeltme:** İlk 2E kapanışında ayrı Research AI turu yapılmış gibi davranıldı; gerçekte yapılan araştırma ana yöneticinin kendi web/dış araştırmasıydı. D-016 ve `AI_AGENT_WORKFLOW.md` gereği 2E ayrı Research AI doğrulaması almadan kapanmış sayılmayacaktır.
+
+Ayrıntılı candidate spec: `docs/MASTERY_FORMULA_V0.md`.
+
+## D-030 — 2E ayrı Research AI raporu alınmadan kapatılamaz
+
+**Durum:** Kabul edildi — 2026-08-24
+
+2E yeniden açılmıştır. Ayrı Research AI raporu candidate mastery formülünü akademik/teknik kaynaklarla sorgulayacak; ana yönetici raporu mevcut 2A–2D kararlarıyla karşılaştırıp gerekli revizyonları yapacaktır. Research AI raporu otomatik ürün kararı değildir. Rapor değerlendirilmeden, `MASTERY_FORMULA_V0.md` finalleştirilmeden ve canonical POST-STEP dosyaları senkronize edilmeden 2F'ye geçilmez.
