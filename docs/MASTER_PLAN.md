@@ -14,17 +14,27 @@ Ana ürün ilkesi:
 ---
 
 # AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
-### [x] 1A — Ana ürün amacı — `docs/PRODUCT_REQUIREMENTS.md`
-### [x] 1B — V1 kapsamı — `docs/V1_SCOPE.md`
-### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
-### [x] 1D — Non-goals — `docs/NON_GOALS.md`
+
+### [x] 1A — Ana ürün amacı
+Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
+
+### [x] 1B — V1 kapsamı
+Çıktı: `docs/V1_SCOPE.md`
+
+### [x] 1C — Başarı kriterleri
+Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
+
+### [x] 1D — Non-goals
+Çıktı: `docs/NON_GOALS.md`
+
+> **Tamamlandı — 2026-08-24:** ürün amacı, V1 sınırı, acceptance ve non-goals kilitlendi.
 
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla ✅
 
 ### [x] 2A — Bilgi birimleri
-`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical.  
+`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical mastery/prerequisite seviyesi.  
 Çıktı: `docs/LEARNING_ENGINE_SPEC.md` — D-021.
 
 ### [x] 2B — Topic durumları
@@ -32,11 +42,11 @@ Ana ürün ilkesi:
 Çıktı: `docs/TOPIC_STATE_MACHINE.md` — D-023.
 
 ### [x] 2C — Mastery sinyalleri
-Direct/corroborating/contextual + recognition/recall/code reading/coding/debugging/explanation/transfer/retention/project.  
+Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project; direct/corroborating/contextual; prerequisite contamination ve same-family guard.  
 Çıktı: `docs/MASTERY_SIGNALS_SPEC.md` — D-025.
 
 ### [x] 2D — AI / ipucu etkisi
-H0–H4, timing, provenance, generated-code guardrail, fresh recheck.  
+H0–H4, timing, provenance, independent/assisted/practice-only/recheck, generated-code guardrail.  
 Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026.
 
 ### [x] 2E — Mastery formülü v0
@@ -44,58 +54,68 @@ Final: `GRE-v0 — Gated Recent Evidence`.
 Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
 
 ### [x] 2F — Unutma modeli
-Final: `RVR-v0 — Retention Verification & Risk`.  
+Final: `RVR-v0 — Retention Verification & Risk`. Mastery/retention ayrı; time-decay mastery yok; review/verification/natural reuse/backlog davranışı.  
 Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
 
-> **Tamamlanma notu — 2026-08-24:** AŞAMA 2 kapandı. GRE-v0 mastery + RVR-v0 retention canonical.
+> **AŞAMA 2 tamamlandı — 2026-08-24:** GRE-v0 mastery + RVR-v0 retention canonical.
 
 ---
 
 # AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
 
 ### [x] 3A — Günlük kapasite
+- explicit daily time = hard budget,
+- editable short/normal/intensive profiles,
+- reserve/min block heuristic,
+- no auto-overrun,
+- dynamic remaining-time replan,
+- split/defer,
+- no backlog debt,
+- duration/pacing contract.
 
-**Final capacity contract:**
-- explicit daily minutes = hard budget,
-- source priority: today override → selected profile → schedule → normal,
-- V0 editable `30/60/90` short/normal/intensive presets,
-- V0 `10%` planning reserve + `10 dk` minimum plannable block — heuristic,
-- fixed category percentage yok,
-- remediation/retention day length'i otomatik uzatmaz,
-- remaining-time replan,
-- unfinished task failure değildir,
-- safe split → smaller alternative → defer,
-- deferred task next-day debt değildir,
-- duration estimates future user pace adaptation destekler,
-- wall-clock vs active-learning ayrımı,
-- deterministic/versioned capacity resolver.
+Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.  
+Karar: D-033.
 
-**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.  
-**Karar:** D-033.
+> **Tamamlandı — 2026-08-24:** capacity planner'ın kullanıcı kontrollü zaman envelope'u olarak kilitlendi.
 
-> **Tamamlanma notu — 2026-08-24:** 3A acceptance criteria PASS. Capacity, planner'ın aşamayacağı kullanıcı kontrollü zaman envelope'u olarak kilitlendi.
+### [x] 3B — Görev kategorileri
 
-### [ ] 3B — Görev kategorileri — **AKTİF**
+**Canonical ayrımlar:**
+- `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
+- purpose/activity/track/evidence ayrı eksen,
+- purpose: `teach | practice | assess | remediate | retain | diagnose | reinforce`,
+- coding/debugging/project activity; English curriculum track,
+- deferred task debt değil; unresolved LearningNeed kalır ve fresh candidate doğurabilir,
+- multi-Skill component attribution ayrı,
+- provenance/validation + variant/dependency + prerequisite/tools + duration/splitting metadata,
+- paused progress vs deferred candidate ayrımı,
+- task lifecycle mastery evidence değildir,
+- priority weight 3C'ye bırakıldı.
+
+Çıktı: `docs/TASK_TAXONOMY_SPEC.md`.  
+Karar: D-034.
+
+> **Tamamlandı — 2026-08-24:** planner'ın aday görev primitive'i ve kalan-plan/no-debt davranışı yapısal hale getirildi.
+
+### [ ] 3C — Öncelik puanı — **AKTİF**
 Kesinleştirilecek:
-- canonical task taxonomy,
-- teaching/practice/assessment/coding/debugging/retention/remediation/English/project ayrımı,
-- task category vs evidence type,
-- `TaskCandidate` metadata/contract,
-- multi-Skill attribution,
-- duration/splittable/prerequisite/target fields,
-- 3C priority motoruna giriş primitive'i.
-
-### [ ] 3C — Öncelik puanı
-Critical prerequisite, due retention, weak Skill, next eligible Topic, English, diversity.
+- 80 dk ihtiyaç / 50 dk capacity gibi durumda hangi 50 dk seçilir,
+- critical prerequisite / verification / remediation / retention / current learning / new learning / English priority ilişkisi,
+- urgency vs importance,
+- starvation guard,
+- duration-aware selection,
+- tie-break,
+- fixed category percentages olmadan balanced progress,
+- deterministic priority policy ve reason inputs.
 
 ### [ ] 3D — Prerequisite davranışı
-Hard/soft, dependent wait, independent continue.
+Hard/soft dependency scheduling; dependent wait, independent continue.
 
 ### [ ] 3E — Hızlı öğrenme
-Diagnostic/skip, validated waiver, no single-easy-quiz skip.
+Diagnostic/skip/validated waiver; no single-easy-quiz skip.
 
 ### [ ] 3F — Kaçırılan günler
-Backlog dump yok; current state'ten replan.
+Long absence sonrası backlog dump yok; current-state recovery.
 
 ### [ ] 3G — Açıklanabilir planner
 Reason codes + deterministic selection pseudocode.
@@ -103,7 +123,7 @@ Reason codes + deterministic selection pseudocode.
 ### [ ] 3H — Planner simülasyonu
 Sanal kullanıcı profilleri ve scenario suite.
 
-**Aşama 3 çıktısı:** `docs/ADAPTIVE_PLANNER_SPEC.md` + decision table + pseudocode + simulation suite.
+**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, priority/decision policy, pseudocode, simulation suite.
 
 ---
 
@@ -125,6 +145,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
+Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 6A — Başlangıç ölçümü
 ### [ ] 6B — A1/A2/B1/B2 teknik hedefleri
 ### [ ] 6C — Günlük English bileşeni
@@ -183,7 +204,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 
 ---
 
-# AŞAMA 12 — Assessment + Retention + Remediation
+# AŞAMA 12 — Assessment + Retention + Remediation Implementasyonu
 ### [ ] 12A — Haftalık sınav
 ### [ ] 12B — Aylık sınav
 ### [ ] 12C — Spaced repetition
@@ -264,7 +285,8 @@ Sanal kullanıcı profilleri ve scenario suite.
 ---
 
 # Güncel Konum
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A`  
-**Aktif:** **`3B — Görev kategorileri`**
 
-3B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3B`  
+**Aktif:** **`3C — Öncelik puanı`**
+
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3C priority/selection policy → POST-STEP sync.
