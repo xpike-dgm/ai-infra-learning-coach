@@ -180,81 +180,74 @@ Ayrıntı: `docs/PRIORITY_POLICY_SPEC.md`.
 
 ## D-036 — Final prerequisite modeli = PRG-v0 Prerequisite Readiness Gate
 **Durum:** Kabul edildi — 2026-08-24
-
 - Runtime prerequisite canonical olarak `Skill → Skill` düzeyindedir.
-- Edge semantics `hard | soft` olarak ayrılır; hard gerçek öğretim/çözüm/evidence zorunluluğudur, soft destekleyicidir ve tek başına kilit üretmez.
+- Edge semantics `hard | soft` olarak ayrılır.
 - Prerequisite readiness: `ready | ready_due | uncertain | not_ready`.
-- `review_due` = `ready_due`; hard lock üretmez.
+- `review_due = ready_due`; hard lock üretmez.
 - Hard `not_ready` dependent candidate'ı bloke eder.
-- `verification_due` source Skill'i `uncertain` yapar; critical prerequisite veya strict task'ta dependent new work verification çözülene kadar bekler.
-- Normal non-strict hard dependency'de `uncertain` conditional eligibility olabilir; tüm curriculum durmaz.
-- Task-level `required_skill_ids` exact candidate eligibility için hard requirement'tır.
-- Priority prerequisite gate'i bypass edemez. Canonical sıra: state/need → candidate → validation/trust → PRG-v0 eligibility → PBR-v0 priority → capacity fit.
-- Yalnız affected dependent branch bekler; independent Linux/English/diğer branches devam eder.
-- Started/mastered Topic prerequisite regression nedeniyle geriye `locked` yapılmaz.
-- Öğretilmemiş/eksik hard prerequisite içeren task failure'ı target Skill için `invalid/unusable` evidence'dır; negative mastery yazılmaz.
-- Missing prerequisite repair/review/verification LearningNeed olarak planner'a geri beslenir.
-- Technical English gerçek dependency olmadığı sürece global technical hard blocker değildir.
-- Deterministic/bounded readiness output `PrerequisiteDecision` ile açıklanabilir ve ileride 11B Prerequisite Engine'e taşınabilir.
+- Critical/strict `verification_due` dependent yeni work'u bekletebilir.
+- Task-level `required_skill_ids` exact task eligibility için hard requirement'tır.
+- Priority prerequisite gate'i bypass edemez.
+- Yalnız affected dependent branch bekler; bağımsız branches devam eder.
+- Prerequisite contamination target negative evidence değildir.
+- Technical English gerçek dependency değilse global technical hard blocker değildir.
 
 Ayrıntı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 
 ## D-037 — Final hızlı öğrenme modeli = VDW-v0 Validated Diagnostic Waiver
 **Durum:** Kabul edildi — 2026-08-24
-
-- Diagnostic, GRE-v0'dan daha kolay ikinci bir mastery standardı değildir; aynı evidence/gate kurallarını daha verimli toplama yoludur.
-- Kullanıcının `biliyorum` beyanı yalnız diagnostic trigger/scope'tur, evidence değildir.
-- Tek kolay quiz / recognition-only sonuç whole-Topic skip veremez.
-- Skip canonical olarak Objective bazlı `DiagnosticCoverageWaiver` üretir; coverage waiver current mastery/retention değildir.
-- Partial diagnostic yalnız kanıtlanan Objective'lere waiver verir; unresolved kısımlar normal öğrenmeye devam eder.
-- `available → mastered` yalnız bütün required coverage waiver/coverage koşulları + GRE-v0 required/critical Skill gates birlikte sağlanınca mümkündür.
-- Critical Skill diagnostic'i GRE-v0 critical gates'i aynen korur; coding için H0 user-authored artifact, debugging için H0 diagnosis/fix ve gereken transfer/diversity şartları düşürülemez.
-- Waiver üretecek diagnostic evidence H0, prerequisite-valid, verified ve provenance-clean olmalıdır; H1–H4 veya solution exposure skip kanıtı değildir.
-- Integrated diagnostic birden çok Objective'i hızlandırabilir fakat component evidence için structural essentiality + separate observability/attribution şarttır; tek project pass whole-topic waiver değildir.
-- Diagnostic fail, henüz mastered olmayan prior-knowledge yolunda otomatik `remediation_required` cezası değildir; waiver verilmez ve normal learning başlar.
-- Prerequisite contamination target negative evidence üretmez; PRG-v0 diagnostic'te de önce çalışır.
-- Diagnostic current daily capacity içinde planlanır ve sonuç GRE → waiver → PRG → Topic state → LearningNeed/PBR → replan sırasıyla sisteme geri beslenir.
-- Waiver curriculum/objective versiyonuna bağlıdır; yeni required Objective eski waiver ile otomatik geçilmiş sayılmaz.
-- Policy bounded/deterministic ve D-028 ile uyumludur.
+- Diagnostic GRE-v0'dan daha kolay ikinci mastery standardı değildir.
+- Self-report yalnız diagnostic trigger/scope'tur.
+- Objective-level validated coverage waiver + partial waiver vardır.
+- Critical H0/evidence/prerequisite false-skip guards korunur.
+- Diagnostic fail otomatik remediation değildir.
+- Waiver mastery/retention state değildir.
 
 Ayrıntı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 
 ## D-038 — Final missed-day / re-entry modeli = SRR-v0 State-based Re-entry & Recovery
 **Durum:** Kabul edildi — 2026-08-24
-
 - Absence failure, mastery decay, remediation trigger veya task debt değildir.
-- Geri dönüşte geçmiş başlanmamış `PlannedTask` ve ephemeral `TaskCandidate` current plan'a replay edilmez; current state'ten fresh `LearningNeed → TaskCandidate` üretimi yapılır.
-- Zaman yalnız RVR-v0 retention due/temporal urgency sinyallerini değiştirebilir; sırf uzun ara nedeniyle `review_due → verification_due/at_risk` veya mastered → unmastered olmaz.
-- Unresolved verification/remediation ihtiyaçları absence ile silinmez.
-- Safe/version-valid paused checkpoint continuation adayı olabilir fakat eligibility/priority/capacity yeniden hesaplanır; otomatik seçilmez.
-- Incomplete high-stakes H0/diagnostic/retention attempt negative evidence değildir; gerekiyorsa fresh/unseen candidate üretilir.
-- Due-state inventory DailyPlan değildir; çok sayıda due Skill bugünün kapasitesine topluca yığılmaz.
-- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur; aynı state-driven recovery policy çalışır. Absence duration informational/urgency bağlamıdır.
-- Recovery ayrı gizli priority score üretmez; PBR-v0 P0–P4, PRG-v0 eligibility ve 3A hard capacity korunur.
-- Absence günleri starvation counter artırmaz; starvation eligible need'in aktif planlama günlerinde ertelenmesi, retention overdue ise ayrı zaman sinyalidir.
-- Integrated recovery task yalnız separately observable/attributable Skill'ler için evidence üretir; sibling/cluster auto-refresh yoktur.
-- Uzun ara sonrası new learning globally dondurulmaz; gerçek blocker yoksa güvenli branch'lerde devam edebilir.
-- Self-report (`bu arada C kullandım`) automatic retention refresh değildir; diagnostic/verified artifact normal evidence pipeline'ına girebilir.
-- Candidate generation/query bounded/incremental olmalı ve D-028 performans kuralını korumalıdır.
+- Stale unstarted plan/candidate replay edilmez; current state'ten fresh LearningNeed/candidate üretilir.
+- Time yalnız RVR due/urgency sinyalini değiştirebilir.
+- Unresolved verification/remediation korunur.
+- Due inventory DailyPlan değildir.
+- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur.
+- Starvation ile absence ayrıdır.
+- Recovery PBR + PRG + hard capacity ile çalışır.
+- Integrated recovery evidence ayrı attribution ister.
 
 Ayrıntı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
 
 ## D-039 — Final planner explainability modeli = PDT-v0 Planner Decision Trace
 **Durum:** Kabul edildi — 2026-08-24
-
-- Planner açıklaması sonradan serbest metinle uydurulmaz; karar sırasında structured reason code + decision trace üretilir.
-- Explainability private chain-of-thought değildir; yalnız canonical state refs, policy sonuçları, disposition ve decisive reason code'lar tutulur.
-- Internal audit trace ile user-facing kısa açıklama ayrı katmandır; user-facing metindeki her factual neden trace'te bulunmalıdır.
-- Need-level ve Candidate-level karar izleri ayrıdır.
-- Selected, blocked, invalid, lower-priority, capacity-deferred, split, smaller-alternative ve same-need-superseded disposition'ları açıkça kaydedilir.
-- Reason code family'leri need, validation, prerequisite, retention, priority, capacity, diagnostic, re-entry, selection ve replan namespace'lerine ayrılır.
-- PRG eligibility PBR priority'den önce, capacity fit priority'den sonra çalışır; trace bu farkları korur.
-- `review_due` açıklaması forgetting/failure iddiası yapamaz; absence debt/failure/starvation diye sunulamaz.
-- Higher-priority task capacity'ye sığmadığı için lower-priority task seçildiyse açıklama priority'yi ters çevirmiş gibi davranmaz; gerçek fit nedeni kaydedilir.
-- Replan yeni `plan_version` + `PlannerReplanEvent` üretir; completed evidence korunur, remaining plan yeniden çözülür.
-- LLM yalnız trace'i paraphrase edebilir; priority/eligibility/capacity nedenini değiştiremez. Template fallback zorunludur.
-- 3A–3G canonical end-to-end deterministic planner pseudocode'u tanımlandı.
-- Trace bounded/ref-based olmalı; full-history scan/private reasoning log'u gerektirmez ve D-028 performans kuralını korur.
-- 3H simulation için selected/blocked/capacity/review_due/absence/diagnostic/replan dahil test edilebilir invariant set'i tanımlandı.
+- Planner açıklaması sonradan uydurulmaz; karar sırasında structured reason code + decision trace üretilir.
+- Private chain-of-thought değil canonical state refs, policy sonuçları, disposition ve decisive reason code'lar tutulur.
+- User-facing factual nedenler internal trace'in alt kümesidir.
+- Need-level ve candidate-level izler ayrıdır.
+- PRG eligibility → PBR priority → capacity fit sırası korunur.
+- `review_due` forgetting/failure; absence debt/failure/starvation diye açıklanamaz.
+- Replan versioned event üretir ve completed evidence'ı korur.
+- LLM yalnız trace'i paraphrase edebilir; source of truth değildir.
 
 Ayrıntı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
+
+## D-040 — Final günlük mikro değerlendirme modeli = DMA-v0 Daily Micro Assessment
+**Durum:** Kabul edildi — 2026-08-24
+- Daily micro assessment zorunlu günlük quiz/kota değildir; yalnız state'te gerçek measurement ihtiyacı varsa planner candidate'ı olur.
+- Fixed soru sayısı, fixed assessment süresi veya günlük yüzde yoktur; assessment 3A hard capacity + PBR priority içinde yaşar.
+- `practice`, `assess`, `retain`, `diagnose` purpose'ları canonical olarak ayrıdır; soru-benzeri UI purpose'ı belirlemez.
+- Assessment mevcut LearningNeed/evidence gap bağlamından türetilir; ayrı assessment backlog/debt yoktur.
+- Target Objective coverage ve PRG prerequisite açısından adil olmalıdır; undeclared/unknown prerequisite target negative evidence üretemez.
+- Mastery/verification iddiası için varsayılan H0 independent attempt'tir. H1–H4 yardım öğrenmeye izin verir fakat positive independent mastery evidence değildir; yardım istemek negative H0 evidence sayılmaz.
+- Submit sonrası feedback önceki H0 attempt'i geriye dönük contaminate etmez; solution exposure sonrası fresh/unseen recheck gerekir.
+- Invalid/ambiguous/prerequisite-contaminated/evaluator-invalid item mastery credit veya penalty üretemez.
+- Provisional evaluator critical mastery/remediation kararını tek başına belirleyemez.
+- Tek doğru micro item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir, verification hysteresis korunur.
+- Coding/debugging/transfer Objective evidence standardı düşük capacity nedeniyle recognition/MCQ'ya düşürülemez.
+- Multi-Skill assessment yalnız separately observable/attributable component'lere evidence verir.
+- Assessment sonucu `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → remaining-plan replan` zincirini kullanır; yeni remediation günü otomatik uzatmaz.
+- Technical assessment'ta bilinmeyen English grammar/vocabulary gizli prerequisite olamaz.
+- 4B–4E için minimum assessment item/result contract ve canonical `assessment.*` reason-code namespace'i tanımlanmıştır.
+
+Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
