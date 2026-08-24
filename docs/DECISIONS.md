@@ -6,45 +6,41 @@ Bu dosya kalıcı ürün kararlarını kaydeder. Yeni kararlar eklendikçe eski 
 
 **Durum:** Kabul edildi
 
-`Gün 47 / 1095` gibi bir gösterim kullanılmayacak.
-
-Gerekçe: Geçen zaman öğrenme değildir ve kullanıcıya sahte ilerleme hissi verir.
+`Gün 47 / 1095` gibi bir gösterim kullanılmayacak. Geçen zaman öğrenme değildir.
 
 ## D-002 — İlerleme mastery tabanlı olacak
 
 **Durum:** Kabul edildi
 
-Bir dersin tamamlanması tek başına ilerleme değildir. İlerleme, quiz + uygulama + debugging + açıklama + gecikmeli tekrar gibi kanıtlarla ölçülür.
+Bir dersin tamamlanması tek başına ilerleme değildir. İlerleme quiz + uygulama + debugging + açıklama + transfer + gecikmeli tekrar gibi kanıtlarla ölçülür.
 
 ## D-003 — Knowledge graph takvimden öncelikli
 
 **Durum:** Kabul edildi
 
-Takvim yalnızca günlük kapasiteyi yönetir. Hangi konunun ne zaman açılacağını prerequisite ve mastery belirler.
+Takvim günlük kapasiteyi yönetir. Konu açılmasını prerequisite ve mastery belirler.
 
 ## D-004 — Eksik konu tüm programı dondurmaz
 
 **Durum:** Kabul edildi
 
-Bir konu zayıfsa ona bağımlı konular ertelenir. Bağımsız konular devam edebilir.
+Zayıf konu yalnız bağımlı dalları erteler; bağımsız konular devam edebilir.
 
 ## D-005 — Haftalık ve aylık sınavlar programı değiştirecek
 
 **Durum:** Kabul edildi
 
-Sınavlar yalnızca rapor üretmez; remediation ve sonraki görev planına doğrudan etki eder.
+Sınavlar yalnız rapor üretmez; remediation ve sonraki plana doğrudan etki eder.
 
 ## D-006 — İngilizce paralel ilerleyecek
 
 **Durum:** Kabul edildi
 
-A0 İngilizcenin önce ayrı bir kursla tamamlanması beklenmeyecek. Teknik içerikle birlikte A0→B2 ilerleyecek.
+A0 İngilizce önce ayrı bir kursla bitirilmeyecek; teknik içerikle paralel A0→B2 ilerleyecek.
 
 ## D-007 — Ana kariyer rotası systems → GPU → AI infrastructure
 
 **Durum:** Kabul edildi
-
-Ana sıra:
 
 C → Linux → C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure.
 
@@ -54,138 +50,118 @@ Doğrudan CUDA başlangıcı yapılmayacak.
 
 **Durum:** Kabul edildi
 
-Şimdilik gereksiz olanlar:
-- auth
-- sosyal özellik
-- ödeme
-- abonelik
-- admin paneli
-- organizasyon/rol sistemi
-- çok kullanıcılı SaaS mimarisi
+Auth, sosyal özellik, ödeme, abonelik, admin paneli, organizasyon/rol sistemi ve multi-tenant SaaS varsayılan kapsam dışıdır.
 
 ## D-009 — Modern ve sade mobil UI
 
 **Durum:** Kabul edildi
 
-Ana ekranın temel amacı “bugün ne yapmalıyım?” sorusunu cevaplamaktır. Dashboard karmaşası, uzun timeline ve gereksiz gamification kullanılmayacaktır.
+Ana ekranın temel amacı “bugün ne yapmalıyım?” sorusunu cevaplamaktır.
 
 ## D-010 — Streak ana başarı metriği olmayacak
 
 **Durum:** Kabul edildi
 
-Streak gösterilebilir ama mastery'nin önüne geçmez. Kaçırılan günler ceza değil yeniden planlama tetikler.
+Streak gösterilebilse bile mastery'nin önüne geçmez. Kaçırılan günler ceza değil replan tetikler.
 
 ## D-011 — AI kullanımı yasaklanmayacak
 
 **Durum:** Kabul edildi
 
-Kullanıcı AI araçlarını kullanabilir. Ancak AI çok fazla yardım ettiyse konu mastery kazanmak için ek açıklama/transfer/doğrulama soruları gerekir.
+AI yardımı kullanılabilir; ancak yoğun AI yardımı sonrası comprehension/transfer doğrulaması gerekir.
 
 ## D-012 — 3 yıllık içeriğin tamamı V1 ön koşulu değil
 
 **Durum:** Kabul edildi
 
-Önce öğrenme motoru + knowledge graph + ilk 8–12 haftalık yüksek kaliteli içerik oluşturulacak. Müfredat uygulama kodundan ayrı tutulacak ve zamanla genişletilecek.
+Önce öğrenme motoru + knowledge graph + ilk 8–12 haftalık yüksek kaliteli içerik oluşturulacak; curriculum zamanla genişletilecek.
 
 ## D-013 — Süreler adaptif, konu sırası daha kalıcı
 
 **Durum:** Kabul edildi
 
-Araştırmalardaki 12 aylık yoğun planın konu sırası referans alınabilir; ancak bir konunun “1 ayda bitmesi” sabit kabul edilmeyecek.
+Araştırma yol haritalarındaki konu sırası referans olabilir; fakat süreler kişiye göre adaptiftir.
 
 ## D-014 — İlk iş hedefi doğrudan CUDA olmak zorunda değil
 
 **Durum:** Kabul edildi
 
-C++ Systems / Systems Software / Linux Infrastructure / Distributed Systems / Performance / uygun SRE-Cloud rolü, AI Infrastructure'a geçiş için köprü olabilir.
+C++ Systems / Systems Software / Linux Infrastructure / Distributed Systems / Performance / uygun SRE-Cloud rolleri köprü olabilir.
 
 ## D-015 — Geliştirme aşamalı master plan üzerinden yürütülecek
 
 **Durum:** Kabul edildi — 2026-08-24
 
-Proje, `docs/MASTER_PLAN.md` içindeki aşama ve adımlara göre yürütülecek. Kodlamadan önce ürün çerçevesi, öğrenme motoru, adaptif planner, assessment sistemi, curriculum/knowledge graph, English track, UX ve teknik mimari yeterince netleştirilecek.
-
-Bir adım tamamlandığında yalnızca checkbox işaretlenmeyecek; ilgili spec, tarihli tamamlanma notu ve `docs/PROGRESS_LOG.md` kaydı tutulacak.
+Kodlamadan önce ürün çerçevesi, öğrenme motoru, planner, assessment, curriculum, English, UX ve teknik mimari yeterince netleştirilecek. Tamamlanan her adım ilgili spec, completion note ve `PROGRESS_LOG.md` kaydıyla tutulacak.
 
 ## D-016 — Araştırma, kodlama ve test için ayrı AI rolleri kullanılacak
 
 **Durum:** Kabul edildi — 2026-08-24
 
-- **Araştırma AI:** dış bilgi, güncel teknoloji, öğrenme bilimi, curriculum ve karşılaştırmalı araştırmalar.
-- **Kodlama AI:** onaylanmış/spec'i netleştirilmiş işleri implement etme, refactor ve bug fix.
-- **Test/QA AI:** kodlama AI'dan bağımsız acceptance, edge case ve regression doğrulaması.
-- **Ana yönetici/koordinatör:** işi seçer, araştırmayı karara dönüştürür, spec hazırlar, QA sonucuna göre kabul/geri dönüş verir ve GitHub hafızasını günceller.
+- Araştırma AI: dış bilgi ve karşılaştırmalı araştırma.
+- Kodlama AI: onaylanmış spesifikasyonun implementasyonu.
+- Test/QA AI: bağımsız acceptance, edge case ve regression doğrulaması.
+- Ana yönetici/koordinatör: iş seçimi, spec, karar ve GitHub hafızası.
 
-Kodlama AI'ın kendi implementasyonunu başarılı ilan etmesi tek başına tamamlanma sayılmayacak. Kritik işler bağımsız QA'dan geçecek.
-
-Ayrıntılı protokol: `docs/AI_AGENT_WORKFLOW.md`.
+Kritik işlerde coding AI'ın kendi raporu tek başına kabul değildir. Ayrıntı: `docs/AI_AGENT_WORKFLOW.md`.
 
 ## D-017 — Proje adımları sabit `1A / 1B / ...` kodlarıyla takip edilecek
 
 **Durum:** Kabul edildi — 2026-08-24
 
-19 ana aşama Aşama 1–19 olarak anılacak. Her ana alt adım aşama numarası + harf biçiminde sabit kimliğe sahip olacak: `1A`, `1B`, `2A`, `3C`, `11F` vb.
+19 aşama ve sabit alt adım kimlikleri `docs/EXECUTION_INDEX.md` içinde tutulur.
 
-Sabit yürütme indeksinin kaynağı: `docs/EXECUTION_INDEX.md`.
-
-## D-018 — V1 kapsamı ana adaptif öğrenme döngüsünü eksiksiz çalıştıracak şekilde sınırlandı
+## D-018 — V1 ana adaptif öğrenme döngüsünü eksiksiz çalıştıracak şekilde sınırlandı
 
 **Durum:** Kabul edildi — 2026-08-24
 
-V1, yalnız ekranları olan bir prototip değil; kişisel günlük kullanım için gerçekten çalışan Android release'i hedefler.
+V1 gerçek günlük kullanım için Android release hedefler. Today/daily plan, knowledge graph/prerequisite, adaptive planner, task runner, mastery, assessments, retention, remediation, AI Tutor, parallel English, ilk production curriculum, progress, local persistence, notifications, polished UI ve backup/restore kapsam içidir.
 
-V1'de zorunlu ana yetenekler:
+Tam 3 yıllık curriculum, sosyal/ticari özellikler, multi-device sync, iOS/web/desktop, gelişmiş career engine, full voice tutor, full IDE/compiler/sandbox ve ağır gamification V1 release şartı değildir.
 
-- Today/daily plan,
-- knowledge graph + prerequisite,
-- adaptive planner/replan,
-- task runner,
-- mastery engine,
-- günlük mikro değerlendirme,
-- weekly/monthly assessments,
-- retention/spaced repetition,
-- remediation,
-- AI Tutor v1,
-- paralel technical English,
-- ilk 8–12 haftalık production curriculum,
-- progress/weakness görünümü,
-- local-first persistence,
-- bildirimler,
-- modern UI,
-- backup/export/restore.
-
-V1 release şartı olmayanlar:
-
-- 3 yıllık curriculum'un tamamı,
-- sosyal/ticari özellikler,
-- auth ve multi-tenant SaaS,
-- cloud multi-device live sync,
-- iOS/web/desktop istemcileri,
-- gelişmiş career-market engine,
-- tam voice-first tutor,
-- uygulama içine gömülü tam C/C++ IDE/compiler/sandbox,
-- aşırı gamification.
-
-AI explanation/feedback/evaluation için kullanılabilir; ancak mastery/prerequisite/planner çekirdek kuralları tamamen LLM'nin keyfi kararlarına bırakılmayacaktır.
-
-Ayrıntılı kapsam: `docs/V1_SCOPE.md`.
+Ayrıntı: `docs/V1_SCOPE.md`.
 
 ## D-019 — V1 release kabulü ölçülebilir acceptance kriterlerine ve bağımsız QA'ya bağlı olacak
 
 **Durum:** Kabul edildi — 2026-08-24
 
-V1 yalnızca özelliklerin mevcut olmasıyla hazır sayılmayacaktır. `docs/V1_SUCCESS_CRITERIA.md` içindeki acceptance kriterleri P0/P1/P2 olarak sınıflandırılır.
+`docs/V1_SUCCESS_CRITERIA.md` içindeki P0/P1/P2 kriterleri kullanılacak. Tüm P0 kriterleri PASS olmadan release yapılmayacak. Kritik final akışları bağımsız QA doğrulayacak; data loss, prerequisite bypass ve kritik yanlış mastery release blocker'dır.
 
-Release için:
+Mastery threshold, evidence weight, spaced repetition interval ve planner oranları ilgili sonraki aşamalarda araştırma/simülasyon/pilot ile belirlenecektir.
 
-- tüm P0 kriterleri PASS olmalı,
-- açık kritik P1 fonksiyon hatası olmamalı,
-- hard prerequisite ihlali, progress data loss ve kritik yanlış mastery gibi çekirdek kural hataları kabul edilmemeli,
-- final kritik akışlar bağımsız Test/QA AI tarafından doğrulanmalı,
-- gerçek Android cihazında fresh/update install testleri geçmeli,
-- backup/restore ve migration veri kaybı üretmemeli,
-- gerçek kullanım pilotu yapılmalıdır.
+## D-020 — Ürün ve V1 non-goals resmi olarak kilitlendi
 
-Mastery threshold, assessment ağırlığı, spaced repetition interval'i ve planner oranları gibi henüz araştırılmamış sayısal parametreler 1C'de keyfi biçimde sabitlenmeyecek; ilgili sonraki aşamalarda araştırma, simülasyon ve pilot verisiyle kesinleştirilecektir.
+**Durum:** Kabul edildi — 2026-08-24
 
-Ayrıntılı kriterler: `docs/V1_SUCCESS_CRITERIA.md`.
+Scope creep'i önlemek için ürün seviyesi non-goals ile yalnız V1'den ertelenen özellikler birbirinden ayrıldı.
+
+Ürün seviyesi temel sınırlar:
+
+- zaman/streak/task completion mastery yerine geçmeyecek,
+- ürün sabit takvimli kurs olmayacak,
+- tamamen LLM kontrollü curriculum olmayacak,
+- AI kullanıcı yerine öğrenmiş sayılmayacak,
+- genel amaçlı tüm dersleri öğreten platforma dönüşmeyecek,
+- sosyal ağ veya ticari SaaS olarak tasarlanmayacak,
+- gamification öğrenmenin önüne geçmeyecek,
+- kaçırılan günler görev borcu/ceza olmayacak,
+- telefon uygulaması tam IDE kimliğine dönüşmeyecek,
+- bilimsel dayanağı olmayan sahte kesinlik ve kariyer garantisi verilmeyecek,
+- İngilizce teknik eğitimin ön koşulu yapılmayacak.
+
+V1'e ertelenen başlıca alanlar:
+
+- tüm 3 yıllık curriculum,
+- iOS/web/desktop,
+- cloud account + live multi-device sync,
+- full voice tutor,
+- tam code-execution sandbox,
+- canlı career/job-market engine,
+- community/social,
+- payment/admin,
+- ağır gamification,
+- gereksiz backend/DevOps karmaşıklığı.
+
+Yeni bir non-goal kapsam içine alınacaksa gerekçe, etkilenen adım ve acceptance kriterleriyle yeni karar kaydı gerektirir.
+
+Ayrıntı: `docs/NON_GOALS.md`.
