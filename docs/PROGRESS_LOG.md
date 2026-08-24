@@ -97,32 +97,42 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 3F Kaçırılan günler / state-based re-entry tamamlandı
+- Final `SRR-v0 — State-based Re-entry & Recovery`.
+- Absence negative evidence/debt değildir; stale plan replay edilmez.
+- Current-state fresh need/candidate üretimi, due inventory ≠ DailyPlan, starvation≠absence ve bounded capacity recovery kilitlendi.
+- Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
+- Karar: D-038.
+
+---
+
+### 2026-08-24 — 3G Açıklanabilir planner / decision trace tamamlandı
 
 **PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_MEMORY_PROTOCOL`, `ADAPTIVE_PLANNER_SPEC`, `TASK_TAXONOMY_SPEC`, `PRIORITY_POLICY_SPEC` ve `RETENTION_FORGETTING_SPEC` yeniden okundu.
-- Aktif adımın 3F olduğu, 3A–3E ile GRE/RVR kararlarının current-state/no-debt recovery yönünü zaten bağladığı doğrulandı.
-- Ayrı Research AI kullanılmadı; 3F yeni bir bilimsel forgetting threshold'u seçmek yerine mevcut canonical state/priority/capacity modellerini re-entry policy'ye bağlayan ürün/mimari adımıydı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `ADAPTIVE_PLANNER_SPEC`, `TASK_TAXONOMY_SPEC`, `PRIORITY_POLICY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `DIAGNOSTIC_WAIVER_SPEC` ve `MISSED_DAY_RECOVERY_SPEC` yeniden okundu.
+- Aktif adımın 3G olduğu ve 3A–3F'nin canonical olarak kapalı olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; 3G yeni pedagojik threshold seçmek yerine mevcut deterministik planner kararlarını explainability/audit contract'ına bağlayan ürün/mimari adımıydı.
 
-**Final `SRR-v0 — State-based Re-entry & Recovery`**
-- Absence failure, negative mastery evidence, remediation trigger veya task debt değildir.
-- Geri dönüşte stale unstarted PlannedTask/TaskCandidate replay edilmez; current state'ten fresh LearningNeed/candidate üretilir.
-- Zaman yalnız RVR due/temporal urgency'yi değiştirebilir; review_due sırf uzun ara nedeniyle verification_due/at_risk olmaz.
-- Unresolved verification/remediation need'leri absence ile silinmez.
-- Safe/version-valid paused checkpoint continuation adayı olabilir fakat PRG/PBR/capacity yeniden değerlendirilir.
-- Incomplete high-stakes H0/diagnostic/retention attempt negative evidence değildir; fresh item gerekebilir.
-- Due-state inventory DailyPlan değildir; çok sayıda review_due tek güne yığılmaz.
-- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur; aynı state-driven resolver çalışır.
-- Starvation yalnız eligible need'in aktif planning günlerinde ertelenmesidir; absence günleri starvation artırmaz. Retention overdue age ayrı sinyaldir.
-- Integrated recovery task yalnız separately observable/attributable Skill'leri refresh eder; sibling/cluster auto-refresh yoktur.
-- Recovery PBR-v0 priority + PRG-v0 eligibility + 3A hard capacity içinde çalışır; user explicit extension olmadan gün uzamaz.
-- Long absence safe new learning'i globally dondurmaz.
-- Self-report automatic retention refresh değildir; diagnostic/verified artifact normal evidence pipeline'ına girebilir.
-- Candidate generation/query bounded/incremental ve D-028 ile uyumludur.
+**Final `PDT-v0 — Planner Decision Trace`**
+- Planner açıklaması sonradan freeform AI rationale olarak uydurulmaz; karar sırasında structured reason code + decision trace üretilir.
+- Explainability private chain-of-thought değildir; yalnız canonical state refs, policy outputs, selection disposition ve decisive reason'lar tutulur.
+- Internal audit trace ile user-facing kısa explanation ayrıldı.
+- Need-level ve Candidate-level trace contract'ları tanımlandı.
+- Selected / blocked / invalid / lower-priority / capacity-deferred / split / smaller alternative / same-need superseded durumları explicit hale geldi.
+- Reason code family'leri need, validation, eligibility, retention, priority, capacity, diagnostic, re-entry, selection ve replan namespace'lerine ayrıldı.
+- User-facing her factual explanation internal trace'te bulunmak zorundadır.
+- PRG eligibility → PBR priority → 3A capacity fit karar sırası korunur; priority blocked candidate'ı kurtaramaz, capacity semantic priority'yi yeniden yazmaz.
+- `review_due` forgetting/failure diye; absence debt/failure/starvation diye açıklanamaz.
+- Higher-priority task kalan capacity'ye sığmadığı için lower-priority task seçilirse trace gerçek fit nedenini korur.
+- `PlannerReplanEvent` + plan versioning tanımlandı; completed evidence korunarak yalnız remaining plan yeniden çözülür.
+- LLM yalnız structured trace'i paraphrase edebilir; template fallback zorunlu ve canonical source trace'tir.
+- 3A–3G için deterministic end-to-end planner pseudocode yazıldı.
+- 3H'nin doğrulayacağı 20 temel invariant tanımlandı.
+- Trace bounded/ref-based ve D-028 performans şartıyla uyumlu tutuldu.
 
 **Çıktılar**
-- `docs/MISSED_DAY_RECOVERY_SPEC.md`
-- `docs/DECISIONS.md` — D-038
+- `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+- `docs/DECISIONS.md` — D-039
 - canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3G — Açıklanabilir planner`.
-3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3H — Planner simülasyonu`.
+3H başlamadan yeni PRE-STEP GitHub refresh zorunlu.
