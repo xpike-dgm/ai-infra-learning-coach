@@ -14,107 +14,76 @@ Ana ürün ilkesi:
 ---
 
 # AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
-
-### [x] 1A — Ana ürün amacı
-Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
-
-### [x] 1B — V1 kapsamı
-Çıktı: `docs/V1_SCOPE.md`
-
-### [x] 1C — Başarı kriterleri
-Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
-
-### [x] 1D — Non-goals
-Çıktı: `docs/NON_GOALS.md`
-
-> **Tamamlandı — 2026-08-24:** ürün amacı, V1 sınırı, acceptance ve non-goals kilitlendi.
+### [x] 1A — Ana ürün amacı — `docs/PRODUCT_REQUIREMENTS.md`
+### [x] 1B — V1 kapsamı — `docs/V1_SCOPE.md`
+### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
+### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla ✅
 
-## Amaç
-`Dersi tamamladı = öğrendi` hatasını ortadan kaldıran, Skill/Objective seviyesinde açıklanabilir ve deterministik öğrenme modeli.
-
 ### [x] 2A — Bilgi birimleri
-`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical mastery/prerequisite; Topic ↔ Skill many-to-many; Skill→Skill prerequisite.
-
+`Domain → Module → Topic → Skill → Learning Objective`; Skill canonical.  
 Çıktı: `docs/LEARNING_ENGINE_SPEC.md` — D-021.
 
 ### [x] 2B — Topic durumları
-`locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.
-
+`locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.  
 Çıktı: `docs/TOPIC_STATE_MACHINE.md` — D-023.
 
 ### [x] 2C — Mastery sinyalleri
-Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project; direct/corroborating/contextual; prerequisite contamination ve same-family guard.
-
+Direct/corroborating/contextual + recognition/recall/code reading/coding/debugging/explanation/transfer/retention/project.  
 Çıktı: `docs/MASTERY_SIGNALS_SPEC.md` — D-025.
 
 ### [x] 2D — AI / ipucu etkisi
-H0–H4, timing, provenance, independent/assisted/practice-only/recheck, generated-code guardrail, fresh recheck, objective-specific tools.
-
+H0–H4, timing, provenance, generated-code guardrail, fresh recheck.  
 Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026.
 
 ### [x] 2E — Mastery formülü v0
-Ayrı Research AI validation sonrası ilk Beta candidate kaldırıldı.
-
-**Final: `GRE-v0 — Gated Recent Evidence`**
-- score yalnız valid + prerequisite-valid + H0 + direct + verified + independent groups,
-- H1–H4 independent mastery score'a girmez,
-- dependency/testlet grouping,
-- son en fazla 5 group mean, threshold 0.80 — heuristic/calibration,
-- required/critical hard gates,
-- critical coding H0 user artifact; debugging H0 diagnosis/fix,
-- first clean post-mastery negative → `verification_due`,
-- fixed AI trust/difficulty multiplier yok,
-- bounded/incremental.
-
+Final: `GRE-v0 — Gated Recent Evidence`.  
 Çıktılar: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
 
 ### [x] 2F — Unutma modeli
+Final: `RVR-v0 — Retention Verification & Risk`.  
+Çıktılar: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
 
-**Research süreci:**
-- ayrı Deep Research raporu alındı,
-- spacing, retrieval, SM-2, FSRS, HLR, ACT-R, DAS3H, R-PFA, complex-skill retention karşılaştırıldı,
-- rapor otomatik kabul edilmedi,
-- FSRS-6'nın güncel 21-parameter/default cold-start davranışı, Cepeda spacing sonuçları ve multi-skill attribution gibi kritik noktalar ayrıca doğrulandı,
-- aşırı güçlü exact interval/cluster-refresh/manual-score-reset iddiaları reddedildi.
-
-**Final: `RVR-v0 — Retention Verification & Risk`**
-- mastery ve retention ayrı eksen,
-- time-based GRE score decay yok,
-- states: `untracked`, `fresh`, `stable`, `review_due`, `verification_due`, `at_risk`,
-- `review_due` forgetting değildir; tek başına Topic weakening/prereq hard-block yok,
-- delayed review Skill türüne uygun H0 evidence ister,
-- first failure → verification; second clean failure → normal GRE recalc/remediation,
-- natural reuse strict structural-essentiality + H0 + separate verification + context-diversity ile review yerine geçebilir,
-- automatic cluster/descendant refresh yok,
-- critical verification_due dependent new work'u bekletebilir,
-- missed-day backlog dump yok; representative valid verification,
-- initial/growth/max interval sayıları versioned heuristic + 17C calibration,
-- bounded/incremental local state.
-
-Çıktılar:
-- `docs/RETENTION_FORGETTING_SPEC.md`
-- `docs/2F_RESEARCH_VALIDATION.md`
-- `docs/2F_RESEARCH_BRIEF.md` fulfilled
-- D-032.
-
-> **Tamamlanma notu — 2026-08-24:** AŞAMA 2 tamamen kapandı. GRE-v0 mastery + RVR-v0 retention omurgası canonical hale geldi.
-
-### Aşama 2 kapanış kapısı — PASS
-Aynı current evidence + retention history ile Skill durumu deterministik/açıklanabilir hesaplanabilir; assistance, independent mastery ve forgetting ayrı ama entegredir.
+> **Tamamlanma notu — 2026-08-24:** AŞAMA 2 kapandı. GRE-v0 mastery + RVR-v0 retention canonical.
 
 ---
 
 # AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
 
-### [ ] 3A — Günlük kapasite — **AKTİF**
-Kısa/normal/yoğun gün, hedef süre, minimum viable block, remediation/retention/new-learning capacity, overflow ve kullanıcı zaman değişikliği.
+### [x] 3A — Günlük kapasite
 
-### [ ] 3B — Görev kategorileri
-Yeni konu, remediation, retention, coding, debugging, English, project, micro assessment.
+**Final capacity contract:**
+- explicit daily minutes = hard budget,
+- source priority: today override → selected profile → schedule → normal,
+- V0 editable `30/60/90` short/normal/intensive presets,
+- V0 `10%` planning reserve + `10 dk` minimum plannable block — heuristic,
+- fixed category percentage yok,
+- remediation/retention day length'i otomatik uzatmaz,
+- remaining-time replan,
+- unfinished task failure değildir,
+- safe split → smaller alternative → defer,
+- deferred task next-day debt değildir,
+- duration estimates future user pace adaptation destekler,
+- wall-clock vs active-learning ayrımı,
+- deterministic/versioned capacity resolver.
+
+**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.  
+**Karar:** D-033.
+
+> **Tamamlanma notu — 2026-08-24:** 3A acceptance criteria PASS. Capacity, planner'ın aşamayacağı kullanıcı kontrollü zaman envelope'u olarak kilitlendi.
+
+### [ ] 3B — Görev kategorileri — **AKTİF**
+Kesinleştirilecek:
+- canonical task taxonomy,
+- teaching/practice/assessment/coding/debugging/retention/remediation/English/project ayrımı,
+- task category vs evidence type,
+- `TaskCandidate` metadata/contract,
+- multi-Skill attribution,
+- duration/splittable/prerequisite/target fields,
+- 3C priority motoruna giriş primitive'i.
 
 ### [ ] 3C — Öncelik puanı
 Critical prerequisite, due retention, weak Skill, next eligible Topic, English, diversity.
@@ -129,12 +98,12 @@ Diagnostic/skip, validated waiver, no single-easy-quiz skip.
 Backlog dump yok; current state'ten replan.
 
 ### [ ] 3G — Açıklanabilir planner
-Reason codes.
+Reason codes + deterministic selection pseudocode.
 
 ### [ ] 3H — Planner simülasyonu
-Sanal kullanıcı profilleri.
+Sanal kullanıcı profilleri ve scenario suite.
 
-Çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md` + simulation suite.
+**Aşama 3 çıktısı:** `docs/ADAPTIVE_PLANNER_SPEC.md` + decision table + pseudocode + simulation suite.
 
 ---
 
@@ -144,7 +113,6 @@ Sanal kullanıcı profilleri.
 ### [ ] 4C — Aylık yeterlilik sınavı
 ### [ ] 4D — Soru bankası
 ### [ ] 4E — AI-generated soru doğrulaması
-Çıktı: `docs/ASSESSMENT_SYSTEM_SPEC.md`.
 
 ---
 
@@ -153,18 +121,15 @@ Sanal kullanıcı profilleri.
 ### [ ] 5B — Topic metadata
 ### [ ] 5C — İlk 8–12 haftalık curriculum graph
 ### [ ] 5D — Curriculum QA
-Çıktı: `docs/CURRICULUM_GRAPH_SPEC.md` + dataset/QA.
 
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
-Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 6A — Başlangıç ölçümü
 ### [ ] 6B — A1/A2/B1/B2 teknik hedefleri
 ### [ ] 6C — Günlük English bileşeni
 ### [ ] 6D — Teknik entegrasyon
 ### [ ] 6E — English mastery
-Çıktı: `docs/ENGLISH_TRACK_SPEC.md`.
 
 ---
 
@@ -186,7 +151,6 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 8D — Servis sınırları
 ### [ ] 8E — AI entegrasyon mimarisi
 ### [ ] 8F — Test stratejisi
-Çıktı: `docs/TECH_ARCHITECTURE.md`, `docs/DATA_MODEL.md`, ADR.
 
 ---
 
@@ -219,7 +183,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 ---
 
-# AŞAMA 12 — Assessment + Retention + Remediation Implementasyonu
+# AŞAMA 12 — Assessment + Retention + Remediation
 ### [ ] 12A — Haftalık sınav
 ### [ ] 12B — Aylık sınav
 ### [ ] 12C — Spaced repetition
@@ -300,8 +264,7 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ---
 
 # Güncel Konum
-**Tamamlanan:** `1A–1D`, `2A–2F`  
-**AŞAMA 2:** ✅ TAMAMLANDI  
-**Aktif:** **`3A — Günlük kapasite`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A`  
+**Aktif:** **`3B — Görev kategorileri`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3A tasarımı → POST-STEP sync.
+3B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
