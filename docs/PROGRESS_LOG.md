@@ -24,7 +24,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 ### 2026-08-24 — Sabit 1A/1B yürütme numaralandırması eklendi
 - Aşamalar 1–19 olarak standardize edildi.
-- `1A`, `1B`, `2A`, `3C`, `11F` gibi sabit adım kodları oluşturuldu.
 - `EXECUTION_INDEX.md` ve `STEP_STATUS.md` devreye alındı.
 
 ---
@@ -34,7 +33,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `1B` V1 kapsamı → `docs/V1_SCOPE.md`.
 - `1C` P0/P1/P2 success criteria → `docs/V1_SUCCESS_CRITERIA.md`.
 - `1D` non-goals → `docs/NON_GOALS.md`.
-- AŞAMA 1 kapandı.
 
 ---
 
@@ -42,7 +40,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `Domain → Module → Topic → Skill → Learning Objective` modeli kesinleştirildi.
 - Skill canonical mastery/prerequisite seviyesi; Topic/Module/Domain derived.
 - Topic ↔ Skill many-to-many ve Skill→Skill prerequisite yönü kilitlendi.
-- Technical English gereksiz global hard-lock olmayacak.
 - Çıktı: `docs/LEARNING_ENGINE_SPEC.md`.
 - Karar: D-021.
 
@@ -57,16 +54,15 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 2B Topic state machine tamamlandı
-- Canonical state'ler: `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.
-- Topic state Skill mastery/coverage/retention/remediation'dan derived orchestration state olarak tanımlandı.
-- Started/mastered Topic prerequisite regression yüzünden geriye dönük `locked` yapılmayacak.
+- State'ler: `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required`.
+- Topic state Skill mastery/coverage/retention/remediation'dan derived orchestration state.
 - Çıktı: `docs/TOPIC_STATE_MACHINE.md`.
 - Karar: D-023.
 
 ---
 
-### 2026-08-24 — Her adım için zorunlu GitHub beyin tazeleme protokolü kilitlendi
-- `PRE-STEP GitHub refresh → adımı yürüt → gerekirse Research/Coding/QA → POST-STEP GitHub sync → sonraki adımı aktif yap` zorunlu hale geldi.
+### 2026-08-24 — Zorunlu GitHub beyin tazeleme protokolü kilitlendi
+- `PRE-STEP GitHub refresh → çalışma → gerekirse Research/Coding/QA → POST-STEP GitHub sync` zorunlu.
 - Aynı sohbet içinde yeni adımda bile refresh tekrarlanacak.
 - Çıktı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - Karar: D-024.
@@ -74,106 +70,105 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — English A0 prerequisite davranışı netleştirildi
-- Öğretilmemiş `a/an`, `the`, `to`, cümle yapısı vb. bilinmeden free production beklenmeyecek.
-- English progression `recognition → controlled production → free production → technical use → transfer/retention`.
-- Teknik task'te bilinmeyen English grammar gizli prerequisite olamaz.
+- Öğretilmemiş grammar/function-word yapılarından free production beklenmeyecek.
+- Teknik assessment bilinmeyen English grammar'ı gizli prerequisite yapmayacak.
 - Çıktı: `docs/ENGLISH_FOUNDATION_RULES.md`.
 
 ---
 
 ### 2026-08-24 — 2C Mastery sinyalleri tamamlandı
-**PRE-STEP**
-- Handoff/index/status/decisions ve ilgili öğrenme specs yeniden okundu.
-- Retrieval/delayed retention/transfer literatürü kısa dış research ile doğrulandı.
-
-**Tamamlananlar**
-- Evidence rolleri `direct/primary`, `corroborating`, `contextual`.
-- Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, integrated project ayrı evidence türleri.
-- Coding mastery gerçek kullanıcı artifact'ı ister; MCQ coding evidence değildir.
-- Transfer yalnız bilinen prerequisites ile geçerli.
-- Time/completion/streak/self-confidence mastery değildir.
-- Same-family repetition, invalid/contaminated evidence ve misconception tagging kuralları tanımlandı.
-- Objective-specific evidence profile yönü kilitlendi.
-
-**Çıktı**
-- `docs/MASTERY_SIGNALS_SPEC.md`
-- D-025.
+- Direct/corroborating/contextual evidence ayrımı.
+- Recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project türleri.
+- Coding mastery gerçek user artifact ister.
+- Same-family repetition ve invalid/contaminated evidence guardrail'leri.
+- Çıktı: `docs/MASTERY_SIGNALS_SPEC.md`.
+- Karar: D-025.
 
 ---
 
 ### 2026-08-24 — 2D AI / ipucu etkisi tamamlandı
-**PRE-STEP**
-- Handoff/index/status/decisions, mastery signals, behavior, memory protocol ve AI workflow tekrar okundu.
-- Exact sayısal weight seçilmediği için ayrı research turu gerekmemişti.
-
-**Tamamlananlar**
-- H0 none, H1 orientation, H2 targeted hint, H3 partial solution/scaffold, H4 full solution.
-- Assistance timing ve artifact authorship ayrı tutuldu.
-- `independent_evidence`, `assisted_evidence`, `practice_only`, `requires_independent_recheck` sınıfları.
-- AI-generated/copied code direct production mastery değildir.
-- H3/H4 sonrası fresh/unseen recheck zorunluluğu.
-- Submit sonrası feedback önceki attempt'i kirletmez.
-- Compiler/test/docs/autocomplete objective-specific allowed-tools policy ile yorumlanır.
-- External AI için surveillance yerine provenance + recheck.
-
-**Çıktı**
-- `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-- D-026.
-- `MASTER_PLAN` canonical 1–19 indeksle senkronlandı; D-027.
+- H0–H4, timing, artifact provenance, independent/assisted/practice-only/recheck sınıfları.
+- AI-generated code production mastery değildir.
+- H3/H4 sonrası fresh/unseen recheck.
+- Çıktı: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`.
+- Karar: D-026.
 
 ---
 
-### 2026-08-24 — Mobil performans/akıcılık kalıcı gereksinim olarak eklendi
+### 2026-08-24 — MASTER_PLAN sync zorunluluğu güçlendirildi
+- `MASTER_PLAN` canonical indeksle senkron tutulacak.
+- Karar: D-027.
+
+---
+
+### 2026-08-24 — Mobil performans/akıcılık first-class requirement oldu
 - UI thread ağır mastery/planner/DB/network/AI/code execution ile bloke edilmeyecek.
-- Async işlemler, incremental/cache/index yaklaşımı, lazy rendering, gereksiz polling'den kaçınma ve gerçek cihaz performance QA yönü bağlayıcı oldu.
-- Exact performance bütçeleri 8F/17E'de ölçülecek.
+- Incremental/cache/index/lazy rendering ve gerçek cihaz performance QA yönü bağlayıcı.
 - Karar: D-028.
 
 ---
 
-### 2026-08-24 — 2E Mastery Formula v0 tamamlandı
+### 2026-08-24 — 2E ilk candidate mastery formülü üretildi
+- Ana yönetici kendi dış/web araştırmasıyla Beta-style weighted evidence accumulator + hard gates candidate'ı hazırladı.
+- Candidate içinde direct/corroborating, H0–H4 ve AI evaluator numeric multiplier'ları vardı.
+- Bu aşama ilk kez yanlışlıkla tamamlandı işaretlendi.
+
+---
+
+### 2026-08-24 — 2E workflow hatası düzeltildi ve yeniden açıldı
+- Proje planında 2E için **ayrı Research AI** kullanılması gerektiği halde yalnız ana yöneticinin web araştırması yapılmış olduğu fark edildi.
+- 2E yeniden aktif yapıldı, 2F beklemeye alındı.
+- `docs/MASTERY_FORMULA_V0.md` candidate olarak işaretlendi.
+- D-029 provisional, D-030 ile ayrı Research AI raporu kapanış şartı oldu.
+
+---
+
+### 2026-08-24 — 2E bağımsız Research AI validation tamamlandı; GRE-v0 finalleştirildi
 
 **PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `LEARNING_ENGINE_SPEC`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `TOPIC_STATE_MACHINE`, `LEARNING_BEHAVIOR_RULES` ve `V1_SUCCESS_CRITERIA` yeniden okundu.
-- Aktif adımın 2E olduğu ve D-028 dahil mevcut bağlayıcı kararlarla çelişki olmadığı doğrulandı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` ve ilgili mastery/assistance specs yeniden okundu.
+- Canonical aktif adımın 2E Research AI validation olduğu doğrulandı.
+- `MASTER_PLAN.md` içinde eski candidate kapanışından kalan drift tespit edildi; POST-STEP'te düzeltildi.
 
-**Research AI / dış araştırma**
-- Mastery Learning, Bayesian Knowledge Tracing ve Item Response Theory yönleri karşılaştırıldı.
-- BKT'de `0.95` gibi threshold'ların sık kullanıldığı fakat evrensel bilimsel sabit olmadığı; 2025 EDM çalışmasında belirli bağlamda `0.98` eşiğinin daha iyi sonraki performans ilişkisi gösterdiği görüldü.
-- IRT item difficulty/discrimination'ı veriyle kalibre ettiği için elde item data yokken `hard = 1.3x` gibi sahte hassasiyet kullanılmaması kararlaştırıldı.
-- V1 için açıklanabilir, local/deterministic ve az veriyle çalışan gate + evidence accumulator seçildi.
+**Research AI girdisi**
+- Kullanıcı bağımsız Research AI raporunu sağladı.
+- Rapor BKT, AFM/PFA/R-PFA, IRT, mastery criterion, assistance/scaffolding, testlet/LID, programming education ve LLM grading başlıklarını karşılaştırdı.
+- Report doğrudan ürün kararı kabul edilmedi.
 
-**Tamamlanan model**
-- Objective `MasteryEvidenceScore` Beta-style accumulator:
-  - `alpha = 1 + Σ(wq)`
-  - `beta = 1 + Σ(w(1-q))`
-  - `score = alpha/(alpha+beta)`
-- `q`: rubric quality `[0,1]`.
-- `w = role × assistance × provenance`.
-- Direct `1.00`, corroborating `0.50`, contextual `0`.
-- H0/H1/H2/H3/H4 v0: `1.00 / 0.85 / 0.65 / 0.35-or-0 / 0`.
-- AI evaluator high-confidence rubric v0 `0.80`; low confidence/invalid `0` + recheck.
-- Operational threshold `0.80`; probability veya “%80 öğrendi” anlamı yok.
-- Difficulty numeric multiplier değil; critical gate/item eligibility input'u.
-- Same-item/same-family dedup/diversity guard.
-- Standard ve critical Objective hard gate'leri.
-- Critical production için en az bir H0 user-authored direct artifact.
-- Skill mastered için tüm required/critical Objective gate'leri + skill score + no unresolved recheck.
-- Tek clean negative mastered Skill'i anında düşürmez; `verification_due` + fresh confirmation.
-- Decision trace ve formula versioning tanımlandı.
-- D-028'e uyum için incremental aggregate/sufficient-state tasarımı eklendi.
-- Numeric constants pilot 17C'de false-positive/false-negative verisiyle kalibre edilecek.
+**Yönetici doğrulaması / düzeltmeleri**
+- Assistance dilemma literatürünün belirli H1/H2 numeric penalty'lerini doğrulamadığı teyit edildi; sabit `0.85/0.65/0.35` kaldırıldı.
+- Instructional Factors Analysis, farklı instructional intervention türlerini ayrı kategoriler olarak ele almanın yararlı olabildiğini destekledi.
+- PFA ve R-PFA'nın fit edilmiş predictive modeller olduğu; cold-start heuristic'imizi doğrudan `Rolling-PFA` diye adlandırmanın doğru olmayacağı ayrıldı.
+- Research raporundaki “fractional Beta count matematiksel olarak geçersizdir” iddiası fazla güçlü bulundu; asıl problem candidate'ın calibrated posterior olmaması, farklı boyutları tek multiplier'a indirmesi ve sınırsız-history saturation riskidir.
+- Programming education literatürü gerçek writing/production görevlerinin ayrıca ölçülmesini destekledi.
+- LLM grading çalışmalarındaki değişken agreement nedeniyle sabit `AI evaluator = 0.80` kaldırıldı.
 
-**Üretilen / güncellenen dosyalar**
-- `docs/MASTERY_FORMULA_V0.md`
-- `docs/DECISIONS.md` — D-029
+**Final 2E modeli — `GRE-v0 — Gated Recent Evidence`**
+- Mastery score'a yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence group girer.
+- H1–H4 formative/remediation/recheck sinyalidir; positive independent mastery score'a girmez.
+- Corroborating evidence direct gate'i ikame etmez.
+- Same-family/dependent item'lar testlet/dependency group olarak gruplanır.
+- Objective recent score = son en fazla `5` eligible independent H0 direct group'un `q_g` ortalaması.
+- `0.80` threshold ve window `5` engineering heuristic; UI'da probability/% learned değildir.
+- Standard default: en az 2 independent group; critical default: en az 3 group + 2 family/context + non-basic/objective-specific gate.
+- Critical coding → H0 user-authored artifact; critical debugging → H0 diagnosis/fix.
+- Skill mastery non-compensatory: tüm required/critical Objective gates PASS.
+- Tek clean post-mastery negative → `verification_due`; instant reset yok.
+- Difficulty multiplier değil gate.
+- AI evaluator numeric weight kaldırıldı; `verified | provisional | invalid`.
+- Bounded/incremental sufficient-state D-028 performans kuralına uygun.
+
+**Çıktılar**
+- `docs/MASTERY_FORMULA_V0.md` final GRE-v0
+- `docs/2E_RESEARCH_VALIDATION.md`
+- `docs/DECISIONS.md` — D-029 superseded, D-030 fulfilled, D-031 final
 - `docs/EXECUTION_INDEX.md`
 - `docs/STEP_STATUS.md`
 - `docs/HANDOFF_STATE.md`
 - `docs/MASTER_PLAN.md`
 - `docs/PROGRESS_LOG.md`
-- `docs/START_HERE.md` kontrol/güncelleme kapsamına alındı.
+- `docs/START_HERE.md` güncellenecek/kontrol edilecek
 
 **Sonraki kesin adım**
 - **`2F — Unutma modeli`**.
-- 2F başlamadan yeni PRE-STEP GitHub refresh ve retention/spaced-repetition Research AI turu zorunlu.
+- 2F başlamadan yeni PRE-STEP GitHub refresh + ayrı Research AI retention/spaced-repetition turu zorunlu.
