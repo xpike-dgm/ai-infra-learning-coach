@@ -14,48 +14,47 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
-| **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 3H spec-level simulation: 16/16 scenario + 20/20 invariant PASS. |
-| **4A — Günlük mikro değerlendirme** | 🟡 Aktif | Günlük öğrenme akışında düşük maliyetli ama güvenilir mikro assessment davranışı tasarlanacak. |
-| **4B ve sonrası** | ⬜ Bekliyor | 4A kapanışından sonra. |
+| **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 3H: 16/16 scenario + 20/20 invariant PASS. |
+| **4A — Günlük mikro değerlendirme** | ✅ | `DMA-v0`: state-driven, capacity-aware, no daily quiz quota; evidence-safe assessment. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`, D-040. |
+| **4B — Haftalık sınav** | 🟡 Aktif | Weekly multi-Skill assessment composition ve sonuçların programı nasıl değiştireceği tasarlanacak. |
+| **4C ve sonrası** | ⬜ Bekliyor | 4B kapanışından sonra. |
 
-## AŞAMA 3 final omurgası
+## Son tamamlanan adım — 4A
 
-- `3A` ✅ — hard daily capacity / no auto-overrun / no task debt — D-033
-- `3B` ✅ — LearningNeed / TaskCandidate / Evidence ayrımı — D-034
-- `3C` ✅ — PBR-v0 semantic bands + deterministic rank — D-035
-- `3D` ✅ — PRG-v0 prerequisite readiness / branch-local blocking — D-036
-- `3E` ✅ — VDW-v0 validated diagnostic waiver — D-037
-- `3F` ✅ — SRR-v0 state-based re-entry / no absence debt — D-038
-- `3G` ✅ — PDT-v0 structured decision trace — D-039
-- `3H` ✅ — `docs/PLANNER_SIMULATION_SUITE.md`; 16/16 scenarios PASS, 20/20 invariants PASS
+Ana çıktı:
+- `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+- D-040
 
-### 3H doğrulanan kritik davranışlar
-- aynı canonical input + versions → aynı selected order + semantik eşdeğer trace,
-- blocked/invalid candidate selected olmaz,
-- explicit extension yoksa hard capacity aşılmaz,
-- `review_due` forgetting/failure değildir ve prerequisite'i otomatik hard-block yapmaz,
-- critical metadata tek başına P0 değildir,
-- higher-priority task süreye sığmazsa lower-priority task seçilebilir fakat trace gerçek capacity nedenini korur,
-- yalnız dependent branch prerequisite yüzünden bekler,
-- partial diagnostic yalnız validated Objective'leri waive eder,
-- re-entry stale task backlog'unu replay etmez,
-- absence debt/failure/starvation değildir,
-- replan completed evidence'ı korur,
-- user-facing explanation internal trace dışına çıkmaz,
-- deferred task tomorrow debt değildir,
-- bounded/ref-based yaklaşım policy-level PASS; gerçek runtime performance 11F/17E'de ayrıca test edilecek.
+### 4A final özeti — DMA-v0
+- Daily micro assessment zorunlu günlük quiz/kota değildir.
+- `practice`, `assess`, `retain`, `diagnose` purpose'ları ayrıdır.
+- Assessment mevcut LearningNeed + Objective evidence gap'lerinden üretilir; ayrı backlog/debt yoktur.
+- Fixed soru sayısı, dakika veya günlük yüzde yoktur; 3A hard capacity + PBR priority kullanılır.
+- Measurement hedefi coverage/prerequisite açısından adil olmalıdır.
+- Mastery/verification için varsayılan H0 independent attempt gerekir.
+- H1–H4 yardım öğrenmeye izin verir ama positive independent mastery evidence iddiasını düşürür; yardım istemek negative H0 evidence değildir.
+- Submit sonrası feedback önceki attempt'i geriye dönük kirletmez.
+- Invalid/ambiguous/prerequisite-contaminated item positive veya negative mastery evidence üretemez.
+- Provisional evaluator critical mastery/remediation kararını tek başına belirleyemez.
+- Tek doğru item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir.
+- Coding/debugging/transfer Objective'lerinin evidence standardı kısa süre uğruna recognition/MCQ'ya düşürülmez.
+- Assessment sonucu `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → replan` zinciriyle çalışır.
+- New remediation günü otomatik uzatmaz.
+- Technical assessment'ta bilinmeyen English grammar gizli prerequisite olamaz.
+- 4B–4E için minimum item/result contract ve `assessment.*` reason-code namespace'i tanımlandı.
 
-## Aktif adım — 4A Günlük mikro değerlendirme
+## Aktif adım — 4B Haftalık sınav
 
-4A başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+4B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh zorunludur.
 
-4A'da kesinleştirilecek:
-- günlük mikro assessment'ın amacı ve sınırı,
-- lesson/practice ile assessment ayrımı,
-- hangi Skill/Objective'lerin hangi gün ölçüleceği,
-- soru/görev sayısı için sabit bilimsel optimum uydurmadan capacity-aware kompozisyon,
-- GRE-v0 / assistance / prerequisite / retention kurallarıyla entegrasyon,
-- düşük günlük sürede assessment davranışı,
-- invalid/ambiguous item güvenliği,
-- sonuçların remediation/replan'e etkisi,
-- Aşama 4'ün 4B–4E adımlarına girdi contract'ı.
+4B'de kesinleştirilecek:
+- weekly assessment amacı ve daily micro assessment'tan farkı,
+- multi-Skill / Objective coverage kompozisyonu,
+- required/critical Skill temsili,
+- evidence family/modality diversity,
+- current weakness + recent progress + prerequisite risk dengesi,
+- capacity ve sınav bölünebilirliği,
+- assistance / pause / incomplete davranışı,
+- weekly result'ın mastery/remediation/planner/curriculum akışına etkisi,
+- false-positive/false-negative korumaları,
+- 4C monthly assessment'a ortak contract.
