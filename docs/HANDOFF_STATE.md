@@ -20,82 +20,69 @@ Ana rota:
 - Coverage/time/streak/task completion mastery değildir.
 - Öğretilmemiş prerequisite yüzünden kullanıcı başarısız sayılmaz.
 - Coding mastery gerçek user artifact ister.
-- Same-item/family tekrarları mastery'yi şişiremez.
 - AI yardımı serbest; assisted performance independent mastery değildir.
 - Tek yeni yanlış mastered Skill'i anında silmez.
-- English A0 paralel gider; öğretilmemiş grammar gizli prerequisite olamaz.
+- English paralel gider; global technical blocker değildir.
 - Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
-- D-028: uygulama akıcı; bounded/incremental hesap ve async ağır işler.
+- D-028: bounded/incremental hesap ve async ağır işler.
 
 ## 3. Tamamlanan ana aşamalar
 - **AŞAMA 1** `1A–1D` ✅
 - **AŞAMA 2** `2A–2F` ✅
 
 Aşama 2 canonical omurgası:
-- `GRE-v0 — Gated Recent Evidence`, `docs/MASTERY_FORMULA_V0.md`, D-031.
-- `RVR-v0 — Retention Verification & Risk`, `docs/RETENTION_FORGETTING_SPEC.md`, D-032.
+- `GRE-v0 — Gated Recent Evidence` — D-031.
+- `RVR-v0 — Retention Verification & Risk` — D-032.
 
 ## 4. AŞAMA 3 ilerlemesi
 
-### 3A ✅ Günlük kapasite
-Ana çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`. Karar D-033.
-
+### 3A ✅ Günlük kapasite — D-033
 - explicit daily time hard budget,
-- 30/60/90 editable preset; 10% reserve; 10 dk min block = heuristic,
-- no fixed category percentages,
-- remediation/retention day length'i otomatik büyütmez,
-- time override remaining-plan replan,
-- split → smaller alternative → defer,
-- deferred task next-day debt değildir,
-- deterministic/versioned capacity.
+- no auto-overrun,
+- split/smaller alternative/defer,
+- deferred task debt değildir.
 
-### 3B ✅ Görev kategorileri / TaskCandidate
-Ana çıktı: `docs/TASK_TAXONOMY_SPEC.md`. Karar D-034.
+### 3B ✅ Task taxonomy — D-034
+- `LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent`,
+- purpose/activity/track/evidence ayrı,
+- unresolved need kalıcı; old task ID debt değildir.
 
-Canonical model:
+### 3C ✅ Öncelik — PBR-v0 / D-035
+Ana çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
 
-```text
-State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent
-```
-
-- Kalıcı olan eski task ID değil unresolved `LearningNeed`'dir.
-- Deferred candidate failure değildir ve yarına homework debt olarak taşınmaz; need açık ise fresh candidate üretilir.
-- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
-- `activity_kind` ayrı: explanation/worked example/recall/code reading/coding/debugging/hands-on system/transfer/project/language vb.
-- English purpose değil curriculum track; coding/debugging/project purpose değil activity'dir.
-- Task category evidence değildir; evidence Attempt/Artifact sonrası GRE/RVR ile oluşur.
-- `independence_mode` ayrı; guided practice H0 sayılmaz.
-- Multi-Skill integrated task component evidence için structural essentiality + separate observability/attribution gerekir; global project success otomatik component mastery değildir.
-- provenance/validation + variant/dependency + prerequisite/tools metadata bulunur.
-- 3A duration/splittable/checkpoint/atomic evidence boundary TaskCandidate'a dahildir.
-- `paused_progress` gerçek checkpoint'i koruyabilir; `deferred_candidate` yalnız ephemeral candidate'dır.
-- 3B fixed priority weight belirlemedi; gerekli ham sinyalleri 3C'ye verdi.
+Canonical davranış:
+- priority açık LearningNeed seviyesinde başlar,
+- eligibility/trust priority'den önce gelir,
+- P0 `integrity_blocker`, P1 `repair_or_verify`, P2 `maintain_or_continue`, P3 `planned_progress`, P4 `reinforce_or_optimize`,
+- critical etiketi tek başına P0 yapmaz; gerçek dependency blocking gerekir,
+- `review_due` forgetting değildir,
+- aynı band içi lexicographic rank: blocking → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break,
+- additive sahte-hassas puan ve `score/minute` yok,
+- starvation guard eligible need'in süresiz ertelenmesini engeller,
+- English/paralel track fixed yüzdeyle değil due + starvation/track balance ile korunur,
+- capacity dolunca kalan need açık kalır; next-day homework debt oluşmaz,
+- `PriorityDecisionTrace` reconstruct edilebilir.
 
 ## 5. Güncel kesin konum
 
 **AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla**
 
-- `3A` ✅ Günlük kapasite
-- `3B` ✅ Görev kategorileri
-- `3C` 🟡 **Öncelik puanı — AKTİF**
-- `3D–3H` ⬜ Bekliyor
+- `3A` ✅
+- `3B` ✅
+- `3C` ✅
+- `3D` 🟡 **Prerequisite davranışı — AKTİF**
+- `3E–3H` ⬜ Bekliyor
 
-## 6. 3C'de kesinleştirilecekler
-
-Kullanıcı örneği: bugün açık LearningNeed/TaskCandidate toplamı 80 dk, capacity 50 dk ise **hangi 50 dk seçilecek ve kalan ihtiyaçlar nasıl starvation yaşamadan açık kalacak?**
-
-3C tasarlayacak:
-- critical prerequisite / verification_due / remediation / retention / continuing/new learning / English priority ilişkisi,
-- urgency vs importance,
-- due/overdue ama negative evidence olmayan retention'ın doğru yeri,
-- duration/capacity-aware seçim,
-- unresolved/deferred LearningNeed starvation guard,
-- aynı gün birden fazla critical işte tie-break,
-- fixed category percentages olmadan balanced progress,
-- deterministic score veya decision hierarchy,
-- 3G'nin açıklayacağı priority reason inputs.
-
-3C'de keyfi `remediation = 100 puan` gibi sahte hassasiyet kullanılmamalı. Gerekirse Research AI yalnız adaptive scheduling / priority trade-off'larında gerçek dış kanıt gerektiğinde kullanılır.
+## 6. 3D'de kesinleştirilecekler
+- hard vs soft prerequisite edge semantics,
+- candidate eligibility'nin kesin kuralı,
+- critical unresolved verification/remediation nedeniyle dependent branch wait,
+- `review_due` tek başına hard lock olmaması,
+- yalnız bağımlı dalın beklemesi; independent branches'in devamı,
+- öğretilmemiş prerequisite contamination guard,
+- prerequisite state değişince replan,
+- 3D eligibility filter ile 3C priority'nin kesin yürütme sırası,
+- user-facing explanation girdileri; final reason code metinleri 3G.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -108,15 +95,14 @@ Kullanıcı örneği: bugün açık LearningNeed/TaskCandidate toplamı 80 dk, c
 8. `docs/LEARNING_BEHAVIOR_RULES.md`
 9. `docs/TOPIC_STATE_MACHINE.md`
 10. `docs/MASTERY_SIGNALS_SPEC.md`
-11. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-12. `docs/MASTERY_FORMULA_V0.md`
-13. `docs/RETENTION_FORGETTING_SPEC.md`
-14. `docs/ADAPTIVE_PLANNER_SPEC.md`
-15. `docs/TASK_TAXONOMY_SPEC.md`
+11. `docs/MASTERY_FORMULA_V0.md`
+12. `docs/RETENTION_FORGETTING_SPEC.md`
+13. `docs/ADAPTIVE_PLANNER_SPEC.md`
+14. `docs/TASK_TAXONOMY_SPEC.md`
+15. `docs/PRIORITY_POLICY_SPEC.md`
 16. `docs/ENGLISH_FOUNDATION_RULES.md`
 17. `docs/MASTER_PLAN.md`
-18. `docs/AI_AGENT_WORKFLOW.md`
-19. `docs/PROGRESS_LOG.md`
+18. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3C — Öncelik puanı** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3D — Prerequisite davranışı** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
