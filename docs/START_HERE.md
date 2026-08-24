@@ -4,21 +4,19 @@ Bu dosya proje başka bir ChatGPT sohbetine, coding agent'a veya yeni bir çalı
 
 ## 1. Bu repo ne için var?
 
-Bu repo, tek kullanıcı için geliştirilecek kişisel adaptif mobil öğrenme uygulamasının ürün hafızasını, kararlarını, müfredat yönünü ve geliştirme planını kalıcı tutar.
-
-Uygulamanın amacı sabit kurs takvimi göstermek değildir. Sistem kullanıcının gerçek bilgi durumuna göre **o gün ne çalışması gerektiğini** belirler, uygulama içinde öğretir/uygulatır, evidence ile ölçer ve sonuçlara göre sonraki planı yeniden oluşturur.
+Tek kullanıcı için geliştirilecek kişisel adaptif mobil öğrenme uygulamasının ürün hafızasını, kararlarını, curriculum yönünü ve geliştirme planını kalıcı tutar.
 
 Ana ürün ilkesi:
 
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
----
+Sistem sabit kurs takvimi değil; gerçek Skill state, prerequisite, retention ve evidence'a göre günlük plan üretir.
 
 ## 2. Zorunlu GitHub beyin tazeleme protokolü
 
-**Bağlayıcı kaynak:** `docs/PROJECT_MEMORY_PROTOCOL.md`
+Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
-> **Hiçbir numaralı adım PRE-STEP GitHub refresh yapılmadan başlatılmaz; hiçbir adım gerekli GitHub hafıza dosyaları ve `MASTER_PLAN.md` senkronize edilmeden tamamlanmış sayılmaz.**
+> Hiçbir numaralı adım PRE-STEP GitHub refresh yapılmadan başlatılmaz; hiçbir adım ana çıktı ve canonical state dosyaları + `MASTER_PLAN.md` senkronize edilmeden tamamlanmış sayılmaz.
 
 Minimum PRE-STEP:
 
@@ -29,9 +27,7 @@ Minimum PRE-STEP:
 5. `docs/MASTER_PLAN.md`
 6. başlanacak adımla ilgili en güncel spec/davranış dosyaları
 
-POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`; yeni kalıcı karar varsa `DECISIONS.md`.
-
----
+POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`; yeni karar varsa `DECISIONS`.
 
 ## 3. Yeni sohbet/agent okuma sırası
 
@@ -51,85 +47,83 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 14. `docs/MASTERY_SIGNALS_SPEC.md`
 15. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
 16. `docs/MASTERY_FORMULA_V0.md`
-17. `docs/ENGLISH_FOUNDATION_RULES.md`
-18. `docs/MASTER_PLAN.md`
-19. `docs/AI_AGENT_WORKFLOW.md`
-20. `docs/PROGRESS_LOG.md`
-21. Gerektiğinde diğer alan-spec ve research dosyaları.
+17. `docs/2E_RESEARCH_VALIDATION.md`
+18. `docs/ENGLISH_FOUNDATION_RULES.md`
+19. `docs/MASTER_PLAN.md`
+20. `docs/AI_AGENT_WORKFLOW.md`
+21. `docs/PROGRESS_LOG.md`
 
----
-
-## 4. Ana yönetici davranışı
-
-- Repo hafızasını okumadan projeyi yeniden tasarlama.
-- Kullanıcıya daha önce kararlaştırılmış şeyleri tekrar sordurma.
-- Aktif adımı handoff/index/status/master plan ile doğrula.
-- Her numaralı adımda PRE/POST sync uygula.
-- Yeni kalıcı kararları `DECISIONS.md` içine yaz.
-- Research/Coding/Test rol ayrımını `AI_AGENT_WORKFLOW.md` ile koru.
-- Coding AI'ın kendi test raporu kritik işlerde tek başına kabul değildir.
-
----
-
-## 5. Ana kariyer/öğrenme yönü
+## 4. Ana kariyer/öğrenme yönü
 
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
 
 English teknik eğitimle paralel ilerler; doğrudan CUDA ile başlanmaz.
 
----
+## 5. Güncel mastery omurgası
 
-## 6. Güncel mastery omurgası
-
-- Canonical mastery Skill seviyesinde; evidence Learning Objective'e bağlanabilir.
-- Evidence: recognition, recall, code reading, coding, debugging, explanation, transfer, retention, project.
+- Canonical mastery Skill seviyesinde; evidence Learning Objective'e bağlanır.
 - Coverage/time/streak/task completion mastery değildir.
+- Coding mastery gerçek kullanıcı artifact'ı ister.
 - AI assistance H0–H4; assisted performance independent mastery ile eşit değildir.
-- AI-generated/copied code production mastery değildir.
-- `MASTERY_FORMULA_V0.md` score + hard-gate modeli:
-  - `alpha = 1 + Σ(wq)`
-  - `beta = 1 + Σ(w(1-q))`
-  - `objective_score = alpha/(alpha+beta)`
-  - operational threshold `0.80`, probability değildir.
-  - direct `1.0`, corroborating `0.5`.
-  - H0/H1/H2/H3/H4 v0 `1.00/0.85/0.65/0.35-or-0/0`.
-  - required/critical Objective hard gates.
-  - critical production için H0 user-authored direct artifact.
-  - same-family repeat mastery'yi şişiremez.
-  - tek post-mastery yanlış → `verification_due`, anında reset yok.
-- Formula constants versioned ve pilotta kalibre edilebilir.
-- D-028: performans first-class requirement; mastery/planner incremental hesaplanabilir tasarlanmalı.
+- Same-family/near-duplicate evidence bağımsızlığı şişiremez.
+- Tek clean post-mastery yanlış instant reset değildir; fresh verification gerekir.
 
----
+### Final 2E — `GRE-v0 — Gated Recent Evidence`
 
-## 7. Güncel çalışma konumu
+İlk Beta-style candidate ayrı Research AI doğrulaması sonrası kaldırıldı. Final karar D-031.
+
+- Mastery score'a yalnız `valid + prerequisite-valid + H0 + direct + verified + independent` evidence group girer.
+- H1–H4 formative/remediation/recheck sinyalidir; positive independent mastery score'a girmez.
+- Corroborating evidence direct gate'i ikame etmez.
+- Correlated items `dependency_group_id/testlet_id` altında tek group olur; `variant_family_id` diversity için kullanılır.
+- Objective score:
+
+```text
+W_o = son en fazla 5 eligible independent H0 direct evidence group
+recent_direct_score = mean(q_g for g in W_o)
+```
+
+- V0 threshold `0.80`, window max `5`; ikisi de engineering heuristic ve pilotta kalibre edilir.
+- Standard default: 2 independent group + default 2 family/context.
+- Critical default: 3 independent group + 2 family/context + non-basic/objective-specific gate.
+- Critical coding: H0 user-authored coding artifact.
+- Critical debugging: H0 diagnosis/fix evidence.
+- Skill mastered = tüm required/critical Objective gates PASS + unresolved critical recheck yok.
+- Difficulty numeric multiplier değildir.
+- AI evaluator fixed trust multiplier yok: `verified | provisional | invalid`.
+- D-028 gereği bounded/incremental implementation yönü korunur.
+
+Ayrıntı:
+- `docs/MASTERY_FORMULA_V0.md`
+- `docs/2E_RESEARCH_VALIDATION.md`
+
+## 6. Güncel çalışma konumu
 
 **AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla**
 
-- `2A` ✅ Bilgi birimleri
-- `2B` ✅ Topic durumları
-- `2C` ✅ Mastery sinyalleri
-- `2D` ✅ AI/ipucu etkisi
-- `2E` ✅ Mastery formülü v0
+- `2A` ✅
+- `2B` ✅
+- `2C` ✅
+- `2D` ✅
+- `2E` ✅
 - `2F` 🟡 **Unutma modeli — AKTİF**
 
-2F başlamadan önce PRE-STEP GitHub refresh ve retention/spaced-repetition için Research AI / dış araştırma yapılmalıdır.
+## 7. 2F'de yapılacaklar
 
----
+2F başlamadan yeni PRE-STEP GitHub refresh + ayrı Research AI retention/spaced-repetition turu zorunlu.
 
-## 8. 2F'de yapılacaklar
+Araştırılacak/tasarlanacak:
 
-- spaced repetition yaklaşımı,
+- spaced repetition model yaklaşımı,
 - review interval'leri,
-- successful/failed delayed retrieval davranışı,
-- time-based retention risk,
+- successful/failed delayed retrieval,
+- time-based retention risk/decay,
 - `mastered → weakening → mastered/remediation_required`,
-- doğal reuse'un retention evidence sayılması,
-- 2E score ile retention state entegrasyonu,
-- tek retention hatasında otomatik reset olmaması.
+- natural reuse'un retention evidence sayılması,
+- GRE-v0 current mastery ile retention state entegrasyonu.
 
----
+Research AI, Half-Life Regression'ı tek doğru varsaymayacak; SM-2/FSRS/HLR/ACT-R ve uygun diğer yaklaşımları karşılaştıracak.
 
-## 9. Yeni sohbet için kısa komut
+## 8. Yeni sohbet için kısa komut
 
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Özellikle LEARNING_BEHAVIOR_RULES.md, TOPIC_STATE_MACHINE.md, MASTERY_SIGNALS_SPEC.md, AI_ASSISTANCE_EVIDENCE_SPEC.md ve MASTERY_FORMULA_V0.md içindeki bağlayıcı kararları koru. Şu an aktif adım 2F — Unutma modeli. Önce retention/spaced-repetition Research AI turu yap, sonra canonical spec üret.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. LEARNING_BEHAVIOR_RULES.md, TOPIC_STATE_MACHINE.md, MASTERY_SIGNALS_SPEC.md, AI_ASSISTANCE_EVIDENCE_SPEC.md, MASTERY_FORMULA_V0.md ve 2E_RESEARCH_VALIDATION.md kararlarını koru. Şu an aktif adım 2F — Unutma modeli. Önce retention/spaced-repetition için ayrı Research AI turu yap; raporu otomatik kabul etmeden canonical 2F spec'e sentezle.`
