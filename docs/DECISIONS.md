@@ -292,3 +292,22 @@ Her numaralı adım POST-STEP kapanışında:
 kontrol edilip güncellenir.
 
 MASTER_PLAN'da eski numaralandırma veya stale current-state bilgisi canonical indeksle çelişirse aynı kapanış döngüsünde düzeltilir.
+
+## D-028 — Mobil performans ve akıcılık birinci sınıf ürün gereksinimidir
+
+**Durum:** Kabul edildi — 2026-08-24
+
+Uygulama günlük kullanımda ağır, takılan veya gereksiz kaynak tüketen bir yapıya dönüşmeyecek. Performans sonradan yapılacak kozmetik optimizasyon değil, mimari ve release kararlarını sınırlayan ürün gereksinimidir.
+
+Bağlayıcı yön:
+
+- UI thread üzerinde ağır mastery/planner hesapları, büyük DB taramaları, ağ/AI çağrıları veya code execution çalıştırılmayacak.
+- AI/network işlemleri asynchronous yürütülecek; AI yanıtı beklenirken ana uygulama donmayacak.
+- Local-first veri erişiminde gereksiz tam tablo taramaları ve sürekli yeniden hesaplama önlenecek; uygun cache/index/incremental update yaklaşımı 8B–8F'de tasarlanacak.
+- Ekranlar gereksiz büyük liste/render yükü üretmeyecek; pagination/lazy rendering ve state güncelleme kapsamı gerektiğinde kullanılacak.
+- Arka planda sürekli polling, gereksiz yüksek CPU kullanımı veya batarya tüketimi varsayılan yaklaşım olmayacak.
+- Ağır code compilation/execution gibi işler cihazı gereksiz zorlamayacak; exact local/VDS/sandbox mimarisi 8E'de kararlaştırılacak.
+- Release öncesi gerçek Android cihazında startup, temel ekran geçişleri, büyük veri senaryosu, memory/battery ve jank/ANR davranışı test edilecek.
+- Exact startup süresi, frame/jank, memory ve latency bütçeleri bugün keyfi olarak sabitlenmeyecek; hedef cihaz ve seçilen teknoloji belli olduğunda 8F/17E kalibrasyonunda ölçülebilir eşikler konacak.
+
+Özet kural: **özellik eklemek uygulamanın günlük kullanım akıcılığını kabul edilemez biçimde bozuyorsa özellik/mimari yeniden tasarlanır; performans pahasına “çalışıyor” kabul edilmez.**
