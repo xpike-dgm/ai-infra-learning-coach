@@ -80,62 +80,49 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 3D Prerequisite davranışı tamamlandı
-
-**PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_ENGINE_SPEC`, `TOPIC_STATE_MACHINE`, `RETENTION_FORGETTING_SPEC`, `PRIORITY_POLICY_SPEC`, `TASK_TAXONOMY_SPEC` ve `LEARNING_BEHAVIOR_RULES` yeniden okundu.
-- Aktif adımın 3D olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; 3D mevcut Skill-level prerequisite, GRE/RVR ve PBR kararlarını deterministic eligibility sözleşmesine dönüştüren ürün/mimari adımıydı.
-
-**Final `PRG-v0 — Prerequisite Readiness Gate`**
-- Runtime prerequisite canonical `Skill → Skill`.
-- Edge semantics `hard | soft`.
-- Readiness `ready | ready_due | uncertain | not_ready`.
-- `review_due` = ready_due; hard lock değil.
-- Hard not_ready dependent candidate'ı bloke eder.
-- Critical/strict verification_due dependent yeni work'u fresh verification çözülene kadar bekletebilir.
-- Normal uncertain hard dependency conditional eligibility olabilir; tek contradiction tüm curriculum'u dondurmaz.
-- Task-level `required_skill_ids` exact candidate hard requirement'tır.
-- Exact planner order: state/need → candidate → validation/trust → prerequisite eligibility → PBR priority → capacity fit.
-- Yalnız affected dependent branch bekler; independent branches devam eder.
-- Started/mastered Topic prerequisite regression ile `locked` yapılmaz.
-- Prerequisite contamination target Skill için invalid/unusable evidence'dır; negative mastery yazılmaz.
-- Missing prerequisite repair/review/verification LearningNeed olarak planner'a geri beslenir.
-- Technical English gerçek dependency değilse global technical blocker değildir.
-- Resolver deterministic/bounded ve D-028 ile uyumlu.
-
-**Çıktılar**
-- `docs/PREREQUISITE_POLICY_SPEC.md`
-- `docs/DECISIONS.md` — D-036
+- Final `PRG-v0 — Prerequisite Readiness Gate`.
+- Skill-level hard/soft edge, ready/ready_due/uncertain/not_ready, branch-local gating ve contamination guard kilitlendi.
+- Çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
+- Karar: D-036.
 
 ---
 
 ### 2026-08-24 — 3E Hızlı öğrenme / validated diagnostic waiver tamamlandı
+- Final `VDW-v0 — Validated Diagnostic Waiver`.
+- Diagnostic GRE-v0'dan daha kolay ikinci mastery sistemi yapılmadı.
+- Objective-level partial coverage waiver, H0/provenance/prerequisite false-skip guard ve diagnostic→replan entegrasyonu kilitlendi.
+- Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
+- Karar: D-037.
+
+---
+
+### 2026-08-24 — 3F Kaçırılan günler / state-based re-entry tamamlandı
 
 **PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `MASTERY_FORMULA_V0`, `TOPIC_STATE_MACHINE`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `PREREQUISITE_POLICY_SPEC` ve ilgili planner kuralları yeniden okundu.
-- Aktif adımın 3E olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; yeni diagnostic mastery threshold'u seçmek yerine mevcut GRE-v0 evidence standardını hızlı fakat güvenilir placement/waiver yoluna uygulama kararı alındı.
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_MEMORY_PROTOCOL`, `ADAPTIVE_PLANNER_SPEC`, `TASK_TAXONOMY_SPEC`, `PRIORITY_POLICY_SPEC` ve `RETENTION_FORGETTING_SPEC` yeniden okundu.
+- Aktif adımın 3F olduğu, 3A–3E ile GRE/RVR kararlarının current-state/no-debt recovery yönünü zaten bağladığı doğrulandı.
+- Ayrı Research AI kullanılmadı; 3F yeni bir bilimsel forgetting threshold'u seçmek yerine mevcut canonical state/priority/capacity modellerini re-entry policy'ye bağlayan ürün/mimari adımıydı.
 
-**Final `VDW-v0 — Validated Diagnostic Waiver`**
-- Diagnostic GRE-v0'dan daha kolay ikinci mastery sistemi değildir.
-- Kullanıcı self-report'u yalnız diagnostic'i başlatır; evidence değildir.
-- Tek kolay quiz / recognition-only whole-topic skip yoktur.
-- Skip Objective-level `DiagnosticCoverageWaiver` olarak modellenir; waiver mastery/retention değildir.
-- Partial diagnostic yalnız kanıtlanan Objective'leri waive eder.
-- `available → mastered` yalnız bütün required coverage + required/critical GRE gates birlikte sağlanınca mümkündür.
-- Critical coding/debugging/transfer/diversity gate'leri diagnostic için düşürülemez.
-- Waiver kanıtı H0, prerequisite-valid, verified ve provenance-clean olmalıdır.
-- Integrated diagnostic birden çok Objective'i hızlandırabilir fakat component attribution ayrı doğrulanır.
-- Prior-knowledge diagnostic fail otomatik remediation cezası değildir; normal learning'e dönülür.
-- PRG-v0 diagnostic'te de eligibility/contamination guard sağlar.
-- Diagnostic günlük capacity içindedir ve sonuç GRE → waiver → PRG → Topic → Planner replan zincirine girer.
-- Waiver curriculum/objective version'a bağlıdır; yeni requirement eski waiver ile otomatik geçmez.
-- Policy bounded/deterministic ve D-028 ile uyumlu.
+**Final `SRR-v0 — State-based Re-entry & Recovery`**
+- Absence failure, negative mastery evidence, remediation trigger veya task debt değildir.
+- Geri dönüşte stale unstarted PlannedTask/TaskCandidate replay edilmez; current state'ten fresh LearningNeed/candidate üretilir.
+- Zaman yalnız RVR due/temporal urgency'yi değiştirebilir; review_due sırf uzun ara nedeniyle verification_due/at_risk olmaz.
+- Unresolved verification/remediation need'leri absence ile silinmez.
+- Safe/version-valid paused checkpoint continuation adayı olabilir fakat PRG/PBR/capacity yeniden değerlendirilir.
+- Incomplete high-stakes H0/diagnostic/retention attempt negative evidence değildir; fresh item gerekebilir.
+- Due-state inventory DailyPlan değildir; çok sayıda review_due tek güne yığılmaz.
+- 1/7/30/60+ gün için ayrı pedagojik threshold yoktur; aynı state-driven resolver çalışır.
+- Starvation yalnız eligible need'in aktif planning günlerinde ertelenmesidir; absence günleri starvation artırmaz. Retention overdue age ayrı sinyaldir.
+- Integrated recovery task yalnız separately observable/attributable Skill'leri refresh eder; sibling/cluster auto-refresh yoktur.
+- Recovery PBR-v0 priority + PRG-v0 eligibility + 3A hard capacity içinde çalışır; user explicit extension olmadan gün uzamaz.
+- Long absence safe new learning'i globally dondurmaz.
+- Self-report automatic retention refresh değildir; diagnostic/verified artifact normal evidence pipeline'ına girebilir.
+- Candidate generation/query bounded/incremental ve D-028 ile uyumludur.
 
 **Çıktılar**
-- `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-- `docs/DECISIONS.md` — D-037
+- `docs/MISSED_DAY_RECOVERY_SPEC.md`
+- `docs/DECISIONS.md` — D-038
 - canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3F — Kaçırılan günler`.
-3F başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `3G — Açıklanabilir planner`.
+3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
