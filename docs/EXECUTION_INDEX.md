@@ -10,6 +10,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 - Tamamlanan adım `[x]`, bekleyen `[ ]` olarak işaretlenir.
 - Aktif adım `docs/STEP_STATUS.md` ve `docs/HANDOFF_STATE.md` içinde de gösterilir.
 - Her tamamlanma için ilgili spec + tarihli completion note + `PROGRESS_LOG.md` kaydı tutulur.
+- Her numaralı adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
 
 ---
 
@@ -30,12 +31,13 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
   - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu `Domain/Module/Topic`, gerçek öğrenme/ölçüm katmanı `Skill/Learning Objective` olarak ayrıldı. Skill canonical mastery ve prerequisite katmanı; Topic/Module/Domain mastery derived olarak tanımlandı. Runtime prerequisite ana olarak Skill → Skill çalışacak.
 - [x] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. — `docs/TOPIC_STATE_MACHINE.md`
   - **Tamamlanma notu — 2026-08-24:** Topic state'in mastery'nin kendisi değil, prerequisite/coverage/Skill mastery/retention/remediation girdilerinden türetilen açıklanabilir planner/UX durumu olması kilitlendi. Başlanmış Topic'in prerequisite regression ile geriye dönük `locked` olmaması ve remediation/weakening onarım yolları tanımlandı.
-- [ ] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre. **AKTİF**
-- [ ] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check.
+- [x] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre. — `docs/MASTERY_SIGNALS_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** Evidence `direct/primary`, `corroborating`, `contextual` rollere ayrıldı. Concept recognition/recall, code reading, coding, debugging, explanation, transfer, retention ve integrated project sinyalleri tanımlandı. Time/completion/streak/self-confidence mastery dışı contextual sinyal olarak ayrıldı; prerequisite contamination ve tekrar-item şişirmesine karşı guardrail'ler kilitlendi.
+- [ ] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check. **AKTİF**
 - [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence.
 - [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay.
 
-**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, mastery formula v0 ve forgetting model.
+**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, `MASTERY_SIGNALS_SPEC.md`, mastery formula v0 ve forgetting model.
 
 ---
 
@@ -252,5 +254,7 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 # Güncel Konum
 
 **Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Tamamlanan:** `2A`, `2B`  
-**Aktif:** **`2C — Mastery sinyalleri`**
+**Tamamlanan:** `2A`, `2B`, `2C`  
+**Aktif:** **`2D — AI/ipucu etkisi`**
+
+`2D` başlamadan önce `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh yapılmalıdır.
