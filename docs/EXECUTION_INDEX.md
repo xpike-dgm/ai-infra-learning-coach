@@ -28,13 +28,14 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 - [x] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. — `docs/LEARNING_ENGINE_SPEC.md`
   - **Tamamlanma notu — 2026-08-24:** Curriculum organizasyonu `Domain/Module/Topic`, gerçek öğrenme/ölçüm katmanı `Skill/Learning Objective` olarak ayrıldı. Skill canonical mastery ve prerequisite katmanı; Topic/Module/Domain mastery derived olarak tanımlandı. Runtime prerequisite ana olarak Skill → Skill çalışacak.
-- [ ] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. **AKTİF**
-- [ ] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre.
+- [x] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required. — `docs/TOPIC_STATE_MACHINE.md`
+  - **Tamamlanma notu — 2026-08-24:** Topic state'in mastery'nin kendisi değil, prerequisite/coverage/Skill mastery/retention/remediation girdilerinden türetilen açıklanabilir planner/UX durumu olması kilitlendi. Başlanmış Topic'in prerequisite regression ile geriye dönük `locked` olmaması ve remediation/weakening onarım yolları tanımlandı.
+- [ ] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre. **AKTİF**
 - [ ] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check.
 - [ ] **2E — Mastery formülü v0:** Ağırlıklar, threshold, minimum evidence, yanlış pozitif önleme, confidence.
 - [ ] **2F — Unutma modeli:** Spaced repetition, interval değişimi ve mastery decay.
 
-**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, mastery formula v0 ve topic state machine.
+**Aşama 2 çıktısı:** `LEARNING_ENGINE_SPEC.md`, `TOPIC_STATE_MACHINE.md`, mastery formula v0 ve forgetting model.
 
 ---
 
@@ -251,5 +252,5 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 # Güncel Konum
 
 **Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
-**Tamamlanan:** `2A`  
-**Aktif:** **`2B — Topic durumları`**
+**Tamamlanan:** `2A`, `2B`  
+**Aktif:** **`2C — Mastery sinyalleri`**
