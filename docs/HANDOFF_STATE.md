@@ -55,24 +55,33 @@ Aşama 2 canonical omurgası:
 - duration semantic priority'den sonra.
 
 ### 3D ✅ Prerequisite — PRG-v0 / D-036
-Ana çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
+- runtime prerequisite `Skill → Skill`,
+- `hard | soft`,
+- readiness `ready | ready_due | uncertain | not_ready`,
+- `review_due` hard lock değildir,
+- yalnız affected dependent branch bekler,
+- prerequisite contamination target negative evidence değildir.
+
+### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
+Ana çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
 
 Canonical davranış:
-- runtime prerequisite `Skill → Skill`,
-- edge `hard | soft`,
-- readiness `ready | ready_due | uncertain | not_ready`,
-- `review_due` = `ready_due`, hard lock değildir,
-- hard `not_ready` dependent candidate'ı bloke eder,
-- critical/strict `verification_due` dependent yeni work'u verification çözülene kadar bekletebilir,
-- normal uncertain dependency conditional eligibility olabilir; tüm curriculum durmaz,
-- task-level `required_skill_ids` exact candidate hard requirement'tır,
-- priority prerequisite'i bypass edemez,
-- yalnız affected branch bekler; independent branches devam eder,
-- started/mastered Topic prerequisite regression ile `locked` olmaz,
-- prerequisite contamination target negative evidence değildir,
-- missing prerequisite repair/review/verification need olarak planner'a geri beslenir,
-- Technical English gerçek dependency değilse global technical blocker değildir,
-- deterministic/bounded `PrerequisiteDecision` output'u vardır.
+- diagnostic GRE-v0'dan daha gevşek mastery yolu değildir,
+- self-report yalnız diagnostic trigger/scope'tur,
+- tek kolay quiz whole-topic skip yapamaz,
+- Objective-level `DiagnosticCoverageWaiver`,
+- partial waiver canonical,
+- coverage waiver mastery/retention değildir,
+- `available → mastered` yalnız coverage + bütün required/critical GRE gates birlikte sağlanınca,
+- critical coding/debugging/transfer/diversity şartları korunur,
+- waiver üretecek evidence H0 + prerequisite-valid + verified + provenance-clean,
+- integrated diagnostic component evidence ayrı attribution ister,
+- diagnostic fail prior-knowledge yolunda otomatik remediation cezası değildir,
+- PRG-v0 diagnostic'te de önce çalışır,
+- diagnostic daily capacity içindedir,
+- sonuç GRE → waiver → PRG → Topic → LearningNeed/PBR → replan akışına girer,
+- waiver curriculum/objective versiyonuna bağlıdır,
+- deterministic/bounded.
 
 ## 5. Güncel kesin konum
 
@@ -82,21 +91,20 @@ Canonical davranış:
 - `3B` ✅
 - `3C` ✅
 - `3D` ✅
-- `3E` 🟡 **Hızlı öğrenme — AKTİF**
-- `3F–3H` ⬜ Bekliyor
+- `3E` ✅
+- `3F` 🟡 **Kaçırılan günler — AKTİF**
+- `3G–3H` ⬜ Bekliyor
 
-## 6. 3E'de kesinleştirilecekler
-- kullanıcı bir Topic/Skill'i zaten biliyorsa bunu nasıl güvenilir diagnostic ile gösterecek,
-- `available → mastered` validated diagnostic yolu,
-- coverage waiver / skip semantics,
-- tek kolay quiz ile skip yasağı,
-- partial diagnostic sonucu ve yalnız bilinen Objective'lerin atlanması,
-- critical Skill için güçlü independent evidence,
-- diagnostic assistance/provenance,
-- false-positive skip guard,
-- diagnostic sonucu GRE-v0 + PRG-v0 + planner replan entegrasyonu.
-
-3E için araştırma gereksinimi PRE-STEP sonrası değerlendirilmeli; özellikle diagnostic/placement mastery konusunda dış learning-science evidence gerekiyorsa Research AI kullanılabilir.
+## 6. 3F'de kesinleştirilecekler
+- kısa/orta/uzun absence sonrası current-state recovery,
+- eski PlannedTask/TaskCandidate backlog'unu taşımama,
+- overdue retention/remediation/verification ihtiyaçlarını yeniden üretme,
+- yüzlerce review/task yığılmasını engelleme,
+- critical prerequisite ve P0/P1 işlerin recovery'deki davranışı,
+- starvation ile absence ayrımı,
+- daily capacity içinde recovery planı,
+- kullanıcıya `borcun var` hissi yaratmadan tekrar ritme sokma,
+- 3A–3E ile deterministik entegrasyon.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -109,15 +117,17 @@ Canonical davranış:
 8. `docs/LEARNING_BEHAVIOR_RULES.md`
 9. `docs/TOPIC_STATE_MACHINE.md`
 10. `docs/MASTERY_SIGNALS_SPEC.md`
-11. `docs/MASTERY_FORMULA_V0.md`
-12. `docs/RETENTION_FORGETTING_SPEC.md`
-13. `docs/ADAPTIVE_PLANNER_SPEC.md`
-14. `docs/TASK_TAXONOMY_SPEC.md`
-15. `docs/PRIORITY_POLICY_SPEC.md`
-16. `docs/PREREQUISITE_POLICY_SPEC.md`
-17. `docs/ENGLISH_FOUNDATION_RULES.md`
-18. `docs/MASTER_PLAN.md`
-19. `docs/PROGRESS_LOG.md`
+11. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+12. `docs/MASTERY_FORMULA_V0.md`
+13. `docs/RETENTION_FORGETTING_SPEC.md`
+14. `docs/ADAPTIVE_PLANNER_SPEC.md`
+15. `docs/TASK_TAXONOMY_SPEC.md`
+16. `docs/PRIORITY_POLICY_SPEC.md`
+17. `docs/PREREQUISITE_POLICY_SPEC.md`
+18. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
+19. `docs/ENGLISH_FOUNDATION_RULES.md`
+20. `docs/MASTER_PLAN.md`
+21. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3E — Hızlı öğrenme** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035, 3D D-036 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3F — Kaçırılan günler** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035, 3D D-036, 3E D-037 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
