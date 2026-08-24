@@ -72,7 +72,7 @@ Karar: D-035.
 - readiness: `ready | ready_due | uncertain | not_ready`,
 - `review_due` hard lock değildir,
 - hard `not_ready` dependent candidate'ı bloke eder,
-- critical/strict `verification_due` dependent yeni work'u bekletebilir,
+- critical/strict `verification_due` dependent new work'u bekletebilir,
 - task-level `required_skill_ids` exact task eligibility'yi belirler,
 - yalnız affected branch bekler; independent branches devam eder,
 - started Topic regression ile `locked` olmaz,
@@ -102,27 +102,41 @@ Karar: D-036.
 Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.  
 Karar: D-037.
 
-> **Tamamlandı — 2026-08-24:** hızlı öğrenme, güvenilir evidence standardını düşürmeden Objective-level diagnostic waiver olarak kilitlendi.
+### [x] 3F — Kaçırılan günler
+**Final: `SRR-v0 — State-based Re-entry & Recovery`**
+- absence failure/mastery decay/task debt değildir,
+- stale PlannedTask/TaskCandidate replay edilmez,
+- current state'ten fresh LearningNeed/candidate üretimi,
+- time yalnız RVR due/urgency sinyalini değiştirir,
+- unresolved verification/remediation korunur,
+- due inventory ≠ DailyPlan,
+- 1/7/30/60+ gün için ayrı pedagojik threshold yok,
+- starvation ile absence kesin ayrıdır,
+- integrated recovery evidence ayrı attribution ister,
+- recovery 3A hard capacity + PRG eligibility + PBR priority ile çalışır,
+- safe branch'lerde new learning tamamen dondurulmaz,
+- bounded/incremental implementation.
 
-### [ ] 3F — Kaçırılan günler — **AKTİF**
+Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.  
+Karar: D-038.
+
+> **Tamamlandı — 2026-08-24:** uzun ara sonrası backlog replay yerine state-based bounded re-entry canonical hale geldi.
+
+### [ ] 3G — Açıklanabilir planner — **AKTİF**
 Kesinleştirilecek:
-- kısa/orta/uzun absence sonrası current-state recovery,
-- eski PlannedTask/TaskCandidate backlog'unu taşımama,
-- overdue retention/remediation/verification ihtiyaçlarını yeniden üretme,
-- review/task yığılması yerine bounded yeniden giriş planı,
-- critical P0/P1 işlerin recovery önceliği,
-- starvation ile absence ayrımı,
-- daily capacity içinde recovery,
-- `borç` hissi yaratmayan re-entry davranışı,
-- 3A–3E ile deterministic entegrasyon.
-
-### [ ] 3G — Açıklanabilir planner
-Reason codes + deterministic selection pseudocode.
+- machine-readable reason codes,
+- selected/skipped/blocked/deferred karar trace'i,
+- PBR/PRG/RVR/capacity/diagnostic/re-entry reason input'larının tek modelde birleşmesi,
+- user-facing kısa açıklama vs internal audit trace,
+- neden bu görev bugün var / neden diğeri gelmedi / neden branch bekliyor soruları,
+- deterministic end-to-end planner pseudocode,
+- replan reason chain,
+- 3H simulation invariants.
 
 ### [ ] 3H — Planner simülasyonu
 Sanal kullanıcı profilleri ve scenario suite.
 
-**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, missed-day/decision policy, pseudocode, simulation suite.
+**Aşama 3 çıktıları:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, `docs/MISSED_DAY_RECOVERY_SPEC.md`, reason-code/pseudocode, simulation suite.
 
 ---
 
@@ -283,7 +297,7 @@ Sanal kullanıcı profilleri ve scenario suite.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3E`  
-**Aktif:** **`3F — Kaçırılan günler`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3F`  
+**Aktif:** **`3G — Açıklanabilir planner`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3F missed-days/current-state recovery policy → POST-STEP sync.
+Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 3G reason-code/trace/pseudocode policy → POST-STEP sync.
