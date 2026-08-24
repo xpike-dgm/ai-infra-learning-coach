@@ -124,7 +124,7 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 0 critical cross-spec contradiction
 ```
 
-- Bu spec/policy-level PASS'tir; runtime testleri 11F, gerçek cihaz/performance 17E'de ayrıca zorunlu.
+- Bu spec/policy-level PASS'tir; runtime testleri sonraki implementation QA aşamasında, gerçek cihaz/performance ayrıca pilot QA'da zorunlu.
 - Çıktı: `docs/PLANNER_SIMULATION_SUITE.md`.
 - **AŞAMA 3 tamamlandı.**
 
@@ -133,87 +133,84 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ### 2026-08-24 — 4A Günlük mikro değerlendirme tamamlandı
 
 **PRE-STEP**
-- `PROJECT_MEMORY_PROTOCOL`, `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_BEHAVIOR_RULES`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `MASTERY_FORMULA_V0`, `RETENTION_FORGETTING_SPEC`, `TASK_TAXONOMY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `PLANNER_EXPLAINABILITY_SPEC` ve `ENGLISH_FOUNDATION_RULES` yeniden okundu.
+- `PROJECT_MEMORY_PROTOCOL`, `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, ilgili mastery/planner/English spec'leri yeniden okundu.
 - Aktif adımın 4A olduğu, Aşama 3'ün 3H PASS ile kapalı olduğu doğrulandı.
-- Ayrı Research AI kullanılmadı; 4A bilimsel sabit soru/dakika optimumu seçmek yerine mevcut evidence/mastery/planner contract'larını günlük assessment davranışına bağlayan ürün/policy adımıydı.
 
 **Final `DMA-v0 — Daily Micro Assessment`**
 - Daily micro assessment zorunlu günlük quiz/kota değildir.
 - Fixed soru sayısı, fixed assessment süresi veya günlük yüzde yoktur.
 - `practice`, `assess`, `retain`, `diagnose` purpose'ları ayrı tutulur.
-- Assessment existing LearningNeed + Objective evidence-gap bağlamından üretilir; ayrı assessment backlog/debt yoktur.
-- Assessment intent'leri: `checkpoint`, `mastery_evidence`, `verification`, `integration_check`.
-- Objective-matched evidence modality seçilir; düşük capacity evidence standardını düşürmez.
-- Mastery/verification için H0 independent measurement varsayılandır.
-- H1–H4 yardım öğrenmeye izin verir fakat positive independent mastery değildir; yardım istemek negative H0 evidence değildir.
-- Submit sonrası feedback önceki H0 attempt'i geriye dönük contaminate etmez; solution exposure sonrası fresh/unseen recheck gerekir.
-- PRG prerequisite fairness assessment öncesi zorunludur; prerequisite contamination target negative evidence değildir.
-- Invalid/ambiguous/evaluator-invalid item mastery credit veya penalty üretmez.
-- Provisional evaluator critical mastery/remediation kararını tek başına belirleyemez.
-- Tek doğru item automatic mastery değildir; tek clean post-mastery failure instant unmastery değildir.
-- Coding/debugging/transfer Objective evidence standardı kısa görev uğruna MCQ/recognition'a düşürülemez.
-- Multi-Skill task yalnız separately observable/attributable component'lere evidence verir.
-- Assessment sonucu canonical `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → remaining-plan replan` zincirini kullanır.
-- New remediation günü otomatik uzatmaz.
-- Technical assessment'ta bilinmeyen English grammar/vocabulary gizli prerequisite olamaz.
-- 4B–4E için minimum assessment item/result contract ve `assessment.*` reason-code namespace'i tanımlandı.
+- Assessment existing LearningNeed + Objective evidence-gap bağlamından üretilir.
+- H0 independent measurement mastery/verification için varsayılandır.
+- Assistance/provenance/prerequisite/invalid-item safety korunur.
+- Coding/debugging/transfer evidence standardı düşük capacity yüzünden düşürülmez.
+- Assessment sonucu canonical evidence→state→replan zincirini kullanır.
 
 **Çıktılar**
 - `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
 - `docs/DECISIONS.md` — D-040
-- canonical POST-STEP state dosyaları + `MASTER_PLAN` senkronlandı.
 
 **Sonraki kesin adım:** `4B — Haftalık sınav`.
-4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ---
 
 ### 2026-08-24 — Uzun vadeli curriculum kapsamı professional-readiness hedefiyle genişletildi
 
-Kullanıcı daha kapsamlı öğretim ve uzun vadede uygulama curriculum'unu tamamladığında AI Infrastructure / ML Systems / GPU Systems alanında mümkün olduğunca profesyonel seviyede hazır olmayı hedeflediğini belirtti.
-
-**Yeni karar: D-041**
+**D-041**
 - Yaklaşık üç yıllık curriculum horizon'ı kaldırıldı; rota gerektiğinde **4+ yıl veya daha uzun** sürebilir.
 - Süre progress/readiness gate'i değildir.
-- Final hedef course completion değil `professional_readiness = verified engineering capability`.
-- Öğretim depth modeli `concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context` olarak genişletildi.
-- Professional readiness için systems/GPU/inference Skill mastery yanında debugging, transfer, profiling/benchmarking, integrated systems ve capstone evidence şartı hedeflendi.
-- V1 release full 4+ year content'i beklemeyecek; ilk 8–12 haftalık production-quality curriculum + çalışan learning engine ayrımı korunacak.
-- Aşama 5 extensible full-route graph, Aşama 14 first production package, Aşama 19 full professional curriculum + open source + career readiness + professional capstones olarak genişletildi.
-- Ürün iş teklifi, seniority, maaş veya diploma/HR filtresi garantisi veremez; gerçek ekip/production deneyimi ayrı tutuldu.
-
-**Yeni/updated canonical dosyalar**
-- `docs/PROFESSIONAL_READINESS_TARGET.md` — yeni ana hedef spec'i
-- `docs/PRODUCT_REQUIREMENTS.md`
-- `docs/V1_SCOPE.md`
-- `docs/PROJECT_MASTER_CONTEXT.md`
-- `docs/DECISIONS.md` — D-041
-- `docs/MASTER_PLAN.md`
-- `docs/HANDOFF_STATE.md`
-- `docs/START_HERE.md`
-
-**Execution durumu değişmedi:** 4A ✅, **4B Haftalık sınav aktif fakat henüz yürütülmedi**. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+- Final hedef course completion değil verified professional capability.
+- Öğretim depth modeli genişletildi.
+- V1 full 4+ year content'i beklemeyecek.
+- Ürün iş teklifi, seniority, maaş veya diploma/HR filtresi garantisi veremez.
 
 ---
 
-### 2026-08-25 — Python foundation + specialization track aşaması eklendi
+### 2026-08-25 — Python foundation eklendi
 
-Kullanıcı önce Python'ın da öğrenme rotasında resmi olarak bulunmasını, ardından uzun professional rotanın tek düz çizgi yerine alt uzmanlık dallarına ayrılmasını istedi.
-
-**PRE-SYNC GitHub refresh**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` ve `PROFESSIONAL_READINESS_TARGET` yeniden okundu.
-- Aktif adımın hâlâ `4B — Haftalık sınav` olduğu ve 4B'nin yürütülmediği doğrulandı.
-
-**D-042 — Python foundation**
+**D-042**
 - Python common programming foundation'a resmi olarak eklendi.
 - C/C++ yerine geçmez; automation, testing, benchmark scripting, ML/PyTorch ve infra tooling için tamamlayıcı ana dildir.
 
-**D-043 — AŞAMA 20 / specialization tracks**
-- Mevcut AŞAMA 1–19 kodları renumber edilmeden proje **1–20** ana aşamaya genişletildi.
-- Yeni aşama: **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi**.
-- İlk candidate track'ler: GPU Kernel & Performance; LLM Inference/Serving; Distributed AI Infrastructure/Cluster; High-Speed Networking & Multi-GPU; ML Compilers/Runtime; AI Platform/Reliability & Capacity.
-- Track selection kullanıcı tercihi + verified capability + prerequisites + gerçek kariyer kısıtlarına dayanacak.
-- Track switching önceki valid mastery/evidence'ı silmeyecek; yalnız branch-local açıklar tamamlanacak.
-- Her track kendi project/debugging/benchmark/capstone evidence contract'ını taşıyacak.
+---
 
-**Execution durumu değişmedi:** `4B` hâlâ aktif ve yürütülmemiştir. Bu scope/plan sync 4B execution değildir; 4B başlamadan fresh PRE-STEP GitHub refresh yine zorunludur.
+### 2026-08-25 — D-043 specialization yorumu oluşturuldu
+
+Önceki kullanıcı mesajı yanlış yorumlanarak sona standalone specialization-track aşaması eklenmişti. Bu kayıt tarihsel olarak burada korunur ancak **D-044 ile bu karar geri çekilmiştir**; current canonical plan olarak kullanılmamalıdır.
+
+---
+
+### 2026-08-25 — D-044 Granular Capability Map düzeltmesi / future stage reindex
+
+Kullanıcı asıl isteğinin mesleği uzmanlık dallarına ayırmak değil, **öğrenme rotasındaki her büyük alanı ayrıntılı öğrenme alt bölümlerine parçalayacak ayrı bir planlama aşaması** olduğunu açıkladı.
+
+**PRE-CHANGE GitHub refresh**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_MEMORY_PROTOCOL`, `LEARNING_ENGINE_SPEC` ve `PROFESSIONAL_READINESS_TARGET` yeniden okundu.
+- Mevcut learning modelinin zaten `Domain → Module → Topic → Skill → Learning Objective` yapısını ve Skill-level mastery/prerequisite'i desteklediği doğrulandı.
+- Aktif yürütme adımının hâlâ `4B — Haftalık sınav` olduğu ve 4B'nin henüz yürütülmediği doğrulandı.
+
+**Plan correction — D-044**
+- D-043 standalone specialization stage geri çekildi.
+- **AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl** eklendi.
+- AŞAMA 5 yalnız graph/schema/backbone; AŞAMA 6 full detailed taxonomy olacak.
+- Technical English'ten Python, C, systems, distributed, GPU/CUDA/Triton, inference/serving, multi-GPU/AI infra ve open-source/capstone'a kadar bütün rota `Module → Topic → Skill → Objective` seviyesinde haritalanacak.
+- Örnek hedef: `Python zayıf` yerine `Python → Control Flow → Loops → while termination` weakness localization.
+- Python içinde conditionals, loops, functions, collections, errors, files, testing, typing, packaging, async, multiprocessing, networking, profiling, automation ve ML/infra-facing kullanım gibi family'ler ayrı capability map'e dönüştürülecek; final kapsam Research QA ile doğrulanacak.
+- Prerequisite, criticality, evidence type, diagnostic/remediation, retention, cross-domain reuse, project/capstone ve freshness metadata bağlanacak.
+- AŞAMA 6 external Research AI coverage/prerequisite validation içerecek.
+
+**Reindex**
+- Tamamlanmış AŞAMA 1–4 değişmedi.
+- AŞAMA 5 aynı kaldı.
+- Yeni AŞAMA 6 eklendi.
+- Old future 6–19 birer sıra kaydı: English 7, UX 8, Architecture 9, Skeleton 10, Daily MVP 11, Mastery/Planner implementation 12, Assessment implementation 13, AI Tutor 14, first content 15, analytics 16, polish 17, pilot 18, release 19, full professional curriculum 20.
+- Old mistaken specialization AŞAMA 20 kaldırıldı.
+- Toplam stage sayısı yine 20.
+
+**Yeni canonical charter**
+- `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+
+**POST-SYNC**
+- `EXECUTION_INDEX`, `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE`, `DECISIONS`, `START_HERE`, `PROFESSIONAL_READINESS_TARGET` ve `PROGRESS_LOG` D-044 ile senkronlandı.
+
+**Execution durumu değişmedi:** `4B — Haftalık sınav` aktif ve henüz yürütülmedi. 4B başlamadan fresh PRE-STEP GitHub refresh yine zorunludur.
