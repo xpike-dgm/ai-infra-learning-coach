@@ -219,3 +219,41 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 **Sonraki kesin adım**
 - **`2D — AI / ipucu etkisi`**.
 - 2D başlamadan önce D-024 uyarınca yeni PRE-STEP GitHub refresh yapılacak.
+
+---
+
+### 2026-08-24 — 2D AI / ipucu etkisi tamamlandı
+
+**PRE-STEP**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTERY_SIGNALS_SPEC`, `LEARNING_BEHAVIOR_RULES`, `PROJECT_MEMORY_PROTOCOL`, `AI_AGENT_WORKFLOW` ve stale olduğu bilinen `MASTER_PLAN` yeniden kontrol edildi.
+- Aktif adımın 2D olduğu ve 2C'nin assistance context'i özellikle bu adıma bıraktığı doğrulandı.
+- 2D'de sayısal mastery ağırlığı seçilmediği için ayrı Research AI turu gerekmedi; exact assistance etkisi 2E'ye bırakıldı.
+
+**Tamamlananlar**
+- Assistance content taxonomy `H0 none`, `H1 orientation`, `H2 targeted conceptual hint`, `H3 partial solution/scaffold`, `H4 full solution/answer exposure` olarak tanımlandı.
+- Yardım timing'i `before_attempt`, `during_attempt`, `after_submit`, `after_failure` olarak ayrıldı.
+- Artifact authorship/provenance `user_authored`, `user_authored_with_assistance`, `mixed_authorship`, `generated_or_copied`, `unknown_provenance` olarak tanımlandı.
+- Evidence yorum sınıfları `independent_evidence`, `assisted_evidence`, `practice_only`, `requires_independent_recheck` olarak tanımlandı.
+- AI'nın tam kod/cevap üretmesinin kullanıcı için direct coding/production mastery evidence olmadığı kilitlendi.
+- H3/H4 solution exposure sonrası fresh/unseen independent recheck zorunluluğu getirildi; exact aynı item'ın hemen tekrarı güçlü mastery sayılmayacak.
+- Submit sonrası AI feedback'in önceki tamamlanmış attempt'i geriye dönük kirletmemesi tanımlandı.
+- Comprehension/explanation evidence ile coding production evidence ayrıldı.
+- Compiler, test runner, documentation ve autocomplete'ın otomatik penalty olmadığı; objective-specific allowed-tools policy ile yorumlanacağı kararlaştırıldı.
+- Hint istemenin veya `anlamadım` demenin tek başına negative mastery olmadığı kilitlendi.
+- External AI için surveillance/cheat-detection yaklaşımı reddedildi; unknown provenance ve fresh transfer/recheck yaklaşımı benimsendi.
+- AI helper provenance ile AI evaluator provenance ayrıldı.
+- Exact H0–H4 weight/penalty ve minimum independent evidence 2E'ye bırakıldı.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+- `docs/DECISIONS.md` — D-026
+- `docs/EXECUTION_INDEX.md`
+- `docs/STEP_STATUS.md`
+- `docs/HANDOFF_STATE.md`
+- `docs/PROGRESS_LOG.md`
+- `docs/MASTER_PLAN.md` — canonical 1–19 yürütme numaralandırmasına senkronize edildi
+- `docs/PROJECT_MEMORY_PROTOCOL.md` / D-027 ile MASTER_PLAN sync zorunluluğu güçlendirildi
+
+**Sonraki kesin adım**
+- **`2E — Mastery formülü v0`**.
+- 2E başlamadan PRE-STEP GitHub refresh yapılacak ve `AI_AGENT_WORKFLOW.md` uyarınca Research AI kullanılacak.
