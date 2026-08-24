@@ -44,9 +44,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 16. `docs/MASTERY_FORMULA_V0.md`
 17. `docs/RETENTION_FORGETTING_SPEC.md`
 18. `docs/ADAPTIVE_PLANNER_SPEC.md`
-19. `docs/MASTER_PLAN.md`
-20. `docs/AI_AGENT_WORKFLOW.md`
-21. `docs/PROGRESS_LOG.md`
+19. `docs/TASK_TAXONOMY_SPEC.md`
+20. `docs/ENGLISH_FOUNDATION_RULES.md`
+21. `docs/MASTER_PLAN.md`
+22. `docs/AI_AGENT_WORKFLOW.md`
+23. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -74,21 +76,35 @@ Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md` — D-032.
 
 ## 6. Adaptive Planner ilerlemesi
 
-### 3A ✅ Günlük kapasite
-`docs/ADAPTIVE_PLANNER_SPEC.md` — D-033.
-
+### 3A ✅ Günlük kapasite — D-033
 - Explicit daily minutes = hard budget.
-- Today override en yüksek source priority.
-- Editable short/normal/intensive V0 presetleri `30/60/90 dk`.
-- `10%` planning reserve + `10 dk` minimum plannable block V0 heuristic.
+- Editable `30/60/90` V0 presetleri; `10%` reserve + `10 dk` min block heuristic.
 - Fixed category yüzdeleri yok.
-- Remediation/retention planı otomatik uzatmaz; remaining plan replan edilir.
-- Session time override desteklenir.
-- Unfinished plan failure değildir.
+- Remediation/retention planı otomatik uzatmaz.
 - Safe split / smaller alternative / defer.
 - Deferred task debt/backlog değildir.
-- Duration estimates user pace'e adapte olabilir.
-- Capacity deterministic/versioned; LLM süreyi keyfi değiştiremez.
+- Capacity deterministic/versioned.
+
+Ana çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`.
+
+### 3B ✅ Task taxonomy / TaskCandidate — D-034
+
+Canonical zincir:
+```text
+State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent
+```
+
+- Deferred candidate next-day debt değildir; unresolved LearningNeed fresh candidate üretebilir.
+- `primary_purpose = teach | practice | assess | remediate | retain | diagnose | reinforce`.
+- Coding/debugging/project activity'dir; English curriculum track'tir.
+- Purpose / activity / track / evidence ayrı eksenlerdir.
+- Task completion mastery değildir.
+- Guided/independent/H0 requirement ayrı metadata'dır.
+- Multi-Skill task component evidence'ı structural essentiality + separate observability/attribution ister.
+- Provenance/validation + variant/dependency + prerequisite/tools + 3A duration/splitting metadata contract'a dahildir.
+- Paused progress gerçek checkpoint saklayabilir; ertesi gün priority/eligibility yeniden hesaplanır.
+
+Ana çıktı: `docs/TASK_TAXONOMY_SPEC.md`.
 
 ## 7. Güncel çalışma konumu
 
@@ -97,20 +113,27 @@ Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md` — D-032.
 **AŞAMA 3:** devam ediyor
 
 - `3A` ✅ Günlük kapasite
-- `3B` 🟡 **Görev kategorileri — AKTİF**
-- `3C–3H` ⬜ bekliyor
+- `3B` ✅ Görev kategorileri
+- `3C` 🟡 **Öncelik puanı — AKTİF**
+- `3D–3H` ⬜ bekliyor
 
-## 8. 3B'de yapılacaklar
-3B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+## 8. 3C'de yapılacaklar
+
+Ana soru:
+> Bugün yapılabilecek işler 80 dakika ama capacity 50 dakikaysa hangi 50 dakika seçilecek?
 
 Kesinleştirilecek:
-- canonical task taxonomy,
-- teaching / practice / assessment / coding / debugging / retention / remediation / English / project ilişkisi,
-- task category ile evidence type'ın ayrı olması,
-- `TaskCandidate` contract,
-- target Skill/Objective, prerequisites, duration, splittable, provenance, reason metadata,
-- multi-Skill/integrated task attribution,
-- 3C priority motorunun tüketebileceği deterministic task primitive.
+- critical prerequisite / verification / remediation / retention / continuing/new learning / English priority ilişkisi,
+- urgency vs importance,
+- `review_due` ile actual failure arasındaki fark,
+- duration-aware selection,
+- unresolved LearningNeed starvation guard,
+- tie-break,
+- fixed kategori yüzdesi olmadan balanced progress,
+- deterministic priority/decision model,
+- 3G için explainability reason inputs.
+
+3C başlamadan yeni PRE-STEP GitHub refresh zorunlu. Keyfi ve sahte hassasiyetli priority puanları bilimsel gerçek gibi kullanılmayacak.
 
 ## 9. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ve Aşama 3A D-033 capacity contract kararlarını koru. Şu an aktif adım 3B — Görev kategorileri.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ile 3A D-033 capacity ve 3B D-034 LearningNeed/TaskCandidate kararlarını koru. Şu an aktif adım 3C — Öncelik puanı.`
