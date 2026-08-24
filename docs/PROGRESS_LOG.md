@@ -74,13 +74,12 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 **PRE-STEP**
 - `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `LEARNING_BEHAVIOR_RULES` ve `RETENTION_FORGETTING_SPEC` yeniden okundu.
 - Aktif adımın 3A olduğu ve Aşama 2 GRE/RVR kararlarıyla çelişki olmadığı doğrulandı.
-- Ayrı Research AI kullanılmadı; adım bilimsel optimum çalışma süresi seçmek yerine user-controlled capacity contract tasarımıydı. Exact dakika değerleri science constant olarak sunulmadı.
+- Ayrı Research AI kullanılmadı; adım bilimsel optimum çalışma süresi seçmek yerine user-controlled capacity contract tasarımıydı.
 
 **Final 3A capacity contract**
 - Kullanıcının explicit günlük süresi planner'ın hard envelope'u.
 - Capacity source: today override → selected profile → scheduled default → normal profile.
-- V0 editable presetler `30/60/90 dk`; engineering default.
-- V0 `10%` planning reserve ve `10 dk` minimum plannable block; engineering heuristic.
+- V0 editable presetler `30/60/90 dk`; `10%` planning reserve ve `10 dk` minimum plannable block engineering heuristic.
 - Fixed task-category yüzdeleri yok.
 - Remediation/retention ortaya çıkınca gün otomatik uzamaz; remaining capacity replan edilir.
 - Kullanıcı session ortasında daha az/fazla süre söylerse remaining plan yeniden üretilir.
@@ -94,7 +93,34 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 **Çıktı**
 - `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A.
 - `docs/DECISIONS.md` — D-033.
-- Canonical state files + `MASTER_PLAN` senkronlandı.
 
-**Sonraki kesin adım:** `3B — Görev kategorileri`.
-3B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+---
+
+### 2026-08-24 — 3B Görev kategorileri / TaskCandidate contract tamamlandı
+
+**PRE-STEP**
+- 3A sonrası yeni GitHub refresh yapıldı; `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `ADAPTIVE_PLANNER_SPEC`, mastery/assistance ve English prerequisite kuralları yeniden okundu.
+- Aktif adımın 3B olduğu doğrulandı.
+- Ayrı Research AI kullanılmadı; 3B mevcut bağlayıcı learning/mastery davranışlarını planner primitive'lerine dönüştüren ürün/mimari adımıydı.
+
+**Final 3B modeli**
+- `State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent` zinciri canonical oldu.
+- Ertelenen task'ın kendisi kalıcı borç değildir; unresolved `LearningNeed` kalır ve sonraki planda fresh candidate doğurabilir.
+- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
+- `activity_kind` ayrı eksendir: explanation, worked example, recall, coding, debugging, hands-on system task, transfer, integrated project, language activity vb.
+- English ayrı purpose değil curriculum track; coding/debugging/project purpose değil activity türüdür.
+- Task category evidence değildir; completion mastery üretmez.
+- Guided/independent/H0 requirement ayrı assistance/independence metadata'sıdır.
+- Multi-Skill task'ta global project success component Skills'e otomatik evidence vermez; Objective bazlı structural essentiality + separate observability/attribution gerekir.
+- Task provenance/validation, variant/dependency, prerequisite/tools ve 3A duration/splittable/checkpoint metadata'sı contract'a bağlandı.
+- `paused_progress` gerçek checkpoint'i koruyabilir; `deferred_candidate` ephemeral'dır ve debt değildir.
+- 3C'nin kullanacağı ham priority sinyalleri TaskCandidate'a eklendi fakat 3B priority weight uydurmadı.
+- Candidate generation bounded/deterministic ve D-028 performans kuralıyla uyumlu.
+
+**Çıktılar**
+- `docs/TASK_TAXONOMY_SPEC.md`
+- `docs/DECISIONS.md` — D-034
+- canonical POST-STEP state dosyaları ve `MASTER_PLAN` senkronlandı.
+
+**Sonraki kesin adım:** `3C — Öncelik puanı`.
+3C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
