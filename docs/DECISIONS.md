@@ -161,3 +161,25 @@ Bağlayıcı kararlar:
 - LearningTask ve AssessmentItem hedeflediği Skill/Learning Objective'lere bağlanmalıdır; task completion tek başına mastery değildir.
 
 Ayrıntılı spesifikasyon: `docs/LEARNING_ENGINE_SPEC.md`.
+
+## D-022 — Öğretme, soru seçimi, yanlış cevap, retention ve replan davranışları kalıcı olarak kilitlendi
+
+**Durum:** Kabul edildi — 2026-08-24
+
+Kullanıcıyla yapılan ayrıntılı ürün soru-cevaplarından çıkan aşağıdaki davranışlar bağlayıcı kabul edilmiştir:
+
+- uygulama yalnız test etmez; ana konuları uygulama içinde öğretir, uygulatır ve ölçer,
+- gerekli temel Learning Objective'ler coverage açısından atlanmaz; ileri detaylar doğru sonraki Topic/Skill'e bırakılır,
+- yanlış cevap ceza değil evidence/remediation sinyalidir,
+- yanlış yapılan sorunun birebir aynısı hemen tekrar edilerek ezber ödüllendirilmez; aynı Skill farklı varyasyon/bağlamla yeniden ölçülür,
+- kullanıcı henüz öğretilmemiş prerequisite isteyen bir sorudan başarısız sayılmaz,
+- zorluk gizli yeni kavram eklemekle değil, öğrenilmiş kavramların daha karmaşık kullanım/transferiyle artırılır,
+- kritik prerequisite süre dolduğu için terk edilmez; öğretim yöntemi/remediation değişir ve yalnız bağımlı dal bekler,
+- başarısız test nedeniyle günlük çalışma süresi kontrolsüz büyütülmez; remediation mevcut kapasite içine yerleştirilir ve daha düşük öncelikli görevler replan edilir,
+- mastered Skill'ler haftalar/aylar sonra retention ile tekrar ölçülebilir; tek retention hatası mastery'yi sıfırlamaz, doğrulama ve hedefli onarım uygulanır,
+- bilgi bankası doğrulanmış çekirdeğe; soru bankası doğrulanmış çekirdek + question family/variant + kontrollü AI üretimine dayanır,
+- kullanıcıya özel misconception/hata geçmişi soru ve remediation seçiminde kullanılabilir,
+- çekirdek mastery/prerequisite/planner kararları LLM'nin keyfi kontrolünde değildir,
+- AI provider/model ve sayısal mastery/retention/planner parametreleri henüz kalıcı olarak kilitlenmemiştir; ilgili ileriki adımlarda kararlaştırılacaktır.
+
+Ayrıntılı davranış spesifikasyonu: `docs/LEARNING_BEHAVIOR_RULES.md`.
