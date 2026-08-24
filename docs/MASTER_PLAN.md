@@ -8,6 +8,18 @@ Sabit adım kimliklerinin canonical kaynağı `docs/EXECUTION_INDEX.md` dosyası
 Ana ürün ilkesi:
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
+## 2026-08-24 kapsam genişletmesi — D-041
+
+Uzun vadeli curriculum artık yaklaşık üç yıllık bir horizon ile sınırlı değildir. Nihai hedef:
+
+> **Gerektiğinde 4+ yıl veya daha uzun sürebilecek mastery-gated bir rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability oluşturmak.**
+
+`4+ yıl` countdown değildir. Final readiness; required Skill mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ile verilir.
+
+Bağlayıcı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+
+V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçek learning engine ile release edilir; full professional curriculum V1 ön koşulu değildir.
+
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → checklist/completion note → sonraki adım`
 
@@ -19,7 +31,7 @@ Ana ürün ilkesi:
 ### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
 ### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
-> **AŞAMA 1 tamamlandı.**
+> **AŞAMA 1 tamamlandı.** D-041, ürünün uzun vadeli çıkış hedefini genişletmiştir; Aşama 1'in V1/product-core kararlarını iptal etmez.
 
 ---
 
@@ -60,83 +72,42 @@ Ana ürün ilkesi:
 - P0–P4 semantic bands,
 - deterministic lexicographic rank vector,
 - starvation/track-balance guard,
-- duration semantic priority'den sonra,
-- no fake weighted score / no priority-per-minute.
-
-Çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
+- duration semantic priority'den sonra.
 
 ### [x] 3D — Prerequisite davranışı — PRG-v0 / D-036
 - runtime `Skill → Skill`,
 - hard/soft edges,
 - readiness `ready | ready_due | uncertain | not_ready`,
-- `review_due` hard lock değildir,
-- exact dependent branch blocking,
-- contamination guard,
-- priority prerequisite'i bypass edemez.
-
-Çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
+- review_due no-lock,
+- branch-local blocking,
+- contamination guard.
 
 ### [x] 3E — Hızlı öğrenme — VDW-v0 / D-037
-- diagnostic GRE-v0'dan daha kolay değildir,
-- Objective-level validated coverage waiver,
-- partial diagnostic canonical,
-- critical H0/provenance/evaluator/prerequisite guards,
-- GRE → waiver → PRG → Topic → replan entegrasyonu.
-
-Çıktı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
+- validated Objective-level diagnostic waiver,
+- partial waiver,
+- GRE/prerequisite false-skip guards.
 
 ### [x] 3F — Kaçırılan günler — SRR-v0 / D-038
-- absence failure/mastery decay/task debt değildir,
+- absence failure/debt değildir,
 - stale plan replay edilmez,
-- current-state re-entry,
-- due inventory ≠ DailyPlan,
-- starvation ≠ absence,
-- recovery hard capacity + PRG + PBR ile çalışır,
-- safe branch'lerde new learning globally dondurulmaz.
-
-Çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
+- current-state re-entry.
 
 ### [x] 3G — Açıklanabilir planner — PDT-v0 / D-039
-- structured reason code + decision trace,
-- private chain-of-thought değil canonical state/policy/disposition kaydı,
-- internal audit vs user-facing explanation,
-- need/candidate dispositions,
-- PRG → PBR → capacity sırası korunur,
-- versioned replan chain,
-- LLM yalnız paraphrase; template fallback,
-- deterministic end-to-end planner pseudocode.
-
-Çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
+- structured decision trace,
+- internal/user-facing explanation ayrımı,
+- deterministic pseudocode,
+- LLM source of truth değildir.
 
 ### [x] 3H — Planner simülasyonu
 **Final:** `docs/PLANNER_SIMULATION_SUITE.md`
-- 8 sanal profil sınıfı,
-- 16 zorlayıcı policy senaryosu,
-- 20/20 PDT-v0 invariant coverage,
-- critical prerequisite block,
-- `review_due` no-lock semantics,
-- high-priority-not-fit capacity açıklaması,
-- partial diagnostic,
-- 30 günlük absence + büyük due inventory,
-- paused checkpoint,
-- mid-session capacity change,
-- new remediation replan,
-- invalid candidate,
-- duplicate semantic need,
-- critical-label-no-P0,
-- same-input determinism,
-- explanation trace integrity.
 
-**3H sonucu:**
 ```text
 16 / 16 scenarios PASS
 20 / 20 invariants PASS
 0 critical cross-spec contradiction
 ```
 
-Not: Bu spec-level simulation PASS'tir. Production planner runtime/sanal kullanıcı testleri 11F'te, gerçek cihaz/performance doğrulaması 17E'de ayrıca yapılacaktır.
-
-> **AŞAMA 3 tamamlandı — 2026-08-24.** Planner design contract implementation'a taşınabilecek seviyede tanımlandı.
+> **AŞAMA 3 tamamlandı — 2026-08-24.**
 
 ---
 
@@ -144,70 +115,87 @@ Not: Bu spec-level simulation PASS'tir. Production planner runtime/sanal kullan�
 
 ### [x] 4A — Günlük mikro değerlendirme — DMA-v0 / D-040
 **Final:** `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-- daily micro assessment zorunlu günlük quiz/kota değildir,
-- `practice / assess / retain / diagnose` purpose'ları ayrıdır,
-- assessment existing LearningNeed + evidence gap bağlamından türetilir; ayrı assessment backlog/debt yoktur,
-- checkpoint / mastery_evidence / verification / integration_check intent'leri,
-- fixed soru sayısı/süre/yüzde yok; 3A hard capacity + PBR priority,
-- Objective-matched evidence modality,
-- H0 default independent measurement; H1–H4 yardım learning'e izin verir ama independent mastery evidence değildir,
-- submit sonrası feedback önceki attempt'i contaminate etmez,
-- PRG prerequisite fairness + contamination guard,
-- invalid/ambiguous/provisional evaluator güvenliği,
-- coding/debugging/transfer evidence standardı düşük süre için düşürülemez,
-- assessment → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → replan,
-- new remediation günü otomatik uzatmaz,
-- English hidden prerequisite guard,
-- 4B–4E common item/result contract + `assessment.*` reason codes.
+- daily assessment quota değildir,
+- Objective-matched evidence,
+- H0/assistance/provenance guards,
+- prerequisite fairness,
+- invalid/provisional item safety,
+- evidence→GRE/RVR→replan integration.
 
 > **4A tamamlandı — 2026-08-24.**
 
 ### [ ] 4B — Haftalık sınav — **AKTİF**
 Kesinleştirilecek:
-- weekly assessment'ın amacı ve DMA-v0'dan farkı,
-- hangi Skill/Objective'lerin haftalık sınavda temsil edileceği,
-- required/critical Skill coverage,
-- multi-Skill composition,
-- evidence type / family / context diversity,
-- current weakness + new progress + critical prerequisite risk dengesi,
-- fixed bilimsel soru sayısı/puan uydurmadan test blueprint yaklaşımı,
-- sınav süresi/capacity ve bölünebilirlik,
-- H0/H1–H4 assistance, pause/incomplete davranışı,
-- invalid/ambiguous/provisional item güvenliği,
-- weekly result'ın GRE/RVR/remediation/prerequisite/planner'a etkisi,
-- programı gerçekten değiştiren ama tek sınavla aşırı tepki vermeyen hysteresis,
-- 4C monthly assessment'a ortak result/blueprint contract.
+- weekly assessment amacı ve DMA-v0'dan farkı,
+- Skill/Objective blueprint,
+- required/critical coverage,
+- modality/family/context diversity,
+- weakness + recent progress + prerequisite risk dengesi,
+- fixed sahte optimum olmadan composition,
+- capacity / pause / incomplete,
+- H0/H1–H4,
+- invalid/provisional item safety,
+- weekly result → GRE/RVR/remediation/PRG/planner,
+- 4C monthly assessment ortak contract.
 
 ### [ ] 4C — Aylık yeterlilik sınavı
 - daha geniş transfer/integration,
 - critical prerequisite revalidation,
-- false-positive mastery riskini azaltma.
+- professional readiness'e doğru daha geniş evidence aggregation,
+- tek final puanla mastery vermeme.
 
 ### [ ] 4D — Soru bankası
 - trusted item metadata,
 - variant family / dependency group,
-- objective attribution,
+- Objective attribution,
 - difficulty/complexity,
-- validation/versioning.
+- validation/versioning,
+- uzun curriculum'da scalable bank/authoring contract.
 
 ### [ ] 4E — AI-generated soru doğrulaması
-- AI candidate generation trusted bank'e otomatik giriş değildir,
+- AI candidate trusted bank'e otomatik giriş değildir,
 - correctness/ambiguity/prerequisite/duplicate/target-fit validator.
 
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph
+
+D-041 sonrası Aşama 5'in ek görevi: **4+ yıllık professional curriculum'u taşıyabilecek extensible graph/metadata tasarlamak.** İlk etapta tüm node'lar yazılmayacak; yapı buna hazır olacak.
+
 ### [ ] 5A — Ana domain haritası
+- full professional domain envelope,
+- foundation → systems → GPU → inference → AI Infrastructure,
+- infra-relevant DS&A, architecture, storage, cloud/observability/performance,
+- professional engineering/tooling tracks.
+
 ### [ ] 5B — Topic metadata
+- prerequisite,
+- required/criticality,
+- evidence contracts,
+- retention profile,
+- professional capability tags,
+- project/capstone attribution,
+- curriculum versioning.
+
 ### [ ] 5C — İlk 8–12 haftalık curriculum graph
+- V1 production package,
+- full route'un başlangıç alt grafiği,
+- ileride genişlemeyi engellemeyen canonical IDs.
+
 ### [ ] 5D — Curriculum QA
+- prerequisite integrity,
+- missing foundations,
+- hidden knowledge,
+- professional-target coverage mapping.
 
 ---
 
 # AŞAMA 6 — İngilizce Paralel Hattı
 Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 6A — Başlangıç ölçümü
-### [ ] 6B — A1/A2/B1/B2 teknik hedefleri
+### [ ] 6B — A1/A2/B1/B2+ teknik hedefleri
+- exact CEFR çıkış gate research/curriculum design ile belirlenir,
+- final hedef technical docs/papers/design review/interview/global team work.
 ### [ ] 6C — Günlük English bileşeni
 ### [ ] 6D — Teknik entegrasyon
 ### [ ] 6E — English mastery
@@ -229,6 +217,9 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 8A — Mobil teknoloji seçimi
 ### [ ] 8B — Veri saklama/local-first
 ### [ ] 8C — Domain veri modeli
+- years-long curriculum/user history scalability,
+- curriculum versions/migrations,
+- capstone/project evidence references.
 ### [ ] 8D — Servis sınırları
 ### [ ] 8E — AI entegrasyon mimarisi
 ### [ ] 8F — Test stratejisi
@@ -284,13 +275,18 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ---
 
 # AŞAMA 14 — İlk Gerçek Eğitim İçeriği
+
+D-041 sonrası Aşama 14 **tam 4+ yıllık curriculum değildir**; V1 için ilk production package'tır.
+
 ### [ ] 14A — Computer Fundamentals
 ### [ ] 14B — C Foundations
 ### [ ] 14C — Memory Foundations
 ### [ ] 14D — Linux Foundations
-### [ ] 14E — English A0→A1/A2
+### [ ] 14E — English A0→A1/A2 başlangıç paketi
 ### [ ] 14F — Assessment content
 ### [ ] 14G — Content QA
+
+Her paket mümkün olduğunca `concept → guided → independent → debugging → explanation → transfer → retention → project` derinlik modelini desteklemelidir.
 
 ---
 
@@ -298,6 +294,8 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 15A — Skill analytics
 ### [ ] 15B — Öğrenme geçmişi
 ### [ ] 15C — Progress kuralları
+- gün/year countdown yerine verified capability,
+- professional-readiness dimensions ileride desteklenebilir.
 ### [ ] 15D — Ayarlar
 ### [ ] 15E — Bildirimler
 
@@ -319,6 +317,8 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 17E — Teknik QA
 ### [ ] 17F — Düzeltme döngüsü
 
+Pilot yalnız app UX'ini değil, ilk curriculum'un gerçek öğrenme/evidence davranışını da kalibre eder. Bu motor doğrulanmadan full 4+ year content'e kör üretim yapılmaz.
+
 ---
 
 # AŞAMA 18 — Release APK
@@ -328,18 +328,79 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 18D — APK / gerçek cihaz
 ### [ ] 18E — Release dokümantasyonu
 
+**AŞAMA 18 V1 release = professional curriculum completion değildir.**
+
 ---
 
-# AŞAMA 19 — Uzun Vadeli Curriculum ve Kariyer Katmanı
-### [ ] 19A — Modern C++
-### [ ] 19B — Systems
-### [ ] 19C — Distributed Systems
-### [ ] 19D — GPU/CUDA
-### [ ] 19E — Triton/Inference
-### [ ] 19F — Multi-GPU/AI Infrastructure
-### [ ] 19G — Open source
-### [ ] 19H — Career readiness
-### [ ] 19I — Sürekli curriculum QA
+# AŞAMA 19 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
+
+D-041 sonrası Aşama 19'un amacı full professional route'u modül modül üretmek, QA etmek ve professional readiness evidence'ına bağlamaktır.
+
+### [ ] 19A — Modern C++ + Professional Tooling paketi
+- modern language depth,
+- ownership/RAII/templates where relevant,
+- build/test/debug/profiling,
+- production-quality code habits.
+
+### [ ] 19B — Systems + Architecture + Performance paketi
+- computer architecture,
+- OS/memory,
+- concurrency/parallelism,
+- Linux internals/tooling,
+- performance engineering.
+
+### [ ] 19C — Networking + Distributed Systems + Storage paketi
+- networking,
+- distributed coordination/failure thinking,
+- storage/database fundamentals where infra-relevant,
+- observability/reliability foundations.
+
+### [ ] 19D — GPU Architecture + CUDA paketi
+- execution/memory model,
+- kernels,
+- profiling,
+- bandwidth/latency/occupancy reasoning,
+- correctness/performance exercises.
+
+### [ ] 19E — Triton + ML/Transformer + LLM Inference paketi
+- transformer/inference fundamentals,
+- Triton kernels,
+- quantization,
+- KV cache,
+- batching/scheduling,
+- serving engine internals.
+
+### [ ] 19F — Multi-GPU / AI Infrastructure paketi
+- NCCL/RDMA concepts,
+- tensor/pipeline/data/expert parallel concepts as relevant,
+- distributed inference,
+- GPU scheduling/capacity,
+- serving reliability/observability,
+- vLLM/SGLang/TensorRT-LLM-style systems.
+
+### [ ] 19G — Open Source + Engineering Practice
+- repository/source-tree reading,
+- issue reproduction,
+- tests/benchmark contribution,
+- PR/code-review workflow,
+- technical writing/design docs.
+
+### [ ] 19H — Career + Professional Readiness
+- technical interview,
+- portfolio/case-study packaging,
+- job-skill mapping,
+- degree/experience filters hakkında gerçekçi strategy,
+- bridge-role readiness,
+- professional capability gaps.
+
+### [ ] 19I — Sürekli Curriculum QA + Professional Capstones
+- technology freshness,
+- prerequisite/evidence QA,
+- integrated capstone families,
+- design + implementation + test + debugging + profiling + documentation + postmortem evidence,
+- final professional-readiness gate'in gelecekte ayrı deterministic spec'e bağlanması.
+
+> **Final curriculum completion takvimle değil professional-readiness evidence ile tanımlanacaktır.**
 
 ---
 
@@ -348,4 +409,6 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
 **Aktif:** **`4B — Haftalık sınav`**
 
-Bir sonraki yürütme: yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.
+**Yeni bağlayıcı long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.
+
+Bir sonraki yürütme: **4B başlamadan yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.**
