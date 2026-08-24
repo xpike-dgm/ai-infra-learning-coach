@@ -13,23 +13,20 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 ---
 
-# AŞAMA 1 — Ürün Çerçevesini Kilitle
+# AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
 
-- [x] **1A — Ana ürün amacı:** Tek cümlelik amaç, günlük değer, klasik kurs/todo farkı, kanıtlanmış öğrenme ilkesi ve kariyer rotası ilişkisi.
-  - Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
-- [x] **1B — V1 kapsamı:** V1’de olacaklar/olmayacaklar, kişisel kullanım sınırı ve ilk gerçek release kapsamı.
-  - Çıktı: `docs/V1_SCOPE.md`
-- [x] **1C — Başarı kriterleri:** Daily planner, mastery, prerequisite, assessment, replan, retention, AI Tutor, English, persistence ve release için ölçülebilir acceptance testleri.
-  - Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
-- [ ] **1D — Non-goals:** Scope creep’i önlemek için ürünün özellikle ne olmayacağını tek listede kilitle.
+- [x] **1A — Ana ürün amacı** — Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
+- [x] **1B — V1 kapsamı** — Çıktı: `docs/V1_SCOPE.md`
+- [x] **1C — Başarı kriterleri** — Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
+- [x] **1D — Non-goals** — Çıktı: `docs/NON_GOALS.md`
 
-**Aşama 1 çıkışı:** Product requirements + V1 scope + success criteria + non-goals.
+**Aşama 1 tamamlanma notu — 2026-08-24:** Ürünün amacı, V1 kapsamı, 49 acceptance kriteri ve ürün/V1 non-goals kilitlendi. Ürün çerçevesi artık implementasyon öncesi kararlar için sabit temel kabul edilecektir.
 
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla
 
-- [ ] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective.
+- [ ] **2A — Bilgi birimleri:** Domain → Module → Topic → Skill → Learning Objective. **AKTİF**
 - [ ] **2B — Topic durumları:** locked, available, learning, mastered, weakening, remediation_required.
 - [ ] **2C — Mastery sinyalleri:** teori, coding, debugging, açıklama, transfer, retention, proje, süre.
 - [ ] **2D — AI/ipucu etkisi:** Hint seviyeleri, AI-assisted task ve comprehension check.
@@ -42,14 +39,14 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 # AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla
 
-- [ ] **3A — Günlük kapasite:** Kısa/normal/yoğun gün, bloklar, mola, gün içi süre değişikliği.
-- [ ] **3B — Görev kategorileri:** Yeni konu, remediation, retention, coding, debugging, English, proje, mikro değerlendirme.
-- [ ] **3C — Öncelik puanı:** Zayıf prerequisite, due review, yeni konu, ihmal edilen alan, English payı, çeşitlilik.
-- [ ] **3D — Prerequisite davranışı:** Hard/soft prerequisite, kilitler, bağımsız dallar.
-- [ ] **3E — Hızlı öğrenme:** Diagnostic, skip doğrulaması, retention.
-- [ ] **3F — Kaçırılan günler:** 1 gün / birkaç gün / 1 hafta+ replan.
-- [ ] **3G — Açıklanabilir planner:** Reason code ve kullanıcı açıklaması.
-- [ ] **3H — Planner simülasyonu:** En az 20 sanal öğrenci akışı.
+- [ ] **3A — Günlük kapasite**
+- [ ] **3B — Görev kategorileri**
+- [ ] **3C — Öncelik puanı**
+- [ ] **3D — Prerequisite davranışı**
+- [ ] **3E — Hızlı öğrenme**
+- [ ] **3F — Kaçırılan günler**
+- [ ] **3G — Açıklanabilir planner**
+- [ ] **3H — Planner simülasyonu**
 
 **Çıktı:** `ADAPTIVE_PLANNER_SPEC.md`, decision table, pseudocode, simulation suite.
 
@@ -252,8 +249,6 @@ Bu belge projenin konuşmada ve görev devrinde kullanılan **sabit adım kodlar
 
 # Güncel Konum
 
-**Aktif aşama:** AŞAMA 1 — Ürün Çerçevesini Kilitle  
-**Tamamlanan:** `1A`, `1B`, `1C`  
-**Aktif:** **`1D — Non-goals`**
-
-Aşama 1 tamamlandıktan sonra `2A — Bilgi birimleri` ile öğrenme motoru tasarımına geçilecektir.
+**Tamamlanan aşama:** AŞAMA 1 — Ürün Çerçevesini Kilitle ✅  
+**Aktif aşama:** AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla  
+**Aktif adım:** **`2A — Bilgi birimleri`**
