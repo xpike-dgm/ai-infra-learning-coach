@@ -232,3 +232,25 @@ Bağlayıcı kurallar:
 - Önceki sohbet hiç bilinmese bile yalnız GitHub hafızasını okuyarak projenin doğru noktadan devam edebilmesi bir adım kapanış kriteridir.
 
 Ayrıntılı protokol: `docs/PROJECT_MEMORY_PROTOCOL.md`.
+
+## D-025 — Mastery çok kaynaklı ve Objective'e uygun evidence ile kanıtlanacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+2C ile mastery evidence modeli aşağıdaki şekilde kilitlendi:
+
+- Evidence atomik olarak Learning Objective'e, oradan canonical Skill'e bağlanır.
+- Evidence rolleri `direct/primary`, `corroborating` ve `contextual` olarak ayrılır.
+- Concept recognition, concept recall, code reading/output prediction, coding/production, debugging/diagnosis, explanation/justification, transfer/novel application, retention/delayed retrieval ve integrated project ayrı evidence türleridir.
+- Hiçbir evidence türü bütün Skill'ler için evrensel olarak en güçlü değildir; Learning Objective kendi uygun evidence profile'ına sahip olmalıdır.
+- Coding mastery için kullanıcı gerçek kod artifact'ı üretmelidir; doğru kodu seçeneklerden seçmek coding evidence değildir.
+- Transfer evidence yalnız kullanıcı tarafından daha önce öğrenilmiş prerequisite'leri kullanıyorsa target Skill için geçerlidir.
+- Retention, immediate performance'dan ayrı değerlendirilir; gecikmeli veya ileri Topic içindeki doğal yeniden kullanım evidence olabilir.
+- Project completion içindeki tüm Skill'leri otomatik mastered yapmaz; evidence objective bazında ayrıştırılır.
+- Süre, lesson/task completion, streak ve self-confidence tek başına mastery evidence değildir.
+- Aynı soru veya çok yakın variant'ların tekrarı bağımsız evidence gibi mastery'yi şişiremez.
+- Hatalı/ambiguous item, bilinmeyen prerequisite, evaluator/system problemi veya answer leakage nedeniyle contamination oluşursa evidence `invalid` kabul edilebilir ve kullanıcı cezalandırılmaz.
+- Yardım/AI bağlamı evidence ile birlikte kaydedilir; exact assistance etkisi 2D'de belirlenir.
+- Evidence weight, threshold, minimum çeşitlilik ve confidence formülü 2E'ye bırakılmıştır.
+
+Ayrıntılı spesifikasyon: `docs/MASTERY_SIGNALS_SPEC.md`.
