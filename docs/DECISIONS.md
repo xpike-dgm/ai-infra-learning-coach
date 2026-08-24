@@ -3,8 +3,8 @@
 Bu dosya kalıcı ürün kararlarını kaydeder. Ayrıntılı teknik davranış ilgili canonical spec dosyalarındadır.
 
 ## D-001 — 3 yıllık gün sayacı gösterilmeyecek
-**Durum:** Kabul edildi  
-`Gün X / 1095` ana ilerleme metriği değildir.
+**Durum:** Kabul edildi / süre ufku D-041 ile genişletildi  
+`Gün X / 1095` ana ilerleme metriği değildir. D-041 sonrası horizon 4+ yıla açılmıştır; no-countdown ilkesi aynen korunur.
 
 ## D-002 — İlerleme mastery tabanlı olacak
 **Durum:** Kabul edildi  
@@ -44,8 +44,8 @@ Ana ekran `Bugün ne yapmalıyım?` sorusunu cevaplar.
 AI yardımı sonrası gerektiğinde independent comprehension/transfer/production doğrulaması gerekir.
 
 ## D-012 — 3 yıllık curriculum V1 ön koşulu değil
-**Durum:** Kabul edildi  
-İlk 8–12 haftalık production-quality paket + öğrenme motoru önce gelir.
+**Durum:** İlke korunuyor / kapsam D-041 ile genişletildi  
+İlk 8–12 haftalık production-quality paket + öğrenme motoru önce gelir. D-041 sonrası tam **4+ yıllık professional curriculum** da V1 ön koşulu değildir.
 
 ## D-013 — Süreler adaptif, konu bağımlılıkları daha kalıcı
 **Durum:** Kabul edildi
@@ -251,3 +251,20 @@ Ayrıntı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
 - 4B–4E için minimum assessment item/result contract ve canonical `assessment.*` reason-code namespace'i tanımlanmıştır.
 
 Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
+
+## D-041 — Uzun vadeli ürün hedefi 4+ yıllık professional-readiness curriculum'a genişletildi
+**Durum:** Kabul edildi — 2026-08-24
+
+- Nihai öğrenme rotası artık yaklaşık üç yıllık horizon ile sınırlı değildir; gereken derinlik için **4+ yıl veya daha uzun** sürebilir.
+- `4+ yıl` takvimsel mezuniyet, garanti süre veya progress metriği değildir; mastery/evidence yine canonical gate'tir.
+- Final ürün hedefi yalnız course completion değil, **AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability** oluşturmaktır.
+- Professional readiness; C/C++/Linux, OS/memory, concurrency, networking, distributed systems, performance, GPU/CUDA/Triton, LLM inference, serving ve AI Infrastructure alanlarında required capability'lerin kanıtlanmasını ister.
+- Öğretim derinliği `concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context` yönünde genişletilir.
+- Final readiness yalnız küçük quizlerle verilemez; integrated systems, debugging, performance ve professional capstone evidence gerekir.
+- V1 release bu genişleme nedeniyle 4+ yıl beklemez; ilk 8–12 haftalık production curriculum + gerçek learning engine ile daha erken release edilir.
+- Aşama 5 curriculum graph yeni uzun horizon'ı destekleyecek extensible yapı kurar; Aşama 14 ilk production package'tır; Aşama 19 full professional curriculum expansion + open source + career readiness katmanıdır.
+- Product teknik yeterliliği geliştirebilir fakat job offer, maaş, seniority veya üniversite/HR filtrelerini garanti edemez; gerçek ekip/production deneyimi ayrıca oluşur.
+- Güçlü GitHub projects, reproducible benchmarks, capstones, open-source readiness/contributions ve technical communication uzun vadeli evidence/portfolio hedeflerine dahil edilir.
+- D-001'in no-countdown ilkesi ve D-012'nin V1/full-curriculum ayrımı korunur; yalnız eski yaklaşık üç yıllık süre ufku D-041 ile genişletilmiştir.
+
+Ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`, `docs/PRODUCT_REQUIREMENTS.md`, `docs/PROJECT_MASTER_CONTEXT.md`, `docs/V1_SCOPE.md`.
