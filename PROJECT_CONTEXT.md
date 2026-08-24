@@ -6,49 +6,64 @@ Bu dosya, sohbet bağlamı kaybolsa bile projenin neden var olduğunu ve hangi t
 
 Seçilen uzmanlaşma:
 
-**Low-Level Systems → Distributed Systems → GPU/CUDA → AI Infrastructure / ML Systems / GPU Systems**
+**Low-Level Systems → Distributed Systems → GPU/CUDA → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
 
-Ana rota:
+Güncel ana rota:
 
-**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
+**Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A foundations → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM/SGLang/TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + professional capstones**
 
-Machine Learning tamamen atlanmaz; transformer/inference sistemlerini anlayacak kadar gerekli ML/tensor/model temelleri destek katmanıdır. Ana uzmanlık model training değil, inference ve altyapı tarafıdır.
+Python D-042 ile resmi foundation dilidir; C/C++ yerine geçmez. ML tamamen atlanmaz; inference sistemlerini anlayacak kadar gerekli tensor/model/transformer temelleri destek katmanıdır.
 
-## 2. D-041 — Yeni uzun vadeli hedef
-
-2026-08-24'te curriculum kapsamı büyütüldü.
+## 2. D-041 — Uzun vadeli hedef
 
 - Yaklaşık üç yıllık horizon kaldırıldı.
 - Rota gerektiğinde **4+ yıl veya daha uzun** sürebilir.
 - 4+ yıl countdown değildir.
-- Nihai hedef yalnız course completion değil, **professional-readiness seviyesinde verified engineering capability**.
+- Nihai hedef yalnız course completion değil, professional-readiness seviyesinde verified engineering capability.
 - Final readiness; required mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ister.
 - V1 full 4+ year curriculum'u beklemez; learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilir.
 
-Canonical ayrıntı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
-## 3. Ana ürün ilkesi
+## 3. D-044 — Granular Capability Map
+
+Ana rota yalnız geniş domain isimleri halinde tutulmayacaktır.
+
+Canonical hierarchy:
+
+`Domain → Module → Topic → Skill → Learning Objective`
+
+Gerçek mastery/prerequisite/weakness/remediation mümkün olduğunca Skill/Objective seviyesinde çalışır. Domain/Module/Topic daha geniş derived summary olabilir.
+
+Örnek hedef:
+
+`Python → Control Flow → Loops → while termination`
+
+Böylece sistem bütün Python'ı tekrar ettirmek yerine exact weakness'e hedefli reteach/practice/retest üretebilir.
+
+Yeni **AŞAMA 6 — Granular Capability Map**, Technical English'ten AI Infrastructure ve professional capstone'a kadar bütün rotayı bu granularity'de haritalayacaktır.
+
+Canonical: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+
+## 4. Ana ürün ilkesi
 
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
-Bu nedenle:
-- lesson/task completion mastery değildir,
-- streak mastery değildir,
-- self-confidence mastery değildir,
-- AI-assisted output independent mastery değildir,
-- takvim süresi professional readiness değildir.
+Bu nedenle lesson/task completion, streak, self-confidence, AI-assisted output veya takvim süresi tek başına mastery/readiness değildir.
 
 Canonical mastery modeli GRE-v0; retention modeli RVR-v0'dır.
 
-## 4. İngilizce
+## 5. İngilizce
 
-Başlangıç English seviyesi A0 kabul edilir. English teknik eğitimin ön koşulu değildir; ilk günden paralel ilerler.
+Başlangıç English seviyesi A0 kabul edilebilir. English teknik eğitimin ön koşulu değildir; ilk günden paralel ilerler.
 
-Technical task C/Linux/C++ bilgisini ölçüyorsa bilinmeyen English grammar gizli prerequisite olamaz. Uzun vadede docs, GitHub, design docs, CUDA documentation, papers, interview ve global team communication hedeflenir.
+Technical task bilinmeyen English grammar yüzünden haksız başarısızlık üretmemelidir. Uzun vadede docs, GitHub, design docs, CUDA docs, papers, interview ve global team communication hedeflenir.
 
-## 5. Uygulamanın günlük amacı
+D-044 ile Technical English de granular capability map'e ayrılır. English davranış/ölçüm tasarımı **AŞAMA 7**'dedir.
 
-Kullanıcı uygulamayı açtığında ana soru:
+## 6. Uygulamanın günlük amacı
+
+Ana soru:
 
 > **Bugün ne yapmalıyım?**
 
@@ -56,7 +71,7 @@ Sistem current mastery, retention, prerequisite, remediation, assessment ve dail
 
 Curriculum sabit takvim değil knowledge graph'tır.
 
-## 6. Mastery / Planner omurgası
+## 7. Mastery / Planner omurgası
 
 - GRE-v0 — valid + prerequisite-valid + H0 + direct + verified + independent evidence.
 - RVR-v0 — time mastery'yi düşürmez; review_due forgetting değildir.
@@ -70,20 +85,18 @@ Curriculum sabit takvim değil knowledge graph'tır.
 
 3H simulation: **16/16 scenarios PASS, 20/20 invariants PASS**.
 
-## 7. Assessment
+## 8. Assessment
 
 4A DMA-v0 tamamlandı:
 - daily assessment sabit quiz kotası değildir,
 - Objective-matched evidence kullanır,
 - H0/assistance/provenance/prerequisite guards vardır,
-- invalid/ambiguous item kullanıcıya credit/penalty yazamaz,
-- coding/debugging/transfer standardı kısa süre uğruna MCQ'ya düşmez.
+- invalid/ambiguous item credit/penalty yazamaz,
+- coding/debugging/transfer standardı kısa süre uğruna düşürülemez.
 
 Aktif adım: **4B — Haftalık sınav**.
 
-## 8. Professional-readiness depth
-
-Yeni kapsam yalnız daha çok konu eklemek değildir. Kritik alanlarda progression:
+## 9. Professional-readiness depth
 
 ```text
 concept
@@ -97,39 +110,22 @@ concept
 → performance / production context
 ```
 
-Uzun curriculum ayrıca Git, testing, build systems, profiling, design docs, observability, incident/postmortem thinking, open-source workflow ve technical communication gibi gerçek engineering davranışlarını da kapsamalıdır.
+Uzun curriculum ayrıca Git, testing, build systems, profiling, design docs, observability, incident/postmortem thinking, open-source workflow ve technical communication kapsar.
 
-## 9. Uzun curriculum domain envelope
+## 10. Curriculum planning / production ayrımı
 
-Uzun vadede en az şu katmanlar hedeflenir:
+D-044 sonrası:
 
-- Technical English
-- Computer/Programming Foundations
-- C
-- Linux/tooling
-- DS&A foundations
-- Modern C++
-- Computer Architecture
-- OS/Memory
-- Concurrency/Parallel Programming
-- Networking
-- Distributed Systems
-- infra-relevant Storage/Database fundamentals
-- Containers/Cloud/Observability foundations
-- Performance Engineering
-- GPU Architecture
-- CUDA
-- Triton
-- ML/Transformer fundamentals for inference
-- LLM Inference Internals
-- serving engines / KV cache / batching / scheduling / quantization
-- Multi-GPU / NCCL / RDMA concepts
-- AI/GPU Infrastructure
-- Open Source / Engineering Practice
-- Career / Professional Readiness
-- Professional Capstones
+```text
+AŞAMA 5 = graph/schema/domain backbone
+AŞAMA 6 = detailed granular capability map
+AŞAMA 15 = first 8–12 week production content
+AŞAMA 20 = full professional curriculum + OSS + career + capstones
+```
 
-## 10. V1 ve full curriculum ayrımı
+AŞAMA 6 bütün route'u ölçülebilir alt Skill/Objective'lere ayırır; AŞAMA 15 ve 20 bu haritaya gerçek lesson/task/assessment/project content bağlar.
+
+## 11. V1 ve full curriculum ayrımı
 
 **V1:** çalışan Android product + adaptive learning engine + first 8–12 week production package.
 
@@ -137,15 +133,33 @@ Uzun vadede en az şu katmanlar hedeflenir:
 
 V1 release ≠ professional curriculum completion.
 
-## 11. İlk iş / bridge rolleri
+## 12. İlk iş / bridge rolleri
 
 Nihai hedef AI Infrastructure olsa da ilk iş doğrudan CUDA Engineer olmak zorunda değildir. Uygun bridge alanlar C/C++ development, Systems Software, Linux/Infrastructure, Distributed/Backend Systems, Performance, uygun SRE/Cloud ve ML/AI Infrastructure intern/junior rolleridir.
 
-Product teknik yetkinliği geliştirebilir fakat job offer, salary, seniority veya degree/HR filtrelerini garanti edemez.
+Product job offer, salary, seniority veya degree/HR filtrelerini garanti edemez.
 
-## 12. Güncel yürütme konumu
+## 13. Güncel yürütme konumu
 
 Tamamlanan: Aşama 1, 2, 3 ve 4A.  
 Aktif: **4B — Haftalık sınav**.
 
-D-041 scope sync tamamlandı; 4B henüz yürütülmedi. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+Current stage map:
+- 5 graph/schema backbone
+- **6 granular capability map**
+- 7 English
+- 8 UX
+- 9 architecture/data
+- 10 skeleton
+- 11 daily MVP
+- 12 mastery/planner implementation
+- 13 assessment implementation
+- 14 AI Tutor
+- 15 first content
+- 16 analytics
+- 17 polish
+- 18 pilot/QA
+- 19 release APK
+- 20 full professional curriculum/career/capstones
+
+D-043 standalone specialization stage kararı geri çekildi. D-044 plan sync tamamlandı; 4B henüz yürütülmedi. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
