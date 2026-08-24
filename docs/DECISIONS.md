@@ -135,7 +135,7 @@ Mastery threshold, evidence weight, spaced repetition interval ve planner oranla
 
 Scope creep'i önlemek için ürün seviyesi non-goals ile yalnız V1'den ertelenen özellikler birbirinden ayrıldı.
 
-Ana sınırlar: zaman/streak/task completion mastery yerine geçmeyecek; ürün sabit takvimli kurs, tamamen LLM kontrollü curriculum, genel amaçlı eğitim platformu, sosyal/ticari SaaS veya tam mobil IDE olmayacak; missed-day task debt, sahte bilimsel kesinlik ve kariyer garantisi kullanılmayacak.
+Ana sınırlar: zaman/streak/task completion mastery yerine geçmeyecek; ürün sabit takvimli kurs, tamamen LLM controlled curriculum, genel amaçlı eğitim platformu, sosyal/ticari SaaS veya tam mobil IDE olmayacak; missed-day task debt, sahte bilimsel kesinlik ve kariyer garantisi kullanılmayacak.
 
 Ayrıntı: `docs/NON_GOALS.md`.
 
@@ -254,3 +254,41 @@ Ayrıntılı protokol: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - Evidence weight, threshold, minimum çeşitlilik ve confidence formülü 2E'ye bırakılmıştır.
 
 Ayrıntılı spesifikasyon: `docs/MASTERY_SIGNALS_SPEC.md`.
+
+## D-026 — AI/ipucu yardımı öğrenmeyi destekler fakat bağımsız mastery kanıtıyla eşit sayılmaz
+
+**Durum:** Kabul edildi — 2026-08-24
+
+2D ile assistance davranışı aşağıdaki şekilde kilitlendi:
+
+- Assistance içeriği `H0 none`, `H1 orientation`, `H2 targeted conceptual hint`, `H3 partial solution/scaffold`, `H4 full solution/answer exposure` olarak sınıflandırılır.
+- Yardımın timing'i (`before_attempt`, `during_attempt`, `after_submit`, `after_failure`) ayrı tutulur; submit sonrası feedback önceki tamamlanmış attempt'i geriye dönük kirletmez.
+- Artifact origin `user_authored`, `user_authored_with_assistance`, `mixed_authorship`, `generated_or_copied`, `unknown_provenance` olarak ayrılabilir.
+- AI'nın tam kodu/cevabı üretmesi ve bunun çalışması kullanıcının coding/production mastery'si için direct positive evidence değildir.
+- Full/partial solution exposure sonrası kritik target Objective için fresh/unseen independent recheck gerekir; exact aynı soruyu hemen tekrar doğru yapmak güçlü mastery değildir.
+- Explanation/comprehension evidence, coding/production objective'inin yerine geçmez; recheck hedef Objective davranışıyla eşleşmelidir.
+- Compiler, test runner, documentation ve autocomplete her durumda otomatik penalty değildir; tool'un target Objective'i kullanıcı yerine yapıp yapmadığına göre objective-specific policy uygulanır.
+- Hint istemek veya `anlamadım` demek tek başına negative mastery değildir.
+- External AI kullanımı her zaman güvenilir tespit edilemeyeceği için ürün surveillance/cheat-detection yaklaşımı kurmaz; fresh transfer/recheck ile false-positive azaltılır.
+- AI evaluator provenance ile kullanıcıya verilen AI assistance birbirinden ayrı tutulur.
+- H0–H4'ün sayısal weight/penalty karşılığı 2E'ye bırakılmıştır.
+
+Ayrıntılı spesifikasyon: `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`.
+
+## D-027 — MASTER_PLAN canonical yürütme durumuyla senkron tutulacak
+
+**Durum:** Kabul edildi — 2026-08-24
+
+`docs/EXECUTION_INDEX.md` sabit adım kimliklerinin canonical indeksidir; `docs/MASTER_PLAN.md` ise bu adımların ayrıntılı checklist planıdır. İki dosyanın ilerleme durumu birbirinden kopuk bırakılamaz.
+
+Her numaralı adım POST-STEP kapanışında:
+
+- `EXECUTION_INDEX.md` durumu,
+- `STEP_STATUS.md`,
+- `HANDOFF_STATE.md`,
+- `PROGRESS_LOG.md`,
+- ve `MASTER_PLAN.md` içindeki karşılık gelen checklist/completion note
+
+kontrol edilip güncellenir.
+
+MASTER_PLAN'da eski numaralandırma veya stale current-state bilgisi canonical indeksle çelişirse aynı kapanış döngüsünde düzeltilir.
