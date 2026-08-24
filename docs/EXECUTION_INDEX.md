@@ -33,14 +33,14 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [x] **3A — Günlük kapasite** — `docs/ADAPTIVE_PLANNER_SPEC.md` — D-033
 - [x] **3B — Görev kategorileri** — `docs/TASK_TAXONOMY_SPEC.md` — D-034
 - [x] **3C — Öncelik puanı** — `docs/PRIORITY_POLICY_SPEC.md` — PBR-v0 / D-035
-- [x] **3D — Prerequisite davranışı** — `docs/PREREQUISITE_POLICY_SPEC.md`
-  - **Tamamlanma notu — 2026-08-24:** `PRG-v0`; Skill→Skill hard/soft edges, ready/ready_due/uncertain/not_ready readiness, review_due no-lock, critical verification gating, branch-local blocking, contamination guard, deterministic eligibility. D-036.
-- [ ] **3E — Hızlı öğrenme** **AKTİF**
-- [ ] **3F — Kaçırılan günler**
+- [x] **3D — Prerequisite davranışı** — `docs/PREREQUISITE_POLICY_SPEC.md` — PRG-v0 / D-036
+- [x] **3E — Hızlı öğrenme** — `docs/DIAGNOSTIC_WAIVER_SPEC.md`
+  - **Tamamlanma notu — 2026-08-24:** `VDW-v0`; diagnostic GRE-v0'dan daha kolay değildir, Objective-level validated coverage waiver, partial skip, H0/provenance/evaluator/prerequisite false-skip guard, GRE→PRG→Topic→replan entegrasyonu. D-037.
+- [ ] **3F — Kaçırılan günler** **AKTİF**
 - [ ] **3G — Açıklanabilir planner**
 - [ ] **3H — Planner simülasyonu**
 
-**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, diagnostic/decision policy, pseudocode, simulation suite.
+**Çıktı:** `docs/ADAPTIVE_PLANNER_SPEC.md`, `docs/TASK_TAXONOMY_SPEC.md`, `docs/PRIORITY_POLICY_SPEC.md`, `docs/PREREQUISITE_POLICY_SPEC.md`, `docs/DIAGNOSTIC_WAIVER_SPEC.md`, missed-day/decision policy, pseudocode, simulation suite.
 
 ---
 
@@ -201,7 +201,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3D`  
-**Aktif:** **`3E — Hızlı öğrenme`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3E`  
+**Aktif:** **`3F — Kaçırılan günler`**
 
-3E başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+3F başlamadan yeni PRE-STEP GitHub refresh zorunludur.
