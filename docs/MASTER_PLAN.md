@@ -1,7 +1,7 @@
 # AI Infra Learning Coach — Master Geliştirme Planı
 
 **Durum:** AKTİF / CANONICAL DETAYLI PLAN  
-**Son senkron:** 2026-08-24
+**Son senkron:** 2026-08-25
 
 Sabit adım kimliklerinin canonical kaynağı `docs/EXECUTION_INDEX.md` dosyasıdır. Bu dosya ayrıntılı checklist ve completion notlarını onunla senkron tutar.
 
@@ -19,6 +19,12 @@ Uzun vadeli curriculum artık yaklaşık üç yıllık bir horizon ile sınırl�
 Bağlayıcı: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
 V1 ayrımı korunur: ilk production-quality 8–12 haftalık curriculum + gerçek learning engine ile release edilir; full professional curriculum V1 ön koşulu değildir.
+
+## 2026-08-25 rota güncellemeleri — D-042 / D-043
+
+- **Python** common foundation rotasına resmi olarak eklendi; C/C++ yerine değil, automation/testing/benchmark/ML-infra tooling tarafında tamamlayıcı ana dil olarak kullanılacak.
+- Proje yürütme planı **1–20** ana aşamaya genişletildi; mevcut 1–19 kodları korunarak sona **AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi** eklendi.
+- Uzun rota tek düz çizgi olarak bitmeyecek: ortak systems/distributed/GPU/inference çekirdeğinden sonra specialization tracks açılacak.
 
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → checklist/completion note → sonraki adım`
@@ -160,13 +166,15 @@ Kesinleştirilecek:
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph
 
-D-041 sonrası Aşama 5'in ek görevi: **4+ yıllık professional curriculum'u taşıyabilecek extensible graph/metadata tasarlamak.** İlk etapta tüm node'lar yazılmayacak; yapı buna hazır olacak.
+D-041 sonrası Aşama 5'in ek görevi: **4+ yıllık professional curriculum'u taşıyabilecek extensible graph/metadata tasarlamak.** İlk etapta tüm node'lar yazılmayacak; yapı buna hazır olacak. D-042 Python'ı common foundation içine, D-043 ise future specialization track metadata'sını graph tasarımına dahil eder.
 
 ### [ ] 5A — Ana domain haritası
 - full professional domain envelope,
 - foundation → systems → GPU → inference → AI Infrastructure,
+- Python + C common programming foundations,
 - infra-relevant DS&A, architecture, storage, cloud/observability/performance,
-- professional engineering/tooling tracks.
+- professional engineering/tooling tracks,
+- future specialization branch points.
 
 ### [ ] 5B — Topic metadata
 - prerequisite,
@@ -174,19 +182,21 @@ D-041 sonrası Aşama 5'in ek görevi: **4+ yıllık professional curriculum'u t
 - evidence contracts,
 - retention profile,
 - professional capability tags,
+- specialization-track applicability,
 - project/capstone attribution,
 - curriculum versioning.
 
 ### [ ] 5C — İlk 8–12 haftalık curriculum graph
 - V1 production package,
 - full route'un başlangıç alt grafiği,
-- ileride genişlemeyi engellemeyen canonical IDs.
+- ileride genişlemeyi/branching'i engellemeyen canonical IDs.
 
 ### [ ] 5D — Curriculum QA
 - prerequisite integrity,
 - missing foundations,
 - hidden knowledge,
-- professional-target coverage mapping.
+- professional-target coverage mapping,
+- branch reachability / dead-end kontrolü.
 
 ---
 
@@ -219,7 +229,8 @@ Bağlayıcı ön kural: `docs/ENGLISH_FOUNDATION_RULES.md`.
 ### [ ] 8C — Domain veri modeli
 - years-long curriculum/user history scalability,
 - curriculum versions/migrations,
-- capstone/project evidence references.
+- capstone/project evidence references,
+- common-core + specialization-track state.
 ### [ ] 8D — Servis sınırları
 ### [ ] 8E — AI entegrasyon mimarisi
 ### [ ] 8F — Test stratejisi
@@ -285,6 +296,10 @@ D-041 sonrası Aşama 14 **tam 4+ yıllık curriculum değildir**; V1 için ilk 
 ### [ ] 14E — English A0→A1/A2 başlangıç paketi
 ### [ ] 14F — Assessment content
 ### [ ] 14G — Content QA
+### [ ] 14H — Python Foundations integration
+- temel syntax ezberiyle sınırlı değil,
+- automation/testing/benchmark scripting ve ileride ML/infra tooling'e köprü,
+- V1 haftalarına sığan kapsam 5C sırasında kesinleştirilir; full Python depth daha sonra genişler.
 
 Her paket mümkün olduğunca `concept → guided → independent → debugging → explanation → transfer → retention → project` derinlik modelini desteklemelidir.
 
@@ -295,7 +310,8 @@ Her paket mümkün olduğunca `concept → guided → independent → debugging 
 ### [ ] 15B — Öğrenme geçmişi
 ### [ ] 15C — Progress kuralları
 - gün/year countdown yerine verified capability,
-- professional-readiness dimensions ileride desteklenebilir.
+- professional-readiness dimensions ileride desteklenebilir,
+- specialization track ilerlemesi common-core ilerlemesinden ayrı gösterilebilir.
 ### [ ] 15D — Ayarlar
 ### [ ] 15E — Bildirimler
 
@@ -334,10 +350,11 @@ Pilot yalnız app UX'ini değil, ilk curriculum'un gerçek öğrenme/evidence da
 
 # AŞAMA 19 — Uzun Vadeli Professional Curriculum ve Kariyer Katmanı
 
-D-041 sonrası Aşama 19'un amacı full professional route'u modül modül üretmek, QA etmek ve professional readiness evidence'ına bağlamaktır.
+D-041 sonrası Aşama 19'un amacı full professional route'un **ortak profesyonel omurgasını** modül modül üretmek, QA etmek ve professional readiness evidence'ına bağlamaktır. D-043 sonrası her ileri domain'de aynı derinlik zorunlu değildir; specialization depth AŞAMA 20'de dallanır.
 
-### [ ] 19A — Modern C++ + Professional Tooling paketi
-- modern language depth,
+### [ ] 19A — Modern C++ + Python + Professional Tooling paketi
+- modern C++ language depth,
+- Python: typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML automation,
 - ownership/RAII/templates where relevant,
 - build/test/debug/profiling,
 - production-quality code habits.
@@ -396,11 +413,79 @@ D-041 sonrası Aşama 19'un amacı full professional route'u modül modül üret
 ### [ ] 19I — Sürekli Curriculum QA + Professional Capstones
 - technology freshness,
 - prerequisite/evidence QA,
-- integrated capstone families,
+- integrated common-core capstone families,
 - design + implementation + test + debugging + profiling + documentation + postmortem evidence,
 - final professional-readiness gate'in gelecekte ayrı deterministic spec'e bağlanması.
 
 > **Final curriculum completion takvimle değil professional-readiness evidence ile tanımlanacaktır.**
+
+---
+
+# AŞAMA 20 — Uzmanlık Dallarına Ayrılma ve Track Sistemi
+
+D-043 sonrası amaç, ortak systems/distributed/GPU/inference temelini korurken kullanıcıyı tek düz rotada sonsuza kadar ilerletmek yerine profesyonel uzmanlık derinliğine dallandırmaktır.
+
+### [ ] 20A — Ortak çekirdek çıkış kapısı
+- specialization başlamadan önce hangi common Skills kesin required?
+- systems, Linux, architecture, concurrency, networking, distributed fundamentals, performance, GPU/inference literacy için minimum verified gates,
+- unresolved critical verification varsa branch depth'e geçiş yok.
+
+### [ ] 20B — Uzmanlık dal haritası
+İlk candidate family'ler:
+1. **GPU Kernel & Performance Engineering**
+2. **LLM Inference / Serving Systems**
+3. **Distributed AI Infrastructure / Cluster & Scheduling**
+4. **High-Speed Networking & Multi-GPU Systems**
+5. **ML Compilers / Runtime Systems**
+6. **AI Platform / Reliability / Capacity Engineering**
+
+Bu liste final değildir; Research AI + gerçek iş rolü incelemesiyle değişebilir. Track adları framework-hype yerine kalıcı capability kümelerine dayanmalıdır.
+
+### [ ] 20C — Track seçim politikası
+- kullanıcı ilgisi/tercihi,
+- verified strengths/weaknesses,
+- prerequisite readiness,
+- evidence quality,
+- erişilebilir bridge roles / gerçek kariyer kısıtları,
+- gerektiğinde güncel job-market research.
+
+LLM, maaş veya popülerlik tek başına otomatik track seçemez. Final seçim kullanıcı tarafından onaylanır.
+
+### [ ] 20D — Dal-specific curriculum/evidence contracts
+Her track için:
+- Skill/Objective graph,
+- required/critical capability set,
+- production-style projects,
+- debugging/transfer requirements,
+- profiling/benchmark requirements,
+- open-source contribution targets,
+- track-specific assessment/evidence.
+
+### [ ] 20E — Secondary track / track değiştirme
+- common core kaybolmaz,
+- önceki valid mastery/evidence korunur,
+- yeni track'e geçince yalnız eksik prerequisite ve required evidence açılır,
+- primary + secondary specialization mümkün olabilir,
+- track switching ceza/debt değildir.
+
+### [ ] 20F — Uzmanlık capstone ve readiness gate
+Selected track professional readiness en az:
+- bağımsız design,
+- implementation,
+- testing,
+- debugging,
+- profiling/benchmark,
+- trade-off explanation,
+- documentation/design doc,
+- postmortem/decision explanation
+
+evidence'ı ister. Tek sınav veya tutorial project yeterli değildir.
+
+### [ ] 20G — Track freshness / market QA
+- framework/tool değişimleri düzenli izlenir,
+- curriculum rol isimlerine kör bağlanmaz,
+- değişmeyen systems capability'leri canonical tutulur,
+- önemli market/technology shift'lerinde track map versionlanır.
 
 ---
 
@@ -409,6 +494,7 @@ D-041 sonrası Aşama 19'un amacı full professional route'u modül modül üret
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
 **Aktif:** **`4B — Haftalık sınav`**
 
-**Yeni bağlayıcı long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.
+**Bağlayıcı long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
+**Yeni route kararları:** D-042 Python foundation; D-043 AŞAMA 20 specialization tracks.
 
 Bir sonraki yürütme: **4B başlamadan yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.**
