@@ -36,6 +36,22 @@ Ana teknik yön:
 - Proje Aşama 1–19 ve `1A / 1B / ...` sabit kodlarıyla yürütülür.
 - Non-goals kapsam değişikliği sessizce yapılamaz; yeni decision kaydı gerekir.
 
+## Öğrenme davranışında ayrıca kilitlenen kurallar
+
+Ayrıntılı kaynak: `docs/LEARNING_BEHAVIOR_RULES.md` / D-022.
+
+- Uygulama yalnız test etmez; uygulama içinde öğretir, uygulatır, ölçer ve eksikse yeniden öğretir.
+- Gerekli temel Learning Objective'ler coverage açısından atlanmaz; ileri detaylar doğru sonraki Topic/Skill'e bırakılır.
+- Yanlış cevap ceza değil evidence/remediation sinyalidir.
+- Yanlış yapılan sorunun birebir aynısı hemen tekrar edilerek ezber ödüllendirilmez; aynı Skill farklı varyasyonla yeniden ölçülür.
+- Henüz öğretilmemiş prerequisite isteyen soru kullanıcıyı başarısız sayamaz.
+- Zorluk bilinmeyen kavram gizleyerek değil, öğrenilmiş kavramları daha karmaşık kullanarak artırılır.
+- Kritik prerequisite süre doldu diye terk edilmez; yalnız ona bağımlı dal bekler, bağımsız dallar devam eder.
+- Remediation mevcut günlük kapasitenin içine yerleştirilir; başarısızlık günü kontrolsüz uzatmaz.
+- Mastered Skill'ler haftalar/aylar sonra retention ile yeniden test edilebilir; tek hata tüm mastery'yi sıfırlamaz.
+- Bilgi havuzu doğrulanmış çekirdek; soru havuzu doğrulanmış çekirdek + question families/variants + kontrollü AI üretimi olarak tasarlanır.
+- AI provider/model henüz kalıcı karar değildir; çekirdek mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
+
 ---
 
 # 3. Tamamlanan Aşamalar / Adımlar
@@ -116,6 +132,8 @@ Kesinleştirilmesi gerekenler:
 - remediation sonrası geri dönüş yolları,
 - planner'ın state'leri nasıl yorumlayacağı.
 
+2B ve sonraki adımlarda `docs/LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı davranışlarla çelişen state/planner/assessment kararı alınmamalıdır.
+
 ---
 
 # 5. Hâlâ Açık Ana Konular
@@ -150,9 +168,10 @@ Kesinleştirilmesi gerekenler:
 10. `docs/V1_SUCCESS_CRITERIA.md`
 11. `docs/NON_GOALS.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
-13. `docs/MASTER_PLAN.md`
-14. `docs/AI_AGENT_WORKFLOW.md`
-15. `docs/PROGRESS_LOG.md`
+13. **`docs/LEARNING_BEHAVIOR_RULES.md`**
+14. `docs/MASTER_PLAN.md`
+15. `docs/AI_AGENT_WORKFLOW.md`
+16. `docs/PROGRESS_LOG.md`
 
 ---
 
@@ -164,10 +183,10 @@ Repo hafızasını okuduktan sonra doğrudan:
 
 adımından devam et.
 
-Aşama 1 ve 2A kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
+Aşama 1, 2A ve `LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı öğrenme davranışlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
 # 8. Sohbet Aktarım Mesajı
 
-> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
+> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Özellikle LEARNING_BEHAVIOR_RULES.md içindeki öğretme, soru seçimi, yanlış cevap, retention ve replanning kurallarını bağlayıcı kabul et. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
