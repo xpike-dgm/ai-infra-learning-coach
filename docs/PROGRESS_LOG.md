@@ -105,9 +105,6 @@ kaydedilir.
 - `docs/DECISIONS.md`
 - `docs/HANDOFF_STATE.md`
 
-**Açık kalan noktalar**
-- V1 başarı kriterleri henüz ölçülebilir testlere çevrilmemişti.
-
 **Sonraki kesin adım**
 - `1C — Başarı kriterleri`.
 
@@ -119,18 +116,17 @@ kaydedilir.
 - V1 için P0/P1/P2 öncelik seviyeleri tanımlandı.
 - PASS / PASS WITH NOTES / FAIL / BLOCKED test sonuç modeli tanımlandı.
 - Yeni kullanıcı, tek prerequisite'te zayıf kullanıcı, retention kaybı, 7 günlük ara, AI-assisted coding, hızlı öğrenen ve English/technical asimetrisi için standart test profilleri oluşturuldu.
-- Daily planner, prerequisite, mastery, assessment, retention, remediation, replan, English, AI Tutor sınırları, curriculum graph, local persistence, backup/restore, migration, UI, release ve pilot için toplam **49 acceptance kriteri** yazıldı.
+- Daily planner, prerequisite, mastery, assessment, retention, remediation, replan, English, AI Tutor sınırları, curriculum graph, local persistence, backup/restore, migration, UI, release ve pilot için toplam 49 acceptance kriteri yazıldı.
 - Hard prerequisite bypass, progress data loss, task completion/tek kolay quiz ile yanlış mastery ve AI'nın çekirdek kuralları atlaması P0 release blocker olarak tanımlandı.
 - Haftalık ve aylık assessment'ın yalnız puan göstermesi değil, sonraki planı gerçekten değiştirmesi zorunlu acceptance davranışı yapıldı.
 - 7+ gün ara sonrası eski görevlerin kullanıcıya borç olarak yığılması yasaklandı; replan zorunlu hale getirildi.
 - AI provider kapalıyken deterministic planner/mastery/prerequisite ve local progress'in çalışmaya devam etmesi P0 kriteri yapıldı.
 - Fresh install, update install, backup/restore, migration ve bağımsız QA final release kapısına eklendi.
-- En az 14 günlük gerçek pilotta hard-rule ihlali sıfır hedefi ve planların en az %90'ında manuel yapısal düzeltme gerekmemesi başlangıç kalite hedefi olarak tanımlandı.
 
 **Alınan kararlar**
 - Tüm P0 acceptance kriterleri PASS olmadan V1 release edilmeyecek.
-- Kodlama AI'ın kendi “testler geçti” raporu tek başına kritik kabul için yeterli olmayacak; bağımsız Test/QA AI doğrulaması aranacak.
-- Mastery threshold, evidence weight, AI-help penalty, spaced repetition interval, planner oranları ve English payı gibi sayısal parametreler 1C'de rastgele sabitlenmeyecek. İlgili Aşama 2/3/4/6/17 çalışmalarında araştırma, simülasyon ve pilot ile belirlenecek.
+- Kodlama AI'ın kendi “testler geçti” raporu kritik kabul için yeterli olmayacak; bağımsız Test/QA AI doğrulaması aranacak.
+- Mastery threshold, evidence weight, AI-help penalty, spaced repetition interval, planner oranları ve English payı gibi sayısal parametreler ilgili sonraki aşamalarda araştırma, simülasyon ve pilot ile belirlenecek.
 
 **Üretilen / güncellenen dosyalar**
 - `docs/V1_SUCCESS_CRITERIA.md`
@@ -138,10 +134,39 @@ kaydedilir.
 - `docs/EXECUTION_INDEX.md`
 - `docs/DECISIONS.md`
 - `docs/HANDOFF_STATE.md`
+
+**Sonraki kesin adım**
+- `1D — Non-goals`.
+
+---
+
+### 2026-08-24 — 1D Non-goals tamamlandı ve Aşama 1 kapandı
+
+**Tamamlananlar**
+- Ürün seviyesi kalıcı non-goals ile yalnız V1'e ertelenen özellikler birbirinden ayrıldı.
+- Zaman/streak/task completion'ın mastery yerine geçmemesi tekrar kilitlendi.
+- Sabit takvimli kurs, tamamen LLM kontrollü curriculum ve AI'nın kullanıcı yerine öğrenmiş sayılması reddedildi.
+- Ürünün genel amaçlı eğitim platformuna, sosyal ağa veya ticari SaaS'a dönüşmesi varsayılan kapsam dışı yapıldı.
+- Gamification'ın öğrenmenin önüne geçmesi, missed-day görev borcu, mobil uygulamanın full IDE kimliğine dönüşmesi, sahte bilimsel kesinlik ve kariyer garantisi açıkça non-goal olarak yazıldı.
+- V1'e ertelenen alanlar tek yerde toplandı: tüm 3 yıllık curriculum, iOS/web/desktop, live cloud sync, full voice tutor, full code sandbox, career-market engine, social/community, payment/admin ve gereksiz backend/DevOps karmaşıklığı.
+- Yeni özellikler için scope-creep karar kuralı oluşturuldu.
+- AŞAMA 1 — Ürün Çerçevesini Kilitle tamamen tamamlandı.
+
+**Alınan kararlar**
+- Non-goal “asla yapılamaz” anlamına gelmez; fakat kapsam içine alınacaksa yeni decision kaydı, etkilenen adım ve acceptance kriteri güncellemesi zorunludur.
+- Aşama 1'in dört çıktısı bundan sonraki ürün/mimari kararlarının bağlayıcı başlangıç çerçevesidir.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/NON_GOALS.md`
+- `docs/STEP_STATUS.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/DECISIONS.md`
+- `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
 **Açık kalan noktalar**
-- Aşama 1'in son adımı olan consolidated non-goals henüz kilitlenmedi.
+- Öğrenme motorunun gerçek bilgi birimi yapısı henüz tasarlanmadı.
+- Mastery, topic state, AI-help ve retention ayrıntıları Aşama 2'de kesinleştirilecek.
 
 **Sonraki kesin adım**
-- **`1D — Non-goals`**.
+- **`2A — Bilgi birimleri`**.
