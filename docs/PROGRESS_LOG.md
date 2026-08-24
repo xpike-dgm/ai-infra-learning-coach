@@ -161,3 +161,31 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Sonraki kesin adım**
 - **`2C — Mastery sinyalleri`**.
+
+---
+
+### 2026-08-24 — Her adım için zorunlu GitHub beyin tazeleme protokolü kilitlendi
+
+**Kullanıcı talebi**
+- Her numaralı proje adımına başlamadan GitHub'daki proje beyninin tazelenmesi.
+- Adım bittikten sonra sonraki sohbet/agent'ın doğru bağlamla devam edebilmesi için gerekli hafıza dosyalarının güncellenmesi.
+- Bu davranışın isteğe bağlı değil, ana yöneticinin kesin görevi olması.
+
+**Alınan karar**
+- `PRE-STEP GitHub refresh → adımı yürüt → gerekirse Research/Coding/QA → POST-STEP GitHub sync → sonraki adımı aktif yap` akışı tüm proje için zorunlu hale getirildi.
+- Aynı sohbet içinde bir sonraki numaralı adıma geçilirken bile PRE-STEP refresh tekrarlanacak.
+- Minimum PRE-STEP okuması `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS` ve ilgili güncel spec/davranış dosyalarıdır.
+- POST-STEP'te `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` yeni durumu yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmayacak; yeni kalıcı karar varsa `DECISIONS.md` güncellenecek.
+- Yeni sohbetin yalnız GitHub hafızasını okuyarak doğru yerden devam edebilmesi adım kapanış kriteri olarak kabul edildi.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/PROJECT_MEMORY_PROTOCOL.md` — yeni canonical protokol
+- `docs/START_HERE.md`
+- `docs/AI_AGENT_WORKFLOW.md`
+- `docs/DECISIONS.md` — D-024
+- `docs/HANDOFF_STATE.md`
+- `docs/PROGRESS_LOG.md`
+
+**Durum etkisi**
+- Aktif ürün adımı değişmedi: **`2C — Mastery sinyalleri`**.
+- 2C'ye başlanmadan önce yeni protokole göre PRE-STEP GitHub refresh yapılacak.
