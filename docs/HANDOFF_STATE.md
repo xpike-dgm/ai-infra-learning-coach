@@ -8,6 +8,26 @@ Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ---
 
+# 0. Zorunlu çalışma protokolü
+
+Bağlayıcı kaynak: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-024.
+
+> **Her numaralı proje adımı başlamadan GitHub PRE-STEP beyin tazelemesi yapılır; adım bittikten sonra gerekli canonical hafıza dosyaları güncellenmeden adım tamamlanmış sayılmaz.**
+
+Bu kural aynı sohbet içinde bir sonraki adıma geçerken de geçerlidir.
+
+Minimum PRE-STEP okuması:
+
+- `docs/HANDOFF_STATE.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/STEP_STATUS.md`
+- `docs/DECISIONS.md`
+- başlanacak adımla ilgili en güncel spec/davranış dosyaları
+
+POST-STEP'te adımın ana çıktısı ile birlikte `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` kontrol edilir/güncellenir; yeni kalıcı karar varsa `DECISIONS.md` de güncellenir.
+
+---
+
 # 1. Ana Ürün
 
 > Sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering kariyer rotasında günlük olarak yöneten; her gün ne çalışacağını mevcut bilgi durumuna göre belirleyen; yalnız kanıtlanmış öğrenmeyi ilerleme kabul eden; mastery, retention, assessment ve prerequisite sonuçlarına göre gelecekteki programı yeniden düzenleyen kişisel adaptif Android öğrenme koçu.
@@ -32,9 +52,10 @@ Ana teknik yön:
 - Günlük mikro assessment + haftalık + aylık sınav gelecekteki programı değiştirir.
 - AI yardımı mümkündür; fakat AI ile tamamlanan iş gerçek anlama yerine geçmez.
 - Uygulama kişisel kullanım içindir; auth/payment/social/admin/multi-tenant SaaS varsayılan kapsam dışıdır.
-- Kritik geliştirme akışı: **Yönetici → gerekirse Araştırma AI → Spec → Kodlama AI → bağımsız Test/QA AI → PASS/FAIL → GitHub kaydı**.
+- Kritik geliştirme akışı: **GitHub PRE-STEP refresh → Yönetici → gerekirse Araştırma AI → Spec → Kodlama AI → bağımsız Test/QA AI → PASS/FAIL → GitHub POST-STEP sync**.
 - Proje Aşama 1–19 ve `1A / 1B / ...` sabit kodlarıyla yürütülür.
 - Non-goals kapsam değişikliği sessizce yapılamaz; yeni decision kaydı gerekir.
+- Her numaralı adım başlamadan GitHub beyin tazelemesi zorunludur; her adım sonunda kalıcı hafıza senkronizasyonu zorunludur.
 
 ## Öğrenme davranışında ayrıca kilitlenen kurallar
 
@@ -133,6 +154,8 @@ kesinleştirilecek.
 
 2C'de henüz ağırlık yüzdeleri kilitlenmeyecek; sayısal formül 2E'ye aittir.
 
+**2C'ye başlanmadan hemen önce `PROJECT_MEMORY_PROTOCOL.md` uyarınca PRE-STEP GitHub refresh yeniden yapılmalıdır.**
+
 ---
 
 # 5. Hâlâ Açık Ana Konular
@@ -155,22 +178,23 @@ kesinleştirilecek.
 # 6. İlk Okuma Sırası
 
 1. `docs/START_HERE.md`
-2. `docs/PROJECT_MASTER_CONTEXT.md`
-3. `docs/HANDOFF_STATE.md`
-4. `docs/EXECUTION_INDEX.md`
-5. `docs/STEP_STATUS.md`
-6. `PROJECT_CONTEXT.md`
-7. `docs/DECISIONS.md`
-8. `docs/PRODUCT_REQUIREMENTS.md`
-9. `docs/V1_SCOPE.md`
-10. `docs/V1_SUCCESS_CRITERIA.md`
-11. `docs/NON_GOALS.md`
-12. `docs/LEARNING_ENGINE_SPEC.md`
-13. `docs/LEARNING_BEHAVIOR_RULES.md`
-14. **`docs/TOPIC_STATE_MACHINE.md`**
-15. `docs/MASTER_PLAN.md`
-16. `docs/AI_AGENT_WORKFLOW.md`
-17. `docs/PROGRESS_LOG.md`
+2. **`docs/PROJECT_MEMORY_PROTOCOL.md`**
+3. `docs/PROJECT_MASTER_CONTEXT.md`
+4. `docs/HANDOFF_STATE.md`
+5. `docs/EXECUTION_INDEX.md`
+6. `docs/STEP_STATUS.md`
+7. `PROJECT_CONTEXT.md`
+8. `docs/DECISIONS.md`
+9. `docs/PRODUCT_REQUIREMENTS.md`
+10. `docs/V1_SCOPE.md`
+11. `docs/V1_SUCCESS_CRITERIA.md`
+12. `docs/NON_GOALS.md`
+13. `docs/LEARNING_ENGINE_SPEC.md`
+14. `docs/LEARNING_BEHAVIOR_RULES.md`
+15. `docs/TOPIC_STATE_MACHINE.md`
+16. `docs/MASTER_PLAN.md`
+17. `docs/AI_AGENT_WORKFLOW.md`
+18. `docs/PROGRESS_LOG.md`
 
 ---
 
@@ -182,10 +206,12 @@ Repo hafızasını okuduktan sonra doğrudan:
 
 adımından devam et.
 
+Ancak 2C tasarımına başlamadan önce D-024 / `PROJECT_MEMORY_PROTOCOL.md` uyarınca zorunlu PRE-STEP refresh yap.
+
 Aşama 1, 2A, 2B ve `LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı kararları kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
 # 8. Sohbet Aktarım Mesajı
 
-> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Özellikle LEARNING_BEHAVIOR_RULES.md ve TOPIC_STATE_MACHINE.md içindeki bağlayıcı öğrenme/state kurallarını koru. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
+> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md dosyalarından başlayarak belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. Her numaralı adım başlamadan PRE-STEP GitHub beyin tazelemesi, bittikten sonra POST-STEP GitHub sync yap. STEP_STATUS.md, HANDOFF_STATE.md ve EXECUTION_INDEX.md içindeki aktif adım kodundan devam et. Özellikle LEARNING_BEHAVIOR_RULES.md ve TOPIC_STATE_MACHINE.md içindeki bağlayıcı öğrenme/state kurallarını koru. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
