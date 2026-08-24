@@ -38,42 +38,64 @@ Aşama 2 canonical omurgası:
 ## 4. AŞAMA 3 ilerlemesi
 
 ### 3A ✅ Günlük kapasite
-Ana çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md` — 3A bölümü.  
-Karar: D-033.
+Ana çıktı: `docs/ADAPTIVE_PLANNER_SPEC.md`. Karar D-033.
 
-Canonical davranış:
-- Explicit daily available minutes planner'ın hard budget'ıdır.
-- Capacity source priority: today override → selected profile → scheduled default → normal profile.
-- V0 editable presetler `short=30`, `normal=60`, `intensive=90` dakika; science constant değildir.
-- V0 `10%` planning reserve ve `10 dk` minimum plannable block engineering heuristic.
-- Fixed new-learning/remediation/retention/English percentages yoktur.
-- Yeni remediation/retention ortaya çıkınca day length otomatik büyümez; remaining plan yeniden paketlenir.
-- Session sırasında user süreyi artırır/azaltırsa yalnız remaining plan replan edilir.
-- Unfinished/planned-but-not-started task failure evidence değildir.
-- Task sığmazsa safe split → smaller eligible task → defer.
-- Deferred işler next-day debt/backlog değildir; current state'ten yeniden candidate generation yapılır.
-- Critical task bile explicit user extension olmadan hard budget'ı aşamaz.
-- Duration estimates future user pace adaptation ve active-vs-wall-clock ayrımını destekler.
-- Capacity resolver deterministic/versioned; LLM süreyi keyfi değiştiremez.
+- explicit daily time hard budget,
+- 30/60/90 editable preset; 10% reserve; 10 dk min block = heuristic,
+- no fixed category percentages,
+- remediation/retention day length'i otomatik büyütmez,
+- time override remaining-plan replan,
+- split → smaller alternative → defer,
+- deferred task next-day debt değildir,
+- deterministic/versioned capacity.
+
+### 3B ✅ Görev kategorileri / TaskCandidate
+Ana çıktı: `docs/TASK_TAXONOMY_SPEC.md`. Karar D-034.
+
+Canonical model:
+
+```text
+State → LearningNeed → TaskCandidate → PlannedTask → Attempt/Artifact → EvidenceEvent
+```
+
+- Kalıcı olan eski task ID değil unresolved `LearningNeed`'dir.
+- Deferred candidate failure değildir ve yarına homework debt olarak taşınmaz; need açık ise fresh candidate üretilir.
+- `primary_purpose`: `teach | practice | assess | remediate | retain | diagnose | reinforce`.
+- `activity_kind` ayrı: explanation/worked example/recall/code reading/coding/debugging/hands-on system/transfer/project/language vb.
+- English purpose değil curriculum track; coding/debugging/project purpose değil activity'dir.
+- Task category evidence değildir; evidence Attempt/Artifact sonrası GRE/RVR ile oluşur.
+- `independence_mode` ayrı; guided practice H0 sayılmaz.
+- Multi-Skill integrated task component evidence için structural essentiality + separate observability/attribution gerekir; global project success otomatik component mastery değildir.
+- provenance/validation + variant/dependency + prerequisite/tools metadata bulunur.
+- 3A duration/splittable/checkpoint/atomic evidence boundary TaskCandidate'a dahildir.
+- `paused_progress` gerçek checkpoint'i koruyabilir; `deferred_candidate` yalnız ephemeral candidate'dır.
+- 3B fixed priority weight belirlemedi; gerekli ham sinyalleri 3C'ye verdi.
 
 ## 5. Güncel kesin konum
 
 **AŞAMA 3 — Adaptif Günlük Planlama Motorunu Tasarla**
 
 - `3A` ✅ Günlük kapasite
-- `3B` 🟡 **Görev kategorileri — AKTİF**
-- `3C–3H` ⬜ Bekliyor
+- `3B` ✅ Görev kategorileri
+- `3C` 🟡 **Öncelik puanı — AKTİF**
+- `3D–3H` ⬜ Bekliyor
 
-## 6. 3B'de kesinleştirilecekler
-- canonical planner task categories,
-- teaching / guided practice / independent practice / assessment / coding / debugging / retention / remediation / English / project ayrımı,
-- `task category` ile `evidence type`ın aynı şey olmaması,
-- primary purpose / target Skill-Objective / prerequisites / duration / splittable metadata,
-- integrated multi-Skill task attribution,
-- generated/remediation task provenance,
-- 3C priority motorunun kullanacağı canonical `TaskCandidate` contract.
+## 6. 3C'de kesinleştirilecekler
 
-3B için ayrı Research AI ancak task taxonomy konusunda dış pedagojik kanıt gerçekten gerekiyorsa kullanılmalıdır; bu adım büyük ölçüde mevcut 2A–2F davranışlarının planner primitive'ine dönüştürülmesidir.
+Kullanıcı örneği: bugün açık LearningNeed/TaskCandidate toplamı 80 dk, capacity 50 dk ise **hangi 50 dk seçilecek ve kalan ihtiyaçlar nasıl starvation yaşamadan açık kalacak?**
+
+3C tasarlayacak:
+- critical prerequisite / verification_due / remediation / retention / continuing/new learning / English priority ilişkisi,
+- urgency vs importance,
+- due/overdue ama negative evidence olmayan retention'ın doğru yeri,
+- duration/capacity-aware seçim,
+- unresolved/deferred LearningNeed starvation guard,
+- aynı gün birden fazla critical işte tie-break,
+- fixed category percentages olmadan balanced progress,
+- deterministic score veya decision hierarchy,
+- 3G'nin açıklayacağı priority reason inputs.
+
+3C'de keyfi `remediation = 100 puan` gibi sahte hassasiyet kullanılmamalı. Gerekirse Research AI yalnız adaptive scheduling / priority trade-off'larında gerçek dış kanıt gerektiğinde kullanılır.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -90,9 +112,11 @@ Canonical davranış:
 12. `docs/MASTERY_FORMULA_V0.md`
 13. `docs/RETENTION_FORGETTING_SPEC.md`
 14. `docs/ADAPTIVE_PLANNER_SPEC.md`
-15. `docs/MASTER_PLAN.md`
-16. `docs/AI_AGENT_WORKFLOW.md`
-17. `docs/PROGRESS_LOG.md`
+15. `docs/TASK_TAXONOMY_SPEC.md`
+16. `docs/ENGLISH_FOUNDATION_RULES.md`
+17. `docs/MASTER_PLAN.md`
+18. `docs/AI_AGENT_WORKFLOW.md`
+19. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3B — Görev kategorileri** için yeni PRE-STEP GitHub refresh yap. 3A D-033 capacity contract'ını ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3C — Öncelik puanı** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
