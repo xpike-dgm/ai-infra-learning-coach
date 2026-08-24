@@ -8,7 +8,7 @@ Tek kullanıcı için geliştirilecek kişisel adaptif mobil öğrenme uygulamas
 Ana ürün ilkesi:
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
-Sistem sabit kurs takvimi değil; gerçek Skill state, prerequisite, retention ve evidence'a göre günlük plan üretir.
+Sistem sabit kurs takvimi değil; gerçek Skill state, prerequisite, retention, evidence ve günlük capacity'ye göre plan üretir.
 
 ## 2. Zorunlu GitHub beyin tazeleme protokolü
 Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
@@ -42,13 +42,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 14. `docs/MASTERY_SIGNALS_SPEC.md`
 15. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
 16. `docs/MASTERY_FORMULA_V0.md`
-17. `docs/2E_RESEARCH_VALIDATION.md`
-18. `docs/RETENTION_FORGETTING_SPEC.md`
-19. `docs/2F_RESEARCH_VALIDATION.md`
-20. `docs/ENGLISH_FOUNDATION_RULES.md`
-21. `docs/MASTER_PLAN.md`
-22. `docs/AI_AGENT_WORKFLOW.md`
-23. `docs/PROGRESS_LOG.md`
+17. `docs/RETENTION_FORGETTING_SPEC.md`
+18. `docs/ADAPTIVE_PLANNER_SPEC.md`
+19. `docs/MASTER_PLAN.md`
+20. `docs/AI_AGENT_WORKFLOW.md`
+21. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -59,56 +57,60 @@ English teknik eğitimle paralel ilerler; doğrudan CUDA ile başlanmaz.
 
 ### GRE-v0 — Gated Recent Evidence
 - Canonical mastery Skill seviyesinde; evidence Learning Objective'e bağlanır.
-- Score'a yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence group girer.
-- H1–H4 independent mastery score'a girmez.
-- Same/near item dependency/testlet grouping.
-- Bounded recent window max 5; threshold 0.80 — heuristic/calibration.
-- Required/critical hard gates; critical coding H0 user artifact, debugging H0 diagnosis/fix.
-- First clean post-mastery failure → verification_due.
-- Difficulty numeric multiplier değil; fixed AI trust multiplier yok.
+- Yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence mastery score'a girer.
+- Hard gates, diversity, H0 coding/debugging, verification_due.
+- Bounded recent evidence; threshold/window heuristics kalibre edilir.
 
-Ayrıntı: `docs/MASTERY_FORMULA_V0.md`, `docs/2E_RESEARCH_VALIDATION.md` — D-031.
+Ayrıntı: `docs/MASTERY_FORMULA_V0.md` — D-031.
 
 ### RVR-v0 — Retention Verification & Risk
 - Mastery ve retention ayrı eksen.
-- Time-based GRE/mastery score decay yok.
-- Retention states: `untracked`, `fresh`, `stable`, `review_due`, `verification_due`, `at_risk`.
-- `review_due` forgetting değildir; tek başına Topic weakening/hard lock değildir.
-- Delayed review target Skill'e uygun H0 direct verified evidence ister.
-- First delayed failure → verification_due; fresh recheck.
-- Recheck failure → evidence GRE'ye girer, gates normal yeniden hesaplanır; elle score reset yok.
-- Natural reuse yalnız structurally essential + H0 + separately verified + context-diverse ise planned review yerine geçebilir.
-- Global project success component Skills'i otomatik refresh etmez; auto cluster refresh yok.
-- Critical verification_due unresolved iken dependent yeni work bekleyebilir.
-- Long absence backlog dump yok.
-- Interval defaults versioned engineering heuristic + 17C calibration.
-- Bounded/incremental/local implementation.
+- Time-based mastery decay yok.
+- `review_due` forgetting değildir.
+- Skill-type appropriate H0 delayed verification.
+- First failure → verification; strict natural reuse; no auto cluster refresh; no backlog dump.
 
-Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md`, `docs/2F_RESEARCH_VALIDATION.md` — D-032.
+Ayrıntı: `docs/RETENTION_FORGETTING_SPEC.md` — D-032.
 
-## 6. Güncel çalışma konumu
+## 6. Adaptive Planner ilerlemesi
 
-**AŞAMA 2:** ✅ TAMAMLANDI (`2A–2F`)
+### 3A ✅ Günlük kapasite
+`docs/ADAPTIVE_PLANNER_SPEC.md` — D-033.
 
-**AŞAMA 3 — Adaptif Günlük Planlama Motoru**
-- `3A` 🟡 **Günlük kapasite — AKTİF**
-- `3B–3H` ⬜ bekliyor.
+- Explicit daily minutes = hard budget.
+- Today override en yüksek source priority.
+- Editable short/normal/intensive V0 presetleri `30/60/90 dk`.
+- `10%` planning reserve + `10 dk` minimum plannable block V0 heuristic.
+- Fixed category yüzdeleri yok.
+- Remediation/retention planı otomatik uzatmaz; remaining plan replan edilir.
+- Session time override desteklenir.
+- Unfinished plan failure değildir.
+- Safe split / smaller alternative / defer.
+- Deferred task debt/backlog değildir.
+- Duration estimates user pace'e adapte olabilir.
+- Capacity deterministic/versioned; LLM süreyi keyfi değiştiremez.
 
-## 7. 3A'da yapılacaklar
-3A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+## 7. Güncel çalışma konumu
+
+**AŞAMA 1:** ✅  
+**AŞAMA 2:** ✅  
+**AŞAMA 3:** devam ediyor
+
+- `3A` ✅ Günlük kapasite
+- `3B` 🟡 **Görev kategorileri — AKTİF**
+- `3C–3H` ⬜ bekliyor
+
+## 8. 3B'de yapılacaklar
+3B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 Kesinleştirilecek:
-- günlük gerçek capacity modeli,
-- kısa/normal/yoğun gün profilleri,
-- minimum viable study block,
-- target süre ve tolerans,
-- remediation/retention nedeniyle planın kontrolsüz uzamaması,
-- user bugün daha az/fazla zamanı olduğunu söylerse replan,
-- overflow/defer behavior,
-- capacity'nin task selection'a vereceği deterministic contract,
-- 3B–3G'nin kullanacağı temel süre/bütçe primitive'leri.
+- canonical task taxonomy,
+- teaching / practice / assessment / coding / debugging / retention / remediation / English / project ilişkisi,
+- task category ile evidence type'ın ayrı olması,
+- `TaskCandidate` contract,
+- target Skill/Objective, prerequisites, duration, splittable, provenance, reason metadata,
+- multi-Skill/integrated task attribution,
+- 3C priority motorunun tüketebileceği deterministic task primitive.
 
-3A'da exact optimum çalışma dakikası bilimsel sabit diye uydurulmayacak. Gerekirse Research AI yalnız kanıt/trade-off için kullanılacak.
-
-## 8. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2'nin LEARNING_BEHAVIOR_RULES, TOPIC_STATE_MACHINE, MASTERY_SIGNALS_SPEC, AI_ASSISTANCE_EVIDENCE_SPEC, MASTERY_FORMULA_V0/GRE-v0 ve RETENTION_FORGETTING_SPEC/RVR-v0 bağlayıcı kararlarını koru. Şu an aktif adım 3A — Günlük kapasite.`
+## 9. Yeni sohbet için kısa komut
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ve Aşama 3A D-033 capacity contract kararlarını koru. Şu an aktif adım 3B — Görev kategorileri.`
