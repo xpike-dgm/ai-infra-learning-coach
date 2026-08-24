@@ -116,59 +116,67 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ---
 
 ### 2026-08-24 — 2E workflow hatası düzeltildi ve yeniden açıldı
-- Proje planında 2E için **ayrı Research AI** kullanılması gerektiği halde yalnız ana yöneticinin web araştırması yapılmış olduğu fark edildi.
+- Ayrı Research AI turu yapılmadan 2E'nin yanlışlıkla kapatıldığı fark edildi.
 - 2E yeniden aktif yapıldı, 2F beklemeye alındı.
-- `docs/MASTERY_FORMULA_V0.md` candidate olarak işaretlendi.
-- D-029 provisional, D-030 ile ayrı Research AI raporu kapanış şartı oldu.
+- D-029 provisional, D-030 ayrı Research AI kapanış şartı oldu.
 
 ---
 
 ### 2026-08-24 — 2E bağımsız Research AI validation tamamlandı; GRE-v0 finalleştirildi
+- Research AI raporu otomatik kabul edilmedi; BKT/PFA/IRT/assistance/testlet/programming education/LLM grading ayrı değerlendirildi.
+- Beta-style accumulator ve sabit assistance/AI-evaluator multiplier'ları kaldırıldı.
+- Final `GRE-v0 — Gated Recent Evidence`.
+- Çıktılar: `MASTERY_FORMULA_V0.md`, `2E_RESEARCH_VALIDATION.md`, D-031.
+
+---
+
+### 2026-08-24 — 2F Retention / Forgetting araştırması başlatıldı
 
 **PRE-STEP**
-- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` ve ilgili mastery/assistance specs yeniden okundu.
-- Canonical aktif adımın 2E Research AI validation olduğu doğrulandı.
-- `MASTER_PLAN.md` içinde eski candidate kapanışından kalan drift tespit edildi; POST-STEP'te düzeltildi.
+- Handoff/index/status/decisions/master plan ve GRE-v0 / Topic state / learning behavior yeniden okundu.
+- Aktif adımın 2F olduğu doğrulandı.
+- `docs/2F_RESEARCH_BRIEF.md` oluşturuldu.
+- Separate Deep Research raporu gelmeden adımın kapanmaması kararlaştırıldı.
+
+---
+
+### 2026-08-24 — 2F Research AI validation tamamlandı; RVR-v0 finalleştirildi
 
 **Research AI girdisi**
-- Kullanıcı bağımsız Research AI raporunu sağladı.
-- Rapor BKT, AFM/PFA/R-PFA, IRT, mastery criterion, assistance/scaffolding, testlet/LID, programming education ve LLM grading başlıklarını karşılaştırdı.
-- Report doğrudan ürün kararı kabul edilmedi.
+- Kullanıcı kapsamlı Deep Research raporu sağladı.
+- Rapor spacing/retrieval, Bjork storage/retrieval, SM-2, FSRS, HLR, ACT-R, DAS3H, BKT forgetting, R-PFA, complex-skill retention, natural reuse, backlog ve prerequisite policy başlıklarını inceledi.
 
 **Yönetici doğrulaması / düzeltmeleri**
-- Assistance dilemma literatürünün belirli H1/H2 numeric penalty'lerini doğrulamadığı teyit edildi; sabit `0.85/0.65/0.35` kaldırıldı.
-- Instructional Factors Analysis, farklı instructional intervention türlerini ayrı kategoriler olarak ele almanın yararlı olabildiğini destekledi.
-- PFA ve R-PFA'nın fit edilmiş predictive modeller olduğu; cold-start heuristic'imizi doğrudan `Rolling-PFA` diye adlandırmanın doğru olmayacağı ayrıldı.
-- Research raporundaki “fractional Beta count matematiksel olarak geçersizdir” iddiası fazla güçlü bulundu; asıl problem candidate'ın calibrated posterior olmaması, farklı boyutları tek multiplier'a indirmesi ve sınırsız-history saturation riskidir.
-- Programming education literatürü gerçek writing/production görevlerinin ayrıca ölçülmesini destekledi.
-- LLM grading çalışmalarındaki değişken agreement nedeniyle sabit `AI evaluator = 0.80` kaldırıldı.
+- Cepeda spacing çalışmasının tek evrensel `%10–20` interval kuralı vermediği ayrıldı.
+- Expanding spacing'in her koşulda equal spacing'den üstün olmadığı korundu.
+- Güncel FSRS-6'nın 21 parametre kullandığı ve personal history azsa default params ile çalışabildiği doğrulandı; buna rağmen flashcard-domain defaults complex coding Skill'lerine canonical model yapılmadı.
+- DAS3H multi-skill attribution'a referans oldu; fakat global project success → all Skills refresh çıkarımı reddedildi.
+- `24–48h`, `1–2/3–5/5–7 gün`, EF, max interval, 1.5x overdue ve daily 8–10 gibi sayılar research constant değil heuristic/calibration olarak sınıflandı.
+- Root/cluster refresh propagation reddedildi.
+- Confirmed forgetting'te GRE score'u elle `0.50` yapma reddedildi; yeni evidence GRE-v0'u doğal yeniden hesaplar.
 
-**Final 2E modeli — `GRE-v0 — Gated Recent Evidence`**
-- Mastery score'a yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence group girer.
-- H1–H4 formative/remediation/recheck sinyalidir; positive independent mastery score'a girmez.
-- Corroborating evidence direct gate'i ikame etmez.
-- Same-family/dependent item'lar testlet/dependency group olarak gruplanır.
-- Objective recent score = son en fazla `5` eligible independent H0 direct group'un `q_g` ortalaması.
-- `0.80` threshold ve window `5` engineering heuristic; UI'da probability/% learned değildir.
-- Standard default: en az 2 independent group; critical default: en az 3 group + 2 family/context + non-basic/objective-specific gate.
-- Critical coding → H0 user-authored artifact; critical debugging → H0 diagnosis/fix.
-- Skill mastery non-compensatory: tüm required/critical Objective gates PASS.
-- Tek clean post-mastery negative → `verification_due`; instant reset yok.
-- Difficulty multiplier değil gate.
-- AI evaluator numeric weight kaldırıldı; `verified | provisional | invalid`.
-- Bounded/incremental sufficient-state D-028 performans kuralına uygun.
+**Final `RVR-v0 — Retention Verification & Risk`**
+- mastery ve retention ayrı eksen,
+- time-based GRE score decay yok,
+- retention states `untracked/fresh/stable/review_due/verification_due/at_risk`,
+- review_due forgetting değil,
+- delayed verification Skill türüne uygun H0 direct verified evidence,
+- first failure → verification_due; recheck fail → GRE recalc/remediation,
+- natural reuse strict structural + H0 + separate attribution + context diversity ile strong evidence,
+- auto cluster refresh yok,
+- critical verification_due unresolved iken dependent new work bekleyebilir,
+- missed-day backlog dump yok,
+- bounded/incremental local state,
+- interval defaults versioned heuristic + 17C calibration.
 
 **Çıktılar**
-- `docs/MASTERY_FORMULA_V0.md` final GRE-v0
-- `docs/2E_RESEARCH_VALIDATION.md`
-- `docs/DECISIONS.md` — D-029 superseded, D-030 fulfilled, D-031 final
-- `docs/EXECUTION_INDEX.md`
-- `docs/STEP_STATUS.md`
-- `docs/HANDOFF_STATE.md`
-- `docs/MASTER_PLAN.md`
-- `docs/PROGRESS_LOG.md`
-- `docs/START_HERE.md` güncellenecek/kontrol edilecek
+- `docs/RETENTION_FORGETTING_SPEC.md`
+- `docs/2F_RESEARCH_VALIDATION.md`
+- `docs/2F_RESEARCH_BRIEF.md` fulfilled
+- `docs/DECISIONS.md` — D-032
+- canonical POST-STEP state dosyaları senkronlandı.
 
-**Sonraki kesin adım**
-- **`2F — Unutma modeli`**.
-- 2F başlamadan yeni PRE-STEP GitHub refresh + ayrı Research AI retention/spaced-repetition turu zorunlu.
+**AŞAMA 2:** ✅ TAMAMLANDI.
+
+**Sonraki kesin adım:** `3A — Günlük kapasite`.
+3A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
