@@ -2,10 +2,10 @@
 
 **Adım:** 1D — Non-goals  
 **Durum:** TAMAMLANDI  
-**Tarih:** 2026-08-24  
-**D-041 notu:** Uzun vadeli curriculum 4+ year professional-readiness hedefiyle genişletildi; V1 scope-creep koruması aynen devam eder.
+**Tarih:** 2026-08-25  
+**Bağlayıcı:** D-041, D-042, D-044
 
-Bu belge projenin bilinçli olarak **ne olmayacağını** tanımlar. Amaç iyi fikirleri yasaklamak değil; ürünün ana amacını korumak, V1'i kontrolsüz büyütmemek ve gelecekte başka bir sohbet/agent tarafından kapsamın yanlışlıkla değiştirilmesini önlemektir.
+Bu belge projenin bilinçli olarak **ne olmayacağını** tanımlar. Amaç ürünün ana amacını korumak ve V1 scope creep'i önlemektir.
 
 Non-goal iki anlama gelebilir:
 1. **Ürün seviyesi non-goal** — ürün kimliğiyle çelişir.
@@ -19,104 +19,95 @@ Non-goal iki anlama gelebilir:
 Ana ilerleme modeli olmayacak şeyler:
 - `Gün X / toplam gün`,
 - yalnız çalışma saati,
-- yalnız ders completion yüzdesi,
-- yalnız task checkbox sayısı,
+- yalnız lesson completion,
+- yalnız task checkbox,
 - yalnız streak.
 
-4+ year horizon da bu kuralı değiştirmez. **Takvim professional-readiness gate'i değildir.**
+4+ year horizon professional-readiness gate'i değildir.
 
 ## NG-02 — Sabit takvimli kurs olmak
-Curriculum ana yönü sabit olabilir; günlük task prerequisite, mastery, retention, assessment ve capacity'ye göre değişir.
+Günlük task prerequisite, mastery, retention, assessment ve capacity'ye göre değişir.
 
 ## NG-03 — “Dersi bitirdi = öğrendi” sistemi olmak
 Reading/video/task completion veya tek quiz critical Skill mastery üretmez.
 
 ## NG-04 — Tamamen LLM tarafından yönetilen curriculum olmak
-LLM explanation/question/feedback üretebilir; prerequisite, mastery, curriculum veya planner'ın canonical kurallarını keyfi değiştiremez.
+LLM explanation/question/feedback üretebilir; canonical prerequisite/mastery/planner kurallarını keyfi değiştiremez.
 
 ## NG-05 — AI'nın kullanıcı yerine öğrenmesi
-AI-assisted artifact, Objective'e uygun independent evidence olmadan kullanıcı mastery/professional readiness yerine geçmez.
+AI-assisted artifact independent evidence olmadan mastery/professional readiness yerine geçmez.
 
 ## NG-06 — Genel amaçlı “her şeyi öğreten” platform olmak
-Ana rota AI Infrastructure / ML Systems / GPU Systems specialization'dır. Matematik/ML/DB/cloud gibi ek alanlar yalnız bu hedef için gerekli derinlikte dahil edilir.
+Ana rota AI Infrastructure / ML Systems / GPU Systems'tır. Ek alanlar hedef için gereken derinlikte dahil edilir.
 
 ## NG-07 — Sosyal ağ olmak
-Friends/followers/feed/public profile/competitive leaderboard ürünün temel değeri değildir.
+Friends/followers/feed/public profile/competitive leaderboard temel değer değildir.
 
 ## NG-08 — Ticari SaaS ürünü olmak
-Subscription/payment/billing/tenant/admin/RBAC vb. varsayılan kapsam dışıdır.
+Subscription/payment/billing/tenant/admin/RBAC varsayılan kapsam dışıdır.
 
 ## NG-09 — Gamification'ı öğrenmenin önüne geçirmek
 XP/coin/streak mastery'nin yerini alamaz.
 
-## NG-10 — Kaçırılan günleri borç/ceza haline getirmek
-Stale daily task backlog'u replay edilmez; current state'ten fresh plan üretilir.
+## NG-10 — Kaçırılan günleri borç/ceza yapmak
+Stale daily backlog replay edilmez; current state'ten fresh plan üretilir.
 
-## NG-11 — Telefonu tam geliştirme workstation'ına çevirmek
-Mobil app tam IDE olmak zorunda değildir; gerçek coding gerektiğinde PC/editor/terminal üzerinden yapılabilir.
+## NG-11 — Telefonu tam development workstation yapmak
+Mobil app full IDE olmak zorunda değildir; coding gerektiğinde PC/editor/terminal kullanılabilir.
 
 ## NG-12 — Bilimsel olmayan sahte kesinlik üretmek
-Mastery/probability/time-to-professional gibi kalibre edilmemiş sahte hassas metrikler sunulmaz.
+Kalibre edilmemiş mastery probability/time-to-professional gibi sahte hassas metrikler sunulmaz.
 
 ## NG-13 — İş veya kariyer sonucu garanti etmek
-Uygulama:
-- iş teklifi,
-- belirli maaş,
-- seniority,
-- belirli şirkete giriş,
-- üniversite/degree isteyen HR filtrelerini aşma,
-- “4 yılda kesin profesyonel olma”
-
-garantisi vermez.
-
-D-041 professional-readiness hedefi **teknik capability target**'ıdır; employment guarantee değildir.
+Uygulama job offer, belirli maaş, seniority, belirli şirkete giriş, degree/HR filtresini aşma veya “4 yılda kesin profesyonel olma” garantisi vermez.
 
 ## NG-14 — İngilizceyi teknik eğitimin önünde bariyer yapmak
 English ve teknik eğitim paralel ilerler.
+
+## NG-15 — Geniş domain etiketiyle gerçek zayıflığı gizlemek
+D-044 sonrası yalnız `Python zayıf` gibi broad sonuç üretip hangi alt Skill'in sorunlu olduğunu saklamak hedef ürün davranışı değildir. Weakness mümkün olduğunca Skill/Objective seviyesinde lokalize edilir.
 
 ---
 
 # B. V1 İÇİN NON-GOALS / SONRAYA BIRAKILANLAR
 
 ## NG-V1-01 — Tam 4+ yıllık professional curriculum'u release öncesi üretmek
-V1 release için Modern C++ → Systems → Distributed → GPU/CUDA → Triton → Inference → Multi-GPU/AI Infrastructure → open source → professional capstone içeriğinin tamamını bitirmek **gerekmeyecektir**.
+V1 release için Modern C++ → Systems → Distributed → GPU/CUDA → Triton → Inference → Multi-GPU/AI Infrastructure → OSS → professional capstone content'inin tamamını bitirmek gerekmez.
 
-İlk production curriculum yaklaşık ilk 8–12 haftalık temel pakettir. Bu içerik büyüklüğüdür, kullanıcıya sabit takvim değildir.
-
-Full target: `docs/PROFESSIONAL_READINESS_TARGET.md`.
+İlk production curriculum yaklaşık ilk 8–12 haftalık temel pakettir. Full route taxonomy AŞAMA 6'da planlanır; full production expansion AŞAMA 20'dedir.
 
 ## NG-V1-02 — iOS, web ve desktop istemcileri
 V1 Android odaklıdır.
 
 ## NG-V1-03 — Cloud account ve realtime multi-device sync
-V1 local-first'tür. Backup/export/restore yine önemlidir.
+V1 local-first'tür. Backup/export/restore önemlidir.
 
 ## NG-V1-04 — Tam voice-first AI Tutor
-Realtime pronunciation/voice-first tutor V1 şartı değildir.
+V1 şartı değildir.
 
-## NG-V1-05 — Uygulama içi tam güvenli arbitrary code sandbox
-Coding V1'in parçasıdır; execution yöntemi full embedded IDE/sandbox olmak zorunda değildir.
+## NG-V1-05 — Uygulama içi full arbitrary-code sandbox
+Coding V1'in parçasıdır; execution yöntemi tam embedded IDE/sandbox olmak zorunda değildir.
 
 ## NG-V1-06 — Canlı iş ilanı / career-market engine
-Continuous job scraping, ATS optimization, company recommendation ve kapsamlı mock-interview platformu V1 şartı değildir; Aşama 19'da değerlendirilebilir.
+Continuous job scraping, ATS optimization, company recommendation ve comprehensive mock-interview platformu V1 şartı değildir; **AŞAMA 20** career-readiness katmanında değerlendirilebilir.
 
 ## NG-V1-07 — Social/community
-Forum/friends/public progress/leaderboard V1'de yoktur.
+V1'de yoktur.
 
 ## NG-V1-08 — Ödeme/abonelik/admin
 Kişisel kullanım nedeniyle V1 içermez.
 
 ## NG-V1-09 — Gelişmiş oyunlaştırma
-Coin economy/avatar/shop/loot V1 şartı değildir.
+Coin/avatar/shop/loot V1 şartı değildir.
 
 ## NG-V1-10 — Her learning-science modelini aynı anda kullanmak
-Önce açıklanabilir/test edilebilir GRE/RVR/planner yaklaşımı; advanced modeller yalnız gerçek fayda gösterirse.
+Önce açıklanabilir/test edilebilir GRE/RVR/planner; advanced modeller yalnız gerçek fayda gösterirse.
 
 ## NG-V1-11 — Gereksiz backend/DevOps karmaşıklığı
-Kişisel local-first app için ilk günden Kubernetes/microservices/multi-region backend ürün mimarisi kurulmaz. Not: Kubernetes/cloud/observability **öğrenme curriculum'unda** AI Infrastructure için ileride öğretilebilir; bu madde uygulamanın kendi V1 backend mimarisiyle ilgilidir.
+Kişisel local-first app için ilk günden Kubernetes/microservices/multi-region backend kurulmaz. Bunlar curriculum'da ileride öğretilebilir; bu madde app'in kendi V1 mimarisiyle ilgilidir.
 
 ## NG-V1-12 — Sonsuz AI provider desteği
-Provider abstraction olabilir; V1 her sağlayıcıyı desteklemek zorunda değildir.
+V1 her provider'ı desteklemek zorunda değildir.
 
 ---
 
@@ -131,12 +122,10 @@ Yeni özellik için:
 
 Ana loop için gerekli değil ve V1'i geciktiriyorsa varsayılan **sonraya bırak**.
 
-D-041 burada özel bir örnektir: **long-term curriculum hedefi büyütüldü fakat full content V1 içine taşınmadı.** Böylece ürün vizyonu genişlerken V1 scope patlamaz.
+D-041 long-term target'ı büyütürken full content'i V1'e taşımadı. D-044 full route'u planlama seviyesinde granular hale getirir; bu da V1 öncesi yıllarca bütün lesson content'ini üretmek anlamına gelmez.
 
 ---
 
 # 1D Kabul Kontrolü
 
-1D'nin ana non-goal ilkeleri korunur. D-041 sonrası yalnız eski `3 yıllık curriculum'un tamamı V1 şartı değil` ifadesi **`tam 4+ yıllık professional curriculum V1 şartı değil`** olarak genişletilmiştir.
-
-> **Kapsam güncelleme notu — 2026-08-24:** Professional-readiness hedefi ürün kapsamına alındı; job guarantee, time guarantee ve V1'e full curriculum yükleme hâlâ non-goal'dır.
+1D'nin ana non-goal ilkeleri korunur. D-041/D-042/D-044 ile long-term route ve granularity netleşmiştir; job guarantee, time guarantee ve V1'e full curriculum yükleme hâlâ non-goal'dır.
