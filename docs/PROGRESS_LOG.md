@@ -72,29 +72,15 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Tamamlananlar**
 - Öğrenme motorunun resmî yapısı `Domain → Module → Topic → Skill → Learning Objective` olarak kesinleştirildi.
-- Yapının katı bir ağaç olmadığı; `Domain/Module/Topic` ile `Skill/Learning Objective` katmanlarının farklı sorumlulukları olduğu tanımlandı.
-- Curriculum organizasyon katmanı `Domain → Module → Topic` olarak ayrıldı.
-- Gerçek öğrenme/ölçüm katmanı `Skill → Learning Objective` olarak ayrıldı.
-- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill` olarak belirlendi.
-- Evidence'ın en atomik olarak `Learning Objective` seviyesine bağlanabilmesi kararlaştırıldı.
-- Topic/Module/Domain mastery'nin ayrı bağımsız puanlar değil, Skill verilerinden derived görünüm olması kararlaştırıldı.
-- Aynı Skill'in birden fazla Topic içinde `teach / practice / assess / reinforce` rolüyle kullanılabileceği ve duplicate mastery yaratılmayacağı kesinleştirildi.
-- Topic ↔ Skill ilişkisinin many-to-many olabilmesi kararlaştırıldı.
-- Runtime prerequisite ana olarak `Skill → Skill` edge şeklinde tanımlandı; Topic prerequisite authoring kolaylığı olabilir fakat gerçek kilit Skill mastery üzerinden çalışacak.
-- Module/Domain seviyesinde kaba hard-lock varsayılan yaklaşım olmaktan çıkarıldı.
-- Cross-domain Skill dependency desteklendi.
+- `Domain/Module/Topic` curriculum organizasyon; `Skill/Learning Objective` gerçek öğrenme/ölçüm katmanı olarak ayrıldı.
+- Canonical mastery'nin ana planner/prerequisite seviyesi Skill olarak belirlendi.
+- Topic/Module/Domain mastery'nin Skill verilerinden derived görünüm olması kararlaştırıldı.
+- Topic ↔ Skill many-to-many ilişki desteklendi ve duplicate mastery yasaklandı.
+- Runtime prerequisite ana olarak Skill → Skill edge şeklinde tanımlandı.
 - Technical English'in aynı skill modelinde yer alacağı fakat gerçek bağımlılık yoksa teknik rotayı global hard-lock etmeyeceği kilitlendi.
-- Learning Objective için gözlemlenebilir/ölçülebilir yazım standardı oluşturuldu; yalnız `oku`, `izle`, `tamamla` objective sayılmayacak.
-- LearningTask ve AssessmentItem'ın yalnız Topic'e değil hedeflediği Skill/Learning Objective'e bağlanması zorunlu tasarım ilkesi yapıldı.
-- C pointers ve Technical English compiler-error örnekleriyle model doğrulandı.
+- Learning Objective için gözlemlenebilir/ölçülebilir yazım standardı oluşturuldu.
+- LearningTask ve AssessmentItem'ın hedeflediği Skill/Learning Objective'e bağlanması zorunlu tasarım ilkesi yapıldı.
 - Stable canonical ID yaklaşımı tanımlandı; kesin DB şeması 8C'ye bırakıldı.
-
-**Alınan kararlar**
-- Topic completion hiçbir zaman doğrudan mastery değildir.
-- Mastery ve prerequisite için ana gerçeklik Skill katmanıdır.
-- Topic/Module/Domain progress, raporlama/UX için derived olacaktır.
-- Duplicate skill yaratmak yerine farklı topic'ler aynı canonical skill'e bağlanacaktır.
-- 2A'da mastery threshold, evidence weight, state machine veya spaced repetition değeri uydurulmadı; bunlar 2B–2F'ye bırakıldı.
 
 **Üretilen / güncellenen dosyalar**
 - `docs/LEARNING_ENGINE_SPEC.md`
@@ -104,12 +90,8 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `docs/HANDOFF_STATE.md`
 - `docs/PROGRESS_LOG.md`
 
-**Açık kalan noktalar**
-- Topic state machine henüz tasarlanmadı.
-- Mastery evidence, AI-help impact, mastery formula ve forgetting model sonraki 2B–2F adımlarında kesinleştirilecek.
-
 **Sonraki kesin adım**
-- **`2B — Topic durumları`**.
+- `2B — Topic durumları`.
 
 ---
 
@@ -136,5 +118,46 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - `docs/PROGRESS_LOG.md`
 
 **Durum etkisi**
-- Aktif adım değişmedi: **`2B — Topic durumları`**.
-- 2B ve sonraki planner/assessment/retention tasarımları `LEARNING_BEHAVIOR_RULES.md` ile çelişemez.
+- Aktif adım değişmedi: `2B — Topic durumları`.
+
+---
+
+### 2026-08-24 — 2B Topic state machine tamamlandı
+
+**Tamamlananlar**
+- V1 için canonical Topic state'ler `locked`, `available`, `learning`, `mastered`, `weakening`, `remediation_required` olarak kesinleştirildi.
+- Topic state'in bağımsız mastery gerçekliği değil; prerequisite uygunluğu, coverage, canonical Skill mastery, retention ve remediation girdilerinden türetilen planner/UX state'i olduğu kilitlendi.
+- `locked` state'in esas olarak henüz başlanmamış Topic'in hard prerequisite giriş kapısı olduğu belirlendi.
+- Başlanmış veya mastered Topic'in prerequisite Skill sonradan zayıfladığı için geriye dönük `locked` yapılmaması kararlaştırıldı.
+- `available → learning → mastered` ana ilerleme yolu tanımlandı.
+- Güvenilir diagnostic/skip kanıtında `available → mastered` istisnası desteklendi; tek kolay quiz ile skip/mastery yasaklandı.
+- `mastered → weakening → mastered` retention recovery yolu tanımlandı.
+- `learning/weakening/mastered → remediation_required → learning/mastered` hedefli onarım yolları tanımlandı.
+- `mastered` için required coverage veya validated diagnostic waiver + required/critical Skill mastery gate birlikte zorunlu hale getirildi.
+- Remediation'ın geçmiş coverage'ı sıfırlamaması ve bütün curriculum'u durdurmaması kararlaştırıldı.
+- Topic state'in ileri Topic kilidinin canonical kaynağı olmadığı; gerçek prerequisite yetkisinin Skill mastery'de kalacağı tekrar kilitlendi.
+- Topic state ile coverage'ın ayrı veri kavramları olması belirlendi.
+- State transition'ların deterministik ve reason/history ile açıklanabilir olması zorunlu tutuldu.
+- Curriculum update ile yeni required objective/skill gelirse mastered Topic'in açıklanabilir biçimde yeniden değerlendirilebilmesi tanımlandı.
+- 2B içine mastery/remediation/retention için keyfi sayısal eşik gömülmedi; 2C–2F'ye bırakıldı.
+
+**Alınan kararlar**
+- Topic state, Skill mastery'nin üstünde kullanıcı/planner için derived orchestration katmanıdır.
+- `weakening` öğrenmenin silinmesi değil retention riskidir.
+- `remediation_required` ceza değil hedefli onarım ihtiyacıdır.
+- Bir Topic'in state'i tek başına bağımlı Topic'leri kilitlemez; Skill-level prerequisite gate karar verir.
+
+**Üretilen / güncellenen dosyalar**
+- `docs/TOPIC_STATE_MACHINE.md`
+- `docs/STEP_STATUS.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/DECISIONS.md` — D-023
+- `docs/HANDOFF_STATE.md`
+- `docs/PROGRESS_LOG.md`
+
+**Açık kalan noktalar**
+- Hangi evidence türünün neyi ne kadar güçlü kanıtladığı henüz tanımlanmadı.
+- AI/hint etkisi, sayısal mastery formula ve retention algoritması açık.
+
+**Sonraki kesin adım**
+- **`2C — Mastery sinyalleri`**.
