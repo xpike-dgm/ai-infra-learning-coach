@@ -49,10 +49,11 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 21. `docs/PREREQUISITE_POLICY_SPEC.md`
 22. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
 23. `docs/MISSED_DAY_RECOVERY_SPEC.md`
-24. `docs/ENGLISH_FOUNDATION_RULES.md`
-25. `docs/MASTER_PLAN.md`
-26. `docs/AI_AGENT_WORKFLOW.md`
-27. `docs/PROGRESS_LOG.md`
+24. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+25. `docs/ENGLISH_FOUNDATION_RULES.md`
+26. `docs/MASTER_PLAN.md`
+27. `docs/AI_AGENT_WORKFLOW.md`
+28. `docs/PROGRESS_LOG.md`
 
 ## 4. Ana kariyer/öğrenme yönü
 **Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
@@ -83,27 +84,27 @@ Explicit günlük süre hard budget; no auto-overrun; split/defer; task debt yok
 Eligibility priority'den önce; P0–P4 semantic bands; deterministic rank vector; starvation/track balance; duration priority'den sonra.
 
 ### 3D ✅ Prerequisite — PRG-v0 / D-036
-- Runtime prerequisite `Skill → Skill`.
-- Hard/soft edge ayrımı.
-- `review_due` hard lock değildir.
-- Yalnız affected branch bekler; independent branches devam eder.
-- Prerequisite contamination target negative evidence değildir.
+Skill-level hard/soft prerequisite, review_due no-lock, branch-local blocking ve contamination guard.
 
 ### 3E ✅ Hızlı öğrenme — VDW-v0 / D-037
-- Diagnostic GRE-v0'dan daha kolay ayrı mastery yolu değildir.
-- Objective-level validated coverage waiver + partial waiver vardır.
-- Critical evidence/prerequisite false-skip guard korunur.
+Diagnostic GRE-v0'dan daha kolay değildir; Objective-level validated partial/full coverage waiver ve false-skip guards.
 
 ### 3F ✅ Kaçırılan günler — SRR-v0 / D-038
-- Absence failure/mastery decay/task debt değildir.
-- Stale plan replay edilmez; current state'ten fresh need/candidate üretilir.
-- Review_due forgetting değildir; absence yalnız due/urgency bağlamını değiştirebilir.
-- Due inventory DailyPlan değildir; günlük hard capacity korunur.
-- Absence starvation değildir.
-- Integrated recovery evidence ayrı attribution ister.
-- Long absence new learning'i globally dondurmaz.
+Absence failure/debt değildir; stale plan replay edilmez; current-state re-entry, due inventory ≠ DailyPlan, starvation ≠ absence.
 
-Ana çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
+### 3G ✅ Açıklanabilir planner — PDT-v0 / D-039
+- Planner karar sırasında structured `PlannerDecisionTrace` üretir.
+- Need-level ve candidate-level decision trace ayrıdır.
+- Selected/blocked/invalid/deferred/split/smaller-alternative/superseded disposition'ları explicit'tir.
+- User-facing açıklama internal trace'teki gerçek nedenlerden türetilir.
+- Private chain-of-thought saklanmaz/gösterilmez.
+- LLM yalnız trace'i paraphrase edebilir; template fallback vardır.
+- PRG eligibility → PBR priority → capacity fit sırası korunur.
+- Review_due forgetting değildir; absence debt/failure değildir.
+- Replan version/event chain completed evidence'ı korur.
+- 3A–3G deterministic end-to-end pseudocode ve 3H invariant set'i vardır.
+
+Ana çıktı: `docs/PLANNER_EXPLAINABILITY_SPEC.md`.
 
 ## 7. Güncel çalışma konumu
 
@@ -117,25 +118,32 @@ Ana çıktı: `docs/MISSED_DAY_RECOVERY_SPEC.md`.
 - `3D` ✅
 - `3E` ✅
 - `3F` ✅
-- `3G` 🟡 **Açıklanabilir planner — AKTİF**
-- `3H` ⬜ bekliyor
+- `3G` ✅
+- `3H` 🟡 **Planner simülasyonu — AKTİF**
 
-## 8. 3G'de yapılacaklar
+## 8. 3H'de yapılacaklar
 
 Ana soru:
-> Planner bugün neden tam olarak bu görevleri seçti, diğerlerini neden seçmedi ve bunu hem kullanıcıya hem debug/QA'ya nasıl açıklayacağız?
+> 3A–3G'de tasarlanan planner gerçek ve zor kullanıcı senaryolarında kendi kurallarını bozmadan çalışıyor mu?
 
-Kesinleştirilecek:
-- machine-readable reason code taxonomy,
-- selected / skipped / blocked / deferred karar trace'i,
-- PBR/PRG/RVR/capacity/diagnostic/re-entry reason input'larının tek trace'te birleşmesi,
-- user-facing kısa açıklama ile internal audit/debug ayrımı,
-- `neden bugün bu görev?`, `neden diğeri yok?`, `neden branch bekliyor?` cevapları,
-- replan reason chain,
-- deterministic end-to-end planner pseudocode,
-- 3H simulation için doğrulanacak invariants/trace expectations.
+Doğrulanacak:
+- normal yeni öğrenme,
+- remediation ve verification,
+- critical prerequisite blocking,
+- retention review_due,
+- düşük/yüksek günlük kapasite,
+- higher-priority task capacity'ye sığmama,
+- diagnostic partial skip,
+- uzun absence/re-entry,
+- paused continuation,
+- session ortasında süre değişmesi,
+- yeni evidence sonrası replan,
+- same input determinism,
+- user-facing reason ile internal trace tutarlılığı,
+- D-028 bounded/performance expectation,
+- 3A–3G invariant suite.
 
-3G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+3H başlamadan yeni PRE-STEP GitHub refresh zorunlu. 3H sonucunda tüm kritik senaryolar PASS ise **AŞAMA 3 kapatılır ve 4A aktif edilir**; FAIL varsa ilgili planner spec'i düzeltilip senaryo yeniden çalıştırılır.
 
 ## 9. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ve 3A–3F D-033–D-038 kararlarını koru. Şu an aktif adım 3G — Açıklanabilir planner.`
+> `xpike-dgm/ai-infra-learning-coach reposunda docs/START_HERE.md ve docs/PROJECT_MEMORY_PROTOCOL.md ile başla. HANDOFF_STATE.md, EXECUTION_INDEX.md, STEP_STATUS.md ve MASTER_PLAN.md üzerinden aktif adımı doğrula. Her numaralı adımda PRE-STEP GitHub refresh ve POST-STEP GitHub + MASTER_PLAN sync yap. Aşama 2 GRE-v0/RVR-v0 ve 3A–3G D-033–D-039 kararlarını koru. Şu an aktif adım 3H — Planner simülasyonu.`
