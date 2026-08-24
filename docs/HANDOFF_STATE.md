@@ -39,7 +39,7 @@ Aşama 2 canonical omurgası:
 ### 3A ✅ Günlük kapasite — D-033
 - explicit daily time hard budget,
 - no auto-overrun,
-- split/smaller alternative/defer,
+- split/defer,
 - deferred task debt değildir.
 
 ### 3B ✅ Task taxonomy — D-034
@@ -47,21 +47,32 @@ Aşama 2 canonical omurgası:
 - purpose/activity/track/evidence ayrı,
 - unresolved need kalıcı; old task ID debt değildir.
 
-### 3C ✅ Öncelik — PBR-v0 / D-035
-Ana çıktı: `docs/PRIORITY_POLICY_SPEC.md`.
+### 3C ✅ Priority — PBR-v0 / D-035
+- eligibility priority'den önce,
+- P0–P4 semantic bands,
+- deterministic rank vector,
+- starvation/track-balance guard,
+- duration semantic priority'den sonra.
+
+### 3D ✅ Prerequisite — PRG-v0 / D-036
+Ana çıktı: `docs/PREREQUISITE_POLICY_SPEC.md`.
 
 Canonical davranış:
-- priority açık LearningNeed seviyesinde başlar,
-- eligibility/trust priority'den önce gelir,
-- P0 `integrity_blocker`, P1 `repair_or_verify`, P2 `maintain_or_continue`, P3 `planned_progress`, P4 `reinforce_or_optimize`,
-- critical etiketi tek başına P0 yapmaz; gerçek dependency blocking gerekir,
-- `review_due` forgetting değildir,
-- aynı band içi lexicographic rank: blocking → criticality → evidence severity → temporal urgency → starvation → continuation → decision value → track balance → duration fit → stable tie-break,
-- additive sahte-hassas puan ve `score/minute` yok,
-- starvation guard eligible need'in süresiz ertelenmesini engeller,
-- English/paralel track fixed yüzdeyle değil due + starvation/track balance ile korunur,
-- capacity dolunca kalan need açık kalır; next-day homework debt oluşmaz,
-- `PriorityDecisionTrace` reconstruct edilebilir.
+- runtime prerequisite `Skill → Skill`,
+- edge `hard | soft`,
+- readiness `ready | ready_due | uncertain | not_ready`,
+- `review_due` = `ready_due`, hard lock değildir,
+- hard `not_ready` dependent candidate'ı bloke eder,
+- critical/strict `verification_due` dependent yeni work'u verification çözülene kadar bekletebilir,
+- normal uncertain dependency conditional eligibility olabilir; tüm curriculum durmaz,
+- task-level `required_skill_ids` exact candidate hard requirement'tır,
+- priority prerequisite'i bypass edemez,
+- yalnız affected branch bekler; independent branches devam eder,
+- started/mastered Topic prerequisite regression ile `locked` olmaz,
+- prerequisite contamination target negative evidence değildir,
+- missing prerequisite repair/review/verification need olarak planner'a geri beslenir,
+- Technical English gerçek dependency değilse global technical blocker değildir,
+- deterministic/bounded `PrerequisiteDecision` output'u vardır.
 
 ## 5. Güncel kesin konum
 
@@ -70,19 +81,22 @@ Canonical davranış:
 - `3A` ✅
 - `3B` ✅
 - `3C` ✅
-- `3D` 🟡 **Prerequisite davranışı — AKTİF**
-- `3E–3H` ⬜ Bekliyor
+- `3D` ✅
+- `3E` 🟡 **Hızlı öğrenme — AKTİF**
+- `3F–3H` ⬜ Bekliyor
 
-## 6. 3D'de kesinleştirilecekler
-- hard vs soft prerequisite edge semantics,
-- candidate eligibility'nin kesin kuralı,
-- critical unresolved verification/remediation nedeniyle dependent branch wait,
-- `review_due` tek başına hard lock olmaması,
-- yalnız bağımlı dalın beklemesi; independent branches'in devamı,
-- öğretilmemiş prerequisite contamination guard,
-- prerequisite state değişince replan,
-- 3D eligibility filter ile 3C priority'nin kesin yürütme sırası,
-- user-facing explanation girdileri; final reason code metinleri 3G.
+## 6. 3E'de kesinleştirilecekler
+- kullanıcı bir Topic/Skill'i zaten biliyorsa bunu nasıl güvenilir diagnostic ile gösterecek,
+- `available → mastered` validated diagnostic yolu,
+- coverage waiver / skip semantics,
+- tek kolay quiz ile skip yasağı,
+- partial diagnostic sonucu ve yalnız bilinen Objective'lerin atlanması,
+- critical Skill için güçlü independent evidence,
+- diagnostic assistance/provenance,
+- false-positive skip guard,
+- diagnostic sonucu GRE-v0 + PRG-v0 + planner replan entegrasyonu.
+
+3E için araştırma gereksinimi PRE-STEP sonrası değerlendirilmeli; özellikle diagnostic/placement mastery konusunda dış learning-science evidence gerekiyorsa Research AI kullanılabilir.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -100,9 +114,10 @@ Canonical davranış:
 13. `docs/ADAPTIVE_PLANNER_SPEC.md`
 14. `docs/TASK_TAXONOMY_SPEC.md`
 15. `docs/PRIORITY_POLICY_SPEC.md`
-16. `docs/ENGLISH_FOUNDATION_RULES.md`
-17. `docs/MASTER_PLAN.md`
-18. `docs/PROGRESS_LOG.md`
+16. `docs/PREREQUISITE_POLICY_SPEC.md`
+17. `docs/ENGLISH_FOUNDATION_RULES.md`
+18. `docs/MASTER_PLAN.md`
+19. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **3D — Prerequisite davranışı** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden aktif adımı doğrula ve **3E — Hızlı öğrenme** için yeni PRE-STEP GitHub refresh yap. 3A D-033, 3B D-034, 3C D-035, 3D D-036 ve Aşama 2 GRE/RVR kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
