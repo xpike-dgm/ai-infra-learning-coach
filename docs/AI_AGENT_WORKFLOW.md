@@ -6,13 +6,13 @@ Bu belge, AI Infra Learning Coach projesinde birden fazla yapay zekâ aracının
 
 Bağlayıcı kaynak: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
-Her numaralı proje adımı (`1A`, `2C`, `3A`, `11F` vb.) şu döngüyle yürütülür:
+Her numaralı proje adımı (`1A`, `2E`, `3A`, `11F` vb.) şu döngüyle yürütülür:
 
-**PRE-STEP GitHub refresh → adımı yürüt → gerekirse Research/Coding/QA → sonucu değerlendir → POST-STEP GitHub sync → sonraki adımı aktif yap**
+**PRE-STEP GitHub refresh → MASTER_PLAN/INDEX tutarlılık kontrolü → adımı yürüt → gerekirse Research/Coding/QA → sonucu değerlendir → POST-STEP GitHub + MASTER_PLAN sync → sonraki adımı aktif yap**
 
-PRE-STEP sırasında minimum olarak `HANDOFF_STATE.md`, `EXECUTION_INDEX.md`, `STEP_STATUS.md`, `DECISIONS.md` ve o adımla ilgili en güncel spec/davranış dosyaları okunur. Aynı sohbet içinde bir sonraki numaralı adıma geçiliyor olsa bile bu refresh yeniden yapılır.
+PRE-STEP sırasında minimum olarak `HANDOFF_STATE.md`, `EXECUTION_INDEX.md`, `STEP_STATUS.md`, `DECISIONS.md`, `MASTER_PLAN.md` ve o adımla ilgili en güncel spec/davranış dosyaları okunur. Aynı sohbet içinde bir sonraki numaralı adıma geçiliyor olsa bile bu refresh yeniden yapılır.
 
-POST-STEP sırasında adımın ana çıktısı ve etkilenen kalıcı hafıza dosyaları güncellenir. `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` durum değişikliğini yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmaz. Yeni kalıcı karar varsa `DECISIONS.md` de güncellenir.
+POST-STEP sırasında adımın ana çıktısı ve etkilenen kalıcı hafıza dosyaları güncellenir. `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` ve `MASTER_PLAN` durum değişikliğini yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmaz. Yeni kalıcı karar varsa `DECISIONS.md` de güncellenir.
 
 ---
 
@@ -24,6 +24,7 @@ Ana yönetici proje bağlamını, `PROJECT_MEMORY_PROTOCOL.md`, `MASTER_PLAN.md`
 
 Sorumlulukları:
 - her numaralı adım öncesi zorunlu GitHub beyin tazelemesini yapmak,
+- `EXECUTION_INDEX` ile `MASTER_PLAN` ilerleme tutarlılığını kontrol etmek,
 - sıradaki işi seçmek,
 - işi doğru AI rolüne vermek,
 - araştırma sonuçlarını ürün kararına çevirmek,
@@ -31,7 +32,7 @@ Sorumlulukları:
 - test AI'ının bulgularını değerlendirmek,
 - başarısız testte işi tekrar kodlama aşamasına döndürmek,
 - yalnız kabul kriterleri sağlandığında işi tamamlanmış saymak,
-- adım kapanışında gerekli GitHub hafıza dosyalarını senkronize etmek,
+- adım kapanışında gerekli GitHub hafıza dosyalarını ve MASTER_PLAN checklist'ini senkronize etmek,
 - GitHub proje hafızasını durable source of truth olarak güncel tutmak.
 
 Ana yönetici mümkün olduğunca doğrudan büyük kod blokları üretmek yerine görevleri koordine eder; ancak küçük doğrulama, mimari değerlendirme ve dokümantasyon yapabilir.
@@ -118,7 +119,7 @@ FAIL durumunda iş tamamlanmış sayılmaz ve kodlama AI'a geri döner.
 Her önemli özellik/karar için varsayılan akış:
 
 **0. PRE-STEP GitHub beyin tazelemesi**
-→ Aktif adım, önceki kararlar, ilgili spec'ler ve kapsam doğrulanır.
+→ Aktif adım, önceki kararlar, ilgili spec'ler, `EXECUTION_INDEX` ve `MASTER_PLAN` kapsamı doğrulanır.
 
 **1. Yönetici problemi tanımlar**
 → Ne çözülüyor, neden gerekli, başarı kriteri nedir?
@@ -139,7 +140,7 @@ Her önemli özellik/karar için varsayılan akış:
 → Bulgular kodlama AI'a gönderilir → düzeltme → tekrar QA.
 
 **6B. PASS ise**
-→ Yönetici sonucu kontrol eder ve ilgili master plan maddesini tamamlar.
+→ Yönetici sonucu kontrol eder.
 
 **7. POST-STEP GitHub hafızası senkronize edilir**
 → ana spec/çıktı
@@ -147,18 +148,21 @@ Her önemli özellik/karar için varsayılan akış:
 → `STEP_STATUS.md`
 → `HANDOFF_STATE.md`
 → `PROGRESS_LOG.md`
+→ `MASTER_PLAN.md` karşılık gelen checklist/completion note
 → gerekirse `DECISIONS.md`
-→ gerekirse `MASTER_PLAN.md`, `START_HERE.md` veya diğer etkilenen canonical dosyalar
+→ gerekirse `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md` veya diğer etkilenen canonical dosyalar
 
 Bu POST-STEP senkronizasyonu yapılmadan numaralı adım tamamlanmış sayılmaz.
 
 ## 3. Hangi İş Hangi AI'a Gider?
 
 ### Araştırma AI'a öncelikli gönder
-- 'Hangisini seçmeliyiz?'
+- `Hangisini seçmeliyiz?`
 - güncel dış bilgi gereken sorular
 - kaynak doğrulama
 - algoritma/literatür karşılaştırması
+- mastery / learning-science model araştırması
+- spaced repetition
 - curriculum veya kariyer araştırması
 - framework/library güncelliği
 
@@ -187,8 +191,8 @@ Her görev üç AI'dan geçmek zorunda değildir.
 Örneğin çok net bir UI metin düzeltmesi:
 Yönetici → Kodlama AI → Test AI yeterlidir.
 
-Buna karşılık mastery algoritması gibi kritik bir konuda:
-Yönetici → Araştırma AI → Spec → Kodlama AI → Test AI → gerekirse iterasyon gerekir.
+Buna karşılık mastery formülü veya forgetting modeli gibi kritik bir konuda:
+Yönetici → Araştırma AI → Spec → gerektiğinde simülasyon/QA → karar gerekir.
 
 Amaç süreç yaratmak değil, hata riskine göre doğru doğrulama seviyesini kullanmaktır.
 
@@ -196,9 +200,7 @@ Amaç süreç yaratmak değil, hata riskine göre doğru doğrulama seviyesini k
 
 Aynı AI mümkünse hem ana implementasyonu hem nihai QA'yı yapmamalıdır.
 
-Sebep: Kendi varsayımlarını ve hatalarını tekrar etme riski.
-
-Kodlama AI 'çalışıyor' dedi diye görev tamamlanmış kabul edilmez. Test AI veya yöneticinin bağımsız kabul kontrolü gerekir.
+Kodlama AI `çalışıyor` dedi diye görev tamamlanmış kabul edilmez. Test AI veya yöneticinin bağımsız kabul kontrolü gerekir.
 
 ## 6. Kaynak Gerçeği ve Karar Gerçeği Ayrımı
 
@@ -223,11 +225,7 @@ Kodlama veya test AI'a gönderilen önemli görevlerde mümkünse şu şablon ku
 - Test komutları / beklenen doğrulama
 - Çıktı raporu formatı
 
-Bu, agent'ın projeyi yeniden yorumlamasını azaltır.
-
 ## 8. GitHub Branch / PR Stratejisi — Kod Başladığında
-
-Kodlama aşamasına geçildiğinde önerilen akış:
 
 - `main`: kabul edilmiş stabil durum
 - feature/fix branch: kodlama AI'ın çalışma alanı
@@ -240,24 +238,25 @@ Kişisel proje olduğu için gereksiz ağır süreç kurulmaz; ancak geri dönü
 
 Bir geliştirme işi ancak aşağıdakiler sağlandığında tamamlanmış sayılır:
 
-1. PRE-STEP GitHub beyin tazelemesi yapılmış ve mevcut kararlarla çelişki kontrolü gerçekleştirilmiştir.
-2. İstenen davranış implement edilmiş veya adımın beklenen spec/çıktısı üretilmiştir.
-3. Acceptance criteria karşılanmıştır.
-4. Gerekli kritik testler geçmiştir.
-5. Bilinen kritik bug/açık engel yoktur.
-6. Gerekli dokümantasyon güncellenmiştir.
-7. POST-STEP GitHub sync yapılmış ve yeni aktif adım doğru kaydedilmiştir.
+1. PRE-STEP GitHub beyin tazelemesi yapılmıştır.
+2. `EXECUTION_INDEX` ve `MASTER_PLAN` başlangıç durumu uyuşmaktadır veya stale kayıt düzeltilmiştir.
+3. İstenen davranış implement edilmiş veya adımın beklenen spec/çıktısı üretilmiştir.
+4. Acceptance criteria karşılanmıştır.
+5. Gerekli kritik testler geçmiştir.
+6. Bilinen kritik bug/açık engel yoktur.
+7. Gerekli dokümantasyon güncellenmiştir.
+8. POST-STEP GitHub sync yapılmıştır.
+9. `MASTER_PLAN` checkbox/completion note günceldir.
+10. Yeni aktif adım doğru kaydedilmiştir.
 
-Kodun veya dokümanın üretilmiş olması tek başına 'tamamlandı' değildir.
+Kodun veya dokümanın üretilmiş olması tek başına `tamamlandı` değildir.
 
 ## 10. Projedeki Rol Dağılımının Özeti
 
-**Ana Yönetici:** Ne yapılacağını ve neyin kabul edileceğini belirler; her adımın GitHub hafıza bütünlüğünden sorumludur.
+**Ana Yönetici:** Ne yapılacağını ve neyin kabul edileceğini belirler; her adımın GitHub ve MASTER_PLAN hafıza bütünlüğünden sorumludur.
 
 **Araştırma AI:** Doğru bilgi ve seçenekleri getirir.
 
 **Kodlama AI:** Onaylanmış tasarımı uygular.
 
 **Test AI:** Uygulamanın gerçekten istenen şeyi yaptığını bağımsız doğrular.
-
-Bu iş bölümü projenin ilerleyen tüm aşamalarında kullanılabilir ve ihtiyaç halinde yeni uzman AI rolleri eklenebilir.
