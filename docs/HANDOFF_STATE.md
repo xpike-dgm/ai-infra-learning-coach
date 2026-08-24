@@ -38,27 +38,50 @@ Ana teknik yön:
 
 ---
 
-# 3. Tamamlanan Ürün Aşaması
+# 3. Tamamlanan Aşamalar / Adımlar
 
 ## ✅ AŞAMA 1 — Ürün Çerçevesini Kilitle
 
-### ✅ 1A — Ana ürün amacı
-Çıktı: `docs/PRODUCT_REQUIREMENTS.md`
+- `1A` ✅ Ana ürün amacı — `docs/PRODUCT_REQUIREMENTS.md`
+- `1B` ✅ V1 kapsamı — `docs/V1_SCOPE.md`
+- `1C` ✅ Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
+- `1D` ✅ Non-goals — `docs/NON_GOALS.md`
 
-### ✅ 1B — V1 kapsamı
-Çıktı: `docs/V1_SCOPE.md`
+Aşama 1 sonucu: ne inşa ettiğimiz, V1'in sınırı, ne zaman başarılı sayılacağı ve ne yapmayacağımız kilitlidir.
 
-### ✅ 1C — Başarı kriterleri
-Çıktı: `docs/V1_SUCCESS_CRITERIA.md`
+## ✅ 2A — Bilgi birimleri
 
-49 acceptance kriteri P0/P1/P2 olarak tanımlandı. Tüm P0 kriterleri PASS olmadan release yoktur.
+Ana çıktı: `docs/LEARNING_ENGINE_SPEC.md`
 
-### ✅ 1D — Non-goals
-Çıktı: `docs/NON_GOALS.md`
+Kilitleyen yapı:
 
-Ürün seviyesi non-goals ile yalnız V1'e ertelenen özellikler ayrıldı. Sabit kurs, time/streak progress, tamamen LLM kontrollü curriculum, SaaS/social/payment scope creep, tam IDE kimliği ve sahte bilimsel kesinlik reddedildi. Tam curriculum, diğer platformlar, live cloud sync, full voice tutor, full sandbox ve career-market engine V1 sonrasına bırakıldı.
+`Domain → Module → Topic → Skill → Learning Objective`
 
-**Aşama 1 sonucu:** Ne inşa ettiğimiz, V1'de ne olduğu, ne zaman başarılı sayıldığı ve ne yapmayacağımız artık kilitlidir.
+Fakat model katı bir ağaç değildir.
+
+### Curriculum organizasyon katmanı
+
+`Domain → Module → Topic`
+
+### Gerçek learning/mastery katmanı
+
+`Skill → Learning Objective`
+
+Bağlayıcı kararlar:
+
+- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill`.
+- Evidence en atomik olarak `Learning Objective` seviyesine bağlanabilir.
+- Topic/Module/Domain mastery Skill verilerinden derived edilir.
+- Topic completion mastery değildir.
+- Aynı Skill birden fazla Topic'te kullanılabilir; duplicate mastery yaratılmaz.
+- Topic ↔ Skill many-to-many ilişki destekler.
+- Runtime prerequisite ana olarak `Skill → Skill` çalışır.
+- Cross-domain Skill dependency mümkündür.
+- Technical English teknik programı yalnız gerçek dependency varsa hard-lock edebilir; global kapı değildir.
+- Learning Objective gözlemlenebilir ve ölçülebilir eylem olarak yazılır.
+- Task ve assessment yalnız Topic'e değil hedeflediği Skill/Objective'e bağlanmalıdır.
+
+Kalıcı karar: `docs/DECISIONS.md` D-021.
 
 ---
 
@@ -66,37 +89,42 @@ Ana teknik yön:
 
 **AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla**
 
-- `2A` 🟡 **Bilgi birimleri — AKTİF**
-- `2B` ⬜ Topic durumları
+- `2A` ✅ Bilgi birimleri
+- `2B` 🟡 **Topic durumları — AKTİF**
 - `2C` ⬜ Mastery sinyalleri
 - `2D` ⬜ AI/ipucu etkisi
 - `2E` ⬜ Mastery formülü v0
 - `2F` ⬜ Unutma modeli
 
-## Aktif iş: 2A
+## Aktif iş: 2B
 
-`Domain → Module → Topic → Skill → Learning Objective` modelini kesinleştirmek.
+Topic state machine tasarlanacak.
 
-2A'da netleşmesi gerekenler:
+Kesinleştirilmesi gerekenler:
 
-- her katmanın kesin anlamı,
-- hangi katmanın curriculum organizasyonu için olduğu,
-- mastery'nin hangi seviyede tutulacağı,
-- prerequisite edge'in hangi birimler arasında kurulabileceği,
-- bir topic ile skill arasındaki fark,
-- learning objective'in nasıl ölçülebilir yazılacağı,
-- aynı skill'in birden fazla topic/module ile ilişkisi gerekiyorsa nasıl temsil edileceği,
-- English ve teknik domainlerin aynı modele nasıl oturacağı.
+- `locked`
+- `available`
+- `learning`
+- `mastered`
+- `weakening`
+- `remediation_required`
+- her state'in kesin anlamı,
+- hangi olay/kanıt ile state değiştiği,
+- coverage ile mastery'nin birbirine karışmaması,
+- Skill mastery ile Topic state arasındaki ilişki,
+- retention düşüşünün state'e etkisi,
+- remediation sonrası geri dönüş yolları,
+- planner'ın state'leri nasıl yorumlayacağı.
 
 ---
 
 # 5. Hâlâ Açık Ana Konular
 
-- bilgi birimi modeli (`2A`)
-- topic state machine
-- mastery formula / threshold / evidence weights
-- AI-help impact
-- spaced repetition algoritması
+- topic state machine (`2B`)
+- mastery evidence modeli (`2C`)
+- AI-help impact (`2D`)
+- mastery formülü / threshold / confidence (`2E`)
+- spaced repetition / decay (`2F`)
 - adaptive planner decision table
 - assessment composition
 - curriculum graph
@@ -121,9 +149,10 @@ Ana teknik yön:
 9. `docs/V1_SCOPE.md`
 10. `docs/V1_SUCCESS_CRITERIA.md`
 11. `docs/NON_GOALS.md`
-12. `docs/MASTER_PLAN.md`
-13. `docs/AI_AGENT_WORKFLOW.md`
-14. `docs/PROGRESS_LOG.md`
+12. `docs/LEARNING_ENGINE_SPEC.md`
+13. `docs/MASTER_PLAN.md`
+14. `docs/AI_AGENT_WORKFLOW.md`
+15. `docs/PROGRESS_LOG.md`
 
 ---
 
@@ -131,11 +160,11 @@ Ana teknik yön:
 
 Repo hafızasını okuduktan sonra doğrudan:
 
-> **`2A — Bilgi birimleri`**
+> **`2B — Topic durumları`**
 
 adımından devam et.
 
-Aşama 1 kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
+Aşama 1 ve 2A kararlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
