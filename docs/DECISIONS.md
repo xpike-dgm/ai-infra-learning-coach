@@ -198,3 +198,23 @@ Ayrıntı: `docs/PRIORITY_POLICY_SPEC.md`.
 - Deterministic/bounded readiness output `PrerequisiteDecision` ile açıklanabilir ve ileride 11B Prerequisite Engine'e taşınabilir.
 
 Ayrıntı: `docs/PREREQUISITE_POLICY_SPEC.md`.
+
+## D-037 — Final hızlı öğrenme modeli = VDW-v0 Validated Diagnostic Waiver
+**Durum:** Kabul edildi — 2026-08-24
+
+- Diagnostic, GRE-v0'dan daha kolay ikinci bir mastery standardı değildir; aynı evidence/gate kurallarını daha verimli toplama yoludur.
+- Kullanıcının `biliyorum` beyanı yalnız diagnostic trigger/scope'tur, evidence değildir.
+- Tek kolay quiz / recognition-only sonuç whole-Topic skip veremez.
+- Skip canonical olarak Objective bazlı `DiagnosticCoverageWaiver` üretir; coverage waiver current mastery/retention değildir.
+- Partial diagnostic yalnız kanıtlanan Objective'lere waiver verir; unresolved kısımlar normal öğrenmeye devam eder.
+- `available → mastered` yalnız bütün required coverage waiver/coverage koşulları + GRE-v0 required/critical Skill gates birlikte sağlanınca mümkündür.
+- Critical Skill diagnostic'i GRE-v0 critical gates'i aynen korur; coding için H0 user-authored artifact, debugging için H0 diagnosis/fix ve gereken transfer/diversity şartları düşürülemez.
+- Waiver üretecek diagnostic evidence H0, prerequisite-valid, verified ve provenance-clean olmalıdır; H1–H4 veya solution exposure skip kanıtı değildir.
+- Integrated diagnostic birden çok Objective'i hızlandırabilir fakat component evidence için structural essentiality + separate observability/attribution şarttır; tek project pass whole-topic waiver değildir.
+- Diagnostic fail, henüz mastered olmayan prior-knowledge yolunda otomatik `remediation_required` cezası değildir; waiver verilmez ve normal learning başlar.
+- Prerequisite contamination target negative evidence üretmez; PRG-v0 diagnostic'te de önce çalışır.
+- Diagnostic current daily capacity içinde planlanır ve sonuç GRE → waiver → PRG → Topic state → LearningNeed/PBR → replan sırasıyla sisteme geri beslenir.
+- Waiver curriculum/objective versiyonuna bağlıdır; yeni required Objective eski waiver ile otomatik geçilmiş sayılmaz.
+- Policy bounded/deterministic ve D-028 ile uyumludur.
+
+Ayrıntı: `docs/DIAGNOSTIC_WAIVER_SPEC.md`.
