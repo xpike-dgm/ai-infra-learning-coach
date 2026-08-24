@@ -12,9 +12,24 @@ Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`, D-024, D-027.
 Tek kullanıcı için, sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan ve yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
 
 Ana rota:
-**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure**
+**Technical English + Computer Fundamentals → C → Linux → Modern C++ → OS/Memory → Concurrency → Networking → Distributed Systems → GPU Architecture → CUDA → Triton → LLM Inference → AI Infrastructure / ML Systems / GPU Systems**
 
-## 2. Bağlayıcı ana kurallar
+## 2. Yeni uzun vadeli hedef — D-041
+
+2026-08-24'te ürün kapsamı genişletildi.
+
+- Nihai curriculum yaklaşık 3 yıllık horizon ile sınırlı değil; **4+ yıl veya daha uzun** sürebilir.
+- 4+ yıl countdown/mezuniyet garantisi değildir.
+- Final hedef yalnız course completion değil, **professional-readiness seviyesinde verified engineering capability**.
+- Final readiness; required Skill mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ister.
+- Daha kapsamlı öğretim progression'ı: `concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context`.
+- V1 4+ yıl beklemez; learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilir.
+- Aşama 5 full route'u taşıyacak extensible graph; Aşama 14 ilk production package; Aşama 19 full professional curriculum expansion + open source + career readiness + capstones.
+- Product job offer/salary/seniority veya üniversite/HR filtresi garantisi vermez; gerçek ekip/production deneyimi ayrıca oluşur.
+
+Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`, D-041.
+
+## 3. Bağlayıcı ana kurallar
 - Curriculum takvim değil prerequisite graph.
 - Canonical mastery/prerequisite seviyesi Skill; evidence Objective'e bağlanabilir.
 - Coverage/time/streak/task completion mastery değildir.
@@ -25,11 +40,12 @@ Ana rota:
 - English paralel gider; global technical blocker değildir.
 - Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
 - D-028: bounded/incremental hesap, async ağır işler, gerçek cihaz performance QA.
+- D-041: professional readiness takvim değil evidence ile belirlenir.
 
-## 3. Tamamlanan aşamalar
+## 4. Tamamlanan aşamalar
 
 ### AŞAMA 1 ✅
-`1A–1D` tamamlandı.
+`1A–1D` tamamlandı. D-041 uzun vadeli çıkış hedefini genişletmiştir; V1 ayrımı korunur.
 
 ### AŞAMA 2 ✅ — Öğrenme/Mastery
 - `GRE-v0 — Gated Recent Evidence` — D-031
@@ -54,33 +70,19 @@ Kritik: time-decay mastery yok; `review_due` forgetting değildir; H1–H4 posit
 0 critical cross-spec contradiction
 ```
 
-## 4. AŞAMA 4 ilerlemesi
+### AŞAMA 4 ilerlemesi
 
-### 4A ✅ Günlük mikro değerlendirme — DMA-v0 / D-040
+#### 4A ✅ Günlük mikro değerlendirme — DMA-v0 / D-040
 Ana çıktı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
 
-Canonical davranış:
-- daily micro assessment zorunlu günlük quiz/kota değildir,
-- fixed soru sayısı, fixed dakika veya günlük yüzde yoktur,
-- `practice`, `assess`, `retain`, `diagnose` ayrıdır,
-- assessment existing LearningNeed/evidence-gap bağlamından üretilir; ayrı assessment backlog/debt yoktur,
-- intents: `checkpoint | mastery_evidence | verification | integration_check`,
-- Objective-matched evidence type seçilir; kısa süre uğruna evidence standardı düşmez,
-- mastery/verification için varsayılan H0 independent attempt,
-- H1–H4 yardım öğrenmeye izin verir fakat positive independent mastery değildir; yardım istemek negative H0 evidence değildir,
-- submit sonrası feedback önceki H0 attempt'i geriye dönük kirletmez,
-- H3/H4 solution exposure sonrası fresh/unseen recheck gerekir,
-- PRG prerequisite fairness assessment öncesi zorunludur,
-- invalid/ambiguous/prerequisite-contaminated item mastery credit/penalty üretmez,
-- provisional evaluator critical mastery/remediation kararını tek başına belirleyemez,
-- tek doğru item automatic mastery değildir,
-- tek clean post-mastery failure instant unmastery değildir; GRE/RVR verification hysteresis korunur,
-- coding/debugging/transfer Objective'leri gerçek target behavior ile ölçülür,
-- multi-Skill task yalnız separately observable/attributable component'lere evidence verir,
-- assessment sonucu `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → replan` zinciriyle çalışır,
-- new remediation günü otomatik uzatmaz,
-- technical assessment'ta bilinmeyen English grammar/vocabulary gizli prerequisite olamaz,
-- 4B–4E için minimum item/result contract + `assessment.*` reason-code namespace'i tanımlıdır.
+- daily assessment quota değildir,
+- fixed soru/süre/yüzde yok,
+- practice/assess/retain/diagnose ayrıdır,
+- H0 independent evidence guard,
+- assistance/provenance/prerequisite safety,
+- invalid/provisional item guard,
+- coding/debugging/transfer evidence standardı düşmez,
+- assessment sonucu GRE/RVR/remediation/PRG/planner'a geri beslenir.
 
 ## 5. Güncel kesin konum
 
@@ -93,27 +95,29 @@ Canonical davranış:
 - `4B` 🟡 **Haftalık sınav — AKTİF**
 - `4C–4E` ⬜ bekliyor
 
+**Önemli:** D-041 kapsam değişikliği kaydedildi; 4B henüz yürütülmedi. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
 ## 6. 4B'de kesinleştirilecekler
 
 Ana soru:
-> Haftalık sınav günlük mikro assessment'tan ne zaman daha geniş bir kanıt sağlamalı ve çok sayıda Skill/Objective'i tek sınavda nasıl adil, güvenilir ve aşırı test yükü yaratmadan temsil etmeli?
+> Haftalık sınav daily micro assessment'ın sağlayamadığı hangi daha geniş evidence'ı sağlamalı ve çok sayıda Skill/Objective'i adil bir blueprint ile nasıl ölçmeli?
 
 Kesinleştirilecek:
 - weekly assessment purpose/scope,
 - DMA-v0'dan farkı,
-- Skill/Objective blueprint ve required/critical coverage,
+- required/critical Skill/Objective coverage,
+- multi-Skill blueprint,
 - evidence modality/family/context diversity,
 - current weakness + recent progress + prerequisite risk dengesi,
-- fixed bilimsel soru sayısı/puan uydurmadan composition,
-- weekly sınav süresi ve günlük capacity ile ilişkisi,
-- atomic/bölünebilir sınav davranışı,
-- H0/H1–H4, pause, incomplete ve solution exposure,
+- fixed bilimsel soru sayısı/puan uydurmama,
+- sınav süresi ve capacity ilişkisi,
+- bölünebilirlik / pause / incomplete davranışı,
+- H0/H1–H4 assistance ve solution exposure,
 - invalid/ambiguous/provisional item güvenliği,
-- weekly result → GRE/RVR/remediation/PRG/planner etkisi,
-- tek kötü haftalık sınava aşırı tepki vermeyen hysteresis,
+- weekly result → GRE/RVR/remediation/PRG/planner,
+- tek sınava aşırı tepki vermeyen hysteresis,
+- D-041 professional-readiness hedefi için ileride daha geniş integrated evidence'a uyum,
 - 4C monthly assessment için ortak blueprint/result contract.
-
-4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 7. İlk okuma sırası
 1. `docs/START_HERE.md`
@@ -122,24 +126,28 @@ Kesinleştirilecek:
 4. `docs/EXECUTION_INDEX.md`
 5. `docs/STEP_STATUS.md`
 6. `docs/DECISIONS.md`
-7. `docs/LEARNING_ENGINE_SPEC.md`
-8. `docs/LEARNING_BEHAVIOR_RULES.md`
-9. `docs/MASTERY_SIGNALS_SPEC.md`
-10. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-11. `docs/MASTERY_FORMULA_V0.md`
-12. `docs/RETENTION_FORGETTING_SPEC.md`
-13. `docs/ADAPTIVE_PLANNER_SPEC.md`
-14. `docs/TASK_TAXONOMY_SPEC.md`
-15. `docs/PRIORITY_POLICY_SPEC.md`
-16. `docs/PREREQUISITE_POLICY_SPEC.md`
-17. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-18. `docs/MISSED_DAY_RECOVERY_SPEC.md`
-19. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-20. `docs/PLANNER_SIMULATION_SUITE.md`
-21. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-22. `docs/ENGLISH_FOUNDATION_RULES.md`
-23. `docs/MASTER_PLAN.md`
-24. `docs/PROGRESS_LOG.md`
+7. `docs/PRODUCT_REQUIREMENTS.md`
+8. `docs/PROFESSIONAL_READINESS_TARGET.md`
+9. `docs/PROJECT_MASTER_CONTEXT.md`
+10. `docs/V1_SCOPE.md`
+11. `docs/LEARNING_ENGINE_SPEC.md`
+12. `docs/LEARNING_BEHAVIOR_RULES.md`
+13. `docs/MASTERY_SIGNALS_SPEC.md`
+14. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+15. `docs/MASTERY_FORMULA_V0.md`
+16. `docs/RETENTION_FORGETTING_SPEC.md`
+17. `docs/ADAPTIVE_PLANNER_SPEC.md`
+18. `docs/TASK_TAXONOMY_SPEC.md`
+19. `docs/PRIORITY_POLICY_SPEC.md`
+20. `docs/PREREQUISITE_POLICY_SPEC.md`
+21. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
+22. `docs/MISSED_DAY_RECOVERY_SPEC.md`
+23. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+24. `docs/PLANNER_SIMULATION_SUITE.md`
+25. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+26. `docs/ENGLISH_FOUNDATION_RULES.md`
+27. `docs/MASTER_PLAN.md`
+28. `docs/PROGRESS_LOG.md`
 
 ## 8. Yeni sohbetin ilk işi
-Repo üzerinden aktif adımı doğrula ve **4B — Haftalık sınav** için yeni PRE-STEP GitHub refresh yap. Aşama 2 GRE/RVR, Aşama 3 D-033–D-039 + 3H PASS ve 4A DMA-v0/D-040 kararlarını kullanıcı açıkça değiştirmedikçe yeniden açma.
+Repo üzerinden D-041 kapsam genişlemesini ve aktif adımı doğrula. Ardından **4B — Haftalık sınav** için yeni PRE-STEP GitHub refresh yap. Aşama 2 GRE/RVR, Aşama 3 D-033–D-039 + 3H PASS, 4A DMA-v0/D-040 ve D-041 professional-readiness target kullanıcı açıkça değiştirmedikçe yeniden açılmamalıdır.
