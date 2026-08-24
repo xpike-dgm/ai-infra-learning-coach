@@ -13,24 +13,34 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki sabit adım kodlarının güncel du
 
 | Adım | Durum | Açıklama |
 |---|---|---|
-| **1A — Ana ürün amacı** | ✅ Tamamlandı | Ürünün amacı, günlük değer önerisi ve ana ürün ilkeleri `docs/PRODUCT_REQUIREMENTS.md` içinde kilitlendi. |
-| **1B — V1 kapsamı** | ✅ Tamamlandı | V1'in zorunlu yetenekleri ve bilinçli olarak sonraya bırakılan alanlar `docs/V1_SCOPE.md` içinde kilitlendi. |
-| **1C — Başarı kriterleri** | ✅ Tamamlandı | Daily planner, mastery, prerequisite, assessment, replan, retention, remediation, AI Tutor, English, persistence ve release için P0/P1/P2 acceptance kriterleri `docs/V1_SUCCESS_CRITERIA.md` içinde kilitlendi. |
-| **1D — Non-goals** | 🟡 Aktif | Scope creep'i engellemek için projenin ve V1'in özellikle ne olmayacağı tek listede konsolide edilip kilitlenecek. |
-| **2A ve sonrası** | ⬜ Bekliyor | Aşama 1 tamamlanmadan başlanmayacak. |
+| **1A — Ana ürün amacı** | ✅ Tamamlandı | Ürünün amacı ve ana ilkeleri `docs/PRODUCT_REQUIREMENTS.md` içinde kilitlendi. |
+| **1B — V1 kapsamı** | ✅ Tamamlandı | V1 zorunlu yetenekleri ve deferred alanlar `docs/V1_SCOPE.md` içinde kilitlendi. |
+| **1C — Başarı kriterleri** | ✅ Tamamlandı | 49 P0/P1/P2 acceptance kriteri `docs/V1_SUCCESS_CRITERIA.md` içinde tanımlandı. |
+| **1D — Non-goals** | ✅ Tamamlandı | Ürün seviyesi non-goals ile V1'den ertelenen özellikler `docs/NON_GOALS.md` içinde konsolide edildi. |
+| **2A — Bilgi birimleri** | 🟡 Aktif | Domain → Module → Topic → Skill → Learning Objective hiyerarşisi, her katmanın sorumluluğu ve ölçülebilir öğrenme hedefi standardı tasarlanacak. |
+| **2B ve sonrası** | ⬜ Bekliyor | 2A tamamlandıktan sonra sırayla ilerleyecek. |
 
-## Son tamamlanan adım
+## Tamamlanan milestone
 
-### 1C — Başarı kriterleri
+### AŞAMA 1 — Ürün Çerçevesini Kilitle ✅
 
 **Tamamlanma tarihi:** 2026-08-24
 
-**Ana çıktı:** `docs/V1_SUCCESS_CRITERIA.md`
+Çıktılar:
 
-**Özet:** V1 için 49 numaralı acceptance kriteri oluşturuldu. Release kapısı; tüm P0 testlerinin PASS olması, bağımsız QA doğrulaması, veri kaybı olmaması, prerequisite/mastery/planner çekirdek kurallarının ihlal edilmemesi ve gerçek Android cihaz/pilot doğrulaması olarak tanımlandı. Mastery threshold gibi henüz araştırılması gereken sayısal parametreler bilinçli olarak sonraki ilgili aşamalara bırakıldı.
+- `docs/PRODUCT_REQUIREMENTS.md`
+- `docs/V1_SCOPE.md`
+- `docs/V1_SUCCESS_CRITERIA.md`
+- `docs/NON_GOALS.md`
+
+**Özet:** Ürünün amacı, V1 kapsamı, release başarı kriterleri ve kapsam dışı alanları artık ayrı ve kalıcı dokümanlarda kilitlidir.
 
 ## Aktif adım
 
-### 1D — Non-goals
+### 2A — Bilgi birimleri
 
-Bu adımda yapılacak iş: V1 ve projenin özellikle ne olmaya çalışmadığını kalıcı biçimde tanımlamak; gereksiz SaaS, sosyal, gamification, platform, IDE/compiler, tüm 3 yıllık içeriği baştan üretme ve benzeri scope creep alanlarını tek listede kilitlemek. 1D tamamlanınca Aşama 1 tamamlanacaktır.
+Bu adımda öğrenme sisteminin veri/pedagoji omurgası kurulacak:
+
+`Domain → Module → Topic → Skill → Learning Objective`
+
+Amaç yalnız isim vermek değil; her katmanın neyi temsil ettiğini, prerequisite ve mastery'nin hangi seviyede tutulacağını ve öğrenme hedeflerinin nasıl ölçülebilir yazılacağını kesinleştirmektir.
