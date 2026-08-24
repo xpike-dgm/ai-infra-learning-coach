@@ -165,3 +165,31 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Sonraki kesin adım:** `4B — Haftalık sınav`.
 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-24 — Uzun vadeli curriculum kapsamı professional-readiness hedefiyle genişletildi
+
+Kullanıcı daha kapsamlı öğretim ve uzun vadede uygulama curriculum'unu tamamladığında AI Infrastructure / ML Systems / GPU Systems alanında mümkün olduğunca profesyonel seviyede hazır olmayı hedeflediğini belirtti.
+
+**Yeni karar: D-041**
+- Yaklaşık üç yıllık curriculum horizon'ı kaldırıldı; rota gerektiğinde **4+ yıl veya daha uzun** sürebilir.
+- Süre progress/readiness gate'i değildir.
+- Final hedef course completion değil `professional_readiness = verified engineering capability`.
+- Öğretim depth modeli `concept → guided → independent → debugging → explanation → transfer → retention → integrated project → performance/production context` olarak genişletildi.
+- Professional readiness için systems/GPU/inference Skill mastery yanında debugging, transfer, profiling/benchmarking, integrated systems ve capstone evidence şartı hedeflendi.
+- V1 release full 4+ year content'i beklemeyecek; ilk 8–12 haftalık production-quality curriculum + çalışan learning engine ayrımı korunacak.
+- Aşama 5 extensible full-route graph, Aşama 14 first production package, Aşama 19 full professional curriculum + open source + career readiness + professional capstones olarak genişletildi.
+- Ürün iş teklifi, seniority, maaş veya diploma/HR filtresi garantisi veremez; gerçek ekip/production deneyimi ayrı tutuldu.
+
+**Yeni/updated canonical dosyalar**
+- `docs/PROFESSIONAL_READINESS_TARGET.md` — yeni ana hedef spec'i
+- `docs/PRODUCT_REQUIREMENTS.md`
+- `docs/V1_SCOPE.md`
+- `docs/PROJECT_MASTER_CONTEXT.md`
+- `docs/DECISIONS.md` — D-041
+- `docs/MASTER_PLAN.md`
+- `docs/HANDOFF_STATE.md`
+- `docs/START_HERE.md`
+
+**Execution durumu değişmedi:** 4A ✅, **4B Haftalık sınav aktif fakat henüz yürütülmedi**. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
