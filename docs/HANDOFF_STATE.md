@@ -63,8 +63,6 @@ Ayrıntılı kaynak: `docs/LEARNING_BEHAVIOR_RULES.md` / D-022.
 - `1C` ✅ Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
 - `1D` ✅ Non-goals — `docs/NON_GOALS.md`
 
-Aşama 1 sonucu: ne inşa ettiğimiz, V1'in sınırı, ne zaman başarılı sayılacağı ve ne yapmayacağımız kilitlidir.
-
 ## ✅ 2A — Bilgi birimleri
 
 Ana çıktı: `docs/LEARNING_ENGINE_SPEC.md`
@@ -73,31 +71,40 @@ Kilitleyen yapı:
 
 `Domain → Module → Topic → Skill → Learning Objective`
 
-Fakat model katı bir ağaç değildir.
-
-### Curriculum organizasyon katmanı
-
-`Domain → Module → Topic`
-
-### Gerçek learning/mastery katmanı
-
-`Skill → Learning Objective`
-
-Bağlayıcı kararlar:
-
-- Canonical mastery'nin ana planner/prerequisite seviyesi `Skill`.
-- Evidence en atomik olarak `Learning Objective` seviyesine bağlanabilir.
-- Topic/Module/Domain mastery Skill verilerinden derived edilir.
+- `Domain → Module → Topic` curriculum organizasyon katmanıdır.
+- `Skill → Learning Objective` gerçek learning/mastery katmanıdır.
+- Canonical mastery'nin ana planner/prerequisite seviyesi Skill'dir.
+- Topic/Module/Domain mastery derived edilir.
+- Runtime prerequisite ana olarak Skill → Skill çalışır.
 - Topic completion mastery değildir.
-- Aynı Skill birden fazla Topic'te kullanılabilir; duplicate mastery yaratılmaz.
-- Topic ↔ Skill many-to-many ilişki destekler.
-- Runtime prerequisite ana olarak `Skill → Skill` çalışır.
-- Cross-domain Skill dependency mümkündür.
-- Technical English teknik programı yalnız gerçek dependency varsa hard-lock edebilir; global kapı değildir.
-- Learning Objective gözlemlenebilir ve ölçülebilir eylem olarak yazılır.
-- Task ve assessment yalnız Topic'e değil hedeflediği Skill/Objective'e bağlanmalıdır.
 
-Kalıcı karar: `docs/DECISIONS.md` D-021.
+Kalıcı karar: D-021.
+
+## ✅ 2B — Topic durumları
+
+Ana çıktı: `docs/TOPIC_STATE_MACHINE.md`
+
+Canonical state'ler:
+
+- `locked`
+- `available`
+- `learning`
+- `mastered`
+- `weakening`
+- `remediation_required`
+
+Bağlayıcı davranış:
+
+- Topic state mastery'nin kendisi değildir; prerequisite/coverage/Skill mastery/retention/remediation girdilerinden derived edilir.
+- `locked` yalnız başlanmamış Topic'in hard prerequisite giriş kapısıdır.
+- Başlanmış/mastered Topic prerequisite sonradan zayıfladı diye geriye dönük `locked` yapılmaz.
+- `mastered`, coverage veya validated diagnostic waiver + required Skill mastery gate gerektirir.
+- `weakening` retention riskini, `remediation_required` hedefli onarım gerektiren doğrulanmış Skill eksikliğini ifade eder.
+- Remediation geçmiş coverage'ı sıfırlamaz ve bütün curriculum'u durdurmaz.
+- Topic state tek başına ileri Topic kilidi değildir; canonical prerequisite yetkisi Skill mastery'dedir.
+- State transition'lar deterministik ve reason/history ile açıklanabilir olmalıdır.
+
+Kalıcı karar: D-023.
 
 ---
 
@@ -106,39 +113,30 @@ Kalıcı karar: `docs/DECISIONS.md` D-021.
 **AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla**
 
 - `2A` ✅ Bilgi birimleri
-- `2B` 🟡 **Topic durumları — AKTİF**
-- `2C` ⬜ Mastery sinyalleri
+- `2B` ✅ Topic durumları
+- `2C` 🟡 **Mastery sinyalleri — AKTİF**
 - `2D` ⬜ AI/ipucu etkisi
 - `2E` ⬜ Mastery formülü v0
 - `2F` ⬜ Unutma modeli
 
-## Aktif iş: 2B
+## Aktif iş: 2C
 
-Topic state machine tasarlanacak.
+Teori, coding, debugging, explanation/Feynman, transfer, retention, proje ve süre gibi evidence türlerinin:
 
-Kesinleştirilmesi gerekenler:
+- neyi gerçekten kanıtladığı,
+- hangi Learning Objective/Skill'e bağlandığı,
+- güvenilirlik sınırları,
+- tek başına neyi kanıtlayamayacağı,
+- yanlış pozitif mastery'yi nasıl engelleyeceği
 
-- `locked`
-- `available`
-- `learning`
-- `mastered`
-- `weakening`
-- `remediation_required`
-- her state'in kesin anlamı,
-- hangi olay/kanıt ile state değiştiği,
-- coverage ile mastery'nin birbirine karışmaması,
-- Skill mastery ile Topic state arasındaki ilişki,
-- retention düşüşünün state'e etkisi,
-- remediation sonrası geri dönüş yolları,
-- planner'ın state'leri nasıl yorumlayacağı.
+kesinleştirilecek.
 
-2B ve sonraki adımlarda `docs/LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı davranışlarla çelişen state/planner/assessment kararı alınmamalıdır.
+2C'de henüz ağırlık yüzdeleri kilitlenmeyecek; sayısal formül 2E'ye aittir.
 
 ---
 
 # 5. Hâlâ Açık Ana Konular
 
-- topic state machine (`2B`)
 - mastery evidence modeli (`2C`)
 - AI-help impact (`2D`)
 - mastery formülü / threshold / confidence (`2E`)
@@ -168,10 +166,11 @@ Kesinleştirilmesi gerekenler:
 10. `docs/V1_SUCCESS_CRITERIA.md`
 11. `docs/NON_GOALS.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
-13. **`docs/LEARNING_BEHAVIOR_RULES.md`**
-14. `docs/MASTER_PLAN.md`
-15. `docs/AI_AGENT_WORKFLOW.md`
-16. `docs/PROGRESS_LOG.md`
+13. `docs/LEARNING_BEHAVIOR_RULES.md`
+14. **`docs/TOPIC_STATE_MACHINE.md`**
+15. `docs/MASTER_PLAN.md`
+16. `docs/AI_AGENT_WORKFLOW.md`
+17. `docs/PROGRESS_LOG.md`
 
 ---
 
@@ -179,14 +178,14 @@ Kesinleştirilmesi gerekenler:
 
 Repo hafızasını okuduktan sonra doğrudan:
 
-> **`2B — Topic durumları`**
+> **`2C — Mastery sinyalleri`**
 
 adımından devam et.
 
-Aşama 1, 2A ve `LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı öğrenme davranışlarını kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
+Aşama 1, 2A, 2B ve `LEARNING_BEHAVIOR_RULES.md` içindeki bağlayıcı kararları kullanıcı açıkça değiştirmedikçe yeniden tartışmaya açma.
 
 ---
 
 # 8. Sohbet Aktarım Mesajı
 
-> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Özellikle LEARNING_BEHAVIOR_RULES.md içindeki öğretme, soru seçimi, yanlış cevap, retention ve replanning kurallarını bağlayıcı kabul et. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
+> `GitHub'daki xpike-dgm/ai-infra-learning-coach reposu önceki uzun sohbetimin kalıcı proje hafızasıdır. docs/START_HERE.md dosyasından başlayıp belirtilen sırayı oku. Önceki sohbetin devamı gibi davran. STEP_STATUS.md ve HANDOFF_STATE.md içindeki aktif adım kodundan devam et. Özellikle LEARNING_BEHAVIOR_RULES.md ve TOPIC_STATE_MACHINE.md içindeki bağlayıcı öğrenme/state kurallarını koru. Daha önce alınmış kararları yeniden sordurma. Araştırma/kodlama/test işlerini AI_AGENT_WORKFLOW.md protokolüne göre böl. Yeni kararları ve tamamlanan adımları GitHub'a kaydet.`
