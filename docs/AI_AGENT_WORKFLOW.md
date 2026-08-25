@@ -6,13 +6,13 @@ Bu belge, AI Infra Learning Coach projesinde birden fazla yapay zekâ aracının
 
 Bağlayıcı kaynak: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
-Her numaralı proje adımı (`1A`, `2E`, `3A`, `11F` vb.) şu döngüyle yürütülür:
+Her numaralı proje adımı (`1A`, `2E`, `3A`, `12F` vb.) şu döngüyle yürütülür:
 
-**PRE-STEP GitHub refresh → MASTER_PLAN/INDEX tutarlılık kontrolü → adımı yürüt → gerekirse Research/Coding/QA → sonucu değerlendir → POST-STEP GitHub + MASTER_PLAN sync → sonraki adımı aktif yap**
+**PRE-STEP GitHub refresh → yaşayan state dosyalarının tutarlılık kontrolü → adımı yürüt → gerekirse Research/Coding/QA → sonucu değerlendir → POST-STEP living-memory sync → repo-wide stale-reference scan → sonraki adımı aktif yap**
 
-PRE-STEP sırasında minimum olarak `HANDOFF_STATE.md`, `EXECUTION_INDEX.md`, `STEP_STATUS.md`, `DECISIONS.md`, `MASTER_PLAN.md` ve o adımla ilgili en güncel spec/davranış dosyaları okunur. Aynı sohbet içinde bir sonraki numaralı adıma geçiliyor olsa bile bu refresh yeniden yapılır.
+PRE-STEP sırasında minimum olarak `HANDOFF_STATE.md`, `EXECUTION_INDEX.md`, `STEP_STATUS.md`, `DECISIONS.md`, `MASTER_PLAN.md`, root `PROJECT_CONTEXT.md` ve o adımla ilgili en güncel spec/davranış dosyaları kontrol edilir. Aynı sohbet içinde bir sonraki numaralı adıma geçiliyor olsa bile bu refresh yeniden yapılır.
 
-POST-STEP sırasında adımın ana çıktısı ve etkilenen kalıcı hafıza dosyaları güncellenir. `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG` ve `MASTER_PLAN` durum değişikliğini yansıtacak şekilde kontrol edilmeden adım tamamlanmış sayılmaz. Yeni kalıcı karar varsa `DECISIONS.md` de güncellenir.
+D-050 sonrası POST-STEP'te `PROJECT_MEMORY_PROTOCOL.md` içindeki **ALWAYS-CHECK** seti bağlayıcıdır. Özellikle `PROJECT_CONTEXT`, `START_HERE`, `HANDOFF_STATE`, `STEP_STATUS`, `EXECUTION_INDEX`, `MASTER_PLAN`, `PROGRESS_LOG` ve `DECISIONS` kontrol edilmeden adım kapatılamaz. Stage/file/model adı değiştiyse repo-wide stale-reference araması aynı turda yapılır.
 
 ---
 
@@ -24,7 +24,7 @@ Ana yönetici proje bağlamını, `PROJECT_MEMORY_PROTOCOL.md`, `MASTER_PLAN.md`
 
 Sorumlulukları:
 - her numaralı adım öncesi zorunlu GitHub beyin tazelemesini yapmak,
-- `EXECUTION_INDEX` ile `MASTER_PLAN` ilerleme tutarlılığını kontrol etmek,
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROJECT_CONTEXT` ve `MASTER_PLAN` ilerleme tutarlılığını kontrol etmek,
 - sıradaki işi seçmek,
 - işi doğru AI rolüne vermek,
 - araştırma sonuçlarını ürün kararına çevirmek,
@@ -32,7 +32,8 @@ Sorumlulukları:
 - test AI'ının bulgularını değerlendirmek,
 - başarısız testte işi tekrar kodlama aşamasına döndürmek,
 - yalnız kabul kriterleri sağlandığında işi tamamlanmış saymak,
-- adım kapanışında gerekli GitHub hafıza dosyalarını ve MASTER_PLAN checklist'ini senkronize etmek,
+- adım kapanışında D-050 living-memory setini ve MASTER_PLAN checklist'ini senkronize etmek,
+- repo-wide stale step/file/decision pointer'larını taramak,
 - GitHub proje hafızasını durable source of truth olarak güncel tutmak.
 
 Ana yönetici mümkün olduğunca doğrudan büyük kod blokları üretmek yerine görevleri koordine eder; ancak küçük doğrulama, mimari değerlendirme ve dokümantasyon yapabilir.
@@ -119,7 +120,7 @@ FAIL durumunda iş tamamlanmış sayılmaz ve kodlama AI'a geri döner.
 Her önemli özellik/karar için varsayılan akış:
 
 **0. PRE-STEP GitHub beyin tazelemesi**
-→ Aktif adım, önceki kararlar, ilgili spec'ler, `EXECUTION_INDEX` ve `MASTER_PLAN` kapsamı doğrulanır.
+→ Aktif adım, önceki kararlar, ilgili spec'ler, `PROJECT_CONTEXT`, `EXECUTION_INDEX` ve `MASTER_PLAN` kapsamı doğrulanır.
 
 **1. Yönetici problemi tanımlar**
 → Ne çözülüyor, neden gerekli, başarı kriteri nedir?
@@ -148,9 +149,12 @@ Her önemli özellik/karar için varsayılan akış:
 → `STEP_STATUS.md`
 → `HANDOFF_STATE.md`
 → `PROGRESS_LOG.md`
-→ `MASTER_PLAN.md` karşılık gelen checklist/completion note
-→ gerekirse `DECISIONS.md`
-→ gerekirse `START_HERE.md`, `PROJECT_MASTER_CONTEXT.md` veya diğer etkilenen canonical dosyalar
+→ `MASTER_PLAN.md`
+→ `PROJECT_CONTEXT.md`
+→ `START_HERE.md`
+→ `DECISIONS.md` kontrolü / gerekiyorsa yeni decision
+→ etkilenen `README`, `PROJECT_MASTER_CONTEXT`, product/V1/curriculum/stable specs
+→ repo-wide stale-reference scan
 
 Bu POST-STEP senkronizasyonu yapılmadan numaralı adım tamamlanmış sayılmaz.
 
@@ -206,7 +210,7 @@ Kodlama AI `çalışıyor` dedi diye görev tamamlanmış kabul edilmez. Test AI
 
 Araştırma AI'ın raporu `araştırma girdisi`dir.
 
-Kalıcı ürün kararı ancak ana yönetici tarafından değerlendirildikten ve `DECISIONS.md` içine işlendiğinde kabul edilmiş sayılır.
+Kalıcı ürün kararı ancak ana yönetici tarafından değerlendirildikten ve gerekiyorsa `DECISIONS.md` içine işlendiğinde kabul edilmiş sayılır.
 
 Benzer şekilde kodlama AI'ın teknik tercihi, daha önce kabul edilmiş mimari karara aykırıysa otomatik kabul edilmez.
 
@@ -239,15 +243,16 @@ Kişisel proje olduğu için gereksiz ağır süreç kurulmaz; ancak geri dönü
 Bir geliştirme işi ancak aşağıdakiler sağlandığında tamamlanmış sayılır:
 
 1. PRE-STEP GitHub beyin tazelemesi yapılmıştır.
-2. `EXECUTION_INDEX` ve `MASTER_PLAN` başlangıç durumu uyuşmaktadır veya stale kayıt düzeltilmiştir.
+2. Yaşayan state dosyaları başlangıçta tutarlıdır veya stale kayıt düzeltilmiştir.
 3. İstenen davranış implement edilmiş veya adımın beklenen spec/çıktısı üretilmiştir.
 4. Acceptance criteria karşılanmıştır.
 5. Gerekli kritik testler geçmiştir.
 6. Bilinen kritik bug/açık engel yoktur.
 7. Gerekli dokümantasyon güncellenmiştir.
-8. POST-STEP GitHub sync yapılmıştır.
+8. D-050 ALWAYS-CHECK POST seti uygulanmıştır.
 9. `MASTER_PLAN` checkbox/completion note günceldir.
 10. Yeni aktif adım doğru kaydedilmiştir.
+11. Repo-wide stale-reference scan yapılmıştır.
 
 Kodun veya dokümanın üretilmiş olması tek başına `tamamlandı` değildir.
 
@@ -260,3 +265,5 @@ Kodun veya dokümanın üretilmiş olması tek başına `tamamlandı` değildir.
 **Kodlama AI:** Onaylanmış tasarımı uygular.
 
 **Test AI:** Uygulamanın gerçekten istenen şeyi yaptığını bağımsız doğrular.
+
+Dosya rollerinin ve mandatory living-memory setinin tek canonical tanımı `docs/PROJECT_MEMORY_PROTOCOL.md` içindedir.
