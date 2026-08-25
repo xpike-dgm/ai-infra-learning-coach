@@ -42,7 +42,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - Final: `DMA-v0 — Daily Micro Assessment` / D-040.
 - Daily assessment zorunlu quiz/kota değildir.
 - Objective-matched evidence, H0/assistance/provenance, prerequisite fairness, invalid/provisional safety ve evidence→GRE/RVR→replan pipeline kilitlendi.
-- Ana çıktı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
 
 ---
 
@@ -76,9 +75,6 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - Fresh PRE-STEP GitHub refresh uygulandı.
 - Final: `WBA-v0 — Weekly Blueprint Assessment` / D-045.
 - Blueprint-before-items, multi-Skill granular evidence, no fixed score/time/quota, split/pause/resume, no exam debt.
-- Common `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` abstraction kilitlendi.
-- Ayrı Research AI kullanılmadı; empirical calibration AŞAMA 18'e bırakıldı.
-- Ana çıktı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
 ---
 
@@ -86,81 +82,53 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 - Fresh PRE-STEP GitHub refresh uygulandı.
 - Final: `MCA-v0 — Monthly Capability Assessment` / D-046.
 - Longitudinal state-based sampling, broader transfer/integration, need-based critical revalidation, no cumulative-everything/pass-score.
-- Professional evidence checkpoint final professional-readiness gate değildir.
-- Persistent/critical reliable gaps planner/curriculum priority'yi etkileyebilir.
-- Ayrı Research AI kullanılmadı; psychometric optimum/cadence uydurulmadı.
-- Ana çıktı: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
 
 ---
 
 ### 2026-08-25 — 4D Trusted Assessment Resource Bank tamamlandı
-
-**PRE-STEP GitHub refresh**
-- Fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` okundu.
-- Doğrudan ilgili DMA-v0, WBA-v0, MCA-v0 ve assessment/evidence/prerequisite contract'ları yeniden kontrol edildi.
-- Gerçek aktif adımın 4D olduğu ve 4C'nin tamamlandığı doğrulandı.
-
-**Research AI kararı**
-- Ayrı Research AI kullanılmadı.
-- 4D'nin görevi psychometric difficulty kalibrasyonu veya validator benchmark'ı değil; mevcut assessment/evidence contract'larının production-grade versioned resource bank şemasına dönüştürülmesiydi.
-- Empirical item difficulty/exposure calibration AŞAMA 18'e; AI-generated validator policy 4E'ye bırakıldı.
-
-**Final model: `QAB-v0 — Trusted Assessment Resource Bank` / D-047**
-- Bank yalnız MCQ değil; coding/debugging/system/transfer/integrated task dahil AssessmentResource bank'i.
-- Logical resource ID + immutable published version; attempts exact version'a bağlı.
-- Lifecycle/trust/use ceiling ayrımı.
-- Exact Objective/Skill/prerequisite/language/evidence/scope/role/evaluator/tool/artifact/duration metadata.
-- Variant family / dependency-testlet / context family / transfer profile ayrımı.
-- Integrated component evidence ayrı attribution ister.
-- User solution exposure ile global content lifecycle/freshness ayrıldı.
-- Deprecated vs invalidated ayrıldı; invalid historical evidence audit edilebilir.
-- Technology/content freshness modeli eklendi.
-- Bounded/indexed selection contract tanımlandı.
-- AI-generated resource varsayılan candidate; 4E validation olmadan trusted/high-stakes use yok.
-
-**Çıktılar**
-- `docs/QUESTION_BANK_SPEC.md`
-- `docs/DECISIONS.md` — D-047
-- canonical POST-STEP state sync.
+- Fresh PRE-STEP GitHub refresh uygulandı.
+- Final: `QAB-v0 — Trusted Assessment Resource Bank` / D-047.
+- Versioned assessment resources, exact Objective/prerequisite/evidence attribution, family/dependency/context/exposure/freshness ve bounded selection kilitlendi.
 
 ---
 
 ### 2026-08-25 — 4E AI-Generated Assessment Resource Validation tamamlandı
+- Fresh PRE-STEP GitHub refresh uygulandı.
+- Final: `AIV-v0 — AI Assessment Resource Validation` / D-048.
+- AI-generated resource candidate olarak başlar; correctness/ambiguity/prerequisite/evaluator/freshness/safety validation olmadan trust promotion yoktur.
+- AŞAMA 4 `4A–4E` tamamlandı.
+
+---
+
+### 2026-08-25 — 5A Professional Domain Backbone tamamlandı
 
 **PRE-STEP GitHub refresh**
-- Fresh `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` okundu.
-- QAB-v0, DMA-v0, WBA-v0, MCA-v0, mastery/evaluator/AI-assistance/prerequisite, English ve D-044 granularity kuralları yeniden kontrol edildi.
-- Gerçek aktif adımın 4E olduğu ve 4D'nin tamamlandığı doğrulandı.
+- Fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_MEMORY_PROTOCOL` okundu.
+- Doğrudan ilgili `PROFESSIONAL_READINESS_TARGET`, `PRODUCT_REQUIREMENTS`, `GRANULAR_CAPABILITY_MAP_PLAN`, `LEARNING_ENGINE_SPEC` ve mevcut `CURRICULUM` backbone yeniden kontrol edildi.
+- AŞAMA 4'ün tamamlandığı ve gerçek aktif adımın 5A olduğu doğrulandı.
 
 **Research AI kararı**
 - Ayrı Research AI kullanılmadı.
-- 4E validator accuracy yüzdesi, majority-vote optimum'u veya universal acceptance threshold'u seçmedi; deterministic/auditable fail-safe trust policy tasarladı.
-- Empirical validator/evaluator false-accept/false-reject ve open-response calibration AŞAMA 14F/18'e bırakıldı.
+- 5A yeni bir job-market/curriculum-coverage araştırması yapmak yerine D-041/D-042/D-044 ile zaten kabul edilmiş professional route'u domain-level formalize etti.
+- Full missing-domain/current-industry/hidden-prerequisite bağımsız Research QA planlandığı gibi **6H**'de zorunlu tutuldu.
 
-**Final model: `AIV-v0 — AI Assessment Resource Validation` / D-048**
-- AI-generated resource `candidate` başlar; generator output kendi validation proof'u değildir.
-- Minimum correctness/safety validation geçmeden user-facing selection yoktur.
-- Schema, technical correctness, answer/rubric, ambiguity, target/evidence fit, prerequisite/forbidden concept/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, freshness ve execution safety ayrı check'lerdir.
-- Validator check'leri weighted confidence toplamı değildir; final use ceiling en kısıtlayıcı applicable check'tir.
-- Semantic ceiling: `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible`.
-- Practice-only yanlış bilgi toleransı değildir; unresolved correctness candidate'ı bloke eder.
-- Generator self-review / model majority vote high-stakes trust değildir; deterministic/executable/reference-grounded validation önceliklidir.
-- Near duplicate independent evidence family sayılmaz; uncertain family classification diversity credit artırmaz.
-- Transfer/integration claim ve component attribution ayrıca validate edilir.
-- Single uncalibrated LLM critical verified evidence için yeterli değildir.
-- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür; semantic AI rewrite normal revalidation ister.
-- Validator disagreement promotion'ı fail-safe biçimde durdurur.
-- Generated code/system task execution/environment safety check ister.
-- Version-sensitive content freshness/source audit ister.
-- Confirmed bug invalidation + exact-version historical evidence review/repair açabilir; learner cezalandırılmaz.
-- Heavy validation async/bounded; validator unavailable diye live assessment standardı düşmez.
+**Final model: `PDM-v0 — Professional Domain Backbone` / D-049**
+- 23 ana route family high-level professional envelope olarak kilitlendi.
+- Technical English parallel track.
+- Python + C + Linux/Git/Shell complementary early foundations; DS&A supporting foundation.
+- Systems core → distributed/platform → performance → accelerator/GPU → inference → multi-GPU → AI/GPU Infrastructure ana convergence yapısı tanımlandı.
+- Performance route boyunca cross-cutting capability olarak konumlandı.
+- ML/Transformer inference için supporting domain; generic ML research specialization değil.
+- Open Source/engineering practice/projects/capstones yalnız finalde başlayan bölüm değil, route boyunca büyüyen professional evidence layer.
+- Security/reliability ve gerekli math/numerical skills hidden prerequisite bırakılmayacak.
+- Tool/vendor isimleri stable systems concept'in yerine geçmeyecek.
+- Domain-level relations authoring guidance; runtime hard prerequisite Skill→Skill PRG-v0 olarak kaldı.
+- AŞAMA 5B metadata/graph contract ve AŞAMA 6 granular decomposition handoff'u tanımlandı.
 
 **Çıktılar**
-- `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
-- `docs/DECISIONS.md` — D-048
-- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `START_HERE` ve progress log sync.
+- `docs/CURRICULUM_DOMAIN_MAP.md`
+- `docs/DECISIONS.md` — D-049
+- canonical POST-STEP state dosyaları + `MASTER_PLAN` senkronu.
 
-**AŞAMA 4 tamamlandı:** `4A–4E` ✅
-
-**Sonraki kesin adım:** `5A — Ana domain haritası`.
-5A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+**Sonraki kesin adım:** `5B — Graph / Topic metadata sözleşmesi`.
+5B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
