@@ -20,6 +20,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-045: weekly assessment = WBA-v0.
 - D-046: monthly assessment = MCA-v0.
 - D-047: assessment resource bank = QAB-v0.
+- D-048: AI-generated assessment validation = AIV-v0.
 
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → sonraki adım`
@@ -60,7 +61,7 @@ D-044 clarification: broad Domain/Topic tanı atomu değildir; weakness/remediat
 
 ---
 
-# AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
+# AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla ✅
 
 ### [x] 4A — Günlük mikro değerlendirme — DMA-v0 / D-040
 **Final:** `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
@@ -93,55 +94,50 @@ D-044 clarification: broad Domain/Topic tanı atomu değildir; weakness/remediat
 
 ### [x] 4D — Soru / assessment resource bank — QAB-v0 / D-047
 **Final:** `docs/QUESTION_BANK_SPEC.md`
+- AssessmentResource yalnız MCQ değildir; coding/debugging/system/transfer/integrated/language/testlet/template kaynakları içerir.
+- Stable logical ID + immutable version.
+- Lifecycle/trust/use ceiling ayrımı.
+- Exact Skill/Objective/prerequisite/evidence/scope/role/evaluator/tool/artifact/duration metadata.
+- Variant family / dependency-testlet / context family / transfer profile ayrımı.
+- Per-user solution exposure global content'ten ayrı.
+- Technology/content freshness ayrı.
+- Bounded/indexed selection.
+
+### [x] 4E — AI-generated soru doğrulaması — AIV-v0 / D-048
+**Final:** `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
 
 Final davranış:
-- Question Bank yalnız MCQ değil, `AssessmentResource` bank'idir: recognition/recall/code reading/coding/debugging/hands-on system/explanation/transfer/integrated/language/testlet/template.
-- `resource_id` logical identity; published `resource_version` immutable'dır; Attempt exact version'a bağlanır.
-- Lifecycle: `draft | candidate | validated | trusted | deprecated | invalidated | retired`.
-- Lifecycle ile `use_ceiling` ayrıdır; bank'te bulunmak otomatik high-stakes eligibility değildir.
-- Exact target Skill/Objective, prerequisites, forbidden concepts, language prerequisites, activity/evidence, scope/blueprint roles, evaluator/tools/artifact/duration metadata vardır.
-- Variant family, dependency/testlet group, context family ve transfer profile ayrı semantics taşır.
-- Integrated task global PASS'i component Objectives'e yayamaz.
-- Difficulty fake numeric mastery multiplier değildir; semantic difficulty + complexity profile kullanılır.
-- User exposure/solution exposure global bank content'inden ayrıdır; fixed universal cooldown yoktur.
-- Learner freshness ile technology/content freshness ayrıdır; stale resource strong assessment için ineligible olur.
-- Deprecated ≠ invalidated; invalidated version historical evidence audit/repair akışına girebilir.
-- Selector bounded/indexed çalışır; full-bank scan hedeflenmez.
-- Parameterized template instances yeni independent family sayılmaz.
-- AI-generated resource varsayılan `candidate` başlar; 4E validation olmadan trusted/mastery-changing use'a yükselmez.
+- AI-generated resource `candidate` başlar; generator output kendi validation proof'u değildir.
+- Minimum validation geçmeden user-facing selection'a çıkamaz.
+- Schema/reference, technical correctness, answer/rubric, ambiguity, Objective/evidence fit, prerequisite/forbidden concept/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, technology freshness ve execution-safety ayrı validate edilir.
+- Validation weighted confidence score değildir; final `use_ceiling` applicable check'lerin en kısıtlayıcısıdır.
+- Semantic ceiling: `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible`.
+- Practice-only yanlış bilgi toleransı değildir; correctness unresolved candidate blocked kalır.
+- Generator self-review veya model majority vote high-stakes trust değildir; deterministic/executable/reference-grounded validation önceliklidir.
+- Standard/critical mastery için strong independent validation + verified evaluator gerekir; tek uncalibrated LLM critical verified evidence üretemez.
+- Hidden prerequisite/unknown English learner failure'a dönüştürülemez.
+- Near duplicate yeni independent family değildir; uncertain family classification diversity credit artırmaz.
+- Transfer/integration claim ve component attribution ayrıca validate edilir.
+- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür; semantic AI rewrite revalidation ister.
+- Validator disagreement fail-safe olarak promotion'ı durdurur.
+- Confirmed content bug invalidation + historical evidence review/repair açabilir; learner cezalandırılmaz.
+- Heavy validation async/bounded çalışır; empirical validator accuracy calibration AŞAMA 14F/18'e bırakılır.
 
-**PRE/POST notu:** 4D fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; psychometric calibration veya validator accuracy eşiği uydurulmadı. Empirical item calibration AŞAMA 18'e; AI validation policy 4E'ye bırakıldı.
+**PRE/POST notu:** 4E fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; fake confidence/majority/accuracy threshold uydurulmadı.
 
-### [ ] 4E — AI-generated soru doğrulaması — **AKTİF**
-Kesinleştirilecek:
-- generated candidate lifecycle entry,
-- schema completeness,
-- technical correctness,
-- expected answer/rubric correctness,
-- ambiguity / multiple-valid-answer detection,
-- target Objective ve evidence-modality fit,
-- prerequisite completeness / forbidden-concept leakage,
-- duplicate / near-duplicate / variant-family classification,
-- dependency/testlet/context/transfer validation,
-- evaluator/tool/artifact compatibility,
-- technology/source freshness,
-- automated/deterministic/review boundaries,
-- risk-based `use_ceiling` promotion,
-- trusted-template inheritance limits,
-- revalidation/invalidation,
-- uncertain validator fail-safe behavior.
-
-**4E çıkışı:** AI-generated resource'ın hangi koşulda practice-only kalacağı, validated olacağı veya high-stakes trusted use'a yükselebileceği deterministic/auditable policy.
+> **AŞAMA 4 tamamlandı: DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0.**
 
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph İskeleti
-### [ ] 5A — Ana domain haritası
+### [ ] 5A — Ana domain haritası — **AKTİF**
 - 4+ year professional envelope,
 - Technical English paralel,
 - Python + C foundation,
 - systems → distributed → performance → GPU → inference → AI infra,
-- OSS/projects/capstone layer.
+- OSS/projects/capstone layer,
+- domain-level prerequisite/parallel relations,
+- AŞAMA 6 granular decomposition için sınırlar.
 
 ### [ ] 5B — Graph / metadata sözleşmesi
 - Domain/Module/Topic/Skill/Objective relations,
@@ -215,6 +211,7 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 9C — Domain veri modeli
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
+- AI validation records/use ceilings,
 - per-user exposure,
 - years-long curriculum/user history,
 - curriculum versions/migrations.
@@ -305,7 +302,7 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 18A — Pilot başlangıcı
 ### [ ] 18B — Planner gözlemi
 ### [ ] 18C — Mastery kalibrasyonu
-### [ ] 18D — Assessment/item/exposure kalibrasyonu
+### [ ] 18D — Assessment/item/exposure/validator kalibrasyonu
 ### [ ] 18E — Teknik / performance QA
 ### [ ] 18F — Düzeltme döngüsü
 
@@ -337,7 +334,11 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4D`  
-**Aktif:** **`4E — AI-generated soru doğrulaması`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`  
+**AŞAMA 4:** ✅ TAMAMLANDI  
+**Aktif:** **`5A — Ana domain haritası`**
 
-Bir sonraki yürütme: **4E başlamadan yeni PRE-STEP GitHub refresh → AI-generated item validation policy → POST-STEP sync.**
+**Bağlayıcı:** D-041 professional target; D-042 Python; D-044 granular map; D-045 WBA; D-046 MCA; D-047 QAB; D-048 AIV.  
+**Geri çekilen:** D-043.
+
+Bir sonraki yürütme: **5A başlamadan yeni PRE-STEP GitHub refresh → ana domain map/backbone → POST-STEP sync.**
