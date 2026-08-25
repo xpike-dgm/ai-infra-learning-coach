@@ -18,7 +18,7 @@ Sistem sabit kurs takvimi değil; gerçek Skill state, prerequisite, retention, 
 
 Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
-V1 ayrımı korunur: full 4+ year curriculum V1 ön koşulu değildir. V1 learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilir.
+V1 full 4+ year curriculum'u beklemez; learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilir.
 
 ## 3. Güncel rota/plan kararları
 
@@ -29,36 +29,27 @@ Python common technical foundation'a resmi olarak eklendi. C/C++ yerine geçmez;
 Önceki standalone specialization-stage kararı kullanıcı talebinin yanlış yorumuydu. Canonical değildir.
 
 ### D-044 — Granular Capability Map
-Yeni **AŞAMA 6**, ana öğrenme rotasındaki her büyük alanı:
+Yeni **AŞAMA 6**, ana öğrenme rotasındaki her büyük alanı `Domain → Module → Topic → Skill → Learning Objective` seviyesinde kapsamlı alt bölümlere ayıracaktır. Amaç broad `Python zayıf` yerine exact Skill/Objective weakness/remediation üretmektir.
 
-`Domain → Module → Topic → Skill → Learning Objective`
-
-seviyesinde kapsamlı alt bölümlere ayıracaktır.
-
-Amaç `Python zayıf` gibi kaba bir sonuç yerine örneğin `Python → Control Flow → Loops → while termination` seviyesinde zayıflığı bulmak ve yalnız ilgili capability için reteach/practice/retest üretmektir.
-
-Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+Canonical: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ### D-045 — Weekly Blueprint Assessment
-4B final model:
-
-> **`WBA-v0 — Weekly Blueprint Assessment`**
-
-Weekly assessment:
-- tek overall score/pass-fail değildir,
-- item seçilmeden önce state-temelli blueprint üretir,
-- recent progress, weakness/verification, critical prerequisite, retention, integration/transfer ve gerektiğinde English role'larını kullanır; fixed quota değildir,
-- fixed soru sayısı/süre kullanmaz,
-- daily hard budget dışında otomatik süre yaratmaz,
-- split/pause/resume olabilir; incomplete/missed exam failure/debt değildir,
-- Objective-level evidence'ı GRE/RVR/PRG/planner'a bağlar,
-- broad `Python failed` gibi state yazmaz; D-044 granular weakness localization'ı korur.
+`WBA-v0`: item'dan önce state-temelli blueprint, multi-Skill evidence ama granular attribution, fixed score/time/quota yok, incomplete/missed exam debt değil.
 
 Canonical: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
+### D-046 — Monthly Capability Assessment
+`MCA-v0`: longitudinal state-based sampling, daha geniş transfer/integration, critical revalidation ve delayed retention; cumulative-everything exam veya ay sonu pass/fail değil. Professional checkpoint final professional-readiness/capstone gate değildir.
+
+Canonical: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
+
 ## 4. Güncel stage mapping
-- 1–5 değişmedi.
-- **6 = Granular Capability Map**
+- 1 = Product framing
+- 2 = Learning/mastery
+- 3 = Adaptive planner
+- 4 = Assessment design
+- 5 = Knowledge graph backbone
+- 6 = Granular Capability Map
 - 7 = English parallel line
 - 8 = UX
 - 9 = Architecture/data model
@@ -73,8 +64,6 @@ Canonical: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 - 18 = Pilot/calibration/QA
 - 19 = Release APK
 - 20 = Full professional curriculum/career/capstones
-
-Tamamlanmış 1–4 kodları değişmedi. Old mistaken specialization AŞAMA 20 kaldırıldı.
 
 ## 5. Zorunlu GitHub beyin tazeleme protokolü
 Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
@@ -91,7 +80,62 @@ Minimum PRE-STEP:
 
 POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`; yeni kalıcı karar varsa `DECISIONS`.
 
-## 6. Yeni sohbet/agent okuma sırası
+## 6. Ana kariyer/öğrenme yönü
+
+**Technical English (parallel) → Python → C → Linux + Git + Shell → Data Structures & Algorithms foundations → Modern C++ → Computer Architecture → Operating Systems + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases foundations → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM / SGLang / TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
+
+AŞAMA 6 bu listenin her maddesini detaylı capability haritasına bölecek.
+
+## 7. Tamamlanan çekirdek modeller
+
+### AŞAMA 2 ✅
+- GRE-v0 / D-031 — Gated Recent Evidence
+- RVR-v0 / D-032 — Retention Verification & Risk
+
+### AŞAMA 3 ✅
+- D-033 hard daily capacity
+- D-034 LearningNeed/TaskCandidate/Evidence
+- PBR-v0 / D-035
+- PRG-v0 / D-036
+- VDW-v0 / D-037
+- SRR-v0 / D-038
+- PDT-v0 / D-039
+- 3H: 16/16 scenarios, 20/20 invariants PASS
+
+### AŞAMA 4 ilerlemesi
+- 4A ✅ DMA-v0 / D-040
+- 4B ✅ WBA-v0 / D-045
+- 4C ✅ MCA-v0 / D-046
+- 4D 🟡 Question Bank
+- 4E ⬜ AI-generated item validation
+
+## 8. Güncel çalışma konumu
+
+**Aktif adım: `4D — Soru bankası`.**
+
+4D henüz yürütülmedi. 4C POST-STEP sync tamamlandı.
+
+4D'nin ana sorusu:
+> Daily/weekly/monthly blueprint'lerin güvenilir biçimde seçebileceği, uzun curriculum boyunca versionlanıp QA edilebilecek, prerequisite-safe ve same/near-variant kaynaklı sahte evidence'ı engelleyen trusted item/task bank nasıl modellenmeli?
+
+4D'de kilitlenecek ana alanlar:
+- stable item ID/version/lifecycle,
+- target Skill/Objective + prerequisite metadata,
+- evidence/activity type,
+- assessment scope + blueprint role eligibility,
+- variant/dependency/context/transfer families,
+- integrated component attribution,
+- rubric/answer key/evaluator,
+- allowed tools/artifact requirements,
+- trust/validation/content origin,
+- solution exposure/reuse/freshness,
+- difficulty/complexity,
+- duration/atomicity,
+- language/scaffold,
+- bounded selection/indexing,
+- 4E AI-generated candidate validation handoff.
+
+## 9. Yeni sohbet/agent okuma sırası
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
 3. `docs/HANDOFF_STATE.md`
@@ -101,103 +145,23 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 7. `docs/PRODUCT_REQUIREMENTS.md`
 8. `docs/PROFESSIONAL_READINESS_TARGET.md`
 9. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-10. `docs/PROJECT_MASTER_CONTEXT.md`
-11. `docs/V1_SCOPE.md`
-12. `docs/V1_SUCCESS_CRITERIA.md`
-13. `docs/NON_GOALS.md`
-14. `docs/LEARNING_ENGINE_SPEC.md`
-15. `docs/LEARNING_BEHAVIOR_RULES.md`
-16. `docs/TOPIC_STATE_MACHINE.md`
-17. `docs/MASTERY_SIGNALS_SPEC.md`
-18. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-19. `docs/MASTERY_FORMULA_V0.md`
-20. `docs/RETENTION_FORGETTING_SPEC.md`
-21. `docs/ADAPTIVE_PLANNER_SPEC.md`
-22. `docs/TASK_TAXONOMY_SPEC.md`
-23. `docs/PRIORITY_POLICY_SPEC.md`
-24. `docs/PREREQUISITE_POLICY_SPEC.md`
-25. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-26. `docs/MISSED_DAY_RECOVERY_SPEC.md`
-27. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-28. `docs/PLANNER_SIMULATION_SUITE.md`
-29. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-30. `docs/WEEKLY_ASSESSMENT_SPEC.md`
-31. `docs/ENGLISH_FOUNDATION_RULES.md`
-32. `docs/MASTER_PLAN.md`
-33. `docs/AI_AGENT_WORKFLOW.md`
-34. `docs/PROGRESS_LOG.md`
+10. `docs/LEARNING_ENGINE_SPEC.md`
+11. `docs/LEARNING_BEHAVIOR_RULES.md`
+12. `docs/MASTERY_SIGNALS_SPEC.md`
+13. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+14. `docs/MASTERY_FORMULA_V0.md`
+15. `docs/RETENTION_FORGETTING_SPEC.md`
+16. `docs/ADAPTIVE_PLANNER_SPEC.md`
+17. `docs/TASK_TAXONOMY_SPEC.md`
+18. `docs/PRIORITY_POLICY_SPEC.md`
+19. `docs/PREREQUISITE_POLICY_SPEC.md`
+20. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+21. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+22. `docs/WEEKLY_ASSESSMENT_SPEC.md`
+23. `docs/MONTHLY_ASSESSMENT_SPEC.md`
+24. `docs/ENGLISH_FOUNDATION_RULES.md`
+25. `docs/MASTER_PLAN.md`
+26. `docs/PROGRESS_LOG.md`
 
-## 7. Ana kariyer/öğrenme yönü
-
-**Technical English (parallel) → Python → C → Linux + Git + Shell → Data Structures & Algorithms foundations → Modern C++ → Computer Architecture → Operating Systems + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases foundations → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM / SGLang / TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
-
-AŞAMA 6 bu listenin her maddesini detaylı capability haritasına bölecek.
-
-## 8. Tamamlanan öğrenme/mastery omurgası — AŞAMA 2 ✅
-
-### GRE-v0 — D-031
-- Canonical mastery Skill seviyesinde.
-- Yalnız valid + prerequisite-valid + H0 + direct + verified + independent evidence mastery'ye girer.
-
-### RVR-v0 — D-032
-- Mastery/retention ayrı.
-- Time-based mastery decay yok.
-- `review_due` forgetting değildir.
-- First clean contradiction → verification; no backlog dump.
-
-D-044 bu modeli değiştirmez; yalnız gerçek curriculum'un Skill/Objective granularity'sini kapsamlı hale getirir.
-
-## 9. Adaptive Planner — AŞAMA 3 ✅
-- 3A D-033 — hard daily capacity / no task debt.
-- 3B D-034 — LearningNeed / TaskCandidate / Evidence ayrımı.
-- 3C PBR-v0 / D-035 — semantic priority bands + deterministic rank.
-- 3D PRG-v0 / D-036 — hard/soft Skill prerequisites; branch-local blocking.
-- 3E VDW-v0 / D-037 — validated Objective-level diagnostic waiver.
-- 3F SRR-v0 / D-038 — current-state re-entry; no absence debt.
-- 3G PDT-v0 / D-039 — structured planner decision trace.
-- 3H planner simulation PASS: 16/16 scenarios, 20/20 invariants, 0 critical contradiction.
-
-## 10. Assessment — AŞAMA 4 ilerlemesi
-
-### 4A ✅ DMA-v0 — Daily Micro Assessment — D-040
-Ana çıktı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`.
-
-### 4B ✅ WBA-v0 — Weekly Blueprint Assessment — D-045
-Ana çıktı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
-
-## 11. Güncel çalışma konumu
-
-**AŞAMA 1:** ✅  
-**AŞAMA 2:** ✅  
-**AŞAMA 3:** ✅  
-**AŞAMA 4:** devam ediyor
-
-- `4A` ✅
-- `4B` ✅
-- `4C` 🟡 **Aylık yeterlilik sınavı — AKTİF**
-- `4D–4E` ⬜ bekliyor
-- `5–20` ⬜ bekliyor
-
-## 12. 4C'de yapılacaklar
-Ana soru:
-> Aylık assessment, WBA-v0'ın sağlayamadığı daha geniş transfer/integration ve critical revalidation evidence'ını nasıl toplamalı; bunu tek final score'a dönüştürmeden uzun dönem capability state'ine nasıl bağlamalı?
-
-Kesinleştirilecek:
-- monthly purpose/scope ve daily/weekly farkı,
-- WBA-v0 common `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` contract'ının monthly specialization'ı,
-- daha geniş transfer/integration,
-- critical prerequisite/capability revalidation,
-- older/retention + recent progress dengesi,
-- professional-readiness'e doğru evidence aggregation ama final readiness ile karıştırmama,
-- fixed score ile mastery vermeme,
-- capacity / split / pause / incomplete,
-- H0/H1–H4 assistance,
-- invalid/ambiguous/provisional item güvenliği,
-- D-044 granular Skill/Objective localization,
-- result → GRE/RVR/remediation/PRG/planner,
-- 4D Question Bank handoff.
-
-4C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
-
-## 13. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041 professional target, D-042 Python foundation, D-044 Granular Capability Map ve D-045 WBA-v0 kararlarını oku; D-043 geri çekilmiştir. HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 4C — Aylık yeterlilik sınavı; 4C henüz yürütülmedi.`
+## 10. Yeni sohbet için kısa komut
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041 professional target, D-042 Python foundation, D-044 Granular Capability Map, D-045 WBA-v0 ve D-046 MCA-v0 kararlarını oku; D-043 geri çekilmiştir. HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 4D — Soru bankası; 4D henüz yürütülmedi.`
