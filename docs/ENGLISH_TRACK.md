@@ -1,14 +1,27 @@
-# Parallel English Track — A0 → B2
+# Parallel English Track — HISTORICAL / NON-CANONICAL SEED NOTES
 
-İngilizce teknik eğitimin ön koşulu değildir. Ama uzun vadeli AI Infrastructure kariyeri için vazgeçilmezdir. Bu nedenle teknik eğitimle aynı anda ilerler.
+**Durum:** PLANNING SEED / CANONICAL DEĞİL  
+**Hygiene clarification:** D-050 — 2026-08-25
+
+Bu dosya Technical English hattı için erken fikir ve içerik seed notlarını korur. Başlıktaki eski `A0 → B2` önerisi **kilitlenmiş final CEFR exit gate'i değildir**.
+
+Canonical davranış kaynakları:
+- `docs/ENGLISH_FOUNDATION_RULES.md` — prerequisite ve A0 güvenlik kuralları,
+- `docs/CURRICULUM_DOMAIN_MAP.md` — Technical English'in parallel-track rolü,
+- AŞAMA 6C — granular English capability map,
+- AŞAMA 7A–7E — başlangıç ölçümü, CEFR/technical hedefler, cadence, teknik entegrasyon ve English mastery tasarımı.
+
+Aşağıdaki içerik AŞAMA 6/7 araştırma ve curriculum design sırasında kullanılabilecek **seed** materyaldir; final sıra/threshold/cadence olarak uygulanmaz.
+
+---
 
 ## Ana İlke
 
-İngilizce ayrı bir “önce bunu bitir” projesi değil, günlük teknik eğitimin parçasıdır.
+İngilizce teknik eğitimin ön koşulu değildir. Uzun vadeli AI Infrastructure kariyeri için kritik bir parallel capability'dir; teknik eğitimle aynı anda ilerler.
 
-## A0 → A1
+## A0 → A1 seed
 
-Hedef:
+Hedef fikirleri:
 - temel cümle yapıları
 - en sık kullanılan temel kelimeler
 - teknik terimlere alışma
@@ -26,93 +39,87 @@ Teknik bağlam örnekleri:
 - allocate
 - release
 
-Çıktılar:
+Muhtemel çıktılar:
 - basit kod yorumları İngilizce
 - çok kısa commit mesajları
 - hata mesajındaki ana kelimeleri tanıma
 
-## A1 → A2
+## A1 → A2 seed
 
-Hedef:
+Hedef fikirleri:
 - kısa teknik dokümantasyon okuyabilmek
 - Linux man page yapısını tanımak
 - Git/GitHub terminolojisini anlamak
 
-Çıktılar:
+Muhtemel çıktılar:
 - İngilizce README'nin basit bölümlerini yazmak
 - commit mesajları
 - issue başlığını anlayabilmek
 - kısa teknik sorular yazabilmek
 
-## A2 → B1
+## A2 → B1 seed
 
-Hedef:
+Hedef fikirleri:
 - orta uzunlukta dokümantasyon
 - GitHub issue/PR tartışmaları
 - temel RFC ve teknik makale okuma
 - bir problemi yazılı şekilde açıklama
 
-Çıktılar:
+Muhtemel çıktılar:
 - İngilizce issue açmak
 - PR açıklaması yazmak
 - 1–2 sayfalık teknik proje özeti
 - hata raporu yazmak
 
-## B1 → B1+
+## B1 ve üzeri seed
 
-Hedef:
+Hedef fikirleri:
 - NVIDIA/CUDA dokümantasyonu
 - daha yoğun sistem yazıları
 - teknik konferans/video içeriği
 - paper özetleri
-
-Çıktılar:
-- 300–500 kelimelik teknik özet
-- benchmark sonucunu İngilizce açıklamak
-- sistem tasarım kararını yazılı savunmak
-
-## B1+ → B2
-
-Hedef:
 - teknik mülakat
 - proje sunumu
 - asenkron global ekip iletişimi
 - architecture discussion
 
-Çıktılar:
+Muhtemel çıktılar:
+- teknik özet yazmak
+- benchmark sonucunu İngilizce açıklamak
+- sistem tasarım kararını yazılı savunmak
 - C++ memory modelini sözlü anlatabilmek
-- bir debugging sürecini İngilizce anlatabilmek
+- debugging sürecini İngilizce anlatabilmek
 - GPU optimization kararını savunabilmek
 - mock interview tamamlamak
 
-## Günlük Entegrasyon
+## Günlük Entegrasyon Seed'i
 
-İlk aşamada günlük İngilizce bloğu olabilir:
+İlk aşamada bir English bloğu şu tür işlerden oluşabilir:
 - temel gramer
 - aktif kelime
 - dinleme
 - kısa okuma
 
-Ama teknik çalışma boyunca da İngilizce kullanılmalıdır:
-- değişken/konu terimleri İngilizce bırakılır
-- IDE/terminal dili mümkünse İngilizce
-- Git commit mesajları İngilizce
-- README İngilizce
-- dokümantasyon önce orijinalinden görülür, sonra gerekirse AI açıklaması alınır
+Teknik çalışma boyunca da İngilizce doğal biçimde kullanılabilir:
+- teknik terimler İngilizce bırakılır,
+- IDE/terminal dili mümkünse İngilizce,
+- Git commit mesajları İngilizce,
+- README İngilizce,
+- dokümantasyon önce orijinalinden görülür, sonra gerekirse açıklama alınır.
 
-## AI Kullanım Kuralı
+Exact cadence, süre veya sabit oran **bu dosyada kilitlenmez**; AŞAMA 7C ve planner state'i belirler.
 
-AI şu şekilde yardımcı olabilir:
+## AI Kullanım Seed'i
+
+AI şu tür scaffold sağlayabilir:
 
 > “Bu teknik paragrafı Türkçe açıkla ama pointer, heap, allocation, lifetime gibi terimleri İngilizce bırak.”
 
-Ama uzun vadede her şeyi otomatik çevirmek hedef değildir. Destek seviyesi zamanla azaltılmalıdır.
+Ancak destek takvime göre değil evidence/mastery'ye göre azaltılmalıdır.
 
-## Ölçme
+## Ölçme Seed'i
 
-İngilizce ilerlemesi sadece uygulamada geçirilen süreyle ölçülmez.
-
-Ölçülebilecek görevler:
+İngilizce ilerlemesi yalnız uygulamada geçirilen süreyle ölçülmez. Muhtemel evidence/activity family'leri:
 - teknik kelime tanıma
 - kısa reading comprehension
 - compiler error açıklama
@@ -122,10 +129,9 @@ Ama uzun vadede her şeyi otomatik çevirmek hedef değildir. Destek seviyesi za
 - sözlü proje anlatma
 - mock interview
 
-## Uygulama İçindeki İngilizce Profili
+## Profil Seed'i
 
-Tek bir yüzde yerine mümkünse alt beceriler gösterilebilir:
-
+Tek bir yüzde yerine alt capability özetleri düşünülebilir:
 - General foundation
 - Technical vocabulary
 - Documentation reading
@@ -133,4 +139,4 @@ Tek bir yüzde yerine mümkünse alt beceriler gösterilebilir:
 - Listening
 - Speaking / interview
 
-CEFR seviyesi (A0/A1/A2/B1/B2) özet gösterge olarak kullanılabilir.
+CEFR seviyesi özet gösterge olabilir; **exact final mapping ve gate AŞAMA 7'de araştırılıp kilitlenecektir.**
