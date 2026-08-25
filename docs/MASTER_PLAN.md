@@ -9,20 +9,19 @@ Ana ürün ilkesi:
 > **Zaman geçirmek ilerleme değildir. Yalnızca kanıtlanmış öğrenme ilerlemedir.**
 
 ## Uzun vadeli hedef — D-041
-> **Gerektiğinde 4+ yıl veya daha uzun sürebilecek mastery-gated bir rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability oluşturmak.**
+Gerektiğinde 4+ yıl veya daha uzun sürebilecek mastery-gated rota ile AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek verified engineering capability oluşturmak. Takvim readiness gate değildir; final readiness mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ister.
 
-`4+ yıl` countdown değildir. Final readiness; required Skill mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ile verilir.
+V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production-quality içerikle release edilebilir.
 
-V1 full professional curriculum'u beklemez; learning engine + ilk 8–12 haftalık production-quality içerik ile release edilir.
+## Güncel rota/plan kararları
+- D-042: Python common foundation'ın resmi parçasıdır; C/C++ yerine geçmez.
+- D-043: standalone specialization-stage yorumu geri çekilmiştir.
+- D-044: **AŞAMA 6 — Granular Capability Map**, bütün rotayı `Domain → Module → Topic → Skill → Learning Objective` seviyesinde ayrıntılandıracaktır.
+- D-045: weekly assessment = WBA-v0.
+- D-046: monthly assessment = MCA-v0.
+- D-047: assessment resource bank = QAB-v0.
 
-## 2026-08-25 rota/plan kararları
-- **D-042:** Python common foundation'ın resmi parçasıdır; C/C++ yerine geçmez.
-- **D-043:** standalone specialization-stage yorumu geri çekildi.
-- **D-044:** AŞAMA 6 Granular Capability Map eklendi; broad domain'ler `Module → Topic → Skill → Objective` seviyesinde weakness-addressable hale getirilecek.
-- **D-045:** 4B final weekly model WBA-v0.
-- **D-046:** 4C final monthly model MCA-v0.
-
-Canonical yürütme:
+## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → sonraki adım`
 
 ---
@@ -33,21 +32,17 @@ Canonical yürütme:
 ### [x] 1C — Başarı kriterleri — `docs/V1_SUCCESS_CRITERIA.md`
 ### [x] 1D — Non-goals — `docs/NON_GOALS.md`
 
-> AŞAMA 1 tamamlandı.
-
 ---
 
 # AŞAMA 2 — Öğrenme ve Mastery Modelini Tasarla ✅
-### [x] 2A — Bilgi birimleri — `docs/LEARNING_ENGINE_SPEC.md` — D-021
-### [x] 2B — Topic durumları — `docs/TOPIC_STATE_MACHINE.md` — D-023
-### [x] 2C — Mastery sinyalleri — `docs/MASTERY_SIGNALS_SPEC.md` — D-025
-### [x] 2D — AI / ipucu etkisi — `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md` — D-026
-### [x] 2E — Mastery formülü v0 — GRE-v0 — D-031
-### [x] 2F — Unutma modeli — RVR-v0 — D-032
+### [x] 2A — Bilgi birimleri — D-021
+### [x] 2B — Topic durumları — D-023
+### [x] 2C — Mastery sinyalleri — D-025
+### [x] 2D — AI / ipucu etkisi — D-026
+### [x] 2E — Mastery formülü v0 — GRE-v0 / D-031
+### [x] 2F — Unutma modeli — RVR-v0 / D-032
 
-**D-044 clarification:** broad Domain/Topic diagnosis atomu değildir; weakness/remediation mümkün olduğunca Skill/Objective seviyesinde lokalize edilir.
-
-> AŞAMA 2 tamamlandı.
+D-044 clarification: broad Domain/Topic tanı atomu değildir; weakness/remediation mümkün olduğunca Skill/Objective seviyesinde lokalize edilir.
 
 ---
 
@@ -61,13 +56,7 @@ Canonical yürütme:
 ### [x] 3G — Açıklanabilir planner — PDT-v0 / D-039
 ### [x] 3H — Planner simülasyonu — `docs/PLANNER_SIMULATION_SUITE.md`
 
-```text
-16 / 16 scenarios PASS
-20 / 20 invariants PASS
-0 critical cross-spec contradiction
-```
-
-> AŞAMA 3 tamamlandı.
+**Sonuç:** 16/16 scenarios PASS, 20/20 invariants PASS, 0 critical contradiction.
 
 ---
 
@@ -75,80 +64,74 @@ Canonical yürütme:
 
 ### [x] 4A — Günlük mikro değerlendirme — DMA-v0 / D-040
 **Final:** `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-- daily assessment quota değildir,
+- daily quota değildir,
 - Objective-matched evidence,
 - H0/assistance/provenance,
 - prerequisite fairness,
 - invalid/provisional safety,
-- evidence→GRE/RVR→replan.
+- evidence → GRE/RVR → planner.
 
 ### [x] 4B — Haftalık sınav — WBA-v0 / D-045
 **Final:** `docs/WEEKLY_ASSESSMENT_SPEC.md`
-- weekly exam tek overall score/pass-fail değildir,
-- item'lardan önce blueprint,
+- blueprint-before-items,
 - recent progress + weakness/verification + critical prerequisite + retention + integration/transfer + gerektiğinde English,
-- fixed quota/soru/süre yok,
-- evidence weekly olduğu için extra weight almaz,
-- PRG fairness + family diversity + Objective-specific modality,
-- split/pause/resume; incomplete/missed exam debt değildir,
-- broad Domain state yazılmaz,
-- common `AssessmentBlueprint / Slot / SessionResult` abstraction kilitlendi.
+- no fixed score/question/time quota,
+- family/context diversity,
+- split/pause/resume,
+- missed/incomplete exam debt değildir,
+- common `AssessmentBlueprint / Slot / SessionResult` abstraction.
 
 ### [x] 4C — Aylık yeterlilik sınavı — MCA-v0 / D-046
 **Final:** `docs/MONTHLY_ASSESSMENT_SPEC.md`
-- monthly exam ay sonu notu/domain pass-fail değildir,
-- WBA common blueprint/result contract'ı monthly extension ile kullanılır,
-- longitudinal required capability,
-- persistent weakness/verification,
-- critical capability revalidation,
-- delayed retention,
-- cross-topic transfer,
-- integrated application,
-- gerektiğinde Technical English ve professional evidence checkpoint,
-- role family'leri fixed quota değildir,
-- cumulative-everything exam yok; state-based bounded longitudinal sampling,
-- recent/older balance fixed yüzde değil,
-- critical Skill automatic monthly retest değil,
-- transfer/integration prerequisite-safe ve component-attributable,
-- professional checkpoint final professional-readiness/capstone gate değil,
-- fixed soru sayısı/süre/pass score yok,
-- daily hard budget korunur; safe multi-block split/pause/resume,
-- incomplete/missed monthly exam failure/debt değil,
-- H0/H1–H4 + invalid/provisional/root-contamination + GRE/RVR hysteresis korunur,
-- D-044 granular localization korunur,
-- V1 SC-016: güvenilir persistent/critical gap planner/curriculum priority'yi gerçekten değiştirir,
-- 4D için item/task bank metadata handoff tanımlandı.
+- longitudinal state-based sampling,
+- persistent concern + delayed retention,
+- cross-topic transfer + integrated application,
+- need-based critical capability revalidation,
+- no cumulative-everything/pass-score,
+- professional checkpoint != final readiness,
+- result granular evidence/state üzerinden planner priority'yi değiştirir.
 
-**PRE/POST notu:** 4C fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; psychometric optimum veya universal cadence uydurulmadı. Empirical calibration AŞAMA 18'e bırakıldı.
+### [x] 4D — Soru / assessment resource bank — QAB-v0 / D-047
+**Final:** `docs/QUESTION_BANK_SPEC.md`
 
-### [ ] 4D — Soru bankası — **AKTİF**
+Final davranış:
+- Question Bank yalnız MCQ değil, `AssessmentResource` bank'idir: recognition/recall/code reading/coding/debugging/hands-on system/explanation/transfer/integrated/language/testlet/template.
+- `resource_id` logical identity; published `resource_version` immutable'dır; Attempt exact version'a bağlanır.
+- Lifecycle: `draft | candidate | validated | trusted | deprecated | invalidated | retired`.
+- Lifecycle ile `use_ceiling` ayrıdır; bank'te bulunmak otomatik high-stakes eligibility değildir.
+- Exact target Skill/Objective, prerequisites, forbidden concepts, language prerequisites, activity/evidence, scope/blueprint roles, evaluator/tools/artifact/duration metadata vardır.
+- Variant family, dependency/testlet group, context family ve transfer profile ayrı semantics taşır.
+- Integrated task global PASS'i component Objectives'e yayamaz.
+- Difficulty fake numeric mastery multiplier değildir; semantic difficulty + complexity profile kullanılır.
+- User exposure/solution exposure global bank content'inden ayrıdır; fixed universal cooldown yoktur.
+- Learner freshness ile technology/content freshness ayrıdır; stale resource strong assessment için ineligible olur.
+- Deprecated ≠ invalidated; invalidated version historical evidence audit/repair akışına girebilir.
+- Selector bounded/indexed çalışır; full-bank scan hedeflenmez.
+- Parameterized template instances yeni independent family sayılmaz.
+- AI-generated resource varsayılan `candidate` başlar; 4E validation olmadan trusted/mastery-changing use'a yükselmez.
+
+**PRE/POST notu:** 4D fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; psychometric calibration veya validator accuracy eşiği uydurulmadı. Empirical item calibration AŞAMA 18'e; AI validation policy 4E'ye bırakıldı.
+
+### [ ] 4E — AI-generated soru doğrulaması — **AKTİF**
 Kesinleştirilecek:
-- trusted item/task production schema,
-- stable ID + version + lifecycle,
-- target Skill/Objective + required prerequisites,
-- `forbidden_not_yet_concepts` / eligibility,
-- evidence/activity kind,
-- daily/weekly/monthly scope eligibility,
-- blueprint-role eligibility,
-- difficulty vs complexity semantics,
-- variant family + dependency/testlet group,
-- context/transfer structure,
-- integrated component attribution,
-- answer key/rubric/test reference,
-- evaluator requirement,
-- allowed tools / artifact requirement,
-- validation/trust/content origin,
-- exposure/solution leakage/reuse,
-- estimated duration + atomic/splittable behavior,
-- language/scaffold/freshness metadata,
-- indexing/query/bounded selection,
-- 4E AI-generated item validation handoff.
+- generated candidate lifecycle entry,
+- schema completeness,
+- technical correctness,
+- expected answer/rubric correctness,
+- ambiguity / multiple-valid-answer detection,
+- target Objective ve evidence-modality fit,
+- prerequisite completeness / forbidden-concept leakage,
+- duplicate / near-duplicate / variant-family classification,
+- dependency/testlet/context/transfer validation,
+- evaluator/tool/artifact compatibility,
+- technology/source freshness,
+- automated/deterministic/review boundaries,
+- risk-based `use_ceiling` promotion,
+- trusted-template inheritance limits,
+- revalidation/invalidation,
+- uncertain validator fail-safe behavior.
 
-### [ ] 4E — AI-generated soru doğrulaması
-- generated candidate trusted bank'e otomatik girmez,
-- correctness/ambiguity/target-fit/prerequisite/duplicate/rubric/evaluator checks,
-- risk-based use eligibility,
-- invalidation/version lifecycle.
+**4E çıkışı:** AI-generated resource'ın hangi koşulda practice-only kalacağı, validated olacağı veya high-stakes trusted use'a yükselebileceği deterministic/auditable policy.
 
 ---
 
@@ -176,7 +159,7 @@ Kesinleştirilecek:
 - duplicate canonical Skill,
 - scalability/versioning.
 
-> AŞAMA 5 schema/backbone; detailed capability decomposition AŞAMA 6.
+> AŞAMA 5 schema/backbone; detailed decomposition AŞAMA 6.
 
 ---
 
@@ -193,18 +176,16 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - DS&A.
 
 ### [ ] 6D — Systems detailed map
-- Modern C++, Architecture, OS/Memory, Concurrency, Networking, Distributed, Storage/DB, Cloud/Observability, Performance.
+- Modern C++, Architecture, OS/Memory, Concurrency, Networking, Distributed Systems, Storage/DB, Containers/Cloud/Observability, Performance.
 
 ### [ ] 6E — GPU / ML / Inference detailed map
-- GPU Architecture, CUDA, Triton, ML/Transformer, inference internals, serving, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra.
+- GPU Architecture, CUDA, Triton, ML/Transformer, inference internals, serving engines, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra.
 
 ### [ ] 6F — Professional engineering / project map
-- Git/code review, testing/build/debug/profiling, docs/benchmarks, OSS, integrated projects, capstones.
+- Git/code review, testing/build/debug/profiling, design docs, benchmarks, OSS workflow, integrated projects, capstone.
 
 ### [ ] 6G — Weakness localization + remediation mapping
-### [ ] 6H — Coverage + prerequisite + external Research QA
-
-**Acceptance:** full route sufficiently granular Skill/Objective map; targeted diagnosis/remediation and prerequisite/evidence mapping mümkün.
+### [ ] 6H — Coverage / prerequisite / external Research QA
 
 ---
 
@@ -232,9 +213,14 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 9A — Mobil teknoloji seçimi
 ### [ ] 9B — Veri saklama/local-first
 ### [ ] 9C — Domain veri modeli
+- granular Skill/Objective state,
+- assessment resource identity/version/lifecycle,
+- per-user exposure,
+- years-long curriculum/user history,
+- curriculum versions/migrations.
 ### [ ] 9D — Servis sınırları
 ### [ ] 9E — AI entegrasyon mimarisi
-### [ ] 9F — Test stratejisi/performance budgets
+### [ ] 9F — Test stratejisi / performance budgets
 
 ---
 
@@ -296,8 +282,6 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 15G — Assessment content
 ### [ ] 15H — Content QA
 
-> AŞAMA 15 full 4+ year curriculum değildir; AŞAMA 6 map'inin başlangıç bölümünü production-quality content'e dönüştürür.
-
 ---
 
 # AŞAMA 16 — İlerleme / Analitik / Ayarlar
@@ -321,11 +305,7 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 18A — Pilot başlangıcı
 ### [ ] 18B — Planner gözlemi
 ### [ ] 18C — Mastery kalibrasyonu
-### [ ] 18D — Assessment kalibrasyonu
-- DMA/WBA/MCA duration/UX,
-- false-positive/false-negative,
-- slot selection pressure,
-- revalidation/retention behavior.
+### [ ] 18D — Assessment/item/exposure kalibrasyonu
 ### [ ] 18E — Teknik / performance QA
 ### [ ] 18F — Düzeltme döngüsü
 
@@ -353,16 +333,11 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [ ] 20H — Open Source + Engineering Practice + Career Readiness
 ### [ ] 20I — Sürekli Curriculum QA + Büyük Entegre Projeler + Professional Capstones
 
-> Full curriculum completion takvimle değil professional-readiness evidence ile tanımlanır.
-
 ---
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4C`  
-**Aktif:** **`4D — Soru bankası`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4D`  
+**Aktif:** **`4E — AI-generated soru doğrulaması`**
 
-**Bağlayıcı:** D-041 professional target; D-042 Python foundation; D-044 granular capability map; D-045 WBA-v0; D-046 MCA-v0.  
-**Geri çekilen:** D-043 specialization-stage yorumu.
-
-Bir sonraki yürütme: **4D başlamadan yeni PRE-STEP GitHub refresh → 4D trusted Question Bank policy/schema → POST-STEP sync.**
+Bir sonraki yürütme: **4E başlamadan yeni PRE-STEP GitHub refresh → AI-generated item validation policy → POST-STEP sync.**
