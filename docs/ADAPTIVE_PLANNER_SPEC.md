@@ -418,12 +418,14 @@ Aşama 3 alt-spec'leri tamamlandı ve `docs/PLANNER_SIMULATION_SUITE.md` ile pol
 3F ✅ SRR-v0 — D-038
 3G ✅ PDT-v0 — D-039
 3H ✅ Simulation suite
+```
 
+```text
 16 / 16 scenarios PASS
 20 / 20 invariants PASS
 0 critical cross-spec contradiction
 ```
 
-Bu PASS production runtime testi değildir. Planner implementation sanal kullanıcı testleri 11F'te; gerçek cihaz/performance doğrulaması 17E'de ayrıca yapılacaktır.
+Bu PASS production runtime testi değildir. Planner implementation sanal kullanıcı testleri **12F**'te; gerçek cihaz/performance doğrulaması **18E**'de ayrıca yapılacaktır.
 
-**Sonraki canonical adım:** `4A — Günlük mikro değerlendirme`.
+**Tarihsel kapanış notu:** AŞAMA 3 tamamlandığında sonraki canonical adım `4A — Günlük mikro değerlendirme` idi. Current execution state için `docs/STEP_STATUS.md` / `docs/HANDOFF_STATE.md` kullanılır.
