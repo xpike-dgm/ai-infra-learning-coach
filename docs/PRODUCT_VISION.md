@@ -50,7 +50,7 @@ UI `Mastery %64 / hedef %80` gibi score'u gerçek öğrenme yüzdesiymiş gibi s
 4. **Sınavlar**
 5. **Ayarlar**
 
-Exact navigation 7A'da kesinleşir.
+Exact navigation **AŞAMA 8A**'da kesinleşir.
 
 ## Bugün Ekranı
 
@@ -60,22 +60,28 @@ Büyük `Çalışmaya Başla / Devam Et` CTA'sı bulunur. Kullanıcının `hangi
 
 Timeline değil knowledge graph gösterilir.
 
-Örnek üst seviye rota:
-- Computer Fundamentals
+Canonical high-level rota PDM-v0 / `docs/CURRICULUM_DOMAIN_MAP.md` ile uyumludur. UI'da özet örnek:
+- Technical English — parallel
+- Computer / Programming Fundamentals giriş köprüsü
+- Python
 - C
-- Linux
+- Linux + Git + Shell
+- DS&A foundations
 - Modern C++
 - Computer Architecture / OS / Memory
 - Concurrency
 - Networking
-- Distributed Systems
+- Distributed Systems + Storage/DB
+- Containers / Cloud / Observability
 - Performance Engineering
 - GPU Architecture
 - CUDA
 - Triton
-- LLM Inference
-- Multi-GPU / AI Infrastructure
-- Open Source / Professional Readiness
+- ML / Transformer foundations
+- LLM Inference / Serving
+- Multi-GPU / NCCL / RDMA
+- AI / GPU Infrastructure
+- Open Source / Professional Projects / Capstones
 
 Kilitler tarihe göre değil canonical prerequisite/readiness durumuna göre oluşur.
 
@@ -94,7 +100,7 @@ Gösterilebilecek anlamlı ilerleme türleri:
 
 `Kariyerin %12 tamamlandı` veya `Gün X / 1460` gibi sahte kesinlik kullanılmaz.
 
-Uzun vadede professional-readiness dimensions gösterilebilir; exact UX 7E/15C'de tasarlanır.
+Uzun vadede professional-readiness dimensions gösterilebilir; exact UX **AŞAMA 8E**, analytics/progress semantics **AŞAMA 16A–16C** içinde tasarlanır.
 
 ## Sınavlar Ekranı
 
@@ -184,7 +190,7 @@ Full professional curriculum aynı engine üzerinde yıllar içinde genişler.
 - critical Skill kanıtlanmadan dependent work'a kör geçmez,
 - retention ve remediation doğru zamanda gelir,
 - AI yardımına rağmen independent ability ayrı ölçülür,
-- yıllar içinde C/C++/systems/GPU/inference tarafında gerçek engineering artifacts üretir,
+- yıllar içinde Python/C/C++/systems/GPU/inference tarafında gerçek engineering artifacts üretir,
 - professional capstone ve portfolio seviyesinde kanıt biriktirir,
 - AI Infrastructure / ML Systems / GPU Systems işlerine hazırlanabilecek teknik capability'ye yaklaşır.
 
