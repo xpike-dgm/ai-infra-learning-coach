@@ -10,10 +10,11 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` canonical durumla senkron tutulur.
 - D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi.
 - D-042: Python ana technical foundation rotasına resmi olarak eklendi.
-- D-043: yanlış yorum nedeniyle geri çekildi; sona specialization stage ekleme kararı canonical değildir.
-- D-044: gelecekteki henüz başlanmamış aşamalar yeniden indekslenerek **AŞAMA 6 — Granular Capability Map** planlama aşamalarının arasına eklendi.
+- D-043: yanlış yorum nedeniyle geri çekildi; standalone specialization stage canonical değildir.
+- D-044: **AŞAMA 6 — Granular Capability Map** planlama aşamalarının arasına eklendi; henüz başlanmamış future stages yeniden indekslendi.
+- D-045: 4B final weekly model `WBA-v0 — Weekly Blueprint Assessment`.
 
-> Renumber kuralı: tamamlanmış `1–4` kodları değişmez. D-044 yalnız henüz başlanmamış gelecek aşamaları yeniden indeksler.
+> Renumber kuralı: tamamlanmış `1–4` kodları değişmez. D-044 yalnız henüz başlanmamış future stages'i yeniden indekslemiştir.
 
 ---
 
@@ -50,8 +51,15 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla
 - [x] **4A — Günlük mikro değerlendirme** — `docs/DAILY_MICRO_ASSESSMENT_SPEC.md` — DMA-v0 / D-040
-- [ ] **4B — Haftalık sınav** **AKTİF**
-- [ ] **4C — Aylık yeterlilik sınavı**
+- [x] **4B — Haftalık sınav** — `docs/WEEKLY_ASSESSMENT_SPEC.md` — WBA-v0 / D-045
+  - blueprint-before-items,
+  - multi-Skill/Objectives but granular attribution,
+  - no fixed question/time/category quota,
+  - capacity-aware split/pause/resume,
+  - incomplete/missed exam != failure/debt,
+  - GRE/RVR/PRG/PBR integration,
+  - common blueprint/result abstraction for 4C.
+- [ ] **4C — Aylık yeterlilik sınavı** **AKTİF**
 - [ ] **4D — Soru bankası**
 - [ ] **4E — AI-generated soru doğrulaması**
 
@@ -79,7 +87,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **6G — Weakness localization + remediation mapping** — zayıflığın Skill/Objective düzeyinde ayrı tutulması
 - [ ] **6H — Coverage / prerequisite / Research QA** — eksik/duplicate/hidden prerequisite audit + bağımsız Research AI doğrulaması
 
-> Örnek hedef: `Python zayıf` yerine `Python → Control Flow → Loops → while termination` gibi hedefli tanı ve remediation yapılabilmesi.
+> Örnek hedef: `Python zayıf` yerine `Python → Control Flow → Loops → while termination` gibi hedefli tanı ve remediation.
 
 ---
 
@@ -230,11 +238,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
-**Aktif:** **`4B — Haftalık sınav`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4B`  
+**Aktif:** **`4C — Aylık yeterlilik sınavı`**
 
 **Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
 **Route update:** D-042 Python foundation.  
-**Plan correction:** D-043 withdrawn; D-044 granular capability map / AŞAMA 6.
+**Plan correction:** D-043 withdrawn; D-044 granular capability map / AŞAMA 6.  
+**Assessment update:** D-045 WBA-v0.
 
-4B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+4C başlamadan yeni PRE-STEP GitHub refresh zorunludur.
