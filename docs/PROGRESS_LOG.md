@@ -318,3 +318,12 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Aynı dosyanın alt current-state bölümü zaten `6A ✅ / 6B 🟡` gösteriyordu; üst mapping de `6A ✅ GNS-v0 / D-054`, `6B 🟡`, `6C–6H ⬜` olarak düzeltildi.
 - Mandatory living-state dosyaları tekrar doğrulandı; canonical execution **6A tamamlandı / 6B aktif-henüz-yürütülmedi** olarak tutarlı.
 - Bu düzeltme yeni numaralı adım değildir ve 6B'yi yürütmez.
+
+### 2026-08-26 — Local manager takeover paketi hazırlandı — D-055
+
+- Kullanıcı ana yönetici/koordinatör rolünü local çalışan agent'a devretme kararı verdi.
+- Root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` takeover bootstrap'ı oluşturuldu.
+- D-055 kalıcı workflow kararı kaydedildi; local manager olsa da GitHub durable source, D-024/D-027/D-050 ve Research/Coding/Test separation değişmez.
+- `START_HERE`, `HANDOFF_STATE`, `PROJECT_CONTEXT`, `MASTER_PLAN`, `EXECUTION_INDEX`, `STEP_STATUS`, `AI_AGENT_WORKFLOW`, `PROJECT_MASTER_CONTEXT`, `PROJECT_MEMORY_PROTOCOL` ve README local-manager pointer/guard'larıyla hizalandı.
+- Bu transition **6B'yi yürütmedi**. Canonical state: **6A ✅ GNS-v0 / D-054; 6B 🟡 active / not executed**.
+- Local manager ilk numbered work öncesi tüm Markdown repo içeriğini okuyacak ve 6B için ayrıca fresh PRE-STEP refresh yapacak.

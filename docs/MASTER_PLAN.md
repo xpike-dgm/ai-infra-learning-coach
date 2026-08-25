@@ -25,6 +25,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-050: living-memory sync + repo-wide stale-reference audit her numaralı step kapanışında zorunludur.
 - D-051: 5B final knowledge-graph contract `KGC-v0`; canonical file `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
 - D-052: 5C final V1 foundation backbone `FBB-v0`; canonical file `docs/V1_FOUNDATION_BACKBONE.md`.
+- D-055: main manager role local çalışan agent'a devredilebilir; canonical bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; numbered execution state değişmez.
 
 ## Zorunlu yürütme — D-024 / D-027 / D-050
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → ALWAYS-CHECK living-memory sync → repo-wide stale-reference scan → sonraki adım`
@@ -351,6 +352,12 @@ Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
 - Legacy `docs/LEARNING_ENGINE.md` explicit historical/superseded pointer'a dönüştürüldü.
 - `docs/ENGLISH_TRACK.md` non-canonical seed olarak etiketlendi.
 - `PROJECT_MEMORY_PROTOCOL` + `AI_AGENT_WORKFLOW` repo-wide stale-reference scan ve ALWAYS-CHECK setiyle güçlendirildi.
+
+---
+
+# Local Manager Transition — D-055
+
+Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted specs'i devralır; PRE/POST GitHub memory protocol, Research/Coding/Test separation ve acceptance discipline aynen sürer. Bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`. Transition **6B execution değildir**.
 
 ---
 

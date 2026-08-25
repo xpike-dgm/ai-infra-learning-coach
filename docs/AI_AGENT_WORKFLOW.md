@@ -20,6 +20,8 @@ D-050 sonrası POST-STEP'te `PROJECT_MEMORY_PROTOCOL.md` içindeki **ALWAYS-CHEC
 
 ### 1.1 Ana Yönetici / Ürün ve Mimari Koordinatörü
 
+**D-055 local-manager clarification:** Ana yönetici cloud/chat manager olmak zorunda değildir; local çalışan agent bu rolü devralabilir. Terminal/tool erişimi authority contract'ını değiştirmez. Local manager da `AGENTS.md`, `docs/LOCAL_MANAGER_HANDOFF.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve bütün canonical specs'e bağlıdır. Manager transition tek başına numbered step execution değildir.
+
 Ana yönetici proje bağlamını, `PROJECT_MEMORY_PROTOCOL.md`, `MASTER_PLAN.md`, `DECISIONS.md`, `HANDOFF_STATE.md` ve ilgili teknik spesifikasyonları esas alır.
 
 Sorumlulukları:

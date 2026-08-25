@@ -419,3 +419,7 @@ D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_
 - Stable logical ID locale/order/version bağımsızdır; display/localization/alias identity değildir.
 - FBB authoring seed'leri 6C'de GNS-v0 ile explicit ratify/normalize/split/merge/re-home review'undan geçer.
 - 6H external Research QA zorunluluğu korunur.
+
+## D-055 / Local manager continuity guard
+
+Ana manager/koordinatör rolü local çalışan agent'a taşınabilir; manager implementation değişikliği accepted product/learning/curriculum contracts'i değiştirmez. Local manager `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md` ile bootstrap olur, repo-wide Markdown takeover okuması yapar ve D-024/D-027/D-050 PRE/POST memory discipline'ine aynen uyar. GitHub durable source of truth olmaya devam eder; Research/Coding/Test bağımsızlığı korunur.

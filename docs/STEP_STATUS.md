@@ -24,6 +24,10 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6B — Full-route decomposition blueprint** | 🟡 Aktif | 23 route family için ortak decomposition/authoring blueprint tasarlanacak. **Henüz yürütülmedi.** |
 | **6C–20** | ⬜ Bekliyor | 6B sonrası canonical sırada. |
 
+## Manager transition — D-055
+
+Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Transition numbered step değildir ve current state'i değiştirmez: **6A ✅ / 6B 🟡 active-not-executed**. Bootstrap: `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`.
+
 ## Repository memory hygiene — D-050
 
 2026-08-25 repo-wide documentation audit yapıldı. Bu bakım **numaralı bir curriculum/architecture adımı değildir**, dolayısıyla 5B'yi ilerletmedi.

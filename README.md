@@ -10,6 +10,8 @@ Bu proje uzun süreli olduğu için sohbet geçmişine güvenilmez. Projeyi devr
 
 En önemli kalıcı dosyalar:
 
+- `AGENTS.md` — local manager/agent bootstrap ve non-negotiable workflow
+- `docs/LOCAL_MANAGER_HANDOFF.md` — local ana yönetici için kapsamlı takeover paketi
 - `docs/START_HERE.md` — yeni sohbet için başlangıç ve okuma sırası
 - `docs/HANDOFF_STATE.md` — ayrıntılı güncel execution handoff
 - `docs/STEP_STATUS.md` — kısa güncel execution tablosu

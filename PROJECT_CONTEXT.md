@@ -120,6 +120,10 @@ AŞAMA 15 = first 8–12 week production content
 AŞAMA 20 = full professional curriculum + OSS + career + capstones
 ```
 
+## 10.1 Local manager takeover — D-055
+
+Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonical bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; GitHub durable source of truth ve D-024/D-027/D-050 PRE/POST workflow değişmez. Transition 6B'yi yürütmez; current execution hâlâ 6A ✅ / 6B 🟡 not-executed.
+
 ## 11. Güncel yürütme konumu
 
 - AŞAMA 1 ✅

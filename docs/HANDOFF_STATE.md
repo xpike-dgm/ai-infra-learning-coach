@@ -38,6 +38,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-052:** FBB-v0 V1 Foundation Backbone; 5C tamamlandı.
 - **D-053:** GQA-v0 Foundation Graph Architecture QA; 5D corrective patch sonrası PASS.
 - **D-054:** GNS-v0 Granularity & Naming Standard; 6A semantic decomposition/ID contract tamamlandı.
+- **D-055:** Ana manager/koordinatör rolü local çalışan agent'a devredilebilir; takeover bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; project contracts/state değişmez.
 
 ## 4. D-049 / 5A final özeti
 
@@ -137,6 +138,15 @@ GNS-v0:
 - 6B ortak decomposition authoring template'ine zorunlu alanları devreder.
 
 6A external Research AI kullanmadı; 6H independent Research AI zorunluluğu korunur.
+
+## 9.1 D-055 / Local manager transition
+
+Kullanıcı ana yönetici rolünü local çalışan agent'a devretme kararı verdi.
+- Local manager D-024/D-027/D-050 protokolüne aynen uyar.
+- İlk takeover: `AGENTS.md` → `LOCAL_MANAGER_HANDOFF` → `START_HERE` → `PROJECT_MEMORY_PROTOCOL` → bütün Markdown repo audit/read.
+- Research/Coding/Test separation korunur.
+- Transition numbered step değildir.
+- Canonical execution değişmedi: 6A tamamlandı; 6B active/not-executed.
 
 ## 10. Tamamlanan aşamalar
 

@@ -22,6 +22,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-052: 5C final V1 foundation backbone `FBB-v0`.
 - D-053: 5D final foundation graph architecture QA `GQA-v0`; corrective seed patch PASS.
 - D-054: 6A final granularity/naming contract `GNS-v0`; semantic entity boundaries + stable logical ID rules.
+- D-055: local çalışan agent main manager rolünü devralabilir; workflow contracts değişmez; transition 6B execution değildir.
 
 ---
 

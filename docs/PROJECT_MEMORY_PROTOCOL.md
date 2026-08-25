@@ -14,6 +14,8 @@ Ana kural:
 
 > **GitHub durable source of truth'tur. Sohbet hafızası veya tek bir durum dosyası repo içindeki başka bir stale dosyanın varlığını mazur göstermez.**
 
+**D-055 clarification:** Ana yönetici local çalışan agent olsa da bu protokol aynen bağlayıcıdır. Local manager takeover bootstrap'ı `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md` ile yapılır; manager implementation değişikliği PRE/POST kurallarını gevşetmez.
+
 ---
 
 # 1. PRE-STEP — Adım başlamadan önce zorunlu beyin tazelemesi

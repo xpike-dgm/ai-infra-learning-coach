@@ -338,3 +338,17 @@ Ayrıntı: `docs/GRAPH_ARCHITECTURE_QA.md`.
 - 6A external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research AI doğrulaması 6H'de zorunlu kalır.
 
 Ayrıntı: `docs/GRANULARITY_NAMING_STANDARD.md`.
+
+## D-055 — Ana yöneticilik rolü local çalışan agent'a devredilebilir
+**Durum:** Kabul edildi — 2026-08-26
+
+- Kullanıcı ana manager/koordinatör rolünü local çalışan agent'a devretme kararı verdi.
+- Manager sorumlulukları değişmez: PRE-STEP refresh, state consistency, Research/Coding/Test delegation, spec/decision ownership, independent acceptance, POST-STEP living-memory sync ve repo-wide stale-reference audit.
+- GitHub/repo durable source of truth olmaya devam eder; local scratchpad veya sohbet hafızası canonical kararların yerine geçmez.
+- Local takeover bootstrap: root `AGENTS.md`, `docs/LOCAL_MANAGER_HANDOFF.md`, `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md`, ardından repo içindeki tüm Markdown dosyalarının tam okunması.
+- `LOCAL_MANAGER_HANDOFF.md` canonical specs/DECISIONS yerine geçmez; kayıpsız bootstrap ve navigation belgesidir.
+- D-016 Research/Coding/Test bağımsızlığı korunur; explicit independent Research AI zorunluluğu manager'ın kendi araştırmasıyla ikame edilemez.
+- Bu transition numbered curriculum/architecture adımı değildir; **6B'yi yürütmez veya tamamlamaz**.
+- Transition state: `6A ✅ GNS-v0 / D-054`, `6B 🟡 active / not executed`.
+
+Canonical takeover bootstrap: `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`.
