@@ -13,61 +13,66 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | Adım | Durum | Açıklama |
 |---|---|---|
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
-| **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. D-044 ile granularity clarification eklendi; aşama yeniden açılmadı. |
+| **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. D-044 granularity clarification ile uyumlu. |
 | **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 3H: 16/16 scenario + 20/20 invariant PASS. |
-| **4A — Günlük mikro değerlendirme** | ✅ | DMA-v0 / D-040 tamamlandı. |
-| **4B — Haftalık sınav** | 🟡 Aktif | Weekly multi-Skill assessment composition ve sonuçların programı nasıl değiştireceği tasarlanacak. |
-| **4C–5D** | ⬜ Bekliyor | 4B sonrası canonical sırada. |
-| **AŞAMA 6 — Granular Capability Map** | ⬜ Bekliyor | Full rotayı Module→Topic→Skill→Objective seviyesinde bölerek weakness localization ve targeted remediation'ı mümkün kılacak. |
+| **4A — Günlük mikro değerlendirme** | ✅ | DMA-v0 / D-040. |
+| **4B — Haftalık sınav** | ✅ | WBA-v0 / D-045. Blueprint-before-items, multi-Skill coverage, no fixed score/time/quota, evidence→replan. |
+| **4C — Aylık yeterlilik sınavı** | 🟡 Aktif | Weekly contract üzerinde daha geniş transfer/integration + critical revalidation tasarlanacak. |
+| **4D–5D** | ⬜ Bekliyor | 4C sonrası canonical sırada. |
+| **AŞAMA 6 — Granular Capability Map** | ⬜ Bekliyor | Full rotayı Module→Topic→Skill→Objective seviyesinde parçalayacak. |
 | **AŞAMA 7–20** | ⬜ Bekliyor | D-044 sonrası yeniden indekslenmiş future stages. |
 
-## Proje çapı kapsam / rota kararları
+## Proje çapı bağlayıcı kararlar
 
 ### D-041 — Professional-readiness kapsamı
-**Durum:** KABUL EDİLDİ / CANONICAL
 - Full curriculum 4+ yıl veya daha uzun sürebilir.
-- Final target = verified professional capability.
+- Final target = verified professional capability; takvim gate değildir.
 - V1 full curriculum'u beklemez.
 
 ### D-042 — Python foundation
-**Durum:** KABUL EDİLDİ / CANONICAL
-- Python common programming foundation'a eklendi.
-- C/C++ yerine geçmez; automation, testing, benchmark, ML/PyTorch ve infra tooling için tamamlayıcı ana dildir.
+- Python common programming foundation'ın resmi parçasıdır.
+- C/C++ yerine geçmez.
 
-### D-043 — Specialization tracks / eski AŞAMA 20
-**Durum:** GERİ ÇEKİLDİ / YANLIŞ YORUM
-- Kullanıcının talebi uzmanlık dallarına ayırmak değildi.
-- Bu nedenle eski standalone specialization stage canonical plan'dan kaldırıldı.
+### D-043 — Yanlış specialization-stage yorumu
+**GERİ ÇEKİLDİ / CANONICAL DEĞİL.**
 
-### D-044 — Granular Capability Map / yeni AŞAMA 6
-**Durum:** KABUL EDİLDİ / CANONICAL
-- AŞAMA 5 graph/schema backbone olarak kalır.
-- Yeni AŞAMA 6, ana rotadaki her büyük alanı ayrıntılı `Module → Topic → Skill → Learning Objective` yapısına böler.
-- Hedef, `Python zayıf` gibi kaba tanı yerine `Python → Control Flow → Loops → while termination` gibi hedefli weakness localization yapabilmektir.
-- Technical English, Python, C, Linux/Git/Shell, DS&A, C++, architecture, OS/memory, concurrency, networking, distributed/storage, cloud/observability, performance, GPU, CUDA, Triton, ML/Transformer, inference, serving, KV/batching/scheduling/quantization, multi-GPU/NCCL/RDMA, AI infrastructure, open source/projects/capstone kapsam içindedir.
-- AŞAMA 6 coverage/prerequisite Research QA içerir.
-- Eski henüz başlanmamış 6–19 aşamaları birer sıra kaydırıldı; toplam aşama sayısı 20 olarak kaldı.
+### D-044 — Granular Capability Map
+- AŞAMA 6 eklendi.
+- Broad domain weakness yerine Skill/Objective-level localization hedeflenir.
+- Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
-Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+### D-045 — WBA-v0 Weekly Blueprint Assessment
+- Weekly exam tek overall pass/fail değildir.
+- Önce state-temelli blueprint, sonra validated/prerequisite-valid item/task seçimi yapılır.
+- Recent progress, weakness/verification, critical prerequisite, retention, integration/transfer ve gerektiğinde English role'ları vardır; fixed quota değildir.
+- Fixed soru sayısı/süre yoktur; daily hard budget aşılmaz, safe split/pause/resume mümkündür.
+- Incomplete/missed weekly exam failure/debt/stack değildir.
+- H0/assistance/provenance/evaluator/invalid-item guards DMA-v0 ile aynıdır.
+- Evidence GRE/RVR/PRG/planner zincirine girer; raw weekly score mastery yazamaz.
+- D-044 gereği weakness granular Skill/Objective seviyesine gider.
 
-## Son tamamlanan numaralı adım — 4A
-Ana çıktı: `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`, D-040.
+Ana çıktı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
-## Aktif adım — 4B Haftalık sınav
+## Son tamamlanan numaralı adım — 4B
 
-**4B henüz yürütülmedi.** D-041/D-042/D-044 plan sync, 4B execution değildir.
+**Final:** `WBA-v0 — Weekly Blueprint Assessment` / D-045.
 
-4B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP refresh zorunludur.
+4B'de ayrı Research AI kullanılmadı. Bu adım calibrated psychometric soru sayısı/puan/cadence icat etmek yerine mevcut GRE/RVR/PRG/PBR/DMA evidence contract'larını weekly composition'a bağlayan deterministic ürün policy'siydi. Empirik süre/UX/false-positive/false-negative kalibrasyonu pilot aşamasına bırakıldı.
 
-4B'de kesinleştirilecek:
-- weekly assessment amacı ve DMA-v0'dan farkı,
-- multi-Skill / Objective coverage blueprint,
-- required/critical Skill temsili,
-- evidence family/modality/context diversity,
-- weakness + recent progress + prerequisite risk dengesi,
-- capacity ve sınav bölünebilirliği,
-- assistance / pause / incomplete davranışı,
-- weekly result'ın mastery/remediation/planner akışına etkisi,
-- false-positive/false-negative korumaları,
-- future AŞAMA 6 granular Skill IDs ile uyum,
-- 4C monthly assessment'a ortak contract.
+## Aktif adım — 4C Aylık yeterlilik sınavı
+
+**4C henüz yürütülmedi.**
+
+4C başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+
+4C'de özellikle:
+- monthly scope'un weekly'den farkı,
+- daha geniş transfer/integration,
+- critical prerequisite/capability revalidation,
+- uzun dönem evidence aggregation ama tek final score olmaması,
+- capacity / split / incomplete,
+- H0/H1–H4 ve invalid/provisional safety,
+- D-044 granular Skill/Objective mapping,
+- 4D question bank için item/blueprint lifecycle handoff
+
+kesinleştirilecek.
