@@ -80,34 +80,67 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 ### 2026-08-25 — 4B Weekly Assessment tamamlandı
 
 **PRE-STEP GitHub refresh**
-- Fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` okundu.
-- Doğrudan ilgili `DAILY_MICRO_ASSESSMENT_SPEC`, `MASTERY_SIGNALS_SPEC`, `AI_ASSISTANCE_EVIDENCE_SPEC`, `MASTERY_FORMULA_V0`, `RETENTION_FORGETTING_SPEC`, `TASK_TAXONOMY_SPEC`, `PRIORITY_POLICY_SPEC`, `PREREQUISITE_POLICY_SPEC`, `ADAPTIVE_PLANNER_SPEC`, `PLANNER_EXPLAINABILITY_SPEC`, `LEARNING_BEHAVIOR_RULES`, `ENGLISH_FOUNDATION_RULES`, `V1_SUCCESS_CRITERIA`, `GRANULAR_CAPABILITY_MAP_PLAN` yeniden okundu.
+- Fresh canonical state ve assessment/mastery/planner specs yeniden okundu.
 - 4A'nın tamamlandığı ve gerçek aktif adımın 4B olduğu doğrulandı.
 
 **Research AI kararı**
 - Ayrı Research AI kullanılmadı.
-- 4B, “bilimsel optimum 30 soru / 60 dakika / %70 geçme” gibi psychometric sabitler seçmedi; mevcut GRE/RVR/PRG/PBR/DMA contract'larını weekly composition'a bağlayan deterministic product-policy adımı olarak yürütüldü.
-- Empirik duration/UX/false-positive/false-negative calibration AŞAMA 18 pilotuna bırakıldı.
+- Scientifically optimal soru/süre/score uydurulmadı; empirical calibration AŞAMA 18'e bırakıldı.
 
 **Final model: `WBA-v0 — Weekly Blueprint Assessment` / D-045**
 - Weekly exam tek overall score/pass-fail değildir.
 - Önce state-temelli blueprint, sonra item/task seçimi yapılır.
-- Blueprint role family'leri: recent required progress, weakness/verification, critical prerequisite confidence, retention due, integration/transfer ve gerektiğinde parallel English.
-- Bu role'lar fixed quota değildir; fixed soru sayısı/süre/kategori yüzdesi yoktur.
-- Weekly evidence GRE/RVR'ı bypass etmez veya extra weight almaz.
-- PRG prerequisite fairness, root-cause contamination, variant/dependency diversity ve Objective-specific evidence modality korunur.
-- Weekly session safe boundaries arasında split/pause/resume olabilir; incomplete veya missed weekly exam failure/debt/stack değildir.
-- H0 varsayılan independent measurement; H1–H4 positive independent mastery değildir; H3/H4 fresh/unseen recheck gerektirir.
-- Invalid/ambiguous/prerequisite-contaminated/provisional item strong mastery-changing karar veremez.
-- İlk clean post-mastery contradiction instant unmastery değil `verification_due` üretir.
-- Raw weekly sonuç broad `Python failed` gibi coarse state yazamaz; weakness D-044 gereği Skill/Objective düzeyinde lokalize edilir.
-- Result yalnız `Attempt/Artifact → EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → planner/replan` zinciriyle programı değiştirir.
+- Recent progress, weakness/verification, critical prerequisite, retention, integration/transfer ve gerektiğinde English role'ları quota olmadan kullanılır.
+- Fixed soru sayısı/süre/kategori yüzdesi yoktur.
+- Weekly evidence GRE/RVR'ı bypass etmez.
+- PRG prerequisite fairness, family diversity, Objective-specific evidence modality, H0 assistance standardı ve invalid/provisional safety korunur.
+- Split/pause/resume mümkündür; incomplete/missed weekly exam failure/debt değildir.
+- İlk clean contradiction instant unmastery değildir.
+- Broad Domain pass/fail yazılmaz; D-044 granular localization korunur.
 - 4C için common `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` abstraction kilitlendi.
 
 **Çıktılar**
 - `docs/WEEKLY_ASSESSMENT_SPEC.md`
-- `docs/DECISIONS.md` — D-045
-- canonical POST-STEP state dosyaları + `MASTER_PLAN` senkronu.
+- D-045
 
 **Sonraki kesin adım:** `4C — Aylık yeterlilik sınavı`.
-4C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-25 — 4C Monthly Capability Assessment tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_MEMORY_PROTOCOL` okundu.
+- Doğrudan ilgili `WEEKLY_ASSESSMENT_SPEC`, `PROFESSIONAL_READINESS_TARGET`, `V1_SUCCESS_CRITERIA` ve assessment/mastery/prerequisite bağlamı yeniden doğrulandı.
+- 4B'nin gerçekten tamamlandığı ve aktif adımın 4C olduğu doğrulandı.
+
+**Research AI kararı**
+- Ayrı Research AI kullanılmadı.
+- 4C scientifically optimal soru sayısı, exam süresi, pass score, fixed transfer oranı veya universal critical revalidation cadence seçmedi.
+- Empirical assessment UX ve false-positive/false-negative calibration AŞAMA 18'e bırakıldı.
+
+**Final model: `MCA-v0 — Monthly Capability Assessment` / D-046**
+- Monthly assessment tek ay sonu notu veya domain pass/fail değildir.
+- WBA-v0 common blueprint/result contract'ını monthly extension ile yeniden kullanır.
+- Role family'leri: longitudinal required capability, persistent weakness/verification, critical capability revalidation, delayed retention, cross-topic transfer, integrated application, gerektiğinde Technical English ve professional evidence checkpoint.
+- Role family'leri fixed quota değildir.
+- Monthly assessment bütün geçmiş curriculum'u cumulative olarak tekrar test etmez; state-based bounded longitudinal sampling yapar.
+- Recent/older balance fixed yüzdelerle değil canonical state ve decision value ile belirlenir.
+- Critical Skill sırf critical olduğu için her ay otomatik retest edilmez; gerçek revalidation ihtiyacı gerekir.
+- Transfer/integration weekly'den daha geniş olabilir fakat yalnız öğretilmiş prerequisites ve component-level attribution ile çalışır.
+- Persistent weakness tek bir kötü item'dan türetilmez.
+- Professional evidence checkpoint final professional-readiness veya capstone gate değildir.
+- Fixed soru sayısı, fixed süre, fixed pass score yoktur.
+- Daily hard capacity korunur; session multi-block/split/pause/resume olabilir; incomplete/missed monthly exam failure/debt değildir.
+- H0/H1–H4, provenance, invalid/ambiguous/provisional item, root-prerequisite contamination ve GRE/RVR hysteresis korunur.
+- Raw broad `Python failed` gibi state yazılmaz; D-044 granular Skill/Objective localization korunur.
+- V1 SC-016 gereği güvenilir persistent/critical gap yalnız raporda kalmaz; LearningNeed/PBR/PRG/planner üzerinden gelecek planı gerçekten değiştirebilir.
+- 4D Question Bank için scope eligibility, blueprint role, target/prerequisite, evidence, family/context/transfer, rubric/evaluator, trust/version, exposure, duration/atomicity ve language/freshness metadata handoff'u tanımlandı.
+
+**Çıktılar**
+- `docs/MONTHLY_ASSESSMENT_SPEC.md`
+- `docs/DECISIONS.md` — D-046
+- canonical POST-STEP state dosyaları + `MASTER_PLAN` senkronu.
+
+**Sonraki kesin adım:** `4D — Soru bankası`.
+4D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
