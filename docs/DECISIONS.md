@@ -247,3 +247,16 @@ Ayrıntı: `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`.
 - 5B graph/metadata contract'ı bu domain backbone'u formalize edecek; AŞAMA 6 bütün family'leri Module/Topic/Skill/Objective seviyesine parçalayacaktır.
 
 Ayrıntı: `docs/CURRICULUM_DOMAIN_MAP.md`.
+
+## D-050 — Living project memory sync ve repo-wide stale-reference audit zorunlu
+**Durum:** Kabul edildi — 2026-08-25
+
+- Her numaralı adım sonunda `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `START_HERE` ve `DECISIONS` istisnasız kontrol edilir; durum/karar değişikliğinden etkilenenler aynı POST-STEP içinde güncellenir.
+- `PROJECT_CONTEXT.md` kısa yaşayan snapshot'tır ve eski aktif adımda bırakılamaz.
+- `PROJECT_MASTER_CONTEXT.md` uzun/stabil bağlamdır; volatile aktif adımı tekrar etmez.
+- `README.md` insan için repo girişidir; volatile aktif step kopyalamak yerine current state kaynaklarına yönlendirir.
+- Her adım kapanışında değişen step/model/dosya adları için repo-wide stale-reference taraması yapılır.
+- Future-stage reindex yapılırsa bütün repo içindeki future-reference'lar aynı senkron turunda taranıp düzeltilir; historical completion metni geçmiş bağlam olarak korunabilir.
+- Aynı role sahip duplicate yaşayan source of truth tutulmaz; tamamen superseded ve benzersiz provenance değeri olmayan taslak silinir, faydalı eski seed notları açıkça `NON-CANONICAL/HISTORICAL` etiketlenir.
+- Stable tamamlanmış spec'ler sırf active step değişti diye yeniden yazılmaz; ancak stale cross-reference veya superseded contract içeriyorsa düzeltilir.
+- Ayrıntılı dosya rol matrisi ve kapanış checklist'i `docs/PROJECT_MEMORY_PROTOCOL.md` içinde canonicaldır.
