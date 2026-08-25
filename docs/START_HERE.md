@@ -28,11 +28,7 @@ Python common technical foundation'ın resmi parçasıdır; C/C++ yerine geçmez
 Standalone specialization-stage yorumu canonical değildir.
 
 ### D-044 — Granular Capability Map
-Yeni AŞAMA 6 ana öğrenme rotasının her büyük alanını:
-
-`Domain → Module → Topic → Skill → Learning Objective`
-
-seviyesinde ayrıntılandıracak. Amaç `Python zayıf` yerine exact alt capability weakness/mastery/remediation üretmektir.
+AŞAMA 6 ana öğrenme rotasının her büyük alanını `Domain → Module → Topic → Skill → Learning Objective` seviyesinde ayrıntılandıracak. Amaç broad weakness yerine exact capability localization/remediation.
 
 Canonical: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
@@ -47,28 +43,34 @@ Monthly assessment longitudinal state-based capability sampling; broader transfe
 Canonical: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
 
 ### D-047 — QAB-v0
-Final 4D model:
-
-> **`QAB-v0 — Trusted Assessment Resource Bank`**
-
-- Question Bank yalnız MCQ deposu değildir; coding/debugging/system/transfer/integrated task dahil AssessmentResource bank'idir.
-- Stable logical resource ID + immutable published version.
-- Lifecycle/trust/use ceiling ayrı.
-- Exact Skill/Objective/prerequisite/evidence/scope/role/evaluator/tool/artifact/duration metadata.
-- Variant/dependency/context/transfer ayrımı.
-- Per-user solution exposure global content'ten ayrı.
-- Technology/content freshness ayrı.
-- Bounded/indexed selection.
-- AI-generated resource 4E validation olmadan trusted/high-stakes use'a yükselmez.
+Question Bank yalnız MCQ değil, versioned AssessmentResource bank'idir. Stable logical ID + immutable version, lifecycle/use ceiling, exact target/prerequisite/evidence metadata, family/dependency/context/freshness ve bounded selection vardır.
 
 Canonical: `docs/QUESTION_BANK_SPEC.md`.
+
+### D-048 — AIV-v0
+Final 4E model:
+
+> **`AIV-v0 — AI Assessment Resource Validation`**
+
+- AI-generated resource `candidate` başlar; generator output validation proof değildir.
+- Minimum correctness/safety validation geçmeden user-facing selection'a çıkmaz.
+- Schema, technical correctness, answer/rubric, ambiguity, target/evidence fit, prerequisites, English leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, freshness ve execution-safety ayrı validate edilir.
+- Weighted confidence/majority-vote pass yoktur; final use ceiling en kısıtlayıcı check'e bağlıdır.
+- Use ceilings: `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible`.
+- Tek uncalibrated LLM critical verified evidence için yeterli değildir.
+- Near duplicate yeni independent family sayılmaz.
+- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür.
+- Validator disagreement fail-safe olarak promotion'ı durdurur.
+- Confirmed content bug historical evidence review/repair açabilir; learner cezalandırılmaz.
+
+Canonical: `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`.
 
 ## 4. Güncel stage mapping
 - 1 Product framing
 - 2 Learning/mastery
 - 3 Adaptive planner
-- 4 Assessment system
-- 5 Curriculum/knowledge graph backbone
+- 4 Assessment system ✅ tamamlandı
+- 5 Curriculum/knowledge graph backbone — **aktif**
 - 6 Granular Capability Map
 - 7 English parallel line
 - 8 UX
@@ -124,14 +126,15 @@ POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRE
 21. `docs/WEEKLY_ASSESSMENT_SPEC.md`
 22. `docs/MONTHLY_ASSESSMENT_SPEC.md`
 23. `docs/QUESTION_BANK_SPEC.md`
-24. `docs/ENGLISH_FOUNDATION_RULES.md`
-25. `docs/MASTER_PLAN.md`
-26. `docs/PROGRESS_LOG.md`
+24. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
+25. `docs/ENGLISH_FOUNDATION_RULES.md`
+26. `docs/MASTER_PLAN.md`
+27. `docs/PROGRESS_LOG.md`
 
 ## 7. Ana kariyer/öğrenme yönü
 **Technical English (parallel) → Python → C → Linux + Git + Shell → Data Structures & Algorithms foundations → Modern C++ → Computer Architecture → Operating Systems + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases foundations → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM / SGLang / TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
 
-AŞAMA 6 bu listenin her maddesini detaylı capability haritasına bölecek.
+AŞAMA 5 bu rotanın domain/backbone sınırlarını, AŞAMA 6 ise her domain'in granular capability haritasını kuracak.
 
 ## 8. Tamamlanan çekirdek
 
@@ -144,21 +147,25 @@ GRE-v0 + RVR-v0 dahil learning/mastery modeli tamamlandı.
 ### AŞAMA 3 ✅
 Adaptive planner tamamlandı: 16/16 scenarios, 20/20 invariants PASS.
 
-### AŞAMA 4 ilerlemesi
-- 4A ✅ DMA-v0
-- 4B ✅ WBA-v0
-- 4C ✅ MCA-v0
-- 4D ✅ QAB-v0
-- 4E 🟡 AI-generated soru doğrulaması
+### AŞAMA 4 ✅
+- 4A DMA-v0
+- 4B WBA-v0
+- 4C MCA-v0
+- 4D QAB-v0
+- 4E AIV-v0
+
+Assessment foundation tamamlandı: blueprint-based assessment + trusted resource bank + AI-generated content validation + canonical evidence pipeline.
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`4E — AI-generated soru doğrulaması`**  
-**4E henüz yürütülmedi.**
+**Aktif:** **`5A — Ana domain haritası`**  
+**5A henüz yürütülmedi.**
 
-4E'de AI-generated resource'ın candidate'tan validated/trusted use'a hangi koşullarla çıkabileceği tasarlanacak: correctness, ambiguity, answer/rubric, target fit, prerequisites, duplicate/family, transfer/context, evaluator, freshness, risk-based promotion ve fail-safe behavior.
+5A'da 4+ yıllık professional-readiness rotasının domain-level knowledge/curriculum backbone'u kurulacak; common foundation, parallel Technical English, systems/distributed/performance/GPU/inference/AI infrastructure ve professional engineering/project katmanlarının sınırları ile ana prerequisite ilişkileri belirlenecek.
 
-4E başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+5A ayrıntılı Python `for/while` veya CUDA alt kavramlarını yazmayacak; bu AŞAMA 6'nın granular decomposition işidir.
+
+5A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044, D-045, D-046 ve D-047 kararlarını oku; D-043 geri çekilmiştir. HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 4E — AI-generated soru doğrulaması; 4E henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044, D-045, D-046, D-047 ve D-048 kararlarını oku; D-043 geri çekilmiştir. HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. AŞAMA 4 tamamlandı. Şu an aktif adım 5A — Ana domain haritası; 5A henüz yürütülmedi.`
