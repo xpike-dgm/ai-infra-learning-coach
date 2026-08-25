@@ -22,9 +22,12 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-047: assessment resource bank = QAB-v0.
 - D-048: AI-generated assessment validation = AIV-v0.
 - D-049: curriculum domain backbone = PDM-v0.
+- D-050: living-memory sync + repo-wide stale-reference audit her numaralı step kapanışında zorunludur.
 
-## Zorunlu yürütme
-`PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → sonraki adım`
+## Zorunlu yürütme — D-024 / D-027 / D-050
+`PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → ALWAYS-CHECK living-memory sync → repo-wide stale-reference scan → sonraki adım`
+
+ALWAYS-CHECK seti ve dosya rolleri: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
 ---
 
@@ -299,9 +302,23 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ---
 
+# Repository Hygiene Maintenance — D-050
+
+Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
+
+- Repo dosya envanteri audit edildi.
+- `PROJECT_CONTEXT.md` living snapshot olarak mandatory sync kapsamına alındı ve 5B current state'e getirildi.
+- `PROJECT_MASTER_CONTEXT` / README volatile active-step duplication'dan arındırıldı.
+- Obsolete `docs/TODO.md` silindi.
+- Legacy `docs/LEARNING_ENGINE.md` explicit historical/superseded pointer'a dönüştürüldü.
+- `docs/ENGLISH_TRACK.md` non-canonical seed olarak etiketlendi.
+- `PROJECT_MEMORY_PROTOCOL` + `AI_AGENT_WORKFLOW` repo-wide stale-reference scan ve ALWAYS-CHECK setiyle güçlendirildi.
+
+---
+
 # Güncel Konum
 
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
 **Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
 
-Bir sonraki yürütme: **5B başlamadan yeni PRE-STEP GitHub refresh → graph/metadata contract → POST-STEP sync.**
+Bir sonraki yürütme: **5B başlamadan yeni PRE-STEP GitHub refresh → graph/metadata contract → POST-STEP D-050 sync + stale-reference audit.**
