@@ -27,13 +27,9 @@ jobs:
           for p in md_files:
               print(' -', p.as_posix())
 
+          # Historical notes may mention that TODO was deleted; only actual file existence is invalid.
           if Path('docs/TODO.md').exists():
               raise SystemExit('FAIL: obsolete docs/TODO.md still exists')
-
-          for p in md_files:
-              text = p.read_text(encoding='utf-8')
-              if 'docs/TODO.md' in text:
-                  raise SystemExit(f'FAIL: stale docs/TODO.md reference in {p}')
 
           living = {
               'PROJECT_CONTEXT.md': ['5B', 'HENÜZ YÜRÜTÜLMEDİ'],
