@@ -496,7 +496,7 @@ provisional_evaluator_requires_confirm
 curriculum_change_requires_recheck
 ```
 
-UI metinleri 3G/7C/7E'de kesinleşir.
+UI metinleri 3G/8C/8E'de kesinleşir.
 
 ---
 

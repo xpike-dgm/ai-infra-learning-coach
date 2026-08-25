@@ -345,7 +345,7 @@ Uygulamada provider-independent AI adapter/model router yaklaşımı hedeflenmek
 
 Bugün iyi görünen belirli bir model gelecekte değişebilir. Bu nedenle ürünün kalıcı öğrenme davranışı tek bir model adına bağlanmayacaktır.
 
-Model seçimi, maliyet, kalite, latency ve değerlendirme başarısı **8E — AI entegrasyon mimarisi** sırasında kesinleştirilecektir.
+Model seçimi, maliyet, kalite, latency ve değerlendirme başarısı **9E — AI entegrasyon mimarisi** sırasında kesinleştirilecektir.
 
 Basit/deterministik işler gereksiz AI API çağrısı yapmamalıdır. Quiz answer check, graph lock, planner rule, progress lookup gibi işler mümkün olduğunda local/deterministic çalışarak hem maliyeti hem belirsizliği azaltır.
 
@@ -355,7 +355,7 @@ Basit/deterministik işler gereksiz AI API çağrısı yapmamalıdır. Quiz answ
 
 Mobil APK içine sabit/hardcoded gizli API key koymak varsayılan final tasarım değildir.
 
-Kişisel prototipte kullanıcının kendi key'ini uygulama ayarından girmesi ve cihazın güvenli saklama mekanizmasında tutulması değerlendirilebilir. Final güvenlik/proxy/backend kararı 8E'de teknik olarak kesinleştirilecektir.
+Kişisel prototipte kullanıcının kendi key'ini uygulama ayarından girmesi ve cihazın güvenli saklama mekanizmasında tutulması değerlendirilebilir. Final güvenlik/proxy/backend kararı 9E'de teknik olarak kesinleştirilecektir.
 
 Bu konu öğrenme motorunun çalışmasını bloke etmez.
 

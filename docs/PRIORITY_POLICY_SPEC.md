@@ -488,7 +488,7 @@ Bu V1'de soft preference sinyali olabilir fakat:
 - mastery/evidence'i sahte şekilde değiştiremez,
 - remaining normal-progress task'lar arasında tercih etkisi yaratabilir.
 
-Exact UX ve ayar davranışı 7A–7G'de kesinleşir.
+Exact UX ve ayar davranışı 8A–8G'de kesinleşir.
 
 ---
 
