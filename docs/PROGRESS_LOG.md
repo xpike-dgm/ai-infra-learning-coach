@@ -121,7 +121,46 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 **Çıktılar**
 - `docs/QUESTION_BANK_SPEC.md`
 - `docs/DECISIONS.md` — D-047
-- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `START_HERE` ve bu progress log senkronlandı.
+- canonical POST-STEP state sync.
 
-**Sonraki kesin adım:** `4E — AI-generated soru doğrulaması`.
-4E başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+---
+
+### 2026-08-25 — 4E AI-Generated Assessment Resource Validation tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Fresh `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN` okundu.
+- QAB-v0, DMA-v0, WBA-v0, MCA-v0, mastery/evaluator/AI-assistance/prerequisite, English ve D-044 granularity kuralları yeniden kontrol edildi.
+- Gerçek aktif adımın 4E olduğu ve 4D'nin tamamlandığı doğrulandı.
+
+**Research AI kararı**
+- Ayrı Research AI kullanılmadı.
+- 4E validator accuracy yüzdesi, majority-vote optimum'u veya universal acceptance threshold'u seçmedi; deterministic/auditable fail-safe trust policy tasarladı.
+- Empirical validator/evaluator false-accept/false-reject ve open-response calibration AŞAMA 14F/18'e bırakıldı.
+
+**Final model: `AIV-v0 — AI Assessment Resource Validation` / D-048**
+- AI-generated resource `candidate` başlar; generator output kendi validation proof'u değildir.
+- Minimum correctness/safety validation geçmeden user-facing selection yoktur.
+- Schema, technical correctness, answer/rubric, ambiguity, target/evidence fit, prerequisite/forbidden concept/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, freshness ve execution safety ayrı check'lerdir.
+- Validator check'leri weighted confidence toplamı değildir; final use ceiling en kısıtlayıcı applicable check'tir.
+- Semantic ceiling: `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible`.
+- Practice-only yanlış bilgi toleransı değildir; unresolved correctness candidate'ı bloke eder.
+- Generator self-review / model majority vote high-stakes trust değildir; deterministic/executable/reference-grounded validation önceliklidir.
+- Near duplicate independent evidence family sayılmaz; uncertain family classification diversity credit artırmaz.
+- Transfer/integration claim ve component attribution ayrıca validate edilir.
+- Single uncalibrated LLM critical verified evidence için yeterli değildir.
+- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür; semantic AI rewrite normal revalidation ister.
+- Validator disagreement promotion'ı fail-safe biçimde durdurur.
+- Generated code/system task execution/environment safety check ister.
+- Version-sensitive content freshness/source audit ister.
+- Confirmed bug invalidation + exact-version historical evidence review/repair açabilir; learner cezalandırılmaz.
+- Heavy validation async/bounded; validator unavailable diye live assessment standardı düşmez.
+
+**Çıktılar**
+- `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
+- `docs/DECISIONS.md` — D-048
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `START_HERE` ve progress log sync.
+
+**AŞAMA 4 tamamlandı:** `4A–4E` ✅
+
+**Sonraki kesin adım:** `5A — Ana domain haritası`.
+5A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
