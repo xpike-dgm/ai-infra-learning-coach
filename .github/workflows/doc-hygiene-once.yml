@@ -1,0 +1,286 @@
+name: One-time D-050 documentation hygiene
+
+on:
+  push:
+    paths:
+      - '.github/workflows/doc-hygiene-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply exact D-044/D-050 documentation fixes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              "docs/MASTERY_FORMULA_V0.md": [
+                  ("Bu sayı **engineering heuristic**'tir ve 17C'de kalibre edilir.", "Bu sayı **engineering heuristic**'tir ve 18C'de kalibre edilir.", 1),
+                  ("Threshold 17C pilotunda false-positive / false-negative sonuçlarına göre değişebilir.", "Threshold 18C pilotunda false-positive / false-negative sonuçlarına göre değişebilir.", 1),
+                  ("# 23. Pilot calibration — 17C", "# 23. Pilot calibration — 18C", 1),
+                  ("ileride 13F'de kalibre edilmiş evaluator policy", "ileride 14F'de kalibre edilmiş evaluator policy", 1),
+                  ("13F'de gerçek benchmark ile LLM evaluator policy yeniden ele alınacaktır.", "14F'de gerçek benchmark ile LLM evaluator policy yeniden ele alınacaktır.", 1),
+                  ("Kesin DB schema 8C, implementation 11A'da.", "Kesin DB schema 9C, implementation 12A'da.", 1),
+              ],
+              "docs/RETENTION_FORGETTING_SPEC.md": [
+                  ("Kesin DB schema 8C'de. Behavior-level state:", "Kesin DB schema 9C'de. Behavior-level state:", 1),
+                  ("## 21. Pilot calibration — 17C", "## 21. Pilot calibration — 18C", 1),
+              ],
+              "docs/PRIORITY_POLICY_SPEC.md": [
+                  ("Exact eligible-deferral threshold 17B/17C pilotunda kalibre edilir.", "Exact eligible-deferral threshold 18B/18C pilotunda kalibre edilir.", 1),
+                  ("Bunlar 3H simulation + 17B/17C pilot ile kalibre edilebilir.", "Bunlar 3H simulation + 18B/18C pilot ile kalibre edilebilir.", 1),
+                  ("Track cadence/frequency 6C'de tanımlanır.", "Track cadence/frequency 7C'de tanımlanır.", 1),
+                  ("Exact English cadence 6C'de tanımlanır.", "Exact English cadence 7C'de tanımlanır.", 1),
+                  ("Exact DB/index implementasyonu 8C/11C'ye aittir.", "Exact DB/index implementasyonu 9C/12C'ye aittir.", 1),
+              ],
+              "docs/PREREQUISITE_POLICY_SPEC.md": [
+                  ("- ileride 11B Prerequisite Engine'e", "- ileride 12B Prerequisite Engine'e", 1),
+                  ("Exact DB/index implementasyonu 8C/11B'ye aittir.", "Exact DB/index implementasyonu 9C/12B'ye aittir.", 1),
+              ],
+              "docs/TASK_TAXONOMY_SPEC.md": [
+                  ("6A–6E aynı TaskCandidate contract'ını kullanabilir.", "7A–7E aynı TaskCandidate contract'ını kullanabilir.", 1),
+                  ("Exact DB schema 8C'ye aittir. 3B davranış contract'ı:", "Exact DB schema 9C'ye aittir. 3B davranış contract'ı:", 1),
+                  ("Exact cap ve index stratejisi 8C/11C'de belirlenir.", "Exact cap ve index stratejisi 9C/12C'de belirlenir.", 1),
+              ],
+              "docs/MASTERY_SIGNALS_SPEC.md": [
+                  ("Kesin database schema 8C'de tasarlanacaktır.", "Kesin database schema 9C'de tasarlanacaktır.", 1),
+                  ("Kesin DB schema 8C'ye ait olmakla birlikte", "Kesin DB schema 9C'ye ait olmakla birlikte", 1),
+                  ("Bu bir database migration değildir; 8C için davranış sözleşmesidir.", "Bu bir database migration değildir; 9C için davranış sözleşmesidir.", 1),
+                  ("- exact database schema → **8C**", "- exact database schema → **9C**", 1),
+                  ("- code evaluator/compiler mimarisi → **8E / Aşama 13**", "- code evaluator/compiler mimarisi → **9E / Aşama 14**", 1),
+              ],
+              "docs/AI_ASSISTANCE_EVIDENCE_SPEC.md": [
+                  ("AI evaluator'ın güvenilirliği, validator ve confidence politikası 4E / 13F / 8E'de ayrıca ele alınacaktır.", "AI evaluator'ın güvenilirliği, validator ve confidence politikası 4E / 14F / 9E'de ayrıca ele alınacaktır.", 1),
+                  ("Kesin DB schema 8C'ye aittir.", "Kesin DB schema 9C'ye aittir.", 1),
+                  ("Bu bir DB migration değildir; 8C için davranış sözleşmesidir.", "Bu bir DB migration değildir; 9C için davranış sözleşmesidir.", 1),
+                  ("- task/question metadata schema → **4D / 8C**", "- task/question metadata schema → **4D / 9C**", 1),
+                  ("- provider/model seçimi → **8E**", "- provider/model seçimi → **9E**", 1),
+                  ("- AI Tutor UI ve gerçek prompt davranışları → **13A–13G**", "- AI Tutor UI ve gerçek prompt davranışları → **14A–14G**", 1),
+                  ("- code runner/compiler entegrasyonu → **8E / 13D**", "- code runner/compiler entegrasyonu → **9E / 14D**", 1),
+              ],
+              "docs/MISSED_DAY_RECOVERY_SPEC.md": [
+                  ("Exact query/candidate limitleri 8C/11C/17E performans aşamalarında kalibre edilir", "Exact query/candidate limitleri 9C/12C/18E performans aşamalarında kalibre edilir", 1),
+                  ("- kullanıcıya gösterilecek exact dönüş metinleri / reason codes → 3G / 7C,", "- kullanıcıya gösterilecek exact dönüş metinleri / reason codes → 3G / 8C,", 1),
+                  ("- DB/index/query implementation → 8C / 11C,", "- DB/index/query implementation → 9C / 12C,", 1),
+                  ("- notification cadence → 15E,", "- notification cadence → 16E,", 1),
+                  ("- exact performance/candidate scan limits → 17E,", "- exact performance/candidate scan limits → 18E,", 1),
+                  ("- retention interval calibration → 17C.", "- retention interval calibration → 18C.", 1),
+              ],
+              "docs/PLANNER_EXPLAINABILITY_SPEC.md": [
+                  ("UI string'leri 7A–7G'de değişebilir", "UI string'leri 8A–8G'de değişebilir", 1),
+                  ("Exact retention/log compaction policy 8C/15B/17E'de kesinleşir.", "Exact retention/log compaction policy 9C/16B/18E'de kesinleşir.", 1),
+              ],
+              "docs/TOPIC_STATE_MACHINE.md": [
+                  ("UI kelimeleri daha sonra 7E'de kesinleşebilir", "UI kelimeleri daha sonra 8E'de kesinleşebilir", 1),
+                  ("Kesin DB şeması 8C'de belirlenecektir.", "Kesin DB şeması 9C'de belirlenecektir.", 1),
+                  ("Kesin event/data schema 8C'de belirlenir.", "Kesin event/data schema 9C'de belirlenir.", 1),
+                  ("- kesin DB/state event schema → **8C**", "- kesin DB/state event schema → **9C**", 1),
+              ],
+              "docs/LEARNING_BEHAVIOR_RULES.md": [
+                  ("Kesin veri modeli Aşama 8C, planner algoritması Aşama 3'te tasarlanacaktır.", "Kesin veri modeli Aşama 9C, planner algoritması Aşama 3'te tasarlanacaktır.", 1),
+                  ("Aşama 8E ve Aşama 17 kalibrasyon adımlarında", "Aşama 9E ve Aşama 18 kalibrasyon adımlarında", 1),
+              ],
+              "docs/DAILY_MICRO_ASSESSMENT_SPEC.md": [
+                  ("güven düzeyi ve validator sınırları 4E/13F'te kesinleşir.", "güven düzeyi ve validator sınırları 4E/14F'te kesinleşir.", 1),
+                  ("Exact DB index/cache/query yapısı 8C/8F/11A–11C'de kesinleşir.", "Exact DB index/cache/query yapısı 9C/9F/12A–12C'de kesinleşir.", 1),
+              ],
+              "docs/V1_SUCCESS_CRITERIA.md": [
+                  ("Bu profiller Aşama 3 ve Aşama 11'de daha ayrıntılı fixture/test datasına dönüştürülecektir.", "Bu profiller Aşama 3 ve Aşama 12'de daha ayrıntılı fixture/test datasına dönüştürülecektir.", 1),
+                  ("Aşama 2F/12C'de seçilecek algoritmaya göre", "Aşama 2F/13C'de seçilecek algoritmaya göre", 1),
+                  ("- Aşama 6 — English,", "- Aşama 7 — English,", 1),
+                  ("- Aşama 17 — pilot kalibrasyonu", "- Aşama 18 — pilot kalibrasyonu", 1),
+              ],
+          }
+
+          changed = []
+          for rel, reps in replacements.items():
+              p = Path(rel)
+              text = p.read_text(encoding="utf-8")
+              original = text
+              for old, new, expected in reps:
+                  found = text.count(old)
+                  if found != expected:
+                      raise SystemExit(f"{rel}: expected {expected} occurrence(s) of {old!r}, found {found}")
+                  text = text.replace(old, new)
+              if text != original:
+                  p.write_text(text, encoding="utf-8")
+                  changed.append(rel)
+
+          # Historical research/provenance documents keep their original wording,
+          # but make legacy future-stage numbering explicit.
+          historical_notes = {
+              "docs/2E_RESEARCH_VALIDATION.md": "# 2E Research Validation",
+              "docs/2F_RESEARCH_BRIEF.md": "# 2F",
+              "docs/2F_RESEARCH_VALIDATION.md": "# 2F",
+          }
+          note = ("\n\n> **D-050 / D-044 hygiene note (2026-08-25):** Bu tarihsel araştırma/provenance belgesindeki "
+                  "ileride yapılacak aşamalara ait eski numaralar D-044 öncesi planı yansıtabilir. Güncel karşılık için "
+                  "`docs/STAGE_REINDEX_MAP.md` ve `docs/EXECUTION_INDEX.md` kullanılır. Tarihsel araştırma metni sessizce yeniden yazılmamıştır.\n")
+          for rel, heading_prefix in historical_notes.items():
+              p = Path(rel)
+              if not p.exists():
+                  continue
+              text = p.read_text(encoding="utf-8")
+              if "D-050 / D-044 hygiene note" in text:
+                  continue
+              lines = text.splitlines()
+              if not lines or not lines[0].startswith("#"):
+                  raise SystemExit(f"{rel}: cannot safely insert historical note")
+              text = lines[0] + note + "\n".join(lines[1:])
+              p.write_text(text, encoding="utf-8")
+              changed.append(rel)
+
+          # Make the stage-reindex map discoverable without turning it into another state source of truth.
+          p = Path("README.md")
+          text = p.read_text(encoding="utf-8")
+          marker = "- `docs/PROJECT_MEMORY_PROTOCOL.md` — zorunlu PRE/POST GitHub hafıza senkronu ve dosya rol matrisi\n"
+          addition = marker + "- `docs/STAGE_REINDEX_MAP.md` — D-044 öncesi future-stage referanslarının current karşılık haritası\n"
+          if "`docs/STAGE_REINDEX_MAP.md`" not in text:
+              if text.count(marker) != 1:
+                  raise SystemExit("README.md: safe insertion marker missing/duplicate")
+              p.write_text(text.replace(marker, addition), encoding="utf-8")
+              changed.append("README.md")
+
+          p = Path("docs/START_HERE.md")
+          text = p.read_text(encoding="utf-8")
+          marker = "2. `docs/PROJECT_MEMORY_PROTOCOL.md`\n3. `PROJECT_CONTEXT.md`"
+          if "docs/STAGE_REINDEX_MAP.md" not in text:
+              if text.count(marker) != 1:
+                  raise SystemExit("START_HERE.md: safe insertion marker missing/duplicate")
+              replacement = "2. `docs/PROJECT_MEMORY_PROTOCOL.md`\n3. `docs/STAGE_REINDEX_MAP.md` — yalnız legacy D-044 future-reference çevirisi gerektiğinde\n4. `PROJECT_CONTEXT.md`"
+              text = text.replace(marker, replacement)
+              # Renumber the remaining bootstrap list to avoid duplicate ordinal labels.
+              # The numbers are presentation only, not project step IDs.
+              for n in range(29, 3, -1):
+                  text = text.replace(f"\n{n}. `", f"\n{n+1}. `", 1)
+              p.write_text(text, encoding="utf-8")
+              changed.append("docs/START_HERE.md")
+
+          p = Path("docs/PROJECT_MEMORY_PROTOCOL.md")
+          text = p.read_text(encoding="utf-8")
+          anchor = "Bu tarama yapılmadan reindex tamamlanmış sayılmaz.\n"
+          extra = anchor + "\nCanonical legacy→current future-stage çeviri kaydı: `docs/STAGE_REINDEX_MAP.md`. Bu map current execution source of truth değildir; current adımlar için daima `EXECUTION_INDEX.md` / `MASTER_PLAN.md` kullanılır.\n"
+          if "Canonical legacy→current future-stage çeviri kaydı" not in text:
+              if text.count(anchor) != 1:
+                  raise SystemExit("PROJECT_MEMORY_PROTOCOL.md: reindex insertion anchor missing/duplicate")
+              p.write_text(text.replace(anchor, extra), encoding="utf-8")
+              changed.append("docs/PROJECT_MEMORY_PROTOCOL.md")
+
+          # Record this non-numbered repository hygiene operation without advancing the project step.
+          p = Path("docs/PROGRESS_LOG.md")
+          text = p.read_text(encoding="utf-8")
+          tag = "### 2026-08-25 — D-050 repository-wide documentation hygiene tamamlandı"
+          if tag not in text:
+              block = """
+
+---
+
+### 2026-08-25 — D-050 repository-wide documentation hygiene tamamlandı
+- Kullanıcının onayıyla 5B başlatılmadan önce repo-wide dokümantasyon cleanup devam ettirildi.
+- D-044 future-stage reindex'i için `docs/STAGE_REINDEX_MAP.md` oluşturuldu.
+- D-044 öncesinde tamamlanmış stable spec'lerdeki **future-stage pointer** drift'leri yalnız referans düzeyinde düzeltildi; GRE/RVR/PBR/PRG/DMA ve diğer davranış contract'ları değiştirilmedi.
+- Historical Research AI/provenance belgeleri sessizce yeniden yazılmadı; legacy future-stage numaraları için explicit D-050/D-044 hygiene note eklendi.
+- `README`, `START_HERE` ve `PROJECT_MEMORY_PROTOCOL` stage-reindex map'e navigasyon verecek şekilde güncellendi.
+- Önceki cleanup'ta stale `PROJECT_CONTEXT` 5B'ye senkronlandı, `docs/TODO.md` silindi, `LEARNING_ENGINE.md` historical/superseded pointer'a, `ENGLISH_TRACK.md` non-canonical seed notes'a çevrildi.
+- Bu hygiene turu **5B execution değildir** ve execution state'i ilerletmez.
+- Canonical durum cleanup sonunda hâlâ: **5A tamamlandı; 5B aktif ve henüz yürütülmedi**.
+"""
+              p.write_text(text.rstrip() + block + "\n", encoding="utf-8")
+              changed.append("docs/PROGRESS_LOG.md")
+
+          print("Changed files:")
+          for rel in sorted(set(changed)):
+              print(" -", rel)
+          PY
+
+          git diff --check
+          git diff --stat
+
+      - name: Verify current-state invariants
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # Deleted obsolete queue must stay deleted.
+          if Path("docs/TODO.md").exists():
+              raise SystemExit("docs/TODO.md unexpectedly exists")
+
+          living = [
+              "PROJECT_CONTEXT.md",
+              "docs/START_HERE.md",
+              "docs/HANDOFF_STATE.md",
+              "docs/STEP_STATUS.md",
+              "docs/EXECUTION_INDEX.md",
+              "docs/MASTER_PLAN.md",
+          ]
+          for rel in living:
+              text = Path(rel).read_text(encoding="utf-8")
+              if "5B" not in text:
+                  raise SystemExit(f"{rel}: expected current 5B reference missing")
+
+          # The current live snapshot/status must clearly keep 5B unexecuted/active.
+          context = Path("PROJECT_CONTEXT.md").read_text(encoding="utf-8")
+          status = Path("docs/STEP_STATUS.md").read_text(encoding="utf-8")
+          if "AKTİF, HENÜZ YÜRÜTÜLMEDİ" not in context:
+              raise SystemExit("PROJECT_CONTEXT.md: 5B active/not-executed invariant missing")
+          if "5B henüz yürütülmedi" not in status:
+              raise SystemExit("STEP_STATUS.md: 5B not-executed invariant missing")
+
+          # D-043 must remain withdrawn, not resurrected as canonical specialization stage.
+          decisions = Path("docs/DECISIONS.md").read_text(encoding="utf-8")
+          if "D-043" not in decisions or "GERİ ÇEKİLDİ" not in decisions:
+              raise SystemExit("D-043 withdrawn status missing")
+
+          # D-050 and its reindex map must be discoverable.
+          for rel in ["README.md", "docs/START_HERE.md", "docs/PROJECT_MEMORY_PROTOCOL.md"]:
+              if "STAGE_REINDEX_MAP.md" not in Path(rel).read_text(encoding="utf-8"):
+                  raise SystemExit(f"{rel}: stage reindex map navigation missing")
+
+          # Exact known stale future pointers fixed in stable/current docs.
+          forbidden = {
+              "docs/PLANNER_SIMULATION_SUITE.md": ["11F gerçek Planner", "17B planner pilot", "17E gerçek cihaz/performance"],
+              "docs/MASTERY_FORMULA_V0.md": ["Pilot calibration — 17C", "13F'de gerçek benchmark", "DB schema 8C, implementation 11A"],
+              "docs/RETENTION_FORGETTING_SPEC.md": ["Pilot calibration — 17C", "DB schema 8C'de"],
+              "docs/PRIORITY_POLICY_SPEC.md": ["17B/17C pilot", "Track cadence/frequency 6C", "English cadence 6C", "8C/11C'ye"],
+              "docs/PREREQUISITE_POLICY_SPEC.md": ["ileride 11B Prerequisite", "8C/11B'ye"],
+              "docs/TASK_TAXONOMY_SPEC.md": ["6A–6E aynı TaskCandidate", "DB schema 8C'ye", "8C/11C'de"],
+              "docs/MASTERY_SIGNALS_SPEC.md": ["database schema 8C", "DB schema 8C", "8E / Aşama 13"],
+              "docs/AI_ASSISTANCE_EVIDENCE_SPEC.md": ["4E / 13F / 8E", "DB schema 8C", "4D / 8C", "13A–13G", "8E / 13D"],
+              "docs/MISSED_DAY_RECOVERY_SPEC.md": ["8C/11C/17E", "3G / 7C,", "8C / 11C,", "notification cadence → 15E", "limits → 17E", "calibration → 17C"],
+              "docs/PLANNER_EXPLAINABILITY_SPEC.md": ["UI string'leri 7A–7G", "8C/15B/17E"],
+              "docs/TOPIC_STATE_MACHINE.md": ["sonra 7E'de", "DB şeması 8C", "event/data schema 8C", "schema → **8C**"],
+              "docs/LEARNING_BEHAVIOR_RULES.md": ["Aşama 8C, planner", "Aşama 8E ve Aşama 17"],
+              "docs/DAILY_MICRO_ASSESSMENT_SPEC.md": ["4E/13F'te", "8C/8F/11A–11C"],
+              "docs/V1_SUCCESS_CRITERIA.md": ["Aşama 3 ve Aşama 11'de", "2F/12C'de", "Aşama 6 — English", "Aşama 17 — pilot kalibrasyonu"],
+          }
+          for rel, needles in forbidden.items():
+              text = Path(rel).read_text(encoding="utf-8")
+              for needle in needles:
+                  if needle in text:
+                      raise SystemExit(f"{rel}: stale pointer remains: {needle}")
+
+          print("D-050 current-state and known stale-reference checks: PASS")
+          PY
+
+      - name: Commit documentation cleanup
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No documentation changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md PROJECT_CONTEXT.md docs
+          git commit -m "docs: finish D-050 repository hygiene cleanup [skip ci]"
+          git push
