@@ -30,9 +30,9 @@ Bu 3H çalışması **spec-level / policy simulation**'dır. Henüz production p
 doğrular.
 
 Bu PASS şunların yerine geçmez:
-- 11F gerçek Planner Engine sanal kullanıcı testleri,
-- 17B planner pilot gözlemi,
-- 17E gerçek cihaz/performance benchmark.
+- 12F gerçek Planner Engine sanal kullanıcı testleri,
+- 18B planner pilot gözlemi,
+- 18E gerçek cihaz/performance benchmark.
 
 D-028 için burada doğrulanan şey mimari/algoritmik beklentidir: bounded current-state lookup, bounded candidate alternatives ve ref-based trace. Gerçek latency/RAM/CPU ölçümü sonraki teknik aşamalardadır.
 
@@ -424,7 +424,7 @@ S02/S03/S04/S07 üzerinde açıklama üretimi kontrol edilir.
 | 19 | review_due prerequisite'i otomatik hard-block yapmaz | S03 | PASS |
 | 20 | deferred task tomorrow debt olarak açıklanmaz | S01, S04, S05, S07 | PASS |
 
-`PASS*`: policy/architecture düzeyinde PASS. Runtime latency/memory ölçümü henüz yapılmamıştır; 11F/17E'de gerçek implementasyon benchmark'ı zorunludur.
+`PASS*`: policy/architecture düzeyinde PASS. Runtime latency/memory ölçümü henüz yapılmamıştır; 12F/18E'de gerçek implementasyon benchmark'ı zorunludur.
 
 ---
 
@@ -467,7 +467,7 @@ Bu kabul şu anlama gelir:
 - seçim, eligibility, capacity, diagnostic, re-entry ve explainability davranışları birlikte tutarlıdır,
 - bundan sonraki assessment/curriculum/UX/architecture aşamaları bu contract'ları tüketebilir.
 
-Bu kabul production planner kodunun test edildiği anlamına gelmez. Gerçek implementasyon 11A–11F ve pilot/QA 17A–17F'te tekrar doğrulanacaktır.
+Bu kabul production planner kodunun test edildiği anlamına gelmez. Gerçek implementasyon 12A–12F ve pilot/QA 18A–18F'te tekrar doğrulanacaktır.
 
 ---
 
