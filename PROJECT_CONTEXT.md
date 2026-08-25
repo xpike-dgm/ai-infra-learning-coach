@@ -69,7 +69,7 @@ Lesson/task completion, streak, self-confidence, AI-assisted output veya takvim 
 
 Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence canonical GRE/RVR/PRG/planner pipeline'ına girer.
 
-## 7. Curriculum backbone / knowledge graph — 5A–5B tamamlandı
+## 7. Curriculum backbone / knowledge graph — 5A–5C tamamlandı
 
 **D-049 / `PDM-v0 — Professional Domain Backbone`** canonical kaynak: `docs/CURRICULUM_DOMAIN_MAP.md`.
 
