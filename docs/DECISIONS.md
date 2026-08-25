@@ -316,3 +316,25 @@ Ayrıntı: `docs/V1_FOUNDATION_BACKBONE.md`.
 - 5D PASS full professional curriculum coverage doğrulaması değildir; 6H independent Research AI zorunluluğu korunur.
 
 Ayrıntı: `docs/GRAPH_ARCHITECTURE_QA.md`.
+
+## D-054 — Granularity & Naming Standard = GNS-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- 6A final modeli `GNS-v0 — Granularity & Naming Standard` oldu.
+- Canonical çıktı `docs/GRANULARITY_NAMING_STANDARD.md`.
+- Domain/Module/Topic organization granularity'si ile Skill/Objective capability/evidence granularity'si ayrı semantic testlerle tanımlandı.
+- Yeni Skill kararı takvim veya keyword'e değil independent evidence, independent remediation, prerequisite boundary ve cross-context reuse değerine bağlandı.
+- Under-fragmentation ve over-fragmentation guard'ları zorunlu authoring QA oldu.
+- Aynı semantic capability farklı Topic/Domain placements'ta clone'lanmaz; canonical Skill + TopicSkillLink reuse edilir.
+- Shared mental-model capability ile language/tool-specific production capability ayrı Skill olabilmesi için explicit split kriteri tanımlandı.
+- Learning Objective exactly-one-Skill altında atomic observable evidence target olarak tutulur; content-instance adı Objective identity olamaz.
+- Logical ID convention lowercase ASCII dotted namespace + snake_case segment; locale/order/version bağımsızdır.
+- Week/day/stage/FB band/release/version/difficulty/requirement role logical ID'ye gömülmez.
+- `basic/advanced/intro` yalnız gerçek semantic scope ifade ediyorsa kullanılabilir; FBB seed'deki vague level slug'ları 6C ratification'da review edilir.
+- Display/localization/alias değişimi logical identity değişimi değildir.
+- Split/merge/re-home/objective-move KGC-v0 conservative migration semantics ile çözülür; bedava mastery yoktur.
+- FBB authoring seed'leri 6C'de `ratify_as_is | ratify_with_display_edit | normalize_logical_id | split_required | merge_with_existing | rehome_placement_only | deprecate_seed | needs_granularity_review` status'larından biriyle değerlendirilir.
+- 6B ortak decomposition template'i GNS-v0 reason-code ve authoring alanlarını tüketmek zorundadır.
+- 6A external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research AI doğrulaması 6H'de zorunlu kalır.
+
+Ayrıntı: `docs/GRANULARITY_NAMING_STANDARD.md`.

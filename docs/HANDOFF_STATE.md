@@ -37,6 +37,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-051:** KGC-v0 Versioned Curriculum Knowledge Graph Contract; 5B tamamlandı.
 - **D-052:** FBB-v0 V1 Foundation Backbone; 5C tamamlandı.
 - **D-053:** GQA-v0 Foundation Graph Architecture QA; 5D corrective patch sonrası PASS.
+- **D-054:** GNS-v0 Granularity & Naming Standard; 6A semantic decomposition/ID contract tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -118,7 +119,26 @@ GQA-v0:
 
 5D external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
 
-## 9. Tamamlanan aşamalar
+## 9. D-054 / 6A final özeti
+
+Canonical: `docs/GRANULARITY_NAMING_STANDARD.md`.
+
+GNS-v0:
+- organization (`Domain/Module/Topic`) ile capability/evidence (`Skill/Objective`) granularity sınırını operational hale getirir,
+- yeni Skill kararını independent evidence + remediation + prerequisite + reuse ayrımına bağlar,
+- under/over-fragmentation guard'larını tanımlar,
+- shared mental-model capability ile language/tool-specific production capability ayrımını standartlaştırır,
+- Objective'i exactly-one-Skill altında atomic observable evidence target olarak sınırlar,
+- logical ID formatını lowercase ASCII dotted namespace + snake_case segment şeklinde; locale/order/version bağımsız olarak kilitler,
+- week/stage/release/band/difficulty/role bilgisinin logical ID'ye gömülmesini yasaklar,
+- display/localization/alias değişimini identity değişiminden ayırır,
+- split/merge/re-home/objective-move işlemlerini KGC migration semantics'e bağlar,
+- FBB authoring seed'leri için ratify/normalize/split/merge/rehome/deprecate/review status contract'ı tanımlar,
+- 6B ortak decomposition authoring template'ine zorunlu alanları devreder.
+
+6A external Research AI kullanmadı; 6H independent Research AI zorunluluğu korunur.
+
+## 10. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
 - AŞAMA 2 ✅ — GRE-v0 / RVR-v0
@@ -126,47 +146,49 @@ GQA-v0:
 - AŞAMA 4 ✅ — DMA-v0 / WBA-v0 / MCA-v0 / QAB-v0 / AIV-v0
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6:
-  - 6A 🟡 Granularity + naming standardı — aktif, henüz yürütülmedi
-  - 6B–6H ⬜
+  - 6A ✅ GNS-v0 / D-054
+  - 6B 🟡 Full-route decomposition blueprint — aktif, henüz yürütülmedi
+  - 6C–6H ⬜
 - AŞAMA 7–20 ⬜
 
-## 10. Güncel kesin konum
+## 11. Güncel kesin konum
 
-**Aktif:** `6A — Granularity + naming standardı`  
-**6A henüz yürütülmedi.**
+**Aktif:** `6B — Full-route decomposition blueprint`  
+**6B henüz yürütülmedi.**
 
-## 11. 6A'da kesinleştirilecekler
+## 12. 6B'de kesinleştirilecekler
 
 Ana soru:
-> 23 route family yüzlerce/binlerce capability'ye ayrılırken hangi semantic sınırda yeni Domain/Module/Topic/Skill/Objective yaratılmalı ve canonical identity nasıl yıllarca stabil tutulmalı?
+> GNS-v0 standardını 23 route family'nin tamamında tutarlı biçimde uygulayacak ortak decomposition authoring blueprint'i ve çıktı contract'ı nasıl olmalı?
 
 Kesinleştirilecek:
-- entity-level granularity sınırları,
-- canonical logical ID naming convention,
-- display label vs identity ayrımı,
-- over-fragmentation / under-fragmentation guard,
-- shared vs language/tool-specific Skill split kriterleri,
-- Objective atomicity + observable action standardı,
-- FBB seed ratification / split / merge / rename kuralları,
-- KGC migration/versioning uyumu,
-- 6B decomposition template handoff'u.
+- domain/module/topic decomposition row yapısı,
+- Skill/Objective candidate authoring template'i,
+- GNS-v0 granularity review reason-code kullanımı,
+- duplicate resolver ve cross-domain shared Skill reuse workflow'u,
+- prerequisite candidate declaration biçimi,
+- evidence/remediation/retention/professional metadata authoring alanları,
+- source/provenance/freshness capture,
+- FBB seed mapping alanı,
+- 6C–6F paketlerinin ortak machine-readable/QA-ready çıktı şekli.
 
-6A full route decomposition yapmaz; 6B–6F bunu kullanır.
+6B gerçek full route node listesini tamamlamaz; ortak blueprint'i kilitler.
 
-## 12. 6A için PRE-STEP doğrudan okunacaklar
+## 13. 6B için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
 6. `PROJECT_CONTEXT.md`
-7. `docs/GRAPH_ARCHITECTURE_QA.md`
-8. `docs/V1_FOUNDATION_BACKBONE.md`
+7. `docs/GRANULARITY_NAMING_STANDARD.md`
+8. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 9. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
-10. `docs/LEARNING_ENGINE_SPEC.md`
-11. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-12. `docs/CURRICULUM_DOMAIN_MAP.md`
-13. `docs/PREREQUISITE_POLICY_SPEC.md`
-14. `docs/PROJECT_MEMORY_PROTOCOL.md`
+10. `docs/CURRICULUM_DOMAIN_MAP.md`
+11. `docs/V1_FOUNDATION_BACKBONE.md`
+12. `docs/GRAPH_ARCHITECTURE_QA.md`
+13. `docs/LEARNING_ENGINE_SPEC.md`
+14. `docs/PREREQUISITE_POLICY_SPEC.md`
+15. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.

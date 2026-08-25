@@ -1,11 +1,12 @@
 # Granular Capability Map Plan — AŞAMA 6 Charter
 
-**Durum:** PLANLANDI / HENÜZ YÜRÜTÜLMEDİ  
+**Durum:** YÜRÜTÜLÜYOR — 6A TAMAMLANDI / 6B AKTİF  
 **Tarih:** 2026-08-25  
 **Karar:** D-044  
 **5B canonical schema contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 / D-051
 **5C V1 seed input:** `docs/V1_FOUNDATION_BACKBONE.md` / FBB-v0 / D-052
 **5D architecture QA input:** `docs/GRAPH_ARCHITECTURE_QA.md` / GQA-v0 / D-053
+**6A granularity/naming standard:** `docs/GRANULARITY_NAMING_STANDARD.md` / GNS-v0 / D-054
 
 Bu belge yeni **AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Bölme** aşamasının amacını ve acceptance kapsamını tanımlar.
 
@@ -150,12 +151,15 @@ AŞAMA 6 final haritası KGC-v0 entity/relation/version contract'ına uymalıdı
 
 ## 7. AŞAMA 6 alt adımları
 
-### 6A — Granularity ve naming standardı
-- Domain/Module/Topic/Skill/Objective sınırları
-- canonical ID convention
-- atomization / over-fragmentation guard
+### 6A — Granularity ve naming standardı ✅
+Canonical: `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054.
+- Domain/Module/Topic/Skill/Objective semantic sınırları
+- stable canonical logical ID convention
+- under/over-fragmentation guard
+- shared-vs-specific Skill split policy
+- Objective atomicity + FBB seed ratification lifecycle
 
-### 6B — Full-route decomposition blueprint
+### 6B — Full-route decomposition blueprint 🟡 AKTİF
 - 23 ana route family için decomposition template
 - cross-domain shared Skills ve duplicate prevention
 

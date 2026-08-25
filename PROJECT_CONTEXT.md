@@ -89,6 +89,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-053 / GQA-v0:** canonical `docs/GRAPH_ARCHITECTURE_QA.md`. 5D initial structural blockers ve hidden-prerequisite risklerini corrective seed patch ile düzeltti; hard graph DAG, TopicSkillLink/reuse explicit, English global-gate yok, F5D fixtures PASS.
 
+**D-054 / GNS-v0:** canonical `docs/GRANULARITY_NAMING_STANDARD.md`. 6A Skill/Objective atomization, under/over-fragmentation, shared-vs-specific capability, stable logical ID ve FBB seed ratification/refactor kurallarını kilitledi.
+
 ## 8. İngilizce
 
 English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C'de; English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
@@ -126,11 +128,12 @@ AŞAMA 20 = full professional curriculum + OSS + career + capstones
 - AŞAMA 4 ✅
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6:
-  - **6A 🟡 Granularity + naming standardı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 6B–6H ⬜
+  - **6A ✅ GNS-v0 / D-054**
+  - **6B 🟡 Full-route decomposition blueprint — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+  - 6C–6H ⬜
 - AŞAMA 7–20 ⬜
 
-**Sıradaki numaralı çalışma 6A'dır.** 6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 6B'dir.** 6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

@@ -19,7 +19,8 @@ En önemli kalıcı dosyalar:
 - `docs/CURRICULUM_DOMAIN_MAP.md` — high-level professional domain backbone / PDM-v0
 - `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` — versioned knowledge-graph schema / KGC-v0
 - `docs/V1_FOUNDATION_BACKBONE.md` — V1 foundation authoring-seed graph / FBB-v0
-- `docs/GRAPH_ARCHITECTURE_QA.md` — 5D foundation graph structural QA / GQA-v0 — V1 başlangıç capability seed-subgraph / FBB-v0
+- `docs/GRAPH_ARCHITECTURE_QA.md` — 5D foundation graph structural QA / GQA-v0
+- `docs/GRANULARITY_NAMING_STANDARD.md` — 6A semantic granularity + stable logical ID standardı / GNS-v0
 - `docs/GRANULAR_CAPABILITY_MAP_PLAN.md` — full route'u ölçülebilir alt becerilere ayıracak AŞAMA 6 charter'ı
 - `docs/DECISIONS.md` — kalıcı kararlar
 - `docs/MASTER_PLAN.md` — aşama/adım geliştirme planı
@@ -77,6 +78,14 @@ High-level curriculum envelope `docs/CURRICULUM_DOMAIN_MAP.md` içinde PDM-v0 ol
 ## D-052 — V1 Foundation Backbone
 
 İlk 8–12 haftalık V1 başlangıç scope'u `docs/V1_FOUNDATION_BACKBONE.md` içinde FBB-v0 olarak tanımlıdır. Bu bir calendar unlock planı değildir; zero-entry bridge + Python/C/Linux/Git/Shell/early DS&A/parallel Technical English için KGC-v0 uyumlu authoring-seed subgraph'tır. Production lesson/task content'i AŞAMA 15'te, 6A/6C/6H ratification ve QA sonrasında üretilir.
+
+## D-053 — Foundation Graph Architecture QA
+
+5D `docs/GRAPH_ARCHITECTURE_QA.md` içinde FBB-v0 seed graph'ın TopicSkillLink, prerequisite, DAG, branch-isolation ve English global-gate invariants'ını doğruladı ve corrective seed patch'i kilitledi.
+
+## D-054 — Granularity & Naming Standard
+
+6A `docs/GRANULARITY_NAMING_STANDARD.md` içinde GNS-v0 olarak tamamlandı. Skill atomization artık independent evidence/remediation/prerequisite/reuse anlamına göre yapılır; stable logical ID'ler curriculum sırası, release/version veya display label'dan bağımsızdır. FBB seed'leri 6C'de bu standarda göre ratify/refactor edilir.
 
 ## Temel Ürün İlkesi
 

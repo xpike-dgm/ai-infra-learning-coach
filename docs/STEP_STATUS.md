@@ -20,8 +20,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **5B — Graph / Topic metadata sözleşmesi** | ✅ | KGC-v0 / D-051. Versioned curriculum knowledge graph contract tamamlandı. |
 | **5C — İlk 8–12 haftalık curriculum backbone** | ✅ | FBB-v0 / D-052. V1 foundation authoring-seed subgraph tamamlandı. |
 | **5D — Graph architecture QA** | ✅ | GQA-v0 / D-053. Corrective seed patch sonrası architecture QA PASS. |
-| **6A — Granularity + naming standardı** | 🟡 Aktif | AŞAMA 6 naming/granularity contract tasarlanacak. **Henüz yürütülmedi.** |
-| **6B–20** | ⬜ Bekliyor | 6A sonrası canonical sırada. |
+| **6A — Granularity + naming standardı** | ✅ | GNS-v0 / D-054. Semantic granularity + stable logical ID standardı tamamlandı. |
+| **6B — Full-route decomposition blueprint** | 🟡 Aktif | 23 route family için ortak decomposition/authoring blueprint tasarlanacak. **Henüz yürütülmedi.** |
+| **6C–20** | ⬜ Bekliyor | 6B sonrası canonical sırada. |
 
 ## Repository memory hygiene — D-050
 
@@ -36,36 +37,37 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 5D
+## Son tamamlanan numaralı adım — 6A
 
-**Final:** `GQA-v0 — Foundation Graph Architecture QA` / D-053.  
-Ana çıktı: `docs/GRAPH_ARCHITECTURE_QA.md`.
+**Final:** `GNS-v0 — Granularity & Naming Standard` / D-054.  
+Ana çıktı: `docs/GRANULARITY_NAMING_STANDARD.md`.
 
-5D sonucu:
-- initial FBB-v0 iki blocking structural issue ile başladı,
-- explicit TopicSkillLink seed matrix eklendi,
-- invalid `reason_kind=supporting` canonical KGC reason kinds'e normalize edildi,
-- target evidence'ı contaminate eden hidden prerequisite boşlukları minimal hard edges ile düzeltildi,
-- hard graph DAG; self/dangling/conflicting edge yok,
-- branch isolation, English global-gate guard, duplicate/reuse, required reachability ve 5C→6/15 handoff fixtures PASS,
-- FBB hâlâ authoring_seed/not-learner-published; 6A/6C + 6H öncesi production publish yok.
+6A sonucu:
+- Domain/Module/Topic/Skill/Objective semantic sınırları kilitlendi,
+- Skill granularity independent evidence/remediation/prerequisite/reuse temelli hale geldi,
+- under/over-fragmentation guard'ları tanımlandı,
+- shared vs language/tool/context-specific Skill split kriterleri tanımlandı,
+- Objective atomicity/observable-action standardı tanımlandı,
+- logical ID formatı stable/locale-independent/version-free yapıldı,
+- display/localization/alias ile identity ayrıldı,
+- FBB seed ratification/split/merge/normalize lifecycle'ı tanımlandı,
+- 6B decomposition authoring handoff'u tanımlandı.
 
-5D ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
+6A ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
 
-## Aktif adım — 6A Granularity + naming standardı
+## Aktif adım — 6B Full-route decomposition blueprint
 
-**6A henüz yürütülmedi.**
+**6B henüz yürütülmedi.**
 
-6A başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
+6B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
 
-6A'da özellikle:
-- Domain/Module/Topic/Skill/Objective granularity sınırları,
-- canonical logical ID convention,
-- stable identity vs display label,
-- under/over-fragmentation guard,
-- language-specific vs shared capability split kriteri,
-- Objective atomization/observable-action standardı,
-- FBB authoring_seed ratification/refactor kuralları,
-- version/migration naming invariants
+6B'de özellikle:
+- 23 route family için tek ortak decomposition row/template contract'ı,
+- Domain→Module→Topic authoring blueprint'i,
+- Skill/Objective candidate üretim akışı,
+- duplicate resolver + shared Skill reuse akışı,
+- source/provenance/freshness alanları,
+- GNS-v0 reason-code/granularity review entegrasyonu,
+- 6C–6F detailed-map paketlerinin ortak çıktı biçimi
 
 kesinleştirilecek.

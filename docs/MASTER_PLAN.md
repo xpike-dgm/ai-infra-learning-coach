@@ -155,8 +155,22 @@ KGC-v0 ayrıca organization-vs-capability identity, scope-relative requirement, 
 # AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl
 Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
-### [ ] 6A — Granularity + naming standardı — **AKTİF**
-### [ ] 6B — Full-route decomposition blueprint
+### [x] 6A — Granularity + naming standardı — GNS-v0 / D-054
+**Final:** `docs/GRANULARITY_NAMING_STANDARD.md`
+
+**6A final coverage:**
+- Domain/Module/Topic/Skill/Objective semantic granularity boundaries,
+- Capability Independence Test,
+- under/over-fragmentation guards,
+- Skill vs Objective split rule,
+- shared vs language/tool/context-specific Skill policy,
+- stable logical ID convention,
+- display/localization/alias vs identity separation,
+- version/split/merge/re-home migration rules,
+- FBB seed ratification statuses,
+- 6B decomposition-template handoff.
+
+### [ ] 6B — Full-route decomposition blueprint — **AKTİF**
 ### [ ] 6C — Foundations detailed map
 - Technical English,
 - Python,
@@ -342,7 +356,7 @@ Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`  
-**Aktif:** **`6A — Granularity + naming standardı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A`  
+**Aktif:** **`6B — Full-route decomposition blueprint`**
 
-Bir sonraki yürütme: **5D başlamadan yeni PRE-STEP GitHub refresh → FBB-v0 graph architecture QA → POST-STEP D-050 sync + stale-reference audit.**
+Bir sonraki yürütme: **6B başlamadan fresh PRE-STEP GitHub refresh → GNS-v0 üzerinde full-route decomposition blueprint → POST-STEP D-050 sync + stale-reference audit.**

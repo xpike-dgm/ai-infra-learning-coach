@@ -408,3 +408,14 @@ D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_
 
 ## D-053 / 5D architecture guard
 `GQA-v0 — Foundation Graph Architecture QA` FBB authoring seed'i structural olarak doğrular. Explicit TopicSkillLink, KGC reason-kind vocabulary, minimal hidden-prerequisite hard edges, branch isolation, English global-gate guard ve DAG/reachability invariants AŞAMA 6 decomposition için başlangıç guard'ıdır. Canonical QA: `docs/GRAPH_ARCHITECTURE_QA.md`. FBB seed learner-published değildir; 6A/6C ratification + 6H external Research QA gerekir.
+
+## D-054 / 6A granularity and identity guard
+`GNS-v0 — Granularity & Naming Standard` (`docs/GRANULARITY_NAMING_STANDARD.md`) AŞAMA 6 decomposition için kalıcı semantic standardıdır.
+
+- Organization node'ları (`Domain/Module/Topic`) learner mastery atomu değildir.
+- Skill ayrı learner state/remediation/prerequisite/reuse anlamı taşıyan canonical capability'dir.
+- Objective exactly-one-Skill altında atomic observable evidence target'tır.
+- Skill split/keep kararı independent evidence/remediation/prerequisite/reuse sınırına göre verilir; keyword veya calendar sırası yeterli değildir.
+- Stable logical ID locale/order/version bağımsızdır; display/localization/alias identity değildir.
+- FBB authoring seed'leri 6C'de GNS-v0 ile explicit ratify/normalize/split/merge/re-home review'undan geçer.
+- 6H external Research QA zorunluluğu korunur.

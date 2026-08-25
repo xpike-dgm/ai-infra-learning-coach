@@ -281,3 +281,34 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Repo-wide stale 5D-active/5D-not-executed ve missing D-053 references tarandı.
 
 **Sonraki kesin adım:** `6A — Granularity + naming standardı`. 6A başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+### 2026-08-25 — 6A Granularity + Naming Standard tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Kullanıcı onayı sonrası `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT` fresh okundu.
+- 5D GQA-v0 / D-053 ile AŞAMA 5'in tamamlandığı, gerçek aktif adımın 6A olduğu ve 6A'nın henüz yürütülmediği doğrulandı.
+- 6A direct inputs fresh okundu: `GRAPH_ARCHITECTURE_QA`, `V1_FOUNDATION_BACKBONE`, `CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT`, `LEARNING_ENGINE_SPEC`, `GRANULAR_CAPABILITY_MAP_PLAN`, `CURRICULUM_DOMAIN_MAP`, `PREREQUISITE_POLICY_SPEC`, `PROJECT_MEMORY_PROTOCOL`.
+
+**Research/Coding/Test kararı**
+- Ayrı external Research AI kullanılmadı: 6A current-industry coverage araştırması değil, accepted graph/learning contracts üzerinde authoring granularity + naming standard formalizasyonudur.
+- Coding/Test AI kullanılmadı: physical runtime implementation yoktur.
+- External independent coverage/current-industry/prerequisite Research AI zorunluluğu 6H'de korunur.
+
+**Final model: `GNS-v0 — Granularity & Naming Standard` / D-054**
+- Domain/Module/Topic/Skill/Objective semantic granularity boundaries operational hale getirildi.
+- Capability Independence Test ile Skill split/keep/reuse kararı evidence/remediation/prerequisite/reuse sınırına bağlandı.
+- under/over-fragmentation guards tanımlandı.
+- shared vs language/tool/context-specific capability policy tanımlandı.
+- Objective atomicity/observable-action standardı tanımlandı.
+- logical ID formatı stable/locale-independent/version-free hale getirildi; volatile sequence/release metadata ID dışında tutuldu.
+- display/localization/alias vs identity ayrımı ve KGC-compatible version/split/merge/re-home migration kuralları tanımlandı.
+- FBB authoring seed ratification status contract'ı ve 6B authoring handoff'u oluşturuldu.
+
+**POST-STEP sync**
+- D-050 ALWAYS-CHECK seti 6A completed / 6B active-not-executed state'ine senkronlandı.
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `START_HERE`, `DECISIONS`, `PROGRESS_LOG` güncellendi.
+- `GRANULAR_CAPABILITY_MAP_PLAN`, `CURRICULUM`, `PROJECT_MASTER_CONTEXT` ve README GNS-v0 pointer/semantics ile hizalandı.
+- MASTER_PLAN'da önceki 5D kapanışından kalmış stale “Bir sonraki yürütme: 5D” satırı düzeltildi.
+- Repo-wide 6A active/not-executed, stale 5D-current ve missing D-054/GNS-v0 pointer audit'i uygulandı.
+
+**Sonraki kesin adım:** `6B — Full-route decomposition blueprint`. 6B başlamadan fresh PRE-STEP GitHub refresh zorunlu.

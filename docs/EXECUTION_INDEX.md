@@ -21,6 +21,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-051: 5B final knowledge-graph contract `KGC-v0`.
 - D-052: 5C final V1 foundation backbone `FBB-v0`.
 - D-053: 5D final foundation graph architecture QA `GQA-v0`; corrective seed patch PASS.
+- D-054: 6A final granularity/naming contract `GNS-v0`; semantic entity boundaries + stable logical ID rules.
 
 ---
 
@@ -86,8 +87,8 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 # AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl
 Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-- [ ] **6A — Granularity + naming standardı** **AKTİF** — Domain/Module/Topic/Skill/Objective sınırları, canonical ID, over-fragmentation guard
-- [ ] **6B — Full-route decomposition blueprint** — bütün ana teknik/English rotası için ortak decomposition şablonu
+- [x] **6A — Granularity + naming standardı** — `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054
+- [ ] **6B — Full-route decomposition blueprint** **AKTİF** — bütün ana teknik/English rotası için ortak decomposition şablonu
 - [ ] **6C — Foundations detailed map** — Technical English, Python, C, Linux/Git/Shell, DS&A
 - [ ] **6D — Systems detailed map** — Modern C++, Architecture, OS/Memory, Concurrency, Networking, Distributed, Storage, Cloud/Observability, Performance
 - [ ] **6E — GPU / ML / Inference detailed map** — GPU, CUDA, Triton, Transformer, inference internals, serving engines, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra
@@ -240,7 +241,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`  
-**Aktif:** **`6A — Granularity + naming standardı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A`  
+**Aktif:** **`6B — Full-route decomposition blueprint`**
 
-5D GQA-v0 / D-053 ile tamamlandı ve AŞAMA 5 kapandı. 6A henüz yürütülmedi; 6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6A GNS-v0 / D-054 ile tamamlandı. 6B henüz yürütülmedi; 6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.

@@ -76,6 +76,9 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 ### D-053 — GQA-v0
 5D final graph architecture QA `docs/GRAPH_ARCHITECTURE_QA.md` içinde FBB seed graph'ı cycle/dead-end/hidden prerequisite/duplicate/reuse/English-global-gate/reachability açısından doğruladı; blocking structural sorunları corrective patch ile düzeltti ve AŞAMA 5'i kapattı.
 
+### D-054 — GNS-v0
+6A final `docs/GRANULARITY_NAMING_STANDARD.md` standardı Domain/Module/Topic/Skill/Objective semantic sınırlarını, Skill atomization testini, under/over-fragmentation guard'larını, shared-vs-specific capability split'ini, stable logical ID convention'ını ve FBB seed ratification/refactor lifecycle'ını kilitledi.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -144,7 +147,8 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
 11a. `docs/V1_FOUNDATION_BACKBONE.md`
 11b. `docs/GRAPH_ARCHITECTURE_QA.md`
-11c. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11c. `docs/GRANULARITY_NAMING_STANDARD.md`
+11d. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -192,16 +196,17 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 - 5D ✅ `GQA-v0 — Foundation Graph Architecture QA` / D-053
 
 ### AŞAMA 6 ilerlemesi
-- 6A 🟡 Granularity + naming standardı — aktif, henüz yürütülmedi
+- 6A ✅ `GNS-v0 — Granularity & Naming Standard` / D-054
+- 6B 🟡 Full-route decomposition blueprint — aktif, henüz yürütülmedi
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`6A — Granularity + naming standardı`**  
-**6A henüz yürütülmedi.**
+**Aktif:** **`6B — Full-route decomposition blueprint`**  
+**6B henüz yürütülmedi.**
 
-6A, KGC-v0 + GQA-v0 üzerinde Domain/Module/Topic/Skill/Objective granularity sınırlarını, canonical logical ID convention'ını, shared-vs-specific capability ayrımını ve over/under-fragmentation guard'larını kilitleyecek.
+6B, GNS-v0'ı 23 route family'nin tamamında kullanılabilecek ortak decomposition authoring blueprint'ine dönüştürecek.
 
-6A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+6B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-053 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, GRAPH_ARCHITECTURE_QA, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6A — Granularity + naming standardı; 6A henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-054 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, GRAPH_ARCHITECTURE_QA, GRANULARITY_NAMING_STANDARD, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6B — Full-route decomposition blueprint; 6B henüz yürütülmedi.`
