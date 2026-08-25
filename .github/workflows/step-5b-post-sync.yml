@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Apply 5B POST-STEP sync
+      - name: Apply and audit 5B POST-STEP sync
         shell: bash
         run: |
           set +e
@@ -29,8 +29,26 @@ jobs:
             if ! grep -Fq "$expected" <<< "$output"; then
               exit "$rc"
             fi
-            echo 'Accepted historical MASTER_PLAN completion-note reference; validating living state separately.'
+            echo 'Base transformations completed; updating MASTER_PLAN current-position block before final audit.'
           fi
+
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('docs/MASTER_PLAN.md')
+          text = p.read_text(encoding='utf-8')
+          old = """**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
+**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
+
+Bir sonraki yürütme: **5B başlamadan yeni PRE-STEP GitHub refresh → graph/metadata contract → POST-STEP D-050 sync + stale-reference audit.**"""
+          new = """**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5B`  
+**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**
+
+Bir sonraki yürütme: **5C başlamadan yeni PRE-STEP GitHub refresh → V1 başlangıç curriculum backbone → POST-STEP D-050 sync + stale-reference audit.**"""
+          if old not in text:
+              raise SystemExit('FAIL: MASTER_PLAN current-position block not found')
+          p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
 
           python - <<'PY'
           from pathlib import Path
@@ -44,7 +62,7 @@ jobs:
               'docs/HANDOFF_STATE.md': ['5B ✅ KGC-v0 / D-051', '5C 🟡', '5C henüz yürütülmedi'],
               'docs/STEP_STATUS.md': ['5B — Graph / Topic metadata sözleşmesi** | ✅', '5C — İlk 8–12 haftalık curriculum backbone** | 🟡 Aktif', '5C henüz yürütülmedi'],
               'docs/EXECUTION_INDEX.md': ['[x] **5B — Graph / Topic metadata sözleşmesi**', '[ ] **5C — İlk 8–12 haftalık curriculum backbone** **AKTİF**'],
-              'docs/MASTER_PLAN.md': ['[x] 5B — Graph / Topic metadata sözleşmesi — KGC-v0 / D-051', '[ ] 5C — İlk 8–12 haftalık curriculum backbone — **AKTİF**'],
+              'docs/MASTER_PLAN.md': ['[x] 5B — Graph / Topic metadata sözleşmesi — KGC-v0 / D-051', '[ ] 5C — İlk 8–12 haftalık curriculum backbone — **AKTİF**', '**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**'],
           }
           for path, needles in checks.items():
               text = read(path)
@@ -54,12 +72,13 @@ jobs:
 
           strict_living = [
               'PROJECT_CONTEXT.md', 'docs/START_HERE.md', 'docs/HANDOFF_STATE.md',
-              'docs/STEP_STATUS.md', 'docs/EXECUTION_INDEX.md'
+              'docs/STEP_STATUS.md', 'docs/EXECUTION_INDEX.md', 'docs/MASTER_PLAN.md'
           ]
           forbidden = [
               '5B 🟡 Graph / Topic metadata sözleşmesi',
               '5B henüz yürütülmedi',
               '**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**',
+              '### [ ] 5B — Graph / Topic metadata sözleşmesi — **AKTİF**',
           ]
           for path in strict_living:
               text = read(path)
@@ -67,12 +86,11 @@ jobs:
                   if needle in text:
                       raise SystemExit(f'FAIL: stale living state {needle!r} in {path}')
 
-          if '### [ ] 5B — Graph / Topic metadata sözleşmesi — **AKTİF**' in read('docs/MASTER_PLAN.md'):
-              raise SystemExit('FAIL: MASTER_PLAN still marks 5B active')
           if '## D-051 — Curriculum knowledge graph contract = KGC-v0' not in read('docs/DECISIONS.md'):
               raise SystemExit('FAIL: D-051 missing')
-          if 'KGC-v0' not in read('docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md'):
-              raise SystemExit('FAIL: KGC spec missing')
+          kgc = read('docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md')
+          if 'KGC-v0' not in kgc or '**Durum:** TAMAMLANDI' not in kgc:
+              raise SystemExit('FAIL: KGC spec incomplete')
 
           pointer_files = [
               'README.md', 'PROJECT_CONTEXT.md', 'docs/START_HERE.md',
@@ -84,7 +102,7 @@ jobs:
               if 'CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md' not in read(path):
                   raise SystemExit(f'FAIL: KGC pointer missing in {path}')
 
-          print('Living state + KGC pointer audit: PASS')
+          print('5B POST-SYNC living-state + KGC pointer audit: PASS')
           print('\nRemaining 5B lines for historical/current classification:')
           for path in sorted(list(Path('.').glob('*.md')) + list(Path('docs').glob('*.md'))):
               hits = [(i, line.strip()) for i, line in enumerate(read(path).splitlines(), 1) if '5B' in line]
@@ -94,7 +112,6 @@ jobs:
                       print(f'  L{i}: {line}')
           PY
 
-          git diff --check
           git diff --stat
 
       - name: Commit 5B POST-STEP sync
