@@ -5,6 +5,7 @@
 **Karar:** D-044  
 **5B canonical schema contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 / D-051
 **5C V1 seed input:** `docs/V1_FOUNDATION_BACKBONE.md` / FBB-v0 / D-052
+**5D architecture QA input:** `docs/GRAPH_ARCHITECTURE_QA.md` / GQA-v0 / D-053
 
 Bu belge yeni **AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Bölme** aşamasının amacını ve acceptance kapsamını tanımlar.
 

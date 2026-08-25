@@ -20,6 +20,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-050: living-memory sync + repo-wide stale-reference audit zorunlu.
 - D-051: 5B final knowledge-graph contract `KGC-v0`.
 - D-052: 5C final V1 foundation backbone `FBB-v0`.
+- D-053: 5D final foundation graph architecture QA `GQA-v0`; corrective seed patch PASS.
 
 ---
 
@@ -76,7 +77,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
   - domain-level authoring relations != runtime Skill prerequisite.
 - [x] **5B — Graph / Topic metadata sözleşmesi** — `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` — KGC-v0 / D-051
 - [x] **5C — İlk 8–12 haftalık curriculum backbone** — `docs/V1_FOUNDATION_BACKBONE.md` — FBB-v0 / D-052
-- [ ] **5D — Graph architecture QA** **AKTİF** — cycle/dead-end/hidden prerequisite, duplicate/reuse ve reachability kontrolü
+- [x] **5D — Graph architecture QA** — `docs/GRAPH_ARCHITECTURE_QA.md` — GQA-v0 / D-053
 
 > AŞAMA 5 bütün ayrıntılı konu listesini yazmaz; graph'ın iskeletini kurar. Ayrıntılı decomposition AŞAMA 6'dadır.
 
@@ -85,7 +86,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 # AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl
 Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-- [ ] **6A — Granularity + naming standardı** — Domain/Module/Topic/Skill/Objective sınırları, canonical ID, over-fragmentation guard
+- [ ] **6A — Granularity + naming standardı** **AKTİF** — Domain/Module/Topic/Skill/Objective sınırları, canonical ID, over-fragmentation guard
 - [ ] **6B — Full-route decomposition blueprint** — bütün ana teknik/English rotası için ortak decomposition şablonu
 - [ ] **6C — Foundations detailed map** — Technical English, Python, C, Linux/Git/Shell, DS&A
 - [ ] **6D — Systems detailed map** — Modern C++, Architecture, OS/Memory, Concurrency, Networking, Distributed, Storage, Cloud/Observability, Performance
@@ -239,7 +240,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5C`  
-**Aktif:** **`5D — Graph architecture QA`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`  
+**Aktif:** **`6A — Granularity + naming standardı`**
 
-5C FBB-v0 / D-052 ile tamamlandı. 5D henüz yürütülmedi; 5D başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+5D GQA-v0 / D-053 ile tamamlandı ve AŞAMA 5 kapandı. 6A henüz yürütülmedi; 6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.

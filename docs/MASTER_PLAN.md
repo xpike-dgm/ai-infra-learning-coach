@@ -137,12 +137,16 @@ KGC-v0 ayrıca organization-vs-capability identity, scope-relative requirement, 
 - 6A/6C ratification lifecycle,
 - AŞAMA 15 authoring handoff + 5D QA fixtures.
 
-### [ ] 5D — Graph architecture QA — **AKTİF**
-- cycle/dead-end,
-- hidden prerequisite,
-- duplicate canonical Skill / Topic reuse,
-- reachability / branch isolation,
-- scalability/versioning / migration handoff.
+### [x] 5D — Graph architecture QA — GQA-v0 / D-053
+**Final:** `docs/GRAPH_ARCHITECTURE_QA.md`
+
+- initial FBB structural blockers bulundu ve corrective authoring-seed patch uygulandı,
+- explicit TopicSkillLink matrix eklendi,
+- KGC reason-kind vocabulary normalize edildi,
+- hidden prerequisite / accidental zero-eligibility riskleri minimal hard edges ile düzeltildi,
+- hard graph DAG / no self-dangling-conflicting edges PASS,
+- English global-gate / branch isolation / reachability fixtures PASS,
+- 6A/6C ratification + 6H external Research QA guard korunuyor.
 
 > AŞAMA 5 schema/backbone; detailed decomposition AŞAMA 6.
 
@@ -151,7 +155,7 @@ KGC-v0 ayrıca organization-vs-capability identity, scope-relative requirement, 
 # AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Böl
 Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
-### [ ] 6A — Granularity + naming standardı
+### [ ] 6A — Granularity + naming standardı — **AKTİF**
 ### [ ] 6B — Full-route decomposition blueprint
 ### [ ] 6C — Foundations detailed map
 - Technical English,
@@ -338,7 +342,7 @@ Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5C`  
-**Aktif:** **`5D — Graph architecture QA`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`  
+**Aktif:** **`6A — Granularity + naming standardı`**
 
 Bir sonraki yürütme: **5D başlamadan yeni PRE-STEP GitHub refresh → FBB-v0 graph architecture QA → POST-STEP D-050 sync + stale-reference audit.**

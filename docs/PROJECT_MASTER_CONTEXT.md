@@ -405,3 +405,6 @@ D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_
 > **AI Infra Learning Coach sıfırdan başlayıp yıllar boyunca kanıt-temelli, adaptif ve kapsamlı biçimde ilerleyen; finalde AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek engineering capability üretmeyi hedefleyen kişisel öğrenme sistemidir.**
 
 > **Takvim hedef değildir. Final gate; granular Skill/Objective mastery + retention + transfer + debugging + performance + integrated capstone evidence'dır.**
+
+## D-053 / 5D architecture guard
+`GQA-v0 — Foundation Graph Architecture QA` FBB authoring seed'i structural olarak doğrular. Explicit TopicSkillLink, KGC reason-kind vocabulary, minimal hidden-prerequisite hard edges, branch isolation, English global-gate guard ve DAG/reachability invariants AŞAMA 6 decomposition için başlangıç guard'ıdır. Canonical QA: `docs/GRAPH_ARCHITECTURE_QA.md`. FBB seed learner-published değildir; 6A/6C ratification + 6H external Research QA gerekir.

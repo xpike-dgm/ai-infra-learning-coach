@@ -253,3 +253,31 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 
 **Sonraki kesin adım:** `5D — Graph architecture QA`.
 5D başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+### 2026-08-25 — 5D Graph Architecture QA tamamlandı
+
+**PRE-STEP GitHub refresh**
+- `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT` ve 5D handoff'ta listelenen direct specs fresh okundu.
+- 5A–5C'nin tamamlandığı, 5D'nin gerçek aktif ve henüz yürütülmemiş adım olduğu doğrulandı.
+
+**Execution / findings**
+- FBB-v0 41 Skill / 47 Objective seed ve initial prerequisite graph structural audit'e alındı.
+- Initial audit explicit TopicSkillLink matrix eksikliği ve invalid `reason_kind=supporting` kullanımını blocker olarak buldu.
+- Python/data/error/module/file, trace/debug, professional debug explanation ve C lifetime context'te hidden-prerequisite/accidental-zero-eligibility riskleri bulundu.
+- FBB authoring seed'e corrective patch uygulandı: explicit TopicSkillLink matrix, reason-kind normalization ve minimal hard prerequisite edges.
+- Corrected graph hard-edge DAG; self/dangling/conflicting edge yok; combined relations cycle yok.
+- F5D-01..F5D-10 branch isolation / English gate / review_due / duplicate reuse / reachability fixtures PASS.
+
+**Research/Coding/Test kararı**
+- External Research AI kullanılmadı; 5D internal graph architecture QA'dır. Full coverage/current-industry/prerequisite external Research QA 6H'de zorunlu kalır.
+- Physical runtime implementation olmadığı için Coding AI kullanılmadı; structural verification deterministic/static QA ile yapıldı.
+
+**Final:** `GQA-v0 — Foundation Graph Architecture QA` / D-053. Canonical: `docs/GRAPH_ARCHITECTURE_QA.md`.
+
+**POST-STEP**
+- D-050 ALWAYS-CHECK living files senkronlandı.
+- AŞAMA 5 kapandı; 6A active/not-executed yapıldı.
+- FBB corrective authoring-seed patch ve AŞAMA 6 handoff'u ilgili curriculum/context docs'a işlendi.
+- Repo-wide stale 5D-active/5D-not-executed ve missing D-053 references tarandı.
+
+**Sonraki kesin adım:** `6A — Granularity + naming standardı`. 6A başlamadan fresh PRE-STEP GitHub refresh zorunlu.

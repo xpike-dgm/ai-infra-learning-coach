@@ -91,6 +91,25 @@ Kritik invariant:
 
 ---
 
+# 2.1 Authoring-seed metadata defaults — 5D clarification
+
+FBB-v0 learner-published graph olmadığı için 5D corrective patch'i aşağıdaki inherited authoring defaults ile izlenir:
+
+```text
+seed_schema_version = FBB-v0+GQA-v0
+entity_version = authoring-seed-1 unless explicitly overridden
+relation_version = authoring-seed-1 unless explicitly overridden
+lifecycle_status = authoring_seed
+publication_state = not_learner_published
+provenance = internal_design_from_canonical_specs
+source_refs = FBB/KGC/PDM/PRG/GRE/RVR/English/V1 contracts
+freshness_policy = foundation_stable_pending_6H_external_QA
+```
+
+Bunlar published entity metadata'sının yerine geçmez. 6A/6C ratification ve 6H QA sonrasında learner-facing published graph, effective per-entity/per-relation version + provenance/freshness metadata'sını explicit taşır.
+
+---
+
 # 3. V1 backbone scope yapısı
 
 Tek global “foundation passed” boolean kullanılmaz.
@@ -582,11 +601,11 @@ skill.python.values_variables_expressions
 skill.python.while_termination
 
 skill.python.conditionals
-  --soft/supporting-->
+  --soft/conceptual_dependency-->
 skill.python.for_iteration
 
 skill.python.conditionals
-  --soft/supporting-->
+  --soft/conceptual_dependency-->
 skill.python.while_termination
 
 skill.programming.function_decomposition
@@ -597,8 +616,32 @@ skill.python.values_variables_expressions
   --hard/procedural_dependency-->
 skill.python.functions_parameters_return
 
+skill.python.values_variables_expressions
+  --hard/procedural_dependency-->
+skill.python.input_output_basic
+
+skill.python.values_variables_expressions
+  --hard/procedural_dependency-->
+skill.python.sequence_collections_basic
+
+skill.python.values_variables_expressions
+  --hard/procedural_dependency-->
+skill.python.mapping_collections_basic
+
+skill.python.run_repl_script
+  --hard/evidence_interpretability-->
+skill.python.exceptions_read_basic
+
+skill.python.run_repl_script
+  --hard/tool_environment_dependency-->
+skill.python.modules_imports_basic
+
+skill.python.values_variables_expressions
+  --hard/procedural_dependency-->
+skill.python.files_paths_basic
+
 skill.python.for_iteration
-  --soft/supporting-->
+  --soft/conceptual_dependency-->
 skill.dsa.sequence_traversal_linear_search
 
 skill.python.sequence_collections_basic
@@ -614,11 +657,11 @@ skill.programming.trace_execution_basic
 skill.programming.debug_localization_basic
 
 skill.programming.state_assignment_model
-  --soft/supporting-->
+  --hard/evidence_interpretability-->
 skill.programming.trace_execution_basic
 
 skill.programming.debug_localization_basic
-  --soft/supporting-->
+  --hard/evidence_interpretability-->
 skill.engineering.explain_debug_fix_basic
 
 skill.programming.test_case_basic
@@ -642,7 +685,7 @@ skill.linux.terminal_filesystem_navigation
 skill.shell.command_options_redirection_basic
 
 skill.linux.process_exit_stdout_stderr_basic
-  --soft/supporting-->
+  --soft/tool_environment_dependency-->
 skill.c.compile_link_run_basic
 ```
 
@@ -685,6 +728,10 @@ skill.c.declarations_types_expressions
   --hard/procedural_dependency-->
 skill.c.pointer_declaration_dereference_basic
 
+skill.c.functions_basic
+  --hard/conceptual_dependency-->
+skill.memory.storage_lifetime_intuition
+
 skill.c.pointer_declaration_dereference_basic
   --soft/conceptual_dependency-->
 skill.memory.storage_lifetime_intuition
@@ -698,7 +745,7 @@ skill.programming.iteration_reasoning
 skill.dsa.sequence_traversal_linear_search
 
 skill.dsa.sequence_traversal_linear_search
-  --soft/supporting-->
+  --soft/conceptual_dependency-->
 skill.dsa.complexity_growth_intuition
 ```
 
@@ -727,6 +774,84 @@ ile gerekli English Skill'i açıkça deklaratif taşır. Aynı technical Object
 - `reproducible_run_notes` Python/C/Linux small-project artifacts içinde reuse edilir.
 
 Language-specific syntax/production capability ise ayrı Skill'dir. Python conditionals mastery, C conditionals production mastery'yi bedava vermez.
+
+---
+
+# 11.1 Explicit TopicSkillLink seed matrix — 5D corrective patch
+
+5D, Topic→Skill→Objective reachability'nin isim benzerliğine bırakılmaması için minimum machine-verifiable placement matrix'ini kilitler. AŞAMA 6C bunu genişletebilir; aynı semantic Skill farklı Topic'te clone'lanmaz.
+
+```text
+topic.english.core_technical_labels -> teach/core -> skill.english.recognize_core_technical_labels
+topic.english.bilingual_instruction_fragments -> teach/core -> skill.english.follow_bilingual_technical_instruction
+topic.english.terminal_error_fragments -> teach/core -> skill.english.read_simple_terminal_error_fragments
+
+topic.python.program_execution_bridge -> teach/core -> skill.computing.program_execution_model
+topic.python.program_execution_bridge -> teach/core -> skill.computing.source_runtime_artifact_distinction
+topic.python.program_execution_bridge -> teach/core -> skill.python.run_repl_script
+
+topic.python.values_state_expressions -> teach/core -> skill.programming.state_assignment_model
+topic.python.values_state_expressions -> teach/core -> skill.programming.expression_boolean_reasoning
+topic.python.values_state_expressions -> teach/core -> skill.python.values_variables_expressions
+
+topic.python.input_output_first_programs -> teach/core -> skill.python.input_output_basic
+topic.python.input_output_first_programs -> integrate/supporting -> skill.engineering.reproducible_run_notes
+
+topic.python.conditionals -> teach/core -> skill.programming.branching_reasoning
+topic.python.conditionals -> reinforce/core -> skill.programming.expression_boolean_reasoning
+topic.python.conditionals -> teach/core -> skill.python.conditionals
+
+topic.python.iteration -> teach/core -> skill.programming.iteration_reasoning
+topic.python.iteration -> teach/core -> skill.python.for_iteration
+topic.python.iteration -> teach/core -> skill.python.while_termination
+
+topic.python.execution_trace_debug -> teach/core -> skill.programming.trace_execution_basic
+topic.python.execution_trace_debug -> teach/core -> skill.programming.debug_localization_basic
+topic.python.execution_trace_debug -> teach/core -> skill.python.exceptions_read_basic
+topic.python.execution_trace_debug -> integrate/supporting -> skill.engineering.explain_debug_fix_basic
+
+topic.python.functions -> teach/core -> skill.programming.function_decomposition
+topic.python.functions -> teach/core -> skill.python.functions_parameters_return
+topic.python.functions -> reinforce/supporting -> skill.programming.test_case_basic
+
+topic.python.sequence_collections -> teach/core -> skill.python.sequence_collections_basic
+topic.python.mapping_collections -> teach/core -> skill.python.mapping_collections_basic
+
+topic.python.errors_modules_files_intro -> reinforce/core -> skill.python.exceptions_read_basic
+topic.python.errors_modules_files_intro -> teach/core -> skill.python.modules_imports_basic
+topic.python.errors_modules_files_intro -> teach/core -> skill.python.files_paths_basic
+
+topic.c.compile_link_run -> teach/core -> skill.c.compile_link_run_basic
+topic.c.compile_link_run -> reinforce/supporting -> skill.computing.source_runtime_artifact_distinction
+topic.c.compile_link_run -> reinforce/supporting -> skill.linux.process_exit_stdout_stderr_basic
+topic.c.compile_link_run -> integrate/supporting -> skill.engineering.reproducible_run_notes
+
+topic.c.declarations_expressions_io -> teach/core -> skill.c.declarations_types_expressions
+topic.c.declarations_expressions_io -> reinforce/core -> skill.programming.state_assignment_model
+topic.c.declarations_expressions_io -> reinforce/supporting -> skill.programming.expression_boolean_reasoning
+
+topic.c.control_flow_functions -> teach/core -> skill.c.conditionals_loops_basic
+topic.c.control_flow_functions -> teach/core -> skill.c.functions_basic
+topic.c.control_flow_functions -> reinforce/core -> skill.programming.branching_reasoning
+topic.c.control_flow_functions -> reinforce/core -> skill.programming.iteration_reasoning
+topic.c.control_flow_functions -> reinforce/supporting -> skill.programming.function_decomposition
+
+topic.c.address_value_model -> teach/core -> skill.memory.address_value_distinction
+topic.c.pointer_dereference_intro -> teach/core -> skill.c.pointer_declaration_dereference_basic
+topic.c.storage_lifetime_intro -> teach/core -> skill.memory.storage_lifetime_intuition
+
+topic.linux.terminal_filesystem_navigation -> teach/core -> skill.linux.terminal_filesystem_navigation
+topic.linux.process_io_exit_status -> teach/core -> skill.linux.process_exit_stdout_stderr_basic
+topic.shell.command_options_redirection -> teach/core -> skill.shell.command_options_redirection_basic
+topic.git.repository_status_diff -> teach/core -> skill.git.repository_status_diff
+topic.git.stage_commit_history -> teach/core -> skill.git.stage_commit_history_basic
+
+topic.dsa.sequence_traversal_linear_search -> teach/core -> skill.dsa.sequence_traversal_linear_search
+topic.dsa.sequence_traversal_linear_search -> reinforce/core -> skill.programming.iteration_reasoning
+topic.dsa.complexity_growth_intuition -> teach/core -> skill.dsa.complexity_growth_intuition
+```
+
+Bu placement matrix learner mastery state yaratmaz; KGC-v0 `TopicSkillLink` semantics'idir.
 
 ---
 
@@ -962,3 +1087,21 @@ Python iteration + sequence ─────────▶ early DS&A ───�
 Bu diagram calendar sequence değildir. Runtime eligibility yalnız PRG-v0 Skill readiness, learner state ve task metadata ile belirlenir.
 
 **5C tamamlandıktan sonraki numaralı adım:** `5D — Graph architecture QA`.
+
+# 22. 5D corrective QA addendum
+
+Canonical QA: `docs/GRAPH_ARCHITECTURE_QA.md` / GQA-v0 / D-053.
+
+5D initial audit iki blocking structural problem buldu: explicit TopicSkillLink matrix eksikliği ve KGC controlled vocabulary dışında `reason_kind=supporting`. Ayrıca bazı required seed Skills'te hidden-prerequisite/zero-state eligibility riski bulundu. Bu dosyadaki corrective authoring-seed patch bunları düzeltti.
+
+Corrected seed:
+- hard prerequisite graph DAG,
+- hard+soft same-pair conflict yok,
+- self/dangling edge yok,
+- reason kind vocabulary KGC-v0 uyumlu,
+- Topic→Skill→Objective authoring path explicit,
+- English global technical hard gate yok,
+- branch isolation korunuyor,
+- 6A/6C ratification öncesi learner-published değil.
+
+FBB-v0 authoring seed olduğu için bu QA patch published learner semantic state'i mutate etmez. 6A/6C ratification ve 6H external Research QA öncesi production publish yasaktır.

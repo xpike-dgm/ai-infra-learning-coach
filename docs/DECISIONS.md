@@ -300,3 +300,19 @@ Ayrıntı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
 - Ayrı external Research AI 5C'de kullanılmadı; full coverage/current-industry/prerequisite bağımsız Research QA 6H'de zorunlu kalır.
 
 Ayrıntı: `docs/V1_FOUNDATION_BACKBONE.md`.
+
+## D-053 — Foundation graph architecture QA = GQA-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- 5D final modeli `GQA-v0 — Foundation Graph Architecture QA` oldu.
+- Canonical QA dosyası `docs/GRAPH_ARCHITECTURE_QA.md`.
+- İlk FBB-v0 audit'inde explicit TopicSkillLink matrix eksikliği ve KGC controlled vocabulary dışı `reason_kind=supporting` kullanımı blocking structural bulgu olarak saptandı ve düzeltildi.
+- Hidden-prerequisite audit'i Python I/O/collections/mapping/files, Python exception/module context, trace→debug chain, debug-fix explanation ve C storage/lifetime context için minimal required hard edge'leri ekledi.
+- Corrective patch sonrası hard graph DAG; self/dangling/conflicting edge yok; combined relations cycle üretmiyor.
+- Shared capability reuse canonical Skill + TopicSkillLink ile çözülür; clone learner state yasaktır.
+- English global technical hard gate değildir; branch isolation korunur.
+- `review_due` PRG/RVR gereği hard prerequisite'i otomatik `not_ready` yapmaz.
+- FBB entity'leri hâlâ `authoring_seed / not_learner_published`; 6A/6C ratification ve 6H external Research QA öncesi production publish yapılmaz.
+- 5D PASS full professional curriculum coverage doğrulaması değildir; 6H independent Research AI zorunluluğu korunur.
+
+Ayrıntı: `docs/GRAPH_ARCHITECTURE_QA.md`.

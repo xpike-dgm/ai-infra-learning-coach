@@ -73,17 +73,18 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 ### D-052 — FBB-v0
 5C final V1 foundation backbone `docs/V1_FOUNDATION_BACKBONE.md` içinde zero-entry bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English seed subgraph'ını tanımladı. 8–12 hafta calendar gate değildir; seed IDs 6A/6C ratification öncesi learner-published değildir.
 
+### D-053 — GQA-v0
+5D final graph architecture QA `docs/GRAPH_ARCHITECTURE_QA.md` içinde FBB seed graph'ı cycle/dead-end/hidden prerequisite/duplicate/reuse/English-global-gate/reachability açısından doğruladı; blocking structural sorunları corrective patch ile düzeltti ve AŞAMA 5'i kapattı.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
 - 3 Adaptive planner ✅
 - 4 Assessment system ✅
-- 5 Curriculum/knowledge graph backbone — **aktif**
-  - 5A ✅ PDM-v0
-  - 5B ✅ KGC-v0 / D-051
-  - 5C ✅ FBB-v0 / D-052
-  - 5D 🟡 Graph architecture QA
-- 6 Granular Capability Map
+- 5 Curriculum/knowledge graph backbone ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
+- 6 Granular Capability Map — **aktif**
+  - 6A 🟡 Granularity + naming standardı
+  - 6B–6H ⬜
 - 7 English parallel line
 - 8 UX
 - 9 Architecture/data model
@@ -183,20 +184,23 @@ Adaptive planner tamamlandı: 16/16 scenarios, 20/20 invariants PASS.
 ### AŞAMA 4 ✅
 DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 
-### AŞAMA 5 ilerlemesi
+### AŞAMA 5 ✅
 - 5A ✅ `PDM-v0 — Professional Domain Backbone` / D-049
 - 5B ✅ `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051
 - 5C ✅ `FBB-v0 — V1 Foundation Backbone` / D-052
-- 5D 🟡 Graph architecture QA
+- 5D ✅ `GQA-v0 — Foundation Graph Architecture QA` / D-053
+
+### AŞAMA 6 ilerlemesi
+- 6A 🟡 Granularity + naming standardı — aktif, henüz yürütülmedi
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`5D — Graph architecture QA`**  
-**5D henüz yürütülmedi.**
+**Aktif:** **`6A — Granularity + naming standardı`**  
+**6A henüz yürütülmedi.**
 
-5D, `docs/V1_FOUNDATION_BACKBONE.md` içindeki FBB-v0 authoring-seed graph'ını KGC-v0/PRG-v0 invariants altında cycle, dead-end, hidden prerequisite, duplicate semantic Skill, accidental English/global gate, branch isolation ve Objective reachability açısından doğrulayacak. Production content yazmayacak.
+6A, KGC-v0 + GQA-v0 üzerinde Domain/Module/Topic/Skill/Objective granularity sınırlarını, canonical logical ID convention'ını, shared-vs-specific capability ayrımını ve over/under-fragmentation guard'larını kilitleyecek.
 
-5D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+6A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-052 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5D — Graph architecture QA; 5D henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-053 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6A — Granularity + naming standardı; 6A henüz yürütülmedi.`

@@ -87,6 +87,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-052 / FBB-v0:** canonical `docs/V1_FOUNDATION_BACKBONE.md`. V1 başlangıç seed subgraph'ı zero-entry bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English olarak tanımlandı. 8–12 hafta calendar gate değil scope-equivalent'tır; Skill/Objective IDs 6A/6C öncesi `authoring_seed` lifecycle'ındadır.
 
+**D-053 / GQA-v0:** canonical `docs/GRAPH_ARCHITECTURE_QA.md`. 5D initial structural blockers ve hidden-prerequisite risklerini corrective seed patch ile düzeltti; hard graph DAG, TopicSkillLink/reuse explicit, English global-gate yok, F5D fixtures PASS.
+
 ## 8. İngilizce
 
 English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C'de; English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
@@ -122,14 +124,13 @@ AŞAMA 20 = full professional curriculum + OSS + career + capstones
 - AŞAMA 2 ✅
 - AŞAMA 3 ✅
 - AŞAMA 4 ✅
-- AŞAMA 5 devam ediyor:
-  - 5A ✅ PDM-v0 / D-049
-  - 5B ✅ KGC-v0 / D-051
-  - 5C ✅ FBB-v0 / D-052
-  - **5D 🟡 Graph architecture QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- AŞAMA 6–20 ⬜
+- AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
+- AŞAMA 6:
+  - **6A 🟡 Granularity + naming standardı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+  - 6B–6H ⬜
+- AŞAMA 7–20 ⬜
 
-**Sıradaki numaralı çalışma 5D'dir.** 5D başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 6A'dır.** 6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

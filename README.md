@@ -18,7 +18,8 @@ En önemli kalıcı dosyalar:
 - `docs/PROFESSIONAL_READINESS_TARGET.md` — 4+ yıllık professional-readiness çıkış hedefi
 - `docs/CURRICULUM_DOMAIN_MAP.md` — high-level professional domain backbone / PDM-v0
 - `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` — versioned knowledge-graph schema / KGC-v0
-- `docs/V1_FOUNDATION_BACKBONE.md` — V1 başlangıç capability seed-subgraph / FBB-v0
+- `docs/V1_FOUNDATION_BACKBONE.md` — V1 foundation authoring-seed graph / FBB-v0
+- `docs/GRAPH_ARCHITECTURE_QA.md` — 5D foundation graph structural QA / GQA-v0 — V1 başlangıç capability seed-subgraph / FBB-v0
 - `docs/GRANULAR_CAPABILITY_MAP_PLAN.md` — full route'u ölçülebilir alt becerilere ayıracak AŞAMA 6 charter'ı
 - `docs/DECISIONS.md` — kalıcı kararlar
 - `docs/MASTER_PLAN.md` — aşama/adım geliştirme planı

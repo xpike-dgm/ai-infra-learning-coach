@@ -36,6 +36,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-050:** living-memory sync + repo-wide stale-reference audit zorunlu; exact file-role matrix `PROJECT_MEMORY_PROTOCOL.md` içinde.
 - **D-051:** KGC-v0 Versioned Curriculum Knowledge Graph Contract; 5B tamamlandı.
 - **D-052:** FBB-v0 V1 Foundation Backbone; 5C tamamlandı.
+- **D-053:** GQA-v0 Foundation Graph Architecture QA; 5D corrective patch sonrası PASS.
 
 ## 4. D-049 / 5A final özeti
 
@@ -100,60 +101,72 @@ FBB-v0:
 
 5C ayrı Research AI kullanmadı; 6H external coverage/current-industry/prerequisite Research QA zorunlu kalır.
 
-## 8. Tamamlanan aşamalar
+## 8. D-053 / 5D final özeti
+
+Canonical: `docs/GRAPH_ARCHITECTURE_QA.md`.
+
+GQA-v0:
+- initial FBB-v0 audit'inde explicit TopicSkillLink eksikliği ve invalid `reason_kind=supporting` bulundu,
+- TopicSkillLink seed matrix FBB'ye eklendi,
+- reason kinds KGC controlled vocabulary'ye normalize edildi,
+- Python/data/error/module/file, trace/debug, professional debug explanation ve C storage/lifetime hidden-prerequisite riskleri minimal hard edges ile düzeltildi,
+- corrected hard graph DAG; self/dangling/conflicting edge yok,
+- shared Skill reuse TopicSkillLink ile, clone mastery state yok,
+- English global technical hard gate yok,
+- F5D-01..F5D-10 fixtures PASS,
+- FBB authoring_seed olarak kalır; 6A/6C/6H öncesi learner-published değildir.
+
+5D external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
+
+## 9. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
 - AŞAMA 2 ✅ — GRE-v0 / RVR-v0
 - AŞAMA 3 ✅ — adaptive planner; 16/16 scenarios, 20/20 invariants PASS
 - AŞAMA 4 ✅ — DMA-v0 / WBA-v0 / MCA-v0 / QAB-v0 / AIV-v0
-- AŞAMA 5 devam ediyor:
-  - 5A ✅ PDM-v0 / D-049
-  - 5B ✅ KGC-v0 / D-051
-  - 5C ✅ FBB-v0 / D-052
-  - 5D 🟡 Graph architecture QA — aktif, henüz yürütülmedi
-- AŞAMA 6–20 ⬜
+- AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
+- AŞAMA 6:
+  - 6A 🟡 Granularity + naming standardı — aktif, henüz yürütülmedi
+  - 6B–6H ⬜
+- AŞAMA 7–20 ⬜
 
-## 9. Güncel kesin konum
+## 10. Güncel kesin konum
 
-**Aktif:** `5D — Graph architecture QA`  
-**5D henüz yürütülmedi.**
+**Aktif:** `6A — Granularity + naming standardı`  
+**6A henüz yürütülmedi.**
 
-## 10. 5D'de kesinleştirilecekler
+## 11. 6A'da kesinleştirilecekler
 
 Ana soru:
-> FBB-v0 V1 seed graph, KGC-v0/PRG-v0 invariants altında cycle, dead-end, hidden prerequisite, duplicate semantic Skill, accidental global gate veya unreachable Objective üretmeden güvenli biçimde genişleyebilir mi?
+> 23 route family yüzlerce/binlerce capability'ye ayrılırken hangi semantic sınırda yeni Domain/Module/Topic/Skill/Objective yaratılmalı ve canonical identity nasıl yıllarca stabil tutulmalı?
 
 Kesinleştirilecek:
-- hard-edge cycle/DAG kontrolü,
-- required-node reachability/dead-end kontrolü,
-- duplicate Skill ve Topic↔Skill reuse doğruluğu,
-- hidden prerequisite / evidence contamination kontrolü,
-- English global-gate guard,
-- independent branch continuation,
-- scope-relative requirement tutarlılığı,
-- authoring_seed → 6A/6C ratification/migration uyumu,
-- 5C→6/15 handoff güvenliği.
+- entity-level granularity sınırları,
+- canonical logical ID naming convention,
+- display label vs identity ayrımı,
+- over-fragmentation / under-fragmentation guard,
+- shared vs language/tool-specific Skill split kriterleri,
+- Objective atomicity + observable action standardı,
+- FBB seed ratification / split / merge / rename kuralları,
+- KGC migration/versioning uyumu,
+- 6B decomposition template handoff'u.
 
-5D production content üretmez ve 6H external Research QA'nın yerine geçmez.
+6A full route decomposition yapmaz; 6B–6F bunu kullanır.
 
-## 11. 5D için PRE-STEP doğrudan okunacaklar
+## 12. 6A için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
 6. `PROJECT_CONTEXT.md`
-7. `docs/V1_FOUNDATION_BACKBONE.md`
-8. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
-9. `docs/CURRICULUM_DOMAIN_MAP.md`
+7. `docs/GRAPH_ARCHITECTURE_QA.md`
+8. `docs/V1_FOUNDATION_BACKBONE.md`
+9. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
 10. `docs/LEARNING_ENGINE_SPEC.md`
-11. `docs/PREREQUISITE_POLICY_SPEC.md`
-12. `docs/MASTERY_FORMULA_V0.md`
-13. `docs/RETENTION_FORGETTING_SPEC.md`
-14. `docs/ENGLISH_FOUNDATION_RULES.md`
-15. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-16. `docs/V1_SCOPE.md`
-17. `docs/V1_SUCCESS_CRITERIA.md`
-18. `docs/PROJECT_MEMORY_PROTOCOL.md`
+11. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+12. `docs/CURRICULUM_DOMAIN_MAP.md`
+13. `docs/PREREQUISITE_POLICY_SPEC.md`
+14. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-5D başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6A başlamadan fresh PRE-STEP GitHub refresh zorunludur.

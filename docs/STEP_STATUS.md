@@ -19,8 +19,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **5A — Ana domain haritası** | ✅ | PDM-v0 / D-049. 23 route family + domain roles + high-level authoring relations. |
 | **5B — Graph / Topic metadata sözleşmesi** | ✅ | KGC-v0 / D-051. Versioned curriculum knowledge graph contract tamamlandı. |
 | **5C — İlk 8–12 haftalık curriculum backbone** | ✅ | FBB-v0 / D-052. V1 foundation authoring-seed subgraph tamamlandı. |
-| **5D — Graph architecture QA** | 🟡 Aktif | FBB-v0 cycle/dead-end/hidden prerequisite/duplicate/reachability açısından doğrulanacak. **Henüz yürütülmedi.** |
-| **6A–20** | ⬜ Bekliyor | 5D sonrası canonical sırada. |
+| **5D — Graph architecture QA** | ✅ | GQA-v0 / D-053. Corrective seed patch sonrası architecture QA PASS. |
+| **6A — Granularity + naming standardı** | 🟡 Aktif | AŞAMA 6 naming/granularity contract tasarlanacak. **Henüz yürütülmedi.** |
+| **6B–20** | ⬜ Bekliyor | 6A sonrası canonical sırada. |
 
 ## Repository memory hygiene — D-050
 
@@ -35,40 +36,36 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 5C
+## Son tamamlanan numaralı adım — 5D
 
-**Final:** `FBB-v0 — V1 Foundation Backbone` / D-052.  
-Ana çıktı: `docs/V1_FOUNDATION_BACKBONE.md`.
+**Final:** `GQA-v0 — Foundation Graph Architecture QA` / D-053.  
+Ana çıktı: `docs/GRAPH_ARCHITECTURE_QA.md`.
 
-5C kararları:
-- 8–12 hafta takvim değil scope-equivalent content envelope,
-- zero-entry Computer/Programming bridge yeni broad career Domain'i yaratmadan early topics'e yerleştirildi,
-- Python + C + Linux/Git/Shell + early DS&A + Technical English başlangıç subgraph'ı tanımlandı,
-- Technical English day-one parallel fakat global technical hard gate değil,
-- KGC-v0 uyumlu Skill/Objective authoring-seed skeleton tanımlandı,
-- 6A/6C ratification öncesi lifecycle `authoring_seed / not_learner_published`,
-- shared programming mental model ile language-specific production capability ayrıldı,
-- initial Skill→Skill hard/soft prerequisite edges PRG-v0 semantics ile tanımlandı,
-- evidence/retention/diagnostic/remediation anchor'ları GRE/QAB/RVR canonical davranışına bağlandı,
-- AŞAMA 15 production-content handoff'u ve 5D QA fixture'ları tanımlandı.
+5D sonucu:
+- initial FBB-v0 iki blocking structural issue ile başladı,
+- explicit TopicSkillLink seed matrix eklendi,
+- invalid `reason_kind=supporting` canonical KGC reason kinds'e normalize edildi,
+- target evidence'ı contaminate eden hidden prerequisite boşlukları minimal hard edges ile düzeltildi,
+- hard graph DAG; self/dangling/conflicting edge yok,
+- branch isolation, English global-gate guard, duplicate/reuse, required reachability ve 5C→6/15 handoff fixtures PASS,
+- FBB hâlâ authoring_seed/not-learner-published; 6A/6C + 6H öncesi production publish yok.
 
-Ayrı Research AI kullanılmadı; external full-route coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
+5D ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
 
-## Aktif adım — 5D Graph architecture QA
+## Aktif adım — 6A Granularity + naming standardı
 
-**5D henüz yürütülmedi.**
+**6A henüz yürütülmedi.**
 
-5D başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
+6A başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
 
-5D'de özellikle:
-- hard prerequisite DAG / cycle kontrolü,
-- inaccessible required Skill / dead-end kontrolü,
-- hidden prerequisite ve task interpretability riski,
-- duplicate semantic Skill / Topic reuse kontrolü,
-- English global-gate ihlali kontrolü,
-- branch isolation / independent continuation,
-- FBB-v0 Objective/Topic reachability,
-- KGC version/migration uyumu,
-- AŞAMA 6 ve AŞAMA 15 genişleme handoff güvenliği
+6A'da özellikle:
+- Domain/Module/Topic/Skill/Objective granularity sınırları,
+- canonical logical ID convention,
+- stable identity vs display label,
+- under/over-fragmentation guard,
+- language-specific vs shared capability split kriteri,
+- Objective atomization/observable-action standardı,
+- FBB authoring_seed ratification/refactor kuralları,
+- version/migration naming invariants
 
-doğrulanacak.
+kesinleştirilecek.
