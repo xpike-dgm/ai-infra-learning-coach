@@ -15,12 +15,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **AŞAMA 1 — Ürün Çerçevesi** | ✅ | `1A–1D` tamamlandı. |
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
 | **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 16/16 scenario + 20/20 invariant PASS. |
-| **4A — Günlük mikro değerlendirme** | ✅ | DMA-v0 / D-040. |
-| **4B — Haftalık sınav** | ✅ | WBA-v0 / D-045. |
-| **4C — Aylık yeterlilik sınavı** | ✅ | MCA-v0 / D-046. |
-| **4D — Soru / assessment resource bank** | ✅ | QAB-v0 / D-047. Versioned trusted resource bank, prerequisite/exposure/family/context/evaluator lifecycle. |
-| **4E — AI-generated soru doğrulaması** | 🟡 Aktif | AI-generated candidate validation, promotion/use-ceiling, duplicate/ambiguity/correctness/prerequisite/evaluator checks tasarlanacak. |
-| **AŞAMA 5–20** | ⬜ Bekliyor | 4E sonrası canonical sırada. |
+| **AŞAMA 4 — Assessment sistemi** | ✅ | `4A–4E` tamamlandı: DMA-v0, WBA-v0, MCA-v0, QAB-v0, AIV-v0. |
+| **5A — Ana domain haritası** | 🟡 Aktif | 4+ yıllık professional domain envelope + ana prerequisite/parallel-track sınırları tasarlanacak. |
+| **5B–20** | ⬜ Bekliyor | 5A sonrası canonical sırada. |
 
 ## Bağlayıcı assessment kararları
 
@@ -28,52 +25,62 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 Daily assessment zorunlu quota değildir; Objective-matched evidence ve canonical state pipeline kullanır.
 
 ### D-045 — WBA-v0
-Weekly assessment item'dan önce blueprint üretir; multi-Skill coverage granular attribution ile çalışır; fixed score/time/quota yoktur; incomplete/missed exam debt değildir.
+Weekly assessment item'dan önce blueprint üretir; multi-Skill coverage granular attribution ile çalışır; fixed score/time/quota yoktur.
 
 ### D-046 — MCA-v0
 Monthly assessment longitudinal state-based sampling, broader transfer/integration ve ihtiyaç-temelli critical revalidation kullanır; cumulative final/pass-score değildir.
 
 ### D-047 — QAB-v0
-- Bank yalnız MCQ deposu değil, versioned assessment resource bank'tir.
-- Logical resource ID + immutable published version ayrıdır; Attempt exact version'a bağlanır.
-- Lifecycle/trust/use ceiling ayrı semantics taşır.
-- Resource exact Objective/Skill/prerequisite/evidence/scope/role/evaluator/tool/artifact/duration metadata'sı taşır.
-- Variant family, dependency/testlet, context family ve transfer profile ayrıdır; same/near item evidence diversity'yi şişiremez.
-- Integrated component evidence ayrı observable/attributable olmalıdır.
-- Solution exposure per-user state'tir; content freshness ayrı tutulur.
-- Deprecated vs invalidated ayrıdır; invalid version historical evidence audit edilebilir.
-- Selector bounded/indexed çalışır; full-bank scan hedeflenmez.
-- AI-generated resource 4E validation olmadan trusted/high-stakes use'a otomatik yükselmez.
+Versioned trusted assessment resource bank; exact Skill/Objective/prerequisite/evidence attribution, exposure/family/context/evaluator/freshness lifecycle ve bounded selection.
 
-Ana çıktı: `docs/QUESTION_BANK_SPEC.md`.
+### D-048 — AIV-v0
+- AI-generated resource `candidate` başlar; kendi output'u validation proof değildir.
+- Minimum validation geçmeden user-facing selection'a çıkmaz.
+- Schema, correctness, answer/rubric, ambiguity, target/evidence fit, prerequisite/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, freshness ve execution-safety ayrı validate edilir.
+- Validator sonucu weighted confidence değildir; final `use_ceiling` en kısıtlayıcı applicable check ile belirlenir.
+- `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible` semantic risk sırası vardır.
+- Generator self-review/model majority vote high-stakes trust sağlamaz; deterministic/executable/reference-backed validation önceliklidir.
+- Near duplicate yeni independent family sayılmaz; uncertainty diversity credit artırmaz.
+- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür.
+- Validator disagreement promotion'ı fail-safe biçimde durdurur.
+- Confirmed content bug invalidation + historical evidence review/repair açabilir; learner cezalandırılmaz.
+- Empirical validator/evaluator accuracy calibration AŞAMA 14F/18'e bırakıldı.
 
-## Son tamamlanan numaralı adım — 4D
+Ana çıktı: `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`.
 
-**Final:** `QAB-v0 — Trusted Assessment Resource Bank` / D-047.
+## Son tamamlanan numaralı adım — 4E
 
-4D'de ayrı Research AI kullanılmadı. Adım psychometric item calibration veya AI-validator accuracy eşiği uydurmadı; mevcut DMA/WBA/MCA/GRE/RVR/PRG contract'larını versioned content-bank modeline bağladı. Empirical item difficulty/exposure calibration AŞAMA 18'e; AI-generated validator promotion policy 4E'ye bırakıldı.
+**Final:** `AIV-v0 — AI Assessment Resource Validation` / D-048.
 
-## Aktif adım — 4E AI-generated soru doğrulaması
+4E fresh PRE-STEP GitHub refresh ile yürütüldü. Ayrı Research AI kullanılmadı; bilimsel validator accuracy yüzdesi, majority-vote sayısı veya universal acceptance threshold'u uydurulmadı. Conservative deterministic/auditable trust policy kilitlendi; empirical calibration sonraki aşamalara bırakıldı.
 
-**4E henüz yürütülmedi.**
+## AŞAMA 4 final durumu
 
-4E başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+```text
+4A DMA-v0 ✅
+4B WBA-v0 ✅
+4C MCA-v0 ✅
+4D QAB-v0 ✅
+4E AIV-v0 ✅
+```
 
-4E'de özellikle:
-- AI-generated candidate giriş/lifecycle,
-- schema completeness,
-- technical correctness + answer/rubric correctness,
-- ambiguity ve multiple-valid-answer detection,
-- target Objective/evidence modality fit,
-- prerequisite completeness + forbidden concept leakage,
-- duplicate/near-duplicate/variant-family classification,
-- dependency/testlet/context/transfer validation,
-- evaluator/tool/artifact compatibility,
-- technology/source freshness,
-- automated vs deterministic vs human/manager review gereksinimleri,
-- risk-based `use_ceiling` promotion,
-- trusted-template inheritance sınırları,
-- revalidation/invalidation lifecycle,
-- validator uncertainty ve fail-safe behavior
+Assessment foundation artık daily/weekly/monthly blueprint → trusted resource bank → AI validation → canonical evidence pipeline zinciriyle tamamlandı.
+
+## Aktif adım — 5A Ana domain haritası
+
+**5A henüz yürütülmedi.**
+
+5A başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+
+5A'da özellikle:
+- D-041 professional-readiness domain envelope,
+- D-042 Python foundation,
+- Technical English paralel hat,
+- systems → distributed → performance → GPU → inference → AI infrastructure ana omurga,
+- DS&A / architecture / OS / memory / concurrency / networking / storage / cloud / observability sınırları,
+- ML/Transformer'ın supporting depth sınırı,
+- Open Source / engineering practice / projects-capstone katmanı,
+- Domain/Module seviyesinde ana prerequisite ve parallelism,
+- AŞAMA 6 granular decomposition'a temiz handoff
 
 kesinleştirilecek.
