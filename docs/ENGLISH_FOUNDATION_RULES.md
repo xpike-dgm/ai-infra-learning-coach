@@ -1,9 +1,10 @@
 # English Foundation Rules — A0'dan Teknik İngilizceye Geçiş
 
 **Durum:** BAĞLAYICI ÖĞRENME DAVRANIŞI  
-**Tarih:** 2026-08-24
+**Tarih:** 2026-08-25  
+**D-044 sonrası stage clarification:** granular English capability map AŞAMA 6C; English-specific progression/cadence/mastery AŞAMA 7A–7E.
 
-Bu belge English track tasarlanırken korunacak temel prerequisite kuralını tanımlar. Ayrıntılı curriculum 6A–6E aşamasında üretilecektir.
+Bu belge English track tasarlanırken korunacak temel prerequisite kuralını tanımlar. Ayrıntılı capability decomposition ve final English curriculum bu belgenin yerine geçmez; bu kuralları tüketir.
 
 ## Ana kural
 
@@ -29,7 +30,7 @@ A0 kullanıcıdan doğrudan tam teknik cümle üretmesi beklenmez. Önce gerekli
 - temel question words,
 - bağlaçlar ve daha ileri grammar yalnız prerequisite zamanı geldiğinde.
 
-Bu liste kesin öğretim sırası değildir; 6A–6E'de research ve curriculum design ile kesinleştirilecektir.
+Bu liste kesin öğretim sırası değildir; **AŞAMA 6C granular map + AŞAMA 7 curriculum/English design** ile kesinleştirilecektir.
 
 ## Recognition → controlled production → free production
 
@@ -61,13 +62,16 @@ Kullanıcı grammar tarafında zorlanıyorsa teknik ilerleme gereksiz yere durdu
 
 İngilizce geliştikçe scaffold azaltılabilir; ancak azaltma takvime göre değil mastery/evidence'a göre yapılır.
 
-## 6A–6E için zorunlu tasarım sonucu
+## AŞAMA 6C / AŞAMA 7 için zorunlu tasarım sonucu
 
-English curriculum oluşturulurken her üretim görevi en az şu iki şeyi tanımlamalıdır:
+English granular map/curriculum oluşturulurken her üretim görevi en az şu iki şeyi tanımlamalıdır:
 
 - hedef English Skill/Learning Objective,
 - görevin gerektirdiği grammar/vocabulary prerequisite'leri.
 
 Question/task eligibility bu prerequisite'lere göre çalışmalıdır.
 
-Kesin grammar sırası, CEFR eşlemesi, günlük süre, Türkçe destek oranı ve mastery threshold'ları 6A–6E'de kilitlenecektir.
+- **AŞAMA 6C:** grammar/vocabulary/reading/writing/listening/speaking/technical-English capability'lerini granular Skill/Objective map'e dönüştürür.
+- **AŞAMA 7A–7E:** başlangıç ölçümü, CEFR/technical hedefler, günlük cadence, teknik entegrasyon ve English mastery davranışını kesinleştirir.
+
+Kesin grammar sırası, CEFR eşlemesi, günlük süre, Türkçe destek oranı ve English-specific mastery davranışı bu sonraki aşamalarda araştırma ve curriculum design ile kilitlenecektir.
