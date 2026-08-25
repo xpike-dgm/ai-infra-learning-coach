@@ -86,8 +86,9 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - 4 Assessment system ✅
 - 5 Curriculum/knowledge graph backbone ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - 6 Granular Capability Map — **aktif**
-  - 6A 🟡 Granularity + naming standardı
-  - 6B–6H ⬜
+  - 6A ✅ GNS-v0 / D-054
+  - 6B 🟡 Full-route decomposition blueprint
+  - 6C–6H ⬜
 - 7 English parallel line
 - 8 UX
 - 9 Architecture/data model
