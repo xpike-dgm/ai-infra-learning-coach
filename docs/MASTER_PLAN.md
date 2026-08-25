@@ -23,6 +23,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-048: AI-generated assessment validation = AIV-v0.
 - D-049: curriculum domain backbone = PDM-v0.
 - D-050: living-memory sync + repo-wide stale-reference audit her numaralı step kapanışında zorunludur.
+- D-051: 5B final knowledge-graph contract `KGC-v0`; canonical file `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
 
 ## Zorunlu yürütme — D-024 / D-027 / D-050
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → ALWAYS-CHECK living-memory sync → repo-wide stale-reference scan → sonraki adım`
@@ -100,8 +101,10 @@ Final davranış:
 
 **PRE/POST notu:** 5A fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; full external coverage/current-industry Research QA AŞAMA 6H'de zorunlu planlandı.
 
-### [ ] 5B — Graph / Topic metadata sözleşmesi — **AKTİF**
-Kesinleştirilecek:
+### [x] 5B — Graph / Topic metadata sözleşmesi — KGC-v0 / D-051
+**Final:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+
+**5B final coverage:**
 - Domain/Module/Topic/Skill/Learning Objective entity contract,
 - placement vs canonical Skill identity,
 - Topic↔Skill many-to-many,
@@ -117,7 +120,9 @@ Kesinleştirilecek:
 - graph version/migration,
 - indexing/bounded traversal/performance contract.
 
-### [ ] 5C — İlk 8–12 haftalık curriculum backbone
+KGC-v0 ayrıca organization-vs-capability identity, scope-relative requirement, conservative graph migration, professional/project attribution ve D-028 bounded graph traversal invariants'ını kilitledi. Ayrı Research AI kullanılmadı; 5B mevcut accepted specs arasında internal contract formalizasyonuydu. External coverage/current-industry validation 6H'de zorunlu kalır.
+
+### [ ] 5C — İlk 8–12 haftalık curriculum backbone — **AKTİF**
 ### [ ] 5D — Graph architecture QA
 - cycle/dead-end,
 - hidden prerequisite,
@@ -318,7 +323,7 @@ Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
-**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5B`  
+**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**
 
-Bir sonraki yürütme: **5B başlamadan yeni PRE-STEP GitHub refresh → graph/metadata contract → POST-STEP D-050 sync + stale-reference audit.**
+Bir sonraki yürütme: **5C başlamadan yeni PRE-STEP GitHub refresh → V1 başlangıç curriculum backbone → POST-STEP D-050 sync + stale-reference audit.**

@@ -539,7 +539,7 @@ Zero-start bridge
                        AI/GPU Infrastructure
 ```
 
-Bu şema **curriculum display shortcut**'ıdır. AŞAMA 5B/6 gerçek graph'ta bazı branch'lerin daha erken paralel ilerlemesine izin verecektir.
+Bu şema **curriculum display shortcut**'ıdır. KGC-v0 + AŞAMA 6 granular graph bazı branch'lerin daha erken paralel ilerlemesine izin verir; gerçek runtime gate PRG-v0 Skill edges'idir.
 
 ---
 
@@ -716,9 +716,9 @@ Her katmandaki gerçek gate'ler AŞAMA 6 Skill/Objective map + GRE/RVR + profess
 
 ---
 
-# 13. AŞAMA 5B handoff
+# 13. AŞAMA 5B sonucu — KGC-v0
 
-5B graph/metadata sözleşmesi aşağıdaki 5A çıktısını formalize etmelidir:
+5B tamamlandı. Canonical graph/metadata sözleşmesi `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 ile aşağıdaki 5A çıktısını formalize eder:
 
 - Domain entity + role/class metadata,
 - Module/Topic placement,
@@ -733,7 +733,7 @@ Her katmandaki gerçek gate'ler AŞAMA 6 Skill/Objective map + GRE/RVR + profess
 - project/capstone attribution,
 - curriculum version/migration semantics.
 
-5B bu document'taki ASCII route'u doğrudan hard-coded linear sequence'e dönüştürmemelidir.
+KGC-v0 bu document'taki ASCII route'u hard-coded linear sequence'e dönüştürmez; organization placement ile runtime Skill prerequisites ayrıdır.
 
 ---
 
@@ -828,4 +828,4 @@ Technical English — parallel
 → Open Source contributions + real large projects + professional capstones
 ```
 
-Bu text order **roadmap summary**'dir; canonical planner davranışı linear değildir. Gerçek executable curriculum graph AŞAMA 5B/6'da Skill-level edges ile oluşturulur.
+Bu text order **roadmap summary**'dir; canonical planner davranışı linear değildir. Graph contract KGC-v0 ile kilitlenmiştir; gerçek executable capability dataset ve Skill-level edge seti AŞAMA 6'da bu contract üzerinde oluşturulur.

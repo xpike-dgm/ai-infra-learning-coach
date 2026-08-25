@@ -187,3 +187,37 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Audit için geçici oluşturulan GitHub Actions workflow'u ve `scripts/doc_hygiene_fix_once.py` cleanup script'i doğrulama sonrası repodan silindi.
 - Bu hygiene turu **5B execution değildir** ve execution state'i ilerletmez.
 - Canonical durum cleanup sonunda hâlâ: **5A tamamlandı; 5B aktif ve henüz yürütülmedi**.
+
+---
+
+### 2026-08-25 — 5B Curriculum Knowledge Graph Contract tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT` ve 5B için handoff'ta listelenen doğrudan ilgili specs okundu.
+- 5A'nın tamamlandığı, 5B'nin gerçek aktif adım olduğu ve henüz yürütülmediği doğrulandı.
+- PDM-v0, Learning Engine, PRG-v0, GRE-v0, RVR-v0, QAB-v0, AIV-v0, English foundation ve AŞAMA 6 charter constraints birlikte yeniden kontrol edildi.
+
+**Research/Coding/Test AI kararı**
+- Ayrı Research AI kullanılmadı: 5B external coverage/job-market araştırması değil, mevcut accepted canonical specs arasında internal logical graph contract formalizasyonudur.
+- Coding/Test AI kullanılmadı: bu adım physical DB/runtime implementation değil spec/architecture contract'tır.
+- Full coverage/current-industry/hidden-prerequisite independent Research QA planlandığı gibi 6H'de zorunlu kalır.
+
+**Final model: `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051**
+- Organization (`Domain → Module → Topic`) ve capability/evidence (`Skill → Learning Objective`) katmanları ayrıldı.
+- Skill canonical reusable identity, Objective exactly-one-Skill atomic evidence target olarak kilitlendi.
+- Topic↔Skill many-to-many placement; Skill→Skill hard/soft PRG edge contract tanımlandı.
+- Scope-relative required/critical/optional capability requirement semantiği getirildi.
+- GRE Objective evidence profile, QAB binding, RVR retention, diagnostic/remediation ve Technical English safety metadata bağlandı.
+- Professional/project/capstone attribution granular ve non-compensatory yapıldı.
+- Provenance/freshness, immutable entity/graph versioning ve conservative split/merge/refactor migration tanımlandı.
+- D-028 için indexed/bounded traversal ve reverse-dependency/cache invariants tanımlandı.
+- 5C V1 başlangıç subgraph handoff'u ve AŞAMA 6 full granular decomposition handoff'u açıklandı.
+
+**POST-STEP sync**
+- Living state 5B tamamlandı / 5C aktif-henüz-yürütülmedi olarak senkronlandı.
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `START_HERE`, `DECISIONS` güncellendi.
+- `CURRICULUM`, `CURRICULUM_DOMAIN_MAP`, `GRANULAR_CAPABILITY_MAP_PLAN`, `PROJECT_MASTER_CONTEXT` ve README yeni KGC-v0 canonical pointer'ına hizalandı.
+- Repo-wide 5B active/not-executed ve graph-contract reference taraması uygulanarak living docs drift kontrolü yapıldı.
+
+**Sonraki kesin adım:** `5C — İlk 8–12 haftalık curriculum backbone`.
+5C başlamadan yeni PRE-STEP GitHub refresh zorunlu.

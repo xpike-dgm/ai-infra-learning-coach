@@ -2,7 +2,8 @@
 
 **Durum:** PLANLANDI / HENÜZ YÜRÜTÜLMEDİ  
 **Tarih:** 2026-08-25  
-**Karar:** D-044
+**Karar:** D-044  
+**5B canonical schema contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 / D-051
 
 Bu belge yeni **AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Bölme** aşamasının amacını ve acceptance kapsamını tanımlar.
 
@@ -128,7 +129,7 @@ Bir Skill:
 
 ## 6. Her node için planlanacak metadata
 
-AŞAMA 6 final haritasında, uygun seviyede en az şu bilgiler bulunmalıdır:
+AŞAMA 6 final haritası KGC-v0 entity/relation/version contract'ına uymalıdır. Uygun seviyede en az şu bilgiler bulunmalıdır:
 
 - canonical ID
 - parent / curriculum placement

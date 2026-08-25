@@ -17,8 +17,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 16/16 scenario + 20/20 invariant PASS. |
 | **AŞAMA 4 — Assessment sistemi** | ✅ | `4A–4E` tamamlandı: DMA-v0, WBA-v0, MCA-v0, QAB-v0, AIV-v0. |
 | **5A — Ana domain haritası** | ✅ | PDM-v0 / D-049. 23 route family + domain roles + high-level authoring relations. |
-| **5B — Graph / Topic metadata sözleşmesi** | 🟡 Aktif | Domain/Module/Topic/Skill/Objective graph schema ve metadata contract tasarlanacak. **Henüz yürütülmedi.** |
-| **5C–20** | ⬜ Bekliyor | 5B sonrası canonical sırada. |
+| **5B — Graph / Topic metadata sözleşmesi** | ✅ | KGC-v0 / D-051. Versioned curriculum knowledge graph contract tamamlandı. |
+| **5C — İlk 8–12 haftalık curriculum backbone** | 🟡 Aktif | KGC-v0 üzerinde V1 başlangıç alt graph iskeleti kurulacak. **Henüz yürütülmedi.** |
+| **5D–20** | ⬜ Bekliyor | 5C sonrası canonical sırada. |
 
 ## Repository memory hygiene — D-050
 
@@ -33,46 +34,42 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 5A
+## Son tamamlanan numaralı adım — 5B
 
-**Final:** `PDM-v0 — Professional Domain Backbone` / D-049.  
-Ana çıktı: `docs/CURRICULUM_DOMAIN_MAP.md`.
+**Final:** `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051.  
+Ana çıktı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
 
-5A kararları:
-- Technical English parallel track.
-- Python + C + Linux/Git/Shell complementary early foundations.
-- DS&A supporting common foundation.
-- Systems core: Modern C++ + Architecture + OS/Memory + Concurrency + Networking.
-- Distributed/platform: Distributed Systems + Storage/DB + Containers/Cloud/Observability.
-- Performance cross-cutting core.
-- Accelerator core: GPU Architecture → CUDA/Triton.
-- ML/Transformer supporting depth; generic ML research specialization değil.
-- LLM Inference → serving systems → KV/batching/scheduling/quantization bağlı family'ler.
-- Multi-GPU/NCCL/RDMA distributed+network+GPU convergence.
-- AI/GPU Infrastructure target integration domain.
-- Open Source/engineering practice/projects/capstones route boyunca artan professional evidence layer.
-- Security/reliability/math/numerical ihtiyaçları hidden prerequisite bırakılmayacak.
-- Tool/vendor adı stable concept'in yerine geçmeyecek.
-- Domain-level ilişkiler authoring guidance; runtime hard prerequisite Skill→Skill PRG-v0.
+5B kararları:
+- organization layer `Domain → Module → Topic`; capability/evidence layer `Skill → Learning Objective`,
+- Skill canonical identity; Topic↔Skill many-to-many placement,
+- Objective exactly one canonical Skill,
+- Skill→Skill hard/soft prerequisite edges PRG-v0 ile aynı semantics,
+- scope-relative required/critical/optional capability requirements,
+- GRE Objective evidence profile, QAB refs, RVR retention metadata,
+- learner-specific weakness state ile static remediation metadata ayrımı,
+- Technical English hidden-prerequisite guard,
+- professional/project/capstone granular attribution,
+- provenance/freshness + immutable entity/graph versions,
+- conservative split/merge/refactor migration,
+- bounded/indexed traversal/performance contract.
 
-## Aktif adım — 5B Graph / Topic metadata sözleşmesi
+5B ayrı Research AI kullanmadı; existing accepted specs'i internal graph contract'a formalize etti. Full external coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
 
-**5B henüz yürütülmedi.**
+## Aktif adım — 5C İlk 8–12 haftalık curriculum backbone
 
-5B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+**5C henüz yürütülmedi.**
 
-5B'de özellikle:
-- Domain/Module/Topic/Skill/Learning Objective entity contract,
-- placement vs canonical Skill identity,
-- many-to-many Topic↔Skill,
-- Skill→Skill hard/soft prerequisites,
-- required/critical/optional metadata,
-- evidence contract/profile refs,
-- retention/remediation/diagnostic flags,
-- cross-domain reuse,
-- professional/project/capstone attribution,
-- source/version/freshness,
-- curriculum versioning/migration,
-- graph validation/indexing/performance handoff
+5C başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+
+5C'de özellikle:
+- KGC-v0 ile V1 başlangıç subgraph'ı,
+- Computer/Programming Foundations giriş köprüsü,
+- Python + C + Linux/Git/Shell + gerekli early DS&A/English capability placements,
+- canonical Skill/Objective IDs,
+- initial hard/soft prerequisite edges,
+- required/critical Objective profiles,
+- V1 assessment/retention/diagnostic metadata anchors,
+- first 8–12 week authoring scope sınırı,
+- AŞAMA 15 production-content handoff'u
 
 kesinleştirilecek.

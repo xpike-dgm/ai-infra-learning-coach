@@ -34,6 +34,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-048:** AIV-v0 AI Assessment Resource Validation.
 - **D-049:** PDM-v0 Professional Domain Backbone.
 - **D-050:** living-memory sync + repo-wide stale-reference audit zorunlu; exact file-role matrix `PROJECT_MEMORY_PROTOCOL.md` içinde.
+- **D-051:** KGC-v0 Versioned Curriculum Knowledge Graph Contract; 5B tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -76,7 +77,25 @@ Yapılan kalıcı düzeltmeler:
 
 Bu cleanup **numaralı 5B adımını yürütmedi** ve daha önce kabul edilmiş aşama/spec davranışlarını değiştirmedi.
 
-## 6. Tamamlanan aşamalar
+## 6. D-051 / 5B final özeti
+
+Canonical: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
+
+KGC-v0:
+- curriculum organization (`Domain → Module → Topic`) ile capability/evidence (`Skill → Learning Objective`) ayrıdır,
+- Skill canonical ve reusable identity'dir; Topic↔Skill many-to-many placement learner mastery state'ini çoğaltmaz,
+- Objective exactly one Skill'e bağlıdır,
+- runtime prerequisite versioned Skill→Skill hard/soft edge'dir; broad domain relations authoring guidance'dır,
+- required/critical/optional scope-relative capability requirement olarak modellenir,
+- GRE Objective evidence profile, QAB assessment refs, RVR retention, diagnostic/remediation ve English safety metadata graph'a bağlandı,
+- professional/project/capstone attribution granular ve non-compensatory tutuldu,
+- source/provenance/freshness ve immutable entity/graph versioning tanımlandı,
+- split/merge/refactor migration historical evidence'ı korur fakat mastery'yi kör kopyalamaz,
+- D-028 için adjacency/reverse-dependency/index/cache ve bounded traversal contract'ı tanımlandı.
+
+5B ayrı Research AI kullanmadı; existing accepted contracts arasında schema/semantics formalizasyonuydu. External full-route coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
+
+## 7. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
 - AŞAMA 2 ✅ — GRE-v0 / RVR-v0
@@ -84,55 +103,53 @@ Bu cleanup **numaralı 5B adımını yürütmedi** ve daha önce kabul edilmiş 
 - AŞAMA 4 ✅ — DMA-v0 / WBA-v0 / MCA-v0 / QAB-v0 / AIV-v0
 - AŞAMA 5 devam ediyor:
   - 5A ✅ PDM-v0 / D-049
-  - 5B 🟡 Graph / Topic metadata sözleşmesi — aktif, henüz yürütülmedi
-  - 5C–5D ⬜
+  - 5B ✅ KGC-v0 / D-051
+  - 5C 🟡 İlk 8–12 haftalık curriculum backbone — aktif, henüz yürütülmedi
+  - 5D ⬜
 - AŞAMA 6–20 ⬜
 
-## 7. Güncel kesin konum
+## 8. Güncel kesin konum
 
-**Aktif:** `5B — Graph / Topic metadata sözleşmesi`  
-**5B henüz yürütülmedi.**
+**Aktif:** `5C — İlk 8–12 haftalık curriculum backbone`  
+**5C henüz yürütülmedi.**
 
-## 8. 5B'de kesinleştirilecekler
+## 9. 5C'de kesinleştirilecekler
 
 Ana soru:
-> PDM-v0 domain backbone'u, AŞAMA 6'nın yüzlerce/binlerce granular capability node'una güvenli biçimde genişleyebilecek versioned knowledge graph contract'ına nasıl dönüştürülmeli?
+> KGC-v0 ve PDM-v0 kullanılarak, V1'in ilk 8–12 haftasını besleyecek fakat production lesson body yazmaya başlamayacak ilk executable curriculum subgraph nasıl kurulmalı?
 
 Kesinleştirilecek:
-- Domain / Module / Topic / Skill / Learning Objective entity contract,
-- curriculum placement ile canonical Skill identity ayrımı,
-- Topic↔Skill many-to-many,
-- Skill→Skill hard/soft prerequisite edges,
-- 5A domain-level authoring relations,
-- required / critical / optional semantics,
-- Objective evidence profile / direct evidence requirements,
-- assessment/QAB refs,
-- retention/remediation/diagnostic metadata,
-- Technical English prerequisite metadata,
-- professional capability / project / capstone attribution,
-- cross-domain shared Skill reuse,
-- source/provenance/version/freshness,
-- curriculum graph version + migration semantics,
-- indexing/bounded traversal/performance requirements,
-- 5C V1 backbone ve 6A–6H granular map handoff.
+- V1 başlangıç scope'u ve giriş köprüsü,
+- early Domain/Module/Topic placements,
+- canonical Skill/Objective skeleton,
+- Python/C/Linux/Git/Shell/English early parallelism,
+- gerekli early DS&A/memory/debugging foundations,
+- hard/soft Skill prerequisite edges,
+- Objective required/critical/evidence profiles,
+- retention/diagnostic/remediation metadata anchors,
+- V1 assessment-resource authoring ihtiyaçları,
+- AŞAMA 15 production-content handoff'u,
+- 5D graph QA için fixture/subgraph input'u.
 
-## 9. 5B için PRE-STEP doğrudan okunacaklar
+5C full professional curriculum değildir ve AŞAMA 6 full-route decomposition'un yerine geçmez.
+
+## 10. 5C için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
 6. `PROJECT_CONTEXT.md`
-7. `docs/CURRICULUM_DOMAIN_MAP.md`
-8. `docs/LEARNING_ENGINE_SPEC.md`
-9. `docs/PREREQUISITE_POLICY_SPEC.md`
-10. `docs/MASTERY_SIGNALS_SPEC.md`
+7. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+8. `docs/CURRICULUM_DOMAIN_MAP.md`
+9. `docs/LEARNING_ENGINE_SPEC.md`
+10. `docs/PREREQUISITE_POLICY_SPEC.md`
 11. `docs/MASTERY_FORMULA_V0.md`
 12. `docs/RETENTION_FORGETTING_SPEC.md`
-13. `docs/QUESTION_BANK_SPEC.md`
-14. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
-15. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-16. `docs/ENGLISH_FOUNDATION_RULES.md`
+13. `docs/ENGLISH_FOUNDATION_RULES.md`
+14. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+15. `docs/V1_SCOPE.md`
+16. `docs/V1_SUCCESS_CRITERIA.md`
 17. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-5B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+5C başlamadan fresh PRE-STEP GitHub refresh zorunludur.

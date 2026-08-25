@@ -17,6 +17,7 @@ En önemli kalıcı dosyalar:
 - `docs/PROJECT_MASTER_CONTEXT.md` — uzun ve stabil proje amacı/felsefesi
 - `docs/PROFESSIONAL_READINESS_TARGET.md` — 4+ yıllık professional-readiness çıkış hedefi
 - `docs/CURRICULUM_DOMAIN_MAP.md` — high-level professional domain backbone / PDM-v0
+- `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` — versioned knowledge-graph schema / KGC-v0
 - `docs/GRANULAR_CAPABILITY_MAP_PLAN.md` — full route'u ölçülebilir alt becerilere ayıracak AŞAMA 6 charter'ı
 - `docs/DECISIONS.md` — kalıcı kararlar
 - `docs/MASTER_PLAN.md` — aşama/adım geliştirme planı
@@ -66,6 +67,10 @@ Bu nedenle planlama aşamalarının arasına **AŞAMA 6 — Granular Capability 
 ## D-049 — Professional Domain Backbone
 
 High-level curriculum envelope `docs/CURRICULUM_DOMAIN_MAP.md` içinde PDM-v0 olarak tanımlıdır. 23 ana route family, parallel/common/core/supporting/target/professional-evidence rolleriyle birbirine bağlanır. Bu harita takvim değildir; runtime prerequisite'ler Skill seviyesinde çözülür.
+
+## D-051 — Versioned Curriculum Knowledge Graph
+
+5B çıktısı `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` içinde KGC-v0 olarak tanımlıdır. Organization placement (`Domain/Module/Topic`) canonical capability identity'den (`Skill/Objective`) ayrıdır; Topic↔Skill many-to-many reuse, Skill→Skill hard/soft prerequisites, scope-relative requirement/evidence metadata, provenance/freshness, immutable graph versions ve conservative migration kuralları burada kilitlenmiştir.
 
 ## Temel Ürün İlkesi
 

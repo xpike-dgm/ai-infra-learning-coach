@@ -67,6 +67,9 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - Her step kapanışında stale active-step, old stage number, deleted/renamed file ve superseded decision/model referansları repo-wide taranır.
 - Stable specs active step'i kopyalamaz; yalnız davranış/cross-reference değişirse güncellenir.
 
+### D-051 — KGC-v0
+5B final graph contract `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` içinde versioned curriculum identity, Topic↔Skill placement, Skill prerequisite, Objective evidence profile, scope-relative requirement, retention/remediation/English/professional attribution ve conservative graph migration semantics'ini kilitledi.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -74,8 +77,9 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - 4 Assessment system ✅
 - 5 Curriculum/knowledge graph backbone — **aktif**
   - 5A ✅ PDM-v0
-  - 5B 🟡 Graph / Topic metadata sözleşmesi
-  - 5C–5D ⬜
+  - 5B ✅ KGC-v0 / D-051
+  - 5C 🟡 İlk 8–12 haftalık curriculum backbone
+  - 5D ⬜
 - 6 Granular Capability Map
 - 7 English parallel line
 - 8 UX
@@ -133,7 +137,8 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 8. `docs/PRODUCT_REQUIREMENTS.md`
 9. `docs/PROFESSIONAL_READINESS_TARGET.md`
 10. `docs/CURRICULUM_DOMAIN_MAP.md`
-11. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+11b. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -158,7 +163,7 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 ## 7. Ana kariyer/öğrenme yönü
 **Technical English (parallel) → Python → C → Linux + Git + Shell → Data Structures & Algorithms foundations → Modern C++ → Computer Architecture → Operating Systems + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases foundations → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM / SGLang / TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
 
-Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, 5B graph contract'ı ve AŞAMA 6 granular Skill prerequisites gerçek executable route'u belirleyecek.
+Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contract'ı ve AŞAMA 6 granular Skill prerequisites gerçek executable route'u belirleyecek.
 
 ## 8. Tamamlanan çekirdek
 
@@ -176,16 +181,17 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 
 ### AŞAMA 5 ilerlemesi
 - 5A ✅ `PDM-v0 — Professional Domain Backbone` / D-049
-- 5B 🟡 Graph / Topic metadata sözleşmesi
+- 5B ✅ `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051
+- 5C 🟡 İlk 8–12 haftalık curriculum backbone
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**  
-**5B henüz yürütülmedi.**
+**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**  
+**5C henüz yürütülmedi.**
 
-5B'de PDM-v0 domain backbone'u gerçek versioned knowledge graph contract'ına çevrilecek: Domain/Module/Topic/Skill/Objective identities, many-to-many placement, Skill prerequisites, evidence/retention/remediation metadata, cross-domain reuse, professional/project attribution, source/freshness ve graph versioning.
+5C, PDM-v0 + KGC-v0 üzerinde V1'in ilk 8–12 haftalık executable curriculum subgraph'ını kuracak: giriş köprüsü, early Domain/Module/Topic placements, canonical Skill/Objective skeleton, hard/soft prerequisites, Objective evidence/criticality, retention/diagnostic/remediation ve English safety metadata anchor'ları. Production lesson/task body AŞAMA 15'e aittir.
 
-5B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+5C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-050 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5B — Graph / Topic metadata sözleşmesi; 5B henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-051 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5C — İlk 8–12 haftalık curriculum backbone; 5C henüz yürütülmedi.`

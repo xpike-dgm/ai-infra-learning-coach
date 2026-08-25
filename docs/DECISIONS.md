@@ -260,3 +260,24 @@ Ayrıntı: `docs/CURRICULUM_DOMAIN_MAP.md`.
 - Aynı role sahip duplicate yaşayan source of truth tutulmaz; tamamen superseded ve benzersiz provenance değeri olmayan taslak silinir, faydalı eski seed notları açıkça `NON-CANONICAL/HISTORICAL` etiketlenir.
 - Stable tamamlanmış spec'ler sırf active step değişti diye yeniden yazılmaz; ancak stale cross-reference veya superseded contract içeriyorsa düzeltilir.
 - Ayrıntılı dosya rol matrisi ve kapanış checklist'i `docs/PROJECT_MEMORY_PROTOCOL.md` içinde canonicaldır.
+
+## D-051 — Curriculum knowledge graph contract = KGC-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- 5B final modeli `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` oldu.
+- Curriculum iki ayrı katmanda modellenir: `Domain → Module → Topic` organization; `Skill → Learning Objective` capability/evidence.
+- Skill canonical reusable capability identity'dir; farklı Topic/Domain placements yeni learner mastery kaydı yaratmaz.
+- Topic↔Skill many-to-many `TopicSkillLink` ile çözülür; Objective exactly one canonical Skill'e bağlıdır.
+- Runtime prerequisite canonical olarak versioned `SkillPrerequisiteEdge` (`hard | soft`) kullanır; Domain/Module/Topic relations yalnız authoring guidance'dır.
+- `required / critical / optional` geniş curriculum scope'larında scope-relative capability semantics'tir; global broad-domain boolean ile bütün rota kilitlenmez.
+- Objective evidence profile GRE-v0 gate alanlarını taşır; QAB resource link'i mastery evidence'ın kendisi değildir.
+- Skill retention profile RVR-v0 ile; diagnostic/remediation metadata runtime learner state'ten ayrı şekilde bağlanır.
+- Technical English global technical hard gate değildir; language dependency yalnız gerçekten gerekli capability/task'ta explicit modellenir.
+- Professional/project/capstone attribution granular Skill/Objective seviyesinde tutulur; project PASS bütün tagged capability'lere otomatik evidence vermez.
+- Published entity/edge/graph semantic state immutable versionlanır; split/merge/refactor learner'a bedava mastery veremez ve historical evidence'ı sessizce silemez.
+- Graph migration `fully_compatible | compatible_with_reverification | not_automatically_transferable` evidence compatibility semantiğini explicit taşır.
+- Provenance/freshness ile stable systems concept ve fast-moving tool/vendor content ayrılır.
+- D-028 gereği runtime full-graph scan'e dayanmaz; adjacency/reverse-dependency/index/cache contract'ı zorunludur, exact DB/index budgets 9C/9F/18E'ye bırakılır.
+- 5C ilk 8–12 haftalık V1 alt graph'ını KGC-v0 ile kuracak; AŞAMA 6 full granular decomposition'u aynı contract üzerinde yapacaktır.
+
+Ayrıntı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.

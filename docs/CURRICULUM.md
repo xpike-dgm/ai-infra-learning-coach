@@ -1,11 +1,12 @@
 # Curriculum Backbone — Canonical Summary
 
-**Durum:** 5A DOMAIN BACKBONE TAMAMLANDI / DETAIL AŞAMA 6'DA  
-**Canonical kararlar:** D-041, D-042, D-044, D-049  
+**Durum:** 5A DOMAIN BACKBONE + 5B KNOWLEDGE GRAPH CONTRACT TAMAMLANDI / DETAIL AŞAMA 6'DA  
+**Canonical kararlar:** D-041, D-042, D-044, D-049, D-051  
 **5A ana kaynak:** `docs/CURRICULUM_DOMAIN_MAP.md`  
+**5B graph contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`  
 **Granular decomposition charter:** `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-Bu dosya hızlı curriculum özetidir. 5A sonrası domain-level canonical ilişkiler ve sınırlar `docs/CURRICULUM_DOMAIN_MAP.md` içindedir. Gerçek Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
+Bu dosya hızlı curriculum özetidir. 5A domain-level canonical ilişkileri `docs/CURRICULUM_DOMAIN_MAP.md`; 5B entity/relation/version/migration sözleşmesini `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` tanımlar. Gerçek Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
 
 ## Ana route family'leri
 
@@ -77,7 +78,7 @@ Professional engineering, source reading, testing, debugging, Git/PR, benchmarks
 ## Sonraki curriculum işleri
 
 ```text
-5B = graph / metadata contract
+5B ✅ = KGC-v0 graph / metadata contract
 5C = first 8–12 week V1 backbone
 5D = graph architecture QA
 6A–6H = full granular capability map + independent coverage/prerequisite Research QA

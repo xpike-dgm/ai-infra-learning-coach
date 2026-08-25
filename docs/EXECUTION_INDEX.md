@@ -18,6 +18,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-048: 4E final AI-generated assessment validation modeli `AIV-v0`.
 - D-049: 5A final domain backbone modeli `PDM-v0`.
 - D-050: living-memory sync + repo-wide stale-reference audit zorunlu.
+- D-051: 5B final knowledge-graph contract `KGC-v0`.
 
 ---
 
@@ -72,8 +73,8 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
   - ML/Transformer supporting domain,
   - professional/OSS/project/capstone cross-cutting evidence layer,
   - domain-level authoring relations != runtime Skill prerequisite.
-- [ ] **5B — Graph / Topic metadata sözleşmesi** **AKTİF** — Domain/Module/Topic/Skill/Objective schema, relations, prerequisite/evidence/retention/version contract
-- [ ] **5C — İlk 8–12 haftalık curriculum backbone** — V1 başlangıç alt grafiğinin iskeleti
+- [x] **5B — Graph / Topic metadata sözleşmesi** — `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` — KGC-v0 / D-051
+- [ ] **5C — İlk 8–12 haftalık curriculum backbone** **AKTİF** — V1 başlangıç alt grafiğinin iskeleti
 - [ ] **5D — Graph architecture QA** — cycle/dead-end/hidden prerequisite ve genişleme kontrolü
 
 > AŞAMA 5 bütün ayrıntılı konu listesini yazmaz; graph'ın iskeletini kurar. Ayrıntılı decomposition AŞAMA 6'dadır.
@@ -237,7 +238,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
-**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5B`  
+**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**
 
-D-050 repository hygiene maintenance numaralı adım değildir; 5B hâlâ henüz yürütülmedi. 5B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+5B KGC-v0 / D-051 ile tamamlandı. 5C henüz yürütülmedi; 5C başlamadan yeni PRE-STEP GitHub refresh zorunludur.

@@ -69,7 +69,7 @@ Lesson/task completion, streak, self-confidence, AI-assisted output veya takvim 
 
 Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence canonical GRE/RVR/PRG/planner pipeline'ına girer.
 
-## 7. Curriculum backbone — 5A tamamlandı
+## 7. Curriculum backbone / knowledge graph — 5A–5B tamamlandı
 
 **D-049 / `PDM-v0 — Professional Domain Backbone`** canonical kaynak: `docs/CURRICULUM_DOMAIN_MAP.md`.
 
@@ -82,6 +82,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 - Security/reliability ve gerekli math/numerical capability hidden prerequisite bırakılmayacak.
 - Tool/vendor isimleri stable systems concept'in yerine geçmeyecek.
 - Domain-level relations authoring guidance; runtime hard prerequisite Skill→Skill PRG-v0.
+
+**D-051 / KGC-v0:** canonical `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`. Organization layer ile capability identity ayrıldı; Skill reusable canonical identity, Topic↔Skill many-to-many, Objective exactly-one-Skill, scope-relative requirements, evidence/retention/remediation/English/professional attribution, provenance/freshness, immutable graph versioning ve conservative migration contract'ı kilitlendi.
 
 ## 8. İngilizce
 
@@ -120,11 +122,12 @@ AŞAMA 20 = full professional curriculum + OSS + career + capstones
 - AŞAMA 4 ✅
 - AŞAMA 5 devam ediyor:
   - 5A ✅ PDM-v0 / D-049
-  - **5B 🟡 Graph / Topic metadata sözleşmesi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 5C–5D ⬜
+  - 5B ✅ KGC-v0 / D-051
+  - **5C 🟡 İlk 8–12 haftalık curriculum backbone — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+  - 5D ⬜
 - AŞAMA 6–20 ⬜
 
-**Sıradaki numaralı çalışma 5B'dir.** 5B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 5C'dir.** 5C başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

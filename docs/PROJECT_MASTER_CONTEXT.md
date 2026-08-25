@@ -2,7 +2,7 @@
 
 Bu dosya projenin uzun biçimli **stabil** ana bağlam belgesidir. Sohbet geçmişi kaybolsa bile, projenin neden var olduğu, neyi çözmek istediği ve hangi uzun ömürlü kararların bağlayıcı olduğu buradan yeniden kurulabilmelidir.
 
-**Son büyük kapsam/plan güncellemesi:** 2026-08-25 — D-041 / D-042 / D-044 / D-049  
+**Son büyük kapsam/plan güncellemesi:** 2026-08-25 — D-041 / D-042 / D-044 / D-049 / D-051  
 **Dosya rolü — D-050:** Bu dosya volatile `aktif adım` kaydı tutmaz. Current execution source of truth: `docs/STEP_STATUS.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/MASTER_PLAN.md` ve `PROJECT_CONTEXT.md`.
 
 ---
@@ -162,9 +162,9 @@ Python overall: learning
 
 Bu yüzden **AŞAMA 6 — Granular Capability Map**, Technical English'ten AI Infrastructure ve capstone'a kadar bütün rotayı `Module → Topic → Skill → Objective` seviyesinde kapsamlı şekilde bölecektir.
 
-AŞAMA 6 ayrıca canonical IDs, prerequisite edges, required/criticality, evidence type, retention relevance, diagnostic/remediation tags, cross-domain reuse, project/capstone mapping ve freshness/version metadata tasarlayacaktır.
+5B / KGC-v0 canonical identity, prerequisite edge, requirement/evidence, retention/remediation, English safety, professional/project attribution, provenance/freshness ve version/migration contract'ını kilitlemiştir. AŞAMA 6 bu contract'ı kullanarak gerçek granular capability dataset'ini üretecek; 6A exact naming/granularity standardını finalize edecektir.
 
-Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+Ayrıntı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` ve `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ---
 
@@ -184,6 +184,9 @@ Ana ilkeler:
 - security/reliability ve gerekli math/numerical capability hidden prerequisite olamaz,
 - vendor/tool adı stable systems concept'in yerine geçmez,
 - domain relation authoring guidance'dır; runtime hard prerequisite yine Skill→Skill PRG-v0'dır.
+
+## KGC-v0 — D-051
+Knowledge graph schema organization placement ile canonical capability identity'yi ayırır; Skill reusable identity, Objective atomic evidence target'ıdır. Topic↔Skill many-to-many, Skill→Skill hard/soft prerequisites, scope-relative requirement, immutable graph/entity versioning ve conservative migration semantics canonicaldır.
 
 ---
 
