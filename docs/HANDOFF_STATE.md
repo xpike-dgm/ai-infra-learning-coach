@@ -17,79 +17,41 @@ Güncel ana rota:
 ## 2. Uzun vadeli hedef — D-041
 - Full curriculum **4+ yıl veya daha uzun** sürebilir.
 - 4+ yıl countdown/mezuniyet garantisi değildir.
-- Final hedef yalnız course completion değil, professional-readiness seviyesinde verified engineering capability.
+- Final hedef professional-readiness seviyesinde verified engineering capability.
 - Final readiness; mastery + retention + debugging + transfer + performance + integrated project/capstone evidence ister.
 - V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilir.
-- Product job offer/salary/seniority veya üniversite/HR filtresi garantisi vermez; gerçek ekip/production deneyimi ayrıca oluşur.
+- Product job offer/salary/seniority veya üniversite/HR filtresi garantisi vermez.
 
 Canonical: `docs/PROFESSIONAL_READINESS_TARGET.md`.
 
-## 3. Güncel rota/plan kararları — D-042 / D-044
+## 3. Güncel rota/plan kararları
 
 ### D-042 — Python resmi foundation
-- Python C/C++'ın yerine geçmez.
-- Automation, testing, benchmark scripting, ML/PyTorch ve infra tooling için common core'a eklendi.
-- İleri Python kapsamı typing, testing, async/concurrency, multiprocessing, networking, profiling, packaging ve infra/ML kullanımını kapsayacak.
+Python common core'a resmi olarak eklendi; C/C++ yerine geçmez.
 
 ### D-043 — geri çekildi
-Önceki “sona standalone specialization-track aşaması ekleme” yorumu kullanıcının talebini yanlış anlamıştır. Canonical yürütme planından çıkarıldı.
+Standalone specialization-stage yorumu kullanıcı talebini yanlış anlamıştır; canonical değildir.
 
 ### D-044 — AŞAMA 6 Granular Capability Map
-Asıl ihtiyaç, ana rotadaki bütün büyük alanları ayrıntılı öğrenme/ölçüm parçalarına bölmektir.
-
-Canonical yapı:
-`Domain → Module → Topic → Skill → Learning Objective`
-
-Amaç:
-- `Python zayıf` gibi geniş bir tanı yerine,
-- `Python → Control Flow → Loops → while termination` gibi,
-- ayrı mastery/evidence/remediation uygulanabilen zayıflık konumu üretmek.
-
-AŞAMA 6:
-- Python dahil bütün rotayı alt kavramlara böler,
-- prerequisites ve evidence requirement'larını bağlar,
-- cross-domain duplicate Skill'leri önler,
-- weakness → reteach/practice/retest mapping'i tasarlar,
-- kapsam ve hidden prerequisite için bağımsız Research AI QA içerir.
-
+Ana rotadaki her büyük alan `Domain → Module → Topic → Skill → Learning Objective` seviyesine ayrılacak.
+Amaç `Python zayıf` yerine `Python → Control Flow → Loops → while termination` gibi hedefli weakness/mastery/remediation.
 Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
-## 4. Plan reindex sonucu
-- AŞAMA 1–5 aynı kaldı.
-- Yeni **AŞAMA 6 — Granular Capability Map** eklendi.
-- Eski English 6 → yeni 7.
-- Eski UX 7 → yeni 8.
-- Eski Architecture 8 → yeni 9.
-- Eski Skeleton 9 → yeni 10.
-- Eski Daily MVP 10 → yeni 11.
-- Eski Mastery/Planner implementation 11 → yeni 12.
-- Eski Assessment implementation 12 → yeni 13.
-- Eski AI Tutor 13 → yeni 14.
-- Eski first content 14 → yeni 15.
-- Eski analytics 15 → yeni 16.
-- Eski polish 16 → yeni 17.
-- Eski pilot 17 → yeni 18.
-- Eski release 18 → yeni 19.
-- Eski long professional curriculum 19 → yeni 20.
-- Yanlış eski specialization AŞAMA 20 kaldırıldı.
+### D-045 — WBA-v0 Weekly Blueprint Assessment
+Haftalık assessment:
+- tek overall score/pass-fail değildir,
+- item'lardan önce state-temelli blueprint üretir,
+- recent progress + weakness/verification + critical prerequisite + retention + integration/transfer + gerektiğinde English role'larını kullanır; fixed quota değildir,
+- fixed soru sayısı/süre kullanmaz,
+- daily hard capacity dışına otomatik taşmaz; safe split/pause/resume mümkündür,
+- incomplete/missed exam failure/debt/stack değildir,
+- H0/assistance/provenance/prerequisite/evaluator safety kurallarını DMA-v0'dan miras alır,
+- raw exam sonucu değil Objective-level EvidenceEvent'ler GRE/RVR/PRG/planner'ı değiştirir,
+- broad Domain fail/pass yazmaz; D-044 granular localization'ı korur.
 
-Tamamlanmış 1–4 kodları değişmedi.
+Canonical: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
-## 5. Bağlayıcı ana kurallar
-- Curriculum takvim değil prerequisite graph.
-- Canonical mastery/prerequisite seviyesi Skill; evidence Objective'e bağlanabilir.
-- Domain/Module/Topic broad progress summary olabilir; gerçek weakness/remediation mümkün olduğunca Skill/Objective seviyesinde lokalize edilir.
-- Coverage/time/streak/task completion mastery değildir.
-- Öğretilmemiş prerequisite yüzünden kullanıcı başarısız sayılmaz.
-- Coding mastery gerçek user-authored artifact ister.
-- AI yardımı serbest; assisted performance independent mastery değildir.
-- Tek yeni yanlış mastered Skill'i anında silmez.
-- English paralel gider; global technical blocker değildir.
-- Core mastery/prerequisite/planner LLM'nin keyfi kontrolünde değildir.
-- D-028: bounded/incremental hesap, async ağır işler, gerçek cihaz performance QA.
-- D-041: professional readiness takvim değil evidence ile belirlenir.
-
-## 6. Tamamlanan aşamalar
+## 4. Tamamlanan aşamalar
 
 ### AŞAMA 1 ✅
 `1A–1D` tamamlandı.
@@ -97,11 +59,11 @@ Tamamlanmış 1–4 kodları değişmedi.
 ### AŞAMA 2 ✅ — Öğrenme/Mastery
 - GRE-v0 — D-031
 - RVR-v0 — D-032
-- D-044 granularity clarification 2A ile uyumludur; aşama yeniden açılmadı.
+- D-044 granularity clarification uyumlu; aşama yeniden açılmadı.
 
 ### AŞAMA 3 ✅ — Adaptive Planner
-- 3A D-033
-- 3B D-034
+- 3A D-033 — hard daily capacity / no task debt
+- 3B D-034 — LearningNeed / TaskCandidate / Evidence
 - 3C PBR-v0 / D-035
 - 3D PRG-v0 / D-036
 - 3E VDW-v0 / D-037
@@ -117,9 +79,42 @@ Tamamlanmış 1–4 kodları değişmedi.
 
 ### AŞAMA 4 ilerlemesi
 - 4A ✅ DMA-v0 / D-040
-- 4B 🟡 Haftalık sınav — aktif, henüz yürütülmedi
+- 4B ✅ WBA-v0 / D-045
+- 4C 🟡 Aylık yeterlilik sınavı — aktif, henüz yürütülmedi
+- 4D–4E ⬜ bekliyor
 
-## 7. Güncel kesin konum
+## 5. 4B final özeti
+
+WBA-v0 weekly session bir **blueprint-based evidence bundle**'dır.
+
+Canonical flow:
+
+```text
+weekly cycle + current state
+→ weekly blueprint
+→ bounded slots
+→ validated/prerequisite-valid items
+→ capacity-aware blocks
+→ Attempt/Artifact
+→ EvidenceEvent
+→ GRE/RVR/verification/weakness/remediation
+→ PRG/Topic
+→ replan
+```
+
+Critical guards:
+- weekly scope evidence'a ekstra ağırlık vermez,
+- one score mastery yazmaz,
+- same/near variant diversity şişiremez,
+- integrated task global pass'i sibling Skill'lere yayamaz,
+- first clean post-mastery failure instant unmastery değildir,
+- invalid/prerequisite-contaminated/provisional item güvenli biçimde sınırlandırılır,
+- H1–H4 positive independent mastery değildir,
+- missed/incomplete weekly exam failure/debt değildir.
+
+4B'de ayrı Research AI kullanılmadı; calibrated psychometric optimum uydurulmadı. Empirik assessment süre/UX ve false-positive/false-negative calibration AŞAMA 18 pilotuna bırakıldı.
+
+## 6. Güncel kesin konum
 
 **AŞAMA 1:** ✅  
 **AŞAMA 2:** ✅  
@@ -127,33 +122,30 @@ Tamamlanmış 1–4 kodları değişmedi.
 **AŞAMA 4:** devam ediyor
 
 - `4A` ✅
-- `4B` 🟡 **Haftalık sınav — AKTİF**
-- `4C–4E` ⬜ bekliyor
+- `4B` ✅
+- `4C` 🟡 **Aylık yeterlilik sınavı — AKTİF**
+- `4D–4E` ⬜ bekliyor
 - `5–20` ⬜ bekliyor
 
-D-044 plan correction 4B execution değildir. 4B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
-
-## 8. 4B'de kesinleştirilecekler
+## 7. 4C'de kesinleştirilecekler
 Ana soru:
-> Haftalık sınav daily micro assessment'ın sağlayamadığı hangi daha geniş evidence'ı sağlamalı ve çok sayıda Skill/Objective'i adil bir blueprint ile nasıl ölçmeli?
+> Aylık assessment, WBA-v0'ın sağlayamadığı daha geniş transfer/integration ve critical revalidation evidence'ını nasıl toplamalı; bunu tek final score'a dönüştürmeden uzun dönem capability state'ine nasıl bağlamalı?
 
 Kesinleştirilecek:
-- weekly purpose/scope,
-- DMA-v0'dan farkı,
-- required/critical Skill/Objective coverage,
-- multi-Skill blueprint,
-- modality/family/context diversity,
-- weakness + recent progress + prerequisite risk dengesi,
-- fixed sahte optimum olmadan composition,
-- capacity/pause/incomplete,
-- H0/H1–H4 assistance,
+- monthly purpose/scope ve daily/weekly farkı,
+- WBA-v0 common `AssessmentBlueprint / Slot / SessionResult` contract'ının monthly specialization'ı,
+- daha geniş transfer/integration,
+- critical prerequisite/capability revalidation,
+- older/retention evidence ile recent progress dengesi,
+- professional-readiness'e doğru evidence aggregation ama final readiness ile karıştırmama,
+- capacity/split/pause/incomplete,
+- H0/H1–H4,
 - invalid/ambiguous/provisional item safety,
+- D-044 granular Skill/Objective localization,
 - result → GRE/RVR/remediation/PRG/planner,
-- tek sınava aşırı tepki vermeyen hysteresis,
-- future AŞAMA 6 granular IDs ile uyum,
-- 4C ortak blueprint/result contract.
+- 4D Question Bank schema için handoff.
 
-## 9. İlk okuma sırası
+## 8. İlk okuma sırası
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
 3. `docs/HANDOFF_STATE.md`
@@ -163,26 +155,22 @@ Kesinleştirilecek:
 7. `docs/PRODUCT_REQUIREMENTS.md`
 8. `docs/PROFESSIONAL_READINESS_TARGET.md`
 9. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-10. `docs/PROJECT_MASTER_CONTEXT.md`
-11. `docs/V1_SCOPE.md`
-12. `docs/LEARNING_ENGINE_SPEC.md`
-13. `docs/LEARNING_BEHAVIOR_RULES.md`
-14. `docs/MASTERY_SIGNALS_SPEC.md`
-15. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-16. `docs/MASTERY_FORMULA_V0.md`
-17. `docs/RETENTION_FORGETTING_SPEC.md`
-18. `docs/ADAPTIVE_PLANNER_SPEC.md`
-19. `docs/TASK_TAXONOMY_SPEC.md`
-20. `docs/PRIORITY_POLICY_SPEC.md`
-21. `docs/PREREQUISITE_POLICY_SPEC.md`
-22. `docs/DIAGNOSTIC_WAIVER_SPEC.md`
-23. `docs/MISSED_DAY_RECOVERY_SPEC.md`
-24. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
-25. `docs/PLANNER_SIMULATION_SUITE.md`
-26. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-27. `docs/ENGLISH_FOUNDATION_RULES.md`
-28. `docs/MASTER_PLAN.md`
-29. `docs/PROGRESS_LOG.md`
+10. `docs/LEARNING_ENGINE_SPEC.md`
+11. `docs/LEARNING_BEHAVIOR_RULES.md`
+12. `docs/MASTERY_SIGNALS_SPEC.md`
+13. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+14. `docs/MASTERY_FORMULA_V0.md`
+15. `docs/RETENTION_FORGETTING_SPEC.md`
+16. `docs/ADAPTIVE_PLANNER_SPEC.md`
+17. `docs/TASK_TAXONOMY_SPEC.md`
+18. `docs/PRIORITY_POLICY_SPEC.md`
+19. `docs/PREREQUISITE_POLICY_SPEC.md`
+20. `docs/PLANNER_EXPLAINABILITY_SPEC.md`
+21. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+22. `docs/WEEKLY_ASSESSMENT_SPEC.md`
+23. `docs/ENGLISH_FOUNDATION_RULES.md`
+24. `docs/MASTER_PLAN.md`
+25. `docs/PROGRESS_LOG.md`
 
-## 10. Yeni sohbetin ilk işi
-Repo üzerinden D-041/D-042/D-044 ve aktif adımı doğrula. D-043'ü canonical kabul etme; geri çekilmiştir. Ardından **4B — Haftalık sınav** için yeni PRE-STEP GitHub refresh yap.
+## 9. Yeni sohbetin ilk işi
+Repo üzerinden D-041/D-042/D-044/D-045 ve aktif adımı doğrula. D-043'ü canonical kabul etme. Ardından **4C — Aylık yeterlilik sınavı** için yeni PRE-STEP GitHub refresh yap.
