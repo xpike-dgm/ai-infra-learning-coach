@@ -11,15 +11,18 @@ Bu proje uzun süreli olduğu için sohbet geçmişine güvenilmez. Projeyi devr
 En önemli kalıcı dosyalar:
 
 - `docs/START_HERE.md` — yeni sohbet için başlangıç ve okuma sırası
-- `docs/PROJECT_MASTER_CONTEXT.md` — uzun proje amacı/felsefesi
+- `docs/HANDOFF_STATE.md` — ayrıntılı güncel execution handoff
+- `docs/STEP_STATUS.md` — kısa güncel execution tablosu
+- `PROJECT_CONTEXT.md` — kısa yaşayan proje snapshot'ı
+- `docs/PROJECT_MASTER_CONTEXT.md` — uzun ve stabil proje amacı/felsefesi
 - `docs/PROFESSIONAL_READINESS_TARGET.md` — 4+ yıllık professional-readiness çıkış hedefi
+- `docs/CURRICULUM_DOMAIN_MAP.md` — high-level professional domain backbone / PDM-v0
 - `docs/GRANULAR_CAPABILITY_MAP_PLAN.md` — full route'u ölçülebilir alt becerilere ayıracak AŞAMA 6 charter'ı
-- `docs/HANDOFF_STATE.md` — güncel konum ve sıradaki kesin adım
-- `PROJECT_CONTEXT.md` — kısa proje hafızası
 - `docs/DECISIONS.md` — kalıcı kararlar
 - `docs/MASTER_PLAN.md` — aşama/adım geliştirme planı
 - `docs/EXECUTION_INDEX.md` — canonical aşama/adım indeksi
 - `docs/PROGRESS_LOG.md` — kronolojik ilerleme
+- `docs/PROJECT_MEMORY_PROTOCOL.md` — zorunlu PRE/POST GitHub hafıza senkronu ve dosya rol matrisi
 
 ## Amaç
 
@@ -58,6 +61,10 @@ Canonical learning structure:
 seviyesinde zayıflığı tespit edip yalnız o alt capability için remediation üretebilmelidir.
 
 Bu nedenle planlama aşamalarının arasına **AŞAMA 6 — Granular Capability Map** eklendi. Bütün ana rota burada kapsamlı alt kavram/skill/objective haritasına ayrılacaktır.
+
+## D-049 — Professional Domain Backbone
+
+High-level curriculum envelope `docs/CURRICULUM_DOMAIN_MAP.md` içinde PDM-v0 olarak tanımlıdır. 23 ana route family, parallel/common/core/supporting/target/professional-evidence rolleriyle birbirine bağlanır. Bu harita takvim değildir; runtime prerequisite'ler Skill seviyesinde çözülür.
 
 ## Temel Ürün İlkesi
 
@@ -106,9 +113,14 @@ Uzun rota yalnız syntax öğretmeyecek; Git, testing, build/debug/profiling, di
 - Streak/task completion mastery değildir.
 - Weakness mümkün olduğunca Skill/Objective seviyesinde lokalize edilir.
 
-## Güncel Durum
+## Güncel Execution Durumu
 
-Aşama 1–3 tamamlandı. 4A DMA-v0 tamamlandı.  
-**Aktif adım: 4B — Haftalık sınav.**
+README volatile aktif adımı bilinçli olarak tekrar etmez. Bunun source of truth'u:
 
-D-041/D-042/D-044 plan senkronu tamamlandı. D-043 standalone specialization-stage kararı yanlış yorum olduğu için geri çekildi. 4B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+- `docs/STEP_STATUS.md`
+- `docs/HANDOFF_STATE.md`
+- `docs/EXECUTION_INDEX.md`
+- `docs/MASTER_PLAN.md`
+- `PROJECT_CONTEXT.md`
+
+D-050 gereği bu yaşayan dosyalar her numaralı adım kapanışında senkron kontrolünden geçer. Böylece README'nin eski bir `aktif adım` iddiasıyla drift oluşturması engellenir.
