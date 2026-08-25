@@ -21,6 +21,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-046: monthly assessment = MCA-v0.
 - D-047: assessment resource bank = QAB-v0.
 - D-048: AI-generated assessment validation = AIV-v0.
+- D-049: curriculum domain backbone = PDM-v0.
 
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → sonraki adım`
@@ -62,91 +63,56 @@ D-044 clarification: broad Domain/Topic tanı atomu değildir; weakness/remediat
 ---
 
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla ✅
-
 ### [x] 4A — Günlük mikro değerlendirme — DMA-v0 / D-040
-**Final:** `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-- daily quota değildir,
-- Objective-matched evidence,
-- H0/assistance/provenance,
-- prerequisite fairness,
-- invalid/provisional safety,
-- evidence → GRE/RVR → planner.
-
 ### [x] 4B — Haftalık sınav — WBA-v0 / D-045
-**Final:** `docs/WEEKLY_ASSESSMENT_SPEC.md`
-- blueprint-before-items,
-- recent progress + weakness/verification + critical prerequisite + retention + integration/transfer + gerektiğinde English,
-- no fixed score/question/time quota,
-- family/context diversity,
-- split/pause/resume,
-- missed/incomplete exam debt değildir,
-- common `AssessmentBlueprint / Slot / SessionResult` abstraction.
-
 ### [x] 4C — Aylık yeterlilik sınavı — MCA-v0 / D-046
-**Final:** `docs/MONTHLY_ASSESSMENT_SPEC.md`
-- longitudinal state-based sampling,
-- persistent concern + delayed retention,
-- cross-topic transfer + integrated application,
-- need-based critical capability revalidation,
-- no cumulative-everything/pass-score,
-- professional checkpoint != final readiness,
-- result granular evidence/state üzerinden planner priority'yi değiştirir.
-
 ### [x] 4D — Soru / assessment resource bank — QAB-v0 / D-047
-**Final:** `docs/QUESTION_BANK_SPEC.md`
-- AssessmentResource yalnız MCQ değildir; coding/debugging/system/transfer/integrated/language/testlet/template kaynakları içerir.
-- Stable logical ID + immutable version.
-- Lifecycle/trust/use ceiling ayrımı.
-- Exact Skill/Objective/prerequisite/evidence/scope/role/evaluator/tool/artifact/duration metadata.
-- Variant family / dependency-testlet / context family / transfer profile ayrımı.
-- Per-user solution exposure global content'ten ayrı.
-- Technology/content freshness ayrı.
-- Bounded/indexed selection.
-
 ### [x] 4E — AI-generated soru doğrulaması — AIV-v0 / D-048
-**Final:** `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
-
-Final davranış:
-- AI-generated resource `candidate` başlar; generator output kendi validation proof'u değildir.
-- Minimum validation geçmeden user-facing selection'a çıkamaz.
-- Schema/reference, technical correctness, answer/rubric, ambiguity, Objective/evidence fit, prerequisite/forbidden concept/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, technology freshness ve execution-safety ayrı validate edilir.
-- Validation weighted confidence score değildir; final `use_ceiling` applicable check'lerin en kısıtlayıcısıdır.
-- Semantic ceiling: `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible`.
-- Practice-only yanlış bilgi toleransı değildir; correctness unresolved candidate blocked kalır.
-- Generator self-review veya model majority vote high-stakes trust değildir; deterministic/executable/reference-grounded validation önceliklidir.
-- Standard/critical mastery için strong independent validation + verified evaluator gerekir; tek uncalibrated LLM critical verified evidence üretemez.
-- Hidden prerequisite/unknown English learner failure'a dönüştürülemez.
-- Near duplicate yeni independent family değildir; uncertain family classification diversity credit artırmaz.
-- Transfer/integration claim ve component attribution ayrıca validate edilir.
-- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür; semantic AI rewrite revalidation ister.
-- Validator disagreement fail-safe olarak promotion'ı durdurur.
-- Confirmed content bug invalidation + historical evidence review/repair açabilir; learner cezalandırılmaz.
-- Heavy validation async/bounded çalışır; empirical validator accuracy calibration AŞAMA 14F/18'e bırakılır.
-
-**PRE/POST notu:** 4E fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; fake confidence/majority/accuracy threshold uydurulmadı.
 
 > **AŞAMA 4 tamamlandı: DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0.**
 
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph İskeleti
-### [ ] 5A — Ana domain haritası — **AKTİF**
-- 4+ year professional envelope,
-- Technical English paralel,
-- Python + C foundation,
-- systems → distributed → performance → GPU → inference → AI infra,
-- OSS/projects/capstone layer,
-- domain-level prerequisite/parallel relations,
-- AŞAMA 6 granular decomposition için sınırlar.
 
-### [ ] 5B — Graph / metadata sözleşmesi
-- Domain/Module/Topic/Skill/Objective relations,
-- prerequisite,
-- required/criticality,
-- evidence contracts,
-- retention/remediation/diagnostic,
-- project/capstone attribution,
-- version/freshness.
+### [x] 5A — Ana domain haritası — PDM-v0 / D-049
+**Final:** `docs/CURRICULUM_DOMAIN_MAP.md`
+
+Final davranış:
+- 23 ana route family high-level professional envelope olarak korunur.
+- Technical English parallel track.
+- Python + C + Linux/Git/Shell complementary early foundations; DS&A supporting common foundation.
+- Systems core: Modern C++, Architecture, OS/Memory, Concurrency, Networking.
+- Distributed/platform core: Distributed Systems + Storage/DB + Containers/Cloud/Observability.
+- Performance route boyunca cross-cutting core'dur; yalnız final optimization bölümü değildir.
+- Accelerator core: GPU Architecture → CUDA/Triton.
+- ML/Transformer inference için supporting domain; generic ML-research specialization değildir.
+- LLM Inference → Serving Systems → KV/Batching/Scheduling/Quantization ayrı bağlı family'lerdir.
+- Multi-GPU/NCCL/RDMA networking + distributed + GPU convergence katmanıdır.
+- AI/GPU Infrastructure target integration domainidir.
+- Open Source/engineering practice/projects/capstones route boyunca büyüyen professional evidence layer'dır.
+- Security/reliability/math/numerical ihtiyaçları hidden prerequisite olarak bırakılmaz.
+- Tool/vendor isimleri stable systems concept yerine geçmez.
+- Domain-level authoring relations runtime hard-lock değildir; Skill→Skill PRG-v0 korunur.
+
+**PRE/POST notu:** 5A fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; full external coverage/current-industry Research QA AŞAMA 6H'de zorunlu planlandı.
+
+### [ ] 5B — Graph / Topic metadata sözleşmesi — **AKTİF**
+Kesinleştirilecek:
+- Domain/Module/Topic/Skill/Learning Objective entity contract,
+- placement vs canonical Skill identity,
+- Topic↔Skill many-to-many,
+- Skill→Skill hard/soft prerequisite,
+- 5A domain authoring relations,
+- required/critical/optional semantics,
+- evidence/assessment refs,
+- retention/remediation/diagnostic metadata,
+- Technical English prerequisite metadata,
+- cross-domain Skill reuse,
+- professional/project/capstone attribution,
+- source/version/freshness,
+- graph version/migration,
+- indexing/bounded traversal/performance contract.
 
 ### [ ] 5C — İlk 8–12 haftalık curriculum backbone
 ### [ ] 5D — Graph architecture QA
@@ -212,9 +178,10 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
+- curriculum graph identities/versions,
 - per-user exposure,
 - years-long curriculum/user history,
-- curriculum versions/migrations.
+- migrations.
 ### [ ] 9D — Servis sınırları
 ### [ ] 9E — AI entegrasyon mimarisi
 ### [ ] 9F — Test stratejisi / performance budgets
@@ -334,11 +301,7 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`  
-**AŞAMA 4:** ✅ TAMAMLANDI  
-**Aktif:** **`5A — Ana domain haritası`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
+**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
 
-**Bağlayıcı:** D-041 professional target; D-042 Python; D-044 granular map; D-045 WBA; D-046 MCA; D-047 QAB; D-048 AIV.  
-**Geri çekilen:** D-043.
-
-Bir sonraki yürütme: **5A başlamadan yeni PRE-STEP GitHub refresh → ana domain map/backbone → POST-STEP sync.**
+Bir sonraki yürütme: **5B başlamadan yeni PRE-STEP GitHub refresh → graph/metadata contract → POST-STEP sync.**
