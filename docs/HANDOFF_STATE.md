@@ -3,10 +3,12 @@
 **Son güncelleme:** 2026-08-25  
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
-## 0. Zorunlu protokol
-Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`, D-024, D-027.
+## 0. Zorunlu protokol — D-024 / D-027 / D-050
+Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
-> Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra ana çıktı + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN` ve gerekiyorsa `DECISIONS` senkronu zorunludur.
+> Her numaralı adım başlamadan PRE-STEP GitHub refresh; bittikten sonra living-memory ALWAYS-CHECK seti + ana çıktı + repo-wide stale-reference scan zorunludur.
+
+D-050 sonrası özellikle `PROJECT_CONTEXT.md`, `START_HERE`, `HANDOFF_STATE`, `STEP_STATUS`, `EXECUTION_INDEX`, `MASTER_PLAN`, `PROGRESS_LOG` ve `DECISIONS` her numaralı step sonunda kontrol edilir. Stable specs active-step state'i kopyalamaz.
 
 ## 1. Ürün ve uzun vadeli hedef
 Tek kullanıcı için, sıfırdan başlayan kullanıcıyı AI Infrastructure / Systems Engineering yolunda günlük yöneten, uygulama içinde öğreten/uygulatan ve yalnız kanıtlanmış öğrenmeyi ilerleme sayan adaptif Android öğrenme koçu.
@@ -31,6 +33,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-047:** QAB-v0 Trusted Assessment Resource Bank.
 - **D-048:** AIV-v0 AI Assessment Resource Validation.
 - **D-049:** PDM-v0 Professional Domain Backbone.
+- **D-050:** living-memory sync + repo-wide stale-reference audit zorunlu; exact file-role matrix `PROJECT_MEMORY_PROTOCOL.md` içinde.
 
 ## 4. D-049 / 5A final özeti
 
@@ -53,12 +56,27 @@ PDM-v0:
 - Open Source / engineering practice / projects / capstones finalde aniden başlamaz; route boyunca artan professional evidence layer'dır.
 - Security/reliability/observability ve gerekli math/numerical knowledge hidden prerequisite bırakılmaz; ilgili domainlere explicit capability olarak dağıtılır.
 - Tool/vendor isimleri stable systems concept yerine geçmez; version/freshness metadata ile ayrılır.
-- Domain-level `foundation_for`, `usually_before`, `can_parallelize_with`, `supporting_for`, `integrates_with`, `advanced_convergence_into` ilişkileri authoring guidance'dır.
-- Runtime hard prerequisite canonical olarak Skill→Skill PRG-v0 ile çözülür.
+- Domain-level authoring relations runtime hard-lock değildir; runtime canonical prerequisite Skill→Skill PRG-v0'dır.
 
 5A ayrı Research AI kullanmadı; mevcut kabul edilmiş professional route'u formalize etti. Bağımsız full coverage/current-industry/prerequisite Research QA AŞAMA 6H'de zorunlu planlanmıştır.
 
-## 5. Tamamlanan aşamalar
+## 5. D-050 repository hygiene audit sonucu
+
+2026-08-25'te repo içindeki dosya seti tek tek audit edildi.
+
+Yapılan kalıcı düzeltmeler:
+- `PROJECT_CONTEXT.md` eski 4B state'inden güncel 5B state'ine taşındı ve mandatory living snapshot rolü kilitlendi.
+- `PROJECT_MASTER_CONTEXT.md` ve README'den volatile aktif-step duplication kaldırıldı.
+- `docs/TODO.md` eski AŞAMA 0 / 3-year plan nedeniyle duplicate+stale olduğu için silindi.
+- `docs/LEARNING_ENGINE.md` davranış kaynağı olmaktan çıkarılıp explicit `HISTORICAL / SUPERSEDED` pointer'a dönüştürüldü; canonical kaynak `LEARNING_ENGINE_SPEC.md` ve sonraki specs'tir.
+- `docs/ENGLISH_TRACK.md` exact A0→B2 hedefi kilitlenmiş gibi görünmesin diye `NON-CANONICAL SEED NOTES` olarak işaretlendi.
+- `ENGLISH_FOUNDATION_RULES.md` D-044 sonrası AŞAMA 6C / AŞAMA 7 ayrımına göre düzeltildi.
+- `PROJECT_MEMORY_PROTOCOL` ve `AI_AGENT_WORKFLOW` D-050 mandatory sync/stale-scan kuralıyla güçlendirildi.
+- Repo-wide stage/file/status drift taraması bu bakım turunun parçasıdır.
+
+Bu cleanup **numaralı 5B adımını yürütmedi** ve daha önce kabul edilmiş aşama/spec davranışlarını değiştirmedi.
+
+## 6. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
 - AŞAMA 2 ✅ — GRE-v0 / RVR-v0
@@ -70,12 +88,12 @@ PDM-v0:
   - 5C–5D ⬜
 - AŞAMA 6–20 ⬜
 
-## 6. Güncel kesin konum
+## 7. Güncel kesin konum
 
 **Aktif:** `5B — Graph / Topic metadata sözleşmesi`  
 **5B henüz yürütülmedi.**
 
-## 7. 5B'de kesinleştirilecekler
+## 8. 5B'de kesinleştirilecekler
 
 Ana soru:
 > PDM-v0 domain backbone'u, AŞAMA 6'nın yüzlerce/binlerce granular capability node'una güvenli biçimde genişleyebilecek versioned knowledge graph contract'ına nasıl dönüştürülmeli?
@@ -98,21 +116,23 @@ Kesinleştirilecek:
 - indexing/bounded traversal/performance requirements,
 - 5C V1 backbone ve 6A–6H granular map handoff.
 
-## 8. 5B için PRE-STEP doğrudan okunacaklar
+## 9. 5B için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
-6. `docs/CURRICULUM_DOMAIN_MAP.md`
-7. `docs/LEARNING_ENGINE_SPEC.md`
-8. `docs/PREREQUISITE_POLICY_SPEC.md`
-9. `docs/MASTERY_SIGNALS_SPEC.md`
-10. `docs/MASTERY_FORMULA_V0.md`
-11. `docs/RETENTION_FORGETTING_SPEC.md`
-12. `docs/QUESTION_BANK_SPEC.md`
-13. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
-14. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-15. `docs/ENGLISH_FOUNDATION_RULES.md`
+6. `PROJECT_CONTEXT.md`
+7. `docs/CURRICULUM_DOMAIN_MAP.md`
+8. `docs/LEARNING_ENGINE_SPEC.md`
+9. `docs/PREREQUISITE_POLICY_SPEC.md`
+10. `docs/MASTERY_SIGNALS_SPEC.md`
+11. `docs/MASTERY_FORMULA_V0.md`
+12. `docs/RETENTION_FORGETTING_SPEC.md`
+13. `docs/QUESTION_BANK_SPEC.md`
+14. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
+15. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+16. `docs/ENGLISH_FOUNDATION_RULES.md`
+17. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
 5B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
