@@ -201,3 +201,26 @@ Longitudinal state-based sampling; broader transfer/integration; critical revali
 - Resource hiçbir zaman doğrudan `mastery_delta` veya broad domain pass/fail taşımaz; gerçek Attempt/Artifact normal GRE/RVR/PRG pipeline'ından geçer.
 
 Ayrıntı: `docs/QUESTION_BANK_SPEC.md`.
+
+## D-048 — AI-generated assessment validation = AIV-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- AI output kendi validation proof'u değildir; generated resource `candidate` başlar ve minimum validation geçmeden user-facing selection'a çıkmaz.
+- Validation schema/reference, technical correctness, answer/rubric, ambiguity, Objective/evidence fit, prerequisite/forbidden concept/language leakage, duplicate/family/dependency/context/transfer, evaluator/tool/artifact, freshness ve execution-safety boyutlarını ayrı kontrol eder.
+- Tek confidence yüzdesi veya weighted validator score yoktur; her check use ceiling'i sınırlar ve final ceiling en kısıtlayıcı applicable sonuçtur.
+- Generator self-review veya model majority vote tek başına trust değildir; deterministic/executable/reference-grounded validation önceliklidir.
+- `practice_only < low_stakes_assessment < standard_mastery_eligible < critical_mastery_eligible` semantic use-ceiling sırası korunur.
+- Practice-only yanlış bilgi toleransı değildir; correctness unresolved ise resource gösterilmez.
+- Standard/critical mastery promotion için strong independent/deterministic/reference-backed correctness ve verified evaluator gerekir; tek uncalibrated LLM critical verified evidence üretemez.
+- Hidden prerequisite veya bilinmeyen English learner failure'a dönüştürülemez.
+- Near duplicate yeni independent family sayılmaz; family classification belirsizse diversity credit artırılmaz.
+- Transfer/integration iddiası semantic olarak doğrulanmalı ve component attribution ayrı gözlenebilir olmalıdır.
+- Trusted-template inheritance yalnız validated invariants korunuyorsa mümkündür; semantic AI rewrite normal revalidation ister.
+- Validator disagreement fail-safe olarak promotion'ı durdurur; majority vote pass değildir.
+- Generated code/system tasks için execution/environment safety validation zorunludur.
+- Version-sensitive content source/technology freshness audit ister.
+- Confirmed content bug resource'u invalidated yapabilir ve exact version'a bağlı historical evidence review/repair akışı açabilir; learner cezalandırılmaz.
+- Heavy validation async/bounded çalışır; live session'da validator unavailable diye evidence standardı düşmez.
+- Empirical validator/evaluator accuracy thresholds AŞAMA 14F/18 calibration'a bırakılmıştır; 4E sahte scientific optimum uydurmaz.
+
+Ayrıntı: `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`.
