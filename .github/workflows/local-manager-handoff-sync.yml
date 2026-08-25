@@ -1,0 +1,32 @@
+name: One-time local manager handoff sync
+
+on:
+  push:
+    paths:
+      - '.github/workflows/local-manager-handoff-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply local manager handoff sync
+        run: |
+          python scripts/local_manager_handoff_sync.py
+          git diff --stat
+      - name: Commit handoff sync
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md docs/ README.md PROJECT_CONTEXT.md
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'docs: sync local manager takeover state [skip ci]'
+          git push
