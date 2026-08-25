@@ -16,9 +16,22 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **AŞAMA 2 — Öğrenme ve Mastery Modeli** | ✅ | `2A–2F` tamamlandı. GRE-v0 + RVR-v0 canonical. |
 | **AŞAMA 3 — Adaptif Günlük Planlama Motoru** | ✅ | `3A–3H` tamamlandı. 16/16 scenario + 20/20 invariant PASS. |
 | **AŞAMA 4 — Assessment sistemi** | ✅ | `4A–4E` tamamlandı: DMA-v0, WBA-v0, MCA-v0, QAB-v0, AIV-v0. |
-| **5A — Ana domain haritası** | ✅ | PDM-v0 / D-049. 23 route family + domain roles + high-level prerequisite/parallel authoring relations. |
-| **5B — Graph / Topic metadata sözleşmesi** | 🟡 Aktif | Domain/Module/Topic/Skill/Objective graph schema ve metadata contract tasarlanacak. |
+| **5A — Ana domain haritası** | ✅ | PDM-v0 / D-049. 23 route family + domain roles + high-level authoring relations. |
+| **5B — Graph / Topic metadata sözleşmesi** | 🟡 Aktif | Domain/Module/Topic/Skill/Objective graph schema ve metadata contract tasarlanacak. **Henüz yürütülmedi.** |
 | **5C–20** | ⬜ Bekliyor | 5B sonrası canonical sırada. |
+
+## Repository memory hygiene — D-050
+
+2026-08-25 repo-wide documentation audit yapıldı. Bu bakım **numaralı bir curriculum/architecture adımı değildir**, dolayısıyla 5B'yi ilerletmedi.
+
+Bağlayıcı değişiklik:
+- her numaralı step sonunda living-memory seti istisnasız kontrol edilir,
+- `PROJECT_CONTEXT.md` current snapshot olarak zorunlu sync kapsamındadır,
+- `START_HERE`, `HANDOFF_STATE`, `STEP_STATUS`, `EXECUTION_INDEX`, `MASTER_PLAN`, `PROGRESS_LOG`, `DECISIONS` aynı kapanış turunda kontrol edilir,
+- repo-wide stale step/stage/file/decision reference scan yapılır,
+- stable specs volatile active-step kopyalamaz.
+
+Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 ## Son tamamlanan numaralı adım — 5A
 
@@ -31,18 +44,16 @@ Ana çıktı: `docs/CURRICULUM_DOMAIN_MAP.md`.
 - DS&A supporting common foundation.
 - Systems core: Modern C++ + Architecture + OS/Memory + Concurrency + Networking.
 - Distributed/platform: Distributed Systems + Storage/DB + Containers/Cloud/Observability.
-- Performance cross-cutting core; yalnız final optimization bölümü değil.
+- Performance cross-cutting core.
 - Accelerator core: GPU Architecture → CUDA/Triton.
 - ML/Transformer supporting depth; generic ML research specialization değil.
-- LLM Inference → serving systems → KV/batching/scheduling/quantization ayrı bağlı family'ler.
+- LLM Inference → serving systems → KV/batching/scheduling/quantization bağlı family'ler.
 - Multi-GPU/NCCL/RDMA distributed+network+GPU convergence.
 - AI/GPU Infrastructure target integration domain.
 - Open Source/engineering practice/projects/capstones route boyunca artan professional evidence layer.
-- Security/reliability/math/numerical ihtiyaçları hidden prerequisite bırakılmayacak; uygun domainlere cross-cutting capability olarak yerleştirilecek.
+- Security/reliability/math/numerical ihtiyaçları hidden prerequisite bırakılmayacak.
 - Tool/vendor adı stable concept'in yerine geçmeyecek.
 - Domain-level ilişkiler authoring guidance; runtime hard prerequisite Skill→Skill PRG-v0.
-
-5A fresh PRE-STEP GitHub refresh ile yürütüldü. Ayrı Research AI kullanılmadı; 5A mevcut kabul edilmiş route envelope'ını domain-level formalize etti. Full coverage/current-industry bağımsız Research QA planlandığı gibi 6H'de yapılacak.
 
 ## Aktif adım — 5B Graph / Topic metadata sözleşmesi
 
@@ -55,7 +66,6 @@ Ana çıktı: `docs/CURRICULUM_DOMAIN_MAP.md`.
 - placement vs canonical Skill identity,
 - many-to-many Topic↔Skill,
 - Skill→Skill hard/soft prerequisites,
-- 5A domain authoring relations,
 - required/critical/optional metadata,
 - evidence contract/profile refs,
 - retention/remediation/diagnostic flags,
