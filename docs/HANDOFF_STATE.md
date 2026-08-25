@@ -35,6 +35,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-049:** PDM-v0 Professional Domain Backbone.
 - **D-050:** living-memory sync + repo-wide stale-reference audit zorunlu; exact file-role matrix `PROJECT_MEMORY_PROTOCOL.md` içinde.
 - **D-051:** KGC-v0 Versioned Curriculum Knowledge Graph Contract; 5B tamamlandı.
+- **D-052:** FBB-v0 V1 Foundation Backbone; 5C tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -81,21 +82,25 @@ Bu cleanup **numaralı 5B adımını yürütmedi** ve daha önce kabul edilmiş 
 
 Canonical: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
 
-KGC-v0:
-- curriculum organization (`Domain → Module → Topic`) ile capability/evidence (`Skill → Learning Objective`) ayrıdır,
-- Skill canonical ve reusable identity'dir; Topic↔Skill many-to-many placement learner mastery state'ini çoğaltmaz,
-- Objective exactly one Skill'e bağlıdır,
-- runtime prerequisite versioned Skill→Skill hard/soft edge'dir; broad domain relations authoring guidance'dır,
-- required/critical/optional scope-relative capability requirement olarak modellenir,
-- GRE Objective evidence profile, QAB assessment refs, RVR retention, diagnostic/remediation ve English safety metadata graph'a bağlandı,
-- professional/project/capstone attribution granular ve non-compensatory tutuldu,
-- source/provenance/freshness ve immutable entity/graph versioning tanımlandı,
-- split/merge/refactor migration historical evidence'ı korur fakat mastery'yi kör kopyalamaz,
-- D-028 için adjacency/reverse-dependency/index/cache ve bounded traversal contract'ı tanımlandı.
+KGC-v0 organization (`Domain → Module → Topic`) ile capability/evidence (`Skill → Learning Objective`) identity'sini ayırır; Topic↔Skill many-to-many reuse, Skill→Skill hard/soft prerequisites, scope-relative requirements, evidence/retention/remediation/English/professional attribution, provenance/freshness ve conservative graph migration contract'ını tanımlar.
 
-5B ayrı Research AI kullanmadı; existing accepted contracts arasında schema/semantics formalizasyonuydu. External full-route coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
+## 7. D-052 / 5C final özeti
 
-## 7. Tamamlanan aşamalar
+Canonical: `docs/V1_FOUNDATION_BACKBONE.md`.
+
+FBB-v0:
+- V1 “8–12 hafta” ifadesini calendar gate değil scope-equivalent content envelope olarak kullanır,
+- zero-entry Computer/Programming bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English seed subgraph'ını tanımlar,
+- Technical/English/professional-workflow scope'larını ayırır; English global technical blocker değildir,
+- KGC-v0 uyumlu Skill/Objective logical IDs üretir fakat 6A/6C öncesi lifecycle `authoring_seed / not_learner_published` kalır,
+- shared mental-model Skills ile language-specific production Skills'i ayırır,
+- initial hard/soft Skill prerequisite edges PRG-v0 semantics ile tanımlar,
+- GRE/QAB/RVR uyumlu evidence/retention/diagnostic/remediation anchor'ları verir,
+- AŞAMA 15 production authoring ihtiyaçlarını ve 5D graph-QA fixture'larını tanımlar.
+
+5C ayrı Research AI kullanmadı; 6H external coverage/current-industry/prerequisite Research QA zorunlu kalır.
+
+## 8. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
 - AŞAMA 2 ✅ — GRE-v0 / RVR-v0
@@ -104,52 +109,51 @@ KGC-v0:
 - AŞAMA 5 devam ediyor:
   - 5A ✅ PDM-v0 / D-049
   - 5B ✅ KGC-v0 / D-051
-  - 5C 🟡 İlk 8–12 haftalık curriculum backbone — aktif, henüz yürütülmedi
-  - 5D ⬜
+  - 5C ✅ FBB-v0 / D-052
+  - 5D 🟡 Graph architecture QA — aktif, henüz yürütülmedi
 - AŞAMA 6–20 ⬜
 
-## 8. Güncel kesin konum
+## 9. Güncel kesin konum
 
-**Aktif:** `5C — İlk 8–12 haftalık curriculum backbone`  
-**5C henüz yürütülmedi.**
+**Aktif:** `5D — Graph architecture QA`  
+**5D henüz yürütülmedi.**
 
-## 9. 5C'de kesinleştirilecekler
+## 10. 5D'de kesinleştirilecekler
 
 Ana soru:
-> KGC-v0 ve PDM-v0 kullanılarak, V1'in ilk 8–12 haftasını besleyecek fakat production lesson body yazmaya başlamayacak ilk executable curriculum subgraph nasıl kurulmalı?
+> FBB-v0 V1 seed graph, KGC-v0/PRG-v0 invariants altında cycle, dead-end, hidden prerequisite, duplicate semantic Skill, accidental global gate veya unreachable Objective üretmeden güvenli biçimde genişleyebilir mi?
 
 Kesinleştirilecek:
-- V1 başlangıç scope'u ve giriş köprüsü,
-- early Domain/Module/Topic placements,
-- canonical Skill/Objective skeleton,
-- Python/C/Linux/Git/Shell/English early parallelism,
-- gerekli early DS&A/memory/debugging foundations,
-- hard/soft Skill prerequisite edges,
-- Objective required/critical/evidence profiles,
-- retention/diagnostic/remediation metadata anchors,
-- V1 assessment-resource authoring ihtiyaçları,
-- AŞAMA 15 production-content handoff'u,
-- 5D graph QA için fixture/subgraph input'u.
+- hard-edge cycle/DAG kontrolü,
+- required-node reachability/dead-end kontrolü,
+- duplicate Skill ve Topic↔Skill reuse doğruluğu,
+- hidden prerequisite / evidence contamination kontrolü,
+- English global-gate guard,
+- independent branch continuation,
+- scope-relative requirement tutarlılığı,
+- authoring_seed → 6A/6C ratification/migration uyumu,
+- 5C→6/15 handoff güvenliği.
 
-5C full professional curriculum değildir ve AŞAMA 6 full-route decomposition'un yerine geçmez.
+5D production content üretmez ve 6H external Research QA'nın yerine geçmez.
 
-## 10. 5C için PRE-STEP doğrudan okunacaklar
+## 11. 5D için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
 6. `PROJECT_CONTEXT.md`
-7. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
-8. `docs/CURRICULUM_DOMAIN_MAP.md`
-9. `docs/LEARNING_ENGINE_SPEC.md`
-10. `docs/PREREQUISITE_POLICY_SPEC.md`
-11. `docs/MASTERY_FORMULA_V0.md`
-12. `docs/RETENTION_FORGETTING_SPEC.md`
-13. `docs/ENGLISH_FOUNDATION_RULES.md`
-14. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-15. `docs/V1_SCOPE.md`
-16. `docs/V1_SUCCESS_CRITERIA.md`
-17. `docs/PROJECT_MEMORY_PROTOCOL.md`
+7. `docs/V1_FOUNDATION_BACKBONE.md`
+8. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+9. `docs/CURRICULUM_DOMAIN_MAP.md`
+10. `docs/LEARNING_ENGINE_SPEC.md`
+11. `docs/PREREQUISITE_POLICY_SPEC.md`
+12. `docs/MASTERY_FORMULA_V0.md`
+13. `docs/RETENTION_FORGETTING_SPEC.md`
+14. `docs/ENGLISH_FOUNDATION_RULES.md`
+15. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+16. `docs/V1_SCOPE.md`
+17. `docs/V1_SUCCESS_CRITERIA.md`
+18. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-5C başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+5D başlamadan fresh PRE-STEP GitHub refresh zorunludur.

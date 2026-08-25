@@ -1,12 +1,13 @@
 # Curriculum Backbone — Canonical Summary
 
-**Durum:** 5A DOMAIN BACKBONE + 5B KNOWLEDGE GRAPH CONTRACT TAMAMLANDI / DETAIL AŞAMA 6'DA  
-**Canonical kararlar:** D-041, D-042, D-044, D-049, D-051  
+**Durum:** 5A DOMAIN BACKBONE + 5B GRAPH CONTRACT + 5C V1 FOUNDATION BACKBONE TAMAMLANDI / DETAIL AŞAMA 6'DA  
+**Canonical kararlar:** D-041, D-042, D-044, D-049, D-051, D-052  
 **5A ana kaynak:** `docs/CURRICULUM_DOMAIN_MAP.md`  
 **5B graph contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`  
+**5C V1 foundation backbone:** `docs/V1_FOUNDATION_BACKBONE.md`  
 **Granular decomposition charter:** `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-Bu dosya hızlı curriculum özetidir. 5A domain-level canonical ilişkileri `docs/CURRICULUM_DOMAIN_MAP.md`; 5B entity/relation/version/migration sözleşmesini `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` tanımlar. Gerçek Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
+Bu dosya hızlı curriculum özetidir. 5A domain-level canonical ilişkileri `docs/CURRICULUM_DOMAIN_MAP.md`; 5B entity/relation/version/migration sözleşmesini `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`; 5C V1 başlangıç authoring-seed subgraph'ını `docs/V1_FOUNDATION_BACKBONE.md` tanımlar. Gerçek full-route Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
 
 ## Ana route family'leri
 
@@ -79,8 +80,8 @@ Professional engineering, source reading, testing, debugging, Git/PR, benchmarks
 
 ```text
 5B ✅ = KGC-v0 graph / metadata contract
-5C = first 8–12 week V1 backbone
-5D = graph architecture QA
+5C ✅ = FBB-v0 first 8–12 week scope-equivalent V1 foundation backbone
+5D = graph architecture QA — active next
 6A–6H = full granular capability map + independent coverage/prerequisite Research QA
 15 = first production-quality lesson/task/assessment package
 20 = full professional content expansion + OSS + capstones

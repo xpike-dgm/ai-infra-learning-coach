@@ -70,6 +70,9 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 ### D-051 — KGC-v0
 5B final graph contract `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` içinde versioned curriculum identity, Topic↔Skill placement, Skill prerequisite, Objective evidence profile, scope-relative requirement, retention/remediation/English/professional attribution ve conservative graph migration semantics'ini kilitledi.
 
+### D-052 — FBB-v0
+5C final V1 foundation backbone `docs/V1_FOUNDATION_BACKBONE.md` içinde zero-entry bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English seed subgraph'ını tanımladı. 8–12 hafta calendar gate değildir; seed IDs 6A/6C ratification öncesi learner-published değildir.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -78,8 +81,8 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 - 5 Curriculum/knowledge graph backbone — **aktif**
   - 5A ✅ PDM-v0
   - 5B ✅ KGC-v0 / D-051
-  - 5C 🟡 İlk 8–12 haftalık curriculum backbone
-  - 5D ⬜
+  - 5C ✅ FBB-v0 / D-052
+  - 5D 🟡 Graph architecture QA
 - 6 Granular Capability Map
 - 7 English parallel line
 - 8 UX
@@ -138,6 +141,7 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 9. `docs/PROFESSIONAL_READINESS_TARGET.md`
 10. `docs/CURRICULUM_DOMAIN_MAP.md`
 11. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+11a. `docs/V1_FOUNDATION_BACKBONE.md`
 11b. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
@@ -182,16 +186,17 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 ### AŞAMA 5 ilerlemesi
 - 5A ✅ `PDM-v0 — Professional Domain Backbone` / D-049
 - 5B ✅ `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051
-- 5C 🟡 İlk 8–12 haftalık curriculum backbone
+- 5C ✅ `FBB-v0 — V1 Foundation Backbone` / D-052
+- 5D 🟡 Graph architecture QA
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**  
-**5C henüz yürütülmedi.**
+**Aktif:** **`5D — Graph architecture QA`**  
+**5D henüz yürütülmedi.**
 
-5C, PDM-v0 + KGC-v0 üzerinde V1'in ilk 8–12 haftalık executable curriculum subgraph'ını kuracak: giriş köprüsü, early Domain/Module/Topic placements, canonical Skill/Objective skeleton, hard/soft prerequisites, Objective evidence/criticality, retention/diagnostic/remediation ve English safety metadata anchor'ları. Production lesson/task body AŞAMA 15'e aittir.
+5D, `docs/V1_FOUNDATION_BACKBONE.md` içindeki FBB-v0 authoring-seed graph'ını KGC-v0/PRG-v0 invariants altında cycle, dead-end, hidden prerequisite, duplicate semantic Skill, accidental English/global gate, branch isolation ve Objective reachability açısından doğrulayacak. Production content yazmayacak.
 
-5C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+5D başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-051 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5C — İlk 8–12 haftalık curriculum backbone; 5C henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-052 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5D — Graph architecture QA; 5D henüz yürütülmedi.`

@@ -85,6 +85,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-051 / KGC-v0:** canonical `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`. Organization layer ile capability identity ayrıldı; Skill reusable canonical identity, Topic↔Skill many-to-many, Objective exactly-one-Skill, scope-relative requirements, evidence/retention/remediation/English/professional attribution, provenance/freshness, immutable graph versioning ve conservative migration contract'ı kilitlendi.
 
+**D-052 / FBB-v0:** canonical `docs/V1_FOUNDATION_BACKBONE.md`. V1 başlangıç seed subgraph'ı zero-entry bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English olarak tanımlandı. 8–12 hafta calendar gate değil scope-equivalent'tır; Skill/Objective IDs 6A/6C öncesi `authoring_seed` lifecycle'ındadır.
+
 ## 8. İngilizce
 
 English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C'de; English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
@@ -123,11 +125,11 @@ AŞAMA 20 = full professional curriculum + OSS + career + capstones
 - AŞAMA 5 devam ediyor:
   - 5A ✅ PDM-v0 / D-049
   - 5B ✅ KGC-v0 / D-051
-  - **5C 🟡 İlk 8–12 haftalık curriculum backbone — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 5D ⬜
+  - 5C ✅ FBB-v0 / D-052
+  - **5D 🟡 Graph architecture QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - AŞAMA 6–20 ⬜
 
-**Sıradaki numaralı çalışma 5C'dir.** 5C başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 5D'dir.** 5D başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

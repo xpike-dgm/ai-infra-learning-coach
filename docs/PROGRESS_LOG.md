@@ -221,3 +221,35 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 
 **Sonraki kesin adım:** `5C — İlk 8–12 haftalık curriculum backbone`.
 5C başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-25 — 5C V1 Foundation Backbone tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Kullanıcı onayı sonrası fresh olarak `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT` ve 5C için doğrudan ilgili KGC/PDM/Learning Engine/PRG/GRE/RVR/English/Granular Map/V1 scope-success/memory protocol belgeleri yeniden okundu.
+- 5B'nin KGC-v0 / D-051 ile tamamlandığı, 5C'nin gerçek aktif adım olduğu ve henüz yürütülmediği doğrulandı.
+
+**Research/Coding/Test AI kararı**
+- Ayrı Research AI kullanılmadı: 5C external full-route coverage veya current-industry araştırması değil, accepted PDM/KGC/V1 contracts üzerinde bounded foundation seed-subgraph formalizasyonudur.
+- Physical coding yoktur. Independent graph architecture QA ayrı numaralı 5D adımıdır.
+- External coverage/current-industry/prerequisite Research AI doğrulaması 6H'de zorunlu kalır.
+
+**Final model: `FBB-v0 — V1 Foundation Backbone` / D-052**
+- 8–12 hafta calendar unlock değil scope-equivalent content envelope olarak tanımlandı.
+- Zero-entry bridge + Python + C + Linux/Git/Shell + early DS&A + parallel Technical English organization/capability seed'i oluşturuldu.
+- KGC-v0 uyumlu Skill/Objective authoring-seed logical IDs tanımlandı; 6A/6C öncesi learner-published değildir.
+- Technical/English/professional workflow scopes ayrıldı; English global technical gate olmadı.
+- Shared mental-model Skills ile language-specific production Skills ayrıldı.
+- Initial PRG-v0 hard/soft Skill prerequisite edges ve branch-isolation semantics tanımlandı.
+- GRE/QAB/RVR uyumlu evidence templates, retention/diagnostic/remediation anchors ve AŞAMA 15 handoff'u tanımlandı.
+- 5D için cycle/dead-end/hidden prerequisite/duplicate/reachability fixture seti oluşturuldu.
+
+**POST-STEP sync**
+- Living state 5C tamamlandı / 5D aktif-henüz-yürütülmedi olarak senkronlandı.
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `START_HERE`, `DECISIONS` güncellendi.
+- `CURRICULUM`, `GRANULAR_CAPABILITY_MAP_PLAN` ve README yeni FBB-v0 pointer'ına hizalandı.
+- Repo-wide stale 5C active/not-executed ve FBB-v0 pointer audit'i uygulandı; historical log referansları historical olarak korundu.
+
+**Sonraki kesin adım:** `5D — Graph architecture QA`.
+5D başlamadan fresh PRE-STEP GitHub refresh zorunlu.

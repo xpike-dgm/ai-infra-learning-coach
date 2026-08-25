@@ -18,8 +18,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **AŞAMA 4 — Assessment sistemi** | ✅ | `4A–4E` tamamlandı: DMA-v0, WBA-v0, MCA-v0, QAB-v0, AIV-v0. |
 | **5A — Ana domain haritası** | ✅ | PDM-v0 / D-049. 23 route family + domain roles + high-level authoring relations. |
 | **5B — Graph / Topic metadata sözleşmesi** | ✅ | KGC-v0 / D-051. Versioned curriculum knowledge graph contract tamamlandı. |
-| **5C — İlk 8–12 haftalık curriculum backbone** | 🟡 Aktif | KGC-v0 üzerinde V1 başlangıç alt graph iskeleti kurulacak. **Henüz yürütülmedi.** |
-| **5D–20** | ⬜ Bekliyor | 5C sonrası canonical sırada. |
+| **5C — İlk 8–12 haftalık curriculum backbone** | ✅ | FBB-v0 / D-052. V1 foundation authoring-seed subgraph tamamlandı. |
+| **5D — Graph architecture QA** | 🟡 Aktif | FBB-v0 cycle/dead-end/hidden prerequisite/duplicate/reachability açısından doğrulanacak. **Henüz yürütülmedi.** |
+| **6A–20** | ⬜ Bekliyor | 5D sonrası canonical sırada. |
 
 ## Repository memory hygiene — D-050
 
@@ -34,42 +35,40 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 5B
+## Son tamamlanan numaralı adım — 5C
 
-**Final:** `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051.  
-Ana çıktı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
+**Final:** `FBB-v0 — V1 Foundation Backbone` / D-052.  
+Ana çıktı: `docs/V1_FOUNDATION_BACKBONE.md`.
 
-5B kararları:
-- organization layer `Domain → Module → Topic`; capability/evidence layer `Skill → Learning Objective`,
-- Skill canonical identity; Topic↔Skill many-to-many placement,
-- Objective exactly one canonical Skill,
-- Skill→Skill hard/soft prerequisite edges PRG-v0 ile aynı semantics,
-- scope-relative required/critical/optional capability requirements,
-- GRE Objective evidence profile, QAB refs, RVR retention metadata,
-- learner-specific weakness state ile static remediation metadata ayrımı,
-- Technical English hidden-prerequisite guard,
-- professional/project/capstone granular attribution,
-- provenance/freshness + immutable entity/graph versions,
-- conservative split/merge/refactor migration,
-- bounded/indexed traversal/performance contract.
+5C kararları:
+- 8–12 hafta takvim değil scope-equivalent content envelope,
+- zero-entry Computer/Programming bridge yeni broad career Domain'i yaratmadan early topics'e yerleştirildi,
+- Python + C + Linux/Git/Shell + early DS&A + Technical English başlangıç subgraph'ı tanımlandı,
+- Technical English day-one parallel fakat global technical hard gate değil,
+- KGC-v0 uyumlu Skill/Objective authoring-seed skeleton tanımlandı,
+- 6A/6C ratification öncesi lifecycle `authoring_seed / not_learner_published`,
+- shared programming mental model ile language-specific production capability ayrıldı,
+- initial Skill→Skill hard/soft prerequisite edges PRG-v0 semantics ile tanımlandı,
+- evidence/retention/diagnostic/remediation anchor'ları GRE/QAB/RVR canonical davranışına bağlandı,
+- AŞAMA 15 production-content handoff'u ve 5D QA fixture'ları tanımlandı.
 
-5B ayrı Research AI kullanmadı; existing accepted specs'i internal graph contract'a formalize etti. Full external coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
+Ayrı Research AI kullanılmadı; external full-route coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
 
-## Aktif adım — 5C İlk 8–12 haftalık curriculum backbone
+## Aktif adım — 5D Graph architecture QA
 
-**5C henüz yürütülmedi.**
+**5D henüz yürütülmedi.**
 
-5C başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca yeni PRE-STEP GitHub refresh zorunludur.
+5D başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
 
-5C'de özellikle:
-- KGC-v0 ile V1 başlangıç subgraph'ı,
-- Computer/Programming Foundations giriş köprüsü,
-- Python + C + Linux/Git/Shell + gerekli early DS&A/English capability placements,
-- canonical Skill/Objective IDs,
-- initial hard/soft prerequisite edges,
-- required/critical Objective profiles,
-- V1 assessment/retention/diagnostic metadata anchors,
-- first 8–12 week authoring scope sınırı,
-- AŞAMA 15 production-content handoff'u
+5D'de özellikle:
+- hard prerequisite DAG / cycle kontrolü,
+- inaccessible required Skill / dead-end kontrolü,
+- hidden prerequisite ve task interpretability riski,
+- duplicate semantic Skill / Topic reuse kontrolü,
+- English global-gate ihlali kontrolü,
+- branch isolation / independent continuation,
+- FBB-v0 Objective/Topic reachability,
+- KGC version/migration uyumu,
+- AŞAMA 6 ve AŞAMA 15 genişleme handoff güvenliği
 
-kesinleştirilecek.
+doğrulanacak.

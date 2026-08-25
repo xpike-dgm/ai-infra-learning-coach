@@ -281,3 +281,22 @@ Ayrıntı: `docs/CURRICULUM_DOMAIN_MAP.md`.
 - 5C ilk 8–12 haftalık V1 alt graph'ını KGC-v0 ile kuracak; AŞAMA 6 full granular decomposition'u aynı contract üzerinde yapacaktır.
 
 Ayrıntı: `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
+
+## D-052 — V1 foundation backbone = FBB-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- 5C final modeli `FBB-v0 — V1 Foundation Backbone` oldu.
+- “İlk 8–12 hafta” calendar unlock değildir; V1 başlangıç content hacmini/scope'unu ifade eder. Runtime progression mastery + prerequisite + retention + daily capacity ile belirlenir.
+- Canonical çıktı `docs/V1_FOUNDATION_BACKBONE.md`.
+- V1 foundation subgraph; Computer/Programming zero-entry bridge, Python, C, Linux/Git/Shell, early DS&A ve day-one parallel Technical English'i KGC-v0 üzerinde bağlar.
+- 5C Skill/Objective ID'leri `authoring_seed / not_learner_published` lifecycle'ındadır; 6A/6C global naming/granularity standardı ile ratify veya explicit KGC migration üzerinden refine edilir.
+- Tek global `foundation_passed` gate yoktur. Technical, English ve professional-workflow scope'ları ayrıdır; English global technical hard prerequisite değildir.
+- Shared programming mental-model Skills ile language-specific production Skills ayrıdır; Python mastery C syntax mastery'yi bedava vermez.
+- Initial runtime dependencies yalnız Skill→Skill hard/soft PRG-v0 edge'leridir; Domain/Module/Topic placement hard lock üretmez.
+- Evidence templates GRE/QAB/RVR'ı değiştirmez; yeni numeric mastery threshold/count icat edilmez.
+- Diagnostic, retention ve remediation anchor'ları exact Skill/Objective attribution'a bağlıdır; broad Domain reset yasaktır.
+- AŞAMA 15 production content, 6A/6C/6H sonrası ratified/published graph ID'lerine bağlanır.
+- 5D FBB-v0 subgraph'ı cycle, dead-end, hidden prerequisite, duplicate Skill/reuse ve reachability açısından QA edecektir.
+- Ayrı external Research AI 5C'de kullanılmadı; full coverage/current-industry/prerequisite bağımsız Research QA 6H'de zorunlu kalır.
+
+Ayrıntı: `docs/V1_FOUNDATION_BACKBONE.md`.

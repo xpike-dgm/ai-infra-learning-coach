@@ -24,6 +24,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-049: curriculum domain backbone = PDM-v0.
 - D-050: living-memory sync + repo-wide stale-reference audit her numaralı step kapanışında zorunludur.
 - D-051: 5B final knowledge-graph contract `KGC-v0`; canonical file `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`.
+- D-052: 5C final V1 foundation backbone `FBB-v0`; canonical file `docs/V1_FOUNDATION_BACKBONE.md`.
 
 ## Zorunlu yürütme — D-024 / D-027 / D-050
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → ALWAYS-CHECK living-memory sync → repo-wide stale-reference scan → sonraki adım`
@@ -122,12 +123,26 @@ Final davranış:
 
 KGC-v0 ayrıca organization-vs-capability identity, scope-relative requirement, conservative graph migration, professional/project attribution ve D-028 bounded graph traversal invariants'ını kilitledi. Ayrı Research AI kullanılmadı; 5B mevcut accepted specs arasında internal contract formalizasyonuydu. External coverage/current-industry validation 6H'de zorunlu kalır.
 
-### [ ] 5C — İlk 8–12 haftalık curriculum backbone — **AKTİF**
-### [ ] 5D — Graph architecture QA
+### [x] 5C — İlk 8–12 haftalık curriculum backbone — FBB-v0 / D-052
+**Final:** `docs/V1_FOUNDATION_BACKBONE.md`
+
+**5C final coverage:**
+- 8–12 hafta = scope-equivalent, calendar gate değil,
+- zero-entry Computer/Programming bridge,
+- Python/C/Linux/Git/Shell/early DS&A/parallel English seed subgraph,
+- KGC-v0 Skill/Objective authoring-seed skeleton,
+- PRG-v0 hard/soft prerequisite edges,
+- scope-relative technical/English/professional-workflow requirements,
+- GRE/QAB/RVR evidence-retention-diagnostic-remediation anchors,
+- 6A/6C ratification lifecycle,
+- AŞAMA 15 authoring handoff + 5D QA fixtures.
+
+### [ ] 5D — Graph architecture QA — **AKTİF**
 - cycle/dead-end,
 - hidden prerequisite,
-- duplicate canonical Skill,
-- scalability/versioning.
+- duplicate canonical Skill / Topic reuse,
+- reachability / branch isolation,
+- scalability/versioning / migration handoff.
 
 > AŞAMA 5 schema/backbone; detailed decomposition AŞAMA 6.
 
@@ -323,7 +338,7 @@ Bu bakım numaralı bir stage değildir ve 5B'yi ilerletmez.
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5B`  
-**Aktif:** **`5C — İlk 8–12 haftalık curriculum backbone`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5C`  
+**Aktif:** **`5D — Graph architecture QA`**
 
-Bir sonraki yürütme: **5C başlamadan yeni PRE-STEP GitHub refresh → V1 başlangıç curriculum backbone → POST-STEP D-050 sync + stale-reference audit.**
+Bir sonraki yürütme: **5D başlamadan yeni PRE-STEP GitHub refresh → FBB-v0 graph architecture QA → POST-STEP D-050 sync + stale-reference audit.**
