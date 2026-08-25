@@ -1,18 +1,18 @@
 # Product Decisions Log
 
-Bu dosya kalıcı ürün kararlarını kaydeder. Ayrıntılı teknik davranış ilgili canonical spec dosyalarındadır.
+Bu dosya kalıcı ürün kararlarının canonical özetidir. Ayrıntılı davranış ilgili spec dosyalarındadır.
 
 ## D-001 — Takvim/gün sayacı ana ilerleme metriği olmayacak
-**Durum:** Kabul edildi / süre ufku D-041 ile genişletildi  
-`Gün X / toplam gün` professional progress değildir; zaman tek başına readiness vermez.
+**Durum:** Kabul edildi / D-041 ile süre ufku genişletildi  
+Zaman geçirmek professional progress değildir; `Gün X / toplam gün` readiness gate'i olamaz.
 
 ## D-002 — İlerleme mastery tabanlı olacak
 **Durum:** Kabul edildi  
-Ders/task completion tek başına öğrenme değildir.
+Task/lesson completion tek başına öğrenme değildir.
 
 ## D-003 — Knowledge graph takvimden öncelikli
 **Durum:** Kabul edildi  
-Takvim kapasiteyi; prerequisite/mastery ise hangi konunun uygun olduğunu belirler.
+Takvim kapasiteyi; prerequisite/mastery konu uygunluğunu belirler.
 
 ## D-004 — Eksik konu tüm programı dondurmaz
 **Durum:** Kabul edildi  
@@ -20,7 +20,7 @@ Yalnız gerçekten bağımlı branch bekler.
 
 ## D-005 — Haftalık/aylık assessment programı değiştirecek
 **Durum:** Kabul edildi  
-Assessment yalnız rapor/not değildir; canonical evidence/state pipeline üzerinden gelecek planı etkiler.
+Sonuç yalnız rapor/not değildir; canonical evidence/state pipeline üzerinden planner'ı etkiler.
 
 ## D-006 — İngilizce paralel ilerleyecek
 **Durum:** Kabul edildi
@@ -45,7 +45,7 @@ Ana ekran `Bugün ne yapmalıyım?` sorusunu cevaplar.
 AI yardımı öğrenmeyi destekler; independent mastery yerine geçmez.
 
 ## D-012 — Full curriculum V1 ön koşulu değil
-**Durum:** Kabul edildi / kapsam D-041 ile genişletildi  
+**Durum:** Kabul edildi / D-041 ile kapsam genişletildi  
 V1 learning engine + ilk 8–12 haftalık production-quality curriculum ile release edilebilir.
 
 ## D-013 — Süreler adaptif, prerequisite/mastery daha kalıcı
@@ -162,7 +162,7 @@ Zorunlu günlük quiz/kota değildir; Objective-matched evidence, H0/assistance/
 
 ## D-042 — Python ana rotanın resmi foundation dilidir
 **Durum:** Kabul edildi — 2026-08-25  
-Python C/C++'ın yerine geçmez; automation/testing/benchmark, data/ML, infra tooling; ileride typing/testing/async/multiprocessing/networking/profiling/packaging depth içerir.
+Python C/C++'ın yerine geçmez; automation/testing/benchmark, data/ML, infra tooling; ileri Python typing/testing/async/multiprocessing/networking/profiling/packaging içerir.
 
 ## D-043 — Standalone specialization-track aşaması
 **Durum:** GERİ ÇEKİLDİ / YANLIŞ YORUM — 2026-08-25  
@@ -170,36 +170,34 @@ Kullanıcı talebi yanlış yorumlandığı için canonical değildir.
 
 ## D-044 — Full rota granular capability map'e ayrılacak; AŞAMA 6 eklendi
 **Durum:** Kabul edildi — 2026-08-25  
-Her büyük alan `Domain → Module → Topic → Skill → Learning Objective` seviyesine ayrılır; weakness/mastery/remediation mümkün olduğunca Skill/Objective düzeyinde lokalize edilir. AŞAMA 5 graph backbone, AŞAMA 6 detailed taxonomy, AŞAMA 15 first content, AŞAMA 20 full professional content'tir. Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+Her büyük alan `Domain → Module → Topic → Skill → Learning Objective` seviyesine ayrılır; weakness/mastery/remediation mümkün olduğunca Skill/Objective düzeyinde lokalize edilir. Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ## D-045 — Weekly assessment = WBA-v0 Weekly Blueprint Assessment
-**Durum:** Kabul edildi — 2026-08-25
-- Weekly assessment tek overall score/pass-fail değildir; daha geniş Objective/Skill evidence bundle üretir.
-- Item seçilmeden önce state-temelli weekly blueprint oluşturulur.
-- Role family'leri recent progress, weakness/verification, critical prerequisite, retention, integration/transfer ve gerektiğinde parallel English'tir; fixed quota değildir.
-- Fixed soru sayısı/süre/yüzde yoktur; weekly evidence GRE/RVR'ı bypass etmez.
-- PRG prerequisite fairness, variant/dependency diversity, H0 assistance standardı, invalid/provisional safety ve GRE/RVR hysteresis korunur.
-- Split/pause/resume desteklenir; incomplete/missed weekly exam failure/debt değildir.
-- Broad Domain pass/fail yazılmaz; D-044 granular localization korunur.
-- 4C için `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` ortak abstraction'ı kilitlendi.
-
-Ayrıntı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
+**Durum:** Kabul edildi — 2026-08-25  
+Item'dan önce state-temelli blueprint; multi-Skill coverage granular attribution; no fixed score/time/quota; PRG/family-diversity/H0/invalid-item/hysteresis guards; split/pause/resume; missed/incomplete exam debt değildir. Ayrıntı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
 ## D-046 — Monthly assessment = MCA-v0 Monthly Capability Assessment
-**Durum:** Kabul edildi — 2026-08-25
-- Monthly assessment tek ay sonu notu veya domain pass/fail değildir; longitudinal capability evidence bundle üretir.
-- WBA-v0 common `AssessmentBlueprint / Slot / SessionResult` contract'ı yeniden kullanılır.
-- Monthly role family'leri: longitudinal required capability, persistent weakness/verification, critical capability revalidation, delayed retention, cross-topic transfer, integrated application, gerektiğinde Technical English ve professional evidence checkpoint. Bunlar fixed quota değildir.
-- Bütün geçmiş curriculum'u cumulative olarak tekrar test etmez; state-temelli bounded longitudinal sampling yapar.
-- Recent/older balance fixed yüzdelerle değil decision value, prerequisite risk, retention ve evidence gap ile belirlenir.
-- Critical Skill sırf critical olduğu için her ay otomatik test edilmez; gerçek revalidation ihtiyacı gerekir.
-- Transfer ve integration daha geniş olabilir fakat yalnız öğretilmiş prerequisites, component-level attribution ve Objective'e uygun evidence kullanır.
-- Professional checkpoint final professional-readiness/capstone gate değildir; yalnız uygun evidence üretir.
-- Fixed soru sayısı, fixed süre, fixed pass score yoktur; daily hard capacity korunur ve monthly session safe block'lara bölünebilir.
-- H0/H1–H4, provenance, invalid/ambiguous/provisional item, root-prerequisite contamination ve GRE/RVR hysteresis kuralları aynen korunur.
-- Incomplete/missed monthly assessment failure veya exam debt değildir.
-- Raw `Python failed` gibi broad state yazılmaz; weakness D-044 gereği Skill/Objective seviyesine lokalize edilir.
-- V1 SC-016 gereği güvenilir persistent/critical gap sonucu planner/curriculum priority'yi gerçekten değiştirebilir.
-- 4D Question Bank için assessment scope, blueprint role, target/prerequisite, evidence type, family/context/diversity, rubric/evaluator, trust/version, exposure ve duration metadata handoff'u tanımlandı.
+**Durum:** Kabul edildi — 2026-08-25  
+Longitudinal state-based sampling; broader transfer/integration; critical revalidation yalnız gerçek ihtiyaçta; no cumulative-everything/pass-score; professional checkpoint final readiness değildir; H0/invalid/root-contamination/hysteresis guards; persistent gap planner'ı etkiler. Ayrıntı: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
 
-Ayrıntı: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
+## D-047 — Assessment bank = QAB-v0 Trusted Assessment Resource Bank
+**Durum:** Kabul edildi — 2026-08-25
+
+- Question Bank yalnız MCQ deposu değildir; recognition/recall/code-reading/coding/debugging/hands-on system/explanation/transfer/integrated/language/testlet/template resource'larını taşır.
+- Logical `resource_id` ile immutable published `resource_version` ayrıdır; Attempt exact version'a bağlanır.
+- Published version sessizce overwrite edilmez; yeni semantic değişiklik yeni version üretir.
+- Lifecycle `draft | candidate | validated | trusted | deprecated | invalidated | retired` olarak modellenir; lifecycle ile `use_ceiling` ayrı tutulur.
+- `use_ceiling`: practice-only, low-stakes, standard mastery, critical mastery gibi declared kullanım tavanını belirler; bank'te bulunmak otomatik strong-evidence eligibility değildir.
+- Resource exact target Skill/Objective, prerequisite, forbidden-not-yet concept, language prerequisite, activity/evidence, assessment scope, blueprint-role/intent, evaluator/tool/artifact ve duration metadata'sı taşır.
+- `variant_family`, `dependency_group/testlet`, `context_family` ve transfer profile farklı kavramlardır; near/same items independent evidence diversity'yi şişiremez.
+- Integrated task global PASS'i bütün tagged Objectives'e yayamaz; component attribution `structurally_essential + separately_observable + prerequisite-valid` olmak zorundadır.
+- Difficulty sahte hassas numeric mastery multiplier değildir; semantic difficulty + complexity profile kullanılır, empirical calibration AŞAMA 18'e bırakılır.
+- User solution exposure global content lifecycle'dan ayrıdır; exact/near item reuse fresh evidence koşullarına tabidir, fixed universal cooldown yoktur.
+- Learner exposure freshness ile content/technology freshness ayrıdır; stale technical content strong assessment'ta kullanılamaz.
+- Deprecated resource yanlış olmak zorunda değildir; invalidated resource integrity problemi taşır ve affected historical evidence audit/review akışına girebilir.
+- Selection `scope/role/evidence → lifecycle/use ceiling/freshness → prerequisite/language → evaluator/tool → exposure/family/context → duration → bounded rank` sırasıyla çalışır; full-bank scan hedeflenmez.
+- Parameterized trusted template generated instances'ı yeni independent family yapmaz.
+- AI-generated resource varsayılan olarak `candidate` başlar ve 4E validation olmadan trusted/mastery-changing bank'e otomatik yükselmez.
+- Resource hiçbir zaman doğrudan `mastery_delta` veya broad domain pass/fail taşımaz; gerçek Attempt/Artifact normal GRE/RVR/PRG pipeline'ından geçer.
+
+Ayrıntı: `docs/QUESTION_BANK_SPEC.md`.
