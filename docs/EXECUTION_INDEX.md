@@ -13,6 +13,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-043: yanlış yorum nedeniyle geri çekildi; standalone specialization stage canonical değildir.
 - D-044: **AŞAMA 6 — Granular Capability Map** planlama aşamalarının arasına eklendi; henüz başlanmamış future stages yeniden indekslendi.
 - D-045: 4B final weekly model `WBA-v0 — Weekly Blueprint Assessment`.
+- D-046: 4C final monthly model `MCA-v0 — Monthly Capability Assessment`.
 
 > Renumber kuralı: tamamlanmış `1–4` kodları değişmez. D-044 yalnız henüz başlanmamış future stages'i yeniden indekslemiştir.
 
@@ -53,14 +54,20 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - [x] **4A — Günlük mikro değerlendirme** — `docs/DAILY_MICRO_ASSESSMENT_SPEC.md` — DMA-v0 / D-040
 - [x] **4B — Haftalık sınav** — `docs/WEEKLY_ASSESSMENT_SPEC.md` — WBA-v0 / D-045
   - blueprint-before-items,
-  - multi-Skill/Objectives but granular attribution,
+  - multi-Skill/Objectives with granular attribution,
   - no fixed question/time/category quota,
   - capacity-aware split/pause/resume,
   - incomplete/missed exam != failure/debt,
-  - GRE/RVR/PRG/PBR integration,
-  - common blueprint/result abstraction for 4C.
-- [ ] **4C — Aylık yeterlilik sınavı** **AKTİF**
-- [ ] **4D — Soru bankası**
+  - GRE/RVR/PRG/PBR integration.
+- [x] **4C — Aylık yeterlilik sınavı** — `docs/MONTHLY_ASSESSMENT_SPEC.md` — MCA-v0 / D-046
+  - longitudinal capability blueprint,
+  - broader transfer/integration + critical revalidation,
+  - recent/older state-based sampling; not cumulative-everything,
+  - no fixed score/time/quota,
+  - professional checkpoint != professional-readiness gate,
+  - granular evidence → planner/curriculum priority,
+  - Question Bank metadata handoff.
+- [ ] **4D — Soru bankası** **AKTİF**
 - [ ] **4E — AI-generated soru doğrulaması**
 
 ---
@@ -238,12 +245,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4B`  
-**Aktif:** **`4C — Aylık yeterlilik sınavı`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4C`  
+**Aktif:** **`4D — Soru bankası`**
 
 **Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
 **Route update:** D-042 Python foundation.  
 **Plan correction:** D-043 withdrawn; D-044 granular capability map / AŞAMA 6.  
-**Assessment update:** D-045 WBA-v0.
+**Assessment:** D-045 WBA-v0; D-046 MCA-v0.
 
-4C başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+4D başlamadan yeni PRE-STEP GitHub refresh zorunludur.
