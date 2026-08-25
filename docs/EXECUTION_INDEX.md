@@ -16,6 +16,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-046: 4C final monthly model `MCA-v0`.
 - D-047: 4D final assessment resource bank modeli `QAB-v0`.
 - D-048: 4E final AI-generated assessment validation modeli `AIV-v0`.
+- D-049: 5A final domain backbone modeli `PDM-v0`.
 
 ---
 
@@ -53,43 +54,24 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 # AŞAMA 4 — Sınav ve Değerlendirme Sistemini Tasarla ✅
 - [x] **4A — Günlük mikro değerlendirme** — `docs/DAILY_MICRO_ASSESSMENT_SPEC.md` — DMA-v0 / D-040
 - [x] **4B — Haftalık sınav** — `docs/WEEKLY_ASSESSMENT_SPEC.md` — WBA-v0 / D-045
-  - blueprint-before-items,
-  - multi-Skill/Objectives with granular attribution,
-  - no fixed question/time/category quota,
-  - split/pause/resume,
-  - missed/incomplete exam != failure/debt.
 - [x] **4C — Aylık yeterlilik sınavı** — `docs/MONTHLY_ASSESSMENT_SPEC.md` — MCA-v0 / D-046
-  - longitudinal state-based sampling,
-  - broader transfer/integration + need-based critical revalidation,
-  - no cumulative-everything/pass-score model,
-  - professional checkpoint != professional-readiness gate.
 - [x] **4D — Soru / assessment resource bank** — `docs/QUESTION_BANK_SPEC.md` — QAB-v0 / D-047
-  - logical ID + immutable published version,
-  - lifecycle/trust/use-ceiling,
-  - exact Skill/Objective/prerequisite/evidence attribution,
-  - scope/blueprint-role eligibility,
-  - variant/dependency/context/transfer semantics,
-  - evaluator/tool/artifact/duration metadata,
-  - per-user exposure + solution leakage,
-  - content/technology freshness,
-  - bounded indexed selection.
 - [x] **4E — AI-generated soru doğrulaması** — `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md` — AIV-v0 / D-048
-  - generated candidate starts untrusted/ineligible,
-  - schema/correctness/answer-rubric/ambiguity/target/prerequisite/language checks,
-  - duplicate/family/dependency/context/transfer validation,
-  - evaluator/tool/artifact/freshness/execution-safety checks,
-  - fail-safe semantic use-ceiling promotion,
-  - no self-certification/majority-vote truth,
-  - trusted-template inheritance limits,
-  - revalidation/invalidation + historical evidence repair.
 
 > **AŞAMA 4 tamamlandı.**
 
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph İskeleti
-- [ ] **5A — Ana domain haritası** **AKTİF** — 4+ year professional domain envelope; Python dahil common foundation
-- [ ] **5B — Graph / Topic metadata sözleşmesi** — prerequisite, evidence, retention, criticality, versioning
+- [x] **5A — Ana domain haritası** — `docs/CURRICULUM_DOMAIN_MAP.md` — PDM-v0 / D-049
+  - 23 route family canonical high-level envelope,
+  - Technical English parallel,
+  - Python/C/Linux early complementary foundations,
+  - systems → distributed/platform → performance → GPU → inference → AI infra,
+  - ML/Transformer supporting domain,
+  - professional/OSS/project/capstone cross-cutting evidence layer,
+  - domain-level authoring relations != runtime Skill prerequisite.
+- [ ] **5B — Graph / Topic metadata sözleşmesi** **AKTİF** — Domain/Module/Topic/Skill/Objective schema, relations, prerequisite/evidence/retention/version contract
 - [ ] **5C — İlk 8–12 haftalık curriculum backbone** — V1 başlangıç alt grafiğinin iskeleti
 - [ ] **5D — Graph architecture QA** — cycle/dead-end/hidden prerequisite ve genişleme kontrolü
 
@@ -254,14 +236,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`  
-**AŞAMA 4:** ✅ TAMAMLANDI  
-**Aktif:** **`5A — Ana domain haritası`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
+**Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
 
-**Long-term target:** D-041.  
-**Route:** D-042 Python foundation.  
-**Granularity:** D-044 AŞAMA 6.  
-**Assessment:** D-040 DMA-v0, D-045 WBA-v0, D-046 MCA-v0, D-047 QAB-v0, D-048 AIV-v0.  
-**Geri çekilen:** D-043 specialization-stage yorumu.
-
-5A başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+5B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
