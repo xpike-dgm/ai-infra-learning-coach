@@ -11,11 +11,10 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi.
 - D-042: Python ana technical foundation rotasına resmi olarak eklendi.
 - D-043: yanlış yorum nedeniyle geri çekildi; standalone specialization stage canonical değildir.
-- D-044: **AŞAMA 6 — Granular Capability Map** planlama aşamalarının arasına eklendi; henüz başlanmamış future stages yeniden indekslendi.
-- D-045: 4B final weekly model `WBA-v0 — Weekly Blueprint Assessment`.
-- D-046: 4C final monthly model `MCA-v0 — Monthly Capability Assessment`.
-
-> Renumber kuralı: tamamlanmış `1–4` kodları değişmez. D-044 yalnız henüz başlanmamış future stages'i yeniden indekslemiştir.
+- D-044: **AŞAMA 6 — Granular Capability Map** planlama aşamalarının arasına eklendi.
+- D-045: 4B final weekly model `WBA-v0`.
+- D-046: 4C final monthly model `MCA-v0`.
+- D-047: 4D final assessment resource bank modeli `QAB-v0`.
 
 ---
 
@@ -56,19 +55,25 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
   - blueprint-before-items,
   - multi-Skill/Objectives with granular attribution,
   - no fixed question/time/category quota,
-  - capacity-aware split/pause/resume,
-  - incomplete/missed exam != failure/debt,
-  - GRE/RVR/PRG/PBR integration.
+  - split/pause/resume,
+  - missed/incomplete exam != failure/debt.
 - [x] **4C — Aylık yeterlilik sınavı** — `docs/MONTHLY_ASSESSMENT_SPEC.md` — MCA-v0 / D-046
-  - longitudinal capability blueprint,
-  - broader transfer/integration + critical revalidation,
-  - recent/older state-based sampling; not cumulative-everything,
-  - no fixed score/time/quota,
-  - professional checkpoint != professional-readiness gate,
-  - granular evidence → planner/curriculum priority,
-  - Question Bank metadata handoff.
-- [ ] **4D — Soru bankası** **AKTİF**
-- [ ] **4E — AI-generated soru doğrulaması**
+  - longitudinal state-based sampling,
+  - broader transfer/integration + need-based critical revalidation,
+  - no cumulative-everything/pass-score model,
+  - professional checkpoint != professional-readiness gate.
+- [x] **4D — Soru / assessment resource bank** — `docs/QUESTION_BANK_SPEC.md` — QAB-v0 / D-047
+  - logical ID + immutable published version,
+  - lifecycle/trust/use-ceiling,
+  - exact Skill/Objective/prerequisite/evidence attribution,
+  - scope/blueprint-role eligibility,
+  - variant/dependency/context/transfer semantics,
+  - evaluator/tool/artifact/duration metadata,
+  - per-user exposure + solution leakage,
+  - content/technology freshness,
+  - bounded indexed selection,
+  - AI candidate 4E validation handoff.
+- [ ] **4E — AI-generated soru doğrulaması** **AKTİF**
 
 ---
 
@@ -93,8 +98,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **6F — Professional engineering / project map** — testing/build/debug/profiling, OSS workflow, large projects, capstone capability decomposition
 - [ ] **6G — Weakness localization + remediation mapping** — zayıflığın Skill/Objective düzeyinde ayrı tutulması
 - [ ] **6H — Coverage / prerequisite / Research QA** — eksik/duplicate/hidden prerequisite audit + bağımsız Research AI doğrulaması
-
-> Örnek hedef: `Python zayıf` yerine `Python → Control Flow → Loops → while termination` gibi hedefli tanı ve remediation.
 
 ---
 
@@ -121,7 +124,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
 - [ ] **9A — Mobil teknoloji seçimi**
 - [ ] **9B — Veri saklama / local-first**
-- [ ] **9C — Domain veri modeli** — granular Skill/Objective state, years-long history, curriculum versioning
+- [ ] **9C — Domain veri modeli** — granular Skill/Objective state, assessment-resource versions/exposure, years-long history, curriculum versioning
 - [ ] **9D — Servis sınırları**
 - [ ] **9E — AI entegrasyon mimarisi**
 - [ ] **9F — Test stratejisi**
@@ -186,8 +189,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **15G — Assessment content**
 - [ ] **15H — Content QA**
 
-> AŞAMA 15, AŞAMA 6 capability map'ini kullanarak yalnız ilk production-quality 8–12 haftalık paketi üretir; full 4+ year curriculum değildir.
-
 ---
 
 # AŞAMA 16 — İlerleme, Analitik, Ayarlar ve Günlük Kullanım Araçları
@@ -211,7 +212,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **18A — Pilot başlangıcı**
 - [ ] **18B — Planner gözlemi**
 - [ ] **18C — Mastery kalibrasyonu**
-- [ ] **18D — Assessment kalibrasyonu**
+- [ ] **18D — Assessment/item kalibrasyonu**
 - [ ] **18E — Teknik / performance QA**
 - [ ] **18F — Düzeltme döngüsü**
 
@@ -239,18 +240,17 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [ ] **20H — Open Source + Engineering Practice + Career Readiness**
 - [ ] **20I — Sürekli Curriculum QA + Büyük Entegre Projeler + Professional Capstones**
 
-> AŞAMA 20 yeni konu haritasını sıfırdan icat etmez; AŞAMA 6'da üretilen granular capability map'i yıllar boyunca gerçek içerik/evidence/project paketlerine dönüştürür.
-
 ---
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4C`  
-**Aktif:** **`4D — Soru bankası`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4D`  
+**Aktif:** **`4E — AI-generated soru doğrulaması`**
 
-**Long-term target:** D-041 / `docs/PROFESSIONAL_READINESS_TARGET.md`.  
-**Route update:** D-042 Python foundation.  
-**Plan correction:** D-043 withdrawn; D-044 granular capability map / AŞAMA 6.  
-**Assessment:** D-045 WBA-v0; D-046 MCA-v0.
+**Long-term target:** D-041.  
+**Route:** D-042 Python foundation.  
+**Granularity:** D-044 AŞAMA 6.  
+**Assessment:** D-040 DMA-v0, D-045 WBA-v0, D-046 MCA-v0, D-047 QAB-v0.  
+**Geri çekilen:** D-043 specialization-stage yorumu.
 
-4D başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+4E başlamadan yeni PRE-STEP GitHub refresh zorunludur.
