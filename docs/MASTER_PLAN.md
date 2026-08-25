@@ -20,11 +20,21 @@ V1 ayrımı korunur: full professional curriculum bitmeden, learning engine + il
 
 - **D-042:** Python common foundation'ın resmi parçasıdır; C/C++ yerine geçmez.
 - **D-043:** önceki “sona specialization stage ekle” yorumu kullanıcı talebini yanlış anlamıştır ve geri çekilmiştir.
-- **D-044:** asıl ihtiyaç, ana öğrenme rotasındaki her büyük domain'i uygulamanın ayrı ayrı öğretebileceği ve zayıflığı lokalize edebileceği `Module → Topic → Skill → Objective` seviyesine kapsamlı biçimde bölmektir.
-- Bu nedenle **AŞAMA 6 — Granular Capability Map** AŞAMA 5'ten sonra planlama aşamalarının arasına eklenmiştir.
-- Henüz başlanmamış eski 6–19 aşamaları birer sıra kaydırılmış; eski yanlış AŞAMA 20 kaldırılmıştır. Toplam aşama sayısı yine 20'dir.
+- **D-044:** ana rotadaki her büyük domain uygulamanın ayrı öğretebildiği/ölçebildiği `Module → Topic → Skill → Objective` seviyesine kapsamlı biçimde bölünecektir.
+- Bu nedenle **AŞAMA 6 — Granular Capability Map** AŞAMA 5'ten sonra planlama aşamalarının arasına eklendi; henüz başlanmamış future stages yeniden indekslendi.
 
 Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
+
+## 2026-08-25 assessment güncellemesi — D-045
+
+- 4B final model: **`WBA-v0 — Weekly Blueprint Assessment`**.
+- Weekly exam tek score/pass-fail sistemi değildir; item'lardan önce state-temelli blueprint üretir.
+- Evidence DMA/GRE/RVR/PRG/PBR contract'larını bypass etmez.
+- Fixed soru sayısı/süre/kategori yüzdesi yoktur.
+- Incomplete/missed weekly exam failure/debt değildir.
+- D-044 granular Skill/Objective localization korunur.
+
+Canonical: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
 
 ## Zorunlu yürütme
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → POST-STEP GitHub sync → checklist/completion note → sonraki adım`
@@ -49,9 +59,9 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [x] 2E — Mastery formülü v0 — GRE-v0 — D-031
 ### [x] 2F — Unutma modeli — RVR-v0 — D-032
 
-**D-044 clarification:** D-021 hiyerarşisi korunur; geniş Domain/Topic başlıkları tanı atomu değildir. Zayıflık ve remediation mümkün olduğunca canonical Skill / Objective seviyesinde lokalize edilir.
+**D-044 clarification:** geniş Domain/Topic başlıkları weakness/mastery atomu değildir. Zayıflık/remediation mümkün olduğunca canonical Skill / Objective seviyesinde lokalize edilir.
 
-> **AŞAMA 2 tamamlandı — yeniden açılmadı; yalnız D-044 ile tutarlı granularity clarification eklendi.**
+> **AŞAMA 2 tamamlandı — yeniden açılmadı.**
 
 ---
 
@@ -115,41 +125,62 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - invalid/provisional item safety,
 - evidence→GRE/RVR→replan integration.
 
-### [ ] 4B — Haftalık sınav — **AKTİF**
+### [x] 4B — Haftalık sınav — WBA-v0 / D-045
+**Final:** `docs/WEEKLY_ASSESSMENT_SPEC.md`
+
+- weekly assessment tek overall score/pass-fail değildir,
+- item seçilmeden önce `WeeklyAssessmentBlueprint` oluşturulur,
+- blueprint role family'leri: recent required progress, weakness/verification, critical prerequisite confidence, retention due, integration/transfer, gerektiğinde parallel English,
+- role family'leri fixed quota değildir,
+- fixed soru sayısı / fixed süre / fixed kategori yüzdesi yoktur,
+- weekly evidence sırf weekly olduğu için ekstra weight almaz; GRE-v0/RVR-v0 normal pipeline'ına girer,
+- PRG prerequisite fairness + root-cause contamination guard,
+- variant/dependency family diversity,
+- Objective-specific evidence modality,
+- H0 independent measurement; H1–H4 positive independent mastery değildir,
+- invalid/ambiguous/prerequisite-contaminated/provisional item safety,
+- safe split/pause/resume; incomplete session failure değildir,
+- missed weekly exam backlog/debt/stack değildir,
+- first clean contradiction instant unmastery değildir,
+- raw score broad `Python failed` gibi coarse state yazamaz; D-044 granular weakness localization korunur,
+- common `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` abstraction 4C için kilitlendi.
+
+**PRE/POST notu:** 4B fresh GitHub PRE-STEP refresh ile yürütüldü. Ayrı Research AI kullanılmadı; calibrated soru sayısı/puan/süre iddiası üretilmedi. Empirik calibration AŞAMA 18'e bırakıldı.
+
+### [ ] 4C — Aylık yeterlilik sınavı — **AKTİF**
 Kesinleştirilecek:
-- weekly assessment amacı ve DMA-v0'dan farkı,
-- Skill/Objective blueprint,
-- required/critical coverage,
-- modality/family/context diversity,
-- weakness + recent progress + prerequisite risk dengesi,
-- capacity / pause / incomplete,
-- H0/H1–H4,
-- invalid/provisional item safety,
-- result → GRE/RVR/remediation/PRG/planner,
-- 4C ortak contract.
-
-> D-044 etkisi: 4B policy şimdi tasarlanabilir; gerçek item blueprint'leri ileride AŞAMA 6'nın granular Skill/Objective IDs'lerini kullanacaktır.
-
-### [ ] 4C — Aylık yeterlilik sınavı
+- monthly purpose/scope ve DMA/WBA farkı,
+- WBA common blueprint/result contract'ının monthly specialization'ı,
 - daha geniş transfer/integration,
-- critical prerequisite revalidation,
-- tek final puanla mastery vermeme.
+- critical prerequisite/capability revalidation,
+- older/retention + recent progress dengesi,
+- professional-readiness'e doğru daha geniş evidence aggregation ama final readiness ile karıştırmama,
+- fixed total score ile mastery vermeme,
+- capacity / safe split / pause / incomplete,
+- H0/H1–H4,
+- invalid/ambiguous/provisional item safety,
+- D-044 granular Skill/Objective localization,
+- result → GRE/RVR/remediation/PRG/planner,
+- 4D Question Bank schema handoff.
 
 ### [ ] 4D — Soru bankası
 - trusted item metadata,
 - variant/dependency group,
 - Objective attribution,
-- validation/versioning.
+- difficulty/complexity,
+- validation/versioning,
+- assessment blueprint slot matching,
+- long curriculum'da scalable item lifecycle.
 
 ### [ ] 4E — AI-generated soru doğrulaması
 - AI candidate trusted bank'e otomatik giriş değildir,
-- correctness/ambiguity/prerequisite/duplicate/target-fit validator.
+- correctness/ambiguity/prerequisite/duplicate/target-fit/rubric-evaluator validator.
 
 ---
 
 # AŞAMA 5 — Curriculum ve Knowledge Graph İskeleti
 
-AŞAMA 5 artık özellikle **schema/backbone** aşamasıdır; full ayrıntılı konu listesi burada yazılmaz.
+AŞAMA 5 özellikle **schema/backbone** aşamasıdır; full ayrıntılı konu listesi burada yazılmaz.
 
 ### [ ] 5A — Ana domain haritası
 - 4+ year professional domain envelope,
@@ -179,7 +210,7 @@ AŞAMA 5 artık özellikle **schema/backbone** aşamasıdır; full ayrıntılı 
 - duplicate canonical Skill,
 - scalability / versioning kontrolü.
 
-**Çıkış:** AŞAMA 6'nın detaylı capability taxonomy'sini taşıyacak sağlam graph sözleşmesi.
+**Çıkış:** AŞAMA 6 detailed capability taxonomy'sini taşıyacak graph sözleşmesi.
 
 ---
 
@@ -197,7 +228,7 @@ Amaç: uygulamanın `Python zayıf` demesi yerine örneğin `Python → Control 
 ### [ ] 6B — Full-route decomposition blueprint
 Şu ana rotanın tamamı için ortak decomposition şablonu:
 
-`Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A foundations → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel → Networking → Distributed Systems + Storage/DB → Containers / Cloud / Observability → Performance Engineering / Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM/SGLang/TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → OSS + large projects + capstone`
+`Technical English (parallel) → Python → C → Linux + Git + Shell → DS&A → Modern C++ → Computer Architecture → OS + Memory → Concurrency / Parallel → Networking → Distributed + Storage/DB → Containers / Cloud / Observability → Performance / Profiling → GPU Architecture → CUDA → Triton → ML + Transformer → LLM Inference Internals → serving systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → OSS + large projects + capstone`
 
 ### [ ] 6C — Foundations detailed map
 - Technical English,
@@ -288,6 +319,7 @@ Bağlayıcı: `docs/ENGLISH_FOUNDATION_RULES.md` + AŞAMA 6 Technical English ca
 ### [ ] 9C — Domain veri modeli
 - canonical Skill/Objective state,
 - granular weakness/remediation state,
+- assessment blueprint/session/result references,
 - years-long curriculum/user history,
 - curriculum versions/migrations,
 - project/capstone evidence references.
@@ -328,7 +360,7 @@ Bağlayıcı: `docs/ENGLISH_FOUNDATION_RULES.md` + AŞAMA 6 Technical English ca
 ---
 
 # AŞAMA 13 — Assessment + Retention + Remediation Implementasyonu
-### [ ] 13A — Haftalık sınav
+### [ ] 13A — Haftalık sınav — WBA-v0 implementation
 ### [ ] 13B — Aylık sınav
 ### [ ] 13C — Spaced repetition
 ### [ ] 13D — Remediation Engine
@@ -389,10 +421,15 @@ Her paket mümkün olduğunca `concept → guided → independent → debugging 
 ### [ ] 18B — Planner gözlemi
 ### [ ] 18C — Mastery kalibrasyonu
 ### [ ] 18D — Assessment kalibrasyonu
+- WBA-v0 session duration/user burden,
+- blueprint target balance,
+- false-positive/false-negative behavior,
+- invalid/provisional item rate,
+- split/pause/incomplete UX.
 ### [ ] 18E — Teknik / performance QA
 ### [ ] 18F — Düzeltme döngüsü
 
-Pilot, granular Skill diagnosis'ın gerçekten doğru remediation üretip üretmediğini de test eder.
+Pilot granular Skill diagnosis'ın doğru remediation üretip üretmediğini de test eder.
 
 ---
 
@@ -436,10 +473,10 @@ AŞAMA 20'nin amacı AŞAMA 6'da haritalanan full professional route'u modül mo
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A`  
-**Aktif:** **`4B — Haftalık sınav`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4B`  
+**Aktif:** **`4C — Aylık yeterlilik sınavı`**
 
-**Bağlayıcı:** D-041 professional target; D-042 Python foundation; D-044 granular capability map.  
+**Bağlayıcı:** D-041 professional target; D-042 Python foundation; D-044 granular capability map; D-045 WBA-v0.  
 **Geri çekilen:** D-043 specialization-stage yorumu.
 
-Bir sonraki yürütme: **4B başlamadan yeni PRE-STEP GitHub refresh → 4B weekly assessment policy → POST-STEP sync.**
+Bir sonraki yürütme: **4C başlamadan yeni PRE-STEP GitHub refresh → 4C monthly assessment policy → POST-STEP sync.**
