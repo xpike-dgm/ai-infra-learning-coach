@@ -277,7 +277,7 @@ related_refs = [skill.pointer_dereference]
 
 # 8. Canonical reason-code family'leri
 
-Aşağıdaki liste V1 baseline'dır. UI string'leri 7A–7G'de değişebilir; semantic code kimlikleri implementasyon için kararlı tutulur.
+Aşağıdaki liste V1 baseline'dır. UI string'leri 8A–8G'de değişebilir; semantic code kimlikleri implementasyon için kararlı tutulur.
 
 ## 8.1 LearningNeed / state
 
@@ -812,7 +812,7 @@ V1 beklentileri:
 - eski trace'ler analytics/debug ihtiyacına göre compact saklanabilir,
 - user-facing explanation template/local mapping ile anlık üretilebilir.
 
-Exact retention/log compaction policy 8C/15B/17E'de kesinleşir.
+Exact retention/log compaction policy 9C/16B/18E'de kesinleşir.
 
 ---
 

@@ -172,3 +172,15 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - 5A son tamamlanan numaralı adım olarak kaldı.
 - **5B hâlâ aktif ve henüz yürütülmedi.**
 - Önceki GRE/RVR/PBR/PRG/DMA/WBA/MCA/QAB/AIV/PDM kararlarının davranışı değiştirilmedi.
+
+---
+
+### 2026-08-25 — D-050 repository-wide documentation hygiene tamamlandı
+- Kullanıcının onayıyla 5B başlatılmadan önce repo-wide dokümantasyon cleanup devam ettirildi.
+- D-044 future-stage reindex'i için `docs/STAGE_REINDEX_MAP.md` oluşturuldu.
+- D-044 öncesinde tamamlanmış stable spec'lerdeki **future-stage pointer** drift'leri yalnız referans düzeyinde düzeltildi; GRE/RVR/PBR/PRG/DMA ve diğer davranış contract'ları değiştirilmedi.
+- Historical Research AI/provenance belgeleri sessizce yeniden yazılmadı; legacy future-stage numaraları için explicit D-050/D-044 hygiene note eklendi.
+- `README`, `START_HERE` ve `PROJECT_MEMORY_PROTOCOL` stage-reindex map'e navigasyon verecek şekilde güncellendi.
+- Önceki cleanup'ta stale `PROJECT_CONTEXT` 5B'ye senkronlandı, `docs/TODO.md` silindi, `LEARNING_ENGINE.md` historical/superseded pointer'a, `ENGLISH_TRACK.md` non-canonical seed notes'a çevrildi.
+- Bu hygiene turu **5B execution değildir** ve execution state'i ilerletmez.
+- Canonical durum cleanup sonunda hâlâ: **5A tamamlandı; 5B aktif ve henüz yürütülmedi**.

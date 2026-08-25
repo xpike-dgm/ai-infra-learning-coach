@@ -1,5 +1,8 @@
 # 2E Research Validation — Mastery Formula v0
 
+> **D-050 / D-044 hygiene note (2026-08-25):** Bu tarihsel araştırma/provenance belgesindeki ileride yapılacak aşamalara ait eski numaralar D-044 öncesi planı yansıtabilir. Güncel karşılık için `docs/STAGE_REINDEX_MAP.md` ve `docs/EXECUTION_INDEX.md` kullanılır. Tarihsel araştırma metni sessizce yeniden yazılmamıştır.
+
+
 **Adım:** 2E — Mastery formülü v0  
 **Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-24

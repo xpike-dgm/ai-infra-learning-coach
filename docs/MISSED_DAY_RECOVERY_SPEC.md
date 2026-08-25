@@ -285,7 +285,7 @@ V1 tasarım beklentisi:
 - duplicate suppression,
 - PBR için gereken top candidate set'ini incremental üretme.
 
-Exact query/candidate limitleri 8C/11C/17E performans aşamalarında kalibre edilir; 3F bilimsel olmayan sabit `10 review` limiti koymaz.
+Exact query/candidate limitleri 9C/12C/18E performans aşamalarında kalibre edilir; 3F bilimsel olmayan sabit `10 review` limiti koymaz.
 
 ---
 
@@ -512,13 +512,13 @@ LLM:
 # 20. 3F'de bilinçli olarak ertelenenler
 
 3F şunları finalleştirmez:
-- kullanıcıya gösterilecek exact dönüş metinleri / reason codes → 3G / 7C,
+- kullanıcıya gösterilecek exact dönüş metinleri / reason codes → 3G / 8C,
 - full planner pseudocode → 3G,
 - scenario simulation acceptance → 3H,
-- DB/index/query implementation → 8C / 11C,
-- notification cadence → 15E,
-- exact performance/candidate scan limits → 17E,
-- retention interval calibration → 17C.
+- DB/index/query implementation → 9C / 12C,
+- notification cadence → 16E,
+- exact performance/candidate scan limits → 18E,
+- retention interval calibration → 18C.
 
 ---
 

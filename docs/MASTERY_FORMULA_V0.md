@@ -172,7 +172,7 @@ Her Objective için zaman sırasına göre son en fazla `M` eligible independent
 RECENT_WINDOW_MAX_GROUPS_V0 = 5
 ```
 
-Bu sayı **engineering heuristic**'tir ve 17C'de kalibre edilir.
+Bu sayı **engineering heuristic**'tir ve 18C'de kalibre edilir.
 
 Objective score:
 
@@ -219,7 +219,7 @@ UI ayrık state gösterebilir:
 - Yetkin
 - Zayıflıyor / Pekiştirme Gerekli
 
-Threshold 17C pilotunda false-positive / false-negative sonuçlarına göre değişebilir.
+Threshold 18C pilotunda false-positive / false-negative sonuçlarına göre değişebilir.
 
 ---
 
@@ -347,7 +347,7 @@ invalid
 
 `provisional` evidence critical mastery gate'ini tek başına karşılayamaz.
 
-Sistem fresh farklı-modality check, deterministic check veya ileride 13F'de kalibre edilmiş evaluator policy isteyebilir.
+Sistem fresh farklı-modality check, deterministic check veya ileride 14F'de kalibre edilmiş evaluator policy isteyebilir.
 
 ## `invalid`
 
@@ -358,7 +358,7 @@ Sistem fresh farklı-modality check, deterministic check veya ileride 13F'de kal
 
 Score'a girmez.
 
-13F'de gerçek benchmark ile LLM evaluator policy yeniden ele alınacaktır.
+14F'de gerçek benchmark ile LLM evaluator policy yeniden ele alınacaktır.
 
 ---
 
@@ -581,7 +581,7 @@ Yeni evidence geldiğinde küçük bounded yapı güncellenir.
 
 Correction/invalidation durumunda güvenli targeted recalculation yolu bulunur.
 
-Kesin DB schema 8C, implementation 11A'da.
+Kesin DB schema 9C, implementation 12A'da.
 
 ---
 
@@ -605,7 +605,7 @@ Bu parametrelerin `0.80`, `5`, `2`, `3` gibi numeric bölümleri calibration can
 
 ---
 
-# 23. Pilot calibration — 17C
+# 23. Pilot calibration — 18C
 
 Loglanacak ve analiz edilecek ana çıktılar:
 

@@ -55,7 +55,7 @@ UI'da daha kullanıcı dostu Türkçe etiketler kullanılabilir:
 | `weakening` | Tekrar Gerekebilir / Zayıflıyor |
 | `remediation_required` | Pekiştirme Gerekli |
 
-UI kelimeleri daha sonra 7E'de kesinleşebilir; internal state kimlikleri sabit tutulmalıdır.
+UI kelimeleri daha sonra 8E'de kesinleşebilir; internal state kimlikleri sabit tutulmalıdır.
 
 ---
 
@@ -343,7 +343,7 @@ Topic state ile coverage tek alan değildir.
 - `coverage_complete`
 - `diagnostic_coverage_waiver`
 
-Kesin DB şeması 8C'de belirlenecektir.
+Kesin DB şeması 9C'de belirlenecektir.
 
 Örnek:
 
@@ -396,7 +396,7 @@ Her transition ileride en az şu tür bilgileri taşıyabilmelidir:
 - `remediation_recovered`
 - `curriculum_requirement_changed`
 
-Kesin event/data schema 8C'de belirlenir.
+Kesin event/data schema 9C'de belirlenir.
 
 ---
 
@@ -471,7 +471,7 @@ Aşağıdakiler sonraki adımlara aittir:
 - retention risk formülü ve spaced repetition interval'leri → **2F**
 - planner priority puanları ve günlük kapasite → **Aşama 3**
 - assessment composition → **Aşama 4**
-- kesin DB/state event schema → **8C**
+- kesin DB/state event schema → **9C**
 
 Bu değerler 2B state machine içine keyfi biçimde gömülmemiştir.
 

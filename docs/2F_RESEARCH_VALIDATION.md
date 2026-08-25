@@ -1,5 +1,8 @@
 # 2F Research Validation — Retention / Forgetting / Spaced Repetition
 
+> **D-050 / D-044 hygiene note (2026-08-25):** Bu tarihsel araştırma/provenance belgesindeki ileride yapılacak aşamalara ait eski numaralar D-044 öncesi planı yansıtabilir. Güncel karşılık için `docs/STAGE_REINDEX_MAP.md` ve `docs/EXECUTION_INDEX.md` kullanılır. Tarihsel araştırma metni sessizce yeniden yazılmamıştır.
+
+
 **Adım:** 2F  
 **Tarih:** 2026-08-24  
 **Durum:** TAMAMLANDI — Research AI raporu yönetici tarafından doğrulandı ve ürün kararına sentezlendi.

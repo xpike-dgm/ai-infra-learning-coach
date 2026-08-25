@@ -371,7 +371,7 @@ UI sade açıklama gösterebilir; formül/probability iddiası yapmaz.
 
 ## 18. Compact sufficient state
 
-Kesin DB schema 8C'de. Behavior-level state:
+Kesin DB schema 9C'de. Behavior-level state:
 ```text
 SkillRetentionState
 - skill_id
@@ -424,7 +424,7 @@ D-028:
 
 ---
 
-## 21. Pilot calibration — 17C
+## 21. Pilot calibration — 18C
 
 Ölçülecekler:
 - delayed H0 success by profile × interval,

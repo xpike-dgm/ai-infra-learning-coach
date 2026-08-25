@@ -121,6 +121,8 @@ POST-STEP ALWAYS-CHECK:
 README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi rolü gerçekten etkilenirse güncellenir.
 
 ## 6. Yeni sohbet/agent okuma sırası
+> D-044 öncesi bir stable/historical belgede eski future-stage numarası görülürse, current execution'ı değiştirmeden önce `docs/STAGE_REINDEX_MAP.md` ile karşılığı doğrulanır.
+
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
 3. `PROJECT_CONTEXT.md`

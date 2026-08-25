@@ -502,7 +502,7 @@ Bu nedenle curriculum authoring sırasında objective kavramsal olarak şu bilgi
 - objective'in transfer gerektirip gerektirmediği
 - objective'in retention takibine tabi olup olmadığı
 
-Kesin database schema 8C'de tasarlanacaktır.
+Kesin database schema 9C'de tasarlanacaktır.
 
 ### Örnek A — kavramsal objective
 
@@ -618,7 +618,7 @@ Ancak şunlar 2D'ye bırakılır:
 
 # 13. Evidence event için kavramsal kayıt sözleşmesi
 
-Kesin DB schema 8C'ye ait olmakla birlikte, sistemin evidence yorumlayabilmesi için bir event kavramsal olarak şu alanları taşıyabilmelidir:
+Kesin DB schema 9C'ye ait olmakla birlikte, sistemin evidence yorumlayabilmesi için bir event kavramsal olarak şu alanları taşıyabilmelidir:
 
 ```text
 EvidenceEvent
@@ -642,7 +642,7 @@ EvidenceEvent
 - artifact/output reference (varsa)
 ```
 
-Bu bir database migration değildir; 8C için davranış sözleşmesidir.
+Bu bir database migration değildir; 9C için davranış sözleşmesidir.
 
 ---
 
@@ -698,8 +698,8 @@ Aşağıdakiler sonraki adımlara bırakılmıştır:
 - günlük/haftalık/aylık assessment composition → **Aşama 4**
 - Question Bank schema → **4D**
 - AI-generated item validation → **4E**
-- exact database schema → **8C**
-- code evaluator/compiler mimarisi → **8E / Aşama 13**
+- exact database schema → **9C**
+- code evaluator/compiler mimarisi → **9E / Aşama 14**
 
 ---
 

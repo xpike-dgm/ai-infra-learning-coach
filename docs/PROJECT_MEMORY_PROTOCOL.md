@@ -199,6 +199,8 @@ Aynı senkron turunda:
 
 Bu tarama yapılmadan reindex tamamlanmış sayılmaz.
 
+Canonical legacy→current future-stage çeviri kaydı: `docs/STAGE_REINDEX_MAP.md`. Bu map current execution source of truth değildir; current adımlar için daima `EXECUTION_INDEX.md` / `MASTER_PLAN.md` kullanılır.
+
 ---
 
 # 6. Gereksiz / duplicate doküman politikası

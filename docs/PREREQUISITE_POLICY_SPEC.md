@@ -263,7 +263,7 @@ PrerequisiteDecision
 Bu çıktı:
 - 3C priority'ye,
 - 3G explainability'ye,
-- ileride 11B Prerequisite Engine'e
+- ileride 12B Prerequisite Engine'e
 
 girdi olur.
 
@@ -543,7 +543,7 @@ D-028 gereği:
 - state change yalnız affected downstream candidates/needs'i invalidate edebilir,
 - cycle V1 curriculum QA'da invalid graph olarak reddedilmelidir.
 
-Exact DB/index implementasyonu 8C/11B'ye aittir.
+Exact DB/index implementasyonu 9C/12B'ye aittir.
 
 ---
 

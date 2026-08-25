@@ -229,7 +229,7 @@ primary_purpose = retain
 activity_kind = coding_production
 ```
 
-Bu sayede English için ayrı ve tutarsız planner motoru gerekmez; 6A–6E aynı TaskCandidate contract'ını kullanabilir.
+Bu sayede English için ayrı ve tutarsız planner motoru gerekmez; 7A–7E aynı TaskCandidate contract'ını kullanabilir.
 
 English task eligibility'de `ENGLISH_FOUNDATION_RULES.md` içindeki öğretilmemiş grammar/vocabulary prerequisite yasağı korunur.
 
@@ -517,7 +517,7 @@ Evidence ayrı Attempt/Artifact pipeline'ından çıkar.
 
 # 15. Canonical TaskCandidate v0 contract
 
-Exact DB schema 8C'ye aittir. 3B davranış contract'ı:
+Exact DB schema 9C'ye aittir. 3B davranış contract'ı:
 
 ```text
 TaskCandidate
@@ -607,7 +607,7 @@ V1 implementasyonu:
 - trusted/prevalidated bank'ı öncelikle kullanabilir,
 - generated candidates'i cache/version ile yönetebilir.
 
-Exact cap ve index stratejisi 8C/11C'de belirlenir.
+Exact cap ve index stratejisi 9C/12C'de belirlenir.
 
 ---
 

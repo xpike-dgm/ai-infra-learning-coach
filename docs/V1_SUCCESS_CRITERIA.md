@@ -69,7 +69,7 @@ Aynı davranışların tekrar üretilebilmesi için en az aşağıdaki test prof
 - Teknik performans güçlü
 - English hattı zayıf veya tersi
 
-Bu profiller Aşama 3 ve Aşama 11'de daha ayrıntılı fixture/test datasına dönüştürülecektir.
+Bu profiller Aşama 3 ve Aşama 12'de daha ayrıntılı fixture/test datasına dönüştürülecektir.
 
 ---
 
@@ -176,7 +176,7 @@ TP-03 profilinde gecikmeli tekrar başarısız olduğunda mastery/retention stat
 
 ## SC-020 — Başarılı review interval'i ilerletir — P1
 
-Başarılı retention testi sonrası aynı skill'in sonraki review tarihi, Aşama 2F/12C'de seçilecek algoritmaya göre ileri taşınmalıdır.
+Başarılı retention testi sonrası aynı skill'in sonraki review tarihi, Aşama 2F/13C'de seçilecek algoritmaya göre ileri taşınmalıdır.
 
 ## SC-021 — Remediation aynı içeriği kör tekrar etmez — P1
 
@@ -393,8 +393,8 @@ Bu değerleri 1C'de rastgele sabitlemek yerine:
 - Aşama 2 — mastery,
 - Aşama 3 — planner,
 - Aşama 4 — assessment,
-- Aşama 6 — English,
-- Aşama 17 — pilot kalibrasyonu
+- Aşama 7 — English,
+- Aşama 18 — pilot kalibrasyonu
 
 sırasında araştırma ve test verisiyle kesinleştireceğiz.
 

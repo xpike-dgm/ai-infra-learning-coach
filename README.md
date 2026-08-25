@@ -23,6 +23,7 @@ En önemli kalıcı dosyalar:
 - `docs/EXECUTION_INDEX.md` — canonical aşama/adım indeksi
 - `docs/PROGRESS_LOG.md` — kronolojik ilerleme
 - `docs/PROJECT_MEMORY_PROTOCOL.md` — zorunlu PRE/POST GitHub hafıza senkronu ve dosya rol matrisi
+- `docs/STAGE_REINDEX_MAP.md` — D-044 öncesi future-stage referanslarının current karşılık haritası
 
 ## Amaç
 

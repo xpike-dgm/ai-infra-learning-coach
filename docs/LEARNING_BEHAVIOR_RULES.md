@@ -308,7 +308,7 @@ Plan task'leri en az kavramsal olarak şunları taşıyabilir:
 
 `weak_skill`, `failed_assessment`, `due_retention`, `independent_branch`, `parallel_english`.
 
-Kesin veri modeli Aşama 8C, planner algoritması Aşama 3'te tasarlanacaktır.
+Kesin veri modeli Aşama 9C, planner algoritması Aşama 3'te tasarlanacaktır.
 
 ---
 
@@ -376,7 +376,7 @@ Bu soru-cevaplarda davranış yönü netleşmiştir; ancak aşağıdaki değerle
 - belirli AI provider/model seçimi,
 - aylık API bütçesi.
 
-Bunlar ilgili 2B–2F, Aşama 3, Aşama 4, Aşama 8E ve Aşama 17 kalibrasyon adımlarında araştırma/simülasyon/QA/pilot ile belirlenir.
+Bunlar ilgili 2B–2F, Aşama 3, Aşama 4, Aşama 9E ve Aşama 18 kalibrasyon adımlarında araştırma/simülasyon/QA/pilot ile belirlenir.
 
 ---
 

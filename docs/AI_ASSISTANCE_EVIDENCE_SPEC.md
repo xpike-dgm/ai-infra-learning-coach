@@ -422,7 +422,7 @@ assistance_policy
 - artifact_authorship_required
 ```
 
-Kesin DB schema 8C'ye aittir.
+Kesin DB schema 9C'ye aittir.
 
 Örnek:
 
@@ -454,7 +454,7 @@ AssistanceContext
 - related_interaction/artifact reference
 ```
 
-Bu bir DB migration değildir; 8C için davranış sözleşmesidir.
+Bu bir DB migration değildir; 9C için davranış sözleşmesidir.
 
 ---
 
@@ -467,7 +467,7 @@ AI bir kullanıcının açık uçlu cevabını rubric'e göre değerlendiriyorsa
 - `assistance provenance` — kullanıcı çözüm üretirken ne yardım aldı?
 - `evaluator provenance` — sonucu kim/ne değerlendirdi?
 
-AI evaluator'ın güvenilirliği, validator ve confidence politikası 4E / 13F / 8E'de ayrıca ele alınacaktır.
+AI evaluator'ın güvenilirliği, validator ve confidence politikası 4E / 14F / 9E'de ayrıca ele alınacaktır.
 
 AI evaluator `mastered` state'ini tek başına keyfi biçimde set edemez; yalnız evidence üretimine/yorumuna katkı verir.
 
@@ -500,11 +500,11 @@ Aşağıdakiler sonraki adımlara bırakılır:
 - assistance sonrası mastery'nin tam kaç puan değişeceği → **2E**
 - spaced repetition / forgetting etkisi → **2F**
 - weekly/monthly exam allowed-help politikası → **4A–4C**
-- task/question metadata schema → **4D / 8C**
+- task/question metadata schema → **4D / 9C**
 - AI-generated item validation → **4E**
-- provider/model seçimi → **8E**
-- AI Tutor UI ve gerçek prompt davranışları → **13A–13G**
-- code runner/compiler entegrasyonu → **8E / 13D**
+- provider/model seçimi → **9E**
+- AI Tutor UI ve gerçek prompt davranışları → **14A–14G**
+- code runner/compiler entegrasyonu → **9E / 14D**
 
 ---
 

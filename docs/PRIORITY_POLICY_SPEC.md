@@ -262,7 +262,7 @@ Starvation promotion:
 - optional P4'ü zorunlu P2 yapmaz,
 - fixed takvim borcu üretmez.
 
-Exact eligible-deferral threshold 17B/17C pilotunda kalibre edilir.
+Exact eligible-deferral threshold 18B/18C pilotunda kalibre edilir.
 
 ## 6.6 `continuation_value`
 
@@ -291,7 +291,7 @@ Kısa bir diagnostic/verification task'i bir sonraki büyük plan kararını bel
 
 Technical English gibi paralel track'lerin normal progress tarafından sonsuza kadar itilmesini engelleyen soft sinyal.
 
-Track cadence/frequency 6C'de tanımlanır. 3C yalnız şu contract'ı sağlar:
+Track cadence/frequency 7C'de tanımlanır. 3C yalnız şu contract'ı sağlar:
 
 ```text
 parallel track due + repeated eligible deferral
@@ -447,7 +447,7 @@ English global technical blocker değildir.
 - kritik technical integrity P0/P1'i geçirmez,
 - ama normal new-learning tarafından süresiz aç bırakılmasını da önler.
 
-Exact English cadence 6C'de tanımlanır.
+Exact English cadence 7C'de tanımlanır.
 
 ---
 
@@ -600,7 +600,7 @@ D-028 gereği:
 - rank vector basit/incremental state'ten türetilir,
 - candidate alternatives bounded'dır.
 
-Exact DB/index implementasyonu 8C/11C'ye aittir.
+Exact DB/index implementasyonu 9C/12C'ye aittir.
 
 ---
 
@@ -614,7 +614,7 @@ Aşağıdakiler engineering policy'dir, bilimsel sabit değildir:
 - user-focus soft preference strength,
 - continuation tie-break gücü.
 
-Bunlar 3H simulation + 17B/17C pilot ile kalibre edilebilir.
+Bunlar 3H simulation + 18B/18C pilot ile kalibre edilebilir.
 
 ---
 

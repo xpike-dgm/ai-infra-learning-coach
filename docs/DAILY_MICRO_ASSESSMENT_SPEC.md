@@ -819,7 +819,7 @@ LLM ileride:
 - explanation,
 - candidate item generation
 
-yapabilir; güven düzeyi ve validator sınırları 4E/13F'te kesinleşir.
+yapabilir; güven düzeyi ve validator sınırları 4E/14F'te kesinleşir.
 
 ---
 
@@ -944,7 +944,7 @@ Daily planner path:
 - bounded candidate alternatives üretmeli,
 - item selection/evaluation ağırsa UI thread dışında çalışmalı.
 
-Exact DB index/cache/query yapısı 8C/8F/11A–11C'de kesinleşir.
+Exact DB index/cache/query yapısı 9C/9F/12A–12C'de kesinleşir.
 
 ---
 
