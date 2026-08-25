@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
       - name: Apply local manager handoff sync
         run: |
-          python scripts/local_manager_handoff_sync.py
+          python scripts/local_manager_handoff_sync_v2.py
           git diff --stat
       - name: Commit handoff sync
         run: |
