@@ -312,3 +312,9 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Repo-wide 6A active/not-executed, stale 5D-current ve missing D-054/GNS-v0 pointer audit'i uygulandı.
 
 **Sonraki kesin adım:** `6B — Full-route decomposition blueprint`. 6B başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+**6A final consistency re-audit — START_HERE stage-map drift düzeltildi**
+- D-050 final verification sırasında `docs/START_HERE.md` içindeki üst `Güncel stage mapping` bölümünün D-054 eklenmiş olmasına rağmen eski `6A 🟡 / 6B–6H ⬜` satırlarını taşıdığı fark edildi.
+- Aynı dosyanın alt current-state bölümü zaten `6A ✅ / 6B 🟡` gösteriyordu; üst mapping de `6A ✅ GNS-v0 / D-054`, `6B 🟡`, `6C–6H ⬜` olarak düzeltildi.
+- Mandatory living-state dosyaları tekrar doğrulandı; canonical execution **6A tamamlandı / 6B aktif-henüz-yürütülmedi** olarak tutarlı.
+- Bu düzeltme yeni numaralı adım değildir ve 6B'yi yürütmez.
