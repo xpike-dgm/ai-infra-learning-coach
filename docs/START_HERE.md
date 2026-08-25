@@ -58,6 +58,15 @@ Canonical: `docs/CURRICULUM_DOMAIN_MAP.md`.
 - Tool/vendor adı stable systems concept'in yerine geçmez.
 - Domain-level ilişkiler authoring guidance; runtime hard prerequisite Skill→Skill PRG-v0.
 
+### D-050 — Living memory sync + stale-reference audit
+Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md`.
+
+- Her numaralı adım sonunda yaşayan state dosyaları istisnasız kontrol edilir.
+- `PROJECT_CONTEXT.md` kısa current snapshot olarak eski step'te bırakılamaz.
+- `START_HERE`, `HANDOFF_STATE`, `STEP_STATUS`, `EXECUTION_INDEX`, `MASTER_PLAN`, `PROGRESS_LOG` ve `DECISIONS` mandatory POST-check setindedir.
+- Her step kapanışında stale active-step, old stage number, deleted/renamed file ve superseded decision/model referansları repo-wide taranır.
+- Stable specs active step'i kopyalamaz; yalnız davranış/cross-reference değişirse güncellenir.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -86,7 +95,7 @@ Canonical: `docs/CURRICULUM_DOMAIN_MAP.md`.
 ## 5. Zorunlu GitHub beyin tazeleme protokolü
 Bağlayıcı: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
-> Hiçbir numaralı adım PRE-STEP GitHub refresh yapılmadan başlatılmaz; hiçbir adım ana çıktı ve canonical state dosyaları + `MASTER_PLAN.md` senkronize edilmeden tamamlanmış sayılmaz.
+> Hiçbir numaralı adım PRE-STEP GitHub refresh yapılmadan başlatılmaz; hiçbir adım D-050 living-memory kontrolü + repo-wide stale-reference scan tamamlanmadan kapanmış sayılmaz.
 
 Minimum PRE-STEP:
 1. `docs/HANDOFF_STATE.md`
@@ -94,39 +103,55 @@ Minimum PRE-STEP:
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
-6. başlanacak adımla ilgili en güncel spec/davranış dosyaları
+6. `PROJECT_CONTEXT.md`
+7. başlanacak adımla ilgili en güncel spec/davranış dosyaları
 
-POST-STEP: ana spec + `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`; yeni kalıcı karar varsa `DECISIONS`.
+POST-STEP ALWAYS-CHECK:
+1. ana spec/çıktı
+2. `docs/EXECUTION_INDEX.md`
+3. `docs/STEP_STATUS.md`
+4. `docs/HANDOFF_STATE.md`
+5. `docs/PROGRESS_LOG.md`
+6. `docs/MASTER_PLAN.md`
+7. `PROJECT_CONTEXT.md`
+8. `docs/START_HERE.md`
+9. `docs/DECISIONS.md`
+10. repo-wide stale-reference scan
+
+README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi rolü gerçekten etkilenirse güncellenir.
 
 ## 6. Yeni sohbet/agent okuma sırası
 1. `docs/START_HERE.md`
 2. `docs/PROJECT_MEMORY_PROTOCOL.md`
-3. `docs/HANDOFF_STATE.md`
-4. `docs/EXECUTION_INDEX.md`
-5. `docs/STEP_STATUS.md`
-6. `docs/DECISIONS.md`
-7. `docs/PRODUCT_REQUIREMENTS.md`
-8. `docs/PROFESSIONAL_READINESS_TARGET.md`
-9. `docs/CURRICULUM_DOMAIN_MAP.md`
-10. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-11. `docs/LEARNING_ENGINE_SPEC.md`
-12. `docs/LEARNING_BEHAVIOR_RULES.md`
-13. `docs/MASTERY_SIGNALS_SPEC.md`
-14. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
-15. `docs/MASTERY_FORMULA_V0.md`
-16. `docs/RETENTION_FORGETTING_SPEC.md`
-17. `docs/ADAPTIVE_PLANNER_SPEC.md`
-18. `docs/TASK_TAXONOMY_SPEC.md`
-19. `docs/PRIORITY_POLICY_SPEC.md`
-20. `docs/PREREQUISITE_POLICY_SPEC.md`
-21. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
-22. `docs/WEEKLY_ASSESSMENT_SPEC.md`
-23. `docs/MONTHLY_ASSESSMENT_SPEC.md`
-24. `docs/QUESTION_BANK_SPEC.md`
-25. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
-26. `docs/ENGLISH_FOUNDATION_RULES.md`
-27. `docs/MASTER_PLAN.md`
-28. `docs/PROGRESS_LOG.md`
+3. `PROJECT_CONTEXT.md`
+4. `docs/HANDOFF_STATE.md`
+5. `docs/EXECUTION_INDEX.md`
+6. `docs/STEP_STATUS.md`
+7. `docs/DECISIONS.md`
+8. `docs/PRODUCT_REQUIREMENTS.md`
+9. `docs/PROFESSIONAL_READINESS_TARGET.md`
+10. `docs/CURRICULUM_DOMAIN_MAP.md`
+11. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+12. `docs/LEARNING_ENGINE_SPEC.md`
+13. `docs/LEARNING_BEHAVIOR_RULES.md`
+14. `docs/MASTERY_SIGNALS_SPEC.md`
+15. `docs/AI_ASSISTANCE_EVIDENCE_SPEC.md`
+16. `docs/MASTERY_FORMULA_V0.md`
+17. `docs/RETENTION_FORGETTING_SPEC.md`
+18. `docs/ADAPTIVE_PLANNER_SPEC.md`
+19. `docs/TASK_TAXONOMY_SPEC.md`
+20. `docs/PRIORITY_POLICY_SPEC.md`
+21. `docs/PREREQUISITE_POLICY_SPEC.md`
+22. `docs/DAILY_MICRO_ASSESSMENT_SPEC.md`
+23. `docs/WEEKLY_ASSESSMENT_SPEC.md`
+24. `docs/MONTHLY_ASSESSMENT_SPEC.md`
+25. `docs/QUESTION_BANK_SPEC.md`
+26. `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`
+27. `docs/ENGLISH_FOUNDATION_RULES.md`
+28. `docs/MASTER_PLAN.md`
+29. `docs/PROGRESS_LOG.md`
+
+`docs/LEARNING_ENGINE.md` yalnız historical/superseded pointer'dır; canonical learning-engine kaynağı değildir. `docs/ENGLISH_TRACK.md` yalnız non-canonical seed notes'tur.
 
 ## 7. Ana kariyer/öğrenme yönü
 **Technical English (parallel) → Python → C → Linux + Git + Shell → Data Structures & Algorithms foundations → Modern C++ → Computer Architecture → Operating Systems + Memory → Concurrency / Parallel Programming → Networking → Distributed Systems + Storage/Databases foundations → Containers / Cloud / Observability → Performance Engineering & Profiling → GPU Architecture → CUDA → Triton → ML + Transformer foundations → LLM Inference Internals → vLLM / SGLang / TensorRT-LLM-style systems → KV Cache / Batching / Scheduling / Quantization → Multi-GPU + NCCL + RDMA → AI Infrastructure / GPU Infrastructure → Open Source + large projects + capstones**
@@ -161,4 +186,4 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 5B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044, D-045, D-046, D-047, D-048 ve D-049 kararlarını oku; D-043 geri çekilmiştir. CURRICULUM_DOMAIN_MAP, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5B — Graph / Topic metadata sözleşmesi; 5B henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-050 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 5B — Graph / Topic metadata sözleşmesi; 5B henüz yürütülmedi.`
