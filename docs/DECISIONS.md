@@ -174,20 +174,32 @@ Her büyük alan `Domain → Module → Topic → Skill → Learning Objective` 
 
 ## D-045 — Weekly assessment = WBA-v0 Weekly Blueprint Assessment
 **Durum:** Kabul edildi — 2026-08-25
-
-- Weekly assessment tek overall score / pass-fail sistemi değildir; daha geniş Objective/Skill evidence bundle üretir.
-- Item seçilmeden önce state-temelli **weekly blueprint** oluşturulur.
-- Blueprint role family'leri: recent required progress, weakness/verification, critical prerequisite confidence, retention due, integration/transfer ve gerektiğinde parallel English. Bunlar fixed quota değildir.
-- Fixed soru sayısı, fixed süre veya fixed kategori yüzdesi yoktur.
-- Weekly evidence GRE-v0/RVR-v0'ı bypass etmez veya sırf weekly olduğu için ekstra ağırlık almaz.
-- PRG prerequisite fairness, root-cause contamination, variant/dependency diversity ve Objective-specific evidence modality korunur.
-- H0 independent measurement varsayılandır; H1–H4 positive independent mastery değildir; solution exposure fresh/unseen recheck gerektirir.
-- Invalid/ambiguous/prerequisite-contaminated/provisional item güçlü mastery-changing karar veremez.
-- Weekly session safe boundaries arasında split/pause/resume olabilir; incomplete session failure değildir.
-- Missed weekly exam backlog/debt/stack oluşturmaz; current state'ten fresh blueprint oluşturulur.
-- İlk clean post-mastery contradiction instant unmastery değildir; GRE/RVR verification hysteresis korunur.
-- Broad `Python failed` gibi raw exam state'leri yazılmaz; weakness D-044 uyarınca Skill/Objective seviyesine lokalize edilir.
-- Weekly result canonical EvidenceEvent → GRE/RVR → weakness/verification/remediation → PRG/Topic → planner/replan zincirini kullanır.
-- 4C monthly assessment için `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` ortak abstraction'ı kilitlendi.
+- Weekly assessment tek overall score/pass-fail değildir; daha geniş Objective/Skill evidence bundle üretir.
+- Item seçilmeden önce state-temelli weekly blueprint oluşturulur.
+- Role family'leri recent progress, weakness/verification, critical prerequisite, retention, integration/transfer ve gerektiğinde parallel English'tir; fixed quota değildir.
+- Fixed soru sayısı/süre/yüzde yoktur; weekly evidence GRE/RVR'ı bypass etmez.
+- PRG prerequisite fairness, variant/dependency diversity, H0 assistance standardı, invalid/provisional safety ve GRE/RVR hysteresis korunur.
+- Split/pause/resume desteklenir; incomplete/missed weekly exam failure/debt değildir.
+- Broad Domain pass/fail yazılmaz; D-044 granular localization korunur.
+- 4C için `AssessmentBlueprint / AssessmentBlueprintSlot / AssessmentSessionResult` ortak abstraction'ı kilitlendi.
 
 Ayrıntı: `docs/WEEKLY_ASSESSMENT_SPEC.md`.
+
+## D-046 — Monthly assessment = MCA-v0 Monthly Capability Assessment
+**Durum:** Kabul edildi — 2026-08-25
+- Monthly assessment tek ay sonu notu veya domain pass/fail değildir; longitudinal capability evidence bundle üretir.
+- WBA-v0 common `AssessmentBlueprint / Slot / SessionResult` contract'ı yeniden kullanılır.
+- Monthly role family'leri: longitudinal required capability, persistent weakness/verification, critical capability revalidation, delayed retention, cross-topic transfer, integrated application, gerektiğinde Technical English ve professional evidence checkpoint. Bunlar fixed quota değildir.
+- Bütün geçmiş curriculum'u cumulative olarak tekrar test etmez; state-temelli bounded longitudinal sampling yapar.
+- Recent/older balance fixed yüzdelerle değil decision value, prerequisite risk, retention ve evidence gap ile belirlenir.
+- Critical Skill sırf critical olduğu için her ay otomatik test edilmez; gerçek revalidation ihtiyacı gerekir.
+- Transfer ve integration daha geniş olabilir fakat yalnız öğretilmiş prerequisites, component-level attribution ve Objective'e uygun evidence kullanır.
+- Professional checkpoint final professional-readiness/capstone gate değildir; yalnız uygun evidence üretir.
+- Fixed soru sayısı, fixed süre, fixed pass score yoktur; daily hard capacity korunur ve monthly session safe block'lara bölünebilir.
+- H0/H1–H4, provenance, invalid/ambiguous/provisional item, root-prerequisite contamination ve GRE/RVR hysteresis kuralları aynen korunur.
+- Incomplete/missed monthly assessment failure veya exam debt değildir.
+- Raw `Python failed` gibi broad state yazılmaz; weakness D-044 gereği Skill/Objective seviyesine lokalize edilir.
+- V1 SC-016 gereği güvenilir persistent/critical gap sonucu planner/curriculum priority'yi gerçekten değiştirebilir.
+- 4D Question Bank için assessment scope, blueprint role, target/prerequisite, evidence type, family/context/diversity, rubric/evaluator, trust/version, exposure ve duration metadata handoff'u tanımlandı.
+
+Ayrıntı: `docs/MONTHLY_ASSESSMENT_SPEC.md`.
