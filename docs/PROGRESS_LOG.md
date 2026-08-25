@@ -132,3 +132,43 @@ Bu dosya projenin oturumlar arası kalıcı ilerleme günlüğüdür. Ayrıntıl
 
 **Sonraki kesin adım:** `5B — Graph / Topic metadata sözleşmesi`.
 5B başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-25 — D-050 Repository-wide memory/hygiene audit
+
+Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek POST-STEP hafıza senkronunun eksik uygulandığını bildirdi. Bunun üzerine numaralı 5B adımına geçilmeden ayrı bir repository maintenance çalışması yapıldı.
+
+**Audit kapsamı**
+- Root ve `docs/` altındaki repo dosya envanteri tek tek okundu.
+- Living current-state belgeleri, stable specs, historical/research docs ve seed docs rol bazında ayrıştırıldı.
+- Active-step drift, eski stage numaraları, duplicate source-of-truth riski, superseded drafts ve yanlış canonical görünüm kontrol edildi.
+
+**D-050 — Living project memory sync + stale-reference audit**
+- `PROJECT_MEMORY_PROTOCOL.md` güçlendirildi.
+- Her numaralı adım sonunda ALWAYS-CHECK seti: ana çıktı, `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `START_HERE`, `DECISIONS`.
+- Her step kapanışında repo-wide stale active-step / stage-number / renamed-file / superseded-decision taraması zorunlu hale geldi.
+- Stage reindex olduğunda bütün repo future-reference'ları aynı sync turunda taranacak.
+
+**Dosya rollerinin ayrıştırılması**
+- `PROJECT_CONTEXT.md` = kısa yaşayan current snapshot; her step sync.
+- `START_HERE.md` = yeni sohbet/agent bootstrap; current step içerir.
+- `HANDOFF_STATE.md` = ayrıntılı current handoff.
+- `STEP_STATUS.md` = kısa current execution tablosu.
+- `PROJECT_MASTER_CONTEXT.md` = uzun/stabil proje bağlamı; volatile active step taşımaz.
+- `README.md` = insan için overview/navigation; volatile active step taşımaz.
+
+**Düzeltmeler / cleanup**
+- `PROJECT_CONTEXT.md` 4B'den güncel **5B active/not executed** state'ine getirildi.
+- README ve `PROJECT_MASTER_CONTEXT.md` içindeki volatile active-step duplication kaldırıldı.
+- `docs/TODO.md` tamamen eski AŞAMA 0 + 3-year planı ve duplicate current queue içerdiği için silindi.
+- `docs/LEARNING_ENGINE.md` eski weighted mastery ve broad-topic yaklaşımı nedeniyle canonical olmaktan çıkarılıp explicit `HISTORICAL / SUPERSEDED` pointer'a dönüştürüldü.
+- `docs/ENGLISH_TRACK.md` eski A0→B2 önerisini final gate gibi göstermemesi için `NON-CANONICAL SEED NOTES` olarak yeniden etiketlendi.
+- `docs/ENGLISH_FOUNDATION_RULES.md` granular English map = 6C, English-specific progression/cadence/mastery = AŞAMA 7 olarak düzeltildi.
+- `docs/AI_AGENT_WORKFLOW.md` D-050 living-memory/stale-scan döngüsüne hizalandı.
+
+**Execution state korunumu**
+- Bu bakım numaralı proje adımı değildir.
+- 5A son tamamlanan numaralı adım olarak kaldı.
+- **5B hâlâ aktif ve henüz yürütülmedi.**
+- Önceki GRE/RVR/PBR/PRG/DMA/WBA/MCA/QAB/AIV/PDM kararlarının davranışı değiştirilmedi.
