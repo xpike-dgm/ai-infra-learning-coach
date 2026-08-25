@@ -6,30 +6,125 @@ on:
       - '.github/workflows/doc-hygiene-once.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  hygiene:
+  final-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Apply and verify exact documentation cleanup
+      - name: Audit all repository documentation
         run: |
-          python scripts/doc_hygiene_fix_once.py
-          git diff --check
-          git diff --stat
+          python - <<'PY'
+          from pathlib import Path
+          import re
 
-      - name: Commit documentation cleanup
-        run: |
-          if git diff --quiet; then
-            echo "No documentation changes to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md PROJECT_CONTEXT.md docs
-          git commit -m "docs: finish D-050 repository hygiene cleanup [skip ci]"
-          git push
+          root_md = sorted(Path('.').glob('*.md'))
+          docs_md = sorted(Path('docs').glob('*.md'))
+          md_files = root_md + docs_md
+          print(f'Markdown inventory: {len(md_files)} files')
+          for p in md_files:
+              print(' -', p.as_posix())
+
+          if Path('docs/TODO.md').exists():
+              raise SystemExit('FAIL: obsolete docs/TODO.md still exists')
+
+          for p in md_files:
+              text = p.read_text(encoding='utf-8')
+              if 'docs/TODO.md' in text:
+                  raise SystemExit(f'FAIL: stale docs/TODO.md reference in {p}')
+
+          living = {
+              'PROJECT_CONTEXT.md': ['5B', 'HENÜZ YÜRÜTÜLMEDİ'],
+              'docs/START_HERE.md': ['5B', 'henüz yürütülmedi'],
+              'docs/HANDOFF_STATE.md': ['5B', 'henüz yürütülmedi'],
+              'docs/STEP_STATUS.md': ['5B', 'henüz yürütülmedi'],
+              'docs/EXECUTION_INDEX.md': ['5B', 'AKTİF'],
+              'docs/MASTER_PLAN.md': ['5B', 'AKTİF'],
+          }
+          for rel, needles in living.items():
+              text = Path(rel).read_text(encoding='utf-8')
+              for needle in needles:
+                  if needle not in text:
+                      raise SystemExit(f'FAIL: {rel} missing current-state marker {needle!r}')
+
+          if 'Aktif adım' in Path('README.md').read_text(encoding='utf-8'):
+              raise SystemExit('FAIL: README duplicates volatile active-step state')
+          if 'Aktif adım' in Path('docs/PROJECT_MASTER_CONTEXT.md').read_text(encoding='utf-8'):
+              raise SystemExit('FAIL: PROJECT_MASTER_CONTEXT duplicates volatile active-step state')
+
+          le = Path('docs/LEARNING_ENGINE.md').read_text(encoding='utf-8')
+          if 'HISTORICAL / SUPERSEDED' not in le:
+              raise SystemExit('FAIL: LEARNING_ENGINE legacy draft is not explicitly superseded')
+          et = Path('docs/ENGLISH_TRACK.md').read_text(encoding='utf-8')
+          if 'NON-CANONICAL' not in et:
+              raise SystemExit('FAIL: ENGLISH_TRACK seed notes are not explicitly non-canonical')
+
+          decisions = Path('docs/DECISIONS.md').read_text(encoding='utf-8')
+          if 'D-050' not in decisions:
+              raise SystemExit('FAIL: D-050 missing')
+          d043 = re.search(r'## D-043.*?(?=\n## D-044)', decisions, flags=re.S)
+          if not d043 or 'GERİ ÇEKİLDİ' not in d043.group(0):
+              raise SystemExit('FAIL: D-043 is not clearly withdrawn')
+
+          for rel in ['README.md', 'docs/START_HERE.md', 'docs/PROJECT_MEMORY_PROTOCOL.md']:
+              if 'STAGE_REINDEX_MAP.md' not in Path(rel).read_text(encoding='utf-8'):
+                  raise SystemExit(f'FAIL: {rel} does not point to STAGE_REINDEX_MAP')
+
+          historical = [
+              'docs/2E_RESEARCH_VALIDATION.md',
+              'docs/2F_RESEARCH_BRIEF.md',
+              'docs/2F_RESEARCH_VALIDATION.md',
+          ]
+          for rel in historical:
+              if 'D-050 / D-044 hygiene note' not in Path(rel).read_text(encoding='utf-8'):
+                  raise SystemExit(f'FAIL: historical numbering note missing in {rel}')
+
+          forbidden_by_file = {
+              'docs/PLANNER_SIMULATION_SUITE.md': ['11F gerçek Planner', '17B planner pilot', '17E gerçek cihaz/performance'],
+              'docs/MASTERY_FORMULA_V0.md': ['Pilot calibration — 17C', "13F'de gerçek benchmark", 'DB schema 8C, implementation 11A'],
+              'docs/RETENTION_FORGETTING_SPEC.md': ['Pilot calibration — 17C', "DB schema 8C'de"],
+              'docs/PRIORITY_POLICY_SPEC.md': ['17B/17C pilot', 'Track cadence/frequency 6C', 'English cadence 6C', "8C/11C'ye"],
+              'docs/PREREQUISITE_POLICY_SPEC.md': ['ileride 11B Prerequisite', "8C/11B'ye"],
+              'docs/TASK_TAXONOMY_SPEC.md': ['6A–6E aynı TaskCandidate', "DB schema 8C'ye", "8C/11C'de"],
+              'docs/MASTERY_SIGNALS_SPEC.md': ['database schema 8C', 'DB schema 8C', '8E / Aşama 13'],
+              'docs/AI_ASSISTANCE_EVIDENCE_SPEC.md': ['4E / 13F / 8E', 'DB schema 8C', '4D / 8C', '13A–13G', '8E / 13D'],
+              'docs/MISSED_DAY_RECOVERY_SPEC.md': ['8C/11C/17E', '3G / 7C,', '8C / 11C,', 'notification cadence → 15E', 'limits → 17E', 'calibration → 17C'],
+              'docs/PLANNER_EXPLAINABILITY_SPEC.md': ["UI string'leri 7A–7G", '8C/15B/17E'],
+              'docs/TOPIC_STATE_MACHINE.md': ["sonra 7E'de", 'DB şeması 8C', 'event/data schema 8C', 'schema → **8C**'],
+              'docs/LEARNING_BEHAVIOR_RULES.md': ['Aşama 8C, planner', 'Aşama 8E ve Aşama 17'],
+              'docs/DAILY_MICRO_ASSESSMENT_SPEC.md': ["4E/13F'te", '8C/8F/11A–11C'],
+              'docs/V1_SUCCESS_CRITERIA.md': ["Aşama 3 ve Aşama 11'de", "2F/12C'de", 'Aşama 6 — English', 'Aşama 17 — pilot kalibrasyonu'],
+          }
+          for rel, needles in forbidden_by_file.items():
+              text = Path(rel).read_text(encoding='utf-8')
+              for needle in needles:
+                  if needle in text:
+                      raise SystemExit(f'FAIL: known stale pointer {needle!r} remains in {rel}')
+
+          # Report every stage-like token in old stable specs for manual inspection.
+          old_specs = [
+              'docs/LEARNING_BEHAVIOR_RULES.md', 'docs/TOPIC_STATE_MACHINE.md',
+              'docs/MASTERY_SIGNALS_SPEC.md', 'docs/AI_ASSISTANCE_EVIDENCE_SPEC.md',
+              'docs/MASTERY_FORMULA_V0.md', 'docs/RETENTION_FORGETTING_SPEC.md',
+              'docs/ADAPTIVE_PLANNER_SPEC.md', 'docs/TASK_TAXONOMY_SPEC.md',
+              'docs/PRIORITY_POLICY_SPEC.md', 'docs/PREREQUISITE_POLICY_SPEC.md',
+              'docs/DIAGNOSTIC_WAIVER_SPEC.md', 'docs/MISSED_DAY_RECOVERY_SPEC.md',
+              'docs/PLANNER_EXPLAINABILITY_SPEC.md', 'docs/PLANNER_SIMULATION_SUITE.md',
+              'docs/DAILY_MICRO_ASSESSMENT_SPEC.md', 'docs/V1_SUCCESS_CRITERIA.md',
+          ]
+          token_re = re.compile(r'(?<![A-Za-z0-9])(?:6|7|8|9|10|11|12|13|14|15|16|17|18|19)[A-H](?![A-Za-z0-9])')
+          print('\nPotential stage-token audit in pre-D-044 stable specs:')
+          for rel in old_specs:
+              hits = []
+              for i, line in enumerate(Path(rel).read_text(encoding='utf-8').splitlines(), start=1):
+                  if token_re.search(line):
+                      hits.append((i, line.strip()))
+              if hits:
+                  print(f'[{rel}]')
+                  for i, line in hits:
+                      print(f'  L{i}: {line}')
+
+          print('\nFINAL D-050 REPOSITORY DOCUMENTATION AUDIT: PASS')
+          PY
