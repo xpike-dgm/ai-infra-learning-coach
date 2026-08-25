@@ -1,14 +1,13 @@
-# Curriculum Backbone — Planning Draft
+# Curriculum Backbone — Canonical Summary
 
-**Durum:** BACKBONE / DETAYLI MAP HENÜZ ÜRETİLMEDİ  
-**Canonical kararlar:** D-041, D-042, D-044  
-**Detaylı decomposition:** AŞAMA 6 / `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+**Durum:** 5A DOMAIN BACKBONE TAMAMLANDI / DETAIL AŞAMA 6'DA  
+**Canonical kararlar:** D-041, D-042, D-044, D-049  
+**5A ana kaynak:** `docs/CURRICULUM_DOMAIN_MAP.md`  
+**Granular decomposition charter:** `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
-Bu belge müfredatın yüksek seviyeli omurgasını gösterir. **Gerçek canonical Module/Topic/Skill/Learning Objective dataset'i değildir.**
+Bu dosya hızlı curriculum özetidir. 5A sonrası domain-level canonical ilişkiler ve sınırlar `docs/CURRICULUM_DOMAIN_MAP.md` içindedir. Gerçek Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
 
-D-044 sonrası bu dosyadaki broad alanlar mastery atomu veya tam curriculum kabul edilmez. Ayrıntılı curriculum haritası AŞAMA 5 graph/schema backbone üzerine AŞAMA 6'da üretilecektir.
-
-## Güncel Ana Kariyer Rotası
+## Ana route family'leri
 
 1. Technical English — paralel
 2. Python
@@ -34,291 +33,56 @@ D-044 sonrası bu dosyadaki broad alanlar mastery atomu veya tam curriculum kabu
 22. AI Infrastructure / GPU Infrastructure
 23. Open Source contributions + real large projects + professional capstones
 
-Bu sıra tek bir katı linear calendar değildir. AŞAMA 6 gerçek prerequisites, cross-domain shared Skills ve branchable dependencies'i haritalayacaktır.
+Bu text order roadmap summary'dir; canonical planner lineer değildir.
 
----
-
-# D-044 Granularity Kuralı
-
-Canonical hierarchy:
-
-`Domain → Module → Topic → Skill → Learning Objective`
-
-Örnek:
+## PDM-v0 high-level yapı
 
 ```text
-Domain: Python
-└── Module: Control Flow
-    ├── Topic: Conditional Logic
-    │   ├── Skill: boolean condition evaluation
-    │   └── Skill: if/elif/else branching
-    └── Topic: Loops
-        ├── Skill: for iteration
-        ├── Skill: while termination
-        ├── Skill: break/continue control
-        └── Skill: loop bug diagnosis
+Technical English ─────────────────────────────────────────▶ parallel
+
+Python + C + Linux/Git/Shell
+        ↓
+DS&A + Modern C++ + Architecture + OS/Memory
+        ↓
+Concurrency + Networking
+        ↓
+Distributed Systems / Storage + Cloud / Observability
+        ↓
+Performance Engineering ───────────────────────────────┐
+        ↓                                               │
+GPU Architecture → CUDA → Triton                       │
+        ↓                                               │
+ML/Transformer support → LLM Inference Internals       │
+        ↓                                               │
+Serving Systems → KV/Batching/Scheduling/Quantization ◀┘
+        ↓
+Multi-GPU / NCCL / RDMA
+        ↓
+AI / GPU Infrastructure
 ```
 
-Uygulama `Python zayıf` sonucuyla yetinmemeli; hangi Skill/Objective'in zayıf olduğunu ayırt edebilmelidir.
+Professional engineering, source reading, testing, debugging, Git/PR, benchmarks, reliability/security fundamentals, OSS contributions ve projects/capstones route boyunca artarak ilerler; yalnız finalde başlamaz.
 
----
+## Bağlayıcı sınırlar
 
-# Backbone Family Notes
+- Domain/Module/Topic mastery atomu değildir; canonical mastery ana seviyesi Skill, evidence Objective'tir.
+- Domain-level relationships authoring guidance'dır; runtime hard prerequisite Skill→Skill PRG-v0 ile çözülür.
+- Technical English global hard prerequisite değildir.
+- Python C/C++'ın yerine geçmez.
+- ML/Transformer generic ML-research specialization değildir; inference için supporting depth taşır.
+- Performance sona bırakılmaz; measurement/profiling route boyunca büyür.
+- Tool/vendor adları stable concept değildir; version/freshness metadata ile yönetilir.
+- Gerekli math/numerical/security/reliability knowledge hidden prerequisite bırakılamaz; AŞAMA 6'da explicit capability'lere dönüştürülür.
 
-Aşağıdaki notlar yalnız AŞAMA 6 araştırması için başlangıç family'leridir; final topic/skill listesi değildir.
+## Sonraki curriculum işleri
 
-## Technical English
-- foundational grammar/function words
-- technical vocabulary
-- compiler/terminal English
-- docs/README/man pages
-- GitHub issues/PRs
-- design docs/RFCs
-- papers/documentation
-- technical interviews/team communication
+```text
+5B = graph / metadata contract
+5C = first 8–12 week V1 backbone
+5D = graph architecture QA
+6A–6H = full granular capability map + independent coverage/prerequisite Research QA
+15 = first production-quality lesson/task/assessment package
+20 = full professional content expansion + OSS + capstones
+```
 
-## Python
-- values/types/variables
-- operators/expressions
-- I/O
-- conditionals
-- loops
-- strings/collections
-- functions/scope
-- modules/imports
-- files/paths
-- exceptions/debugging
-- iteration/comprehensions
-- typing/testing
-- environments/dependencies/packaging
-- CLI/automation/subprocess
-- networking
-- async/concurrency
-- multiprocessing
-- profiling
-- NumPy/tensor/PyTorch-facing Python
-- benchmark/infra scripting
-
-## C
-- syntax/types/control flow/functions
-- compilation model
-- pointers/addresses
-- arrays/strings
-- stack/heap/lifetime
-- dynamic allocation
-- structs/enums
-- headers/translation units
-- file I/O
-- debugging/sanitizers
-- build tooling
-
-## Linux + Git + Shell
-- filesystem/permissions
-- shell/navigation/redirection/pipes
-- processes/signals/environment
-- package/build tools
-- Git commits/branches/merge/rebase basics
-- debugger/profiler tooling
-- procfs/syscalls foundations
-- scripting/automation
-
-## DS&A Foundations
-- complexity reasoning
-- arrays/lists/stacks/queues
-- hash tables
-- trees/heaps/graphs
-- sorting/searching
-- memory/cache locality implications
-- problem decomposition
-
-## Modern C++
-- references/value categories
-- RAII/ownership
-- classes/lifetime
-- move semantics
-- smart pointers
-- STL/iterators
-- templates/concepts where relevant
-- errors/exceptions
-- build/test/benchmark/tooling
-
-## Computer Architecture
-- ISA/execution
-- pipeline
-- cache hierarchy
-- memory hierarchy
-- branch prediction foundations
-- SIMD/vectorization
-- latency/throughput
-
-## OS + Memory
-- process/thread
-- virtual memory/pages/TLB
-- syscalls/file descriptors
-- memory mapping
-- scheduling
-- I/O
-- allocators
-- synchronization foundations
-
-## Concurrency / Parallel Programming
-- threads/tasks
-- mutex/condition variable
-- atomics
-- race/deadlock
-- memory ordering
-- producer/consumer
-- thread pools
-- parallel decomposition
-
-## Networking
-- TCP/IP
-- DNS/HTTP/TLS foundations
-- sockets
-- blocking/non-blocking I/O
-- epoll/io_uring foundations where relevant
-- serialization/RPC
-- latency/bandwidth
-
-## Distributed Systems + Storage/Databases
-- replication
-- partitioning/sharding
-- consistency
-- consensus/leader election
-- failures/timeouts/retries/idempotency
-- transactions/WAL/recovery
-- indexes/storage engines foundations
-- queues/streaming
-
-## Containers / Cloud / Observability
-- processes/namespaces/cgroups
-- containers/images
-- Kubernetes foundations
-- deployment/configuration
-- logs/metrics/traces
-- SLO/reliability foundations
-- cloud compute/network/storage concepts
-
-## Performance Engineering & Profiling
-- measurement methodology
-- latency/throughput/tail latency
-- CPU/memory profiling
-- flame graphs/perf/eBPF foundations
-- benchmark design
-- bottleneck attribution
-- capacity/cost trade-offs
-
-## GPU Architecture
-- CPU vs GPU
-- SIMT/warps/SMs
-- memory hierarchy
-- divergence/coalescing
-- occupancy
-- tensor cores foundations
-- bandwidth/compute limits
-
-## CUDA
-- execution model
-- grids/blocks/threads
-- memory spaces/transfers
-- synchronization
-- shared memory
-- streams
-- correctness/debugging
-- Nsight/profiling
-- optimization patterns
-
-## Triton
-- execution/programming model
-- blocked programming
-- memory access
-- kernel authoring
-- benchmarking
-- PyTorch integration
-- fusion/attention-relevant kernels
-
-## ML + Transformer Foundations
-- tensors
-- linear algebra needed for inference
-- neural-network basics
-- transformer/attention
-- training vs inference
-- precision formats
-- model architecture needed for systems reasoning
-
-## LLM Inference Internals
-- prefill/decode
-- tokenization foundations
-- memory/compute bottlenecks
-- KV cache
-- attention execution
-- latency/throughput trade-offs
-
-## Serving Engines
-- request lifecycle
-- continuous batching
-- PagedAttention-style memory management
-- scheduling
-- model loading/runtime
-- vLLM/SGLang/TensorRT-LLM architecture reading
-- failure/reliability/observability
-
-## KV Cache / Batching / Scheduling / Quantization
-- KV layout/growth/reuse
-- batching policies
-- scheduling/fairness
-- memory pressure
-- FP8/INT8/INT4 foundations
-- accuracy/performance trade-offs
-
-## Multi-GPU + NCCL + RDMA
-- collective communication
-- AllReduce/AllGather/etc.
-- topology
-- NCCL
-- RDMA/RoCE/InfiniBand concepts
-- tensor/pipeline/data/expert parallel concepts
-- distributed profiling/failure handling
-
-## AI Infrastructure / GPU Infrastructure
-- GPU scheduling
-- cluster orchestration
-- serving architecture
-- autoscaling/load shedding
-- observability/reliability
-- capacity planning
-- cost/performance
-- deployment pipelines
-- production incidents/postmortems
-
-## Open Source + Large Projects + Capstones
-- repository/source-tree reading
-- issue reproduction
-- test/benchmark contributions
-- PR/code review workflow
-- technical writing/design docs
-- integrated systems projects
-- reproducible benchmarks
-- professional capstone evidence
-
----
-
-# Müfredat Tasarım Kuralı
-
-AŞAMA 6'da gerçek nodes en az şu bağlamı taşıyacak şekilde planlanır:
-- stable canonical ID
-- parent/placement
-- prerequisites
-- required/criticality
-- Learning Objectives
-- evidence/assessment requirements
-- retention relevance
-- remediation/diagnostic mapping
-- professional capability tags
-- cross-domain reuse
-- project/capstone attribution
-- version/source/freshness
-
-Müfredat mobil uygulama koduna gömülü dev sabit liste olmamalı; ayrı, versionlanabilir veri katmanı olarak yönetilmelidir.
-
-> **Bu dosya high-level backbone'dur. Ayrıntılı final capability taxonomy AŞAMA 6 tamamlanmadan burada “bitmiş curriculum” olarak kabul edilmez.**
+> Ayrıntılı domain açıklamaları ve parallel/prerequisite authoring ilişkileri için `docs/CURRICULUM_DOMAIN_MAP.md` canonical kaynaktır.
