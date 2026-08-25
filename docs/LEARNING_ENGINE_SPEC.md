@@ -4,9 +4,10 @@
 **Tamamlanan adım:** 2A — Bilgi birimleri  
 **Durum:** 2A TAMAMLANDI / AŞAMA 2 TAMAMLANDI  
 **Tarih:** 2026-08-24  
-**Granularity clarification:** 2026-08-25 — D-044
+**Granularity clarification:** 2026-08-25 — D-044  
+**Repository hygiene clarification:** 2026-08-25 — D-050
 
-Bu belge öğrenme motorunun bağlayıcı teknik/pedagojik spesifikasyonudur. Eski `docs/LEARNING_ENGINE.md` kavramsal taslak olarak kalabilir; uygulama kararlarında bu dosya daha güncel ve daha kesin kaynaktır.
+Bu belge öğrenme motorunun bağlayıcı teknik/pedagojik spesifikasyonudur. `docs/LEARNING_ENGINE.md` yalnız explicit `HISTORICAL / SUPERSEDED` pointer olarak tutulur; uygulama kararlarında **bu dosya ve onu takip eden canonical GRE/RVR/planner/assessment specs** geçerlidir.
 
 Ana ürün ilkesi:
 
@@ -568,6 +569,6 @@ D-044, 2A'yı yeniden açmaz; 2A'nın hiyerarşisini gerçek profesyonel rotanı
 
 # 18. Güncel proje ilişkisi
 
-AŞAMA 2 tamamlanmıştır; current active adım AŞAMA 4 içindeki **4B — Haftalık sınav**dır.
+AŞAMA 2 tamamlanmıştır. **Bu stable spec volatile aktif adımı hardcode etmez.** Current execution state için `docs/STEP_STATUS.md` / `docs/HANDOFF_STATE.md` / `PROJECT_CONTEXT.md` kullanılmalıdır.
 
 Bu dosyanın yapısal modeli AŞAMA 5 graph schema, AŞAMA 6 granular capability map, AŞAMA 12 runtime mastery/planner implementation ve AŞAMA 15/20 content production tarafından tüketilecektir.
