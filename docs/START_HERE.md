@@ -143,7 +143,8 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 10. `docs/CURRICULUM_DOMAIN_MAP.md`
 11. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
 11a. `docs/V1_FOUNDATION_BACKBONE.md`
-11b. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11b. `docs/GRAPH_ARCHITECTURE_QA.md`
+11c. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -203,4 +204,4 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 6A başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-053 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6A — Granularity + naming standardı; 6A henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-053 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, V1_FOUNDATION_BACKBONE, GRAPH_ARCHITECTURE_QA, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6A — Granularity + naming standardı; 6A henüz yürütülmedi.`
