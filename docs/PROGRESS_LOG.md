@@ -182,5 +182,8 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Historical Research AI/provenance belgeleri sessizce yeniden yazılmadı; legacy future-stage numaraları için explicit D-050/D-044 hygiene note eklendi.
 - `README`, `START_HERE` ve `PROJECT_MEMORY_PROTOCOL` stage-reindex map'e navigasyon verecek şekilde güncellendi.
 - Önceki cleanup'ta stale `PROJECT_CONTEXT` 5B'ye senkronlandı, `docs/TODO.md` silindi, `LEARNING_ENGINE.md` historical/superseded pointer'a, `ENGLISH_TRACK.md` non-canonical seed notes'a çevrildi.
+- Final 49-Markdown inventory audit'inde living-state tutarlılığı, D-043 withdrawn state'i, D-050 varlığı, legacy-document etiketleri ve bilinen D-044 future-reference drift'leri doğrulandı: **PASS**.
+- Stage-token manual review'da kalan üç semantik drift bulundu ve düzeltildi: `LEARNING_BEHAVIOR_RULES` AI architecture `8E→9E`, `PRIORITY_POLICY` UX `7A–7G→8A–8G`, `DIAGNOSTIC_WAIVER` UI `7C/7E→8C/8E`. Son audit tekrar **PASS** oldu.
+- Audit için geçici oluşturulan GitHub Actions workflow'u ve `scripts/doc_hygiene_fix_once.py` cleanup script'i doğrulama sonrası repodan silindi.
 - Bu hygiene turu **5B execution değildir** ve execution state'i ilerletmez.
 - Canonical durum cleanup sonunda hâlâ: **5A tamamlandı; 5B aktif ve henüz yürütülmedi**.
