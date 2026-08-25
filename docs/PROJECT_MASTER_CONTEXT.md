@@ -1,8 +1,9 @@
 # PROJECT MASTER CONTEXT — Uzun Proje Amacı, Felsefe ve Ürün Tanımı
 
-Bu dosya projenin uzun biçimli ana bağlam belgesidir. Sohbet geçmişi kaybolsa bile, projenin neden var olduğu, neyi çözmek istediği ve hangi kararların bağlayıcı olduğu buradan yeniden kurulabilmelidir.
+Bu dosya projenin uzun biçimli **stabil** ana bağlam belgesidir. Sohbet geçmişi kaybolsa bile, projenin neden var olduğu, neyi çözmek istediği ve hangi uzun ömürlü kararların bağlayıcı olduğu buradan yeniden kurulabilmelidir.
 
-**Son kapsam/plan güncellemesi:** 2026-08-25 — D-041 / D-042 / D-044
+**Son büyük kapsam/plan güncellemesi:** 2026-08-25 — D-041 / D-042 / D-044 / D-049  
+**Dosya rolü — D-050:** Bu dosya volatile `aktif adım` kaydı tutmaz. Current execution source of truth: `docs/STEP_STATUS.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/MASTER_PLAN.md` ve `PROJECT_CONTEXT.md`.
 
 ---
 
@@ -106,7 +107,7 @@ Başlangıç seviyesi A0/sıfır olabilir. Öğretilmemiş grammar/vocabulary te
 
 Uzun hedef; compiler/terminal messages, docs, GitHub issues/PRs, design docs/RFCs, CUDA/NVIDIA docs, papers, code review, technical interview ve global team communication bağlamında iş görebilmektir.
 
-Exact CEFR progression artık **AŞAMA 7**'de kesinleştirilecektir.
+Granular English capability haritası AŞAMA 6C'de; exact English progression, CEFR hedefleri, cadence ve teknik entegrasyon **AŞAMA 7**'de kesinleştirilir.
 
 ---
 
@@ -159,26 +160,34 @@ Python overall: learning
   Functions: learning
 ```
 
-Bu yüzden yeni **AŞAMA 6 — Granular Capability Map**, Technical English'ten AI Infrastructure ve capstone'a kadar bütün rotayı `Module → Topic → Skill → Objective` seviyesinde kapsamlı şekilde bölecektir.
+Bu yüzden **AŞAMA 6 — Granular Capability Map**, Technical English'ten AI Infrastructure ve capstone'a kadar bütün rotayı `Module → Topic → Skill → Objective` seviyesinde kapsamlı şekilde bölecektir.
 
-AŞAMA 6 ayrıca:
-- canonical IDs,
-- prerequisite edges,
-- required/criticality,
-- evidence type,
-- retention relevance,
-- diagnostic/remediation tags,
-- cross-domain reuse,
-- project/capstone mapping,
-- freshness/version metadata
-
-tasarlayacaktır.
+AŞAMA 6 ayrıca canonical IDs, prerequisite edges, required/criticality, evidence type, retention relevance, diagnostic/remediation tags, cross-domain reuse, project/capstone mapping ve freshness/version metadata tasarlayacaktır.
 
 Ayrıntı: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 ---
 
-# 10. Adaptif Learning / Planner Motoru
+# 10. Professional Domain Backbone — D-049
+
+AŞAMA 5A çıktısı `PDM-v0 — Professional Domain Backbone` ile 23 broad route family high-level envelope olarak formalize edildi.
+
+Canonical: `docs/CURRICULUM_DOMAIN_MAP.md`.
+
+Ana ilkeler:
+- Technical English parallel track,
+- Python/C/Linux early complementary foundation,
+- systems → distributed/platform → performance → GPU → inference → multi-GPU → AI/GPU Infrastructure convergence,
+- Performance Engineering cross-cutting,
+- ML/Transformer supporting domain,
+- professional engineering / OSS / projects / capstones route boyunca artan evidence layer,
+- security/reliability ve gerekli math/numerical capability hidden prerequisite olamaz,
+- vendor/tool adı stable systems concept'in yerine geçmez,
+- domain relation authoring guidance'dır; runtime hard prerequisite yine Skill→Skill PRG-v0'dır.
+
+---
+
+# 11. Adaptif Learning / Planner Motoru
 
 ```text
 App teaches
@@ -207,7 +216,7 @@ Aşama 3 canonical modelleri:
 
 ---
 
-# 11. Günlük Kapasite
+# 12. Günlük Kapasite
 
 Kullanıcının ayırdığı günlük süre hard budget'tır. Remediation, retention veya uzun hedef gerekçesiyle gün otomatik uzatılmaz.
 
@@ -215,19 +224,22 @@ Tamamlanmamış task ertesi gün borç değildir; current state'ten fresh plan �
 
 ---
 
-# 12. Assessment
+# 13. Assessment — AŞAMA 4 tamamlandı
 
 Assessment yalnız not üretmez; future state ve planı değiştirir.
 
-DMA-v0 sabit günlük quiz değildir. Gerçek measurement need varsa Objective'e uygun modality ile capacity içinde seçilir.
+Canonical assessment foundation:
+- DMA-v0 / D-040 — daily micro assessment; sabit günlük quiz değildir.
+- WBA-v0 / D-045 — weekly blueprint assessment; tek overall pass-score değildir.
+- MCA-v0 / D-046 — monthly capability assessment; broader transfer/integration evidence.
+- QAB-v0 / D-047 — versioned trusted AssessmentResource bank.
+- AIV-v0 / D-048 — AI-generated resource validation ve use-ceiling policy.
 
-Weekly/monthly assessment daha geniş evidence coverage sağlar; policy tasarımı AŞAMA 4'tedir.
-
-D-044 sonrası gerçek item blueprint'leri AŞAMA 6'nın granular Skill/Objective IDs'lerini tüketmelidir.
+D-044 sonrası blueprint/item attribution granular Skill/Objective IDs kullanır. AI/assessment katmanı GRE/RVR/PRG pipeline'ını bypass etmez.
 
 ---
 
-# 13. Retention / Forgetting
+# 14. Retention / Forgetting
 
 > **Zamanın geçmesi negative evidence değildir. Zaman yalnız yeniden doğrulama ihtiyacını artırabilir.**
 
@@ -235,7 +247,7 @@ D-044 sonrası gerçek item blueprint'leri AŞAMA 6'nın granular Skill/Objectiv
 
 ---
 
-# 14. Remediation
+# 15. Remediation
 
 Remediation geniş Domain'i körlemesine tekrar ettirmemelidir. D-044 sonrası müdahale mümkün olduğunca exact Skill/Objective weakness'e hedeflenir.
 
@@ -251,7 +263,7 @@ Müdahaleler:
 
 ---
 
-# 15. AI Tutor'un Rolü
+# 16. AI Tutor'un Rolü
 
 AI öğretmen/feedback katmanıdır; canonical learning state'in sahibi değildir.
 
@@ -261,7 +273,7 @@ H1–H4 assistance positive independent mastery değildir.
 
 ---
 
-# 16. Daha Kapsamlı Öğretim İlkesi
+# 17. Daha Kapsamlı Öğretim İlkesi
 
 ```text
 conceptual model
@@ -279,7 +291,7 @@ C++ syntax listesiyle, CUDA kernel syntax ile, LLM inference API kullanımıyla 
 
 ---
 
-# 17. Professional Engineering Evidence
+# 18. Professional Engineering Evidence
 
 1. Foundation evidence — Skill/Objective mastery + retention.
 2. Applied evidence — user-authored code, debugging, system tasks, tests.
@@ -291,9 +303,7 @@ Exact capstone sayısı şimdiden uydurulmaz; coverage/diversity AŞAMA 6/15/20'
 
 ---
 
-# 18. Curriculum Planning / Production Ayrımı
-
-D-044 sonrası canonical ayrım:
+# 19. Curriculum Planning / Production Ayrımı
 
 ```text
 AŞAMA 5 = graph/schema/domain backbone
@@ -306,31 +316,21 @@ Bu ayrım, henüz taxonomy netleşmeden binlerce lesson/task üretme riskini aza
 
 ---
 
-# 19. V1 Neden Full Curriculum'u Beklemiyor?
+# 20. V1 Neden Full Curriculum'u Beklemiyor?
 
-V1:
-- adaptive planner,
-- mastery/prerequisite,
-- assessment,
-- retention/remediation,
-- AI Tutor,
-- English parallel track,
-- local persistence,
-- ilk 8–12 haftalık production-quality curriculum
-
-ile release edilebilir.
+V1 adaptive planner, mastery/prerequisite, assessment, retention/remediation, AI Tutor, English parallel track, local persistence ve ilk 8–12 haftalık production-quality curriculum ile release edilebilir.
 
 Full 4+ year professional curriculum V1 ön koşulu değildir.
 
 ---
 
-# 20. Gerçek Dünya Çalışma Alışkanlıkları
+# 21. Gerçek Dünya Çalışma Alışkanlıkları
 
 Professional curriculum zaman içinde Git/branches/PR, code review, tests, build systems, debugger/profiler, documentation, issue decomposition, design docs, reproducible benchmarks, logs/metrics/tracing, incident/postmortem, reliability/security ve open-source contribution workflow öğretmelidir.
 
 ---
 
-# 21. İlk İş ve Kariyer Köprüsü
+# 22. İlk İş ve Kariyer Köprüsü
 
 Nihai hedef AI Infrastructure olsa da ilk işin doğrudan CUDA/Inference Engineer olması zorunlu değildir.
 
@@ -345,59 +345,59 @@ Uygun bridge alanlar:
 
 ---
 
-# 22. Güncel Stage Mapping — D-044
+# 23. Güncel Stage Mapping — D-044 sonrası
 
-- 1–5 değişmedi.
+- 1 Product framing
+- 2 Learning/mastery
+- 3 Adaptive planner
+- 4 Assessment system
+- 5 Curriculum / knowledge graph backbone
 - 6 Granular Capability Map
-- 7 English
+- 7 English parallel line
 - 8 UX
-- 9 Architecture/Data Model
+- 9 Architecture / Data Model
 - 10 Mobile Skeleton
-- 11 Daily MVP
-- 12 Mastery/Planner implementation
-- 13 Assessment/Retention/Remediation implementation
-- 14 AI Tutor
+- 11 Daily Learning MVP
+- 12 Mastery / Planner implementation
+- 13 Assessment / Retention / Remediation implementation
+- 14 AI Tutor / Evaluation
 - 15 First 8–12 week production content
-- 16 Analytics/Settings
-- 17 Polish
-- 18 Pilot/Calibration/QA
+- 16 Analytics / Settings
+- 17 Polish / Accessibility
+- 18 Pilot / Calibration / QA
 - 19 Release APK
-- 20 Full Professional Curriculum/Career/Capstones
+- 20 Full Professional Curriculum / Career / Capstones
 
 D-043 standalone specialization AŞAMA 20 kararı geri çekilmiştir.
 
 ---
 
-# 23. Geliştirme Felsefesi
+# 24. Geliştirme Felsefesi ve Execution State
 
 Canonical yürütme:
 
-`PRE-STEP GitHub refresh → gerekirse Research/Coding/QA → spec/implementation → değerlendirme → POST-STEP GitHub sync`
+`PRE-STEP GitHub refresh → gerekirse Research/Coding/QA → spec/implementation → değerlendirme → POST-STEP GitHub sync → repo-wide stale-reference audit`
 
-Aktif adım hâlâ **4B — Haftalık sınav**; D-044 plan correction 4B execution değildir.
-
----
-
-# 24. Proje Hafızası Kuralı
-
-Kalıcı source of truth GitHub'dır. Özellikle:
-- `docs/START_HERE.md`
-- `docs/PROJECT_MEMORY_PROTOCOL.md`
+**Bu stabil dosya aktif adımı hardcode etmez.** Güncel execution state için:
+- `docs/STEP_STATUS.md`
 - `docs/HANDOFF_STATE.md`
 - `docs/EXECUTION_INDEX.md`
-- `docs/STEP_STATUS.md`
-- `docs/DECISIONS.md`
-- `docs/PRODUCT_REQUIREMENTS.md`
-- `docs/PROFESSIONAL_READINESS_TARGET.md`
-- `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - `docs/MASTER_PLAN.md`
-- `docs/PROGRESS_LOG.md`
+- `PROJECT_CONTEXT.md`
 
-Yeni önemli kararlar yalnız sohbet içinde bırakılmaz.
+okunmalıdır.
 
 ---
 
-# 25. Güncel Kapsam Özeti
+# 25. Proje Hafızası Kuralı — D-024 / D-027 / D-050
+
+GitHub durable source of truth'tur. Her numaralı adımın PRE/POST senkronu zorunludur.
+
+D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_MEMORY_PROTOCOL.md` içinde bağlayıcı hale getirilmiştir. `PROJECT_CONTEXT.md` kısa current snapshot, `START_HERE` bootstrap, `HANDOFF_STATE` detailed current handoff, `STEP_STATUS` hızlı current state; bu dosya ise uzun/stabil bağlamdır.
+
+---
+
+# 26. Güncel Kapsam Özeti
 
 > **AI Infra Learning Coach sıfırdan başlayıp yıllar boyunca kanıt-temelli, adaptif ve kapsamlı biçimde ilerleyen; finalde AI Infrastructure / ML Systems / GPU Systems alanında profesyonel çalışmaya hazırlanabilecek engineering capability üretmeyi hedefleyen kişisel öğrenme sistemidir.**
 
