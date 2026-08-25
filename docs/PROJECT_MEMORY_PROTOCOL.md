@@ -1,13 +1,18 @@
 # Project Memory Protocol — Zorunlu GitHub Beyin Tazeleme Döngüsü
 
 **Durum:** BAĞLAYICI ÇALIŞMA PROTOKOLÜ  
-**Tarih:** 2026-08-24
+**Tarih:** 2026-08-25  
+**Son güçlendirme:** D-050
 
-Bu belge AI Infra Learning Coach projesinde her numaralı adımın (`1A`, `2C`, `3A`, `11F` vb.) nasıl başlatılıp nasıl kapatılacağını tanımlar.
+Bu belge AI Infra Learning Coach projesinde her numaralı adımın (`1A`, `2C`, `3A`, `12F` vb.) nasıl başlatılıp nasıl kapatılacağını ve repo içindeki kalıcı hafıza dosyalarının nasıl senkron tutulacağını tanımlar.
 
 Ana kural:
 
-> **Hiçbir numaralı proje adımı GitHub beyin tazelemesi yapılmadan başlatılmaz; hiçbir numaralı proje adımı gerekli GitHub hafıza dosyaları ve MASTER_PLAN ilerleme kaydı güncellenmeden tamamlanmış sayılmaz.**
+> **Hiçbir numaralı proje adımı GitHub beyin tazelemesi yapılmadan başlatılmaz; hiçbir numaralı proje adımı gerekli GitHub hafıza dosyaları, MASTER_PLAN ilerleme kaydı ve repo-wide stale-reference kontrolü yapılmadan tamamlanmış sayılmaz.**
+
+İkinci bağlayıcı kural:
+
+> **GitHub durable source of truth'tur. Sohbet hafızası veya tek bir durum dosyası repo içindeki başka bir stale dosyanın varlığını mazur göstermez.**
 
 ---
 
@@ -21,14 +26,15 @@ Minimum zorunlu kontrol seti:
 2. `docs/EXECUTION_INDEX.md` — adım kimliği, sırası ve tamamlanma durumu.
 3. `docs/STEP_STATUS.md` — aktif adımın hızlı doğrulaması.
 4. `docs/DECISIONS.md` — ilgili bağlayıcı kararların kontrolü.
-5. Başlanacak adımla doğrudan ilgili en güncel spec/davranış dosyaları.
-6. `docs/MASTER_PLAN.md` — ilgili ayrıntılı checklist'in canonical indeksle uyumlu olduğunun kontrolü.
+5. `docs/MASTER_PLAN.md` — ilgili ayrıntılı checklist'in canonical indeksle uyum kontrolü.
+6. `PROJECT_CONTEXT.md` — kısa yaşayan proje snapshot'ının güncel olduğunun kontrolü.
+7. Başlanacak adımla doğrudan ilgili en güncel spec/davranış dosyaları.
 
 Gerekirse ayrıca:
 
 - `docs/START_HERE.md`
 - `docs/PROJECT_MASTER_CONTEXT.md`
-- `PROJECT_CONTEXT.md`
+- `README.md`
 - `docs/V1_SCOPE.md`
 - `docs/V1_SUCCESS_CRITERIA.md`
 - `docs/NON_GOALS.md`
@@ -40,13 +46,13 @@ Gerekirse ayrıca:
 
 okunur.
 
-Amaç her defasında bütün repoyu körlemesine okumak değil; **önce canonical güncel durum dosyalarını, sonra başlayacak adım için gerekli bağlayıcı bağlamı** tazelemektir.
+Amaç her defasında bütün repoyu körlemesine okumak değildir; önce canonical yaşayan durum dosyaları, sonra başlanacak adım için gerekli bağlayıcı bağlam tazelenir. Ancak büyük scope/reindex değişikliği veya dokümantasyon drift şüphesi varsa repo-wide audit yapılır.
 
 ## PRE-STEP kontrolünde doğrulanacaklar
 
 - Gerçek aktif adım hangisi?
 - Önceki adım gerçekten tamamlandı mı?
-- `EXECUTION_INDEX` ile `MASTER_PLAN` ilerleme durumu uyuşuyor mu?
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROJECT_CONTEXT` ve `MASTER_PLAN` aynı execution state'i gösteriyor mu?
 - Kullanıcı tarafından kabul edilmiş ve yeni adımı sınırlayan kararlar neler?
 - Yeni adımın beklenen çıktısı nedir?
 - Hangi konular bilinçli olarak sonraki adıma bırakılmıştır?
@@ -65,53 +71,165 @@ Adım uygulanırken:
 - açık kalan konular adım kapsamı dışında ise uydurularak doldurulmaz,
 - yeni kalıcı ürün/mimari kararları decision kaydına aday olarak işaretlenir,
 - araştırma/kodlama/test gereksinimleri `docs/AI_AGENT_WORKFLOW.md` protokolüne göre ayrılır,
-- kullanıcıyla adım sırasında netleşen önemli davranışlar sohbet içinde bırakılmaz; adım kapanırken ilgili spec'e taşınır.
+- kullanıcıyla adım sırasında netleşen önemli davranışlar sohbet içinde bırakılmaz; adım kapanırken ilgili spec'e taşınır,
+- future-stage numarası veya dosya adı değiştiyse etkilenen cross-reference'lar POST-STEP'te repo-wide taranmak üzere işaretlenir.
 
 ---
 
-# 3. POST-STEP — Adım bittikten sonra zorunlu GitHub güncellemesi
+# 3. Dosya rolleri — benzer görünen dosyalar neden var?
+
+Aynı bilgiyi amaçsızca çoğaltmak yasaktır. Yaşayan dosyaların rolleri ayrıdır:
+
+## `PROJECT_CONTEXT.md` — kısa yaşayan proje snapshot'ı
+- Kök dizindeki kısa ve hızlı hafıza dosyasıdır.
+- Güncel ana yönü, önemli kararları ve **mevcut execution state'i** özetler.
+- **Her numaralı adım sonunda kontrol edilir ve execution state değiştiyse mutlaka güncellenir.**
+
+## `docs/START_HERE.md` — yeni sohbet / yeni agent bootstrap
+- Yeni oturumun nereden başlayacağını ve ne okuyacağını söyler.
+- Güncel aktif adımı ve canonical okuma sırasını taşır.
+- **Her numaralı adım sonunda kontrol edilir; aktif adım değiştiyse güncellenir.**
+
+## `docs/HANDOFF_STATE.md` — ayrıntılı current handoff
+- Son kabul edilen modelleri, aktif adımın kapsamını ve doğrudan okunacak dosyaları ayrıntılı verir.
+- **Her numaralı adım sonunda güncellenir.**
+
+## `docs/STEP_STATUS.md` — kısa execution tablosu
+- En hızlı durum kontrolüdür.
+- **Her numaralı adım sonunda güncellenir.**
+
+## `docs/EXECUTION_INDEX.md` — canonical adım kimlikleri ve sıra
+- Adım kodlarının source of truth'udur.
+- **Her numaralı adım sonunda checkbox/aktif iş açısından kontrol edilir ve gerekiyorsa güncellenir.**
+
+## `docs/MASTER_PLAN.md` — ayrıntılı geliştirme checklist'i
+- Aşamaların detaylarını ve completion notlarını taşır.
+- **Her numaralı adım sonunda canonical state ile senkron kontrolü zorunludur.**
+
+## `docs/PROGRESS_LOG.md` — kronolojik tarihçe
+- Ne zaman ne yapıldığını ve nedenini append-only mantıkla kaydeder.
+- **Her numaralı adım sonunda yeni kayıt eklenir.**
+
+## `docs/DECISIONS.md` — kalıcı karar günlüğü
+- Her adımda kontrol edilir.
+- Yalnız yeni kalıcı karar oluştuysa yeni decision eklenir; sırf step ilerledi diye gereksiz decision üretilmez.
+
+## `docs/PROJECT_MASTER_CONTEXT.md` — uzun ve nispeten stabil proje bağlamı
+- Ürün amacı, felsefe, ana mimari/öğrenme yaklaşımı gibi uzun ömürlü bağlamı taşır.
+- **Volatile aktif adımı tekrar etmez.** Current execution için `STEP_STATUS` / `HANDOFF_STATE` kullanılır.
+- Yalnız büyük ürün/scope/felsefe değişikliklerinde güncellenir.
+
+## `README.md` — insan için repo giriş sayfası
+- Genel amacı ve canonical dokümanlara navigasyonu verir.
+- Volatile aktif step'i kopyalamaz; current state için `STEP_STATUS`/`HANDOFF_STATE`e yönlendirir.
+- Yalnız repo giriş anlatımı değiştiğinde güncellenir.
+
+## Stable spec / research dosyaları
+- Tamamlanmış kararların davranış kaydıdır.
+- Sırf aktif step değişti diye yeniden yazılmaz.
+- Ancak stage reindex, dosya rename, superseded contract veya yanlış future-reference oluşursa cross-reference düzeltilir.
+
+---
+
+# 4. POST-STEP — Her numaralı adım sonunda zorunlu GitHub senkronu
 
 Bir numaralı adım ancak çıktı kabul edilebilir hale geldikten sonra kapatılır.
 
-Adım sonunda zorunlu kontrol/güncelleme seti:
+## 4.1 Her adımda zorunlu ALWAYS-CHECK / gerektiğinde ALWAYS-SYNC seti
 
-- adımın ana spec/çıktı dosyası,
-- `docs/EXECUTION_INDEX.md` — checkbox/durum ve completion note,
-- `docs/STEP_STATUS.md` — son tamamlanan ve yeni aktif adım,
-- `docs/HANDOFF_STATE.md` — güncel proje konumu ve yeni bağlayıcı bilgiler,
-- `docs/PROGRESS_LOG.md` — tarihli çalışma/tamamlanma kaydı,
-- `docs/MASTER_PLAN.md` — karşılık gelen checklist/completion note ve current-state senkronizasyonu.
+Aşağıdakiler **istisnasız her numaralı adım sonunda kontrol edilir**:
 
-Gerektiğinde ayrıca:
+1. adımın ana spec/çıktı dosyası,
+2. `docs/EXECUTION_INDEX.md`,
+3. `docs/STEP_STATUS.md`,
+4. `docs/HANDOFF_STATE.md`,
+5. `docs/PROGRESS_LOG.md`,
+6. `docs/MASTER_PLAN.md`,
+7. `PROJECT_CONTEXT.md`,
+8. `docs/START_HERE.md`,
+9. `docs/DECISIONS.md`.
 
-- `docs/DECISIONS.md` — yeni kalıcı karar oluştuysa,
-- `docs/START_HERE.md` — başlangıç/handoff davranışı veya güncel yönü etkileyen değişiklik varsa,
-- `docs/PROJECT_MASTER_CONTEXT.md` — yalnız büyük ürün amacı/felsefesi değiştiyse,
-- diğer etkilenen canonical spec dosyaları.
+Durum/karar değişikliğinden etkilenen dosya aynı POST-STEP içinde güncellenir. Özellikle `PROJECT_CONTEXT.md`, `START_HERE.md`, `HANDOFF_STATE.md` ve `STEP_STATUS.md` eski aktif adımda bırakılamaz.
 
-`MASTER_PLAN.md` her adımda yeniden yazılmak zorunda değildir; ancak karşılık gelen checklist ve current-state canonical indeksle **mutlaka kontrol edilir** ve durum değiştiyse güncellenir.
+## 4.2 Etki varsa güncellenecek dosyalar
 
-`STEP_STATUS`, `HANDOFF_STATE`, `PROGRESS_LOG`, `EXECUTION_INDEX` ve `MASTER_PLAN` kontrol edilmeden adım tamamlanmış sayılmaz.
+Aşağıdakiler her adımda okunmak zorunda değildir fakat değişiklik bunları etkiliyorsa aynı POST-STEP içinde güncellenir:
+
+- `README.md`,
+- `docs/PROJECT_MASTER_CONTEXT.md`,
+- `docs/PRODUCT_REQUIREMENTS.md`,
+- `docs/PRODUCT_VISION.md`,
+- `docs/PROFESSIONAL_READINESS_TARGET.md`,
+- `docs/V1_SCOPE.md`,
+- `docs/V1_SUCCESS_CRITERIA.md`,
+- `docs/NON_GOALS.md`,
+- curriculum/domain/English belgeleri,
+- tamamlanmış stable spec'lerdeki future-stage veya renamed-file cross-reference'ları,
+- ilgili research/provenance belgeleri.
+
+## 4.3 Repo-wide stale-reference kontrolü
+
+Her adım kapanışında en azından değişen state/karar isimleri için repo-wide arama yapılır. Aşağıdakiler özellikle aranır:
+
+- eski `Aktif adım` / `henüz yürütülmedi` iddiaları,
+- superseded decision/model adları,
+- silinen/rename edilen dosya yolları,
+- eski stage numaraları,
+- geri çekilmiş kararların canonical gibi kullanımı,
+- aynı kavram için birbiriyle çelişen yaşayan özetler.
+
+Stale referans bulunduysa:
+- yaşayan/current dosyada ise aynı POST-STEP'te düzeltilir,
+- historical log/spec içinde geçmiş zamanı anlatıyorsa tarihsel bağlam korunur,
+- belirsizse `historical` veya `non-canonical` etiketi eklenir; sessizce anlam değiştirilmez.
 
 ---
 
-# 4. Adım kapanış doğrulaması
+# 5. Stage reindex / plan değişikliği için özel kural
+
+Bir plan değişikliği future stage numaralarını etkilediğinde yalnız `MASTER_PLAN` ve `EXECUTION_INDEX` değiştirmek yeterli değildir.
+
+Aynı senkron turunda:
+
+1. repo-wide eski stage referansı aranır,
+2. yaşayan/current belgeler yeni stage numarasına taşınır,
+3. stable spec'lerdeki future-reference'lar düzeltilir,
+4. historical completion metni geçmişi anlatıyorsa korunur,
+5. `START_HERE`, `PROJECT_CONTEXT`, `HANDOFF_STATE`, `STEP_STATUS` ve README navigasyonu yeniden kontrol edilir.
+
+Bu tarama yapılmadan reindex tamamlanmış sayılmaz.
+
+---
+
+# 6. Gereksiz / duplicate doküman politikası
+
+- Aynı role sahip iki yaşayan source of truth tutulmaz.
+- Eski taslak yeni canonical spec tarafından tamamen supersede edilmiş ve benzersiz provenance değeri taşımıyorsa silinebilir.
+- Faydalı seed/araştırma notu taşıyan eski dosya silinmek yerine açıkça `NON-CANONICAL / SEED / HISTORICAL` etiketlenebilir.
+- Bir dosya silinmeden önce repo içi referansları kontrol edilir ve canonical replacement belirtilir.
+- Silme işlemi geçmiş karar/spec davranışını değiştiremez.
+
+---
+
+# 7. Adım kapanış doğrulaması
 
 Adım `✅ Tamamlandı` yapılmadan önce ana yönetici şu soruların hepsine cevap verebilmelidir:
 
 - Ana çıktı/spec GitHub'da mevcut mu?
-- Yeni kararlar karar günlüğüne işlendi mi?
-- `EXECUTION_INDEX` ve `MASTER_PLAN` aynı ilerleme durumunu gösteriyor mu?
-- Aktif adım bir sonrakine taşındı mı?
+- Yeni kararlar gerekiyorsa `DECISIONS.md` içine işlendi mi?
+- `EXECUTION_INDEX`, `STEP_STATUS`, `HANDOFF_STATE`, `PROJECT_CONTEXT` ve `MASTER_PLAN` aynı ilerleme durumunu gösteriyor mu?
+- `START_HERE` yeni sohbeti doğru aktif adıma götürüyor mu?
+- `PROGRESS_LOG` bu adımı kaydediyor mu?
+- Repo-wide stale-reference taraması yapıldı mı?
+- Eski stage/file/decision pointer'ı yaşayan belgelerde kaldı mı?
 - Yeni sohbet yalnız GitHub'ı okuyarak doğru yerden devam edebilir mi?
-- Önceki sohbet bilinmese bile adımın sonucu ve gerekçesi anlaşılabiliyor mu?
 - Açık kalan konular doğru sonraki adımlara bırakılmış mı?
 
 Bunlardan kritik olan biri hayır ise adım kapanmış sayılmaz.
 
 ---
 
-# 5. Yeni sohbet / aynı sohbet fark etmez
+# 8. Yeni sohbet / aynı sohbet fark etmez
 
 Bu protokol yalnız sohbet değiştiğinde uygulanmaz.
 
@@ -126,7 +244,7 @@ Sebep:
 
 ---
 
-# 6. Kullanıcıya tekrar sordurmama ilkesi
+# 9. Kullanıcıya tekrar sordurmama ilkesi
 
 GitHub beyin tazelemesinin amaçlarından biri kullanıcının daha önce verdiği cevapları yeniden sormamaktır.
 
@@ -141,8 +259,8 @@ oluşursa yeni karar gündeme getirilir.
 
 ---
 
-# 7. Canonical protokol özeti
+# 10. Canonical protokol özeti
 
-`PRE-STEP GitHub refresh → MASTER_PLAN/INDEX tutarlılık kontrolü → adımı yürüt → gerekirse research/coding/QA → sonucu değerlendir → POST-STEP GitHub + MASTER_PLAN sync → sonraki adımı aktif yap`
+`PRE-STEP GitHub refresh → yaşayan state dosyaları tutarlılık kontrolü → adımı yürüt → gerekirse Research/Coding/QA → sonucu değerlendir → ALWAYS-CHECK POST seti → etkilenen stable docs → repo-wide stale-reference scan → sonraki adımı aktif yap`
 
 Bu döngü tüm proje boyunca zorunludur.
