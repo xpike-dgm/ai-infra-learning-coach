@@ -224,3 +224,26 @@ Ayrıntı: `docs/QUESTION_BANK_SPEC.md`.
 - Empirical validator/evaluator accuracy thresholds AŞAMA 14F/18 calibration'a bırakılmıştır; 4E sahte scientific optimum uydurmaz.
 
 Ayrıntı: `docs/AI_GENERATED_RESOURCE_VALIDATION_SPEC.md`.
+
+## D-049 — Professional curriculum domain backbone = PDM-v0
+**Durum:** Kabul edildi — 2026-08-25
+
+- AŞAMA 5A'nın canonical çıktısı `PDM-v0 — Professional Domain Backbone` oldu.
+- Ana route 23 broad family halinde korunur; bu family'ler takvim veya mastery atomu değildir.
+- Domain rollerinde `parallel_track`, `common_foundation`, `systems_core`, `distributed_platform_core`, `performance_core`, `accelerator_core`, `supporting_domain`, `inference_systems_core`, `target_infrastructure`, `professional_evidence_layer` semantiği kullanılır.
+- Technical English bütün rota boyunca paraleldir; teknik progression'ın global hard prerequisite'i değildir.
+- Python + C + Linux/Git/Shell complementary early foundations'tır; katı seri kurs gibi çalışmaz.
+- Systems core: Modern C++, Architecture, OS/Memory, Concurrency ve Networking üzerinden distributed/performance katmanına ilerler.
+- Performance Engineering sona bırakılan tek optimization bölümü değildir; measurement/benchmark/profiling habits route boyunca büyür.
+- GPU Architecture → CUDA/Triton accelerator katmanı systems/performance foundations üzerine oturur; Triton GPU/CUDA mental modelini bypass etmez.
+- ML/Transformer ayrı research specialization değil, inference sistemlerini anlayacak supporting domain'dir; gerekli math/numerical capability hidden prerequisite bırakılmaz.
+- LLM Inference → serving systems → KV/batching/scheduling/quantization ayrı fakat bağlı domain family'leridir.
+- Multi-GPU/NCCL/RDMA networking + distributed + GPU foundations'in advanced convergence katmanıdır.
+- AI/GPU Infrastructure systems + distributed + cloud/observability + performance + inference + multi-GPU capability'lerinin target integration domain'idir.
+- Open Source/engineering practice/projects/capstones yalnız finalde başlamaz; küçük artifacts erken, integrated projects orta, professional capstones ileri aşamada gelir.
+- Security/reliability/observability ayrı cybersecurity specialization'a çevrilmeden cross-cutting professional capability olarak ilgili domainlere dağılır.
+- Tool/vendor isimleri stable system concept'in yerine geçmez; version/freshness metadata ile ayrılır.
+- Domain-level ilişkiler authoring guidance'dır; runtime hard prerequisite canonical olarak Skill→Skill PRG-v0 ile çözülür.
+- 5B graph/metadata contract'ı bu domain backbone'u formalize edecek; AŞAMA 6 bütün family'leri Module/Topic/Skill/Objective seviyesine parçalayacaktır.
+
+Ayrıntı: `docs/CURRICULUM_DOMAIN_MAP.md`.
