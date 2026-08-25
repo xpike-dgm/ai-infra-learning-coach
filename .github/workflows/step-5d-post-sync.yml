@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
       - name: Apply and audit 5D POST-STEP sync
         run: |
-          python scripts/step_5d_post_sync.py
+          python scripts/step_5d_post_sync_v2.py
           git diff --stat
       - name: Commit 5D POST-STEP sync
         run: |
