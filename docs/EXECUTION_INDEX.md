@@ -7,7 +7,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - Alt adımlar `1A`, `2E`, `12F` biçiminde kullanılır.
 - Tamamlanan `[x]`, bekleyen `[ ]`.
 - Her adım öncesi/sonrası `docs/PROJECT_MEMORY_PROTOCOL.md` uygulanır.
-- `MASTER_PLAN`, `STEP_STATUS`, `HANDOFF_STATE` ve `PROGRESS_LOG` canonical durumla senkron tutulur.
+- D-050 sonrası `PROJECT_CONTEXT`, `START_HERE`, `HANDOFF_STATE`, `STEP_STATUS`, `EXECUTION_INDEX`, `MASTER_PLAN`, `PROGRESS_LOG`, `DECISIONS` her step kapanışında istisnasız kontrol edilir ve repo-wide stale-reference scan yapılır.
 - D-041: full curriculum 4+ yıllık professional-readiness horizon'ına genişletildi.
 - D-042: Python ana technical foundation rotasına resmi olarak eklendi.
 - D-043: yanlış yorum nedeniyle geri çekildi; standalone specialization stage canonical değildir.
@@ -17,6 +17,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-047: 4D final assessment resource bank modeli `QAB-v0`.
 - D-048: 4E final AI-generated assessment validation modeli `AIV-v0`.
 - D-049: 5A final domain backbone modeli `PDM-v0`.
+- D-050: living-memory sync + repo-wide stale-reference audit zorunlu.
 
 ---
 
@@ -239,4 +240,4 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 **Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A`  
 **Aktif:** **`5B — Graph / Topic metadata sözleşmesi`**
 
-5B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
+D-050 repository hygiene maintenance numaralı adım değildir; 5B hâlâ henüz yürütülmedi. 5B başlamadan yeni PRE-STEP GitHub refresh zorunludur.
