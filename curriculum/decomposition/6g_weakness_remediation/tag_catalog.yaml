@@ -1,0 +1,30 @@
+- source_remediation_tag: debug_localization
+  mapped_strategy_ids:
+  - strategy.debug_localization
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay
+- source_remediation_tag: failure_scenario_replay
+  mapped_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay
+- source_remediation_tag: fresh_variant
+  mapped_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay
+- source_remediation_tag: measurement_replay
+  mapped_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay
+- source_remediation_tag: review_replay
+  mapped_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay
+- source_remediation_tag: targeted_reteach
+  mapped_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.fresh_independent_recheck
+  mapping_kind: deterministic_tag_bridge_with_objective_evidence_overlay

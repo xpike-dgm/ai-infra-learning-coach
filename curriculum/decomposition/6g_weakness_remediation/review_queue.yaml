@@ -1,0 +1,34 @@
+- review_id: review.6g.external_behavior_coverage
+  severity: non_blocking
+  question: Independent learning-science/engineering sources reveal a missing weakness-localization or remediation safety
+    behavior?
+  decision_inputs_required:
+  - independent Research AI
+  - authoritative learning/assessment sources
+  resolution_owner_step: 6H
+  status: open
+- review_id: review.6g.misconception_taxonomy_expansion
+  severity: non_blocking
+  question: Which domain-specific misconception labels should be production-authored beyond the generic runtime misconception
+    contract?
+  decision_inputs_required:
+  - real learner errors
+  - AI tutor/error-analysis design
+  resolution_owner_step: 14B
+  status: open
+- review_id: review.6g.calibration
+  severity: non_blocking
+  question: Which supported-vs-confirmed escalation heuristics and remediation burden require pilot calibration?
+  decision_inputs_required:
+  - pilot evidence
+  - false-positive/false-negative remediation analysis
+  resolution_owner_step: 18C
+  status: open
+- review_id: review.6g.content_realization
+  severity: non_blocking
+  question: Which remediation strategy templates need prevalidated production content for V1 and later full-route expansion?
+  decision_inputs_required:
+  - AŞAMA 15 authoring
+  - AŞAMA 20 full curriculum expansion
+  resolution_owner_step: 15/20
+  status: open

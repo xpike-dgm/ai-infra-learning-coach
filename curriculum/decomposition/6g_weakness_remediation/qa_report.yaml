@@ -1,0 +1,47 @@
+package_id: decomposition.6g_weakness_remediation
+model_id: WLRM-v0
+result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
+checked_at: '2026-08-27'
+counts:
+  source_packages: 4
+  skills_covered: 543
+  objectives_covered: 590
+  failure_attribution_rules: 12
+  remediation_strategies: 15
+  remediation_routes: 590
+  learning_need_mappings: 6
+  source_remediation_tags: 6
+  open_non_blocking_reviews: 4
+  open_blocking_reviews: 0
+checks:
+- check: accepted_registry_coverage
+  result: PASS
+  details: 543 Skills / 590 Objectives covered exactly
+- check: no_new_curriculum_identity
+  result: PASS
+  details: 6G adds overlay metadata only; no new Skill/Objective identity
+- check: objective_first_localization
+  result: PASS
+  details: Every Objective has a weakness profile and remediation route
+- check: broad_overreaction_guard
+  result: PASS
+  details: No profile permits broad parent reset
+- check: prerequisite_contamination_guard
+  result: PASS
+  details: Target negative evidence is prohibited when prerequisite contamination exists
+- check: mastery_hysteresis_guard
+  result: PASS
+  details: First clean post-mastery contradiction maps to verification_due
+- check: remediation_closure_evidence
+  result: PASS
+  details: Closure requires fresh H0 direct verified prerequisite-valid evidence through GRE/RVR
+- check: planner_integration
+  result: PASS
+  details: LearningNeed + PBR P0/P1/P2/P3 mappings are explicit
+- check: project_component_guard
+  result: PASS
+  details: Integrated outcome cannot broadcast weakness/evidence to all tagged Objectives
+external_research_qa:
+  status: pending
+  owner_step: 6H
+  required_before_stage6_external_validation: true

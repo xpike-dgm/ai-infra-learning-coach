@@ -1,0 +1,127 @@
+- strategy_id: strategy.targeted_reteach
+  name: Targeted reteach
+  purpose: Repair the exact conceptual/procedural gap without resetting the parent Topic or Domain.
+  activity_kinds:
+  - content_explanation
+  - explanation_justification
+  assistance_policy: guided_allowed
+  evidence_ceiling: corroborating
+- strategy_id: strategy.worked_example
+  name: Worked example reconstruction
+  purpose: Show and reconstruct one prerequisite-valid solution path before independent retry.
+  activity_kinds:
+  - worked_example
+  - code_reading_trace
+  assistance_policy: guided_allowed
+  evidence_ceiling: corroborating
+- strategy_id: strategy.micro_drill
+  name: Focused micro drill
+  purpose: Practice only the localized sub-behavior with bounded scope.
+  activity_kinds:
+  - recognition_selection
+  - recall_free_response
+  - coding_production
+  assistance_policy: guided_allowed_then_independent
+  evidence_ceiling: direct_if_H0_valid_verified
+- strategy_id: strategy.state_trace_reconstruction
+  name: State/trace reconstruction
+  purpose: Externalize intermediate state, control/data flow, shape or lifecycle transitions to repair a reasoning gap.
+  activity_kinds:
+  - code_reading_trace
+  - explanation_justification
+  assistance_policy: guided_allowed
+  evidence_ceiling: corroborating_or_direct_by_objective_profile
+- strategy_id: strategy.debug_localization
+  name: Debug localization drill
+  purpose: Reproduce symptom, isolate cause, fix and verify in a fresh bug/context.
+  activity_kinds:
+  - debugging_diagnosis
+  - hands_on_system_task
+  assistance_policy: guided_allowed_then_H0_recheck
+  evidence_ceiling: direct_if_H0_valid_verified
+- strategy_id: strategy.prerequisite_refresh
+  name: Prerequisite refresh
+  purpose: Repair a real prerequisite gap before retrying the target; never misattribute the prerequisite failure to the target.
+  activity_kinds:
+  - content_explanation
+  - worked_example
+  - practice
+  assistance_policy: guided_allowed
+  evidence_ceiling: belongs_to_prerequisite_objective
+- strategy_id: strategy.failure_scenario_replay
+  name: Failure scenario replay
+  purpose: Recreate a representative failure mode and reason through detection, containment and correction.
+  activity_kinds:
+  - debugging_diagnosis
+  - hands_on_system_task
+  - transfer_problem
+  assistance_policy: guided_allowed_then_independent
+  evidence_ceiling: direct_if_H0_valid_verified
+- strategy_id: strategy.measurement_replay
+  name: Measurement replay
+  purpose: Repeat a controlled measurement/benchmark/profile and repair interpretation or experimental-design errors.
+  activity_kinds:
+  - hands_on_system_task
+  - explanation_justification
+  assistance_policy: guided_allowed_then_independent
+  evidence_ceiling: direct_if_H0_valid_verified
+- strategy_id: strategy.production_retry
+  name: Fresh production retry
+  purpose: Re-produce the target artifact independently in a fresh context after repair.
+  activity_kinds:
+  - coding_production
+  - hands_on_system_task
+  - integrated_project_task
+  assistance_policy: H0_required_for_closure_evidence
+  evidence_ceiling: direct
+- strategy_id: strategy.explanation_rebuild
+  name: Explanation/model rebuild
+  purpose: Reconstruct the mental model, tradeoff argument or causal explanation with explicit assumptions.
+  activity_kinds:
+  - explanation_justification
+  - transfer_problem
+  assistance_policy: guided_allowed_then_independent
+  evidence_ceiling: direct_if_objective_allows_explanation
+- strategy_id: strategy.misconception_contrast
+  name: Misconception contrast
+  purpose: Contrast the learner's suspected misconception against a correct counterexample without treating the hypothesis
+    as fact.
+  activity_kinds:
+  - worked_example
+  - recognition_selection
+  - explanation_justification
+  assistance_policy: guided_allowed
+  evidence_ceiling: corroborating
+- strategy_id: strategy.transfer_retest
+  name: Fresh transfer retest
+  purpose: Verify repaired capability in a materially different unseen context when transfer is required.
+  activity_kinds:
+  - transfer_problem
+  - integrated_project_task
+  assistance_policy: H0_required_for_closure_evidence
+  evidence_ceiling: direct
+- strategy_id: strategy.retrieval_reinforcement
+  name: Retrieval reinforcement
+  purpose: Use short retrieval/reconstruction when concern is retention-oriented but confirmed remediation is not yet warranted.
+  activity_kinds:
+  - recall_free_response
+  - code_reading_trace
+  - transfer_problem
+  assistance_policy: H0_preferred
+  evidence_ceiling: direct_if_RVR_conditions_hold
+- strategy_id: strategy.tool_workflow_rehearsal
+  name: Tool/workflow rehearsal
+  purpose: Repeat a bounded professional or tool operation where the operation itself is the target capability.
+  activity_kinds:
+  - hands_on_system_task
+  - integrated_project_task
+  assistance_policy: guided_allowed_then_independent
+  evidence_ceiling: direct_if_tool_use_is_target
+- strategy_id: strategy.fresh_independent_recheck
+  name: Fresh independent recheck
+  purpose: Close verification/remediation only with prerequisite-valid, fresh, H0, direct and verified evidence appropriate
+    to the Objective.
+  activity_kinds:
+  - assessment_by_objective_profile
+  assistance_policy: H0_required
+  evidence_ceiling: direct

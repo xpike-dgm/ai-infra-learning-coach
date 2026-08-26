@@ -1,0 +1,19 @@
+rules:
+- guard_id: guard.no_domain_reset
+  rule: A failure localized to one Objective/Skill cannot reset or reteach an entire Domain by default.
+- guard_id: guard.no_topic_broadcast
+  rule: Topic weakening/remediation_required is derived from required Skill evidence; Topic state never broadcasts weakness
+    back to all linked Skills.
+- guard_id: guard.no_skill_broadcast_from_one_incidental_objective
+  rule: One Objective failure affects Skill state only through GRE required/critical gates and hysteresis; no manual whole-Skill
+    fail flag bypasses GRE.
+- guard_id: guard.no_project_broadcast
+  rule: Global project pass/fail cannot write evidence or weakness to every tagged Objective; component must be structurally
+    essential and separately observable.
+- guard_id: guard.branch_local_prerequisite_effect
+  rule: Confirmed prerequisite weakness blocks only dependent hard-prerequisite work; independent branches remain schedulable.
+- guard_id: guard.review_due_not_weakness
+  rule: Time-based review_due is maintenance scheduling, not negative learner evidence.
+- guard_id: guard.english_not_global_failure
+  rule: Unknown Technical English cannot be silently interpreted as technical Skill weakness unless it is an explicit fair
+    task prerequisite.
