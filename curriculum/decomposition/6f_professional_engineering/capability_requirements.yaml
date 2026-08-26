@@ -1,0 +1,1672 @@
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.repo_structure_orientation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.repo_structure_orientation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.source_entrypoint_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.source_entrypoint_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.cross_module_flow_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.cross_module_flow_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.issue_reproduction
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.issue_reproduction
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.minimal_reproducer
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.minimal_reproducer
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.issue_scope_decomposition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.issue_scope_decomposition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.dependency_impact_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.dependency_impact_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.change_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.change_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.branch_change_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.branch_change_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.commit_history_hygiene
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.commit_history_hygiene
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.rebase_conflict_resolution
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.rebase_conflict_resolution
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.pr_problem_solution_evidence
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.pr_problem_solution_evidence
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.pr_scope_discipline
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.pr_scope_discipline
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.review_feedback_triage
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.review_feedback_triage
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.review_iteration
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.review_iteration
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.code_review_correctness
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.code_review_correctness
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.code_review_maintainability
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.code_review_maintainability
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.code_review_risk
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.code_review_risk
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.test_strategy_selection
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.test_strategy_selection
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.test_oracle_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.test_oracle_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.integration_test_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.integration_test_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.system_validation_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.system_validation_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.regression_test_from_bug
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.regression_test_from_bug
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.flaky_test_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.flaky_test_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.ci_failure_localization
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.ci_failure_localization
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.quality_gate_definition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.quality_gate_definition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.reproducible_build_contract
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.reproducible_build_contract
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.dependency_version_control
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.dependency_version_control
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.release_validation
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.release_validation
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.rollback_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.rollback_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.changelog_release_note
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.changelog_release_note
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.release_artifact_provenance
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.release_artifact_provenance
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.artifact_integrity_verification
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.artifact_integrity_verification
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.debug_hypothesis_loop
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.debug_hypothesis_loop
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.debug_evidence_chain
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.debug_evidence_chain
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.regression_bisection
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.regression_bisection
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.cross_layer_failure_localization
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.cross_layer_failure_localization
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.benchmark_experiment_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.benchmark_experiment_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.measurement_environment_record
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.measurement_environment_record
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.performance_report_synthesis
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.performance_report_synthesis
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.performance_regression_gate
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.performance_regression_gate
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.problem_statement_scope
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.problem_statement_scope
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.requirement_constraint_non_goal
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.requirement_constraint_non_goal
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.interface_contract_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.interface_contract_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.alternative_tradeoff_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.alternative_tradeoff_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.design_risk_failure_mode
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.design_risk_failure_mode
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.rfc_authoring
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.rfc_authoring
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.rfc_review_response
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.rfc_review_response
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.decision_record
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.decision_record
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.technical_status_update
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.technical_status_update
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.observability_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.observability_plan
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.runbook_authoring
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.runbook_authoring
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.incident_timeline
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.incident_timeline
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.incident_hypothesis_triage
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.incident_hypothesis_triage
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.postmortem_root_cause
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.postmortem_root_cause
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.corrective_action_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.corrective_action_design
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.slo_change_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.slo_change_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.threat_surface_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.threat_surface_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.secret_exposure_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.secret_exposure_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.dependency_supply_chain_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.dependency_supply_chain_review
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.operational_change_risk
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.operational_change_risk
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_project_orientation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_project_orientation
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_issue_selection
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_issue_selection
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_contribution_policy
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_contribution_policy
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_patch_scope
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_patch_scope
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_submission_evidence
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_submission_evidence
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_maintainer_feedback_iteration
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_maintainer_feedback_iteration
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.oss_community_communication
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.oss_community_communication
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.project_milestone_decomposition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.project_milestone_decomposition
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.project_risk_register
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.project_risk_register
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.integration_checkpoint
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.integration_checkpoint
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.cross_domain_integration_design
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.cross_domain_integration_design
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.evidence_matrix
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.evidence_matrix
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.capstone_validation_plan
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.capstone_validation_plan
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.capstone_defense
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.capstone_defense
+  requirement_role: required
+  criticality: critical
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.professional_engineering
+  capability_kind: skill
+  capability_id: skill.professional.project_retrospective
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.professional.project_retrospective
+  requirement_role: required
+  criticality: standard
+  rationale: Required D23 professional engineering capability.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []

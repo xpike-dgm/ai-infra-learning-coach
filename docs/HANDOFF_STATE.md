@@ -202,6 +202,20 @@ SDM-v0:
 - internal result `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
 - 6H external Research QA pending; learner-published değil.
 
+## 9.6 D-060 / 6F final özeti
+
+Canonical summary: `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`.  
+Canonical dataset: `curriculum/decomposition/6f_professional_engineering/`.
+
+PEM-v0:
+- D23 için 1 Domain / 9 Module / 27 Topic,
+- 76 Skill / 87 Objective / 110 TopicSkillLink,
+- 138 edge (137 hard / 1 soft),
+- 25 prior Skill canonical ID ile reuse,
+- testing/build/debug/profiling/Git-PR-review/design-doc/ops/security/OSS/project-capstone overlay granularlaştırıldı,
+- 6D ve 6E professional-overlay review'ları resolved,
+- internal QA PASS_WITH_OPEN_NON_BLOCKING_REVIEWS; external Research QA 6H'ye pending.
+
 ## 10. Tamamlanan aşamalar
 
 - AŞAMA 1 ✅
@@ -215,42 +229,13 @@ SDM-v0:
   - 6C ✅ FDM-v0 / D-057
   - 6D ✅ SDM-v0 / D-058
   - 6E ✅ GIM-v0 / D-059
-  - 6F 🟡 Professional engineering / project map — aktif, henüz yürütülmedi
-  - 6G–6H ⬜
+  - 6F ✅ PEM-v0 / D-060
+  - 6G 🟡 Weakness localization + remediation mapping — aktif, henüz yürütülmedi
+  - 6H ⬜
 - AŞAMA 7–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `6E — GIM-v0 / D-059`
-**Aktif:** `6F — Professional engineering / project map`
-**6F henüz yürütülmedi.**
-
-## 12. 6E final handoff
-- Canonical summary: `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`.
-- Dataset: `curriculum/decomposition/6e_gpu_ml_inference/`.
-- 9 Domain / 27 Module / 70 Topic / 143 Skill / 159 Objective.
-- 279 prerequisite edge = 247 hard / 32 soft; 59 prior Skill reuse.
-- Combined 6C+6D+6E hard graph DAG 467/467.
-- `review.6d.accelerator_forward_reuse` resolved.
-- 6H external Research QA pending; package learner-published değildir.
-
-## 13. 6F için PRE-STEP doğrudan okunacaklar
-1. `docs/HANDOFF_STATE.md`
-2. `docs/EXECUTION_INDEX.md`
-3. `docs/STEP_STATUS.md`
-4. `docs/DECISIONS.md`
-5. `docs/MASTER_PLAN.md`
-6. `PROJECT_CONTEXT.md`
-7. `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`
-8. `docs/FOUNDATIONS_DETAILED_MAP.md`
-9. `docs/SYSTEMS_DETAILED_MAP.md`
-10. `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`
-11. `curriculum/decomposition/6d_systems/review_queue.yaml`
-12. `curriculum/decomposition/6e_gpu_ml_inference/manifest.yaml`
-13. `curriculum/decomposition/6e_gpu_ml_inference/skills.yaml`
-14. `curriculum/decomposition/6e_gpu_ml_inference/professional_attributions.yaml`
-15. `curriculum/decomposition/6e_gpu_ml_inference/project_capstone_attributions.yaml`
-16. `docs/PROFESSIONAL_READINESS_TARGET.md`
-17. `docs/PROJECT_MEMORY_PROTOCOL.md`
-
-6F başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Son tamamlanan:** `6F — PEM-v0 / D-060`
+**Aktif:** `6G — Weakness localization + remediation mapping`
+**6G henüz yürütülmedi.**

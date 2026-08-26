@@ -33,10 +33,11 @@ D14–D22 route family'leri ayrıntılandırıldı: GPU Architecture, CUDA, Trit
 - Independent 6E package validator: PASS
 - 6C+6D+6E combined hard graph: DAG 467/467
 - Package result: `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`
-- Open reviews: 0 blocking / 4 non-blocking
+- Open reviews: 0 blocking / 3 non-blocking
 
 ## Review handoff
 - `review.6d.accelerator_forward_reuse` 6E tarafından resolved edildi.
 - 6D'nin external coverage/tool freshness review'ları 6H'ye, professional overlay reconciliation 6F'ye açık kalır.
+- `review.6e.professional_overlay_reconciliation` PEM-v0 / D-060 ile resolved edildi; D23 registry 6E professional/project attributions'ını canonical ID reuse ile reconcile eder.
 - 6E external coverage, tool/runtime freshness ve math/numerical coverage audit'leri independent external Research QA için 6H'ye pending kalır.
 - Package 6H tamamlanana kadar external-validation/learner-publication açısından final sayılmaz.

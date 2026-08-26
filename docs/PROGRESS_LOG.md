@@ -443,3 +443,11 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Combined 6C+6D+6E hard graph DAG 467/467; 0 blocking review.
 - `review.6d.accelerator_forward_reuse` kapatıldı; external Research QA 6H'ye pending bırakıldı.
 - POST-STEP living-memory/Vault sync sonrası aktif adım 6F'ye taşındı.
+
+## 2026-08-27 — 6F — Professional engineering / project map — PEM-v0 / D-060
+- D23 professional engineering/OSS/large-project/capstone package üretildi.
+- 76 Skill / 87 Objective / 138 prerequisite edge.
+- 25 prior Skill clone'lanmadan reused.
+- 6D ve 6E professional-overlay review'ları resolved edildi.
+- Independent 6F validator + prior regression validators PASS.
+- External Research QA 6H'ye pending; 6G current active step olarak açıldı.

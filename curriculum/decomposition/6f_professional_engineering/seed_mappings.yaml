@@ -1,0 +1,263 @@
+- seed_id: skill.ai_infra.efficiency_optimization_validation
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.ai_infra.efficiency_optimization_validation
+  source_package: 6e
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.ai_infra.model_rollout_validation
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.ai_infra.model_rollout_validation
+  source_package: 6e
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.ai_infra.topology_aware_placement
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.ai_infra.topology_aware_placement
+  source_package: 6e
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.cpp.build_system_project_definition
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.cpp.build_system_project_definition
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.engineering.explain_debug_fix_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.engineering.explain_debug_fix_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.engineering.reproducible_run_notes
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.engineering.reproducible_run_notes
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.git.stage_commit_history_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.git.stage_commit_history_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.multi_gpu.nccl_debug_trace
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.multi_gpu.nccl_debug_trace
+  source_package: 6e
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.observability.signal_correlation_diagnosis
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.observability.signal_correlation_diagnosis
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.observability.structured_logging
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.observability.structured_logging
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.performance.benchmark_reproducibility
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.performance.benchmark_reproducibility
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.performance.measurement_validity_reasoning
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.performance.measurement_validity_reasoning
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.performance.optimization_hypothesis_validation
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.performance.optimization_hypothesis_validation
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.performance.regression_detection
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.performance.regression_detection
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.platform.deployment_change_safety
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.platform.deployment_change_safety
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.platform.image_supply_chain_safety
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.platform.image_supply_chain_safety
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.platform.secret_handling_safety
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.platform.secret_handling_safety
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.programming.code_reading_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.programming.code_reading_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.programming.debug_localization_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.programming.debug_localization_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.programming.function_decomposition
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.programming.function_decomposition
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.programming.test_case_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.programming.test_case_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.programming.trace_execution_basic
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.programming.trace_execution_basic
+  source_package: 6c
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.reliability.incident_response_workflow
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.reliability.incident_response_workflow
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.reliability.slo_definition
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.reliability.slo_definition
+  source_package: 6d
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: skill.serving.latency_throughput_slo_analysis
+  seed_kind: accepted_prior_skill
+  mapping_status: reuse_existing
+  target_skill_ids:
+  - skill.serving.latency_throughput_slo_analysis
+  source_package: 6e
+  authoring_rationale: Professional D23 context reuses the accepted technical capability by canonical ID; no clone learner
+    state is created.
+  review_refs: []
+- seed_id: project.foundation.reproducible_cli_tool
+  seed_kind: prior_project
+  mapping_status: augment_with_professional_overlay
+  target_skill_ids:
+  - skill.professional.pr_problem_solution_evidence
+  - skill.professional.project_retrospective
+  - skill.professional.reproducible_build_contract
+  - skill.professional.test_strategy_selection
+  source_package: prior_project_attribution
+  authoring_rationale: Existing integrated project remains valid and receives separately observable D23 professional workflow
+    components.
+  review_refs: []
+- seed_id: project.systems.observable_networked_service
+  seed_kind: prior_project
+  mapping_status: augment_with_professional_overlay
+  target_skill_ids:
+  - skill.professional.integration_test_design
+  - skill.professional.observability_plan
+  - skill.professional.performance_report_synthesis
+  - skill.professional.postmortem_root_cause
+  - skill.professional.rfc_authoring
+  source_package: prior_project_attribution
+  authoring_rationale: Existing integrated project remains valid and receives separately observable D23 professional workflow
+    components.
+  review_refs: []
+- seed_id: project.gpu_inference.integrated_serving_stack
+  seed_kind: prior_project
+  mapping_status: augment_with_professional_overlay
+  target_skill_ids:
+  - skill.professional.capstone_validation_plan
+  - skill.professional.cross_domain_integration_design
+  - skill.professional.incident_hypothesis_triage
+  - skill.professional.performance_report_synthesis
+  - skill.professional.project_retrospective
+  source_package: prior_project_attribution
+  authoring_rationale: Existing integrated project remains valid and receives separately observable D23 professional workflow
+    components.
+  review_refs: []

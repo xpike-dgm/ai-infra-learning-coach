@@ -51,12 +51,16 @@
   decision_inputs_required:
   - 6F professional overlay registry
   resolution_owner_step: 6F
-  status: open
-  resolution: null
+  status: resolved
+  resolution: 6F D23 registry reuses Systems observability/reliability/performance/build/testing capabilities by canonical
+    ID and adds only distinct professional workflow Skills.
   source_refs:
   - source.repo.frdb_v0
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - decomposition.6f_professional_engineering
+  - D-060
 - review_id: review.6d.accelerator_forward_reuse
   subject_refs:
   - domain.performance_engineering

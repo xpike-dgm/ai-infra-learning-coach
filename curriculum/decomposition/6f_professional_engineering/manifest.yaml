@@ -1,0 +1,60 @@
+package_id: decomposition.6f_professional_engineering
+package_version: 1
+stage_step: 6F
+status: authoring_complete_internal_qa
+blueprint_version: FRDB-v0
+graph_contract_version: KGC-v0
+granularity_standard_version: GNS-v0
+base_graph_refs:
+- FDM-v0
+- SDM-v0
+- GIM-v0
+route_family_ids:
+- D23
+included_collections:
+- sources
+- organization_entities
+- skills
+- objectives
+- topic_skill_links
+- prerequisite_edges
+- capability_requirements
+- professional_attributions
+- project_capstone_attributions
+- seed_mappings
+- review_queue
+- qa_report
+source_catalog_refs:
+- source.repo.pdm_v0
+- source.repo.frdb_v0
+- source.repo.gns_v0
+- source.repo.prg_v0
+- source.repo.professional_readiness
+- source.repo.prior_packages
+- source.repo.internal_6f_authoring
+coverage_declarations:
+- route_family_id: D23
+  status: internally_mapped
+  external_validation: pending_6H
+prior_package_refs:
+- package_id: decomposition.6c_foundations
+  reused_skill_count: 8
+- package_id: decomposition.6d_systems
+  reused_skill_count: 12
+- package_id: decomposition.6e_gpu_ml_inference
+  reused_skill_count: 5
+known_exclusions:
+- Weakness/remediation runtime mapping belongs to 6G.
+- External professional/OSS coverage validation belongs to independent Research QA in 6H.
+- Production lesson/task/resource bodies belong to AŞAMA 15/20.
+- Career application/interview/job-search curriculum expansion belongs to AŞAMA 20.
+- Physical database schema belongs to 9C.
+unresolved_review_count: 3
+blocking_review_count: 0
+generated_at: '2026-08-27'
+authored_by: main_manager_gpt_5_6_sol
+review_refs:
+- review.6f.external_coverage
+- review.6f.oss_workflow_freshness
+- review.6f.capstone_diversity
+content_hash: null

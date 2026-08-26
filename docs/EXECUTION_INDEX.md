@@ -97,8 +97,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **6C — Foundations detailed map** — `docs/FOUNDATIONS_DETAILED_MAP.md`, `curriculum/decomposition/6c_foundations/` — FDM-v0 / D-057
 - [x] **6D — Systems detailed map** — `docs/SYSTEMS_DETAILED_MAP.md`, `curriculum/decomposition/6d_systems/` — SDM-v0 / D-058
 - [x] **6E — GPU / ML / Inference detailed map** — `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, `curriculum/decomposition/6e_gpu_ml_inference/` — GIM-v0 / D-059
-- [ ] **6F — Professional engineering / project map** **AKTİF** — testing/build/debug/profiling, OSS workflow, large projects, capstone capability decomposition
-- [ ] **6G — Weakness localization + remediation mapping** — zayıflığın Skill/Objective düzeyinde ayrı tutulması
+- [x] **6F — Professional engineering / project map** — `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, `curriculum/decomposition/6f_professional_engineering/` — PEM-v0 / D-060
+- [ ] **6G — Weakness localization + remediation mapping** **AKTİF** — zayıflığın Skill/Objective düzeyinde ayrı tutulması
 - [ ] **6H — Coverage / prerequisite / Research QA** — eksik/duplicate/hidden prerequisite audit + bağımsız Research AI doğrulaması
 
 ---
@@ -246,7 +246,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6E`
-**Aktif:** **`6F — Professional engineering / project map`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6F`
+**Aktif:** **`6G — Weakness localization + remediation mapping`**
 
-6E GIM-v0 / D-059 ile tamamlandı. 6F henüz yürütülmedi; 6F başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6F PEM-v0 / D-060 ile tamamlandı. 6G henüz yürütülmedi; 6G başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+
+- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`; D23 professional workflow + OSS + integrated project/capstone decomposition ve prior-package professional overlay reconciliation.

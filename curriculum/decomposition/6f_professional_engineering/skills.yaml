@@ -1,0 +1,4256 @@
+- skill_id_candidate: skill.professional.alternative_tradeoff_analysis
+  canonical_name: Alternative Tradeoff Analysis
+  capability_statement: En az iki uygulanabilir çözümü complexity, performance, reliability ve operability trade-off'larıyla
+    karşılaştırabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.rfc_tradeoffs
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: &id002
+    - design_argument
+    - artifact_analysis
+    example_outcome: En az iki uygulanabilir çözümü complexity, performance, reliability ve operability trade-off'larıyla
+      karşılaştırabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - systems_design
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.artifact_integrity_verification
+  canonical_name: Artifact Integrity Verification
+  capability_statement: Artifact identity/integrity bilgisini distribution ve deployment öncesi doğrulayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.artifact_provenance
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: &id001
+    - hands_on_workflow
+    - artifact_analysis
+    example_outcome: Artifact identity/integrity bilgisini distribution ve deployment öncesi doğrulayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - operational_safety
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.image_supply_chain_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.benchmark_experiment_plan
+  canonical_name: Benchmark Experiment Plan
+  capability_statement: Workload, warmup, repetitions, controls ve success metric'leri içeren performans deney planı oluşturabilmek.
+  capability_kind: measurement_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.performance_experiment
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: &id003
+    - measurement_artifact
+    - reproducible_benchmark
+    example_outcome: Workload, warmup, repetitions, controls ve success metric'leri içeren performans deney planı oluşturabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - profiling_benchmarking
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.performance.benchmark_reproducibility
+    - skill.performance.measurement_validity_reasoning
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.branch_change_isolation
+  canonical_name: Branch Change Isolation
+  capability_statement: Bir değişikliği bağımsız branch/worktree sınırında ilgisiz work'ten izole edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.branch_commit_workflow
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Bir değişikliği bağımsız branch/worktree sınırında ilgisiz work'ten izole edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.git.stage_commit_history_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.capstone_defense
+  canonical_name: Capstone Defense
+  capability_statement: Capstone architecture, trade-offs, failures, measurements ve unresolved limits'i bağımsız teknik incelemede
+    savunabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.capstone_defense
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Capstone architecture, trade-offs, failures, measurements ve unresolved limits'i bağımsız teknik incelemede
+      savunabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - technical_communication
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.capstone_validation_plan
+  canonical_name: Capstone Validation Plan
+  capability_statement: Capstone için correctness, debugging, performance, reliability, security ve reproducibility validation
+    planı kurabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_evidence
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Capstone için correctness, debugging, performance, reliability, security ve reproducibility validation
+      planı kurabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - testing
+  - reliability
+  - profiling_benchmarking
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.change_plan
+  canonical_name: Change Plan
+  capability_statement: Scope, affected components, test plan, risk ve rollback düşüncesi içeren uygulanabilir change plan
+    yazabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.change_planning
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Scope, affected components, test plan, risk ve rollback düşüncesi içeren uygulanabilir change plan yazabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - technical_communication
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.changelog_release_note
+  canonical_name: Changelog Release Note
+  capability_statement: User/operator açısından anlamlı behavior, migration ve risk değişikliklerini release note/changelog
+    olarak yazabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.release_validation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: User/operator açısından anlamlı behavior, migration ve risk değişikliklerini release note/changelog olarak
+      yazabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - technical_communication
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.ci_failure_localization
+  canonical_name: Ci Failure Localization
+  capability_statement: CI failure'ını code, test, dependency, environment veya infrastructure kaynaklı katmana ayırabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.ci_quality
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: CI failure'ını code, test, dependency, environment veya infrastructure kaynaklı katmana ayırabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - debugging
+  - build_tooling
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.code_review_correctness
+  canonical_name: Code Review Correctness
+  capability_statement: Başkasının patch'inde behavior, edge case ve regression riskini kanıt üzerinden inceleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.code_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Başkasının patch'inde behavior, edge case ve regression riskini kanıt üzerinden inceleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.code_reading_basic
+    - skill.programming.test_case_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.code_review_maintainability
+  canonical_name: Code Review Maintainability
+  capability_statement: Patch'in abstraction, coupling, naming ve future-change maliyetini somut kod bağlamında değerlendirebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.code_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Patch'in abstraction, coupling, naming ve future-change maliyetini somut kod bağlamında değerlendirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.code_review_risk
+  canonical_name: Code Review Risk
+  capability_statement: Patch'in operational, performance, security ve compatibility risklerini ilgili evidence ile işaretleyebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.code_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Patch'in operational, performance, security ve compatibility risklerini ilgili evidence ile işaretleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - reliability
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.commit_history_hygiene
+  canonical_name: Commit History Hygiene
+  capability_statement: Review edilebilir atomic commit'ler ve açıklayıcı history oluşturabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.branch_commit_workflow
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Review edilebilir atomic commit'ler ve açıklayıcı history oluşturabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.git.stage_commit_history_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.corrective_action_design
+  canonical_name: Corrective Action Design
+  capability_statement: Postmortem action'larını owner, verification evidence ve systemic-risk reduction hedefiyle tasarlayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.postmortem_actions
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Postmortem action'larını owner, verification evidence ve systemic-risk reduction hedefiyle tasarlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.cross_domain_integration_design
+  canonical_name: Cross Domain Integration Design
+  capability_statement: Bir project'te language, systems, distributed, GPU/inference ve operations sınırlarını explicit interface
+    ve trade-off'larla birleştirebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_evidence
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Bir project'te language, systems, distributed, GPU/inference ve operations sınırlarını explicit interface
+      ve trade-off'larla birleştirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.cross_layer_failure_localization
+  canonical_name: Cross Layer Failure Localization
+  capability_statement: Application, OS, network, runtime ve infrastructure sinyallerini birleştirerek failure layer'ını ayırabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.debug_investigation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Application, OS, network, runtime ve infrastructure sinyallerini birleştirerek failure layer'ını ayırabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - observability
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.observability.signal_correlation_diagnosis
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.cross_module_flow_trace
+  canonical_name: Cross Module Flow Trace
+  capability_statement: Bir davranışın birden fazla module/package/process boyunca geçtiği akışı kanıtla izleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.source_tree_orientation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Bir davranışın birden fazla module/package/process boyunca geçtiği akışı kanıtla izleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - source_reading
+  - systems_design
+  - debugging
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.debug_evidence_chain
+  canonical_name: Debug Evidence Chain
+  capability_statement: Bir root-cause iddiasını logs, traces, tests, debugger veya reproduction evidence zinciriyle destekleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.debug_investigation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Bir root-cause iddiasını logs, traces, tests, debugger veya reproduction evidence zinciriyle destekleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.reproducible_run_notes
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.debug_hypothesis_loop
+  canonical_name: Debug Hypothesis Loop
+  capability_statement: Symptom'dan falsifiable hypothesis üretip targeted observation ile daraltılan debug döngüsü yürütebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.debug_investigation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Symptom'dan falsifiable hypothesis üretip targeted observation ile daraltılan debug döngüsü yürütebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.explain_debug_fix_basic
+    - skill.programming.debug_localization_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.decision_record
+  canonical_name: Decision Record
+  capability_statement: Karar, context, alternatives ve consequence bilgisini future reader için kısa decision record'a dönüştürebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.decision_communication
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Karar, context, alternatives ve consequence bilgisini future reader için kısa decision record'a dönüştürebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.dependency_impact_analysis
+  canonical_name: Dependency Impact Analysis
+  capability_statement: Planlanan değişikliğin callers, data contracts, tests, build ve operational dependencies üzerindeki
+    etkisini izleyebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.change_planning
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Planlanan değişikliğin callers, data contracts, tests, build ve operational dependencies üzerindeki etkisini
+      izleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - systems_design
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.dependency_supply_chain_review
+  canonical_name: Dependency Supply Chain Review
+  capability_statement: Yeni dependency/artifact için source, version, integrity ve transitive-risk evidence'ını değerlendirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.security_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Yeni dependency/artifact için source, version, integrity ve transitive-risk evidence'ını değerlendirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - operational_safety
+  - build_tooling
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.image_supply_chain_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.dependency_version_control
+  canonical_name: Dependency Version Control
+  capability_statement: Dependency version/pin/lock kararını compatibility ve reproducibility gerekçesiyle yönetebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.reproducible_builds
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Dependency version/pin/lock kararını compatibility ve reproducibility gerekçesiyle yönetebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - build_tooling
+  - reproducibility
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.design_risk_failure_mode
+  canonical_name: Design Risk Failure Mode
+  capability_statement: Önerilen tasarımın failure modes, capacity limits ve operational risks'lerini önceden çıkarabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.rfc_tradeoffs
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Önerilen tasarımın failure modes, capacity limits ve operational risks'lerini önceden çıkarabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - reliability
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.evidence_matrix
+  canonical_name: Evidence Matrix
+  capability_statement: Project/capstone requirement'larını separately observable Skill/Objective evidence component'lerine
+    eşleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_evidence
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Project/capstone requirement'larını separately observable Skill/Objective evidence component'lerine eşleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - testing
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.flaky_test_diagnosis
+  canonical_name: Flaky Test Diagnosis
+  capability_statement: Flaky test davranışını timing, shared state, environment veya nondeterministic input kaynağına lokalize
+    edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.ci_quality
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Flaky test davranışını timing, shared state, environment veya nondeterministic input kaynağına lokalize
+      edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - debugging
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.debug_localization_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.incident_hypothesis_triage
+  canonical_name: Incident Hypothesis Triage
+  capability_statement: Incident sırasında competing hypotheses'i blast radius, recent changes ve telemetry evidence ile önceliklendirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.incident_response
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Incident sırasında competing hypotheses'i blast radius, recent changes ve telemetry evidence ile önceliklendirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - debugging
+  - observability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.incident_timeline
+  canonical_name: Incident Timeline
+  capability_statement: Incident event, symptom, action ve evidence'ı zaman sıralı ve source-linked timeline'a dönüştürebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.incident_response
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Incident event, symptom, action ve evidence'ı zaman sıralı ve source-linked timeline'a dönüştürebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - observability
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.reliability.incident_response_workflow
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.integration_checkpoint
+  canonical_name: Integration Checkpoint
+  capability_statement: Milestone sonunda interface, tests, build, operability ve evidence readiness kontrolü yapabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.project_planning
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Milestone sonunda interface, tests, build, operability ve evidence readiness kontrolü yapabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.integration_test_design
+  canonical_name: Integration Test Design
+  capability_statement: Component sınırları, external dependencies ve failure behavior için integration test tasarlayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_regression
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Component sınırları, external dependencies ve failure behavior için integration test tasarlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.interface_contract_reasoning
+  canonical_name: Interface Contract Reasoning
+  capability_statement: Component/API sınırında input/output, failure ve compatibility contract'ını açık tanımlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.problem_constraints
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Component/API sınırında input/output, failure ve compatibility contract'ını açık tanımlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - systems_design
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.issue_reproduction
+  canonical_name: Issue Reproduction
+  capability_statement: Issue/bug raporunu environment, input ve observed output ile tekrar üretilebilir hale getirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.issue_reproduction
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Issue/bug raporunu environment, input ve observed output ile tekrar üretilebilir hale getirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.reproducible_run_notes
+    - skill.programming.debug_localization_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.issue_scope_decomposition
+  canonical_name: Issue Scope Decomposition
+  capability_statement: Bir issue'yu observable symptom, likely subsystem, acceptance evidence ve non-goal'lara bölebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.issue_reproduction
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Bir issue'yu observable symptom, likely subsystem, acceptance evidence ve non-goal'lara bölebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.function_decomposition
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.measurement_environment_record
+  canonical_name: Measurement Environment Record
+  capability_statement: Hardware/software/environment koşullarını benchmark sonucunu yeniden yorumlatacak ayrıntıda kaydedebilmek.
+  capability_kind: measurement_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.performance_experiment
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id003
+    example_outcome: Hardware/software/environment koşullarını benchmark sonucunu yeniden yorumlatacak ayrıntıda kaydedebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - profiling_benchmarking
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.reproducible_run_notes
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.minimal_reproducer
+  canonical_name: Minimal Reproducer
+  capability_statement: Bir arızayı korurken ilgisiz değişkenleri azaltan minimal reproducer oluşturabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.issue_reproduction
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Bir arızayı korurken ilgisiz değişkenleri azaltan minimal reproducer oluşturabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - testing
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.test_case_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.observability_plan
+  canonical_name: Observability Plan
+  capability_statement: Bir service/system için hangi log, metric ve trace sinyallerinin hangi failure/performance sorularını
+    cevaplayacağını planlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.observability_runbooks
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Bir service/system için hangi log, metric ve trace sinyallerinin hangi failure/performance sorularını
+      cevaplayacağını planlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - observability
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.observability.structured_logging
+    - skill.reliability.slo_definition
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.operational_change_risk
+  canonical_name: Operational Change Risk
+  capability_statement: Deployment/config/data migration değişikliğinin blast radius ve rollback riskini review edebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.security_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Deployment/config/data migration değişikliğinin blast radius ve rollback riskini review edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - operational_safety
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.deployment_change_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_community_communication
+  canonical_name: Oss Community Communication
+  capability_statement: Issue/PR tartışmasında evidence, uncertainty ve disagreement'ı profesyonel ve teknik olarak ifade
+    edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_submission_iteration
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Issue/PR tartışmasında evidence, uncertainty ve disagreement'ı profesyonel ve teknik olarak ifade edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - collaboration
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_contribution_policy
+  canonical_name: Oss Contribution Policy
+  capability_statement: Repository'nin contribution, DCO/CLA, style, test ve communication kurallarını okuyup uygulanacak
+    checklist'e çevirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_contribution_discovery
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Repository'nin contribution, DCO/CLA, style, test ve communication kurallarını okuyup uygulanacak checklist'e
+      çevirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_issue_selection
+  canonical_name: Oss Issue Selection
+  capability_statement: Kendi mevcut capability ve scope'una uygun, reproducible ve reviewable contribution adayı seçebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_contribution_discovery
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Kendi mevcut capability ve scope'una uygun, reproducible ve reviewable contribution adayı seçebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_maintainer_feedback_iteration
+  canonical_name: Oss Maintainer Feedback Iteration
+  capability_statement: Maintainer feedback sonrası patch, tests ve rationale'ı repository normlarını koruyarak iterate edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_submission_iteration
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Maintainer feedback sonrası patch, tests ve rationale'ı repository normlarını koruyarak iterate edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - collaboration
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_patch_scope
+  canonical_name: Oss Patch Scope
+  capability_statement: Seçilen OSS issue için minimal, maintainable ve testable patch scope'u belirleyebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_submission_iteration
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Seçilen OSS issue için minimal, maintainable ve testable patch scope'u belirleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - collaboration
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_project_orientation
+  canonical_name: Oss Project Orientation
+  capability_statement: Open-source repository'nin contribution docs, issue tracker, build/test path ve maintainer workflow'unu
+    çıkarabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_contribution_discovery
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Open-source repository'nin contribution docs, issue tracker, build/test path ve maintainer workflow'unu
+      çıkarabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - source_reading
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.oss_submission_evidence
+  canonical_name: Oss Submission Evidence
+  capability_statement: OSS patch'i tests, reproduction, rationale ve compatibility notes ile submit edilebilir hale getirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.oss_submission_iteration
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: OSS patch'i tests, reproduction, rationale ve compatibility notes ile submit edilebilir hale getirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - oss_workflow
+  - testing
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.performance_regression_gate
+  canonical_name: Performance Regression Gate
+  capability_statement: Representative workload üzerinde meaningful performance regression'ı detect edip release/merge kararına
+    bağlayabilmek.
+  capability_kind: measurement_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.performance_reporting
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id003
+    example_outcome: Representative workload üzerinde meaningful performance regression'ı detect edip release/merge kararına
+      bağlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - profiling_benchmarking
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.performance.regression_detection
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.performance_report_synthesis
+  canonical_name: Performance Report Synthesis
+  capability_statement: Baseline, change, variance, bottleneck attribution, correctness gate ve trade-off'u tek teknik raporda
+    birleştirebilmek.
+  capability_kind: measurement_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.performance_reporting
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id003
+    example_outcome: Baseline, change, variance, bottleneck attribution, correctness gate ve trade-off'u tek teknik raporda
+      birleştirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - profiling_benchmarking
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.performance.optimization_hypothesis_validation
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.postmortem_root_cause
+  canonical_name: Postmortem Root Cause
+  capability_statement: Postmortem'da trigger, root cause, contributing factors ve detection/response gaps'i birbirinden ayırabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.postmortem_actions
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Postmortem'da trigger, root cause, contributing factors ve detection/response gaps'i birbirinden ayırabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.pr_problem_solution_evidence
+  canonical_name: Pr Problem Solution Evidence
+  capability_statement: PR açıklamasında problem, yaklaşım, test/evidence, risk ve verification bilgisini açık sunabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.pull_request_authoring
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: PR açıklamasında problem, yaklaşım, test/evidence, risk ve verification bilgisini açık sunabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - technical_communication
+  - testing
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.reproducible_run_notes
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.pr_scope_discipline
+  canonical_name: Pr Scope Discipline
+  capability_statement: PR scope'unu review edilebilir tutup ilgisiz refactor veya behavior değişimini ayırabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.pull_request_authoring
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: PR scope'unu review edilebilir tutup ilgisiz refactor veya behavior değişimini ayırabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.problem_statement_scope
+  canonical_name: Problem Statement Scope
+  capability_statement: Engineering problemini user/system impact, current behavior ve desired outcome ile açık tanımlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.problem_constraints
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Engineering problemini user/system impact, current behavior ve desired outcome ile açık tanımlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.project_milestone_decomposition
+  canonical_name: Project Milestone Decomposition
+  capability_statement: Büyük engineering outcome'u independently verifiable milestone ve dependency'lere bölebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.project_planning
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Büyük engineering outcome'u independently verifiable milestone ve dependency'lere bölebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.function_decomposition
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.project_retrospective
+  canonical_name: Project Retrospective
+  capability_statement: Project sonunda initial plan, evidence, failures, rework ve next-systemic-improvement çıkarımını yapabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.capstone_defense
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Project sonunda initial plan, evidence, failures, rework ve next-systemic-improvement çıkarımını yapabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.project_risk_register
+  canonical_name: Project Risk Register
+  capability_statement: Technical, dependency, reliability ve integration risklerini owner/evidence ile takip edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.project_planning
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Technical, dependency, reliability ve integration risklerini owner/evidence ile takip edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - project_delivery
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.quality_gate_definition
+  canonical_name: Quality Gate Definition
+  capability_statement: Merge/release öncesi gerekli test, lint/build, security ve performance gate'lerini risk-temelli tanımlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.ci_quality
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Merge/release öncesi gerekli test, lint/build, security ve performance gate'lerini risk-temelli tanımlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - reliability
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.rebase_conflict_resolution
+  canonical_name: Rebase Conflict Resolution
+  capability_statement: Branch divergence/conflict durumunda semantic intent'i koruyarak history'yi güncelleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.branch_commit_workflow
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Branch divergence/conflict durumunda semantic intent'i koruyarak history'yi güncelleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - debugging
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.regression_bisection
+  canonical_name: Regression Bisection
+  capability_statement: Known-good/known-bad sınırları kullanarak regression-introducing change'i kontrollü biçimde lokalize
+    edebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.debug_investigation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Known-good/known-bad sınırları kullanarak regression-introducing change'i kontrollü biçimde lokalize
+      edebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - debugging
+  - source_reading
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.regression_test_from_bug
+  canonical_name: Regression Test From Bug
+  capability_statement: Düzeltilen bug'ın observable failure mode'unu koruyan regression test üretebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_regression
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Düzeltilen bug'ın observable failure mode'unu koruyan regression test üretebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - debugging
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.release_artifact_provenance
+  canonical_name: Release Artifact Provenance
+  capability_statement: Release artifact'ını source revision, build inputs, dependency state ve validation evidence ile izlenebilir
+    kılabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.artifact_provenance
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Release artifact'ını source revision, build inputs, dependency state ve validation evidence ile izlenebilir
+      kılabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reproducibility
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.release_validation
+  canonical_name: Release Validation
+  capability_statement: Release candidate'ı declared quality gates, smoke/system tests ve compatibility evidence ile doğrulayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.release_validation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Release candidate'ı declared quality gates, smoke/system tests ve compatibility evidence ile doğrulayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - build_tooling
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.deployment_change_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.repo_structure_orientation
+  canonical_name: Repo Structure Orientation
+  capability_statement: Yeni bir repository'de ana component, build/test entrypoint ve ownership sınırlarını source tree üzerinden
+    çıkarabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.source_tree_orientation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Yeni bir repository'de ana component, build/test entrypoint ve ownership sınırlarını source tree üzerinden
+      çıkarabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - source_reading
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.code_reading_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.reproducible_build_contract
+  canonical_name: Reproducible Build Contract
+  capability_statement: Source revision, dependency versions, toolchain ve build commands ile yeniden üretilebilir build contract
+    oluşturabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.reproducible_builds
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Source revision, dependency versions, toolchain ve build commands ile yeniden üretilebilir build contract
+      oluşturabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - build_tooling
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.cpp.build_system_project_definition
+    - skill.engineering.reproducible_run_notes
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.requirement_constraint_non_goal
+  canonical_name: Requirement Constraint Non Goal
+  capability_statement: Requirement, constraint, assumption ve non-goal'ları birbirinden ayırıp tasarım sınırı kurabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.problem_constraints
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Requirement, constraint, assumption ve non-goal'ları birbirinden ayırıp tasarım sınırı kurabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.review_feedback_triage
+  canonical_name: Review Feedback Triage
+  capability_statement: Review feedback'ini correctness, design, style, evidence ve scope kategorilerine ayırıp uygun aksiyona
+    çevirebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.pull_request_authoring
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Review feedback'ini correctness, design, style, evidence ve scope kategorilerine ayırıp uygun aksiyona
+      çevirebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.review_iteration
+  canonical_name: Review Iteration
+  capability_statement: Review feedback sonrası change, test ve açıklama zincirini tutarlı biçimde güncelleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.pull_request_authoring
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Review feedback sonrası change, test ve açıklama zincirini tutarlı biçimde güncelleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - collaboration
+  - testing
+  - reproducibility
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.rfc_authoring
+  canonical_name: Rfc Authoring
+  capability_statement: Problem, constraints, alternatives, chosen design, rollout ve validation planını içeren reviewable
+    RFC yazabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.rfc_tradeoffs
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Problem, constraints, alternatives, chosen design, rollout ve validation planını içeren reviewable RFC
+      yazabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - technical_communication
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.rfc_review_response
+  canonical_name: Rfc Review Response
+  capability_statement: RFC review itirazlarını evidence, trade-off ve scope değişikliğiyle cevaplayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.decision_communication
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: RFC review itirazlarını evidence, trade-off ve scope değişikliğiyle cevaplayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - design_docs
+  - collaboration
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.rollback_plan
+  canonical_name: Rollback Plan
+  capability_statement: Değişiklik için trigger, state compatibility ve recovery adımlarını içeren rollback planı kurabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.release_validation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Değişiklik için trigger, state compatibility ve recovery adımlarını içeren rollback planı kurabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - operational_safety
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.deployment_change_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.runbook_authoring
+  canonical_name: Runbook Authoring
+  capability_statement: Detection, diagnosis, mitigation, verification ve escalation adımlarını içeren uygulanabilir runbook
+    yazabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.observability_runbooks
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Detection, diagnosis, mitigation, verification ve escalation adımlarını içeren uygulanabilir runbook
+      yazabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - observability
+  - reliability
+  - technical_communication
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.engineering.reproducible_run_notes
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.secret_exposure_review
+  canonical_name: Secret Exposure Review
+  capability_statement: Code/config/log/artifact değişikliğinde secret exposure riskini tespit edip güvenli alternatif önerebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.security_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Code/config/log/artifact değişikliğinde secret exposure riskini tespit edip güvenli alternatif önerebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - operational_safety
+  - code_review
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.platform.secret_handling_safety
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.slo_change_validation
+  canonical_name: Slo Change Validation
+  capability_statement: Reliability veya capacity değişikliğini SLO ve error-budget etkisi üzerinden doğrulayabilmek.
+  capability_kind: measurement_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.postmortem_actions
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id003
+    example_outcome: Reliability veya capacity değişikliğini SLO ve error-budget etkisi üzerinden doğrulayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - reliability
+  - profiling_benchmarking
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.reliability.slo_definition
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.source_entrypoint_trace
+  canonical_name: Source Entrypoint Trace
+  capability_statement: Bir executable/service/library entrypoint'inden ilgili control ve data flow'a kadar kaynak kod yolunu
+    izleyebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.source_tree_orientation
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Bir executable/service/library entrypoint'inden ilgili control ve data flow'a kadar kaynak kod yolunu
+      izleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - source_reading
+  - debugging
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.trace_execution_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.system_validation_plan
+  canonical_name: System Validation Plan
+  capability_statement: Gerçekistic workflow üzerinde end-to-end system validation adımlarını ve acceptance evidence'ını tanımlayabilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.integration_regression
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Gerçekistic workflow üzerinde end-to-end system validation adımlarını ve acceptance evidence'ını tanımlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.technical_status_update
+  canonical_name: Technical Status Update
+  capability_statement: Progress, blocker, evidence, next action ve risk bilgisini kısa teknik durum güncellemesinde iletebilmek.
+  capability_kind: professional_workflow
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.decision_communication
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id001
+    example_outcome: Progress, blocker, evidence, next action ve risk bilgisini kısa teknik durum güncellemesinde iletebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: standard
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - technical_communication
+  - project_delivery
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.test_oracle_design
+  canonical_name: Test Oracle Design
+  capability_statement: Bir test için güvenilir expected behavior/oracle ve failure signal tanımlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.test_strategy
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Bir test için güvenilir expected behavior/oracle ve failure signal tanımlayabilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.test_strategy_selection
+  canonical_name: Test Strategy Selection
+  capability_statement: Değişikliğin riskine göre unit, integration, system, regression ve manual evidence karışımını seçebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.test_strategy
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Değişikliğin riskine göre unit, integration, system, regression ve manual evidence karışımını seçebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - testing
+  - reliability
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.programming.test_case_basic
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.professional.threat_surface_review
+  canonical_name: Threat Surface Review
+  capability_statement: Bir change'in trust boundaries, exposed inputs, privileges ve sensitive assets üzerindeki etkisini
+    belirleyebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.professional.security_review
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.professional_engineering
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types: *id002
+    example_outcome: Bir change'in trust boundaries, exposed inputs, privileges ve sensitive assets üzerindeki etkisini belirleyebilmek.
+  boundaries:
+    prerequisite_boundary: Declared prerequisites define the fair evidence boundary.
+    remediation_boundary: Failure is remediated at this exact professional behavior, not by resetting a technical Domain.
+    reuse_boundary: Existing D01-D22 technical capability is reused by canonical ID and is never cloned into D23.
+  shared_vs_specific:
+    classification: shared_professional
+    rationale: Professional behavior is reusable across language, systems, GPU and inference project contexts.
+  evidence_depth_expectations:
+  - independent_application
+  - transfer
+  - delayed_retention
+  - production_context
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - operational_safety
+  - systems_design
+  project_capability_tags:
+  - d23_professional_integration
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids: []
+    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
+      distinct professional workflow behavior.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []

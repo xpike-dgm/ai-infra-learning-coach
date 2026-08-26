@@ -1,0 +1,1297 @@
+- topic_id: topic.professional.artifact_provenance
+  skill_id: skill.platform.image_supply_chain_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.artifact_provenance
+  skill_id: skill.professional.artifact_integrity_verification
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.artifact_integrity_verification.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.artifact_provenance
+  skill_id: skill.professional.release_artifact_provenance
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.release_artifact_provenance.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.branch_commit_workflow
+  skill_id: skill.git.stage_commit_history_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.branch_commit_workflow
+  skill_id: skill.professional.branch_change_isolation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.branch_change_isolation.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.branch_commit_workflow
+  skill_id: skill.professional.commit_history_hygiene
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.commit_history_hygiene.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.branch_commit_workflow
+  skill_id: skill.professional.rebase_conflict_resolution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.rebase_conflict_resolution.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.capstone_defense
+  skill_id: skill.professional.capstone_defense
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.capstone_defense.defend_design_and_limits
+  - objective.professional.capstone_defense.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.capstone_defense
+  skill_id: skill.professional.project_retrospective
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.project_retrospective.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.change_planning
+  skill_id: skill.professional.change_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.change_plan.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.change_planning
+  skill_id: skill.professional.dependency_impact_analysis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.dependency_impact_analysis.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.ci_quality
+  skill_id: skill.professional.ci_failure_localization
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.ci_failure_localization.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.ci_quality
+  skill_id: skill.professional.flaky_test_diagnosis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.flaky_test_diagnosis.demonstrate_capability
+  - objective.professional.flaky_test_diagnosis.stabilize_flaky_test
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.ci_quality
+  skill_id: skill.professional.quality_gate_definition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.quality_gate_definition.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.ci_quality
+  skill_id: skill.programming.debug_localization_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.code_review
+  skill_id: skill.professional.code_review_correctness
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.code_review_correctness.demonstrate_capability
+  - objective.professional.code_review_correctness.find_regression_risk
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.code_review
+  skill_id: skill.professional.code_review_maintainability
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.code_review_maintainability.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.code_review
+  skill_id: skill.professional.code_review_risk
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.code_review_risk.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.code_review
+  skill_id: skill.programming.code_reading_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.code_review
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.engineering.explain_debug_fix_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.observability.signal_correlation_diagnosis
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.professional.cross_layer_failure_localization
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.cross_layer_failure_localization.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.professional.debug_evidence_chain
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.debug_evidence_chain.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.professional.debug_hypothesis_loop
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.debug_hypothesis_loop.demonstrate_capability
+  - objective.professional.debug_hypothesis_loop.localize_fix_verify
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.professional.regression_bisection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.regression_bisection.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.debug_investigation
+  skill_id: skill.programming.debug_localization_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.decision_communication
+  skill_id: skill.professional.decision_record
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.decision_record.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.decision_communication
+  skill_id: skill.professional.rfc_review_response
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.rfc_review_response.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.decision_communication
+  skill_id: skill.professional.technical_status_update
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.technical_status_update.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.incident_response
+  skill_id: skill.professional.incident_hypothesis_triage
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.incident_hypothesis_triage.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.incident_response
+  skill_id: skill.professional.incident_timeline
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.incident_timeline.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.incident_response
+  skill_id: skill.reliability.incident_response_workflow
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_evidence
+  skill_id: skill.professional.capstone_validation_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.capstone_validation_plan.demonstrate_capability
+  - objective.professional.capstone_validation_plan.validate_integrated_capstone
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_evidence
+  skill_id: skill.professional.cross_domain_integration_design
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.cross_domain_integration_design.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_evidence
+  skill_id: skill.professional.evidence_matrix
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.evidence_matrix.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_regression
+  skill_id: skill.professional.integration_test_design
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.integration_test_design.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_regression
+  skill_id: skill.professional.regression_test_from_bug
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.regression_test_from_bug.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.integration_regression
+  skill_id: skill.professional.system_validation_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.system_validation_plan.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.professional.issue_reproduction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.issue_reproduction.demonstrate_capability
+  - objective.professional.issue_reproduction.reproduce_and_record
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.professional.issue_scope_decomposition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.issue_scope_decomposition.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.professional.minimal_reproducer
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.minimal_reproducer.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.programming.debug_localization_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.programming.function_decomposition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.issue_reproduction
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.observability_runbooks
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.observability_runbooks
+  skill_id: skill.observability.structured_logging
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.observability_runbooks
+  skill_id: skill.professional.observability_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.observability_plan.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.observability_runbooks
+  skill_id: skill.professional.runbook_authoring
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.runbook_authoring.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.observability_runbooks
+  skill_id: skill.reliability.slo_definition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_contribution_discovery
+  skill_id: skill.professional.oss_contribution_policy
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_contribution_policy.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_contribution_discovery
+  skill_id: skill.professional.oss_issue_selection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_issue_selection.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_contribution_discovery
+  skill_id: skill.professional.oss_project_orientation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_project_orientation.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_submission_iteration
+  skill_id: skill.professional.oss_community_communication
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_community_communication.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_submission_iteration
+  skill_id: skill.professional.oss_maintainer_feedback_iteration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_maintainer_feedback_iteration.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_submission_iteration
+  skill_id: skill.professional.oss_patch_scope
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_patch_scope.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.oss_submission_iteration
+  skill_id: skill.professional.oss_submission_evidence
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.oss_submission_evidence.demonstrate_capability
+  - objective.professional.oss_submission_evidence.submit_reviewable_patch
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_experiment
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_experiment
+  skill_id: skill.performance.benchmark_reproducibility
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_experiment
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_experiment
+  skill_id: skill.professional.benchmark_experiment_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.benchmark_experiment_plan.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_experiment
+  skill_id: skill.professional.measurement_environment_record
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.measurement_environment_record.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_reporting
+  skill_id: skill.performance.optimization_hypothesis_validation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_reporting
+  skill_id: skill.performance.regression_detection
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_reporting
+  skill_id: skill.professional.performance_regression_gate
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.performance_regression_gate.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.performance_reporting
+  skill_id: skill.professional.performance_report_synthesis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.performance_report_synthesis.demonstrate_capability
+  - objective.professional.performance_report_synthesis.report_tradeoff
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.postmortem_actions
+  skill_id: skill.professional.corrective_action_design
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.corrective_action_design.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.postmortem_actions
+  skill_id: skill.professional.postmortem_root_cause
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.postmortem_root_cause.demonstrate_capability
+  - objective.professional.postmortem_root_cause.separate_causes_and_gaps
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.postmortem_actions
+  skill_id: skill.professional.slo_change_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.slo_change_validation.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.postmortem_actions
+  skill_id: skill.reliability.slo_definition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.problem_constraints
+  skill_id: skill.professional.interface_contract_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.interface_contract_reasoning.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.problem_constraints
+  skill_id: skill.professional.problem_statement_scope
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.problem_statement_scope.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.problem_constraints
+  skill_id: skill.professional.requirement_constraint_non_goal
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.requirement_constraint_non_goal.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.project_planning
+  skill_id: skill.professional.integration_checkpoint
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.integration_checkpoint.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.project_planning
+  skill_id: skill.professional.project_milestone_decomposition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.project_milestone_decomposition.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.project_planning
+  skill_id: skill.professional.project_risk_register
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.project_risk_register.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.project_planning
+  skill_id: skill.programming.function_decomposition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.pull_request_authoring
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.pull_request_authoring
+  skill_id: skill.professional.pr_problem_solution_evidence
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.pr_problem_solution_evidence.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.pull_request_authoring
+  skill_id: skill.professional.pr_scope_discipline
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.pr_scope_discipline.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.pull_request_authoring
+  skill_id: skill.professional.review_feedback_triage
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.review_feedback_triage.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.pull_request_authoring
+  skill_id: skill.professional.review_iteration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.review_iteration.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.release_validation
+  skill_id: skill.platform.deployment_change_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.release_validation
+  skill_id: skill.professional.changelog_release_note
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.changelog_release_note.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.release_validation
+  skill_id: skill.professional.release_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.release_validation.approve_or_block_release
+  - objective.professional.release_validation.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.release_validation
+  skill_id: skill.professional.rollback_plan
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.rollback_plan.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.reproducible_builds
+  skill_id: skill.cpp.build_system_project_definition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.reproducible_builds
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.reproducible_builds
+  skill_id: skill.professional.dependency_version_control
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.dependency_version_control.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.reproducible_builds
+  skill_id: skill.professional.reproducible_build_contract
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.reproducible_build_contract.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.rfc_tradeoffs
+  skill_id: skill.professional.alternative_tradeoff_analysis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.alternative_tradeoff_analysis.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.rfc_tradeoffs
+  skill_id: skill.professional.design_risk_failure_mode
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.design_risk_failure_mode.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.rfc_tradeoffs
+  skill_id: skill.professional.rfc_authoring
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.rfc_authoring.author_reviewable_rfc
+  - objective.professional.rfc_authoring.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.platform.deployment_change_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.platform.image_supply_chain_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.platform.secret_handling_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.professional.dependency_supply_chain_review
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.dependency_supply_chain_review.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.professional.operational_change_risk
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.operational_change_risk.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.professional.secret_exposure_review
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.secret_exposure_review.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.security_review
+  skill_id: skill.professional.threat_surface_review
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.threat_surface_review.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.source_tree_orientation
+  skill_id: skill.professional.cross_module_flow_trace
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.cross_module_flow_trace.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.source_tree_orientation
+  skill_id: skill.professional.repo_structure_orientation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.repo_structure_orientation.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.source_tree_orientation
+  skill_id: skill.professional.source_entrypoint_trace
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.source_entrypoint_trace.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.source_tree_orientation
+  skill_id: skill.programming.code_reading_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.source_tree_orientation
+  skill_id: skill.programming.trace_execution_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.test_strategy
+  skill_id: skill.professional.test_oracle_design
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.test_oracle_design.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.test_strategy
+  skill_id: skill.professional.test_strategy_selection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.professional.test_strategy_selection.demonstrate_capability
+  authoring_rationale: Primary D23 teaching/evidence context for this canonical professional capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.professional.test_strategy
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted D01-D22 capability is reused in professional context without cloning learner state.
+  source_refs:
+  - source.repo.prior_packages
+  lifecycle_status: draft
+  review_refs: []

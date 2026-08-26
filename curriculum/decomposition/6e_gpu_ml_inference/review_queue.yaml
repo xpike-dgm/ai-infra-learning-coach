@@ -79,9 +79,13 @@
   decision_inputs_required:
   - 6F professional overlay registry
   resolution_owner_step: 6F
-  status: open
-  resolution: null
+  status: resolved
+  resolution: 6F D23 registry consumes 6E professional/project attributions and reuses serving/multi-GPU/AI-infra technical
+    capabilities by canonical ID in integrated capstone evidence.
   source_refs:
   - source.repo.frdb_v0
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - decomposition.6f_professional_engineering
+  - D-060

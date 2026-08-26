@@ -19,7 +19,7 @@ counts:
   capability_requirements: 286
   professional_attributions: 216
   project_attributions: 16
-  open_non_blocking_reviews: 4
+  open_non_blocking_reviews: 3
   open_blocking_reviews: 0
 checks:
 - check: route_family_partition

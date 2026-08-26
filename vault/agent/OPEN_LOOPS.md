@@ -1,7 +1,7 @@
 ---
 type: open-loops
 status: active
-last_reviewed: 2026-08-26
+last_reviewed: 2026-08-27
 ---
 
 # Open Loops
@@ -12,9 +12,9 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 
 - [x] 6D Systems detailed map: SDM-v0 / D-058 ile tamamlandı.
 - [x] 6E GPU/ML/Inference detailed map: GIM-v0 / D-059 tamamlandı; `review.6d.accelerator_forward_reuse` resolved.
-- [ ] 6F Professional Engineering detailed map **AKTİF**: `review.6d.professional_overlay_reconciliation` ile observability/reliability/performance-report overlay'lerini ve 6E project/professional attributions'ını reconcile etmek.
-- [ ] 6G weakness/remediation operationalization.
-- [ ] 6H independent external Research QA: full coverage, current-industry ve prerequisite audit; `review.6d.external_coverage` ve `review.6d.platform_tool_freshness` burada kapanır.
+- [x] 6F Professional Engineering detailed map: PEM-v0 / D-060 tamamlandı; 6D + 6E professional-overlay reconciliation resolved.
+- [ ] 6G weakness/remediation operationalization **AKTİF**.
+- [ ] 6H independent external Research QA: full coverage, current-industry ve prerequisite audit; 6C–6F external coverage/freshness/capstone-diversity review'ları burada kapanır.
 
 ## Knowledge-base operations
 

@@ -1,0 +1,1991 @@
+- capability_id: skill.professional.alternative_tradeoff_analysis
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.alternative_tradeoff_analysis
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.alternative_tradeoff_analysis
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.artifact_integrity_verification
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.artifact_integrity_verification
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.benchmark_experiment_plan
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.benchmark_experiment_plan
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.branch_change_isolation
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.branch_change_isolation
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_defense
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_defense
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_validation_plan
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_validation_plan
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_validation_plan
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.capstone_validation_plan
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.change_plan
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.change_plan
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.change_plan
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.changelog_release_note
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.changelog_release_note
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.ci_failure_localization
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.ci_failure_localization
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.ci_failure_localization
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_correctness
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_correctness
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_correctness
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_maintainability
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_maintainability
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_risk
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_risk
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.code_review_risk
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.commit_history_hygiene
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.commit_history_hygiene
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.corrective_action_design
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.corrective_action_design
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_domain_integration_design
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_domain_integration_design
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_layer_failure_localization
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_layer_failure_localization
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_layer_failure_localization
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_module_flow_trace
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_module_flow_trace
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.cross_module_flow_trace
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.debug_evidence_chain
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.debug_evidence_chain
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.debug_hypothesis_loop
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.debug_hypothesis_loop
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.decision_record
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.decision_record
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_impact_analysis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_impact_analysis
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_supply_chain_review
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_supply_chain_review
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_version_control
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_version_control
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.dependency_version_control
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.design_risk_failure_mode
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.design_risk_failure_mode
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.design_risk_failure_mode
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.evidence_matrix
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.evidence_matrix
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.evidence_matrix
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.flaky_test_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.flaky_test_diagnosis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.flaky_test_diagnosis
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_hypothesis_triage
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_hypothesis_triage
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_hypothesis_triage
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_timeline
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_timeline
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.incident_timeline
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.integration_checkpoint
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.integration_checkpoint
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.integration_checkpoint
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.integration_test_design
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.integration_test_design
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.interface_contract_reasoning
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.interface_contract_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.interface_contract_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.issue_reproduction
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.issue_reproduction
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.issue_scope_decomposition
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.issue_scope_decomposition
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.measurement_environment_record
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.measurement_environment_record
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.minimal_reproducer
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.minimal_reproducer
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.minimal_reproducer
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.observability_plan
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.observability_plan
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.operational_change_risk
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.operational_change_risk
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_community_communication
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_community_communication
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_community_communication
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_contribution_policy
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_contribution_policy
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_issue_selection
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_issue_selection
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_maintainer_feedback_iteration
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_maintainer_feedback_iteration
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_maintainer_feedback_iteration
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_patch_scope
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_patch_scope
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_project_orientation
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_project_orientation
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_submission_evidence
+  professional_family_id: professional.oss_workflow
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_submission_evidence
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.oss_submission_evidence
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.performance_regression_gate
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.performance_regression_gate
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.performance_regression_gate
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.performance_report_synthesis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.performance_report_synthesis
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.postmortem_root_cause
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.postmortem_root_cause
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.pr_problem_solution_evidence
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.pr_problem_solution_evidence
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.pr_problem_solution_evidence
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.pr_scope_discipline
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.pr_scope_discipline
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.problem_statement_scope
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.problem_statement_scope
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_milestone_decomposition
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_milestone_decomposition
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_retrospective
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_retrospective
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_risk_register
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.project_risk_register
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.quality_gate_definition
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.quality_gate_definition
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.quality_gate_definition
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rebase_conflict_resolution
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rebase_conflict_resolution
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.regression_bisection
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.regression_bisection
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.regression_test_from_bug
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.regression_test_from_bug
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.release_artifact_provenance
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.release_artifact_provenance
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.release_validation
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.release_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.release_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.repo_structure_orientation
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.repo_structure_orientation
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.reproducible_build_contract
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.reproducible_build_contract
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.requirement_constraint_non_goal
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.requirement_constraint_non_goal
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.review_feedback_triage
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.review_feedback_triage
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.review_iteration
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.review_iteration
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.review_iteration
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_authoring
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_authoring
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_authoring
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_review_response
+  professional_family_id: professional.collaboration
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_review_response
+  professional_family_id: professional.design_docs
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rfc_review_response
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rollback_plan
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.rollback_plan
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.runbook_authoring
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.runbook_authoring
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.runbook_authoring
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.secret_exposure_review
+  professional_family_id: professional.code_review
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.secret_exposure_review
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.slo_change_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.slo_change_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.source_entrypoint_trace
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.source_entrypoint_trace
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.system_validation_plan
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.system_validation_plan
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.technical_status_update
+  professional_family_id: professional.project_delivery
+  attribution_role: core
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.technical_status_update
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.test_oracle_design
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.test_oracle_design
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.test_strategy_selection
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.test_strategy_selection
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.threat_surface_review
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.professional.threat_surface_review
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_real_repository_or_production_like_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: D23 capability contributes observable professional engineering evidence.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []

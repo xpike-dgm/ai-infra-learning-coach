@@ -91,3 +91,4 @@ Bu MOC, root vault içindeki tüm repo Markdown belgelerini tek bir provenance g
 - [[vault/wiki/mocs/Canonical Document Map|Canonical document map]]
 - [[vault/wiki/decisions/Decision Log Map|Decision map]]
 - [[vault/wiki/projects/AI Infra Learning Coach Delivery|Delivery project]]
+- [[vault/wiki/sources/Professional Engineering Map Source|PEM-v0 / Professional Engineering Map]]

@@ -25,8 +25,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6C — Foundations detailed map** | ✅ | FDM-v0 / D-057. D01–D05 package + FBB 41/47 mapping + internal graph QA tamamlandı. |
 | **6D — Systems detailed map** | ✅ | SDM-v0 / D-058. D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı. |
 | **6E — GPU / ML / Inference detailed map** | ✅ | GIM-v0 / D-059. D14–D22 package + prior registry reuse + combined hard-graph QA tamamlandı. |
-| **6F — Professional engineering / project map** | 🟡 Aktif | Testing/build/debug/profiling, OSS workflow, large projects ve capstone capability decomposition. **Henüz yürütülmedi.** |
-| **6G–20** | ⬜ Bekliyor | 6F sonrası canonical sırada. |
+| **6F — Professional engineering / project map** | ✅ | PEM-v0 / D-060. D23 professional workflow + OSS + project/capstone map tamamlandı. |
+| **6G — Weakness localization + remediation mapping** | 🟡 Aktif | 6C–6F granular graph üzerinde weakness/remediation operational mapping. **Henüz yürütülmedi.** |
+| **6H–20** | ⬜ Bekliyor | 6G sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -45,24 +46,20 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 6E
+## Son tamamlanan numaralı adım — 6F
 
-**Final:** `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059.  
-**Ana çıktı:** `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/`.
+**Final:** `PEM-v0 — Professional Engineering / Projects Detailed Map` / D-060.  
+**Ana çıktı:** `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md` + `curriculum/decomposition/6f_professional_engineering/`.
 
-6E sonucu:
-- D14–D22 için 9 Domain / 27 Module / 70 Topic,
-- 143 Skill / 159 Objective / 230 TopicSkillLink,
-- 279 prerequisite edge (247 hard / 32 soft),
-- 59 prior Skill clone'lanmadan reuse edildi: 9 Foundation + 50 Systems,
-- 89 cross-package prerequisite edge,
-- 6C+6D+6E birleşik hard graph DAG 467/467,
-- `review.6d.accelerator_forward_reuse` resolved; 6D regression validator tekrar PASS,
-- 0 blocking / 4 non-blocking 6E review,
-- external coverage/current-industry/source-quality Research QA 6H'ye pending.
+6F sonucu:
+- D23 için 1 Domain / 9 Module / 27 Topic,
+- 76 Skill / 87 Objective / 110 TopicSkillLink,
+- 138 prerequisite edge (137 hard / 1 soft),
+- 25 prior Skill reuse; 6D ve 6E professional-overlay review'ları resolved,
+- Foundation/Systems/GPU-Inference project familyaları professional evidence ile augment edildi; OSS project + integrated AI Infra capstone tanımlandı,
+- 0 blocking / 3 non-blocking 6F review,
+- external Research QA 6H'ye pending.
 
-6E ayrı external Research AI ile final coverage validation yapmadı; D-016 uyarınca independent external Research QA 6H'de zorunlu kalır. Package 6H öncesinde external-validation/learner-publication açısından final değildir.
+## Aktif adım — 6G Weakness localization + remediation mapping
 
-## Aktif adım — 6F Professional engineering / project map
-
-**6F henüz yürütülmedi.** Fresh PRE-STEP GitHub refresh zorunludur. 6F, `review.6d.professional_overlay_reconciliation` ile 6E professional/project attribution girdilerini tüketir.
+**6G henüz yürütülmedi.** Fresh PRE-STEP GitHub refresh zorunludur.

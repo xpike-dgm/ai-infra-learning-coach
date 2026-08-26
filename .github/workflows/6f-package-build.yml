@@ -6,6 +6,7 @@ on:
       - work/6f-professional-engineering
     paths:
       - 'tools/6f_build_trigger.txt'
+      - '.github/workflows/6f-package-build.yml'
 
 permissions:
   contents: write
@@ -32,7 +33,9 @@ jobs:
       - name: Independently validate 6F package
         run: python tools/validate_professional_engineering_package.py
       - name: Apply PROJECT_MEMORY_PROTOCOL POST-STEP
-        run: python tools/finalize_6f_poststep.py
+        run: |
+          python tools/finalize_6f_poststep.py
+          python tools/finalize_6f_poststep_extra.py
       - name: Repo-wide stale-reference audit
         run: python tools/audit_6f_poststep.py
       - name: Commit generated package and durable state

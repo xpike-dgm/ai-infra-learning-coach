@@ -79,7 +79,7 @@ known_exclusions:
 - External coverage/current-industry validation 6H'ye aittir.
 - Production lesson/task/resource body'leri AŞAMA 15/20'ye aittir.
 - Physical database schema 9C'ye aittir.
-unresolved_review_count: 3
+unresolved_review_count: 2
 blocking_review_count: 0
 generated_at: '2026-08-26'
 authored_by: local_main_manager

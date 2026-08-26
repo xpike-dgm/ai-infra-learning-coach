@@ -1,0 +1,51 @@
+- review_id: review.6f.external_coverage
+  subject_refs:
+  - domain.professional_engineering
+  review_codes:
+  - NEEDS_GRANULARITY_REVIEW
+  severity: non_blocking
+  question: Independent current engineering/OSS sources D23 professional capability coverage'ında eksik veya duplicate davranış
+    gösteriyor mu?
+  decision_inputs_required:
+  - independent Research AI
+  - authoritative current professional/OSS engineering sources
+  resolution_owner_step: 6H
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-27'
+  resolved_at: null
+- review_id: review.6f.oss_workflow_freshness
+  subject_refs:
+  - module.professional.security_open_source
+  review_codes:
+  - TOOL_SPECIFIC_SPLIT
+  severity: non_blocking
+  question: Repository/platform-specific contribution policy variation için freshness/source guidance yeterli mi?
+  decision_inputs_required:
+  - 6H current OSS workflow/source audit
+  resolution_owner_step: 6H
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-27'
+  resolved_at: null
+- review_id: review.6f.capstone_diversity
+  subject_refs:
+  - module.professional.project_capstone
+  review_codes:
+  - HIDDEN_PREREQUISITE_RISK
+  severity: non_blocking
+  question: Final capstone family diversity ve independent evidence coverage professional-readiness hedefi için yeterli mi?
+  decision_inputs_required:
+  - independent Research AI
+  - 6H cross-package coverage audit
+  resolution_owner_step: 6H
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.professional_readiness
+  created_at: '2026-08-27'
+  resolved_at: null
