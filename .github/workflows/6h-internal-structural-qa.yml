@@ -1,0 +1,46 @@
+name: 6H Internal Structural QA
+
+on:
+  push:
+    branches:
+      - work/6h-external-research-qa
+    paths:
+      - '.github/workflows/6h-internal-structural-qa.yml'
+      - 'tools/validate_stage6_structural_qa.py'
+      - 'tools/6h_qa_trigger.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  structural-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install YAML dependency
+        run: python -m pip install pyyaml
+      - name: Revalidate 6C-6G accepted packages
+        run: |
+          python tools/validate_foundations_package.py
+          python tools/validate_systems_package.py
+          python tools/validate_gpu_ml_inference_package.py
+          python tools/validate_professional_engineering_package.py
+          python tools/validate_weakness_remediation_overlay.py
+      - name: Run Stage 6 structural QA
+        run: python tools/validate_stage6_structural_qa.py
+      - name: Commit structural report
+        run: |
+          if [ -z "$(git status --porcelain curriculum/decomposition/6h_research_qa)" ]; then
+            echo 'No generated structural report changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add curriculum/decomposition/6h_research_qa/structural_report.yaml
+          git commit -m 'Generate 6H internal structural QA report [skip ci]'
+          git push origin HEAD:work/6h-external-research-qa
