@@ -1,0 +1,24 @@
+stage_step: 6H
+status: BLOCKED_EXTERNAL_RESEARCH_AI_REQUIRED
+stage6_complete: false
+manager_internal_structural_qa: PASS
+manager_current_source_audit: COMPLETE_NON_INDEPENDENT
+independent_external_research_ai:
+  status: not_available_in_current_session
+  required: true
+  satisfies_d016: false
+  required_input_path: research/6h_external_research_ai_brief.md
+  expected_output_path: research/6h_external_research_ai_report.md
+open_reviews_owned_by_6h: 10
+canonical_guard: >-
+  Do not resolve the 6H-owned review set, mark 6H complete, publish Stage 6 as externally validated,
+  or advance canonical execution to 7A until a separate external Research AI report is ingested,
+  corrective findings are reconciled, regression/structural QA passes again, and PROJECT_MEMORY_PROTOCOL POST-STEP completes.
+next_actions:
+- Obtain independent external Research AI report using research/6h_external_research_ai_brief.md.
+- Validate report provenance, independence declaration, source quality and D01-D23 coverage matrix.
+- Reconcile every finding against canonical Skill identity/granularity/prerequisite rules.
+- Apply only externally justified corrective changes.
+- Re-run 6C-6G validators plus tools/validate_stage6_structural_qa.py.
+- Resolve or explicitly defer all 10 reviews owned by 6H.
+- Perform D-050 POST-STEP living-memory sync and repo-wide stale-reference audit.
