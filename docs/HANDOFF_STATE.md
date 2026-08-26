@@ -214,40 +214,27 @@ SDM-v0:
   - 6B ✅ FRDB-v0 / D-056
   - 6C ✅ FDM-v0 / D-057
   - 6D ✅ SDM-v0 / D-058
-  - 6E 🟡 GPU / ML / Inference detailed map — aktif, henüz yürütülmedi
-  - 6F–6H ⬜
+  - 6E ✅ GIM-v0 / D-059
+  - 6F 🟡 Professional engineering / project map — aktif, henüz yürütülmedi
+  - 6G–6H ⬜
 - AŞAMA 7–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Aktif:** `6E — GPU / ML / Inference detailed map`
-**6E henüz yürütülmedi.**
+**Son tamamlanan:** `6E — GIM-v0 / D-059`
+**Aktif:** `6F — Professional engineering / project map`
+**6F henüz yürütülmedi.**
 
-## 12. 6E'de kesinleştirilecekler
+## 12. 6E final handoff
+- Canonical summary: `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`.
+- Dataset: `curriculum/decomposition/6e_gpu_ml_inference/`.
+- 9 Domain / 27 Module / 70 Topic / 143 Skill / 159 Objective.
+- 279 prerequisite edge = 247 hard / 32 soft; 59 prior Skill reuse.
+- Combined 6C+6D+6E hard graph DAG 467/467.
+- `review.6d.accelerator_forward_reuse` resolved.
+- 6H external Research QA pending; package learner-published değildir.
 
-Ana soru:
-> FRDB-v0 ile birlikte FDM-v0 ve SDM-v0 accepted Skill registry'lerini kullanarak D14–D22 GPU/ML/Inference package'ı granular, duplicate-free ve prerequisite-safe nasıl oluşturulmalı?
-
-Kesinleştirilecek:
-- D14–D22 Domain/Module/Topic detailed organization map,
-- GPU Architecture, CUDA, Triton,
-- ML + Transformer foundations,
-- LLM Inference internals ve serving systems,
-- KV cache / batching / scheduling / quantization,
-- Multi-GPU + NCCL + RDMA,
-- AI Infrastructure / GPU Infrastructure,
-- accelerator Skills ve atomic Objectives,
-- 6C + 6D accepted registry ile cross-package shared Skill reuse,
-- stable GPU/inference concept ile tool/version-specific capability ayrımı,
-- math/numerical hidden prerequisite'lerin explicit yakalanması,
-- hard/soft prerequisite graph + branch isolation,
-- evidence/depth/remediation/retention/diagnostic/professional metadata,
-- FRDB-v0 package collections + review queue + QA report,
-- `review.6d.accelerator_forward_reuse` kaydının tüketilmesi.
-
-6E 6F professional/project map'ini veya production lesson/task content'ini yazmaz.
-
-## 13. 6E için PRE-STEP doğrudan okunacaklar
+## 13. 6F için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
@@ -257,17 +244,13 @@ Kesinleştirilecek:
 7. `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`
 8. `docs/FOUNDATIONS_DETAILED_MAP.md`
 9. `docs/SYSTEMS_DETAILED_MAP.md`
-10. `curriculum/decomposition/6c_foundations/skills.yaml`
-11. `curriculum/decomposition/6d_systems/manifest.yaml`
-12. `curriculum/decomposition/6d_systems/skills.yaml`
-13. `curriculum/decomposition/6d_systems/prerequisite_edges.yaml`
-14. `curriculum/decomposition/6d_systems/review_queue.yaml`
-15. `docs/GRANULARITY_NAMING_STANDARD.md`
-16. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-17. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
-18. `docs/CURRICULUM_DOMAIN_MAP.md`
-19. `docs/LEARNING_ENGINE_SPEC.md`
-20. `docs/PREREQUISITE_POLICY_SPEC.md`
-21. `docs/PROJECT_MEMORY_PROTOCOL.md`
+10. `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`
+11. `curriculum/decomposition/6d_systems/review_queue.yaml`
+12. `curriculum/decomposition/6e_gpu_ml_inference/manifest.yaml`
+13. `curriculum/decomposition/6e_gpu_ml_inference/skills.yaml`
+14. `curriculum/decomposition/6e_gpu_ml_inference/professional_attributions.yaml`
+15. `curriculum/decomposition/6e_gpu_ml_inference/project_capstone_attributions.yaml`
+16. `docs/PROFESSIONAL_READINESS_TARGET.md`
+17. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6F başlamadan fresh PRE-STEP GitHub refresh zorunludur.

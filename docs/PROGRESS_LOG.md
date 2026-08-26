@@ -430,3 +430,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - Repo-wide stale state/model/file pointer audit'i uygulandı.
 
 **Sonraki kesin adım:** `6E — GPU / ML / Inference detailed map`. 6E başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+---
+
+### 2026-08-26 — 6E GPU / ML / Inference Detailed Map tamamlandı
+
+- Fresh PRE-STEP ile living state ve FRDB/FDM/SDM registries çapraz doğrulandı.
+- `GIM-v0 / D-059` oluşturuldu: D14–D22, 9 Domain / 27 Module / 70 Topic / 143 Skill / 159 Objective.
+- 59 prior Skill clone edilmeden reuse edildi; 279 edge FRDB Pass-B sonrası 247 hard / 32 soft oldu.
+- Hidden math/numerical prerequisites explicit hale getirildi; stable concept vs tool/runtime-specific freshness ayrımı korundu.
+- GitHub Actions'ta prerequisite preflight, Pass-B edge audit, 6D regression validator ve independent 6E validator PASS.
+- Combined 6C+6D+6E hard graph DAG 467/467; 0 blocking review.
+- `review.6d.accelerator_forward_reuse` kapatıldı; external Research QA 6H'ye pending bırakıldı.
+- POST-STEP living-memory/Vault sync sonrası aktif adım 6F'ye taşındı.

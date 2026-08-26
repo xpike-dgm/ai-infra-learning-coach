@@ -93,6 +93,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-058 — SDM-v0
 6D final `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/` package'ı D06–D13'ü 192 Skill / 207 Objective seviyesine ayırdı; 43 accepted 6C Skill clone'lanmadan reuse edildi, 6C+6D birleşik hard graph DAG 324/324 ve internal QA PASS.
 
+### D-059 — GIM-v0
+6E final `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/` package'ı D14–D22'yi 143 Skill / 159 Objective seviyesine ayırdı; 59 prior Skill clone'lanmadan reuse edildi, FRDB hard/soft Pass-B audit PASS ve 6C+6D+6E combined hard graph DAG 467/467.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -104,8 +107,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6B ✅ FRDB-v0 / D-056
   - 6C ✅ FDM-v0 / D-057
   - 6D ✅ SDM-v0 / D-058
-  - 6E 🟡 GPU / ML / Inference detailed map
-  - 6F–6H ⬜
+  - 6E ✅ GIM-v0 / D-059
+  - 6F 🟡 Professional engineering / project map
+  - 6G–6H ⬜
 - 7 English parallel line
 - 8 UX
 - 9 Architecture/data model
@@ -171,7 +175,11 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11d. `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`
 11e. `docs/FOUNDATIONS_DETAILED_MAP.md`
 11f. `curriculum/decomposition/6c_foundations/manifest.yaml`
-11g. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11g. `docs/SYSTEMS_DETAILED_MAP.md`
+11h. `curriculum/decomposition/6d_systems/manifest.yaml`
+11i. `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`
+11j. `curriculum/decomposition/6e_gpu_ml_inference/manifest.yaml`
+11k. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -223,16 +231,17 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 - 6B ✅ `FRDB-v0 — Full-Route Decomposition Blueprint` / D-056
 - 6C ✅ `FDM-v0 — Foundations Detailed Map` / D-057
 - 6D ✅ `SDM-v0 — Systems Detailed Map` / D-058
-- 6E 🟡 GPU / ML / Inference detailed map — aktif, henüz yürütülmedi
+- 6E ✅ `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059
+- 6F 🟡 Professional engineering / project map — aktif, henüz yürütülmedi
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`6E — GPU / ML / Inference detailed map`**
-**6E henüz yürütülmedi.**
+**Aktif:** **`6F — Professional engineering / project map`**
+**6F henüz yürütülmedi.**
 
 6E, FRDB-v0 ile GPU Architecture, CUDA, Triton, ML/Transformer, LLM inference internals, serving systems, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA ve AI Infrastructure detailed map'ini üretecek; FDM-v0 ve SDM-v0 registry'lerindeki shared Skills'i clone'lamadan reuse edecektir.
 
-6E başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+6F başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-058 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, 6c_foundations ve 6d_systems manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6E — GPU / ML / Inference detailed map; 6E henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-058 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, 6c_foundations ve 6d_systems manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6F — Professional engineering / project map; 6F henüz yürütülmedi.`

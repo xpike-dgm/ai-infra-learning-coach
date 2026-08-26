@@ -21,8 +21,8 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in hâlâ `6A–6D completed / 6E active-not-executed` olduğunu doğrula.
-9. Ancak bundan sonra, 6E için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
+8. Current execution state'in `6A–6E completed / 6F active-not-executed` olduğunu doğrula.
+9. Ancak bundan sonra, 6F için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
 
 Önerilen local komutlar:
 
@@ -1141,27 +1141,28 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - 6B ✅ FRDB-v0 / D-056
 - 6C ✅ FDM-v0 / D-057
 - 6D ✅ SDM-v0 / D-058
-- **6E 🟡 ACTIVE / NOT EXECUTED — GPU / ML / Inference detailed map**
-- 6F–6H waiting
+- **6E ✅ GIM-v0 / D-059 — GPU / ML / Inference detailed map**
+- **6F 🟡 ACTIVE / NOT EXECUTED — Professional engineering / project map**
+- 6G–6H waiting
 
 ---
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `6D — Systems detailed map`
-**Final:** `SDM-v0 — Systems Detailed Map` / D-058
-**Canonical:** `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/`
+**Son tamamlanan numaralı adım:** `6E — GPU / ML / Inference detailed map`
+**Final:** `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059
+**Canonical:** `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/`
 
-**Aktif adım:** `6E — GPU / ML / Inference detailed map`
+**Aktif adım:** `6F — Professional engineering / project map`
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-Kullanıcı onaylı numbered work 6D'yi tamamladı. Bu handoff belgesi **6E'yi başlatmaz veya ilerletmez**.
+Kullanıcı onaylı numbered work 6E'yi tamamladı. Bu handoff belgesi **6F'yi başlatmaz veya ilerletmez**.
 
-Kullanıcı 6E'yi devam ettirmek/onaylamak istediğinde:
+Kullanıcı 6F'yi devam ettirmek/onaylamak istediğinde:
 
 ```text
-fresh 6E PRE-STEP GitHub refresh
-→ 6E execution
+fresh 6F PRE-STEP GitHub refresh
+→ 6F execution
 → evaluation
 → D-050 POST sync
 → stale-reference audit
@@ -1686,7 +1687,7 @@ D-055 kalıcı karar olarak `docs/DECISIONS.md` içine sync edilmiştir. Daha so
 
 Kullanıcı ilk local-manager oturumunda aşağıdaki komutu/promptu kullanabilir:
 
-> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` dosyalarını tamamen oku. Ardından `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve repo içindeki tüm Markdown dosyalarını envanterleyip tamamen incele. Hiçbir dosyayı yalnız adına bakıp okunmuş sayma. Canonical decisions/specs ile historical/noncanonical dosyaları ayır. Current state'i `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` üzerinden çapraz doğrula. Bu takeover sırasında 6E'yi yürütme. Önce bana ürün hedefini, tamamlanan modelleri, değiştirilemez invariants'ı, current exact step'i, tamamlanan FDM-v0 ile SDM-v0'ı ve sıradaki 6E scope'unu özetleyip devralmaya hazır olduğunu söyle. Bundan sonra her numaralı step'te `PROJECT_MEMORY_PROTOCOL.md` PRE/POST + D-050 stale-reference audit'i istisnasız uygula.**
+> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` dosyalarını tamamen oku. Ardından `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve repo içindeki tüm Markdown dosyalarını envanterleyip tamamen incele. Hiçbir dosyayı yalnız adına bakıp okunmuş sayma. Canonical decisions/specs ile historical/noncanonical dosyaları ayır. Current state'i `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` üzerinden çapraz doğrula. Bu takeover sırasında 6F'yi yürütme. Önce bana ürün hedefini, tamamlanan modelleri, değiştirilemez invariants'ı, current exact step'i, tamamlanan FDM-v0, SDM-v0 ve GIM-v0'ı ve sıradaki 6F scope'unu özetleyip devralmaya hazır olduğunu söyle. Bundan sonra her numaralı step'te `PROJECT_MEMORY_PROTOCOL.md` PRE/POST + D-050 stale-reference audit'i istisnasız uygula.**
 
 ---
 
@@ -1704,8 +1705,9 @@ AŞAMA 6A ✅ GNS-v0 / D-054
 AŞAMA 6B ✅ FRDB-v0 / D-056
 AŞAMA 6C ✅ FDM-v0 / D-057
 AŞAMA 6D ✅ SDM-v0 / D-058
-AŞAMA 6E 🟡 ACTIVE — NOT EXECUTED
-AŞAMA 6F–6H ⬜
+AŞAMA 6E ✅ GIM-v0 / D-059
+AŞAMA 6F 🟡 ACTIVE — NOT EXECUTED
+AŞAMA 6G–6H ⬜
 AŞAMA 7–20 ⬜
 ```
 

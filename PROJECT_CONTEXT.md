@@ -97,6 +97,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-058 / SDM-v0:** canonical summary `docs/SYSTEMS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6d_systems/`. D06–D13; 8 Domain, 21 Module, 64 Topic, 192 Skill, 207 Objective, 224 TopicSkillLink ve 313 prerequisite edge (259 hard / 54 soft). 43 accepted 6C Skill clone'lanmadan reuse edildi; 6C+6D birleşik hard graph DAG 324/324; 0 blocking review. External validation 6H'ye pending.
 
+**D-059 / GIM-v0:** canonical summary `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, dataset `curriculum/decomposition/6e_gpu_ml_inference/`. D14–D22; 9 Domain, 27 Module, 70 Topic, 143 Skill, 159 Objective, 230 TopicSkillLink ve 279 prerequisite edge (247 hard / 32 soft). 59 prior Skill clone'lanmadan reuse edildi; 6C+6D+6E combined hard graph DAG 467/467; 0 blocking review. External validation 6H'ye pending.
+
 ## 8. İngilizce
 
 English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C / FDM-v0'da tamamlandı; 6D Systems package'ında da English→technical hard gate yoktur. English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
@@ -142,11 +144,12 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - **6B ✅ FRDB-v0 / D-056**
   - **6C ✅ FDM-v0 / D-057**
   - **6D ✅ SDM-v0 / D-058**
-  - **6E 🟡 GPU / ML / Inference detailed map — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 6F–6H ⬜
+  - **6E ✅ GIM-v0 / D-059**
+  - **6F 🟡 Professional engineering / project map — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+  - 6G–6H ⬜
 - AŞAMA 7–20 ⬜
 
-**Sıradaki numaralı çalışma 6E'dir.** 6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 6F'dir.** 6F başlamadan fresh PRE-STEP GitHub refresh ve açık `review.6d.professional_overlay_reconciliation` girdisinin yeniden okunması zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

@@ -23,10 +23,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - [[vault/wiki/concepts/Adaptive Learning Engine|Learning engine and planner]]: deterministik behavior ve açıklanabilir seçim.
 - [[vault/wiki/sources/Foundation Map Source|FDM-v0]]: foundations D01–D05 detailed map paketi tamamlandı.
 - [[vault/wiki/sources/Systems Map Source|SDM-v0]]: systems D06–D13 detailed map paketi tamamlandı.
+- [[vault/wiki/sources/GPU ML Inference Map Source|GIM-v0]]: GPU/ML/inference D14–D22 detailed map paketi tamamlandı.
 
 ## Exact execution state
 
-6A, 6B, 6C ve 6D tamamlandı. Aktif adım **6E — GPU / ML / Inference detailed map**; henüz yürütülmedi. 6E başlamadan fresh PRE-STEP zorunludur.
+6A–6E tamamlandı. Son tamamlanan adım **6E — GIM-v0 / D-059**. Aktif adım **6F — Professional engineering / project map**; henüz yürütülmedi. 6F başlamadan fresh PRE-STEP zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

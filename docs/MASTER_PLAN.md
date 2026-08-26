@@ -1,7 +1,7 @@
 # AI Infra Learning Coach — Master Geliştirme Planı
 
 **Durum:** AKTİF / CANONICAL DETAYLI PLAN  
-**Son senkron:** 2026-08-25
+**Son senkron:** 2026-08-26
 
 Sabit adım kimliklerinin canonical kaynağı `docs/EXECUTION_INDEX.md` dosyasıdır. Bu dosya ayrıntılı checklist ve completion notlarını onunla senkron tutar.
 
@@ -29,6 +29,7 @@ V1 full curriculum'u beklemez; learning engine + ilk 8–12 haftalık production
 - D-056: 6B final full-route decomposition blueprint `FRDB-v0`; canonical file `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`.
 - D-057: 6C final Foundations detailed map `FDM-v0`; canonical summary `docs/FOUNDATIONS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6c_foundations/`.
 - D-058: 6D final Systems detailed map `SDM-v0`; canonical summary `docs/SYSTEMS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6d_systems/`.
+- D-059: 6E final GPU / ML / Inference detailed map `GIM-v0`; canonical summary `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, dataset `curriculum/decomposition/6e_gpu_ml_inference/`.
 
 ## Zorunlu yürütme — D-024 / D-027 / D-050
 `PRE-STEP GitHub refresh → gerekiyorsa Research/Coding/QA → spec/çıktı → değerlendirme → ALWAYS-CHECK living-memory sync → repo-wide stale-reference scan → sonraki adım`
@@ -219,10 +220,19 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
 - 6H external Research QA pending; learner publication yapılmadı.
 
-### [ ] 6E — GPU / ML / Inference detailed map — **AKTİF**
-- GPU Architecture, CUDA, Triton, ML/Transformer, inference internals, serving engines, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra.
+### [x] 6E — GPU / ML / Inference detailed map — GIM-v0 / D-059
+**Final:** `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/`
 
-### [ ] 6F — Professional engineering / project map
+- D14–D22 = 9 Domain / 27 Module / 70 Topic,
+- 143 Skill / 159 Objective / 230 TopicSkillLink,
+- 279 prerequisite edge = 247 hard / 32 soft; FRDB Pass-B audit PASS,
+- 59 prior Skill reuse (9 Foundation + 50 Systems),
+- 6C+6D+6E combined hard graph DAG 467/467,
+- deterministic generator + independent validator PASS,
+- internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
+- external Research QA 6H'ye pending; learner publication yapılmadı.
+
+### [ ] 6F — Professional engineering / project map — **AKTİF**
 - Git/code review, testing/build/debug/profiling, design docs, benchmarks, OSS workflow, integrated projects, capstone.
 
 ### [ ] 6G — Weakness localization + remediation mapping
@@ -400,7 +410,7 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6D`
-**Aktif:** **`6E — GPU / ML / Inference detailed map`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6E`
+**Aktif:** **`6F — Professional engineering / project map`**
 
-Bir sonraki yürütme: **6E başlamadan fresh PRE-STEP GitHub refresh → FRDB-v0 + FDM-v0 + SDM-v0 registry ile GPU/ML/Inference detailed map → POST-STEP D-050 sync + stale-reference audit.**
+Bir sonraki yürütme: **6F başlamadan fresh PRE-STEP GitHub refresh → FRDB-v0 + FDM-v0 + SDM-v0 + GIM-v0 registry/attribution setleri ile Professional Engineering detailed map → POST-STEP D-050 sync + stale-reference audit.**

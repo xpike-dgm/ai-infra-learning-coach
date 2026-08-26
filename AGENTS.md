@@ -44,11 +44,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - AŞAMA 6B: ✅ `FRDB-v0 / D-056` tamamlandı.
 - AŞAMA 6C: ✅ `FDM-v0 / D-057` tamamlandı.
 - AŞAMA 6D: ✅ `SDM-v0 / D-058` tamamlandı.
-- **Aktif adım: 6E — GPU / ML / Inference detailed map.**
-- **6E henüz yürütülmedi.**
-- 6F–6H ve AŞAMA 7–20 bekliyor.
+- AŞAMA 6E: ✅ `GIM-v0 / D-059` tamamlandı.
+- **Aktif adım: 6F — Professional engineering / project map.**
+- **6F henüz yürütülmedi.**
+- 6G–6H ve AŞAMA 7–20 bekliyor.
 
-**6E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6E için ayrıca fresh PRE-STEP refresh yap.
+**6F'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6F için ayrıca fresh PRE-STEP refresh yap.
 
 ## Ana ürün ilkesi
 

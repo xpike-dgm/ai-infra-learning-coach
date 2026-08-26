@@ -420,3 +420,18 @@ Ayrıntı: `docs/FOUNDATIONS_DETAILED_MAP.md`.
 - External coverage/current-industry/hidden-prerequisite validation 6H independent Research AI'ye kadar pending; package learner-published değildir.
 
 Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
+
+## D-059 — GPU / ML / Inference detailed map = GIM-v0
+**Durum:** Kabul edildi — 2026-08-26
+
+- 6E final modeli `GIM-v0 — GPU / ML / Inference Detailed Map` oldu.
+- Canonical summary `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`; machine-readable dataset `curriculum/decomposition/6e_gpu_ml_inference/` içindedir.
+- D14–D22 = 9 Domain / 27 Module / 70 Topic / 143 Skill / 159 Objective / 230 TopicSkillLink.
+- 279 prerequisite edge FRDB Pass-B sonrası 247 hard / 32 soft olarak kabul edildi; 2 gerçek dependency olmayan edge kaldırıldı.
+- 59 prior Skill (9 Foundation + 50 Systems) clone edilmeden canonical ID ile reuse edildi.
+- Hidden math/numerical prerequisites explicit Skill/edge olarak modellendi.
+- Stable accelerator/inference concepts ile version/tool-specific CUDA/Triton/serving/NCCL/RDMA capabilities ayrıldı.
+- Combined 6C+6D+6E hard graph DAG 467/467; English global hard gate yok.
+- 6D `review.6d.accelerator_forward_reuse` resolved edildi ve 6D regression QA tekrar PASS verdi.
+- Internal package QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 4 non-blocking review.
+- Independent external coverage/current-industry/source-quality Research QA 6H'de zorunlu ve pending; package learner-published değildir.
