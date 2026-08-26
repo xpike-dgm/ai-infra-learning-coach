@@ -246,9 +246,9 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 **Aktif:** **`6G — Weakness localization + remediation mapping`**
 **6G henüz yürütülmedi.**
 
-6E, FRDB-v0 ile GPU Architecture, CUDA, Triton, ML/Transformer, LLM inference internals, serving systems, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA ve AI Infrastructure detailed map'ini üretecek; FDM-v0 ve SDM-v0 registry'lerindeki shared Skills'i clone'lamadan reuse edecektir.
+6F PEM-v0 / D-060 ile D23 professional engineering / OSS / project-capstone detailed map'ini tamamladı; D01–D22 accepted Skills canonical ID ile reuse edildi ve 6D/6E professional-overlay review'ları resolved edildi.
 
 6G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-058 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, 6c_foundations ve 6d_systems manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6G — Weakness localization + remediation mapping; 6G henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-060 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, GPU_ML_INFERENCE_DETAILED_MAP, PROFESSIONAL_ENGINEERING_DETAILED_MAP ve 6c–6f decomposition manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6G — Weakness localization + remediation mapping; 6G henüz yürütülmedi.`
