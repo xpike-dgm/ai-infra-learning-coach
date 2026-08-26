@@ -5,7 +5,9 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 living = [
+    'AGENTS.md',
     'PROJECT_CONTEXT.md',
+    'docs/LOCAL_MANAGER_HANDOFF.md',
     'docs/START_HERE.md',
     'docs/HANDOFF_STATE.md',
     'docs/EXECUTION_INDEX.md',
@@ -25,7 +27,9 @@ for rel in living:
         raise SystemExit(f'POST_AUDIT_FAIL missing living file: {rel}')
 
 required = {
+    'AGENTS.md': ['AŞAMA 6E: ✅ `GIM-v0 / D-059`', 'Aktif adım: 6F'],
     'PROJECT_CONTEXT.md': ['D-059', 'GIM-v0', '6F 🟡'],
+    'docs/LOCAL_MANAGER_HANDOFF.md': ['GIM-v0 — GPU / ML / Inference Detailed Map', 'Aktif adım:** `6F'],
     'docs/START_HERE.md': ['D-059', 'GIM-v0', '6F 🟡'],
     'docs/HANDOFF_STATE.md': ['GIM-v0 / D-059', '**Aktif:** `6F'],
     'docs/EXECUTION_INDEX.md': ['D-059', '[x] **6E', '**6F — Professional engineering / project map** **AKTİF**'],
@@ -38,7 +42,6 @@ required = {
     'vault/wiki/sources/Execution State Source.md': ['6E GIM-v0 / D-059 tamamlandı', 'aktif adım 6F'],
     'vault/wiki/projects/AI Infra Learning Coach Delivery.md': ['next_action: "6F Professional engineering / project map için fresh PRE-STEP"', 'GPU/ML/Inference output:'],
 }
-
 for rel, markers in required.items():
     text = (ROOT / rel).read_text(encoding='utf-8')
     for marker in markers:
@@ -51,7 +54,10 @@ forbidden_living = [
     '6E başlamadan yeni PRE-STEP',
     'Aktif adım **6E',
     '**Aktif:** **`6E',
+    '**Aktif adım:** `6E',
+    'Aktif adım: 6E',
     '6E 🟡 GPU / ML / Inference detailed map',
+    '6E 🟡 ACTIVE — NOT EXECUTED',
     'Sıradaki numaralı çalışma 6E',
 ]
 for rel in living:
@@ -102,17 +108,21 @@ sdm_summary = (ROOT/'docs/SYSTEMS_DETAILED_MAP.md').read_text(encoding='utf-8')
 if '| Açık non-blocking review | 3 |' not in sdm_summary:
     raise SystemExit('POST_AUDIT_FAIL SYSTEMS_DETAILED_MAP open review count not synced to 3')
 
+# Historical logs may describe the old state; migration/build tools contain old-marker literals by design.
 historical_prefixes = ('docs/PROGRESS_LOG.md','vault/agent/session-logs/')
 repo_hits = []
 patterns = [
-    re.compile(r'6E[^\n]{0,80}(aktif|AKTİF)[^\n]{0,80}(henüz yürütülmedi|not executed)', re.I),
-    re.compile(r'(aktif adım|current active step)[^\n]{0,40}6E', re.I),
+    re.compile(r'6E henüz yürütülmedi', re.I),
     re.compile(r'6E başlamadan[^\n]{0,80}PRE-STEP', re.I),
+    re.compile(r'(?:\*\*)?Aktif adım(?::|:\*\*)\s*\*?\*?`?6E\b', re.I),
+    re.compile(r'6E\s+🟡\s+(?:GPU[^\n]*|ACTIVE[^\n]*)', re.I),
 ]
 for p in ROOT.rglob('*'):
     if not p.is_file() or p.suffix.lower() not in {'.md','.yaml','.yml','.py','.txt'}:
         continue
     rel = p.relative_to(ROOT).as_posix()
+    if rel.startswith('tools/'):
+        continue
     text = p.read_text(encoding='utf-8', errors='replace')
     for pattern in patterns:
         for m in pattern.finditer(text):
