@@ -6,6 +6,7 @@ on:
       - work/6f-professional-engineering
     paths:
       - 'tools/6f_build_trigger.txt'
+      - '.github/workflows/6f-package-build.yml'
 
 permissions:
   contents: write
