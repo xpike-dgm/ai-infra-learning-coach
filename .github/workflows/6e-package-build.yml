@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/generate_gpu_ml_inference_package.py'
       - 'tools/validate_gpu_ml_inference_package.py'
+      - 'tools/apply_6e_passb.py'
       - 'tools/6e_build_trigger.txt'
       - '.github/workflows/6e-package-build.yml'
 
@@ -49,6 +50,8 @@ jobs:
               s = s.replace(old, new)
           p.write_text(s, encoding='utf-8')
           PY
+      - name: Apply FRDB hard-soft Pass B review
+        run: python tools/apply_6e_passb.py
       - name: Preflight all declared prerequisite refs against 6C and 6D registries
         run: |
           python - <<'PY'
@@ -80,6 +83,35 @@ jobs:
           PY
       - name: Generate 6E package and resolve 6D forward reuse review
         run: python tools/generate_gpu_ml_inference_package.py
+      - name: Audit Pass B emitted edge classes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          edges = yaml.safe_load(Path('curriculum/decomposition/6e_gpu_ml_inference/prerequisite_edges.yaml').read_text(encoding='utf-8'))
+          soft = {(x['target_skill_id'], x['prerequisite_skill_id']) for x in edges if x['edge_kind'] == 'soft'}
+          all_pairs = {(x['target_skill_id'], x['prerequisite_skill_id']) for x in edges}
+          expected_soft = {
+              ('skill.gpu.simt_divergence_reasoning', 'skill.arch.branch_prediction_cost'),
+              ('skill.cuda.thread_index_calculation', 'skill.programming.iteration_reasoning'),
+              ('skill.triton.reduction_kernel', 'skill.gpu.latency_hiding_reasoning'),
+              ('skill.math.tensor_shape_reasoning', 'skill.dsa.sequence_traversal'),
+              ('skill.inference.prefill_decode_distinction', 'skill.arch.latency_throughput_distinction'),
+              ('skill.serving.worker_engine_topology', 'skill.distributed.partial_failure_model'),
+              ('skill.optimization.prefix_cache_reuse', 'skill.storage.index_selection_reasoning'),
+              ('skill.multi_gpu.rdma_transport_model', 'skill.os.memory_mapping_usage'),
+              ('skill.ai_infra.gpu_capability_inventory', 'skill.platform.cloud_compute_resource_model'),
+          }
+          removed = {
+              ('skill.multi_gpu.topology_discovery', 'skill.os.cpu_time_accounting'),
+              ('skill.multi_gpu.collective_semantics', 'skill.distributed.replication_models'),
+          }
+          if not expected_soft <= soft:
+              raise SystemExit(f'PASS_B_EDGE_AUDIT=FAIL missing_soft={sorted(expected_soft-soft)}')
+          if removed & all_pairs:
+              raise SystemExit(f'PASS_B_EDGE_AUDIT=FAIL unrelated_edges_remain={sorted(removed & all_pairs)}')
+          print(f'PASS_B_EDGE_AUDIT=PASS hard={sum(x["edge_kind"]=="hard" for x in edges)} soft={len(soft)}')
+          PY
       - name: Revalidate 6D after review closure
         run: python tools/validate_systems_package.py
       - name: Independently validate 6E package
