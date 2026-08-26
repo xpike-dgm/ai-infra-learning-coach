@@ -4966,8 +4966,7 @@
   technology_dependency_refs: []
   duplicate_resolution:
     status: create_new
-    compared_skill_ids:
-    - skill.distributed.replication_models
+    compared_skill_ids: []
     rationale: Compared against accepted 6C + 6D registries; matching prior capability IDs are reused as prerequisites/placements
       rather than cloned.
   granularity_review_codes:
@@ -5633,8 +5632,7 @@
   - technology.gpu_runtime
   duplicate_resolution:
     status: create_new
-    compared_skill_ids:
-    - skill.os.cpu_time_accounting
+    compared_skill_ids: []
     rationale: Compared against accepted 6C + 6D registries; matching prior capability IDs are reused as prerequisites/placements
       rather than cloned.
   granularity_review_codes:

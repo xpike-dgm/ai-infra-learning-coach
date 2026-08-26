@@ -8,14 +8,14 @@ counts:
   topics: 70
   skills: 143
   objectives: 159
-  topic_skill_links: 232
-  prerequisite_edges: 281
-  hard_prerequisite_edges: 281
-  soft_prerequisite_edges: 0
-  cross_package_prerequisite_edges: 91
-  reused_prior_package_skills: 61
+  topic_skill_links: 230
+  prerequisite_edges: 279
+  hard_prerequisite_edges: 247
+  soft_prerequisite_edges: 32
+  cross_package_prerequisite_edges: 89
+  reused_prior_package_skills: 59
   reused_6c_skills: 9
-  reused_6d_skills: 52
+  reused_6d_skills: 50
   capability_requirements: 286
   professional_attributions: 216
   project_attributions: 16
@@ -27,7 +27,7 @@ checks:
   details: D14-D22 exactly
 - check: prior_registry_reuse
   result: PASS
-  details: 61 prior Skills reused without clone
+  details: 59 prior Skills reused without clone
 - check: math_numerical_prerequisites_explicit
   result: PASS
   details: tensor shape, matmul, probability/softmax and floating-point Skills are explicit

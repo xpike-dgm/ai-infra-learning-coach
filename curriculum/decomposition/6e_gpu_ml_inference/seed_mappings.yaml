@@ -358,24 +358,6 @@
   - source.repo.sdm_v0
   - source.repo.frdb_v0
   review_refs: []
-- seed_id: skill.distributed.replication_models
-  seed_kind: skill
-  disposition: ratify_as_is
-  result_entity_refs:
-  - skill.distributed.replication_models
-  evidence_compatibility: not_applicable_not_published
-  rationale:
-    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
-    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
-    evidence_effect: 6E does not copy or synthesize prior learner evidence.
-    remediation_effect: Weakness remains attached to the original canonical Skill.
-    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
-  mapping_class: reused_from_prior_package
-  origin_package: 6d_systems
-  source_refs:
-  - source.repo.sdm_v0
-  - source.repo.frdb_v0
-  review_refs: []
 - seed_id: skill.dsa.sequence_traversal
   seed_kind: skill
   disposition: ratify_as_is
@@ -579,24 +561,6 @@
   disposition: ratify_as_is
   result_entity_refs:
   - skill.os.allocator_behavior_model
-  evidence_compatibility: not_applicable_not_published
-  rationale:
-    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
-    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
-    evidence_effect: 6E does not copy or synthesize prior learner evidence.
-    remediation_effect: Weakness remains attached to the original canonical Skill.
-    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
-  mapping_class: reused_from_prior_package
-  origin_package: 6d_systems
-  source_refs:
-  - source.repo.sdm_v0
-  - source.repo.frdb_v0
-  review_refs: []
-- seed_id: skill.os.cpu_time_accounting
-  seed_kind: skill
-  disposition: ratify_as_is
-  result_entity_refs:
-  - skill.os.cpu_time_accounting
   evidence_compatibility: not_applicable_not_published
   rationale:
     semantic_boundary: Existing accepted capability is semantically identical and reused without clone.

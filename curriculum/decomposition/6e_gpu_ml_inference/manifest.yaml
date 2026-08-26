@@ -76,7 +76,7 @@ prior_package_refs:
   target_ref_status: resolved_prior_package
   blocking_for_current_package_publish: false
 - package_id: decomposition.6d_systems
-  reused_skill_count: 52
+  reused_skill_count: 50
   target_ref_status: resolved_prior_package
   blocking_for_current_package_publish: false
 known_exclusions:

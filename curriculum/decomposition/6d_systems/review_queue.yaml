@@ -70,7 +70,7 @@
   - 6E candidate registry
   resolution_owner_step: 6E
   status: resolved
-  resolution: 6E reuses 52 accepted 6D Skills by canonical ID across prerequisites/TopicSkillLinks; no 6D Skill clone is created.
+  resolution: 6E reuses 50 accepted 6D Skills by canonical ID across prerequisites/TopicSkillLinks; no 6D Skill clone is created.
     See decomposition.6e_gpu_ml_inference seed_mappings.yaml.
   source_refs:
   - source.repo.frdb_v0

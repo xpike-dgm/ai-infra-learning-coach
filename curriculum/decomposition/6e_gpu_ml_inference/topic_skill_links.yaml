@@ -1749,17 +1749,6 @@
   lifecycle_status: draft
   review_refs: []
 - topic_id: topic.multi_gpu.collective_semantics
-  skill_id: skill.distributed.replication_models
-  role: reinforce
-  importance: supporting
-  is_primary_teaching_context: false
-  objective_scope_ids: []
-  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
-  source_refs:
-  - source.repo.sdm_v0
-  lifecycle_status: draft
-  review_refs: []
-- topic_id: topic.multi_gpu.collective_semantics
   skill_id: skill.multi_gpu.collective_cost_reasoning
   role: teach
   importance: core
@@ -1962,17 +1951,6 @@
   review_refs: []
 - topic_id: topic.multi_gpu.topology_interconnect
   skill_id: skill.network.latency_bandwidth_budget
-  role: reinforce
-  importance: supporting
-  is_primary_teaching_context: false
-  objective_scope_ids: []
-  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
-  source_refs:
-  - source.repo.sdm_v0
-  lifecycle_status: draft
-  review_refs: []
-- topic_id: topic.multi_gpu.topology_interconnect
-  skill_id: skill.os.cpu_time_accounting
   role: reinforce
   importance: supporting
   is_primary_teaching_context: false
