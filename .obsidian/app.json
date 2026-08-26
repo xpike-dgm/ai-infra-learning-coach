@@ -1,0 +1,8 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "vault/inbox",
+  "attachmentFolderPath": "vault/assets/attachments",
+  "showLineNumber": true,
+  "livePreview": true
+}

@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+
+# Obsidian per-machine UI state; vault settings themselves are tracked.
+.obsidian/workspace.json
+vault/.obsidian/workspace.json
