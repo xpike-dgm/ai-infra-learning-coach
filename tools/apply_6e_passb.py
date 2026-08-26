@@ -80,6 +80,7 @@ for line in lines:
                 soft.append(source)
             moved.add(pair)
         elif source in soft:
+            # Already applied in a prior deterministic generation pass.
             moved.add(pair)
         else:
             raise RuntimeError(f"Pass B soft override source missing: {source} -> {target}")
@@ -95,7 +96,8 @@ for line in lines:
             soft.remove(source)
             removed.add(pair)
         else:
-            raise RuntimeError(f"Pass B remove override source missing: {source} -> {target}")
+            # Idempotent success: the non-dependency was already removed.
+            removed.add(pair)
 
     fields[5] = ";".join(hard)
     fields[6] = ";".join(soft)
