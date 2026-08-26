@@ -1,0 +1,1062 @@
+- seed_id: skill.arch.branch_prediction_cost
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.branch_prediction_cost
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.cache_hierarchy_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.cache_hierarchy_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.data_layout_transformation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.data_layout_transformation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.instruction_execution_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.instruction_execution_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.instruction_level_parallelism
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.instruction_level_parallelism
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.latency_throughput_distinction
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.latency_throughput_distinction
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.locality_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.locality_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.number_representation_precision
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.number_representation_precision
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.roofline_bottleneck_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.roofline_bottleneck_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.arch.simd_data_parallel_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.arch.simd_data_parallel_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.c.dynamic_allocation_lifecycle
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.dynamic_allocation_lifecycle
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.c.functions_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.functions_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.async_execution_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.async_execution_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.cancellation_timeout_semantics
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.cancellation_timeout_semantics
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.memory_ordering_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.memory_ordering_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.scaling_limit_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.scaling_limit_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.shared_mutable_state_risk
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.shared_mutable_state_risk
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.concurrency.work_decomposition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.concurrency.work_decomposition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.distributed.backpressure_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.distributed.backpressure_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.distributed.partial_failure_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.distributed.partial_failure_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.dsa.sequence_traversal
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.sequence_traversal
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.engineering.explain_debug_fix_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.explain_debug_fix_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.engineering.reproducible_run_notes
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.reproducible_run_notes
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.linux.process_inspection
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.process_inspection
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.network.latency_bandwidth_budget
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.network.latency_bandwidth_budget
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.network.layering_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.network.layering_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.network.network_failure_diagnosis
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.network.network_failure_diagnosis
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.network.rpc_call_semantics
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.network.rpc_call_semantics
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.network.timeout_retry_policy
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.network.timeout_retry_policy
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.observability.metric_instrumentation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.observability.metric_instrumentation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.observability.signal_correlation_diagnosis
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.observability.signal_correlation_diagnosis
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.allocator_behavior_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.allocator_behavior_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.memory_mapping_usage
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.memory_mapping_usage
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.memory_usage_diagnosis
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.memory_usage_diagnosis
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.page_fault_behavior
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.page_fault_behavior
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.process_address_space_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.process_address_space_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.os.virtual_physical_translation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.virtual_physical_translation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.benchmark_workload_design
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.benchmark_workload_design
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.bottleneck_localization
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.bottleneck_localization
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.capacity_headroom_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.capacity_headroom_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.cost_efficiency_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.cost_efficiency_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.end_to_end_latency_attribution
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.end_to_end_latency_attribution
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.measurement_environment_control
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.measurement_environment_control
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.measurement_goal_definition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.measurement_goal_definition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.measurement_validity_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.measurement_validity_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.optimization_hypothesis_validation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.optimization_hypothesis_validation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.profile_interpretation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.profile_interpretation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.regression_detection
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.regression_detection
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.performance.tail_latency_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.performance.tail_latency_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.platform.cloud_compute_resource_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.cloud_compute_resource_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.platform.container_vs_vm_boundary
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.container_vs_vm_boundary
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.platform.deployment_change_safety
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.deployment_change_safety
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.platform.image_supply_chain_safety
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.image_supply_chain_safety
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.platform.secret_handling_safety
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.secret_handling_safety
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.programming.input_validation_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.input_validation_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.programming.iteration_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.iteration_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.programming.test_case_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.test_case_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6c_foundations
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.reliability.incident_response_workflow
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.reliability.incident_response_workflow
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- seed_id: skill.storage.index_selection_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.storage.index_selection_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: May serve as an explicit prerequisite or supporting placement in 6E.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.frdb_v0
+  review_refs: []

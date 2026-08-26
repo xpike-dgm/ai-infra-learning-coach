@@ -1,0 +1,2686 @@
+- entity_type: domain
+  logical_id_candidate: domain.ai_gpu_infrastructure
+  display_name: AI Infrastructure / GPU Infrastructure
+  semantic_statement: AI Infrastructure / GPU Infrastructure capability organization domain for the D14-D22 accelerator/inference
+    route.
+  parent_organization_id: null
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: target_integration
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.cuda
+  display_name: CUDA
+  semantic_statement: CUDA capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.cuda
+  organization_role: accelerator_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.gpu_architecture
+  display_name: GPU Architecture
+  semantic_statement: GPU Architecture capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.gpu_architecture
+  organization_role: accelerator_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.inference_runtime_optimization
+  display_name: KV Cache / Batching / Scheduling / Quantization
+  semantic_statement: KV Cache / Batching / Scheduling / Quantization capability organization domain for the D14-D22 accelerator/inference
+    route.
+  parent_organization_id: null
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: inference_optimization_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.inference_serving
+  display_name: Inference Serving Systems
+  semantic_statement: Inference Serving Systems capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.inference_serving
+  organization_role: inference_serving_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.llm_inference
+  display_name: LLM Inference Internals
+  semantic_statement: LLM Inference Internals capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.llm_inference
+  organization_role: inference_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.ml_transformer
+  display_name: ML + Transformer Foundations
+  semantic_statement: ML + Transformer Foundations capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.ml_transformer
+  organization_role: inference_supporting
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.multi_gpu
+  display_name: Multi-GPU + NCCL + RDMA
+  semantic_statement: Multi-GPU + NCCL + RDMA capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.multi_gpu
+  organization_role: distributed_accelerator_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.triton
+  display_name: Triton
+  semantic_statement: Triton capability organization domain for the D14-D22 accelerator/inference route.
+  parent_organization_id: null
+  primary_domain_id: domain.triton
+  organization_role: accelerator_core
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ai_infra.capacity_reliability
+  display_name: Ai Infra Capacity Reliability
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ai_gpu_infrastructure
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ai_infra.delivery_operations
+  display_name: Ai Infra Delivery Operations
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ai_gpu_infrastructure
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ai_infra.resource_fleet
+  display_name: Ai Infra Resource Fleet
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ai_gpu_infrastructure
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.cuda.correctness_performance
+  display_name: Cuda Correctness Performance
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.cuda
+  primary_domain_id: domain.cuda
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.cuda.memory_management
+  display_name: Cuda Memory Management
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.cuda
+  primary_domain_id: domain.cuda
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.cuda.programming_model
+  display_name: Cuda Programming Model
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.cuda
+  primary_domain_id: domain.cuda
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.gpu.execution_model
+  display_name: Gpu Execution Model
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.gpu_architecture
+  primary_domain_id: domain.gpu_architecture
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.gpu.memory_system
+  display_name: Gpu Memory System
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.gpu_architecture
+  primary_domain_id: domain.gpu_architecture
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.gpu.performance_model
+  display_name: Gpu Performance Model
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.gpu_architecture
+  primary_domain_id: domain.gpu_architecture
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.inference.attention_generation
+  display_name: Inference Attention Generation
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.llm_inference
+  primary_domain_id: domain.llm_inference
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.inference.execution
+  display_name: Inference Execution
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.llm_inference
+  primary_domain_id: domain.llm_inference
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.inference.operator_runtime
+  display_name: Inference Operator Runtime
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.llm_inference
+  primary_domain_id: domain.llm_inference
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ml.math_numerical
+  display_name: Ml Math Numerical
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ml_transformer
+  primary_domain_id: domain.ml_transformer
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ml.model_inference_foundations
+  display_name: Ml Model Inference Foundations
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ml_transformer
+  primary_domain_id: domain.ml_transformer
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.ml.transformer_architecture
+  display_name: Ml Transformer Architecture
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.ml_transformer
+  primary_domain_id: domain.ml_transformer
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.multi_gpu.distributed_inference
+  display_name: Multi Gpu Distributed Inference
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.multi_gpu
+  primary_domain_id: domain.multi_gpu
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.multi_gpu.interconnect_collectives
+  display_name: Multi Gpu Interconnect Collectives
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.multi_gpu
+  primary_domain_id: domain.multi_gpu
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.multi_gpu.rdma_transport
+  display_name: Multi Gpu Rdma Transport
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.multi_gpu
+  primary_domain_id: domain.multi_gpu
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.optimization.batching_scheduling
+  display_name: Optimization Batching Scheduling
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_runtime_optimization
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.optimization.kv_memory
+  display_name: Optimization Kv Memory
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_runtime_optimization
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.optimization.quantization
+  display_name: Optimization Quantization
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_runtime_optimization
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.serving.architecture
+  display_name: Serving Architecture
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_serving
+  primary_domain_id: domain.inference_serving
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.serving.measurement_reliability
+  display_name: Serving Measurement Reliability
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_serving
+  primary_domain_id: domain.inference_serving
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.serving.runtime
+  display_name: Serving Runtime
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.inference_serving
+  primary_domain_id: domain.inference_serving
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.triton.kernel_patterns
+  display_name: Triton Kernel Patterns
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.triton
+  primary_domain_id: domain.triton
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.triton.optimization_debugging
+  display_name: Triton Optimization Debugging
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.triton
+  primary_domain_id: domain.triton
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.triton.programming_model
+  display_name: Triton Programming Model
+  semantic_statement: Related accelerator/inference Topics için stable organization cluster.
+  parent_organization_id: domain.triton
+  primary_domain_id: domain.triton
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.capacity_admission
+  display_name: Ai Infra Capacity Admission
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.capacity_reliability
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.cost_efficiency
+  display_name: Ai Infra Cost Efficiency
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.delivery_operations
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.driver_runtime_compatibility
+  display_name: Ai Infra Driver Runtime Compatibility
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.resource_fleet
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.gpu_observability
+  display_name: Ai Infra Gpu Observability
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.capacity_reliability
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.gpu_resource_inventory
+  display_name: Ai Infra Gpu Resource Inventory
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.resource_fleet
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.health_failure_containment
+  display_name: Ai Infra Health Failure Containment
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.capacity_reliability
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.model_artifact_rollout
+  display_name: Ai Infra Model Artifact Rollout
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.delivery_operations
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.placement_partitioning
+  display_name: Ai Infra Placement Partitioning
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.resource_fleet
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ai_infra.workload_isolation_security
+  display_name: Ai Infra Workload Isolation Security
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ai_infra.delivery_operations
+  primary_domain_id: domain.ai_gpu_infrastructure
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D22
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.allocation_transfer
+  display_name: Cuda Allocation Transfer
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.memory_management
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.error_race_bounds
+  display_name: Cuda Error Race Bounds
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.correctness_performance
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.grid_stride_work
+  display_name: Cuda Grid Stride Work
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.programming_model
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.kernel_launch_indexing
+  display_name: Cuda Kernel Launch Indexing
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.programming_model
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.pinned_unified_memory
+  display_name: Cuda Pinned Unified Memory
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.memory_management
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.profiling_optimization
+  display_name: Cuda Profiling Optimization
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.correctness_performance
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.shared_memory_tiling
+  display_name: Cuda Shared Memory Tiling
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.memory_management
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.streams_events
+  display_name: Cuda Streams Events
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.correctness_performance
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.cuda.synchronization_ordering
+  display_name: Cuda Synchronization Ordering
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.cuda.programming_model
+  primary_domain_id: domain.cuda
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D15
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.cache_locality
+  display_name: Gpu Cache Locality
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.memory_system
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.coalescing_transactions
+  display_name: Gpu Coalescing Transactions
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.memory_system
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.compute_memory_balance
+  display_name: Gpu Compute Memory Balance
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.performance_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.execution_hierarchy
+  display_name: Gpu Execution Hierarchy
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.execution_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.latency_hiding_occupancy
+  display_name: Gpu Latency Hiding Occupancy
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.execution_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.memory_spaces
+  display_name: Gpu Memory Spaces
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.memory_system
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.overlap_async_execution
+  display_name: Gpu Overlap Async Execution
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.performance_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.profiling_metrics
+  display_name: Gpu Profiling Metrics
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.performance_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.shared_memory_banks
+  display_name: Gpu Shared Memory Banks
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.memory_system
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.gpu.simt_divergence
+  display_name: Gpu Simt Divergence
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.gpu.execution_model
+  primary_domain_id: domain.gpu_architecture
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D14
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.attention_execution
+  display_name: Inference Attention Execution
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.attention_generation
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.autoregressive_generation
+  display_name: Inference Autoregressive Generation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.execution
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.kv_semantics
+  display_name: Inference Kv Semantics
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.attention_generation
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.memory_footprint
+  display_name: Inference Memory Footprint
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.operator_runtime
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.model_loading_layout
+  display_name: Inference Model Loading Layout
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.execution
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.operator_fusion
+  display_name: Inference Operator Fusion
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.operator_runtime
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.prefill_decode
+  display_name: Inference Prefill Decode
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.execution
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.inference.sampling_decoding
+  display_name: Inference Sampling Decoding
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.inference.attention_generation
+  primary_domain_id: domain.llm_inference
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D18
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.attention_qkv_masking
+  display_name: Ml Attention Qkv Masking
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.transformer_architecture
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.embedding_normalization
+  display_name: Ml Embedding Normalization
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.model_inference_foundations
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.linear_algebra_matmul
+  display_name: Ml Linear Algebra Matmul
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.math_numerical
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.numerical_precision_stability
+  display_name: Ml Numerical Precision Stability
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.math_numerical
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.parameters_activations
+  display_name: Ml Parameters Activations
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.model_inference_foundations
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.probability_softmax
+  display_name: Ml Probability Softmax
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.math_numerical
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.tensor_shape_broadcast
+  display_name: Ml Tensor Shape Broadcast
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.math_numerical
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.ml.transformer_block_causal_lm
+  display_name: Ml Transformer Block Causal Lm
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.ml.transformer_architecture
+  primary_domain_id: domain.ml_transformer
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D17
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.collective_performance_failure
+  display_name: Multi Gpu Collective Performance Failure
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.distributed_inference
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.collective_semantics
+  display_name: Multi Gpu Collective Semantics
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.interconnect_collectives
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.gpu_direct_transport
+  display_name: Multi Gpu Gpu Direct Transport
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.rdma_transport
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.nccl_operation
+  display_name: Multi Gpu Nccl Operation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.interconnect_collectives
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.parallelism_sharding
+  display_name: Multi Gpu Parallelism Sharding
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.distributed_inference
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.rdma_data_path
+  display_name: Multi Gpu Rdma Data Path
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.rdma_transport
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.multi_gpu.topology_interconnect
+  display_name: Multi Gpu Topology Interconnect
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.multi_gpu.interconnect_collectives
+  primary_domain_id: domain.multi_gpu
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D21
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.continuous_batching
+  display_name: Optimization Continuous Batching
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.batching_scheduling
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.kv_layout_capacity
+  display_name: Optimization Kv Layout Capacity
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.kv_memory
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.paged_prefix_cache
+  display_name: Optimization Paged Prefix Cache
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.kv_memory
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.quantization_formats
+  display_name: Optimization Quantization Formats
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.quantization
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.quantization_validation
+  display_name: Optimization Quantization Validation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.quantization
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.optimization.token_scheduler
+  display_name: Optimization Token Scheduler
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.optimization.batching_scheduling
+  primary_domain_id: domain.inference_runtime_optimization
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D20
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.admission_backpressure
+  display_name: Serving Admission Backpressure
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.architecture
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.engine_operation
+  display_name: Serving Engine Operation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.runtime
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.engine_worker_topology
+  display_name: Serving Engine Worker Topology
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.architecture
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.failure_observability
+  display_name: Serving Failure Observability
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.measurement_reliability
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.load_benchmark_slo
+  display_name: Serving Load Benchmark Slo
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.measurement_reliability
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.request_lifecycle
+  display_name: Serving Request Lifecycle
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.architecture
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.serving.streaming_cancellation
+  display_name: Serving Streaming Cancellation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.serving.runtime
+  primary_domain_id: domain.inference_serving
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D19
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.autotuning_configs
+  display_name: Triton Autotuning Configs
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.optimization_debugging
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.correctness_performance_validation
+  display_name: Triton Correctness Performance Validation
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.optimization_debugging
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.masked_memory_ops
+  display_name: Triton Masked Memory Ops
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.programming_model
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.matmul_tiling
+  display_name: Triton Matmul Tiling
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.kernel_patterns
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.program_instance_mapping
+  display_name: Triton Program Instance Mapping
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.programming_model
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.triton.reduction_softmax
+  display_name: Triton Reduction Softmax
+  semantic_statement: Learner-facing teaching, practice, debugging, measurement and evidence context.
+  parent_organization_id: module.triton.kernel_patterns
+  primary_domain_id: domain.triton
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - reinforce
+  - transfer
+  linked_route_family_ids:
+  - D16
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null

@@ -46,8 +46,8 @@
   review_codes:
   - SHARED_SKILL_REUSE
   severity: non_blocking
-  question: Observability, reliability ve performance-report capability'leri 6F professional registry ile nasıl
-    reconcile edilecek?
+  question: Observability, reliability ve performance-report capability'leri 6F professional registry ile nasıl reconcile
+    edilecek?
   decision_inputs_required:
   - 6F professional overlay registry
   resolution_owner_step: 6F
@@ -69,9 +69,13 @@
   decision_inputs_required:
   - 6E candidate registry
   resolution_owner_step: 6E
-  status: open
-  resolution: null
+  status: resolved
+  resolution: 6E reuses 50 accepted 6D Skills by canonical ID across prerequisites/TopicSkillLinks; no 6D Skill clone is created.
+    See decomposition.6e_gpu_ml_inference seed_mappings.yaml.
   source_refs:
   - source.repo.frdb_v0
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-26'
+  resolution_refs:
+  - decomposition.6e_gpu_ml_inference
+  - D-059

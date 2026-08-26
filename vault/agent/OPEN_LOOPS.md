@@ -11,8 +11,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 ## Project delivery
 
 - [x] 6D Systems detailed map: SDM-v0 / D-058 ile tamamlandı.
-- [ ] 6E GPU/ML/Inference detailed map: kullanıcı onayı sonrası fresh PRE-STEP ile D14–D22 package'ını author etmek; `review.6d.accelerator_forward_reuse` kaydını tüketmek.
-- [ ] 6F Professional Engineering detailed map: `review.6d.professional_overlay_reconciliation` ile observability/reliability/performance-report overlay'lerini reconcile etmek.
+- [x] 6E GPU/ML/Inference detailed map: GIM-v0 / D-059 tamamlandı; `review.6d.accelerator_forward_reuse` resolved.
+- [ ] 6F Professional Engineering detailed map **AKTİF**: `review.6d.professional_overlay_reconciliation` ile observability/reliability/performance-report overlay'lerini ve 6E project/professional attributions'ını reconcile etmek.
 - [ ] 6G weakness/remediation operationalization.
 - [ ] 6H independent external Research QA: full coverage, current-industry ve prerequisite audit; `review.6d.external_coverage` ve `review.6d.platform_tool_freshness` burada kapanır.
 

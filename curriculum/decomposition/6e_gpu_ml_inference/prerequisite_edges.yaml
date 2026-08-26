@@ -1,0 +1,4743 @@
+- prerequisite_skill_id: skill.ai_infra.workload_resource_profile
+  target_skill_id: skill.ai_infra.capacity_headroom_model
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.capacity_headroom_reasoning
+  target_skill_id: skill.ai_infra.capacity_headroom_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.capacity_headroom_model
+  target_skill_id: skill.ai_infra.cluster_admission_policy
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.admission_control
+  target_skill_id: skill.ai_infra.cluster_admission_policy
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.capacity_headroom_model
+  target_skill_id: skill.ai_infra.cost_per_token_reasoning
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.cost_efficiency_reasoning
+  target_skill_id: skill.ai_infra.cost_per_token_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.gpu_capability_inventory
+  target_skill_id: skill.ai_infra.driver_toolkit_compatibility
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.deployment_change_safety
+  target_skill_id: skill.ai_infra.driver_toolkit_compatibility
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.cost_per_token_reasoning
+  target_skill_id: skill.ai_infra.efficiency_optimization_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.optimization_hypothesis_validation
+  target_skill_id: skill.ai_infra.efficiency_optimization_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.gpu_health_failure_containment
+  target_skill_id: skill.ai_infra.failure_domain_capacity_recovery
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.partial_failure_model
+  target_skill_id: skill.ai_infra.failure_domain_capacity_recovery
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.topology_discovery
+  target_skill_id: skill.ai_infra.gpu_capability_inventory
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.cloud_compute_resource_model
+  target_skill_id: skill.ai_infra.gpu_capability_inventory
+  edge_kind: soft
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.ai_infra.gpu_signal_correlation
+  target_skill_id: skill.ai_infra.gpu_health_failure_containment
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.reliability.incident_response_workflow
+  target_skill_id: skill.ai_infra.gpu_health_failure_containment
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.workload_resource_profile
+  target_skill_id: skill.ai_infra.gpu_partitioning_isolation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.container_vs_vm_boundary
+  target_skill_id: skill.ai_infra.gpu_partitioning_isolation
+  edge_kind: soft
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.ai_infra.gpu_telemetry_instrumentation
+  target_skill_id: skill.ai_infra.gpu_signal_correlation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_trace_correlation
+  target_skill_id: skill.ai_infra.gpu_signal_correlation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.gpu_capability_inventory
+  target_skill_id: skill.ai_infra.gpu_telemetry_instrumentation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.observability.metric_instrumentation
+  target_skill_id: skill.ai_infra.gpu_telemetry_instrumentation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.weight_loading_layout
+  target_skill_id: skill.ai_infra.model_artifact_versioning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.image_supply_chain_safety
+  target_skill_id: skill.ai_infra.model_artifact_versioning
+  edge_kind: soft
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.ai_infra.model_artifact_versioning
+  target_skill_id: skill.ai_infra.model_data_provenance_safety
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.image_supply_chain_safety
+  target_skill_id: skill.ai_infra.model_data_provenance_safety
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.model_artifact_versioning
+  target_skill_id: skill.ai_infra.model_rollout_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.regression_detection
+  target_skill_id: skill.ai_infra.model_rollout_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.deployment_change_safety
+  target_skill_id: skill.ai_infra.model_rollout_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.driver_toolkit_compatibility
+  target_skill_id: skill.ai_infra.reproducible_runtime_environment
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.ai_infra.reproducible_runtime_environment
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.gpu_capability_inventory
+  target_skill_id: skill.ai_infra.topology_aware_placement
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.distributed_inference_placement
+  target_skill_id: skill.ai_infra.topology_aware_placement
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ai_infra.gpu_partitioning_isolation
+  target_skill_id: skill.ai_infra.workload_isolation_boundary
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.secret_handling_safety
+  target_skill_id: skill.ai_infra.workload_isolation_boundary
+  edge_kind: soft
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.ai_infra.workload_resource_profile
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.latency_throughput_slo_analysis
+  target_skill_id: skill.ai_infra.workload_resource_profile
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.shared_mutable_state_risk
+  target_skill_id: skill.cuda.block_synchronization
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.cuda.block_synchronization
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.c.dynamic_allocation_lifecycle
+  target_skill_id: skill.cuda.device_allocation_lifetime
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.gpu.memory_space_selection
+  target_skill_id: skill.cuda.device_allocation_lifetime
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.cuda.error_checking_diagnosis
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.explain_debug_fix_basic
+  target_skill_id: skill.cuda.error_checking_diagnosis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.stream_dependency_model
+  target_skill_id: skill.cuda.event_timing_dependency
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.cuda.event_timing_dependency
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.thread_index_calculation
+  target_skill_id: skill.cuda.grid_stride_loop
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.cuda.grid_stride_loop
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.device_allocation_lifetime
+  target_skill_id: skill.cuda.host_device_transfer
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.global_memory_latency_bandwidth
+  target_skill_id: skill.cuda.host_device_transfer
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.c.functions_basic
+  target_skill_id: skill.cuda.kernel_execution_mapping
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.thread_block_grid_model
+  target_skill_id: skill.cuda.kernel_execution_mapping
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.profiler_metric_selection
+  target_skill_id: skill.cuda.kernel_profile_collection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_environment_control
+  target_skill_id: skill.cuda.kernel_profile_collection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.cuda.launch_configuration_reasoning
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.occupancy_resource_model
+  target_skill_id: skill.cuda.launch_configuration_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.memory_ordering_model
+  target_skill_id: skill.cuda.memory_visibility_ordering
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.block_synchronization
+  target_skill_id: skill.cuda.memory_visibility_ordering
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_profile_collection
+  target_skill_id: skill.cuda.optimization_validation
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.optimization_hypothesis_validation
+  target_skill_id: skill.cuda.optimization_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.host_device_transfer
+  target_skill_id: skill.cuda.pinned_memory_usage
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.copy_compute_overlap_model
+  target_skill_id: skill.cuda.pinned_memory_usage
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.cuda.memory_visibility_ordering
+  target_skill_id: skill.cuda.race_bounds_diagnosis
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.thread_index_calculation
+  target_skill_id: skill.cuda.race_bounds_diagnosis
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.block_synchronization
+  target_skill_id: skill.cuda.shared_memory_tiling
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.shared_memory_layout_transform
+  target_skill_id: skill.cuda.shared_memory_tiling
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.host_device_transfer
+  target_skill_id: skill.cuda.stream_dependency_model
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.copy_compute_overlap_model
+  target_skill_id: skill.cuda.stream_dependency_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.cuda.thread_index_calculation
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.cuda.thread_index_calculation
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.cuda.shared_memory_tiling
+  target_skill_id: skill.cuda.tile_boundary_handling
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.input_validation_reasoning
+  target_skill_id: skill.cuda.tile_boundary_handling
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.device_allocation_lifetime
+  target_skill_id: skill.cuda.unified_memory_behavior
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.page_fault_behavior
+  target_skill_id: skill.cuda.unified_memory_behavior
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.compute_memory_balance
+  target_skill_id: skill.gpu.arithmetic_intensity_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.profiler_metric_selection
+  target_skill_id: skill.gpu.bottleneck_attribution
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.bottleneck_localization
+  target_skill_id: skill.gpu.bottleneck_attribution
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.locality_reasoning
+  target_skill_id: skill.gpu.cache_locality_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.global_memory_latency_bandwidth
+  target_skill_id: skill.gpu.cache_locality_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.cache_locality_reasoning
+  target_skill_id: skill.gpu.cache_metric_interpretation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.profile_interpretation
+  target_skill_id: skill.gpu.cache_metric_interpretation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.locality_reasoning
+  target_skill_id: skill.gpu.coalesced_access_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.warp_execution_model
+  target_skill_id: skill.gpu.coalesced_access_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.roofline_bottleneck_reasoning
+  target_skill_id: skill.gpu.compute_memory_balance
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.global_memory_latency_bandwidth
+  target_skill_id: skill.gpu.compute_memory_balance
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.async_execution_model
+  target_skill_id: skill.gpu.copy_compute_overlap_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.global_memory_latency_bandwidth
+  target_skill_id: skill.gpu.copy_compute_overlap_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.latency_throughput_distinction
+  target_skill_id: skill.gpu.global_memory_latency_bandwidth
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.memory_space_selection
+  target_skill_id: skill.gpu.global_memory_latency_bandwidth
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.instruction_level_parallelism
+  target_skill_id: skill.gpu.latency_hiding_reasoning
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.gpu.occupancy_resource_model
+  target_skill_id: skill.gpu.latency_hiding_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.cache_hierarchy_model
+  target_skill_id: skill.gpu.memory_space_selection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.thread_block_grid_model
+  target_skill_id: skill.gpu.memory_space_selection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.coalesced_access_reasoning
+  target_skill_id: skill.gpu.memory_transaction_measurement
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.gpu.memory_transaction_measurement
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.latency_throughput_distinction
+  target_skill_id: skill.gpu.occupancy_resource_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.warp_execution_model
+  target_skill_id: skill.gpu.occupancy_resource_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.compute_memory_balance
+  target_skill_id: skill.gpu.profiler_metric_selection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_goal_definition
+  target_skill_id: skill.gpu.profiler_metric_selection
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.memory_space_selection
+  target_skill_id: skill.gpu.shared_memory_bank_conflict
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.warp_execution_model
+  target_skill_id: skill.gpu.shared_memory_bank_conflict
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.data_layout_transformation
+  target_skill_id: skill.gpu.shared_memory_layout_transform
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.gpu.shared_memory_bank_conflict
+  target_skill_id: skill.gpu.shared_memory_layout_transform
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.branch_prediction_cost
+  target_skill_id: skill.gpu.simt_divergence_reasoning
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.gpu.warp_execution_model
+  target_skill_id: skill.gpu.simt_divergence_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.simd_data_parallel_model
+  target_skill_id: skill.gpu.thread_block_grid_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.work_decomposition
+  target_skill_id: skill.gpu.thread_block_grid_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.copy_compute_overlap_model
+  target_skill_id: skill.gpu.timeline_overlap_analysis
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.profile_interpretation
+  target_skill_id: skill.gpu.timeline_overlap_analysis
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.simt_divergence_reasoning
+  target_skill_id: skill.gpu.warp_efficiency_measurement
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.gpu.warp_efficiency_measurement
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.instruction_execution_model
+  target_skill_id: skill.gpu.warp_execution_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.thread_block_grid_model
+  target_skill_id: skill.gpu.warp_execution_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.attention_operator_execution
+  target_skill_id: skill.inference.attention_memory_bottleneck
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.bottleneck_localization
+  target_skill_id: skill.inference.attention_memory_bottleneck
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.compute_memory_balance
+  target_skill_id: skill.inference.attention_operator_execution
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.ml.attention_score_mask_softmax
+  target_skill_id: skill.inference.attention_operator_execution
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.causal_lm_logits_next_token
+  target_skill_id: skill.inference.autoregressive_loop
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.inference.autoregressive_loop
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.inference.operator_fusion_reasoning
+  target_skill_id: skill.inference.fusion_correctness_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.floating_point_error_reasoning
+  target_skill_id: skill.inference.fusion_correctness_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.cancellation_timeout_semantics
+  target_skill_id: skill.inference.generation_stopping_state
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.inference.autoregressive_loop
+  target_skill_id: skill.inference.generation_stopping_state
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.autoregressive_loop
+  target_skill_id: skill.inference.kv_cache_semantics
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.attention_qkv_shapes
+  target_skill_id: skill.inference.kv_cache_semantics
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.kv_cache_semantics
+  target_skill_id: skill.inference.kv_memory_growth
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.mixed_precision_tradeoff
+  target_skill_id: skill.inference.kv_memory_growth
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.inference.kv_memory_growth
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.inference.oom_root_cause_diagnosis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.memory_usage_diagnosis
+  target_skill_id: skill.inference.oom_root_cause_diagnosis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.compute_memory_balance
+  target_skill_id: skill.inference.operator_fusion_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.bottleneck_localization
+  target_skill_id: skill.inference.operator_fusion_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.latency_throughput_distinction
+  target_skill_id: skill.inference.prefill_decode_distinction
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.ml.causal_lm_logits_next_token
+  target_skill_id: skill.inference.prefill_decode_distinction
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.bottleneck_attribution
+  target_skill_id: skill.inference.prefill_decode_profile
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.prefill_decode_distinction
+  target_skill_id: skill.inference.prefill_decode_profile
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.kv_memory_growth
+  target_skill_id: skill.inference.runtime_memory_budget
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.weight_memory_estimation
+  target_skill_id: skill.inference.runtime_memory_budget
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.probability_normalization
+  target_skill_id: skill.inference.sampling_temperature
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.causal_lm_logits_next_token
+  target_skill_id: skill.inference.sampling_temperature
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.dsa.sequence_traversal
+  target_skill_id: skill.inference.topk_topp_sampling
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.inference.sampling_temperature
+  target_skill_id: skill.inference.topk_topp_sampling
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.memory_space_selection
+  target_skill_id: skill.inference.weight_loading_layout
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.parameter_activation_distinction
+  target_skill_id: skill.inference.weight_loading_layout
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.weight_loading_layout
+  target_skill_id: skill.inference.weight_memory_estimation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.mixed_precision_tradeoff
+  target_skill_id: skill.inference.weight_memory_estimation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.math.broadcasting_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.matrix_multiplication_reasoning
+  target_skill_id: skill.math.dot_product_similarity
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.arch.number_representation_precision
+  target_skill_id: skill.math.floating_point_error_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.math.matrix_multiplication_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.math.matrix_multiplication_reasoning
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.floating_point_error_reasoning
+  target_skill_id: skill.math.mixed_precision_tradeoff
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.math.mixed_precision_tradeoff
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.math.probability_normalization
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.arch.number_representation_precision
+  target_skill_id: skill.math.softmax_stability
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.probability_normalization
+  target_skill_id: skill.math.softmax_stability
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.dsa.sequence_traversal
+  target_skill_id: skill.math.tensor_shape_reasoning
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.matrix_multiplication_reasoning
+  target_skill_id: skill.ml.attention_qkv_shapes
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.ml.attention_qkv_shapes
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.dot_product_similarity
+  target_skill_id: skill.ml.attention_score_mask_softmax
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.softmax_stability
+  target_skill_id: skill.ml.attention_score_mask_softmax
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.attention_qkv_shapes
+  target_skill_id: skill.ml.attention_score_mask_softmax
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.probability_normalization
+  target_skill_id: skill.ml.causal_lm_logits_next_token
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.transformer_block_dataflow
+  target_skill_id: skill.ml.causal_lm_logits_next_token
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.ml.embedding_lookup_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.matrix_multiplication_reasoning
+  target_skill_id: skill.ml.inference_forward_pass
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.parameter_activation_distinction
+  target_skill_id: skill.ml.inference_forward_pass
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.floating_point_error_reasoning
+  target_skill_id: skill.ml.normalization_layer_reasoning
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.ml.normalization_layer_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.ml.parameter_activation_distinction
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.attention_score_mask_softmax
+  target_skill_id: skill.ml.transformer_block_dataflow
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.normalization_layer_reasoning
+  target_skill_id: skill.ml.transformer_block_dataflow
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.collective_semantics
+  target_skill_id: skill.multi_gpu.collective_cost_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.topology_bandwidth_model
+  target_skill_id: skill.multi_gpu.collective_cost_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.collective_cost_reasoning
+  target_skill_id: skill.multi_gpu.collective_profile_analysis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.end_to_end_latency_attribution
+  target_skill_id: skill.multi_gpu.collective_profile_analysis
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.tensor_shape_reasoning
+  target_skill_id: skill.multi_gpu.collective_semantics
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.partial_failure_model
+  target_skill_id: skill.multi_gpu.distributed_failure_isolation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.nccl_debug_trace
+  target_skill_id: skill.multi_gpu.distributed_failure_isolation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.pipeline_parallel_partition
+  target_skill_id: skill.multi_gpu.distributed_inference_placement
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.tensor_parallel_sharding
+  target_skill_id: skill.multi_gpu.distributed_inference_placement
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.host_device_transfer
+  target_skill_id: skill.multi_gpu.gpu_direct_data_path
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.rdma_transport_model
+  target_skill_id: skill.multi_gpu.gpu_direct_data_path
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.gpu_direct_data_path
+  target_skill_id: skill.multi_gpu.gpu_direct_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.rdma_path_validation
+  target_skill_id: skill.multi_gpu.gpu_direct_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.stream_dependency_model
+  target_skill_id: skill.multi_gpu.nccl_collective_operation
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.collective_semantics
+  target_skill_id: skill.multi_gpu.nccl_collective_operation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.nccl_collective_operation
+  target_skill_id: skill.multi_gpu.nccl_debug_trace
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.network_failure_diagnosis
+  target_skill_id: skill.multi_gpu.nccl_debug_trace
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.transformer_block_dataflow
+  target_skill_id: skill.multi_gpu.pipeline_parallel_partition
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.topology_bandwidth_model
+  target_skill_id: skill.multi_gpu.pipeline_parallel_partition
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.multi_gpu.rdma_transport_model
+  target_skill_id: skill.multi_gpu.rdma_path_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.network_failure_diagnosis
+  target_skill_id: skill.multi_gpu.rdma_path_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.layering_model
+  target_skill_id: skill.multi_gpu.rdma_transport_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.memory_mapping_usage
+  target_skill_id: skill.multi_gpu.rdma_transport_model
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.matrix_multiplication_reasoning
+  target_skill_id: skill.multi_gpu.tensor_parallel_sharding
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.collective_semantics
+  target_skill_id: skill.multi_gpu.tensor_parallel_sharding
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.global_memory_latency_bandwidth
+  target_skill_id: skill.multi_gpu.topology_bandwidth_model
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.latency_bandwidth_budget
+  target_skill_id: skill.multi_gpu.topology_bandwidth_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.multi_gpu.topology_bandwidth_model
+  target_skill_id: skill.multi_gpu.topology_discovery
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.continuous_batching_reasoning
+  target_skill_id: skill.optimization.batch_composition_tradeoff
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.tail_latency_reasoning
+  target_skill_id: skill.optimization.batch_composition_tradeoff
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.prefill_decode_distinction
+  target_skill_id: skill.optimization.continuous_batching_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_state_lifecycle
+  target_skill_id: skill.optimization.continuous_batching_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.kv_memory_growth
+  target_skill_id: skill.optimization.kv_capacity_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.optimization.kv_capacity_model
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.kv_capacity_model
+  target_skill_id: skill.optimization.kv_fragmentation_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.allocator_behavior_model
+  target_skill_id: skill.optimization.kv_fragmentation_reasoning
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.optimization.kv_fragmentation_reasoning
+  target_skill_id: skill.optimization.paged_kv_allocation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.virtual_physical_translation
+  target_skill_id: skill.optimization.paged_kv_allocation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.paged_kv_allocation
+  target_skill_id: skill.optimization.prefix_cache_reuse
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.storage.index_selection_reasoning
+  target_skill_id: skill.optimization.prefix_cache_reuse
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.math.mixed_precision_tradeoff
+  target_skill_id: skill.optimization.quantization_format_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.ml.parameter_activation_distinction
+  target_skill_id: skill.optimization.quantization_format_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.quantization_quality_validation
+  target_skill_id: skill.optimization.quantization_performance_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.optimization_hypothesis_validation
+  target_skill_id: skill.optimization.quantization_performance_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.quantization_format_reasoning
+  target_skill_id: skill.optimization.quantization_quality_validation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.optimization.quantization_quality_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.optimization.quantized_memory_estimation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.quantization_format_reasoning
+  target_skill_id: skill.optimization.quantized_memory_estimation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.scaling_limit_reasoning
+  target_skill_id: skill.optimization.scheduler_fairness_preemption
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.optimization.token_budget_scheduler
+  target_skill_id: skill.optimization.scheduler_fairness_preemption
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.optimization.continuous_batching_reasoning
+  target_skill_id: skill.optimization.token_budget_scheduler
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.admission_control
+  target_skill_id: skill.optimization.token_budget_scheduler
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.backpressure_reasoning
+  target_skill_id: skill.serving.admission_control
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.serving.admission_control
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.runtime_memory_budget
+  target_skill_id: skill.serving.engine_configuration_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.admission_control
+  target_skill_id: skill.serving.engine_configuration_reasoning
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.partial_failure_model
+  target_skill_id: skill.serving.failure_domain_diagnosis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_trace_correlation
+  target_skill_id: skill.serving.failure_domain_diagnosis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.tail_latency_reasoning
+  target_skill_id: skill.serving.latency_throughput_slo_analysis
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.load_generation_methodology
+  target_skill_id: skill.serving.latency_throughput_slo_analysis
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.benchmark_workload_design
+  target_skill_id: skill.serving.load_generation_methodology
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_state_lifecycle
+  target_skill_id: skill.serving.load_generation_methodology
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.backpressure_reasoning
+  target_skill_id: skill.serving.queue_backpressure
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.admission_control
+  target_skill_id: skill.serving.queue_backpressure
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.inference.generation_stopping_state
+  target_skill_id: skill.serving.request_state_lifecycle
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.worker_engine_topology
+  target_skill_id: skill.serving.request_state_lifecycle
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.observability.signal_correlation_diagnosis
+  target_skill_id: skill.serving.request_trace_correlation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_state_lifecycle
+  target_skill_id: skill.serving.request_trace_correlation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.linux.process_inspection
+  target_skill_id: skill.serving.sglang_runtime_operation
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.serving.engine_configuration_reasoning
+  target_skill_id: skill.serving.sglang_runtime_operation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.concurrency.cancellation_timeout_semantics
+  target_skill_id: skill.serving.stream_cancellation_cleanup
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.streaming_response_semantics
+  target_skill_id: skill.serving.stream_cancellation_cleanup
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.rpc_call_semantics
+  target_skill_id: skill.serving.streaming_response_semantics
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_state_lifecycle
+  target_skill_id: skill.serving.streaming_response_semantics
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.serving.tensorrt_llm_runtime_operation
+  edge_kind: soft
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.serving.engine_configuration_reasoning
+  target_skill_id: skill.serving.tensorrt_llm_runtime_operation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.network.timeout_retry_policy
+  target_skill_id: skill.serving.timeout_deadline_propagation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.serving.request_state_lifecycle
+  target_skill_id: skill.serving.timeout_deadline_propagation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.linux.process_inspection
+  target_skill_id: skill.serving.vllm_runtime_operation
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.serving.engine_configuration_reasoning
+  target_skill_id: skill.serving.vllm_runtime_operation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.distributed.partial_failure_model
+  target_skill_id: skill.serving.worker_engine_topology
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.inference.autoregressive_loop
+  target_skill_id: skill.serving.worker_engine_topology
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.process_address_space_model
+  target_skill_id: skill.serving.worker_resource_binding
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.serving.worker_engine_topology
+  target_skill_id: skill.serving.worker_resource_binding
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.regression_detection
+  target_skill_id: skill.triton.autotune_result_validation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.autotune_search_space
+  target_skill_id: skill.triton.autotune_result_validation
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.benchmark_workload_design
+  target_skill_id: skill.triton.autotune_search_space
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.matmul_performance_reasoning
+  target_skill_id: skill.triton.autotune_search_space
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.triton.correctness_reference_test
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.masked_load_store
+  target_skill_id: skill.triton.correctness_reference_test
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.input_validation_reasoning
+  target_skill_id: skill.triton.masked_load_store
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.program_id_indexing
+  target_skill_id: skill.triton.masked_load_store
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.compute_memory_balance
+  target_skill_id: skill.triton.matmul_performance_reasoning
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.matmul_tiling
+  target_skill_id: skill.triton.matmul_performance_reasoning
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.matrix_multiplication_reasoning
+  target_skill_id: skill.triton.matmul_tiling
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.vectorized_memory_layout
+  target_skill_id: skill.triton.matmul_tiling
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.optimization_validation
+  target_skill_id: skill.triton.profile_compare_cuda
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.correctness_reference_test
+  target_skill_id: skill.triton.profile_compare_cuda
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.thread_index_calculation
+  target_skill_id: skill.triton.program_id_indexing
+  edge_kind: soft
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.triton.program_instance_mapping
+  target_skill_id: skill.triton.program_id_indexing
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cuda.kernel_execution_mapping
+  target_skill_id: skill.triton.program_instance_mapping
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.thread_block_grid_model
+  target_skill_id: skill.triton.program_instance_mapping
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.latency_hiding_reasoning
+  target_skill_id: skill.triton.reduction_kernel
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold or fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.triton.masked_load_store
+  target_skill_id: skill.triton.reduction_kernel
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.math.softmax_stability
+  target_skill_id: skill.triton.softmax_kernel
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.reduction_kernel
+  target_skill_id: skill.triton.softmax_kernel
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.gpu.coalesced_access_reasoning
+  target_skill_id: skill.triton.vectorized_memory_layout
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.triton.masked_load_store
+  target_skill_id: skill.triton.vectorized_memory_layout
+  edge_kind: hard
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required to teach/measure the target without prerequisite contamination.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6e_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target

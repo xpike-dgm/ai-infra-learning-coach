@@ -1,23 +1,24 @@
-package_id: decomposition.6d_systems
+package_id: decomposition.6e_gpu_ml_inference
 package_version: 1
-stage_step: 6D
+stage_step: 6E
 status: authoring_complete_internal_qa
 blueprint_version: FRDB-v0
 graph_contract_version: KGC-v0
 granularity_standard_version: GNS-v0
 base_graph_refs:
 - FDM-v0
-- FBB-v0
+- SDM-v0
 - GQA-v0
 route_family_ids:
-- D06
-- D07
-- D08
-- D09
-- D10
-- D11
-- D12
-- D13
+- D14
+- D15
+- D16
+- D17
+- D18
+- D19
+- D20
+- D21
+- D22
 included_collections:
 - sources
 - organization_entities
@@ -37,55 +38,61 @@ source_catalog_refs:
 - source.repo.gns_v0
 - source.repo.frdb_v0
 - source.repo.fdm_v0
-- source.repo.gqa_v0
+- source.repo.sdm_v0
 - source.repo.prg_v0
-- source.repo.les_v0
-- source.repo.internal_6d_authoring
+- source.repo.professional_readiness
+- source.repo.internal_6e_authoring
 coverage_declarations:
-- route_family_id: D06
+- route_family_id: D14
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D07
+- route_family_id: D15
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D08
+- route_family_id: D16
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D09
+- route_family_id: D17
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D10
+- route_family_id: D18
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D11
+- route_family_id: D19
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D12
+- route_family_id: D20
   status: internally_mapped
   external_validation: pending_6H
-- route_family_id: D13
+- route_family_id: D21
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D22
   status: internally_mapped
   external_validation: pending_6H
 prior_package_refs:
 - package_id: decomposition.6c_foundations
-  reused_skill_count: 43
-  cross_package_prerequisite_edges: 56
+  reused_skill_count: 9
+  target_ref_status: resolved_prior_package
+  blocking_for_current_package_publish: false
+- package_id: decomposition.6d_systems
+  reused_skill_count: 50
   target_ref_status: resolved_prior_package
   blocking_for_current_package_publish: false
 known_exclusions:
-- GPU, CUDA, Triton, ML/Transformer ve inference capability'leri 6E'ye aittir.
-- D23 open-source/large-project/capstone decomposition'u 6F'e aittir.
-- Learner weakness/remediation runtime mapping 6G'ye aittir.
-- External coverage/current-industry validation 6H'ye aittir.
-- Production lesson/task/resource body'leri AŞAMA 15/20'ye aittir.
-- Physical database schema 9C'ye aittir.
-unresolved_review_count: 3
+- D23 open-source/large-project/capstone decomposition belongs to 6F.
+- Learner weakness/remediation runtime mapping belongs to 6G.
+- External coverage/current-industry/source-quality validation belongs to independent Research QA in 6H.
+- Production lesson/task/resource bodies belong to AŞAMA 15/20.
+- Physical database schema belongs to 9C.
+- English progression/cadence remains AŞAMA 7 and is not a global technical prerequisite.
+unresolved_review_count: 4
 blocking_review_count: 0
 generated_at: '2026-08-26'
-authored_by: local_main_manager
+authored_by: main_manager_gpt_5_6_sol
 review_refs:
-- review.6d.external_coverage
-- review.6d.platform_tool_freshness
-- review.6d.professional_overlay_reconciliation
-- review.6d.accelerator_forward_reuse
+- review.6e.external_coverage
+- review.6e.tool_runtime_freshness
+- review.6e.math_numerical_coverage
+- review.6e.professional_overlay_reconciliation
 content_hash: null

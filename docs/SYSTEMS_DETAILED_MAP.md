@@ -45,7 +45,7 @@ Ana sonuç:
 | Professional attribution | 308 |
 | Project attribution | 12 |
 | Açık blocking review | 0 |
-| Açık non-blocking review | 4 |
+| Açık non-blocking review | 3 |
 
 Route family dağılımı:
 
@@ -364,11 +364,10 @@ Her iki araç da `PASS` verir. Bunlar production runtime kodu veya physical DB s
 
 6E GPU / ML / Inference detailed map:
 - 6C ve 6D `skills.yaml` registry'lerini birlikte duplicate resolver input'u yapar,
-- Systems/performance/concurrency/networking Skills'ini clone'lamaz; prerequisite veya TopicSkillLink olarak reuse eder,
-- stable GPU/inference concept'leri ile tool/version-specific capability'leri ayırır,
-- math/numerical hidden prerequisite'leri explicit candidate Skills/edges olarak yakalar,
-- aynı FRDB-v0 collection ve QA contract'ını uygular,
-- `review.6d.accelerator_forward_reuse` kaydını tüketir,
-- 6E başlamadan fresh PRE-STEP GitHub refresh yapar.
+6E GIM-v0 / D-059 bu forward handoff'u tamamladı:
+- Systems/performance/concurrency/networking Skills clone'lanmadan canonical ID ile reuse edildi,
+- stable GPU/inference concepts ile tool/version-specific capabilities ayrıldı,
+- math/numerical hidden prerequisites explicit Skills/edges olarak yakalandı,
+- `review.6d.accelerator_forward_reuse` resolved edildi.
 
-**6D sonrası numaralı adım:** `6E — GPU / ML / Inference detailed map`.
+**Güncel sonraki numaralı adım:** `6F — Professional engineering / project map`; `review.6d.professional_overlay_reconciliation` 6F'ye açık kalır.

@@ -1,0 +1,108 @@
+- source_id: source.repo.pdm_v0
+  source_kind: canonical_spec
+  title: Professional Domain Backbone
+  ref: docs/CURRICULUM_DOMAIN_MAP.md
+  version_or_date: D-049
+  authority_class: accepted_project_contract
+  supports:
+  - route_scope
+  - domain_roles
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.kgc_v0
+  source_kind: canonical_spec
+  title: Curriculum Knowledge Graph Contract
+  ref: docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md
+  version_or_date: D-051
+  authority_class: accepted_project_contract
+  supports:
+  - identity
+  - relations
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.gns_v0
+  source_kind: canonical_spec
+  title: Granularity & Naming Standard
+  ref: docs/GRANULARITY_NAMING_STANDARD.md
+  version_or_date: D-054
+  authority_class: accepted_project_contract
+  supports:
+  - granularity
+  - logical_identity
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.frdb_v0
+  source_kind: canonical_spec
+  title: Full-Route Decomposition Blueprint
+  ref: docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md
+  version_or_date: D-056
+  authority_class: accepted_project_contract
+  supports:
+  - package_contract
+  - reuse
+  - qa
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.fdm_v0
+  source_kind: canonical_spec
+  title: Foundations Detailed Map
+  ref: docs/FOUNDATIONS_DETAILED_MAP.md
+  version_or_date: D-057
+  authority_class: accepted_project_contract
+  supports:
+  - prior_skill_registry
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.sdm_v0
+  source_kind: canonical_spec
+  title: Systems Detailed Map
+  ref: docs/SYSTEMS_DETAILED_MAP.md
+  version_or_date: D-058
+  authority_class: accepted_project_contract
+  supports:
+  - prior_skill_registry
+  - performance_networking_concurrency_reuse
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.prg_v0
+  source_kind: canonical_spec
+  title: Prerequisite Readiness Gate
+  ref: docs/PREREQUISITE_POLICY_SPEC.md
+  version_or_date: D-036
+  authority_class: accepted_project_contract
+  supports:
+  - hard_soft_prerequisites
+  - contamination_guard
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.professional_readiness
+  source_kind: canonical_spec
+  title: Professional Readiness Target
+  ref: docs/PROFESSIONAL_READINESS_TARGET.md
+  version_or_date: D-041
+  authority_class: accepted_project_contract
+  supports:
+  - professional_evidence
+  - target_depth
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.internal_6e_authoring
+  source_kind: internal_design_analysis
+  title: 6E deterministic accelerator/inference authoring
+  ref: tools/generate_gpu_ml_inference_package.py
+  version_or_date: '2026-08-26'
+  authority_class: internal_authoring_not_external_validation
+  supports:
+  - candidate_generation
+  - cross_package_reuse
+  freshness_class: version_sensitive
+  checked_at: '2026-08-26'
+  notes: External coverage/current-industry validation remains mandatory in 6H.

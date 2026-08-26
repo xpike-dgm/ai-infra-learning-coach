@@ -18,7 +18,7 @@ counts:
   capability_requirements: 254
   professional_attributions: 308
   project_attributions: 12
-  open_non_blocking_reviews: 4
+  open_non_blocking_reviews: 3
   open_blocking_reviews: 0
 checks:
 - check: route_family_partition
@@ -91,3 +91,5 @@ external_research_qa:
   status: pending
   owner_step: 6H
   required_before_external_validation: true
+resolved_forward_reviews:
+- review.6d.accelerator_forward_reuse
