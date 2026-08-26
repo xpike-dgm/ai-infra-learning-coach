@@ -230,12 +230,29 @@ PEM-v0:
   - 6D ✅ SDM-v0 / D-058
   - 6E ✅ GIM-v0 / D-059
   - 6F ✅ PEM-v0 / D-060
-  - 6G 🟡 Weakness localization + remediation mapping — aktif, henüz yürütülmedi
-  - 6H ⬜
+  - 6G ✅ WLRM-v0 / D-061
+  - 6H 🟡 Coverage / prerequisite / Research QA — aktif, henüz yürütülmedi
 - AŞAMA 7–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `6F — PEM-v0 / D-060`
-**Aktif:** `6G — Weakness localization + remediation mapping`
-**6G henüz yürütülmedi.**
+**Son tamamlanan:** `6G — WLRM-v0 / D-061`
+**Aktif:** `6H — Coverage / prerequisite / Research QA`
+**6H henüz yürütülmedi. Independent external Research AI zorunludur.**
+
+## 9.7 D-061 / 6G final özeti
+
+Canonical summary: `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`.  
+Canonical dataset: `curriculum/decomposition/6g_weakness_remediation/`.
+
+WLRM-v0:
+- 543 Skill / 590 Objective exact coverage,
+- 590 Objective-specific remediation route,
+- 12 evidence-attribution rule + 15 strategy family,
+- invalid/prerequisite-contaminated failure target Skill'i cezalandırmaz,
+- assisted/provisional signal confirmed remediation değildir,
+- first post-mastery contradiction `verification_due`,
+- `review_due` weakness değildir,
+- broad reset / project broadcast yok,
+- remediation closure fresh valid evidence ister,
+- internal QA PASS, 0 blocking; 6H external Research QA pending.

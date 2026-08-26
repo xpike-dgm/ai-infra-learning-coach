@@ -447,3 +447,18 @@ Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
 - Existing foundation/systems/GPU-inference projects D23 professional workflow evidence ile augment edildi; yeni OSS contribution project ve integrated AI-infrastructure capstone familyası tanımlandı.
 - `review.6d.professional_overlay_reconciliation` ve `review.6e.professional_overlay_reconciliation` resolved edildi.
 - Internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 3 open 6F non-blocking review. Independent external Research QA 6H'ye pending; learner publication yapılmadı.
+
+## D-061 — Weakness localization/remediation overlay = WLRM-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 6G final modeli `WLRM-v0 — Weakness Localization & Remediation Map` oldu.
+- Canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`; dataset `curriculum/decomposition/6g_weakness_remediation/`.
+- Accepted 6C–6F registry'sindeki 543 Skill ve 590 Objective exact covered; 590 Objective-specific remediation route üretildi.
+- 6G yeni Skill/Objective identity veya prerequisite edge eklemez; learner weakness/remediation overlay'idir.
+- 12 deterministic failure-attribution rule, 15 remediation strategy family ve 6 LearningNeed mapping kabul edildi.
+- Invalid/ambiguous/prerequisite-contaminated attempt target negative evidence yazamaz; assisted/provisional failure yalnız hypothesis olabilir.
+- First clean post-mastery contradiction `verification_due`; confirmed fresh recheck failure GRE/RVR gate recompute sonrası `remediation_required` açabilir.
+- `review_due` weakness değildir; broad Topic/Domain reset ve integrated-project broadcast yasaktır.
+- Remediation closure fresh H0 + direct + verified + prerequisite-valid evidence ister; task completion veya manual mastery override closure değildir.
+- Learner misconception state curriculum identity'den ayrıdır ve LLM tek başına confirmed state/mastery yazamaz.
+- Internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 4 non-blocking review. Independent external Research QA 6H'ye pending ve zorunludur.

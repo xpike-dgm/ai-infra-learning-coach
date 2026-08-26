@@ -25,10 +25,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - [[vault/wiki/sources/Systems Map Source|SDM-v0]]: systems D06–D13 detailed map paketi tamamlandı.
 - [[vault/wiki/sources/GPU ML Inference Map Source|GIM-v0]]: GPU/ML/inference D14–D22 detailed map paketi tamamlandı.
 - [[vault/wiki/sources/Professional Engineering Map Source|PEM-v0]]: D23 professional engineering / OSS / project-capstone detailed map paketi tamamlandı.
+- [[vault/wiki/sources/Weakness Remediation Map Source|WLRM-v0]]: accepted 6C–6F registry için Objective-first weakness localization + remediation overlay tamamlandı.
 
 ## Exact execution state
 
-6A–6F tamamlandı. Son tamamlanan adım **6F — PEM-v0 / D-060**. Aktif adım **6G — Weakness localization + remediation mapping**; henüz yürütülmedi. 6G başlamadan fresh PRE-STEP zorunludur.
+6A–6G tamamlandı. Son tamamlanan adım **6G — WLRM-v0 / D-061**. Aktif adım **6H — Coverage / prerequisite / Research QA**; henüz yürütülmedi. 6H başlamadan fresh PRE-STEP ve bağımsız external Research AI zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

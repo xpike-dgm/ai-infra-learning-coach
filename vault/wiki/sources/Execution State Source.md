@@ -14,7 +14,7 @@ topics:
 
 # Execution State Source
 
-Current execution için birlikte okunması gereken living-memory kaynak seti. 6F PEM-v0 / D-060 tamamlandı; güncel aktif adım 6G Weakness localization + remediation mapping'tir ve yürütme öncesi fresh PRE-STEP zorunludur.
+Current execution için birlikte okunması gereken living-memory kaynak seti. 6G WLRM-v0 / D-061 tamamlandı; güncel aktif adım 6H Coverage / prerequisite / Research QA'dır. 6H yürütme öncesi fresh PRE-STEP ve bağımsız external Research AI zorunludur.
 
 ## Links
 

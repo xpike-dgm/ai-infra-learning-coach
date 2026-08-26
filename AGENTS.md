@@ -46,11 +46,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - AŞAMA 6D: ✅ `SDM-v0 / D-058` tamamlandı.
 - AŞAMA 6E: ✅ `GIM-v0 / D-059` tamamlandı.
 - AŞAMA 6F: ✅ `PEM-v0 / D-060` tamamlandı.
-- **Aktif adım: 6G — Weakness localization + remediation mapping.**
-- **6G henüz yürütülmedi.**
-- 6H ve AŞAMA 7–20 bekliyor.
+- AŞAMA 6G: ✅ `WLRM-v0 / D-061` tamamlandı.
+- **Aktif adım: 6H — Coverage / prerequisite / Research QA.**
+- **6H henüz yürütülmedi; bağımsız external Research AI zorunludur.**
+- AŞAMA 7–20 bekliyor.
 
-**6G'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6G için ayrıca fresh PRE-STEP refresh yap.
+**6H'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6H için ayrıca fresh PRE-STEP refresh yap ve bağımsız external Research AI workflow'unu doğrula.
 
 ## Ana ürün ilkesi
 
