@@ -7,6 +7,9 @@ on:
       - 'tools/generate_gpu_ml_inference_package.py'
       - 'tools/validate_gpu_ml_inference_package.py'
       - 'tools/apply_6e_passb.py'
+      - 'tools/finalize_6e_poststep.py'
+      - 'tools/finalize_6e_poststep_extra.py'
+      - 'tools/audit_6e_poststep.py'
       - 'tools/6e_build_trigger.txt'
       - '.github/workflows/6e-package-build.yml'
 
@@ -14,7 +17,7 @@ permissions:
   contents: write
 
 jobs:
-  build-validate-commit:
+  build-validate-finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -116,14 +119,24 @@ jobs:
         run: python tools/validate_systems_package.py
       - name: Independently validate 6E package
         run: python tools/validate_gpu_ml_inference_package.py
-      - name: Commit deterministic generated package to PR branch
+      - name: Apply PROJECT_MEMORY_PROTOCOL POST-STEP sync
+        run: |
+          if grep -q '## D-059 — GPU / ML / Inference detailed map = GIM-v0' docs/DECISIONS.md; then
+            echo 'D-059 already present; POST sync is already applied.'
+          else
+            python tools/finalize_6e_poststep.py
+            python tools/finalize_6e_poststep_extra.py
+          fi
+      - name: Repo-wide stale-reference and durable-state audit
+        run: python tools/audit_6e_poststep.py
+      - name: Commit validated 6E package and POST-STEP state to PR branch
         run: |
           if git diff --quiet; then
-            echo 'No generated changes to commit.'
+            echo 'No generated/finalization changes to commit.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/generate_gpu_ml_inference_package.py curriculum/decomposition/6e_gpu_ml_inference curriculum/decomposition/6d_systems/manifest.yaml curriculum/decomposition/6d_systems/review_queue.yaml curriculum/decomposition/6d_systems/qa_report.yaml
-          git commit -m 'Generate and validate 6E GPU ML inference package [skip ci]'
+          git add -A
+          git commit -m 'Finalize 6E GIM-v0 D-059 and sync durable state [skip ci]'
           git push origin HEAD:${{ github.head_ref }}
