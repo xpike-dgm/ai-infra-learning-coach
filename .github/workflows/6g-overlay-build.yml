@@ -34,7 +34,9 @@ jobs:
       - name: Independently validate 6G overlay
         run: python tools/validate_weakness_remediation_overlay.py
       - name: Apply PROJECT_MEMORY_PROTOCOL POST-STEP
-        run: python tools/finalize_6g_poststep.py
+        run: |
+          python tools/finalize_6g_poststep.py
+          python tools/finalize_6g_poststep_extra.py
       - name: Repo-wide stale-reference audit
         run: python tools/audit_6g_poststep.py
       - name: Commit generated overlay and durable state
