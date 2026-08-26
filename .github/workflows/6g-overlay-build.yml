@@ -35,7 +35,7 @@ jobs:
         run: python tools/validate_weakness_remediation_overlay.py
       - name: Commit deterministic overlay
         run: |
-          if git diff --quiet; then
+          if [ -z "$(git status --porcelain curriculum/decomposition/6g_weakness_remediation)" ]; then
             echo 'No generated changes to commit.'
             exit 0
           fi
