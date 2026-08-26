@@ -1,0 +1,3146 @@
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.thread_block_grid_model
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.thread_block_grid_model
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.warp_execution_model
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.warp_execution_model
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.simt_divergence_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.simt_divergence_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.warp_efficiency_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.warp_efficiency_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.occupancy_resource_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.occupancy_resource_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.latency_hiding_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.latency_hiding_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.memory_space_selection
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.memory_space_selection
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.global_memory_latency_bandwidth
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.global_memory_latency_bandwidth
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.coalesced_access_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.coalesced_access_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.memory_transaction_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.memory_transaction_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.shared_memory_bank_conflict
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.shared_memory_bank_conflict
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.shared_memory_layout_transform
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.shared_memory_layout_transform
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.cache_locality_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.cache_locality_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.cache_metric_interpretation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.cache_metric_interpretation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.compute_memory_balance
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.compute_memory_balance
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.arithmetic_intensity_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.arithmetic_intensity_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.copy_compute_overlap_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.copy_compute_overlap_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.timeline_overlap_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.timeline_overlap_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.profiler_metric_selection
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.profiler_metric_selection
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.gpu_architecture
+  capability_kind: skill
+  capability_id: skill.gpu.bottleneck_attribution
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.gpu.bottleneck_attribution
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.kernel_execution_mapping
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.kernel_execution_mapping
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.thread_index_calculation
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.thread_index_calculation
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.grid_stride_loop
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.grid_stride_loop
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.launch_configuration_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.launch_configuration_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.block_synchronization
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.block_synchronization
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.memory_visibility_ordering
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.memory_visibility_ordering
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.device_allocation_lifetime
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.device_allocation_lifetime
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.host_device_transfer
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.host_device_transfer
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.shared_memory_tiling
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.shared_memory_tiling
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.tile_boundary_handling
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.tile_boundary_handling
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.pinned_memory_usage
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.pinned_memory_usage
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.unified_memory_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.unified_memory_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.error_checking_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.error_checking_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.race_bounds_diagnosis
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.race_bounds_diagnosis
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.stream_dependency_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.stream_dependency_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.event_timing_dependency
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.event_timing_dependency
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.kernel_profile_collection
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.kernel_profile_collection
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.cuda
+  capability_kind: skill
+  capability_id: skill.cuda.optimization_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cuda.optimization_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.program_instance_mapping
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.program_instance_mapping
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.program_id_indexing
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.program_id_indexing
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.masked_load_store
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.masked_load_store
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.vectorized_memory_layout
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.vectorized_memory_layout
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.reduction_kernel
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.reduction_kernel
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.softmax_kernel
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.softmax_kernel
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.matmul_tiling
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.matmul_tiling
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.matmul_performance_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.matmul_performance_reasoning
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.autotune_search_space
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.autotune_search_space
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.autotune_result_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.autotune_result_validation
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.correctness_reference_test
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.correctness_reference_test
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.triton
+  capability_kind: skill
+  capability_id: skill.triton.profile_compare_cuda
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.triton.profile_compare_cuda
+  requirement_role: supporting
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.tensor_shape_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.tensor_shape_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.broadcasting_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.broadcasting_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.matrix_multiplication_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.matrix_multiplication_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.dot_product_similarity
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.dot_product_similarity
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.probability_normalization
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.probability_normalization
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.softmax_stability
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.softmax_stability
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.floating_point_error_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.floating_point_error_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.math.mixed_precision_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.math.mixed_precision_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.parameter_activation_distinction
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.parameter_activation_distinction
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.inference_forward_pass
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.inference_forward_pass
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.embedding_lookup_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.embedding_lookup_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.normalization_layer_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.normalization_layer_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.attention_qkv_shapes
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.attention_qkv_shapes
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.attention_score_mask_softmax
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.attention_score_mask_softmax
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.transformer_block_dataflow
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.transformer_block_dataflow
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ml_transformer
+  capability_kind: skill
+  capability_id: skill.ml.causal_lm_logits_next_token
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ml.causal_lm_logits_next_token
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.weight_loading_layout
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.weight_loading_layout
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.weight_memory_estimation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.weight_memory_estimation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.prefill_decode_distinction
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.prefill_decode_distinction
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.prefill_decode_profile
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.prefill_decode_profile
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.autoregressive_loop
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.autoregressive_loop
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.generation_stopping_state
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.generation_stopping_state
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.attention_operator_execution
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.attention_operator_execution
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.attention_memory_bottleneck
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.attention_memory_bottleneck
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.kv_cache_semantics
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.kv_cache_semantics
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.kv_memory_growth
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.kv_memory_growth
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.sampling_temperature
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.sampling_temperature
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.topk_topp_sampling
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.topk_topp_sampling
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.operator_fusion_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.operator_fusion_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.fusion_correctness_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.fusion_correctness_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.runtime_memory_budget
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.runtime_memory_budget
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.llm_inference
+  capability_kind: skill
+  capability_id: skill.inference.oom_root_cause_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.inference.oom_root_cause_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.worker_engine_topology
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.worker_engine_topology
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.worker_resource_binding
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.worker_resource_binding
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.request_state_lifecycle
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.request_state_lifecycle
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.streaming_response_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.streaming_response_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.admission_control
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.admission_control
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.queue_backpressure
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.queue_backpressure
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.stream_cancellation_cleanup
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.stream_cancellation_cleanup
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.timeout_deadline_propagation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.timeout_deadline_propagation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.engine_configuration_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.engine_configuration_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.vllm_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.vllm_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.sglang_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.sglang_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.tensorrt_llm_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.tensorrt_llm_runtime_operation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.load_generation_methodology
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.load_generation_methodology
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.latency_throughput_slo_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.latency_throughput_slo_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.request_trace_correlation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.request_trace_correlation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_serving
+  capability_kind: skill
+  capability_id: skill.serving.failure_domain_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.serving.failure_domain_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.kv_capacity_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.kv_capacity_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.kv_fragmentation_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.kv_fragmentation_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.paged_kv_allocation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.paged_kv_allocation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.prefix_cache_reuse
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.prefix_cache_reuse
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.continuous_batching_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.continuous_batching_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.batch_composition_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.batch_composition_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.token_budget_scheduler
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.token_budget_scheduler
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.scheduler_fairness_preemption
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.scheduler_fairness_preemption
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_format_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_format_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.quantized_memory_estimation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.quantized_memory_estimation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_quality_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_quality_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.inference_runtime_optimization
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_performance_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.optimization.quantization_performance_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.topology_bandwidth_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.topology_bandwidth_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.topology_discovery
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.topology_discovery
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_semantics
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_semantics
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_cost_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_cost_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.nccl_collective_operation
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.nccl_collective_operation
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.nccl_debug_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.nccl_debug_trace
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.rdma_transport_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.rdma_transport_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.rdma_path_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.rdma_path_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.gpu_direct_data_path
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.gpu_direct_data_path
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.gpu_direct_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.gpu_direct_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.tensor_parallel_sharding
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.tensor_parallel_sharding
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.pipeline_parallel_partition
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.pipeline_parallel_partition
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.distributed_inference_placement
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.distributed_inference_placement
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_profile_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.collective_profile_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.multi_gpu
+  capability_kind: skill
+  capability_id: skill.multi_gpu.distributed_failure_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.multi_gpu.distributed_failure_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_capability_inventory
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_capability_inventory
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.workload_resource_profile
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.workload_resource_profile
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.topology_aware_placement
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.topology_aware_placement
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_partitioning_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_partitioning_isolation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.driver_toolkit_compatibility
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.driver_toolkit_compatibility
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.reproducible_runtime_environment
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.reproducible_runtime_environment
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.capacity_headroom_model
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.capacity_headroom_model
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.cluster_admission_policy
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.cluster_admission_policy
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_telemetry_instrumentation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_telemetry_instrumentation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_signal_correlation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_signal_correlation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_health_failure_containment
+  requirement_role: required
+  criticality: critical
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.gpu_health_failure_containment
+  requirement_role: required
+  criticality: critical
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.failure_domain_capacity_recovery
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.failure_domain_capacity_recovery
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_artifact_versioning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_artifact_versioning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_rollout_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_rollout_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.workload_isolation_boundary
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.workload_isolation_boundary
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_data_provenance_safety
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.model_data_provenance_safety
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.cost_per_token_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.cost_per_token_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.ai_gpu_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.efficiency_optimization_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Required capability inside its accelerator/inference authoring Domain.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.ai_infra.efficiency_optimization_validation
+  requirement_role: required
+  criticality: standard
+  rationale: Contributes to verified AI/GPU Infrastructure engineering capability; route role is scope-relative.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.pdm_v0
+  review_refs: []

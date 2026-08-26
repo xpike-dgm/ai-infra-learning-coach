@@ -1,0 +1,2711 @@
+- topic_id: topic.ai_infra.capacity_admission
+  skill_id: skill.ai_infra.capacity_headroom_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.capacity_headroom_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.capacity_admission
+  skill_id: skill.ai_infra.cluster_admission_policy
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.cluster_admission_policy.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.capacity_admission
+  skill_id: skill.performance.capacity_headroom_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.cost_efficiency
+  skill_id: skill.ai_infra.cost_per_token_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.cost_per_token_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.cost_efficiency
+  skill_id: skill.ai_infra.efficiency_optimization_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.efficiency_optimization_validation.demonstrate_capability
+  - objective.ai_infra.efficiency_optimization_validation.verify_cost_without_slo_regression
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.cost_efficiency
+  skill_id: skill.performance.cost_efficiency_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.cost_efficiency
+  skill_id: skill.performance.optimization_hypothesis_validation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.driver_runtime_compatibility
+  skill_id: skill.ai_infra.driver_toolkit_compatibility
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.driver_toolkit_compatibility.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.driver_runtime_compatibility
+  skill_id: skill.ai_infra.reproducible_runtime_environment
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.reproducible_runtime_environment.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.driver_runtime_compatibility
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.driver_runtime_compatibility
+  skill_id: skill.platform.deployment_change_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_observability
+  skill_id: skill.ai_infra.gpu_signal_correlation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.gpu_signal_correlation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_observability
+  skill_id: skill.ai_infra.gpu_telemetry_instrumentation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.gpu_telemetry_instrumentation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_observability
+  skill_id: skill.observability.metric_instrumentation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_resource_inventory
+  skill_id: skill.ai_infra.gpu_capability_inventory
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.gpu_capability_inventory.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_resource_inventory
+  skill_id: skill.ai_infra.workload_resource_profile
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.workload_resource_profile.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.gpu_resource_inventory
+  skill_id: skill.platform.cloud_compute_resource_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.health_failure_containment
+  skill_id: skill.ai_infra.failure_domain_capacity_recovery
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.failure_domain_capacity_recovery.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.health_failure_containment
+  skill_id: skill.ai_infra.gpu_health_failure_containment
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.gpu_health_failure_containment.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.health_failure_containment
+  skill_id: skill.distributed.partial_failure_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.health_failure_containment
+  skill_id: skill.reliability.incident_response_workflow
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.model_artifact_rollout
+  skill_id: skill.ai_infra.model_artifact_versioning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.model_artifact_versioning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.model_artifact_rollout
+  skill_id: skill.ai_infra.model_rollout_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.model_rollout_validation.decide_rollout_or_rollback
+  - objective.ai_infra.model_rollout_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.model_artifact_rollout
+  skill_id: skill.performance.regression_detection
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.model_artifact_rollout
+  skill_id: skill.platform.deployment_change_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.model_artifact_rollout
+  skill_id: skill.platform.image_supply_chain_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.placement_partitioning
+  skill_id: skill.ai_infra.gpu_partitioning_isolation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.gpu_partitioning_isolation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.placement_partitioning
+  skill_id: skill.ai_infra.topology_aware_placement
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.topology_aware_placement.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.placement_partitioning
+  skill_id: skill.platform.container_vs_vm_boundary
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.workload_isolation_security
+  skill_id: skill.ai_infra.model_data_provenance_safety
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.model_data_provenance_safety.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.workload_isolation_security
+  skill_id: skill.ai_infra.workload_isolation_boundary
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ai_infra.workload_isolation_boundary.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.workload_isolation_security
+  skill_id: skill.platform.image_supply_chain_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ai_infra.workload_isolation_security
+  skill_id: skill.platform.secret_handling_safety
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.allocation_transfer
+  skill_id: skill.c.dynamic_allocation_lifecycle
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.allocation_transfer
+  skill_id: skill.cuda.device_allocation_lifetime
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.device_allocation_lifetime.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.allocation_transfer
+  skill_id: skill.cuda.host_device_transfer
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.host_device_transfer.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.error_race_bounds
+  skill_id: skill.cuda.error_checking_diagnosis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.error_checking_diagnosis.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.error_race_bounds
+  skill_id: skill.cuda.race_bounds_diagnosis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.race_bounds_diagnosis.demonstrate_capability
+  - objective.cuda.race_bounds_diagnosis.localize_fix_verify
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.error_race_bounds
+  skill_id: skill.engineering.explain_debug_fix_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.grid_stride_work
+  skill_id: skill.cuda.grid_stride_loop
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.grid_stride_loop.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.grid_stride_work
+  skill_id: skill.cuda.launch_configuration_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.launch_configuration_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.grid_stride_work
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.kernel_launch_indexing
+  skill_id: skill.c.functions_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.kernel_launch_indexing
+  skill_id: skill.cuda.kernel_execution_mapping
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.kernel_execution_mapping.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.kernel_launch_indexing
+  skill_id: skill.cuda.thread_index_calculation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.thread_index_calculation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.kernel_launch_indexing
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.pinned_unified_memory
+  skill_id: skill.cuda.pinned_memory_usage
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.pinned_memory_usage.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.pinned_unified_memory
+  skill_id: skill.cuda.unified_memory_behavior
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.unified_memory_behavior.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.pinned_unified_memory
+  skill_id: skill.os.page_fault_behavior
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.profiling_optimization
+  skill_id: skill.cuda.kernel_profile_collection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.kernel_profile_collection.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.profiling_optimization
+  skill_id: skill.cuda.optimization_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.optimization_validation.demonstrate_capability
+  - objective.cuda.optimization_validation.preserve_correctness_under_optimization
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.profiling_optimization
+  skill_id: skill.performance.measurement_environment_control
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.profiling_optimization
+  skill_id: skill.performance.optimization_hypothesis_validation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.shared_memory_tiling
+  skill_id: skill.cuda.shared_memory_tiling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.shared_memory_tiling.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.shared_memory_tiling
+  skill_id: skill.cuda.tile_boundary_handling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.tile_boundary_handling.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.shared_memory_tiling
+  skill_id: skill.programming.input_validation_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.streams_events
+  skill_id: skill.cuda.event_timing_dependency
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.event_timing_dependency.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.streams_events
+  skill_id: skill.cuda.stream_dependency_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.stream_dependency_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.streams_events
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.synchronization_ordering
+  skill_id: skill.concurrency.memory_ordering_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.synchronization_ordering
+  skill_id: skill.concurrency.shared_mutable_state_risk
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.synchronization_ordering
+  skill_id: skill.cuda.block_synchronization
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.block_synchronization.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.cuda.synchronization_ordering
+  skill_id: skill.cuda.memory_visibility_ordering
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.memory_visibility_ordering.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.cache_locality
+  skill_id: skill.arch.locality_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.cache_locality
+  skill_id: skill.gpu.cache_locality_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.cache_locality_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.cache_locality
+  skill_id: skill.gpu.cache_metric_interpretation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.cache_metric_interpretation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.cache_locality
+  skill_id: skill.performance.profile_interpretation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.coalescing_transactions
+  skill_id: skill.arch.locality_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.coalescing_transactions
+  skill_id: skill.gpu.coalesced_access_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.coalesced_access_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.coalescing_transactions
+  skill_id: skill.gpu.memory_transaction_measurement
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.memory_transaction_measurement.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.coalescing_transactions
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.compute_memory_balance
+  skill_id: skill.arch.roofline_bottleneck_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.compute_memory_balance
+  skill_id: skill.gpu.arithmetic_intensity_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.arithmetic_intensity_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.compute_memory_balance
+  skill_id: skill.gpu.compute_memory_balance
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.compute_memory_balance.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.execution_hierarchy
+  skill_id: skill.arch.instruction_execution_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.execution_hierarchy
+  skill_id: skill.arch.simd_data_parallel_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.execution_hierarchy
+  skill_id: skill.concurrency.work_decomposition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.execution_hierarchy
+  skill_id: skill.gpu.thread_block_grid_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.thread_block_grid_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.execution_hierarchy
+  skill_id: skill.gpu.warp_execution_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.warp_execution_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.latency_hiding_occupancy
+  skill_id: skill.arch.instruction_level_parallelism
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.latency_hiding_occupancy
+  skill_id: skill.arch.latency_throughput_distinction
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.latency_hiding_occupancy
+  skill_id: skill.gpu.latency_hiding_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.latency_hiding_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.latency_hiding_occupancy
+  skill_id: skill.gpu.occupancy_resource_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.occupancy_resource_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.memory_spaces
+  skill_id: skill.arch.cache_hierarchy_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.memory_spaces
+  skill_id: skill.arch.latency_throughput_distinction
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.memory_spaces
+  skill_id: skill.gpu.global_memory_latency_bandwidth
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.global_memory_latency_bandwidth.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.memory_spaces
+  skill_id: skill.gpu.memory_space_selection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.memory_space_selection.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.overlap_async_execution
+  skill_id: skill.concurrency.async_execution_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.overlap_async_execution
+  skill_id: skill.gpu.copy_compute_overlap_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.copy_compute_overlap_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.overlap_async_execution
+  skill_id: skill.gpu.timeline_overlap_analysis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.timeline_overlap_analysis.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.overlap_async_execution
+  skill_id: skill.performance.profile_interpretation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.profiling_metrics
+  skill_id: skill.gpu.bottleneck_attribution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.bottleneck_attribution.attribute_and_verify
+  - objective.gpu.bottleneck_attribution.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.profiling_metrics
+  skill_id: skill.gpu.profiler_metric_selection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.profiler_metric_selection.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.profiling_metrics
+  skill_id: skill.performance.bottleneck_localization
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.profiling_metrics
+  skill_id: skill.performance.measurement_goal_definition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.shared_memory_banks
+  skill_id: skill.arch.data_layout_transformation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.shared_memory_banks
+  skill_id: skill.gpu.shared_memory_bank_conflict
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.shared_memory_bank_conflict.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.shared_memory_banks
+  skill_id: skill.gpu.shared_memory_layout_transform
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.shared_memory_layout_transform.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.simt_divergence
+  skill_id: skill.arch.branch_prediction_cost
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.simt_divergence
+  skill_id: skill.gpu.simt_divergence_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.simt_divergence_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.simt_divergence
+  skill_id: skill.gpu.warp_efficiency_measurement
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.gpu.warp_efficiency_measurement.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.gpu.simt_divergence
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.attention_execution
+  skill_id: skill.inference.attention_memory_bottleneck
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.attention_memory_bottleneck.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.attention_execution
+  skill_id: skill.inference.attention_operator_execution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.attention_operator_execution.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.attention_execution
+  skill_id: skill.performance.bottleneck_localization
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.autoregressive_generation
+  skill_id: skill.concurrency.cancellation_timeout_semantics
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.autoregressive_generation
+  skill_id: skill.inference.autoregressive_loop
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.autoregressive_loop.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.autoregressive_generation
+  skill_id: skill.inference.generation_stopping_state
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.generation_stopping_state.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.autoregressive_generation
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.kv_semantics
+  skill_id: skill.inference.kv_cache_semantics
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.kv_cache_semantics.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.kv_semantics
+  skill_id: skill.inference.kv_memory_growth
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.kv_memory_growth.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.memory_footprint
+  skill_id: skill.inference.oom_root_cause_diagnosis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.oom_root_cause_diagnosis.classify_memory_pressure
+  - objective.inference.oom_root_cause_diagnosis.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.memory_footprint
+  skill_id: skill.inference.runtime_memory_budget
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.runtime_memory_budget.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.memory_footprint
+  skill_id: skill.os.memory_usage_diagnosis
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.model_loading_layout
+  skill_id: skill.inference.weight_loading_layout
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.weight_loading_layout.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.model_loading_layout
+  skill_id: skill.inference.weight_memory_estimation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.weight_memory_estimation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.operator_fusion
+  skill_id: skill.inference.fusion_correctness_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.fusion_correctness_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.operator_fusion
+  skill_id: skill.inference.operator_fusion_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.operator_fusion_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.operator_fusion
+  skill_id: skill.performance.bottleneck_localization
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.prefill_decode
+  skill_id: skill.arch.latency_throughput_distinction
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.prefill_decode
+  skill_id: skill.inference.prefill_decode_distinction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.prefill_decode_distinction.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.prefill_decode
+  skill_id: skill.inference.prefill_decode_profile
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.prefill_decode_profile.demonstrate_capability
+  - objective.inference.prefill_decode_profile.separate_phase_bottlenecks
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.sampling_decoding
+  skill_id: skill.dsa.sequence_traversal
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.sampling_decoding
+  skill_id: skill.inference.sampling_temperature
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.sampling_temperature.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.inference.sampling_decoding
+  skill_id: skill.inference.topk_topp_sampling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.inference.topk_topp_sampling.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.attention_qkv_masking
+  skill_id: skill.ml.attention_qkv_shapes
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.attention_qkv_shapes.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.attention_qkv_masking
+  skill_id: skill.ml.attention_score_mask_softmax
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.attention_score_mask_softmax.demonstrate_capability
+  - objective.ml.attention_score_mask_softmax.trace_attention_shapes
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.embedding_normalization
+  skill_id: skill.ml.embedding_lookup_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.embedding_lookup_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.embedding_normalization
+  skill_id: skill.ml.normalization_layer_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.normalization_layer_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.linear_algebra_matmul
+  skill_id: skill.math.dot_product_similarity
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.dot_product_similarity.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.linear_algebra_matmul
+  skill_id: skill.math.matrix_multiplication_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.matrix_multiplication_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.linear_algebra_matmul
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.numerical_precision_stability
+  skill_id: skill.arch.number_representation_precision
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.numerical_precision_stability
+  skill_id: skill.math.floating_point_error_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.floating_point_error_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.numerical_precision_stability
+  skill_id: skill.math.mixed_precision_tradeoff
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.mixed_precision_tradeoff.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.numerical_precision_stability
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.parameters_activations
+  skill_id: skill.ml.inference_forward_pass
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.inference_forward_pass.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.parameters_activations
+  skill_id: skill.ml.parameter_activation_distinction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.parameter_activation_distinction.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.probability_softmax
+  skill_id: skill.arch.number_representation_precision
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.probability_softmax
+  skill_id: skill.math.probability_normalization
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.probability_normalization.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.probability_softmax
+  skill_id: skill.math.softmax_stability
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.softmax_stability.demonstrate_capability
+  - objective.math.softmax_stability.explain_overflow_prevention
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.tensor_shape_broadcast
+  skill_id: skill.dsa.sequence_traversal
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.tensor_shape_broadcast
+  skill_id: skill.math.broadcasting_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.broadcasting_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.tensor_shape_broadcast
+  skill_id: skill.math.tensor_shape_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.math.tensor_shape_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.transformer_block_causal_lm
+  skill_id: skill.ml.causal_lm_logits_next_token
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.causal_lm_logits_next_token.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.transformer_block_causal_lm
+  skill_id: skill.ml.transformer_block_dataflow
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.transformer_block_dataflow.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_performance_failure
+  skill_id: skill.distributed.partial_failure_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_performance_failure
+  skill_id: skill.multi_gpu.collective_profile_analysis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.collective_profile_analysis.demonstrate_capability
+  - objective.multi_gpu.collective_profile_analysis.measure_scaling_efficiency
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_performance_failure
+  skill_id: skill.multi_gpu.distributed_failure_isolation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.distributed_failure_isolation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_performance_failure
+  skill_id: skill.performance.end_to_end_latency_attribution
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_semantics
+  skill_id: skill.distributed.replication_models
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_semantics
+  skill_id: skill.multi_gpu.collective_cost_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.collective_cost_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.collective_semantics
+  skill_id: skill.multi_gpu.collective_semantics
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.collective_semantics.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.gpu_direct_transport
+  skill_id: skill.multi_gpu.gpu_direct_data_path
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.gpu_direct_data_path.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.gpu_direct_transport
+  skill_id: skill.multi_gpu.gpu_direct_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.gpu_direct_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.nccl_operation
+  skill_id: skill.multi_gpu.nccl_collective_operation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.nccl_collective_operation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.nccl_operation
+  skill_id: skill.multi_gpu.nccl_debug_trace
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.nccl_debug_trace.demonstrate_capability
+  - objective.multi_gpu.nccl_debug_trace.isolate_rank_transport_issue
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.nccl_operation
+  skill_id: skill.network.network_failure_diagnosis
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.parallelism_sharding
+  skill_id: skill.multi_gpu.distributed_inference_placement
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.distributed_inference_placement.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.parallelism_sharding
+  skill_id: skill.multi_gpu.pipeline_parallel_partition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.pipeline_parallel_partition.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.parallelism_sharding
+  skill_id: skill.multi_gpu.tensor_parallel_sharding
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.tensor_parallel_sharding.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.rdma_data_path
+  skill_id: skill.multi_gpu.rdma_path_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.rdma_path_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.rdma_data_path
+  skill_id: skill.multi_gpu.rdma_transport_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.rdma_transport_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.rdma_data_path
+  skill_id: skill.network.layering_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.rdma_data_path
+  skill_id: skill.network.network_failure_diagnosis
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.rdma_data_path
+  skill_id: skill.os.memory_mapping_usage
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.topology_interconnect
+  skill_id: skill.multi_gpu.topology_bandwidth_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.topology_bandwidth_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.topology_interconnect
+  skill_id: skill.multi_gpu.topology_discovery
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.topology_discovery.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.topology_interconnect
+  skill_id: skill.network.latency_bandwidth_budget
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.topology_interconnect
+  skill_id: skill.os.cpu_time_accounting
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.continuous_batching
+  skill_id: skill.optimization.batch_composition_tradeoff
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.batch_composition_tradeoff.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.continuous_batching
+  skill_id: skill.optimization.continuous_batching_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.continuous_batching_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.continuous_batching
+  skill_id: skill.performance.tail_latency_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.kv_layout_capacity
+  skill_id: skill.optimization.kv_capacity_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.kv_capacity_model.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.kv_layout_capacity
+  skill_id: skill.optimization.kv_fragmentation_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.kv_fragmentation_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.kv_layout_capacity
+  skill_id: skill.os.allocator_behavior_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.paged_prefix_cache
+  skill_id: skill.optimization.paged_kv_allocation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.paged_kv_allocation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.paged_prefix_cache
+  skill_id: skill.optimization.prefix_cache_reuse
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.prefix_cache_reuse.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.paged_prefix_cache
+  skill_id: skill.os.virtual_physical_translation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.paged_prefix_cache
+  skill_id: skill.storage.index_selection_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_formats
+  skill_id: skill.optimization.quantization_format_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.quantization_format_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_formats
+  skill_id: skill.optimization.quantized_memory_estimation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.quantized_memory_estimation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_validation
+  skill_id: skill.optimization.quantization_performance_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.quantization_performance_validation.demonstrate_capability
+  - objective.optimization.quantization_performance_validation.report_quality_performance_tradeoff
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_validation
+  skill_id: skill.optimization.quantization_quality_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.quantization_quality_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_validation
+  skill_id: skill.performance.measurement_validity_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.quantization_validation
+  skill_id: skill.performance.optimization_hypothesis_validation
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.token_scheduler
+  skill_id: skill.concurrency.scaling_limit_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.token_scheduler
+  skill_id: skill.optimization.scheduler_fairness_preemption
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.scheduler_fairness_preemption.demonstrate_capability
+  - objective.optimization.scheduler_fairness_preemption.detect_starvation_tradeoff
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.token_scheduler
+  skill_id: skill.optimization.token_budget_scheduler
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.token_budget_scheduler.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.admission_backpressure
+  skill_id: skill.distributed.backpressure_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.admission_backpressure
+  skill_id: skill.serving.admission_control
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.admission_control.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.admission_backpressure
+  skill_id: skill.serving.queue_backpressure
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.queue_backpressure.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_operation
+  skill_id: skill.linux.process_inspection
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_operation
+  skill_id: skill.serving.engine_configuration_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.engine_configuration_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_operation
+  skill_id: skill.serving.sglang_runtime_operation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.sglang_runtime_operation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_operation
+  skill_id: skill.serving.tensorrt_llm_runtime_operation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.tensorrt_llm_runtime_operation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_operation
+  skill_id: skill.serving.vllm_runtime_operation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.vllm_runtime_operation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_worker_topology
+  skill_id: skill.distributed.partial_failure_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_worker_topology
+  skill_id: skill.os.process_address_space_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_worker_topology
+  skill_id: skill.serving.worker_engine_topology
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.worker_engine_topology.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_worker_topology
+  skill_id: skill.serving.worker_resource_binding
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.worker_resource_binding.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.failure_observability
+  skill_id: skill.distributed.partial_failure_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.failure_observability
+  skill_id: skill.observability.signal_correlation_diagnosis
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.failure_observability
+  skill_id: skill.serving.failure_domain_diagnosis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.failure_domain_diagnosis.demonstrate_capability
+  - objective.serving.failure_domain_diagnosis.isolate_and_explain_failure
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.failure_observability
+  skill_id: skill.serving.request_trace_correlation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.request_trace_correlation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.load_benchmark_slo
+  skill_id: skill.performance.benchmark_workload_design
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.load_benchmark_slo
+  skill_id: skill.performance.tail_latency_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.load_benchmark_slo
+  skill_id: skill.serving.latency_throughput_slo_analysis
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.latency_throughput_slo_analysis.analyze_tail_and_token_latency
+  - objective.serving.latency_throughput_slo_analysis.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.load_benchmark_slo
+  skill_id: skill.serving.load_generation_methodology
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.load_generation_methodology.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.request_lifecycle
+  skill_id: skill.network.rpc_call_semantics
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.request_lifecycle
+  skill_id: skill.serving.request_state_lifecycle
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.request_state_lifecycle.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.request_lifecycle
+  skill_id: skill.serving.streaming_response_semantics
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.streaming_response_semantics.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.streaming_cancellation
+  skill_id: skill.concurrency.cancellation_timeout_semantics
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.streaming_cancellation
+  skill_id: skill.network.timeout_retry_policy
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.streaming_cancellation
+  skill_id: skill.serving.stream_cancellation_cleanup
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.stream_cancellation_cleanup.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.streaming_cancellation
+  skill_id: skill.serving.timeout_deadline_propagation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.timeout_deadline_propagation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.autotuning_configs
+  skill_id: skill.performance.benchmark_workload_design
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.autotuning_configs
+  skill_id: skill.performance.regression_detection
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.sdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.autotuning_configs
+  skill_id: skill.triton.autotune_result_validation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.autotune_result_validation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.autotuning_configs
+  skill_id: skill.triton.autotune_search_space
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.autotune_search_space.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.correctness_performance_validation
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.correctness_performance_validation
+  skill_id: skill.triton.correctness_reference_test
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.correctness_reference_test.cross_shape_validation
+  - objective.triton.correctness_reference_test.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.correctness_performance_validation
+  skill_id: skill.triton.profile_compare_cuda
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.profile_compare_cuda.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.masked_memory_ops
+  skill_id: skill.programming.input_validation_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Accepted 6C/6D capability is reused in accelerator/inference context without cloning learner state.
+  source_refs:
+  - source.repo.fdm_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.masked_memory_ops
+  skill_id: skill.triton.masked_load_store
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.masked_load_store.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.masked_memory_ops
+  skill_id: skill.triton.vectorized_memory_layout
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.vectorized_memory_layout.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.matmul_tiling
+  skill_id: skill.triton.matmul_performance_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.matmul_performance_reasoning.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.matmul_tiling
+  skill_id: skill.triton.matmul_tiling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.matmul_tiling.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.program_instance_mapping
+  skill_id: skill.triton.program_id_indexing
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.program_id_indexing.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.program_instance_mapping
+  skill_id: skill.triton.program_instance_mapping
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.program_instance_mapping.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.reduction_softmax
+  skill_id: skill.triton.reduction_kernel
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.reduction_kernel.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.triton.reduction_softmax
+  skill_id: skill.triton.softmax_kernel
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.triton.softmax_kernel.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  lifecycle_status: draft
+  review_refs: []

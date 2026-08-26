@@ -1,0 +1,58 @@
+package_id: decomposition.6e_gpu_ml_inference
+qa_contract: FRDB-v0 section 27
+result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
+checked_at: '2026-08-26'
+counts:
+  domains: 9
+  modules: 27
+  topics: 70
+  skills: 143
+  objectives: 159
+  topic_skill_links: 232
+  prerequisite_edges: 281
+  hard_prerequisite_edges: 281
+  soft_prerequisite_edges: 0
+  cross_package_prerequisite_edges: 91
+  reused_prior_package_skills: 61
+  reused_6c_skills: 9
+  reused_6d_skills: 52
+  capability_requirements: 286
+  professional_attributions: 216
+  project_attributions: 16
+  open_non_blocking_reviews: 4
+  open_blocking_reviews: 0
+checks:
+- check: route_family_partition
+  result: PASS
+  details: D14-D22 exactly
+- check: prior_registry_reuse
+  result: PASS
+  details: 61 prior Skills reused without clone
+- check: math_numerical_prerequisites_explicit
+  result: PASS
+  details: tensor shape, matmul, probability/softmax and floating-point Skills are explicit
+- check: stable_vs_tool_specific
+  result: PASS
+  details: tool/runtime Skills carry freshness + technology dependencies; stable concepts remain generic
+- check: triton_foundation_guard
+  result: PASS
+  details: Triton core depends on accepted GPU + CUDA foundation Skills
+- check: combined_hard_graph_dag
+  result: PASS
+  details: visited 467/467 across 6C+6D+6E
+- check: english_global_gate
+  result: PASS
+  details: no English hard edge into technical Skills
+- check: forward_reuse_review
+  result: PASS
+  details: review.6d.accelerator_forward_reuse resolved by explicit 6E reuse registry
+- check: project_attribution_observable
+  result: PASS
+  details: 16 separately observable integration components
+- check: blocking_reviews
+  result: PASS
+  details: 0 open blocking reviews
+external_research_qa:
+  status: pending
+  owner_step: 6H
+  required_before_external_validation: true

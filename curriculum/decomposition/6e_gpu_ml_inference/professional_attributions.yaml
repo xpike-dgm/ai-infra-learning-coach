@@ -1,0 +1,2376 @@
+- capability_id: skill.gpu.thread_block_grid_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.thread_block_grid_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.warp_execution_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.simt_divergence_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.simt_divergence_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.warp_efficiency_measurement
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.occupancy_resource_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.latency_hiding_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.memory_space_selection
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.memory_space_selection
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.global_memory_latency_bandwidth
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.coalesced_access_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.memory_transaction_measurement
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.shared_memory_bank_conflict
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.shared_memory_bank_conflict
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.shared_memory_layout_transform
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.cache_locality_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.cache_metric_interpretation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.compute_memory_balance
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.compute_memory_balance
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.arithmetic_intensity_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.copy_compute_overlap_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.copy_compute_overlap_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.timeline_overlap_analysis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.timeline_overlap_analysis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.profiler_metric_selection
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.bottleneck_attribution
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.gpu.bottleneck_attribution
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.kernel_execution_mapping
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.thread_index_calculation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.grid_stride_loop
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.launch_configuration_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.block_synchronization
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.block_synchronization
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.memory_visibility_ordering
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.memory_visibility_ordering
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.device_allocation_lifetime
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.host_device_transfer
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.host_device_transfer
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.shared_memory_tiling
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.tile_boundary_handling
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.tile_boundary_handling
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.pinned_memory_usage
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.unified_memory_behavior
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.unified_memory_behavior
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.error_checking_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.race_bounds_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.race_bounds_diagnosis
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.stream_dependency_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.stream_dependency_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.event_timing_dependency
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.kernel_profile_collection
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.optimization_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.cuda.optimization_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.program_instance_mapping
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.program_id_indexing
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.masked_load_store
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.masked_load_store
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.vectorized_memory_layout
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.reduction_kernel
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.softmax_kernel
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.softmax_kernel
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.matmul_tiling
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.matmul_performance_reasoning
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.autotune_search_space
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.autotune_result_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.autotune_result_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.correctness_reference_test
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.correctness_reference_test
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.profile_compare_cuda
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.triton.profile_compare_cuda
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.tensor_shape_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.broadcasting_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.matrix_multiplication_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.dot_product_similarity
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.probability_normalization
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.softmax_stability
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.softmax_stability
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.floating_point_error_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.mixed_precision_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.math.mixed_precision_tradeoff
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.parameter_activation_distinction
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.inference_forward_pass
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.embedding_lookup_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.normalization_layer_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.attention_qkv_shapes
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.attention_qkv_shapes
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.attention_score_mask_softmax
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.attention_score_mask_softmax
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.transformer_block_dataflow
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ml.causal_lm_logits_next_token
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.weight_loading_layout
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.weight_loading_layout
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.weight_memory_estimation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.prefill_decode_distinction
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.prefill_decode_profile
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.autoregressive_loop
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.generation_stopping_state
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.attention_operator_execution
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.attention_memory_bottleneck
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.attention_memory_bottleneck
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.kv_cache_semantics
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.kv_memory_growth
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.sampling_temperature
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.topk_topp_sampling
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.operator_fusion_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.fusion_correctness_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.fusion_correctness_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.runtime_memory_budget
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.runtime_memory_budget
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.oom_root_cause_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.inference.oom_root_cause_diagnosis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.worker_engine_topology
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.worker_resource_binding
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.worker_resource_binding
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.request_state_lifecycle
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.streaming_response_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.admission_control
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.admission_control
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.queue_backpressure
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.stream_cancellation_cleanup
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.stream_cancellation_cleanup
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.timeout_deadline_propagation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.engine_configuration_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.engine_configuration_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.vllm_runtime_operation
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.vllm_runtime_operation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.sglang_runtime_operation
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.sglang_runtime_operation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.tensorrt_llm_runtime_operation
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.tensorrt_llm_runtime_operation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.load_generation_methodology
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.load_generation_methodology
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.latency_throughput_slo_analysis
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.latency_throughput_slo_analysis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.request_trace_correlation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.request_trace_correlation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.failure_domain_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.serving.failure_domain_diagnosis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.kv_capacity_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.kv_fragmentation_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.paged_kv_allocation
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.paged_kv_allocation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.prefix_cache_reuse
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.prefix_cache_reuse
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.continuous_batching_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.continuous_batching_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.batch_composition_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.token_budget_scheduler
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.token_budget_scheduler
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.scheduler_fairness_preemption
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.scheduler_fairness_preemption
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantization_format_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantization_format_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantized_memory_estimation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantization_quality_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantization_quality_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.optimization.quantization_performance_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.topology_bandwidth_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.topology_bandwidth_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.topology_discovery
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.collective_semantics
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.collective_cost_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.nccl_collective_operation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.nccl_debug_trace
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.nccl_debug_trace
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.rdma_transport_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.rdma_path_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.rdma_path_validation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.gpu_direct_data_path
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.gpu_direct_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.tensor_parallel_sharding
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.tensor_parallel_sharding
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.pipeline_parallel_partition
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.pipeline_parallel_partition
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.distributed_inference_placement
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.distributed_inference_placement
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.collective_profile_analysis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.distributed_failure_isolation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.multi_gpu.distributed_failure_isolation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_capability_inventory
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_capability_inventory
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.workload_resource_profile
+  professional_family_id: professional.capacity_planning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.workload_resource_profile
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.topology_aware_placement
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.topology_aware_placement
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_partitioning_isolation
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_partitioning_isolation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.driver_toolkit_compatibility
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.driver_toolkit_compatibility
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.reproducible_runtime_environment
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.reproducible_runtime_environment
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.capacity_headroom_model
+  professional_family_id: professional.capacity_planning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.capacity_headroom_model
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.cluster_admission_policy
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.cluster_admission_policy
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_telemetry_instrumentation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_telemetry_instrumentation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_signal_correlation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_signal_correlation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_health_failure_containment
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.gpu_health_failure_containment
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.failure_domain_capacity_recovery
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.failure_domain_capacity_recovery
+  professional_family_id: professional.capacity_planning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_artifact_versioning
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_artifact_versioning
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_rollout_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_rollout_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.workload_isolation_boundary
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.workload_isolation_boundary
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_data_provenance_safety
+  professional_family_id: professional.operational_security_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.model_data_provenance_safety
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.cost_per_token_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.cost_per_token_reasoning
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.efficiency_optimization_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
+- capability_id: skill.ai_infra.efficiency_optimization_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  review_refs: []
