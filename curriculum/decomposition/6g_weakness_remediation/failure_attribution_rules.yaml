@@ -1,0 +1,121 @@
+- rule_id: failure.invalid_or_ambiguous
+  priority: 10
+  when:
+  - evaluator_status=invalid OR item/task ambiguous OR attribution invalid
+  target_effect: not_attributable
+  weakness_signal: none
+  gre_effect: exclude_from_mastery_evidence
+  learning_need_effect: none_for_target
+  qa_effect: content_or_evaluator_review
+- rule_id: failure.prerequisite_contamination
+  priority: 20
+  when:
+  - required hard/task prerequisite not ready
+  - attempt nevertheless executed
+  target_effect: not_attributable
+  weakness_signal: none_for_target
+  gre_effect: no_target_negative_evidence
+  learning_need_effect: open_or_update_prerequisite_need
+  qa_effect: TASK_PREREQUISITE_METADATA_INVALID when metadata was wrong
+- rule_id: failure.unattempted_or_deferred
+  priority: 30
+  when:
+  - candidate not selected OR task deferred OR user did not attempt target behavior
+  target_effect: not_attributable
+  weakness_signal: none
+  gre_effect: none
+  learning_need_effect: existing_need_may_remain_open
+  qa_effect: none
+- rule_id: failure.environment_outside_target
+  priority: 40
+  when:
+  - tool/environment/infrastructure failure prevented observation and tool operation was not target behavior
+  target_effect: content_or_environment_issue
+  weakness_signal: none
+  gre_effect: no_target_negative_evidence
+  learning_need_effect: repair_environment_or_choose_alternative_candidate
+  qa_effect: environment_or_task_review
+- rule_id: failure.assisted_h1_h4
+  priority: 50
+  when:
+  - target failure or dependence observed with assistance H1-H4
+  target_effect: objective_weakness_hypothesis
+  weakness_signal: hypothesis
+  gre_effect: not_positive_independent_mastery_and_not_direct_negative_override
+  learning_need_effect: weakness_detected_or_fresh_independent_recheck
+  qa_effect: none
+- rule_id: failure.provisional_or_partial
+  priority: 60
+  when:
+  - evaluator_status=provisional OR result materially partial/uncertain
+  target_effect: objective_weakness_hypothesis
+  weakness_signal: hypothesis
+  gre_effect: do_not_confirm_mastery_or_heavy_remediation
+  learning_need_effect: fresh_verification_or_targeted_reinforcement
+  qa_effect: none
+- rule_id: failure.clean_premastery_h0_direct
+  priority: 70
+  when:
+  - H0
+  - direct
+  - verified
+  - prerequisite-valid
+  - target not currently mastered
+  - meaningful negative/partial quality
+  target_effect: objective_weakness_supported
+  weakness_signal: supported
+  gre_effect: enter_normal_recent_evidence_window
+  learning_need_effect: weakness_detected_with_targeted_repair_candidate
+  qa_effect: none
+- rule_id: failure.first_clean_postmastery_contradiction
+  priority: 80
+  when:
+  - H0
+  - direct
+  - verified
+  - prerequisite-valid
+  - target previously/currently mastered
+  - first meaningful clean contradiction
+  target_effect: verification_due
+  weakness_signal: supported_not_confirmed
+  gre_effect: open_contradiction_flag_without_immediate_mastery_erasure
+  learning_need_effect: verification_due
+  qa_effect: none
+- rule_id: failure.fresh_recheck_fail
+  priority: 90
+  when:
+  - verification_due already open
+  - fresh/unseen H0 direct verified prerequisite-valid recheck fails
+  target_effect: remediation_required
+  weakness_signal: confirmed
+  gre_effect: recompute_objective_and_skill_gates_from_evidence
+  learning_need_effect: remediation_required
+  qa_effect: none
+- rule_id: failure.integrated_global_outcome_guard
+  priority: 100
+  when:
+  - project/integrated task has global failure or success
+  target_effect: component_attribution_only
+  weakness_signal: only_for_structurally_essential_separately_observable_component
+  gre_effect: no_broadcast_to_tagged_objectives
+  learning_need_effect: component_specific_only
+  qa_effect: none
+- rule_id: failure.review_due_without_negative_evidence
+  priority: 110
+  when:
+  - retention_state=review_due
+  - no clean negative evidence
+  target_effect: no_weakness
+  weakness_signal: none
+  gre_effect: mastery_unchanged
+  learning_need_effect: retention_review_due_not_remediation
+  qa_effect: none
+- rule_id: failure.fresh_recovery_success
+  priority: 120
+  when:
+  - fresh H0 direct verified prerequisite-valid evidence satisfies current Objective gate/recheck
+  target_effect: positive_recovery_evidence
+  weakness_signal: resolve_or_recompute
+  gre_effect: normal_GRE_RVR_recompute
+  learning_need_effect: close_only_when_resolved_condition_true
+  qa_effect: none

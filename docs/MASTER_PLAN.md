@@ -244,8 +244,21 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
 - external Research QA 6H'ye pending; learner publication yapılmadı.
 
-### [ ] 6G — Weakness localization + remediation mapping — **AKTİF**
-### [ ] 6H — Coverage / prerequisite / external Research QA
+### [x] 6G — Weakness localization + remediation mapping — WLRM-v0 / D-061
+**Final:** `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/`
+
+- 543 accepted Skill + 590 accepted Objective exact overlay coverage,
+- 590 Objective remediation route,
+- 12 failure-attribution rule + 15 remediation strategy family,
+- invalid/ambiguous/prerequisite-contaminated attempt target weakness yazmıyor,
+- H1–H4/provisional/partial signal confirmed remediation'a atlamıyor,
+- first clean post-mastery contradiction `verification_due`,
+- `review_due` weakness değil,
+- broad Topic/Domain reset ve project-component broadcast yok,
+- closure fresh H0/direct/verified/prerequisite-valid evidence ile GRE/RVR üzerinden,
+- internal QA PASS, 0 blocking; independent external Research QA 6H'ye pending.
+
+### [ ] 6H — Coverage / prerequisite / external Research QA — **AKTİF**
 
 ---
 
@@ -419,9 +432,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6F`
-**Aktif:** **`6G — Weakness localization + remediation mapping`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6G`
+**Aktif:** **`6H — Coverage / prerequisite / external Research QA`**
 
 Bir sonraki yürütme: **6F başlamadan fresh PRE-STEP GitHub refresh → FRDB-v0 + FDM-v0 + SDM-v0 + GIM-v0 registry/attribution setleri ile Professional Engineering detailed map → POST-STEP D-050 sync + stale-reference audit.**
 
 - D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`; canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`.
+
+- D-061: 6G final `WLRM-v0 — Weakness Localization & Remediation Map`; canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, dataset `curriculum/decomposition/6g_weakness_remediation/`.

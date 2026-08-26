@@ -1,6 +1,6 @@
 # Granular Capability Map Plan — AŞAMA 6 Charter
 
-**Durum:** YÜRÜTÜLÜYOR — 6A–6D TAMAMLANDI / 6E AKTİF
+**Durum:** YÜRÜTÜLÜYOR — 6A–6G TAMAMLANDI / 6H AKTİF
 **Tarih:** 2026-08-25  
 **Karar:** D-044  
 **5B canonical schema contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 / D-051
@@ -188,7 +188,7 @@ Canonical: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems
 - Containers / Cloud / Observability
 - Performance / Profiling
 
-### 6E — GPU / ML / Inference detailed map 🟡 AKTİF
+### 6E — GPU / ML / Inference detailed map ✅
 - GPU Architecture
 - CUDA
 - Triton
@@ -199,20 +199,21 @@ Canonical: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems
 - multi-GPU / NCCL / RDMA
 - AI Infrastructure / GPU Infrastructure
 
-### 6F — Professional engineering / project map
+### 6F — Professional engineering / project map ✅
 - Git/open-source workflow
 - testing/build/debugging/profiling
 - design docs / benchmark reports
 - large integrated projects
 - capstone capability decomposition
 
-### 6G — Weakness localization ve remediation mapping
+### 6G — Weakness localization ve remediation mapping ✅
+Canonical: `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/` — WLRM-v0 / D-061.
 - her Skill/Objective için ölçülebilir weakness state
 - hangi hata hangi alt capability'ye yazılır?
 - broad-domain overreaction guard
 - targeted reteach/practice/retest mapping
 
-### 6H — Coverage + prerequisite + external research QA
+### 6H — Coverage + prerequisite + external research QA 🟡 AKTİF
 - hidden prerequisite audit
 - missing-domain audit
 - duplicate Skill audit

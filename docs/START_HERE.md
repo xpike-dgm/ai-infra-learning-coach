@@ -112,8 +112,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6D ✅ SDM-v0 / D-058
   - 6E ✅ GIM-v0 / D-059
   - 6F ✅ PEM-v0 / D-060
-  - 6G 🟡 Weakness localization + remediation mapping
-  - 6H ⬜
+  - 6G ✅ WLRM-v0 / D-061
+  - 6H 🟡 Coverage / prerequisite / Research QA
 - 7 English parallel line
 - 8 UX
 - 9 Architecture/data model
@@ -185,7 +185,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11j. `curriculum/decomposition/6e_gpu_ml_inference/manifest.yaml`
 11k. `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`
 11l. `curriculum/decomposition/6f_professional_engineering/manifest.yaml`
-11m. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11m. `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`
+11n. `curriculum/decomposition/6g_weakness_remediation/manifest.yaml`
+11o. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -239,16 +241,17 @@ DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
 - 6D ✅ `SDM-v0 — Systems Detailed Map` / D-058
 - 6E ✅ `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059
 - 6F ✅ `PEM-v0 — Professional Engineering / Projects Detailed Map` / D-060
-- 6G 🟡 Weakness localization + remediation mapping — aktif, henüz yürütülmedi
+- 6G ✅ `WLRM-v0 — Weakness Localization & Remediation Map` / D-061
+- 6H 🟡 Coverage / prerequisite / Research QA — aktif, henüz yürütülmedi
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`6G — Weakness localization + remediation mapping`**
-**6G henüz yürütülmedi.**
+**Aktif:** **`6H — Coverage / prerequisite / Research QA`**
+**6H henüz yürütülmedi. Independent external Research AI zorunludur.**
 
 6F PEM-v0 / D-060 ile D23 professional engineering / OSS / project-capstone detailed map'ini tamamladı; D01–D22 accepted Skills canonical ID ile reuse edildi ve 6D/6E professional-overlay review'ları resolved edildi.
 
-6G başlamadan yeni PRE-STEP GitHub refresh zorunlu.
+6H başlamadan fresh PRE-STEP GitHub refresh ve bağımsız Research AI workflow'u zorunludur.
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-060 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, GPU_ML_INFERENCE_DETAILED_MAP, PROFESSIONAL_ENGINEERING_DETAILED_MAP ve 6c–6f decomposition manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6G — Weakness localization + remediation mapping; 6G henüz yürütülmedi.`
+> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-061 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, GPU_ML_INFERENCE_DETAILED_MAP, PROFESSIONAL_ENGINEERING_DETAILED_MAP ve 6c–6f decomposition manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6H — Coverage / prerequisite / Research QA; 6H henüz yürütülmedi ve independent external Research AI zorunludur.`

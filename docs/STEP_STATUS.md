@@ -26,8 +26,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6D — Systems detailed map** | ✅ | SDM-v0 / D-058. D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı. |
 | **6E — GPU / ML / Inference detailed map** | ✅ | GIM-v0 / D-059. D14–D22 package + prior registry reuse + combined hard-graph QA tamamlandı. |
 | **6F — Professional engineering / project map** | ✅ | PEM-v0 / D-060. D23 professional workflow + OSS + project/capstone map tamamlandı. |
-| **6G — Weakness localization + remediation mapping** | 🟡 Aktif | 6C–6F granular graph üzerinde weakness/remediation operational mapping. **Henüz yürütülmedi.** |
-| **6H–20** | ⬜ Bekliyor | 6G sonrası canonical sırada. |
+| **6G — Weakness localization + remediation mapping** | ✅ | WLRM-v0 / D-061. 543 Skill + 590 Objective exact weakness/remediation overlay ve 590 route tamamlandı. |
+| **6H — Coverage / prerequisite / Research QA** | 🟡 Aktif | AŞAMA 6 bağımsız external coverage/current-industry/hidden-prerequisite QA. **Henüz yürütülmedi.** |
+| **7–20** | ⬜ Bekliyor | 6H sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -46,20 +47,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 6F
+## Son tamamlanan numaralı adım — 6G
 
-**Final:** `PEM-v0 — Professional Engineering / Projects Detailed Map` / D-060.  
-**Ana çıktı:** `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md` + `curriculum/decomposition/6f_professional_engineering/`.
+**Final:** `WLRM-v0 — Weakness Localization & Remediation Map` / D-061.  
+**Ana çıktı:** `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/`.
 
-6F sonucu:
-- D23 için 1 Domain / 9 Module / 27 Topic,
-- 76 Skill / 87 Objective / 110 TopicSkillLink,
-- 138 prerequisite edge (137 hard / 1 soft),
-- 25 prior Skill reuse; 6D ve 6E professional-overlay review'ları resolved,
-- Foundation/Systems/GPU-Inference project familyaları professional evidence ile augment edildi; OSS project + integrated AI Infra capstone tanımlandı,
-- 0 blocking / 3 non-blocking 6F review,
-- external Research QA 6H'ye pending.
+6G sonucu:
+- 543 accepted Skill / 590 accepted Objective exact coverage,
+- 590 Objective-specific remediation route,
+- 12 failure-attribution rule / 15 remediation strategy,
+- invalid/prerequisite-contaminated false-negative guard,
+- assisted/provisional hypothesis-only guard,
+- post-mastery `verification_due` hysteresis,
+- broad Topic/Domain/project broadcast guard,
+- remediation closure only by fresh valid evidence,
+- 0 blocking / 4 non-blocking 6G review,
+- independent external Research QA 6H'ye pending.
 
-## Aktif adım — 6G Weakness localization + remediation mapping
+## Aktif adım — 6H Coverage / prerequisite / Research QA
 
-**6G henüz yürütülmedi.** Fresh PRE-STEP GitHub refresh zorunludur.
+**6H henüz yürütülmedi.** Fresh PRE-STEP + ayrı bağımsız Research AI zorunludur.

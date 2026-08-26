@@ -1,0 +1,53 @@
+- mapping_id: need.map.weakness_hypothesis
+  source_condition: objective weakness hypothesis from assisted/provisional/partial signal
+  trigger_kind: weakness_detected
+  default_priority_band: P1_or_P2_by_evidence_severity
+  primary_purposes:
+  - diagnose
+  - reinforce
+  - remediate
+  closure: fresh attributable evidence resolves hypothesis or escalates it
+- mapping_id: need.map.supported_premastery_weakness
+  source_condition: clean attributable pre-mastery H0 direct failure
+  trigger_kind: weakness_detected
+  default_priority_band: P1
+  primary_purposes:
+  - remediate
+  - practice
+  - assess
+  closure: target Objective returns to normal learning/mastery path with new evidence
+- mapping_id: need.map.verification_due
+  source_condition: first clean contradiction after mastery
+  trigger_kind: verification_due
+  default_priority_band: P1
+  primary_purposes:
+  - assess
+  - retain
+  closure: fresh independent recheck resolves contradiction
+- mapping_id: need.map.confirmed_remediation
+  source_condition: confirmed Objective/Skill gate failure requiring repair
+  trigger_kind: remediation_required
+  default_priority_band: P1
+  priority_override: P0 only when a critical/hard prerequisite integrity condition truly blocks dependent required work
+  primary_purposes:
+  - remediate
+  - practice
+  - assess
+  closure: new prerequisite-valid evidence restores required Objective/Skill gates; task completion alone never closes
+- mapping_id: need.map.prerequisite_gap
+  source_condition: failure attributable to missing/unready prerequisite rather than target
+  trigger_kind: remediation_required_or_continue_learning_on_prerequisite
+  default_priority_band: P0_or_P1_if_blocking_else_normal_prerequisite_priority
+  primary_purposes:
+  - remediate
+  - teach
+  - practice
+  - assess
+  closure: prerequisite readiness restored by its own evidence
+- mapping_id: need.map.retention_review_only
+  source_condition: review_due with no negative evidence
+  trigger_kind: retention_review_due
+  default_priority_band: P2_if_critical_or_strongly_overdue_else_P3
+  primary_purposes:
+  - retain
+  closure: strong delayed verification or valid natural reuse

@@ -1,0 +1,23 @@
+entity: LearnerMisconceptionSignal
+identity_scope: learner_specific_runtime_state_not_curriculum_skill_identity
+fields:
+- signal_id
+- learner_id
+- skill_id
+- objective_id?
+- misconception_code_or_label
+- state
+- evidence_refs
+- first_seen_at
+- last_seen_at
+- resolution_evidence_refs
+states:
+- hypothesis
+- supported
+- confirmed
+- resolved
+rules:
+- LLM_may_propose_a_hypothesis_but_cannot_publish_confirmed_misconception_without_evidence_policy
+- misconception_memory_guides_remediation_and_item_selection_but_does_not_directly_set_mastery
+- a_label_may_be_merged_or_renamed_without_changing_canonical_Skill_identity
+- resolved_requires_subsequent_evidence_or_explicit_runtime_resolution_not_time_alone

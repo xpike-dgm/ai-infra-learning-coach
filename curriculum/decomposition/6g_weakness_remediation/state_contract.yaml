@@ -1,0 +1,37 @@
+model_id: WLRM-v0
+principle: Weakness is localized from attributable evidence at Objective/Skill level; broad Topic/Domain weakness is derived
+  summary only.
+attempt_attribution_outcomes:
+- not_attributable
+- content_or_environment_issue
+- prerequisite_signal
+- objective_weakness_hypothesis
+- objective_weakness_supported
+- verification_due
+- remediation_required
+- positive_recovery_evidence
+weakness_signal_states:
+- none
+- hypothesis
+- supported
+- confirmed
+- resolved
+invariants:
+- attempt_failure_is_not_automatically_skill_failure
+- invalid_or_prerequisite_contaminated_attempt_never_writes_target_negative_evidence
+- assisted_or_provisional_failure_cannot_directly_confirm_remediation_required
+- first_clean_post_mastery_contradiction_opens_verification_due_before_mastery_erasure
+- confirmed_repeated_failure_is_recomputed_through_GRE_not_manual_score_override
+- remediation_closure_requires_new_evidence_not_task_completion
+- topic_domain_states_are_derived_and_never_the_primary_remediation_target
+- dependent_branch_blocking_is_skill_local_and_prerequisite_aware
+- review_due_without_negative_evidence_is_not_weakness
+- global_project_failure_does_not_propagate_to_all_tagged_objectives
+source_refs:
+- source.repo.learning_behavior
+- source.repo.gre_v0
+- source.repo.rvr_v0
+- source.repo.prg_v0
+- source.repo.task_taxonomy
+- source.repo.pbr_v0
+- source.repo.topic_state

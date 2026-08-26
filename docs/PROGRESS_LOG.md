@@ -451,3 +451,12 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - 6D ve 6E professional-overlay review'ları resolved edildi.
 - Independent 6F validator + prior regression validators PASS.
 - External Research QA 6H'ye pending; 6G current active step olarak açıldı.
+
+### 2026-08-27 — 6G tamamlandı / WLRM-v0 / D-061
+- Fresh PRE-STEP ile 6F completion ve 6G scope doğrulandı.
+- `WLRM-v0 — Weakness Localization & Remediation Map` üretildi.
+- 543 accepted Skill ve 590 accepted Objective exact covered; 590 remediation route.
+- 12 failure-attribution rule, 15 strategy family, 6 planner mapping.
+- 6C/6D/6E/6F regression validator'ları PASS; independent 6G validator PASS.
+- 0 blocking / 4 non-blocking review; 6H independent external Research QA pending.
+- D-050 living-memory/Vault sync ve stale-reference audit 6G POST-STEP içinde yürütüldü.

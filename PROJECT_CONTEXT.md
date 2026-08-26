@@ -101,6 +101,8 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-060 / PEM-v0:** canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`. D23; 1 Domain, 9 Module, 27 Topic, 76 Skill, 87 Objective. Existing D01–D22 technical capability'leri clone edilmeden professional project/capstone context'lerinde reuse edildi; 0 blocking review. External validation 6H'ye pending.
 
+**D-061 / WLRM-v0:** canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, dataset `curriculum/decomposition/6g_weakness_remediation/`. 543 accepted Skill + 590 accepted Objective için weakness/remediation overlay; 590 route, 12 attribution rule, 15 strategy; 0 blocking review. External validation 6H'ye pending.
+
 ## 8. İngilizce
 
 English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C / FDM-v0'da tamamlandı; 6D Systems package'ında da English→technical hard gate yoktur. English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
@@ -148,11 +150,11 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - **6D ✅ SDM-v0 / D-058**
   - **6E ✅ GIM-v0 / D-059**
   - **6F ✅ PEM-v0 / D-060**
-  - **6G 🟡 Weakness localization + remediation mapping — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 6H ⬜
+  - **6G ✅ WLRM-v0 / D-061**
+  - **6H 🟡 Coverage / prerequisite / Research QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
 - AŞAMA 7–20 ⬜
 
-**Sıradaki numaralı çalışma 6G'dir.** 6G başlamadan fresh PRE-STEP GitHub refresh; FDM-v0 + SDM-v0 + GIM-v0 + PEM-v0 remediation metadata/review handoff setlerinin yeniden okunması zorunludur.
+**Sıradaki numaralı çalışma 6H'dir.** 6H başlamadan fresh PRE-STEP GitHub refresh ve bağımsız external Research AI workflow'u zorunludur; internal 6C–6G QA 6H'nin yerine geçmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

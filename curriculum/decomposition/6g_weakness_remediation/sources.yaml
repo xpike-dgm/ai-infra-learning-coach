@@ -1,0 +1,117 @@
+- source_id: source.repo.learning_behavior
+  source_kind: canonical_spec
+  title: Learning Behavior Rules
+  ref: docs/LEARNING_BEHAVIOR_RULES.md
+  supports:
+  - failure_interpretation
+  - targeted_remediation
+  - misconception_memory
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.gre_v0
+  source_kind: canonical_spec
+  title: GRE-v0 Gated Recent Evidence
+  ref: docs/MASTERY_FORMULA_V0.md
+  supports:
+  - negative_evidence
+  - verification_hysteresis
+  - objective_skill_gates
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.rvr_v0
+  source_kind: canonical_spec
+  title: RVR-v0 Retention Verification & Risk
+  ref: docs/RETENTION_FORGETTING_SPEC.md
+  supports:
+  - verification_due
+  - at_risk
+  - retention_remediation
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.prg_v0
+  source_kind: canonical_spec
+  title: PRG-v0 Prerequisite Readiness Gate
+  ref: docs/PREREQUISITE_POLICY_SPEC.md
+  supports:
+  - prerequisite_contamination
+  - branch_local_blocking
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.task_taxonomy
+  source_kind: canonical_spec
+  title: Planner Task Taxonomy & TaskCandidate Contract
+  ref: docs/TASK_TAXONOMY_SPEC.md
+  supports:
+  - learning_need
+  - remediate_purpose
+  - evidence_contract
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.pbr_v0
+  source_kind: canonical_spec
+  title: PBR-v0 Priority Bands & Rank Vector
+  ref: docs/PRIORITY_POLICY_SPEC.md
+  supports:
+  - repair_priority
+  - integrity_blocker
+  - capacity_safe_repair
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.topic_state
+  source_kind: canonical_spec
+  title: Topic State Machine
+  ref: docs/TOPIC_STATE_MACHINE.md
+  supports:
+  - derived_topic_state
+  - broad_reset_guard
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.stage6_charter
+  source_kind: canonical_spec
+  title: Granular Capability Map Plan
+  ref: docs/GRANULAR_CAPABILITY_MAP_PLAN.md
+  supports:
+  - 6g_scope
+  - weakness_localization
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+- source_id: source.repo.6c_accepted_registry
+  source_kind: accepted_authoring_dataset
+  title: Accepted 6C Skill/Objective registry
+  ref: curriculum/decomposition/6c_foundations
+  supports:
+  - skill_registry
+  - objective_registry
+  - remediation_metadata
+  freshness_class: versioned_dataset
+  checked_at: '2026-08-27'
+- source_id: source.repo.6d_accepted_registry
+  source_kind: accepted_authoring_dataset
+  title: Accepted 6D Skill/Objective registry
+  ref: curriculum/decomposition/6d_systems
+  supports:
+  - skill_registry
+  - objective_registry
+  - remediation_metadata
+  freshness_class: versioned_dataset
+  checked_at: '2026-08-27'
+- source_id: source.repo.6e_accepted_registry
+  source_kind: accepted_authoring_dataset
+  title: Accepted 6E Skill/Objective registry
+  ref: curriculum/decomposition/6e_gpu_ml_inference
+  supports:
+  - skill_registry
+  - objective_registry
+  - remediation_metadata
+  freshness_class: versioned_dataset
+  checked_at: '2026-08-27'
+- source_id: source.repo.6f_accepted_registry
+  source_kind: accepted_authoring_dataset
+  title: Accepted 6F Skill/Objective registry
+  ref: curriculum/decomposition/6f_professional_engineering
+  supports:
+  - skill_registry
+  - objective_registry
+  - remediation_metadata
+  freshness_class: versioned_dataset
+  checked_at: '2026-08-27'
