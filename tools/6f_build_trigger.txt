@@ -1,2 +1,0 @@
-6F Professional Engineering package CI trigger — 2026-08-27
-synchronize: 1
