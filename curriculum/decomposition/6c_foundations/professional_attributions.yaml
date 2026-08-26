@@ -1,0 +1,1530 @@
+- capability_id: skill.c.allocation_size_overflow_safety
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.array_bounds_indexing
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.array_pointer_distinction
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.bitwise_mask_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.compile_link_run_basic
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.compiler_diagnostic_reading
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.conditionals
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.debugger_trace_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.declaration_type_model
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.dynamic_allocation_lifecycle
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.dynamic_allocation_lifecycle
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.expression_evaluation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.expression_evaluation
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.file_io_error_handling
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.for_iteration
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.functions_basic
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.header_translation_unit_interface
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.multi_file_build
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.multi_file_build
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.pointer_dereference
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.pointer_dereference
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.pointer_formation
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.sanitizer_undefined_behavior
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.sanitizer_undefined_behavior
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.scope_linkage_storage_duration
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.standard_io_basic
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.string_null_termination
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.struct_enum_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.c.while_iteration
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.computing.program_execution_model
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.computing.source_runtime_artifact_distinction
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.algorithm_correctness_invariant
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.asymptotic_bound_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.binary_search
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.complexity_growth_intuition
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.graph_traversal_basic
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.hash_table_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.linear_search
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.linked_structure_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.recursive_problem_decomposition
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.sequence_traversal
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.sorting_comparison_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.stack_queue_behavior
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.dsa.tree_traversal_basic
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.engineering.explain_debug_fix_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.engineering.explain_debug_fix_basic
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.engineering.reproducible_run_notes
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.engineering.reproducible_run_notes
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.ask_clarifying_technical_question
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.be_and_simple_present_comprehension
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.documentation_navigation
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.explain_simple_technical_process
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.follow_bilingual_technical_instruction
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.imperative_instruction_comprehension
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.negation_question_comprehension
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.preposition_function_word_comprehension
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.read_definition_and_constraint
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.read_procedure_sequence
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.read_simple_terminal_error_fragments
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.read_simple_terminal_error_fragments
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.recognize_core_technical_labels
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.technical_noun_phrase_recognition
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.write_basic_bug_description
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.write_basic_bug_description
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.write_command_result_note
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.english.write_command_result_note
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.branch_merge_model
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.conflict_resolution
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.conflict_resolution
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.history_inspection
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.history_inspection
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.recovery_safe_undo
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.recovery_safe_undo
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.remote_sync
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.repository_status_diff
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.git.stage_commit_history_basic
+  professional_family_id: professional.open_source_workflow
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.environment_path_resolution
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.file_permissions_ownership
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.links_file_identity
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.process_exit_stdout_stderr_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.process_inspection
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.process_signal_job_control
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.terminal_filesystem_navigation
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.linux.tool_discovery_help
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.memory.address_value_distinction
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.memory.storage_lifetime_intuition
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.branching_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.code_reading_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.code_reading_basic
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.debug_localization_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.expression_boolean_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.function_decomposition
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.input_validation_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.input_validation_reasoning
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.iteration_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.state_assignment_model
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.test_case_basic
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.programming.trace_execution_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.argument_binding
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.assignment_binding
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.async_task_coordination
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.async_task_coordination
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.benchmark_automation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.benchmark_automation
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.bytes_text_boundary
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.class_object_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.cli_argument_parsing
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.comprehension_transformation
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.conditionals
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.data_model_protocols
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.data_table_transformation
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.debugging_tools
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.exception_handling
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.exceptions_read_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.expression_evaluation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.files_paths_basic
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.first_class_callable
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.for_iteration
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.functions_parameters_return
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.generator_functions
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.input_output_basic
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.iterator_protocol
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.list_operations
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.loop_control_flow
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.mapping_collections_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.modules_imports_basic
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.network_client_basic
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.numpy_array_shape_dtype
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.os_subprocess_interaction
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.os_subprocess_interaction
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.package_layout_metadata
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.path_handling
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.profiling_measurement
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.run_repl_script
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.scope_name_resolution
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.set_operations
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.string_text_operations
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.tensor_device_dtype
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.test_doubles_boundaries
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.thread_process_choice
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.tuple_immutable_sequence
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.type_hints_static_checking
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.type_hints_static_checking
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.unit_testing
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.value_type_behavior
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.virtual_environment_dependency
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.virtual_environment_dependency
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.python.while_termination
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.shell.command_options_redirection_basic
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.shell.expansion_quoting
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.shell.pipeline_redirection
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.shell.script_control_flow
+  professional_family_id: professional.automation
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.shell.script_control_flow
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Foundation capability supports this professional family.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []

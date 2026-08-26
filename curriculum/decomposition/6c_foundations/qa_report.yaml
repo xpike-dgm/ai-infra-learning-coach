@@ -1,0 +1,66 @@
+package_id: decomposition.6c_foundations
+qa_contract: FRDB-v0 section 27
+result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
+checked_at: '2026-08-26'
+counts:
+  domains: 5
+  modules: 14
+  topics: 46
+  skills: 132
+  objectives: 137
+  topic_skill_links: 145
+  prerequisite_edges: 200
+  seed_skill_mappings: 41
+  seed_objective_mappings: 47
+  open_non_blocking_reviews: 2
+  open_blocking_reviews: 0
+checks:
+- check: route_family_partition
+  result: PASS
+  details: D01-D05 exactly
+- check: unique_skill_ids
+  result: PASS
+  details: 132 Skills
+- check: unique_objective_ids
+  result: PASS
+  details: 137 Objectives
+- check: objective_owner_refs
+  result: PASS
+  details: all owners resolve
+- check: skill_has_objective
+  result: PASS
+  details: every Skill has Objective
+- check: topic_refs
+  result: PASS
+  details: all primary Topics resolve
+- check: prerequisite_refs
+  result: PASS
+  details: 200 edges resolve
+- check: no_self_edges
+  result: PASS
+  details: no self edges
+- check: no_hard_soft_conflict
+  result: PASS
+  details: no pair conflict
+- check: hard_graph_dag
+  result: PASS
+  details: visited 132/132
+- check: fbb_skill_mapping
+  result: PASS
+  details: 41/41
+- check: fbb_objective_mapping
+  result: PASS
+  details: 47/47
+- check: seed_result_refs
+  result: PASS
+  details: all mapping refs resolve
+- check: english_global_gate
+  result: PASS
+  details: no English hard edge into technical Skills
+- check: blocking_reviews
+  result: PASS
+  details: 0 open blocking
+external_research_qa:
+  status: pending
+  owner_step: 6H
+  required_before_external_validation: true

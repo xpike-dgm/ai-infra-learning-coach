@@ -1,0 +1,110 @@
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.python.cli_argument_parsing
+  objective_id: objective.python.cli_argument_parsing.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.cli_argument_parsing
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.python.files_paths_basic
+  objective_id: objective.python.files_paths_basic.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.files_paths_basic
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.python.unit_testing
+  objective_id: objective.python.unit_testing.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.unit_testing
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.git.stage_commit_history_basic
+  objective_id: objective.git.stage_commit_history_basic.commit_and_verify_history
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.stage_commit_history_basic
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.shell.script_control_flow
+  objective_id: objective.shell.script_control_flow.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.script_control_flow
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.engineering.reproducible_run_notes
+  objective_id: objective.engineering.reproducible_run_notes.record_reproduction_steps
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.reproducible_run_notes
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.engineering.explain_debug_fix_basic
+  objective_id: objective.engineering.explain_debug_fix_basic.explain_symptom_cause_fix_verify
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.explain_debug_fix_basic
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.c.multi_file_build
+  objective_id: objective.c.multi_file_build.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.multi_file_build
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.c.sanitizer_undefined_behavior
+  objective_id: objective.c.sanitizer_undefined_behavior.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.sanitizer_undefined_behavior
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.foundation.reproducible_cli_tool
+  skill_id: skill.dsa.linear_search
+  objective_id: objective.dsa.linear_search.implement_search
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.foundation.reproducible_cli_tool.linear_search
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []

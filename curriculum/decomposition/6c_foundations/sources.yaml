@@ -1,0 +1,100 @@
+- source_id: source.repo.pdm_v0
+  source_kind: canonical_spec
+  title: Curriculum Domain Map
+  ref: docs/CURRICULUM_DOMAIN_MAP.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - route_coverage
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.kgc_v0
+  source_kind: canonical_spec
+  title: Curriculum Knowledge Graph Contract
+  ref: docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - graph_contract
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.fbb_v0
+  source_kind: canonical_spec
+  title: V1 Foundation Backbone
+  ref: docs/V1_FOUNDATION_BACKBONE.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - foundation_seed
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.gqa_v0
+  source_kind: canonical_spec
+  title: Foundation Graph Architecture QA
+  ref: docs/GRAPH_ARCHITECTURE_QA.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - graph_qa
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.gns_v0
+  source_kind: canonical_spec
+  title: Granularity and Naming Standard
+  ref: docs/GRANULARITY_NAMING_STANDARD.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - granularity
+  - logical_identity
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.frdb_v0
+  source_kind: canonical_spec
+  title: Full-Route Decomposition Blueprint
+  ref: docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - package_contract
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.prg_v0
+  source_kind: canonical_spec
+  title: Prerequisite Readiness Gate
+  ref: docs/PREREQUISITE_POLICY_SPEC.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - prerequisite_semantics
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.english_rules
+  source_kind: canonical_spec
+  title: English Foundation Rules
+  ref: docs/ENGLISH_FOUNDATION_RULES.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - language_safety
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null
+- source_id: source.repo.internal_6c_authoring
+  source_kind: internal_design_analysis
+  title: 6C internal canonical-contract synthesis
+  ref: docs/FOUNDATIONS_DETAILED_MAP.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - decomposition_authoring
+  freshness_class: evergreen
+  checked_at: '2026-08-26'
+  notes: null

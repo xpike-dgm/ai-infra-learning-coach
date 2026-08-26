@@ -1,0 +1,68 @@
+package_id: decomposition.6c_foundations
+package_version: 1
+stage_step: 6C
+status: authoring_complete_internal_qa
+blueprint_version: FRDB-v0
+graph_contract_version: KGC-v0
+granularity_standard_version: GNS-v0
+base_graph_refs:
+- FBB-v0
+- GQA-v0
+route_family_ids:
+- D01
+- D02
+- D03
+- D04
+- D05
+included_collections:
+- sources
+- organization_entities
+- skills
+- objectives
+- topic_skill_links
+- prerequisite_edges
+- capability_requirements
+- professional_attributions
+- project_capstone_attributions
+- seed_mappings
+- review_queue
+- qa_report
+source_catalog_refs:
+- source.repo.pdm_v0
+- source.repo.kgc_v0
+- source.repo.fbb_v0
+- source.repo.gqa_v0
+- source.repo.gns_v0
+- source.repo.frdb_v0
+- source.repo.prg_v0
+- source.repo.english_rules
+- source.repo.internal_6c_authoring
+coverage_declarations:
+- route_family_id: D01
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D02
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D03
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D04
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D05
+  status: internally_mapped
+  external_validation: pending_6H
+known_exclusions:
+- CEFR progression/cadence is owned by AŞAMA 7.
+- Production lesson/task/resource bodies are owned by AŞAMA 15/20.
+- External coverage/current-industry validation is owned by 6H.
+- Physical database schema is owned by 9C.
+unresolved_review_count: 2
+blocking_review_count: 0
+generated_at: '2026-08-26'
+authored_by: local_main_manager
+review_refs:
+- review.6c.english.cefr_alignment
+- review.6c.external_coverage
+content_hash: null

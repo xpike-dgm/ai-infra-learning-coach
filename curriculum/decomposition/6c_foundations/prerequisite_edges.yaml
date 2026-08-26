@@ -1,0 +1,3000 @@
+- prerequisite_skill_id: skill.c.array_bounds_indexing
+  target_skill_id: skill.c.array_pointer_distinction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.array_bounds_indexing
+  target_skill_id: skill.c.string_null_termination
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.compile_link_run_basic
+  target_skill_id: skill.c.compiler_diagnostic_reading
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.compile_link_run_basic
+  target_skill_id: skill.c.declaration_type_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.compile_link_run_basic
+  target_skill_id: skill.c.header_translation_unit_interface
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.compile_link_run_basic
+  target_skill_id: skill.c.multi_file_build
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.compiler_diagnostic_reading
+  target_skill_id: skill.c.sanitizer_undefined_behavior
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.conditionals
+  target_skill_id: skill.c.while_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.c.expression_evaluation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.c.functions_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.c.pointer_formation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.c.standard_io_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.c.struct_enum_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.declaration_type_model
+  target_skill_id: skill.memory.address_value_distinction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.dynamic_allocation_lifecycle
+  target_skill_id: skill.c.allocation_size_overflow_safety
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.expression_evaluation
+  target_skill_id: skill.c.allocation_size_overflow_safety
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.expression_evaluation
+  target_skill_id: skill.c.bitwise_mask_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.expression_evaluation
+  target_skill_id: skill.c.conditionals
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.expression_evaluation
+  target_skill_id: skill.c.for_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.functions_basic
+  target_skill_id: skill.c.header_translation_unit_interface
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.functions_basic
+  target_skill_id: skill.c.scope_linkage_storage_duration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.functions_basic
+  target_skill_id: skill.memory.storage_lifetime_intuition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.header_translation_unit_interface
+  target_skill_id: skill.c.multi_file_build
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.multi_file_build
+  target_skill_id: skill.c.debugger_trace_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_dereference
+  target_skill_id: skill.c.array_bounds_indexing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_dereference
+  target_skill_id: skill.c.dynamic_allocation_lifecycle
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_dereference
+  target_skill_id: skill.c.file_io_error_handling
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_dereference
+  target_skill_id: skill.c.sanitizer_undefined_behavior
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_dereference
+  target_skill_id: skill.dsa.linked_structure_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_formation
+  target_skill_id: skill.c.array_pointer_distinction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.pointer_formation
+  target_skill_id: skill.c.pointer_dereference
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.c.standard_io_basic
+  target_skill_id: skill.c.file_io_error_handling
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.computing.program_execution_model
+  target_skill_id: skill.c.compile_link_run_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.computing.program_execution_model
+  target_skill_id: skill.computing.source_runtime_artifact_distinction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.computing.program_execution_model
+  target_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.computing.program_execution_model
+  target_skill_id: skill.python.run_repl_script
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.algorithm_correctness_invariant
+  target_skill_id: skill.dsa.linear_search
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.algorithm_correctness_invariant
+  target_skill_id: skill.dsa.sorting_comparison_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.asymptotic_bound_reasoning
+  target_skill_id: skill.dsa.binary_search
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.asymptotic_bound_reasoning
+  target_skill_id: skill.dsa.sorting_comparison_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.complexity_growth_intuition
+  target_skill_id: skill.dsa.asymptotic_bound_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.complexity_growth_intuition
+  target_skill_id: skill.dsa.hash_table_tradeoff
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.complexity_growth_intuition
+  target_skill_id: skill.python.numpy_array_shape_dtype
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.linear_search
+  target_skill_id: skill.dsa.binary_search
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.recursive_problem_decomposition
+  target_skill_id: skill.dsa.tree_traversal_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.sequence_traversal
+  target_skill_id: skill.dsa.linear_search
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.sequence_traversal
+  target_skill_id: skill.dsa.linked_structure_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.stack_queue_behavior
+  target_skill_id: skill.dsa.tree_traversal_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.dsa.tree_traversal_basic
+  target_skill_id: skill.dsa.graph_traversal_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.engineering.explain_debug_fix_basic
+  target_skill_id: skill.english.write_basic_bug_description
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.english.write_command_result_note
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.python.profiling_measurement
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.python.virtual_environment_dependency
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.be_and_simple_present_comprehension
+  target_skill_id: skill.english.negation_question_comprehension
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.be_and_simple_present_comprehension
+  target_skill_id: skill.english.preposition_function_word_comprehension
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.be_and_simple_present_comprehension
+  target_skill_id: skill.english.read_definition_and_constraint
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.be_and_simple_present_comprehension
+  target_skill_id: skill.english.write_command_result_note
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.imperative_instruction_comprehension
+  target_skill_id: skill.english.follow_bilingual_technical_instruction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.imperative_instruction_comprehension
+  target_skill_id: skill.english.read_procedure_sequence
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.negation_question_comprehension
+  target_skill_id: skill.english.ask_clarifying_technical_question
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.negation_question_comprehension
+  target_skill_id: skill.english.write_basic_bug_description
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.preposition_function_word_comprehension
+  target_skill_id: skill.english.read_procedure_sequence
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.read_procedure_sequence
+  target_skill_id: skill.english.explain_simple_technical_process
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.recognize_core_technical_labels
+  target_skill_id: skill.english.be_and_simple_present_comprehension
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.recognize_core_technical_labels
+  target_skill_id: skill.english.documentation_navigation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.recognize_core_technical_labels
+  target_skill_id: skill.english.imperative_instruction_comprehension
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.recognize_core_technical_labels
+  target_skill_id: skill.english.read_simple_terminal_error_fragments
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.recognize_core_technical_labels
+  target_skill_id: skill.english.technical_noun_phrase_recognition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.english.technical_noun_phrase_recognition
+  target_skill_id: skill.english.read_definition_and_constraint
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.branch_merge_model
+  target_skill_id: skill.git.remote_sync
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.history_inspection
+  target_skill_id: skill.git.recovery_safe_undo
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.remote_sync
+  target_skill_id: skill.git.conflict_resolution
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.repository_status_diff
+  target_skill_id: skill.git.stage_commit_history_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.stage_commit_history_basic
+  target_skill_id: skill.git.branch_merge_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.git.stage_commit_history_basic
+  target_skill_id: skill.git.history_inspection
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.environment_path_resolution
+  target_skill_id: skill.linux.tool_discovery_help
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  target_skill_id: skill.linux.process_inspection
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  target_skill_id: skill.linux.process_signal_job_control
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  target_skill_id: skill.python.os_subprocess_interaction
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  target_skill_id: skill.shell.pipeline_redirection
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.c.compile_link_run_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.git.repository_status_diff
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.linux.environment_path_resolution
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.linux.file_permissions_ownership
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.linux.links_file_identity
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.linux.terminal_filesystem_navigation
+  target_skill_id: skill.shell.command_options_redirection_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.memory.address_value_distinction
+  target_skill_id: skill.c.pointer_formation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.memory.storage_lifetime_intuition
+  target_skill_id: skill.c.dynamic_allocation_lifecycle
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.memory.storage_lifetime_intuition
+  target_skill_id: skill.c.scope_linkage_storage_duration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.branching_reasoning
+  target_skill_id: skill.c.conditionals
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.branching_reasoning
+  target_skill_id: skill.dsa.recursive_problem_decomposition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.branching_reasoning
+  target_skill_id: skill.programming.input_validation_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.branching_reasoning
+  target_skill_id: skill.programming.iteration_reasoning
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.branching_reasoning
+  target_skill_id: skill.python.conditionals
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.c.compiler_diagnostic_reading
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.engineering.explain_debug_fix_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.python.debugging_tools
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.expression_boolean_reasoning
+  target_skill_id: skill.c.expression_evaluation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.expression_boolean_reasoning
+  target_skill_id: skill.dsa.complexity_growth_intuition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.expression_boolean_reasoning
+  target_skill_id: skill.programming.branching_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.expression_boolean_reasoning
+  target_skill_id: skill.python.expression_evaluation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.c.functions_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.dsa.recursive_problem_decomposition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.programming.test_case_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.python.functions_parameters_return
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.input_validation_reasoning
+  target_skill_id: skill.python.cli_argument_parsing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.c.array_bounds_indexing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.c.for_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.c.while_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.dsa.algorithm_correctness_invariant
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.dsa.asymptotic_bound_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.dsa.sequence_traversal
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.python.for_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.iteration_reasoning
+  target_skill_id: skill.python.while_termination
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.c.declaration_type_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.programming.expression_boolean_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.programming.function_decomposition
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.programming.iteration_reasoning
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.programming.trace_execution_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.state_assignment_model
+  target_skill_id: skill.python.assignment_binding
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.dsa.algorithm_correctness_invariant
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.engineering.explain_debug_fix_basic
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.git.conflict_resolution
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.python.unit_testing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.trace_execution_basic
+  target_skill_id: skill.c.debugger_trace_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.trace_execution_basic
+  target_skill_id: skill.programming.code_reading_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.programming.trace_execution_basic
+  target_skill_id: skill.programming.debug_localization_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.assignment_binding
+  target_skill_id: skill.python.for_iteration
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.assignment_binding
+  target_skill_id: skill.python.functions_parameters_return
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.assignment_binding
+  target_skill_id: skill.python.input_output_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.assignment_binding
+  target_skill_id: skill.python.scope_name_resolution
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.async_task_coordination
+  target_skill_id: skill.python.thread_process_choice
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.bytes_text_boundary
+  target_skill_id: skill.python.network_client_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.class_object_model
+  target_skill_id: skill.python.data_model_protocols
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.class_object_model
+  target_skill_id: skill.python.test_doubles_boundaries
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.class_object_model
+  target_skill_id: skill.python.type_hints_static_checking
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.cli_argument_parsing
+  target_skill_id: skill.python.benchmark_automation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.conditionals
+  target_skill_id: skill.python.comprehension_transformation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.conditionals
+  target_skill_id: skill.python.while_termination
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exception_handling
+  target_skill_id: skill.python.async_task_coordination
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exception_handling
+  target_skill_id: skill.python.files_paths_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exception_handling
+  target_skill_id: skill.python.network_client_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exception_handling
+  target_skill_id: skill.python.os_subprocess_interaction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exceptions_read_basic
+  target_skill_id: skill.python.debugging_tools
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.exceptions_read_basic
+  target_skill_id: skill.python.exception_handling
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.expression_evaluation
+  target_skill_id: skill.python.conditionals
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.expression_evaluation
+  target_skill_id: skill.python.string_text_operations
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.files_paths_basic
+  target_skill_id: skill.python.data_table_transformation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.first_class_callable
+  target_skill_id: skill.python.async_task_coordination
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.comprehension_transformation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.iterator_protocol
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.list_operations
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.loop_control_flow
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.mapping_collections_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.set_operations
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.for_iteration
+  target_skill_id: skill.python.tuple_immutable_sequence
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.argument_binding
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.class_object_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.cli_argument_parsing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.exception_handling
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.first_class_callable
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.iterator_protocol
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.scope_name_resolution
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.type_hints_static_checking
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.functions_parameters_return
+  target_skill_id: skill.python.unit_testing
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.iterator_protocol
+  target_skill_id: skill.python.data_model_protocols
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.iterator_protocol
+  target_skill_id: skill.python.generator_functions
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.list_operations
+  target_skill_id: skill.dsa.sequence_traversal
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.list_operations
+  target_skill_id: skill.dsa.stack_queue_behavior
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.list_operations
+  target_skill_id: skill.python.numpy_array_shape_dtype
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.mapping_collections_basic
+  target_skill_id: skill.dsa.hash_table_tradeoff
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.mapping_collections_basic
+  target_skill_id: skill.python.data_table_transformation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.modules_imports_basic
+  target_skill_id: skill.python.package_layout_metadata
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.numpy_array_shape_dtype
+  target_skill_id: skill.python.tensor_device_dtype
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.os_subprocess_interaction
+  target_skill_id: skill.python.thread_process_choice
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source improves fluency but does not hard-block target work.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.path_handling
+  target_skill_id: skill.python.files_paths_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.path_handling
+  target_skill_id: skill.python.os_subprocess_interaction
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.profiling_measurement
+  target_skill_id: skill.python.benchmark_automation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.run_repl_script
+  target_skill_id: skill.python.exceptions_read_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.run_repl_script
+  target_skill_id: skill.python.modules_imports_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.run_repl_script
+  target_skill_id: skill.python.value_type_behavior
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.run_repl_script
+  target_skill_id: skill.python.virtual_environment_dependency
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.scope_name_resolution
+  target_skill_id: skill.python.class_object_model
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.scope_name_resolution
+  target_skill_id: skill.python.first_class_callable
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.scope_name_resolution
+  target_skill_id: skill.python.generator_functions
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.scope_name_resolution
+  target_skill_id: skill.python.modules_imports_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.set_operations
+  target_skill_id: skill.dsa.graph_traversal_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.string_text_operations
+  target_skill_id: skill.python.bytes_text_boundary
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.string_text_operations
+  target_skill_id: skill.python.path_handling
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.unit_testing
+  target_skill_id: skill.python.profiling_measurement
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.unit_testing
+  target_skill_id: skill.python.test_doubles_boundaries
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.value_type_behavior
+  target_skill_id: skill.python.assignment_binding
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.value_type_behavior
+  target_skill_id: skill.python.expression_evaluation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.value_type_behavior
+  target_skill_id: skill.python.mapping_collections_basic
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.virtual_environment_dependency
+  target_skill_id: skill.python.package_layout_metadata
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.python.while_termination
+  target_skill_id: skill.python.loop_control_flow
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.shell.command_options_redirection_basic
+  target_skill_id: skill.shell.expansion_quoting
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.shell.command_options_redirection_basic
+  target_skill_id: skill.shell.pipeline_redirection
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.shell.expansion_quoting
+  target_skill_id: skill.shell.script_control_flow
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.shell.pipeline_redirection
+  target_skill_id: skill.shell.script_control_flow
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source readiness is required for fair target teaching/evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.gqa_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []

@@ -1,0 +1,1587 @@
+- entity_type: domain
+  logical_id_candidate: domain.technical_english
+  display_name: Technical English
+  semantic_statement: Technical English foundations capability organization domain.
+  parent_organization_id: null
+  primary_domain_id: domain.technical_english
+  organization_role: parallel_track
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.python
+  display_name: Python
+  semantic_statement: Python foundations capability organization domain.
+  parent_organization_id: null
+  primary_domain_id: domain.python
+  organization_role: common_foundation
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.c
+  display_name: C
+  semantic_statement: C foundations capability organization domain.
+  parent_organization_id: null
+  primary_domain_id: domain.c
+  organization_role: common_foundation
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.linux_git_shell
+  display_name: Linux + Git + Shell
+  semantic_statement: Linux + Git + Shell foundations capability organization domain.
+  parent_organization_id: null
+  primary_domain_id: domain.linux_git_shell
+  organization_role: common_foundation
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: domain
+  logical_id_candidate: domain.data_structures_algorithms
+  display_name: Data Structures & Algorithms Foundations
+  semantic_statement: Data Structures & Algorithms Foundations foundations capability organization domain.
+  parent_organization_id: null
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: supporting_domain
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.english.language_foundations
+  display_name: Language Foundations
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.technical_english
+  primary_domain_id: domain.technical_english
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.core_terms
+  display_name: Core Terms
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.language_foundations
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.grammar_functions
+  display_name: Grammar Functions
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.language_foundations
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.instructions_errors
+  display_name: Instructions Errors
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.language_foundations
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.english.technical_comprehension
+  display_name: Technical Comprehension
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.technical_english
+  primary_domain_id: domain.technical_english
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.documentation_reading
+  display_name: Documentation Reading
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.technical_comprehension
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.technical_writing
+  display_name: Technical Writing
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.technical_comprehension
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.english.spoken_communication
+  display_name: Spoken Communication
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.english.technical_comprehension
+  primary_domain_id: domain.technical_english
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D01
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.python.programming_core
+  display_name: Programming Core
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.python
+  primary_domain_id: domain.python
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.execution
+  display_name: Execution
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.programming_core
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.values_types
+  display_name: Values Types
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.programming_core
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.expressions_io
+  display_name: Expressions Io
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.programming_core
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.conditionals
+  display_name: Conditionals
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.programming_core
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.iteration
+  display_name: Iteration
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.programming_core
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.python.data_functions
+  display_name: Data Functions
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.python
+  primary_domain_id: domain.python
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.strings_bytes
+  display_name: Strings Bytes
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.data_functions
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.collections
+  display_name: Collections
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.data_functions
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.functions_scope
+  display_name: Functions Scope
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.data_functions
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.iterators_generators
+  display_name: Iterators Generators
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.data_functions
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.python.software_engineering
+  display_name: Software Engineering
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.python
+  primary_domain_id: domain.python
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.errors
+  display_name: Errors
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.software_engineering
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.modules_files
+  display_name: Modules Files
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.software_engineering
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.objects_typing
+  display_name: Objects Typing
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.software_engineering
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.testing_environments
+  display_name: Testing Environments
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.software_engineering
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.packaging_cli
+  display_name: Packaging Cli
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.software_engineering
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.python.systems_data
+  display_name: Systems Data
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.python
+  primary_domain_id: domain.python
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.os_network_concurrency
+  display_name: Os Network Concurrency
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.systems_data
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.data_tensor
+  display_name: Data Tensor
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.systems_data
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.python.performance_automation
+  display_name: Performance Automation
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.python.systems_data
+  primary_domain_id: domain.python
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D02
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.c.language_toolchain
+  display_name: Language Toolchain
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.c
+  primary_domain_id: domain.c
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.toolchain
+  display_name: Toolchain
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.language_toolchain
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.types_expressions
+  display_name: Types Expressions
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.language_toolchain
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.io_control
+  display_name: Io Control
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.language_toolchain
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.functions_scope
+  display_name: Functions Scope
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.language_toolchain
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.c.memory_data
+  display_name: Memory Data
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.c
+  primary_domain_id: domain.c
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.pointers_arrays
+  display_name: Pointers Arrays
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.memory_data
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.strings_structs
+  display_name: Strings Structs
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.memory_data
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.dynamic_memory
+  display_name: Dynamic Memory
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.memory_data
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.c.engineering
+  display_name: Engineering
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.c
+  primary_domain_id: domain.c
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.modular_build
+  display_name: Modular Build
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.engineering
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.debugging_safety
+  display_name: Debugging Safety
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.engineering
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.c.files_bits
+  display_name: Files Bits
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.c.engineering
+  primary_domain_id: domain.c
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D03
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.linux.working_environment
+  display_name: Working Environment
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.linux_git_shell
+  primary_domain_id: domain.linux_git_shell
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.linux.filesystem_permissions
+  display_name: Filesystem Permissions
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.linux.working_environment
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.linux.processes_io
+  display_name: Processes Io
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.linux.working_environment
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.linux.environment_tools
+  display_name: Environment Tools
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.linux.working_environment
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.shell.command_automation
+  display_name: Command Automation
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.linux_git_shell
+  primary_domain_id: domain.linux_git_shell
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.shell.command_language
+  display_name: Command Language
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.shell.command_automation
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.shell.pipelines_scripts
+  display_name: Pipelines Scripts
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.shell.command_automation
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.git.version_control
+  display_name: Version Control
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.linux_git_shell
+  primary_domain_id: domain.linux_git_shell
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.git.state_commits
+  display_name: State Commits
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.git.version_control
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.git.branches_history
+  display_name: Branches History
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.git.version_control
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.git.remotes_recovery
+  display_name: Remotes Recovery
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.git.version_control
+  primary_domain_id: domain.linux_git_shell
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D04
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.dsa.analysis_sequences
+  display_name: Analysis Sequences
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.data_structures_algorithms
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.dsa.complexity_correctness
+  display_name: Complexity Correctness
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.dsa.analysis_sequences
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.dsa.sequences_search
+  display_name: Sequences Search
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.dsa.analysis_sequences
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.dsa.linear_structures
+  display_name: Linear Structures
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.dsa.analysis_sequences
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.dsa.recursive_structures
+  display_name: Recursive Structures
+  semantic_statement: Related foundation Topics için stable organization cluster.
+  parent_organization_id: domain.data_structures_algorithms
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.dsa.recursion_sorting
+  display_name: Recursion Sorting
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.dsa.recursive_structures
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.dsa.trees_graphs
+  display_name: Trees Graphs
+  semantic_statement: Learner-facing teaching, practice and evidence context.
+  parent_organization_id: module.dsa.recursive_structures
+  primary_domain_id: domain.data_structures_algorithms
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - remediate
+  linked_route_family_ids:
+  - D05
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.fbb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null

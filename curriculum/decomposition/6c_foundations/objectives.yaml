@@ -1,0 +1,4751 @@
+- objective_id_candidate: objective.c.allocation_size_overflow_safety.demonstrate_capability
+  owner_skill_id: skill.c.allocation_size_overflow_safety
+  objective_statement: Yeni bir bağlamda Allocation size hesabında overflow ve bounds riskini kontrol edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id001
+    - code_reading
+    - explanation
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.array_bounds_indexing.demonstrate_capability
+  owner_skill_id: skill.c.array_bounds_indexing
+  objective_statement: Yeni bir bağlamda Array indexing, extent ve bounds ilişkisini güvenli biçimde uygulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id002
+    - authored_code
+    - deterministic_test
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.array_pointer_distinction.demonstrate_capability
+  owner_skill_id: skill.c.array_pointer_distinction
+  objective_statement: Yeni bir bağlamda Array object, pointer value ve decay davranışını uygun context'te ayırt
+    edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.bitwise_mask_reasoning.demonstrate_capability
+  owner_skill_id: skill.c.bitwise_mask_reasoning
+  objective_statement: Yeni bir bağlamda Unsigned bit mask, shift ve flag behavior'ını örnek üzerinde izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  owner_skill_id: skill.c.compile_link_run_basic
+  objective_statement: Yeni bir bağlamda C translation, compile, link ve run aşamalarını araç çıktısıyla ayırt edebilmek
+  observable_action: classify_compile_vs_runtime_failure
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id003
+    - hands_on_system_task
+    - observed_result
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id004
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.compile_link_run_basic.compile_and_run_small_program
+  owner_skill_id: skill.c.compile_link_run_basic
+  objective_statement: Yeni bir bağlamda C translation, compile, link ve run aşamalarını araç çıktısıyla ayırt edebilmek
+  observable_action: compile_and_run_small_program
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id004
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.compiler_diagnostic_reading.demonstrate_capability
+  owner_skill_id: skill.c.compiler_diagnostic_reading
+  objective_statement: Yeni bir bağlamda Compiler diagnostic'te location, category ve likely source'u belirleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id005
+    - artifact_analysis
+    - explanation
+    direct_evidence_types: *id005
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.conditionals.write_control_flow
+  owner_skill_id: skill.c.conditionals
+  objective_statement: Yeni bir bağlamda C if/switch branch davranışını doğru condition ile üretebilmek
+  observable_action: write_control_flow
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.debugger_trace_basic.demonstrate_capability
+  owner_skill_id: skill.c.debugger_trace_basic
+  objective_statement: Yeni bir bağlamda Debugger ile stack, variable ve control-flow state'ini izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.declaration_type_model.write_basic_declarations
+  owner_skill_id: skill.c.declaration_type_model
+  objective_statement: Yeni bir bağlamda C declaration, scalar type, qualifier ve conversion davranışını okuyup
+    yazabilmek
+  observable_action: write_basic_declarations
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.dynamic_allocation_lifecycle.demonstrate_capability
+  owner_skill_id: skill.c.dynamic_allocation_lifecycle
+  objective_statement: Yeni bir bağlamda Allocate, ownership, use ve free lifecycle'ını hata yollarıyla birlikte
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.expression_evaluation.demonstrate_capability
+  owner_skill_id: skill.c.expression_evaluation
+  objective_statement: Yeni bir bağlamda C operator, precedence, integer conversion ve side-effect sınırını güvenli
+    değerlendirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.file_io_error_handling.demonstrate_capability
+  owner_skill_id: skill.c.file_io_error_handling
+  objective_statement: Yeni bir bağlamda C file I/O lifecycle ve error return handling davranışını kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.for_iteration.demonstrate_capability
+  owner_skill_id: skill.c.for_iteration
+  objective_statement: Yeni bir bağlamda C for loop state, condition ve update davranışını doğru kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.functions_basic.write_and_call_function
+  owner_skill_id: skill.c.functions_basic
+  objective_statement: Yeni bir bağlamda C function declaration, prototype, call, parameter ve return davranışını
+    kullanabilmek
+  observable_action: write_and_call_function
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.header_translation_unit_interface.demonstrate_capability
+  owner_skill_id: skill.c.header_translation_unit_interface
+  objective_statement: Yeni bir bağlamda Header declaration, definition ve translation-unit sınırını doğru kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.multi_file_build.demonstrate_capability
+  owner_skill_id: skill.c.multi_file_build
+  objective_statement: Yeni bir bağlamda Birden çok translation unit'i deterministic flags ile compile/link edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.pointer_dereference.modify_value_via_pointer
+  owner_skill_id: skill.c.pointer_dereference
+  objective_statement: Yeni bir bağlamda Geçerli pointer üzerinden value okuyup kontrollü güncelleme yapabilmek
+  observable_action: modify_value_via_pointer
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id006
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.pointer_dereference.read_pointed_value
+  owner_skill_id: skill.c.pointer_dereference
+  objective_statement: Yeni bir bağlamda Geçerli pointer üzerinden value okuyup kontrollü güncelleme yapabilmek
+  observable_action: read_pointed_value
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id006
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.pointer_formation.demonstrate_capability
+  owner_skill_id: skill.c.pointer_formation
+  objective_statement: Yeni bir bağlamda Pointer declaration ve address-of ile type-compatible pointer oluşturabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.sanitizer_undefined_behavior.demonstrate_capability
+  owner_skill_id: skill.c.sanitizer_undefined_behavior
+  objective_statement: Yeni bir bağlamda Sanitizer bulgusunu undefined behavior kaynağına lokalize edip doğrulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.scope_linkage_storage_duration.demonstrate_capability
+  owner_skill_id: skill.c.scope_linkage_storage_duration
+  objective_statement: Yeni bir bağlamda Block/file scope, linkage ve storage duration kavramlarını örnekte ayırt
+    edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.standard_io_basic.demonstrate_capability
+  owner_skill_id: skill.c.standard_io_basic
+  objective_statement: Yeni bir bağlamda Basit formatted input/output akışını return-value ve bounds farkındalığıyla
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.string_null_termination.demonstrate_capability
+  owner_skill_id: skill.c.string_null_termination
+  objective_statement: Yeni bir bağlamda C string buffer, terminator ve length/capacity sınırını güvenli yönetebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.struct_enum_model.demonstrate_capability
+  owner_skill_id: skill.c.struct_enum_model
+  objective_statement: Yeni bir bağlamda Struct ve enum ile ilişkili veriyi açık layout/meaning altında modelleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.c.while_iteration.demonstrate_capability
+  owner_skill_id: skill.c.while_iteration
+  objective_statement: Yeni bir bağlamda C while/do-while termination davranışını kurup non-termination'ı düzeltebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.computing.program_execution_model.explain_pipeline
+  owner_skill_id: skill.computing.program_execution_model
+  objective_statement: Yeni bir bağlamda Source, translator veya runtime ve çalışan process ilişkisini açıklayabilmek
+  observable_action: explain_pipeline
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id007
+    - explanation
+    - code_reading
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+  owner_skill_id: skill.computing.source_runtime_artifact_distinction
+  objective_statement: Yeni bir bağlamda Source, script, object, executable ve runtime output artifact'larını ayırt
+    edebilmek
+  observable_action: classify_artifacts
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.algorithm_correctness_invariant.demonstrate_capability
+  owner_skill_id: skill.dsa.algorithm_correctness_invariant
+  objective_statement: Yeni bir bağlamda Precondition, invariant ve postcondition ile küçük algoritmanın doğruluğunu
+    açıklayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id008
+    - explanation
+    - trace
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.asymptotic_bound_reasoning.demonstrate_capability
+  owner_skill_id: skill.dsa.asymptotic_bound_reasoning
+  objective_statement: Yeni bir bağlamda Basit algoritma için dominant work ve asymptotic bound gerekçesi kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id008
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.binary_search.demonstrate_capability
+  owner_skill_id: skill.dsa.binary_search
+  objective_statement: Yeni bir bağlamda Sorted-input invariant altında binary search boundary update'lerini doğru
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id009
+    - authored_code
+    - deterministic_test
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.complexity_growth_intuition.compare_growth_examples
+  owner_skill_id: skill.dsa.complexity_growth_intuition
+  objective_statement: Yeni bir bağlamda Sabit, logarithmic ve linear benzeri growth farklarını input büyümesi üzerinden
+    ayırt edebilmek
+  observable_action: compare_growth_examples
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id008
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.graph_traversal_basic.demonstrate_capability
+  owner_skill_id: skill.dsa.graph_traversal_basic
+  objective_statement: Yeni bir bağlamda Graph adjacency modelinde visited-state ile BFS/DFS traversal kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.hash_table_tradeoff.demonstrate_capability
+  owner_skill_id: skill.dsa.hash_table_tradeoff
+  objective_statement: Yeni bir bağlamda Hash lookup, collision ve capacity trade-off'larını temel kullanımda açıklayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id008
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.linear_search.implement_search
+  owner_skill_id: skill.dsa.linear_search
+  objective_statement: Yeni bir bağlamda Linear search'ü implement edip termination ve result contract'ını açıklayabilmek
+  observable_action: implement_search
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.linked_structure_reasoning.demonstrate_capability
+  owner_skill_id: skill.dsa.linked_structure_reasoning
+  objective_statement: Yeni bir bağlamda Node/link traversal ve update invariants'ını pointer veya reference modeliyle
+    açıklayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id008
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.recursive_problem_decomposition.demonstrate_capability
+  owner_skill_id: skill.dsa.recursive_problem_decomposition
+  objective_statement: Yeni bir bağlamda Base case ve recursive reduction ile küçük problemi parçalayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.sequence_traversal.explain_termination_and_result
+  owner_skill_id: skill.dsa.sequence_traversal
+  objective_statement: Yeni bir bağlamda Sequence üzerinde indeksli veya iterator tabanlı traversal kurabilmek
+  observable_action: explain_termination_and_result
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.sorting_comparison_reasoning.demonstrate_capability
+  owner_skill_id: skill.dsa.sorting_comparison_reasoning
+  objective_statement: Yeni bir bağlamda Comparison sorting behavior'ını correctness ve growth açısından karşılaştırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id008
+    direct_evidence_types: *id008
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.stack_queue_behavior.demonstrate_capability
+  owner_skill_id: skill.dsa.stack_queue_behavior
+  objective_statement: Yeni bir bağlamda Stack ve queue semantics'ini problem behavior'ına göre seçip uygulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.dsa.tree_traversal_basic.demonstrate_capability
+  owner_skill_id: skill.dsa.tree_traversal_basic
+  objective_statement: Yeni bir bağlamda Tree node/edge modelinde depth-first ve breadth-first traversal'ı uygulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id009
+    direct_evidence_types: *id009
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.engineering.explain_debug_fix_basic.explain_symptom_cause_fix_verify
+  owner_skill_id: skill.engineering.explain_debug_fix_basic
+  objective_statement: Yeni bir bağlamda Bir bug için symptom, cause, fix ve verification zincirini açıklayabilmek
+  observable_action: explain_symptom_cause_fix_verify
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id010
+    - hands_on_workflow
+    - explanation
+    direct_evidence_types: *id010
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.engineering.reproducible_run_notes.record_reproduction_steps
+  owner_skill_id: skill.engineering.reproducible_run_notes
+  objective_statement: Yeni bir bağlamda Environment, command, input ve sonucu yeniden üretilebilir biçimde kaydedebilmek
+  observable_action: record_reproduction_steps
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id010
+    direct_evidence_types: *id010
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.ask_clarifying_technical_question.demonstrate_capability
+  owner_skill_id: skill.english.ask_clarifying_technical_question
+  objective_statement: Yeni bir bağlamda Eksik requirement veya belirsiz hata için basit açıklayıcı soru kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id011
+    - written_or_spoken_production
+    direct_evidence_types: *id011
+    required_direct_type: written_or_spoken_production
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.be_and_simple_present_comprehension.demonstrate_capability
+  owner_skill_id: skill.english.be_and_simple_present_comprehension
+  objective_statement: Yeni bir bağlamda Be ve simple-present ile kurulan kısa teknik ifadelerin işlevini anlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id012
+    - reading_comprehension
+    - structured_response
+    direct_evidence_types: *id012
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.documentation_navigation.demonstrate_capability
+  owner_skill_id: skill.english.documentation_navigation
+  objective_statement: Yeni bir bağlamda Başlık, code block, option ve example işaretlerini kullanarak kısa dokümanda
+    bilgi bulabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id013
+    - reading_comprehension
+    - hands_on_task
+    direct_evidence_types: *id013
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.explain_simple_technical_process.demonstrate_capability
+  owner_skill_id: skill.english.explain_simple_technical_process
+  objective_statement: Yeni bir bağlamda Öğretilmiş kalıplarla kısa bir teknik süreci sözlü veya yazılı sıralı açıklayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id011
+    direct_evidence_types: *id011
+    required_direct_type: written_or_spoken_production
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  owner_skill_id: skill.english.follow_bilingual_technical_instruction
+  objective_statement: Yeni bir bağlamda Öğretilmiş grammar ve vocabulary ile kısa bilingual teknik yönergeyi izleyebilmek
+  observable_action: execute_known_instruction
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id013
+    direct_evidence_types: *id013
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.imperative_instruction_comprehension.demonstrate_capability
+  owner_skill_id: skill.english.imperative_instruction_comprehension
+  objective_statement: Yeni bir bağlamda Kısa imperative teknik yönergede eylem ve nesneyi belirleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id012
+    direct_evidence_types: *id012
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.negation_question_comprehension.demonstrate_capability
+  owner_skill_id: skill.english.negation_question_comprehension
+  objective_statement: Yeni bir bağlamda Basit teknik olumsuzluk ve soru yapılarının anlamını çözebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id012
+    direct_evidence_types: *id012
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.preposition_function_word_comprehension.demonstrate_capability
+  owner_skill_id: skill.english.preposition_function_word_comprehension
+  objective_statement: Yeni bir bağlamda Teknik yönergelerde temel preposition ve function-word rollerini ayırt
+    edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id012
+    direct_evidence_types: *id012
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.read_definition_and_constraint.demonstrate_capability
+  owner_skill_id: skill.english.read_definition_and_constraint
+  objective_statement: Yeni bir bağlamda Kısa teknik tanımda kavram, koşul ve kısıtı ayırt edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id013
+    direct_evidence_types: *id013
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.read_procedure_sequence.demonstrate_capability
+  owner_skill_id: skill.english.read_procedure_sequence
+  objective_statement: Yeni bir bağlamda Kısa teknik prosedürde adım sırasını ve conditional uyarıyı izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id013
+    direct_evidence_types: *id013
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  owner_skill_id: skill.english.read_simple_terminal_error_fragments
+  objective_statement: Yeni bir bağlamda Kısa terminal veya compiler error fragment'ında ana sinyali bulabilmek
+  observable_action: extract_known_signal
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id013
+    direct_evidence_types: *id013
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.recognize_core_technical_labels.match_term_meaning
+  owner_skill_id: skill.english.recognize_core_technical_labels
+  objective_statement: Yeni bir bağlamda Temel file, run, error, value, input ve output etiketlerini bağlamda tanıyabilmek
+  observable_action: match_term_meaning
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id014
+    - recognition
+    - structured_response
+    direct_evidence_types: *id014
+    required_direct_type: recognition
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+  owner_skill_id: skill.english.technical_noun_phrase_recognition
+  objective_statement: Yeni bir bağlamda Basit article, plural ve modifier içeren teknik noun phrase'i çözümleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id012
+    direct_evidence_types: *id012
+    required_direct_type: reading_comprehension
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.write_basic_bug_description.demonstrate_capability
+  owner_skill_id: skill.english.write_basic_bug_description
+  objective_statement: Yeni bir bağlamda Öğretilmiş dil ile expected, actual ve error bilgisini içeren kısa bug
+    açıklaması yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id011
+    direct_evidence_types: *id011
+    required_direct_type: written_or_spoken_production
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.english.write_command_result_note.demonstrate_capability
+  owner_skill_id: skill.english.write_command_result_note
+  objective_statement: Yeni bir bağlamda Öğretilmiş kalıplarla command, input ve result içeren kısa teknik not yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id011
+    direct_evidence_types: *id011
+    required_direct_type: written_or_spoken_production
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.branch_merge_model.demonstrate_capability
+  owner_skill_id: skill.git.branch_merge_model
+  objective_statement: Yeni bir bağlamda Branch/ref ve merge ancestry modelini basit repository üzerinde uygulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.conflict_resolution.demonstrate_capability
+  owner_skill_id: skill.git.conflict_resolution
+  objective_statement: Yeni bir bağlamda Merge/rebase conflict'ini intent'i koruyarak çözmek ve sonucu test etmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.history_inspection.demonstrate_capability
+  owner_skill_id: skill.git.history_inspection
+  objective_statement: Yeni bir bağlamda Log, show ve blame benzeri history views ile değişikliğin kaynağını izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.recovery_safe_undo.demonstrate_capability
+  owner_skill_id: skill.git.recovery_safe_undo
+  objective_statement: Yeni bir bağlamda Restore, revert ve reset seçeneklerini history/publication etkisine göre
+    güvenli seçebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id005
+    direct_evidence_types: *id005
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.remote_sync.demonstrate_capability
+  owner_skill_id: skill.git.remote_sync
+  objective_statement: Yeni bir bağlamda Fetch, pull/rebase seçimi ve push davranışını local/remote ref modeliyle
+    kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.repository_status_diff.inspect_change_state
+  owner_skill_id: skill.git.repository_status_diff
+  objective_statement: Yeni bir bağlamda Working tree ve index değişikliklerini status/diff ile okuyabilmek
+  observable_action: inspect_change_state
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.git.stage_commit_history_basic.commit_and_verify_history
+  owner_skill_id: skill.git.stage_commit_history_basic
+  objective_statement: Yeni bir bağlamda Seçili değişikliği stage ve commit edip resulting history'yi doğrulayabilmek
+  observable_action: commit_and_verify_history
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.environment_path_resolution.demonstrate_capability
+  owner_skill_id: skill.linux.environment_path_resolution
+  objective_statement: Yeni bir bağlamda Environment variable ve PATH command resolution davranışını izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id015
+    - system_observation
+    - explanation
+    direct_evidence_types: *id015
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.file_permissions_ownership.demonstrate_capability
+  owner_skill_id: skill.linux.file_permissions_ownership
+  objective_statement: Yeni bir bağlamda Read/write/execute permission ve ownership etkisini temel örnekte yorumlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id005
+    direct_evidence_types: *id005
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.links_file_identity.demonstrate_capability
+  owner_skill_id: skill.linux.links_file_identity
+  objective_statement: Yeni bir bağlamda Symbolic link, hard link ve pathname/file identity farkını ayırt edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id015
+    direct_evidence_types: *id015
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  owner_skill_id: skill.linux.process_exit_stdout_stderr_basic
+  objective_statement: Yeni bir bağlamda Process, exit status, stdout ve stderr davranışını ayırt edebilmek
+  observable_action: classify_process_outputs
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id015
+    direct_evidence_types: *id015
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.process_inspection.demonstrate_capability
+  owner_skill_id: skill.linux.process_inspection
+  objective_statement: Yeni bir bağlamda Process tree, resource snapshot ve command line bilgisini araçlarla okuyabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.process_signal_job_control.demonstrate_capability
+  owner_skill_id: skill.linux.process_signal_job_control
+  objective_statement: Yeni bir bağlamda Process ID, signal ve foreground/background job davranışını güvenli yönetebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  owner_skill_id: skill.linux.terminal_filesystem_navigation
+  objective_statement: Yeni bir bağlamda Relative/absolute path ve working directory ile güvenli terminal navigation
+    yapabilmek
+  observable_action: navigate_relative_absolute
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.linux.tool_discovery_help.demonstrate_capability
+  owner_skill_id: skill.linux.tool_discovery_help
+  objective_statement: Yeni bir bağlamda Man/help/version output'undan command kullanımını ve capability sınırını
+    bulabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.memory.address_value_distinction.explain_address_vs_value
+  owner_skill_id: skill.memory.address_value_distinction
+  objective_statement: Yeni bir bağlamda Stored value ile memory address kavramını örnekte ayırt edebilmek
+  observable_action: explain_address_vs_value
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id016
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.memory.address_value_distinction.trace_simple_memory_example
+  owner_skill_id: skill.memory.address_value_distinction
+  objective_statement: Yeni bir bağlamda Stored value ile memory address kavramını örnekte ayırt edebilmek
+  observable_action: trace_simple_memory_example
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id016
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  owner_skill_id: skill.memory.storage_lifetime_intuition
+  objective_statement: Yeni bir bağlamda Automatic, static ve dynamic object lifetime sınırlarını başlangıç seviyesinde
+    ayırt edebilmek
+  observable_action: identify_simple_lifetime_boundary
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.branching_reasoning.predict_branch
+  owner_skill_id: skill.programming.branching_reasoning
+  objective_statement: Yeni bir bağlamda Koşula göre yürütülecek branch'i belirleyebilmek
+  observable_action: predict_branch
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.code_reading_basic.demonstrate_capability
+  owner_skill_id: skill.programming.code_reading_basic
+  objective_statement: Yeni bir bağlamda Küçük bir programın control/data flow'unu çalıştırmadan izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.debug_localization_basic.locate_cause
+  owner_skill_id: skill.programming.debug_localization_basic
+  objective_statement: Yeni bir bağlamda Symptom, fault location ve likely cause'u ayırarak basit bug'ı lokalize
+    edebilmek
+  observable_action: locate_cause
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.expression_boolean_reasoning.evaluate_condition
+  owner_skill_id: skill.programming.expression_boolean_reasoning
+  objective_statement: Yeni bir bağlamda Expression ve boolean sonuçlarını gerekçeli değerlendirebilmek
+  observable_action: evaluate_condition
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.function_decomposition.define_io_responsibility
+  owner_skill_id: skill.programming.function_decomposition
+  objective_statement: Yeni bir bağlamda Problemi input, output ve sorumlulukları belirli fonksiyonlara bölebilmek
+  observable_action: define_io_responsibility
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.input_validation_reasoning.demonstrate_capability
+  owner_skill_id: skill.programming.input_validation_reasoning
+  objective_statement: Yeni bir bağlamda Girdinin kabul koşullarını ve invalid-input davranışını tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.iteration_reasoning.detect_nontermination
+  owner_skill_id: skill.programming.iteration_reasoning
+  objective_statement: Yeni bir bağlamda Iteration state, invariant ve termination davranışını izleyebilmek
+  observable_action: detect_nontermination
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id017
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.iteration_reasoning.trace_iteration
+  owner_skill_id: skill.programming.iteration_reasoning
+  objective_statement: Yeni bir bağlamda Iteration state, invariant ve termination davranışını izleyebilmek
+  observable_action: trace_iteration
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id017
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.state_assignment_model.trace_state
+  owner_skill_id: skill.programming.state_assignment_model
+  objective_statement: Yeni bir bağlamda State ve assignment değişimini adım adım izleyebilmek
+  observable_action: trace_state
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.test_case_basic.design_expected_case
+  owner_skill_id: skill.programming.test_case_basic
+  objective_statement: Yeni bir bağlamda Input, expected result ve edge case içeren bağımsız test case tasarlayabilmek
+  observable_action: design_expected_case
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.programming.trace_execution_basic.produce_trace
+  owner_skill_id: skill.programming.trace_execution_basic
+  objective_statement: Yeni bir bağlamda Kısa programın execution trace'ini üretip state geçişlerini ilişkilendirebilmek
+  observable_action: produce_trace
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id007
+    direct_evidence_types: *id007
+    required_direct_type: explanation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.argument_binding.demonstrate_capability
+  owner_skill_id: skill.python.argument_binding
+  objective_statement: Yeni bir bağlamda Positional, keyword, default ve variadic argument binding davranışını güvenli
+    kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.assignment_binding.write_state_change
+  owner_skill_id: skill.python.assignment_binding
+  objective_statement: Yeni bir bağlamda Python assignment ve name binding ile state değişimi kurabilmek
+  observable_action: write_state_change
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.async_task_coordination.demonstrate_capability
+  owner_skill_id: skill.python.async_task_coordination
+  objective_statement: Yeni bir bağlamda Async task, await, cancellation ve timeout davranışını küçük I/O örneğinde
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.benchmark_automation.demonstrate_capability
+  owner_skill_id: skill.python.benchmark_automation
+  objective_statement: Yeni bir bağlamda Warmup, repeated runs ve structured result içeren küçük benchmark automation'ı
+    yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.bytes_text_boundary.demonstrate_capability
+  owner_skill_id: skill.python.bytes_text_boundary
+  objective_statement: Yeni bir bağlamda Bytes ile text farkını ve encode/decode sınırını güvenli örnekte uygulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.class_object_model.demonstrate_capability
+  owner_skill_id: skill.python.class_object_model
+  objective_statement: Yeni bir bağlamda Class, instance, attribute ve method binding modelini küçük örnekte kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.cli_argument_parsing.demonstrate_capability
+  owner_skill_id: skill.python.cli_argument_parsing
+  objective_statement: Yeni bir bağlamda CLI arguments, validation, exit status ve help behavior'ı kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.comprehension_transformation.demonstrate_capability
+  owner_skill_id: skill.python.comprehension_transformation
+  objective_statement: Yeni bir bağlamda Comprehension ile açık iteration arasındaki dönüşümü okuyup uygun olanı
+    yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.conditionals.write_branch_logic
+  owner_skill_id: skill.python.conditionals
+  objective_statement: Yeni bir bağlamda If, elif ve else ile doğru branch davranışı üretebilmek
+  observable_action: write_branch_logic
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.data_model_protocols.demonstrate_capability
+  owner_skill_id: skill.python.data_model_protocols
+  objective_statement: Yeni bir bağlamda Temel dunder protocol behavior'ını magic ezberi yerine object model üzerinden
+    açıklayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.data_table_transformation.demonstrate_capability
+  owner_skill_id: skill.python.data_table_transformation
+  objective_statement: Yeni bir bağlamda Tabular veriyi schema, missing value ve reproducibility guard'larıyla dönüştürebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.debugging_tools.demonstrate_capability
+  owner_skill_id: skill.python.debugging_tools
+  objective_statement: Yeni bir bağlamda Breakpoint, inspection ve minimal reproduction ile Python bug'ını lokalize
+    edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.exception_handling.demonstrate_capability
+  owner_skill_id: skill.python.exception_handling
+  objective_statement: Yeni bir bağlamda Dar exception handling, propagation ve cleanup davranışını doğru kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.exceptions_read_basic.extract_error_type_location
+  owner_skill_id: skill.python.exceptions_read_basic
+  objective_statement: Yeni bir bağlamda Exception türü, traceback frame ve fault location bilgisini okuyabilmek
+  observable_action: extract_error_type_location
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.expression_evaluation.demonstrate_capability
+  owner_skill_id: skill.python.expression_evaluation
+  objective_statement: Yeni bir bağlamda Python operator precedence ve expression evaluation sonucunu izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.files_paths_basic.demonstrate_capability
+  owner_skill_id: skill.python.files_paths_basic
+  objective_statement: Yeni bir bağlamda Text file open, read, write ve deterministic close akışını kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.first_class_callable.demonstrate_capability
+  owner_skill_id: skill.python.first_class_callable
+  objective_statement: Yeni bir bağlamda Callable değerleri callback veya composition bağlamında kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.for_iteration.iterate_sequence
+  owner_skill_id: skill.python.for_iteration
+  objective_statement: Yeni bir bağlamda Iterable üzerinde for iteration kurup sonucu doğrulayabilmek
+  observable_action: iterate_sequence
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.functions_parameters_return.write_small_function
+  owner_skill_id: skill.python.functions_parameters_return
+  objective_statement: Yeni bir bağlamda Function, parameter, argument ve return ile küçük davranışları ayırabilmek
+  observable_action: write_small_function
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.generator_functions.demonstrate_capability
+  owner_skill_id: skill.python.generator_functions
+  objective_statement: Yeni bir bağlamda Yield tabanlı generator ile lazy sequence behavior'ı üretebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.input_output_basic.build_small_io_flow
+  owner_skill_id: skill.python.input_output_basic
+  objective_statement: Yeni bir bağlamda Basit stdin/input ve stdout/print akışı kurabilmek
+  observable_action: build_small_io_flow
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.iterator_protocol.demonstrate_capability
+  owner_skill_id: skill.python.iterator_protocol
+  objective_statement: Yeni bir bağlamda Iterable, iterator ve StopIteration modelini açıklayıp custom iteration'ı
+    okuyabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.list_operations.select_and_use_sequence
+  owner_skill_id: skill.python.list_operations
+  objective_statement: Yeni bir bağlamda Mutable ordered list üzerinde oluşturma, güncelleme, traversal ve copy
+    davranışını kullanabilmek
+  observable_action: select_and_use_sequence
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.loop_control_flow.demonstrate_capability
+  owner_skill_id: skill.python.loop_control_flow
+  objective_statement: Yeni bir bağlamda Break, continue ve loop-else davranışını uygun durumda kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.mapping_collections_basic.select_and_use_mapping
+  owner_skill_id: skill.python.mapping_collections_basic
+  objective_statement: Yeni bir bağlamda Dictionary key/value lookup, update ve iteration davranışını kullanabilmek
+  observable_action: select_and_use_mapping
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.modules_imports_basic.import_and_use_module_member
+  owner_skill_id: skill.python.modules_imports_basic
+  objective_statement: Yeni bir bağlamda Module namespace, import resolution ve entry-point guard davranışını kullanabilmek
+  observable_action: import_and_use_module_member
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.network_client_basic.demonstrate_capability
+  owner_skill_id: skill.python.network_client_basic
+  objective_statement: Yeni bir bağlamda Timeout ve error handling içeren basit network client akışını kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.numpy_array_shape_dtype.demonstrate_capability
+  owner_skill_id: skill.python.numpy_array_shape_dtype
+  objective_statement: Yeni bir bağlamda Array shape, dtype, indexing ve broadcasting behavior'ını izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.os_subprocess_interaction.demonstrate_capability
+  owner_skill_id: skill.python.os_subprocess_interaction
+  objective_statement: Yeni bir bağlamda Environment, filesystem ve subprocess çağrılarını argument-safe biçimde
+    kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.package_layout_metadata.demonstrate_capability
+  owner_skill_id: skill.python.package_layout_metadata
+  objective_statement: Yeni bir bağlamda Importable package layout ve temel project metadata'sını kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.path_handling.read_write_small_text_file
+  owner_skill_id: skill.python.path_handling
+  objective_statement: Yeni bir bağlamda Relative, absolute ve platform-aware path işlemlerini güvenli kurabilmek
+  observable_action: read_write_small_text_file
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.profiling_measurement.demonstrate_capability
+  owner_skill_id: skill.python.profiling_measurement
+  objective_statement: Yeni bir bağlamda Timing ve profiler artifact'ı ile Python bottleneck candidate'ını ölçebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.run_repl_script.execute_and_classify_result
+  owner_skill_id: skill.python.run_repl_script
+  objective_statement: Yeni bir bağlamda Python REPL ve script çalıştırıp output ile error sonucunu ayırt edebilmek
+  observable_action: execute_and_classify_result
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.scope_name_resolution.demonstrate_capability
+  owner_skill_id: skill.python.scope_name_resolution
+  objective_statement: Yeni bir bağlamda Local, enclosing, global ve built-in name resolution sınırlarını izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.set_operations.demonstrate_capability
+  owner_skill_id: skill.python.set_operations
+  objective_statement: Yeni bir bağlamda Set membership ve temel set işlemlerini uniqueness problemi için kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.string_text_operations.demonstrate_capability
+  owner_skill_id: skill.python.string_text_operations
+  objective_statement: Yeni bir bağlamda Unicode string üzerinde slicing, searching, formatting ve normalization-aware
+    temel işlemler yapabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.tensor_device_dtype.demonstrate_capability
+  owner_skill_id: skill.python.tensor_device_dtype
+  objective_statement: Yeni bir bağlamda Tensor shape, device ve dtype dönüşümlerini explicit ve doğrulanabilir
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.test_doubles_boundaries.demonstrate_capability
+  owner_skill_id: skill.python.test_doubles_boundaries
+  objective_statement: Yeni bir bağlamda External dependency sınırında fake veya mock kullanımını davranış doğrulamasından
+    ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.thread_process_choice.demonstrate_capability
+  owner_skill_id: skill.python.thread_process_choice
+  objective_statement: Yeni bir bağlamda Thread, process ve async seçeneklerini workload ve isolation ihtiyacına
+    göre ayırt edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.tuple_immutable_sequence.demonstrate_capability
+  owner_skill_id: skill.python.tuple_immutable_sequence
+  objective_statement: Yeni bir bağlamda Tuple ve immutable sequence davranışını uygun veri modelinde kullanabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.type_hints_static_checking.demonstrate_capability
+  owner_skill_id: skill.python.type_hints_static_checking
+  objective_statement: Yeni bir bağlamda Type annotation yazıp static checker sonucunu runtime behavior'dan ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.unit_testing.demonstrate_capability
+  owner_skill_id: skill.python.unit_testing
+  objective_statement: Yeni bir bağlamda Bağımsız unit test, assertion, fixture ve failure message üretebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.value_type_behavior.demonstrate_capability
+  owner_skill_id: skill.python.value_type_behavior
+  objective_statement: Yeni bir bağlamda Temel Python value türlerini ve runtime type davranışını ayırt edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.virtual_environment_dependency.demonstrate_capability
+  owner_skill_id: skill.python.virtual_environment_dependency
+  objective_statement: Yeni bir bağlamda Virtual environment ve declared dependency ile yeniden üretilebilir Python
+    environment kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.while_termination.debug_infinite_loop
+  owner_skill_id: skill.python.while_termination
+  objective_statement: Yeni bir bağlamda While state update ve termination condition kurup non-termination'ı düzeltebilmek
+  observable_action: debug_infinite_loop
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id018
+  - targeted_reteach
+  - fresh_variant
+  - debug_localization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.while_termination.write_terminating_loop
+  owner_skill_id: skill.python.while_termination
+  objective_statement: Yeni bir bağlamda While state update ve termination condition kurup non-termination'ı düzeltebilmek
+  observable_action: write_terminating_loop
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id018
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.shell.command_options_redirection_basic.construct_simple_command
+  owner_skill_id: skill.shell.command_options_redirection_basic
+  objective_statement: Yeni bir bağlamda Command, option, argument ve quoting yapısını doğru kurabilmek
+  observable_action: construct_simple_command
+  success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.shell.expansion_quoting.demonstrate_capability
+  owner_skill_id: skill.shell.expansion_quoting
+  objective_statement: Yeni bir bağlamda Variable, glob ve command substitution expansion'ını quoting ile güvenli
+    kontrol edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.shell.pipeline_redirection.demonstrate_capability
+  owner_skill_id: skill.shell.pipeline_redirection
+  objective_statement: Yeni bir bağlamda Pipeline ve stdin/stdout/stderr redirection akışını kurup exit behavior'ı
+    yorumlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.shell.script_control_flow.demonstrate_capability
+  owner_skill_id: skill.shell.script_control_flow
+  objective_statement: Yeni bir bağlamda Shell script'te condition, loop, function ve fail-fast davranışını kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []

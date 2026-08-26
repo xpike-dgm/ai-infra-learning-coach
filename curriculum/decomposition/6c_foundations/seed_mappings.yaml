@@ -1,0 +1,1548 @@
+- seed_id: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.compile_link_run_basic.compile_and_run_small_program
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.c.compile_link_run_basic.compile_and_run_small_program
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.conditionals_loops_basic.write_control_flow
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.c.conditionals.write_control_flow
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.declarations_types_expressions.write_basic_declarations
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.c.declaration_type_model.write_basic_declarations
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.functions_basic.write_and_call_function
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.c.functions_basic.write_and_call_function
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.pointer_declaration_dereference_basic.modify_value_via_pointer
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.c.pointer_dereference.modify_value_via_pointer
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.c.pointer_declaration_dereference_basic.read_pointed_value
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.c.pointer_dereference.read_pointed_value
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.computing.program_execution_model.explain_pipeline
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.computing.program_execution_model.explain_pipeline
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.computing.source_runtime_artifact_distinction.classify_artifacts
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.dsa.complexity_growth_intuition.compare_growth_examples
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.dsa.complexity_growth_intuition.compare_growth_examples
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.dsa.sequence_traversal_linear_search.explain_termination_and_result
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.dsa.sequence_traversal.explain_termination_and_result
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.dsa.sequence_traversal_linear_search.implement_search
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.dsa.linear_search.implement_search
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.engineering.explain_debug_fix_basic.explain_symptom_cause_fix_verify
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.engineering.explain_debug_fix_basic.explain_symptom_cause_fix_verify
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.engineering.reproducible_run_notes.record_reproduction_steps
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.engineering.reproducible_run_notes.record_reproduction_steps
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.english.recognize_core_technical_labels.match_term_meaning
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.english.recognize_core_technical_labels.match_term_meaning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.git.repository_status_diff.inspect_change_state
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.git.repository_status_diff.inspect_change_state
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.git.stage_commit_history_basic.commit_and_verify_history
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.git.stage_commit_history_basic.commit_and_verify_history
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.memory.address_value_distinction.explain_address_vs_value
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.memory.address_value_distinction.explain_address_vs_value
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.memory.address_value_distinction.trace_simple_memory_example
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.memory.address_value_distinction.trace_simple_memory_example
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.branching_reasoning.predict_branch
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.branching_reasoning.predict_branch
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.debug_localization_basic.locate_cause
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.debug_localization_basic.locate_cause
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.expression_boolean_reasoning.evaluate_condition
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.expression_boolean_reasoning.evaluate_condition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.function_decomposition.define_io_responsibility
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.function_decomposition.define_io_responsibility
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.iteration_reasoning.detect_nontermination
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.iteration_reasoning.detect_nontermination
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.iteration_reasoning.trace_iteration
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.iteration_reasoning.trace_iteration
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.state_assignment_model.trace_state
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.state_assignment_model.trace_state
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.test_case_basic.design_expected_case
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.test_case_basic.design_expected_case
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.programming.trace_execution_basic.produce_trace
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.programming.trace_execution_basic.produce_trace
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.conditionals.write_branch_logic
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.conditionals.write_branch_logic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.exceptions_read_basic.extract_error_type_location
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.exceptions_read_basic.extract_error_type_location
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.files_paths_basic.read_write_small_text_file
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.python.path_handling.read_write_small_text_file
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.for_iteration.iterate_sequence
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.for_iteration.iterate_sequence
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.functions_parameters_return.write_small_function
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.functions_parameters_return.write_small_function
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.input_output_basic.build_small_io_flow
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.input_output_basic.build_small_io_flow
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.mapping_collections_basic.select_and_use_mapping
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.mapping_collections_basic.select_and_use_mapping
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.modules_imports_basic.import_and_use_module_member
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.modules_imports_basic.import_and_use_module_member
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.run_repl_script.execute_and_classify_result
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.run_repl_script.execute_and_classify_result
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.sequence_collections_basic.select_and_use_sequence
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.python.list_operations.select_and_use_sequence
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.values_variables_expressions.write_state_change
+  seed_kind: objective
+  disposition: normalize_logical_id
+  result_entity_refs:
+  - objective.python.assignment_binding.write_state_change
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: seed_identity_normalization
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.while_termination.debug_infinite_loop
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.while_termination.debug_infinite_loop
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.python.while_termination.write_terminating_loop
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.python.while_termination.write_terminating_loop
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: objective.shell.command_options_redirection_basic.construct_simple_command
+  seed_kind: objective
+  disposition: ratify_as_is
+  result_entity_refs:
+  - objective.shell.command_options_redirection_basic.construct_simple_command
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Objective remains one observable target under its ratified owner Skill.
+    prerequisite_effect: Inherited from the ratified owner Skill.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Objective remediation follows the ratified owner Skill.
+    reuse_effect: Objective identity is not cloned across Topic placements.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.compile_link_run_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.compile_link_run_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.conditionals_loops_basic
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.c.conditionals
+  - skill.c.for_iteration
+  - skill.c.while_iteration
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.declarations_types_expressions
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.c.declaration_type_model
+  - skill.c.expression_evaluation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.functions_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.functions_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.pointer_declaration_dereference_basic
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.c.pointer_formation
+  - skill.c.pointer_dereference
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.computing.program_execution_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.computing.program_execution_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.computing.source_runtime_artifact_distinction
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.computing.source_runtime_artifact_distinction
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.complexity_growth_intuition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.complexity_growth_intuition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.sequence_traversal_linear_search
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.dsa.sequence_traversal
+  - skill.dsa.linear_search
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.engineering.explain_debug_fix_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.explain_debug_fix_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.engineering.reproducible_run_notes
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.reproducible_run_notes
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.follow_bilingual_technical_instruction
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.follow_bilingual_technical_instruction
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.read_simple_terminal_error_fragments
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.read_simple_terminal_error_fragments
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.recognize_core_technical_labels
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.recognize_core_technical_labels
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.git.repository_status_diff
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.git.repository_status_diff
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.git.stage_commit_history_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.git.stage_commit_history_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.process_exit_stdout_stderr_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.process_exit_stdout_stderr_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.terminal_filesystem_navigation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.terminal_filesystem_navigation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.memory.address_value_distinction
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.memory.address_value_distinction
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.memory.storage_lifetime_intuition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.memory.storage_lifetime_intuition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.branching_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.branching_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.debug_localization_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.debug_localization_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.expression_boolean_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.expression_boolean_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.function_decomposition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.function_decomposition
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.iteration_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.iteration_reasoning
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.state_assignment_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.state_assignment_model
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.test_case_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.test_case_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.trace_execution_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.trace_execution_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.conditionals
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.conditionals
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.exceptions_read_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.exceptions_read_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.files_paths_basic
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.python.path_handling
+  - skill.python.files_paths_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.for_iteration
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.for_iteration
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.functions_parameters_return
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.functions_parameters_return
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.input_output_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.input_output_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.mapping_collections_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.mapping_collections_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.modules_imports_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.modules_imports_basic
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.run_repl_script
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.run_repl_script
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.sequence_collections_basic
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.python.list_operations
+  - skill.python.tuple_immutable_sequence
+  - skill.python.set_operations
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.values_variables_expressions
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.python.value_type_behavior
+  - skill.python.assignment_binding
+  - skill.python.expression_evaluation
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.while_termination
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.while_termination
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: unchanged
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.shell.command_options_redirection_basic
+  seed_kind: skill
+  disposition: split_required
+  result_entity_refs:
+  - skill.shell.command_options_redirection_basic
+  - skill.shell.pipeline_redirection
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Retained when evidence/remediation boundary is coherent; split when independent learner states
+      are required.
+    prerequisite_effect: Edges are reattached to the narrow target capability.
+    evidence_effect: No learner evidence migration because FBB seed was not published.
+    remediation_effect: Split targets support narrower remediation.
+    reuse_effect: Shared capabilities remain single canonical identities.
+  mapping_class: split_into
+  source_refs:
+  - source.repo.fbb_v0
+  - source.repo.gns_v0
+  review_refs: []

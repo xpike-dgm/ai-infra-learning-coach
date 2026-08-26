@@ -1,0 +1,1732 @@
+- topic_id: topic.c.debugging_safety
+  skill_id: skill.c.compiler_diagnostic_reading
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.compiler_diagnostic_reading.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.debugging_safety
+  skill_id: skill.c.debugger_trace_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.debugger_trace_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.debugging_safety
+  skill_id: skill.c.sanitizer_undefined_behavior
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.sanitizer_undefined_behavior.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.debugging_safety
+  skill_id: skill.engineering.explain_debug_fix_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.debugging_safety
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.dynamic_memory
+  skill_id: skill.c.allocation_size_overflow_safety
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.allocation_size_overflow_safety.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.dynamic_memory
+  skill_id: skill.c.dynamic_allocation_lifecycle
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.dynamic_allocation_lifecycle.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.dynamic_memory
+  skill_id: skill.memory.storage_lifetime_intuition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.files_bits
+  skill_id: skill.c.bitwise_mask_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.bitwise_mask_reasoning.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.files_bits
+  skill_id: skill.c.file_io_error_handling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.file_io_error_handling.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.functions_scope
+  skill_id: skill.c.functions_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.functions_basic.write_and_call_function
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.functions_scope
+  skill_id: skill.c.scope_linkage_storage_duration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.scope_linkage_storage_duration.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.functions_scope
+  skill_id: skill.programming.function_decomposition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.c.conditionals
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.conditionals.write_control_flow
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.c.for_iteration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.for_iteration.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.c.standard_io_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.standard_io_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.c.while_iteration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.while_iteration.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.programming.branching_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.programming.expression_boolean_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.io_control
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.modular_build
+  skill_id: skill.c.header_translation_unit_interface
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.header_translation_unit_interface.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.modular_build
+  skill_id: skill.c.multi_file_build
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.multi_file_build.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.pointers_arrays
+  skill_id: skill.c.array_bounds_indexing
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.array_bounds_indexing.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.pointers_arrays
+  skill_id: skill.c.array_pointer_distinction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.array_pointer_distinction.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.pointers_arrays
+  skill_id: skill.c.pointer_dereference
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.pointer_dereference.modify_value_via_pointer
+  - objective.c.pointer_dereference.read_pointed_value
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.pointers_arrays
+  skill_id: skill.c.pointer_formation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.pointer_formation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.pointers_arrays
+  skill_id: skill.memory.address_value_distinction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.memory.address_value_distinction.explain_address_vs_value
+  - objective.memory.address_value_distinction.trace_simple_memory_example
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.strings_structs
+  skill_id: skill.c.string_null_termination
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.string_null_termination.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.strings_structs
+  skill_id: skill.c.struct_enum_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.struct_enum_model.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.toolchain
+  skill_id: skill.c.compile_link_run_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  - objective.c.compile_link_run_basic.compile_and_run_small_program
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.toolchain
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.types_expressions
+  skill_id: skill.c.declaration_type_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.declaration_type_model.write_basic_declarations
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.types_expressions
+  skill_id: skill.c.expression_evaluation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.c.expression_evaluation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.c.types_expressions
+  skill_id: skill.programming.state_assignment_model
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.complexity_correctness
+  skill_id: skill.dsa.algorithm_correctness_invariant
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.algorithm_correctness_invariant.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.complexity_correctness
+  skill_id: skill.dsa.asymptotic_bound_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.asymptotic_bound_reasoning.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.complexity_correctness
+  skill_id: skill.dsa.complexity_growth_intuition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.complexity_growth_intuition.compare_growth_examples
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.complexity_correctness
+  skill_id: skill.programming.expression_boolean_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.complexity_correctness
+  skill_id: skill.programming.test_case_basic
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.linear_structures
+  skill_id: skill.dsa.hash_table_tradeoff
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.hash_table_tradeoff.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.linear_structures
+  skill_id: skill.dsa.linked_structure_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.linked_structure_reasoning.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.linear_structures
+  skill_id: skill.dsa.stack_queue_behavior
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.stack_queue_behavior.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.recursion_sorting
+  skill_id: skill.dsa.recursive_problem_decomposition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.recursive_problem_decomposition.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.recursion_sorting
+  skill_id: skill.dsa.sorting_comparison_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.sorting_comparison_reasoning.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.recursion_sorting
+  skill_id: skill.programming.function_decomposition
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.sequences_search
+  skill_id: skill.dsa.binary_search
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.binary_search.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.sequences_search
+  skill_id: skill.dsa.linear_search
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.linear_search.implement_search
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.sequences_search
+  skill_id: skill.dsa.sequence_traversal
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.sequence_traversal.explain_termination_and_result
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.sequences_search
+  skill_id: skill.programming.iteration_reasoning
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.trees_graphs
+  skill_id: skill.dsa.graph_traversal_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.graph_traversal_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.dsa.trees_graphs
+  skill_id: skill.dsa.tree_traversal_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.dsa.tree_traversal_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.core_terms
+  skill_id: skill.english.recognize_core_technical_labels
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.recognize_core_technical_labels.match_term_meaning
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.documentation_reading
+  skill_id: skill.english.documentation_navigation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.documentation_navigation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.documentation_reading
+  skill_id: skill.english.read_definition_and_constraint
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.read_definition_and_constraint.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.documentation_reading
+  skill_id: skill.english.read_procedure_sequence
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.read_procedure_sequence.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.grammar_functions
+  skill_id: skill.english.be_and_simple_present_comprehension
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.be_and_simple_present_comprehension.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.grammar_functions
+  skill_id: skill.english.negation_question_comprehension
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.negation_question_comprehension.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.grammar_functions
+  skill_id: skill.english.preposition_function_word_comprehension
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.preposition_function_word_comprehension.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.grammar_functions
+  skill_id: skill.english.technical_noun_phrase_recognition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.technical_noun_phrase_recognition.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.instructions_errors
+  skill_id: skill.english.follow_bilingual_technical_instruction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.instructions_errors
+  skill_id: skill.english.imperative_instruction_comprehension
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.imperative_instruction_comprehension.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.instructions_errors
+  skill_id: skill.english.read_simple_terminal_error_fragments
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.spoken_communication
+  skill_id: skill.english.ask_clarifying_technical_question
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.ask_clarifying_technical_question.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.spoken_communication
+  skill_id: skill.english.explain_simple_technical_process
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.explain_simple_technical_process.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.technical_writing
+  skill_id: skill.english.write_basic_bug_description
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.write_basic_bug_description.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.english.technical_writing
+  skill_id: skill.english.write_command_result_note
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.english.write_command_result_note.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.branches_history
+  skill_id: skill.git.branch_merge_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.branch_merge_model.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.branches_history
+  skill_id: skill.git.history_inspection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.history_inspection.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.remotes_recovery
+  skill_id: skill.git.conflict_resolution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.conflict_resolution.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.remotes_recovery
+  skill_id: skill.git.recovery_safe_undo
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.recovery_safe_undo.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.remotes_recovery
+  skill_id: skill.git.remote_sync
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.remote_sync.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.state_commits
+  skill_id: skill.git.repository_status_diff
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.repository_status_diff.inspect_change_state
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.git.state_commits
+  skill_id: skill.git.stage_commit_history_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.git.stage_commit_history_basic.commit_and_verify_history
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.environment_tools
+  skill_id: skill.linux.environment_path_resolution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.environment_path_resolution.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.environment_tools
+  skill_id: skill.linux.tool_discovery_help
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.tool_discovery_help.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.filesystem_permissions
+  skill_id: skill.linux.file_permissions_ownership
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.file_permissions_ownership.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.filesystem_permissions
+  skill_id: skill.linux.links_file_identity
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.links_file_identity.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.filesystem_permissions
+  skill_id: skill.linux.terminal_filesystem_navigation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.processes_io
+  skill_id: skill.linux.process_exit_stdout_stderr_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.processes_io
+  skill_id: skill.linux.process_inspection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.process_inspection.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.linux.processes_io
+  skill_id: skill.linux.process_signal_job_control
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.linux.process_signal_job_control.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.collections
+  skill_id: skill.python.list_operations
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.list_operations.select_and_use_sequence
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.collections
+  skill_id: skill.python.mapping_collections_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.mapping_collections_basic.select_and_use_mapping
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.collections
+  skill_id: skill.python.set_operations
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.set_operations.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.collections
+  skill_id: skill.python.tuple_immutable_sequence
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.tuple_immutable_sequence.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.conditionals
+  skill_id: skill.programming.branching_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.branching_reasoning.predict_branch
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.conditionals
+  skill_id: skill.python.conditionals
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.conditionals.write_branch_logic
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.data_tensor
+  skill_id: skill.python.data_table_transformation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.data_table_transformation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.data_tensor
+  skill_id: skill.python.numpy_array_shape_dtype
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.numpy_array_shape_dtype.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.data_tensor
+  skill_id: skill.python.tensor_device_dtype
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.tensor_device_dtype.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.engineering.explain_debug_fix_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.engineering.explain_debug_fix_basic.explain_symptom_cause_fix_verify
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.programming.code_reading_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.code_reading_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.programming.debug_localization_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.debug_localization_basic.locate_cause
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.programming.trace_execution_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.trace_execution_basic.produce_trace
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.python.debugging_tools
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.debugging_tools.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.python.exception_handling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.exception_handling.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.errors
+  skill_id: skill.python.exceptions_read_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.exceptions_read_basic.extract_error_type_location
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.execution
+  skill_id: skill.computing.program_execution_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.computing.program_execution_model.explain_pipeline
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.execution
+  skill_id: skill.computing.source_runtime_artifact_distinction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.computing.source_runtime_artifact_distinction.classify_artifacts
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.execution
+  skill_id: skill.python.run_repl_script
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.run_repl_script.execute_and_classify_result
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.expressions_io
+  skill_id: skill.programming.expression_boolean_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.expression_boolean_reasoning.evaluate_condition
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.expressions_io
+  skill_id: skill.programming.input_validation_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.input_validation_reasoning.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.expressions_io
+  skill_id: skill.python.expression_evaluation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.expression_evaluation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.expressions_io
+  skill_id: skill.python.input_output_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.input_output_basic.build_small_io_flow
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.functions_scope
+  skill_id: skill.programming.function_decomposition
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.function_decomposition.define_io_responsibility
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.functions_scope
+  skill_id: skill.python.argument_binding
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.argument_binding.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.functions_scope
+  skill_id: skill.python.first_class_callable
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.first_class_callable.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.functions_scope
+  skill_id: skill.python.functions_parameters_return
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.functions_parameters_return.write_small_function
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.functions_scope
+  skill_id: skill.python.scope_name_resolution
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.scope_name_resolution.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iteration
+  skill_id: skill.programming.iteration_reasoning
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.iteration_reasoning.detect_nontermination
+  - objective.programming.iteration_reasoning.trace_iteration
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iteration
+  skill_id: skill.python.comprehension_transformation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.comprehension_transformation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iteration
+  skill_id: skill.python.for_iteration
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.for_iteration.iterate_sequence
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iteration
+  skill_id: skill.python.loop_control_flow
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.loop_control_flow.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iteration
+  skill_id: skill.python.while_termination
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.while_termination.debug_infinite_loop
+  - objective.python.while_termination.write_terminating_loop
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iterators_generators
+  skill_id: skill.python.generator_functions
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.generator_functions.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.iterators_generators
+  skill_id: skill.python.iterator_protocol
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.iterator_protocol.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.modules_files
+  skill_id: skill.python.files_paths_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.files_paths_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.modules_files
+  skill_id: skill.python.modules_imports_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.modules_imports_basic.import_and_use_module_member
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.modules_files
+  skill_id: skill.python.path_handling
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.path_handling.read_write_small_text_file
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.objects_typing
+  skill_id: skill.python.class_object_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.class_object_model.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.objects_typing
+  skill_id: skill.python.data_model_protocols
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.data_model_protocols.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.objects_typing
+  skill_id: skill.python.type_hints_static_checking
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.type_hints_static_checking.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.os_network_concurrency
+  skill_id: skill.python.async_task_coordination
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.async_task_coordination.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.os_network_concurrency
+  skill_id: skill.python.network_client_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.network_client_basic.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.os_network_concurrency
+  skill_id: skill.python.os_subprocess_interaction
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.os_subprocess_interaction.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.os_network_concurrency
+  skill_id: skill.python.thread_process_choice
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.thread_process_choice.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.packaging_cli
+  skill_id: skill.engineering.reproducible_run_notes
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.engineering.reproducible_run_notes.record_reproduction_steps
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.packaging_cli
+  skill_id: skill.python.cli_argument_parsing
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.cli_argument_parsing.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.packaging_cli
+  skill_id: skill.python.package_layout_metadata
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.package_layout_metadata.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.performance_automation
+  skill_id: skill.python.benchmark_automation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.benchmark_automation.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.performance_automation
+  skill_id: skill.python.profiling_measurement
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.profiling_measurement.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.strings_bytes
+  skill_id: skill.python.bytes_text_boundary
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.bytes_text_boundary.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.strings_bytes
+  skill_id: skill.python.string_text_operations
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.string_text_operations.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.testing_environments
+  skill_id: skill.programming.test_case_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.test_case_basic.design_expected_case
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.testing_environments
+  skill_id: skill.python.test_doubles_boundaries
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.test_doubles_boundaries.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.testing_environments
+  skill_id: skill.python.unit_testing
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.unit_testing.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.testing_environments
+  skill_id: skill.python.virtual_environment_dependency
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.virtual_environment_dependency.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.values_types
+  skill_id: skill.programming.state_assignment_model
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.programming.state_assignment_model.trace_state
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.values_types
+  skill_id: skill.python.assignment_binding
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.assignment_binding.write_state_change
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.python.values_types
+  skill_id: skill.python.value_type_behavior
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.python.value_type_behavior.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.shell.command_language
+  skill_id: skill.shell.command_options_redirection_basic
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.shell.command_options_redirection_basic.construct_simple_command
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.shell.command_language
+  skill_id: skill.shell.expansion_quoting
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.shell.expansion_quoting.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.shell.pipelines_scripts
+  skill_id: skill.engineering.reproducible_run_notes
+  role: reinforce
+  importance: supporting
+  is_primary_teaching_context: false
+  objective_scope_ids: []
+  authoring_rationale: Shared canonical Skill is reused without cloning learner state.
+  source_refs:
+  - source.repo.gqa_v0
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.shell.pipelines_scripts
+  skill_id: skill.shell.pipeline_redirection
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.shell.pipeline_redirection.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.shell.pipelines_scripts
+  skill_id: skill.shell.script_control_flow
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.shell.script_control_flow.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6c_authoring
+  lifecycle_status: draft
+  review_refs: []
