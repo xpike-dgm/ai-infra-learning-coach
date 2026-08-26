@@ -18,6 +18,7 @@ living = [
     'vault/wiki/sources/Execution State Source.md',
     'vault/wiki/projects/AI Infra Learning Coach Delivery.md',
 ]
+historical_living = {'docs/PROGRESS_LOG.md'}
 
 for rel in living:
     if not (ROOT / rel).exists():
@@ -54,6 +55,8 @@ forbidden_living = [
     'Sıradaki numaralı çalışma 6E',
 ]
 for rel in living:
+    if rel in historical_living:
+        continue
     text = (ROOT / rel).read_text(encoding='utf-8')
     for phrase in forbidden_living:
         if phrase in text:
