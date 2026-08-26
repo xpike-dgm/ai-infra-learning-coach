@@ -1,0 +1,17 @@
+# Satır sonlarını platformdan bağımsız sabitle: repo ve çalışma ağacı daima LF.
+# Windows'taki core.autocrlf ayarından etkilenmez; deterministik diff sağlar.
+* text=auto eol=lf
+
+# İkili varlıklar dönüştürülmez.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.svg text eol=lf
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
