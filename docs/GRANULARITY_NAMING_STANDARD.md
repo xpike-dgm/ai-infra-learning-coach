@@ -47,7 +47,7 @@ Ana ilke:
 - 6B decomposition template'inin zorunlu naming/granularity alanlarını.
 
 6A kesinleştirmez:
-- 23 route family'nin gerçek tam node listesini → 6B–6F,
+- 23 route family'nin gerçek tam node listesini → 6C–6F (6B yalnız ortak blueprint'i kilitler),
 - Foundations'taki her FBB seed'in final split/merge sonucunu → 6C,
 - English CEFR progression/cadence'ini → AŞAMA 7,
 - production lesson/task/resource body'lerini → AŞAMA 15,

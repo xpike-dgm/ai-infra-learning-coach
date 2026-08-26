@@ -327,3 +327,106 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - `START_HERE`, `HANDOFF_STATE`, `PROJECT_CONTEXT`, `MASTER_PLAN`, `EXECUTION_INDEX`, `STEP_STATUS`, `AI_AGENT_WORKFLOW`, `PROJECT_MASTER_CONTEXT`, `PROJECT_MEMORY_PROTOCOL` ve README local-manager pointer/guard'larıyla hizalandı.
 - Bu transition **6B'yi yürütmedi**. Canonical state: **6A ✅ GNS-v0 / D-054; 6B 🟡 active / not executed**.
 - Local manager ilk numbered work öncesi tüm Markdown repo içeriğini okuyacak ve 6B için ayrıca fresh PRE-STEP refresh yapacak.
+
+### 2026-08-26 — 6B Full-Route Decomposition Blueprint tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Kullanıcı onayı sonrası `HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT`, `PROJECT_MEMORY_PROTOCOL` fresh okundu.
+- 6A GNS-v0 / D-054 ile tamamlanmış, 6B aktif ve henüz yürütülmemiş olarak beş living execution kaynağında doğrulandı.
+- GNS, KGC, PDM, FBB, GQA, Learning Engine, PRG ve AŞAMA 6 charter doğrudan girdileri fresh yeniden kontrol edildi.
+
+**Research/Coding/Test kararı**
+- Ayrı external Research AI kullanılmadı: 6B external coverage/current-industry araştırması değil, kabul edilmiş graph/granularity contracts üzerinde ortak authoring/output contract formalizasyonudur.
+- Physical runtime implementation olmadığı için Coding AI kullanılmadı.
+- Independent external coverage/current-industry/prerequisite Research QA 6H'de zorunlu kalır.
+
+**Final model: `FRDB-v0 — Full-Route Decomposition Blueprint` / D-056**
+- 23 route family 6C–6F package sınırlarına eksiksiz atandı.
+- Ortak UTF-8 YAML authoring package ve logical collection contract'ı tanımlandı.
+- Organization, Skill, Objective, TopicSkillLink, prerequisite, requirement, professional/project attribution ve source/freshness row'ları standardize edildi.
+- GNS-v0 granularity review, cross-package duplicate resolver, shared Skill reuse ve unresolved review queue workflow'ları kilitlendi.
+- FBB seed mapping/ratification 6C'ye; weakness/remediation 6G'ye; independent Research QA 6H'ye bağlandı.
+- Static contract QA: 23/23 route IDs, 30/30 required markers, no physical package placeholder, `git diff --check` PASS.
+
+**POST-STEP**
+- D-050 ALWAYS-CHECK living state 6B completed / 6C active-not-executed olarak senkronlandı.
+- Etkilenen curriculum/bootstrap/stable-navigation belgeleri FRDB-v0 / D-056 pointer'ına hizalandı.
+- Repo-wide stale active-step/model/file reference audit'i uygulandı; GNS-v0'daki eski “full node listesi → 6B–6F” future pointer'ı 6B'nin blueprint-only sınırına uygun olarak “6C–6F”e düzeltildi.
+
+**Sonraki kesin adım:** `6C — Foundations detailed map`. 6C başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+### 2026-08-26 — 6C Foundations Detailed Map tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Kullanıcı onayı sonrası branch/HEAD/origin doğrulandı; `main` ve `origin/main` aynı HEAD'de (`3dd9e00c06c4a39677985c54e93525dd368a0a96`).
+- D-050 minimum living set ve 6C direct specs fresh okundu.
+- Beş living execution kaynağı 6B complete / 6C active-not-executed olarak tutarlıydı.
+- 6B çalışma ağacı değişiklikleri korundu; unrelated user change yoktu.
+
+**Research/Coding/Test kararı**
+- Ayrı external Research AI kullanılmadı: 6C accepted PDM/KGC/FBB/GQA/GNS/FRDB/PRG contracts üzerinde internal detailed authoring adımıdır.
+- Independent external coverage/current-industry/source-quality/hidden-prerequisite Research QA 6H'de zorunlu kalır.
+- Production runtime Coding AI kullanılmadı. Deterministik authoring generator ve ayrı package validator local QA aracı olarak üretildi.
+
+**Final model: `FDM-v0 — Foundations Detailed Map` / D-057**
+- Canonical summary: `docs/FOUNDATIONS_DETAILED_MAP.md`.
+- Canonical dataset: `curriculum/decomposition/6c_foundations/`.
+- D01–D05 = 5 Domain / 14 Module / 46 Topic.
+- 132 Skill / 137 Objective / 145 TopicSkillLink / 200 prerequisite edge.
+- FBB mapping: 41/41 Skill + 47/47 Objective; 33 Skill ratify, 8 broad Skill split; 38 Objective ratify, 9 normalize.
+- Technical English global-gate guard, shared Skill reuse ve GQA branch-isolation invariants korundu.
+- Package learner-published veya externally validated ilan edilmedi.
+
+**QA**
+- Generator fail-fast checks PASS.
+- Independent reparse validator: `FOUNDATIONS_PACKAGE_QA=PASS`.
+- Hard prerequisite DAG: 132/132 node.
+- 0 blocking / 2 açık non-blocking review.
+- Python generator/validator syntax compile PASS.
+
+**POST-STEP**
+- D-050 ALWAYS-CHECK seti 6C completed / 6D active-not-executed state'ine taşındı.
+- Curriculum/bootstrap/navigation belgeleri FDM-v0 / D-057 pointer'ına hizalandı.
+- Repo-wide stale state/model/file/seed pointer audit'i uygulandı.
+
+**Sonraki kesin adım:** `6D — Systems detailed map`. 6D başlamadan fresh PRE-STEP GitHub refresh zorunlu.
+
+### 2026-08-26 — 6D Systems Detailed Map tamamlandı
+
+**PRE-STEP GitHub refresh**
+- Kullanıcı onayı ile başlatıldı; AGENTS.md takeover bootstrap'ı ve `vault/agent/SESSION_START.md` external-memory sırası uygulandı.
+- D-050 minimum living set (`HANDOFF_STATE`, `EXECUTION_INDEX`, `STEP_STATUS`, `DECISIONS`, `MASTER_PLAN`, `PROJECT_CONTEXT`) ve `PROJECT_MEMORY_PROTOCOL` fresh okundu.
+- Beş living execution kaynağı 6C complete / 6D active-not-executed olarak tutarlıydı.
+- 6D direct inputs fresh okundu: FRDB-v0, FDM-v0, GNS-v0, KGC-v0, PDM-v0 D06–D13 tanımları, PRG-v0, 6C package generator/validator ve `6c_foundations` registry.
+- Baseline doğrulayıcılar yeşildi: `EXTERNAL_MEMORY_QA=PASS`, `FOUNDATIONS_PACKAGE_QA=PASS`.
+
+**Research/Coding/Test kararı**
+- Ayrı external Research AI kullanılmadı: 6D accepted PDM/KGC/GNS/FRDB/FDM/PRG contracts ve 6C registry üzerinde internal detailed authoring adımıdır.
+- Independent external coverage/current-industry/source-quality/hidden-prerequisite Research QA 6H'de zorunlu kalır.
+- Production runtime Coding AI kullanılmadı. Deterministik authoring generator ve ayrı package validator local QA aracı olarak üretildi.
+
+**Final model: `SDM-v0 — Systems Detailed Map` / D-058**
+- Canonical summary: `docs/SYSTEMS_DETAILED_MAP.md`.
+- Canonical dataset: `curriculum/decomposition/6d_systems/` (13 logical collection).
+- D06–D13 = 8 Domain / 21 Module / 64 Topic.
+- 192 Skill / 207 Objective / 224 TopicSkillLink / 313 prerequisite edge.
+- 43 accepted 6C Skill clone'lanmadan reuse edildi; 56 cross-package edge explicit `cross_package_ref` etiketiyle.
+- 254 scope-relative requirement, 308 professional attribution, 12 project attribution.
+- Stable systems concept ile fast-moving tool capability ayrımı freshness + technology dependency metadata'sıyla korundu.
+- Package learner-published veya externally validated ilan edilmedi.
+
+**QA**
+- Generator fail-fast checks: 22/22 PASS.
+- Independent reparse validator: `SYSTEMS_PACKAGE_QA=PASS`.
+- Birleşik 6C + 6D hard prerequisite DAG: 324/324 node.
+- Hard/soft dağılımı ilk üretimde 311/2 çıktı; FRDB §19 Pass B testi uygulanarak 52 scaffold edge soft'a indirildi ve final dağılım 259/54 oldu.
+- Bağımsız validator ilk çalıştırmada 4 eksik freshness/technology metadata bulgusu üretti; düzeltildikten sonra PASS alındı.
+- 6C paketi regresyon kontrolü: `FOUNDATIONS_PACKAGE_QA=PASS` (değişmedi).
+- 0 blocking / 4 açık non-blocking review.
+
+**POST-STEP**
+- D-050 ALWAYS-CHECK seti 6D completed / 6E active-not-executed state'ine taşındı.
+- Curriculum/bootstrap/navigation belgeleri ve durable vault notları SDM-v0 / D-058 pointer'ına hizalandı.
+- Repo-wide stale state/model/file pointer audit'i uygulandı.
+
+**Sonraki kesin adım:** `6E — GPU / ML / Inference detailed map`. 6E başlamadan fresh PRE-STEP GitHub refresh zorunlu.

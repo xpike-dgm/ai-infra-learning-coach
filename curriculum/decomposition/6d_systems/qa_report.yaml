@@ -1,0 +1,93 @@
+package_id: decomposition.6d_systems
+qa_contract: FRDB-v0 section 27
+result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
+checked_at: '2026-08-26'
+counts:
+  domains: 8
+  modules: 21
+  topics: 64
+  skills: 192
+  objectives: 207
+  topic_skill_links: 224
+  prerequisite_edges: 313
+  hard_prerequisite_edges: 259
+  soft_prerequisite_edges: 54
+  pass_b_soft_downgrades: 52
+  cross_package_prerequisite_edges: 56
+  reused_prior_package_skills: 43
+  capability_requirements: 254
+  professional_attributions: 308
+  project_attributions: 12
+  open_non_blocking_reviews: 4
+  open_blocking_reviews: 0
+checks:
+- check: route_family_partition
+  result: PASS
+  details: D06-D13 exactly
+- check: unique_skill_ids
+  result: PASS
+  details: 192 Skills
+- check: no_prior_package_collision
+  result: PASS
+  details: no 6C Skill ID reused as a new 6D Skill
+- check: unique_objective_ids
+  result: PASS
+  details: 207 Objectives
+- check: objective_owner_refs
+  result: PASS
+  details: all owners resolve
+- check: skill_has_objective
+  result: PASS
+  details: every Skill has Objective
+- check: topic_refs
+  result: PASS
+  details: all primary Topics resolve
+- check: link_refs
+  result: PASS
+  details: all TopicSkillLinks resolve
+- check: prerequisite_refs
+  result: PASS
+  details: 313 edges resolve
+- check: no_self_edges
+  result: PASS
+  details: no self edges
+- check: no_hard_soft_conflict
+  result: PASS
+  details: no pair conflict
+- check: target_is_local
+  result: PASS
+  details: 6D declares edges only into its own Skills
+- check: combined_hard_graph_dag
+  result: PASS
+  details: visited 324/324 across 6C+6D
+- check: english_global_gate
+  result: PASS
+  details: no English hard edge into technical Skills
+- check: cross_package_reuse_declared
+  result: PASS
+  details: 43 prior-package reuse rows
+- check: reuse_without_clone
+  result: PASS
+  details: reused Skills keep their canonical identity
+- check: requirement_refs
+  result: PASS
+  details: requirement refs resolve
+- check: project_attribution_observable
+  result: PASS
+  details: 12 project components separately observable
+- check: soft_override_set_applied
+  result: PASS
+  details: 52/52 Pass B downgrades matched a declared edge
+- check: soft_edges_present
+  result: PASS
+  details: 54 soft edges
+- check: blocking_reviews
+  result: PASS
+  details: 0 open blocking
+- check: source_paths
+  result: PASS
+  details: all source paths resolve
+external_research_qa:
+  status: pending
+  owner_step: 6H
+  required_before_external_validation: true

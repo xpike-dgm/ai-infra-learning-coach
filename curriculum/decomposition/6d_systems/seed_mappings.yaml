@@ -1,0 +1,774 @@
+- seed_id: skill.c.bitwise_mask_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.bitwise_mask_reasoning
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.compile_link_run_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.compile_link_run_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.compiler_diagnostic_reading
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.compiler_diagnostic_reading
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.debugger_trace_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.debugger_trace_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.dynamic_allocation_lifecycle
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.dynamic_allocation_lifecycle
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.expression_evaluation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.expression_evaluation
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.file_io_error_handling
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.file_io_error_handling
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.header_translation_unit_interface
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.header_translation_unit_interface
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.multi_file_build
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.multi_file_build
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.pointer_dereference
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.pointer_dereference
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.sanitizer_undefined_behavior
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.sanitizer_undefined_behavior
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.c.struct_enum_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.c.struct_enum_model
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.computing.program_execution_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.computing.program_execution_model
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.asymptotic_bound_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.asymptotic_bound_reasoning
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.hash_table_tradeoff
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.hash_table_tradeoff
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.sequence_traversal
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.sequence_traversal
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.dsa.tree_traversal_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.dsa.tree_traversal_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.engineering.explain_debug_fix_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.explain_debug_fix_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.engineering.reproducible_run_notes
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.engineering.reproducible_run_notes
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.explain_simple_technical_process
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.explain_simple_technical_process
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.read_definition_and_constraint
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.read_definition_and_constraint
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.english.write_basic_bug_description
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.english.write_basic_bug_description
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.git.branch_merge_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.git.branch_merge_model
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.environment_path_resolution
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.environment_path_resolution
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.file_permissions_ownership
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.file_permissions_ownership
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.process_exit_stdout_stderr_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.process_exit_stdout_stderr_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.process_inspection
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.process_inspection
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.process_signal_job_control
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.process_signal_job_control
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.linux.terminal_filesystem_navigation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.linux.terminal_filesystem_navigation
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.memory.address_value_distinction
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.memory.address_value_distinction
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.memory.storage_lifetime_intuition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.memory.storage_lifetime_intuition
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.code_reading_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.code_reading_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.debug_localization_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.debug_localization_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.function_decomposition
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.function_decomposition
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.input_validation_reasoning
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.input_validation_reasoning
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.state_assignment_model
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.state_assignment_model
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.test_case_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.test_case_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.programming.trace_execution_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.programming.trace_execution_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.async_task_coordination
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.async_task_coordination
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.benchmark_automation
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.benchmark_automation
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.bytes_text_boundary
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.bytes_text_boundary
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.network_client_basic
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.network_client_basic
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []
+- seed_id: skill.python.profiling_measurement
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.python.profiling_measurement
+  evidence_compatibility: not_applicable_not_published
+  mapping_source_package: decomposition.6c_foundations
+  rationale:
+    semantic_boundary: Accepted 6C capability identity is unchanged by its Systems reuse.
+    prerequisite_effect: 6D declares cross-package prerequisite edges against the existing canonical ID.
+    evidence_effect: No evidence migration; the 6C package is not learner-published.
+    remediation_effect: Remediation stays on the original capability, not on a Systems clone.
+    reuse_effect: Reuse is expressed with TopicSkillLink and prerequisite edges instead of a new Skill.
+  mapping_class: reused_from_prior_package
+  source_refs:
+  - source.repo.fdm_v0
+  - source.repo.gns_v0
+  review_refs: []

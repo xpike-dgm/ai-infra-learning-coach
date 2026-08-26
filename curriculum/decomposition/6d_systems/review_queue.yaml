@@ -1,0 +1,77 @@
+- review_id: review.6d.external_coverage
+  subject_refs:
+  - domain.computer_architecture
+  - domain.concurrency
+  - domain.containers_cloud_observability
+  - domain.distributed_storage
+  - domain.modern_cpp
+  - domain.networking
+  - domain.operating_systems_memory
+  - domain.performance_engineering
+  review_codes:
+  - NEEDS_GRANULARITY_REVIEW
+  severity: non_blocking
+  question: Bağımsız external kaynaklar D06–D13 için coverage eksiği veya hidden prerequisite gösteriyor mu?
+  decision_inputs_required:
+  - independent Research AI
+  - authoritative current sources
+  resolution_owner_step: 6H
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-26'
+  resolved_at: null
+- review_id: review.6d.platform_tool_freshness
+  subject_refs:
+  - domain.containers_cloud_observability
+  review_codes:
+  - TOOL_SPECIFIC_SPLIT
+  severity: non_blocking
+  question: Fast-moving container/orchestration/cloud capability'leri için review trigger policy nasıl versiyonlanmalı?
+  decision_inputs_required:
+  - current vendor documentation
+  - freshness policy calibration
+  resolution_owner_step: 6H
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-26'
+  resolved_at: null
+- review_id: review.6d.professional_overlay_reconciliation
+  subject_refs:
+  - domain.containers_cloud_observability
+  - domain.performance_engineering
+  review_codes:
+  - SHARED_SKILL_REUSE
+  severity: non_blocking
+  question: Observability, reliability ve performance-report capability'leri 6F professional registry ile nasıl
+    reconcile edilecek?
+  decision_inputs_required:
+  - 6F professional overlay registry
+  resolution_owner_step: 6F
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-26'
+  resolved_at: null
+- review_id: review.6d.accelerator_forward_reuse
+  subject_refs:
+  - domain.performance_engineering
+  - domain.concurrency
+  - domain.networking
+  review_codes:
+  - SHARED_SKILL_REUSE
+  severity: non_blocking
+  question: 6E GPU/inference package'ı hangi Systems Skills'i clone'lamadan reuse edecek?
+  decision_inputs_required:
+  - 6E candidate registry
+  resolution_owner_step: 6E
+  status: open
+  resolution: null
+  source_refs:
+  - source.repo.frdb_v0
+  created_at: '2026-08-26'
+  resolved_at: null

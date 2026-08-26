@@ -8,7 +8,7 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 - ⬜ Bekliyor
 - 🔴 Bloke
 
-## Güncel durum — 2026-08-25
+## Güncel durum — 2026-08-26
 
 | Adım | Durum | Açıklama |
 |---|---|---|
@@ -21,12 +21,15 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **5C — İlk 8–12 haftalık curriculum backbone** | ✅ | FBB-v0 / D-052. V1 foundation authoring-seed subgraph tamamlandı. |
 | **5D — Graph architecture QA** | ✅ | GQA-v0 / D-053. Corrective seed patch sonrası architecture QA PASS. |
 | **6A — Granularity + naming standardı** | ✅ | GNS-v0 / D-054. Semantic granularity + stable logical ID standardı tamamlandı. |
-| **6B — Full-route decomposition blueprint** | 🟡 Aktif | 23 route family için ortak decomposition/authoring blueprint tasarlanacak. **Henüz yürütülmedi.** |
-| **6C–20** | ⬜ Bekliyor | 6B sonrası canonical sırada. |
+| **6B — Full-route decomposition blueprint** | ✅ | FRDB-v0 / D-056. Ortak machine-readable authoring package + QA contract tamamlandı. |
+| **6C — Foundations detailed map** | ✅ | FDM-v0 / D-057. D01–D05 package + FBB 41/47 mapping + internal graph QA tamamlandı. |
+| **6D — Systems detailed map** | ✅ | SDM-v0 / D-058. D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı. |
+| **6E — GPU / ML / Inference detailed map** | 🟡 Aktif | GPU, CUDA, Triton, ML/Transformer, inference internals, serving, KV/batching/scheduling/quantization, Multi-GPU ve AI Infra haritası üretilecek. **Henüz yürütülmedi.** |
+| **6F–20** | ⬜ Bekliyor | 6E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
-Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Transition numbered step değildir ve current state'i değiştirmez: **6A ✅ / 6B 🟡 active-not-executed**. Bootstrap: `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`.
+Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Transition numbered step değildir; subsequent numbered execution canonical state'i normal biçimde ilerletir. Bootstrap: `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`.
 
 ## Repository memory hygiene — D-050
 
@@ -41,37 +44,33 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 6A
+## Son tamamlanan numaralı adım — 6D
 
-**Final:** `GNS-v0 — Granularity & Naming Standard` / D-054.  
-Ana çıktı: `docs/GRANULARITY_NAMING_STANDARD.md`.
+**Final:** `SDM-v0 — Systems Detailed Map` / D-058.
+Ana çıktı: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/`.
 
-6A sonucu:
-- Domain/Module/Topic/Skill/Objective semantic sınırları kilitlendi,
-- Skill granularity independent evidence/remediation/prerequisite/reuse temelli hale geldi,
-- under/over-fragmentation guard'ları tanımlandı,
-- shared vs language/tool/context-specific Skill split kriterleri tanımlandı,
-- Objective atomicity/observable-action standardı tanımlandı,
-- logical ID formatı stable/locale-independent/version-free yapıldı,
-- display/localization/alias ile identity ayrıldı,
-- FBB seed ratification/split/merge/normalize lifecycle'ı tanımlandı,
-- 6B decomposition authoring handoff'u tanımlandı.
+6D sonucu:
+- D06–D13 için 8 Domain / 21 Module / 64 Topic,
+- 192 Skill / 207 Objective / 224 TopicSkillLink,
+- 313 prerequisite edge (259 hard / 54 soft); 6C+6D birleşik hard graph DAG 324/324,
+- 43 accepted 6C Skill clone'lanmadan reuse edildi; 56 cross-package edge,
+- 0 blocking / 4 non-blocking review,
+- external validation 6H'ye pending.
 
-6A ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
+6D ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
 
-## Aktif adım — 6B Full-route decomposition blueprint
+## Aktif adım — 6E GPU / ML / Inference detailed map
 
-**6B henüz yürütülmedi.**
+**6E henüz yürütülmedi.**
 
-6B başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
+6E başlamadan `docs/PROJECT_MEMORY_PROTOCOL.md` uyarınca fresh PRE-STEP GitHub refresh zorunludur.
 
-6B'de özellikle:
-- 23 route family için tek ortak decomposition row/template contract'ı,
-- Domain→Module→Topic authoring blueprint'i,
-- Skill/Objective candidate üretim akışı,
-- duplicate resolver + shared Skill reuse akışı,
-- source/provenance/freshness alanları,
-- GNS-v0 reason-code/granularity review entegrasyonu,
-- 6C–6F detailed-map paketlerinin ortak çıktı biçimi
+6E'de özellikle:
+- GPU Architecture, CUDA ve Triton,
+- ML / Transformer foundations,
+- LLM inference internals ve serving systems,
+- KV cache / batching / scheduling / quantization,
+- Multi-GPU / NCCL / RDMA ve AI Infrastructure,
+- 6C + 6D registry reuse ve stable-concept vs tool-specific ayrımı
 
 kesinleştirilecek.

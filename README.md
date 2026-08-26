@@ -23,6 +23,9 @@ En önemli kalıcı dosyalar:
 - `docs/V1_FOUNDATION_BACKBONE.md` — V1 foundation authoring-seed graph / FBB-v0
 - `docs/GRAPH_ARCHITECTURE_QA.md` — 5D foundation graph structural QA / GQA-v0
 - `docs/GRANULARITY_NAMING_STANDARD.md` — 6A semantic granularity + stable logical ID standardı / GNS-v0
+- `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` — 6B common authoring package + decomposition QA contract / FRDB-v0
+- `docs/FOUNDATIONS_DETAILED_MAP.md` — 6C D01–D05 detailed map + FBB ratification / FDM-v0
+- `curriculum/decomposition/6c_foundations/` — 6C canonical machine-readable YAML package
 - `docs/GRANULAR_CAPABILITY_MAP_PLAN.md` — full route'u ölçülebilir alt becerilere ayıracak AŞAMA 6 charter'ı
 - `docs/DECISIONS.md` — kalıcı kararlar
 - `docs/MASTER_PLAN.md` — aşama/adım geliştirme planı
@@ -79,7 +82,7 @@ High-level curriculum envelope `docs/CURRICULUM_DOMAIN_MAP.md` içinde PDM-v0 ol
 
 ## D-052 — V1 Foundation Backbone
 
-İlk 8–12 haftalık V1 başlangıç scope'u `docs/V1_FOUNDATION_BACKBONE.md` içinde FBB-v0 olarak tanımlıdır. Bu bir calendar unlock planı değildir; zero-entry bridge + Python/C/Linux/Git/Shell/early DS&A/parallel Technical English için KGC-v0 uyumlu authoring-seed subgraph'tır. Production lesson/task content'i AŞAMA 15'te, 6A/6C/6H ratification ve QA sonrasında üretilir.
+İlk 8–12 haftalık V1 başlangıç scope'u `docs/V1_FOUNDATION_BACKBONE.md` içinde FBB-v0 olarak tanımlıdır. Bu bir calendar unlock planı değildir; zero-entry bridge + Python/C/Linux/Git/Shell/early DS&A/parallel Technical English için KGC-v0 uyumlu authoring-seed subgraph'tır. FBB seed'leri 6C/FDM-v0'da map edildi; production lesson/task content'i AŞAMA 15'te, 6H external QA sonrasında üretilir.
 
 ## D-053 — Foundation Graph Architecture QA
 
@@ -87,7 +90,19 @@ High-level curriculum envelope `docs/CURRICULUM_DOMAIN_MAP.md` içinde PDM-v0 ol
 
 ## D-054 — Granularity & Naming Standard
 
-6A `docs/GRANULARITY_NAMING_STANDARD.md` içinde GNS-v0 olarak tamamlandı. Skill atomization artık independent evidence/remediation/prerequisite/reuse anlamına göre yapılır; stable logical ID'ler curriculum sırası, release/version veya display label'dan bağımsızdır. FBB seed'leri 6C'de bu standarda göre ratify/refactor edilir.
+6A `docs/GRANULARITY_NAMING_STANDARD.md` içinde GNS-v0 olarak tamamlandı. Skill atomization artık independent evidence/remediation/prerequisite/reuse anlamına göre yapılır; stable logical ID'ler curriculum sırası, release/version veya display label'dan bağımsızdır. FBB seed'leri 6C'de bu standarda göre ratify/refactor edildi.
+
+## D-056 — Full-Route Decomposition Blueprint
+
+6B `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` içinde FRDB-v0 olarak tamamlandı. 6C–6F detailed-map çalışmalarının ortak machine-readable authoring package'ı, entity/relation row'ları, duplicate/shared-Skill resolver'ı, prerequisite ve FBB mapping akışları, source/freshness metadata'sı, review queue ve package QA contract'ı burada tanımlıdır.
+
+## D-057 — Foundations Detailed Map
+
+6C `docs/FOUNDATIONS_DETAILED_MAP.md` ve `curriculum/decomposition/6c_foundations/` içinde FDM-v0 olarak tamamlandı. D01–D05, 132 Skill / 137 Objective seviyesine ayrıldı; FBB 41/47 seed mapping complete, hard prerequisite graph DAG ve internal QA PASS. External coverage/current-industry doğrulaması 6H'ye kadar pending'dir.
+
+## D-058 — Systems Detailed Map
+
+6D `docs/SYSTEMS_DETAILED_MAP.md` ve `curriculum/decomposition/6d_systems/` içinde SDM-v0 olarak tamamlandı. D06–D13, 192 Skill / 207 Objective seviyesine ayrıldı; 43 accepted 6C Skill clone'lanmadan reuse edildi, 6C+6D birleşik hard prerequisite graph DAG ve internal QA PASS. External coverage/current-industry doğrulaması 6H'ye kadar pending'dir.
 
 ## Temel Ürün İlkesi
 

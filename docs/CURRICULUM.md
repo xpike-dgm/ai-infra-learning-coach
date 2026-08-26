@@ -1,12 +1,15 @@
 # Curriculum Backbone — Canonical Summary
 
-**Durum:** AŞAMA 5 TAMAMLANDI / AŞAMA 6 YÜRÜTÜLÜYOR — 6A GNS-v0 TAMAMLANDI, 6B AKTİF  
-**Canonical kararlar:** D-041, D-042, D-044, D-049, D-051, D-052, D-053, D-054  
+**Durum:** AŞAMA 5 TAMAMLANDI / AŞAMA 6 YÜRÜTÜLÜYOR — 6A–6D TAMAMLANDI, 6E AKTİF
+**Canonical kararlar:** D-041, D-042, D-044, D-049, D-051, D-052, D-053, D-054, D-056, D-057, D-058
 **5A ana kaynak:** `docs/CURRICULUM_DOMAIN_MAP.md`  
 **5B graph contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`  
 **5D graph QA:** `docs/GRAPH_ARCHITECTURE_QA.md` — GQA-v0 / D-053  
 **5C V1 foundation backbone:** `docs/V1_FOUNDATION_BACKBONE.md`  
 **6A granularity/naming standard:** `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054  
+**6B decomposition blueprint:** `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` — FRDB-v0 / D-056  
+**6C Foundations map:** `docs/FOUNDATIONS_DETAILED_MAP.md` + `curriculum/decomposition/6c_foundations/` — FDM-v0 / D-057  
+**6D Systems map:** `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/` — SDM-v0 / D-058
 **Granular decomposition charter:** `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 Bu dosya hızlı curriculum özetidir. 5A domain-level canonical ilişkileri `docs/CURRICULUM_DOMAIN_MAP.md`; 5B entity/relation/version/migration sözleşmesini `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`; 5C V1 başlangıç authoring-seed subgraph'ını `docs/V1_FOUNDATION_BACKBONE.md` tanımlar. Gerçek full-route Module/Topic/Skill/Learning Objective dataset'i AŞAMA 6 tamamlanmadan “full curriculum” sayılmaz.
@@ -85,8 +88,11 @@ Professional engineering, source reading, testing, debugging, Git/PR, benchmarks
 5C ✅ = FBB-v0 first 8–12 week scope-equivalent V1 foundation backbone
 5D ✅ = GQA-v0 graph architecture QA + corrective seed patch
 6A ✅ = GNS-v0 granularity + naming standardı
-6B 🟡 = full-route decomposition blueprint — active next
-6C–6H = detailed capability maps + weakness/remediation + independent coverage/prerequisite Research QA
+6B ✅ = full-route decomposition blueprint — FRDB-v0 / D-056
+6C ✅ = Foundations detailed map — FDM-v0 / D-057
+6D ✅ = Systems detailed map — SDM-v0 / D-058
+6E 🟡 = GPU / ML / Inference detailed map — active next
+6F–6H = remaining detailed capability maps + weakness/remediation + independent coverage/prerequisite Research QA
 15 = first production-quality lesson/task/assessment package
 20 = full professional content expansion + OSS + capstones
 ```

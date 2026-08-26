@@ -22,7 +22,10 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-052: 5C final V1 foundation backbone `FBB-v0`.
 - D-053: 5D final foundation graph architecture QA `GQA-v0`; corrective seed patch PASS.
 - D-054: 6A final granularity/naming contract `GNS-v0`; semantic entity boundaries + stable logical ID rules.
-- D-055: local çalışan agent main manager rolünü devralabilir; workflow contracts değişmez; transition 6B execution değildir.
+- D-055: local çalışan agent main manager rolünü devralabilir; workflow contracts değişmez; transition kendi başına 6B execution değildi.
+- D-056: 6B final full-route decomposition blueprint `FRDB-v0`; 6C–6F için ortak machine-readable authoring package + QA contract.
+- D-057: 6C final Foundations detailed map `FDM-v0`; D01–D05 package + FBB 41/47 seed ratification + internal graph QA.
+- D-058: 6D final Systems detailed map `SDM-v0`; D06–D13 package + 6C registry cross-package reuse + combined hard-graph QA.
 
 ---
 
@@ -89,10 +92,10 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 - [x] **6A — Granularity + naming standardı** — `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054
-- [ ] **6B — Full-route decomposition blueprint** **AKTİF** — bütün ana teknik/English rotası için ortak decomposition şablonu
-- [ ] **6C — Foundations detailed map** — Technical English, Python, C, Linux/Git/Shell, DS&A
-- [ ] **6D — Systems detailed map** — Modern C++, Architecture, OS/Memory, Concurrency, Networking, Distributed, Storage, Cloud/Observability, Performance
-- [ ] **6E — GPU / ML / Inference detailed map** — GPU, CUDA, Triton, Transformer, inference internals, serving engines, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra
+- [x] **6B — Full-route decomposition blueprint** — `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` — FRDB-v0 / D-056
+- [x] **6C — Foundations detailed map** — `docs/FOUNDATIONS_DETAILED_MAP.md`, `curriculum/decomposition/6c_foundations/` — FDM-v0 / D-057
+- [x] **6D — Systems detailed map** — `docs/SYSTEMS_DETAILED_MAP.md`, `curriculum/decomposition/6d_systems/` — SDM-v0 / D-058
+- [ ] **6E — GPU / ML / Inference detailed map** **AKTİF** — GPU, CUDA, Triton, Transformer, inference internals, serving engines, KV/batching/scheduling/quantization, Multi-GPU/NCCL/RDMA, AI Infra
 - [ ] **6F — Professional engineering / project map** — testing/build/debug/profiling, OSS workflow, large projects, capstone capability decomposition
 - [ ] **6G — Weakness localization + remediation mapping** — zayıflığın Skill/Objective düzeyinde ayrı tutulması
 - [ ] **6H — Coverage / prerequisite / Research QA** — eksik/duplicate/hidden prerequisite audit + bağımsız Research AI doğrulaması
@@ -242,7 +245,7 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A`  
-**Aktif:** **`6B — Full-route decomposition blueprint`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6D`
+**Aktif:** **`6E — GPU / ML / Inference detailed map`**
 
-6A GNS-v0 / D-054 ile tamamlandı. 6B henüz yürütülmedi; 6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6D SDM-v0 / D-058 ile tamamlandı. 6E henüz yürütülmedi; 6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.

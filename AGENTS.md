@@ -41,11 +41,14 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 
 - AŞAMA 1–5: tamamlandı.
 - AŞAMA 6A: ✅ `GNS-v0 / D-054` tamamlandı.
-- **Aktif adım: 6B — Full-route decomposition blueprint.**
-- **6B henüz yürütülmedi.**
-- 6C–6H ve AŞAMA 7–20 bekliyor.
+- AŞAMA 6B: ✅ `FRDB-v0 / D-056` tamamlandı.
+- AŞAMA 6C: ✅ `FDM-v0 / D-057` tamamlandı.
+- AŞAMA 6D: ✅ `SDM-v0 / D-058` tamamlandı.
+- **Aktif adım: 6E — GPU / ML / Inference detailed map.**
+- **6E henüz yürütülmedi.**
+- 6F–6H ve AŞAMA 7–20 bekliyor.
 
-**6B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover okumasını tamamla, sonra 6B için ayrıca fresh PRE-STEP refresh yap.
+**6E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6E için ayrıca fresh PRE-STEP refresh yap.
 
 ## Ana ürün ilkesi
 
@@ -71,3 +74,12 @@ Takvim kapasite/horizon bilgisidir; readiness/mastery gerçeği değildir.
 ## Ana kaynak
 
 Eksiksiz transfer ve mevcut tasarımın geniş özeti: `docs/LOCAL_MANAGER_HANDOFF.md`.
+
+## Yeni sohbetler için kalıcı external-memory bootstrap
+
+Bu repo, sohbet hafızasına değil durable repo hafızasına dayanır. Yeni veya devralınan her sohbet, herhangi bir anlamlı repo işi, karar, inceleme ya da değişiklikten önce `vault/agent/SESSION_START.md` dosyasını da okumalı ve oradaki source hierarchy'yi izlemelidir.
+
+- `vault/agent/CURRENT_CONTEXT.md` yalnız hızlı briefing'dir; current execution için source of truth değildir.
+- Current execution iddiası daima `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` ile yeniden doğrulanır.
+- Sohbette netleşen kalıcı kararlar, açık loop'lar ve araştırma bulguları sohbet içinde bırakılmaz; `SESSION_START.md`de tanımlanan doğru durable hedefe yazılır.
+- Bu katman `PROJECT_MEMORY_PROTOCOL.md`yi tamamlar; hiçbir numaralı adımın PRE/POST yükümlülüğünü azaltmaz.

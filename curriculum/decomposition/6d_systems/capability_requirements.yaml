@@ -1,0 +1,2732 @@
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.assembly_reading_basic
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.branch_prediction_cost
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.cache_hierarchy_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.cache_miss_classification
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.data_layout_transformation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.false_sharing_awareness
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.hardware_counter_interpretation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.instruction_execution_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.instruction_level_parallelism
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.isa_abstraction_boundary
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.latency_throughput_distinction
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.locality_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.memory_alignment_layout
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.number_representation_precision
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.pipeline_hazard_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.roofline_bottleneck_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.simd_data_parallel_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.computer_architecture
+  capability_kind: skill
+  capability_id: skill.arch.vectorization_enablement
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.async_execution_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.atomic_operations
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.cancellation_timeout_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.condition_variable_coordination
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.data_race_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.deadlock_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.event_loop_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.lock_granularity_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.lockfree_tradeoff_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.memory_ordering_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.mutex_critical_section
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.nondeterministic_reproduction
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.parallel_result_aggregation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.parallel_speedup_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.scaling_limit_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.shared_mutable_state_risk
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.task_vs_thread_abstraction
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.thread_lifecycle_management
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.thread_pool_usage
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.concurrency
+  capability_kind: skill
+  capability_id: skill.concurrency.work_decomposition
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.build_system_project_definition
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.build_translation_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.class_design_invariants
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.compilation_time_hygiene
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.const_correctness_qualifiers
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.container_selection
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.contract_precondition_validation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.debugger_inspection
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.dependency_integration
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.error_return_vs_exception
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.exception_safety_guarantees
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.function_class_templates
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.header_module_interface
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.initialization_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.interface_composition_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.iterator_range_algorithms
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.move_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.non_owning_view_borrowing
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.object_lifetime_scope
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.raii_resource_ownership
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.reference_binding
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.sanitizer_ub_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.smart_pointer_ownership
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.special_member_rules
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.standard_version_toolchain_flags
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.template_constraints_overload
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.template_diagnostic_reading
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.unit_test_harness
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.value_categories
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.modern_cpp
+  capability_kind: skill
+  capability_id: skill.cpp.virtual_dispatch_polymorphism
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.availability_consistency_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.backpressure_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.client_visible_anomaly_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.consensus_protocol_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.consistency_model_distinction
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.delivery_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.duplicate_reordering_handling
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.failure_detection_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.idempotent_operation_design
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.leader_election_failover
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.partial_failure_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.partitioning_strategies
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.queue_streaming_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.quorum_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.rebalancing_hotspot_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.replication_models
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.stream_processing_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.distributed.time_clock_ordering
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.addressing_routing_basics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.connection_resource_limits
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.dns_resolution_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.http_api_error_contract
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.http_connection_performance
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.http_request_response_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.io_multiplexing_usage
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.latency_bandwidth_budget
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.layering_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.network_failure_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.nonblocking_io_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.packet_capture_reading
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.protocol_framing
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.rpc_call_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.schema_evolution_compatibility
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.serialization_format_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.service_discovery_naming
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.socket_client_server
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.socket_error_partial_io
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.tcp_connection_lifecycle
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.tcp_reliability_flow_control
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.timeout_retry_policy
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.tls_failure_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.tls_handshake_trust_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.networking
+  capability_kind: skill
+  capability_id: skill.network.udp_datagram_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.observability.distributed_tracing
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.observability.metric_instrumentation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.observability.signal_correlation_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.observability.structured_logging
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.allocator_behavior_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.blocking_io_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.buffering_flush_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.context_switch_cost
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.cpu_time_accounting
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.file_descriptor_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.graceful_shutdown_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.kernel_event_observation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.memory_mapping_usage
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.memory_usage_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.page_fault_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.process_address_space_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.process_creation_lifecycle
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.resource_limit_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.scheduler_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.signal_handling_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.syscall_boundary_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.syscall_error_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.syscall_tracing
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.thread_vs_process_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.tlb_page_size_effects
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.virtual_physical_translation
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.benchmark_reproducibility
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.benchmark_workload_design
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.bottleneck_localization
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.cache_behavior_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.capacity_headroom_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.cost_efficiency_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.cpu_profile_collection
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.end_to_end_latency_attribution
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.io_bound_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.measurement_environment_control
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.measurement_goal_definition
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.measurement_validity_reasoning
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.memory_profile_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.microbenchmark_pitfalls
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.optimization_hypothesis_validation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.performance_report_communication
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.profile_interpretation
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.regression_detection
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.sampling_instrumentation_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.tail_latency_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.performance_engineering
+  capability_kind: skill
+  capability_id: skill.performance.variance_distribution_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.cgroup_resource_control
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.cloud_compute_resource_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.cloud_identity_access_boundary
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.configuration_management
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.container_image_layers
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.container_network_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.container_runtime_lifecycle
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.container_storage_persistence
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.container_vs_vm_boundary
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.deployment_change_safety
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.image_build_optimization
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.image_supply_chain_safety
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.infrastructure_as_code_reproducibility
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.namespace_isolation_model
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.orchestrated_workload_model
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.rollout_health_recovery
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.scheduling_placement_constraints
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.secret_handling_safety
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.platform.workload_failure_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.reliability.alerting_signal_quality
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.reliability.incident_response_workflow
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.reliability.postmortem_analysis
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.containers_cloud_observability
+  capability_kind: skill
+  capability_id: skill.reliability.slo_definition
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.concurrency_control_mechanisms
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.crash_recovery_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.data_layout_compaction
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.durability_write_path
+  requirement_role: required
+  criticality: critical
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.index_selection_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.index_structure_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.isolation_level_anomalies
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.query_cost_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.query_plan_inspection
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.transaction_atomicity
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: domain
+  scope_id: domain.distributed_storage
+  capability_kind: skill
+  capability_id: skill.storage.write_ahead_logging
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.branch_prediction_cost
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.cache_hierarchy_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.cache_miss_classification
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.data_layout_transformation
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.false_sharing_awareness
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.instruction_level_parallelism
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.latency_throughput_distinction
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.locality_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.memory_alignment_layout
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.pipeline_hazard_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.roofline_bottleneck_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.simd_data_parallel_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.arch.vectorization_enablement
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.concurrency.event_loop_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.concurrency.lock_granularity_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.concurrency.lockfree_tradeoff_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.concurrency.scaling_limit_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cpp.container_selection
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.cpp.move_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.availability_consistency_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.backpressure_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.client_visible_anomaly_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.delivery_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.failure_detection_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.leader_election_failover
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.partial_failure_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.partitioning_strategies
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.quorum_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.rebalancing_hotspot_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.distributed.time_clock_ordering
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.http_connection_performance
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.io_multiplexing_usage
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.latency_bandwidth_budget
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.network_failure_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.nonblocking_io_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.rpc_call_semantics
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.serialization_format_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.service_discovery_naming
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.tcp_reliability_flow_control
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.network.timeout_retry_policy
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.observability.metric_instrumentation
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.observability.signal_correlation_diagnosis
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.allocator_behavior_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.context_switch_cost
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.page_fault_behavior
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.scheduler_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.syscall_boundary_model
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.tlb_page_size_effects
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.bottleneck_localization
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.cache_behavior_measurement
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.capacity_headroom_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.cost_efficiency_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.end_to_end_latency_attribution
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.measurement_goal_definition
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.performance.tail_latency_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.platform.image_build_optimization
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.platform.scheduling_placement_constraints
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.storage.concurrency_control_mechanisms
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.storage.data_layout_compaction
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.storage.index_selection_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.storage.index_structure_tradeoff
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.storage.query_cost_reasoning
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []

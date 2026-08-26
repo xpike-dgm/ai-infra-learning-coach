@@ -1,6 +1,6 @@
 # HANDOFF STATE — Güncel Proje Durumu
 
-**Son güncelleme:** 2026-08-25  
+**Son güncelleme:** 2026-08-26
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ## 0. Zorunlu protokol — D-024 / D-027 / D-050
@@ -39,6 +39,9 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-053:** GQA-v0 Foundation Graph Architecture QA; 5D corrective patch sonrası PASS.
 - **D-054:** GNS-v0 Granularity & Naming Standard; 6A semantic decomposition/ID contract tamamlandı.
 - **D-055:** Ana manager/koordinatör rolü local çalışan agent'a devredilebilir; takeover bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; project contracts/state değişmez.
+- **D-056:** FRDB-v0 Full-Route Decomposition Blueprint; 6C–6F ortak authoring package + QA contract'ı tamamlandı.
+- **D-057:** FDM-v0 Foundations Detailed Map; D01–D05 package + FBB seed mapping + internal graph QA tamamlandı.
+- **D-058:** SDM-v0 Systems Detailed Map; D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -146,7 +149,58 @@ Kullanıcı ana yönetici rolünü local çalışan agent'a devretme kararı ver
 - İlk takeover: `AGENTS.md` → `LOCAL_MANAGER_HANDOFF` → `START_HERE` → `PROJECT_MEMORY_PROTOCOL` → bütün Markdown repo audit/read.
 - Research/Coding/Test separation korunur.
 - Transition numbered step değildir.
-- Canonical execution değişmedi: 6A tamamlandı; 6B active/not-executed.
+- Transition anında canonical execution değişmedi; daha sonra kullanıcı onayı ve fresh PRE/POST protokolüyle 6B tamamlandı.
+
+## 9.2 D-056 / 6B final özeti
+
+Canonical: `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`.
+
+FRDB-v0:
+- 23 route family'yi 6C Foundations, 6D Systems, 6E GPU/ML/Inference ve 6F Professional Engineering package'larına atar,
+- UTF-8 YAML machine-readable authoring package ve logical collection setini tanımlar,
+- organization, Skill, Objective, TopicSkillLink, prerequisite, requirement ve attribution row contract'larını standardize eder,
+- GNS-v0 granularity review + unresolved review queue kullanır,
+- cross-package duplicate resolver ve canonical shared Skill reuse workflow'unu kilitler,
+- FBB seed mapping/ratification contract'ını 6C'ye bağlar,
+- evidence/depth, remediation, retention, diagnostic, provenance ve freshness metadata'sını taşır,
+- 6G weakness/remediation ve 6H independent Research QA handoff'unu açık tutar,
+- physical DB schema, production content veya gerçek node listesi değildir.
+
+## 9.3 D-057 / 6C final özeti
+
+Canonical summary: `docs/FOUNDATIONS_DETAILED_MAP.md`.
+
+Canonical dataset: `curriculum/decomposition/6c_foundations/`.
+
+FDM-v0:
+- D01–D05 için 5 Domain / 14 Module / 46 Topic,
+- 132 Skill / 137 Objective / 145 TopicSkillLink,
+- 200 hard/soft prerequisite edge; hard graph DAG,
+- FBB 41/41 Skill + 47/47 Objective seed mapping,
+- 33 Skill ratify + 8 broad Skill split,
+- Technical English global-gate guard,
+- deterministic generator + independent package validator,
+- internal result `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
+- 6H external Research QA pending; learner-published değil.
+
+## 9.4 D-058 / 6D final özeti
+
+Canonical summary: `docs/SYSTEMS_DETAILED_MAP.md`.
+
+Canonical dataset: `curriculum/decomposition/6d_systems/`.
+
+SDM-v0:
+- D06–D13 için 8 Domain / 21 Module / 64 Topic,
+- 192 Skill / 207 Objective / 224 TopicSkillLink,
+- 313 prerequisite edge (259 hard / 54 soft); FRDB Pass B ile 52 scaffold edge soft'a indirildi,
+- 6C + 6D birleşik hard graph DAG 324/324 node,
+- 43 accepted 6C Skill clone'lanmadan reuse edildi; 56 cross-package edge `cross_package_ref` ile etiketli,
+- 146 shared stable systems capability / 46 language veya tool-specific capability,
+- 13 fast-moving + 21 version-sensitive Skill freshness ve technology dependency metadata'sı taşır,
+- Technical English global-gate guard ve branch isolation korundu,
+- deterministic generator + bağımsız package validator; her ikisi de PASS,
+- internal result `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
+- 6H external Research QA pending; learner-published değil.
 
 ## 10. Tamamlanan aşamalar
 
@@ -157,48 +211,63 @@ Kullanıcı ana yönetici rolünü local çalışan agent'a devretme kararı ver
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6:
   - 6A ✅ GNS-v0 / D-054
-  - 6B 🟡 Full-route decomposition blueprint — aktif, henüz yürütülmedi
-  - 6C–6H ⬜
+  - 6B ✅ FRDB-v0 / D-056
+  - 6C ✅ FDM-v0 / D-057
+  - 6D ✅ SDM-v0 / D-058
+  - 6E 🟡 GPU / ML / Inference detailed map — aktif, henüz yürütülmedi
+  - 6F–6H ⬜
 - AŞAMA 7–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Aktif:** `6B — Full-route decomposition blueprint`  
-**6B henüz yürütülmedi.**
+**Aktif:** `6E — GPU / ML / Inference detailed map`
+**6E henüz yürütülmedi.**
 
-## 12. 6B'de kesinleştirilecekler
+## 12. 6E'de kesinleştirilecekler
 
 Ana soru:
-> GNS-v0 standardını 23 route family'nin tamamında tutarlı biçimde uygulayacak ortak decomposition authoring blueprint'i ve çıktı contract'ı nasıl olmalı?
+> FRDB-v0 ile birlikte FDM-v0 ve SDM-v0 accepted Skill registry'lerini kullanarak D14–D22 GPU/ML/Inference package'ı granular, duplicate-free ve prerequisite-safe nasıl oluşturulmalı?
 
 Kesinleştirilecek:
-- domain/module/topic decomposition row yapısı,
-- Skill/Objective candidate authoring template'i,
-- GNS-v0 granularity review reason-code kullanımı,
-- duplicate resolver ve cross-domain shared Skill reuse workflow'u,
-- prerequisite candidate declaration biçimi,
-- evidence/remediation/retention/professional metadata authoring alanları,
-- source/provenance/freshness capture,
-- FBB seed mapping alanı,
-- 6C–6F paketlerinin ortak machine-readable/QA-ready çıktı şekli.
+- D14–D22 Domain/Module/Topic detailed organization map,
+- GPU Architecture, CUDA, Triton,
+- ML + Transformer foundations,
+- LLM Inference internals ve serving systems,
+- KV cache / batching / scheduling / quantization,
+- Multi-GPU + NCCL + RDMA,
+- AI Infrastructure / GPU Infrastructure,
+- accelerator Skills ve atomic Objectives,
+- 6C + 6D accepted registry ile cross-package shared Skill reuse,
+- stable GPU/inference concept ile tool/version-specific capability ayrımı,
+- math/numerical hidden prerequisite'lerin explicit yakalanması,
+- hard/soft prerequisite graph + branch isolation,
+- evidence/depth/remediation/retention/diagnostic/professional metadata,
+- FRDB-v0 package collections + review queue + QA report,
+- `review.6d.accelerator_forward_reuse` kaydının tüketilmesi.
 
-6B gerçek full route node listesini tamamlamaz; ortak blueprint'i kilitler.
+6E 6F professional/project map'ini veya production lesson/task content'ini yazmaz.
 
-## 13. 6B için PRE-STEP doğrudan okunacaklar
+## 13. 6E için PRE-STEP doğrudan okunacaklar
 1. `docs/HANDOFF_STATE.md`
 2. `docs/EXECUTION_INDEX.md`
 3. `docs/STEP_STATUS.md`
 4. `docs/DECISIONS.md`
 5. `docs/MASTER_PLAN.md`
 6. `PROJECT_CONTEXT.md`
-7. `docs/GRANULARITY_NAMING_STANDARD.md`
-8. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
-9. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
-10. `docs/CURRICULUM_DOMAIN_MAP.md`
-11. `docs/V1_FOUNDATION_BACKBONE.md`
-12. `docs/GRAPH_ARCHITECTURE_QA.md`
-13. `docs/LEARNING_ENGINE_SPEC.md`
-14. `docs/PREREQUISITE_POLICY_SPEC.md`
-15. `docs/PROJECT_MEMORY_PROTOCOL.md`
+7. `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`
+8. `docs/FOUNDATIONS_DETAILED_MAP.md`
+9. `docs/SYSTEMS_DETAILED_MAP.md`
+10. `curriculum/decomposition/6c_foundations/skills.yaml`
+11. `curriculum/decomposition/6d_systems/manifest.yaml`
+12. `curriculum/decomposition/6d_systems/skills.yaml`
+13. `curriculum/decomposition/6d_systems/prerequisite_edges.yaml`
+14. `curriculum/decomposition/6d_systems/review_queue.yaml`
+15. `docs/GRANULARITY_NAMING_STANDARD.md`
+16. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+17. `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md`
+18. `docs/CURRICULUM_DOMAIN_MAP.md`
+19. `docs/LEARNING_ENGINE_SPEC.md`
+20. `docs/PREREQUISITE_POLICY_SPEC.md`
+21. `docs/PROJECT_MEMORY_PROTOCOL.md`
 
-6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.

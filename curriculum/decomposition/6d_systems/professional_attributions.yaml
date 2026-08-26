@@ -1,0 +1,3080 @@
+- capability_id: skill.arch.assembly_reading_basic
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.assembly_reading_basic
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.branch_prediction_cost
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.cache_hierarchy_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.cache_miss_classification
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.cache_miss_classification
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.data_layout_transformation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.false_sharing_awareness
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.false_sharing_awareness
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.hardware_counter_interpretation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.instruction_execution_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.instruction_level_parallelism
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.isa_abstraction_boundary
+  professional_family_id: professional.source_reading
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.latency_throughput_distinction
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.locality_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.memory_alignment_layout
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.memory_alignment_layout
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.number_representation_precision
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.pipeline_hazard_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.roofline_bottleneck_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.roofline_bottleneck_reasoning
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.simd_data_parallel_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.vectorization_enablement
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.arch.vectorization_enablement
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.async_execution_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.async_execution_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.atomic_operations
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.atomic_operations
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.cancellation_timeout_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.condition_variable_coordination
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.condition_variable_coordination
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.data_race_diagnosis
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.data_race_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.deadlock_analysis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.deadlock_analysis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.event_loop_behavior
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.event_loop_behavior
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.lock_granularity_tradeoff
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.lock_granularity_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.lockfree_tradeoff_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.lockfree_tradeoff_reasoning
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.memory_ordering_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.memory_ordering_model
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.mutex_critical_section
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.mutex_critical_section
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.nondeterministic_reproduction
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.nondeterministic_reproduction
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.parallel_result_aggregation
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.parallel_result_aggregation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.parallel_speedup_measurement
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.parallel_speedup_measurement
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.scaling_limit_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.shared_mutable_state_risk
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.shared_mutable_state_risk
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.task_vs_thread_abstraction
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.task_vs_thread_abstraction
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.thread_lifecycle_management
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.thread_lifecycle_management
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.thread_pool_usage
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.thread_pool_usage
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.work_decomposition
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.concurrency.work_decomposition
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.build_system_project_definition
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.build_system_project_definition
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.build_translation_model
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.class_design_invariants
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.compilation_time_hygiene
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.compilation_time_hygiene
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.const_correctness_qualifiers
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.const_correctness_qualifiers
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.container_selection
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.container_selection
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.contract_precondition_validation
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.contract_precondition_validation
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.debugger_inspection
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.dependency_integration
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.dependency_integration
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.error_return_vs_exception
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.error_return_vs_exception
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.exception_safety_guarantees
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.function_class_templates
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.header_module_interface
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.header_module_interface
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.initialization_semantics
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.interface_composition_tradeoff
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.interface_composition_tradeoff
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.iterator_range_algorithms
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.move_semantics
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.move_semantics
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.non_owning_view_borrowing
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.object_lifetime_scope
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.object_lifetime_scope
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.raii_resource_ownership
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.raii_resource_ownership
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.reference_binding
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.reference_binding
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.sanitizer_ub_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.sanitizer_ub_diagnosis
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.smart_pointer_ownership
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.smart_pointer_ownership
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.special_member_rules
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.standard_version_toolchain_flags
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.standard_version_toolchain_flags
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.template_constraints_overload
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.template_diagnostic_reading
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.template_diagnostic_reading
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.unit_test_harness
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.value_categories
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.virtual_dispatch_polymorphism
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.cpp.virtual_dispatch_polymorphism
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.availability_consistency_tradeoff
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.availability_consistency_tradeoff
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.backpressure_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.backpressure_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.client_visible_anomaly_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.client_visible_anomaly_reasoning
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.consensus_protocol_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.consistency_model_distinction
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.delivery_semantics
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.duplicate_reordering_handling
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.duplicate_reordering_handling
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.failure_detection_semantics
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.failure_detection_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.idempotent_operation_design
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.idempotent_operation_design
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.leader_election_failover
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.leader_election_failover
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.partial_failure_model
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.partitioning_strategies
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.partitioning_strategies
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.queue_streaming_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.quorum_reasoning
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.rebalancing_hotspot_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.replication_models
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.stream_processing_semantics
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.distributed.time_clock_ordering
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.addressing_routing_basics
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.connection_resource_limits
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.connection_resource_limits
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.dns_resolution_behavior
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.dns_resolution_behavior
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.http_api_error_contract
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.http_api_error_contract
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.http_connection_performance
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.http_request_response_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.io_multiplexing_usage
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.io_multiplexing_usage
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.latency_bandwidth_budget
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.layering_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.network_failure_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.network_failure_diagnosis
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.nonblocking_io_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.nonblocking_io_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.packet_capture_reading
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.packet_capture_reading
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.protocol_framing
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.rpc_call_semantics
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.schema_evolution_compatibility
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.schema_evolution_compatibility
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.serialization_format_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.serialization_format_tradeoff
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.service_discovery_naming
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.service_discovery_naming
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.socket_client_server
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.socket_error_partial_io
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.socket_error_partial_io
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tcp_connection_lifecycle
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tcp_connection_lifecycle
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tcp_reliability_flow_control
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.timeout_retry_policy
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.timeout_retry_policy
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tls_failure_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tls_failure_diagnosis
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.tls_handshake_trust_model
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.network.udp_datagram_tradeoff
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.distributed_tracing
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.distributed_tracing
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.metric_instrumentation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.metric_instrumentation
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.signal_correlation_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.signal_correlation_diagnosis
+  professional_family_id: professional.distributed_failure_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.structured_logging
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.observability.structured_logging
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.allocator_behavior_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.blocking_io_semantics
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.blocking_io_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.buffering_flush_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.context_switch_cost
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.context_switch_cost
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.cpu_time_accounting
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.cpu_time_accounting
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.file_descriptor_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.graceful_shutdown_behavior
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.kernel_event_observation
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.kernel_event_observation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.memory_mapping_usage
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.memory_usage_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.memory_usage_diagnosis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.page_fault_behavior
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.page_fault_behavior
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.process_address_space_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.process_creation_lifecycle
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.resource_limit_reasoning
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.resource_limit_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.scheduler_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.signal_handling_semantics
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.signal_handling_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_boundary_model
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_boundary_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_error_semantics
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_error_semantics
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_tracing
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.syscall_tracing
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.thread_vs_process_model
+  professional_family_id: professional.concurrency
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.thread_vs_process_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.tlb_page_size_effects
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.os.virtual_physical_translation
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.benchmark_reproducibility
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.benchmark_reproducibility
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.benchmark_workload_design
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.bottleneck_localization
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.bottleneck_localization
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.cache_behavior_measurement
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.cache_behavior_measurement
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.capacity_headroom_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.capacity_headroom_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.cost_efficiency_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.cost_efficiency_reasoning
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.cpu_profile_collection
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.end_to_end_latency_attribution
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.end_to_end_latency_attribution
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.io_bound_analysis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_environment_control
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_environment_control
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_goal_definition
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_goal_definition
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_validity_reasoning
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.measurement_validity_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.memory_profile_analysis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.memory_profile_analysis
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.microbenchmark_pitfalls
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.microbenchmark_pitfalls
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.optimization_hypothesis_validation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.performance_report_communication
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.performance_report_communication
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.profile_interpretation
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.profile_interpretation
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.regression_detection
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.regression_detection
+  professional_family_id: professional.testing
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.sampling_instrumentation_tradeoff
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.tail_latency_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.tail_latency_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.performance.variance_distribution_reasoning
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.cgroup_resource_control
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.cgroup_resource_control
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.cloud_compute_resource_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.cloud_identity_access_boundary
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.configuration_management
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.configuration_management
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_image_layers
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_image_layers
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_network_model
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_network_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_runtime_lifecycle
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_runtime_lifecycle
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_storage_persistence
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_vs_vm_boundary
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.container_vs_vm_boundary
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.deployment_change_safety
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.deployment_change_safety
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.image_build_optimization
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.image_build_optimization
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.image_supply_chain_safety
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.image_supply_chain_safety
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.infrastructure_as_code_reproducibility
+  professional_family_id: professional.build_tooling
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.infrastructure_as_code_reproducibility
+  professional_family_id: professional.reproducibility
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.namespace_isolation_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.orchestrated_workload_model
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.rollout_health_recovery
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.scheduling_placement_constraints
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.scheduling_placement_constraints
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.secret_handling_safety
+  professional_family_id: professional.operational_safety
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.workload_failure_diagnosis
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.platform.workload_failure_diagnosis
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.alerting_signal_quality
+  professional_family_id: professional.observability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.alerting_signal_quality
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.incident_response_workflow
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.incident_response_workflow
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.postmortem_analysis
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.postmortem_analysis
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.slo_definition
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.reliability.slo_definition
+  professional_family_id: professional.technical_communication
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.concurrency_control_mechanisms
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.concurrency_control_mechanisms
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.crash_recovery_reasoning
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.crash_recovery_reasoning
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.data_layout_compaction
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.durability_write_path
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.index_selection_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.index_structure_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.index_structure_tradeoff
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.isolation_level_anomalies
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.isolation_level_anomalies
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.query_cost_reasoning
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.query_plan_inspection
+  professional_family_id: professional.debugging
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.query_plan_inspection
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.transaction_atomicity
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []
+- capability_id: skill.storage.write_ahead_logging
+  professional_family_id: professional.reliability
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  review_refs: []

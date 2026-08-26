@@ -1,6 +1,6 @@
 # Project Context — Kısa Yaşayan Proje Hafızası
 
-**Son senkron:** 2026-08-25  
+**Son senkron:** 2026-08-26
 **Dosya rolü:** Kısa current snapshot. Her numaralı adım sonunda D-050 / `docs/PROJECT_MEMORY_PROTOCOL.md` gereği kontrol edilir ve execution state değiştiyse güncellenir.
 
 Bu dosya sohbet bağlamı kaybolsa bile projenin yönünü ve **şu an nerede olduğumuzu** hızlıca yeniden kurmak için tutulur. Ayrıntılı bootstrap için `docs/START_HERE.md`, uzun/stabil bağlam için `docs/PROJECT_MASTER_CONTEXT.md` canonicaldır.
@@ -91,9 +91,15 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-054 / GNS-v0:** canonical `docs/GRANULARITY_NAMING_STANDARD.md`. 6A Skill/Objective atomization, under/over-fragmentation, shared-vs-specific capability, stable logical ID ve FBB seed ratification/refactor kurallarını kilitledi.
 
+**D-056 / FRDB-v0:** canonical `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`. 6B, 23 route family için 6C–6F common machine-readable authoring package, entity/relation row, duplicate/reuse, prerequisite, FBB mapping, source/freshness, review queue ve QA contract'ını kilitledi.
+
+**D-057 / FDM-v0:** canonical summary `docs/FOUNDATIONS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6c_foundations/`. D01–D05; 5 Domain, 14 Module, 46 Topic, 132 Skill, 137 Objective, 145 TopicSkillLink ve 200 prerequisite edge ile internally mapped; FBB 41/47 seed mapping complete, hard graph DAG, 0 blocking review. External validation 6H'ye pending.
+
+**D-058 / SDM-v0:** canonical summary `docs/SYSTEMS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6d_systems/`. D06–D13; 8 Domain, 21 Module, 64 Topic, 192 Skill, 207 Objective, 224 TopicSkillLink ve 313 prerequisite edge (259 hard / 54 soft). 43 accepted 6C Skill clone'lanmadan reuse edildi; 6C+6D birleşik hard graph DAG 324/324; 0 blocking review. External validation 6H'ye pending.
+
 ## 8. İngilizce
 
-English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C'de; English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
+English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerler. Bilinmeyen grammar/vocabulary teknik assessment'ta gizli prerequisite olamaz. Granular English capability map AŞAMA 6C / FDM-v0'da tamamlandı; 6D Systems package'ında da English→technical hard gate yoktur. English-specific progression/CEFR/cadence/integration AŞAMA 7'de kesinleşir.
 
 ## 9. Professional-readiness depth
 
@@ -122,7 +128,7 @@ AŞAMA 20 = full professional curriculum + OSS + career + capstones
 
 ## 10.1 Local manager takeover — D-055
 
-Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonical bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; GitHub durable source of truth ve D-024/D-027/D-050 PRE/POST workflow değişmez. Transition 6B'yi yürütmez; current execution hâlâ 6A ✅ / 6B 🟡 not-executed.
+Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonical bootstrap `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`; GitHub durable source of truth ve D-024/D-027/D-050 PRE/POST workflow değişmez. D-055 transition kendi başına numbered step değildir; sonraki 6B execution normal onay/protokol ile tamamlanmıştır.
 
 ## 11. Güncel yürütme konumu
 
@@ -133,11 +139,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6:
   - **6A ✅ GNS-v0 / D-054**
-  - **6B 🟡 Full-route decomposition blueprint — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-  - 6C–6H ⬜
+  - **6B ✅ FRDB-v0 / D-056**
+  - **6C ✅ FDM-v0 / D-057**
+  - **6D ✅ SDM-v0 / D-058**
+  - **6E 🟡 GPU / ML / Inference detailed map — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+  - 6F–6H ⬜
 - AŞAMA 7–20 ⬜
 
-**Sıradaki numaralı çalışma 6B'dir.** 6B başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+**Sıradaki numaralı çalışma 6E'dir.** 6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

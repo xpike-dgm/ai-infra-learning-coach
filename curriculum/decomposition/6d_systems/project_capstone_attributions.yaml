@@ -1,0 +1,132 @@
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.cpp.build_system_project_definition
+  objective_id: objective.cpp.build_system_project_definition.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.build_system_project_definition
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.cpp.unit_test_harness
+  objective_id: objective.cpp.unit_test_harness.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.unit_test_harness
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.os.signal_handling_semantics
+  objective_id: objective.os.signal_handling_semantics.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.signal_handling_semantics
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.concurrency.thread_pool_usage
+  objective_id: objective.concurrency.thread_pool_usage.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.thread_pool_usage
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.network.socket_client_server
+  objective_id: objective.network.socket_client_server.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.socket_client_server
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.network.protocol_framing
+  objective_id: objective.network.protocol_framing.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.protocol_framing
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.storage.durability_write_path
+  objective_id: objective.storage.durability_write_path.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.durability_write_path
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.distributed.idempotent_operation_design
+  objective_id: objective.distributed.idempotent_operation_design.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.idempotent_operation_design
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.platform.container_image_layers
+  objective_id: objective.platform.container_image_layers.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.container_image_layers
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.observability.structured_logging
+  objective_id: objective.observability.structured_logging.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.structured_logging
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.reliability.slo_definition
+  objective_id: objective.reliability.slo_definition.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.slo_definition
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []
+- project_or_capstone_id: project.systems.observable_networked_service
+  skill_id: skill.performance.benchmark_reproducibility
+  objective_id: objective.performance.benchmark_reproducibility.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: component_artifact
+  rubric_component_ref: rubric.systems.observable_networked_service.benchmark_reproducibility
+  source_refs:
+  - source.repo.frdb_v0
+  review_refs: []

@@ -407,7 +407,7 @@ D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_
 > **Takvim hedef değildir. Final gate; granular Skill/Objective mastery + retention + transfer + debugging + performance + integrated capstone evidence'dır.**
 
 ## D-053 / 5D architecture guard
-`GQA-v0 — Foundation Graph Architecture QA` FBB authoring seed'i structural olarak doğrular. Explicit TopicSkillLink, KGC reason-kind vocabulary, minimal hidden-prerequisite hard edges, branch isolation, English global-gate guard ve DAG/reachability invariants AŞAMA 6 decomposition için başlangıç guard'ıdır. Canonical QA: `docs/GRAPH_ARCHITECTURE_QA.md`. FBB seed learner-published değildir; 6A/6C ratification + 6H external Research QA gerekir.
+`GQA-v0 — Foundation Graph Architecture QA` FBB authoring seed'i structural olarak doğrular. Explicit TopicSkillLink, KGC reason-kind vocabulary, minimal hidden-prerequisite hard edges, branch isolation, English global-gate guard ve DAG/reachability invariants AŞAMA 6 decomposition için başlangıç guard'ıdır. Canonical QA: `docs/GRAPH_ARCHITECTURE_QA.md`. 6A/6C ratification tamamlanmıştır; FBB/FDM learner-published değildir ve 6H external Research QA hâlâ gerekir.
 
 ## D-054 / 6A granularity and identity guard
 `GNS-v0 — Granularity & Naming Standard` (`docs/GRANULARITY_NAMING_STANDARD.md`) AŞAMA 6 decomposition için kalıcı semantic standardıdır.
@@ -417,8 +417,42 @@ D-050 ile yaşayan dosya rol matrisi ve stale-reference kontrolü `docs/PROJECT_
 - Objective exactly-one-Skill altında atomic observable evidence target'tır.
 - Skill split/keep kararı independent evidence/remediation/prerequisite/reuse sınırına göre verilir; keyword veya calendar sırası yeterli değildir.
 - Stable logical ID locale/order/version bağımsızdır; display/localization/alias identity değildir.
-- FBB authoring seed'leri 6C'de GNS-v0 ile explicit ratify/normalize/split/merge/re-home review'undan geçer.
+- FBB authoring seed'leri 6C/FDM-v0'da GNS-v0 ile explicit ratify/split/normalize mapping'inden geçti.
 - 6H external Research QA zorunluluğu korunur.
+
+## D-056 / 6B full-route authoring guard
+
+`FRDB-v0 — Full-Route Decomposition Blueprint` (`docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`) 6C–6F detailed-map package'larının ortak authoring/output sözleşmesidir.
+
+- 23 route family 6C Foundations, 6D Systems, 6E GPU/ML/Inference ve 6F Professional Engineering package'larına atanır.
+- Canonical interchange machine-readable YAML authoring collections kullanır; physical DB schema değildir.
+- Skill candidate bağımsız evidence/remediation/prerequisite/reuse ve shared-vs-specific sınırını açıklar.
+- Objective exactly-one-Skill altında observable action, success criteria ve evidence profile taşır.
+- Duplicate resolver accepted/current/prior-package registry üzerinde çalışır; placement için Skill clone'lanmaz.
+- FBB seed mapping/ratification 6C'nin zorunlu çıktısıdır.
+- 6G weakness/remediation mapping ve 6H independent Research QA zorunluluğu korunur.
+
+## D-057 / 6C Foundations map guard
+
+`FDM-v0 — Foundations Detailed Map` (`docs/FOUNDATIONS_DETAILED_MAP.md`, `curriculum/decomposition/6c_foundations/`) D01–D05 için canonical detailed authoring package'ıdır.
+
+- 5 Domain / 14 Module / 46 Topic altında 132 Skill ve 137 exactly-one-Skill Objective bulunur.
+- FBB-v0 41 Skill / 47 Objective seed mapping'i eksiksizdir; broad seed split'leri explicit ve learner-evidence-free'dir.
+- 145 TopicSkillLink shared programming/reasoning capability'lerini clone etmeden reuse eder.
+- 200 prerequisite edge hard-DAG ve branch-isolation guard'larını geçer.
+- Technical English global technical gate değildir; AŞAMA 7 CEFR/progression metadata'sını ekler.
+- Package internally QA-passed fakat learner-published veya externally validated değildir; 6H zorunludur.
+
+## D-058 / 6D Systems map guard
+
+`SDM-v0 — Systems Detailed Map` (`docs/SYSTEMS_DETAILED_MAP.md`, `curriculum/decomposition/6d_systems/`) D06–D13 için canonical detailed authoring package'ıdır.
+
+- 8 Domain / 21 Module / 64 Topic altında 192 Skill ve 207 exactly-one-Skill Objective bulunur.
+- 43 accepted 6C Skill clone'lanmadan reuse edilir; reuse `seed_mappings.yaml` içinde explicit beyan edilir.
+- 313 prerequisite edge (259 hard / 54 soft) hard-DAG ve branch-isolation guard'larını 6C ile birleşik grafikte geçer.
+- Stable systems concept ile fast-moving tool capability ayrımı freshness ve technology dependency metadata'sıyla korunur.
+- Technical English global technical gate değildir.
+- Package internally QA-passed fakat learner-published veya externally validated değildir; 6H zorunludur.
 
 ## D-055 / Local manager continuity guard
 

@@ -1,0 +1,91 @@
+package_id: decomposition.6d_systems
+package_version: 1
+stage_step: 6D
+status: authoring_complete_internal_qa
+blueprint_version: FRDB-v0
+graph_contract_version: KGC-v0
+granularity_standard_version: GNS-v0
+base_graph_refs:
+- FDM-v0
+- FBB-v0
+- GQA-v0
+route_family_ids:
+- D06
+- D07
+- D08
+- D09
+- D10
+- D11
+- D12
+- D13
+included_collections:
+- sources
+- organization_entities
+- skills
+- objectives
+- topic_skill_links
+- prerequisite_edges
+- capability_requirements
+- professional_attributions
+- project_capstone_attributions
+- seed_mappings
+- review_queue
+- qa_report
+source_catalog_refs:
+- source.repo.pdm_v0
+- source.repo.kgc_v0
+- source.repo.gns_v0
+- source.repo.frdb_v0
+- source.repo.fdm_v0
+- source.repo.gqa_v0
+- source.repo.prg_v0
+- source.repo.les_v0
+- source.repo.internal_6d_authoring
+coverage_declarations:
+- route_family_id: D06
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D07
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D08
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D09
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D10
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D11
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D12
+  status: internally_mapped
+  external_validation: pending_6H
+- route_family_id: D13
+  status: internally_mapped
+  external_validation: pending_6H
+prior_package_refs:
+- package_id: decomposition.6c_foundations
+  reused_skill_count: 43
+  cross_package_prerequisite_edges: 56
+  target_ref_status: resolved_prior_package
+  blocking_for_current_package_publish: false
+known_exclusions:
+- GPU, CUDA, Triton, ML/Transformer ve inference capability'leri 6E'ye aittir.
+- D23 open-source/large-project/capstone decomposition'u 6F'e aittir.
+- Learner weakness/remediation runtime mapping 6G'ye aittir.
+- External coverage/current-industry validation 6H'ye aittir.
+- Production lesson/task/resource body'leri AŞAMA 15/20'ye aittir.
+- Physical database schema 9C'ye aittir.
+unresolved_review_count: 4
+blocking_review_count: 0
+generated_at: '2026-08-26'
+authored_by: local_main_manager
+review_refs:
+- review.6d.external_coverage
+- review.6d.platform_tool_freshness
+- review.6d.professional_overlay_reconciliation
+- review.6d.accelerator_forward_reuse
+content_hash: null

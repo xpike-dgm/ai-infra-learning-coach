@@ -1,12 +1,14 @@
 # Granular Capability Map Plan — AŞAMA 6 Charter
 
-**Durum:** YÜRÜTÜLÜYOR — 6A TAMAMLANDI / 6B AKTİF  
+**Durum:** YÜRÜTÜLÜYOR — 6A–6D TAMAMLANDI / 6E AKTİF
 **Tarih:** 2026-08-25  
 **Karar:** D-044  
 **5B canonical schema contract:** `docs/CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md` / KGC-v0 / D-051
 **5C V1 seed input:** `docs/V1_FOUNDATION_BACKBONE.md` / FBB-v0 / D-052
 **5D architecture QA input:** `docs/GRAPH_ARCHITECTURE_QA.md` / GQA-v0 / D-053
 **6A granularity/naming standard:** `docs/GRANULARITY_NAMING_STANDARD.md` / GNS-v0 / D-054
+**6B decomposition blueprint:** `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` / FRDB-v0 / D-056
+**6C Foundations detailed map:** `docs/FOUNDATIONS_DETAILED_MAP.md` + `curriculum/decomposition/6c_foundations/` / FDM-v0 / D-057
 
 Bu belge yeni **AŞAMA 6 — Granular Capability Map / Öğrenme Rotasını Alt Becerilere Bölme** aşamasının amacını ve acceptance kapsamını tanımlar.
 
@@ -159,18 +161,23 @@ Canonical: `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054.
 - shared-vs-specific Skill split policy
 - Objective atomicity + FBB seed ratification lifecycle
 
-### 6B — Full-route decomposition blueprint 🟡 AKTİF
-- 23 ana route family için decomposition template
-- cross-domain shared Skills ve duplicate prevention
+### 6B — Full-route decomposition blueprint ✅
+Canonical: `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` — FRDB-v0 / D-056.
+- 23 ana route family için ortak machine-readable decomposition package,
+- organization/Skill/Objective/relation row contracts,
+- cross-domain shared Skills ve duplicate prevention,
+- FBB mapping, review queue ve package QA contract.
 
-### 6C — Foundations detailed map
+### 6C — Foundations detailed map ✅
+Canonical: `docs/FOUNDATIONS_DETAILED_MAP.md` + `curriculum/decomposition/6c_foundations/` — FDM-v0 / D-057.
 - Technical English
 - Python
 - C
 - Linux / Git / Shell
 - DS&A foundations
 
-### 6D — Systems detailed map
+### 6D — Systems detailed map ✅
+Canonical: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/` — SDM-v0 / D-058.
 - Modern C++
 - Computer Architecture
 - OS / Memory
@@ -181,7 +188,7 @@ Canonical: `docs/GRANULARITY_NAMING_STANDARD.md` — GNS-v0 / D-054.
 - Containers / Cloud / Observability
 - Performance / Profiling
 
-### 6E — GPU / ML / Inference detailed map
+### 6E — GPU / ML / Inference detailed map 🟡 AKTİF
 - GPU Architecture
 - CUDA
 - Triton

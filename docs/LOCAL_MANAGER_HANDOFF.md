@@ -21,8 +21,8 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in hâlâ `6A completed / 6B active-not-executed` olduğunu doğrula.
-9. Ancak bundan sonra, 6B için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
+8. Current execution state'in hâlâ `6A–6D completed / 6E active-not-executed` olduğunu doğrula.
+9. Ancak bundan sonra, 6E için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
 
 Önerilen local komutlar:
 
@@ -1024,7 +1024,7 @@ Aynı cleanup'ta:
 
 ---
 
-# 20. Kalıcı decision özeti — D-001...D-054
+# 20. Kalıcı decision özeti — D-001...D-058
 
 Bu liste hızlı index'tir. Exact semantik için `docs/DECISIONS.md` tamamını oku.
 
@@ -1082,8 +1082,12 @@ Bu liste hızlı index'tir. Exact semantik için `docs/DECISIONS.md` tamamını 
 - D-052: FBB-v0 V1 foundation backbone.
 - D-053: GQA-v0 foundation graph architecture QA.
 - D-054: GNS-v0 granularity & naming standard.
+- D-055: local-running agent main manager role'ü devraldı; project contracts değişmedi.
+- D-056: FRDB-v0 full-route decomposition authoring blueprint ve ortak QA-ready output contract.
+- D-057: FDM-v0 D01–D05 detailed map, FBB 41/47 mapping ve internal graph QA.
+- D-058: SDM-v0 D06–D13 detailed map, 6C cross-package reuse ve birleşik hard-graph QA.
 
-D-055 manager transition bu takeover sırasında ayrıca decision log'a eklenecektir/eklenmelidir: local-running agent main manager role'ü devralır; project contracts değişmez.
+D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 
 ---
 
@@ -1134,42 +1138,45 @@ D-055 manager transition bu takeover sırasında ayrıca decision log'a eklenece
 ## AŞAMA 6 — IN PROGRESS
 
 - 6A ✅ GNS-v0 / D-054
-- **6B 🟡 ACTIVE / NOT EXECUTED — Full-route decomposition blueprint**
-- 6C–6H waiting
+- 6B ✅ FRDB-v0 / D-056
+- 6C ✅ FDM-v0 / D-057
+- 6D ✅ SDM-v0 / D-058
+- **6E 🟡 ACTIVE / NOT EXECUTED — GPU / ML / Inference detailed map**
+- 6F–6H waiting
 
 ---
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `6A — Granularity + naming standardı`  
-**Final:** `GNS-v0 — Granularity & Naming Standard` / D-054  
-**Canonical:** `docs/GRANULARITY_NAMING_STANDARD.md`
+**Son tamamlanan numaralı adım:** `6D — Systems detailed map`
+**Final:** `SDM-v0 — Systems Detailed Map` / D-058
+**Canonical:** `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/`
 
-**Aktif adım:** `6B — Full-route decomposition blueprint`  
+**Aktif adım:** `6E — GPU / ML / Inference detailed map`
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-Bu manager transition **6B'yi başlatmaz veya ilerletmez**.
+Kullanıcı onaylı numbered work 6D'yi tamamladı. Bu handoff belgesi **6E'yi başlatmaz veya ilerletmez**.
 
-Local manager takeover bittikten sonra, kullanıcı 6B'yi devam ettirmek/onaylamak istediğinde:
+Kullanıcı 6E'yi devam ettirmek/onaylamak istediğinde:
 
 ```text
-fresh 6B PRE-STEP GitHub refresh
-→ 6B execution
+fresh 6E PRE-STEP GitHub refresh
+→ 6E execution
 → evaluation
 → D-050 POST sync
 → stale-reference audit
-→ 6C active-not-executed
+→ 6F active-not-executed
 ```
 
 ---
 
-# 23. 6B'nin tam görevi
+# 23. Tamamlanan 6B'nin görevi ve final çıktısı
 
 Ana soru:
 
 > **GNS-v0 standardını 23 route family'nin tamamında tutarlı biçimde uygulayacak ortak decomposition authoring blueprint'i ve çıktı contract'ı nasıl olmalı?**
 
-6B gerçek full route node listesini yazmaz. 6C–6F'nin aynı kuralla ayrıntılı harita üretmesini sağlayan blueprint'i kilitler.
+6B gerçek full route node listesini yazmadı. 6C–6F'nin aynı kuralla ayrıntılı harita üretmesini sağlayan blueprint'i kilitledi.
 
 Kesinleştirilecek:
 - Domain/Module/Topic decomposition row yapısı,
@@ -1222,11 +1229,13 @@ granularity_review_code
 seed_mapping_if_any
 ```
 
+6B'nin final canonical çıktısı `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md` içindeki **FRDB-v0** ve D-056'dır. Blueprint 23 route family'yi 6C–6F paketlerine bağlar; ortak authoring satırlarını, duplicate/prerequisite/review iş akışını, çapraz paket reconciliation'ı ve 6C–6H handoff/QA kapılarını tanımlar.
+
 6B physical DB schema değildir; 9C'ye kadar implementation storage formatı kilitlenmez.
 
-## 6B Research/Coding/Test kararı
+## 6B Research/Coding/Test kararı — uygulanmış sonuç
 
-Fresh PRE sonrası manager yeniden değerlendirir. 6B internal authoring-contract formalizasyonu olduğu için separate external Research AI zorunlu olmak zorunda değildir. Ancak 6H external independent Research AI kesin zorunluluktur.
+Fresh PRE değerlendirmesinde 6B internal authoring-contract formalizasyonu olduğu için separate external Research AI ve runtime Coding AI gerekmedi. Static contract QA uygulandı. 6H external independent Research AI zorunluluğu aynen korunur.
 
 6B'de full professional coverage araştırması yapıldı diye 6H görevini iptal etme.
 
@@ -1234,7 +1243,13 @@ Fresh PRE sonrası manager yeniden değerlendirir. 6B internal authoring-contrac
 
 # 24. AŞAMA 6'nın kalan adımları
 
-## 6C — Foundations detailed map
+## 6C — Foundations detailed map ✅ FDM-v0 / D-057
+
+Canonical summary: `docs/FOUNDATIONS_DETAILED_MAP.md`.
+
+Canonical dataset: `curriculum/decomposition/6c_foundations/`.
+
+Final: 5 Domain / 14 Module / 46 Topic / 132 Skill / 137 Objective / 145 TopicSkillLink / 200 prerequisite edge; FBB 41/47 mapping complete; hard graph DAG; 0 blocking review. External validation 6H'ye pending.
 
 Granular decomposition:
 - Technical English,
@@ -1243,7 +1258,7 @@ Granular decomposition:
 - Linux/Git/Shell,
 - DS&A foundations.
 
-FBB 41 Skill / 47 Objective authoring seed'leri GNS-v0 ile ratify/normalize/split/merge/rehome/deprecate/review edilecek.
+FBB 41 Skill / 47 Objective authoring seed'leri GNS-v0 ile tek tek ratify/split/normalize edildi.
 
 Python yalnız broad “Python Foundations” kalmayacak. En az değerlendirilmesi gereken family'ler:
 - syntax/values/types,
@@ -1276,9 +1291,11 @@ Python yalnız broad “Python Foundations” kalmayacak. En az değerlendirilme
 - NumPy/tensor/PyTorch-facing Python,
 - infra/benchmark scripting.
 
-Bu liste seed expectation; final map QA/research ile değişebilir.
+Bu liste 6C package'ında capability rows'a dönüştürüldü; 6H external Research QA bulguları explicit correction/migration gerektirebilir.
 
-## 6D — Systems detailed map
+## 6D — Systems detailed map ✅
+
+Canonical: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/` — SDM-v0 / D-058.
 
 - Modern C++
 - Computer Architecture
@@ -1289,6 +1306,8 @@ Bu liste seed expectation; final map QA/research ile değişebilir.
 - Storage/DB
 - Containers/Cloud/Observability
 - Performance/Profiling
+
+Bu liste 6D package'ında 192 Skill / 207 Objective satırına dönüştürüldü; 6H external Research QA bulguları explicit correction/migration gerektirebilir.
 
 ## 6E — GPU / ML / Inference detailed map
 
@@ -1638,15 +1657,15 @@ Agent kendi kendine şu soruları cevaplayabilmelidir:
 17. D-050 POST seti hangi dosyaları kapsıyor?
 18. D-043 neden kullanılmamalı?
 19. Current exact active step nedir?
-20. 6B'nin scope'u nedir ve neyi özellikle yapmaz?
+20. FRDB-v0'nun scope'u nedir ve neyi özellikle yapmaz?
 21. 6H'de neden independent Research AI zorunlu?
 22. Coding başladığında QA/branch davranışı ne?
 
-Bu sorulardan biri belirsizse, 6B'ye başlamadan ilgili canonical dosya yeniden okunmalıdır.
+Bu sorulardan biri belirsizse, 6E'ye başlamadan ilgili canonical dosya yeniden okunmalıdır.
 
 ---
 
-# 31. Manager transition — D-055 adayı
+# 31. Manager transition — D-055
 
 Kullanıcı yönetici rolünü local çalışan agent'a devretme kararı verdi.
 
@@ -1657,9 +1676,9 @@ Bu geçişin anlamı:
 - local agent da D-024/D-027/D-050 protokolüne aynen uyar,
 - Research/Coding/Test bağımsız rol ayrımı aynen korunur,
 - local manager terminal/repo erişimini kullanarak daha güçlü repo-wide audit yapabilir,
-- bu transition numaralı 6B adımı değildir ve 6B'yi yürütmez.
+- bu transition numaralı 6B adımı değildi ve kendi başına 6B'yi yürütmedi.
 
-D-055 kalıcı karar olarak `docs/DECISIONS.md` içine sync edilmelidir.
+D-055 kalıcı karar olarak `docs/DECISIONS.md` içine sync edilmiştir. Daha sonraki kullanıcı onaylı çalışma 6B'yi D-056 / FRDB-v0 ile tamamlamıştır.
 
 ---
 
@@ -1667,7 +1686,7 @@ D-055 kalıcı karar olarak `docs/DECISIONS.md` içine sync edilmelidir.
 
 Kullanıcı ilk local-manager oturumunda aşağıdaki komutu/promptu kullanabilir:
 
-> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` dosyalarını tamamen oku. Ardından `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve repo içindeki tüm Markdown dosyalarını envanterleyip tamamen incele. Hiçbir dosyayı yalnız adına bakıp okunmuş sayma. Canonical decisions/specs ile historical/noncanonical dosyaları ayır. Current state'i `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` üzerinden çapraz doğrula. Bu takeover sırasında 6B'yi yürütme. Önce bana ürün hedefini, tamamlanan modelleri, değiştirilemez invariants'ı, current exact step'i ve sıradaki 6B scope'unu özetleyip devralmaya hazır olduğunu söyle. Bundan sonra her numaralı step'te `PROJECT_MEMORY_PROTOCOL.md` PRE/POST + D-050 stale-reference audit'i istisnasız uygula.**
+> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` dosyalarını tamamen oku. Ardından `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve repo içindeki tüm Markdown dosyalarını envanterleyip tamamen incele. Hiçbir dosyayı yalnız adına bakıp okunmuş sayma. Canonical decisions/specs ile historical/noncanonical dosyaları ayır. Current state'i `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` üzerinden çapraz doğrula. Bu takeover sırasında 6E'yi yürütme. Önce bana ürün hedefini, tamamlanan modelleri, değiştirilemez invariants'ı, current exact step'i, tamamlanan FDM-v0 ile SDM-v0'ı ve sıradaki 6E scope'unu özetleyip devralmaya hazır olduğunu söyle. Bundan sonra her numaralı step'te `PROJECT_MEMORY_PROTOCOL.md` PRE/POST + D-050 stale-reference audit'i istisnasız uygula.**
 
 ---
 
@@ -1682,15 +1701,18 @@ AŞAMA 3 ✅
 AŞAMA 4 ✅
 AŞAMA 5 ✅
 AŞAMA 6A ✅ GNS-v0 / D-054
-AŞAMA 6B 🟡 ACTIVE — NOT EXECUTED
-AŞAMA 6C–6H ⬜
+AŞAMA 6B ✅ FRDB-v0 / D-056
+AŞAMA 6C ✅ FDM-v0 / D-057
+AŞAMA 6D ✅ SDM-v0 / D-058
+AŞAMA 6E 🟡 ACTIVE — NOT EXECUTED
+AŞAMA 6F–6H ⬜
 AŞAMA 7–20 ⬜
 ```
 
-**Local manager transition, 6B execution değildir.**
+**Bu handoff güncellemesi, 6E execution değildir.**
 
-İlk gerçek numbered work hâlâ:
+Sıradaki gerçek numbered work:
 
-> **6B — Full-route decomposition blueprint**
+> **6E — GPU / ML / Inference detailed map**
 
 ve başlamadan fresh PRE-STEP GitHub refresh zorunludur.

@@ -352,3 +352,71 @@ Ayrıntı: `docs/GRANULARITY_NAMING_STANDARD.md`.
 - Transition state: `6A ✅ GNS-v0 / D-054`, `6B 🟡 active / not executed`.
 
 Canonical takeover bootstrap: `AGENTS.md` + `docs/LOCAL_MANAGER_HANDOFF.md`.
+
+## D-056 — Full-route decomposition blueprint = FRDB-v0
+**Durum:** Kabul edildi — 2026-08-26
+
+- 6B final modeli `FRDB-v0 — Full-Route Decomposition Blueprint` oldu.
+- Canonical çıktı `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`.
+- 23 route family 6C Foundations, 6D Systems, 6E GPU/ML/Inference ve 6F Professional Engineering package sınırlarına eksiksiz atandı.
+- 6C–6F için canonical interchange, logical collection'ları standardize edilmiş UTF-8 YAML authoring package olarak tanımlandı; Markdown yalnız açıklama/QA eşlikçisidir.
+- Manifest, source catalog, organization entities, Skills, Objectives, TopicSkillLinks, prerequisite edges, scope-relative requirements, professional/project attributions, seed mappings, review queue ve QA report contract'ları kilitlendi.
+- Skill candidate authoring independent evidence, remediation, prerequisite, reuse ve shared-vs-specific sınırlarını explicit taşımak zorundadır.
+- Objective exactly-one-Skill altında observable action, success criteria ve GRE-compatible evidence profile taşır.
+- Cross-package duplicate resolver accepted graph + prior packages + current candidates + FBB mappings üzerinde çalışır; aynı semantic Skill yeni placement için clone'lanmaz.
+- Hard/soft prerequisite authoring PRG-v0 contamination testini kullanır; task-specific requirement graph edge'e çevrilmez, Domain/Topic order hard gate olmaz.
+- FBB seed ratification/refactor mapping'i 6C için zorunlu hale getirildi.
+- GNS-v0 reason codes ve blocking/non-blocking unresolved review queue canonical authoring QA parçasıdır.
+- Retention, diagnostic, remediation, professional attribution, provenance ve freshness metadata'sı authoring contract'a bağlandı; yeni mastery algoritması veya sahte numeric threshold üretilmedi.
+- Technical English global technical gate değildir; stable concept ile tool/vendor-specific fast-moving capability ayrımı korunur.
+- 6G weakness/remediation mapping ve 6H independent external Research QA handoff'u explicit tutuldu.
+- FRDB-v0 physical DB schema, production lesson/task content'i veya gerçek full-route node listesi değildir.
+
+Ayrıntı: `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`.
+
+## D-057 — Foundations detailed map = FDM-v0
+**Durum:** Kabul edildi — 2026-08-26
+
+- 6C final modeli `FDM-v0 — Foundations Detailed Map` oldu.
+- Canonical summary `docs/FOUNDATIONS_DETAILED_MAP.md`; canonical machine-readable dataset `curriculum/decomposition/6c_foundations/` içindedir.
+- D01–D05; 5 Domain, 14 Module, 46 Topic, 132 canonical Skill candidate ve 137 exactly-one-Skill Objective ile ayrıntılandırıldı.
+- 145 TopicSkillLink aynı semantic shared capability'nin Python/C/DS&A placement'larında clone'lanmasını önler.
+- 200 hard/soft prerequisite edge PRG-v0 semantics ile tanımlandı; hard graph DAG, self/dangling/conflicting edge yoktur.
+- FBB-v0 41 Skill ve 47 Objective seed'inin tamamı explicit mapping aldı; 33 Skill ratify edildi, 8 broad Skill split edildi; 38 Objective ratify edildi, 9 Objective owner/ID normalization aldı.
+- FBB learner-published olmadığı için seed refactor learner evidence migration veya bedava mastery üretmez.
+- Technical English granular capability graph'ıdır fakat unrelated technical Skills için global hard gate değildir; CEFR progression/cadence AŞAMA 7'de kalır.
+- Python map core language, data/functions, software engineering, systems/data/performance reuse capability'lerini ayrı learner states olarak kapsar.
+- C map toolchain, types/control/functions, pointer/memory/data, modular build/debug/safety capability'lerini ayrıştırır.
+- Linux/Shell/Git ve DS&A map'leri komut/başlık ezberi yerine observable workflow, state, correctness ve complexity capability'leri kullanır.
+- Internal deterministic QA sonucu `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking review vardır.
+- External coverage/current-industry/hidden-prerequisite validation 6H independent Research AI'ye kadar pending; package learner-published değildir.
+
+Ayrıntı: `docs/FOUNDATIONS_DETAILED_MAP.md`.
+
+## D-058 — Systems detailed map = SDM-v0
+**Durum:** Kabul edildi — 2026-08-26
+
+- 6D final modeli `SDM-v0 — Systems Detailed Map` oldu.
+- Canonical summary `docs/SYSTEMS_DETAILED_MAP.md`; canonical machine-readable dataset `curriculum/decomposition/6d_systems/` içindedir.
+- D06–D13; 8 Domain, 21 Module, 64 Topic, 192 canonical Skill candidate ve 207 exactly-one-Skill Objective ile ayrıntılandırıldı.
+- 224 TopicSkillLink ile shared capability'ler Systems bağlamlarında clone'lanmadan yeniden kullanıldı.
+- 313 hard/soft prerequisite edge PRG-v0 semantics ile tanımlandı; 6C + 6D birleşik hard graph DAG'dır (324/324 node), self/dangling/duplicate/conflicting edge yoktur.
+- FRDB-v0 §19 Pass B hard/soft testi uygulandı: yalnız scaffold sağlayan 52 declared source soft'a indirildi ve `hard_soft_test_result` alanıyla kayıtlandı. Final dağılım 259 hard / 54 soft.
+- 43 accepted 6C Skill cross-package prerequisite kaynağı veya `reinforce` TopicSkillLink olarak reuse edildi; reuse `seed_mappings.yaml` içinde `mapping_class: reused_from_prior_package` ile explicit beyan edilir ve canonical ID değişmez.
+- 6D hiçbir 6C Skill/Objective ID'sini yeniden tanımlamaz; prerequisite edge target'ı daima bir 6D Skill'idir, yani 6C graph'ı geriye dönük değiştirilmez.
+- Modern C++ map'i dil feature listesi yerine ownership/lifetime/move/exception-safety/build/test capability sınırlarını kullanır; pointer ve memory temel capability'leri C'den reuse edilir.
+- Architecture map'i chip-design specialization'a genişlemez; execution, cache/locality ve latency/throughput reasoning'i performance ile bağlar.
+- OS/Memory map'i teoriyi Linux gözlemi, syscall tracing ve ölçümle bağlar.
+- Concurrency map'i correctness ile scaling capability'lerini ayrı learner states olarak tutar; API kullanımı tek başına capability değildir.
+- Networking map'i certification müfredatı değildir; protokol semantiği, socket/multiplexing production ve katmanlı arıza tanısını kapsar.
+- Distributed + Storage map'i partial failure, replication/partitioning, consistency, consensus, durability/WAL, transaction/isolation, index/query cost ve delivery semantics'i ayrı capability'lere böler.
+- Containers/Cloud/Observability map'i tool/vendor adını stable concept'in yerine koymaz; 13 fast-moving ve 21 version-sensitive Skill freshness + technology dependency metadata'sı taşır, incident response ve postmortem gibi practice-shaped capability'ler evergreen kalır.
+- Performance map'i ölçüm geçerliliğini optimizasyondan önce zorunlu tutar; benchmark, varyans, tail latency, profiling, bottleneck attribution ve kapasite/maliyet reasoning'i ayrı capability'lerdir.
+- 15 Skill için ikinci Objective yazıldı; bunlar aynı capability'nin ayrı gözlemlenebilir kanıtıdır, Skill split gerekçesi değildir.
+- `project.systems.observable_networked_service` candidate attribution'ı yalnız structurally essential ve separately observable 12 component için yazıldı; tek project PASS toplu evidence üretmez.
+- Technical English global technical hard gate değildir; English→unrelated technical hard edge yoktur.
+- Deterministik authoring generator (`tools/generate_systems_package.py`) ve bağımsız package validator (`tools/validate_systems_package.py`) üretildi; her ikisi de PASS verir.
+- Internal deterministic QA sonucu `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking, 4 açık non-blocking review vardır (6H external coverage, 6H platform tool freshness, 6F professional overlay reconciliation, 6E accelerator forward reuse).
+- External coverage/current-industry/hidden-prerequisite validation 6H independent Research AI'ye kadar pending; package learner-published değildir.
+
+Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
