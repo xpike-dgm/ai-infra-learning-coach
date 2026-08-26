@@ -1,22 +1,25 @@
 name: 6E GPU ML Inference Package Build
 
 on:
-  workflow_run:
-    workflows: ['One-time local manager handoff audit']
-    types: [completed]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/generate_gpu_ml_inference_package.py'
+      - 'tools/validate_gpu_ml_inference_package.py'
+      - 'tools/6e_build_trigger.txt'
+      - '.github/workflows/6e-package-build.yml'
 
 permissions:
   contents: write
 
 jobs:
   build-validate-commit:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ github.head_ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -40,6 +43,7 @@ jobs:
               'skill.dsa.heap_priority_queue_basic': 'skill.dsa.sequence_traversal',
               'skill.distributed.replication_partitioning': 'skill.distributed.replication_models',
               'skill.performance.capacity_cost_tradeoff': 'skill.performance.cost_efficiency_reasoning',
+              'skill.c.function_definition_call': 'skill.c.functions_basic',
           }
           for old, new in replacements.items():
               s = s.replace(old, new)
@@ -80,7 +84,7 @@ jobs:
         run: python tools/validate_systems_package.py
       - name: Independently validate 6E package
         run: python tools/validate_gpu_ml_inference_package.py
-      - name: Commit deterministic generated package
+      - name: Commit deterministic generated package to PR branch
         run: |
           if git diff --quiet; then
             echo 'No generated changes to commit.'
@@ -90,4 +94,4 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add tools/generate_gpu_ml_inference_package.py curriculum/decomposition/6e_gpu_ml_inference curriculum/decomposition/6d_systems/manifest.yaml curriculum/decomposition/6d_systems/review_queue.yaml curriculum/decomposition/6d_systems/qa_report.yaml
           git commit -m 'Generate and validate 6E GPU ML inference package [skip ci]'
-          git push origin main
+          git push origin HEAD:${{ github.head_ref }}
