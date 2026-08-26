@@ -48,8 +48,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.code_reading_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -101,8 +101,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -153,8 +153,8 @@
     status: create_new
     compared_skill_ids:
     - skill.memory.address_value_distinction
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -207,8 +207,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -259,8 +259,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -311,8 +311,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -363,8 +363,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -415,8 +415,8 @@
     status: create_new
     compared_skill_ids:
     - skill.computing.program_execution_model
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -466,8 +466,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -518,8 +518,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.compile_link_run_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -569,8 +569,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -620,8 +620,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -673,8 +673,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.struct_enum_model
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -725,8 +725,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.bitwise_mask_reasoning
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -776,8 +776,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -831,8 +831,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -882,8 +882,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -935,8 +935,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -988,8 +988,8 @@
     status: create_new
     compared_skill_ids:
     - skill.python.async_task_coordination
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1041,8 +1041,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1091,8 +1091,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1142,8 +1142,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1198,8 +1198,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -1252,8 +1252,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1304,8 +1304,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1358,8 +1358,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1410,8 +1410,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1462,8 +1462,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1513,8 +1513,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1569,8 +1569,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1620,8 +1620,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1676,8 +1676,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1727,8 +1727,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1783,8 +1783,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.state_assignment_model
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1835,8 +1835,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1886,8 +1886,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1937,8 +1937,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -1989,8 +1989,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.function_decomposition
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2042,8 +2042,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.multi_file_build
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -2093,8 +2093,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.compile_link_run_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -2144,8 +2144,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.function_decomposition
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2197,8 +2197,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2248,8 +2248,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2302,8 +2302,8 @@
     status: create_new
     compared_skill_ids:
     - skill.dsa.asymptotic_bound_reasoning
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2354,8 +2354,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.input_validation_reasoning
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2407,8 +2407,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.debugger_trace_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -2458,8 +2458,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -2511,8 +2511,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.file_io_error_handling
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2562,8 +2562,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.trace_execution_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2612,8 +2612,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2664,8 +2664,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.header_translation_unit_interface
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2716,8 +2716,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2768,8 +2768,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2821,8 +2821,8 @@
     status: create_new
     compared_skill_ids:
     - skill.dsa.sequence_traversal
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2874,8 +2874,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2924,8 +2924,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -2978,8 +2978,8 @@
     status: create_new
     compared_skill_ids:
     - skill.memory.storage_lifetime_intuition
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3029,8 +3029,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3083,8 +3083,8 @@
     status: create_new
     compared_skill_ids:
     - skill.memory.address_value_distinction
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3137,8 +3137,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.sanitizer_undefined_behavior
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -3188,8 +3188,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3238,8 +3238,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3247,8 +3247,7 @@
   review_refs: []
 - skill_id_candidate: skill.cpp.standard_version_toolchain_flags
   canonical_name: Standard Version Toolchain Flags
-  capability_statement: Language standard, warning ve optimization flag'lerinin derleme sonucuna etkisini kontrol
-    edebilmek.
+  capability_statement: Language standard, warning ve optimization flag'lerinin derleme sonucuna etkisini kontrol edebilmek.
   capability_kind: tool_specific_production
   lifecycle_status: draft
   authoring_status: internally_qa_passed
@@ -3290,8 +3289,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -3342,8 +3341,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3396,8 +3395,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.compiler_diagnostic_reading
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -3447,8 +3446,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.test_case_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -3500,8 +3499,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.expression_evaluation
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3553,8 +3552,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - LANGUAGE_SPECIFIC_SPLIT
@@ -3606,8 +3605,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3658,8 +3657,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3713,8 +3712,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3764,8 +3763,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3815,8 +3814,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3867,8 +3866,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3920,8 +3919,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -3973,8 +3972,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4025,8 +4024,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4078,8 +4077,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4130,8 +4129,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4183,8 +4182,8 @@
     status: create_new
     compared_skill_ids:
     - skill.dsa.hash_table_tradeoff
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4234,8 +4233,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4286,8 +4285,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4337,8 +4336,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4388,8 +4387,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4439,8 +4438,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4491,8 +4490,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4542,8 +4541,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4594,8 +4593,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4648,8 +4647,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4701,8 +4700,8 @@
     status: create_new
     compared_skill_ids:
     - skill.programming.input_validation_reasoning
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4752,8 +4751,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4803,8 +4802,8 @@
     status: create_new
     compared_skill_ids:
     - skill.python.network_client_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4854,8 +4853,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4905,8 +4904,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -4956,8 +4955,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5010,8 +5009,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5061,8 +5060,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5116,8 +5115,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_inspection
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -5166,8 +5165,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5218,8 +5217,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5270,8 +5269,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5323,8 +5322,8 @@
     status: create_new
     compared_skill_ids:
     - skill.python.bytes_text_boundary
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5376,8 +5375,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5426,8 +5425,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5479,8 +5478,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5533,8 +5532,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5584,8 +5583,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5637,8 +5636,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5690,8 +5689,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -5741,8 +5740,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5792,8 +5791,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5847,8 +5846,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -5899,8 +5898,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -5954,8 +5953,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6009,8 +6008,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6061,8 +6060,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.dynamic_allocation_lifecycle
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6114,8 +6113,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6165,8 +6164,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6218,8 +6217,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6273,8 +6272,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_inspection
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -6325,8 +6324,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_exit_stdout_stderr_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6375,8 +6374,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6428,8 +6427,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -6479,8 +6478,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.dynamic_allocation_lifecycle
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6534,8 +6533,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -6588,8 +6587,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6641,8 +6640,8 @@
     compared_skill_ids:
     - skill.linux.process_exit_stdout_stderr_basic
     - skill.memory.address_value_distinction
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6692,8 +6691,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_inspection
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6744,8 +6743,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6795,8 +6794,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6847,8 +6846,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_signal_job_control
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6899,8 +6898,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -6953,8 +6952,8 @@
     status: create_new
     compared_skill_ids:
     - skill.c.file_io_error_handling
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7007,8 +7006,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.process_inspection
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -7059,8 +7058,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7110,8 +7109,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7161,8 +7160,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7213,8 +7212,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7266,8 +7265,8 @@
     status: create_new
     compared_skill_ids:
     - skill.python.benchmark_automation
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7320,8 +7319,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7373,8 +7372,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7425,8 +7424,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7477,8 +7476,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7531,8 +7530,8 @@
     status: create_new
     compared_skill_ids:
     - skill.python.profiling_measurement
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -7583,8 +7582,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7635,8 +7634,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7689,8 +7688,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7741,8 +7740,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7794,8 +7793,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7849,8 +7848,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -7904,8 +7903,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -7956,8 +7955,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8008,8 +8007,8 @@
     status: create_new
     compared_skill_ids:
     - skill.english.explain_simple_technical_process
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8063,8 +8062,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -8116,8 +8115,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8168,8 +8167,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8220,8 +8219,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8272,8 +8271,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8324,8 +8323,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8376,8 +8375,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8430,8 +8429,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.file_permissions_ownership
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8483,8 +8482,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.environment_path_resolution
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8536,8 +8535,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.reproducible_run_notes
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -8590,8 +8589,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8644,8 +8643,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -8695,8 +8694,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8748,8 +8747,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8801,8 +8800,8 @@
     status: create_new
     compared_skill_ids:
     - skill.git.branch_merge_model
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8853,8 +8852,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -8905,8 +8904,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -8957,8 +8956,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9010,8 +9009,8 @@
     status: create_new
     compared_skill_ids:
     - skill.linux.file_permissions_ownership
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9062,8 +9061,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9113,8 +9112,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9160,14 +9159,16 @@
   - source.repo.pdm_v0
   - source.repo.frdb_v0
   - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
   provenance_ref: source.repo.internal_6d_authoring
-  freshness_class: evergreen
-  technology_dependency_refs: []
+  freshness_class: version_sensitive
+  technology_dependency_refs:
+  - technology.container_orchestrator
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9217,8 +9218,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9271,8 +9272,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9325,8 +9326,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9377,8 +9378,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9430,8 +9431,8 @@
     status: create_new
     compared_skill_ids:
     - skill.engineering.explain_debug_fix_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9483,8 +9484,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9535,8 +9536,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9589,8 +9590,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9640,8 +9641,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9691,8 +9692,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9743,8 +9744,8 @@
     status: create_new
     compared_skill_ids:
     - skill.dsa.asymptotic_bound_reasoning
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9796,8 +9797,8 @@
     status: create_new
     compared_skill_ids:
     - skill.dsa.tree_traversal_basic
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9850,8 +9851,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9901,8 +9902,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -9957,8 +9958,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - TOOL_SPECIFIC_SPLIT
@@ -10007,8 +10008,8 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -10058,8 +10059,68 @@
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are
-      reused as prerequisites or TopicSkillLinks instead of being cloned.
+    rationale: Compared against the accepted 6C registry and the full 6D candidate set; prior canonical Skills are reused
+      as prerequisites or TopicSkillLinks instead of being cloned.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.os.numa_locality_affinity
+  canonical_name: NUMA Locality & Affinity
+  capability_statement: Process/thread placement, NUMA-local/remote memory locality ve device affinity ilişkisini topology
+    ve ölçüm verisiyle açıklayıp doğru placement seçebilmek.
+  capability_kind: measurement_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.os.virtual_memory_paging
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.operating_systems_memory
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - artifact_analysis
+    - explanation
+    example_outcome: Process/thread placement, NUMA-local/remote memory locality ve device affinity ilişkisini topology ve
+      ölçüm verisiyle açıklayıp doğru placement seçebilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: shared
+    rationale: Stable systems capability survives tool/vendor change and is reused across Topics.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  - performance_measurement
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  professional_capability_tags:
+  - performance_reasoning
+  - systems_design
+  - profiling_benchmarking
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.os.context_switch_cost
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE

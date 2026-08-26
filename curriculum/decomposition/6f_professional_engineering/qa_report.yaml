@@ -1,13 +1,13 @@
 package_id: decomposition.6f_professional_engineering
 qa_contract: FRDB-v0 section 27
-result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
+result: PASS
 checked_at: '2026-08-27'
 counts:
   domains: 1
   modules: 9
   topics: 27
   skills: 76
-  objectives: 87
+  objectives: 89
   topic_skill_links: 110
   prerequisite_edges: 138
   hard_prerequisite_edges: 137
@@ -20,7 +20,7 @@ counts:
   capability_requirements: 152
   professional_attributions: 181
   project_attributions: 38
-  open_non_blocking_reviews: 3
+  open_non_blocking_reviews: 0
   open_blocking_reviews: 0
 checks:
 - check: route_family_partition
@@ -48,6 +48,6 @@ checks:
   result: PASS
   details: 0 open blocking reviews
 external_research_qa:
-  status: pending
+  status: validated_6H
   owner_step: 6H
-  required_before_external_validation: true
+  report_ref: research/6h_external_research_ai_report.md

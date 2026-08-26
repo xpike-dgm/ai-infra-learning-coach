@@ -6,6 +6,8 @@
   - explanation_justification
   assistance_policy: guided_allowed
   evidence_ceiling: corroborating
+  guidance_selection_guard: prefer for novice/prerequisite-repair; fade after verified success/transfer; previously mastered
+    targets require verification-first
 - strategy_id: strategy.worked_example
   name: Worked example reconstruction
   purpose: Show and reconstruct one prerequisite-valid solution path before independent retry.
@@ -14,6 +16,8 @@
   - code_reading_trace
   assistance_policy: guided_allowed
   evidence_ceiling: corroborating
+  guidance_selection_guard: prefer for novice/prerequisite-repair; fade after verified success/transfer; previously mastered
+    targets require verification-first
 - strategy_id: strategy.micro_drill
   name: Focused micro drill
   purpose: Practice only the localized sub-behavior with bounded scope.
@@ -23,6 +27,8 @@
   - coding_production
   assistance_policy: guided_allowed_then_independent
   evidence_ceiling: direct_if_H0_valid_verified
+  guidance_selection_guard: prefer for novice/prerequisite-repair; fade after verified success/transfer; previously mastered
+    targets require verification-first
 - strategy_id: strategy.state_trace_reconstruction
   name: State/trace reconstruction
   purpose: Externalize intermediate state, control/data flow, shape or lifecycle transitions to repair a reasoning gap.
@@ -100,6 +106,8 @@
   - integrated_project_task
   assistance_policy: H0_required_for_closure_evidence
   evidence_ceiling: direct
+  guidance_selection_guard: preferred as competence/retention evidence rises; H0 remains required where closure evidence is
+    claimed
 - strategy_id: strategy.retrieval_reinforcement
   name: Retrieval reinforcement
   purpose: Use short retrieval/reconstruction when concern is retention-oriented but confirmed remediation is not yet warranted.
@@ -109,6 +117,8 @@
   - transfer_problem
   assistance_policy: H0_preferred
   evidence_ceiling: direct_if_RVR_conditions_hold
+  guidance_selection_guard: preferred as competence/retention evidence rises; H0 remains required where closure evidence is
+    claimed
 - strategy_id: strategy.tool_workflow_rehearsal
   name: Tool/workflow rehearsal
   purpose: Repeat a bounded professional or tool operation where the operation itself is the target capability.
@@ -125,3 +135,5 @@
   - assessment_by_objective_profile
   assistance_policy: H0_required
   evidence_ceiling: direct
+  guidance_selection_guard: preferred as competence/retention evidence rises; H0 remains required where closure evidence is
+    claimed

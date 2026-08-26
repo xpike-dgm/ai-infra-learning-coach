@@ -2687,3 +2687,68 @@
   - source.repo.frdb_v0
   lifecycle_status: draft
   review_refs: []
+- topic_id: topic.cuda.shared_memory_tiling
+  skill_id: skill.cuda.async_data_movement_pipeline
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.optimization.token_scheduler
+  skill_id: skill.optimization.speculative_decoding_tradeoff
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.serving.engine_worker_topology
+  skill_id: skill.serving.prefill_decode_disaggregation
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.ml.transformer_block_causal_lm
+  skill_id: skill.ml.moe_routing_dataflow
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.ml.moe_routing_dataflow.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []
+- topic_id: topic.multi_gpu.parallelism_sharding
+  skill_id: skill.multi_gpu.expert_parallel_sharding
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  authoring_rationale: Primary teaching/evidence context for this canonical accelerator/inference capability.
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []

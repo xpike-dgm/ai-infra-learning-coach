@@ -2730,3 +2730,26 @@
   source_refs:
   - source.repo.pdm_v0
   review_refs: []
+- scope_kind: domain
+  scope_id: domain.operating_systems_memory
+  capability_kind: skill
+  capability_id: skill.os.numa_locality_affinity
+  requirement_role: required
+  criticality: standard
+  rationale: 6D systems route coverage; runtime readiness stays Skill-level and branch-local.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.kgc_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- scope_kind: professional_route
+  scope_id: scope.professional_route.ai_infrastructure
+  capability_kind: skill
+  capability_id: skill.os.numa_locality_affinity
+  requirement_role: required
+  criticality: standard
+  rationale: AI infrastructure route requires distributed failure and performance reasoning capability.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []

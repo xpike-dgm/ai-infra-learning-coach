@@ -1,24 +1,24 @@
 package_id: decomposition.6d_systems
 qa_contract: FRDB-v0 section 27
-result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
-checked_at: '2026-08-26'
+result: PASS
+checked_at: '2026-08-27'
 counts:
   domains: 8
   modules: 21
   topics: 64
-  skills: 192
-  objectives: 207
-  topic_skill_links: 224
-  prerequisite_edges: 313
-  hard_prerequisite_edges: 259
-  soft_prerequisite_edges: 54
+  skills: 193
+  objectives: 209
+  topic_skill_links: 225
+  prerequisite_edges: 316
+  hard_prerequisite_edges: 261
+  soft_prerequisite_edges: 55
   pass_b_soft_downgrades: 52
   cross_package_prerequisite_edges: 56
   reused_prior_package_skills: 43
-  capability_requirements: 254
-  professional_attributions: 308
+  capability_requirements: 256
+  professional_attributions: 310
   project_attributions: 12
-  open_non_blocking_reviews: 2
+  open_non_blocking_reviews: 0
   open_blocking_reviews: 0
 checks:
 - check: route_family_partition
@@ -88,8 +88,8 @@ checks:
   result: PASS
   details: all source paths resolve
 external_research_qa:
-  status: pending
+  status: validated_6H
   owner_step: 6H
-  required_before_external_validation: true
+  report_ref: research/6h_external_research_ai_report.md
 resolved_forward_reviews:
 - review.6d.accelerator_forward_reuse

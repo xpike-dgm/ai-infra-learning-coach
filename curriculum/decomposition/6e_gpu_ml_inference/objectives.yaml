@@ -5691,3 +5691,515 @@
   granularity_review_codes:
   - GRANULARITY_OK
   review_refs: []
+- objective_id_candidate: objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  owner_skill_id: skill.cuda.async_data_movement_pipeline
+  objective_statement: Kernel içindeki tiled asynchronous data movement, staged producer/consumer dependency ve copy-compute
+    overlap'i correctness ve ölçülmüş performance ile doğrulayabilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id026
+    - hands_on_system_task
+    - observed_result
+    direct_evidence_types: *id026
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_hardware_workload_or_shape
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  owner_skill_id: skill.optimization.speculative_decoding_tradeoff
+  objective_statement: Draft/proposal ve target verification akışını correctness, acceptance behavior, additional compute/memory
+    ve latency/throughput trade-off'larıyla değerlendirebilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id027
+    - design_argument
+    - explanation
+    direct_evidence_types: *id027
+    required_direct_type: design_argument
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  owner_skill_id: skill.serving.prefill_decode_disaggregation
+  objective_statement: Prefill ve decode'u ayrı worker/resource pools'a ayırıp KV-state handoff, routing, transfer cost, SLO
+    ve failure semantics açısından doğru deployment tasarlayabilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id028
+    - system_observation
+    - explanation
+    direct_evidence_types: *id028
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.ml.moe_routing_dataflow.demonstrate_capability
+  owner_skill_id: skill.ml.moe_routing_dataflow
+  objective_statement: Router, top-k expert selection, token dispatch, expert compute ve combine dataflow'unu tensor shape/state
+    ve load distribution ile açıklayabilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id029
+    - system_observation
+    - explanation
+    direct_evidence_types: *id029
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  owner_skill_id: skill.multi_gpu.expert_parallel_sharding
+  objective_statement: Expert weights ve token traffic'i GPU/node'lar arasında shard edip communication, topology, load-imbalance
+    ve failure trade-off'larını değerlendirebilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id030
+    - system_observation
+    - explanation
+    direct_evidence_types: *id030
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_hardware_workload_or_shape
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.cuda.memory_visibility_ordering.cluster_scope_execution_memory
+  owner_skill_id: skill.cuda.memory_visibility_ordering
+  objective_statement: Thread-block cluster synchronization ve distributed-shared-memory scope/lifetime/visibility davranışını
+    architecture/tool version bağlamında doğru reason edebilmek.
+  observable_action: cluster_scope_execution_memory
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id031
+    - system_observation
+    - explanation
+    direct_evidence_types: *id031
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_gpu_architecture_or_toolkit
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
+  owner_skill_id: skill.triton.matmul_performance_reasoning
+  objective_statement: Persistent execution, asynchronous/software pipelining, TMA-benzeri movement ve warp/work specialization
+    seçeneklerini resource, synchronization ve measured performance trade-off'larıyla değerlendirebilmek.
+  observable_action: modern_pipeline_schedule_tradeoff
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id032
+    - artifact_analysis
+    - explanation
+    direct_evidence_types: *id032
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_gpu_shape_or_triton_version
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
+  owner_skill_id: skill.optimization.kv_capacity_model
+  objective_statement: GPU/CPU/secondary-storage KV offload veya tiering seçimini capacity, transfer cost ve latency etkisiyle
+    değerlendirebilmek.
+  observable_action: tiered_kv_offload_tradeoff
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id033
+    - artifact_analysis
+    - explanation
+    direct_evidence_types: *id033
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_runtime_or_memory_tier
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
+  owner_skill_id: skill.optimization.quantization_format_reasoning
+  objective_statement: Weight/activation/KV için FP8/FP4-class ve block-scaled format ailelerini memory, compute, scale metadata
+    ve quality etkisiyle karşılaştırabilmek.
+  observable_action: low_precision_format_family_tradeoff
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id034
+    - design_argument
+    - explanation
+    direct_evidence_types: *id034
+    required_direct_type: design_argument
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_hardware_or_format_family
+  remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
+  owner_skill_id: skill.optimization.token_budget_scheduler
+  objective_statement: Chunked prefill benzeri scheduling davranışını TTFT/ITL, decode interference, token budget ve memory
+    baskısı üzerinden değerlendirebilmek.
+  observable_action: chunked_prefill_tradeoff
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id035
+    - authored_code
+    - observed_system_behavior
+    direct_evidence_types: *id035
+    required_direct_type: authored_code
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_runtime_or_workload_mix
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
+  owner_skill_id: skill.multi_gpu.rdma_transport_model
+  objective_statement: Registered/dma-buf-benzeri zero-copy path ile staged transport arasında buffer registration lifecycle
+    ve portability trade-off'larını ayırabilmek.
+  observable_action: registration_zero_copy_lifecycle
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id036
+    - system_observation
+    - explanation
+    direct_evidence_types: *id036
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_rdma_stack_or_gpu_runtime
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
+  owner_skill_id: skill.multi_gpu.nccl_collective_operation
+  objective_statement: Current NCCL runtime'da topology, registration ve NVLS-benzeri acceleration seçeneklerinin collective
+    lifecycle/performance üzerindeki etkisini version-scoped kanıtla değerlendirebilmek.
+  observable_action: topology_current_algorithm_behavior
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id037
+    - hands_on_system_task
+    - observed_result
+    direct_evidence_types: *id037
+    required_direct_type: hands_on_system_task
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_nccl_version_or_topology
+  remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
+  owner_skill_id: skill.ai_infra.topology_aware_placement
+  objective_statement: Cluster scheduler/resource-claim modelinde rack/node/NUMA/device topology seviyelerini workload communication
+    ve failure-domain constraints ile eşleştirebilmek.
+  observable_action: orchestrated_accelerator_claim_placement
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid, observable ve verified evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id038
+    - design_argument
+    - explanation
+    direct_evidence_types: *id038
+    required_direct_type: design_argument
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh prerequisite-valid accelerator/inference task, artifact, run or measurement.
+  allowed_tools_policy_ref: H0 independent evidence; declared compilers/debuggers/profilers/runtimes allowed when tool use
+    is the target behavior.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_cluster_scheduler_or_topology
+  remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []

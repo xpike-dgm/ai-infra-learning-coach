@@ -106,3 +106,19 @@
   freshness_class: version_sensitive
   checked_at: '2026-08-26'
   notes: External coverage/current-industry validation remains mandatory in 6H.
+- source_id: source.repo.external_6h_research_qa
+  source_kind: independent_external_research_qa
+  title: 6H Multi-Evaluator External Research QA Reconciliation
+  ref: research/6h_external_research_ai_report.md
+  version_or_date: '2026-08-27'
+  authority_class: independent_external_validation_reconciled
+  supports:
+  - external_coverage
+  - hidden_prerequisites
+  - freshness
+  - granularity
+  - professional_evidence
+  freshness_class: versioned_dataset
+  checked_at: '2026-08-27'
+  notes: Three independent reports returned PASS WITH REQUIRED CHANGES; manager reconciliation preserves canonical identity
+    rules.

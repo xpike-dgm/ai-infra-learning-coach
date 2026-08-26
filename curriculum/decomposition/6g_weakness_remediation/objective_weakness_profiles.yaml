@@ -702,6 +702,45 @@
     required_direct_type: design_argument
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
+  owner_skill_id: skill.ai_infra.topology_aware_placement
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: orchestrated_accelerator_claim_placement
+  required_direct_type: design_argument
+  direct_evidence_types:
+  - design_argument
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: design_argument
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.ai_infra.workload_isolation_boundary.demonstrate_capability
   owner_skill_id: skill.ai_infra.workload_isolation_boundary
   source_package: 6e
@@ -4577,6 +4616,43 @@
     required_direct_type: authored_code
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  owner_skill_id: skill.cuda.async_data_movement_pipeline
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: hands_on_system_task
+  direct_evidence_types:
+  - hands_on_system_task
+  - observed_result
+  requires_transfer: true
+  requires_user_authored_artifact: true
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: hands_on_system_task
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: true
 - objective_id: objective.cuda.block_synchronization.demonstrate_capability
   owner_skill_id: skill.cuda.block_synchronization
   source_package: 6e
@@ -4922,6 +4998,44 @@
     direct_evidence_required: true
     evaluator_verified_required: true
     required_direct_type: design_argument
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.cuda.memory_visibility_ordering.cluster_scope_execution_memory
+  owner_skill_id: skill.cuda.memory_visibility_ordering
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: cluster_scope_execution_memory
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.cuda.memory_visibility_ordering.demonstrate_capability
@@ -9963,6 +10077,44 @@
     required_direct_type: system_observation
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.ml.moe_routing_dataflow.demonstrate_capability
+  owner_skill_id: skill.ml.moe_routing_dataflow
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.ml.normalization_layer_reasoning.demonstrate_capability
   owner_skill_id: skill.ml.normalization_layer_reasoning
   source_package: 6e
@@ -10313,6 +10465,44 @@
     required_direct_type: design_argument
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  owner_skill_id: skill.multi_gpu.expert_parallel_sharding
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.multi_gpu.gpu_direct_data_path.demonstrate_capability
   owner_skill_id: skill.multi_gpu.gpu_direct_data_path
   source_package: 6e
@@ -10397,6 +10587,45 @@
   criticality: critical
   diagnostic_eligibility: eligible
   observable_action: demonstrate_capability
+  required_direct_type: hands_on_system_task
+  direct_evidence_types:
+  - hands_on_system_task
+  - observed_result
+  requires_transfer: true
+  requires_user_authored_artifact: true
+  source_remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: hands_on_system_task
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
+  owner_skill_id: skill.multi_gpu.nccl_collective_operation
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: topology_current_algorithm_behavior
   required_direct_type: hands_on_system_task
   direct_evidence_types:
   - hands_on_system_task
@@ -10592,6 +10821,44 @@
   criticality: standard
   diagnostic_eligibility: eligible
   observable_action: demonstrate_capability
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
+  owner_skill_id: skill.multi_gpu.rdma_transport_model
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: registration_zero_copy_lifecycle
   required_direct_type: system_observation
   direct_evidence_types:
   - system_observation
@@ -12047,6 +12314,45 @@
     required_direct_type: artifact_analysis
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
+  owner_skill_id: skill.optimization.kv_capacity_model
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: tiered_kv_offload_tradeoff
+  required_direct_type: artifact_analysis
+  direct_evidence_types:
+  - artifact_analysis
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: artifact_analysis
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.optimization.kv_fragmentation_reasoning.demonstrate_capability
   owner_skill_id: skill.optimization.kv_fragmentation_reasoning
   source_package: 6e
@@ -12166,6 +12472,45 @@
   criticality: standard
   diagnostic_eligibility: eligible
   observable_action: demonstrate_capability
+  required_direct_type: design_argument
+  direct_evidence_types:
+  - design_argument
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - failure_scenario_replay
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: design_argument
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
+  owner_skill_id: skill.optimization.quantization_format_reasoning
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: low_precision_format_family_tradeoff
   required_direct_type: design_argument
   direct_evidence_types:
   - design_argument
@@ -12434,6 +12779,79 @@
     required_direct_type: design_argument
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  owner_skill_id: skill.optimization.speculative_decoding_tradeoff
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: design_argument
+  direct_evidence_types:
+  - design_argument
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: design_argument
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
+  owner_skill_id: skill.optimization.token_budget_scheduler
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: chunked_prefill_tradeoff
+  required_direct_type: authored_code
+  direct_evidence_types:
+  - authored_code
+  - observed_system_behavior
+  requires_transfer: true
+  requires_user_authored_artifact: true
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: authored_code
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: true
 - objective_id: objective.optimization.token_budget_scheduler.demonstrate_capability
   owner_skill_id: skill.optimization.token_budget_scheduler
   source_package: 6e
@@ -12893,6 +13311,45 @@
     required_direct_type: hands_on_system_task
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.os.numa_locality_affinity.demonstrate_capability
+  owner_skill_id: skill.os.numa_locality_affinity
+  source_package: 6d
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: artifact_analysis
+  direct_evidence_types:
+  - artifact_analysis
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: artifact_analysis
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.os.page_fault_behavior.demonstrate_capability
   owner_skill_id: skill.os.page_fault_behavior
   source_package: 6d
@@ -14885,6 +15342,44 @@
     required_direct_type: authored_code
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.platform.scheduling_placement_constraints.accelerator_claim_topology
+  owner_skill_id: skill.platform.scheduling_placement_constraints
+  source_package: 6d
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: accelerator_claim_topology
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.platform.scheduling_placement_constraints.demonstrate_capability
   owner_skill_id: skill.platform.scheduling_placement_constraints
   source_package: 6d
@@ -16050,6 +16545,44 @@
     required_direct_type: hands_on_workflow
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
+  owner_skill_id: skill.professional.dependency_supply_chain_review
+  source_package: 6f
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: distinguish_sbom_provenance_attestation
+  required_direct_type: hands_on_workflow
+  direct_evidence_types:
+  - hands_on_workflow
+  - artifact_analysis
+  requires_transfer: true
+  requires_user_authored_artifact: true
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.measurement_replay
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: hands_on_workflow
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: true
 - objective_id: objective.professional.dependency_version_control.demonstrate_capability
   owner_skill_id: skill.professional.dependency_version_control
   source_package: 6f
@@ -16755,6 +17288,45 @@
   criticality: standard
   diagnostic_eligibility: eligible
   observable_action: demonstrate_capability
+  required_direct_type: hands_on_workflow
+  direct_evidence_types:
+  - hands_on_workflow
+  - artifact_analysis
+  requires_transfer: true
+  requires_user_authored_artifact: true
+  source_remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.measurement_replay
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: hands_on_workflow
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.professional.oss_contribution_policy.live_policy_discovery
+  owner_skill_id: skill.professional.oss_contribution_policy
+  source_package: 6f
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: live_policy_discovery
   required_direct_type: hands_on_workflow
   direct_evidence_types:
   - hands_on_workflow
@@ -20269,6 +20841,43 @@
     required_direct_type: code_reading
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.python.thread_process_choice.runtime_mode_tradeoff
+  owner_skill_id: skill.python.thread_process_choice
+  source_package: 6c
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: runtime_mode_tradeoff
+  required_direct_type: code_reading
+  direct_evidence_types:
+  - code_reading
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: code_reading
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.python.tuple_immutable_sequence.demonstrate_capability
   owner_skill_id: skill.python.tuple_immutable_sequence
   source_package: 6c
@@ -21001,6 +21610,44 @@
     required_direct_type: measurement_artifact
     transfer_required_when_objective_requires_transfer: true
     user_authored_artifact_required_when_objective_requires_it: true
+- objective_id: objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  owner_skill_id: skill.serving.prefill_decode_disaggregation
+  source_package: 6e
+  requirement_role: required
+  criticality: critical
+  diagnostic_eligibility: eligible
+  observable_action: demonstrate_capability
+  required_direct_type: system_observation
+  direct_evidence_types:
+  - system_observation
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: system_observation
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
 - objective_id: objective.serving.queue_backpressure.demonstrate_capability
   owner_skill_id: skill.serving.queue_backpressure
   source_package: 6e
@@ -22232,6 +22879,45 @@
   criticality: standard
   diagnostic_eligibility: eligible
   observable_action: demonstrate_capability
+  required_direct_type: artifact_analysis
+  direct_evidence_types:
+  - artifact_analysis
+  - explanation
+  requires_transfer: true
+  requires_user_authored_artifact: false
+  source_remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  localization_unit: objective
+  broad_parent_reset_allowed: false
+  failure_confirmation:
+    assisted_or_provisional: hypothesis_only
+    clean_premastery_H0_direct_verified: supported_weakness_and_normal_GRE_negative_evidence
+    first_clean_postmastery_contradiction: verification_due
+    failed_fresh_recheck_or_GRE_gate_failure: confirmed_remediation_required
+  recheck_contract:
+    fresh_variant_or_context_required: true
+    H0_required_for_closure: true
+    prerequisite_valid_required: true
+    direct_evidence_required: true
+    evaluator_verified_required: true
+    required_direct_type: artifact_analysis
+    transfer_required_when_objective_requires_transfer: true
+    user_authored_artifact_required_when_objective_requires_it: false
+- objective_id: objective.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
+  owner_skill_id: skill.triton.matmul_performance_reasoning
+  source_package: 6e
+  requirement_role: required
+  criticality: standard
+  diagnostic_eligibility: eligible
+  observable_action: modern_pipeline_schedule_tradeoff
   required_direct_type: artifact_analysis
   direct_evidence_types:
   - artifact_analysis

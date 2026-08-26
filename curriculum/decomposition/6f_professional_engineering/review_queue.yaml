@@ -10,12 +10,17 @@
   - independent Research AI
   - authoritative current professional/OSS engineering sources
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Independent 6H reports found D23 breadth strong. Three suspected OSS context clones were semantically rechecked
+    and retained because lifecycle/evidence/remediation boundaries differ; supply-chain evidence distinctions were strengthened.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-27'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6f.oss_workflow_freshness
   subject_refs:
   - module.professional.security_open_source
@@ -26,12 +31,17 @@
   decision_inputs_required:
   - 6H current OSS workflow/source audit
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Repository-specific contribution policy is treated as live/versioned source material under a stable policy-discovery
+    capability, not frozen as one platform's workflow.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-27'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6f.capstone_diversity
   subject_refs:
   - module.professional.project_capstone
@@ -43,9 +53,14 @@
   - independent Research AI
   - 6H cross-package coverage audit
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Existing project diversity retained; external QA adds non-compensatory component evidence, >=3 materially distinct
+    evidence families, and operations/failure evidence guards.
   source_refs:
   - source.repo.professional_readiness
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-27'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H

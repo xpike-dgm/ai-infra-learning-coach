@@ -1,7 +1,7 @@
 package_id: decomposition.6d_systems
 package_version: 1
 stage_step: 6D
-status: authoring_complete_internal_qa
+status: authoring_complete_external_qa
 blueprint_version: FRDB-v0
 graph_contract_version: KGC-v0
 granularity_standard_version: GNS-v0
@@ -41,31 +41,32 @@ source_catalog_refs:
 - source.repo.prg_v0
 - source.repo.les_v0
 - source.repo.internal_6d_authoring
+- source.repo.external_6h_research_qa
 coverage_declarations:
 - route_family_id: D06
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D07
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D08
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D09
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D10
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D11
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D12
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D13
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 prior_package_refs:
 - package_id: decomposition.6c_foundations
   reused_skill_count: 43
@@ -79,7 +80,7 @@ known_exclusions:
 - External coverage/current-industry validation 6H'ye aittir.
 - Production lesson/task/resource body'leri AŞAMA 15/20'ye aittir.
 - Physical database schema 9C'ye aittir.
-unresolved_review_count: 2
+unresolved_review_count: 0
 blocking_review_count: 0
 generated_at: '2026-08-26'
 authored_by: local_main_manager

@@ -1,0 +1,15 @@
+model: 6H-professional-evidence-guard-v0
+rules:
+- guard_id: guard.capstone_no_global_mastery
+  rule: A global project/capstone pass cannot grant mastery to tagged component Skills/Objectives.
+- guard_id: guard.component_attribution_required
+  rule: Readiness evidence must be separately attributable to structurally essential component Objectives.
+- guard_id: guard.three_evidence_families
+  rule: 'Final professional readiness requires fresh/direct evidence from at least three materially distinct families: systems/service,
+    GPU/inference, production/professional.'
+- guard_id: guard.operations_failure_evidence
+  rule: At least one professional-readiness evidence artifact must involve failure injection, incident reconstruction, or
+    operational diagnosis/recovery.
+source_refs:
+- source.repo.external_6h_research_qa
+- source.repo.professional_readiness

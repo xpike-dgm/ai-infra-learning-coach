@@ -1,0 +1,22 @@
+model: 6H-WLRM-external-behavior-QA-v0
+scenarios:
+- id: invalid_attempt_no_target_weakness
+  given: attempt invalid or prerequisite-contaminated
+  expect: no target negative evidence
+- id: assisted_failure_hypothesis_only
+  given: assisted/provisional failure
+  expect: cannot directly confirm remediation_required
+- id: first_mastery_contradiction_verification
+  given: first clean contradiction after mastery
+  expect: verification_due before mastery erasure
+- id: mastered_target_guidance_fades
+  given: prior mastery or repeated transfer evidence
+  expect: verification/retrieval/transfer/debug path before worked-example reteach
+- id: ai_scaffold_cannot_close
+  given: remediation completed with material AI assistance
+  expect: fresh H0 direct verified evidence still required
+- id: project_pass_no_broadcast
+  given: integrated project global pass
+  expect: no automatic mastery for all tagged objectives
+source_refs:
+- research/6h_external_research_ai_report.md

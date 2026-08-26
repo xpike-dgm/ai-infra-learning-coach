@@ -376,8 +376,10 @@
   source_package: 6e
   objective_ids:
   - objective.ai_infra.topology_aware_placement.demonstrate_capability
+  - objective.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
   required_objective_ids:
   - objective.ai_infra.topology_aware_placement.demonstrate_capability
+  - objective.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -385,6 +387,7 @@
   hard_prerequisite_skill_ids:
   - skill.ai_infra.gpu_capability_inventory
   - skill.multi_gpu.distributed_inference_placement
+  - skill.platform.scheduling_placement_constraints
   hard_dependent_skill_ids: []
   source_remediation_tags:
   - failure_scenario_replay
@@ -510,6 +513,7 @@
   - skill.arch.memory_alignment_layout
   - skill.arch.roofline_bottleneck_reasoning
   - skill.gpu.memory_space_selection
+  - skill.os.numa_locality_affinity
   source_remediation_tags:
   - fresh_variant
   - targeted_reteach
@@ -2744,6 +2748,31 @@
     Topic/Domain label.
   resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
     alone is insufficient.
+- skill_id: skill.cuda.async_data_movement_pipeline
+  source_package: 6e
+  objective_ids:
+  - objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  required_objective_ids:
+  - objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  critical_objective_ids:
+  - objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: true
+  hard_prerequisite_skill_ids:
+  - skill.cuda.memory_visibility_ordering
+  - skill.cuda.shared_memory_tiling
+  - skill.gpu.copy_compute_overlap_model
+  hard_dependent_skill_ids: []
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
 - skill_id: skill.cuda.block_synchronization
   source_package: 6e
   objective_ids:
@@ -2974,8 +3003,10 @@
 - skill_id: skill.cuda.memory_visibility_ordering
   source_package: 6e
   objective_ids:
+  - objective.cuda.memory_visibility_ordering.cluster_scope_execution_memory
   - objective.cuda.memory_visibility_ordering.demonstrate_capability
   required_objective_ids:
+  - objective.cuda.memory_visibility_ordering.cluster_scope_execution_memory
   - objective.cuda.memory_visibility_ordering.demonstrate_capability
   critical_objective_ids: []
   diagnostic_eligibility: eligible
@@ -2985,6 +3016,7 @@
   - skill.concurrency.memory_ordering_model
   - skill.cuda.block_synchronization
   hard_dependent_skill_ids:
+  - skill.cuda.async_data_movement_pipeline
   - skill.cuda.race_bounds_diagnosis
   source_remediation_tags:
   - fresh_variant
@@ -3086,6 +3118,7 @@
   - skill.cuda.block_synchronization
   - skill.gpu.shared_memory_layout_transform
   hard_dependent_skill_ids:
+  - skill.cuda.async_data_movement_pipeline
   - skill.cuda.tile_boundary_handling
   source_remediation_tags:
   - fresh_variant
@@ -4692,6 +4725,7 @@
   - skill.concurrency.async_execution_model
   - skill.gpu.global_memory_latency_bandwidth
   hard_dependent_skill_ids:
+  - skill.cuda.async_data_movement_pipeline
   - skill.cuda.stream_dependency_model
   - skill.gpu.timeline_overlap_analysis
   source_remediation_tags:
@@ -5095,6 +5129,7 @@
   hard_dependent_skill_ids:
   - skill.inference.generation_stopping_state
   - skill.inference.kv_cache_semantics
+  - skill.optimization.speculative_decoding_tradeoff
   - skill.serving.worker_engine_topology
   source_remediation_tags:
   - fresh_variant
@@ -5169,6 +5204,7 @@
   - skill.ml.attention_qkv_shapes
   hard_dependent_skill_ids:
   - skill.inference.kv_memory_growth
+  - skill.serving.prefill_decode_disaggregation
   source_remediation_tags:
   - fresh_variant
   - targeted_reteach
@@ -5272,6 +5308,7 @@
   hard_dependent_skill_ids:
   - skill.inference.prefill_decode_profile
   - skill.optimization.continuous_batching_reasoning
+  - skill.serving.prefill_decode_disaggregation
   source_remediation_tags:
   - fresh_variant
   - targeted_reteach
@@ -6022,6 +6059,30 @@
     Topic/Domain label.
   resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
     alone is insufficient.
+- skill_id: skill.ml.moe_routing_dataflow
+  source_package: 6e
+  objective_ids:
+  - objective.ml.moe_routing_dataflow.demonstrate_capability
+  required_objective_ids:
+  - objective.ml.moe_routing_dataflow.demonstrate_capability
+  critical_objective_ids:
+  - objective.ml.moe_routing_dataflow.demonstrate_capability
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: true
+  hard_prerequisite_skill_ids:
+  - skill.ml.transformer_block_dataflow
+  hard_dependent_skill_ids:
+  - skill.multi_gpu.expert_parallel_sharding
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
 - skill_id: skill.ml.normalization_layer_reasoning
   source_package: 6e
   objective_ids:
@@ -6086,6 +6147,7 @@
   - skill.ml.normalization_layer_reasoning
   hard_dependent_skill_ids:
   - skill.ml.causal_lm_logits_next_token
+  - skill.ml.moe_routing_dataflow
   - skill.multi_gpu.pipeline_parallel_partition
   source_remediation_tags:
   - fresh_variant
@@ -6162,6 +6224,7 @@
   - skill.math.tensor_shape_reasoning
   hard_dependent_skill_ids:
   - skill.multi_gpu.collective_cost_reasoning
+  - skill.multi_gpu.expert_parallel_sharding
   - skill.multi_gpu.nccl_collective_operation
   - skill.multi_gpu.tensor_parallel_sharding
   source_remediation_tags:
@@ -6213,6 +6276,30 @@
   - skill.multi_gpu.tensor_parallel_sharding
   hard_dependent_skill_ids:
   - skill.ai_infra.topology_aware_placement
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
+- skill_id: skill.multi_gpu.expert_parallel_sharding
+  source_package: 6e
+  objective_ids:
+  - objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  required_objective_ids:
+  - objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  critical_objective_ids:
+  - objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: true
+  hard_prerequisite_skill_ids:
+  - skill.ml.moe_routing_dataflow
+  - skill.multi_gpu.collective_semantics
+  hard_dependent_skill_ids: []
   source_remediation_tags:
   - fresh_variant
   - targeted_reteach
@@ -6274,10 +6361,13 @@
   source_package: 6e
   objective_ids:
   - objective.multi_gpu.nccl_collective_operation.demonstrate_capability
+  - objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
   required_objective_ids:
   - objective.multi_gpu.nccl_collective_operation.demonstrate_capability
+  - objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
   critical_objective_ids:
   - objective.multi_gpu.nccl_collective_operation.demonstrate_capability
+  - objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
   diagnostic_eligibility: eligible
   retention_profile: complex
   critical_prerequisite_candidate: true
@@ -6376,8 +6466,10 @@
   source_package: 6e
   objective_ids:
   - objective.multi_gpu.rdma_transport_model.demonstrate_capability
+  - objective.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
   required_objective_ids:
   - objective.multi_gpu.rdma_transport_model.demonstrate_capability
+  - objective.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -6457,6 +6549,7 @@
   critical_prerequisite_candidate: false
   hard_prerequisite_skill_ids:
   - skill.multi_gpu.topology_bandwidth_model
+  - skill.os.numa_locality_affinity
   hard_dependent_skill_ids:
   - skill.ai_infra.gpu_capability_inventory
   source_remediation_tags:
@@ -6648,6 +6741,7 @@
   hard_dependent_skill_ids:
   - skill.multi_gpu.topology_bandwidth_model
   - skill.network.timeout_retry_policy
+  - skill.serving.prefill_decode_disaggregation
   source_remediation_tags:
   - fresh_variant
   - targeted_reteach
@@ -7236,8 +7330,10 @@
   source_package: 6e
   objective_ids:
   - objective.optimization.kv_capacity_model.demonstrate_capability
+  - objective.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
   required_objective_ids:
   - objective.optimization.kv_capacity_model.demonstrate_capability
+  - objective.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -7331,8 +7427,10 @@
   source_package: 6e
   objective_ids:
   - objective.optimization.quantization_format_reasoning.demonstrate_capability
+  - objective.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
   required_objective_ids:
   - objective.optimization.quantization_format_reasoning.demonstrate_capability
+  - objective.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -7454,13 +7552,38 @@
     Topic/Domain label.
   resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
     alone is insufficient.
+- skill_id: skill.optimization.speculative_decoding_tradeoff
+  source_package: 6e
+  objective_ids:
+  - objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  required_objective_ids:
+  - objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  critical_objective_ids: []
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: false
+  hard_prerequisite_skill_ids:
+  - skill.inference.autoregressive_loop
+  hard_dependent_skill_ids: []
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
 - skill_id: skill.optimization.token_budget_scheduler
   source_package: 6e
   objective_ids:
+  - objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
   - objective.optimization.token_budget_scheduler.demonstrate_capability
   required_objective_ids:
+  - objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
   - objective.optimization.token_budget_scheduler.demonstrate_capability
   critical_objective_ids:
+  - objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
   - objective.optimization.token_budget_scheduler.demonstrate_capability
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -7713,6 +7836,32 @@
   - skill.performance.memory_profile_analysis
   source_remediation_tags:
   - debug_localization
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
+- skill_id: skill.os.numa_locality_affinity
+  source_package: 6d
+  objective_ids:
+  - objective.os.numa_locality_affinity.demonstrate_capability
+  required_objective_ids:
+  - objective.os.numa_locality_affinity.demonstrate_capability
+  critical_objective_ids:
+  - objective.os.numa_locality_affinity.demonstrate_capability
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: true
+  hard_prerequisite_skill_ids:
+  - skill.arch.cache_hierarchy_model
+  - skill.os.virtual_physical_translation
+  hard_dependent_skill_ids:
+  - skill.multi_gpu.topology_discovery
+  source_remediation_tags:
   - fresh_variant
   - measurement_replay
   - targeted_reteach
@@ -8014,6 +8163,7 @@
   - skill.optimization.paged_kv_allocation
   - skill.os.allocator_behavior_model
   - skill.os.memory_mapping_usage
+  - skill.os.numa_locality_affinity
   - skill.os.page_fault_behavior
   - skill.os.tlb_page_size_effects
   source_remediation_tags:
@@ -8959,8 +9109,10 @@
 - skill_id: skill.platform.scheduling_placement_constraints
   source_package: 6d
   objective_ids:
+  - objective.platform.scheduling_placement_constraints.accelerator_claim_topology
   - objective.platform.scheduling_placement_constraints.demonstrate_capability
   required_objective_ids:
+  - objective.platform.scheduling_placement_constraints.accelerator_claim_topology
   - objective.platform.scheduling_placement_constraints.demonstrate_capability
   critical_objective_ids: []
   diagnostic_eligibility: eligible
@@ -8970,6 +9122,7 @@
   - skill.platform.cgroup_resource_control
   - skill.platform.orchestrated_workload_model
   hard_dependent_skill_ids:
+  - skill.ai_infra.topology_aware_placement
   - skill.platform.cloud_compute_resource_model
   source_remediation_tags:
   - fresh_variant
@@ -9574,8 +9727,10 @@
   source_package: 6f
   objective_ids:
   - objective.professional.dependency_supply_chain_review.demonstrate_capability
+  - objective.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
   required_objective_ids:
   - objective.professional.dependency_supply_chain_review.demonstrate_capability
+  - objective.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -9994,8 +10149,10 @@
   source_package: 6f
   objective_ids:
   - objective.professional.oss_contribution_policy.demonstrate_capability
+  - objective.professional.oss_contribution_policy.live_policy_discovery
   required_objective_ids:
   - objective.professional.oss_contribution_policy.demonstrate_capability
+  - objective.professional.oss_contribution_policy.live_policy_discovery
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: standard
@@ -12170,8 +12327,10 @@
   source_package: 6c
   objective_ids:
   - objective.python.thread_process_choice.demonstrate_capability
+  - objective.python.thread_process_choice.runtime_mode_tradeoff
   required_objective_ids:
   - objective.python.thread_process_choice.demonstrate_capability
+  - objective.python.thread_process_choice.runtime_mode_tradeoff
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex
@@ -12567,6 +12726,32 @@
     Topic/Domain label.
   resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
     alone is insufficient.
+- skill_id: skill.serving.prefill_decode_disaggregation
+  source_package: 6e
+  objective_ids:
+  - objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  required_objective_ids:
+  - objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  critical_objective_ids:
+  - objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  diagnostic_eligibility: eligible
+  retention_profile: complex
+  critical_prerequisite_candidate: true
+  hard_prerequisite_skill_ids:
+  - skill.inference.kv_cache_semantics
+  - skill.inference.prefill_decode_distinction
+  - skill.network.latency_bandwidth_budget
+  - skill.serving.worker_engine_topology
+  hard_dependent_skill_ids: []
+  source_remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  localization_unit: objective_first_then_skill_gate
+  broad_parent_reset_allowed: false
+  weakness_confirmation_rule: Use Objective-attributable evidence and GRE/RVR gates; never set Skill weakness from a broad
+    Topic/Domain label.
+  resolution_rule: Recompute required/critical Objective gates and unresolved verification after new evidence; task completion
+    alone is insufficient.
 - skill_id: skill.serving.queue_backpressure
   source_package: 6e
   objective_ids:
@@ -12800,6 +12985,7 @@
   hard_prerequisite_skill_ids:
   - skill.inference.autoregressive_loop
   hard_dependent_skill_ids:
+  - skill.serving.prefill_decode_disaggregation
   - skill.serving.request_state_lifecycle
   - skill.serving.worker_resource_binding
   source_remediation_tags:
@@ -13293,8 +13479,10 @@
   source_package: 6e
   objective_ids:
   - objective.triton.matmul_performance_reasoning.demonstrate_capability
+  - objective.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
   required_objective_ids:
   - objective.triton.matmul_performance_reasoning.demonstrate_capability
+  - objective.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
   critical_objective_ids: []
   diagnostic_eligibility: eligible
   retention_profile: complex

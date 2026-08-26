@@ -1,18 +1,18 @@
 package_id: decomposition.6c_foundations
 qa_contract: FRDB-v0 section 27
 result: PASS_WITH_OPEN_NON_BLOCKING_REVIEWS
-checked_at: '2026-08-26'
+checked_at: '2026-08-27'
 counts:
   domains: 5
   modules: 14
   topics: 46
   skills: 132
-  objectives: 137
+  objectives: 138
   topic_skill_links: 145
   prerequisite_edges: 200
   seed_skill_mappings: 41
   seed_objective_mappings: 47
-  open_non_blocking_reviews: 2
+  open_non_blocking_reviews: 1
   open_blocking_reviews: 0
 checks:
 - check: route_family_partition
@@ -61,6 +61,6 @@ checks:
   result: PASS
   details: 0 open blocking
 external_research_qa:
-  status: pending
+  status: validated_6H
   owner_step: 6H
-  required_before_external_validation: true
+  report_ref: research/6h_external_research_ai_report.md

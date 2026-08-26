@@ -17,3 +17,11 @@ rules:
 - guard_id: guard.english_not_global_failure
   rule: Unknown Technical English cannot be silently interpreted as technical Skill weakness unless it is an explicit fair
     task prerequisite.
+- guard_id: guard.guidance_fading
+  rule: High guidance is for novice/prerequisite repair; as verified success/transfer accumulate, hints/worked examples fade
+    toward retrieval, transfer and independent problem solving.
+- guard_id: guard.mastered_target_reverification_first
+  rule: A previously mastered target defaults to fresh verification/retrieval/transfer/debug localization before full worked-example
+    reteaching.
+- guard_id: guard.ai_scaffold_not_closure
+  rule: AI assistance may scaffold remediation but cannot satisfy fresh H0 independent closure evidence.

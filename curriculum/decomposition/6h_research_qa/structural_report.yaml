@@ -7,37 +7,37 @@ completion_guard:
 counts:
   source_packages: 4
   route_families: 23
-  skills: 543
-  objectives: 590
-  prerequisite_edges: 930
-  hard_edges: 836
-  soft_edges: 94
-  hard_dag_nodes: 543
+  skills: 549
+  objectives: 608
+  prerequisite_edges: 950
+  hard_edges: 851
+  soft_edges: 99
+  hard_dag_nodes: 549
   hard_roots: 10
-  hard_sinks: 175
-  open_6h_reviews: 10
+  hard_sinks: 179
+  open_6h_reviews: 0
   exact_name_duplicate_candidates: 3
   exact_statement_duplicate_candidates: 0
 package_counts:
   6C:
     routes: 5
     skills: 132
-    objectives: 137
+    objectives: 138
     prerequisite_edges: 200
   6D:
     routes: 8
-    skills: 192
-    objectives: 207
-    prerequisite_edges: 313
+    skills: 193
+    objectives: 209
+    prerequisite_edges: 316
   6E:
     routes: 9
-    skills: 143
-    objectives: 159
-    prerequisite_edges: 279
+    skills: 148
+    objectives: 172
+    prerequisite_edges: 296
   6F:
     routes: 1
     skills: 76
-    objectives: 87
+    objectives: 89
     prerequisite_edges: 138
 checks:
 - check: route_family_envelope_D01_D23
@@ -58,7 +58,7 @@ checks:
   result: PASS
 - check: combined_hard_graph_dag
   result: PASS
-  details: 543/543 nodes
+  details: 549/549 nodes
 - check: wlrm_exact_registry_coverage
   result: PASS
 semantic_duplicate_review_candidates:
@@ -78,9 +78,9 @@ semantic_duplicate_review_candidates:
   same_normalized_capability_statement: []
 freshness_hygiene:
   freshness_class_counts:
-    evergreen: 430
+    evergreen: 433
     fast_moving: 19
-    version_sensitive: 94
+    version_sensitive: 97
   tool_specific_evergreen_review_candidates: []
 graph_shape_information:
   hard_root_skill_ids:
@@ -137,6 +137,7 @@ graph_shape_information:
   - skill.cpp.template_constraints_overload
   - skill.cpp.template_diagnostic_reading
   - skill.cpp.unit_test_harness
+  - skill.cuda.async_data_movement_pipeline
   - skill.cuda.error_checking_diagnosis
   - skill.cuda.event_timing_dependency
   - skill.cuda.grid_stride_loop
@@ -184,6 +185,7 @@ graph_shape_information:
   - skill.ml.inference_forward_pass
   - skill.multi_gpu.collective_profile_analysis
   - skill.multi_gpu.distributed_failure_isolation
+  - skill.multi_gpu.expert_parallel_sharding
   - skill.multi_gpu.gpu_direct_validation
   - skill.network.connection_resource_limits
   - skill.network.http_api_error_contract
@@ -198,6 +200,7 @@ graph_shape_information:
   - skill.optimization.quantization_performance_validation
   - skill.optimization.quantized_memory_estimation
   - skill.optimization.scheduler_fairness_preemption
+  - skill.optimization.speculative_decoding_tradeoff
   - skill.os.context_switch_cost
   - skill.os.cpu_time_accounting
   - skill.os.graceful_shutdown_behavior
@@ -255,6 +258,7 @@ graph_shape_information:
   - skill.python.type_hints_static_checking
   - skill.reliability.postmortem_analysis
   - skill.serving.failure_domain_diagnosis
+  - skill.serving.prefill_decode_disaggregation
   - skill.serving.queue_backpressure
   - skill.serving.sglang_runtime_operation
   - skill.serving.stream_cancellation_cleanup
@@ -272,52 +276,7 @@ graph_shape_information:
   - skill.triton.softmax_kernel
   note: Roots/sinks are informational; a professional capability graph legitimately has entry and terminal Skills. External
     QA decides whether any are pedagogical dead ends.
-open_reviews_owned_by_6H:
-- source_step: 6C
-  review_id: review.6c.external_coverage
-  severity: non_blocking
-  question: Bağımsız external sources current coverage veya hidden prerequisite boşluğu gösteriyor mu?
-- source_step: 6D
-  review_id: review.6d.external_coverage
-  severity: non_blocking
-  question: Bağımsız external kaynaklar D06–D13 için coverage eksiği veya hidden prerequisite gösteriyor mu?
-- source_step: 6D
-  review_id: review.6d.platform_tool_freshness
-  severity: non_blocking
-  question: Fast-moving container/orchestration/cloud capability'leri için review trigger policy nasıl versiyonlanmalı?
-- source_step: 6E
-  review_id: review.6e.external_coverage
-  severity: non_blocking
-  question: Independent current sources D14-D22 coverage, missing accelerator/inference capabilities or hidden prerequisites
-    gösteriyor mu?
-- source_step: 6E
-  review_id: review.6e.tool_runtime_freshness
-  severity: non_blocking
-  question: CUDA/Triton/vLLM/SGLang/TensorRT-LLM/NCCL/RDMA/runtime capability'leri için exact freshness review triggers current
-    vendor behavior ile uyumlu mu?
-- source_step: 6E
-  review_id: review.6e.math_numerical_coverage
-  severity: non_blocking
-  question: Explicit math/numerical Skill set inference capability'leri için yeterli mi, yoksa 6H dış doğrulamasında ek prerequisite
-    gerekiyor mu?
-- source_step: 6F
-  review_id: review.6f.external_coverage
-  severity: non_blocking
-  question: Independent current engineering/OSS sources D23 professional capability coverage'ında eksik veya duplicate davranış
-    gösteriyor mu?
-- source_step: 6F
-  review_id: review.6f.oss_workflow_freshness
-  severity: non_blocking
-  question: Repository/platform-specific contribution policy variation için freshness/source guidance yeterli mi?
-- source_step: 6F
-  review_id: review.6f.capstone_diversity
-  severity: non_blocking
-  question: Final capstone family diversity ve independent evidence coverage professional-readiness hedefi için yeterli mi?
-- source_step: 6G
-  review_id: review.6g.external_behavior_coverage
-  severity: non_blocking
-  question: Independent learning-science/engineering sources reveal a missing weakness-localization or remediation safety
-    behavior?
+open_reviews_owned_by_6H: []
 blocking_findings: []
 warnings: []
 external_research_qa:

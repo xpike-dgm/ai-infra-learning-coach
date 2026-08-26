@@ -1,0 +1,14 @@
+stage_step: 6H
+patch_model: S6ERQA-v0-candidate
+applied_at: '2026-08-27'
+external_report_ref: research/6h_external_research_ai_report.md
+stable_skill_additions:
+- skill.os.numa_locality_affinity
+- skill.cuda.async_data_movement_pipeline
+- skill.optimization.speculative_decoding_tradeoff
+- skill.serving.prefill_decode_disaggregation
+- skill.ml.moe_routing_dataflow
+- skill.multi_gpu.expert_parallel_sharding
+tool_vendor_details_policy: version_scoped_objective_or_example_unless_independent_capability_test_passes
+raw_external_verdict: PASS_WITH_REQUIRED_CHANGES
+manager_reconciliation: patch_applied_pending_full_regression_and_post_step
