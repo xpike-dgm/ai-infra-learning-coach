@@ -43,6 +43,7 @@ jobs:
               'skill.dsa.heap_priority_queue_basic': 'skill.dsa.sequence_traversal',
               'skill.distributed.replication_partitioning': 'skill.distributed.replication_models',
               'skill.performance.capacity_cost_tradeoff': 'skill.performance.cost_efficiency_reasoning',
+              'skill.c.function_definition_call': 'skill.c.functions_basic',
           }
           for old, new in replacements.items():
               s = s.replace(old, new)
