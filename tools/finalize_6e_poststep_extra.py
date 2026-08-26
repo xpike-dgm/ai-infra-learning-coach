@@ -14,6 +14,13 @@ patch('docs/SYSTEMS_DETAILED_MAP.md', '| Açık non-blocking review | 4 |', '| A
 patch('docs/SYSTEMS_DETAILED_MAP.md', '0 blocking / 4 non-blocking', '0 blocking / 3 non-blocking', required=False)
 patch('docs/STEP_STATUS.md', '0 blocking / 4 non-blocking review', '0 blocking / 3 non-blocking review', required=False)
 
+# EXECUTION_INDEX has a compact current-location footer in addition to the AŞAMA 6 table.
+patch(
+    'docs/EXECUTION_INDEX.md',
+    '**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6D`\n**Aktif:** **`6E — GPU / ML / Inference detailed map`**\n\n6D SDM-v0 / D-058 ile tamamlandı. 6E henüz yürütülmedi; 6E başlamadan fresh PRE-STEP GitHub refresh zorunludur.',
+    '**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6E`\n**Aktif:** **`6F — Professional engineering / project map`**\n\n6E GIM-v0 / D-059 ile tamamlandı. 6F henüz yürütülmedi; 6F başlamadan fresh PRE-STEP GitHub refresh zorunludur.'
+)
+
 # START_HERE reading order should include completed 6D/6E summaries and datasets.
 p = ROOT / 'docs/START_HERE.md'
 s = p.read_text(encoding='utf-8')
