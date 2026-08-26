@@ -1,6 +1,6 @@
 # HANDOFF STATE — Güncel Proje Durumu
 
-**Son güncelleme:** 2026-08-26
+**Son güncelleme:** 2026-08-27
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ## 0. Zorunlu protokol — D-024 / D-027 / D-050

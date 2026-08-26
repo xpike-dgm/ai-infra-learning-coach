@@ -1,7 +1,7 @@
 # AI Infra Learning Coach — Master Geliştirme Planı
 
 **Durum:** AKTİF / CANONICAL DETAYLI PLAN  
-**Son senkron:** 2026-08-26
+**Son senkron:** 2026-08-27
 
 Sabit adım kimliklerinin canonical kaynağı `docs/EXECUTION_INDEX.md` dosyasıdır. Bu dosya ayrıntılı checklist ve completion notlarını onunla senkron tutar.
 

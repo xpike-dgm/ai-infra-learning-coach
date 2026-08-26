@@ -8,7 +8,7 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 - ⬜ Bekliyor
 - 🔴 Bloke
 
-## Güncel durum — 2026-08-26
+## Güncel durum — 2026-08-27
 
 | Adım | Durum | Açıklama |
 |---|---|---|
