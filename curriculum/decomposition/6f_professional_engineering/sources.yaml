@@ -1,0 +1,81 @@
+- source_id: source.repo.pdm_v0
+  source_kind: canonical_spec
+  title: Professional Domain Backbone
+  ref: docs/CURRICULUM_DOMAIN_MAP.md
+  version_or_date: '2026-08-25'
+  authority_class: accepted_project_contract
+  supports:
+  - route_partition
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.frdb_v0
+  source_kind: canonical_spec
+  title: Full-Route Decomposition Blueprint
+  ref: docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md
+  version_or_date: '2026-08-26'
+  authority_class: accepted_project_contract
+  supports:
+  - package_contract
+  - D23_scope
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.gns_v0
+  source_kind: canonical_spec
+  title: Granularity & Naming Standard
+  ref: docs/GRANULARITY_NAMING_STANDARD.md
+  version_or_date: '2026-08-25'
+  authority_class: accepted_project_contract
+  supports:
+  - granularity
+  - logical_identity
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.prg_v0
+  source_kind: canonical_spec
+  title: Prerequisite Policy
+  ref: docs/PREREQUISITE_POLICY_SPEC.md
+  version_or_date: '2026-08-24'
+  authority_class: accepted_project_contract
+  supports:
+  - hard_soft_edges
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.professional_readiness
+  source_kind: canonical_spec
+  title: Professional Readiness Target
+  ref: docs/PROFESSIONAL_READINESS_TARGET.md
+  version_or_date: '2026-08-25'
+  authority_class: accepted_project_contract
+  supports:
+  - professional_evidence
+  - capstone
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.prior_packages
+  source_kind: internal_design_analysis
+  title: Accepted D01-D22 detailed-map packages
+  ref: curriculum/decomposition/6c_foundations + 6d_systems + 6e_gpu_ml_inference
+  version_or_date: '2026-08-27'
+  authority_class: accepted_internal_packages
+  supports:
+  - skill_reuse
+  - project_overlay
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: null
+- source_id: source.repo.internal_6f_authoring
+  source_kind: internal_design_analysis
+  title: 6F internal authoring
+  ref: tools/generate_professional_engineering_package.py
+  version_or_date: '2026-08-27'
+  authority_class: internal_authoring
+  supports:
+  - D23_decomposition
+  freshness_class: evergreen
+  checked_at: '2026-08-27'
+  notes: Does not replace independent 6H Research QA.

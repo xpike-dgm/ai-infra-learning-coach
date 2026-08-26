@@ -45,11 +45,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - AŞAMA 6C: ✅ `FDM-v0 / D-057` tamamlandı.
 - AŞAMA 6D: ✅ `SDM-v0 / D-058` tamamlandı.
 - AŞAMA 6E: ✅ `GIM-v0 / D-059` tamamlandı.
-- **Aktif adım: 6F — Professional engineering / project map.**
-- **6F henüz yürütülmedi.**
-- 6G–6H ve AŞAMA 7–20 bekliyor.
+- AŞAMA 6F: ✅ `PEM-v0 / D-060` tamamlandı.
+- **Aktif adım: 6G — Weakness localization + remediation mapping.**
+- **6G henüz yürütülmedi.**
+- 6H ve AŞAMA 7–20 bekliyor.
 
-**6F'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6F için ayrıca fresh PRE-STEP refresh yap.
+**6G'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6G için ayrıca fresh PRE-STEP refresh yap.
 
 ## Ana ürün ilkesi
 

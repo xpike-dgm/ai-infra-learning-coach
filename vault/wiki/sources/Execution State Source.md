@@ -14,7 +14,7 @@ topics:
 
 # Execution State Source
 
-Current execution için birlikte okunması gereken living-memory kaynak seti. 6E GIM-v0 / D-059 tamamlandı; güncel aktif adım 6F Professional engineering / project map'tir ve yürütme öncesi fresh PRE-STEP zorunludur.
+Current execution için birlikte okunması gereken living-memory kaynak seti. 6F PEM-v0 / D-060 tamamlandı; güncel aktif adım 6G Weakness localization + remediation mapping'tir ve yürütme öncesi fresh PRE-STEP zorunludur.
 
 ## Links
 

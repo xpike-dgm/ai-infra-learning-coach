@@ -45,7 +45,7 @@ Ana sonuç:
 | Professional attribution | 308 |
 | Project attribution | 12 |
 | Açık blocking review | 0 |
-| Açık non-blocking review | 3 |
+| Açık non-blocking review | 2 |
 
 Route family dağılımı:
 
@@ -371,3 +371,8 @@ Her iki araç da `PASS` verir. Bunlar production runtime kodu veya physical DB s
 - `review.6d.accelerator_forward_reuse` resolved edildi.
 
 **Güncel sonraki numaralı adım:** `6F — Professional engineering / project map`; `review.6d.professional_overlay_reconciliation` 6F'ye açık kalır.
+
+
+## 6F reconciliation sonucu
+
+`review.6d.professional_overlay_reconciliation` PEM-v0 / D-060 ile resolved edildi. D23 registry observability, reliability, performance, build ve testing capability'lerini canonical 6D Skill ID'leriyle reuse eder; 6D Skill/Objective/prerequisite semantics değiştirilmedi. 6D'de 2 external/freshness non-blocking review 6H'ye açık kalır.

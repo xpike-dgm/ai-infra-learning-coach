@@ -21,8 +21,8 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `6A–6E completed / 6F active-not-executed` olduğunu doğrula.
-9. Ancak bundan sonra, 6F için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
+8. Current execution state'in `6A–6F completed / 6G active-not-executed` olduğunu doğrula.
+9. Ancak bundan sonra, 6G için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
 
 Önerilen local komutlar:
 
@@ -1142,7 +1142,8 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - 6C ✅ FDM-v0 / D-057
 - 6D ✅ SDM-v0 / D-058
 - **6E ✅ GIM-v0 / D-059 — GPU / ML / Inference detailed map**
-- **6F 🟡 ACTIVE / NOT EXECUTED — Professional engineering / project map**
+- **6F ✅ PEM-v0 / D-060
+- 6G 🟡 ACTIVE / NOT EXECUTED — Professional engineering / project map**
 - 6G–6H waiting
 
 ---
@@ -1161,12 +1162,12 @@ Kullanıcı onaylı numbered work 6E'yi tamamladı. Bu handoff belgesi **6F'yi b
 Kullanıcı 6F'yi devam ettirmek/onaylamak istediğinde:
 
 ```text
-fresh 6F PRE-STEP GitHub refresh
-→ 6F execution
+fresh 6G PRE-STEP GitHub refresh
+→ 6G execution
 → evaluation
 → D-050 POST sync
 → stale-reference audit
-→ 6F active-not-executed
+→ 6G active-not-executed
 ```
 
 ---

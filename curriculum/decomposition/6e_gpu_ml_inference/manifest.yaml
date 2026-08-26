@@ -86,7 +86,7 @@ known_exclusions:
 - Production lesson/task/resource bodies belong to AŞAMA 15/20.
 - Physical database schema belongs to 9C.
 - English progression/cadence remains AŞAMA 7 and is not a global technical prerequisite.
-unresolved_review_count: 4
+unresolved_review_count: 3
 blocking_review_count: 0
 generated_at: '2026-08-26'
 authored_by: main_manager_gpt_5_6_sol

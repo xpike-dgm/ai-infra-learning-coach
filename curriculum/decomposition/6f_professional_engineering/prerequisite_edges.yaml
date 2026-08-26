@@ -1,0 +1,2346 @@
+- prerequisite_skill_id: skill.professional.requirement_constraint_non_goal
+  target_skill_id: skill.professional.alternative_tradeoff_analysis
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.image_supply_chain_safety
+  target_skill_id: skill.professional.artifact_integrity_verification
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.release_artifact_provenance
+  target_skill_id: skill.professional.artifact_integrity_verification
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.benchmark_reproducibility
+  target_skill_id: skill.professional.benchmark_experiment_plan
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.measurement_validity_reasoning
+  target_skill_id: skill.professional.benchmark_experiment_plan
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.git.stage_commit_history_basic
+  target_skill_id: skill.professional.branch_change_isolation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.capstone_validation_plan
+  target_skill_id: skill.professional.capstone_defense
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.performance_report_synthesis
+  target_skill_id: skill.professional.capstone_defense
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.postmortem_root_cause
+  target_skill_id: skill.professional.capstone_defense
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.evidence_matrix
+  target_skill_id: skill.professional.capstone_validation_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.performance_regression_gate
+  target_skill_id: skill.professional.capstone_validation_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.slo_change_validation
+  target_skill_id: skill.professional.capstone_validation_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_impact_analysis
+  target_skill_id: skill.professional.change_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.release_validation
+  target_skill_id: skill.professional.changelog_release_note
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_reproduction
+  target_skill_id: skill.professional.ci_failure_localization
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.ci_failure_localization
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.code_reading_basic
+  target_skill_id: skill.professional.code_review_correctness
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.professional.code_review_correctness
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.code_review_correctness
+  target_skill_id: skill.professional.code_review_maintainability
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.cross_module_flow_trace
+  target_skill_id: skill.professional.code_review_maintainability
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.code_review_correctness
+  target_skill_id: skill.professional.code_review_risk
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_impact_analysis
+  target_skill_id: skill.professional.code_review_risk
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.git.stage_commit_history_basic
+  target_skill_id: skill.professional.commit_history_hygiene
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.branch_change_isolation
+  target_skill_id: skill.professional.commit_history_hygiene
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.postmortem_root_cause
+  target_skill_id: skill.professional.corrective_action_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.quality_gate_definition
+  target_skill_id: skill.professional.corrective_action_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.integration_checkpoint
+  target_skill_id: skill.professional.cross_domain_integration_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.rfc_authoring
+  target_skill_id: skill.professional.cross_domain_integration_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.observability.signal_correlation_diagnosis
+  target_skill_id: skill.professional.cross_layer_failure_localization
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.debug_evidence_chain
+  target_skill_id: skill.professional.cross_layer_failure_localization
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.source_entrypoint_trace
+  target_skill_id: skill.professional.cross_module_flow_trace
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.debug_evidence_chain
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.debug_hypothesis_loop
+  target_skill_id: skill.professional.debug_evidence_chain
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.explain_debug_fix_basic
+  target_skill_id: skill.professional.debug_hypothesis_loop
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.professional.debug_hypothesis_loop
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.rfc_authoring
+  target_skill_id: skill.professional.decision_record
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.cross_module_flow_trace
+  target_skill_id: skill.professional.dependency_impact_analysis
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_scope_decomposition
+  target_skill_id: skill.professional.dependency_impact_analysis
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.image_supply_chain_safety
+  target_skill_id: skill.professional.dependency_supply_chain_review
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_version_control
+  target_skill_id: skill.professional.dependency_supply_chain_review
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.reproducible_build_contract
+  target_skill_id: skill.professional.dependency_version_control
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.alternative_tradeoff_analysis
+  target_skill_id: skill.professional.design_risk_failure_mode
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.code_review_risk
+  target_skill_id: skill.professional.design_risk_failure_mode
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.cross_domain_integration_design
+  target_skill_id: skill.professional.evidence_matrix
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.evidence_matrix
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.regression_test_from_bug
+  target_skill_id: skill.professional.flaky_test_diagnosis
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.professional.flaky_test_diagnosis
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.cross_layer_failure_localization
+  target_skill_id: skill.professional.incident_hypothesis_triage
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.incident_timeline
+  target_skill_id: skill.professional.incident_hypothesis_triage
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.debug_evidence_chain
+  target_skill_id: skill.professional.incident_timeline
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.reliability.incident_response_workflow
+  target_skill_id: skill.professional.incident_timeline
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.project_milestone_decomposition
+  target_skill_id: skill.professional.integration_checkpoint
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.quality_gate_definition
+  target_skill_id: skill.professional.integration_checkpoint
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_impact_analysis
+  target_skill_id: skill.professional.integration_test_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.integration_test_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_impact_analysis
+  target_skill_id: skill.professional.interface_contract_reasoning
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.requirement_constraint_non_goal
+  target_skill_id: skill.professional.interface_contract_reasoning
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.issue_reproduction
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.debug_localization_basic
+  target_skill_id: skill.professional.issue_reproduction
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_reproduction
+  target_skill_id: skill.professional.issue_scope_decomposition
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.professional.issue_scope_decomposition
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.measurement_environment_record
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.benchmark_experiment_plan
+  target_skill_id: skill.professional.measurement_environment_record
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_reproduction
+  target_skill_id: skill.professional.minimal_reproducer
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.professional.minimal_reproducer
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.observability.structured_logging
+  target_skill_id: skill.professional.observability_plan
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.reliability.slo_definition
+  target_skill_id: skill.professional.observability_plan
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.deployment_change_safety
+  target_skill_id: skill.professional.operational_change_risk
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.rollback_plan
+  target_skill_id: skill.professional.operational_change_risk
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_maintainer_feedback_iteration
+  target_skill_id: skill.professional.oss_community_communication
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.technical_status_update
+  target_skill_id: skill.professional.oss_community_communication
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_project_orientation
+  target_skill_id: skill.professional.oss_contribution_policy
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_scope_decomposition
+  target_skill_id: skill.professional.oss_issue_selection
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_project_orientation
+  target_skill_id: skill.professional.oss_issue_selection
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_submission_evidence
+  target_skill_id: skill.professional.oss_maintainer_feedback_iteration
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.review_iteration
+  target_skill_id: skill.professional.oss_maintainer_feedback_iteration
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_issue_selection
+  target_skill_id: skill.professional.oss_patch_scope
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.pr_scope_discipline
+  target_skill_id: skill.professional.oss_patch_scope
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.repo_structure_orientation
+  target_skill_id: skill.professional.oss_project_orientation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.oss_project_orientation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_contribution_policy
+  target_skill_id: skill.professional.oss_submission_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.oss_patch_scope
+  target_skill_id: skill.professional.oss_submission_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.pr_problem_solution_evidence
+  target_skill_id: skill.professional.oss_submission_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.regression_detection
+  target_skill_id: skill.professional.performance_regression_gate
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.performance_report_synthesis
+  target_skill_id: skill.professional.performance_regression_gate
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.performance.optimization_hypothesis_validation
+  target_skill_id: skill.professional.performance_report_synthesis
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.benchmark_experiment_plan
+  target_skill_id: skill.professional.performance_report_synthesis
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.incident_hypothesis_triage
+  target_skill_id: skill.professional.postmortem_root_cause
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.pr_problem_solution_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.change_plan
+  target_skill_id: skill.professional.pr_problem_solution_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.commit_history_hygiene
+  target_skill_id: skill.professional.pr_problem_solution_evidence
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.pr_problem_solution_evidence
+  target_skill_id: skill.professional.pr_scope_discipline
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_scope_decomposition
+  target_skill_id: skill.professional.problem_statement_scope
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.change_plan
+  target_skill_id: skill.professional.project_milestone_decomposition
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.function_decomposition
+  target_skill_id: skill.professional.project_milestone_decomposition
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.capstone_defense
+  target_skill_id: skill.professional.project_retrospective
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.corrective_action_design
+  target_skill_id: skill.professional.project_retrospective
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.design_risk_failure_mode
+  target_skill_id: skill.professional.project_risk_register
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.project_milestone_decomposition
+  target_skill_id: skill.professional.project_risk_register
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.code_review_risk
+  target_skill_id: skill.professional.quality_gate_definition
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.quality_gate_definition
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.commit_history_hygiene
+  target_skill_id: skill.professional.rebase_conflict_resolution
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.commit_history_hygiene
+  target_skill_id: skill.professional.regression_bisection
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.issue_reproduction
+  target_skill_id: skill.professional.regression_bisection
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.minimal_reproducer
+  target_skill_id: skill.professional.regression_test_from_bug
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_oracle_design
+  target_skill_id: skill.professional.regression_test_from_bug
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.release_validation
+  target_skill_id: skill.professional.release_artifact_provenance
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.reproducible_build_contract
+  target_skill_id: skill.professional.release_artifact_provenance
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.deployment_change_safety
+  target_skill_id: skill.professional.release_validation
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.quality_gate_definition
+  target_skill_id: skill.professional.release_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.reproducible_build_contract
+  target_skill_id: skill.professional.release_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.code_reading_basic
+  target_skill_id: skill.professional.repo_structure_orientation
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.cpp.build_system_project_definition
+  target_skill_id: skill.professional.reproducible_build_contract
+  edge_kind: soft
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability improves scaffold/fluency but is not required for fair target evidence.
+  contamination_risk_if_missing: low
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: soft_scaffold_only
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.reproducible_build_contract
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.problem_statement_scope
+  target_skill_id: skill.professional.requirement_constraint_non_goal
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.pr_problem_solution_evidence
+  target_skill_id: skill.professional.review_feedback_triage
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.commit_history_hygiene
+  target_skill_id: skill.professional.review_iteration
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.review_feedback_triage
+  target_skill_id: skill.professional.review_iteration
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.alternative_tradeoff_analysis
+  target_skill_id: skill.professional.rfc_authoring
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.design_risk_failure_mode
+  target_skill_id: skill.professional.rfc_authoring
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.review_feedback_triage
+  target_skill_id: skill.professional.rfc_review_response
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.rfc_authoring
+  target_skill_id: skill.professional.rfc_review_response
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.deployment_change_safety
+  target_skill_id: skill.professional.rollback_plan
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.release_validation
+  target_skill_id: skill.professional.rollback_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.engineering.reproducible_run_notes
+  target_skill_id: skill.professional.runbook_authoring
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.observability_plan
+  target_skill_id: skill.professional.runbook_authoring
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.platform.secret_handling_safety
+  target_skill_id: skill.professional.secret_exposure_review
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.threat_surface_review
+  target_skill_id: skill.professional.secret_exposure_review
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.corrective_action_design
+  target_skill_id: skill.professional.slo_change_validation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.reliability.slo_definition
+  target_skill_id: skill.professional.slo_change_validation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.repo_structure_orientation
+  target_skill_id: skill.professional.source_entrypoint_trace
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.trace_execution_basic
+  target_skill_id: skill.professional.source_entrypoint_trace
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.change_plan
+  target_skill_id: skill.professional.system_validation_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.integration_test_design
+  target_skill_id: skill.professional.system_validation_plan
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.change_plan
+  target_skill_id: skill.professional.technical_status_update
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.test_strategy_selection
+  target_skill_id: skill.professional.test_oracle_design
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.programming.test_case_basic
+  target_skill_id: skill.professional.test_strategy_selection
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.professional.dependency_impact_analysis
+  target_skill_id: skill.professional.threat_surface_review
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Source capability is required for interpretable, fair professional evidence.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: hard_required_for_interpretable_target

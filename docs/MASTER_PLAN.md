@@ -232,10 +232,19 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
 - external Research QA 6H'ye pending; learner publication yapılmadı.
 
-### [ ] 6F — Professional engineering / project map — **AKTİF**
-- Git/code review, testing/build/debug/profiling, design docs, benchmarks, OSS workflow, integrated projects, capstone.
+### [x] 6F — Professional engineering / project map — PEM-v0 / D-060
+**Final:** `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md` + `curriculum/decomposition/6f_professional_engineering/`
 
-### [ ] 6G — Weakness localization + remediation mapping
+- D23 = 1 Domain / 9 Module / 27 Topic,
+- 76 Skill / 87 Objective / 110 TopicSkillLink,
+- 138 prerequisite edge = 137 hard / 1 soft,
+- 25 prior Skill clone'lanmadan reuse edildi,
+- Git/PR/code review, testing/CI, build/release, debug/perf, design/RFC, ops/reliability, security, OSS ve project/capstone behavior granularlaştırıldı,
+- 6D + 6E professional-overlay review'ları resolved,
+- internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
+- external Research QA 6H'ye pending; learner publication yapılmadı.
+
+### [ ] 6G — Weakness localization + remediation mapping — **AKTİF**
 ### [ ] 6H — Coverage / prerequisite / external Research QA
 
 ---
@@ -410,7 +419,9 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6E`
-**Aktif:** **`6F — Professional engineering / project map`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6F`
+**Aktif:** **`6G — Weakness localization + remediation mapping`**
 
 Bir sonraki yürütme: **6F başlamadan fresh PRE-STEP GitHub refresh → FRDB-v0 + FDM-v0 + SDM-v0 + GIM-v0 registry/attribution setleri ile Professional Engineering detailed map → POST-STEP D-050 sync + stale-reference audit.**
+
+- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`; canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`.

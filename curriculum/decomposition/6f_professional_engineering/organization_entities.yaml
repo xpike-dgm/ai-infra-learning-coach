@@ -1,0 +1,954 @@
+- entity_type: domain
+  logical_id_candidate: domain.professional_engineering
+  display_name: Professional Engineering / Open Source / Projects
+  semantic_statement: D23 professional engineering, open-source contribution, large-project and capstone capability organization
+    domain.
+  parent_organization_id: null
+  primary_domain_id: domain.professional_engineering
+  organization_role: professional_integration
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.build_release
+  display_name: Build Release
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.collaboration
+  display_name: Collaboration
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.debug_performance
+  display_name: Debug Performance
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.design_communication
+  display_name: Design Communication
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.operations_reliability
+  display_name: Operations Reliability
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.project_capstone
+  display_name: Project Capstone
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.repository_analysis
+  display_name: Repository Analysis
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.security_open_source
+  display_name: Security Open Source
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: module
+  logical_id_candidate: module.professional.testing_quality
+  display_name: Testing Quality
+  semantic_statement: Stable authoring cluster for D23 professional engineering behavior.
+  parent_organization_id: domain.professional_engineering
+  primary_domain_id: domain.professional_engineering
+  organization_role: authoring_cluster
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.artifact_provenance
+  display_name: Artifact Provenance
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.build_release
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.branch_commit_workflow
+  display_name: Branch Commit Workflow
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.collaboration
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.capstone_defense
+  display_name: Capstone Defense
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.project_capstone
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.change_planning
+  display_name: Change Planning
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.repository_analysis
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.ci_quality
+  display_name: Ci Quality
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.testing_quality
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.code_review
+  display_name: Code Review
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.collaboration
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.debug_investigation
+  display_name: Debug Investigation
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.debug_performance
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.decision_communication
+  display_name: Decision Communication
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.design_communication
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.incident_response
+  display_name: Incident Response
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.operations_reliability
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.integration_evidence
+  display_name: Integration Evidence
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.project_capstone
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.integration_regression
+  display_name: Integration Regression
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.testing_quality
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.issue_reproduction
+  display_name: Issue Reproduction
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.repository_analysis
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.observability_runbooks
+  display_name: Observability Runbooks
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.operations_reliability
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.oss_contribution_discovery
+  display_name: Oss Contribution Discovery
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.security_open_source
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.oss_submission_iteration
+  display_name: Oss Submission Iteration
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.security_open_source
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.performance_experiment
+  display_name: Performance Experiment
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.debug_performance
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.performance_reporting
+  display_name: Performance Reporting
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.debug_performance
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.postmortem_actions
+  display_name: Postmortem Actions
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.operations_reliability
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.problem_constraints
+  display_name: Problem Constraints
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.design_communication
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.project_planning
+  display_name: Project Planning
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.project_capstone
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.pull_request_authoring
+  display_name: Pull Request Authoring
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.collaboration
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.release_validation
+  display_name: Release Validation
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.build_release
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.reproducible_builds
+  display_name: Reproducible Builds
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.build_release
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.rfc_tradeoffs
+  display_name: Rfc Tradeoffs
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.design_communication
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.security_review
+  display_name: Security Review
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.security_open_source
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.source_tree_orientation
+  display_name: Source Tree Orientation
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.repository_analysis
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null
+- entity_type: topic
+  logical_id_candidate: topic.professional.test_strategy
+  display_name: Test Strategy
+  semantic_statement: Learner-facing professional workflow, review, project or capstone teaching/evidence context.
+  parent_organization_id: module.professional.testing_quality
+  primary_domain_id: domain.professional_engineering
+  organization_role: teaching_context
+  teaching_intent_tags:
+  - teach
+  - practice
+  - assess
+  - transfer
+  - integrate
+  linked_route_family_ids:
+  - D23
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.professional_readiness
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+  notes: null

@@ -435,3 +435,15 @@ Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
 - 6D `review.6d.accelerator_forward_reuse` resolved edildi ve 6D regression QA tekrar PASS verdi.
 - Internal package QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 4 non-blocking review.
 - Independent external coverage/current-industry/source-quality Research QA 6H'de zorunlu ve pending; package learner-published değildir.
+
+## D-060 — Professional engineering / projects detailed map = PEM-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 6F final modeli `PEM-v0 — Professional Engineering / Projects Detailed Map` oldu.
+- Canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`; dataset `curriculum/decomposition/6f_professional_engineering/`.
+- D23 = 1 Domain / 9 Module / 27 Topic / 76 Skill / 87 Objective / 110 TopicSkillLink.
+- 138 prerequisite edge = 137 hard / 1 soft; 36 cross-package edge.
+- 25 prior Skill clone'lanmadan reuse edildi: 8 6C + 12 6D + 5 6E.
+- Existing foundation/systems/GPU-inference projects D23 professional workflow evidence ile augment edildi; yeni OSS contribution project ve integrated AI-infrastructure capstone familyası tanımlandı.
+- `review.6d.professional_overlay_reconciliation` ve `review.6e.professional_overlay_reconciliation` resolved edildi.
+- Internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 3 open 6F non-blocking review. Independent external Research QA 6H'ye pending; learner publication yapılmadı.

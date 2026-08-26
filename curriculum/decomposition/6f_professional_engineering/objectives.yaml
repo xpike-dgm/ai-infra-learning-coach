@@ -1,0 +1,3133 @@
+- objective_id_candidate: objective.professional.alternative_tradeoff_analysis.demonstrate_capability
+  owner_skill_id: skill.professional.alternative_tradeoff_analysis
+  objective_statement: Yeni bir bağlamda En az iki uygulanabilir çözümü complexity, performance, reliability ve operability
+    trade-off'larıyla karşılaştırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id001
+    - design_argument
+    - artifact_analysis
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.artifact_integrity_verification.demonstrate_capability
+  owner_skill_id: skill.professional.artifact_integrity_verification
+  objective_statement: Yeni bir bağlamda Artifact identity/integrity bilgisini distribution ve deployment öncesi doğrulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id002
+    - hands_on_workflow
+    - artifact_analysis
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.benchmark_experiment_plan.demonstrate_capability
+  owner_skill_id: skill.professional.benchmark_experiment_plan
+  objective_statement: Yeni bir bağlamda Workload, warmup, repetitions, controls ve success metric'leri içeren performans
+    deney planı oluşturabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id003
+    - measurement_artifact
+    - reproducible_benchmark
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.branch_change_isolation.demonstrate_capability
+  owner_skill_id: skill.professional.branch_change_isolation
+  objective_statement: Yeni bir bağlamda Bir değişikliği bağımsız branch/worktree sınırında ilgisiz work'ten izole edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.capstone_defense.defend_design_and_limits
+  owner_skill_id: skill.professional.capstone_defense
+  objective_statement: Capstone'u fresh reviewer soruları karşısında architecture, trade-off, failure ve measurement evidence
+    ile savunur.
+  observable_action: defend_design_and_limits
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: &id004
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.capstone_defense.demonstrate_capability
+  owner_skill_id: skill.professional.capstone_defense
+  objective_statement: Yeni bir bağlamda Capstone architecture, trade-offs, failures, measurements ve unresolved limits'i
+    bağımsız teknik incelemede savunabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id004
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.capstone_validation_plan.demonstrate_capability
+  owner_skill_id: skill.professional.capstone_validation_plan
+  objective_statement: Yeni bir bağlamda Capstone için correctness, debugging, performance, reliability, security ve reproducibility
+    validation planı kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id005
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.capstone_validation_plan.validate_integrated_capstone
+  owner_skill_id: skill.professional.capstone_validation_plan
+  objective_statement: Integrated capstone'da correctness, performance, reliability, security ve reproducibility gate'lerini
+    uygular.
+  observable_action: validate_integrated_capstone
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id005
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.change_plan.demonstrate_capability
+  owner_skill_id: skill.professional.change_plan
+  objective_statement: Yeni bir bağlamda Scope, affected components, test plan, risk ve rollback düşüncesi içeren uygulanabilir
+    change plan yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.changelog_release_note.demonstrate_capability
+  owner_skill_id: skill.professional.changelog_release_note
+  objective_statement: Yeni bir bağlamda User/operator açısından anlamlı behavior, migration ve risk değişikliklerini release
+    note/changelog olarak yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.ci_failure_localization.demonstrate_capability
+  owner_skill_id: skill.professional.ci_failure_localization
+  objective_statement: Yeni bir bağlamda CI failure'ını code, test, dependency, environment veya infrastructure kaynaklı katmana
+    ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.code_review_correctness.demonstrate_capability
+  owner_skill_id: skill.professional.code_review_correctness
+  objective_statement: Yeni bir bağlamda Başkasının patch'inde behavior, edge case ve regression riskini kanıt üzerinden inceleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id006
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.code_review_correctness.find_regression_risk
+  owner_skill_id: skill.professional.code_review_correctness
+  objective_statement: Yeni bir patch'te correctness veya regression riskini somut code path ve test/evidence önerisiyle raporlar.
+  observable_action: find_regression_risk
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id006
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.code_review_maintainability.demonstrate_capability
+  owner_skill_id: skill.professional.code_review_maintainability
+  objective_statement: Yeni bir bağlamda Patch'in abstraction, coupling, naming ve future-change maliyetini somut kod bağlamında
+    değerlendirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.code_review_risk.demonstrate_capability
+  owner_skill_id: skill.professional.code_review_risk
+  objective_statement: Yeni bir bağlamda Patch'in operational, performance, security ve compatibility risklerini ilgili evidence
+    ile işaretleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.commit_history_hygiene.demonstrate_capability
+  owner_skill_id: skill.professional.commit_history_hygiene
+  objective_statement: Yeni bir bağlamda Review edilebilir atomic commit'ler ve açıklayıcı history oluşturabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.corrective_action_design.demonstrate_capability
+  owner_skill_id: skill.professional.corrective_action_design
+  objective_statement: Yeni bir bağlamda Postmortem action'larını owner, verification evidence ve systemic-risk reduction
+    hedefiyle tasarlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.cross_domain_integration_design.demonstrate_capability
+  owner_skill_id: skill.professional.cross_domain_integration_design
+  objective_statement: Yeni bir bağlamda Bir project'te language, systems, distributed, GPU/inference ve operations sınırlarını
+    explicit interface ve trade-off'larla birleştirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.cross_layer_failure_localization.demonstrate_capability
+  owner_skill_id: skill.professional.cross_layer_failure_localization
+  objective_statement: Yeni bir bağlamda Application, OS, network, runtime ve infrastructure sinyallerini birleştirerek failure
+    layer'ını ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.cross_module_flow_trace.demonstrate_capability
+  owner_skill_id: skill.professional.cross_module_flow_trace
+  objective_statement: Yeni bir bağlamda Bir davranışın birden fazla module/package/process boyunca geçtiği akışı kanıtla
+    izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.debug_evidence_chain.demonstrate_capability
+  owner_skill_id: skill.professional.debug_evidence_chain
+  objective_statement: Yeni bir bağlamda Bir root-cause iddiasını logs, traces, tests, debugger veya reproduction evidence
+    zinciriyle destekleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.debug_hypothesis_loop.demonstrate_capability
+  owner_skill_id: skill.professional.debug_hypothesis_loop
+  objective_statement: Yeni bir bağlamda Symptom'dan falsifiable hypothesis üretip targeted observation ile daraltılan debug
+    döngüsü yürütebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id007
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.debug_hypothesis_loop.localize_fix_verify
+  owner_skill_id: skill.professional.debug_hypothesis_loop
+  objective_statement: Fresh production-benzeri bug'da hypothesis→observation→fix→verification zincirini bağımsız yürütür.
+  observable_action: localize_fix_verify
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id007
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.decision_record.demonstrate_capability
+  owner_skill_id: skill.professional.decision_record
+  objective_statement: Yeni bir bağlamda Karar, context, alternatives ve consequence bilgisini future reader için kısa decision
+    record'a dönüştürebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.dependency_impact_analysis.demonstrate_capability
+  owner_skill_id: skill.professional.dependency_impact_analysis
+  objective_statement: Yeni bir bağlamda Planlanan değişikliğin callers, data contracts, tests, build ve operational dependencies
+    üzerindeki etkisini izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.dependency_supply_chain_review.demonstrate_capability
+  owner_skill_id: skill.professional.dependency_supply_chain_review
+  objective_statement: Yeni bir bağlamda Yeni dependency/artifact için source, version, integrity ve transitive-risk evidence'ını
+    değerlendirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.dependency_version_control.demonstrate_capability
+  owner_skill_id: skill.professional.dependency_version_control
+  objective_statement: Yeni bir bağlamda Dependency version/pin/lock kararını compatibility ve reproducibility gerekçesiyle
+    yönetebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.design_risk_failure_mode.demonstrate_capability
+  owner_skill_id: skill.professional.design_risk_failure_mode
+  objective_statement: Yeni bir bağlamda Önerilen tasarımın failure modes, capacity limits ve operational risks'lerini önceden
+    çıkarabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.evidence_matrix.demonstrate_capability
+  owner_skill_id: skill.professional.evidence_matrix
+  objective_statement: Yeni bir bağlamda Project/capstone requirement'larını separately observable Skill/Objective evidence
+    component'lerine eşleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.flaky_test_diagnosis.demonstrate_capability
+  owner_skill_id: skill.professional.flaky_test_diagnosis
+  objective_statement: Yeni bir bağlamda Flaky test davranışını timing, shared state, environment veya nondeterministic input
+    kaynağına lokalize edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id008
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.flaky_test_diagnosis.stabilize_flaky_test
+  owner_skill_id: skill.professional.flaky_test_diagnosis
+  objective_statement: Flaky test'in nondeterminism kaynağını lokalize eder ve failure signal'ı bozmadan stabilize eder.
+  observable_action: stabilize_flaky_test
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id008
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.incident_hypothesis_triage.demonstrate_capability
+  owner_skill_id: skill.professional.incident_hypothesis_triage
+  objective_statement: Yeni bir bağlamda Incident sırasında competing hypotheses'i blast radius, recent changes ve telemetry
+    evidence ile önceliklendirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.incident_timeline.demonstrate_capability
+  owner_skill_id: skill.professional.incident_timeline
+  objective_statement: Yeni bir bağlamda Incident event, symptom, action ve evidence'ı zaman sıralı ve source-linked timeline'a
+    dönüştürebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.integration_checkpoint.demonstrate_capability
+  owner_skill_id: skill.professional.integration_checkpoint
+  objective_statement: Yeni bir bağlamda Milestone sonunda interface, tests, build, operability ve evidence readiness kontrolü
+    yapabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.integration_test_design.demonstrate_capability
+  owner_skill_id: skill.professional.integration_test_design
+  objective_statement: Yeni bir bağlamda Component sınırları, external dependencies ve failure behavior için integration test
+    tasarlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.interface_contract_reasoning.demonstrate_capability
+  owner_skill_id: skill.professional.interface_contract_reasoning
+  objective_statement: Yeni bir bağlamda Component/API sınırında input/output, failure ve compatibility contract'ını açık
+    tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.issue_reproduction.demonstrate_capability
+  owner_skill_id: skill.professional.issue_reproduction
+  objective_statement: Yeni bir bağlamda Issue/bug raporunu environment, input ve observed output ile tekrar üretilebilir
+    hale getirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id009
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.issue_reproduction.reproduce_and_record
+  owner_skill_id: skill.professional.issue_reproduction
+  objective_statement: Fresh issue'yu temiz environment'ta reproduce eder ve başka bir engineer'ın tekrar edebileceği evidence
+    bundle üretir.
+  observable_action: reproduce_and_record
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id009
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.issue_scope_decomposition.demonstrate_capability
+  owner_skill_id: skill.professional.issue_scope_decomposition
+  objective_statement: Yeni bir bağlamda Bir issue'yu observable symptom, likely subsystem, acceptance evidence ve non-goal'lara
+    bölebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.measurement_environment_record.demonstrate_capability
+  owner_skill_id: skill.professional.measurement_environment_record
+  objective_statement: Yeni bir bağlamda Hardware/software/environment koşullarını benchmark sonucunu yeniden yorumlatacak
+    ayrıntıda kaydedebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.minimal_reproducer.demonstrate_capability
+  owner_skill_id: skill.professional.minimal_reproducer
+  objective_statement: Yeni bir bağlamda Bir arızayı korurken ilgisiz değişkenleri azaltan minimal reproducer oluşturabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.observability_plan.demonstrate_capability
+  owner_skill_id: skill.professional.observability_plan
+  objective_statement: Yeni bir bağlamda Bir service/system için hangi log, metric ve trace sinyallerinin hangi failure/performance
+    sorularını cevaplayacağını planlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.operational_change_risk.demonstrate_capability
+  owner_skill_id: skill.professional.operational_change_risk
+  objective_statement: Yeni bir bağlamda Deployment/config/data migration değişikliğinin blast radius ve rollback riskini
+    review edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_community_communication.demonstrate_capability
+  owner_skill_id: skill.professional.oss_community_communication
+  objective_statement: Yeni bir bağlamda Issue/PR tartışmasında evidence, uncertainty ve disagreement'ı profesyonel ve teknik
+    olarak ifade edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_contribution_policy.demonstrate_capability
+  owner_skill_id: skill.professional.oss_contribution_policy
+  objective_statement: Yeni bir bağlamda Repository'nin contribution, DCO/CLA, style, test ve communication kurallarını okuyup
+    uygulanacak checklist'e çevirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_issue_selection.demonstrate_capability
+  owner_skill_id: skill.professional.oss_issue_selection
+  objective_statement: Yeni bir bağlamda Kendi mevcut capability ve scope'una uygun, reproducible ve reviewable contribution
+    adayı seçebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_maintainer_feedback_iteration.demonstrate_capability
+  owner_skill_id: skill.professional.oss_maintainer_feedback_iteration
+  objective_statement: Yeni bir bağlamda Maintainer feedback sonrası patch, tests ve rationale'ı repository normlarını koruyarak
+    iterate edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_patch_scope.demonstrate_capability
+  owner_skill_id: skill.professional.oss_patch_scope
+  objective_statement: Yeni bir bağlamda Seçilen OSS issue için minimal, maintainable ve testable patch scope'u belirleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_project_orientation.demonstrate_capability
+  owner_skill_id: skill.professional.oss_project_orientation
+  objective_statement: Yeni bir bağlamda Open-source repository'nin contribution docs, issue tracker, build/test path ve maintainer
+    workflow'unu çıkarabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_submission_evidence.demonstrate_capability
+  owner_skill_id: skill.professional.oss_submission_evidence
+  objective_statement: Yeni bir bağlamda OSS patch'i tests, reproduction, rationale ve compatibility notes ile submit edilebilir
+    hale getirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id010
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_submission_evidence.submit_reviewable_patch
+  owner_skill_id: skill.professional.oss_submission_evidence
+  objective_statement: Gerçekçi OSS contribution için minimal patch, tests, rationale ve reproduction evidence paketi oluşturur.
+  observable_action: submit_reviewable_patch
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id010
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.performance_regression_gate.demonstrate_capability
+  owner_skill_id: skill.professional.performance_regression_gate
+  objective_statement: Yeni bir bağlamda Representative workload üzerinde meaningful performance regression'ı detect edip
+    release/merge kararına bağlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.performance_report_synthesis.demonstrate_capability
+  owner_skill_id: skill.professional.performance_report_synthesis
+  objective_statement: Yeni bir bağlamda Baseline, change, variance, bottleneck attribution, correctness gate ve trade-off'u
+    tek teknik raporda birleştirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id011
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.performance_report_synthesis.report_tradeoff
+  owner_skill_id: skill.professional.performance_report_synthesis
+  objective_statement: Performance değişikliğini correctness, variance, throughput/latency/cost ve bottleneck evidence ile
+    raporlar.
+  observable_action: report_tradeoff
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id011
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.postmortem_root_cause.demonstrate_capability
+  owner_skill_id: skill.professional.postmortem_root_cause
+  objective_statement: Yeni bir bağlamda Postmortem'da trigger, root cause, contributing factors ve detection/response gaps'i
+    birbirinden ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: &id012
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.postmortem_root_cause.separate_causes_and_gaps
+  owner_skill_id: skill.professional.postmortem_root_cause
+  objective_statement: Incident evidence'ından trigger, root cause, contributing factor ve detection gap'lerini ayırır.
+  observable_action: separate_causes_and_gaps
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: *id012
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.pr_problem_solution_evidence.demonstrate_capability
+  owner_skill_id: skill.professional.pr_problem_solution_evidence
+  objective_statement: Yeni bir bağlamda PR açıklamasında problem, yaklaşım, test/evidence, risk ve verification bilgisini
+    açık sunabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.pr_scope_discipline.demonstrate_capability
+  owner_skill_id: skill.professional.pr_scope_discipline
+  objective_statement: Yeni bir bağlamda PR scope'unu review edilebilir tutup ilgisiz refactor veya behavior değişimini ayırabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.problem_statement_scope.demonstrate_capability
+  owner_skill_id: skill.professional.problem_statement_scope
+  objective_statement: Yeni bir bağlamda Engineering problemini user/system impact, current behavior ve desired outcome ile
+    açık tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.project_milestone_decomposition.demonstrate_capability
+  owner_skill_id: skill.professional.project_milestone_decomposition
+  objective_statement: Yeni bir bağlamda Büyük engineering outcome'u independently verifiable milestone ve dependency'lere
+    bölebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.project_retrospective.demonstrate_capability
+  owner_skill_id: skill.professional.project_retrospective
+  objective_statement: Yeni bir bağlamda Project sonunda initial plan, evidence, failures, rework ve next-systemic-improvement
+    çıkarımını yapabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.project_risk_register.demonstrate_capability
+  owner_skill_id: skill.professional.project_risk_register
+  objective_statement: Yeni bir bağlamda Technical, dependency, reliability ve integration risklerini owner/evidence ile takip
+    edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.quality_gate_definition.demonstrate_capability
+  owner_skill_id: skill.professional.quality_gate_definition
+  objective_statement: Yeni bir bağlamda Merge/release öncesi gerekli test, lint/build, security ve performance gate'lerini
+    risk-temelli tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.rebase_conflict_resolution.demonstrate_capability
+  owner_skill_id: skill.professional.rebase_conflict_resolution
+  objective_statement: Yeni bir bağlamda Branch divergence/conflict durumunda semantic intent'i koruyarak history'yi güncelleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.regression_bisection.demonstrate_capability
+  owner_skill_id: skill.professional.regression_bisection
+  objective_statement: Yeni bir bağlamda Known-good/known-bad sınırları kullanarak regression-introducing change'i kontrollü
+    biçimde lokalize edebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.regression_test_from_bug.demonstrate_capability
+  owner_skill_id: skill.professional.regression_test_from_bug
+  objective_statement: Yeni bir bağlamda Düzeltilen bug'ın observable failure mode'unu koruyan regression test üretebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.release_artifact_provenance.demonstrate_capability
+  owner_skill_id: skill.professional.release_artifact_provenance
+  objective_statement: Yeni bir bağlamda Release artifact'ını source revision, build inputs, dependency state ve validation
+    evidence ile izlenebilir kılabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.release_validation.approve_or_block_release
+  owner_skill_id: skill.professional.release_validation
+  objective_statement: Release candidate için quality gate evidence'ını değerlendirip approve/block kararı ve gerekçesi üretir.
+  observable_action: approve_or_block_release
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: &id013
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.release_validation.demonstrate_capability
+  owner_skill_id: skill.professional.release_validation
+  objective_statement: Yeni bir bağlamda Release candidate'ı declared quality gates, smoke/system tests ve compatibility evidence
+    ile doğrulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id013
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.repo_structure_orientation.demonstrate_capability
+  owner_skill_id: skill.professional.repo_structure_orientation
+  objective_statement: Yeni bir bağlamda Yeni bir repository'de ana component, build/test entrypoint ve ownership sınırlarını
+    source tree üzerinden çıkarabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.reproducible_build_contract.demonstrate_capability
+  owner_skill_id: skill.professional.reproducible_build_contract
+  objective_statement: Yeni bir bağlamda Source revision, dependency versions, toolchain ve build commands ile yeniden üretilebilir
+    build contract oluşturabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.requirement_constraint_non_goal.demonstrate_capability
+  owner_skill_id: skill.professional.requirement_constraint_non_goal
+  objective_statement: Yeni bir bağlamda Requirement, constraint, assumption ve non-goal'ları birbirinden ayırıp tasarım sınırı
+    kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.review_feedback_triage.demonstrate_capability
+  owner_skill_id: skill.professional.review_feedback_triage
+  objective_statement: Yeni bir bağlamda Review feedback'ini correctness, design, style, evidence ve scope kategorilerine
+    ayırıp uygun aksiyona çevirebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.review_iteration.demonstrate_capability
+  owner_skill_id: skill.professional.review_iteration
+  objective_statement: Yeni bir bağlamda Review feedback sonrası change, test ve açıklama zincirini tutarlı biçimde güncelleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.rfc_authoring.author_reviewable_rfc
+  owner_skill_id: skill.professional.rfc_authoring
+  objective_statement: Yeni system change için alternatives, risks, rollout ve validation içeren reviewable RFC üretir.
+  observable_action: author_reviewable_rfc
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_repository_or_system
+  remediation_tags: &id014
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.rfc_authoring.demonstrate_capability
+  owner_skill_id: skill.professional.rfc_authoring
+  objective_statement: Yeni bir bağlamda Problem, constraints, alternatives, chosen design, rollout ve validation planını
+    içeren reviewable RFC yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags: *id014
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.rfc_review_response.demonstrate_capability
+  owner_skill_id: skill.professional.rfc_review_response
+  objective_statement: Yeni bir bağlamda RFC review itirazlarını evidence, trade-off ve scope değişikliğiyle cevaplayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.rollback_plan.demonstrate_capability
+  owner_skill_id: skill.professional.rollback_plan
+  objective_statement: Yeni bir bağlamda Değişiklik için trigger, state compatibility ve recovery adımlarını içeren rollback
+    planı kurabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.runbook_authoring.demonstrate_capability
+  owner_skill_id: skill.professional.runbook_authoring
+  objective_statement: Yeni bir bağlamda Detection, diagnosis, mitigation, verification ve escalation adımlarını içeren uygulanabilir
+    runbook yazabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.secret_exposure_review.demonstrate_capability
+  owner_skill_id: skill.professional.secret_exposure_review
+  objective_statement: Yeni bir bağlamda Code/config/log/artifact değişikliğinde secret exposure riskini tespit edip güvenli
+    alternatif önerebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.slo_change_validation.demonstrate_capability
+  owner_skill_id: skill.professional.slo_change_validation
+  objective_statement: Yeni bir bağlamda Reliability veya capacity değişikliğini SLO ve error-budget etkisi üzerinden doğrulayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id003
+    direct_evidence_types: *id003
+    required_direct_type: measurement_artifact
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.source_entrypoint_trace.demonstrate_capability
+  owner_skill_id: skill.professional.source_entrypoint_trace
+  objective_statement: Yeni bir bağlamda Bir executable/service/library entrypoint'inden ilgili control ve data flow'a kadar
+    kaynak kod yolunu izleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - debug_localization
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.system_validation_plan.demonstrate_capability
+  owner_skill_id: skill.professional.system_validation_plan
+  objective_statement: Yeni bir bağlamda Gerçekistic workflow üzerinde end-to-end system validation adımlarını ve acceptance
+    evidence'ını tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.technical_status_update.demonstrate_capability
+  owner_skill_id: skill.professional.technical_status_update
+  objective_statement: Yeni bir bağlamda Progress, blocker, evidence, next action ve risk bilgisini kısa teknik durum güncellemesinde
+    iletebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id002
+    direct_evidence_types: *id002
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.test_oracle_design.demonstrate_capability
+  owner_skill_id: skill.professional.test_oracle_design
+  objective_statement: Yeni bir bağlamda Bir test için güvenilir expected behavior/oracle ve failure signal tanımlayabilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.test_strategy_selection.demonstrate_capability
+  owner_skill_id: skill.professional.test_strategy_selection
+  objective_statement: Yeni bir bağlamda Değişikliğin riskine göre unit, integration, system, regression ve manual evidence
+    karışımını seçebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.threat_surface_review.demonstrate_capability
+  owner_skill_id: skill.professional.threat_surface_review
+  objective_statement: Yeni bir bağlamda Bir change'in trust boundaries, exposed inputs, privileges ve sensitive assets üzerindeki
+    etkisini belirleyebilmek
+  observable_action: demonstrate_capability
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: *id001
+    direct_evidence_types: *id001
+    required_direct_type: design_argument
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  provenance_ref: source.repo.internal_6f_authoring
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
