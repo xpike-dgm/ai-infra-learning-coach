@@ -26,7 +26,7 @@ for rel in living:
 required = {
     'PROJECT_CONTEXT.md': ['D-059', 'GIM-v0', '6F 🟡'],
     'docs/START_HERE.md': ['D-059', 'GIM-v0', '6F 🟡'],
-    'docs/HANDOFF_STATE.md': ['GIM-v0 / D-059', 'Aktif: `6F'],
+    'docs/HANDOFF_STATE.md': ['GIM-v0 / D-059', '**Aktif:** `6F'],
     'docs/EXECUTION_INDEX.md': ['D-059', '[x] **6E', '**6F — Professional engineering / project map** **AKTİF**'],
     'docs/STEP_STATUS.md': ['GIM-v0 / D-059', 'Aktif adım — 6F'],
     'docs/MASTER_PLAN.md': ['D-059', '### [x] 6E', '### [ ] 6F — Professional engineering / project map — **AKTİF**'],
@@ -59,7 +59,6 @@ for rel in living:
         if phrase in text:
             raise SystemExit(f'POST_AUDIT_FAIL stale living marker in {rel}: {phrase}')
 
-# Canonical summary and package checks.
 summary = ROOT / 'docs/GPU_ML_INFERENCE_DETAILED_MAP.md'
 if not summary.exists():
     raise SystemExit('POST_AUDIT_FAIL canonical 6E summary missing')
@@ -92,7 +91,6 @@ for k,v in expected_counts.items():
 if qa.get('result') != 'PASS_WITH_OPEN_NON_BLOCKING_REVIEWS':
     raise SystemExit('POST_AUDIT_FAIL QA result drift')
 
-# 6D forward-reuse closure must be durable and summary count must be 3.
 reviews6d = yaml.safe_load((ROOT/'curriculum/decomposition/6d_systems/review_queue.yaml').read_text(encoding='utf-8'))
 row = next((x for x in reviews6d if x.get('review_id') == 'review.6d.accelerator_forward_reuse'), None)
 if not row or row.get('status') != 'resolved':
@@ -101,8 +99,6 @@ sdm_summary = (ROOT/'docs/SYSTEMS_DETAILED_MAP.md').read_text(encoding='utf-8')
 if '| Açık non-blocking review | 3 |' not in sdm_summary:
     raise SystemExit('POST_AUDIT_FAIL SYSTEMS_DETAILED_MAP open review count not synced to 3')
 
-# Repo-wide stale-reference report. Historical logs may legitimately describe old state;
-# any hit in a non-historical path is a blocker.
 historical_prefixes = ('docs/PROGRESS_LOG.md','vault/agent/session-logs/')
 repo_hits = []
 patterns = [
