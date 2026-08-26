@@ -47,27 +47,22 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 ## Son tamamlanan numaralı adım — 6E
 
-**Final:** `SDM-v0 — Systems Detailed Map` / D-058.
-Ana çıktı: `docs/SYSTEMS_DETAILED_MAP.md` + `curriculum/decomposition/6d_systems/`.
+**Final:** `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059.  
+**Ana çıktı:** `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/`.
 
-6D sonucu:
-- D06–D13 için 8 Domain / 21 Module / 64 Topic,
-- 192 Skill / 207 Objective / 224 TopicSkillLink,
-- 313 prerequisite edge (259 hard / 54 soft); 6C+6D birleşik hard graph DAG 324/324,
-- 43 accepted 6C Skill clone'lanmadan reuse edildi; 56 cross-package edge,
-- 0 blocking / 3 non-blocking review,
-- external validation 6H'ye pending.
+6E sonucu:
+- D14–D22 için 9 Domain / 27 Module / 70 Topic,
+- 143 Skill / 159 Objective / 230 TopicSkillLink,
+- 279 prerequisite edge (247 hard / 32 soft),
+- 59 prior Skill clone'lanmadan reuse edildi: 9 Foundation + 50 Systems,
+- 89 cross-package prerequisite edge,
+- 6C+6D+6E birleşik hard graph DAG 467/467,
+- `review.6d.accelerator_forward_reuse` resolved; 6D regression validator tekrar PASS,
+- 0 blocking / 4 non-blocking 6E review,
+- external coverage/current-industry/source-quality Research QA 6H'ye pending.
 
-6D ayrı external Research AI kullanmadı; full coverage/current-industry/prerequisite independent Research QA 6H'de zorunlu kalır.
-
-## Son tamamlanan adım — 6E GIM-v0 / D-059
-
-- D14–D22 = 9 Domain / 27 Module / 70 Topic.
-- 143 Skill / 159 Objective / 230 TopicSkillLink.
-- 279 prerequisite edge = 247 hard / 32 soft.
-- 59 prior Skill reuse; combined 6C+6D+6E hard graph DAG 467/467.
-- 0 blocking / 3 non-blocking review; external Research QA 6H'ye pending.
+6E ayrı external Research AI ile final coverage validation yapmadı; D-016 uyarınca independent external Research QA 6H'de zorunlu kalır. Package 6H öncesinde external-validation/learner-publication açısından final değildir.
 
 ## Aktif adım — 6F Professional engineering / project map
 
-**6F henüz yürütülmedi.** Fresh PRE-STEP GitHub refresh zorunludur. 6F, `review.6d.professional_overlay_reconciliation` ve 6E professional/project attribution girdilerini tüketir.
+**6F henüz yürütülmedi.** Fresh PRE-STEP GitHub refresh zorunludur. 6F, `review.6d.professional_overlay_reconciliation` ile 6E professional/project attribution girdilerini tüketir.
