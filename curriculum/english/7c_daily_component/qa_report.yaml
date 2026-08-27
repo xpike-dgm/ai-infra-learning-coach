@@ -1,0 +1,95 @@
+stage_step: 7C
+model: DECP-v0
+candidate_decision: D-065
+result: PASS
+checked_at: '2026-08-27'
+status_observed: accepted_7c
+counts:
+  canonical_d01_skills: 15
+  tecp_aligned_skills: 15
+  allowed_learning_need_triggers: 9
+  selection_result_values: 7
+checks:
+- check: E7C-01_canonical_d01_scope
+  result: PASS
+  details: EED=15 TECP=15
+- check: E7C-01_expected_count_metadata
+  result: PASS
+  details: policy expected_skill_count=15
+- check: E7C-01_policy_skill_refs_canonical
+  result: PASS
+  details: bilingual scope Skill=skill.english.follow_bilingual_technical_instruction
+- check: E7C-02_common_capacity_only
+  result: PASS
+  details: English uses existing common hard budget
+- check: E7C-02_no_fixed_quota
+  result: PASS
+  details: no fixed English minutes/percentage/share
+- check: E7C-02_no_daily_completion_or_streak_gate
+  result: PASS
+  details: daily opportunity is not obligation/failure/debt
+- check: E7C-03_daily_candidate_invariant
+  result: PASS
+  details: eligible/open/safe English need produces at least one candidate
+- check: E7C-03_candidate_not_evidence
+  result: PASS
+  details: candidate/selection/attempt/mastery remain distinct
+- check: E7C-04_existing_learning_need_vocabulary
+  result: PASS
+  details: triggers=['continue_learning', 'diagnostic_opportunity', 'new_learning', 'parallel_track_due', 'reinforcement_opportunity', 'remediation_required',
+    'retention_review_due', 'verification_due', 'weakness_detected']
+- check: E7C-04_task_taxonomy_anchor
+  result: PASS
+  details: all 7C trigger kinds already exist in TASK_TAXONOMY_SPEC
+- check: E7C-04_parallel_default_P3
+  result: PASS
+  details: normal English parallel need remains P3
+- check: E7C-05_balance_reuses_pbr
+  result: PASS
+  details: PBR-v0 balance/starvation vocabulary reused
+- check: E7C-05_no_fixed_omission_threshold
+  result: PASS
+  details: no invented N-day starvation threshold
+- check: E7C-05_promotion_safety
+  result: PASS
+  details: balance promotion cannot bypass integrity, eligibility, capacity or evidence rules
+- check: E7C-06_state_driven_mix
+  result: PASS
+  details: task mix is state-driven
+- check: E7C-06_new_learning_retrieval_checkpoint
+  result: PASS
+  details: new learning can intersperse retrieval without fixed item count
+- check: E7C-07_rvr_owns_spacing
+  result: PASS
+  details: 7C does not invent spacing and protects retrieval validity
+- check: E7C-07_localized_remediation
+  result: PASS
+  details: remediation remains localized and fresh-variant based
+- check: E7C-08_production_prerequisite_guard
+  result: PASS
+  details: unknown English prerequisites cannot contaminate production failure
+- check: E7C-08_b2plus_boundary
+  result: PASS
+  details: B2+ remains bounded TECP-v0 extension
+- check: E7C-09_evidence_rotation
+  result: PASS
+  details: rotation protects evidence independence without fixed round-robin
+- check: E7C-10_feedback_evidence_safety
+  result: PASS
+  details: feedback supports learning but cannot manufacture independent mastery evidence
+- check: E7C-11_stage_boundary_scaffold
+  result: PASS
+  details: 7C stays inside English-track scaffold scope; technical integration is 7D
+- check: E7C-11_future_boundaries
+  result: PASS
+  details: future boundaries=['7D', '7E', '15F', '15G', 18, 20]
+- check: E7C-12_research_guard_no_fake_precision
+  result: PASS
+  details: research supports direction, not fake universal precision
+- check: E7C-13_spec_exists
+  result: PASS
+  details: docs/DAILY_ENGLISH_COMPONENT_SPEC.md
+- check: E7C-13_research_exists
+  result: PASS
+  details: research/7c_daily_english_component_research.md
+failures: []

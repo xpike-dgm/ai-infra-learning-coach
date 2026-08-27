@@ -122,6 +122,13 @@ D01 15 Skill context-only CEFR-aligned Technical English progression metadata al
 Canonical: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.
 
 
+### 8.3 7C Daily English Component — DECP-v0 / D-065
+
+Technical English common daily hard capacity içinde parallel track olarak çalışır. Active study day'de open + eligible + safe English need varsa en az bir candidate üretilir; selection/mastery garantisi değildir. Fixed daily minute/percentage/completion/streak/debt yoktur. PBR-v0 track-balance/starvation semantics'i reuse edilir; task mix exact Skill/Objective state'inden türetilir ve spacing RVR-v0'da kalır. Technical-task integration 7D'ye, learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
+
+Canonical: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.
+
+
 ## 9. Professional-readiness depth
 
 ```text
@@ -165,12 +172,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 6H ✅ S6ERQA-v0 / D-062
 - **7A ✅ EED-v0 / D-063 — İngilizce başlangıç ölçümü tamamlandı**
 - **7B ✅ TECP-v0 / D-064 — A1/A2/B1/B2+ technical progression tamamlandı**
-- **7C 🟡 Günlük English bileşeni — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 7D–20 ⬜
+- **7C ✅ DECP-v0 / D-065 — Günlük English bileşeni tamamlandı**
+- **7D 🟡 Teknik entegrasyon — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 7E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 7C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 7D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

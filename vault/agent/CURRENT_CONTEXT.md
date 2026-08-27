@@ -30,10 +30,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 
 - [[docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC|EED-v0]]: D01 Technical English için prerequisite-aware granular giriş diagnostic'i; CEFR alignment 7B'ye pending.
 - `TECP-v0 / D-064`: D01 CEFR-aligned Technical English progression; 5 A1 + 5 A2 + 5 B1 base anchors, 4 bounded B2+ extension; CEFR != mastery/certification.
+- `DECP-v0 / D-065`: Daily Technical English common capacity içinde candidate opportunity; fixed quota/streak/debt yok; PBR balance/starvation + state-driven task mix.
 
 ## Exact execution state
 
-AŞAMA 6 ve 7A–7B tamamlandı. Son tamamlanan adım **7B — TECP-v0 / D-064**. 7B final: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension. Aktif adım **7C — Günlük English bileşeni**; henüz yürütülmedi. 7C başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve 7A–7C tamamlandı. Son tamamlanan adım **7C — DECP-v0 / D-065**. 7C Technical English'i common daily capacity içinde daily candidate opportunity olarak tutar; fixed minute/percentage/completion/streak/debt yoktur. Aktif adım **7D — Teknik entegrasyon**; henüz yürütülmedi. 7D başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

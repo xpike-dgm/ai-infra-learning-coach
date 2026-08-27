@@ -1091,86 +1091,41 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 
 ---
 
-# 21. Tamamlanan proje aşamaları
+# 21. Tamamlanan proje aşamaları — current summary
 
-## AŞAMA 1 ✅ Product framing
-
-- 1A Product purpose — `PRODUCT_REQUIREMENTS.md`
-- 1B V1 Scope — `V1_SCOPE.md`
-- 1C V1 Success Criteria — `V1_SUCCESS_CRITERIA.md`
-- 1D Non-goals — `NON_GOALS.md`
-
-## AŞAMA 2 ✅ Learning/mastery
-
-- 2A unit model — D-021
-- 2B Topic states — D-023
-- 2C mastery signals — D-025
-- 2D AI assistance evidence — D-026
-- 2E GRE-v0 — D-031 + research validation
-- 2F RVR-v0 — D-032 + research validation
-
-## AŞAMA 3 ✅ Adaptive planner
-
-- 3A D-033
-- 3B D-034
-- 3C PBR-v0 / D-035
-- 3D PRG-v0 / D-036
-- 3E VDW-v0 / D-037
-- 3F SRR-v0 / D-038
-- 3G PDT-v0 / D-039
-- 3H simulation PASS: 16/16 scenarios, 20/20 invariants
-
-## AŞAMA 4 ✅ Assessment
-
-- 4A DMA-v0 / D-040
-- 4B WBA-v0 / D-045
-- 4C MCA-v0 / D-046
-- 4D QAB-v0 / D-047
-- 4E AIV-v0 / D-048
-
-## AŞAMA 5 ✅ Curriculum / knowledge graph backbone
-
-- 5A PDM-v0 / D-049
-- 5B KGC-v0 / D-051
-- 5C FBB-v0 / D-052
-- 5D GQA-v0 / D-053
-
-## AŞAMA 6 — IN PROGRESS
-
-- 6A ✅ GNS-v0 / D-054
-- 6B ✅ FRDB-v0 / D-056
-- 6C ✅ FDM-v0 / D-057
-- 6D ✅ SDM-v0 / D-058
-- **6E ✅ GIM-v0 / D-059 — GPU / ML / Inference detailed map**
-- **6F ✅ PEM-v0 / D-060
-- 6G 🟡 ACTIVE / NOT EXECUTED — Professional engineering / project map**
-- 6G–6H waiting
-
----
+- AŞAMA 1 ✅ Product framing
+- AŞAMA 2 ✅ Learning/mastery — GRE-v0 / RVR-v0
+- AŞAMA 3 ✅ Adaptive planner — PBR/PRG/VDW/SRR/PDT + simulations PASS
+- AŞAMA 4 ✅ Assessment — DMA/WBA/MCA/QAB/AIV
+- AŞAMA 5 ✅ Curriculum/knowledge-graph backbone
+- AŞAMA 6 ✅ Granular Capability Map + external Research QA — S6ERQA-v0 / D-062
+- AŞAMA 7A ✅ EED-v0 / D-063
+- AŞAMA 7B ✅ TECP-v0 / D-064
+- AŞAMA 7C ✅ DECP-v0 / D-065
+- AŞAMA 7D 🟡 active-not-executed
+- 7E–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `6E — GPU / ML / Inference detailed map`
-**Final:** `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059
-**Canonical:** `docs/GPU_ML_INFERENCE_DETAILED_MAP.md` + `curriculum/decomposition/6e_gpu_ml_inference/`
+**Son tamamlanan numaralı adım:** `7C — Günlük English bileşeni`  
+**Final:** `DECP-v0 — Daily English Component Policy` / D-065  
+**Canonical:** `docs/DAILY_ENGLISH_COMPONENT_SPEC.md` + `curriculum/english/7c_daily_component/`
 
-**Aktif adım:** `6F — Professional engineering / project map`
+**Aktif adım:** `7D — Teknik entegrasyon`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-Kullanıcı onaylı numbered work 6E'yi tamamladı. Bu handoff belgesi **6F'yi başlatmaz veya ilerletmez**.
+7D, technical task içindeki English/bilingual scaffold ve cross-track prerequisite/evidence fairness davranışını tasarlayacaktır. English global technical hard gate olmayacaktır.
 
-Kullanıcı 6F'yi devam ettirmek/onaylamak istediğinde:
+Kullanıcı 7D'yi onayladığında:
 
 ```text
-fresh 6H PRE-STEP GitHub refresh
-→ 6H execution
-→ evaluation
+fresh 7D PRE-STEP GitHub refresh
+→ 7D execution
+→ independent QA
 → D-050 POST sync
-→ stale-reference audit
-→ 6H completed; 7A–7B completed / 7C active-not-executed
+→ repo-wide stale-reference audit
+→ 7D completed; 7E active-not-executed
 ```
-
----
 
 # 23. Tamamlanan 6B'nin görevi ve final çıktısı
 
@@ -1663,7 +1618,7 @@ Agent kendi kendine şu soruları cevaplayabilmelidir:
 21. 6H'de neden independent Research AI zorunlu?
 22. Coding başladığında QA/branch davranışı ne?
 
-Bu sorulardan biri belirsizse, 6E'ye başlamadan ilgili canonical dosya yeniden okunmalıdır.
+Bu sorulardan biri belirsizse, aktif numaralı adıma başlamadan ilgili canonical dosya yeniden okunmalıdır.
 
 ---
 
@@ -1686,60 +1641,33 @@ D-055 kalıcı karar olarak `docs/DECISIONS.md` içine sync edilmiştir. Daha so
 
 # 32. Local agent'a verilecek kısa takeover komutu
 
-Kullanıcı ilk local-manager oturumunda aşağıdaki komutu/promptu kullanabilir:
+Kullanıcı yeni local-manager oturumunda şu durable promptu kullanabilir:
 
-> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md` ve `docs/LOCAL_MANAGER_HANDOFF.md` dosyalarını tamamen oku. Ardından `docs/START_HERE.md`, `docs/PROJECT_MEMORY_PROTOCOL.md` ve repo içindeki tüm Markdown dosyalarını envanterleyip tamamen incele. Hiçbir dosyayı yalnız adına bakıp okunmuş sayma. Canonical decisions/specs ile historical/noncanonical dosyaları ayır. Current state'i `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` üzerinden çapraz doğrula. Bu takeover sırasında 6F'yi yürütme. Önce bana ürün hedefini, tamamlanan modelleri, değiştirilemez invariants'ı, current exact step'i, tamamlanan FDM-v0, SDM-v0 ve GIM-v0'ı ve sıradaki 6F scope'unu özetleyip devralmaya hazır olduğunu söyle. Bundan sonra her numaralı step'te `PROJECT_MEMORY_PROTOCOL.md` PRE/POST + D-050 stale-reference audit'i istisnasız uygula.**
+> **Bu reponun ana proje yöneticisisin. Önce root `AGENTS.md`, `vault/agent/SESSION_START.md`, `docs/LOCAL_MANAGER_HANDOFF.md`, `docs/START_HERE.md` ve `docs/PROJECT_MEMORY_PROTOCOL.md` dosyalarını oku. Current execution'ı `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` ile fresh çapraz doğrula. Canonical decisions/specs ile historical/noncanonical notları ayır. Current active numbered step'i fresh PRE-STEP ve kullanıcı açık onayı olmadan yürütme. Her numbered step sonunda D-050 living-memory sync + repo-wide stale-reference audit uygula.**
 
 ---
 
 # 33. Final takeover state
 
-Bu handoff hazırlanırken canonical execution state:
+Bu living handoff'un current canonical execution özeti:
 
 ```text
-AŞAMA 1 ✅
-AŞAMA 2 ✅
-AŞAMA 3 ✅
-AŞAMA 4 ✅
-AŞAMA 5 ✅
-AŞAMA 6A ✅ GNS-v0 / D-054
-AŞAMA 6B ✅ FRDB-v0 / D-056
-AŞAMA 6C ✅ FDM-v0 / D-057
-AŞAMA 6D ✅ SDM-v0 / D-058
-AŞAMA 6E ✅ GIM-v0 / D-059
-AŞAMA 6F 🟡 ACTIVE — NOT EXECUTED
-AŞAMA 6G–6H ⬜
-AŞAMA 7–20 ⬜
+AŞAMA 1–6 ✅
+7A ✅ EED-v0 / D-063
+7B ✅ TECP-v0 / D-064
+7C ✅ DECP-v0 / D-065
+7D 🟡 ACTIVE — NOT EXECUTED
+7E–20 ⬜
 ```
 
-**Bu handoff güncellemesi, 6E execution değildir.**
+7C final:
+- Technical English common daily capacity içinde parallel candidate opportunity olarak çalışır,
+- fixed daily minute/percentage/completion/streak/debt yok,
+- PBR-v0 balance/starvation semantics'i reuse edilir,
+- task mix exact Skill/Objective state'inden türetilir,
+- spacing RVR-v0'da kalır,
+- feedback-assisted revision independent mastery evidence değildir,
+- technical integration 7D'ye ve learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
 
-Sıradaki gerçek numbered work:
-
-> **6E — GPU / ML / Inference detailed map**
-
-ve başlamadan fresh PRE-STEP GitHub refresh zorunludur.
-
-## Current execution addendum — D-062 / 2026-08-27
-
-- AŞAMA 6 ✅ tamamen tamamlandı; 6H final `S6ERQA-v0 / D-062`.
-- Final Stage 6 graph: 23 route / 549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG.
-- WLRM final coverage: 549 Skill / 608 Objective; 10/10 6H review resolved.
-- Canonical 6H: `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
-- Aktif numbered step: **7A — İngilizce başlangıç ölçümü**, completed as `EED-v0 / D-063`; **7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed.
-- 7A başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-
-
-
----
-
-## 7A completion addendum — D-063
-
-7A `EED-v0 — English Entry Diagnostic` ile tamamlandı. Canonical: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`; blueprint/QA: `curriculum/english/7a_entry_diagnostic/`. D01 için 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family doğrulandı. CEFR alignment 7B'ye pending. Current active numbered step 7B'dir; fresh PRE + kullanıcı açık onayı gerekir.
-
-
----
-
-## 7B completion addendum — D-064
-
-7B `TECP-v0 — Technical English CEFR Progression` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`; dataset/QA: `curriculum/english/7b_cefr_progression/`. D01 15 Skill = 5 A1 + 5 A2 + 5 B1 context-only anchor; 16/16 English hard edge band-monotonic; 4 bounded B2+ professional extension. CEFR metadata mastery/certification değildir. `review.6c.english.cefr_alignment` resolved. Current active numbered step 7C'dir; fresh PRE + kullanıcı açık onayı gerekir.
+**Sıradaki gerçek numbered work:** `7D — Teknik entegrasyon`.  
+**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

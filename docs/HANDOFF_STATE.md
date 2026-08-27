@@ -226,14 +226,15 @@ PEM-v0:
 - AŞAMA 6 ✅ — GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0
 - AŞAMA 7A ✅ — EED-v0 / D-063
 - AŞAMA 7B ✅ — TECP-v0 / D-064
-- AŞAMA 7C 🟡 active-not-executed
-- 7D–20 ⬜
+- AŞAMA 7C ✅ — DECP-v0 / D-065
+- AŞAMA 7D 🟡 active-not-executed
+- 7E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `7B — TECP-v0 / D-064`  
-**Aktif:** `7C — Günlük English bileşeni`  
-**7C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `7C — DECP-v0 / D-065`  
+**Aktif:** `7D — Teknik entegrasyon`  
+**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -304,6 +305,23 @@ TECP-v0:
 - EED-v0 historical `pending_7B` handoff marker preserved,
 - Stage 6 + EED-v0 + 7B validator PASS.
 
-## 16. 7C handoff
+## 16. D-065 / 7C final özeti
 
-7C — Günlük English bileşeni; EED-v0 diagnostic frontier + TECP-v0 band/profile metadata + adaptive planner capacity/priority contracts üzerinde daily cadence, task mix ve pause/resume behavior tasarlayacaktır. 7C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.  
+Policy/QA: `curriculum/english/7c_daily_component/`.  
+Research: `research/7c_daily_english_component_research.md`.
+
+DECP-v0:
+- common daily capacity; separate English budget yok,
+- active-study-day + open/eligible/safe English need → en az bir candidate,
+- fixed minute/percentage/completion/streak/debt yok,
+- normal parallel need P3 + PBR balance/starvation `none/watch/promote`,
+- state-driven task mix; RVR spacing ownership,
+- localized remediation + fresh variant + feedback evidence guards,
+- B2+ TECP-v0 semantic boundary korunuyor,
+- technical integration 7D'ye, learner-facing English mastery/CEFR behavior 7E'ye deferred,
+- independent 7C QA PASS.
+
+## 17. 7D handoff
+
+7D — Teknik entegrasyon; EED-v0 + TECP-v0 + DECP-v0 ile English Foundation Rules / technical prerequisite / assessment evidence contracts'ını birleştirerek Python/C/Linux/GPU vb. teknik task'lerde English/bilingual scaffold'ın ne zaman ve nasıl kullanılacağını tasarlayacaktır. English global hard gate olmayacaktır. 7D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

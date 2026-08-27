@@ -106,8 +106,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 7 — İngilizce Paralel Hattı
 - [x] **7A — Başlangıç ölçümü** — `EED-v0 / D-063`
 - [x] **7B — A1/A2/B1/B2+ teknik hedefleri** — `TECP-v0 / D-064`
-- [ ] **7C — Günlük English bileşeni** **AKTİF**
-- [ ] **7D — Teknik entegrasyon**
+- [x] **7C — Günlük English bileşeni** — `DECP-v0 / D-065`
+- [ ] **7D — Teknik entegrasyon** **AKTİF**
 - [ ] **7E — English mastery**
 
 ---
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7B`  
-**Son tamamlanan:** **`7B — TECP-v0 / D-064`**  
-**Aktif:** **`7C — Günlük English bileşeni`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7C`  
+**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
+**Aktif:** **`7D — Teknik entegrasyon`** — active-not-executed
 
-7B final: D01 **15 Skill = 5 A1 / 5 A2 / 5 B1**, 16/16 band-monotonic English hard edge ve **4 bounded B2+ professional extension**. CEFR alignment mastery/certification değildir.
+7C final: English common capacity içinde daily candidate opportunity olarak çalışır; fixed minute/percentage/streak/debt yok; PBR balance/starvation ve state-driven task mix kullanılır.
 
-7C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+7D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
