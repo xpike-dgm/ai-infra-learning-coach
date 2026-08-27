@@ -42,7 +42,7 @@ jobs:
           )
           v.write_text(s, encoding='utf-8')
           PY
-          python -m py_compile tools/finalize_7e_post_step.py tools/audit_7e_post_step_stale.py tools/validate_technical_english_mastery_profile.py
+          python -m py_compile tools/finalize_7e_post_step.py tools/fix_7e_living_handoff.py tools/audit_7e_post_step_stale.py tools/validate_technical_english_mastery_profile.py
       - name: Regression — final Stage 6 registry
         run: python tools/validate_6h_external_reconciliation.py
       - name: Regression — accepted 7B CEFR progression
@@ -55,6 +55,8 @@ jobs:
         run: python tools/validate_technical_english_mastery_profile.py
       - name: Apply 7E D-050 living-memory finalization
         run: python tools/finalize_7e_post_step.py
+      - name: Clean remaining 7E living handoff snapshots
+        run: python tools/fix_7e_living_handoff.py
       - name: Validate accepted 7E artifacts after POST
         run: python tools/validate_technical_english_mastery_profile.py --write-report
       - name: Validate persistent external memory graph
@@ -76,7 +78,7 @@ jobs:
             curriculum/english/7e_mastery_profile/policy.yaml \
             curriculum/english/7e_mastery_profile/qa_report.yaml \
             curriculum/english/7e_mastery_profile/stale_reference_audit.yaml \
-            tools/finalize_7e_post_step.py tools/validate_technical_english_mastery_profile.py \
+            tools/finalize_7e_post_step.py tools/fix_7e_living_handoff.py tools/validate_technical_english_mastery_profile.py \
             vault/agent/CURRENT_CONTEXT.md vault/agent/OPEN_LOOPS.md \
             vault/agent/session-logs/2026-08-27-7e-english-mastery.md
           git commit -m "Finalize 7E TEPM-v0 POST-step memory and stale audit [skip ci]"
