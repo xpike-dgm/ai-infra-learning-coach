@@ -1,7 +1,6 @@
 model: TEPM-v0
 stage_step: 7E
-status: candidate_7e
-candidate_decision: D-067
+status: accepted_7e
 scope:
   domain_id: domain.technical_english
   route_family_id: D01
@@ -42,26 +41,26 @@ invariants:
   provisional_evaluator_is_independent_mastery: false
   contaminated_attempt_changes_clean_profile_state: false
 skill_presentation_states:
-  - not_yet_evidenced
-  - developing_with_support
-  - developing_independent
-  - confirmed_current
-  - confirmed_review_due
-  - confirmation_verification_due
-  - remediation_required
-  - prerequisite_unresolved
+- not_yet_evidenced
+- developing_with_support
+- developing_independent
+- confirmed_current
+- confirmed_review_due
+- confirmation_verification_due
+- remediation_required
+- prerequisite_unresolved
 skill_presentation_precedence:
-  - remediation_required
-  - confirmation_verification_due
-  - confirmed_review_due
-  - confirmed_current
-  - prerequisite_unresolved
-  - developing_independent
-  - developing_with_support
-  - not_yet_evidenced
+- remediation_required
+- confirmation_verification_due
+- confirmed_review_due
+- confirmed_current
+- prerequisite_unresolved
+- developing_independent
+- developing_with_support
+- not_yet_evidenced
 confirmation_sources:
-  - learned_and_verified
-  - validated_entry_evidence
+- learned_and_verified
+- validated_entry_evidence
 confirmation_rules:
   learned_and_verified:
     requires_normal_GRE_mastery: true
@@ -86,9 +85,9 @@ review_semantics:
     affected_skill_counts_as_current_confirmed: false
 base_profile:
   allowed_bands:
-    - A1
-    - A2
-    - B1
+  - A1
+  - A2
+  - B1
   source: TECP-v0
   highest_complete_rule: all_skills_anchored_at_or_below_band_currently_mastery_or_validated_waiver_confirmed
   review_due_demotes_band: false
@@ -96,20 +95,20 @@ base_profile:
   confirmed_remediation_can_reduce_current_complete_band: true
   preserve_historical_highest_confirmed_band: true
   profile_status_values:
-    - not_yet_complete
-    - complete_current
-    - complete_review_due
-    - complete_verification_due
+  - not_yet_complete
+  - complete_current
+  - complete_review_due
+  - complete_verification_due
   qualification_scope: technical_english_text_first
   allowed_wording_examples:
-    - Technical English — A2 base profile confirmed
-    - Technical English — B1 base profile; verification due
-    - A2 base complete; B1 skills developing
+  - Technical English — A2 base profile confirmed
+  - Technical English — B1 base profile; verification due
+  - A2 base complete; B1 skills developing
   forbidden_wording_examples:
-    - Your English is B1
-    - Official B1
-    - CEFR-certified B1
-    - You passed English B1
+  - Your English is B1
+  - Official B1
+  - CEFR-certified B1
+  - You passed English B1
 uneven_profile:
   first_class: true
   exact_skill_detail_must_remain_traceable: true
@@ -119,35 +118,35 @@ uneven_profile:
 b2_plus_extension:
   aggregate_completion_state: forbidden
   eligible_skill_ids:
-    - skill.english.documentation_navigation
-    - skill.english.read_definition_and_constraint
-    - skill.english.read_procedure_sequence
-    - skill.english.ask_clarifying_technical_question
+  - skill.english.documentation_navigation
+  - skill.english.read_definition_and_constraint
+  - skill.english.read_procedure_sequence
+  - skill.english.ask_clarifying_technical_question
   presentation_states:
-    - no_extension_evidence
-    - extension_practice_only
-    - extension_evidence_present
-    - extension_review_due
-    - extension_verification_due
+  - no_extension_evidence
+  - extension_practice_only
+  - extension_evidence_present
+  - extension_review_due
+  - extension_verification_due
   strong_evidence_requires:
-    - inside_TECP_semantic_boundary
-    - explicit_canonical_skill_target
-    - H0_direct_verified_prerequisite_valid
-    - no_answer_revealing_scaffold
-    - normal_GRE_QAB_AIV_requirements
+  - inside_TECP_semantic_boundary
+  - explicit_canonical_skill_target
+  - H0_direct_verified_prerequisite_valid
+  - no_answer_revealing_scaffold
+  - normal_GRE_QAB_AIV_requirements
   allowed_wording: named_professional_extension_evidence
   forbidden_wording:
-    - B2+ complete
-    - You are B2+
-    - Official Technical English B2+
+  - B2+ complete
+  - You are B2+
+  - Official Technical English B2+
 assistance_presentation:
   assisted_or_answer_revealed_success_can_show_development: true
   assisted_or_answer_revealed_success_can_confirm_mastery: false
   prior_confirmed_mastery_erased_by_later_assisted_practice: false
   semantic_support_hints:
-    - support_needed
-    - support_can_be_reduced
-    - independent_use_confirmed
+  - support_needed
+  - support_can_be_reduced
+  - independent_use_confirmed
   support_hints_are_mastery_state: false
   fixed_support_fading_days: null
   fixed_turkish_english_ratio: null
@@ -167,117 +166,117 @@ technical_integration_effects:
     technical_ignorance_can_create_clean_english_negative: false
 invalid_or_nonmastery_evidence:
   no_clean_profile_state_change_for:
-    - invalid_prerequisite_contamination
-    - invalid_scaffold_leakage
-    - ambiguous_item
-    - evaluator_invalid
-    - evaluator_provisional_alone
-    - undeclared_technical_prerequisite
-    - undeclared_english_prerequisite
+  - invalid_prerequisite_contamination
+  - invalid_scaffold_leakage
+  - ambiguous_item
+  - evaluator_invalid
+  - evaluator_provisional_alone
+  - undeclared_technical_prerequisite
+  - undeclared_english_prerequisite
 profile_trace:
   skill_fields:
-    - skill_id
-    - objective_ids
-    - cefr_anchor_band
-    - derived_skill_presentation_state
-    - confirmation_source
-    - mastery_decision_ref
-    - retention_state
-    - prerequisite_state
-    - remediation_state
-    - unresolved_verification_ref
-    - last_qualifying_independent_evidence_ref
-    - last_assisted_practice_ref
-    - b2_plus_extension_state
-    - profile_reason_codes
-    - profile_policy_version
+  - skill_id
+  - objective_ids
+  - cefr_anchor_band
+  - derived_skill_presentation_state
+  - confirmation_source
+  - mastery_decision_ref
+  - retention_state
+  - prerequisite_state
+  - remediation_state
+  - unresolved_verification_ref
+  - last_qualifying_independent_evidence_ref
+  - last_assisted_practice_ref
+  - b2_plus_extension_state
+  - profile_reason_codes
+  - profile_policy_version
   base_summary_fields:
-    - current_complete_base_band
-    - base_profile_status
-    - historical_highest_confirmed_base_band
-    - review_due_skill_ids
-    - verification_due_skill_ids
-    - remediation_skill_ids
-    - developing_skill_ids
-    - b2_plus_extension_evidence_skill_ids
-    - qualification_scope
-    - profile_policy_version
+  - current_complete_base_band
+  - base_profile_status
+  - historical_highest_confirmed_base_band
+  - review_due_skill_ids
+  - verification_due_skill_ids
+  - remediation_skill_ids
+  - developing_skill_ids
+  - b2_plus_extension_evidence_skill_ids
+  - qualification_scope
+  - profile_policy_version
 reason_codes:
-  - ENGLISH_SKILL_NOT_YET_EVIDENCED
-  - ENGLISH_SKILL_DEVELOPING_ASSISTED
-  - ENGLISH_SKILL_DEVELOPING_INDEPENDENT
-  - ENGLISH_SKILL_CONFIRMED
-  - ENGLISH_SKILL_REVIEW_DUE
-  - ENGLISH_SKILL_VERIFICATION_DUE
-  - ENGLISH_SKILL_REMEDIATION_REQUIRED
-  - ENGLISH_PREREQUISITE_UNRESOLVED
-  - TECHNICAL_ENGLISH_BASE_BAND_COMPLETE
-  - TECHNICAL_ENGLISH_BASE_BAND_REVIEW_DUE
-  - TECHNICAL_ENGLISH_BASE_BAND_VERIFICATION_DUE
-  - TECHNICAL_ENGLISH_UNEVEN_PROFILE
-  - B2_EXTENSION_EVIDENCE_PRESENT
-  - B2_EXTENSION_PRACTICE_ONLY
-  - ENGLISH_EVIDENCE_ASSISTANCE_LIMITED
-  - ENGLISH_EVIDENCE_CONTAMINATED_NO_STATE_CHANGE
-  - TECHNICAL_ONLY_TASK_NO_ENGLISH_ATTRIBUTION
+- ENGLISH_SKILL_NOT_YET_EVIDENCED
+- ENGLISH_SKILL_DEVELOPING_ASSISTED
+- ENGLISH_SKILL_DEVELOPING_INDEPENDENT
+- ENGLISH_SKILL_CONFIRMED
+- ENGLISH_SKILL_REVIEW_DUE
+- ENGLISH_SKILL_VERIFICATION_DUE
+- ENGLISH_SKILL_REMEDIATION_REQUIRED
+- ENGLISH_PREREQUISITE_UNRESOLVED
+- TECHNICAL_ENGLISH_BASE_BAND_COMPLETE
+- TECHNICAL_ENGLISH_BASE_BAND_REVIEW_DUE
+- TECHNICAL_ENGLISH_BASE_BAND_VERIFICATION_DUE
+- TECHNICAL_ENGLISH_UNEVEN_PROFILE
+- B2_EXTENSION_EVIDENCE_PRESENT
+- B2_EXTENSION_PRACTICE_ONLY
+- ENGLISH_EVIDENCE_ASSISTANCE_LIMITED
+- ENGLISH_EVIDENCE_CONTAMINATED_NO_STATE_CHANGE
+- TECHNICAL_ONLY_TASK_NO_ENGLISH_ATTRIBUTION
 safety_fixtures:
-  - id: E7E-F01
-    case: partial_A2
-    expected: A1_current_complete_and_exact_A2_gap_visible
-  - id: E7E-F02
-    case: B1_with_review_due
-    expected: B1_complete_review_due_no_demotion
-  - id: E7E-F03
-    case: B1_first_clean_contradiction
-    expected: complete_verification_due_no_instant_deletion
-  - id: E7E-F04
-    case: B1_confirmed_remediation
-    expected: current_band_recomputed_lower_if_needed_history_preserved
-  - id: E7E-F05
-    case: assisted_only_bug_description
-    expected: developing_with_support_not_confirmed
-  - id: E7E-F06
-    case: one_clean_H0_group_but_GRE_gates_incomplete
-    expected: developing_independent
-  - id: E7E-F07
-    case: validated_entry_waiver
-    expected: confirmed_with_validated_entry_provenance
-  - id: E7E-F08
-    case: technical_only_bilingual_C_task
-    expected: no_english_profile_change
-  - id: E7E-F09
-    case: authentic_english_exposure_without_target
-    expected: exposure_only_no_mastery
-  - id: E7E-F10
-    case: dual_target_code_pass_english_fail
-    expected: component_outcomes_separate
-  - id: E7E-F11
-    case: hidden_cuda_reasoning_in_english_task
-    expected: contaminated_failure_no_english_decline
-  - id: E7E-F12
-    case: provisional_llm_evaluation
-    expected: no_independent_confirmation
-  - id: E7E-F13
-    case: one_B2_extension_capability_strong
-    expected: named_extension_evidence_no_B2_completion
-  - id: E7E-F14
-    case: B2_extension_answer_revealing_translation
-    expected: extension_practice_only
-  - id: E7E-F15
-    case: lower_band_verification_due_after_historical_B1
-    expected: historical_B1_preserved_current_verification_uncertainty
-  - id: E7E-F16
-    case: months_overdue_review_without_negative_evidence
-    expected: no_demotion_review_signal_only
-  - id: E7E-F17
-    case: four_B1_skills_strong_one_required_gap
-    expected: B1_not_current_complete
-  - id: E7E-F18
-    case: invalid_or_ambiguous_attempt
-    expected: profile_state_unchanged
+- id: E7E-F01
+  case: partial_A2
+  expected: A1_current_complete_and_exact_A2_gap_visible
+- id: E7E-F02
+  case: B1_with_review_due
+  expected: B1_complete_review_due_no_demotion
+- id: E7E-F03
+  case: B1_first_clean_contradiction
+  expected: complete_verification_due_no_instant_deletion
+- id: E7E-F04
+  case: B1_confirmed_remediation
+  expected: current_band_recomputed_lower_if_needed_history_preserved
+- id: E7E-F05
+  case: assisted_only_bug_description
+  expected: developing_with_support_not_confirmed
+- id: E7E-F06
+  case: one_clean_H0_group_but_GRE_gates_incomplete
+  expected: developing_independent
+- id: E7E-F07
+  case: validated_entry_waiver
+  expected: confirmed_with_validated_entry_provenance
+- id: E7E-F08
+  case: technical_only_bilingual_C_task
+  expected: no_english_profile_change
+- id: E7E-F09
+  case: authentic_english_exposure_without_target
+  expected: exposure_only_no_mastery
+- id: E7E-F10
+  case: dual_target_code_pass_english_fail
+  expected: component_outcomes_separate
+- id: E7E-F11
+  case: hidden_cuda_reasoning_in_english_task
+  expected: contaminated_failure_no_english_decline
+- id: E7E-F12
+  case: provisional_llm_evaluation
+  expected: no_independent_confirmation
+- id: E7E-F13
+  case: one_B2_extension_capability_strong
+  expected: named_extension_evidence_no_B2_completion
+- id: E7E-F14
+  case: B2_extension_answer_revealing_translation
+  expected: extension_practice_only
+- id: E7E-F15
+  case: lower_band_verification_due_after_historical_B1
+  expected: historical_B1_preserved_current_verification_uncertainty
+- id: E7E-F16
+  case: months_overdue_review_without_negative_evidence
+  expected: no_demotion_review_signal_only
+- id: E7E-F17
+  case: four_B1_skills_strong_one_required_gap
+  expected: B1_not_current_complete
+- id: E7E-F18
+  case: invalid_or_ambiguous_attempt
+  expected: profile_state_unchanged
 future_stage_boundaries:
   '8': screen_information_architecture_and_profile_UX
-  '9C': physical_data_model
+  9C: physical_data_model
   '11_13': runtime_profile_mastery_retention_remediation_implementation
   '14': ai_tutor_translation_evaluation_runtime
   '15': production_english_lessons_and_items
@@ -285,3 +284,4 @@ future_stage_boundaries:
   '17': usability_accessibility_wording
   '18': empirical_reporting_and_calibration
   '20': broader_professional_english_capability_review_if_needed
+decision: D-067

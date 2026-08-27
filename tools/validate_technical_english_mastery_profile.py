@@ -52,7 +52,7 @@ def main() -> int:
 
     check("E7E-01_identity", policy.get("model") == "TEPM-v0" and policy.get("stage_step") == "7E", f"model={policy.get('model')} step={policy.get('stage_step')}")
     check("E7E-01_status", policy.get("status") in {"candidate_7e", "accepted_7e"}, f"status={policy.get('status')}")
-    check("E7E-01_decision", policy.get("candidate_decision") == "D-067", f"decision={policy.get('candidate_decision')}")
+    check("E7E-01_decision", (policy.get("candidate_decision") or policy.get("decision")) == "D-067", f"decision={policy.get('candidate_decision') or policy.get('decision')}")
 
     alignment_ids = [x["skill_id"] for x in alignment["skill_alignments"]]
     entry_ids = [x["skill_id"] for x in entry["claims"]]

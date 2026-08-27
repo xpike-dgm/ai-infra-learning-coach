@@ -314,7 +314,7 @@ if "11ab. `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`" not in start:
 11ae. `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`
 11af. `curriculum/english/7e_mastery_profile/policy.yaml`
 11ag. `curriculum/english/7e_mastery_profile/qa_report.yaml`
-"", 1)
+""", 1)
 start = start.replace(
     "- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C ✅ DECP-v0 / D-065**, **7D ✅ TEIP-v0 / D-066**, **7E 🟡 active-not-executed**\n\n7D final: Technical English integration 4 construct-aware mode kullanır; English/CEFR global technical gate değildir, dual-target evidence component-level attribution ile çalışır ve scaffold evidence/task-validity driven'dır.",
     "- AŞAMA 7 ✅ **EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067**\n\n7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.",

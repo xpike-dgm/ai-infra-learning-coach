@@ -1,10 +1,10 @@
 # Technical English Mastery Profile Spec — TEPM-v0
 
 **Adım:** 7E — English mastery  
-**Durum:** CANDIDATE / QA BEKLİYOR  
+**Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-27  
-**Candidate model:** `TEPM-v0 — Technical English Mastery Profile`  
-**Candidate decision:** `D-067`
+**Final model:** `TEPM-v0 — Technical English Mastery Profile`  
+**Final decision:** `D-067`
 
 Bu belge accepted Technical English graph'ındaki learner state'in kullanıcıya nasıl **dürüst, granular, CEFR-aligned ama certification iddiası olmayan** bir profil olarak sunulacağını tanımlar.
 

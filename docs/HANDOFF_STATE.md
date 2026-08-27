@@ -228,14 +228,16 @@ PEM-v0:
 - AŞAMA 7B ✅ — TECP-v0 / D-064
 - AŞAMA 7C ✅ — DECP-v0 / D-065
 - AŞAMA 7D ✅ — TEIP-v0 / D-066
-- AŞAMA 7E 🟡 active-not-executed
-- 7E–20 ⬜
+- AŞAMA 7E ✅ TEPM-v0 / D-067
+8A 🟡 active-not-executed
+- 8A 🟡 active-not-executed
+8B–20 ⬜
 
 ## 11. Güncel kesin konum
 
 **Son tamamlanan:** `7D — TEIP-v0 / D-066`  
 **Aktif:** `7E — English mastery`  
-**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -340,6 +342,27 @@ TEIP-v0:
 - authentic resources + translation/gloss/AI support validity guards,
 - 15 safety fixture + independent 49-check QA PASS.
 
-## 18. 7E handoff
+## 18. D-067 / 7E final özeti
 
-7E — English mastery; learner-facing granular English mastery/profile/CEFR summary behavior, B2+ evidence presentation ve English-specific mastery/remediation display semantics'ini EED/TECP/DECP/TEIP + GRE/RVR/WLRM contracts üzerinde kesinleştirecektir. 7E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`.  
+Policy/QA: `curriculum/english/7e_mastery_profile/`.  
+Research: `research/7e_english_mastery_profile_research.md`.
+
+TEPM-v0:
+- exact D01 15 Skill identity unchanged,
+- 8 learner-facing derived Skill presentation state,
+- GRE/RVR/PRG/VDW/WLRM remain canonical state owners,
+- qualified A1/A2/B1 Technical English base profile + first-class uneven Skill detail,
+- review_due no demotion; verification_due no instant deletion; remediation recomputes current profile from clean evidence,
+- historical confirmed band provenance retained,
+- no broad/general/official CEFR claim or numeric English aggregate,
+- B2+ only named per-capability extension evidence on exact 4 TECP Skills,
+- assisted/provisional/contaminated evidence cannot create independent confirmation,
+- TEIP cross-track component attribution and contamination guards preserved,
+- 18 safety fixture + independent 54-check QA PASS.
+
+AŞAMA 7 tamamlandı.
+
+## 19. 8A handoff
+
+8A — Bilgi mimarisi; accepted product + planner + assessment + granular curriculum + Stage 7 English profile contracts üzerinden uygulamanın ekran/section/navigation information architecture'ını tasarlayacaktır. 8A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

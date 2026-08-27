@@ -3,7 +3,7 @@ model: TEPM-v0
 candidate_decision: D-067
 result: PASS
 checked_at: '2026-08-27'
-status_observed: candidate_7e
+status_observed: accepted_7e
 counts:
   canonical_english_skills: 15
   skill_presentation_states: 8
@@ -38,7 +38,7 @@ checks:
   details: model=TEPM-v0 step=7E
 - check: E7E-01_status
   result: PASS
-  details: status=candidate_7e
+  details: status=accepted_7e
 - check: E7E-01_decision
   result: PASS
   details: decision=D-067

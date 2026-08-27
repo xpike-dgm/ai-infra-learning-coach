@@ -557,3 +557,23 @@ Ayrıntı: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.
 - Sonraki numbered step `7E — English mastery`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.
+
+## D-067 — Technical English Mastery Profile = TEPM-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 7E final modeli `TEPM-v0 — Technical English Mastery Profile` oldu.
+- Canonical spec `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`; machine-readable policy `curriculum/english/7e_mastery_profile/policy.yaml`; research basis `research/7e_english_mastery_profile_research.md`.
+- 7E yeni mastery engine değildir: exact English Skill/Objective mastery GRE-v0, retention RVR-v0, prerequisite PRG-v0, prior-knowledge validation VDW-v0, remediation WLRM-v0 tarafından sahiplenilmeye devam eder.
+- D01 exact 15 Skill identity'si değişmedi; yeni Skill/Objective/prerequisite edge veya numeric English mastery formula üretilmedi.
+- 8 learner-facing derived Skill presentation state kabul edildi: not-yet-evidenced, developing-with-support, developing-independent, confirmed-current, confirmed-review-due, confirmation-verification-due, remediation-required, prerequisite-unresolved.
+- `review_due` mastery veya base-band demotion değildir; `verification_due` ilk contradiction sonrası current uncertainty gösterir fakat mastery'yi anında silmez.
+- Current complete base profile yalnız qualified Technical English A1/A2/B1 summary'dir; exact uneven Skill detail'i her zaman source of truth'a trace edilebilir.
+- General-English `You are B1`, official CEFR/certification claim, numeric CEFR average veya compensatory English percentage yasaktır.
+- Confirmed remediation current complete band'ı real current evidence'dan yeniden türetebilir; historical higher-band confirmation provenance olarak korunur.
+- B2+ aggregate mastery/completion değildir; TECP-v0'nun exact 4 extension-eligible Skill'i için named professional extension evidence olarak gösterilir.
+- Assisted, answer-revealed, provisional veya contaminated performance independent-confirmed English mastery üretmez; later assisted practice daha önceki clean mastery'yi tek başına silmez.
+- TEIP-v0 integration semantics korunur: technical-only/exposure task English mastery broadcast yapmaz; dual-target evidence component-specific; hidden specialist technical context English failure'a dönüşemez.
+- Independent 7E QA: 54/54 check PASS; 15 Skill / 8 presentation state / 3 base band / 4 B2+ extension Skill / 18 safety fixture / 17 reason-code.
+- AŞAMA 7 tamamlandı. Sonraki numbered step `8A — Bilgi mimarisi`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`.

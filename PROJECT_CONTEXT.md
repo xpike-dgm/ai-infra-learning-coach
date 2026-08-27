@@ -135,6 +135,13 @@ Technical task'in dili target construct ile eşit sayılmaz. TEIP-v0 dört mode 
 Canonical: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.
 
 
+### 8.5 7E Technical English Mastery Profile — TEPM-v0 / D-067
+
+English learner-facing mastery görünümü exact D01 15 Skill'in GRE/RVR-backed state'inden türetilir; yeni mastery engine değildir. 8 derived Skill presentation state, qualified A1/A2/B1 Technical English base profile, uneven-profile preservation ve B2+ per-capability extension evidence kabul edildi. `review_due` bandı düşürmez; `verification_due` ilk contradiction sonrası uncertainty gösterir; confirmed remediation current profile'ı clean evidence ile yeniden türetir ve historical confirmation provenance korunur. General-English/official CEFR claim veya numeric aggregate yoktur.
+
+Canonical: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`.
+
+
 ## 9. Professional-readiness depth
 
 ```text
@@ -176,16 +183,18 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- **7A ✅ EED-v0 / D-063 — İngilizce başlangıç ölçümü tamamlandı**
-- **7B ✅ TECP-v0 / D-064 — A1/A2/B1/B2+ technical progression tamamlandı**
-- **7C ✅ DECP-v0 / D-065 — Günlük English bileşeni tamamlandı**
-- **7D ✅ TEIP-v0 / D-066 — Teknik entegrasyon tamamlandı**
-- **7E 🟡 English mastery — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8–20 ⬜
+- **AŞAMA 7 ✅ tamamlandı**
+  - 7A ✅ EED-v0 / D-063
+  - 7B ✅ TECP-v0 / D-064
+  - 7C ✅ DECP-v0 / D-065
+  - 7D ✅ TEIP-v0 / D-066
+  - 7E ✅ TEPM-v0 / D-067
+- **8A 🟡 Bilgi mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 7E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 
