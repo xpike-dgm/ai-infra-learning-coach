@@ -268,3 +268,7 @@ AŞAMA 6 ancak şu koşullarda tamamlanır:
 - duplicate/cycle/hidden-prerequisite QA geçmiş,
 - profesyonel hedefte kritik boşluk bulunmadığına dair bağımsız Research/QA yapılmış,
 - sonraki English/UX/architecture/content aşamaları bu haritayı doğrudan kullanabilir durumda.
+
+## 6H completion addendum — S6ERQA-v0 / D-062
+
+Stage 6 external Research QA üç bağımsız evaluator + canonical reconciliation ile tamamlandı. Final registry 549 Skill / 608 Objective / 950 prerequisite edge; hard DAG 549/549; 10/10 6H review resolved. Canonical: `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.

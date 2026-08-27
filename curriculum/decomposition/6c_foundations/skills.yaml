@@ -5801,8 +5801,7 @@
   review_refs: []
 - skill_id_candidate: skill.python.string_text_operations
   canonical_name: String Text Operations
-  capability_statement: Unicode string üzerinde slicing, searching, formatting ve normalization-aware temel işlemler
-    yapabilmek.
+  capability_statement: Unicode string üzerinde slicing, searching, formatting ve normalization-aware temel işlemler yapabilmek.
   capability_kind: language_specific_production
   lifecycle_status: draft
   authoring_status: internally_qa_passed
@@ -5813,8 +5812,7 @@
   independent_evidence_path:
     observable: true
     direct_evidence_types: *id002
-    example_outcome: Unicode string üzerinde slicing, searching, formatting ve normalization-aware temel işlemler
-      yapabilmek.
+    example_outcome: Unicode string üzerinde slicing, searching, formatting ve normalization-aware temel işlemler yapabilmek.
   boundaries:
     prerequisite_boundary: Declared Skill prerequisites define the interpretable source boundary.
     remediation_boundary: Failure is remediated at this capability, not by resetting its Domain.
@@ -5982,9 +5980,11 @@
   - source.repo.fbb_v0
   - source.repo.gns_v0
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   provenance_ref: source.repo.internal_6c_authoring
-  freshness_class: evergreen
-  technology_dependency_refs: []
+  freshness_class: version_sensitive
+  technology_dependency_refs:
+  - technology.python_runtime
   duplicate_resolution:
     status: no_duplicate_found
     compared_skill_ids: []

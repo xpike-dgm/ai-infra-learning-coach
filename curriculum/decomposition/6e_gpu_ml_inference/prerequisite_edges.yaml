@@ -4741,3 +4741,292 @@
   review_refs: []
   cross_package_ref: false
   hard_soft_test_result: hard_required_for_interpretable_target
+- prerequisite_skill_id: skill.os.numa_locality_affinity
+  target_skill_id: skill.multi_gpu.topology_discovery
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Topology discovery explicitly requires interpretable NUMA locality/affinity reasoning.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.os.numa_locality_affinity
+  target_skill_id: skill.serving.worker_resource_binding
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: NUMA/device locality improves resource binding decisions without globally blocking basic serving topology.
+  contamination_risk_if_missing: medium
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.platform.scheduling_placement_constraints
+  target_skill_id: skill.ai_infra.topology_aware_placement
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Production cluster placement requires orchestrator-level resource and topology constraint reasoning.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.cuda.shared_memory_tiling
+  target_skill_id: skill.cuda.async_data_movement_pipeline
+  edge_kind: hard
+  reason_kind: procedural_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Staged in-kernel pipelines require correct shared-memory tiling and buffer reuse.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.cuda.memory_visibility_ordering
+  target_skill_id: skill.cuda.async_data_movement_pipeline
+  edge_kind: hard
+  reason_kind: safety_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Asynchronous producer/consumer pipelines require correct visibility and ordering semantics.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.gpu.copy_compute_overlap_model
+  target_skill_id: skill.cuda.async_data_movement_pipeline
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Pipeline performance evidence requires a correct copy/compute overlap model.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.inference.autoregressive_loop
+  target_skill_id: skill.optimization.speculative_decoding_tradeoff
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Speculation accelerates the autoregressive progression and cannot be interpreted without it.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.inference.prefill_decode_distinction
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: The two phases must be understood before they can be separated across resources.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.inference.kv_cache_semantics
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: KV ownership/handoff is central to disaggregated serving correctness.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.serving.worker_engine_topology
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: hard
+  reason_kind: professional_workflow_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Disaggregation is a worker/engine topology design behavior.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.network.latency_bandwidth_budget
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: KV transfer cost cannot be assessed without latency/bandwidth budgeting.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.distributed.partial_failure_model
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Distributed failure semantics support production recovery reasoning.
+  contamination_risk_if_missing: medium
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: true
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.multi_gpu.rdma_transport_model
+  target_skill_id: skill.serving.prefill_decode_disaggregation
+  edge_kind: soft
+  reason_kind: tool_environment_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: RDMA is a relevant implementation path but is not required by the stable disaggregation concept.
+  contamination_risk_if_missing: medium
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.ml.transformer_block_dataflow
+  target_skill_id: skill.ml.moe_routing_dataflow
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: MoE is a transformer-block variant and requires the dense block/dataflow foundation.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.ml.moe_routing_dataflow
+  target_skill_id: skill.multi_gpu.expert_parallel_sharding
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Expert-parallel token communication derives from router/expert semantics.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.multi_gpu.collective_semantics
+  target_skill_id: skill.multi_gpu.expert_parallel_sharding
+  edge_kind: hard
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Expert parallelism requires multi-device collective/data movement reasoning.
+  contamination_risk_if_missing: high
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled
+- prerequisite_skill_id: skill.multi_gpu.topology_bandwidth_model
+  target_skill_id: skill.multi_gpu.expert_parallel_sharding
+  edge_kind: soft
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Topology/bandwidth is needed for advanced production EP optimization but not the first semantic model.
+  contamination_risk_if_missing: medium
+  task_specific_instead_of_graph_edge: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+  cross_package_ref: false
+  hard_soft_test_result: 6H_external_research_reconciled

@@ -40,18 +40,13 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 ## Güncel execution state
 
 - AŞAMA 1–5: tamamlandı.
-- AŞAMA 6A: ✅ `GNS-v0 / D-054` tamamlandı.
-- AŞAMA 6B: ✅ `FRDB-v0 / D-056` tamamlandı.
-- AŞAMA 6C: ✅ `FDM-v0 / D-057` tamamlandı.
-- AŞAMA 6D: ✅ `SDM-v0 / D-058` tamamlandı.
-- AŞAMA 6E: ✅ `GIM-v0 / D-059` tamamlandı.
-- AŞAMA 6F: ✅ `PEM-v0 / D-060` tamamlandı.
-- AŞAMA 6G: ✅ `WLRM-v0 / D-061` tamamlandı.
-- **Aktif adım: 6H — Coverage / prerequisite / Research QA.**
-- **6H henüz yürütülmedi; bağımsız external Research AI zorunludur.**
-- AŞAMA 7–20 bekliyor.
+- AŞAMA 6: ✅ tamamlandı — `GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0`.
+- 6H final external Research QA: ✅ `S6ERQA-v0 / D-062`; 549 Skill / 608 Objective / 950 prerequisite edge; 549/549 hard DAG; 10/10 6H review resolved.
+- **Aktif adım: 7A — İngilizce başlangıç ölçümü.**
+- **7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 8–20 bekliyor.
 
-**6H'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 6H için ayrıca fresh PRE-STEP refresh yap ve bağımsız external Research AI workflow'unu doğrula.
+**7A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 7A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

@@ -18,12 +18,18 @@
   - independent Research AI
   - authoritative current GPU/ML/inference sources
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Three independent external reports converged on required NUMA-linked GPU topology, CUDA async pipeline, speculative
+    decoding, prefill/decode disaggregation, MoE routing and expert-parallel coverage. Stable capabilities/edges were added
+    without vendor-specific Skill proliferation.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6e.tool_runtime_freshness
   subject_refs:
   - domain.cuda
@@ -40,12 +46,17 @@
   - current vendor documentation
   - 6H source freshness audit
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Current CUDA/Triton/serving/NCCL/RDMA details are represented as version-sensitive objectives/examples unless
+    they pass the stable capability independence test; tool/API names do not replace stable concept identity.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6e.math_numerical_coverage
   subject_refs:
   - domain.ml_transformer
@@ -60,12 +71,18 @@
   - independent Research AI
   - transformer/inference authoritative references
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Existing tensor shape, matrix multiplication, probability/softmax, floating-point error and mixed-precision
+    capabilities are sufficient for the inference-systems target; no calculus/advanced-math hard route added. Existing quantization
+    hard-edge guard remains enforced.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6e.professional_overlay_reconciliation
   subject_refs:
   - domain.inference_serving

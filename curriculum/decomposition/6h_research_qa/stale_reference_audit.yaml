@@ -1,0 +1,399 @@
+stage_step: 6H
+audit: repo_wide_stale_reference_post_step
+result: PASS
+blocking_findings: []
+candidate_old_or_historical_references:
+- file: README.md
+  match: 6H'ye kadar pending
+  blocking_current_state: false
+- file: README.md
+  match: 6H'ye kadar pending
+  blocking_current_state: false
+- file: research/6h_current_source_audit.md
+  match: 543 Skills / 590 Objective
+  blocking_current_state: false
+- file: research/6h_external_research_ai_brief.md
+  match: 543 Skills / 590 Objective
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: '6h_active": re.compile(r"(Aktif adım|\*\*Aktif'
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 6H", "7A — Başlangıç ölçümü** **AKTİF
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 6H — S6ERQA-v0 / D-062`", "Aktif
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 6H", "S6ERQA-v0 / D-062", "### [ ] 7A — Başlangıç ölçümü — **AKTİF
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 6H[^\n]{0,100}(pending|henüz|aktif|AKTİF|zorunlu
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: external Research QA[^\n]{0,100}(pending|6H'ye
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 543 Skill[^\n]{0,100}590 Objective
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 6H henüz
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 6H", "Son tamamlanan adım 6H; aktif
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 6H review resolved. Aktif adım", "10/10 6H review resolved.\n\nAktif
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H — Coverage / prerequisite / Research QA** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H — Coverage / prerequisite / Research QA** | 🟡 Aktif
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending' and one 'External validation'. Also cover 'External validation 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H external Research QA pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H external Research QA pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending.", "6F completion anında external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H — Coverage / prerequisite / external Research QA — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H review resolved. Aktif adım **7A — İngilizce başlangıç ölçümü**; henüz
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H external Research QA pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 6H'de zorunlu", "6H'de zorunlu
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: external Research QA pending; learner-published değil.", "6C/6D completion anında 6H external Research QA pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: external Research QA 6H'ye pending.", "6F completion anında external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: external Research QA pending
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 543 Skill + 590 Objective
+  blocking_current_state: false
+- file: docs/GRANULAR_CAPABILITY_MAP_PLAN.md
+  match: 6H AKTİF
+  blocking_current_state: false
+- file: docs/GRANULAR_CAPABILITY_MAP_PLAN.md
+  match: 6H — Coverage + prerequisite + external research QA 🟡 AKTİF
+  blocking_current_state: false
+- file: docs/MASTER_PLAN.md
+  match: 6H'de zorunlu
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: 6H'de zorunlu
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: 6H external Research QA pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: 6H external Research QA pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: 6H'ye pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: 6H'ye pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: external Research QA pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: external Research QA pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: true
+- file: docs/MASTER_PLAN.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: true
+- file: docs/DECISIONS.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H independent Research AI zorunlu
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H independent Research AI'ye kadar pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H independent Research AI'ye kadar pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H'de zorunlu ve pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 6H'ye pending ve zorunlu
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 543 Skill ve 590 Objective exact covered; 590 Objective
+  blocking_current_state: false
+- file: docs/GPU_ML_INFERENCE_DETAILED_MAP.md
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: docs/GPU_ML_INFERENCE_DETAILED_MAP.md
+  match: external Research QA pending
+  blocking_current_state: false
+- file: docs/GPU_ML_INFERENCE_DETAILED_MAP.md
+  match: external Research QA için 6H'ye pending
+  blocking_current_state: false
+- file: docs/FOUNDATIONS_DETAILED_MAP.md
+  match: 6H'ye kadar pending
+  blocking_current_state: false
+- file: docs/HANDOFF_STATE.md
+  match: 6H'de zorunlu
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H external coverage/current-industry/prerequisite Research QA zorunlu
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H'de zorunlu
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H independent Research AI zorunlu
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H external Research QA pending
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H external Research QA pending
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: 6H'ye pending
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: external Research QA pending
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: external Research QA pending
+  blocking_current_state: true
+- file: docs/HANDOFF_STATE.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: true
+- file: docs/SYSTEMS_DETAILED_MAP.md
+  match: 6H'ye kadar pending
+  blocking_current_state: false
+- file: docs/SYSTEMS_DETAILED_MAP.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/GRANULARITY_NAMING_STANDARD.md
+  match: 6H external Research QA zorunlu
+  blocking_current_state: false
+- file: docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md
+  match: 6H'nin yerine geçmez; learner publication hâlâ pending
+  blocking_current_state: false
+- file: docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md
+  match: external Research QA pending
+  blocking_current_state: false
+- file: docs/PROJECT_MASTER_CONTEXT.md
+  match: 6H external Research QA zorunlu
+  blocking_current_state: false
+- file: docs/PROJECT_MASTER_CONTEXT.md
+  match: 6H independent Research QA zorunlu
+  blocking_current_state: false
+- file: docs/PROJECT_MASTER_CONTEXT.md
+  match: 6H zorunlu
+  blocking_current_state: false
+- file: docs/PROJECT_MASTER_CONTEXT.md
+  match: 6H zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H**'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 6H independent external Research QA pending
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: External Research QA 6H'ye pending
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: external Research QA pending
+  blocking_current_state: false
+- file: docs/GRAPH_ARCHITECTURE_QA.md
+  match: 6H external Research QA zorunlu
+  blocking_current_state: false
+- file: docs/GRAPH_ARCHITECTURE_QA.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 6H'de independent external Research AI **zorunlu
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 6H external independent Research AI zorunlu
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 6H'ye pending
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 6H'de neden independent Research AI zorunlu
+  blocking_current_state: true
+- file: docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md
+  match: 6H'de zorunlu; package henüz
+  blocking_current_state: false
+- file: docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md
+  match: external Research QA pending
+  blocking_current_state: false
+- file: docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md
+  match: 6H'de zorunlu
+  blocking_current_state: false
+- file: vault/agent/CURRENT_CONTEXT.md
+  match: 6H review resolved. Aktif adım **7A — İngilizce başlangıç ölçümü**; henüz
+  blocking_current_state: true
+- file: vault/agent/OPEN_LOOPS.md
+  match: 6H independent external Research QA **AKTİF
+  blocking_current_state: false
+- file: vault/wiki/sources/Professional Engineering Map Source.md
+  match: 6H external Research QA pending
+  blocking_current_state: false
+- file: vault/wiki/sources/Professional Engineering Map Source.md
+  match: external Research QA pending
+  blocking_current_state: false
+- file: vault/wiki/sources/Execution State Source.md
+  match: 6H yürütme öncesi fresh PRE-STEP ve bağımsız external Research AI zorunlu
+  blocking_current_state: false
+- file: vault/wiki/sources/Weakness Remediation Map Source.md
+  match: 6H'ye pending
+  blocking_current_state: false
+- file: vault/wiki/sources/Weakness Remediation Map Source.md
+  match: external Research QA 6H'ye pending
+  blocking_current_state: false
+- file: vault/wiki/sources/Weakness Remediation Map Source.md
+  match: 543 Skill ve 590 Objective için evidence-safe weakness localization, 590 Objective
+  blocking_current_state: false
+- file: vault/wiki/projects/AI Infra Learning Coach Delivery.md
+  match: 6H'nin aktif fakat henüz
+  blocking_current_state: false
+- file: vault/agent/session-logs/2026-08-27-6g-weakness-remediation.md
+  match: 543 Skills and 590 Objective
+  blocking_current_state: false
+- file: vault/agent/session-logs/2026-08-27-6f-professional-engineering.md
+  match: 6H'ye pending. Current active step 6G; henüz
+  blocking_current_state: false
+- file: vault/agent/session-logs/2026-08-27-6f-professional-engineering.md
+  match: External Research QA 6H'ye pending
+  blocking_current_state: false
+note: Candidates in historical/stable specs are not auto-rewritten; current living-state contradictions are blocking.

@@ -181,7 +181,7 @@ FDM-v0:
 - Technical English global-gate guard,
 - deterministic generator + independent package validator,
 - internal result `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
-- 6H external Research QA pending; learner-published değil.
+- 6C/6D completion anında 6H external Research QA pending idi; D-062 ile daha sonra external validation tamamlandı; production content yine AŞAMA 15/20 kapsamındadır.
 
 ## 9.4 D-058 / 6D final özeti
 
@@ -200,7 +200,7 @@ SDM-v0:
 - Technical English global-gate guard ve branch isolation korundu,
 - deterministic generator + bağımsız package validator; her ikisi de PASS,
 - internal result `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, 0 blocking,
-- 6H external Research QA pending; learner-published değil.
+- 6C/6D completion anında 6H external Research QA pending idi; D-062 ile daha sonra external validation tamamlandı; production content yine AŞAMA 15/20 kapsamındadır.
 
 ## 9.6 D-060 / 6F final özeti
 
@@ -214,7 +214,7 @@ PEM-v0:
 - 25 prior Skill canonical ID ile reuse,
 - testing/build/debug/profiling/Git-PR-review/design-doc/ops/security/OSS/project-capstone overlay granularlaştırıldı,
 - 6D ve 6E professional-overlay review'ları resolved,
-- internal QA PASS_WITH_OPEN_NON_BLOCKING_REVIEWS; external Research QA 6H'ye pending.
+- internal QA PASS_WITH_OPEN_NON_BLOCKING_REVIEWS; 6F completion anında external Research QA 6H'ye pending idi; D-062 ile tamamlandı.
 
 ## 10. Tamamlanan aşamalar
 
@@ -223,36 +223,47 @@ PEM-v0:
 - AŞAMA 3 ✅ — adaptive planner; 16/16 scenarios, 20/20 invariants PASS
 - AŞAMA 4 ✅ — DMA-v0 / WBA-v0 / MCA-v0 / QAB-v0 / AIV-v0
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
-- AŞAMA 6:
-  - 6A ✅ GNS-v0 / D-054
-  - 6B ✅ FRDB-v0 / D-056
-  - 6C ✅ FDM-v0 / D-057
-  - 6D ✅ SDM-v0 / D-058
-  - 6E ✅ GIM-v0 / D-059
-  - 6F ✅ PEM-v0 / D-060
-  - 6G ✅ WLRM-v0 / D-061
-  - 6H 🟡 Coverage / prerequisite / Research QA — aktif, henüz yürütülmedi
-- AŞAMA 7–20 ⬜
+- AŞAMA 6 ✅ — GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0
+- AŞAMA 7A 🟡 active-not-executed
+- 7B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `6G — WLRM-v0 / D-061`
-**Aktif:** `6H — Coverage / prerequisite / Research QA`
-**6H henüz yürütülmedi. Independent external Research AI zorunludur.**
+**Son tamamlanan:** `6H — S6ERQA-v0 / D-062`  
+**Aktif:** `7A — İngilizce başlangıç ölçümü`  
+**7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
-## 9.7 D-061 / 6G final özeti
+## 12. D-061 / 6G final özeti — external QA sonrası
 
 Canonical summary: `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`.  
 Canonical dataset: `curriculum/decomposition/6g_weakness_remediation/`.
 
-WLRM-v0:
-- 543 Skill / 590 Objective exact coverage,
-- 590 Objective-specific remediation route,
-- 12 evidence-attribution rule + 15 strategy family,
-- invalid/prerequisite-contaminated failure target Skill'i cezalandırmaz,
-- assisted/provisional signal confirmed remediation değildir,
+WLRM-v0 final Stage 6 registry'de:
+- 549 Skill / 608 Objective exact coverage,
+- 608 Objective-specific remediation route,
+- invalid/prerequisite-contaminated false-negative guard,
+- assisted/provisional evidence ceiling,
 - first post-mastery contradiction `verification_due`,
-- `review_due` weakness değildir,
-- broad reset / project broadcast yok,
-- remediation closure fresh valid evidence ister,
-- internal QA PASS, 0 blocking; 6H external Research QA pending.
+- broad reset / project broadcast guard,
+- fresh H0/direct/verified closure,
+- 6H ile guidance fading + mastered-target reverification-first + AI-scaffold-not-closure guard'ları eklendi.
+
+## 13. D-062 / 6H final özeti
+
+Canonical: `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.  
+Reconciliation: `research/6h_external_research_ai_report.md`.  
+Dataset/QA: `curriculum/decomposition/6h_research_qa/`.
+
+S6ERQA-v0:
+- üç bağımsız evaluator başlangıç snapshot'ına `PASS WITH REQUIRED CHANGES` verdi,
+- canonical reconciliation 6 stable capability ekledi: NUMA locality/affinity, CUDA async data pipeline, speculative decoding trade-off, prefill/decode disaggregation, MoE routing, expert parallel sharding,
+- tool/vendor/model-specific fast-moving ayrıntılar stable Skill şişirmeden version-scoped Objective/example olarak tutuldu,
+- final Stage 6 = 23 route / 549 Skill / 608 Objective / 950 prerequisite edge,
+- combined hard graph 549/549 DAG,
+- WLRM 549/608 exact coverage,
+- 10/10 6H-owned review resolved,
+- `tools/validate_6h_external_reconciliation.py` PASS.
+
+## 14. 7A handoff
+
+7A — İngilizce başlangıç ölçümü, AŞAMA 7'nin ilk numbered step'idir. Stage 6'nın granular Technical English Skills'i input olarak kullanır; exact başlangıç-placement/measurement davranışı 7A'da fresh PRE sonrası tasarlanır. Stage 7 ilerlemesi kullanıcı onayı olmadan başlatılmaz.

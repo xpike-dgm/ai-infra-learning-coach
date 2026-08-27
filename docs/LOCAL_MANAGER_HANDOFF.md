@@ -21,8 +21,8 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `6A–6G completed / 6H active-not-executed` olduğunu doğrula.
-9. Ancak bundan sonra, 6G için **ayrı bir fresh PRE-STEP GitHub refresh** yap.
+8. Current execution state'in `6A–6H completed / 7A active-not-executed` olduğunu doğrula.
+9. Ancak bundan sonra, 7A için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
 
@@ -1167,7 +1167,7 @@ fresh 6H PRE-STEP GitHub refresh
 → evaluation
 → D-050 POST sync
 → stale-reference audit
-→ 6H active-not-executed
+→ 6H completed; 7A active-not-executed
 ```
 
 ---
@@ -1719,3 +1719,13 @@ Sıradaki gerçek numbered work:
 > **6E — GPU / ML / Inference detailed map**
 
 ve başlamadan fresh PRE-STEP GitHub refresh zorunludur.
+
+## Current execution addendum — D-062 / 2026-08-27
+
+- AŞAMA 6 ✅ tamamen tamamlandı; 6H final `S6ERQA-v0 / D-062`.
+- Final Stage 6 graph: 23 route / 549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG.
+- WLRM final coverage: 549 Skill / 608 Objective; 10/10 6H review resolved.
+- Canonical 6H: `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
+- Aktif numbered step: **7A — İngilizce başlangıç ölçümü**, active-not-executed.
+- 7A başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+

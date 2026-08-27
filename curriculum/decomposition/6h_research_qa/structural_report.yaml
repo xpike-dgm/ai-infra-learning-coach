@@ -1,0 +1,284 @@
+stage_step: 6H
+report_kind: internal_structural_pre_external_research_qa
+status: PASS_INTERNAL_STRUCTURE_EXTERNAL_RESEARCH_PENDING
+completion_guard:
+  stage6_complete: false
+  reason: Independent external Research AI validation is mandatory before 6H can close.
+counts:
+  source_packages: 4
+  route_families: 23
+  skills: 549
+  objectives: 608
+  prerequisite_edges: 950
+  hard_edges: 851
+  soft_edges: 99
+  hard_dag_nodes: 549
+  hard_roots: 10
+  hard_sinks: 179
+  open_6h_reviews: 0
+  exact_name_duplicate_candidates: 3
+  exact_statement_duplicate_candidates: 0
+package_counts:
+  6C:
+    routes: 5
+    skills: 132
+    objectives: 138
+    prerequisite_edges: 200
+  6D:
+    routes: 8
+    skills: 193
+    objectives: 209
+    prerequisite_edges: 316
+  6E:
+    routes: 9
+    skills: 148
+    objectives: 172
+    prerequisite_edges: 296
+  6F:
+    routes: 1
+    skills: 76
+    objectives: 89
+    prerequisite_edges: 138
+checks:
+- check: route_family_envelope_D01_D23
+  result: PASS
+- check: global_skill_id_uniqueness
+  result: PASS
+- check: global_objective_id_uniqueness
+  result: PASS
+- check: objective_owner_integrity
+  result: PASS
+- check: every_skill_has_objective
+  result: PASS
+- check: prerequisite_endpoint_integrity
+  result: PASS
+- check: no_self_prerequisite
+  result: PASS
+- check: no_conflicting_hard_soft_pair
+  result: PASS
+- check: combined_hard_graph_dag
+  result: PASS
+  details: 549/549 nodes
+- check: wlrm_exact_registry_coverage
+  result: PASS
+semantic_duplicate_review_candidates:
+  same_normalized_canonical_name:
+  - normalized_name: conditionals
+    skill_ids:
+    - skill.c.conditionals
+    - skill.python.conditionals
+  - normalized_name: expression evaluation
+    skill_ids:
+    - skill.c.expression_evaluation
+    - skill.python.expression_evaluation
+  - normalized_name: for iteration
+    skill_ids:
+    - skill.c.for_iteration
+    - skill.python.for_iteration
+  same_normalized_capability_statement: []
+freshness_hygiene:
+  freshness_class_counts:
+    evergreen: 433
+    fast_moving: 19
+    version_sensitive: 97
+  tool_specific_evergreen_review_candidates: []
+graph_shape_information:
+  hard_root_skill_ids:
+  - skill.arch.number_representation_precision
+  - skill.computing.program_execution_model
+  - skill.engineering.reproducible_run_notes
+  - skill.english.recognize_core_technical_labels
+  - skill.linux.terminal_filesystem_navigation
+  - skill.math.probability_normalization
+  - skill.math.tensor_shape_reasoning
+  - skill.network.layering_model
+  - skill.programming.state_assignment_model
+  - skill.storage.index_structure_tradeoff
+  hard_sink_skill_ids:
+  - skill.ai_infra.cluster_admission_policy
+  - skill.ai_infra.efficiency_optimization_validation
+  - skill.ai_infra.failure_domain_capacity_recovery
+  - skill.ai_infra.model_data_provenance_safety
+  - skill.ai_infra.model_rollout_validation
+  - skill.ai_infra.reproducible_runtime_environment
+  - skill.ai_infra.topology_aware_placement
+  - skill.ai_infra.workload_isolation_boundary
+  - skill.arch.assembly_reading_basic
+  - skill.arch.branch_prediction_cost
+  - skill.arch.data_layout_transformation
+  - skill.arch.false_sharing_awareness
+  - skill.arch.hardware_counter_interpretation
+  - skill.arch.vectorization_enablement
+  - skill.c.allocation_size_overflow_safety
+  - skill.c.array_pointer_distinction
+  - skill.c.bitwise_mask_reasoning
+  - skill.c.for_iteration
+  - skill.c.scope_linkage_storage_duration
+  - skill.c.string_null_termination
+  - skill.c.struct_enum_model
+  - skill.c.while_iteration
+  - skill.computing.source_runtime_artifact_distinction
+  - skill.concurrency.deadlock_analysis
+  - skill.concurrency.event_loop_behavior
+  - skill.concurrency.lockfree_tradeoff_reasoning
+  - skill.concurrency.nondeterministic_reproduction
+  - skill.concurrency.parallel_result_aggregation
+  - skill.concurrency.parallel_speedup_measurement
+  - skill.cpp.compilation_time_hygiene
+  - skill.cpp.contract_precondition_validation
+  - skill.cpp.debugger_inspection
+  - skill.cpp.dependency_integration
+  - skill.cpp.error_return_vs_exception
+  - skill.cpp.interface_composition_tradeoff
+  - skill.cpp.non_owning_view_borrowing
+  - skill.cpp.sanitizer_ub_diagnosis
+  - skill.cpp.smart_pointer_ownership
+  - skill.cpp.special_member_rules
+  - skill.cpp.template_constraints_overload
+  - skill.cpp.template_diagnostic_reading
+  - skill.cpp.unit_test_harness
+  - skill.cuda.async_data_movement_pipeline
+  - skill.cuda.error_checking_diagnosis
+  - skill.cuda.event_timing_dependency
+  - skill.cuda.grid_stride_loop
+  - skill.cuda.launch_configuration_reasoning
+  - skill.cuda.pinned_memory_usage
+  - skill.cuda.race_bounds_diagnosis
+  - skill.cuda.tile_boundary_handling
+  - skill.cuda.unified_memory_behavior
+  - skill.distributed.availability_consistency_tradeoff
+  - skill.distributed.client_visible_anomaly_reasoning
+  - skill.distributed.duplicate_reordering_handling
+  - skill.distributed.leader_election_failover
+  - skill.distributed.rebalancing_hotspot_reasoning
+  - skill.distributed.stream_processing_semantics
+  - skill.dsa.binary_search
+  - skill.dsa.graph_traversal_basic
+  - skill.dsa.hash_table_tradeoff
+  - skill.dsa.linked_structure_reasoning
+  - skill.dsa.sorting_comparison_reasoning
+  - skill.english.ask_clarifying_technical_question
+  - skill.english.documentation_navigation
+  - skill.english.explain_simple_technical_process
+  - skill.english.follow_bilingual_technical_instruction
+  - skill.english.read_definition_and_constraint
+  - skill.english.read_simple_terminal_error_fragments
+  - skill.english.write_basic_bug_description
+  - skill.english.write_command_result_note
+  - skill.git.conflict_resolution
+  - skill.git.recovery_safe_undo
+  - skill.gpu.arithmetic_intensity_reasoning
+  - skill.gpu.cache_metric_interpretation
+  - skill.gpu.latency_hiding_reasoning
+  - skill.gpu.memory_transaction_measurement
+  - skill.gpu.timeline_overlap_analysis
+  - skill.gpu.warp_efficiency_measurement
+  - skill.inference.attention_memory_bottleneck
+  - skill.inference.fusion_correctness_validation
+  - skill.inference.oom_root_cause_diagnosis
+  - skill.inference.prefill_decode_profile
+  - skill.inference.topk_topp_sampling
+  - skill.linux.links_file_identity
+  - skill.linux.tool_discovery_help
+  - skill.math.broadcasting_reasoning
+  - skill.ml.embedding_lookup_reasoning
+  - skill.ml.inference_forward_pass
+  - skill.multi_gpu.collective_profile_analysis
+  - skill.multi_gpu.distributed_failure_isolation
+  - skill.multi_gpu.expert_parallel_sharding
+  - skill.multi_gpu.gpu_direct_validation
+  - skill.network.connection_resource_limits
+  - skill.network.http_api_error_contract
+  - skill.network.http_connection_performance
+  - skill.network.protocol_framing
+  - skill.network.schema_evolution_compatibility
+  - skill.network.service_discovery_naming
+  - skill.network.tls_failure_diagnosis
+  - skill.network.udp_datagram_tradeoff
+  - skill.optimization.batch_composition_tradeoff
+  - skill.optimization.prefix_cache_reuse
+  - skill.optimization.quantization_performance_validation
+  - skill.optimization.quantized_memory_estimation
+  - skill.optimization.scheduler_fairness_preemption
+  - skill.optimization.speculative_decoding_tradeoff
+  - skill.os.context_switch_cost
+  - skill.os.cpu_time_accounting
+  - skill.os.graceful_shutdown_behavior
+  - skill.os.kernel_event_observation
+  - skill.os.memory_mapping_usage
+  - skill.os.tlb_page_size_effects
+  - skill.performance.cache_behavior_measurement
+  - skill.performance.io_bound_analysis
+  - skill.performance.memory_profile_analysis
+  - skill.performance.microbenchmark_pitfalls
+  - skill.performance.performance_report_communication
+  - skill.performance.sampling_instrumentation_tradeoff
+  - skill.platform.cloud_identity_access_boundary
+  - skill.platform.container_network_model
+  - skill.platform.container_storage_persistence
+  - skill.platform.container_vs_vm_boundary
+  - skill.platform.image_build_optimization
+  - skill.platform.infrastructure_as_code_reproducibility
+  - skill.platform.workload_failure_diagnosis
+  - skill.professional.artifact_integrity_verification
+  - skill.professional.changelog_release_note
+  - skill.professional.ci_failure_localization
+  - skill.professional.code_review_maintainability
+  - skill.professional.decision_record
+  - skill.professional.dependency_supply_chain_review
+  - skill.professional.flaky_test_diagnosis
+  - skill.professional.interface_contract_reasoning
+  - skill.professional.measurement_environment_record
+  - skill.professional.operational_change_risk
+  - skill.professional.oss_community_communication
+  - skill.professional.project_retrospective
+  - skill.professional.project_risk_register
+  - skill.professional.rebase_conflict_resolution
+  - skill.professional.regression_bisection
+  - skill.professional.rfc_review_response
+  - skill.professional.runbook_authoring
+  - skill.professional.secret_exposure_review
+  - skill.professional.system_validation_plan
+  - skill.python.argument_binding
+  - skill.python.benchmark_automation
+  - skill.python.comprehension_transformation
+  - skill.python.data_model_protocols
+  - skill.python.data_table_transformation
+  - skill.python.debugging_tools
+  - skill.python.generator_functions
+  - skill.python.input_output_basic
+  - skill.python.loop_control_flow
+  - skill.python.network_client_basic
+  - skill.python.os_subprocess_interaction
+  - skill.python.package_layout_metadata
+  - skill.python.tensor_device_dtype
+  - skill.python.test_doubles_boundaries
+  - skill.python.thread_process_choice
+  - skill.python.tuple_immutable_sequence
+  - skill.python.type_hints_static_checking
+  - skill.reliability.postmortem_analysis
+  - skill.serving.failure_domain_diagnosis
+  - skill.serving.prefill_decode_disaggregation
+  - skill.serving.queue_backpressure
+  - skill.serving.sglang_runtime_operation
+  - skill.serving.stream_cancellation_cleanup
+  - skill.serving.tensorrt_llm_runtime_operation
+  - skill.serving.timeout_deadline_propagation
+  - skill.serving.vllm_runtime_operation
+  - skill.serving.worker_resource_binding
+  - skill.shell.script_control_flow
+  - skill.storage.concurrency_control_mechanisms
+  - skill.storage.crash_recovery_reasoning
+  - skill.storage.data_layout_compaction
+  - skill.storage.query_plan_inspection
+  - skill.triton.autotune_result_validation
+  - skill.triton.profile_compare_cuda
+  - skill.triton.softmax_kernel
+  note: Roots/sinks are informational; a professional capability graph legitimately has entry and terminal Skills. External
+    QA decides whether any are pedagogical dead ends.
+open_reviews_owned_by_6H: []
+blocking_findings: []
+warnings: []
+external_research_qa:
+  status: required_pending
+  independence_requirement: Must be produced by a separate external Research AI/evaluator; manager web research cannot substitute.

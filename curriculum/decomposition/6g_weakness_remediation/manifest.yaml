@@ -27,16 +27,17 @@ included_collections:
 - qa_report.yaml
 counts:
   source_packages: 4
-  skills_covered: 543
-  objectives_covered: 590
+  skills_covered: 549
+  objectives_covered: 608
   failure_attribution_rules: 12
   remediation_strategies: 15
-  remediation_routes: 590
+  remediation_routes: 608
   learning_need_mappings: 6
   source_remediation_tags: 6
-  open_non_blocking_reviews: 4
+  open_non_blocking_reviews: 3
   open_blocking_reviews: 0
 external_research_qa:
-  status: pending
+  status: validated_6H
   owner_step: 6H
+  report_ref: research/6h_external_research_ai_report.md
 checked_at: '2026-08-27'

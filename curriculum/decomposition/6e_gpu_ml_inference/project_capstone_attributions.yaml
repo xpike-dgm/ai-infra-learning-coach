@@ -190,3 +190,68 @@
   - source.repo.professional_readiness
   - source.repo.frdb_v0
   review_refs: []
+- project_or_capstone_id: project.gpu_inference.integrated_serving_stack
+  skill_id: skill.cuda.async_data_movement_pipeline
+  objective_id: objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: authored_code
+  rubric_component_ref: rubric.gpu_inference.6h.cuda_async_data_movement_pipeline
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- project_or_capstone_id: project.gpu_inference.integrated_serving_stack
+  skill_id: skill.optimization.speculative_decoding_tradeoff
+  objective_id: objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: design_argument
+  rubric_component_ref: rubric.gpu_inference.6h.optimization_speculative_decoding_tradeoff
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- project_or_capstone_id: project.gpu_inference.integrated_serving_stack
+  skill_id: skill.serving.prefill_decode_disaggregation
+  objective_id: objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: design_argument
+  rubric_component_ref: rubric.gpu_inference.6h.serving_prefill_decode_disaggregation
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- project_or_capstone_id: project.gpu_inference.integrated_serving_stack
+  skill_id: skill.ml.moe_routing_dataflow
+  objective_id: objective.ml.moe_routing_dataflow.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: explanation
+  rubric_component_ref: rubric.gpu_inference.6h.ml_moe_routing_dataflow
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- project_or_capstone_id: project.gpu_inference.integrated_serving_stack
+  skill_id: skill.multi_gpu.expert_parallel_sharding
+  objective_id: objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  role: supporting
+  structurally_essential: true
+  separately_observable: true
+  expected_evidence_type: design_argument
+  rubric_component_ref: rubric.gpu_inference.6h.multi_gpu_expert_parallel_sharding
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []

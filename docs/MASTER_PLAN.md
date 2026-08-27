@@ -247,8 +247,8 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ### [x] 6G — Weakness localization + remediation mapping — WLRM-v0 / D-061
 **Final:** `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/`
 
-- 543 accepted Skill + 590 accepted Objective exact overlay coverage,
-- 590 Objective remediation route,
+- final 6H-patched registry için 549 accepted Skill + 608 accepted Objective exact overlay coverage,
+- 608 Objective remediation route,
 - 12 failure-attribution rule + 15 remediation strategy family,
 - invalid/ambiguous/prerequisite-contaminated attempt target weakness yazmıyor,
 - H1–H4/provisional/partial signal confirmed remediation'a atlamıyor,
@@ -256,14 +256,27 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - `review_due` weakness değil,
 - broad Topic/Domain reset ve project-component broadcast yok,
 - closure fresh H0/direct/verified/prerequisite-valid evidence ile GRE/RVR üzerinden,
-- internal QA PASS, 0 blocking; independent external Research QA 6H'ye pending.
+- internal QA PASS; D-062 external Research QA sonrası final registry coverage 549/608 ve 6H external behavior review resolved.
 
-### [ ] 6H — Coverage / prerequisite / external Research QA — **AKTİF**
+### [x] 6H — Coverage / prerequisite / external Research QA — S6ERQA-v0 / D-062
+**Final:** `docs/STAGE6_EXTERNAL_RESEARCH_QA.md` + `research/6h_external_research_ai_report.md` + `curriculum/decomposition/6h_research_qa/`
+
+- 3 independent external evaluator → `PASS WITH REQUIRED CHANGES`,
+- 6 stable capability addition: NUMA locality/affinity, CUDA async data movement pipeline, speculative decoding trade-off, prefill/decode disaggregation, MoE routing, expert parallel sharding,
+- hidden prerequisite + DRA/runtime/freshness + D23/WLRM corrective patch applied,
+- vendor/model-specific fast-moving details kept as version-scoped Objective/example unless GNS-v0 independence test passes,
+- final Stage 6 = 23 route / 549 Skill / 608 Objective / 950 prerequisite edge,
+- combined hard graph 549/549 DAG,
+- WLRM exact coverage 549 Skill / 608 Objective,
+- 10/10 6H-owned reviews resolved,
+- historical 6C–6G regressions + final external reconciliation validator PASS,
+- Stage 6 complete; next step 7A.
+
 
 ---
 
 # AŞAMA 7 — İngilizce Paralel Hattı
-### [ ] 7A — Başlangıç ölçümü
+### [ ] 7A — Başlangıç ölçümü — **AKTİF**
 ### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri
 ### [ ] 7C — Günlük English bileşeni
 ### [ ] 7D — Teknik entegrasyon
@@ -432,11 +445,12 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6G`
-**Aktif:** **`6H — Coverage / prerequisite / external Research QA`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`  
+**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
+**Aktif:** **`7A — İngilizce başlangıç ölçümü`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **6F başlamadan fresh PRE-STEP GitHub refresh → FRDB-v0 + FDM-v0 + SDM-v0 + GIM-v0 registry/attribution setleri ile Professional Engineering detailed map → POST-STEP D-050 sync + stale-reference audit.**
+Bir sonraki yürütme: **7A fresh PRE-STEP → Stage 6 Technical English capability map + English foundation rules + assessment/mastery contracts ile başlangıç ölçümü tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
 
-- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`; canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`.
-
-- D-061: 6G final `WLRM-v0 — Weakness Localization & Remediation Map`; canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, dataset `curriculum/decomposition/6g_weakness_remediation/`.
+- D-060: 6F final `PEM-v0`.
+- D-061: 6G final `WLRM-v0`; final external-QA registry 549 Skill / 608 Objective coverage.
+- D-062: 6H final `S6ERQA-v0`; 3 independent evaluator reconciliation, 950 edges, 549/549 hard DAG, 10/10 review closure.

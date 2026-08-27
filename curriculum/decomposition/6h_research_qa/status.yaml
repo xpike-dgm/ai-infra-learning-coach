@@ -1,0 +1,23 @@
+stage_step: 6H
+status: PASS_EXTERNAL_RESEARCH_RECONCILED
+stage6_complete: true
+model: S6ERQA-v0
+decision: D-062
+checked_at: '2026-08-27'
+independent_external_research_ai:
+  status: complete
+  evaluator_count: 3
+  satisfies_d016: true
+final_counts:
+  route_families: 23
+  skills: 549
+  objectives: 608
+  prerequisite_edges: 950
+  hard_dag_nodes: 549/549
+  resolved_6h_reviews: 10/10
+canonical_summary: docs/STAGE6_EXTERNAL_RESEARCH_QA.md
+reconciliation_report: research/6h_external_research_ai_report.md
+next_step:
+  step: 7A
+  status: active_not_executed
+  requires_fresh_pre_and_user_approval: true

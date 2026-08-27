@@ -27,6 +27,9 @@ invariants:
 - dependent_branch_blocking_is_skill_local_and_prerequisite_aware
 - review_due_without_negative_evidence_is_not_weakness
 - global_project_failure_does_not_propagate_to_all_tagged_objectives
+- guidance_must_fade_as_verified_competence_and_transfer_evidence_accumulate
+- previously_mastered_target_defaults_to_verification_retrieval_transfer_or_diagnosis_before_full_reteach
+- ai_assistance_may_scaffold_remediation_but_never_satisfies_independent_closure_evidence
 source_refs:
 - source.repo.learning_behavior
 - source.repo.gre_v0
@@ -35,3 +38,4 @@ source_refs:
 - source.repo.task_taxonomy
 - source.repo.pbr_v0
 - source.repo.topic_state
+external_research_qa_ref: research/6h_external_research_ai_report.md

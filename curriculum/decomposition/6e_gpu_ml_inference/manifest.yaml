@@ -1,7 +1,7 @@
 package_id: decomposition.6e_gpu_ml_inference
 package_version: 1
 stage_step: 6E
-status: authoring_complete_internal_qa
+status: authoring_complete_external_qa
 blueprint_version: FRDB-v0
 graph_contract_version: KGC-v0
 granularity_standard_version: GNS-v0
@@ -42,34 +42,35 @@ source_catalog_refs:
 - source.repo.prg_v0
 - source.repo.professional_readiness
 - source.repo.internal_6e_authoring
+- source.repo.external_6h_research_qa
 coverage_declarations:
 - route_family_id: D14
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D15
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D16
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D17
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D18
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D19
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D20
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D21
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 - route_family_id: D22
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 prior_package_refs:
 - package_id: decomposition.6c_foundations
   reused_skill_count: 9
@@ -86,7 +87,7 @@ known_exclusions:
 - Production lesson/task/resource bodies belong to AŞAMA 15/20.
 - Physical database schema belongs to 9C.
 - English progression/cadence remains AŞAMA 7 and is not a global technical prerequisite.
-unresolved_review_count: 3
+unresolved_review_count: 0
 blocking_review_count: 0
 generated_at: '2026-08-26'
 authored_by: main_manager_gpt_5_6_sol

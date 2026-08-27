@@ -3078,3 +3078,25 @@
   source_refs:
   - source.repo.pdm_v0
   review_refs: []
+- capability_id: skill.os.numa_locality_affinity
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.os.numa_locality_affinity
+  professional_family_id: professional.profiling_benchmarking
+  attribution_role: supporting
+  context_requirements:
+  - fresh_independent_context
+  evidence_expectation_ref: GRE-v0
+  rationale: Systems capability supports this professional family without granting family-level mastery.
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []

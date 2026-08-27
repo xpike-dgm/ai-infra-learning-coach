@@ -596,6 +596,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
+  objective_id: objective.ai_infra.topology_aware_placement.orchestrated_accelerator_claim_placement
+  skill_id: skill.ai_infra.topology_aware_placement
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.ai_infra.workload_isolation_boundary.demonstrate_capability
   objective_id: objective.ai_infra.workload_isolation_boundary.demonstrate_capability
   skill_id: skill.ai_infra.workload_isolation_boundary
@@ -3916,6 +3949,38 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.cuda.async_data_movement_pipeline.demonstrate_capability
+  objective_id: objective.cuda.async_data_movement_pipeline.demonstrate_capability
+  skill_id: skill.cuda.async_data_movement_pipeline
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.cuda.block_synchronization.demonstrate_capability
   objective_id: objective.cuda.block_synchronization.demonstrate_capability
   skill_id: skill.cuda.block_synchronization
@@ -4189,6 +4254,39 @@
   - confirmed
   candidate_strategy_ids:
   - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.cuda.memory_visibility_ordering.cluster_scope_execution_memory
+  objective_id: objective.cuda.memory_visibility_ordering.cluster_scope_execution_memory
+  skill_id: skill.cuda.memory_visibility_ordering
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
   - strategy.explanation_rebuild
   - strategy.transfer_retest
   - strategy.fresh_independent_recheck
@@ -8529,6 +8627,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.ml.moe_routing_dataflow.demonstrate_capability
+  objective_id: objective.ml.moe_routing_dataflow.demonstrate_capability
+  skill_id: skill.ml.moe_routing_dataflow
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.ml.normalization_layer_reasoning.demonstrate_capability
   objective_id: objective.ml.normalization_layer_reasoning.demonstrate_capability
   skill_id: skill.ml.normalization_layer_reasoning
@@ -8828,6 +8959,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  objective_id: objective.multi_gpu.expert_parallel_sharding.demonstrate_capability
+  skill_id: skill.multi_gpu.expert_parallel_sharding
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.multi_gpu.gpu_direct_data_path.demonstrate_capability
   objective_id: objective.multi_gpu.gpu_direct_data_path.demonstrate_capability
   skill_id: skill.multi_gpu.gpu_direct_data_path
@@ -8896,6 +9060,39 @@
   - manual_mastery_score_override
 - route_id: route.remediation.multi_gpu.nccl_collective_operation.demonstrate_capability
   objective_id: objective.multi_gpu.nccl_collective_operation.demonstrate_capability
+  skill_id: skill.multi_gpu.nccl_collective_operation
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
+  objective_id: objective.multi_gpu.nccl_collective_operation.topology_current_algorithm_behavior
   skill_id: skill.multi_gpu.nccl_collective_operation
   entry_signals:
   - hypothesis
@@ -9061,6 +9258,39 @@
   - manual_mastery_score_override
 - route_id: route.remediation.multi_gpu.rdma_transport_model.demonstrate_capability
   objective_id: objective.multi_gpu.rdma_transport_model.demonstrate_capability
+  skill_id: skill.multi_gpu.rdma_transport_model
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
+  objective_id: objective.multi_gpu.rdma_transport_model.registration_zero_copy_lifecycle
   skill_id: skill.multi_gpu.rdma_transport_model
   entry_signals:
   - hypothesis
@@ -10311,6 +10541,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
+  objective_id: objective.optimization.kv_capacity_model.tiered_kv_offload_tradeoff
+  skill_id: skill.optimization.kv_capacity_model
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.optimization.kv_fragmentation_reasoning.demonstrate_capability
   objective_id: objective.optimization.kv_fragmentation_reasoning.demonstrate_capability
   skill_id: skill.optimization.kv_fragmentation_reasoning
@@ -10409,6 +10672,39 @@
   - manual_mastery_score_override
 - route_id: route.remediation.optimization.quantization_format_reasoning.demonstrate_capability
   objective_id: objective.optimization.quantization_format_reasoning.demonstrate_capability
+  skill_id: skill.optimization.quantization_format_reasoning
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.failure_scenario_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
+  objective_id: objective.optimization.quantization_format_reasoning.low_precision_format_family_tradeoff
   skill_id: skill.optimization.quantization_format_reasoning
   entry_signals:
   - hypothesis
@@ -10618,6 +10914,69 @@
   - strategy.failure_scenario_replay
   - strategy.targeted_reteach
   - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  objective_id: objective.optimization.speculative_decoding_tradeoff.demonstrate_capability
+  skill_id: skill.optimization.speculative_decoding_tradeoff
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.optimization.token_budget_scheduler.chunked_prefill_tradeoff
+  objective_id: objective.optimization.token_budget_scheduler.chunked_prefill_tradeoff
+  skill_id: skill.optimization.token_budget_scheduler
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
   - strategy.transfer_retest
   - strategy.fresh_independent_recheck
   precondition_checks:
@@ -11009,6 +11368,39 @@
   - strategy.measurement_replay
   - strategy.targeted_reteach
   - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.os.numa_locality_affinity.demonstrate_capability
+  objective_id: objective.os.numa_locality_affinity.demonstrate_capability
+  skill_id: skill.os.numa_locality_affinity
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
   - strategy.transfer_retest
   - strategy.fresh_independent_recheck
   precondition_checks:
@@ -12737,6 +13129,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.platform.scheduling_placement_constraints.accelerator_claim_topology
+  objective_id: objective.platform.scheduling_placement_constraints.accelerator_claim_topology
+  skill_id: skill.platform.scheduling_placement_constraints
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.platform.scheduling_placement_constraints.demonstrate_capability
   objective_id: objective.platform.scheduling_placement_constraints.demonstrate_capability
   skill_id: skill.platform.scheduling_placement_constraints
@@ -13735,6 +14160,39 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
+  objective_id: objective.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
+  skill_id: skill.professional.dependency_supply_chain_review
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.measurement_replay
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.professional.dependency_version_control.demonstrate_capability
   objective_id: objective.professional.dependency_version_control.demonstrate_capability
   skill_id: skill.professional.dependency_version_control
@@ -14337,6 +14795,39 @@
   - manual_mastery_score_override
 - route_id: route.remediation.professional.oss_contribution_policy.demonstrate_capability
   objective_id: objective.professional.oss_contribution_policy.demonstrate_capability
+  skill_id: skill.professional.oss_contribution_policy
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.production_retry
+  - strategy.measurement_replay
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.professional.oss_contribution_policy.live_policy_discovery
+  objective_id: objective.professional.oss_contribution_policy.live_policy_discovery
   skill_id: skill.professional.oss_contribution_policy
   entry_signals:
   - hypothesis
@@ -17351,6 +17842,38 @@
   - exact_same_item_immediate_retest_as_strong_evidence
   - broad_topic_or_domain_reset
   - manual_mastery_score_override
+- route_id: route.remediation.python.thread_process_choice.runtime_mode_tradeoff
+  objective_id: objective.python.thread_process_choice.runtime_mode_tradeoff
+  skill_id: skill.python.thread_process_choice
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
 - route_id: route.remediation.python.tuple_immutable_sequence.demonstrate_capability
   objective_id: objective.python.tuple_immutable_sequence.demonstrate_capability
   skill_id: skill.python.tuple_immutable_sequence
@@ -17954,6 +18477,39 @@
   - strategy.measurement_replay
   - strategy.targeted_reteach
   - strategy.production_retry
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.serving.prefill_decode_disaggregation.demonstrate_capability
+  objective_id: objective.serving.prefill_decode_disaggregation.demonstrate_capability
+  skill_id: skill.serving.prefill_decode_disaggregation
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.targeted_reteach
+  - strategy.measurement_replay
+  - strategy.explanation_rebuild
   - strategy.transfer_retest
   - strategy.fresh_independent_recheck
   precondition_checks:
@@ -19024,6 +19580,39 @@
   - manual_mastery_score_override
 - route_id: route.remediation.triton.matmul_performance_reasoning.demonstrate_capability
   objective_id: objective.triton.matmul_performance_reasoning.demonstrate_capability
+  skill_id: skill.triton.matmul_performance_reasoning
+  entry_signals:
+  - hypothesis
+  - supported
+  - verification_due
+  - confirmed
+  candidate_strategy_ids:
+  - strategy.measurement_replay
+  - strategy.targeted_reteach
+  - strategy.explanation_rebuild
+  - strategy.transfer_retest
+  - strategy.fresh_independent_recheck
+  precondition_checks:
+  - target_attribution_valid
+  - prerequisite_valid
+  - task_content_valid
+  planner_mapping_ids:
+  - need.map.weakness_hypothesis
+  - need.map.supported_premastery_weakness
+  - need.map.verification_due
+  - need.map.confirmed_remediation
+  closure_conditions:
+  - fresh_evidence_processed_by_GRE_RVR
+  - objective_required_gate_satisfied_when_applicable
+  - no_unresolved_verification_due_for_target
+  - skill_gate_recomputed_if_skill_remediation_was_active
+  forbidden_shortcuts:
+  - task_completion_closes_remediation
+  - exact_same_item_immediate_retest_as_strong_evidence
+  - broad_topic_or_domain_reset
+  - manual_mastery_score_override
+- route_id: route.remediation.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
+  objective_id: objective.triton.matmul_performance_reasoning.modern_pipeline_schedule_tradeoff
   skill_id: skill.triton.matmul_performance_reasoning
   entry_signals:
   - hypothesis

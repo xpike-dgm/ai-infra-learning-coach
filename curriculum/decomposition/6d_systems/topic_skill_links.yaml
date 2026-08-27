@@ -2669,3 +2669,16 @@
   - source.repo.internal_6d_authoring
   lifecycle_status: draft
   review_refs: []
+- topic_id: topic.os.virtual_memory_paging
+  skill_id: skill.os.numa_locality_affinity
+  role: teach
+  importance: core
+  is_primary_teaching_context: true
+  objective_scope_ids:
+  - objective.os.numa_locality_affinity.demonstrate_capability
+  authoring_rationale: Primary evidence-bearing teaching context.
+  source_refs:
+  - source.repo.internal_6d_authoring
+  - source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_refs: []

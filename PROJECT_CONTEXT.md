@@ -35,7 +35,7 @@ Canonical hierarchy:
 
 Gerçek mastery/prerequisite/weakness/remediation mümkün olduğunca Skill/Objective seviyesinde çalışır. `Python zayıf` gibi broad sonuçlar yalnız derived summary olabilir.
 
-AŞAMA 6, Technical English'ten AI Infrastructure ve professional capstone'a kadar bütün rotayı ölçülebilir alt Skill/Objective haritasına bölecektir.
+AŞAMA 6, Technical English'ten AI Infrastructure ve professional capstone'a kadar bütün rotayı ölçülebilir alt Skill/Objective haritasına böldü ve S6ERQA-v0 / D-062 ile bağımsız external Research QA'dan geçti.
 
 Canonical: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
@@ -93,15 +93,17 @@ Assessment raw score ile broad domain pass/fail yazmaz; Objective-level evidence
 
 **D-056 / FRDB-v0:** canonical `docs/FULL_ROUTE_DECOMPOSITION_BLUEPRINT.md`. 6B, 23 route family için 6C–6F common machine-readable authoring package, entity/relation row, duplicate/reuse, prerequisite, FBB mapping, source/freshness, review queue ve QA contract'ını kilitledi.
 
-**D-057 / FDM-v0:** canonical summary `docs/FOUNDATIONS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6c_foundations/`. D01–D05; 5 Domain, 14 Module, 46 Topic, 132 Skill, 137 Objective, 145 TopicSkillLink ve 200 prerequisite edge ile internally mapped; FBB 41/47 seed mapping complete, hard graph DAG, 0 blocking review. External validation 6H'ye pending.
+**D-057 / FDM-v0:** canonical summary `docs/FOUNDATIONS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6c_foundations/`. D01–D05; 5 Domain, 14 Module, 46 Topic, 132 Skill, 137 Objective, 145 TopicSkillLink ve 200 prerequisite edge ile internally mapped; FBB 41/47 seed mapping complete, hard graph DAG, 0 blocking review. External validation S6ERQA-v0 / D-062 ile tamamlandı.
 
-**D-058 / SDM-v0:** canonical summary `docs/SYSTEMS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6d_systems/`. D06–D13; 8 Domain, 21 Module, 64 Topic, 192 Skill, 207 Objective, 224 TopicSkillLink ve 313 prerequisite edge (259 hard / 54 soft). 43 accepted 6C Skill clone'lanmadan reuse edildi; 6C+6D birleşik hard graph DAG 324/324; 0 blocking review. External validation 6H'ye pending.
+**D-058 / SDM-v0:** canonical summary `docs/SYSTEMS_DETAILED_MAP.md`, dataset `curriculum/decomposition/6d_systems/`. D06–D13; 8 Domain, 21 Module, 64 Topic, 192 Skill, 207 Objective, 224 TopicSkillLink ve 313 prerequisite edge (259 hard / 54 soft). 43 accepted 6C Skill clone'lanmadan reuse edildi; 6C+6D birleşik hard graph DAG 324/324; 0 blocking review. External validation S6ERQA-v0 / D-062 ile tamamlandı.
 
-**D-059 / GIM-v0:** canonical summary `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, dataset `curriculum/decomposition/6e_gpu_ml_inference/`. D14–D22; 9 Domain, 27 Module, 70 Topic, 143 Skill, 159 Objective, 230 TopicSkillLink ve 279 prerequisite edge (247 hard / 32 soft). 59 prior Skill clone'lanmadan reuse edildi; 6C+6D+6E combined hard graph DAG 467/467; 0 blocking review. External validation 6H'ye pending.
+**D-059 / GIM-v0:** canonical summary `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, dataset `curriculum/decomposition/6e_gpu_ml_inference/`. D14–D22; 9 Domain, 27 Module, 70 Topic, 143 Skill, 159 Objective, 230 TopicSkillLink ve 279 prerequisite edge (247 hard / 32 soft). 59 prior Skill clone'lanmadan reuse edildi; 6C+6D+6E combined hard graph DAG 467/467; 0 blocking review. External validation S6ERQA-v0 / D-062 ile tamamlandı.
 
-**D-060 / PEM-v0:** canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`. D23; 1 Domain, 9 Module, 27 Topic, 76 Skill, 87 Objective. Existing D01–D22 technical capability'leri clone edilmeden professional project/capstone context'lerinde reuse edildi; 0 blocking review. External validation 6H'ye pending.
+**D-060 / PEM-v0:** canonical summary `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, dataset `curriculum/decomposition/6f_professional_engineering/`. D23; 1 Domain, 9 Module, 27 Topic, 76 Skill, 87 Objective. Existing D01–D22 technical capability'leri clone edilmeden professional project/capstone context'lerinde reuse edildi; 0 blocking review. External validation S6ERQA-v0 / D-062 ile tamamlandı.
 
-**D-061 / WLRM-v0:** canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, dataset `curriculum/decomposition/6g_weakness_remediation/`. 543 accepted Skill + 590 accepted Objective için weakness/remediation overlay; 590 route, 12 attribution rule, 15 strategy; 0 blocking review. External validation 6H'ye pending.
+**D-061 / WLRM-v0:** canonical summary `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, dataset `curriculum/decomposition/6g_weakness_remediation/`. 543 accepted Skill + 590 accepted Objective için weakness/remediation overlay; 590 route, 12 attribution rule, 15 strategy; 0 blocking review. External validation S6ERQA-v0 / D-062 ile tamamlandı.
+
+**D-062 / S6ERQA-v0:** canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`. Üç bağımsız external evaluator reconcile edildi; corrective patch sonrası Stage 6 final registry 549 Skill / 608 Objective / 950 prerequisite edge, hard DAG 549/549 ve WLRM exact coverage 549/608. 10/10 6H review resolved.
 
 ## 8. İngilizce
 
@@ -138,23 +140,22 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 
 ## 11. Güncel yürütme konumu
 
-- AŞAMA 1 ✅
-- AŞAMA 2 ✅
-- AŞAMA 3 ✅
-- AŞAMA 4 ✅
-- AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
-- AŞAMA 6:
-  - **6A ✅ GNS-v0 / D-054**
-  - **6B ✅ FRDB-v0 / D-056**
-  - **6C ✅ FDM-v0 / D-057**
-  - **6D ✅ SDM-v0 / D-058**
-  - **6E ✅ GIM-v0 / D-059**
-  - **6F ✅ PEM-v0 / D-060**
-  - **6G ✅ WLRM-v0 / D-061**
-  - **6H 🟡 Coverage / prerequisite / Research QA — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- AŞAMA 7–20 ⬜
+- AŞAMA 1–5 ✅
+- **AŞAMA 6 ✅ tamamlandı — S6ERQA-v0 / D-062**
+  - 6A ✅ GNS-v0 / D-054
+  - 6B ✅ FRDB-v0 / D-056
+  - 6C ✅ FDM-v0 / D-057
+  - 6D ✅ SDM-v0 / D-058
+  - 6E ✅ GIM-v0 / D-059
+  - 6F ✅ PEM-v0 / D-060
+  - 6G ✅ WLRM-v0 / D-061
+  - 6H ✅ S6ERQA-v0 / D-062
+- **7A 🟡 İngilizce başlangıç ölçümü — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 7B–20 ⬜
 
-**Sıradaki numaralı çalışma 6H'dir.** 6H başlamadan fresh PRE-STEP GitHub refresh ve bağımsız external Research AI workflow'u zorunludur; internal 6C–6G QA 6H'nin yerine geçmez.
+Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
+
+**Sıradaki numaralı çalışma 7A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

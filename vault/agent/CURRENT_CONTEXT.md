@@ -25,11 +25,12 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - [[vault/wiki/sources/Systems Map Source|SDM-v0]]: systems D06–D13 detailed map paketi tamamlandı.
 - [[vault/wiki/sources/GPU ML Inference Map Source|GIM-v0]]: GPU/ML/inference D14–D22 detailed map paketi tamamlandı.
 - [[vault/wiki/sources/Professional Engineering Map Source|PEM-v0]]: D23 professional engineering / OSS / project-capstone detailed map paketi tamamlandı.
-- [[vault/wiki/sources/Weakness Remediation Map Source|WLRM-v0]]: accepted 6C–6F registry için Objective-first weakness localization + remediation overlay tamamlandı.
+- [[vault/wiki/sources/Weakness Remediation Map Source|WLRM-v0]]: final Stage 6 registry için Objective-first weakness localization + remediation overlay tamamlandı.
+- `S6ERQA-v0 / D-062`: Stage 6 bağımsız external Research QA tamamlandı; canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
 
 ## Exact execution state
 
-6A–6G tamamlandı. Son tamamlanan adım **6G — WLRM-v0 / D-061**. Aktif adım **6H — Coverage / prerequisite / Research QA**; henüz yürütülmedi. 6H başlamadan fresh PRE-STEP ve bağımsız external Research AI zorunludur.
+AŞAMA 6 tamamen tamamlandı. Son tamamlanan adım **6H — S6ERQA-v0 / D-062**. Final Stage 6: 549 Skill / 608 Objective / 950 edge; hard DAG 549/549; 10/10 6H review resolved. Aktif adım **7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

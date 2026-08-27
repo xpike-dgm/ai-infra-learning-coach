@@ -1,0 +1,90 @@
+name: 6H Reconciliation Regression
+
+on:
+  push:
+    branches:
+      - work/6h-external-research-qa
+    paths:
+      - 'tools/apply_6h_external_qa_patch.py'
+      - 'tools/validate_6h_external_reconciliation.py'
+      - '.github/workflows/6h-reconciliation-regression.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile-and-validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install YAML dependency
+        run: python -m pip install pyyaml
+
+      - name: Regenerate accepted Stage 6 source packages
+        run: |
+          python tools/generate_foundations_package.py
+          python tools/generate_systems_package.py
+          python tools/generate_gpu_ml_inference_package.py
+          python tools/generate_professional_engineering_package.py
+
+      - name: Validate historical 6C-6F authoring regressions before 6H patch
+        run: |
+          python tools/validate_foundations_package.py
+          python tools/validate_systems_package.py
+          python tools/validate_gpu_ml_inference_package.py
+          python tools/validate_professional_engineering_package.py
+
+      - name: Apply external QA patch to accepted registries
+        run: python tools/apply_6h_external_qa_patch.py
+
+      - name: Regenerate WLRM against patched final registry
+        run: python tools/generate_weakness_remediation_overlay.py
+
+      - name: Validate historical 6G authoring regression before 6H behavior patch
+        run: python tools/validate_weakness_remediation_overlay.py
+
+      - name: Reapply 6H behavior/review patch after WLRM generation
+        run: python tools/apply_6h_external_qa_patch.py
+
+      - name: Validate final Stage 6 structural graph
+        run: python tools/validate_stage6_structural_qa.py
+
+      - name: Validate final external Research QA reconciliation
+        run: python tools/validate_6h_external_reconciliation.py
+
+      - name: Assert final external patch invariants
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          root=Path('.')
+          def y(p): return yaml.safe_load((root/p).read_text(encoding='utf-8'))
+          total_skills=sum(len(y(f'curriculum/decomposition/{d}/skills.yaml')) for d in ['6c_foundations','6d_systems','6e_gpu_ml_inference','6f_professional_engineering'])
+          total_objs=sum(len(y(f'curriculum/decomposition/{d}/objectives.yaml')) for d in ['6c_foundations','6d_systems','6e_gpu_ml_inference','6f_professional_engineering'])
+          g=y('curriculum/decomposition/6g_weakness_remediation/manifest.yaml')['counts']
+          assert g['skills_covered']==total_skills
+          assert g['objectives_covered']==total_objs
+          all_reviews=[]
+          for d in ['6c_foundations','6d_systems','6e_gpu_ml_inference','6f_professional_engineering','6g_weakness_remediation']:
+            all_reviews += y(f'curriculum/decomposition/{d}/review_queue.yaml')
+          owned=[x for x in all_reviews if x.get('resolution_owner_step')=='6H']
+          assert len(owned)==10 and all(x.get('status')=='resolved' for x in owned)
+          print(f'6H_PATCH_ASSERTIONS=PASS skills={total_skills} objectives={total_objs} resolved_6h_reviews={len(owned)}')
+          PY
+
+      - name: Commit regenerated reconciliation artifacts
+        run: |
+          if [ -z "$(git status --porcelain curriculum/decomposition)" ]; then
+            echo 'No generated reconciliation changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add curriculum/decomposition
+          git commit -m 'Apply 6H external QA reconciliation [skip ci]'
+          git push origin HEAD:work/6h-external-research-qa

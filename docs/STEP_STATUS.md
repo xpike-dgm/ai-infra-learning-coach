@@ -26,9 +26,10 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6D — Systems detailed map** | ✅ | SDM-v0 / D-058. D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı. |
 | **6E — GPU / ML / Inference detailed map** | ✅ | GIM-v0 / D-059. D14–D22 package + prior registry reuse + combined hard-graph QA tamamlandı. |
 | **6F — Professional engineering / project map** | ✅ | PEM-v0 / D-060. D23 professional workflow + OSS + project/capstone map tamamlandı. |
-| **6G — Weakness localization + remediation mapping** | ✅ | WLRM-v0 / D-061. 543 Skill + 590 Objective exact weakness/remediation overlay ve 590 route tamamlandı. |
-| **6H — Coverage / prerequisite / Research QA** | 🟡 Aktif | AŞAMA 6 bağımsız external coverage/current-industry/hidden-prerequisite QA. **Henüz yürütülmedi.** |
-| **7–20** | ⬜ Bekliyor | 6H sonrası canonical sırada. |
+| **6G — Weakness localization + remediation mapping** | ✅ | WLRM-v0 / D-061. Final 6H-patched registry için 549 Skill + 608 Objective exact weakness/remediation coverage. |
+| **6H — Coverage / prerequisite / Research QA** | ✅ | S6ERQA-v0 / D-062. 3 bağımsız evaluator reconcile edildi; 6 stable Skill + freshness/evidence patch; 549/549 hard DAG; 10/10 review resolved. |
+| **7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **7B–20** | ⬜ Bekliyor | 7A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -47,23 +48,21 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 6G
+## Son tamamlanan numaralı adım — 6H
 
-**Final:** `WLRM-v0 — Weakness Localization & Remediation Map` / D-061.  
-**Ana çıktı:** `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/`.
+**Final:** `S6ERQA-v0 — Stage 6 External Research QA` / D-062.  
+**Ana çıktı:** `docs/STAGE6_EXTERNAL_RESEARCH_QA.md` + `research/6h_external_research_ai_report.md` + `curriculum/decomposition/6h_research_qa/`.
 
-6G sonucu:
-- 543 accepted Skill / 590 accepted Objective exact coverage,
-- 590 Objective-specific remediation route,
-- 12 failure-attribution rule / 15 remediation strategy,
-- invalid/prerequisite-contaminated false-negative guard,
-- assisted/provisional hypothesis-only guard,
-- post-mastery `verification_due` hysteresis,
-- broad Topic/Domain/project broadcast guard,
-- remediation closure only by fresh valid evidence,
-- 0 blocking / 4 non-blocking 6G review,
-- independent external Research QA 6H'ye pending.
+6H sonucu:
+- 3 bağımsız evaluator: PASS WITH REQUIRED CHANGES,
+- corrective reconciliation sonrası 549 Skill / 608 Objective / 950 prerequisite edge,
+- combined hard graph 549/549 DAG,
+- 6 yeni stable capability: NUMA locality/affinity, CUDA async data pipeline, speculative decoding trade-off, prefill/decode disaggregation, MoE routing, expert parallel sharding,
+- fast-moving vendor/tool ayrıntıları version-scoped Objective/example olarak tutuldu,
+- WLRM 549/608 exact coverage,
+- 10/10 6H-owned review resolved,
+- final external reconciliation QA PASS.
 
-## Aktif adım — 6H Coverage / prerequisite / Research QA
+## Aktif adım — 7A İngilizce başlangıç ölçümü
 
-**6H henüz yürütülmedi.** Fresh PRE-STEP + ayrı bağımsız Research AI zorunludur.
+**7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

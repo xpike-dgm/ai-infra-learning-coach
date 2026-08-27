@@ -72,8 +72,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.array_pointer_distinction.demonstrate_capability
   owner_skill_id: skill.c.array_pointer_distinction
-  objective_statement: Yeni bir bağlamda Array object, pointer value ve decay davranışını uygun context'te ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda Array object, pointer value ve decay davranışını uygun context'te ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -317,8 +316,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.declaration_type_model.write_basic_declarations
   owner_skill_id: skill.c.declaration_type_model
-  objective_statement: Yeni bir bağlamda C declaration, scalar type, qualifier ve conversion davranışını okuyup
-    yazabilmek
+  objective_statement: Yeni bir bağlamda C declaration, scalar type, qualifier ve conversion davranışını okuyup yazabilmek
   observable_action: write_basic_declarations
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -353,8 +351,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.dynamic_allocation_lifecycle.demonstrate_capability
   owner_skill_id: skill.c.dynamic_allocation_lifecycle
-  objective_statement: Yeni bir bağlamda Allocate, ownership, use ve free lifecycle'ını hata yollarıyla birlikte
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Allocate, ownership, use ve free lifecycle'ını hata yollarıyla birlikte kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -388,8 +385,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.expression_evaluation.demonstrate_capability
   owner_skill_id: skill.c.expression_evaluation
-  objective_statement: Yeni bir bağlamda C operator, precedence, integer conversion ve side-effect sınırını güvenli
-    değerlendirebilmek
+  objective_statement: Yeni bir bağlamda C operator, precedence, integer conversion ve side-effect sınırını güvenli değerlendirebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -493,8 +489,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.functions_basic.write_and_call_function
   owner_skill_id: skill.c.functions_basic
-  objective_statement: Yeni bir bağlamda C function declaration, prototype, call, parameter ve return davranışını
-    kullanabilmek
+  objective_statement: Yeni bir bağlamda C function declaration, prototype, call, parameter ve return davranışını kullanabilmek
   observable_action: write_and_call_function
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -732,8 +727,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.scope_linkage_storage_duration.demonstrate_capability
   owner_skill_id: skill.c.scope_linkage_storage_duration
-  objective_statement: Yeni bir bağlamda Block/file scope, linkage ve storage duration kavramlarını örnekte ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda Block/file scope, linkage ve storage duration kavramlarını örnekte ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -768,8 +762,7 @@
   review_refs: []
 - objective_id_candidate: objective.c.standard_io_basic.demonstrate_capability
   owner_skill_id: skill.c.standard_io_basic
-  objective_statement: Yeni bir bağlamda Basit formatted input/output akışını return-value ve bounds farkındalığıyla
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Basit formatted input/output akışını return-value ve bounds farkındalığıyla kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -942,8 +935,7 @@
   review_refs: []
 - objective_id_candidate: objective.computing.source_runtime_artifact_distinction.classify_artifacts
   owner_skill_id: skill.computing.source_runtime_artifact_distinction
-  objective_statement: Yeni bir bağlamda Source, script, object, executable ve runtime output artifact'larını ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda Source, script, object, executable ve runtime output artifact'larını ayırt edebilmek
   observable_action: classify_artifacts
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -977,8 +969,7 @@
   review_refs: []
 - objective_id_candidate: objective.dsa.algorithm_correctness_invariant.demonstrate_capability
   owner_skill_id: skill.dsa.algorithm_correctness_invariant
-  objective_statement: Yeni bir bağlamda Precondition, invariant ve postcondition ile küçük algoritmanın doğruluğunu
-    açıklayabilmek
+  objective_statement: Yeni bir bağlamda Precondition, invariant ve postcondition ile küçük algoritmanın doğruluğunu açıklayabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -1048,8 +1039,7 @@
   review_refs: []
 - objective_id_candidate: objective.dsa.binary_search.demonstrate_capability
   owner_skill_id: skill.dsa.binary_search
-  objective_statement: Yeni bir bağlamda Sorted-input invariant altında binary search boundary update'lerini doğru
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Sorted-input invariant altında binary search boundary update'lerini doğru kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -1086,8 +1076,8 @@
   review_refs: []
 - objective_id_candidate: objective.dsa.complexity_growth_intuition.compare_growth_examples
   owner_skill_id: skill.dsa.complexity_growth_intuition
-  objective_statement: Yeni bir bağlamda Sabit, logarithmic ve linear benzeri growth farklarını input büyümesi üzerinden
-    ayırt edebilmek
+  objective_statement: Yeni bir bağlamda Sabit, logarithmic ve linear benzeri growth farklarını input büyümesi üzerinden ayırt
+    edebilmek
   observable_action: compare_growth_examples
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -1223,8 +1213,7 @@
   review_refs: []
 - objective_id_candidate: objective.dsa.linked_structure_reasoning.demonstrate_capability
   owner_skill_id: skill.dsa.linked_structure_reasoning
-  objective_statement: Yeni bir bağlamda Node/link traversal ve update invariants'ını pointer veya reference modeliyle
-    açıklayabilmek
+  objective_statement: Yeni bir bağlamda Node/link traversal ve update invariants'ını pointer veya reference modeliyle açıklayabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -1572,8 +1561,8 @@
   review_refs: []
 - objective_id_candidate: objective.english.documentation_navigation.demonstrate_capability
   owner_skill_id: skill.english.documentation_navigation
-  objective_statement: Yeni bir bağlamda Başlık, code block, option ve example işaretlerini kullanarak kısa dokümanda
-    bilgi bulabilmek
+  objective_statement: Yeni bir bağlamda Başlık, code block, option ve example işaretlerini kullanarak kısa dokümanda bilgi
+    bulabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -1745,8 +1734,7 @@
   review_refs: []
 - objective_id_candidate: objective.english.preposition_function_word_comprehension.demonstrate_capability
   owner_skill_id: skill.english.preposition_function_word_comprehension
-  objective_statement: Yeni bir bağlamda Teknik yönergelerde temel preposition ve function-word rollerini ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda Teknik yönergelerde temel preposition ve function-word rollerini ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -1953,8 +1941,8 @@
   review_refs: []
 - objective_id_candidate: objective.english.write_basic_bug_description.demonstrate_capability
   owner_skill_id: skill.english.write_basic_bug_description
-  objective_statement: Yeni bir bağlamda Öğretilmiş dil ile expected, actual ve error bilgisini içeren kısa bug
-    açıklaması yazabilmek
+  objective_statement: Yeni bir bağlamda Öğretilmiş dil ile expected, actual ve error bilgisini içeren kısa bug açıklaması
+    yazabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -2125,8 +2113,8 @@
   review_refs: []
 - objective_id_candidate: objective.git.recovery_safe_undo.demonstrate_capability
   owner_skill_id: skill.git.recovery_safe_undo
-  objective_statement: Yeni bir bağlamda Restore, revert ve reset seçeneklerini history/publication etkisine göre
-    güvenli seçebilmek
+  objective_statement: Yeni bir bağlamda Restore, revert ve reset seçeneklerini history/publication etkisine göre güvenli
+    seçebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -2160,8 +2148,7 @@
   review_refs: []
 - objective_id_candidate: objective.git.remote_sync.demonstrate_capability
   owner_skill_id: skill.git.remote_sync
-  objective_statement: Yeni bir bağlamda Fetch, pull/rebase seçimi ve push davranışını local/remote ref modeliyle
-    kullanabilmek
+  objective_statement: Yeni bir bağlamda Fetch, pull/rebase seçimi ve push davranışını local/remote ref modeliyle kullanabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -2471,8 +2458,7 @@
   review_refs: []
 - objective_id_candidate: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
   owner_skill_id: skill.linux.terminal_filesystem_navigation
-  objective_statement: Yeni bir bağlamda Relative/absolute path ve working directory ile güvenli terminal navigation
-    yapabilmek
+  objective_statement: Yeni bir bağlamda Relative/absolute path ve working directory ile güvenli terminal navigation yapabilmek
   observable_action: navigate_relative_absolute
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -2506,8 +2492,7 @@
   review_refs: []
 - objective_id_candidate: objective.linux.tool_discovery_help.demonstrate_capability
   owner_skill_id: skill.linux.tool_discovery_help
-  objective_statement: Yeni bir bağlamda Man/help/version output'undan command kullanımını ve capability sınırını
-    bulabilmek
+  objective_statement: Yeni bir bağlamda Man/help/version output'undan command kullanımını ve capability sınırını bulabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -2608,8 +2593,8 @@
   review_refs: []
 - objective_id_candidate: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
   owner_skill_id: skill.memory.storage_lifetime_intuition
-  objective_statement: Yeni bir bağlamda Automatic, static ve dynamic object lifetime sınırlarını başlangıç seviyesinde
-    ayırt edebilmek
+  objective_statement: Yeni bir bağlamda Automatic, static ve dynamic object lifetime sınırlarını başlangıç seviyesinde ayırt
+    edebilmek
   observable_action: identify_simple_lifetime_boundary
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -2714,8 +2699,7 @@
   review_refs: []
 - objective_id_candidate: objective.programming.debug_localization_basic.locate_cause
   owner_skill_id: skill.programming.debug_localization_basic
-  objective_statement: Yeni bir bağlamda Symptom, fault location ve likely cause'u ayırarak basit bug'ı lokalize
-    edebilmek
+  objective_statement: Yeni bir bağlamda Symptom, fault location ve likely cause'u ayırarak basit bug'ı lokalize edebilmek
   observable_action: locate_cause
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -3024,8 +3008,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.argument_binding.demonstrate_capability
   owner_skill_id: skill.python.argument_binding
-  objective_statement: Yeni bir bağlamda Positional, keyword, default ve variadic argument binding davranışını güvenli
-    kullanabilmek
+  objective_statement: Yeni bir bağlamda Positional, keyword, default ve variadic argument binding davranışını güvenli kullanabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3095,8 +3078,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.async_task_coordination.demonstrate_capability
   owner_skill_id: skill.python.async_task_coordination
-  objective_statement: Yeni bir bağlamda Async task, await, cancellation ve timeout davranışını küçük I/O örneğinde
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Async task, await, cancellation ve timeout davranışını küçük I/O örneğinde kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3130,8 +3112,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.benchmark_automation.demonstrate_capability
   owner_skill_id: skill.python.benchmark_automation
-  objective_statement: Yeni bir bağlamda Warmup, repeated runs ve structured result içeren küçük benchmark automation'ı
-    yazabilmek
+  objective_statement: Yeni bir bağlamda Warmup, repeated runs ve structured result içeren küçük benchmark automation'ı yazabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3267,8 +3248,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.comprehension_transformation.demonstrate_capability
   owner_skill_id: skill.python.comprehension_transformation
-  objective_statement: Yeni bir bağlamda Comprehension ile açık iteration arasındaki dönüşümü okuyup uygun olanı
-    yazabilmek
+  objective_statement: Yeni bir bağlamda Comprehension ile açık iteration arasındaki dönüşümü okuyup uygun olanı yazabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3337,8 +3317,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.data_model_protocols.demonstrate_capability
   owner_skill_id: skill.python.data_model_protocols
-  objective_statement: Yeni bir bağlamda Temel dunder protocol behavior'ını magic ezberi yerine object model üzerinden
-    açıklayabilmek
+  objective_statement: Yeni bir bağlamda Temel dunder protocol behavior'ını magic ezberi yerine object model üzerinden açıklayabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3406,8 +3385,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.debugging_tools.demonstrate_capability
   owner_skill_id: skill.python.debugging_tools
-  objective_statement: Yeni bir bağlamda Breakpoint, inspection ve minimal reproduction ile Python bug'ını lokalize
-    edebilmek
+  objective_statement: Yeni bir bağlamda Breakpoint, inspection ve minimal reproduction ile Python bug'ını lokalize edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3751,8 +3729,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.iterator_protocol.demonstrate_capability
   owner_skill_id: skill.python.iterator_protocol
-  objective_statement: Yeni bir bağlamda Iterable, iterator ve StopIteration modelini açıklayıp custom iteration'ı
-    okuyabilmek
+  objective_statement: Yeni bir bağlamda Iterable, iterator ve StopIteration modelini açıklayıp custom iteration'ı okuyabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -3786,8 +3763,8 @@
   review_refs: []
 - objective_id_candidate: objective.python.list_operations.select_and_use_sequence
   owner_skill_id: skill.python.list_operations
-  objective_statement: Yeni bir bağlamda Mutable ordered list üzerinde oluşturma, güncelleme, traversal ve copy
-    davranışını kullanabilmek
+  objective_statement: Yeni bir bağlamda Mutable ordered list üzerinde oluşturma, güncelleme, traversal ve copy davranışını
+    kullanabilmek
   observable_action: select_and_use_sequence
   success_criteria: Target behavior bağımsız olarak gözlenir; sonuç doğru ve tekrar doğrulanabilirdir.
   lifecycle_status: draft
@@ -3994,8 +3971,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.os_subprocess_interaction.demonstrate_capability
   owner_skill_id: skill.python.os_subprocess_interaction
-  objective_statement: Yeni bir bağlamda Environment, filesystem ve subprocess çağrılarını argument-safe biçimde
-    kullanabilmek
+  objective_statement: Yeni bir bağlamda Environment, filesystem ve subprocess çağrılarını argument-safe biçimde kullanabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4234,8 +4210,8 @@
   review_refs: []
 - objective_id_candidate: objective.python.string_text_operations.demonstrate_capability
   owner_skill_id: skill.python.string_text_operations
-  objective_statement: Yeni bir bağlamda Unicode string üzerinde slicing, searching, formatting ve normalization-aware
-    temel işlemler yapabilmek
+  objective_statement: Yeni bir bağlamda Unicode string üzerinde slicing, searching, formatting ve normalization-aware temel
+    işlemler yapabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4269,8 +4245,7 @@
   review_refs: []
 - objective_id_candidate: objective.python.tensor_device_dtype.demonstrate_capability
   owner_skill_id: skill.python.tensor_device_dtype
-  objective_statement: Yeni bir bağlamda Tensor shape, device ve dtype dönüşümlerini explicit ve doğrulanabilir
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Tensor shape, device ve dtype dönüşümlerini explicit ve doğrulanabilir kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4339,8 +4314,8 @@
   review_refs: []
 - objective_id_candidate: objective.python.thread_process_choice.demonstrate_capability
   owner_skill_id: skill.python.thread_process_choice
-  objective_statement: Yeni bir bağlamda Thread, process ve async seçeneklerini workload ve isolation ihtiyacına
-    göre ayırt edebilmek
+  objective_statement: Yeni bir bağlamda Thread, process ve async seçeneklerini workload ve isolation ihtiyacına göre ayırt
+    edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4511,8 +4486,8 @@
   review_refs: []
 - objective_id_candidate: objective.python.virtual_environment_dependency.demonstrate_capability
   owner_skill_id: skill.python.virtual_environment_dependency
-  objective_statement: Yeni bir bağlamda Virtual environment ve declared dependency ile yeniden üretilebilir Python
-    environment kurabilmek
+  objective_statement: Yeni bir bağlamda Virtual environment ve declared dependency ile yeniden üretilebilir Python environment
+    kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4647,8 +4622,8 @@
   review_refs: []
 - objective_id_candidate: objective.shell.expansion_quoting.demonstrate_capability
   owner_skill_id: skill.shell.expansion_quoting
-  objective_statement: Yeni bir bağlamda Variable, glob ve command substitution expansion'ını quoting ile güvenli
-    kontrol edebilmek
+  objective_statement: Yeni bir bağlamda Variable, glob ve command substitution expansion'ını quoting ile güvenli kontrol
+    edebilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4682,8 +4657,7 @@
   review_refs: []
 - objective_id_candidate: objective.shell.pipeline_redirection.demonstrate_capability
   owner_skill_id: skill.shell.pipeline_redirection
-  objective_statement: Yeni bir bağlamda Pipeline ve stdin/stdout/stderr redirection akışını kurup exit behavior'ı
-    yorumlayabilmek
+  objective_statement: Yeni bir bağlamda Pipeline ve stdin/stdout/stderr redirection akışını kurup exit behavior'ı yorumlayabilmek
   observable_action: demonstrate_capability
   success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
   lifecycle_status: draft
@@ -4745,6 +4719,44 @@
   - source.repo.gns_v0
   - source.repo.frdb_v0
   provenance_ref: source.repo.internal_6c_authoring
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.python.thread_process_choice.runtime_mode_tradeoff
+  owner_skill_id: skill.python.thread_process_choice
+  objective_statement: Python runtime mode/GIL-free-threaded davranışı dahil workload özelliklerine göre thread, process veya
+    async seçimini gerekçelendirebilmek.
+  observable_action: runtime_mode_tradeoff
+  success_criteria: Target behavior bağımsız, prerequisite-valid ve doğrulanabilir evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id019
+    - code_reading
+    - explanation
+    direct_evidence_types: *id019
+    required_direct_type: code_reading
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid task or artifact.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_runtime_or_workload
+  remediation_tags:
+  - targeted_reteach
+  - fresh_variant
+  source_refs:
+  - source.repo.gns_v0
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
   freshness_class: version_sensitive
   granularity_review_codes:
   - GRANULARITY_OK

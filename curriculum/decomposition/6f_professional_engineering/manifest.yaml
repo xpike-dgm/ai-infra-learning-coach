@@ -1,7 +1,7 @@
 package_id: decomposition.6f_professional_engineering
 package_version: 1
 stage_step: 6F
-status: authoring_complete_internal_qa
+status: authoring_complete_external_qa
 blueprint_version: FRDB-v0
 graph_contract_version: KGC-v0
 granularity_standard_version: GNS-v0
@@ -32,10 +32,11 @@ source_catalog_refs:
 - source.repo.professional_readiness
 - source.repo.prior_packages
 - source.repo.internal_6f_authoring
+- source.repo.external_6h_research_qa
 coverage_declarations:
 - route_family_id: D23
   status: internally_mapped
-  external_validation: pending_6H
+  external_validation: validated_6H
 prior_package_refs:
 - package_id: decomposition.6c_foundations
   reused_skill_count: 8
@@ -49,7 +50,7 @@ known_exclusions:
 - Production lesson/task/resource bodies belong to AŞAMA 15/20.
 - Career application/interview/job-search curriculum expansion belongs to AŞAMA 20.
 - Physical database schema belongs to 9C.
-unresolved_review_count: 3
+unresolved_review_count: 0
 blocking_review_count: 0
 generated_at: '2026-08-27'
 authored_by: main_manager_gpt_5_6_sol

@@ -88,8 +88,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -106,8 +106,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -158,8 +158,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -176,8 +176,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -279,8 +279,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -331,8 +331,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -349,8 +349,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -401,8 +401,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -470,8 +470,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -522,8 +522,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -540,8 +540,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -626,8 +626,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -661,8 +661,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -747,8 +747,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -918,8 +918,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -953,8 +953,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1107,8 +1107,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1380,8 +1380,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1551,8 +1551,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1654,8 +1654,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1672,8 +1672,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1690,8 +1690,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1776,8 +1776,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1794,8 +1794,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -1999,8 +1999,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2340,8 +2340,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2358,8 +2358,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2376,8 +2376,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2394,8 +2394,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2497,8 +2497,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2532,8 +2532,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2550,8 +2550,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2568,8 +2568,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2637,8 +2637,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2723,8 +2723,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -2928,8 +2928,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -3065,8 +3065,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -3389,8 +3389,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -3543,8 +3543,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -4411,8 +4411,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -4497,8 +4497,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -4855,8 +4855,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -4890,8 +4890,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -4976,8 +4976,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5028,8 +5028,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5046,8 +5046,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5064,8 +5064,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5082,8 +5082,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5100,8 +5100,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5118,8 +5118,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5187,8 +5187,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5205,8 +5205,8 @@
   edge_kind: soft
   reason_kind: conceptual_dependency
   strictness_profile_ref: default_prg_v0
-  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence
-    yorumlanabilir kaldığı için hard-block edilmez.'
+  authoring_rationale: 'Pass B sonucu: source derinlik veya akıcılık katar; target adil öğretilebilir ve evidence yorumlanabilir
+    kaldığı için hard-block edilmez.'
   contamination_risk_if_missing: low
   hard_soft_test_result: downgraded_to_soft_in_pass_b
   task_specific_instead_of_graph_edge: false
@@ -5368,6 +5368,57 @@
   - source.repo.prg_v0
   - source.repo.fdm_v0
   provenance_ref: source.repo.internal_6d_authoring
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.arch.cache_hierarchy_model
+  target_skill_id: skill.os.numa_locality_affinity
+  edge_kind: hard
+  reason_kind: performance_reasoning_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: Memory hierarchy/locality is required to interpret local-vs-remote NUMA cost.
+  contamination_risk_if_missing: high
+  hard_soft_test_result: 6H_external_research_reconciled
+  task_specific_instead_of_graph_edge: false
+  cross_package_ref: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.os.virtual_physical_translation
+  target_skill_id: skill.os.numa_locality_affinity
+  edge_kind: hard
+  reason_kind: evidence_interpretability
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: NUMA memory placement cannot be interpreted without virtual/physical translation and locality.
+  contamination_risk_if_missing: high
+  hard_soft_test_result: 6H_external_research_reconciled
+  task_specific_instead_of_graph_edge: false
+  cross_package_ref: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  lifecycle_status: draft
+  review_status: reviewed
+  review_refs: []
+- prerequisite_skill_id: skill.os.scheduler_model
+  target_skill_id: skill.os.numa_locality_affinity
+  edge_kind: soft
+  reason_kind: conceptual_dependency
+  strictness_profile_ref: default_prg_v0
+  authoring_rationale: CPU/thread affinity informs NUMA placement but basic locality can be taught independently.
+  contamination_risk_if_missing: medium
+  hard_soft_test_result: 6H_external_research_reconciled
+  task_specific_instead_of_graph_edge: false
+  cross_package_ref: false
+  source_refs:
+  - source.repo.prg_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
   lifecycle_status: draft
   review_status: reviewed
   review_refs: []

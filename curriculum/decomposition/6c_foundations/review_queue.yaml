@@ -29,9 +29,14 @@
   - independent Research AI
   - authoritative current sources
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Independent 6H reports found no blocking D01-D05 semantic gap; Python runtime concurrency assumptions are version-sensitive
+    and eBPF/io_uring remain optional contextual examples.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H

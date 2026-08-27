@@ -247,8 +247,7 @@
   review_refs: []
 - objective_id_candidate: objective.arch.instruction_execution_model.demonstrate_capability
   owner_skill_id: skill.arch.instruction_execution_model
-  objective_statement: Yeni bir bağlamda Instruction fetch, decode ve execute döngüsünü register/memory rolüyle
-    açıklayabilmek
+  objective_statement: Yeni bir bağlamda Instruction fetch, decode ve execute döngüsünü register/memory rolüyle açıklayabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -1453,8 +1452,7 @@
   review_refs: []
 - objective_id_candidate: objective.cpp.build_translation_model.demonstrate_capability
   owner_skill_id: skill.cpp.build_translation_model
-  objective_statement: Yeni bir bağlamda C++ preprocess, compile, link ve run aşamalarını araç çıktısıyla ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda C++ preprocess, compile, link ve run aşamalarını araç çıktısıyla ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -1696,8 +1694,7 @@
   review_refs: []
 - objective_id_candidate: objective.cpp.dependency_integration.demonstrate_capability
   owner_skill_id: skill.cpp.dependency_integration
-  objective_statement: Yeni bir bağlamda Third-party dependency'yi versiyonlanmış ve tekrar üretilebilir biçimde
-    entegre edebilmek
+  objective_statement: Yeni bir bağlamda Third-party dependency'yi versiyonlanmış ve tekrar üretilebilir biçimde entegre edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -2176,8 +2173,7 @@
   review_refs: []
 - objective_id_candidate: objective.cpp.sanitizer_ub_diagnosis.demonstrate_capability
   owner_skill_id: skill.cpp.sanitizer_ub_diagnosis
-  objective_statement: Yeni bir bağlamda Sanitizer bulgusunu C++ lifetime veya undefined-behavior kaynağına lokalize
-    edebilmek
+  objective_statement: Yeni bir bağlamda Sanitizer bulgusunu C++ lifetime veya undefined-behavior kaynağına lokalize edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -2278,8 +2274,7 @@
   review_refs: []
 - objective_id_candidate: objective.cpp.special_member_rules.demonstrate_capability
   owner_skill_id: skill.cpp.special_member_rules
-  objective_statement: Yeni bir bağlamda Special member function üretilme ve silinme kurallarını sınıf tasarımında
-    uygulayabilmek
+  objective_statement: Yeni bir bağlamda Special member function üretilme ve silinme kurallarını sınıf tasarımında uygulayabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -2313,8 +2308,8 @@
   review_refs: []
 - objective_id_candidate: objective.cpp.standard_version_toolchain_flags.demonstrate_capability
   owner_skill_id: skill.cpp.standard_version_toolchain_flags
-  objective_statement: Yeni bir bağlamda Language standard, warning ve optimization flag'lerinin derleme sonucuna
-    etkisini kontrol edebilmek
+  objective_statement: Yeni bir bağlamda Language standard, warning ve optimization flag'lerinin derleme sonucuna etkisini
+    kontrol edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -2661,8 +2656,7 @@
   review_refs: []
 - objective_id_candidate: objective.distributed.consistency_model_distinction.demonstrate_capability
   owner_skill_id: skill.distributed.consistency_model_distinction
-  objective_statement: Yeni bir bağlamda Güçlü, nihai ve ara consistency modellerini gözlemlenebilir davranışla
-    ayırabilmek
+  objective_statement: Yeni bir bağlamda Güçlü, nihai ve ara consistency modellerini gözlemlenebilir davranışla ayırabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -3074,8 +3068,7 @@
   review_refs: []
 - objective_id_candidate: objective.distributed.replication_models.demonstrate_capability
   owner_skill_id: skill.distributed.replication_models
-  objective_statement: Yeni bir bağlamda Replication topolojilerini durability ve availability gerekçesiyle ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda Replication topolojilerini durability ve availability gerekçesiyle ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -3725,8 +3718,7 @@
   review_refs: []
 - objective_id_candidate: objective.network.serialization_format_tradeoff.demonstrate_capability
   owner_skill_id: skill.network.serialization_format_tradeoff
-  objective_statement: Yeni bir bağlamda Serialization format seçimini schema, versiyon ve performans gerekçesiyle
-    yapabilmek
+  objective_statement: Yeni bir bağlamda Serialization format seçimini schema, versiyon ve performans gerekçesiyle yapabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -4416,8 +4408,7 @@
   review_refs: []
 - objective_id_candidate: objective.os.file_descriptor_model.demonstrate_capability
   owner_skill_id: skill.os.file_descriptor_model
-  objective_statement: Yeni bir bağlamda File descriptor, open file description ve inheritance davranışını ayırt
-    edebilmek
+  objective_statement: Yeni bir bağlamda File descriptor, open file description ve inheritance davranışını ayırt edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -4554,8 +4545,7 @@
   review_refs: []
 - objective_id_candidate: objective.os.memory_usage_diagnosis.demonstrate_capability
   owner_skill_id: skill.os.memory_usage_diagnosis
-  objective_statement: Yeni bir bağlamda Process memory kullanımını ölçüp büyüme veya sızıntı kaynağını lokalize
-    edebilmek
+  objective_statement: Yeni bir bağlamda Process memory kullanımını ölçüp büyüme veya sızıntı kaynağını lokalize edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -4794,8 +4784,7 @@
   review_refs: []
 - objective_id_candidate: objective.os.signal_handling_semantics.demonstrate_capability
   owner_skill_id: skill.os.signal_handling_semantics
-  objective_statement: Yeni bir bağlamda Signal delivery, handler kısıtları ve kesilen syscall davranışını doğru
-    kurabilmek
+  objective_statement: Yeni bir bağlamda Signal delivery, handler kısıtları ve kesilen syscall davranışını doğru kurabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -6136,8 +6125,7 @@
   review_refs: []
 - objective_id_candidate: objective.platform.container_vs_vm_boundary.demonstrate_capability
   owner_skill_id: skill.platform.container_vs_vm_boundary
-  objective_statement: Yeni bir bağlamda Container ve VM izolasyon sınırını güvenlik ile performans gerekçesiyle
-    ayırabilmek
+  objective_statement: Yeni bir bağlamda Container ve VM izolasyon sınırını güvenlik ile performans gerekçesiyle ayırabilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -6477,8 +6465,7 @@
   review_refs: []
 - objective_id_candidate: objective.platform.workload_failure_diagnosis.demonstrate_capability
   owner_skill_id: skill.platform.workload_failure_diagnosis
-  objective_statement: Yeni bir bağlamda Orkestre edilmiş workload arızasını event, log ve state üzerinden lokalize
-    edebilmek
+  objective_statement: Yeni bir bağlamda Orkestre edilmiş workload arızasını event, log ve state üzerinden lokalize edebilmek
   observable_action: demonstrate_capability
   success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
   lifecycle_status: draft
@@ -7118,6 +7105,83 @@
   - source.repo.gns_v0
   provenance_ref: source.repo.internal_6d_authoring
   freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.os.numa_locality_affinity.demonstrate_capability
+  owner_skill_id: skill.os.numa_locality_affinity
+  objective_statement: Process/thread placement, NUMA-local/remote memory locality ve device affinity ilişkisini topology
+    ve ölçüm verisiyle açıklayıp doğru placement seçebilmek.
+  observable_action: demonstrate_capability
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: critical
+  evidence_profile:
+    acceptable_evidence_types: &id027
+    - artifact_analysis
+    - explanation
+    direct_evidence_types: *id027
+    required_direct_type: artifact_analysis
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid systems task, artifact or observed run.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: fresh_context
+  remediation_tags:
+  - fresh_variant
+  - measurement_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.platform.scheduling_placement_constraints.accelerator_claim_topology
+  owner_skill_id: skill.platform.scheduling_placement_constraints
+  objective_statement: Resource-claim/device-class tarzı accelerator request modelinde device properties, topology domain
+    ve all-or-nothing workload placement kısıtlarını gerekçelendirebilmek.
+  observable_action: accelerator_claim_topology
+  success_criteria: Hedef davranış bağımsız, prerequisite-valid ve tekrar doğrulanabilir kanıtla gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id028
+    - system_observation
+    - explanation
+    direct_evidence_types: *id028
+    required_direct_type: system_observation
+    requires_user_authored_artifact: false
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh, prerequisite-valid systems task, artifact or observed run.
+  allowed_tools_policy_ref: H0 independent evidence
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_orchestrator_version_or_cluster
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
   granularity_review_codes:
   - GRANULARITY_OK
   review_refs: []

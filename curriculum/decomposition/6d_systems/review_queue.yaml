@@ -16,12 +16,17 @@
   - independent Research AI
   - authoritative current sources
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: 'Independent 6H QA identified one required hidden prerequisite: explicit NUMA locality/affinity. D06-D07/D09-D13
+    core coverage is otherwise sufficient for the target route.'
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6d.platform_tool_freshness
   subject_refs:
   - domain.containers_cloud_observability
@@ -33,12 +38,17 @@
   - current vendor documentation
   - freshness policy calibration
   resolution_owner_step: 6H
-  status: open
-  resolution: null
+  status: resolved
+  resolution: Stable scheduling/placement capability retained; Kubernetes DRA/ResourceClaim and topology/all-or-nothing scheduling
+    are version-scoped objectives/examples with freshness metadata.
   source_refs:
   - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6d.professional_overlay_reconciliation
   subject_refs:
   - domain.containers_cloud_observability

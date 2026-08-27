@@ -6,7 +6,13 @@
   - independent Research AI
   - authoritative learning/assessment sources
   resolution_owner_step: 6H
-  status: open
+  status: resolved
+  resolution: Independent learning-science QA corroborates WLRM core safety and requires explicit expertise-aware guidance
+    fading; AI assistance remains non-closure evidence. Executable guard scenarios added by 6H.
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - research/6h_external_research_ai_report.md
+  - 6H
 - review_id: review.6g.misconception_taxonomy_expansion
   severity: non_blocking
   question: Which domain-specific misconception labels should be production-authored beyond the generic runtime misconception

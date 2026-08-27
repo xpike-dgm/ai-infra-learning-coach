@@ -2374,3 +2374,75 @@
   - source.repo.professional_readiness
   - source.repo.frdb_v0
   review_refs: []
+- capability_id: skill.cuda.async_data_movement_pipeline
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.optimization.speculative_decoding_tradeoff
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.serving.prefill_decode_disaggregation
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.ml.moe_routing_dataflow
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.multi_gpu.expert_parallel_sharding
+  professional_family_id: professional.systems_design
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- capability_id: skill.multi_gpu.expert_parallel_sharding
+  professional_family_id: professional.performance_reasoning
+  attribution_role: supporting
+  context_requirements:
+  - fresh_accelerator_or_inference_context
+  evidence_expectation_ref: evidence.h0.objective_specific
+  rationale: Capability contributes an observable component to professional accelerator/inference engineering.
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []

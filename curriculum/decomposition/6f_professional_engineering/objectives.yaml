@@ -3131,3 +3131,82 @@
   granularity_review_codes:
   - GRANULARITY_OK
   review_refs: []
+- objective_id_candidate: objective.professional.dependency_supply_chain_review.distinguish_sbom_provenance_attestation
+  owner_skill_id: skill.professional.dependency_supply_chain_review
+  objective_statement: SBOM/component inventory, build provenance ve signed/verified attestation kanıtlarının farklı soruları
+    cevapladığını ayırıp release/dependency risk incelemesinde doğru kanıtı kullanabilmek.
+  observable_action: distinguish_sbom_provenance_attestation
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id015
+    - hands_on_workflow
+    - artifact_analysis
+    direct_evidence_types: *id015
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_supply_chain_standard_or_project
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []
+- objective_id_candidate: objective.professional.oss_contribution_policy.live_policy_discovery
+  owner_skill_id: skill.professional.oss_contribution_policy
+  objective_statement: Hedef upstream repository'nin güncel CONTRIBUTING/governance/test/review politikasını canlı authoritative
+    kaynaktan bulup contribution planına uygulayabilmek.
+  observable_action: live_policy_discovery
+  success_criteria: Davranış independent, prerequisite-valid, separately observable ve verified direct evidence ile gösterilir.
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  requirement_role: required
+  criticality: standard
+  evidence_profile:
+    acceptable_evidence_types: &id016
+    - hands_on_workflow
+    - artifact_analysis
+    direct_evidence_types: *id016
+    required_direct_type: hands_on_workflow
+    requires_user_authored_artifact: true
+    requires_transfer: true
+    evaluator_requirement: verified
+    policy_defaults_ref: GRE-v0
+  task_environment_expectation: Fresh real-repository or production-like engineering context.
+  allowed_tools_policy_ref: H0 independent evidence; normal engineering tools are allowed where tool use is not the hidden
+    answer.
+  diagnostic_eligibility: eligible
+  retention_requirement:
+    delayed_revalidation_required: true
+    context_diversity_requirement: different_upstream_repository
+  remediation_tags:
+  - fresh_variant
+  - review_replay
+  - targeted_reteach
+  source_refs:
+  - source.repo.professional_readiness
+  - source.repo.frdb_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  granularity_review_codes:
+  - GRANULARITY_OK
+  review_refs: []

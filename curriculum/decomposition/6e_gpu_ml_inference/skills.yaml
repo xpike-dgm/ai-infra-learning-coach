@@ -7818,3 +7818,298 @@
   - TOOL_SPECIFIC_SPLIT
   seed_mapping_refs: []
   review_refs: []
+- skill_id_candidate: skill.cuda.async_data_movement_pipeline
+  canonical_name: CUDA Async Data Movement Pipeline
+  capability_statement: Kernel içindeki tiled asynchronous data movement, staged producer/consumer dependency ve copy-compute
+    overlap'i correctness ve ölçülmüş performance ile doğrulayabilmek.
+  capability_kind: tool_specific_production
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.cuda.shared_memory_tiling
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.cuda
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - hands_on_system_task
+    - observed_result
+    example_outcome: Kernel içindeki tiled asynchronous data movement, staged producer/consumer dependency ve copy-compute
+      overlap'i correctness ve ölçülmüş performance ile doğrulayabilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: domain_or_tool_specific
+    rationale: Tool/runtime behavior changes the observable production boundary and therefore remains version/freshness scoped.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - performance_reasoning
+  - concurrency
+  - profiling_benchmarking
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: version_sensitive
+  technology_dependency_refs:
+  - technology.cuda_toolkit
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.cuda.shared_memory_tiling
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - TOOL_SPECIFIC_SPLIT
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.optimization.speculative_decoding_tradeoff
+  canonical_name: Speculative Decoding Trade-off
+  capability_statement: Draft/proposal ve target verification akışını correctness, acceptance behavior, additional compute/memory
+    ve latency/throughput trade-off'larıyla değerlendirebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.optimization.token_scheduler
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.inference_runtime_optimization
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - design_argument
+    - explanation
+    example_outcome: Draft/proposal ve target verification akışını correctness, acceptance behavior, additional compute/memory
+      ve latency/throughput trade-off'larıyla değerlendirebilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: shared
+    rationale: Stable reasoning/engineering capability is reusable across accelerator and inference contexts.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  - transfer
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: false
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - performance_reasoning
+  - systems_design
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.optimization.batch_composition_tradeoff
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.serving.prefill_decode_disaggregation
+  canonical_name: Prefill / Decode Disaggregation
+  capability_statement: Prefill ve decode'u ayrı worker/resource pools'a ayırıp KV-state handoff, routing, transfer cost,
+    SLO ve failure semantics açısından doğru deployment tasarlayabilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.serving.engine_worker_topology
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.inference_serving
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - system_observation
+    - explanation
+    example_outcome: Prefill ve decode'u ayrı worker/resource pools'a ayırıp KV-state handoff, routing, transfer cost, SLO
+      ve failure semantics açısından doğru deployment tasarlayabilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: shared
+    rationale: Stable reasoning/engineering capability is reusable across accelerator and inference contexts.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  - production_context
+  - transfer
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - systems_design
+  - reliability
+  - performance_reasoning
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.serving.worker_engine_topology
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.ml.moe_routing_dataflow
+  canonical_name: MoE Routing Dataflow
+  capability_statement: Router, top-k expert selection, token dispatch, expert compute ve combine dataflow'unu tensor shape/state
+    ve load distribution ile açıklayabilmek.
+  capability_kind: systems_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.ml.transformer_block_causal_lm
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.ml_transformer
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - system_observation
+    - explanation
+    example_outcome: Router, top-k expert selection, token dispatch, expert compute ve combine dataflow'unu tensor shape/state
+      ve load distribution ile açıklayabilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: shared
+    rationale: Stable reasoning/engineering capability is reusable across accelerator and inference contexts.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  - transfer
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - systems_design
+  - performance_reasoning
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.ml.transformer_block_dataflow
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []
+- skill_id_candidate: skill.multi_gpu.expert_parallel_sharding
+  canonical_name: Expert Parallel Sharding
+  capability_statement: Expert weights ve token traffic'i GPU/node'lar arasında shard edip communication, topology, load-imbalance
+    ve failure trade-off'larını değerlendirebilmek.
+  capability_kind: design_reasoning
+  lifecycle_status: draft
+  authoring_status: internally_qa_passed
+  primary_teaching_topic_id: topic.multi_gpu.parallelism_sharding
+  linked_topic_ids: []
+  shared_placement_domain_ids:
+  - domain.multi_gpu
+  independent_evidence_path:
+    observable: true
+    direct_evidence_types:
+    - system_observation
+    - explanation
+    example_outcome: Expert weights ve token traffic'i GPU/node'lar arasında shard edip communication, topology, load-imbalance
+      ve failure trade-off'larını değerlendirebilmek.
+  boundaries:
+    prerequisite_boundary: 6H reconciled hard/soft prerequisites define the fair and interpretable evidence boundary.
+    remediation_boundary: Failure is remediated at this exact capability; adjacent tool/version details do not reset the broad
+      Domain.
+    reuse_boundary: Stable behavior keeps one canonical Skill; vendor/API variants remain version-scoped examples/objectives.
+  shared_vs_specific:
+    classification: shared
+    rationale: Stable reasoning/engineering capability is reusable across accelerator and inference contexts.
+  evidence_depth_expectations:
+  - delayed_retention
+  - independent_application
+  - production_context
+  - transfer
+  retention_profile: complex
+  diagnostic_eligibility: eligible
+  critical_prerequisite_candidate: true
+  remediation_tags:
+  - fresh_variant
+  - targeted_reteach
+  professional_capability_tags:
+  - systems_design
+  - performance_reasoning
+  - distributed_systems
+  project_capability_tags: []
+  source_refs:
+  - source.repo.pdm_v0
+  - source.repo.frdb_v0
+  - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
+  provenance_ref: source.repo.external_6h_research_qa
+  freshness_class: evergreen
+  technology_dependency_refs: []
+  duplicate_resolution:
+    status: create_new
+    compared_skill_ids:
+    - skill.multi_gpu.tensor_parallel_sharding
+    rationale: Independent 6H external QA found a separately diagnosable capability boundary not covered by the accepted registry.
+  granularity_review_codes:
+  - GRANULARITY_OK
+  - SHARED_SKILL_REUSE
+  seed_mapping_refs: []
+  review_refs: []

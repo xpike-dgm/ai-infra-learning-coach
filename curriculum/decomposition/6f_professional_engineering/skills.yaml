@@ -2289,14 +2289,15 @@
   - source.repo.professional_readiness
   - source.repo.frdb_v0
   - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
   provenance_ref: source.repo.internal_6f_authoring
   freshness_class: evergreen
   technology_dependency_refs: []
   duplicate_resolution:
     status: create_new
     compared_skill_ids: []
-    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
-      distinct professional workflow behavior.
+    rationale: No equivalent generic canonical review-iteration Skill exists with the same upstream maintainer/repository-norm
+      workflow boundary.
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2344,14 +2345,16 @@
   - source.repo.professional_readiness
   - source.repo.frdb_v0
   - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
   provenance_ref: source.repo.internal_6f_authoring
   freshness_class: evergreen
   technology_dependency_refs: []
   duplicate_resolution:
     status: create_new
-    compared_skill_ids: []
-    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
-      distinct professional workflow behavior.
+    compared_skill_ids:
+    - skill.professional.pr_scope_discipline
+    rationale: '6H semantic comparison retained separate identity: OSS issue/patch readiness and generic PR communication/scope
+      occur at different lifecycle/evidence/remediation boundaries.'
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
@@ -2457,14 +2460,16 @@
   - source.repo.professional_readiness
   - source.repo.frdb_v0
   - source.repo.gns_v0
+  - source.repo.external_6h_research_qa
   provenance_ref: source.repo.internal_6f_authoring
   freshness_class: evergreen
   technology_dependency_refs: []
   duplicate_resolution:
     status: create_new
-    compared_skill_ids: []
-    rationale: Compared against accepted 6C/6D/6E registries; technical/tool capabilities are reused by ID and D23 adds only
-      distinct professional workflow behavior.
+    compared_skill_ids:
+    - skill.professional.pr_problem_solution_evidence
+    rationale: '6H semantic comparison retained separate identity: OSS issue/patch readiness and generic PR communication/scope
+      occur at different lifecycle/evidence/remediation boundaries.'
   granularity_review_codes:
   - GRANULARITY_OK
   - SHARED_SKILL_REUSE
