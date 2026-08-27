@@ -29,7 +29,7 @@ jobs:
         run: python tools/validate_daily_english_component.py --write-report
       - name: Commit deterministic 7C QA report
         run: |
-          if git diff --quiet -- curriculum/english/7c_daily_component/qa_report.yaml; then
+          if [ -z "$(git status --porcelain -- curriculum/english/7c_daily_component/qa_report.yaml)" ]; then
             echo "No QA report diff"
             exit 0
           fi
