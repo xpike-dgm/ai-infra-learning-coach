@@ -276,8 +276,18 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ---
 
 # AŞAMA 7 — İngilizce Paralel Hattı
-### [ ] 7A — Başlangıç ölçümü — **AKTİF**
-### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri
+### [x] 7A — Başlangıç ölçümü — EED-v0 / D-063
+**Final:** `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md` + `curriculum/english/7a_entry_diagnostic/`
+
+- 15/15 D01 English Skill ve 15/15 owner Objective diagnostic claim olarak kapsandı,
+- canonical 16 English hard edge birebir korundu; hard DAG 15/15,
+- 15 task family claim→evidence→task traceability ile tanımlandı,
+- GRE-v0/VDW-v0 standardı düşürülmedi; self-report evidence değil,
+- unknown-English / specialist-technical hidden prerequisite ve downstream fail broadcast yasak,
+- CEFR level ataması 7B'ye deferred; `review.6c.english.cefr_alignment` açık,
+- final Stage 6 regression + 7A independent deterministic validator PASS.
+
+### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF**
 ### [ ] 7C — Günlük English bileşeni
 ### [ ] 7D — Teknik entegrasyon
 ### [ ] 7E — English mastery
@@ -445,12 +455,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`  
-**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
-**Aktif:** **`7A — İngilizce başlangıç ölçümü`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A`  
+**Son tamamlanan:** **`7A — EED-v0 / D-063`**  
+**Aktif:** **`7B — A1/A2/B1/B2+ teknik hedefleri`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **7A fresh PRE-STEP → Stage 6 Technical English capability map + English foundation rules + assessment/mastery contracts ile başlangıç ölçümü tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **7B fresh PRE-STEP → EED-v0 diagnostic profile + Stage 6 D01 Skills + CEFR Companion Volume descriptors + `review.6c.english.cefr_alignment` ile technical progression alignment → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
 
-- D-060: 6F final `PEM-v0`.
-- D-061: 6G final `WLRM-v0`; final external-QA registry 549 Skill / 608 Objective coverage.
-- D-062: 6H final `S6ERQA-v0`; 3 independent evaluator reconciliation, 950 edges, 549/549 hard DAG, 10/10 review closure.
+- D-062: Stage 6 final `S6ERQA-v0`.
+- D-063: 7A final `EED-v0`; 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family, CEFR assignment pending 7B.

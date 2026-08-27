@@ -1,19 +1,17 @@
 model: EED-v0
 stage_step: 7A
-status: candidate_pending_qa
+status: accepted_7a
 canonical_skill_registry: curriculum/decomposition/6c_foundations/skills.yaml
 canonical_objective_registry: curriculum/decomposition/6c_foundations/objectives.yaml
 canonical_prerequisite_registry: curriculum/decomposition/6c_foundations/prerequisite_edges.yaml
 cefr_alignment_status: pending_7B
 cefr_level: null
-
 scope:
   domain_id: domain.technical_english
   route_family_id: D01
   expected_skill_count: 15
   objective_resolution: canonical_owner_objectives
   broad_domain_score_required: false
-
 invariants:
   diagnostic_mastery_standard: GRE-v0
   diagnostic_waiver_policy: VDW-v0
@@ -28,317 +26,281 @@ invariants:
   technical_curriculum_global_english_gate: false
   downstream_failure_broadcast: false
   unknown_grammar_hidden_prerequisite: forbidden
-
 profile_resolution_vocabulary:
-  - mastery_or_waiver_confirmed
-  - evidence_present_not_yet_sufficient
-  - learning_needed_clean_evidence
-  - prerequisite_unresolved
-  - not_assessed
-  - user_deferred
-  - invalid_or_contaminated
-
+- mastery_or_waiver_confirmed
+- evidence_present_not_yet_sufficient
+- learning_needed_clean_evidence
+- prerequisite_unresolved
+- not_assessed
+- user_deferred
+- invalid_or_contaminated
 routing:
   entry_root_skill_ids:
-    - skill.english.recognize_core_technical_labels
+  - skill.english.recognize_core_technical_labels
   diagnostic_stages:
-    - entry_probe
-    - branch_probe
-    - confirm
-    - production_probe
-    - transfer_confirm
+  - entry_probe
+  - branch_probe
+  - confirm
+  - production_probe
+  - transfer_confirm
   selection_priority:
-    - unresolved_hard_prerequisite_information
-    - downstream_unlock_value
-    - prior_knowledge_claim_check
-    - missing_GRE_or_VDW_evidence_gate
-    - expensive_production_probe
+  - unresolved_hard_prerequisite_information
+  - downstream_unlock_value
+  - prior_knowledge_claim_check
+  - missing_GRE_or_VDW_evidence_gate
+  - expensive_production_probe
   clean_success_actions:
-    - record_exact_objective_evidence
-    - recompute_downstream_eligibility
-    - schedule_confirm_only_if_normal_GRE_or_VDW_gate_requires_it
-    - never_broadcast_mastery_to_downstream_skill
+  - record_exact_objective_evidence
+  - recompute_downstream_eligibility
+  - schedule_confirm_only_if_normal_GRE_or_VDW_gate_requires_it
+  - never_broadcast_mastery_to_downstream_skill
   clean_failure_actions:
-    - localize_learning_need_to_exact_target
-    - mark_hard_dependents_prerequisite_unresolved
-    - keep_independent_sibling_branches_eligible
-    - never_mark_whole_english_domain_failed
+  - localize_learning_need_to_exact_target
+  - mark_hard_dependents_prerequisite_unresolved
+  - keep_independent_sibling_branches_eligible
+  - never_mark_whole_english_domain_failed
   invalid_or_contaminated_actions:
-    - do_not_write_target_negative_evidence
-    - preserve_target_as_unresolved
+  - do_not_write_target_negative_evidence
+  - preserve_target_as_unresolved
   pause_conditions:
-    - user_deferred
-    - session_capacity_exhausted
-    - remaining_branches_prerequisite_unresolved
-    - trusted_resource_or_evaluator_unavailable
-    - in_scope_branches_resolved
-
+  - user_deferred
+  - session_capacity_exhausted
+  - remaining_branches_prerequisite_unresolved
+  - trusted_resource_or_evaluator_unavailable
+  - in_scope_branches_resolved
 technical_context_policy:
   default: minimal_context_no_specialist_knowledge
   safe_examples:
-    - file_exists_or_missing
-    - command_runs_or_fails
-    - input_output
-    - value_error
-    - short_option_or_example_block
-    - fictional_cli_or_documentation_fragment
+  - file_exists_or_missing
+  - command_runs_or_fails
+  - input_output
+  - value_error
+  - short_option_or_example_block
+  - fictional_cli_or_documentation_fragment
   forbidden_hidden_dependencies:
-    - python_semantics
-    - c_pointer_reasoning
-    - linux_administration
-    - cuda_gpu_knowledge
-    - distributed_systems_knowledge
+  - python_semantics
+  - c_pointer_reasoning
+  - linux_administration
+  - cuda_gpu_knowledge
+  - distributed_systems_knowledge
   contaminated_task_resolution: invalid_or_contaminated
-
 self_report_context:
   allowed_fields:
-    - prior_english_learning
-    - documentation_reading_comfort
-    - error_message_reading_comfort
-    - short_technical_writing_comfort
-    - claimed_general_or_technical_level
-    - external_certificate_claim
-    - preferred_session_length
+  - prior_english_learning
+  - documentation_reading_comfort
+  - error_message_reading_comfort
+  - short_technical_writing_comfort
+  - claimed_general_or_technical_level
+  - external_certificate_claim
+  - preferred_session_length
   allowed_uses:
-    - probe_ordering
-    - branch_priority
-    - explanation_context
+  - probe_ordering
+  - branch_priority
+  - explanation_context
   prohibited_uses:
-    - mastery_write
-    - coverage_waiver_write
-    - negative_evidence_write
-
+  - mastery_write
+  - coverage_waiver_write
+  - negative_evidence_write
 claims:
-  - skill_id: skill.english.recognize_core_technical_labels
-    diagnostic_tier: foundation_recognition
-    hard_prerequisite_skill_ids: []
-    primary_evidence_type: recognition
-    task_family_id: english.term_meaning_match
-    default_stage: entry_probe
-
-  - skill_id: skill.english.technical_noun_phrase_recognition
-    diagnostic_tier: receptive_language_reasoning
-    hard_prerequisite_skill_ids:
-      - skill.english.recognize_core_technical_labels
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.noun_phrase_meaning
-    default_stage: branch_probe
-
-  - skill_id: skill.english.be_and_simple_present_comprehension
-    diagnostic_tier: receptive_language_reasoning
-    hard_prerequisite_skill_ids:
-      - skill.english.recognize_core_technical_labels
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.simple_sentence_function
-    default_stage: branch_probe
-
-  - skill_id: skill.english.imperative_instruction_comprehension
-    diagnostic_tier: receptive_language_reasoning
-    hard_prerequisite_skill_ids:
-      - skill.english.recognize_core_technical_labels
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.imperative_action_object
-    default_stage: branch_probe
-
-  - skill_id: skill.english.follow_bilingual_technical_instruction
-    diagnostic_tier: applied_comprehension
-    hard_prerequisite_skill_ids:
-      - skill.english.imperative_instruction_comprehension
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.bilingual_instruction_follow
-    default_stage: branch_probe
-
-  - skill_id: skill.english.read_simple_terminal_error_fragments
-    diagnostic_tier: applied_comprehension
-    hard_prerequisite_skill_ids:
-      - skill.english.recognize_core_technical_labels
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.error_signal_extract
-    default_stage: branch_probe
-
-  - skill_id: skill.english.preposition_function_word_comprehension
-    diagnostic_tier: receptive_language_reasoning
-    hard_prerequisite_skill_ids:
-      - skill.english.be_and_simple_present_comprehension
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.function_word_relation
-    default_stage: branch_probe
-
-  - skill_id: skill.english.negation_question_comprehension
-    diagnostic_tier: receptive_language_reasoning
-    hard_prerequisite_skill_ids:
-      - skill.english.be_and_simple_present_comprehension
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.negation_question_meaning
-    default_stage: branch_probe
-
-  - skill_id: skill.english.documentation_navigation
-    diagnostic_tier: applied_comprehension
-    hard_prerequisite_skill_ids:
-      - skill.english.recognize_core_technical_labels
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.documentation_navigation
-    default_stage: branch_probe
-
-  - skill_id: skill.english.read_definition_and_constraint
-    diagnostic_tier: applied_comprehension
-    hard_prerequisite_skill_ids:
-      - skill.english.technical_noun_phrase_recognition
-      - skill.english.be_and_simple_present_comprehension
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.definition_constraint_extract
-    default_stage: branch_probe
-
-  - skill_id: skill.english.read_procedure_sequence
-    diagnostic_tier: applied_comprehension
-    hard_prerequisite_skill_ids:
-      - skill.english.imperative_instruction_comprehension
-      - skill.english.preposition_function_word_comprehension
-    primary_evidence_type: reading_comprehension
-    task_family_id: english.procedure_sequence_track
-    default_stage: branch_probe
-
-  - skill_id: skill.english.write_command_result_note
-    diagnostic_tier: production
-    hard_prerequisite_skill_ids:
-      - skill.english.be_and_simple_present_comprehension
-    primary_evidence_type: written_or_spoken_production
-    task_family_id: english.command_result_note
-    default_stage: production_probe
-
-  - skill_id: skill.english.write_basic_bug_description
-    diagnostic_tier: production
-    hard_prerequisite_skill_ids:
-      - skill.english.negation_question_comprehension
-    primary_evidence_type: written_or_spoken_production
-    task_family_id: english.basic_bug_description
-    default_stage: production_probe
-
-  - skill_id: skill.english.explain_simple_technical_process
-    diagnostic_tier: production
-    hard_prerequisite_skill_ids:
-      - skill.english.read_procedure_sequence
-    primary_evidence_type: written_or_spoken_production
-    task_family_id: english.simple_process_explanation
-    default_stage: production_probe
-
-  - skill_id: skill.english.ask_clarifying_technical_question
-    diagnostic_tier: production_interaction
-    hard_prerequisite_skill_ids:
-      - skill.english.negation_question_comprehension
-    primary_evidence_type: written_or_spoken_production
-    task_family_id: english.clarifying_question
-    default_stage: production_probe
-
+- skill_id: skill.english.recognize_core_technical_labels
+  diagnostic_tier: foundation_recognition
+  hard_prerequisite_skill_ids: []
+  primary_evidence_type: recognition
+  task_family_id: english.term_meaning_match
+  default_stage: entry_probe
+- skill_id: skill.english.technical_noun_phrase_recognition
+  diagnostic_tier: receptive_language_reasoning
+  hard_prerequisite_skill_ids:
+  - skill.english.recognize_core_technical_labels
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.noun_phrase_meaning
+  default_stage: branch_probe
+- skill_id: skill.english.be_and_simple_present_comprehension
+  diagnostic_tier: receptive_language_reasoning
+  hard_prerequisite_skill_ids:
+  - skill.english.recognize_core_technical_labels
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.simple_sentence_function
+  default_stage: branch_probe
+- skill_id: skill.english.imperative_instruction_comprehension
+  diagnostic_tier: receptive_language_reasoning
+  hard_prerequisite_skill_ids:
+  - skill.english.recognize_core_technical_labels
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.imperative_action_object
+  default_stage: branch_probe
+- skill_id: skill.english.follow_bilingual_technical_instruction
+  diagnostic_tier: applied_comprehension
+  hard_prerequisite_skill_ids:
+  - skill.english.imperative_instruction_comprehension
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.bilingual_instruction_follow
+  default_stage: branch_probe
+- skill_id: skill.english.read_simple_terminal_error_fragments
+  diagnostic_tier: applied_comprehension
+  hard_prerequisite_skill_ids:
+  - skill.english.recognize_core_technical_labels
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.error_signal_extract
+  default_stage: branch_probe
+- skill_id: skill.english.preposition_function_word_comprehension
+  diagnostic_tier: receptive_language_reasoning
+  hard_prerequisite_skill_ids:
+  - skill.english.be_and_simple_present_comprehension
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.function_word_relation
+  default_stage: branch_probe
+- skill_id: skill.english.negation_question_comprehension
+  diagnostic_tier: receptive_language_reasoning
+  hard_prerequisite_skill_ids:
+  - skill.english.be_and_simple_present_comprehension
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.negation_question_meaning
+  default_stage: branch_probe
+- skill_id: skill.english.documentation_navigation
+  diagnostic_tier: applied_comprehension
+  hard_prerequisite_skill_ids:
+  - skill.english.recognize_core_technical_labels
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.documentation_navigation
+  default_stage: branch_probe
+- skill_id: skill.english.read_definition_and_constraint
+  diagnostic_tier: applied_comprehension
+  hard_prerequisite_skill_ids:
+  - skill.english.technical_noun_phrase_recognition
+  - skill.english.be_and_simple_present_comprehension
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.definition_constraint_extract
+  default_stage: branch_probe
+- skill_id: skill.english.read_procedure_sequence
+  diagnostic_tier: applied_comprehension
+  hard_prerequisite_skill_ids:
+  - skill.english.imperative_instruction_comprehension
+  - skill.english.preposition_function_word_comprehension
+  primary_evidence_type: reading_comprehension
+  task_family_id: english.procedure_sequence_track
+  default_stage: branch_probe
+- skill_id: skill.english.write_command_result_note
+  diagnostic_tier: production
+  hard_prerequisite_skill_ids:
+  - skill.english.be_and_simple_present_comprehension
+  primary_evidence_type: written_or_spoken_production
+  task_family_id: english.command_result_note
+  default_stage: production_probe
+- skill_id: skill.english.write_basic_bug_description
+  diagnostic_tier: production
+  hard_prerequisite_skill_ids:
+  - skill.english.negation_question_comprehension
+  primary_evidence_type: written_or_spoken_production
+  task_family_id: english.basic_bug_description
+  default_stage: production_probe
+- skill_id: skill.english.explain_simple_technical_process
+  diagnostic_tier: production
+  hard_prerequisite_skill_ids:
+  - skill.english.read_procedure_sequence
+  primary_evidence_type: written_or_spoken_production
+  task_family_id: english.simple_process_explanation
+  default_stage: production_probe
+- skill_id: skill.english.ask_clarifying_technical_question
+  diagnostic_tier: production_interaction
+  hard_prerequisite_skill_ids:
+  - skill.english.negation_question_comprehension
+  primary_evidence_type: written_or_spoken_production
+  task_family_id: english.clarifying_question
+  default_stage: production_probe
 task_families:
-  - task_family_id: english.term_meaning_match
-    target_skill_id: skill.english.recognize_core_technical_labels
-    elicitation: term_meaning_matching
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.noun_phrase_meaning
-    target_skill_id: skill.english.technical_noun_phrase_recognition
-    elicitation: short_phrase_meaning_discrimination
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.simple_sentence_function
-    target_skill_id: skill.english.be_and_simple_present_comprehension
-    elicitation: short_sentence_meaning_or_function
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.imperative_action_object
-    target_skill_id: skill.english.imperative_instruction_comprehension
-    elicitation: command_action_object_extraction
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.bilingual_instruction_follow
-    target_skill_id: skill.english.follow_bilingual_technical_instruction
-    elicitation: bilingual_instruction_execution_or_selection
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.error_signal_extract
-    target_skill_id: skill.english.read_simple_terminal_error_fragments
-    elicitation: terminal_or_compiler_signal_extraction
-    technical_context: fictional_or_non_specialist
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.function_word_relation
-    target_skill_id: skill.english.preposition_function_word_comprehension
-    elicitation: relation_or_function_word_interpretation
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.negation_question_meaning
-    target_skill_id: skill.english.negation_question_comprehension
-    elicitation: negation_or_question_meaning_classification
-    technical_context: minimal
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.documentation_navigation
-    target_skill_id: skill.english.documentation_navigation
-    elicitation: locate_information_using_heading_code_option_example
-    technical_context: fictional_or_non_specialist
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.definition_constraint_extract
-    target_skill_id: skill.english.read_definition_and_constraint
-    elicitation: identify_concept_condition_constraint
-    technical_context: fictional_or_non_specialist
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.procedure_sequence_track
-    target_skill_id: skill.english.read_procedure_sequence
-    elicitation: order_steps_and_track_condition_or_warning
-    technical_context: fictional_or_non_specialist
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.command_result_note
-    target_skill_id: skill.english.write_command_result_note
-    elicitation: short_written_command_input_result_note
-    technical_context: minimal
-    primary_modality: text
-    spoken_variant_requires_separate_capture_validation: true
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.basic_bug_description
-    target_skill_id: skill.english.write_basic_bug_description
-    elicitation: short_expected_actual_error_note
-    technical_context: fictional_or_non_specialist
-    primary_modality: text
-    spoken_variant_requires_separate_capture_validation: true
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.simple_process_explanation
-    target_skill_id: skill.english.explain_simple_technical_process
-    elicitation: ordered_short_process_explanation
-    technical_context: fictional_or_non_specialist
-    primary_modality: text
-    spoken_variant_requires_separate_capture_validation: true
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
-  - task_family_id: english.clarifying_question
-    target_skill_id: skill.english.ask_clarifying_technical_question
-    elicitation: formulate_short_clarifying_question
-    technical_context: fictional_or_non_specialist
-    primary_modality: text
-    spoken_variant_requires_separate_capture_validation: true
-    mastery_capable_only_when_trusted_and_GRE_valid: true
-
+- task_family_id: english.term_meaning_match
+  target_skill_id: skill.english.recognize_core_technical_labels
+  elicitation: term_meaning_matching
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.noun_phrase_meaning
+  target_skill_id: skill.english.technical_noun_phrase_recognition
+  elicitation: short_phrase_meaning_discrimination
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.simple_sentence_function
+  target_skill_id: skill.english.be_and_simple_present_comprehension
+  elicitation: short_sentence_meaning_or_function
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.imperative_action_object
+  target_skill_id: skill.english.imperative_instruction_comprehension
+  elicitation: command_action_object_extraction
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.bilingual_instruction_follow
+  target_skill_id: skill.english.follow_bilingual_technical_instruction
+  elicitation: bilingual_instruction_execution_or_selection
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.error_signal_extract
+  target_skill_id: skill.english.read_simple_terminal_error_fragments
+  elicitation: terminal_or_compiler_signal_extraction
+  technical_context: fictional_or_non_specialist
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.function_word_relation
+  target_skill_id: skill.english.preposition_function_word_comprehension
+  elicitation: relation_or_function_word_interpretation
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.negation_question_meaning
+  target_skill_id: skill.english.negation_question_comprehension
+  elicitation: negation_or_question_meaning_classification
+  technical_context: minimal
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.documentation_navigation
+  target_skill_id: skill.english.documentation_navigation
+  elicitation: locate_information_using_heading_code_option_example
+  technical_context: fictional_or_non_specialist
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.definition_constraint_extract
+  target_skill_id: skill.english.read_definition_and_constraint
+  elicitation: identify_concept_condition_constraint
+  technical_context: fictional_or_non_specialist
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.procedure_sequence_track
+  target_skill_id: skill.english.read_procedure_sequence
+  elicitation: order_steps_and_track_condition_or_warning
+  technical_context: fictional_or_non_specialist
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.command_result_note
+  target_skill_id: skill.english.write_command_result_note
+  elicitation: short_written_command_input_result_note
+  technical_context: minimal
+  primary_modality: text
+  spoken_variant_requires_separate_capture_validation: true
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.basic_bug_description
+  target_skill_id: skill.english.write_basic_bug_description
+  elicitation: short_expected_actual_error_note
+  technical_context: fictional_or_non_specialist
+  primary_modality: text
+  spoken_variant_requires_separate_capture_validation: true
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.simple_process_explanation
+  target_skill_id: skill.english.explain_simple_technical_process
+  elicitation: ordered_short_process_explanation
+  technical_context: fictional_or_non_specialist
+  primary_modality: text
+  spoken_variant_requires_separate_capture_validation: true
+  mastery_capable_only_when_trusted_and_GRE_valid: true
+- task_family_id: english.clarifying_question
+  target_skill_id: skill.english.ask_clarifying_technical_question
+  elicitation: formulate_short_clarifying_question
+  technical_context: fictional_or_non_specialist
+  primary_modality: text
+  spoken_variant_requires_separate_capture_validation: true
+  mastery_capable_only_when_trusted_and_GRE_valid: true
 cefr_handoff:
   owner_step: 7B
   open_review_id: review.6c.english.cefr_alignment
   required_inputs:
-    - D01_skill_capability_statements
-    - EED-v0_claim_task_blueprint
-    - EED-v0_profile_resolution_vocabulary
-    - CEFR_Companion_Volume_descriptors
+  - D01_skill_capability_statements
+  - EED-v0_claim_task_blueprint
+  - EED-v0_profile_resolution_vocabulary
+  - CEFR_Companion_Volume_descriptors
   may_assign_final_level_in_7A: false
-
 future_stage_boundaries:
   7B: CEFR_and_technical_target_alignment
   7C: daily_english_cadence_and_task_mix
@@ -346,3 +308,4 @@ future_stage_boundaries:
   7E: english_specific_mastery_presentation_and_behavior
   15: first_production_english_content
   18: calibration_and_validity_pilot
+decision: D-063

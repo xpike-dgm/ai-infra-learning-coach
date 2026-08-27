@@ -28,9 +28,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - [[vault/wiki/sources/Weakness Remediation Map Source|WLRM-v0]]: final Stage 6 registry için Objective-first weakness localization + remediation overlay tamamlandı.
 - `S6ERQA-v0 / D-062`: Stage 6 bağımsız external Research QA tamamlandı; canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
 
+- [[docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC|EED-v0]]: D01 Technical English için prerequisite-aware granular giriş diagnostic'i; CEFR alignment 7B'ye pending.
+
 ## Exact execution state
 
-AŞAMA 6 tamamen tamamlandı. Son tamamlanan adım **6H — S6ERQA-v0 / D-062**. Final Stage 6: 549 Skill / 608 Objective / 950 edge; hard DAG 549/549; 10/10 6H review resolved. Aktif adım **7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 tamamen tamamlandı. 7A da tamamlandı. Son tamamlanan adım **7A — EED-v0 / D-063**. EED-v0 final diagnostic scope: 15 D01 English Skill / 15 Objective / 16 English hard edge / 15 task family. Aktif adım **7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

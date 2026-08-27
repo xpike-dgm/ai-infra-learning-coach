@@ -224,14 +224,15 @@ PEM-v0:
 - AŞAMA 4 ✅ — DMA-v0 / WBA-v0 / MCA-v0 / QAB-v0 / AIV-v0
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ — GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0
-- AŞAMA 7A 🟡 active-not-executed
-- 7B–20 ⬜
+- AŞAMA 7A ✅ — EED-v0 / D-063
+- AŞAMA 7B 🟡 active-not-executed
+- 7C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `6H — S6ERQA-v0 / D-062`  
-**Aktif:** `7A — İngilizce başlangıç ölçümü`  
-**7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `7A — EED-v0 / D-063`  
+**Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  
+**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -264,6 +265,25 @@ S6ERQA-v0:
 - 10/10 6H-owned review resolved,
 - `tools/validate_6h_external_reconciliation.py` PASS.
 
-## 14. 7A handoff
+## 14. D-063 / 7A final özeti
 
-7A — İngilizce başlangıç ölçümü, AŞAMA 7'nin ilk numbered step'idir. Stage 6'nın granular Technical English Skills'i input olarak kullanır; exact başlangıç-placement/measurement davranışı 7A'da fresh PRE sonrası tasarlanır. Stage 7 ilerlemesi kullanıcı onayı olmadan başlatılmaz.
+Canonical: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`.  
+Blueprint/QA: `curriculum/english/7a_entry_diagnostic/`.  
+Research: `research/7a_english_entry_diagnostic_research.md`.
+
+EED-v0:
+- final D01 registry'deki 15 English Skill + 15 Objective exact diagnostic profile scope,
+- canonical 16 English hard prerequisite edge ve 15/15 DAG,
+- 15 claim/task family,
+- prerequisite-aware adaptive probing + pause/resume,
+- self-report/certificate/confidence non-evidence,
+- diagnostic mastery standardı GRE-v0/VDW-v0'dan daha kolay değil,
+- specialist technical knowledge ve unknown grammar/vocabulary hidden prerequisite olamaz,
+- invalid/prerequisite-unresolved attempt target negative evidence yazmaz,
+- dependent branch failure broadcast yok,
+- CEFR final level 7A'da atanmaz; 7B'ye pending,
+- final Stage 6 regression + `tools/validate_english_entry_diagnostic.py` PASS.
+
+## 15. 7B handoff
+
+7B — A1/A2/B1/B2+ teknik hedefleri, EED-v0 profile/claims ile Stage 6 D01 capability identities'ini CEFR Companion Volume descriptors ve professional Technical English hedefleriyle hizalayacaktır. `review.6c.english.cefr_alignment` 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

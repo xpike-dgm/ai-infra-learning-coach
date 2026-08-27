@@ -1,10 +1,10 @@
 # English Entry Diagnostic Spec — EED-v0
 
 **Adım:** 7A — Başlangıç ölçümü  
-**Durum:** CANDIDATE — QA + POST-STEP kapanışı bekliyor  
+**Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-27  
-**Candidate model:** `EED-v0 — English Entry Diagnostic`  
-**Candidate decision:** `D-063`
+**Final model:** `EED-v0 — English Entry Diagnostic`  
+**Final decision:** `D-063`
 
 Bu belge AI Infra Learning Coach'un kullanıcı ilk kez English paralel hattına girdiğinde mevcut English capability'lerini nasıl ölçeceğini tanımlar.
 
