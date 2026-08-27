@@ -18,6 +18,14 @@ replacements = {
 for old, new in replacements.items():
     text = text.replace(old, new)
 
+# Tolerate prior formatting differences around the final current-work sentence.
+text = re.sub(
+    r"\*\*Sıradaki gerçek numbered work:\*\*\s*`7D — Teknik entegrasyon`\.\s*\*\*7D henüz yürütülmedi\.\s*Fresh PRE-STEP \+ kullanıcı açık onayı zorunludur\.\*\*",
+    "**Sıradaki gerçek numbered work:** `7E — English mastery`.\n\n**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**",
+    text,
+    flags=re.I,
+)
+
 # Normalize any remaining simple stage-map form without touching historical prose that merely names 7D.
 text = re.sub(
     r"(?m)^- AŞAMA 7D 🟡 active-not-executed$",
