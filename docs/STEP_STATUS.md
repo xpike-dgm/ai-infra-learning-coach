@@ -31,8 +31,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **7A — İngilizce başlangıç ölçümü** | ✅ | EED-v0 / D-063. 15 Skill / 15 Objective / 16 hard edge diagnostic profile + 15 task family; QA PASS. |
 | **7B — A1/A2/B1/B2+ teknik hedefleri** | ✅ | TECP-v0 / D-064. 15 Skill = 5 A1 + 5 A2 + 5 B1; 4 bounded B2+ extensions; 16/16 band-monotonic hard edges; QA PASS. |
 | **7C — Günlük English bileşeni** | ✅ | DECP-v0 / D-065. Common capacity + daily candidate opportunity + PBR balance/starvation + state-driven task mix; QA PASS. |
-| **7D — Teknik entegrasyon** | 🟡 Aktif | English↔technical curriculum integration/scaffold behavior; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **7E–20** | ⬜ Bekliyor | 7D sonrası canonical sırada. |
+| **7D — Teknik entegrasyon** | ✅ | TEIP-v0 / D-066. 4 construct-aware integration mode + component attribution + bidirectional contamination/scaffold guards; QA PASS. |
+| **7E — English mastery** | 🟡 Aktif | Learner-facing English mastery/profile behavior; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8–20** | ⬜ Bekliyor | 7E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -51,24 +52,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 7C
+## Son tamamlanan numaralı adım — 7D
 
-**Final:** `DECP-v0 — Daily English Component Policy` / D-065.  
-**Ana çıktı:** `docs/DAILY_ENGLISH_COMPONENT_SPEC.md` + `curriculum/english/7c_daily_component/`.
+**Final:** `TEIP-v0 — Technical English Integration Policy` / D-066.  
+**Ana çıktı:** `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md` + `curriculum/english/7d_technical_integration/`.
 
-7C sonucu:
-- Technical English common daily hard capacity içinde çalışır; separate budget yok,
-- fixed daily minute/percentage/completion/streak/debt yok,
-- active-study-day + open/eligible/safe English need → en az bir English TaskCandidate,
-- candidate generation != selection != attempt != mastery,
-- normal parallel English P3; existing PBR balance/starvation `none/watch/promote` reuse,
-- fixed missed-day threshold yok,
-- task mix state-driven; RVR-v0 spacing owner,
-- feedback-assisted revision independent mastery evidence değil,
-- TECP-v0 B2+ boundary korunuyor,
-- technical integration 7D'ye, learner-facing English mastery/CEFR behavior 7E'ye deferred,
-- Stage 6 + accepted 7B + independent 7C validator PASS.
+7D sonucu:
+- exact D01 15 canonical Skill unchanged,
+- 4 integration mode: technical-only localized / technical+English exposure / dual-target / English-primary technical-context,
+- technical/English target + prerequisite + evidence attribution ayrı,
+- English/CEFR global technical gate yok,
+- 7 bidirectional contamination reason-code,
+- fixed Turkish/English ratio veya fixed scaffold-fading schedule yok,
+- scaffold evidence/task-validity driven ve reversible,
+- authentic/translated/AI support QAB/AIV/prerequisite/freshness guard'larına bağlı,
+- 15/15 safety fixture ve 49/49 independent validator check PASS,
+- Stage 6 + accepted 7B + accepted 7C regressions PASS.
 
-## Aktif adım — 7D Teknik entegrasyon
+## Aktif adım — 7E English mastery
 
-**7D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**7E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

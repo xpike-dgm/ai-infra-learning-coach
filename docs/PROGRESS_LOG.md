@@ -515,3 +515,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST sırasında living/current state 7C ✅ / 7D active-not-executed'e taşındı ve `LOCAL_MANAGER_HANDOFF.md` içindeki eski 6E/6F current-state drift'i temizlendi.
 
 **Sonraki kesin adım:** `7D — Teknik entegrasyon`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-08-27 — 7D Technical English integration tamamlandı — TEIP-v0 / D-066
+
+- Kullanıcı açık onayı sonrası fresh PRE ile 7C accepted / 7D active-not-executed state doğrulandı.
+- Council of Europe CEFR plurilingual/mediation guidance, ALTE language-for-specific-purposes testing guidance ve ETS construct-irrelevant language-demand guidance Research girdisi olarak incelendi; dış kaynaklardan fixed ratio/threshold türetilmedi.
+- Technical-only, technical-with-English-exposure, dual-target-integrated ve English-primary-technical-context olmak üzere dört construct-aware mode tanımlandı.
+- Technical ve English targets/prerequisites/rubrics/evidence ayrı tutuldu; global integrated PASS broadcast yasaklandı.
+- English-caused technical failure ve specialist-technical-context-caused English failure için bidirectional contamination guard tanımlandı.
+- Scaffold evidence/task-validity driven, reversible ve no-fixed-ratio/no-fixed-day olarak kilitlendi.
+- Authentic docs/terminal/errors/man/API/CUDA-style source kullanımı prerequisite + QAB/AIV/freshness/integrity guard'larına bağlandı.
+- İlk QA turunda yalnız YAML future-stage key typing uyuşmazlığı bulundu; semantic policy değişmeden string-key normalization yapıldı.
+- İkinci core QA: Stage 6 + 7B + 7C regressions PASS; 7D 49/49 check PASS.
+- D-050 POST living-memory + external-memory + repo-wide stale audit ile 7D kapatıldı; 7E active-not-executed yapıldı.
+
+**Sonraki kesin adım:** `7E — English mastery`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

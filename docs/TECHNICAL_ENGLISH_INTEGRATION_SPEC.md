@@ -1,10 +1,10 @@
 # Technical English Integration Spec — TEIP-v0
 
 **Adım:** 7D — Teknik entegrasyon  
-**Durum:** CANDIDATE — QA + POST-STEP kapanışı bekliyor  
+**Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-27  
-**Candidate model:** `TEIP-v0 — Technical English Integration Policy`  
-**Candidate decision:** `D-066`
+**Final model:** `TEIP-v0 — Technical English Integration Policy`  
+**Final decision:** `D-066`
 
 Bu belge Technical English'in Python, C, Linux/Git/Shell, systems, networking, distributed systems, GPU/CUDA, inference ve professional workflow task'larının içine **construct-valid** biçimde nasıl yerleştirileceğini tanımlar.
 
@@ -688,7 +688,7 @@ A validator/QA suite should explicitly cover at least:
 
 # 17. Candidate decision
 
-`TEIP-v0 / D-066` is accepted only after independent deterministic QA + D-050 POST.
+`TEIP-v0 / D-066` was accepted after independent deterministic QA + D-050 POST.
 
 Candidate summary:
 

@@ -18,7 +18,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 7A English entry diagnostic: EED-v0 / D-063 ile tamamlandı.
 - [x] 7B CEFR + technical progression alignment: TECP-v0 / D-064 ile tamamlandı; `review.6c.english.cefr_alignment` resolved.
 - [x] 7C Daily English component: DECP-v0 / D-065 ile tamamlandı; common-capacity daily candidate + no quota/streak/debt + PBR balance/starvation + state-driven task mix.
-- [ ] 7D Technical integration **AKTİF**: technical task'lerde English/bilingual scaffold, construct fairness ve cross-track evidence/prerequisite behavior.
+- [x] 7D Technical integration: TEIP-v0 / D-066 ile tamamlandı
+- [ ] 7E English mastery **AKTİF**: technical task'lerde English/bilingual scaffold, construct fairness ve cross-track evidence/prerequisite behavior.
 
 ## Knowledge-base operations
 

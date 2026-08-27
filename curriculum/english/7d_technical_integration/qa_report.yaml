@@ -3,7 +3,7 @@ model: TEIP-v0
 candidate_decision: D-066
 result: PASS
 checked_at: '2026-08-27'
-status_observed: candidate_7d
+status_observed: accepted_7d
 counts:
   canonical_english_skills: 15
   integration_modes: 4
@@ -33,7 +33,7 @@ checks:
   details: model=TEIP-v0 step=7D
 - check: E7D-01_status
   result: PASS
-  details: status=candidate_7d
+  details: status=accepted_7d
 - check: E7D-01_decision
   result: PASS
   details: decision=D-066

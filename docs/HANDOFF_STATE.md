@@ -227,14 +227,15 @@ PEM-v0:
 - AŞAMA 7A ✅ — EED-v0 / D-063
 - AŞAMA 7B ✅ — TECP-v0 / D-064
 - AŞAMA 7C ✅ — DECP-v0 / D-065
-- AŞAMA 7D 🟡 active-not-executed
+- AŞAMA 7D ✅ — TEIP-v0 / D-066
+- AŞAMA 7E 🟡 active-not-executed
 - 7E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `7C — DECP-v0 / D-065`  
-**Aktif:** `7D — Teknik entegrasyon`  
-**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `7D — TEIP-v0 / D-066`  
+**Aktif:** `7E — English mastery`  
+**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -322,6 +323,23 @@ DECP-v0:
 - technical integration 7D'ye, learner-facing English mastery/CEFR behavior 7E'ye deferred,
 - independent 7C QA PASS.
 
-## 17. 7D handoff
+## 17. D-066 / 7D final özeti
 
-7D — Teknik entegrasyon; EED-v0 + TECP-v0 + DECP-v0 ile English Foundation Rules / technical prerequisite / assessment evidence contracts'ını birleştirerek Python/C/Linux/GPU vb. teknik task'lerde English/bilingual scaffold'ın ne zaman ve nasıl kullanılacağını tasarlayacaktır. English global hard gate olmayacaktır. 7D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.  
+Policy/QA: `curriculum/english/7d_technical_integration/`.  
+Research: `research/7d_technical_english_integration_research.md`.
+
+TEIP-v0:
+- 15 canonical English Skill identity unchanged,
+- exactly 4 construct-aware integration mode,
+- technical/English targets + prerequisites + evidence separate,
+- English/CEFR global technical gate forbidden,
+- dual-target overall PASS broadcast forbidden,
+- bidirectional language/technical-context contamination guards,
+- evidence/task-validity driven reversible scaffold; no fixed ratio/day quota,
+- authentic resources + translation/gloss/AI support validity guards,
+- 15 safety fixture + independent 49-check QA PASS.
+
+## 18. 7E handoff
+
+7E — English mastery; learner-facing granular English mastery/profile/CEFR summary behavior, B2+ evidence presentation ve English-specific mastery/remediation display semantics'ini EED/TECP/DECP/TEIP + GRE/RVR/WLRM contracts üzerinde kesinleştirecektir. 7E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

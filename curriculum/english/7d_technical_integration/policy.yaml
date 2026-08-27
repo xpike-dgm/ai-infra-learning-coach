@@ -1,7 +1,6 @@
 model: TEIP-v0
 stage_step: 7D
-status: candidate_7d
-candidate_decision: D-066
+status: accepted_7d
 canonical_sources:
   english_entry: curriculum/english/7a_entry_diagnostic/blueprint.yaml
   cefr_progression: curriculum/english/7b_cefr_progression/alignment.yaml
@@ -22,21 +21,21 @@ scope:
   new_prerequisite_edge_creation: forbidden
   physical_db_schema: deferred_9C
 canonical_english_skill_ids:
-  - skill.english.recognize_core_technical_labels
-  - skill.english.technical_noun_phrase_recognition
-  - skill.english.be_and_simple_present_comprehension
-  - skill.english.imperative_instruction_comprehension
-  - skill.english.preposition_function_word_comprehension
-  - skill.english.negation_question_comprehension
-  - skill.english.follow_bilingual_technical_instruction
-  - skill.english.read_simple_terminal_error_fragments
-  - skill.english.documentation_navigation
-  - skill.english.write_command_result_note
-  - skill.english.read_definition_and_constraint
-  - skill.english.read_procedure_sequence
-  - skill.english.write_basic_bug_description
-  - skill.english.explain_simple_technical_process
-  - skill.english.ask_clarifying_technical_question
+- skill.english.recognize_core_technical_labels
+- skill.english.technical_noun_phrase_recognition
+- skill.english.be_and_simple_present_comprehension
+- skill.english.imperative_instruction_comprehension
+- skill.english.preposition_function_word_comprehension
+- skill.english.negation_question_comprehension
+- skill.english.follow_bilingual_technical_instruction
+- skill.english.read_simple_terminal_error_fragments
+- skill.english.documentation_navigation
+- skill.english.write_command_result_note
+- skill.english.read_definition_and_constraint
+- skill.english.read_procedure_sequence
+- skill.english.write_basic_bug_description
+- skill.english.explain_simple_technical_process
+- skill.english.ask_clarifying_technical_question
 invariants:
   english_global_technical_hard_gate: false
   cefr_band_as_technical_gate: false
@@ -51,56 +50,56 @@ invariants:
   assistance_is_independent_mastery: false
   authentic_resource_overrides_prerequisite_validity: false
 integration_modes:
-  - mode: technical_only_localized
-    primary_construct: technical
-    technical_target_required: true
-    english_target_allowed: false
-    english_mastery_attribution: forbidden
-    english_hard_gate: forbidden
-    non_target_language_support: allowed
-    rule: Non-target English load is localized or scaffolded so technical capability remains interpretable.
-  - mode: technical_with_english_exposure
-    primary_construct: technical
-    technical_target_required: true
-    english_target_allowed: optional_only_if_explicitly_declared
-    english_mastery_from_exposure_alone: forbidden
-    construct_essential_english_must_be: ready_or_neutralized
-    rule: Authentic English may support exposure/reinforcement while technical attribution remains primary unless an English Objective is separately declared and observed.
-  - mode: dual_target_integrated
-    primary_construct: dual
-    technical_target_required: true
-    english_target_required: true
-    technical_and_english_prerequisites_explicit: true
-    component_rubrics_required: true
-    component_evidence_results_required: true
-    overall_pass_broadcast: forbidden
-    rule: Technical and English components are independently attributed and may have different outcomes.
-  - mode: english_primary_technical_context
-    primary_construct: english
-    english_target_required: true
-    technical_target_default: none
-    specialist_technical_reasoning_as_hidden_requirement: forbidden
-    technical_context_must_be: ready_controlled_or_scaffolded
-    rule: Technical context supports the English construct and cannot create false English failure.
+- mode: technical_only_localized
+  primary_construct: technical
+  technical_target_required: true
+  english_target_allowed: false
+  english_mastery_attribution: forbidden
+  english_hard_gate: forbidden
+  non_target_language_support: allowed
+  rule: Non-target English load is localized or scaffolded so technical capability remains interpretable.
+- mode: technical_with_english_exposure
+  primary_construct: technical
+  technical_target_required: true
+  english_target_allowed: optional_only_if_explicitly_declared
+  english_mastery_from_exposure_alone: forbidden
+  construct_essential_english_must_be: ready_or_neutralized
+  rule: Authentic English may support exposure/reinforcement while technical attribution remains primary unless an English Objective is separately declared and observed.
+- mode: dual_target_integrated
+  primary_construct: dual
+  technical_target_required: true
+  english_target_required: true
+  technical_and_english_prerequisites_explicit: true
+  component_rubrics_required: true
+  component_evidence_results_required: true
+  overall_pass_broadcast: forbidden
+  rule: Technical and English components are independently attributed and may have different outcomes.
+- mode: english_primary_technical_context
+  primary_construct: english
+  english_target_required: true
+  technical_target_default: none
+  specialist_technical_reasoning_as_hidden_requirement: forbidden
+  technical_context_must_be: ready_controlled_or_scaffolded
+  rule: Technical context supports the English construct and cannot create false English failure.
 language_load_roles:
-  - incidental
-  - supporting
-  - construct_relevant
+- incidental
+- supporting
+- construct_relevant
 instruction_language_modes:
-  - turkish_primary
-  - bilingual_parallel
-  - english_with_targeted_gloss
-  - english_primary_with_non_target_support
-  - english_unscaffolded
+- turkish_primary
+- bilingual_parallel
+- english_with_targeted_gloss
+- english_primary_with_non_target_support
+- english_unscaffolded
 scaffold_surfaces:
-  - turkish_instruction
-  - bilingual_parallel_instruction
-  - glossary_or_term_gloss
-  - non_target_segment_translation
-  - instruction_chunking
-  - syntactic_simplification
-  - context_explanation
-  - non_answer_revealing_example
+- turkish_instruction
+- bilingual_parallel_instruction
+- glossary_or_term_gloss
+- non_target_segment_translation
+- instruction_chunking
+- syntactic_simplification
+- context_explanation
+- non_answer_revealing_example
 scaffold_rules:
   technical_target:
     support_can_neutralize_language_load: true
@@ -118,40 +117,40 @@ scaffold_rules:
     can_restore_support_for_new_load_or_remediation: true
 task_integration_contract:
   required_semantic_fields:
-    - integration_mode
-    - technical_target_skill_ids
-    - technical_target_objective_ids
-    - english_target_skill_ids
-    - english_target_objective_ids
-    - technical_required_skill_ids
-    - english_required_skill_ids
-    - language_load_role
-    - authentic_resource_refs
-    - instruction_language_mode
-    - scaffold_surfaces
-    - construct_essential_language_segments
-    - component_attribution
-    - assistance_ceiling_by_component
-    - contamination_reason_codes
-    - integration_policy_version
+  - integration_mode
+  - technical_target_skill_ids
+  - technical_target_objective_ids
+  - english_target_skill_ids
+  - english_target_objective_ids
+  - technical_required_skill_ids
+  - english_required_skill_ids
+  - language_load_role
+  - authentic_resource_refs
+  - instruction_language_mode
+  - scaffold_surfaces
+  - construct_essential_language_segments
+  - component_attribution
+  - assistance_ceiling_by_component
+  - contamination_reason_codes
+  - integration_policy_version
   target_and_prerequisite_families_separate: true
   technical_and_english_attribution_separate: true
 component_result_values:
-  - positive_eligible
-  - negative_eligible
-  - practice_only
-  - provisional
-  - invalid_prerequisite_contamination
-  - invalid_scaffold_leakage
-  - not_observed
+- positive_eligible
+- negative_eligible
+- practice_only
+- provisional
+- invalid_prerequisite_contamination
+- invalid_scaffold_leakage
+- not_observed
 contamination_reason_codes:
-  - language_access_contamination
-  - technical_context_contamination
-  - undeclared_english_prerequisite
-  - undeclared_technical_prerequisite
-  - scaffold_answer_leakage
-  - component_not_separately_observable
-  - overall_outcome_broadcast_forbidden
+- language_access_contamination
+- technical_context_contamination
+- undeclared_english_prerequisite
+- undeclared_technical_prerequisite
+- scaffold_answer_leakage
+- component_not_separately_observable
+- overall_outcome_broadcast_forbidden
 contamination_policy:
   unknown_english_causes_technical_failure:
     technical_negative_result: invalid_prerequisite_contamination
@@ -172,128 +171,129 @@ natural_integration:
   component_evidence_separate: true
   optional_integration_can_bypass_p0_p1: false
   english_strong_evidence_requires:
-    - explicit_english_target_objective
-    - structurally_essential_language_behavior
-    - separately_observable
-    - prerequisite_valid
-    - normal_GRE_PRG_QAB_requirements
-    - no_answer_revealing_scaffold
+  - explicit_english_target_objective
+  - structurally_essential_language_behavior
+  - separately_observable
+  - prerequisite_valid
+  - normal_GRE_PRG_QAB_requirements
+  - no_answer_revealing_scaffold
   otherwise_english_effect: practice_reinforcement_or_exposure
 authentic_resource_policy:
   allowed_contexts:
-    - compiler_runtime_errors
-    - terminal_output
-    - man_pages
-    - readme_and_documentation
-    - github_issue_or_pr_text
-    - configuration_docs
-    - api_reference
-    - cuda_triton_runtime_docs
-    - benchmark_profiling_output
-    - incident_runbook_fragments
+  - compiler_runtime_errors
+  - terminal_output
+  - man_pages
+  - readme_and_documentation
+  - github_issue_or_pr_text
+  - configuration_docs
+  - api_reference
+  - cuda_triton_runtime_docs
+  - benchmark_profiling_output
+  - incident_runbook_fragments
   authenticity_is_automatic_validity: false
   reject_or_scaffold_if:
-    - language_load_exceeds_learner_state
-    - technical_concepts_exceed_target_scope
-    - vendor_or_version_detail_is_stale
-    - specialist_domain_knowledge_contaminates_english_construct
-    - translation_or_gloss_changes_technical_meaning
+  - language_load_exceeds_learner_state
+  - technical_concepts_exceed_target_scope
+  - vendor_or_version_detail_is_stale
+  - specialist_domain_knowledge_contaminates_english_construct
+  - translation_or_gloss_changes_technical_meaning
   assessment_use_obeys_qab_aiv: true
 translation_gloss_integrity:
   preserve:
-    - technical_meaning
-    - constraints_and_warnings
-    - negation
-    - parameter_names_and_identifiers_when_relevant
-    - code_and_command_literals
+  - technical_meaning
+  - constraints_and_warnings
+  - negation
+  - parameter_names_and_identifiers_when_relevant
+  - code_and_command_literals
   semantic_change_invalidates_strong_evidence: true
   ai_generated_support_self_validating: false
 route_patterns:
   python_c:
     typical_modes:
-      - technical_only_localized
-      - dual_target_integrated
+    - technical_only_localized
+    - dual_target_integrated
     example: implement_or_fix_code_plus_optional_basic_english_bug_or_result_note
   linux_git_shell:
     typical_modes:
-      - technical_with_english_exposure
-      - dual_target_integrated
+    - technical_with_english_exposure
+    - dual_target_integrated
     example: command_task_plus_short_man_help_fragment_or_clarification_note
   systems_networking_distributed:
     typical_modes:
-      - english_primary_technical_context
-      - dual_target_integrated
+    - english_primary_technical_context
+    - dual_target_integrated
     example: read_known_definition_constraint_or_explain_already_ready_simple_behavior
   gpu_cuda_triton_inference:
     typical_modes:
-      - technical_with_english_exposure
-      - english_primary_technical_context
+    - technical_with_english_exposure
+    - english_primary_technical_context
     example: short_official_doc_fragment_around_already_taught_concept
   professional_workflow:
     typical_modes:
-      - dual_target_integrated
+    - dual_target_integrated
     example: basic_bug_report_command_result_note_or_clarification_question
 explainability_reason_codes:
-  - localized_to_protect_technical_construct
-  - bilingual_support_due_to_unready_non_target_english
-  - english_exposure_safe_for_current_profile
-  - dual_target_both_components_ready
-  - integration_rejected_language_contamination
-  - integration_rejected_technical_context_contamination
-  - scaffold_reduced_after_independent_evidence
-  - scaffold_restored_for_new_language_load
+- localized_to_protect_technical_construct
+- bilingual_support_due_to_unready_non_target_english
+- english_exposure_safe_for_current_profile
+- dual_target_both_components_ready
+- integration_rejected_language_contamination
+- integration_rejected_technical_context_contamination
+- scaffold_reduced_after_independent_evidence
+- scaffold_restored_for_new_language_load
 safety_fixtures:
-  - id: E7D-F01
-    case: c_technical_task_unknown_english_wording
-    expected: localized_support_and_no_clean_c_negative_from_language_gap
-  - id: E7D-F02
-    case: linux_task_authentic_english_man_page
-    expected: construct_essential_language_ready_or_scaffolded_before_technical_attribution
-  - id: E7D-F03
-    case: english_error_fragment_task_secret_linux_diagnosis_requirement
-    expected: english_negative_invalid_if_specialist_diagnosis_caused_failure
-  - id: E7D-F04
-    case: dual_target_code_correct_bug_note_weak
-    expected: technical_positive_can_coexist_with_english_negative_or_remediation
-  - id: E7D-F05
-    case: dual_target_overall_pass
-    expected: no_automatic_component_mastery_broadcast
-  - id: E7D-F06
-    case: english_target_answer_revealing_translation
-    expected: independent_english_evidence_ceiling_lowered_or_invalid
-  - id: E7D-F07
-    case: technical_target_bilingual_instruction
-    expected: technical_evidence_not_penalized_if_technical_answer_not_revealed
-  - id: E7D-F08
-    case: b2plus_docs_navigation
-    expected: remains_inside_tecp_semantic_boundary
-  - id: E7D-F09
-    case: authentic_cuda_docs_new_vendor_jargon
-    expected: controlled_gloss_or_reject_without_global_english_gate
-  - id: E7D-F10
-    case: mastered_english_natural_reuse_in_technical_task
-    expected: reinforcement_default_and_strong_evidence_only_with_normal_attribution
-  - id: E7D-F11
-    case: english_review_due_during_technical_work
-    expected: technical_route_not_globally_blocked
-  - id: E7D-F12
-    case: english_remediation_required
-    expected: only_genuinely_language_dependent_candidate_may_block_unrelated_technical_branch_continues
-  - id: E7D-F13
-    case: technical_context_failure_in_english_primary_task
-    expected: english_negative_contamination_guard
-  - id: E7D-F14
-    case: one_integrated_task_links_two_needs
-    expected: duration_once_evidence_separate_no_priority_multiplication
-  - id: E7D-F15
-    case: ai_bilingual_scaffold_changes_negation_or_constraint
-    expected: resource_invalid_for_strong_evidence
+- id: E7D-F01
+  case: c_technical_task_unknown_english_wording
+  expected: localized_support_and_no_clean_c_negative_from_language_gap
+- id: E7D-F02
+  case: linux_task_authentic_english_man_page
+  expected: construct_essential_language_ready_or_scaffolded_before_technical_attribution
+- id: E7D-F03
+  case: english_error_fragment_task_secret_linux_diagnosis_requirement
+  expected: english_negative_invalid_if_specialist_diagnosis_caused_failure
+- id: E7D-F04
+  case: dual_target_code_correct_bug_note_weak
+  expected: technical_positive_can_coexist_with_english_negative_or_remediation
+- id: E7D-F05
+  case: dual_target_overall_pass
+  expected: no_automatic_component_mastery_broadcast
+- id: E7D-F06
+  case: english_target_answer_revealing_translation
+  expected: independent_english_evidence_ceiling_lowered_or_invalid
+- id: E7D-F07
+  case: technical_target_bilingual_instruction
+  expected: technical_evidence_not_penalized_if_technical_answer_not_revealed
+- id: E7D-F08
+  case: b2plus_docs_navigation
+  expected: remains_inside_tecp_semantic_boundary
+- id: E7D-F09
+  case: authentic_cuda_docs_new_vendor_jargon
+  expected: controlled_gloss_or_reject_without_global_english_gate
+- id: E7D-F10
+  case: mastered_english_natural_reuse_in_technical_task
+  expected: reinforcement_default_and_strong_evidence_only_with_normal_attribution
+- id: E7D-F11
+  case: english_review_due_during_technical_work
+  expected: technical_route_not_globally_blocked
+- id: E7D-F12
+  case: english_remediation_required
+  expected: only_genuinely_language_dependent_candidate_may_block_unrelated_technical_branch_continues
+- id: E7D-F13
+  case: technical_context_failure_in_english_primary_task
+  expected: english_negative_contamination_guard
+- id: E7D-F14
+  case: one_integrated_task_links_two_needs
+  expected: duration_once_evidence_separate_no_priority_multiplication
+- id: E7D-F15
+  case: ai_bilingual_scaffold_changes_negation_or_constraint
+  expected: resource_invalid_for_strong_evidence
 future_stage_boundaries:
-  "7E": learner_facing_english_mastery_and_cefr_profile_behavior
-  "8_11": scaffold_ui_and_task_runner_presentation
-  "9C": physical_data_model
-  "12": planner_and_prerequisite_runtime_implementation
-  "14": ai_tutor_translation_and_explanation_runtime
-  "15": production_lesson_and_assessment_content
-  "18": empirical_scaffold_and_item_calibration
-  "20": broader_professional_english_capability_review_if_needed
+  7E: learner_facing_english_mastery_and_cefr_profile_behavior
+  '8_11': scaffold_ui_and_task_runner_presentation
+  9C: physical_data_model
+  '12': planner_and_prerequisite_runtime_implementation
+  '14': ai_tutor_translation_and_explanation_runtime
+  '15': production_lesson_and_assessment_content
+  '18': empirical_scaffold_and_item_calibration
+  '20': broader_professional_english_capability_review_if_needed
+decision: D-066

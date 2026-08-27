@@ -312,8 +312,18 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - technical integration deferred to 7D; English mastery/display deferred to 7E,
 - Stage 6 + 7B regression + independent 7C validator PASS.
 
-### [ ] 7D — Teknik entegrasyon — **AKTİF**
-### [ ] 7E — English mastery
+### [x] 7D — Teknik entegrasyon — TEIP-v0 / D-066
+**Final:** `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md` + `curriculum/english/7d_technical_integration/`
+
+- exact D01 15 Skill identity unchanged; no graph mutation,
+- 4 construct-aware integration mode,
+- technical/English target-prerequisite-attribution separation,
+- bidirectional construct-contamination guards,
+- evidence-driven reversible scaffold; no fixed ratio/day quota,
+- authentic resource + translation/gloss integrity guard,
+- 15 safety fixture / 49 validator checks PASS.
+
+### [ ] 7E — English mastery — **AKTİF**
 
 ---
 
@@ -478,12 +488,13 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7C`  
-**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
-**Aktif:** **`7D — Teknik entegrasyon`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7D`  
+**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
+**Aktif:** **`7E — English mastery`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **7D fresh PRE-STEP → EED-v0 + TECP-v0 + DECP-v0 + English Foundation Rules + technical task/prerequisite/evidence contracts ile bilingual/English technical integration tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **7E fresh PRE-STEP → EED-v0 + TECP-v0 + DECP-v0 + TEIP-v0 + GRE/RVR/WLRM contracts ile learner-facing English mastery/profile behavior → independent QA → D-050 POST sync + stale audit.**
 
 - D-063: 7A final `EED-v0`.
 - D-064: 7B final `TECP-v0`.
-- D-065: 7C final `DECP-v0`; common-capacity daily candidate opportunity + state-driven task mix + no quota/streak/debt.
+- D-065: 7C final `DECP-v0`.
+- D-066: 7D final `TEIP-v0`; 4 integration mode, component attribution, contamination/scaffold safety.
