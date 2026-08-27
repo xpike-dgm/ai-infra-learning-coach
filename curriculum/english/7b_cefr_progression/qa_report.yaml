@@ -28,7 +28,7 @@ checks:
   details: bands=['A1', 'A2', 'B1']
 - check: E7B-02_balanced_anchor_distribution
   result: PASS
-  details: 'counts={''A2'': 5, ''B1'': 5, ''A1'': 5}'
+  details: 'counts={''A2'': 5, ''A1'': 5, ''B1'': 5}'
 - check: E7B-02_no_B2plus_base_reclassification
   result: PASS
   details: B2+ remains extension-only
