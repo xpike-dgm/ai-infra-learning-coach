@@ -1103,29 +1103,31 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 7B ✅ TECP-v0 / D-064
 - AŞAMA 7C ✅ DECP-v0 / D-065
 - AŞAMA 7D ✅ TEIP-v0 / D-066
-- AŞAMA 7E 🟡 active-not-executed
-- 8–20 ⬜
+- AŞAMA 7E ✅ TEPM-v0 / D-067
+- AŞAMA 8A 🟡 active-not-executed
+- 8B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `7D — Teknik entegrasyon`  
-**Final:** `TEIP-v0 — Technical English Integration Policy` / D-066  
-**Canonical:** `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md` + `curriculum/english/7d_technical_integration/`
+**Son tamamlanan numaralı adım:** `7E — English mastery`  
+**Final:** `TEPM-v0 — Technical English Mastery Profile` / D-067  
+**Canonical:** `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md` + `curriculum/english/7e_mastery_profile/`
 
-**Aktif adım:** `7E — English mastery`  
+**AŞAMA 7:** ✅ TAMAMLANDI  
+**Aktif adım:** `8A — Bilgi mimarisi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-7D, technical task içindeki English/bilingual scaffold ve cross-track prerequisite/evidence fairness davranışını tasarlayacaktır. English global technical hard gate olmayacaktır.
+7E exact GRE/RVR-backed English Skill state'ini learner-facing derived profile'a dönüştürür; CEFR qualified Technical English summary'dir, general-English certification değildir. B2+ aggregate completion değildir.
 
-Kullanıcı 7D'yi onayladığında:
+8A için:
 
 ```text
-fresh 7D PRE-STEP GitHub refresh
-→ 7D execution
+fresh 8A PRE-STEP GitHub refresh
+→ user explicit approval verification
+→ 8A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
-→ 7D completed; 7E active-not-executed
 ```
 
 # 23. Tamamlanan 6B'nin görevi ve final çıktısı
@@ -1658,7 +1660,8 @@ AŞAMA 1–6 ✅
 7B ✅ TECP-v0 / D-064
 7C ✅ DECP-v0 / D-065
 7D ✅ TEIP-v0 / D-066
-7E 🟡 ACTIVE — NOT EXECUTED
+7E ✅ TEPM-v0 / D-067
+8A 🟡 ACTIVE — NOT EXECUTED
 8–20 ⬜
 ```
 
@@ -1671,9 +1674,9 @@ AŞAMA 1–6 ✅
 - feedback-assisted revision independent mastery evidence değildir,
 - technical integration 7D'ye ve learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
 
-**Sıradaki gerçek numbered work:** `7E — English mastery`.
+**Sıradaki gerçek numbered work:** `8A — Bilgi mimarisi`.
 
-**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1681,3 +1684,10 @@ AŞAMA 1–6 ✅
 ## 7D completion addendum — D-066
 
 7D `TEIP-v0 — Technical English Integration Policy` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`; policy/QA: `curriculum/english/7d_technical_integration/`. Exact 15 D01 Skill korunur; 4 construct-aware mode, technical/English component attribution, bidirectional contamination guard, evidence-driven reversible scaffold ve authentic-resource integrity semantics kabul edildi. English/CEFR global technical gate değildir. Independent QA 49/49 PASS. Current active numbered step 7E'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 7E completion addendum — D-067
+
+7E `TEPM-v0 — Technical English Mastery Profile` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`; policy/QA: `curriculum/english/7e_mastery_profile/`. Exact 15 D01 Skill korunur; 8 derived Skill presentation state, qualified A1/A2/B1 Technical English base profile, review/verification/remediation hysteresis presentation, first-class uneven profile ve exact 4-Skill B2+ extension evidence semantics kabul edildi. General-English/official CEFR veya numeric aggregate claim yoktur. Independent QA 54/54 PASS. AŞAMA 7 tamamlandı. Current active numbered step 8A'dır; fresh PRE + kullanıcı açık onayı gerekir.

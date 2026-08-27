@@ -111,6 +111,16 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-064 — TECP-v0
 7B final `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`; D01 15 Skill'i 5 A1 + 5 A2 + 5 B1 context-only Technical English anchor'a bağlar, 4 bounded B2+ professional extension tanımlar ve CEFR mastery/certification overclaim'ini yasaklar.
 
+
+### D-065 — DECP-v0
+7C final `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`; Technical English common capacity içinde parallel candidate opportunity olarak çalışır, fixed minute/percentage/streak/debt yoktur ve state-driven task mix kullanır.
+
+### D-066 — TEIP-v0
+7D final `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`; dört construct-aware integration mode, component attribution, bidirectional contamination guard ve evidence-driven reversible scaffold davranışını kilitler.
+
+### D-067 — TEPM-v0
+7E final `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`; exact 15 D01 Skill state'ini 8 derived learner-facing presentation state ve qualified A1/A2/B1 Technical English profile'a projekte eder; B2+ per-capability evidence'dır, general-English/official CEFR veya numeric aggregate değildir.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -126,8 +136,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C ✅ DECP-v0 / D-065; 7D ✅ TEIP-v0 / D-066; 7E 🟡 active-not-executed**
-- 8 UX
+- 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
+- 8 UX — **8A 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -212,6 +222,12 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11y. `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`
 11z. `curriculum/english/7c_daily_component/policy.yaml`
 11aa. `curriculum/english/7c_daily_component/qa_report.yaml`
+11ab. `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`
+11ac. `curriculum/english/7d_technical_integration/policy.yaml`
+11ad. `curriculum/english/7d_technical_integration/qa_report.yaml`
+11ae. `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`
+11af. `curriculum/english/7e_mastery_profile/policy.yaml`
+11ag. `curriculum/english/7e_mastery_profile/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -246,15 +262,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
-- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C ✅ DECP-v0 / D-065**, **7D ✅ TEIP-v0 / D-066**, **7E 🟡 active-not-executed**
+- AŞAMA 7 ✅ **EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067**
 
-7D final: Technical English integration 4 construct-aware mode kullanır; English/CEFR global technical gate değildir, dual-target evidence component-level attribution ile çalışır ve scaffold evidence/task-validity driven'dır.
+7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
-**Aktif:** **`7E — English mastery`**  
-**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
+**AŞAMA 7:** **✅ TAMAMLANDI**  
+**Aktif:** **`8A — Bilgi mimarisi`**  
+**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7D, TEIP-v0 / D-066 ile tamamlandı: 4 construct-aware integration mode, component attribution, bidirectional contamination guard, evidence-driven reversible scaffold; English/CEFR global technical gate değildir. Aktif step 7E — English mastery; 7E henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. AŞAMA 7 TEPM-v0 / D-067 ile tamamlandı: exact D01 mastery GRE/RVR-backed Skill state, 8 derived presentation state, qualified A1/A2/B1 Technical English profile, B2+ per-capability evidence, no general-English/official CEFR/numeric overclaim. Aktif step 8A — Bilgi mimarisi; 8A henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

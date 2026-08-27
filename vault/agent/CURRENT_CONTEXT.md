@@ -32,10 +32,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - `TECP-v0 / D-064`: D01 CEFR-aligned Technical English progression; 5 A1 + 5 A2 + 5 B1 base anchors, 4 bounded B2+ extension; CEFR != mastery/certification.
 - `DECP-v0 / D-065`: Daily Technical English common capacity içinde candidate opportunity; fixed quota/streak/debt yok; PBR balance/starvation + state-driven task mix.
 - `TEIP-v0 / D-066`: Technical English integration; 4 construct-aware mode, component attribution, bidirectional contamination guard, evidence-driven reversible scaffold; no global English/CEFR technical gate.
+- `TEPM-v0 / D-067`: Technical English mastery/profile projection; 8 derived Skill presentation state, qualified A1/A2/B1 profile, B2+ per-capability evidence; no broad/general/official CEFR or numeric aggregate.
 
 ## Exact execution state
 
-AŞAMA 6 ve 7A–7D tamamlandı. Son tamamlanan adım **7D — TEIP-v0 / D-066**. 7D technical/English construct'lerini component-level attribution ile ayırır; English/CEFR global technical gate değildir ve scaffold evidence/task-validity driven'dır. Aktif adım **7E — English mastery**; henüz yürütülmedi. 7E başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve AŞAMA 7 tamamlandı. Son tamamlanan adım **7E — TEPM-v0 / D-067**. English mastery truth exact GRE/RVR-backed D01 Skill/Objective state'tir; learner-facing CEFR yalnız qualified Technical English profile summary'dir. Aktif adım **8A — Bilgi mimarisi**; henüz yürütülmedi. 8A başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

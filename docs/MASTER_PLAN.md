@@ -323,12 +323,25 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - authentic resource + translation/gloss integrity guard,
 - 15 safety fixture / 49 validator checks PASS.
 
-### [ ] 7E — English mastery — **AKTİF**
+### [x] 7E — English mastery — TEPM-v0 / D-067
+**Final:** `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md` + `curriculum/english/7e_mastery_profile/`
+
+- exact D01 15 Skill identity unchanged; no graph/mastery algorithm mutation,
+- 8 learner-facing derived Skill presentation state,
+- qualified A1/A2/B1 Technical English base profile + uneven exact Skill detail,
+- review_due no demotion; verification_due uncertainty/hysteresis preserved,
+- remediation can recompute current band while historical confirmation remains,
+- B2+ per-capability evidence only for exact 4 TECP extension Skills,
+- no general-English/certification/numeric aggregate overclaim,
+- assistance/provisional/contamination and TEIP component-attribution guards preserved,
+- 18 safety fixture / 54 validator checks PASS.
+
+> **AŞAMA 7 tamamlandı — EED-v0 + TECP-v0 + DECP-v0 + TEIP-v0 + TEPM-v0.**
 
 ---
 
 # AŞAMA 8 — UX ve Ekranlar
-### [ ] 8A — Bilgi mimarisi
+### [ ] 8A — Bilgi mimarisi — **AKTİF**
 ### [ ] 8B — Ana ekran
 ### [ ] 8C — Günlük çalışma akışı
 ### [ ] 8D — Sınav UX
@@ -488,13 +501,14 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7D`  
-**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
-**Aktif:** **`7E — English mastery`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`  
+**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
+**Aktif:** **`8A — Bilgi mimarisi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **7E fresh PRE-STEP → EED-v0 + TECP-v0 + DECP-v0 + TEIP-v0 + GRE/RVR/WLRM contracts ile learner-facing English mastery/profile behavior → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8A fresh PRE-STEP → accepted product/learning/planner/assessment/curriculum/English contracts üzerinden UX information architecture → independent QA → D-050 POST sync + stale audit.**
 
 - D-063: 7A final `EED-v0`.
 - D-064: 7B final `TECP-v0`.
 - D-065: 7C final `DECP-v0`.
-- D-066: 7D final `TEIP-v0`; 4 integration mode, component attribution, contamination/scaffold safety.
+- D-066: 7D final `TEIP-v0`.
+- D-067: 7E final `TEPM-v0`; Stage 7 complete.

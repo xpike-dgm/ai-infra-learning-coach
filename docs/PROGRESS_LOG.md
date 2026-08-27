@@ -530,3 +530,17 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory + external-memory + repo-wide stale audit ile 7D kapatıldı; 7E active-not-executed yapıldı.
 
 **Sonraki kesin adım:** `7E — English mastery`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-08-27 — 7E English mastery tamamlandı — TEPM-v0 / D-067
+
+- Kullanıcı açık onayı sonrası fresh PRE ile 7D complete / 7E active-not-executed state çapraz doğrulandı.
+- Council of Europe CEFR profile/context/linkage guidance, ALTE language-for-specific-purposes materyali ve ETS score-profile/validity guidance Research girdisi olarak incelendi.
+- External research tek global English label yerine profile reporting yönünü destekledi; hiçbir official certification, numeric English score veya yeni psychometric threshold türetilmedi.
+- Existing GRE/RVR/PRG/VDW/WLRM ownership korunarak 8 derived learner-facing English Skill presentation state tanımlandı.
+- Qualified A1/A2/B1 Technical English base profile, uneven-profile preservation, review/verification/remediation semantics ve historical-confirmation provenance kilitlendi.
+- B2+ yalnız exact 4 TECP extension capability için named evidence olarak tutuldu; aggregate B2+ completion yasaklandı.
+- Assisted/provisional/contaminated evidence independent confirmation'dan ayrıldı; TEIP-v0 cross-track attribution guards korundu.
+- Independent QA: Stage 6 + 7B + 7C + 7D regressions PASS; 7E validator 54/54 PASS.
+- D-050 POST ile AŞAMA 7 kapatıldı ve `8A — Bilgi mimarisi` active-not-executed yapıldı; external-memory + repo-wide stale audit zorunlu final gates olarak çalıştırıldı.
+
+**Sonraki kesin adım:** `8A — Bilgi mimarisi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

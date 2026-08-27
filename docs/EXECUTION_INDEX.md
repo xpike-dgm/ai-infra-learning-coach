@@ -108,12 +108,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **7B — A1/A2/B1/B2+ teknik hedefleri** — `TECP-v0 / D-064`
 - [x] **7C — Günlük English bileşeni** — `DECP-v0 / D-065`
 - [x] **7D — Teknik entegrasyon** — `TEIP-v0 / D-066`
-- [ ] **7E — English mastery** **AKTİF**
+- [x] **7E — English mastery** — `TEPM-v0 / D-067`
 
 ---
 
 # AŞAMA 8 — UX ve Ekranlar
-- [ ] **8A — Bilgi mimarisi**
+- [ ] **8A — Bilgi mimarisi** **AKTİF**
 - [ ] **8B — Ana ekran**
 - [ ] **8C — Günlük çalışma akışı**
 - [ ] **8D — Sınav UX**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7D`  
-**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
-**Aktif:** **`7E — English mastery`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`  
+**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
+**Aktif:** **`8A — Bilgi mimarisi`** — active-not-executed
 
-7D final: **15 canonical English Skill / 4 construct-aware integration mode / 15 safety fixture / 7 contamination reason-code**. English/CEFR global technical gate yok; dual-target evidence component-level attribution ile çalışır.
+AŞAMA 7 tamamen tamamlandı: EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0. English mastery truth exact GRE/RVR-backed Skill/Objective state'tir; CEFR yalnız qualified Technical English profile metadata/summary'dir.
 
-7E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
