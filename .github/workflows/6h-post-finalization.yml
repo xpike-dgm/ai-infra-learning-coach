@@ -6,6 +6,7 @@ on:
       - work/6h-external-research-qa
     paths:
       - 'tools/finalize_6h_post_step.py'
+      - 'tools/fix_6h_post_stale_refs.py'
       - 'tools/audit_6h_post_step_stale.py'
       - '.github/workflows/6h-post-finalization.yml'
 
@@ -24,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Install YAML dependency
         run: python -m pip install pyyaml
+      - name: Clean remaining current-state 6H stale references
+        run: python tools/fix_6h_post_stale_refs.py
       - name: Apply 6H D-050 living-memory finalization
         run: python tools/finalize_6h_post_step.py
       - name: Validate final external reconciliation still holds
