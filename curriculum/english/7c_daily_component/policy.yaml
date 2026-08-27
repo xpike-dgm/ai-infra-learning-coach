@@ -1,0 +1,202 @@
+model: DECP-v0
+stage_step: 7C
+status: candidate_7c
+decision_candidate: D-065
+scope:
+  curriculum_track: technical_english
+  domain_id: domain.technical_english
+  route_family_id: D01
+  canonical_skill_source: curriculum/english/7a_entry_diagnostic/blueprint.yaml
+  cefr_alignment_source: curriculum/english/7b_cefr_progression/alignment.yaml
+  expected_skill_count: 15
+planner_contract:
+  shared_pipeline: LearningNeed->TaskCandidate->PBR-v0->PRG-v0->Capacity->Attempt/Artifact->Evidence
+  common_daily_capacity_pool: true
+  separate_english_budget: false
+  fixed_daily_english_minutes: null
+  fixed_daily_english_percentage: null
+  mandatory_daily_completion: false
+  english_streak_gate: false
+  missed_english_is_failure: false
+  missed_english_is_debt: false
+  english_to_technical_global_hard_gate: false
+active_study_day:
+  requires_positive_resolved_capacity: true
+  requires_fresh_daily_plan: true
+  no_study_day_counts_as_english_miss: false
+daily_candidate_generation:
+  invariant: generate_at_least_one_candidate_when_open_eligible_safe_english_need_exists
+  preconditions:
+  - active_study_day
+  - open_technical_english_learning_need
+  - prerequisite_interpretable_or_ready
+  - safe_task_candidate_available
+  candidate_generated_is_selection: false
+  selection_is_attempt: false
+  attempt_is_mastery: false
+  selection_owners:
+  - PBR-v0
+  - PRG-v0
+  - ADAPTIVE_PLANNER_SPEC
+capacity_behavior:
+  may_extend_hard_budget_for_english: false
+  may_reserve_fixed_english_share: false
+  short_capacity_behavior:
+    under_general_minimum_block:
+      allow_tiny_retrieval_or_remediation_if_safe: true
+      suggested_existing_range_minutes: 3-8
+      no_candidate_is_failure: false
+    normal_planner_block:
+      general_minimum_plannable_block_minutes_v0: 10
+      english_minimum_minutes: null
+learning_need_triggers:
+  allowed:
+  - new_learning
+  - continue_learning
+  - weakness_detected
+  - remediation_required
+  - retention_review_due
+  - verification_due
+  - diagnostic_opportunity
+  - reinforcement_opportunity
+  - parallel_track_due
+  deferred_to_7d:
+  - integration_opportunity
+parallel_track_due:
+  default_priority_band: P3_planned_progress
+  generation_conditions_any:
+  - eligible_unmastered_skill_at_current_progression_frontier
+  - open_continue_learning_need
+  - normal_parallel_progression_needed_without_stronger_english_need
+priority_semantics:
+  reuse_policy: PBR-v0
+  english_need_ordering_semantic:
+  - verification_or_remediation
+  - retention_due
+  - continue_new_parallel_progression
+  - optional_reinforcement
+  numeric_english_priority_score: null
+  P0_P1_integrity_work_can_displace_parallel_english: true
+track_balance:
+  reuse_existing_pbr_track_balance_and_starvation: true
+  omission_counts_only_when_all:
+  - active_study_day
+  - english_need_eligible
+  - safe_candidate_available
+  - omitted_for_capacity_or_priority
+  omission_does_not_count_when_any:
+  - user_did_not_study
+  - prerequisite_unresolved
+  - trusted_resource_or_evaluator_unavailable
+  - no_safe_duration_fit
+  - no_open_english_need
+  pressure_buckets:
+  - none
+  - watch
+  - promote
+  fixed_days_to_watch: null
+  fixed_days_to_promote: null
+  promote_behavior:
+    may_promote_parallel_need_from_P3_to_P2: true
+    may_overtake_P0_or_P1: false
+    may_make_ineligible_task_eligible: false
+    may_exceed_hard_budget: false
+    creates_mastery_or_evidence: false
+  pressure_relief_conditions_any:
+  - real_english_attempt_or_artifact_recorded
+  - no_open_english_need_remains
+task_mix:
+  fixed_category_percentages: null
+  state_driven: true
+  new_learning:
+    preferred_sequence:
+    - explanation_or_model
+    - constrained_recognition_or_comprehension
+    - retrieval_or_application_checkpoint
+    - controlled_production_if_target_permits
+    - later_independent_or_transfer_evidence
+    must_finish_full_sequence_same_session: false
+    fixed_checkpoint_count: null
+  continue_learning:
+    replay_old_task_id_by_default: false
+    target_unresolved_objective_or_evidence_gap: true
+    prefer_fresh_item_or_context_when_possible: true
+  retention:
+    scheduler_owner: RVR-v0
+    introduce_new_spacing_formula: false
+    pre_expose_answer_before_retrieval: false
+    target_direct_retrieval_or_production: true
+    recognition_only_can_pass_critical_production_retention: false
+  remediation_verification:
+    localization: exact_skill_or_objective
+    broad_english_reset: false
+    same_failed_item_memorization_can_close: false
+    fresh_variant_after_feedback: true
+  production:
+    require_english_hard_prerequisites: true
+    unknown_grammar_or_vocabulary_can_create_clean_target_failure: false
+  reinforcement_b2_plus:
+    source: TECP-v0
+    extension_only: true
+    synthetic_completion_state: false
+    may_silently_expand_skill_semantics: false
+activity_rotation:
+  fixed_round_robin: false
+  repeat_exact_prompt_by_default: false
+  prefer_independent_dependency_or_testlet_family: true
+  prefer_fresh_context_for_retention_or_transfer: true
+  recognition_only_saturation_guard: true
+  model_exposed_production_is_H0_independent_evidence: false
+feedback:
+  answer_revealing_feedback_before_assess_retain_diagnose_capture: false
+  feedback_after_attempt_allowed: true
+  early_scaffold_for_teach_or_practice_allowed: true
+  assistance_level_must_be_recorded: true
+  localize_feedback_to_observed_issue: true
+  broad_english_bad_feedback: false
+  feedback_assisted_revision_is_independent_mastery_evidence: false
+  fresh_H0_attempt_required_for_independent_closure_when_applicable: true
+scaffold_boundary:
+  english_track_scaffold_only_in_7c: true
+  reduction_basis: evidence_not_calendar
+  recognition_to_controlled_to_independent_progression: true
+  bilingual_scope_skill_id: skill.english.follow_bilingual_technical_instruction
+  technical_task_bilingual_integration_owner_step: 7D
+trace_contract:
+  fields:
+  - english_need_key
+  - target_skill_ids
+  - target_objective_ids
+  - trigger_kind
+  - eligibility_state
+  - priority_band
+  - track_balance_pressure
+  - starvation_pressure
+  - candidate_task_family
+  - estimated_minutes
+  - selection_result
+  - selection_reason
+  - evidence_goal
+  - assistance_ceiling
+  selection_result_vocabulary:
+  - selected
+  - omitted_higher_priority
+  - omitted_capacity
+  - omitted_no_safe_candidate
+  - ineligible_prerequisite
+  - not_due_or_no_open_need
+  - user_deferred
+research_guards:
+  distributed_practice_supported: true
+  retrieval_practice_supported: true
+  universal_optimal_interval_claim: false
+  universal_daily_minutes_claim: false
+  universal_task_percentage_claim: false
+  empirical_calibration_owner_step: 18
+future_stage_boundaries:
+  7D: technical_curriculum_integration_and_bilingual_scaffold
+  7E: learner_facing_english_mastery_and_cefr_profile_behavior
+  15F: production_english_lessons_and_resources
+  15G: production_assessment_items
+  18: cadence_interval_duration_and_item_calibration
+  20: broader_professional_english_capability_review
