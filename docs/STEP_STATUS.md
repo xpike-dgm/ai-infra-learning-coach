@@ -28,8 +28,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6F — Professional engineering / project map** | ✅ | PEM-v0 / D-060. D23 professional workflow + OSS + project/capstone map tamamlandı. |
 | **6G — Weakness localization + remediation mapping** | ✅ | WLRM-v0 / D-061. Final 6H-patched registry için 549 Skill + 608 Objective exact weakness/remediation coverage. |
 | **6H — Coverage / prerequisite / Research QA** | ✅ | S6ERQA-v0 / D-062. 3 bağımsız evaluator reconcile edildi; 6 stable Skill + freshness/evidence patch; 549/549 hard DAG; 10/10 review resolved. |
-| **7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **7B–20** | ⬜ Bekliyor | 7A sonrası canonical sırada. |
+| **7A — İngilizce başlangıç ölçümü** | ✅ | EED-v0 / D-063. 15 Skill / 15 Objective / 16 hard edge diagnostic profile + 15 task family; QA PASS. |
+| **7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **7C–20** | ⬜ Bekliyor | 7B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -48,21 +49,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 6H
+## Son tamamlanan numaralı adım — 7A
 
-**Final:** `S6ERQA-v0 — Stage 6 External Research QA` / D-062.  
-**Ana çıktı:** `docs/STAGE6_EXTERNAL_RESEARCH_QA.md` + `research/6h_external_research_ai_report.md` + `curriculum/decomposition/6h_research_qa/`.
+**Final:** `EED-v0 — English Entry Diagnostic` / D-063.  
+**Ana çıktı:** `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md` + `curriculum/english/7a_entry_diagnostic/`.
 
-6H sonucu:
-- 3 bağımsız evaluator: PASS WITH REQUIRED CHANGES,
-- corrective reconciliation sonrası 549 Skill / 608 Objective / 950 prerequisite edge,
-- combined hard graph 549/549 DAG,
-- 6 yeni stable capability: NUMA locality/affinity, CUDA async data pipeline, speculative decoding trade-off, prefill/decode disaggregation, MoE routing, expert parallel sharding,
-- fast-moving vendor/tool ayrıntıları version-scoped Objective/example olarak tutuldu,
-- WLRM 549/608 exact coverage,
-- 10/10 6H-owned review resolved,
-- final external reconciliation QA PASS.
+7A sonucu:
+- 15/15 canonical D01 English Skill,
+- 15/15 canonical owner Objective,
+- 16/16 English hard prerequisite edge,
+- 15 diagnostic task family,
+- English hard DAG 15/15,
+- self-report/certificate/confidence non-evidence,
+- no easier diagnostic mastery threshold,
+- no hidden technical/unknown-English prerequisite,
+- invalid/prerequisite-contaminated failure target negative evidence yazmıyor,
+- CEFR level assignment 7B'ye deferred,
+- final Stage 6 regression + independent 7A validator PASS.
 
-## Aktif adım — 7A İngilizce başlangıç ölçümü
+## Aktif adım — 7B A1/A2/B1/B2+ teknik hedefleri
 
-**7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

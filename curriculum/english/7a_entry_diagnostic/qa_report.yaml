@@ -1,0 +1,95 @@
+stage_step: 7A
+model: EED-v0
+candidate_decision: D-063
+result: PASS
+checked_at: '2026-08-27'
+counts:
+  canonical_d01_english_skills: 15
+  canonical_d01_english_objectives: 15
+  canonical_english_hard_edges: 16
+  blueprint_claims: 15
+  task_families: 15
+checks:
+- check: E7A-01_exact_d01_scope_count
+  result: PASS
+  details: canonical D01 English Skills=15
+- check: E7A-01_blueprint_scope_exact
+  result: PASS
+  details: blueprint claims=15 canonical=15
+- check: E7A-01_expected_count_metadata
+  result: PASS
+  details: expected_skill_count matches canonical registry
+- check: E7A-04_objective_ownership
+  result: PASS
+  details: English objective owners cover 15/15 Skills
+- check: E7A-04_diagnostic_eligible
+  result: PASS
+  details: all D01 Skills diagnostic eligible
+- check: E7A-02_english_hard_dag_match
+  result: PASS
+  details: blueprint hard pairs=16 canonical=16
+- check: E7A-02_entry_roots_match
+  result: PASS
+  details: roots=['skill.english.recognize_core_technical_labels']
+- check: E7A-02_english_graph_dag
+  result: PASS
+  details: visited=15/15
+- check: E7A-03_no_technical_global_gate
+  result: PASS
+  details: no English→technical hard edge and blueprint global gate=false
+- check: E7A-05_evidence_compatibility
+  result: PASS
+  details: mismatches=[]
+- check: E7A-05_one_task_family_per_claim
+  result: PASS
+  details: task families=15
+- check: E7A-05_task_targets_match
+  result: PASS
+  details: every task family targets its claim Skill
+- check: E7A-06_self_report_non_evidence
+  result: PASS
+  details: self-report cannot write mastery
+- check: E7A-07_no_easier_threshold
+  result: PASS
+  details: no new pass percentage/item count; GRE-v0 preserved
+- check: E7A-08_cefr_boundary
+  result: PASS
+  details: 7A does not assign CEFR level
+- check: E7A-09_profile_resolution_vocabulary
+  result: PASS
+  details: safe diagnostic resolution vocabulary exact
+- check: E7A-09_invalid_no_negative_write
+  result: PASS
+  details: invalid/contaminated attempt cannot write target negative evidence
+- check: E7A-10_no_downstream_fail_broadcast
+  result: PASS
+  details: downstream dependents become prerequisite_unresolved
+- check: E7A-11_production_prerequisite_guard
+  result: PASS
+  details: production claims=4
+- check: E7A-12_resource_trust
+  result: PASS
+  details: all mastery-capable families require trusted resource + GRE validity
+- check: E7A-13_pause_safe
+  result: PASS
+  details: pause/resume states represented
+- check: E7A-14_profile_not_broad_score
+  result: PASS
+  details: granular frontier profile; no mandatory broad score
+- check: E7A-15_stage_boundary
+  result: PASS
+  details: future ownership boundaries declared
+- check: E7A-15_cefr_review_stays_open_for_7B
+  result: PASS
+  details: CEFR alignment review remains owned by 7B
+- check: research_basis_exists
+  result: PASS
+  details: research/7a_english_entry_diagnostic_research.md
+- check: spec_exists
+  result: PASS
+  details: docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md
+failures: []
+cefr_alignment_review:
+  review_id: review.6c.english.cefr_alignment
+  expected_status: open
+  owner_step: 7B

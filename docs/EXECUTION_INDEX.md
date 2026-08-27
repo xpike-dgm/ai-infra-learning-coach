@@ -104,8 +104,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 7 — İngilizce Paralel Hattı
-- [ ] **7A — Başlangıç ölçümü** **AKTİF**
-- [ ] **7B — A1/A2/B1/B2+ teknik hedefleri**
+- [x] **7A — Başlangıç ölçümü** — `EED-v0 / D-063`
+- [ ] **7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF**
 - [ ] **7C — Günlük English bileşeni**
 - [ ] **7D — Teknik entegrasyon**
 - [ ] **7E — English mastery**
@@ -246,14 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`  
-**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
-**Aktif:** **`7A — Başlangıç ölçümü`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A`  
+**Son tamamlanan:** **`7A — EED-v0 / D-063`**  
+**Aktif:** **`7B — A1/A2/B1/B2+ teknik hedefleri`** — active-not-executed
 
-6H external reconciliation sonrası Stage 6 final registry **549 Skill / 608 Objective / 950 prerequisite edge**; combined hard graph **549/549 DAG** ve 10/10 6H review resolved.
+7A final diagnostic contract: **15 D01 English Skill / 15 Objective / 16 English hard edge / 15 task family**, CEFR assignment `pending_7B`.
 
-7A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
-
-- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`.
-- D-061: 6G final weakness localization/remediation overlay `WLRM-v0`; final Stage 6 registry için 549 Skill + 608 Objective exact coverage.
-- D-062: 6H final external Research QA `S6ERQA-v0`; canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
+7B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

@@ -477,3 +477,21 @@ Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
 - 10/10 6H-owned review resolved; `tools/validate_6h_external_reconciliation.py` final PASS.
 - AŞAMA 6 tamamlandı. Sonraki numbered step `7A — İngilizce başlangıç ölçümü`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
+
+## D-063 — English Entry Diagnostic = EED-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 7A final modeli `EED-v0 — English Entry Diagnostic` oldu.
+- Canonical spec `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`; machine-readable blueprint `curriculum/english/7a_entry_diagnostic/blueprint.yaml`; research basis `research/7a_english_entry_diagnostic_research.md`.
+- Diagnostic final Stage 6 D01 registry'sindeki 15 Technical English Skill + 15 Objective'i exact profile olarak ölçer; broad `English weak` veya tek broad score canonical learner state değildir.
+- Canonical English hard prerequisite DAG 16 edge ile aynen tüketilir; root `skill.english.recognize_core_technical_labels`.
+- Diagnostic mastery için daha düşük standart kullanmaz: positive mastery/waiver yalnız GRE-v0 + VDW-v0 normal gate'leriyle oluşur.
+- Self-report, certificate claim ve confidence routing/context sinyalidir; mastery/evidence değildir.
+- Unknown grammar/vocabulary veya specialist technical knowledge target English failure'ına gizli prerequisite olamaz.
+- Invalid, ambiguous, technical-context-contaminated veya prerequisite-unresolved attempt target negative evidence yazamaz; downstream dependent Skills topluca failed yapılmaz.
+- 15 diagnostic claim için 15 task family tanımlandı; resource/evaluator trust QAB-v0 + AIV-v0 + GRE-v0 zincirine bağlıdır.
+- 7A final CEFR level atamaz; `cefr_alignment_status=pending_7B`, `cefr_level=null`. `review.6c.english.cefr_alignment` açık kalır ve 7B'nin ownership'indedir.
+- Independent deterministic 7A validator PASS: 15/15 Skills, 15/15 Objectives, 16/16 English hard edge, 15/15 task family; final Stage 6 regression PASS.
+- Sonraki numbered step `7B — A1/A2/B1/B2+ teknik hedefleri`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`.

@@ -1,0 +1,52 @@
+name: 7A POST Finalization
+
+on:
+  push:
+    branches:
+      - work/7a-english-baseline-diagnostic
+    paths:
+      - 'tools/finalize_7a_post_step.py'
+      - 'tools/fix_7a_post_current_state.py'
+      - 'tools/audit_7a_post_step_stale.py'
+      - '.github/workflows/7a-post-finalization.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  post-finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install YAML dependency
+        run: python -m pip install pyyaml
+      - name: Regression — final Stage 6 registry
+        run: python tools/validate_6h_external_reconciliation.py
+      - name: Validate 7A core before POST
+        run: python tools/validate_english_entry_diagnostic.py --write-report
+      - name: Apply 7A D-050 living-memory finalization
+        run: python tools/finalize_7a_post_step.py
+      - name: Clean remaining 7A current-state mirrors
+        run: python tools/fix_7a_post_current_state.py
+      - name: Revalidate 7A final artifacts
+        run: python tools/validate_english_entry_diagnostic.py --write-report
+      - name: Validate persistent external memory graph
+        run: python tools/validate_external_memory.py
+      - name: Run repo-wide 7A stale-reference audit
+        run: python tools/audit_7a_post_step_stale.py
+      - name: Commit POST-step state
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo 'No POST changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md PROJECT_CONTEXT.md docs vault curriculum/english/7a_entry_diagnostic
+          git commit -m 'Finalize 7A EED-v0 POST-step memory and stale audit [skip ci]'
+          git push origin HEAD:work/7a-english-baseline-diagnostic

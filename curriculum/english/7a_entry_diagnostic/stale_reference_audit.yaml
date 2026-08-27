@@ -1,0 +1,387 @@
+stage_step: 7A
+model: EED-v0
+decision: D-063
+audit: repo_wide_stale_reference_post_step
+result: PASS
+blocking_findings: []
+candidate_old_or_historical_references:
+- file: tools/audit_6h_post_step_stale.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 7A — Başlangıç ölçümü** **AKTİF
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 7A 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: 7A — Başlangıç ölçümü — **AKTİF
+  blocking_current_state: false
+- file: tools/audit_6h_post_step_stale.py
+  match: Aktif:** `7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A — İngilizce başlangıç ölçümü; 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A — Başlangıç ölçümü`** — active-not-executed
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A — İngilizce başlangıç ölçümü`** — henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: Aktif:** **`7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: Aktif step 7A — İngilizce başlangıç ölçümü; 7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: Aktif:** **`7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: Aktif:** **`7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: Aktif adım 6H", "Son tamamlanan adım 6H; aktif adım 7A
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A — İngilizce başlangıç ölçümü; 7A henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/fix_6h_post_stale_refs.py
+  match: 7A fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A final CEFR level atamaz; `cefr_alignment_status=pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A kapatıldı; 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — Başlangıç ölçümü** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — Başlangıç ölçümü** — `EED-v0 / D-063`\n- [ ] **7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — Başlangıç ölçümü — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A independent deterministic validator PASS.\n\n### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A final `EED-v0`; 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family, CEFR assignment pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A 🟡 active-not-executed\n- 7B–20 ⬜", "- AŞAMA 7A ✅ — EED-v0 / D-063\n- AŞAMA 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü`  \n**7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — EED-v0 / D-063`  \n**Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A'da atanmaz; 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A 🟡 İngilizce başlangıç ölçümü — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A ✅ EED-v0 / D-063 — İngilizce başlangıç ölçümü tamamlandı**\n- **7B 🟡 A1/A2/B1/B2+ teknik hedefleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A 🟡 active-not-executed**", "- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A ✅ EED-v0 / D-063**, **7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A active-not-executed` olduğunu doğrula.", "current execution state'in `6A–6H + 7A completed / 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A active-not-executed", "7A completed / 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A", "Son tamamlanan adım 7A; aktif
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A tamamlandı. Son tamamlanan adım **7A — EED-v0 / D-063**. Aktif adım **7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: '7A English entry diagnostic: EED-v0 / D-063 ile tamamlandı.\n- [ ] 7B CEFR + technical progression alignment **AKTİF'
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif:** `7A — İngilizce başlangıç ölçümü`  \n**7A
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 'Aktif adım: 7A'
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif adım 7A", "Son tamamlanan adım 7A
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü`  \n**7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A — EED-v0 / D-063`  \n**Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A'dır.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7A için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.", "Ancak bundan sonra, 7B için **ayrı bir
+    fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/validate_english_entry_diagnostic.py
+  match: 7A-08_cefr_boundary", blueprint.get("cefr_alignment_status") == "pending
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü**, active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü**, completed as `EED-v0 / D-063`; **7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü completed as EED-v0 / D-063; 7B — A1/A2/B1/B2+ teknik hedefleri active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü — active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü — completed as EED-v0 / D-063; 7B — A1/A2/B1/B2+ teknik hedefleri — active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: Aktif adım **7A
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A completed; 7B active-not-executed
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: '7a_not_executed": re.compile(r"7A[^;,/\n]{0,90}(henüz yürütülmedi|not executed|active-not-executed'
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: '7a_active": re.compile(r"(Aktif adım|\*\*Aktif'
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: '7a_stage_active_marker": re.compile(r"7A[^;,\n]{0,80}(?:—|-)[^;,\n]{0,80}\*\*AKTİF'
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A — Başlangıç ölçümü** — `EED-v0 / D-063`", "7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A — EED-v0 / D-063`", "Aktif
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A ✅ EED-v0 / D-063", "7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A — Başlangıç ölçümü — EED-v0 / D-063", "### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A English entry diagnostic", "[ ] 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A[^\n]{0,120}(active-not-executed|henüz yürütülmedi|AKTİF|pending
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: Aktif adım|\*\*Aktif:\*\*)[^;,\n]{0,90}7A
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: Aktif[^\n]{0,100}7A
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7A[^\n]{0,100}(fresh PRE|kullanıcı.*onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — Başlangıç ölçümü**", "- [ ] **7A — Başlangıç ölçümü** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A 🟡 İngilizce başlangıç ölçümü — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — Başlangıç ölçümü", "### [ ] 7A — Başlangıç ölçümü — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü**, active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 'Aktif adım: 7A'
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: AKTİF**", "execution 7A
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: Aktif adım — 7A
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: Aktif:** `7A
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: AKTİF**", "master plan 7A
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: Aktif adım **7A
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 'Aktif numbered step: **7A'
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü** | 🟡 Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A'dır.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A'da fresh PRE sonrası tasarlanır. Stage 7 ilerlemesi kullanıcı onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü`; fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A — İngilizce başlangıç ölçümü**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: 7A başlamadan fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: docs/MASTER_PLAN.md
+  match: 7A final `EED-v0`; 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family, CEFR assignment pending
+  blocking_current_state: true
+- file: docs/DECISIONS.md
+  match: 7A final CEFR level atamaz; `cefr_alignment_status=pending
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: 7A — İngilizce başlangıç ölçümü`; fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: docs/STAGE6_EXTERNAL_RESEARCH_QA.md
+  match: 7A yine fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: docs/HANDOFF_STATE.md
+  match: 7A'da atanmaz; 7B'ye pending
+  blocking_current_state: true
+- file: docs/START_HERE.md
+  match: 7A ✅ EED-v0 / D-063; 7B 🟡 active-not-executed
+  blocking_current_state: true
+- file: docs/START_HERE.md
+  match: 7A ✅ EED-v0 / D-063**, **7B 🟡 active-not-executed
+  blocking_current_state: true
+- file: docs/PROGRESS_LOG.md
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 7A active-not-executed
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 7A kapatıldı; 7B active-not-executed
+  blocking_current_state: false
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7A completed / 7B active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7A completed / 7B active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7A — İngilizce başlangıç ölçümü**, completed as `EED-v0 / D-063`; **7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 'Aktif numbered step: **7A'
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7A başlamadan fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: true
+- file: curriculum/decomposition/6h_research_qa/stale_reference_audit.yaml
+  match: 7A — Başlangıç ölçümü** **AKTİF
+  blocking_current_state: false
+- file: curriculum/decomposition/6h_research_qa/stale_reference_audit.yaml
+  match: 7A — Başlangıç ölçümü — **AKTİF
+  blocking_current_state: false
+- file: curriculum/decomposition/6h_research_qa/stale_reference_audit.yaml
+  match: Aktif adım **7A
+  blocking_current_state: false
+- file: curriculum/decomposition/6h_research_qa/stale_reference_audit.yaml
+  match: Aktif adım **7A
+  blocking_current_state: false
+note: Historical/pre-step/progress references are recorded, not auto-rewritten. Contradictory current living-state references are blocking.

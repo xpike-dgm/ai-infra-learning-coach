@@ -474,3 +474,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - 6C–6F historical validators PASS, 6G historical validator PASS, structural QA PASS, final `validate_6h_external_reconciliation.py` PASS.
 - Canonical model: `S6ERQA-v0 / D-062`; Stage 6 kapandı, 7A active-not-executed oldu.
 
+
+## 2026-08-27 — 7A English Entry Diagnostic tamamlandı — EED-v0 / D-063
+
+- Kullanıcı açık onayı sonrası fresh PRE-STEP ile Stage 6 completion ve 7A active-not-executed state doğrulandı.
+- Council of Europe CEFR/test-development kaynakları ve ETS Evidence-Centered Design kaynakları Research girdisi olarak incelendi; final karar manager tarafından mevcut GRE/VDW/PRG/English contracts ile reconcile edildi.
+- D01 final registry'deki 15 English Skill / 15 Objective ve 16 English→English hard prerequisite edge diagnostic scope olarak birebir tüketildi.
+- `EED-v0` granular entry profile, prerequisite-aware adaptive probing, self-report non-evidence, technical-context contamination guard, no-downstream-fail-broadcast ve pause/resume semantics'i kilitledi.
+- CEFR A1/A2/B1/B2+ mapping 7A'da yapılmadı; `review.6c.english.cefr_alignment` 7B'ye açık bırakıldı.
+- `validate_6h_external_reconciliation.py` final Stage 6 regression PASS.
+- `validate_english_entry_diagnostic.py` PASS: 15/15 Skill, 15/15 Objective, 16/16 hard edge, 15/15 task family; English hard DAG 15/15.
+- D-050 POST living-memory + external-memory + repo-wide stale-reference audit ile 7A kapatıldı; 7B active-not-executed yapıldı.
+
+**Sonraki kesin adım:** `7B — A1/A2/B1/B2+ teknik hedefleri`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

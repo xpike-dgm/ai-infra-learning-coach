@@ -105,6 +105,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-062 — S6ERQA-v0
 6H final `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`; üç bağımsız evaluator reconcile edildi, corrective patch sonrası Stage 6 549 Skill / 608 Objective / 950 edge ve 549/549 hard DAG ile external Research QA PASS oldu.
 
+### D-063 — EED-v0
+7A final `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`; D01 15 Skill / 15 Objective / 16 hard edge için prerequisite-aware granular entry diagnostic, 15 task family ve no-premature-CEFR guard'ı kilitlendi.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -120,7 +123,7 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- 7 English parallel line — **7A 🟡 active-not-executed**
+- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B 🟡 active-not-executed**
 - 8 UX
 - 9 Architecture/data model
 - 10 Mobile skeleton
@@ -197,6 +200,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11p. `research/6h_external_research_ai_report.md`
 11q. `curriculum/decomposition/6h_research_qa/final_qa_report.yaml`
 11r. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11s. `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`
+11t. `curriculum/english/7a_entry_diagnostic/blueprint.yaml`
+11u. `curriculum/english/7a_entry_diagnostic/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -231,14 +237,15 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
+- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B 🟡 active-not-executed**
 
-Final Stage 6: **23 route / 549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM exact coverage 549/608; 10/10 6H review resolved.
+7A final: **15 D01 English Skill / 15 Objective / 16 hard prerequisite edge / 15 diagnostic task family**; CEFR A1/A2/B1/B2+ assignment 7B'ye pending.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
-**Aktif:** **`7A — İngilizce başlangıç ölçümü`**  
-**7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`7A — EED-v0 / D-063`**  
+**Aktif:** **`7B — A1/A2/B1/B2+ teknik hedefleri`**  
+**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. Stage 6, S6ERQA-v0 / D-062 ile tamamlandı; final graph 549 Skill / 608 Objective / 950 edge ve 549/549 hard DAG. Aktif step 7A — İngilizce başlangıç ölçümü; 7A henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7A, EED-v0 / D-063 ile tamamlandı: D01 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family; CEFR alignment 7B'ye pending. Aktif step 7B — A1/A2/B1/B2+ teknik hedefleri; 7B henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

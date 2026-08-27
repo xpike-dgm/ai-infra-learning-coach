@@ -14,7 +14,9 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 6E GPU/ML/Inference detailed map: GIM-v0 / D-059 tamamlandı; `review.6d.accelerator_forward_reuse` resolved.
 - [x] 6F Professional Engineering detailed map: PEM-v0 / D-060 tamamlandı; 6D + 6E professional-overlay reconciliation resolved.
 - [x] 6G weakness/remediation operationalization: WLRM-v0 / D-061 tamamlandı; `review.6g.external_behavior_coverage` 6H'ye devredildi.
-- [ ] 6H independent external Research QA **AKTİF**: full coverage, current-industry, prerequisite ve WLRM behavior audit; 6C–6G external coverage/freshness reviews burada ele alınır.
+- [x] 6H independent external Research QA: S6ERQA-v0 / D-062 ile tamamlandı; 10/10 6H review resolved.
+- [x] 7A English entry diagnostic: EED-v0 / D-063 ile tamamlandı.
+- [ ] 7B CEFR + technical progression alignment **AKTİF**: `review.6c.english.cefr_alignment` çözümü ve A1/A2/B1/B2+ technical target metadata.
 
 ## Knowledge-base operations
 

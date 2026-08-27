@@ -42,11 +42,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - AŞAMA 1–5: tamamlandı.
 - AŞAMA 6: ✅ tamamlandı — `GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0`.
 - 6H final external Research QA: ✅ `S6ERQA-v0 / D-062`; 549 Skill / 608 Objective / 950 prerequisite edge; 549/549 hard DAG; 10/10 6H review resolved.
-- **Aktif adım: 7A — İngilizce başlangıç ölçümü.**
-- **7A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- 7A: ✅ `EED-v0 / D-063` tamamlandı — D01 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family.
+- **Aktif adım: 7B — A1/A2/B1/B2+ teknik hedefleri.**
+- **7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 - AŞAMA 8–20 bekliyor.
 
-**7A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 7A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**7B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 7B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 
