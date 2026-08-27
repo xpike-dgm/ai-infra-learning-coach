@@ -289,11 +289,11 @@ safety_fixtures:
     case: ai_bilingual_scaffold_changes_negation_or_constraint
     expected: resource_invalid_for_strong_evidence
 future_stage_boundaries:
-  7E: learner_facing_english_mastery_and_cefr_profile_behavior
-  8_11: scaffold_ui_and_task_runner_presentation
-  9C: physical_data_model
-  12: planner_and_prerequisite_runtime_implementation
-  14: ai_tutor_translation_and_explanation_runtime
-  15: production_lesson_and_assessment_content
-  18: empirical_scaffold_and_item_calibration
-  20: broader_professional_english_capability_review_if_needed
+  "7E": learner_facing_english_mastery_and_cefr_profile_behavior
+  "8_11": scaffold_ui_and_task_runner_presentation
+  "9C": physical_data_model
+  "12": planner_and_prerequisite_runtime_implementation
+  "14": ai_tutor_translation_and_explanation_runtime
+  "15": production_lesson_and_assessment_content
+  "18": empirical_scaffold_and_item_calibration
+  "20": broader_professional_english_capability_review_if_needed
