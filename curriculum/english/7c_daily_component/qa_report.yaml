@@ -3,7 +3,7 @@ model: DECP-v0
 candidate_decision: D-065
 result: PASS
 checked_at: '2026-08-27'
-status_observed: candidate_7c
+status_observed: accepted_7c
 counts:
   canonical_d01_skills: 15
   tecp_aligned_skills: 15

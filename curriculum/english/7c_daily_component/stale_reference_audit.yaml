@@ -1,0 +1,38 @@
+stage_step: 7C
+model: DECP-v0
+decision: D-065
+audit: repo_wide_stale_reference_post_step
+result: PASS
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+blocking_findings: []
+historical_scope_policy: prior finalizer/audit/research/spec history is non-blocking; living current sources must agree on 7C complete / 7D active-not-executed

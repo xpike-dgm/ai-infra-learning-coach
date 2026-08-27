@@ -515,3 +515,24 @@ Ayrıntı: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`.
 - Sonraki numbered step `7C — Günlük English bileşeni`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.
+
+## D-065 — Daily English Component Policy = DECP-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 7C final modeli `DECP-v0 — Daily English Component Policy` oldu.
+- Canonical spec `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`; machine-readable policy `curriculum/english/7c_daily_component/policy.yaml`; research basis `research/7c_daily_english_component_research.md`.
+- Technical English ayrı daily budget/planner değildir; existing `LearningNeed → TaskCandidate → PBR-v0 → PRG-v0 → common capacity → Attempt/Artifact → Evidence` pipeline'ını kullanır.
+- Fixed daily English minute, percentage/share, completion quota, streak gate, missed-day failure veya debt yoktur.
+- Active study day'de open + eligible + interpretable Technical English need ve safe candidate varsa en az bir English TaskCandidate üretilir; candidate generation selection/mastery garantisi değildir.
+- Normal parallel-track progress P3'tür. P0/P1 integrity/repair work dar capacity'de English'i o gün dışarıda bırakabilir.
+- Repeated eligible omission yeni sabit gün eşiği yaratmadan existing PBR `track_balance_pressure` + `starvation_pressure` (`none | watch | promote`) semantics'iyle scheduling pressure üretir. Promotion eligibility/capacity/evidence guard'larını aşamaz.
+- Daily task mix sabit category yüzdeleriyle değil exact Skill/Objective state'inden seçilir: new/continue learning, retention, remediation/verification, production ve reinforcement/B2+.
+- Distributed/retrieval-practice research yönü kullanılır fakat 7C universal optimal interval, daily minute, percentage veya fixed checkpoint count iddia etmez. Spacing ownership RVR-v0'da kalır; empirical calibration AŞAMA 18'e aittir.
+- Unknown grammar/vocabulary clean production failure üretemez; remediation exact Skill/Objective seviyesinde kalır; same failed item memorization closure değildir.
+- Corrective feedback learning için kullanılabilir fakat feedback-assisted revision independent mastery evidence değildir; gerekli closure fresh H0/direct/verified attempt ister.
+- B2+ yalnız TECP-v0 bounded evidence-depth extension'dır; synthetic B2+ completion veya silent Skill expansion yoktur.
+- 7C yalnız English-track scaffold/cadence/task-mix behavior'ını tanımlar. Technical curriculum içindeki bilingual/English integration 7D'ye; learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
+- Stage 6 regression + accepted 7B regression + independent 7C validator PASS.
+- D-050 POST living-memory, external-memory ve repo-wide stale-reference audit ile kapanış zorunludur.
+
+Ayrıntı: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.

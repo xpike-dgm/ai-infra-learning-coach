@@ -1,10 +1,10 @@
 # Daily English Component Spec — DECP-v0
 
 **Adım:** 7C — Günlük English bileşeni  
-**Durum:** CANDIDATE / QA PENDING  
+**Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-27  
-**Candidate model:** `DECP-v0 — Daily English Component Policy`  
-**Candidate decision:** `D-065`
+**Final model:** `DECP-v0 — Daily English Component Policy`  
+**Final decision:** `D-065`
 
 Bu belge Technical English paralel hattının günlük planner içinde **hangi koşullarda aday görev üreteceğini, ortak capacity içinde nasıl yarışacağını, hangi task mix'in state'e göre seçileceğini ve English'in düzenli kalırken debt/streak/fixed-quota sistemine dönüşmemesini** tanımlar.
 

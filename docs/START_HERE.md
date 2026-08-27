@@ -126,7 +126,7 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C 🟡 active-not-executed**
+- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C ✅ DECP-v0 / D-065; 7D 🟡 active-not-executed**
 - 8 UX
 - 9 Architecture/data model
 - 10 Mobile skeleton
@@ -209,6 +209,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11v. `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`
 11w. `curriculum/english/7b_cefr_progression/alignment.yaml`
 11x. `curriculum/english/7b_cefr_progression/qa_report.yaml`
+11y. `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`
+11z. `curriculum/english/7c_daily_component/policy.yaml`
+11aa. `curriculum/english/7c_daily_component/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -243,15 +246,15 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
-- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C 🟡 active-not-executed**
+- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C ✅ DECP-v0 / D-065**, **7D 🟡 active-not-executed**
 
-7B final: **15 D01 Skill = 5 A1 / 5 A2 / 5 B1**, 16/16 band-monotonic English hard edge, 4 bounded B2+ professional extension; CEFR metadata mastery/certification değildir.
+7C final: Technical English common capacity içinde daily candidate opportunity olarak çalışır; fixed minute/percentage/completion/streak/debt yoktur; PBR balance/starvation ve state-driven task mix kullanılır.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`7B — TECP-v0 / D-064`**  
-**Aktif:** **`7C — Günlük English bileşeni`**  
-**7C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
+**Aktif:** **`7D — Teknik entegrasyon`**  
+**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7B, TECP-v0 / D-064 ile tamamlandı: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension; CEFR alignment mastery/certification değildir. Aktif step 7C — Günlük English bileşeni; 7C henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7C, DECP-v0 / D-065 ile tamamlandı: common-capacity daily English candidate opportunity, no fixed minute/percentage/streak/debt, PBR balance/starvation, state-driven task mix. Aktif step 7D — Teknik entegrasyon; 7D henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

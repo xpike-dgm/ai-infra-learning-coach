@@ -502,3 +502,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory, external-memory ve repo-wide stale-reference audit ile 7B kapatıldı; 7C active-not-executed yapıldı.
 
 **Sonraki kesin adım:** `7C — Günlük English bileşeni`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-08-27 — 7C Daily English Component tamamlandı — DECP-v0 / D-065
+
+- Kullanıcı açık onayı sonrası fresh PRE-STEP ile 7B completion ve 7C active-not-executed state doğrulandı.
+- Spacing/distributed practice, retrieval-practice transfer, L2 spacing ve writing feedback araştırmaları policy girdisi olarak incelendi; contradictory/conditional findings nedeniyle sabit bilimsel görünümlü daily minute/percentage/interval uydurulmadı.
+- English common daily capacity içinde parallel track olarak modellendi; separate budget/quota/streak/debt yok.
+- Active study day + open/eligible/safe English need durumunda en az bir candidate-generation invariant kabul edildi; selection yine PBR/PRG/capacity tarafından belirlenir.
+- Existing PBR track-balance/starvation `none/watch/promote` semantics'i reuse edildi; fixed missed-day threshold eklenmedi.
+- State-driven task mix, RVR spacing ownership, localized remediation, feedback/evidence safety ve TECP-v0 B2+ semantic boundary kilitlendi.
+- İlk QA turunda validator PASS verdi fakat untracked `qa_report.yaml` workflow tarafından commitlenmedi; artifact-detection `git status --porcelain` ile düzeltildi ve ikinci bağımsız QA turu tamamen PASS verdi.
+- D-050 POST sırasında living/current state 7C ✅ / 7D active-not-executed'e taşındı ve `LOCAL_MANAGER_HANDOFF.md` içindeki eski 6E/6F current-state drift'i temizlendi.
+
+**Sonraki kesin adım:** `7D — Teknik entegrasyon`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

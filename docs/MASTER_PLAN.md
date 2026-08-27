@@ -298,8 +298,21 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - `review.6c.english.cefr_alignment` resolved,
 - Stage 6 + EED-v0 + 7B validator PASS.
 
-### [ ] 7C — Günlük English bileşeni — **AKTİF**
-### [ ] 7D — Teknik entegrasyon
+### [x] 7C — Günlük English bileşeni — DECP-v0 / D-065
+**Final:** `docs/DAILY_ENGLISH_COMPONENT_SPEC.md` + `curriculum/english/7c_daily_component/`
+
+- common daily hard capacity; no separate English budget/quota,
+- active-study-day + open/eligible/safe English need → at least one candidate,
+- candidate/selection/attempt/mastery separation,
+- normal parallel need P3 + existing PBR track-balance/starvation reuse, no fixed omission-day threshold,
+- state-driven new/continue/retention/remediation/production/reinforcement mix,
+- RVR-v0 owns spacing; no fake universal interval/minute/percentage,
+- feedback-assisted revision != independent mastery evidence,
+- TECP-v0 B2+ semantic boundary preserved,
+- technical integration deferred to 7D; English mastery/display deferred to 7E,
+- Stage 6 + 7B regression + independent 7C validator PASS.
+
+### [ ] 7D — Teknik entegrasyon — **AKTİF**
 ### [ ] 7E — English mastery
 
 ---
@@ -465,11 +478,12 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7B`  
-**Son tamamlanan:** **`7B — TECP-v0 / D-064`**  
-**Aktif:** **`7C — Günlük English bileşeni`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7C`  
+**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
+**Aktif:** **`7D — Teknik entegrasyon`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **7C fresh PRE-STEP → EED-v0 + TECP-v0 profile/bands + adaptive planner capacity/priority contracts ile daily English cadence/task-mix tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **7D fresh PRE-STEP → EED-v0 + TECP-v0 + DECP-v0 + English Foundation Rules + technical task/prerequisite/evidence contracts ile bilingual/English technical integration tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
 
 - D-063: 7A final `EED-v0`.
-- D-064: 7B final `TECP-v0`; 15 Skill = 5 A1 + 5 A2 + 5 B1, 4 bounded B2+ extension, CEFR review resolved.
+- D-064: 7B final `TECP-v0`.
+- D-065: 7C final `DECP-v0`; common-capacity daily candidate opportunity + state-driven task mix + no quota/streak/debt.

@@ -1,7 +1,6 @@
 model: DECP-v0
 stage_step: 7C
-status: candidate_7c
-decision_candidate: D-065
+status: accepted_7c
 scope:
   curriculum_track: technical_english
   domain_id: domain.technical_english
@@ -200,3 +199,4 @@ future_stage_boundaries:
   15G: production_assessment_items
   18: cadence_interval_duration_and_item_calibration
   20: broader_professional_english_capability_review
+decision: D-065
