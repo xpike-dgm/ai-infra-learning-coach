@@ -1,0 +1,232 @@
+model: TECP-v0
+stage_step: 7B
+status: candidate_7b
+candidate_decision: D-064
+canonical_d01_source: curriculum/english/7a_entry_diagnostic/blueprint.yaml
+canonical_review_queue: curriculum/decomposition/6c_foundations/review_queue.yaml
+research_basis: research/7b_technical_english_cefr_research.md
+scope:
+  domain_id: domain.technical_english
+  route_family_id: D01
+  expected_skill_count: 15
+  base_target_bands:
+  - A1
+  - A2
+  - B1
+  professional_extension_band: B2+
+  text_first_profile: true
+alignment_semantics:
+  cefr_alignment_type: contextual_descriptor_family_alignment
+  cefr_alignment_is_mastery_state: false
+  council_of_europe_certification_claim: false
+  overall_general_english_cefr_claim: forbidden
+  plain_level_label_without_technical_qualifier: forbidden
+  allowed_profile_label: CEFR-aligned Technical English profile
+  base_band_summary_is_derived: true
+  base_band_summary_source: GRE-v0+VDW-v0 confirmed canonical Skill states
+  b2_plus_is_new_mastery_state: false
+  b2_plus_is_professional_evidence_depth_extension: true
+  english_to_technical_global_hard_gate: false
+  numeric_cefr_conversion_formula: null
+pre_a1_bridge:
+  supported_as_context: true
+  canonical_target_band: false
+  failure_label: false
+  technical_global_blocker: false
+  usage: zero_entry_scaffold_before_A1_root_evidence
+band_order:
+  A1: 1
+  A2: 2
+  B1: 3
+band_contracts:
+- band: A1
+  label: Technical Entry
+  expected_anchor_skill_count: 5
+  intent: Resolve core labels, short noun phrases, basic sentence relations and straightforward imperative meaning in technical strings.
+- band: A2
+  label: Technical Operator
+  expected_anchor_skill_count: 5
+  intent: Operate in straightforward technical task/error/documentation contexts and produce a short command/result note.
+- band: B1
+  label: Technical Independent Base
+  expected_anchor_skill_count: 5
+  intent: Independently read definitions/procedures and perform basic professional technical writing/explanation/clarification in text-first workflows.
+b2_plus_contract:
+  label: Professional Technical Extension
+  base_skill_reclassification: forbidden
+  new_skill_creation_in_7b: forbidden
+  synthetic_completion_state_in_7b: forbidden
+  learner_facing_behavior_owner_step: 7E
+  extension_skill_ids:
+  - skill.english.documentation_navigation
+  - skill.english.read_definition_and_constraint
+  - skill.english.read_procedure_sequence
+  - skill.english.ask_clarifying_technical_question
+  explicitly_no_auto_extension_skill_ids:
+  - skill.english.read_simple_terminal_error_fragments
+  - skill.english.write_command_result_note
+  - skill.english.write_basic_bug_description
+  - skill.english.explain_simple_technical_process
+  - skill.english.follow_bilingual_technical_instruction
+  semantic_guard: extension_task_must_remain_inside_existing_skill_capability_boundary
+  future_broader_capability_rule: use_GNS_KGC_capability_review_not_silent_scope_expansion
+controlled_cefr_scale_families:
+- cefr.overall_reading_comprehension
+- cefr.reading_for_orientation
+- cefr.reading_for_information_and_argument
+- cefr.reading_instructions
+- cefr.vocabulary_range
+- cefr.grammatical_accuracy
+- cefr.overall_written_production
+- cefr.overall_written_interaction
+- cefr.goal_oriented_online_transactions_collaboration
+- cefr.plurilingual_comprehension
+skill_alignments:
+- skill_id: skill.english.recognize_core_technical_labels
+  anchor_band: A1
+  band_role: receptive_foundation
+  cefr_scale_families:
+  - cefr.overall_reading_comprehension
+  - cefr.vocabulary_range
+  technical_target_statement: Recognize frequent technical labels and map them to basic task meaning in short strings.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.technical_noun_phrase_recognition
+  anchor_band: A1
+  band_role: receptive_foundation
+  cefr_scale_families:
+  - cefr.overall_reading_comprehension
+  - cefr.vocabulary_range
+  technical_target_statement: Resolve short technical noun phrases without requiring specialist domain reasoning.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.be_and_simple_present_comprehension
+  anchor_band: A1
+  band_role: grammar_receptive_foundation
+  cefr_scale_families:
+  - cefr.overall_reading_comprehension
+  - cefr.grammatical_accuracy
+  technical_target_statement: Understand basic state, identity and routine behavior expressed with be/simple present in technical examples.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.imperative_instruction_comprehension
+  anchor_band: A1
+  band_role: instruction_reception
+  cefr_scale_families:
+  - cefr.reading_instructions
+  technical_target_statement: Extract action and object from short straightforward technical imperatives.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.preposition_function_word_comprehension
+  anchor_band: A1
+  band_role: grammar_relation_reception
+  cefr_scale_families:
+  - cefr.overall_reading_comprehension
+  - cefr.grammatical_accuracy
+  technical_target_statement: Interpret basic relation/function-word meaning needed by short technical sentences and instructions.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.negation_question_comprehension
+  anchor_band: A2
+  band_role: receptive_interaction_bridge
+  cefr_scale_families:
+  - cefr.overall_reading_comprehension
+  - cefr.grammatical_accuracy
+  - cefr.overall_written_interaction
+  technical_target_statement: Distinguish straightforward negation and question intent in technical task communication.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.follow_bilingual_technical_instruction
+  anchor_band: A2
+  band_role: scaffolded_instruction_application
+  cefr_scale_families:
+  - cefr.reading_instructions
+  - cefr.plurilingual_comprehension
+  technical_target_statement: Follow a short structured technical instruction with bilingual scaffold while English prerequisites remain separately observable.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.read_simple_terminal_error_fragments
+  anchor_band: A2
+  band_role: error_reception
+  cefr_scale_families:
+  - cefr.reading_for_orientation
+  - cefr.reading_for_information_and_argument
+  technical_target_statement: Extract location/category/basic signal from short terminal or compiler error fragments without requiring diagnosis expertise.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.documentation_navigation
+  anchor_band: A2
+  band_role: documentation_orientation
+  cefr_scale_families:
+  - cefr.reading_for_orientation
+  - cefr.reading_for_information_and_argument
+  technical_target_statement: Locate relevant heading, option, example or short section in straightforward technical documentation.
+  b2_plus_extension_eligible: true
+  b2_plus_extension_scope: Navigate denser documentation and cross-references while staying within information-location/navigation semantics.
+- skill_id: skill.english.write_command_result_note
+  anchor_band: A2
+  band_role: short_written_production
+  cefr_scale_families:
+  - cefr.overall_written_production
+  - cefr.overall_written_interaction
+  technical_target_statement: Write a short factual command/input/result note using already-established grammar and vocabulary.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.read_definition_and_constraint
+  anchor_band: B1
+  band_role: independent_information_reception
+  cefr_scale_families:
+  - cefr.reading_for_information_and_argument
+  technical_target_statement: Independently extract a technical definition together with its stated condition, limitation or constraint.
+  b2_plus_extension_eligible: true
+  b2_plus_extension_scope: Track multiple qualifiers, exceptions or linked constraints without expanding into specialist technical correctness judgment.
+- skill_id: skill.english.read_procedure_sequence
+  anchor_band: B1
+  band_role: independent_instruction_reception
+  cefr_scale_families:
+  - cefr.reading_instructions
+  - cefr.reading_for_information_and_argument
+  technical_target_statement: Follow a multi-step technical procedure and track sequence, condition and warning language independently.
+  b2_plus_extension_eligible: true
+  b2_plus_extension_scope: Track denser conditional/warning/dependency structure and cross-references while remaining a procedure-reading capability.
+- skill_id: skill.english.write_basic_bug_description
+  anchor_band: B1
+  band_role: basic_professional_written_interaction
+  cefr_scale_families:
+  - cefr.overall_written_interaction
+  - cefr.goal_oriented_online_transactions_collaboration
+  technical_target_statement: Write a basic expected/actual/error bug description that another person can act on without requiring advanced report-writing semantics.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.explain_simple_technical_process
+  anchor_band: B1
+  band_role: independent_short_explanation
+  cefr_scale_families:
+  - cefr.overall_written_production
+  technical_target_statement: Explain a simple technical process in a coherent short sequence using independently produced language.
+  b2_plus_extension_eligible: false
+- skill_id: skill.english.ask_clarifying_technical_question
+  anchor_band: B1
+  band_role: professional_clarification_interaction
+  cefr_scale_families:
+  - cefr.overall_written_interaction
+  - cefr.goal_oriented_online_transactions_collaboration
+  technical_target_statement: Ask a clear technical clarification question that resolves missing or ambiguous task information.
+  b2_plus_extension_eligible: true
+  b2_plus_extension_scope: Formulate precise clarification in professional online collaboration, including relevant condition/context, without requiring broader negotiation capability.
+profile_derivation:
+  canonical_source_of_truth: exact_skill_objective_evidence
+  highest_complete_base_band_allowed: true
+  highest_complete_base_band_values:
+  - A1
+  - A2
+  - B1
+  requirement: every_skill_anchored_at_or_below_band_is_mastery_or_waiver_confirmed_under_GRE_VDW
+  broad_score: null
+  single_general_english_level: null
+  uneven_profile_preserved: true
+  b2_plus_evidence_summary_allowed: true
+  b2_plus_completion_state_defined_in_7b: false
+review_resolution_candidate:
+  review_id: review.6c.english.cefr_alignment
+  owner_step: 7B
+  finalization_action: resolve
+  resolution_summary: D01 identities remain unchanged; exact 15 Skills receive context-only CEFR progression metadata as 5 A1, 5 A2 and 5 B1 anchors, with bounded B2+ professional evidence-depth extension and no general-English certification claim.
+future_stage_boundaries:
+  7C: daily_english_cadence_and_task_mix
+  7D: technical_curriculum_integration_and_scaffold_behavior
+  7E: learner_facing_english_mastery_and_cefr_profile_behavior
+  15F: production_english_content
+  15G: assessment_content
+  18D: empirical_item_level_and_validator_calibration
+  20: broader_professional_english_capability_review_if_needed
