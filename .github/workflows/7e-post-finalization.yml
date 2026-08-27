@@ -22,6 +22,19 @@ jobs:
           python-version: '3.12'
       - name: Install YAML dependency
         run: python -m pip install pyyaml
+      - name: Repair and compile-check 7E finalizer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/finalize_7e_post_step.py')
+          t = p.read_text(encoding='utf-8')
+          bad = '11ag. `curriculum/english/7e_mastery_profile/qa_report.yaml`\n"", 1)'
+          good = '11ag. `curriculum/english/7e_mastery_profile/qa_report.yaml`\n""", 1)'
+          if bad in t:
+              t = t.replace(bad, good)
+              p.write_text(t, encoding='utf-8')
+          PY
+          python -m py_compile tools/finalize_7e_post_step.py tools/audit_7e_post_step_stale.py tools/validate_technical_english_mastery_profile.py
       - name: Regression — final Stage 6 registry
         run: python tools/validate_6h_external_reconciliation.py
       - name: Regression — accepted 7B CEFR progression
@@ -55,6 +68,7 @@ jobs:
             curriculum/english/7e_mastery_profile/policy.yaml \
             curriculum/english/7e_mastery_profile/qa_report.yaml \
             curriculum/english/7e_mastery_profile/stale_reference_audit.yaml \
+            tools/finalize_7e_post_step.py \
             vault/agent/CURRENT_CONTEXT.md vault/agent/OPEN_LOOPS.md \
             vault/agent/session-logs/2026-08-27-7e-english-mastery.md
           git commit -m "Finalize 7E TEPM-v0 POST-step memory and stale audit [skip ci]"
