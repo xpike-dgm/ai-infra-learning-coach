@@ -6,6 +6,7 @@ on:
       - work/7a-english-baseline-diagnostic
     paths:
       - 'tools/finalize_7a_post_step.py'
+      - 'tools/fix_7a_post_current_state.py'
       - 'tools/audit_7a_post_step_stale.py'
       - '.github/workflows/7a-post-finalization.yml'
 
@@ -30,6 +31,8 @@ jobs:
         run: python tools/validate_english_entry_diagnostic.py --write-report
       - name: Apply 7A D-050 living-memory finalization
         run: python tools/finalize_7a_post_step.py
+      - name: Clean remaining 7A current-state mirrors
+        run: python tools/fix_7a_post_current_state.py
       - name: Revalidate 7A final artifacts
         run: python tools/validate_english_entry_diagnostic.py --write-report
       - name: Validate persistent external memory graph
