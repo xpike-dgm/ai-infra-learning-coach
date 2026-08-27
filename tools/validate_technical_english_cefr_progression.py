@@ -109,7 +109,13 @@ def main(write_report: bool) -> int:
     accepted = alignment.get("status") == "accepted_7b"
     if accepted:
         check("E7B-10_review_resolved_post", bool(review) and review.get("status") == "resolved" and review.get("resolution_owner_step") == "7B", "CEFR alignment review resolved by 7B")
-        check("E7B-10_eed_handoff_closed", eed.get("cefr_alignment_status") == "aligned_7B" and eed.get("cefr_level") is None and eed.get("cefr_profile_model_ref") == "TECP-v0", "EED profile points to TECP-v0 without broad level")
+        check(
+            "E7B-10_eed_handoff_preserved_historical",
+            eed.get("cefr_alignment_status") == "pending_7B"
+            and eed.get("cefr_level") is None
+            and eed.get("cefr_handoff", {}).get("owner_step") == "7B",
+            "accepted EED-v0 keeps its original 7A handoff marker; current alignment truth lives in TECP-v0",
+        )
     else:
         check("E7B-10_review_open_pre", bool(review) and review.get("status") == "open" and review.get("resolution_owner_step") == "7B", "review remains open until 7B POST finalization")
         check("E7B-10_eed_handoff_pending_pre", eed.get("cefr_alignment_status") == "pending_7B" and eed.get("cefr_level") is None, "EED handoff remains pending until accepted 7B")
