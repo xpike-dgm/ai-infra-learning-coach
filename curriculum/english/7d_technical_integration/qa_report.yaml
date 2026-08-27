@@ -1,0 +1,161 @@
+stage_step: 7D
+model: TEIP-v0
+candidate_decision: D-066
+result: PASS
+checked_at: '2026-08-27'
+status_observed: candidate_7d
+counts:
+  canonical_english_skills: 15
+  integration_modes: 4
+  safety_fixtures: 15
+  contamination_reason_codes: 7
+checks:
+- check: E7D-00_required_file
+  result: PASS
+  details: curriculum/english/7d_technical_integration/policy.yaml
+- check: E7D-00_required_file
+  result: PASS
+  details: curriculum/english/7a_entry_diagnostic/blueprint.yaml
+- check: E7D-00_required_file
+  result: PASS
+  details: curriculum/english/7b_cefr_progression/alignment.yaml
+- check: E7D-00_required_file
+  result: PASS
+  details: curriculum/english/7c_daily_component/policy.yaml
+- check: E7D-00_required_file
+  result: PASS
+  details: docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md
+- check: E7D-00_required_file
+  result: PASS
+  details: research/7d_technical_english_integration_research.md
+- check: E7D-01_identity
+  result: PASS
+  details: model=TEIP-v0 step=7D
+- check: E7D-01_status
+  result: PASS
+  details: status=candidate_7d
+- check: E7D-01_decision
+  result: PASS
+  details: decision=D-066
+- check: E7D-02_eed_scope
+  result: PASS
+  details: EED skills=15
+- check: E7D-02_tecp_scope
+  result: PASS
+  details: TECP skills=15
+- check: E7D-02_exact_skill_scope
+  result: PASS
+  details: policy=15 EED=15 TECP=15
+- check: E7D-02_expected_count
+  result: PASS
+  details: policy expected count=15
+- check: E7D-02_no_new_graph_entities
+  result: PASS
+  details: 7D is overlay only
+- check: E7D-02_decp_regression_anchor
+  result: PASS
+  details: DECP status=accepted_7c decision=D-065
+- check: E7D-03_exact_modes
+  result: PASS
+  details: modes=['dual_target_integrated', 'english_primary_technical_context', 'technical_only_localized', 'technical_with_english_exposure']
+- check: E7D-03_technical_only_guard
+  result: PASS
+  details: technical-only cannot target/gate/attribute English
+- check: E7D-03_exposure_not_mastery
+  result: PASS
+  details: exposure does not auto-create English mastery
+- check: E7D-03_dual_component_attribution
+  result: PASS
+  details: dual target must be component-attributed
+- check: E7D-03_english_primary_contamination_guard
+  result: PASS
+  details: technical context cannot contaminate English target
+- check: E7D-04_no_global_gate
+  result: PASS
+  details: English/CEFR cannot globally gate technical route
+- check: E7D-04_medium_not_construct
+  result: PASS
+  details: prompt/resource language != target construct
+- check: E7D-04_no_fake_precision
+  result: PASS
+  details: no fixed ratio/day/quota
+- check: E7D-04_fading_semantics
+  result: PASS
+  details: fading is evidence/validity driven and reversible
+- check: E7D-05_language_load_roles
+  result: PASS
+  details: roles=['incidental', 'supporting', 'construct_relevant']
+- check: E7D-05_instruction_modes
+  result: PASS
+  details: five semantic instruction modes
+- check: E7D-05_technical_support
+  result: PASS
+  details: technical construct can receive language support
+- check: E7D-05_english_target_support_ceiling
+  result: PASS
+  details: English target cannot receive answer-revealing support as independent evidence
+- check: E7D-05_fading_not_calendar
+  result: PASS
+  details: fading has no calendar/percentage schedule
+- check: E7D-06_task_contract
+  result: PASS
+  details: fields=16
+- check: E7D-06_target_prereq_separation
+  result: PASS
+  details: target/prerequisite and technical/English attribution separated
+- check: E7D-07_component_results
+  result: PASS
+  details: component result vocabulary exact
+- check: E7D-07_contamination_codes
+  result: PASS
+  details: contamination vocabulary exact
+- check: E7D-07_language_to_technical_guard
+  result: PASS
+  details: English-caused technical failure cannot lower technical mastery
+- check: E7D-07_technical_to_english_guard
+  result: PASS
+  details: technical-context-caused English failure cannot lower English mastery
+- check: E7D-07_positive_survival_conservative
+  result: PASS
+  details: positive component survives only when interpretable
+- check: E7D-08_multi_need_efficiency
+  result: PASS
+  details: one integrated task can serve multiple needs without priority inflation
+- check: E7D-08_no_completion_broadcast
+  result: PASS
+  details: completion does not resolve all needs
+- check: E7D-08_strong_evidence_guard
+  result: PASS
+  details: natural English strong evidence keeps normal gates
+- check: E7D-09_authenticity_not_validity
+  result: PASS
+  details: authentic docs still obey validation
+- check: E7D-09_translation_integrity
+  result: PASS
+  details: translation/gloss preserves technical semantics
+- check: E7D-10_fixture_count
+  result: PASS
+  details: fixtures=15
+- check: E7D-10_fixture_ids
+  result: PASS
+  details: fixture ids=['E7D-F01', 'E7D-F02', 'E7D-F03', 'E7D-F04', 'E7D-F05', 'E7D-F06', 'E7D-F07', 'E7D-F08', 'E7D-F09', 'E7D-F10', 'E7D-F11', 'E7D-F12', 'E7D-F13',
+    'E7D-F14', 'E7D-F15']
+- check: E7D-11_7e_boundary
+  result: PASS
+  details: 7E=learner_facing_english_mastery_and_cefr_profile_behavior
+- check: E7D-11_no_runtime_implementation
+  result: PASS
+  details: 7D is policy not runtime implementation
+- check: E7D-12_spec_identity
+  result: PASS
+  details: spec identity present
+- check: E7D-12_spec_global_gate_guard
+  result: PASS
+  details: core safeguards documented
+- check: E7D-12_research_sources
+  result: PASS
+  details: authoritative research provenance present
+- check: E7D-12_research_no_fake_ratio
+  result: PASS
+  details: research explicitly rejects universal ratio
+failures: []
