@@ -19,14 +19,14 @@ CURRENT_FILES = [
     "vault/agent/OPEN_LOOPS.md",
 ]
 
-# Delimiters matter: a line such as "7A completed; 7B active-not-executed" must not
-# be interpreted as saying that 7A is still active. These expressions only inspect
-# the clause that belongs to 7A.
+# Delimiters matter: a line such as "7A completed; 7B active-not-executed" or
+# "7A ✅, 7B 🟡" must not be interpreted as saying that 7A is still active.
+# These expressions only inspect the clause that belongs to 7A.
 blocking_patterns = {
-    "7a_not_executed": re.compile(r"7A[^;/\n]{0,90}(henüz yürütülmedi|not executed|active-not-executed)", re.I),
-    "7a_active": re.compile(r"(Aktif adım|\*\*Aktif:\*\*)[^;\n]{0,90}7A(?:\b|\s|—|-)", re.I),
-    "7a_yellow": re.compile(r"7A[^;\n]{0,60}🟡|🟡[^;\n]{0,60}7A", re.I),
-    "7a_stage_active_marker": re.compile(r"7A[^;\n]{0,80}(?:—|-)[^;\n]{0,80}\*\*AKTİF\*\*", re.I),
+    "7a_not_executed": re.compile(r"7A[^;,/\n]{0,90}(henüz yürütülmedi|not executed|active-not-executed)", re.I),
+    "7a_active": re.compile(r"(Aktif adım|\*\*Aktif:\*\*)[^;,\n]{0,90}7A(?:\b|\s|—|-)", re.I),
+    "7a_yellow": re.compile(r"7A[^;,\n]{0,60}🟡|🟡[^;,\n]{0,60}7A", re.I),
+    "7a_stage_active_marker": re.compile(r"7A[^;,\n]{0,80}(?:—|-)[^;,\n]{0,80}\*\*AKTİF\*\*", re.I),
 }
 
 blocking: list[dict] = []
