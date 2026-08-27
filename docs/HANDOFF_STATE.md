@@ -228,15 +228,15 @@ PEM-v0:
 - AŞAMA 7B ✅ — TECP-v0 / D-064
 - AŞAMA 7C ✅ — DECP-v0 / D-065
 - AŞAMA 7D ✅ — TEIP-v0 / D-066
-- AŞAMA 7E ✅ TEPM-v0 / D-067
-8A 🟡 active-not-executed
+- AŞAMA 7 ✅ — EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067
 - 8A 🟡 active-not-executed
-8B–20 ⬜
+- 8B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `7D — TEIP-v0 / D-066`  
-**Aktif:** `7E — English mastery`  
+**Son tamamlanan:** `7E — TEPM-v0 / D-067`  
+**AŞAMA 7:** ✅ TAMAMLANDI  
+**Aktif:** `8A — Bilgi mimarisi`  
 **8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
