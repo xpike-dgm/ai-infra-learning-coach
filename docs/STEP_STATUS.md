@@ -29,8 +29,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **6G — Weakness localization + remediation mapping** | ✅ | WLRM-v0 / D-061. Final 6H-patched registry için 549 Skill + 608 Objective exact weakness/remediation coverage. |
 | **6H — Coverage / prerequisite / Research QA** | ✅ | S6ERQA-v0 / D-062. 3 bağımsız evaluator reconcile edildi; 6 stable Skill + freshness/evidence patch; 549/549 hard DAG; 10/10 review resolved. |
 | **7A — İngilizce başlangıç ölçümü** | ✅ | EED-v0 / D-063. 15 Skill / 15 Objective / 16 hard edge diagnostic profile + 15 task family; QA PASS. |
-| **7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **7C–20** | ⬜ Bekliyor | 7B sonrası canonical sırada. |
+| **7B — A1/A2/B1/B2+ teknik hedefleri** | ✅ | TECP-v0 / D-064. 15 Skill = 5 A1 + 5 A2 + 5 B1; 4 bounded B2+ extensions; 16/16 band-monotonic hard edges; QA PASS. |
+| **7C — Günlük English bileşeni** | 🟡 Aktif | Daily English cadence/task-mix design; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **7D–20** | ⬜ Bekliyor | 7C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -49,24 +50,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 7A
+## Son tamamlanan numaralı adım — 7B
 
-**Final:** `EED-v0 — English Entry Diagnostic` / D-063.  
-**Ana çıktı:** `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md` + `curriculum/english/7a_entry_diagnostic/`.
+**Final:** `TECP-v0 — Technical English CEFR Progression` / D-064.  
+**Ana çıktı:** `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md` + `curriculum/english/7b_cefr_progression/`.
 
-7A sonucu:
-- 15/15 canonical D01 English Skill,
-- 15/15 canonical owner Objective,
-- 16/16 English hard prerequisite edge,
-- 15 diagnostic task family,
-- English hard DAG 15/15,
-- self-report/certificate/confidence non-evidence,
-- no easier diagnostic mastery threshold,
-- no hidden technical/unknown-English prerequisite,
-- invalid/prerequisite-contaminated failure target negative evidence yazmıyor,
-- CEFR level assignment 7B'ye deferred,
-- final Stage 6 regression + independent 7A validator PASS.
+7B sonucu:
+- D01 15/15 canonical Skill aligned,
+- base anchors = 5 A1 / 5 A2 / 5 B1,
+- 16/16 canonical English hard edge band-monotonic,
+- 4 bounded B2+ professional evidence-depth extension,
+- 10 controlled CEFR scale-family ref,
+- CEFR metadata mastery/certification/general-English claim değil,
+- no new Skill/Objective/prerequisite edge,
+- `review.6c.english.cefr_alignment` resolved,
+- Stage 6 + EED-v0 + 7B validator PASS.
 
-## Aktif adım — 7B A1/A2/B1/B2+ teknik hedefleri
+## Aktif adım — 7C Günlük English bileşeni
 
-**7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**7C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

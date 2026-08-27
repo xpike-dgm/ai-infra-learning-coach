@@ -487,3 +487,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory + external-memory + repo-wide stale-reference audit ile 7A kapatıldı; 7B active-not-executed yapıldı.
 
 **Sonraki kesin adım:** `7B — A1/A2/B1/B2+ teknik hedefleri`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-08-27 — 7B Technical English CEFR Progression tamamlandı — TECP-v0 / D-064
+
+- Kullanıcı açık onayı sonrası fresh PRE-STEP ile main `61ce26b...`, 7A completion ve 7B active-not-executed state doğrulandı.
+- Council of Europe CEFR Companion Volume/descriptor/test guidance ve ALTE language-for-specific-purposes guidance Research girdisi olarak kullanıldı; final karar mevcut EED/GRE/VDW/PRG/GNS/KGC contracts ile reconcile edildi.
+- D01 exact 15 Skill context-only progression metadata ile 5 A1 + 5 A2 + 5 B1 base anchor'a bağlandı.
+- 16/16 English hard prerequisite edge için base-band monotonicity doğrulandı.
+- B2+ yalnız 4 canonical Skill'de bounded professional evidence-depth extension olarak tanımlandı; silent semantic expansion ve synthetic B2+ mastery state yasaklandı.
+- Current D01 text-first olduğu için plain general-English CEFR/certification claim yasaklandı; uneven Technical English profile korunur.
+- `review.6c.english.cefr_alignment` resolved edildi; no split/no new Skill/Objective/prerequisite edge.
+- EED-v0 historical `pending_7B` handoff marker'ı geriye dönük değiştirilmedi; current alignment source TECP-v0 oldu.
+- Stage 6 regression + EED-v0 regression + independent 7B validator PASS.
+- D-050 POST living-memory, external-memory ve repo-wide stale-reference audit ile 7B kapatıldı; 7C active-not-executed yapıldı.
+
+**Sonraki kesin adım:** `7C — Günlük English bileşeni`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

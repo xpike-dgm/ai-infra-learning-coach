@@ -21,8 +21,8 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `6A–6H completed / 7A completed / 7B active-not-executed` olduğunu doğrula.
-9. Ancak bundan sonra, 7B için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
+8. Current execution state'in `6A–6H completed / 7A–7B completed / 7C active-not-executed` olduğunu doğrula.
+9. Ancak bundan sonra, 7C için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
 
@@ -1167,7 +1167,7 @@ fresh 6H PRE-STEP GitHub refresh
 → evaluation
 → D-050 POST sync
 → stale-reference audit
-→ 6H completed; 7A completed / 7B active-not-executed
+→ 6H completed; 7A–7B completed / 7C active-not-executed
 ```
 
 ---
@@ -1736,3 +1736,10 @@ ve başlamadan fresh PRE-STEP GitHub refresh zorunludur.
 ## 7A completion addendum — D-063
 
 7A `EED-v0 — English Entry Diagnostic` ile tamamlandı. Canonical: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`; blueprint/QA: `curriculum/english/7a_entry_diagnostic/`. D01 için 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family doğrulandı. CEFR alignment 7B'ye pending. Current active numbered step 7B'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 7B completion addendum — D-064
+
+7B `TECP-v0 — Technical English CEFR Progression` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`; dataset/QA: `curriculum/english/7b_cefr_progression/`. D01 15 Skill = 5 A1 + 5 A2 + 5 B1 context-only anchor; 16/16 English hard edge band-monotonic; 4 bounded B2+ professional extension. CEFR metadata mastery/certification değildir. `review.6c.english.cefr_alignment` resolved. Current active numbered step 7C'dir; fresh PRE + kullanıcı açık onayı gerekir.

@@ -495,3 +495,23 @@ Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
 - Sonraki numbered step `7B — A1/A2/B1/B2+ teknik hedefleri`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`.
+
+## D-064 — Technical English CEFR Progression = TECP-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 7B final modeli `TECP-v0 — Technical English CEFR Progression` oldu.
+- Canonical spec `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`; machine-readable alignment `curriculum/english/7b_cefr_progression/alignment.yaml`; research basis `research/7b_technical_english_cefr_research.md`.
+- Accepted D01 15 Skill identity'si değişmeden exactly-one base CEFR-aligned Technical English anchor aldı: 5 A1 / 5 A2 / 5 B1.
+- Canonical 16 English hard prerequisite edge'in tamamında band monotonicity PASS; CEFR metadata yeni prerequisite edge üretmez.
+- CEFR alignment learner mastery state, raw score, Council of Europe certification veya general-English level claim değildir. Canonical source exact Skill/Objective evidence + GRE/VDW state'tir.
+- Current D01 text-first profile olduğu için `English B1/B2`, `CEFR-certified` veya `official level` gibi unqualified claims yasaktır; yalnız qualified Technical English profile wording kullanılabilir.
+- Pre-A1 zero-entry scaffold context'i olabilir fakat ayrı target gate/failure label/technical blocker değildir.
+- B2+ yeni mastery bandı veya silent Skill expansion değildir; yalnız `documentation_navigation`, `read_definition_and_constraint`, `read_procedure_sequence`, `ask_clarifying_technical_question` için semantic boundary içinde bounded professional evidence-depth extension'dır.
+- `simple/basic/bilingual` semantics taşıyan mevcut Skills B2+ görünümü için otomatik genişletilemez; daha geniş capability gerekirse GNS-v0/KGC-v0 normal capability review gerekir.
+- 10 controlled CEFR scale-family ref authoring/provenance metadata'sı olarak kullanılır; descriptor family refs Skill identity/evidence rule değildir.
+- `review.6c.english.cefr_alignment` 7B tarafından `CONTEXT_ONLY_NO_SPLIT` olarak resolved edildi; yeni Skill/Objective/prerequisite gerekmedi.
+- 7A EED-v0 artifact'ındaki `pending_7B` alanı tarihsel handoff kontratı olarak korunur; current CEFR alignment source TECP-v0'dır.
+- Final Stage 6 regression, 7A EED regression ve independent 7B validator PASS.
+- Sonraki numbered step `7C — Günlük English bileşeni`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.

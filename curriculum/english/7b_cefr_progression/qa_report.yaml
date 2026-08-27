@@ -3,7 +3,7 @@ model: TECP-v0
 candidate_decision: D-064
 result: PASS
 checked_at: '2026-08-27'
-status_observed: candidate_7b
+status_observed: accepted_7b
 counts:
   canonical_d01_skills: 15
   aligned_skills: 15
@@ -28,7 +28,7 @@ checks:
   details: bands=['A1', 'A2', 'B1']
 - check: E7B-02_balanced_anchor_distribution
   result: PASS
-  details: 'counts={''A2'': 5, ''A1'': 5, ''B1'': 5}'
+  details: 'counts={''A2'': 5, ''B1'': 5, ''A1'': 5}'
 - check: E7B-02_no_B2plus_base_reclassification
   result: PASS
   details: B2+ remains extension-only
@@ -81,12 +81,12 @@ checks:
 - check: E7B-09_future_boundaries
   result: PASS
   details: future keys=['7C', '7D', '7E', '15F', '15G', '18D', 20]
-- check: E7B-10_review_open_pre
+- check: E7B-10_review_resolved_post
   result: PASS
-  details: review remains open until 7B POST finalization
-- check: E7B-10_eed_handoff_pending_pre
+  details: CEFR alignment review resolved by 7B
+- check: E7B-10_eed_handoff_preserved_historical
   result: PASS
-  details: EED handoff remains pending until accepted 7B
+  details: accepted EED-v0 keeps its original 7A handoff marker; current alignment truth lives in TECP-v0
 - check: E7B-11_research_exists
   result: PASS
   details: research/7b_technical_english_cefr_research.md
@@ -96,5 +96,5 @@ checks:
 failures: []
 review:
   review_id: review.6c.english.cefr_alignment
-  expected_status: open
+  expected_status: resolved
   owner_step: 7B

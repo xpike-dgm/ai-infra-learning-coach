@@ -1,7 +1,6 @@
 model: TECP-v0
 stage_step: 7B
-status: candidate_7b
-candidate_decision: D-064
+status: accepted_7b
 canonical_d01_source: curriculum/english/7a_entry_diagnostic/blueprint.yaml
 canonical_review_queue: curriculum/decomposition/6c_foundations/review_queue.yaml
 research_basis: research/7b_technical_english_cefr_research.md
@@ -136,7 +135,8 @@ skill_alignments:
   cefr_scale_families:
   - cefr.reading_instructions
   - cefr.plurilingual_comprehension
-  technical_target_statement: Follow a short structured technical instruction with bilingual scaffold while English prerequisites remain separately observable.
+  technical_target_statement: Follow a short structured technical instruction with bilingual scaffold while English prerequisites remain separately
+    observable.
   b2_plus_extension_eligible: false
 - skill_id: skill.english.read_simple_terminal_error_fragments
   anchor_band: A2
@@ -144,7 +144,8 @@ skill_alignments:
   cefr_scale_families:
   - cefr.reading_for_orientation
   - cefr.reading_for_information_and_argument
-  technical_target_statement: Extract location/category/basic signal from short terminal or compiler error fragments without requiring diagnosis expertise.
+  technical_target_statement: Extract location/category/basic signal from short terminal or compiler error fragments without requiring diagnosis
+    expertise.
   b2_plus_extension_eligible: false
 - skill_id: skill.english.documentation_navigation
   anchor_band: A2
@@ -170,7 +171,8 @@ skill_alignments:
   - cefr.reading_for_information_and_argument
   technical_target_statement: Independently extract a technical definition together with its stated condition, limitation or constraint.
   b2_plus_extension_eligible: true
-  b2_plus_extension_scope: Track multiple qualifiers, exceptions or linked constraints without expanding into specialist technical correctness judgment.
+  b2_plus_extension_scope: Track multiple qualifiers, exceptions or linked constraints without expanding into specialist technical correctness
+    judgment.
 - skill_id: skill.english.read_procedure_sequence
   anchor_band: B1
   band_role: independent_instruction_reception
@@ -186,7 +188,8 @@ skill_alignments:
   cefr_scale_families:
   - cefr.overall_written_interaction
   - cefr.goal_oriented_online_transactions_collaboration
-  technical_target_statement: Write a basic expected/actual/error bug description that another person can act on without requiring advanced report-writing semantics.
+  technical_target_statement: Write a basic expected/actual/error bug description that another person can act on without requiring advanced report-writing
+    semantics.
   b2_plus_extension_eligible: false
 - skill_id: skill.english.explain_simple_technical_process
   anchor_band: B1
@@ -203,7 +206,8 @@ skill_alignments:
   - cefr.goal_oriented_online_transactions_collaboration
   technical_target_statement: Ask a clear technical clarification question that resolves missing or ambiguous task information.
   b2_plus_extension_eligible: true
-  b2_plus_extension_scope: Formulate precise clarification in professional online collaboration, including relevant condition/context, without requiring broader negotiation capability.
+  b2_plus_extension_scope: Formulate precise clarification in professional online collaboration, including relevant condition/context, without
+    requiring broader negotiation capability.
 profile_derivation:
   canonical_source_of_truth: exact_skill_objective_evidence
   highest_complete_base_band_allowed: true
@@ -221,7 +225,8 @@ review_resolution_candidate:
   review_id: review.6c.english.cefr_alignment
   owner_step: 7B
   finalization_action: resolve
-  resolution_summary: D01 identities remain unchanged; exact 15 Skills receive context-only CEFR progression metadata as 5 A1, 5 A2 and 5 B1 anchors, with bounded B2+ professional evidence-depth extension and no general-English certification claim.
+  resolution_summary: D01 identities remain unchanged; exact 15 Skills receive context-only CEFR progression metadata as 5 A1, 5 A2 and 5 B1 anchors,
+    with bounded B2+ professional evidence-depth extension and no general-English certification claim.
 future_stage_boundaries:
   7C: daily_english_cadence_and_task_mix
   7D: technical_curriculum_integration_and_scaffold_behavior
@@ -230,3 +235,4 @@ future_stage_boundaries:
   15G: assessment_content
   18D: empirical_item_level_and_validator_calibration
   20: broader_professional_english_capability_review_if_needed
+decision: D-064

@@ -1,10 +1,10 @@
 # Technical English CEFR Progression Spec — TECP-v0
 
 **Adım:** 7B — A1/A2/B1/B2+ teknik hedefleri  
-**Durum:** CANDIDATE — QA + POST-STEP kapanışı bekliyor  
+**Durum:** TAMAMLANDI  
 **Tarih:** 2026-08-27  
-**Candidate model:** `TECP-v0 — Technical English CEFR Progression`  
-**Candidate decision:** `D-064`
+**Final model:** `TECP-v0 — Technical English CEFR Progression`  
+**Final decision:** `D-064`
 
 Bu belge D01 Technical English capability graph'ını CEFR 2020 Companion Volume ile **bağlama uyarlanmış progression metadata** olarak hizalar.
 
