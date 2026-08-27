@@ -32,6 +32,8 @@ jobs:
         run: python tools/validate_technical_english_integration.py
       - name: Apply 7D D-050 living-memory finalization
         run: python tools/finalize_7d_post_step.py
+      - name: Clean living handoff stale snapshots
+        run: python tools/fix_7d_living_handoff.py
       - name: Validate accepted 7D artifacts after POST
         run: python tools/validate_technical_english_integration.py --write-report
       - name: Validate persistent external memory graph
