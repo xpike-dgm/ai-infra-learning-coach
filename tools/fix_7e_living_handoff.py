@@ -10,10 +10,12 @@ def rewrite(rel: str) -> None:
     path = ROOT / rel
     text = path.read_text(encoding="utf-8")
 
-    # Advance explicit stage-map/current-state forms from 7E -> 8A.
+    # Advance explicit stage-map/current-state forms from 7E -> 8A. Keep completed
+    # 7E and active 8A on separate lines so the state is unambiguous to both people
+    # and deterministic stale-reference scanners.
     text = text.replace(
         "7E 🟡 active-not-executed",
-        "7E ✅ TEPM-v0 / D-067; 8A 🟡 active-not-executed",
+        "7E ✅ TEPM-v0 / D-067\n8A 🟡 active-not-executed",
     )
     text = re.sub(
         r"(?m)^([\-* ]*)7E 🟡(?: ACTIVE)?(?: — NOT EXECUTED)?$",
@@ -22,8 +24,18 @@ def rewrite(rel: str) -> None:
     )
 
     # Current-range shorthand: 8A is active, so future range begins at 8B.
-    text = text.replace("7E–20 ⬜", "8A 🟡 active-not-executed; 8B–20 ⬜")
+    text = text.replace("7E–20 ⬜", "8A 🟡 active-not-executed\n8B–20 ⬜")
     text = text.replace("7E–20", "8B–20")
+
+    # If an earlier cleanup already created the semicolon form, normalize it too.
+    text = text.replace(
+        "7E ✅ TEPM-v0 / D-067; 8A 🟡 active-not-executed",
+        "7E ✅ TEPM-v0 / D-067\n8A 🟡 active-not-executed",
+    )
+    text = text.replace(
+        "8A 🟡 active-not-executed; 8B–20 ⬜",
+        "8A 🟡 active-not-executed\n8B–20 ⬜",
+    )
 
     # Move current next-work statements to 8A. Keep historical prose that only
     # discusses 7E design semantics; these replacements target current-state wording.
