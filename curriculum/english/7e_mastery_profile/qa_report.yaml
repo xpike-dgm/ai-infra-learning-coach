@@ -1,0 +1,179 @@
+stage_step: 7E
+model: TEPM-v0
+candidate_decision: D-067
+result: PASS
+checked_at: '2026-08-27'
+status_observed: candidate_7e
+counts:
+  canonical_english_skills: 15
+  skill_presentation_states: 8
+  base_bands: 3
+  b2_plus_extension_skills: 4
+  safety_fixtures: 18
+  reason_codes: 17
+checks:
+- check: E7E-00_required_file
+  result: PASS
+  details: curriculum/english/7e_mastery_profile/policy.yaml
+- check: E7E-00_required_file
+  result: PASS
+  details: curriculum/english/7b_cefr_progression/alignment.yaml
+- check: E7E-00_required_file
+  result: PASS
+  details: curriculum/english/7a_entry_diagnostic/blueprint.yaml
+- check: E7E-00_required_file
+  result: PASS
+  details: curriculum/english/7c_daily_component/policy.yaml
+- check: E7E-00_required_file
+  result: PASS
+  details: curriculum/english/7d_technical_integration/policy.yaml
+- check: E7E-00_required_file
+  result: PASS
+  details: docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md
+- check: E7E-00_required_file
+  result: PASS
+  details: research/7e_english_mastery_profile_research.md
+- check: E7E-01_identity
+  result: PASS
+  details: model=TEPM-v0 step=7E
+- check: E7E-01_status
+  result: PASS
+  details: status=candidate_7e
+- check: E7E-01_decision
+  result: PASS
+  details: decision=D-067
+- check: E7E-02_alignment_scope
+  result: PASS
+  details: TECP skills=15
+- check: E7E-02_entry_scope
+  result: PASS
+  details: EED=15 TECP=15
+- check: E7E-02_policy_scope_count
+  result: PASS
+  details: policy count=15
+- check: E7E-02_no_graph_mutation
+  result: PASS
+  details: 7E is derived profile only
+- check: E7E-03_skill_state_vocabulary
+  result: PASS
+  details: states=['confirmation_verification_due', 'confirmed_current', 'confirmed_review_due', 'developing_independent', 'developing_with_support',
+    'not_yet_evidenced', 'prerequisite_unresolved', 'remediation_required']
+- check: E7E-03_precedence_complete
+  result: PASS
+  details: all 8 states have deterministic precedence
+- check: E7E-04_mastery_ownership
+  result: PASS
+  details: existing canonical engines retained
+- check: E7E-04_profile_non_authoritative
+  result: PASS
+  details: derived profile cannot write mastery
+- check: E7E-04_no_general_cefr_overclaim
+  result: PASS
+  details: general/official CEFR claims forbidden
+- check: E7E-04_no_numeric_score
+  result: PASS
+  details: no numeric English/CEFR aggregate
+- check: E7E-04_no_b2_completion
+  result: PASS
+  details: no aggregate B2+ completion
+- check: E7E-04_retention_hysteresis
+  result: PASS
+  details: RVR/GRE hysteresis preserved
+- check: E7E-04_assistance_guard
+  result: PASS
+  details: assisted/provisional is not independent mastery
+- check: E7E-04_contamination_guard
+  result: PASS
+  details: contaminated attempt cannot change clean profile
+- check: E7E-05_base_bands
+  result: PASS
+  details: bands=['A1', 'A2', 'B1']
+- check: E7E-05_base_status
+  result: PASS
+  details: statuses=['not_yet_complete', 'complete_current', 'complete_review_due', 'complete_verification_due']
+- check: E7E-05_review_no_demotion
+  result: PASS
+  details: review_due preserves band
+- check: E7E-05_verification_uncertainty
+  result: PASS
+  details: verification adds uncertainty without instant deletion
+- check: E7E-05_remediation_recompute
+  result: PASS
+  details: current recompute + history preservation
+- check: E7E-05_qualified_scope
+  result: PASS
+  details: scope=technical_english_text_first
+- check: E7E-06_uneven_first_class
+  result: PASS
+  details: uneven exact-Skill profile preserved
+- check: E7E-06_no_compensation
+  result: PASS
+  details: no compensatory average or broad failure
+- check: E7E-07_b2_exact_subset
+  result: PASS
+  details: B2+ eligible=4
+- check: E7E-07_b2_no_completion
+  result: PASS
+  details: B2+ is per-capability evidence only
+- check: E7E-07_b2_strong_evidence
+  result: PASS
+  details: B2+ strong evidence keeps normal gates
+- check: E7E-08_assisted_development_only
+  result: PASS
+  details: assisted success may develop but not confirm
+- check: E7E-08_prior_mastery_not_punished
+  result: PASS
+  details: later support does not erase prior clean mastery
+- check: E7E-08_no_fake_fading
+  result: PASS
+  details: no fixed scaffold schedule/ratio
+- check: E7E-09_mode_regression
+  result: PASS
+  details: modes=['dual_target_integrated', 'english_primary_technical_context', 'technical_only_localized', 'technical_with_english_exposure']
+- check: E7E-09_technical_only_no_english
+  result: PASS
+  details: technical-only cannot update English profile
+- check: E7E-09_exposure_not_mastery
+  result: PASS
+  details: exposure alone is not mastery
+- check: E7E-09_dual_separation
+  result: PASS
+  details: dual-target component attribution preserved
+- check: E7E-09_technical_contamination
+  result: PASS
+  details: technical ignorance cannot create clean English negative
+- check: E7E-10_fixture_count
+  result: PASS
+  details: fixtures=18
+- check: E7E-10_fixture_ids
+  result: PASS
+  details: fixture ids=['E7E-F01', 'E7E-F02', 'E7E-F03', 'E7E-F04', 'E7E-F05', 'E7E-F06', 'E7E-F07', 'E7E-F08', 'E7E-F09', 'E7E-F10', 'E7E-F11',
+    'E7E-F12', 'E7E-F13', 'E7E-F14', 'E7E-F15', 'E7E-F16', 'E7E-F17', 'E7E-F18']
+- check: E7E-11_7b_regression_anchor
+  result: PASS
+  details: TECP-v0 accepted
+- check: E7E-11_7c_regression_anchor
+  result: PASS
+  details: DECP-v0 accepted
+- check: E7E-11_7d_regression_anchor
+  result: PASS
+  details: TEIP-v0 accepted
+- check: E7E-12_spec_identity
+  result: PASS
+  details: spec identity present
+- check: E7E-12_spec_review_guard
+  result: PASS
+  details: review/verification semantics documented
+- check: E7E-12_spec_b2_guard
+  result: PASS
+  details: B2+ overclaim guard documented
+- check: E7E-12_spec_no_numeric
+  result: PASS
+  details: numeric aggregate guards documented
+- check: E7E-13_research_sources
+  result: PASS
+  details: authoritative profile/validity research present
+- check: E7E-13_research_no_new_mastery
+  result: PASS
+  details: research reconciled to existing mastery ownership
+failures: []
