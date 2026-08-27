@@ -78,7 +78,7 @@ rel = "docs/LOCAL_MANAGER_HANDOFF.md"
 text = read(rel)
 text = text.replace(
     "8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A active-not-executed` olduğunu living-memory setiyle doğrula.",
-    "8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B active-not-executed` olduğunu living-memory setiyle doğrula.",
+    "8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068`; aktif adımın `8B active-not-executed` olduğunu living-memory setiyle doğrula.",
 )
 text = text.replace("- AŞAMA 8A 🟡 active-not-executed\n- 8B–20 ⬜", "- AŞAMA 8A ✅ UXIA-v0 / D-068\n- AŞAMA 8B 🟡 active-not-executed\n- 8C–20 ⬜")
 text = re.sub(
