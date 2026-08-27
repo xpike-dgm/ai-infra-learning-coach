@@ -19,8 +19,15 @@ CURRENT_FILES = [
     "curriculum/decomposition/6h_research_qa/status.yaml",
 ]
 
+# Current-state blockers only. The 6H-not-executed matcher intentionally stops if the
+# same line already says 6H is completed/resolved or has moved on to 7A; this avoids
+# misclassifying lines such as "6H completed / 7A active-not-executed".
 blocking_patterns = {
-    "6h_not_executed": re.compile(r"6H[^\n]{0,120}(henüz yürütülmedi|not executed|active-not-executed)", re.I),
+    "6h_not_executed": re.compile(
+        r"6H(?:(?!7A|completed|tamam|resolved|D-062)[^\n]){0,120}"
+        r"(henüz yürütülmedi|not executed|active-not-executed)",
+        re.I,
+    ),
     "6h_active": re.compile(r"(Aktif adım|\*\*Aktif:\*\*)[^\n]{0,80}6H", re.I),
     "6h_yellow": re.compile(r"6H[^\n]{0,80}🟡|🟡[^\n]{0,80}6H", re.I),
     "external_blocked": re.compile(r"BLOCKED_EXTERNAL_RESEARCH_AI_REQUIRED"),
