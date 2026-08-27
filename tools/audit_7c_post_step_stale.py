@@ -22,10 +22,14 @@ CURRENT_FILES = [
     "vault/agent/OPEN_LOOPS.md",
 ]
 
+# Keep each pattern scoped to the 7C clause itself so a line such as
+# "7C ✅ ...; 7D 🟡 active-not-executed" is not a false positive.
 STALE_7C_PATTERNS = [
-    re.compile(r"7C\s*(?:🟡|—|:)?.{0,80}(?:active-not-executed|AKTİF|henüz yürütülmedi|HENÜZ YÜRÜTÜLMEDİ)", re.I),
-    re.compile(r"Aktif(?:\s+adım|\s*:)?.{0,80}7C", re.I),
-    re.compile(r"7C[^\n]{0,100}(?:Fresh PRE|kullanıcı açık onayı).{0,60}zorunlu", re.I),
+    re.compile(r"7C\s*🟡(?:\s*(?:ACTIVE|AKTİF|active-not-executed))?", re.I),
+    re.compile(r"7C\s*(?:—|:)\s*(?:Günlük English bileşeni\s*)?(?:—\s*)?(?:\*\*)?(?:ACTIVE|AKTİF|active-not-executed|HENÜZ YÜRÜTÜLMEDİ|henüz yürütülmedi)", re.I),
+    re.compile(r"7C\s+(?:henüz yürütülmedi|HENÜZ YÜRÜTÜLMEDİ)", re.I),
+    re.compile(r"(?:Aktif(?:\s+adım|\s*:)?)\s*[:*` ]*7C(?:\b|\s|—)", re.I),
+    re.compile(r"7C[^\n;,]{0,80}(?:Fresh PRE|kullanıcı açık onayı)[^\n;,]{0,50}zorunlu", re.I),
 ]
 
 # These patterns specifically protect LOCAL_MANAGER_HANDOFF from old contradictory takeover snapshots.
@@ -34,7 +38,6 @@ STALE_HANDOFF_PATTERNS = [
     re.compile(r"\b6F\b.{0,100}(?:ACTIVE|AKTİF|HENÜZ YÜRÜTÜLMEDİ|NOT EXECUTED)", re.I),
     re.compile(r"Son tamamlanan numaralı adım.{0,120}\b6E\b", re.I),
     re.compile(r"Sıradaki gerçek numbered work.{0,120}\b6[EF]\b", re.I),
-    re.compile(r"7C\s*🟡\s*(?:ACTIVE|active-not-executed)", re.I),
 ]
 
 REQUIRED_CURRENT_MARKERS = {
