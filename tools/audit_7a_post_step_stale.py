@@ -19,11 +19,14 @@ CURRENT_FILES = [
     "vault/agent/OPEN_LOOPS.md",
 ]
 
+# Delimiters matter: a line such as "7A completed; 7B active-not-executed" must not
+# be interpreted as saying that 7A is still active. These expressions only inspect
+# the clause that belongs to 7A.
 blocking_patterns = {
-    "7a_not_executed": re.compile(r"7A[^\n]{0,90}(henüz yürütülmedi|not executed|active-not-executed)", re.I),
-    "7a_active": re.compile(r"(Aktif adım|\*\*Aktif:\*\*)[^\n]{0,90}7A", re.I),
-    "7a_yellow": re.compile(r"7A[^\n]{0,60}🟡|🟡[^\n]{0,60}7A", re.I),
-    "7a_stage_active_marker": re.compile(r"7A[^\n]{0,80}(?:—|-)[^\n]{0,80}\*\*AKTİF\*\*", re.I),
+    "7a_not_executed": re.compile(r"7A[^;/\n]{0,90}(henüz yürütülmedi|not executed|active-not-executed)", re.I),
+    "7a_active": re.compile(r"(Aktif adım|\*\*Aktif:\*\*)[^;\n]{0,90}7A(?:\b|\s|—|-)", re.I),
+    "7a_yellow": re.compile(r"7A[^;\n]{0,60}🟡|🟡[^;\n]{0,60}7A", re.I),
+    "7a_stage_active_marker": re.compile(r"7A[^;\n]{0,80}(?:—|-)[^;\n]{0,80}\*\*AKTİF\*\*", re.I),
 }
 
 blocking: list[dict] = []
@@ -66,7 +69,8 @@ if blueprint.get("status") != "accepted_7a" or blueprint.get("decision") != "D-0
 if blueprint.get("cefr_alignment_status") != "pending_7B" or blueprint.get("cefr_level") is not None:
     blocking.append({"file": "curriculum/english/7a_entry_diagnostic/blueprint.yaml", "code": "premature_cefr_claim", "match": str({"cefr_alignment_status": blueprint.get("cefr_alignment_status"), "cefr_level": blueprint.get("cefr_level")})})
 
-# Repo-wide candidate scan records old-looking references but only CURRENT_FILES contradictions block closure.
+# Repo-wide candidate scan records old-looking references but only CURRENT_FILES
+# contradictions above block closure.
 candidate_patterns = [
     re.compile(r"7A[^\n]{0,120}(active-not-executed|henüz yürütülmedi|AKTİF|pending)", re.I),
     re.compile(r"Aktif[^\n]{0,100}7A", re.I),
