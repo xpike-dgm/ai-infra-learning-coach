@@ -99,12 +99,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **6E — GPU / ML / Inference detailed map** — `docs/GPU_ML_INFERENCE_DETAILED_MAP.md`, `curriculum/decomposition/6e_gpu_ml_inference/` — GIM-v0 / D-059
 - [x] **6F — Professional engineering / project map** — `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md`, `curriculum/decomposition/6f_professional_engineering/` — PEM-v0 / D-060
 - [x] **6G — Weakness localization + remediation mapping** — `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`, `curriculum/decomposition/6g_weakness_remediation/` — WLRM-v0 / D-061
-- [ ] **6H — Coverage / prerequisite / Research QA** **AKTİF** — eksik/duplicate/hidden prerequisite audit + bağımsız Research AI doğrulaması
+- [x] **6H — Coverage / prerequisite / Research QA** — `docs/STAGE6_EXTERNAL_RESEARCH_QA.md` — S6ERQA-v0 / D-062; 549 Skill / 608 Objective / 950 edge; 549/549 DAG; 10/10 review resolved
 
 ---
 
 # AŞAMA 7 — İngilizce Paralel Hattı
-- [ ] **7A — Başlangıç ölçümü**
+- [ ] **7A — Başlangıç ölçümü** **AKTİF**
 - [ ] **7B — A1/A2/B1/B2+ teknik hedefleri**
 - [ ] **7C — Günlük English bileşeni**
 - [ ] **7D — Teknik entegrasyon**
@@ -246,11 +246,14 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6G`
-**Aktif:** **`6H — Coverage / prerequisite / Research QA`**
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`  
+**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
+**Aktif:** **`7A — Başlangıç ölçümü`** — active-not-executed
 
-6F PEM-v0 / D-060 ile tamamlandı. 6G WLRM-v0 / D-061 ile tamamlandı. 6H henüz yürütülmedi; 6H başlamadan fresh PRE-STEP GitHub refresh ve bağımsız Research AI planı zorunludur.
+6H external reconciliation sonrası Stage 6 final registry **549 Skill / 608 Objective / 950 prerequisite edge**; combined hard graph **549/549 DAG** ve 10/10 6H review resolved.
 
-- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`; D23 professional workflow + OSS + integrated project/capstone decomposition ve prior-package professional overlay reconciliation.
+7A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
 
-- D-061: 6G final weakness localization/remediation overlay `WLRM-v0`; 543 Skill + 590 Objective exact coverage, evidence-safe failure attribution ve targeted remediation routes.
+- D-060: 6F final Professional Engineering / Projects detailed map `PEM-v0`.
+- D-061: 6G final weakness localization/remediation overlay `WLRM-v0`; final Stage 6 registry için 549 Skill + 608 Objective exact coverage.
+- D-062: 6H final external Research QA `S6ERQA-v0`; canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.

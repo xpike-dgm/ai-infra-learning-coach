@@ -1,24 +1,23 @@
 stage_step: 6H
-status: BLOCKED_EXTERNAL_RESEARCH_AI_REQUIRED
-stage6_complete: false
-manager_internal_structural_qa: PASS
-manager_current_source_audit: COMPLETE_NON_INDEPENDENT
+status: PASS_EXTERNAL_RESEARCH_RECONCILED
+stage6_complete: true
+model: S6ERQA-v0
+decision: D-062
+checked_at: '2026-08-27'
 independent_external_research_ai:
-  status: not_available_in_current_session
-  required: true
-  satisfies_d016: false
-  required_input_path: research/6h_external_research_ai_brief.md
-  expected_output_path: research/6h_external_research_ai_report.md
-open_reviews_owned_by_6h: 10
-canonical_guard: >-
-  Do not resolve the 6H-owned review set, mark 6H complete, publish Stage 6 as externally validated,
-  or advance canonical execution to 7A until a separate external Research AI report is ingested,
-  corrective findings are reconciled, regression/structural QA passes again, and PROJECT_MEMORY_PROTOCOL POST-STEP completes.
-next_actions:
-- Obtain independent external Research AI report using research/6h_external_research_ai_brief.md.
-- Validate report provenance, independence declaration, source quality and D01-D23 coverage matrix.
-- Reconcile every finding against canonical Skill identity/granularity/prerequisite rules.
-- Apply only externally justified corrective changes.
-- Re-run 6C-6G validators plus tools/validate_stage6_structural_qa.py.
-- Resolve or explicitly defer all 10 reviews owned by 6H.
-- Perform D-050 POST-STEP living-memory sync and repo-wide stale-reference audit.
+  status: complete
+  evaluator_count: 3
+  satisfies_d016: true
+final_counts:
+  route_families: 23
+  skills: 549
+  objectives: 608
+  prerequisite_edges: 950
+  hard_dag_nodes: 549/549
+  resolved_6h_reviews: 10/10
+canonical_summary: docs/STAGE6_EXTERNAL_RESEARCH_QA.md
+reconciliation_report: research/6h_external_research_ai_report.md
+next_step:
+  step: 7A
+  status: active_not_executed
+  requires_fresh_pre_and_user_approval: true

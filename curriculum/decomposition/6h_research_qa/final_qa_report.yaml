@@ -1,0 +1,31 @@
+stage_step: 6H
+model: S6ERQA-v0
+decision: D-062
+result: PASS
+external_verdict_before_correction: PASS_WITH_REQUIRED_CHANGES
+independent_evaluators: 3
+counts:
+  route_families: 23
+  skills: 549
+  objectives: 608
+  prerequisite_edges: 950
+  hard_dag_nodes: 549
+  hard_dag_total_nodes: 549
+  wlrm_skill_coverage: 549
+  wlrm_objective_coverage: 608
+  resolved_6h_reviews: 10
+stable_skill_additions:
+- skill.os.numa_locality_affinity
+- skill.cuda.async_data_movement_pipeline
+- skill.optimization.speculative_decoding_tradeoff
+- skill.serving.prefill_decode_disaggregation
+- skill.ml.moe_routing_dataflow
+- skill.multi_gpu.expert_parallel_sharding
+qa:
+  historical_6c_6f_regressions: PASS
+  historical_6g_regression: PASS
+  combined_structural: PASS
+  external_reconciliation_validator: PASS
+  review_closure: 10/10
+canonical_summary: docs/STAGE6_EXTERNAL_RESEARCH_QA.md
+external_reconciliation: research/6h_external_research_ai_report.md

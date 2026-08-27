@@ -462,3 +462,18 @@ Ayrıntı: `docs/SYSTEMS_DETAILED_MAP.md`.
 - Remediation closure fresh H0 + direct + verified + prerequisite-valid evidence ister; task completion veya manual mastery override closure değildir.
 - Learner misconception state curriculum identity'den ayrıdır ve LLM tek başına confirmed state/mastery yazamaz.
 - Internal QA `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`; 0 blocking / 4 non-blocking review. Independent external Research QA 6H'ye pending ve zorunludur.
+
+## D-062 — Stage 6 External Research QA = S6ERQA-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 6H final modeli `S6ERQA-v0 — Stage 6 External Research QA` oldu.
+- Canonical çıktı `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`; external evaluator reconciliation `research/6h_external_research_ai_report.md`.
+- Üç bağımsız evaluator Stage 6 başlangıç snapshot'ına `PASS WITH REQUIRED CHANGES` verdi; öneriler GNS-v0/KGC-v0/PRG-v0 ile manager tarafından bağımsız reconcile edildi.
+- Stable capability independence testini geçen 6 yeni Skill eklendi: NUMA locality/affinity, CUDA async data movement pipeline, speculative decoding trade-off, prefill/decode disaggregation, MoE routing dataflow, expert-parallel sharding.
+- Tool/vendor/model özel fast-moving ayrıntılar (ör. DRA API isimleri, CUDA/Triton current mechanisms, MLA/MTP/DualPipe/FlashInfer/NVFP4/CUTLASS/CuTe) otomatik canonical Skill yapılmaz; ayrı learner-state testi geçmiyorsa version-scoped Objective/example/freshness metadata olarak tutulur.
+- Final Stage 6 registry: 23 route family / 549 Skill / 608 Objective / 950 prerequisite edge; combined hard graph 549/549 DAG.
+- WLRM final registry'nin 549 Skill / 608 Objective'ini exact kapsar; guidance fading + mastered-target reverification-first + AI-scaffold-not-closure guard'ları eklenmiştir.
+- D23 final readiness global capstone pass ile component mastery vermez; ayrı attributable component evidence, en az üç materially distinct evidence family ve operations/failure evidence ister.
+- 10/10 6H-owned review resolved; `tools/validate_6h_external_reconciliation.py` final PASS.
+- AŞAMA 6 tamamlandı. Sonraki numbered step `7A — İngilizce başlangıç ölçümü`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+

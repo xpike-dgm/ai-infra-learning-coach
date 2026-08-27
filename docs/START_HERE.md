@@ -99,13 +99,19 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-060 — PEM-v0
 6F final `docs/PROFESSIONAL_ENGINEERING_DETAILED_MAP.md` + `curriculum/decomposition/6f_professional_engineering/` package'ı D23 professional engineering/OSS/project-capstone layer'ını 76 Skill / 87 Objective seviyesine ayırdı; prior technical capability'ler clone edilmeden reuse edildi ve 6D/6E professional overlay review'ları kapatıldı.
 
+### D-061 — WLRM-v0
+6G final `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md` + `curriculum/decomposition/6g_weakness_remediation/` Objective-first weakness/remediation modelidir; 6H patch sonrası final registry için 549 Skill / 608 Objective exact coverage taşır.
+
+### D-062 — S6ERQA-v0
+6H final `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`; üç bağımsız evaluator reconcile edildi, corrective patch sonrası Stage 6 549 Skill / 608 Objective / 950 edge ve 549/549 hard DAG ile external Research QA PASS oldu.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
 - 3 Adaptive planner ✅
 - 4 Assessment system ✅
 - 5 Curriculum/knowledge graph backbone ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
-- 6 Granular Capability Map — **aktif**
+- 6 Granular Capability Map ✅ — S6ERQA-v0 / D-062
   - 6A ✅ GNS-v0 / D-054
   - 6B ✅ FRDB-v0 / D-056
   - 6C ✅ FDM-v0 / D-057
@@ -113,8 +119,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6E ✅ GIM-v0 / D-059
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
-  - 6H 🟡 Coverage / prerequisite / Research QA
-- 7 English parallel line
+  - 6H ✅ S6ERQA-v0 / D-062
+- 7 English parallel line — **7A 🟡 active-not-executed**
 - 8 UX
 - 9 Architecture/data model
 - 10 Mobile skeleton
@@ -187,7 +193,10 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11l. `curriculum/decomposition/6f_professional_engineering/manifest.yaml`
 11m. `docs/WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md`
 11n. `curriculum/decomposition/6g_weakness_remediation/manifest.yaml`
-11o. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
+11o. `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`
+11p. `research/6h_external_research_ai_report.md`
+11q. `curriculum/decomposition/6h_research_qa/final_qa_report.yaml`
+11r. `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -216,42 +225,20 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 
 ## 8. Tamamlanan çekirdek
 
-### AŞAMA 1 ✅
-Product framing tamamlandı.
+- AŞAMA 1 ✅ Product framing
+- AŞAMA 2 ✅ GRE-v0 + RVR-v0 learning/mastery
+- AŞAMA 3 ✅ Adaptive planner — 16/16 scenarios, 20/20 invariants
+- AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
+- AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
+- AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
 
-### AŞAMA 2 ✅
-GRE-v0 + RVR-v0 dahil learning/mastery modeli tamamlandı.
-
-### AŞAMA 3 ✅
-Adaptive planner tamamlandı: 16/16 scenarios, 20/20 invariants PASS.
-
-### AŞAMA 4 ✅
-DMA-v0 + WBA-v0 + MCA-v0 + QAB-v0 + AIV-v0 tamamlandı.
-
-### AŞAMA 5 ✅
-- 5A ✅ `PDM-v0 — Professional Domain Backbone` / D-049
-- 5B ✅ `KGC-v0 — Versioned Curriculum Knowledge Graph Contract` / D-051
-- 5C ✅ `FBB-v0 — V1 Foundation Backbone` / D-052
-- 5D ✅ `GQA-v0 — Foundation Graph Architecture QA` / D-053
-
-### AŞAMA 6 ilerlemesi
-- 6A ✅ `GNS-v0 — Granularity & Naming Standard` / D-054
-- 6B ✅ `FRDB-v0 — Full-Route Decomposition Blueprint` / D-056
-- 6C ✅ `FDM-v0 — Foundations Detailed Map` / D-057
-- 6D ✅ `SDM-v0 — Systems Detailed Map` / D-058
-- 6E ✅ `GIM-v0 — GPU / ML / Inference Detailed Map` / D-059
-- 6F ✅ `PEM-v0 — Professional Engineering / Projects Detailed Map` / D-060
-- 6G ✅ `WLRM-v0 — Weakness Localization & Remediation Map` / D-061
-- 6H 🟡 Coverage / prerequisite / Research QA — aktif, henüz yürütülmedi
+Final Stage 6: **23 route / 549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM exact coverage 549/608; 10/10 6H review resolved.
 
 ## 9. Güncel çalışma konumu
 
-**Aktif:** **`6H — Coverage / prerequisite / Research QA`**
-**6H henüz yürütülmedi. Independent external Research AI zorunludur.**
-
-6F PEM-v0 / D-060 ile D23 professional engineering / OSS / project-capstone detailed map'ini tamamladı; D01–D22 accepted Skills canonical ID ile reuse edildi ve 6D/6E professional-overlay review'ları resolved edildi.
-
-6H başlamadan fresh PRE-STEP GitHub refresh ve bağımsız Research AI workflow'u zorunludur.
+**Son tamamlanan:** **`6H — S6ERQA-v0 / D-062`**  
+**Aktif:** **`7A — İngilizce başlangıç ölçümü`**  
+**7A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda START_HERE ve PROJECT_MEMORY_PROTOCOL ile başla. D-041, D-042, D-044–D-061 kararlarını oku; D-043 geri çekilmiştir. PROJECT_CONTEXT, CURRICULUM_DOMAIN_MAP, CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT, GRANULARITY_NAMING_STANDARD, FULL_ROUTE_DECOMPOSITION_BLUEPRINT, FOUNDATIONS_DETAILED_MAP, SYSTEMS_DETAILED_MAP, GPU_ML_INFERENCE_DETAILED_MAP, PROFESSIONAL_ENGINEERING_DETAILED_MAP ve 6c–6f decomposition manifest/skills/prerequisites, HANDOFF_STATE, EXECUTION_INDEX, STEP_STATUS ve MASTER_PLAN üzerinden aktif adımı doğrula. Şu an aktif adım 6H — Coverage / prerequisite / Research QA; 6H henüz yürütülmedi ve independent external Research AI zorunludur.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. Stage 6, S6ERQA-v0 / D-062 ile tamamlandı; final graph 549 Skill / 608 Objective / 950 edge ve 549/549 hard DAG. Aktif step 7A — İngilizce başlangıç ölçümü; 7A henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
