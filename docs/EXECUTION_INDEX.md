@@ -107,8 +107,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **7A — Başlangıç ölçümü** — `EED-v0 / D-063`
 - [x] **7B — A1/A2/B1/B2+ teknik hedefleri** — `TECP-v0 / D-064`
 - [x] **7C — Günlük English bileşeni** — `DECP-v0 / D-065`
-- [ ] **7D — Teknik entegrasyon** **AKTİF**
-- [ ] **7E — English mastery**
+- [x] **7D — Teknik entegrasyon** — `TEIP-v0 / D-066`
+- [ ] **7E — English mastery** **AKTİF**
 
 ---
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7C`  
-**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
-**Aktif:** **`7D — Teknik entegrasyon`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7D`  
+**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
+**Aktif:** **`7E — English mastery`** — active-not-executed
 
-7C final: English common capacity içinde daily candidate opportunity olarak çalışır; fixed minute/percentage/streak/debt yok; PBR balance/starvation ve state-driven task mix kullanılır.
+7D final: **15 canonical English Skill / 4 construct-aware integration mode / 15 safety fixture / 7 contamination reason-code**. English/CEFR global technical gate yok; dual-target evidence component-level attribution ile çalışır.
 
-7D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+7E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

@@ -45,11 +45,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 7A: ✅ `EED-v0 / D-063` tamamlandı — D01 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family.
 - 7B: ✅ `TECP-v0 / D-064` tamamlandı — 15 Skill = 5 A1 + 5 A2 + 5 B1; 4 bounded B2+ extension; CEFR review resolved.
 - 7C: ✅ `DECP-v0 / D-065` tamamlandı — common-capacity daily candidate opportunity; no fixed minute/percentage/streak/debt; PBR balance/starvation + state-driven task mix.
-- **Aktif adım: 7D — Teknik entegrasyon.**
-- **7D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- 7D: ✅ `TEIP-v0 / D-066` tamamlandı — 4 construct-aware integration mode; component attribution; bidirectional contamination + reversible scaffold guards.
+- **Aktif adım: 7E — English mastery.**
+- **7E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 - AŞAMA 8–20 bekliyor.
 
-**7D'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 7D için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**7E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 7E için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

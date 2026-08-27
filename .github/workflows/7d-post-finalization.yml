@@ -1,0 +1,60 @@
+name: 7D POST Finalization
+
+on:
+  push:
+    branches:
+      - work/7d-technical-english-integration
+
+permissions:
+  contents: write
+
+jobs:
+  post-finalize:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/7d-technical-english-integration
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install YAML dependency
+        run: python -m pip install pyyaml
+      - name: Regression — final Stage 6 registry
+        run: python tools/validate_6h_external_reconciliation.py
+      - name: Regression — accepted 7B CEFR progression
+        run: python tools/validate_technical_english_cefr_progression.py
+      - name: Regression — accepted 7C Daily English component
+        run: python tools/validate_daily_english_component.py
+      - name: Validate 7D candidate before POST
+        run: python tools/validate_technical_english_integration.py
+      - name: Apply 7D D-050 living-memory finalization
+        run: python tools/finalize_7d_post_step.py
+      - name: Clean living handoff stale snapshots
+        run: python tools/fix_7d_living_handoff.py
+      - name: Validate accepted 7D artifacts after POST
+        run: python tools/validate_technical_english_integration.py --write-report
+      - name: Validate persistent external memory graph
+        run: python tools/validate_external_memory.py
+      - name: Run repo-wide 7D stale-reference audit
+        run: python tools/audit_7d_post_step_stale.py
+      - name: Commit POST-step state
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No POST-step changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add AGENTS.md PROJECT_CONTEXT.md \
+            curriculum/english/7d_technical_integration/policy.yaml \
+            curriculum/english/7d_technical_integration/qa_report.yaml \
+            curriculum/english/7d_technical_integration/stale_reference_audit.yaml \
+            docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md docs/DECISIONS.md docs/PROGRESS_LOG.md \
+            docs/EXECUTION_INDEX.md docs/STEP_STATUS.md docs/MASTER_PLAN.md docs/HANDOFF_STATE.md \
+            docs/START_HERE.md docs/LOCAL_MANAGER_HANDOFF.md \
+            vault/agent/CURRENT_CONTEXT.md vault/agent/OPEN_LOOPS.md
+          git commit -m "Finalize 7D TEIP-v0 POST-step memory and stale audit [skip ci]"
+          git push

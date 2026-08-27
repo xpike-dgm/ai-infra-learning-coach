@@ -1102,16 +1102,17 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 7A ✅ EED-v0 / D-063
 - AŞAMA 7B ✅ TECP-v0 / D-064
 - AŞAMA 7C ✅ DECP-v0 / D-065
-- AŞAMA 7D 🟡 active-not-executed
-- 7E–20 ⬜
+- AŞAMA 7D ✅ TEIP-v0 / D-066
+- AŞAMA 7E 🟡 active-not-executed
+- 8–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `7C — Günlük English bileşeni`  
-**Final:** `DECP-v0 — Daily English Component Policy` / D-065  
-**Canonical:** `docs/DAILY_ENGLISH_COMPONENT_SPEC.md` + `curriculum/english/7c_daily_component/`
+**Son tamamlanan numaralı adım:** `7D — Teknik entegrasyon`  
+**Final:** `TEIP-v0 — Technical English Integration Policy` / D-066  
+**Canonical:** `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md` + `curriculum/english/7d_technical_integration/`
 
-**Aktif adım:** `7D — Teknik entegrasyon`  
+**Aktif adım:** `7E — English mastery`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 7D, technical task içindeki English/bilingual scaffold ve cross-track prerequisite/evidence fairness davranışını tasarlayacaktır. English global technical hard gate olmayacaktır.
@@ -1656,8 +1657,9 @@ AŞAMA 1–6 ✅
 7A ✅ EED-v0 / D-063
 7B ✅ TECP-v0 / D-064
 7C ✅ DECP-v0 / D-065
-7D 🟡 ACTIVE — NOT EXECUTED
-7E–20 ⬜
+7D ✅ TEIP-v0 / D-066
+7E 🟡 ACTIVE — NOT EXECUTED
+8–20 ⬜
 ```
 
 7C final:
@@ -1669,5 +1671,13 @@ AŞAMA 1–6 ✅
 - feedback-assisted revision independent mastery evidence değildir,
 - technical integration 7D'ye ve learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
 
-**Sıradaki gerçek numbered work:** `7D — Teknik entegrasyon`.  
-**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `7E — English mastery`.
+
+**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+
+
+---
+
+## 7D completion addendum — D-066
+
+7D `TEIP-v0 — Technical English Integration Policy` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`; policy/QA: `curriculum/english/7d_technical_integration/`. Exact 15 D01 Skill korunur; 4 construct-aware mode, technical/English component attribution, bidirectional contamination guard, evidence-driven reversible scaffold ve authentic-resource integrity semantics kabul edildi. English/CEFR global technical gate değildir. Independent QA 49/49 PASS. Current active numbered step 7E'dir; fresh PRE + kullanıcı açık onayı gerekir.

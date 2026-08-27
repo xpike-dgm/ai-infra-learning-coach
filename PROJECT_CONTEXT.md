@@ -128,6 +128,12 @@ Technical English common daily hard capacity içinde parallel track olarak çal�
 
 Canonical: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.
 
+### 8.4 7D Technical English Integration — TEIP-v0 / D-066
+
+Technical task'in dili target construct ile eşit sayılmaz. TEIP-v0 dört mode tanımlar: technical-only localized, technical-with-English-exposure, dual-target integrated ve English-primary technical-context. English/CEFR global technical gate değildir; technical ve English target/prerequisite/evidence attribution ayrı tutulur. Hidden English technical negative evidence'ı, hidden specialist technical context English negative evidence'ı contaminate eder. Scaffold evidence/task-validity driven ve reversible'dır; fixed Turkish/English ratio/fading day yoktur.
+
+Canonical: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.
+
 
 ## 9. Professional-readiness depth
 
@@ -173,12 +179,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **7A ✅ EED-v0 / D-063 — İngilizce başlangıç ölçümü tamamlandı**
 - **7B ✅ TECP-v0 / D-064 — A1/A2/B1/B2+ technical progression tamamlandı**
 - **7C ✅ DECP-v0 / D-065 — Günlük English bileşeni tamamlandı**
-- **7D 🟡 Teknik entegrasyon — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 7E–20 ⬜
+- **7D ✅ TEIP-v0 / D-066 — Teknik entegrasyon tamamlandı**
+- **7E 🟡 English mastery — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 7D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 7E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

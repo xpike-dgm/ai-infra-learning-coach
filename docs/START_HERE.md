@@ -126,7 +126,7 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C ✅ DECP-v0 / D-065; 7D 🟡 active-not-executed**
+- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C ✅ DECP-v0 / D-065; 7D ✅ TEIP-v0 / D-066; 7E 🟡 active-not-executed**
 - 8 UX
 - 9 Architecture/data model
 - 10 Mobile skeleton
@@ -246,15 +246,15 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
-- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C ✅ DECP-v0 / D-065**, **7D 🟡 active-not-executed**
+- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C ✅ DECP-v0 / D-065**, **7D ✅ TEIP-v0 / D-066**, **7E 🟡 active-not-executed**
 
-7C final: Technical English common capacity içinde daily candidate opportunity olarak çalışır; fixed minute/percentage/completion/streak/debt yoktur; PBR balance/starvation ve state-driven task mix kullanılır.
+7D final: Technical English integration 4 construct-aware mode kullanır; English/CEFR global technical gate değildir, dual-target evidence component-level attribution ile çalışır ve scaffold evidence/task-validity driven'dır.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`7C — DECP-v0 / D-065`**  
-**Aktif:** **`7D — Teknik entegrasyon`**  
-**7D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`7D — TEIP-v0 / D-066`**  
+**Aktif:** **`7E — English mastery`**  
+**7E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7C, DECP-v0 / D-065 ile tamamlandı: common-capacity daily English candidate opportunity, no fixed minute/percentage/streak/debt, PBR balance/starvation, state-driven task mix. Aktif step 7D — Teknik entegrasyon; 7D henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7D, TEIP-v0 / D-066 ile tamamlandı: 4 construct-aware integration mode, component attribution, bidirectional contamination guard, evidence-driven reversible scaffold; English/CEFR global technical gate değildir. Aktif step 7E — English mastery; 7E henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

@@ -536,3 +536,24 @@ Ayrıntı: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.
 - D-050 POST living-memory, external-memory ve repo-wide stale-reference audit ile kapanış zorunludur.
 
 Ayrıntı: `docs/DAILY_ENGLISH_COMPONENT_SPEC.md`.
+
+## D-066 — Technical English Integration Policy = TEIP-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 7D final modeli `TEIP-v0 — Technical English Integration Policy` oldu.
+- Canonical spec `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`; machine-readable policy `curriculum/english/7d_technical_integration/policy.yaml`; research basis `research/7d_technical_english_integration_research.md`.
+- Task/resource/prompt language target construct ile aynı şey değildir; technical ve English construct'leri ayrı attribution taşır.
+- Exactly four integration mode kabul edildi: `technical_only_localized`, `technical_with_english_exposure`, `dual_target_integrated`, `english_primary_technical_context`.
+- Technical-only task'lerde non-target English Turkish/bilingual/gloss support ile neutralize edilebilir; English global hard gate veya English mastery attribution oluşmaz.
+- Authentic English exposure tek başına English mastery değildir; construct-essential language ya ready olmalı ya construct-valid support ile neutralize edilmelidir.
+- Dual-target task her iki target/prerequisite family'yi explicit taşır ve component-level rubric/evidence ister; global task PASS/FAIL component'lere broadcast edilemez.
+- English-primary technical-context task'ta specialist technical ignorance English failure'a dönüşemez; context ready/controlled/scaffolded olmalıdır.
+- 7 contamination reason-code ve bidirectional contamination guard kabul edildi: unknown English technical negative evidence'ı, hidden specialist technical context English negative evidence'ı geçersiz kılar.
+- Scaffold evidence + task validity driven ve reversible'dır; fixed Turkish/English ratio, fixed fading day count veya fixed integration quota yoktur.
+- One integrated task multiple LearningNeed'e hizmet edebilir; duration bir kez sayılır, priority track sayısıyla çarpılmaz, completion bütün need/evidence'ı otomatik kapatmaz.
+- Authentic/translated/glossed/AI-generated support QAB/AIV/prerequisite/freshness ve semantic-integrity guard'larını aşamaz.
+- D01 canonical 15 Skill identity'si ve Stage 6 graph değişmedi; 7D yeni Skill/Objective/prerequisite edge üretmedi.
+- Independent 7D QA: 49/49 check PASS; 15 canonical English Skill / 4 mode / 15 safety fixture / 7 contamination code.
+- Sonraki numbered step `7E — English mastery`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.
