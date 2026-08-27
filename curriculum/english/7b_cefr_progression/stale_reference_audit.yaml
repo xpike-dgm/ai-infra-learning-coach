@@ -1,0 +1,528 @@
+stage_step: 7B
+model: TECP-v0
+decision: D-064
+audit: repo_wide_stale_reference_post_step
+result: PASS
+blocking_findings: []
+candidate_old_or_historical_references:
+- file: tools/validate_technical_english_cefr_progression.py
+  match: 7B-10_eed_handoff_pending_pre", eed.get("cefr_alignment_status") == "pending
+  blocking_current_state: false
+- file: tools/validate_technical_english_cefr_progression.py
+  match: 7B" and eed.get("cefr_level") is None, "EED handoff remains pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`** — active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`** — henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B–20 ⬜", "- AŞAMA 7A ✅ — EED-v0 / D-063\n- AŞAMA 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B 🟡 A1/A2/B1/B2+ teknik hedefleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending. Aktif step 7B — A1/A2/B1/B2+ teknik hedefleri; 7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |\n| **7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif adım — 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: AKTİF**\n- [ ] **7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif:** **`7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: AKTİF**\n### [ ] 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif:** **`7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: AKTİF, HENÜZ YÜRÜTÜLMEDİ**\n- 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif:** **`7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif step 7B — A1/A2/B1/B2+ teknik hedefleri; 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 'Aktif adım: 7B'
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif adım 7A", "Son tamamlanan adım 7A; aktif adım 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: Aktif adım **7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi. 7B
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`; fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'dir.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending. Aktif step 7B — A1/A2/B1/B2+ teknik hedefleri; 7B henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B'ye pending. Current active numbered step 7B'dir; fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi. 7B başlamadan fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: review.6c.english.cefr_alignment` açık
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: review.6c.english.cefr_alignment` 7B'ye açık
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: review.6c.english.cefr_alignment` açık
+  blocking_current_state: false
+- file: tools/finalize_7a_post_step.py
+  match: review.6c.english.cefr_alignment` 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B kapatıldı; 7C active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** — `TECP-v0 / D-064`\n- [ ] **7C — Günlük English bileşeni** **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B validator PASS.\n\n### [ ] 7C — Günlük English bileşeni — **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B 🟡 active-not-executed\n- 7C–20 ⬜", "- AŞAMA 7B ✅ — TECP-v0 / D-064\n- AŞAMA 7C 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — TECP-v0 / D-064`  \n**Aktif:** `7C — Günlük English bileşeni`  \n**7C henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B 🟡 A1/A2/B1/B2+ teknik hedefleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B ✅ TECP-v0 / D-064 — A1/A2/B1/B2+ technical progression tamamlandı**\n- **7C 🟡 Günlük English bileşeni — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B ✅ TECP-v0 / D-064; 7C 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B ✅ TECP-v0 / D-064**, **7C 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B active-not-executed", "7A–7B completed / 7C active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B active-not-executed", "7B completed / 7C active-not-executed
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B", "Son tamamlanan adım 7B; aktif
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: '7B final: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension. Aktif'
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 'Aktif adım: 7B'
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: Aktif adım 7B", "Son tamamlanan adım 7B
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** | 🟡 Aktif | CEFR/technical progression alignment; henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B — TECP-v0 / D-064`  \n**Aktif:** `7C — Günlük English bileşeni`  \n**7C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B'dir.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: 7B için **ayrı bir fresh PRE-STEP GitHub refresh** yap", "7C için **ayrı bir fresh PRE
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: review.6c.english.cefr_alignment` 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık
+  blocking_current_state: false
+- file: tools/finalize_7b_post_step.py
+  match: review.6c.english.cefr_alignment` resolved. Current active numbered step 7C'dir; fresh PRE + kullanıcı açık
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: '7b_not_executed": re.compile(r"7B[^,;/\n]{0,100}(henüz yürütülmedi|not executed|active-not-executed'
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: '7b_active": re.compile(r"(Aktif adım|\*\*Aktif'
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: '7b_active_marker": re.compile(r"7B[^,;\n]{0,90}(?:—|-)[^,;\n]{0,90}\*\*AKTİF'
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B — TECP-v0 / D-064`", "Aktif
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B ✅ TECP-v0 / D-064", "7C 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — TECP-v0 / D-064", "### [ ] 7C — Günlük English bileşeni — **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B CEFR + technical progression alignment", "[ ] 7C Daily English component **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B[^\n]{0,130}(active-not-executed|henüz yürütülmedi|AKTİF|pending
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: Aktif adım|\*\*Aktif:\*\*)[^,;\n]{0,100}7B
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: Aktif[^\n]{0,110}7B
+  blocking_current_state: false
+- file: tools/audit_7b_post_step_stale.py
+  match: 7B[^\n]{0,110}(fresh PRE|kullanıcı.*onay
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — active-not-executed
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: Aktif adım **7B
+  blocking_current_state: false
+- file: tools/fix_7a_post_current_state.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: tools/audit_7a_post_step_stale.py
+  match: Aktif:** `7B
+  blocking_current_state: false
+- file: tools/finalize_6h_post_step.py
+  match: Aktif | Sıradaki canonical numbered step; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |\n| **7B
+  blocking_current_state: false
+- file: docs/MASTER_PLAN.md
+  match: review.6c.english.cefr_alignment` açık
+  blocking_current_state: true
+- file: docs/DECISIONS.md
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`; fresh PRE + kullanıcı açık onay
+  blocking_current_state: false
+- file: docs/DECISIONS.md
+  match: review.6c.english.cefr_alignment` açık
+  blocking_current_state: false
+- file: docs/HANDOFF_STATE.md
+  match: 7B'ye pending
+  blocking_current_state: true
+- file: docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md
+  match: review.6c.english.cefr_alignment` open
+  blocking_current_state: false
+- file: docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md
+  match: review.6c.english.cefr_alignment` 7B'ye açık
+  blocking_current_state: false
+- file: docs/START_HERE.md
+  match: 7B ✅ TECP-v0 / D-064; 7C 🟡 active-not-executed
+  blocking_current_state: true
+- file: docs/START_HERE.md
+  match: 7B ✅ TECP-v0 / D-064**, **7C 🟡 active-not-executed
+  blocking_current_state: true
+- file: docs/PROGRESS_LOG.md
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 7B kapatıldı; 7C active-not-executed
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`. Fresh PRE-STEP + kullanıcı açık onay
+  blocking_current_state: false
+- file: docs/PROGRESS_LOG.md
+  match: review.6c.english.cefr_alignment` 7B'ye açık
+  blocking_current_state: false
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7B completed / 7C active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7B completed / 7C active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7B'ye pending
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 'Aktif numbered step: **7A — İngilizce başlangıç ölçümü**, completed as `EED-v0 / D-063`; **7B'
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: 7B'ye pending. Current active numbered step 7B'dir; fresh PRE + kullanıcı açık onay
+  blocking_current_state: true
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  match: review.6c.english.cefr_alignment` resolved. Current active numbered step 7C'dir; fresh PRE + kullanıcı açık
+  blocking_current_state: true
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B–20 ⬜", "- AŞAMA 7A ✅ — EED-v0 / D-063\n- AŞAMA 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 A1/A2/B1/B2+ teknik hedefleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri** **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B CEFR + technical progression alignment **AKTİF
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B'ye pending
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B 🟡 active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri**, active-not-executed
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: Aktif adım **7B
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B
+  blocking_current_state: false
+- file: curriculum/english/7a_entry_diagnostic/stale_reference_audit.yaml
+  match: 7B — A1/A2/B1/B2+ teknik hedefleri`  \n**7B henüz yürütülmedi. Fresh PRE
+  blocking_current_state: false
+- file: vault/agent/CURRENT_CONTEXT.md
+  match: 7B'ye pending
+  blocking_current_state: true
+- file: vault/agent/CURRENT_CONTEXT.md
+  match: '7B final: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension. Aktif'
+  blocking_current_state: true
+note: Historical 7A/7B handoff and pre-finalization references are retained as provenance. Only contradictory current living-state references
+  block closure.

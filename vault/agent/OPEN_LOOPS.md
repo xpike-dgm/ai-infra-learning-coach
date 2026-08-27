@@ -16,7 +16,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 6G weakness/remediation operationalization: WLRM-v0 / D-061 tamamlandı; `review.6g.external_behavior_coverage` 6H'ye devredildi.
 - [x] 6H independent external Research QA: S6ERQA-v0 / D-062 ile tamamlandı; 10/10 6H review resolved.
 - [x] 7A English entry diagnostic: EED-v0 / D-063 ile tamamlandı.
-- [ ] 7B CEFR + technical progression alignment **AKTİF**: `review.6c.english.cefr_alignment` çözümü ve A1/A2/B1/B2+ technical target metadata.
+- [x] 7B CEFR + technical progression alignment: TECP-v0 / D-064 ile tamamlandı; `review.6c.english.cefr_alignment` resolved.
+- [ ] 7C Daily English component **AKTİF**: cadence, task mix, planner capacity ve pause/resume behavior tasarımı.
 
 ## Knowledge-base operations
 

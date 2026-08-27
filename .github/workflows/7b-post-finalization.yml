@@ -1,0 +1,51 @@
+name: 7B POST Finalization
+
+on:
+  push:
+    branches:
+      - work/7b-english-cefr-progression
+    paths:
+      - 'tools/finalize_7b_post_step.py'
+      - 'tools/audit_7b_post_step_stale.py'
+      - '.github/workflows/7b-post-finalization.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  post-finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install YAML dependency
+        run: python -m pip install pyyaml
+      - name: Regression — final Stage 6 registry
+        run: python tools/validate_6h_external_reconciliation.py
+      - name: Regression — 7A English Entry Diagnostic before review closure
+        run: python tools/validate_english_entry_diagnostic.py --write-report
+      - name: Validate 7B candidate before POST
+        run: python tools/validate_technical_english_cefr_progression.py --write-report
+      - name: Apply 7B D-050 living-memory finalization
+        run: python tools/finalize_7b_post_step.py
+      - name: Validate accepted 7B artifacts after POST
+        run: python tools/validate_technical_english_cefr_progression.py --write-report
+      - name: Validate persistent external memory graph
+        run: python tools/validate_external_memory.py
+      - name: Run repo-wide 7B stale-reference audit
+        run: python tools/audit_7b_post_step_stale.py
+      - name: Commit POST-step state
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo 'No POST changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md PROJECT_CONTEXT.md docs vault curriculum/english/7b_cefr_progression curriculum/decomposition/6c_foundations/review_queue.yaml
+          git commit -m 'Finalize 7B TECP-v0 POST-step memory and stale audit [skip ci]'
+          git push origin HEAD:work/7b-english-cefr-progression

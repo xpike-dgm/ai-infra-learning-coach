@@ -287,8 +287,18 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - CEFR level ataması 7B'ye deferred; `review.6c.english.cefr_alignment` açık,
 - final Stage 6 regression + 7A independent deterministic validator PASS.
 
-### [ ] 7B — A1/A2/B1/B2+ teknik hedefleri — **AKTİF**
-### [ ] 7C — Günlük English bileşeni
+### [x] 7B — A1/A2/B1/B2+ teknik hedefleri — TECP-v0 / D-064
+**Final:** `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md` + `curriculum/english/7b_cefr_progression/`
+
+- exact 15 D01 Skill context-only CEFR progression metadata ile aligned,
+- 5 A1 / 5 A2 / 5 B1 base anchor; 16/16 hard edge band-monotonic,
+- 4 bounded B2+ professional evidence-depth extension,
+- no general-English certification/official-level claim,
+- no new Skill/Objective/prerequisite edge veya numeric CEFR formula,
+- `review.6c.english.cefr_alignment` resolved,
+- Stage 6 + EED-v0 + 7B validator PASS.
+
+### [ ] 7C — Günlük English bileşeni — **AKTİF**
 ### [ ] 7D — Teknik entegrasyon
 ### [ ] 7E — English mastery
 
@@ -455,11 +465,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A`  
-**Son tamamlanan:** **`7A — EED-v0 / D-063`**  
-**Aktif:** **`7B — A1/A2/B1/B2+ teknik hedefleri`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7B`  
+**Son tamamlanan:** **`7B — TECP-v0 / D-064`**  
+**Aktif:** **`7C — Günlük English bileşeni`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **7B fresh PRE-STEP → EED-v0 diagnostic profile + Stage 6 D01 Skills + CEFR Companion Volume descriptors + `review.6c.english.cefr_alignment` ile technical progression alignment → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **7C fresh PRE-STEP → EED-v0 + TECP-v0 profile/bands + adaptive planner capacity/priority contracts ile daily English cadence/task-mix tasarımı → kullanıcı onaylı execution → D-050 POST sync + stale audit.**
 
-- D-062: Stage 6 final `S6ERQA-v0`.
-- D-063: 7A final `EED-v0`; 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family, CEFR assignment pending 7B.
+- D-063: 7A final `EED-v0`.
+- D-064: 7B final `TECP-v0`; 15 Skill = 5 A1 + 5 A2 + 5 B1, 4 bounded B2+ extension, CEFR review resolved.

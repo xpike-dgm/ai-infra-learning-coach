@@ -9,12 +9,19 @@
   - 7A diagnostic design
   - 7B CEFR alignment
   resolution_owner_step: 7B
-  status: open
-  resolution: null
+  status: resolved
+  resolution: 'D01 identities remain unchanged. TECP-v0 maps the exact 15 Skills as context-only CEFR progression metadata: 5 A1 + 5 A2 + 5 B1
+    base anchors, with B2+ limited to bounded professional evidence-depth extension for selected existing Skills. The current D01 profile is text-first,
+    so plain general-English/CEFR-certification claims are forbidden. No new Skill, Objective, prerequisite edge, mastery algorithm or English-to-technical
+    global gate is introduced by 7B.'
   source_refs:
   - source.repo.english_rules
   created_at: '2026-08-26'
-  resolved_at: null
+  resolved_at: '2026-08-27'
+  resolution_refs:
+  - docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md
+  - curriculum/english/7b_cefr_progression/alignment.yaml
+  - research/7b_technical_english_cefr_research.md
 - review_id: review.6c.external_coverage
   subject_refs:
   - domain.python
@@ -30,8 +37,8 @@
   - authoritative current sources
   resolution_owner_step: 6H
   status: resolved
-  resolution: Independent 6H reports found no blocking D01-D05 semantic gap; Python runtime concurrency assumptions are version-sensitive
-    and eBPF/io_uring remain optional contextual examples.
+  resolution: Independent 6H reports found no blocking D01-D05 semantic gap; Python runtime concurrency assumptions are version-sensitive and
+    eBPF/io_uring remain optional contextual examples.
   source_refs:
   - source.repo.frdb_v0
   - source.repo.external_6h_research_qa

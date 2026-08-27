@@ -108,6 +108,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-063 — EED-v0
 7A final `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`; D01 15 Skill / 15 Objective / 16 hard edge için prerequisite-aware granular entry diagnostic, 15 task family ve no-premature-CEFR guard'ı kilitlendi.
 
+### D-064 — TECP-v0
+7B final `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`; D01 15 Skill'i 5 A1 + 5 A2 + 5 B1 context-only Technical English anchor'a bağlar, 4 bounded B2+ professional extension tanımlar ve CEFR mastery/certification overclaim'ini yasaklar.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -123,7 +126,7 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6F ✅ PEM-v0 / D-060
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
-- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B 🟡 active-not-executed**
+- 7 English parallel line — **7A ✅ EED-v0 / D-063; 7B ✅ TECP-v0 / D-064; 7C 🟡 active-not-executed**
 - 8 UX
 - 9 Architecture/data model
 - 10 Mobile skeleton
@@ -203,6 +206,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11s. `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`
 11t. `curriculum/english/7a_entry_diagnostic/blueprint.yaml`
 11u. `curriculum/english/7a_entry_diagnostic/qa_report.yaml`
+11v. `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`
+11w. `curriculum/english/7b_cefr_progression/alignment.yaml`
+11x. `curriculum/english/7b_cefr_progression/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -237,15 +243,15 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 4 ✅ DMA/WBA/MCA/QAB/AIV assessment system
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
-- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B 🟡 active-not-executed**
+- AŞAMA 7: **7A ✅ EED-v0 / D-063**, **7B ✅ TECP-v0 / D-064**, **7C 🟡 active-not-executed**
 
-7A final: **15 D01 English Skill / 15 Objective / 16 hard prerequisite edge / 15 diagnostic task family**; CEFR A1/A2/B1/B2+ assignment 7B'ye pending.
+7B final: **15 D01 Skill = 5 A1 / 5 A2 / 5 B1**, 16/16 band-monotonic English hard edge, 4 bounded B2+ professional extension; CEFR metadata mastery/certification değildir.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`7A — EED-v0 / D-063`**  
-**Aktif:** **`7B — A1/A2/B1/B2+ teknik hedefleri`**  
-**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`7B — TECP-v0 / D-064`**  
+**Aktif:** **`7C — Günlük English bileşeni`**  
+**7C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7A, EED-v0 / D-063 ile tamamlandı: D01 15 Skill / 15 Objective / 16 English hard edge / 15 diagnostic task family; CEFR alignment 7B'ye pending. Aktif step 7B — A1/A2/B1/B2+ teknik hedefleri; 7B henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 7B, TECP-v0 / D-064 ile tamamlandı: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension; CEFR alignment mastery/certification değildir. Aktif step 7C — Günlük English bileşeni; 7C henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

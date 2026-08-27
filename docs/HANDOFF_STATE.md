@@ -225,14 +225,15 @@ PEM-v0:
 - AŞAMA 5 ✅ — PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ — GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / S6ERQA-v0
 - AŞAMA 7A ✅ — EED-v0 / D-063
-- AŞAMA 7B 🟡 active-not-executed
-- 7C–20 ⬜
+- AŞAMA 7B ✅ — TECP-v0 / D-064
+- AŞAMA 7C 🟡 active-not-executed
+- 7D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `7A — EED-v0 / D-063`  
-**Aktif:** `7B — A1/A2/B1/B2+ teknik hedefleri`  
-**7B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `7B — TECP-v0 / D-064`  
+**Aktif:** `7C — Günlük English bileşeni`  
+**7C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -284,6 +285,25 @@ EED-v0:
 - CEFR final level 7A'da atanmaz; 7B'ye pending,
 - final Stage 6 regression + `tools/validate_english_entry_diagnostic.py` PASS.
 
-## 15. 7B handoff
+## 15. D-064 / 7B final özeti
 
-7B — A1/A2/B1/B2+ teknik hedefleri, EED-v0 profile/claims ile Stage 6 D01 capability identities'ini CEFR Companion Volume descriptors ve professional Technical English hedefleriyle hizalayacaktır. `review.6c.english.cefr_alignment` 7B ownership'inde açık kalır. 7B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.  
+Alignment/QA: `curriculum/english/7b_cefr_progression/`.  
+Research: `research/7b_technical_english_cefr_research.md`.
+
+TECP-v0:
+- 15/15 D01 Skill context-only CEFR progression alignment,
+- 5 A1 / 5 A2 / 5 B1 base anchor,
+- 16/16 English hard edge band-monotonic,
+- 4 bounded B2+ professional evidence-depth extension,
+- 10 controlled CEFR scale-family ref,
+- current D01 text-first; no general-English/official/certification overclaim,
+- CEFR metadata != mastery state,
+- no new Skill/Objective/prerequisite edge,
+- `review.6c.english.cefr_alignment` resolved,
+- EED-v0 historical `pending_7B` handoff marker preserved,
+- Stage 6 + EED-v0 + 7B validator PASS.
+
+## 16. 7C handoff
+
+7C — Günlük English bileşeni; EED-v0 diagnostic frontier + TECP-v0 band/profile metadata + adaptive planner capacity/priority contracts üzerinde daily cadence, task mix ve pause/resume behavior tasarlayacaktır. 7C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

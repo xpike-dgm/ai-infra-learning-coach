@@ -29,10 +29,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - `S6ERQA-v0 / D-062`: Stage 6 bağımsız external Research QA tamamlandı; canonical `docs/STAGE6_EXTERNAL_RESEARCH_QA.md`.
 
 - [[docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC|EED-v0]]: D01 Technical English için prerequisite-aware granular giriş diagnostic'i; CEFR alignment 7B'ye pending.
+- `TECP-v0 / D-064`: D01 CEFR-aligned Technical English progression; 5 A1 + 5 A2 + 5 B1 base anchors, 4 bounded B2+ extension; CEFR != mastery/certification.
 
 ## Exact execution state
 
-AŞAMA 6 tamamen tamamlandı. 7A da tamamlandı. Son tamamlanan adım **7A — EED-v0 / D-063**. EED-v0 final diagnostic scope: 15 D01 English Skill / 15 Objective / 16 English hard edge / 15 task family. Aktif adım **7B — A1/A2/B1/B2+ teknik hedefleri**; henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve 7A–7B tamamlandı. Son tamamlanan adım **7B — TECP-v0 / D-064**. 7B final: 15 D01 Skill = 5 A1 + 5 A2 + 5 B1; 16/16 band-monotonic English hard edge; 4 bounded B2+ extension. Aktif adım **7C — Günlük English bileşeni**; henüz yürütülmedi. 7C başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

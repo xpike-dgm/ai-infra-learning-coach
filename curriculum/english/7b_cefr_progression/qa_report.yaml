@@ -1,0 +1,100 @@
+stage_step: 7B
+model: TECP-v0
+candidate_decision: D-064
+result: PASS
+checked_at: '2026-08-27'
+status_observed: accepted_7b
+counts:
+  canonical_d01_skills: 15
+  aligned_skills: 15
+  canonical_english_hard_edges: 16
+  A1_anchor_skills: 5
+  A2_anchor_skills: 5
+  B1_anchor_skills: 5
+  B2_plus_extension_skills: 4
+  cefr_scale_families_used: 10
+checks:
+- check: E7B-01_exact_d01_scope
+  result: PASS
+  details: aligned=15 canonical=15
+- check: E7B-01_expected_count_metadata
+  result: PASS
+  details: expected_skill_count=15
+- check: E7B-01_no_new_skill_identity
+  result: PASS
+  details: all aligned IDs originate from accepted EED/D01 claims
+- check: E7B-02_base_band_vocabulary
+  result: PASS
+  details: bands=['A1', 'A2', 'B1']
+- check: E7B-02_balanced_anchor_distribution
+  result: PASS
+  details: 'counts={''A2'': 5, ''B1'': 5, ''A1'': 5}'
+- check: E7B-02_no_B2plus_base_reclassification
+  result: PASS
+  details: B2+ remains extension-only
+- check: E7B-03_hard_prerequisite_band_monotonicity
+  result: PASS
+  details: hard_edges=16 violations=[]
+- check: E7B-04_controlled_scale_families
+  result: PASS
+  details: controlled=10 used=10 missing=[]
+- check: E7B-05_b2plus_subset_exact
+  result: PASS
+  details: extension_ids=['skill.english.ask_clarifying_technical_question', 'skill.english.documentation_navigation', 'skill.english.read_definition_and_constraint',
+    'skill.english.read_procedure_sequence']
+- check: E7B-05_b2plus_no_auto_overlap
+  result: PASS
+  details: overlap=[]
+- check: E7B-05_b2plus_flags_match
+  result: PASS
+  details: row eligibility flags match contract
+- check: E7B-05_b2plus_scope_present
+  result: PASS
+  details: all extension-eligible Skills have bounded scope
+- check: E7B-05_no_synthetic_b2_mastery
+  result: PASS
+  details: B2+ is evidence-depth extension only
+- check: E7B-06_cefr_not_mastery
+  result: PASS
+  details: CEFR alignment remains derived metadata
+- check: E7B-06_no_certification_overclaim
+  result: PASS
+  details: general/certification overclaim guarded
+- check: E7B-06_no_numeric_cefr_formula
+  result: PASS
+  details: no invented score-to-CEFR formula
+- check: E7B-06_no_technical_global_gate
+  result: PASS
+  details: English remains parallel, not global technical gate
+- check: E7B-07_profile_source_is_skill_evidence
+  result: PASS
+  details: profile does not replace exact Skill evidence
+- check: E7B-07_uneven_profile_preserved
+  result: PASS
+  details: uneven CEFR-aligned Technical English profile allowed
+- check: E7B-07_b2plus_display_deferred
+  result: PASS
+  details: B2+ learner-facing behavior deferred to 7E
+- check: E7B-08_preA1_bridge_not_gate
+  result: PASS
+  details: Pre-A1 is zero-entry scaffold context only
+- check: E7B-09_future_boundaries
+  result: PASS
+  details: future keys=['7C', '7D', '7E', '15F', '15G', '18D', 20]
+- check: E7B-10_review_resolved_post
+  result: PASS
+  details: CEFR alignment review resolved by 7B
+- check: E7B-10_eed_handoff_preserved_historical
+  result: PASS
+  details: accepted EED-v0 keeps its original 7A handoff marker; current alignment truth lives in TECP-v0
+- check: E7B-11_research_exists
+  result: PASS
+  details: research/7b_technical_english_cefr_research.md
+- check: E7B-11_spec_exists
+  result: PASS
+  details: docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md
+failures: []
+review:
+  review_id: review.6c.english.cefr_alignment
+  expected_status: resolved
+  owner_step: 7B

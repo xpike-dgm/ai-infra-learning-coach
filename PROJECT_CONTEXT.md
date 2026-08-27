@@ -115,6 +115,13 @@ English teknik eğitimin global ön koşulu değildir; ilk günden paralel ilerl
 
 Canonical: `docs/ENGLISH_ENTRY_DIAGNOSTIC_SPEC.md`.
 
+### 8.2 7B Technical English CEFR Progression — TECP-v0 / D-064
+
+D01 15 Skill context-only CEFR-aligned Technical English progression metadata aldı: 5 A1 + 5 A2 + 5 B1 base anchor; 4 canonical Skill bounded B2+ professional evidence-depth extension taşıyor. CEFR alignment mastery/certification/general-English level değildir; source of truth exact Skill/Objective evidence'dır. `review.6c.english.cefr_alignment` resolved edildi.
+
+Canonical: `docs/TECHNICAL_ENGLISH_CEFR_PROGRESSION_SPEC.md`.
+
+
 ## 9. Professional-readiness depth
 
 ```text
@@ -157,12 +164,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
 - **7A ✅ EED-v0 / D-063 — İngilizce başlangıç ölçümü tamamlandı**
-- **7B 🟡 A1/A2/B1/B2+ teknik hedefleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 7C–20 ⬜
+- **7B ✅ TECP-v0 / D-064 — A1/A2/B1/B2+ technical progression tamamlandı**
+- **7C 🟡 Günlük English bileşeni — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 7D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 7B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 7C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 
