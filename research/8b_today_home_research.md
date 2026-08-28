@@ -15,7 +15,7 @@ accepted product goal
 → Today overview semantics
 ```
 
-Therefore a new separate external Research AI is **not required** for acceptance. Existing 8A external UX research remains provenance for the already-accepted action-first semantic IA and progressive-disclosure direction. 8B must not reinterpret those sources to justify fixed card counts, pixel geometry, exact typography or a new navigation component.
+A new separate external Research AI is **not required** for acceptance. Existing 8A external UX research remains provenance for the already-accepted action-first semantic IA and progressive-disclosure direction. 8B must not reinterpret those sources to justify fixed card counts, pixel geometry, exact typography or a new navigation component.
 
 Independent QA remains required because 8B can still accidentally violate planner/mastery semantics even without new external research.
 
