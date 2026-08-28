@@ -136,6 +136,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-072 — SPWX-v0
 8E final `docs/PROGRESS_SKILL_UX_SPEC.md`; TEPM-v0'dan genelleştirilen tek 8-state Skill vokabüleri, qualifier olarak `at_risk`, sıralanan fakat çökertilmeyen multi-axis truth, kilitlenmiş 8 Skill + 6 Topic etiketi, inventory-only counting, hypothesis != deficiency, `remediation_task_completed != remediation_closed`, streak olmayan learning history ve gradebook olmayan longitudinal assessment_report kilitlendi. Mastery yüzdesi, competence ratio, career bar, level/rank ve streak calendar yasak.
 
+### D-073 — VDSX-v0
+8F final `docs/DESIGN_SYSTEM_SPEC.md`; design system expression layer'dır (`visual_severity <= canonical_severity`). 6 tone; 46 surface + 8 Skill + 6 Topic + 4 qualifier state eksiksiz eşlendi; `system_fault` yalnız gerçek arızaya izinli; attention grubu tone yükseltmez. WCAG çapalı kontrast (tema başına ölçüm), en az 48dp hedef, %200 metin, Türkçe casing koruması, ikna edici olmayan motion ve competence progress-bar yasağı kilitlendi. Somut hex 8G/10'da ölçülerek üretilir.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -152,8 +155,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
 - 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
-- 8 UX — **8A ✅ UXIA-v0 / D-068; 8B ✅ THUX-v0 / D-069; 8C ✅ TRUX-v0 / D-070; 8D ✅ ASUX-v0 / D-071; 8E ✅ SPWX-v0 / D-072**
-  - **8F 🟡 active-not-executed**
+- 8 UX — **8A ✅ UXIA-v0 / D-068; 8B ✅ THUX-v0 / D-069; 8C ✅ TRUX-v0 / D-070; 8D ✅ ASUX-v0 / D-071; 8E ✅ SPWX-v0 / D-072; 8F ✅ VDSX-v0 / D-073**
+  - **8G 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -290,15 +293,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 8C ✅ **TRUX-v0 / D-070**
 - AŞAMA 8D ✅ **ASUX-v0 / D-071**
 - AŞAMA 8E ✅ **SPWX-v0 / D-072**
-- AŞAMA 8F 🟡 **active-not-executed**
+- AŞAMA 8F ✅ **VDSX-v0 / D-073**
+- AŞAMA 8G 🟡 **active-not-executed**
 
 7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`8E — SPWX-v0 / D-072`**  
-**Aktif:** **`8F — Tasarım sistemi`**  
-**8F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`8F — VDSX-v0 / D-073`**  
+**Aktif:** **`8G — Wireframe/prototip`**  
+**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071 ve 8E SPWX-v0 / D-072 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Aktif step 8F — Tasarım sistemi; 8F henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071, 8E SPWX-v0 / D-072 ve 8F VDSX-v0 / D-073 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Design system expression layer'dır ve canonical state'in iddia etmediği severity'yi ekleyemez; hiçbir learning state alarm tonu almaz. Aktif step 8G — Wireframe/prototip; 8G henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

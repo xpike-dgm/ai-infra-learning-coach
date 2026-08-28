@@ -45,6 +45,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-070:** TRUX-v0 Task Runner & Daily Working Flow UX; 8C tamamlandı.
 - **D-071:** ASUX-v0 Assessment Session & Result UX; 8D tamamlandı.
 - **D-072:** SPWX-v0 Progress, Skill State & Weakness UX; 8E tamamlandı.
+- **D-073:** VDSX-v0 Visual Design System; 8F tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -237,14 +238,15 @@ PEM-v0:
 - 8C ✅ TRUX-v0 / D-070
 - 8D ✅ ASUX-v0 / D-071
 - 8E ✅ SPWX-v0 / D-072
-- 8F 🟡 active-not-executed
-- 8G–20 ⬜
+- 8F ✅ VDSX-v0 / D-073
+- 8G 🟡 active-not-executed
+- 9–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8E — SPWX-v0 / D-072`  
-**Aktif:** `8F — Tasarım sistemi`  
-**8F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8F — VDSX-v0 / D-073`  
+**Aktif:** `8G — Wireframe/prototip`  
+**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -488,6 +490,28 @@ SPWX-v0:
 - 10 Progress semantic states / 14 forbidden anti-patterns,
 - independent 8E QA 128/128 PASS, cross-validated against the TEPM policy file, TSM, WLRM and the 8D session contract, and mutation-tested; Stage 6/7/8A/8B/8C/8D regressions + external memory PASS.
 
-## 26. 8F handoff
+## 26. D-073 / 8F final özeti
 
-8F — Tasarım sistemi. 8A–8E'de kilitlenen semantic destination, surface, state ve label setini değiştirmeden typography, color, spacing, iconography, motion ve component library tasarlanacaktır. Design system hiçbir IA truth ownership'ini, state semantiğini veya etiket anlamını değiştiremez; özellikle hiçbir görsel treatment canonical state'in iddia etmediği bir severity ima edemez. 8F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DESIGN_SYSTEM_SPEC.md`.  
+Contract/QA: `ux/8f_design_system/`.  
+Synthesis: `research/8f_design_system_research.md`.
+
+VDSX-v0:
+- the design system is an expression layer and may add no meaning, severity, urgency, ranking or hierarchy: `visual_severity <= canonical_severity`,
+- exactly six tones, assigned from meaning rather than from feel, with one declared tone per state,
+- all 46 accepted surface states plus 8 Skill states, 6 Topic states and 4 qualifiers are mapped, with none missing and none invented,
+- `system_fault` is allowed only on `error_recoverable` and `data_recovery_required`; no learning state may carry an alarm tone,
+- attention grouping never upgrades a tone, so `confirmed_review_due` and Topic `weakening` stay neutral,
+- typography has 8 roles including `mono`, uses scalable units, stays usable at 200% text, and never truncates state before body content,
+- Turkish casing is protected: no locale-naive case transforms, locked labels rendered as authored, no required all-caps,
+- colour is specified as semantic roles with WCAG 1.4.3 / 1.4.11 thresholds measured per theme; dark is not an inversion and colour is never the sole carrier,
+- 4dp rhythm, minimum 48dp targets, focused-flow exit keeps full target size,
+- motion has no persuasive role: countdown, reward-on-completion, decay and streak animation are forbidden and reduced motion loses no information,
+- 18 components map to accepted surfaces and owning specs; none invents a surface or state,
+- progress-bar shapes are restricted to bounded factual position; gauges, levels, ranks, streaks, heatmaps, leaderboards and trend lines are excluded,
+- concrete hex is deliberately not locked; token roles, tone mappings and contrast constraints are, with the palette produced and measured in 8G/10,
+- independent 8F QA 121/121 PASS, exhaustiveness cross-validated against the 8A–8E state union, and mutation-tested; Stage 6/7/8A–8E regressions + external memory PASS.
+
+## 27. 8G handoff
+
+8G — Wireframe/prototip. Kabul edilmiş 8A–8E semantiği ve VDSX-v0 token/tone sistemi üzerinden concrete wireframe ve prototype geometry üretilecektir. Ölçülmüş somut palet bu adımda üretilir ve VDSX-v0 §7 kontrast kurallarına karşı tema başına doğrulanır. 8G hiçbir state, label, tone veya truth ownership'i değiştiremez. 8G fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

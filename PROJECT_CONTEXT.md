@@ -194,12 +194,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8C ✅ Günlük çalışma akışı — TRUX-v0 / D-070**
 - **8D ✅ Sınav UX — ASUX-v0 / D-071**
 - **8E ✅ Skill/progress/weakness UX — SPWX-v0 / D-072**
-- **8F 🟡 Tasarım sistemi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8G–20 ⬜
+- **8F ✅ Tasarım sistemi — VDSX-v0 / D-073**
+- **8G 🟡 Wireframe/prototip — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -230,6 +231,12 @@ Canonical: `docs/ASSESSMENT_SESSION_UX_SPEC.md` / D-071.
 Progress domain sunumu kilitlendi. Progress canonical evidence state'in projection'ıdır; mastery engine, score, competence yüzdesi, career tracker veya streak dashboard değildir. `TEPM-v0`nin 8 derived presentation state'i ve precedence'ı bütün Skill'lere genelleştirildi; technical Skill'ler için ikinci bir etiket sistemi üretilmedi ve TEPM-v0 değişmedi. 8 Türkçe Skill etiketi ile 6 Türkçe Topic etiketi kilitlendi; internal state ID'leri sabit kaldı. `at_risk` dokuzuncu state değil, attention qualifier'dır. Multi-axis truth sıralanır fakat çökertilmez: primary state eksenlerin yerini almaz ve `skill_detail` her ekseni ayrı incelenebilir tutar. Topic state derived orchestration'dır; prerequisite iddiası, Skill ortalaması ve yüzde yoktur. Progress sayabilir fakat puanlayamaz — count yalnız etiketli inventory'dir ve competence ima etmek için total'e bölünmez. Yalnız `supported`/`confirmed` weakness gösterilir; AI hypothesis confirmed olamaz; `remediation_task_completed != remediation_closed`. Learning history streak calendar değildir; assessment_report longitudinal'dir ve session'ları score'a toplayamaz. `review_due` nötr, `verification_due` history silmez.
 
 Canonical: `docs/PROGRESS_SKILL_UX_SPEC.md` / D-072.
+
+## 11.6 8F Visual Design System — VDSX-v0 / D-073
+
+Görsel ifade katmanı kilitlendi. Design system canonical state'in iddia etmediği hiçbir anlamı, severity'yi, aciliyeti veya hiyerarşiyi ekleyemez: `visual_severity <= canonical_severity`. Tam altı tone vardır ve tone bir state'in ne anlama geldiğinden atanır, ne kadar alarm verici hissettirdiğinden değil. 8A–8E'nin 46 surface state'i, 8 Skill state'i, 6 Topic state'i ve 4 qualifier'ı eksiksiz eşlendi. `system_fault` yalnız gerçek teknik arızaya (`error_recoverable`, `data_recovery_required`) izinlidir; hiçbir learning state alarm tonu alamaz ve attention grubunda görünmek tone yükseltmez — bu yüzden `confirmed_review_due` ve Topic `weakening` neutral kalır. Kontrast WCAG 1.4.3/1.4.11'e çapalandı ve tema başına ölçülür; renk asla tek taşıyıcı değildir; dokunma hedefi en az 48dp'dir ve içerik %200 metin boyutunda kullanılabilir kalır. Türkçe casing korundu: locale-naive case transform yasak. Motion'ın ikna edici rolü yoktur; countdown, task-completion ödül animasyonu, decay ve streak animasyonu yasaktır. Progress-bar yalnız bounded factual konum için kullanılabilir; competence, career, oran ve level için yasaktır. Somut hex paleti kilitlenmedi; token role'leri, tone eşlemeleri ve kontrast kısıtları kilitlendi.
+
+Canonical: `docs/DESIGN_SYSTEM_SPEC.md` / D-073.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 
