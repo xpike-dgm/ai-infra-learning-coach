@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070`; aktif adımın `8D active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071`; aktif adımın `8E active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1107,30 +1107,32 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 8A ✅ UXIA-v0 / D-068
 - AŞAMA 8B ✅ THUX-v0 / D-069
 - AŞAMA 8C ✅ TRUX-v0 / D-070
-- AŞAMA 8D 🟡 active-not-executed
-- 8E–20 ⬜
+- AŞAMA 8D ✅ ASUX-v0 / D-071
+- AŞAMA 8E 🟡 active-not-executed
+- 8F–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `8C — Günlük çalışma akışı`  
-**Final:** `TRUX-v0 — Task Runner & Daily Working Flow UX` / D-070  
-**Canonical:** `docs/DAILY_WORKING_FLOW_SPEC.md` + `ux/8c_daily_working_flow/`
+**Son tamamlanan numaralı adım:** `8D — Sınav UX`  
+**Final:** `ASUX-v0 — Assessment Session & Result UX` / D-071  
+**Canonical:** `docs/ASSESSMENT_SESSION_UX_SPEC.md` + `ux/8d_assessment_session/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
 **AŞAMA 8B:** ✅ TAMAMLANDI  
 **AŞAMA 8C:** ✅ TAMAMLANDI  
-**Aktif adım:** `8D — Sınav UX`  
+**AŞAMA 8D:** ✅ TAMAMLANDI  
+**Aktif adım:** `8E — Skill/progress/weakness UX`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-8D için:
+8E için:
 
 ```text
-fresh 8D PRE-STEP GitHub refresh
+fresh 8E PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 8D execution
+→ 8E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1666,9 +1668,24 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 8A ✅ UXIA-v0 / D-068
 8B ✅ THUX-v0 / D-069
 8C ✅ TRUX-v0 / D-070
-8D 🟡 active-not-executed
-8E–20 ⬜
+8D ✅ ASUX-v0 / D-071
+8E 🟡 active-not-executed
+8F–20 ⬜
 ```
+
+8D final:
+- assessment session bir evidence-collection workflow'udur; gradebook veya score-based mastery authority değildir,
+- üç scope için tek interior; scope yalnız displayed context ve ek evidence ağırlığı yok,
+- submission birimi atomic evidence boundary; bölünmez ve kısmen puanlanmaz,
+- submitted boundary frozen; unsubmitted boundary açık blok içinde gezilebilir,
+- skip meşru; `unsubmitted_boundary != incorrect`,
+- independence mode + allowed tools cevap öncesi açıklanır; objective-appropriate tool H0'ı bozmaz,
+- in-session assistance engellenmez ve cezalandırılmaz; recheck planner-owned kalır,
+- beş koşullu slot recomposition; completed valid evidence silinmez,
+- incomplete session partial; exam debt yok; item dispute contested tutar, auto-invalidate etmez,
+- provisional her yerde etiketli; invalid ne kredi ne ceza,
+- result semantic (6 family); pass/fail banner, grade ve threshold yasak; `not_reliably_measured` first-class,
+- independent 8D QA 107/107 PASS.
 
 8C final:
 - Task Runner execution surface'tir; planner/mastery/prerequisite/evidence authority değildir,
@@ -1682,9 +1699,9 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `8D — Sınav UX`.
+**Sıradaki gerçek numbered work:** `8E — Skill/progress/weakness UX`.
 
-**8D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1734,5 +1751,5 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `8D — Sınav UX`.  
-**8D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `8E — Skill/progress/weakness UX`.  
+**8E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

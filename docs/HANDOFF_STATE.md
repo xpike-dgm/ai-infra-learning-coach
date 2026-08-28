@@ -43,6 +43,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-057:** FDM-v0 Foundations Detailed Map; D01–D05 package + FBB seed mapping + internal graph QA tamamlandı.
 - **D-058:** SDM-v0 Systems Detailed Map; D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı.
 - **D-070:** TRUX-v0 Task Runner & Daily Working Flow UX; 8C tamamlandı.
+- **D-071:** ASUX-v0 Assessment Session & Result UX; 8D tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -233,14 +234,15 @@ PEM-v0:
 - 8A ✅ UXIA-v0 / D-068
 - 8B ✅ THUX-v0 / D-069
 - 8C ✅ TRUX-v0 / D-070
-- 8D 🟡 active-not-executed
-- 8E–20 ⬜
+- 8D ✅ ASUX-v0 / D-071
+- 8E 🟡 active-not-executed
+- 8F–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8C — TRUX-v0 / D-070`  
-**Aktif:** `8D — Sınav UX`  
-**8D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8D — ASUX-v0 / D-071`  
+**Aktif:** `8E — Skill/progress/weakness UX`  
+**8E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -435,6 +437,31 @@ TRUX-v0:
 - 17 semantic states / 13 forbidden flow anti-patterns; states distinguishable in text,
 - independent 8C QA 123/123 PASS; Stage 6/7/8A/8B regressions + external memory PASS.
 
-## 24. 8D handoff
+## 24. D-071 / 8D final özeti
 
-8D — Sınav UX. TRUX-v0 shared focused-flow frame, UXIA-v0 `assessment_session_flow` ownership ve accepted DMA/WBA/MCA evidence contracts üzerinden assessment session interior — question navigation, item submission, in-assessment pause/resume ve result presentation — tasarlanacaktır. Evidence/state/replan ayrımı korunur. 8D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/ASSESSMENT_SESSION_UX_SPEC.md`.  
+Contract/QA: `ux/8d_assessment_session/`.  
+Synthesis: `research/8d_assessment_session_research.md`.
+
+ASUX-v0:
+- an assessment session is an evidence-collection workflow, never a gradebook, score-based mastery authority or second state engine,
+- exactly one session interior serves daily/weekly/monthly scopes; scope is displayed context and adds no evidence weight,
+- the atomic evidence boundary is the submission unit; never split, cut or partially scored,
+- submitted boundaries are frozen; unsubmitted boundaries stay navigable within an open block,
+- skipping is legitimate: unsubmitted is not incorrect and carries no penalty,
+- `h0_required` default and allowed-tools policy are disclosed before responding; objective-appropriate tool use does not break H0,
+- in-session assistance is never blocked; H1/H2 assisted, H3/H4 solution-exposed requiring a fresh unseen item; conversion explicit and non-punitive; recheck stays planner-owned,
+- pause is not failure/assistance/mastery signal; resume recomposes unresolved slots under five declared conditions without deleting valid evidence,
+- incomplete sessions are partial; no exam debt and no missed-cycle failure,
+- item disputes hold evidence as contested without auto-invalidating it and never harm user state,
+- provisional is labelled everywhere and cannot settle a critical transition; invalid gives neither credit nor penalty,
+- the result is semantic across six families; pass/fail banners, grades, thresholds, broad scores and comparisons are forbidden,
+- raw counts are informational only; `not_reliably_measured` is first-class and always shown when non-empty,
+- a state-change claim requires an actual canonical change; a first contradiction on a mastered Skill opens `verification_due`,
+- the in-session result view and the Progress-owned `assessment_report` have distinct non-contradictory roles; the TRUX-v0 frame is inherited; diagnostics remain `task_runner_flow` work,
+- 19 semantic states / 15 forbidden anti-patterns,
+- independent 8D QA 107/107 PASS, mutation-tested; Stage 6/7/8A/8B/8C regressions + external memory PASS.
+
+## 25. 8E handoff
+
+8E — Skill/progress/weakness UX. UXIA-v0 `progress`, `skill_detail`, `topic_detail`, `technical_english_profile`, `learning_history` ve `assessment_report` ownership'i ile accepted GRE-v0 / RVR-v0 / PRG-v0 / WLRM-v0 / TEPM-v0 contracts üzerinden exact Skill/Topic state label'ları, weakness ve remediation sunumu, Technical English profile yüzeyi, learning history ve longitudinal assessment reporting tasarlanacaktır. Mastery/retention/prerequisite truth ownership dışarıda kalır. 8E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

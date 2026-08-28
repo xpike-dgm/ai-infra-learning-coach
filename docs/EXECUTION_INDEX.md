@@ -116,8 +116,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **8A — Bilgi mimarisi** — `UXIA-v0 / D-068`
 - [x] **8B — Ana ekran** — `THUX-v0 / D-069`
 - [x] **8C — Günlük çalışma akışı** — `TRUX-v0 / D-070`
-- [ ] **8D — Sınav UX** **AKTİF**
-- [ ] **8E — Skill/progress/weakness UX**
+- [x] **8D — Sınav UX** — `ASUX-v0 / D-071`
+- [ ] **8E — Skill/progress/weakness UX** **AKTİF**
 - [ ] **8F — Tasarım sistemi**
 - [ ] **8G — Wireframe/prototip**
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8C`  
-**Son tamamlanan:** **`8C — TRUX-v0 / D-070`**  
-**Aktif:** **`8D — Sınav UX`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8D`  
+**Son tamamlanan:** **`8D — ASUX-v0 / D-071`**  
+**Aktif:** **`8E — Skill/progress/weakness UX`** — active-not-executed
 
-8C `TRUX-v0` ile focused daily working flow kilitlendi: execution-surface sınırı, emergent ungraded session, shared focused-flow frame, deterministic entry/resume revalidation, non-punitive assistance escalation + consequence disclosure, asked-not-inferred provenance, in-flight replan koruması ve `evaluation_pending` truthfulness. Guilt/streak/debt framing, cached-list ilerleme ve same-item mastery path yasaktır.
+8D `ASUX-v0` ile assessment session interior ve result presentation kilitlendi: üç scope için tek interior, atomic evidence boundary submission, frozen submitted boundary, skip != incorrect, disclosed independence/tools, non-punitive in-session assistance, beş koşullu slot recomposition, contested item dispute, provisional/invalid güvenliği ve semantic result. Pass/fail banner, yüzde/harf notu, geçme eşiği, gradebook ve exam debt yasaktır.
 
-8D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

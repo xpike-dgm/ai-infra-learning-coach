@@ -185,6 +185,28 @@ Stale referans bulunduysa:
 - historical log/spec içinde geçmiş zamanı anlatıyorsa tarihsel bağlam korunur,
 - belirsizse `historical` veya `non-canonical` etiketi eklenir; sessizce anlam değiştirilmez.
 
+## 4.4 Doğrulama araçlarının iki ayrı sınıfı — 2026-08-29 açıklaması
+
+Repo'daki `tools/` script'leri iki farklı ömre sahiptir ve karıştırılmamalıdır.
+
+### `tools/validate_*.py` — standing regression suite
+Kabul edilmiş bir modelin kalıcı davranış sözleşmesini doğrular. **Her zaman PASS vermelidir.** Buradaki bir FAIL ya gerçek bir regresyondur ya da kendisi stale kalmış bir living gate'tir ve aynı POST-STEP içinde düzeltilir.
+
+Örnek: 8C POST audit'i sırasında `validate_english_entry_diagnostic.py` içindeki `E7A-15`, 7B'nin resolved ettiği `review.6c.english.cefr_alignment` review'ının hâlâ `open` olduğunu iddia ederken bulundu ve assertion 7B ownership-handoff'una daraltıldı.
+
+### `tools/audit_*_post_step_stale.py` — one-time step-closure gate
+Yalnız kendi adımının kapanış anındaki state'i doğrular ve tasarımı gereği `<step> complete AND <next step> active-not-executed` iddiasını sabitler.
+
+Bir sonraki numaralı adım tamamlandığı anda bu iddia doğal olarak geçersizleşir ve script FAIL vermeye başlar. **Bu bir regresyon değildir ve düzeltilmemelidir**; script'in amacı zaten o anın kanıtını dondurmaktır. Kalıcı kanıt, script'in ürettiği `stale_reference_audit.yaml` raporudur.
+
+Bağlayıcı sonuç:
+
+- standing regression sweep yalnız `validate_*.py` script'lerini içerir,
+- `audit_*_post_step_stale.py` yalnız kendi adımının POST-STEP'inde çalıştırılır,
+- eski bir closure audit'inin FAIL vermesi current state hakkında hiçbir şey söylemez ve current state iddiası olarak kullanılamaz.
+
+**Somut tehlike:** bu script'ler çalıştıklarında kendi `stale_reference_audit.yaml` raporlarını yeniden yazar. Eski bir closure audit'ini merakla çalıştırmak, o adımın dondurulmuş PASS kanıtını FAIL ile ezer. 8D POST'unda bu bir kez yaşandı ve dört rapor (`7E`, `8A`, `8B`, `8C`) `git checkout --` ile geri alındı. Eski closure audit'leri çalıştırılmaz; kanıt için raporları okunur.
+
 ---
 
 # 5. Stage reindex / plan değişikliği için özel kural

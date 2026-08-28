@@ -1,0 +1,451 @@
+model: ASUX-v0
+stage_step: 8D
+status: accepted_8d
+decision: D-071
+parent_ia: UXIA-v0
+focused_flow_frame: TRUX-v0
+purpose: assessment_session_interior_and_result_presentation
+
+scope:
+  semantic_session_only: true
+  final_visual_design_locked: false
+  skill_progress_visual_semantics_locked: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  question_bank_schema_locked: false
+  evaluator_integration_locked: false
+  blueprint_policy_changed: false
+  passing_threshold: null
+  percentage_grade: null
+  fixed_question_count: null
+  countdown_clock: null
+  fixed_pixel_geometry: null
+
+session_question: How does this measurement run, and what actually changed?
+owning_ia_surface: assessment_session_flow
+
+canonical_truth_owners:
+  what_is_measured: stage4_blueprint_policy
+  daily_scope: DMA-v0
+  weekly_scope: WBA-v0
+  monthly_scope: MCA-v0
+  item_trust: QAB-v0+AIV-v0
+  assistance_evidence: AI_assistance_2D_contract
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  priority: PBR-v0
+  planner_explanation: PDT-v0
+  focused_flow_frame: TRUX-v0
+  english_integration: TEIP-v0
+  english_profile: TEPM-v0
+  longitudinal_reporting: assessment_report
+  diagnostic_execution: task_runner_flow
+
+invariants:
+  session_is_gradebook: false
+  session_is_mastery_authority: false
+  session_is_retention_authority: false
+  session_is_second_state_engine: false
+  session_redefines_focused_flow_frame: false
+  session_owns_diagnostics: false
+  session_duplicates_assessment_report: false
+  scope_changes_rules: false
+  scope_label_adds_evidence_weight: false
+  atomic_boundary_split: false
+  boundary_partially_scored: false
+  submitted_boundary_revisitable: false
+  submitted_boundary_editable: false
+  post_submit_feedback_contaminates_prior_attempt: false
+  unsubmitted_boundary_is_incorrect: false
+  skipping_is_negative_evidence: false
+  skipping_is_penalty: false
+  assistance_blocked_during_assessment: false
+  assistance_request_is_negative_evidence: false
+  assistance_conversion_silent: false
+  session_schedules_recheck: false
+  same_item_after_exposure_is_independent_recheck: false
+  pause_is_failure: false
+  pause_is_assistance: false
+  pause_is_mastery_signal: false
+  recomposition_deletes_valid_evidence: false
+  incomplete_session_is_penalty: false
+  incomplete_session_creates_exam_debt: false
+  missed_cycle_is_failure: false
+  user_report_auto_invalidates_item: false
+  dispute_harms_user_state: false
+  dispute_is_undo_button: false
+  provisional_presented_as_settled: false
+  provisional_alone_settles_critical_transition: false
+  invalid_item_gives_credit: false
+  invalid_item_gives_penalty: false
+  invalid_slot_counts_as_covered: false
+  pass_fail_banner: false
+  percentage_or_letter_grade: false
+  passing_threshold_rule: false
+  broad_numeric_domain_mastery: false
+  raw_count_is_verdict: false
+  not_reliably_measured_hidden: false
+  not_reliably_measured_counted_as_incorrect: false
+  state_change_claimed_without_canonical_change: false
+  first_contradiction_causes_instant_unmastery: false
+  reason_can_exceed_trace_facts: false
+  countdown_pressure_device: false
+  leaderboard_or_social_comparison: false
+  exam_streak_or_quota: false
+  dual_target_overall_pass_broadcast: false
+  general_or_official_cefr_claim: false
+  ai_unavailable_fakes_result: false
+  offline_always_blocks_session: false
+  single_interior_for_all_scopes: true
+  independence_mode_disclosed_before_response: true
+  allowed_tools_disclosed_before_response: true
+  objective_appropriate_tool_use_breaks_h0: false
+  unsubmitted_boundary_navigable: true
+  exit_reachable_in_one_deliberate_action: true
+  not_reliably_measured_is_first_class: true
+
+session_model:
+  semantic_fields:
+    - session_id
+    - assessment_scope
+    - assessment_intent
+    - planned_task_ref
+    - blocks
+    - independence_mode
+    - allowed_tools_policy
+    - session_state
+    - resume_context_ref
+  assessment_scopes:
+    - daily_micro
+    - weekly_blueprint
+    - monthly_capability
+  scope_is_displayed_context_only: true
+  scope_is_separate_screen_family: false
+  assessment_intents:
+    - checkpoint
+    - mastery_evidence
+    - verification
+    - integration_check
+
+block_structure:
+  submission_unit: atomic_evidence_boundary
+  boundary_kinds:
+    - item
+    - testlet
+  boundary_never_split: true
+  boundary_never_partially_scored: true
+  blocks_separated_by_safe_checkpoints: true
+  checkpoint_contract_inherited_from: TRUX-v0
+  artifact_work_without_safe_checkpoint_split: false
+  dependency_group_behaves_as_one_evidence_group: true
+  dependency_group_members_confirm_each_other: false
+
+item_view:
+  semantic_fields:
+    - item_ref
+    - item_version
+    - boundary_ref
+    - prompt_content
+    - response_affordance
+    - independence_mode
+    - allowed_tools_policy
+    - assistance_entry
+    - dispute_entry
+    - position_context
+    - integration_mode_optional
+  forbidden_fields:
+    - target_objective_mastery_state
+    - running_score_or_percentage
+    - countdown_clock
+    - difficulty_as_user_level
+    - other_user_comparison_or_rank
+    - answer_or_solution_before_attempt
+    - streak_quota_or_completion_percentage
+  position_context_is_orientation_not_performance: true
+
+independence_disclosure:
+  default_mode_for_mastery_or_verification: h0_required
+  disclosed_before_response: true
+  allowed_tools_disclosed_before_response: true
+  objective_appropriate_tool_use_breaks_h0: false
+  undisclosed_independence_rules: false
+
+navigation_and_submission:
+  submitted_boundary_is_frozen: true
+  submitted_boundary_revisitable: false
+  submitted_boundary_editable: false
+  submitted_boundary_resubmittable: false
+  unsubmitted_boundary_navigable_within_open_block: true
+  free_order_answering_allowed: true
+  skipping_allowed: true
+  unsubmitted_is_incorrect: false
+  skipping_leaves_need_unresolved: true
+  exit_always_available: true
+  exit_framed_as_quitting_or_waste: false
+
+assistance_in_session:
+  blocked: false
+  request_is_negative_evidence: false
+  consequence_disclosed_before_revealing_help: true
+  consequence_framing_allowed: what_this_attempt_can_still_prove
+  consequence_framing_forbidden: penalty_language
+  levels:
+    - id: H1
+      class: assisted
+      independent_mastery_evidence: false
+    - id: H2
+      class: assisted
+      independent_mastery_evidence: false
+    - id: H3
+      class: practice_only_solution_exposed
+      independent_mastery_evidence: false
+      requires_fresh_unseen_item: true
+    - id: H4
+      class: practice_only_solution_exposed
+      independent_mastery_evidence: false
+      requires_fresh_unseen_item: true
+  mode_conversion_explicit: true
+  mode_conversion_silent: false
+  mode_conversion_framed_as_violation: false
+  session_may_continue_teaching: true
+  raises_requires_independent_recheck: true
+  session_schedules_recheck: false
+  recheck_owner: planner_and_remediation_retention_pipelines
+
+pause_resume_recomposition:
+  frame_owner: TRUX-v0
+  session_is_high_stakes_by_default: true
+  pause_is_failure: false
+  pause_is_assistance: false
+  pause_is_mastery_signal: false
+  recomposition_conditions:
+    - solution_or_explanation_exposed
+    - item_version_or_validation_changed
+    - prerequisite_state_changed_meaningfully
+    - freshness_no_longer_trustworthy_after_long_gap
+    - user_requested_reset_or_alternative
+  recomposition_deletes_completed_valid_evidence: false
+  recomposed_slot_presented_as_retry_of_failure: false
+  recomposed_slot_presented_as_fresh_measurement: true
+
+incomplete_session:
+  submitted_valid_attempts_produce_evidence: true
+  unsubmitted_counted_incorrect: false
+  unresolved_slot_mastery_penalty: false
+  session_may_be_partial: true
+  unresolved_needs_remain_in_current_state: true
+  creates_exam_debt: false
+  missed_cycle_is_failure: false
+
+item_dispute:
+  reporting_low_friction: true
+  auto_sets_item_invalid: false
+  evidence_held_as_contested: true
+  critical_transition_decided_on_contested_item_alone: false
+  triggers_validator_answer_key_rubric_recheck: true
+  flags_item_or_template_for_qa: true
+  treated_as_excuse_or_complaint: false
+  is_undo_button: false
+  harms_user_state: false
+
+evaluator_status:
+  values:
+    - verified
+    - provisional
+    - invalid
+  verified_may_present_settled_outcome: true
+  provisional_labelled_everywhere: true
+  provisional_may_inform: true
+  provisional_may_open_confirmation_need: true
+  provisional_presented_as_verdict: false
+  provisional_alone_settles_critical_transition: false
+  invalid_gives_credit: false
+  invalid_gives_penalty: false
+  invalid_slot_counts_as_covered: false
+  invalid_explained_plainly_to_user: true
+
+result_presentation:
+  result_question: what_just_changed
+  semantic_families:
+    - confirmed_capabilities
+    - verification_needed
+    - persistent_targeted_gaps
+    - retention_revalidated
+    - not_reliably_measured
+    - plan_changes
+  forbidden_verdicts:
+    - pass_fail_banner
+    - percentage_or_letter_grade
+    - passing_threshold
+    - score_equals_mastered_rule
+    - broad_domain_score
+    - career_completion_percentage
+    - comparison_to_other_people_or_target_curve
+  raw_counts_allowed: true
+  raw_counts_are_informational_only: true
+  raw_counts_separated_from_state: true
+  not_reliably_measured_first_class: true
+  not_reliably_measured_always_shown_when_non_empty: true
+  not_reliably_measured_sources:
+    - invalid_item
+    - provisional_evaluation
+    - assisted_attempt
+    - solution_exposed_attempt
+    - contested_item
+    - unsubmitted_slot
+  not_reliably_measured_folded_into_incorrect: false
+  state_change_claim_requires_canonical_state_change: true
+  first_contradiction_on_mastered_skill: verification_due
+  first_contradiction_causes_instant_unmastery: false
+  no_change_stated_plainly: true
+  manufactured_progress_claim: false
+  reason_source: PDT-v0
+  reason_bounded: true
+  full_explanation_route: planner_explanation
+
+state_and_replan_chain:
+  - attempt
+  - evidence_validation
+  - gre_rvr_update
+  - weakness_remediation_verification_update
+  - prg_readiness
+  - topic_derived_state
+  - open_learning_needs
+  - pbr_priority
+  - remaining_capacity
+  - new_plan_version
+  - pdt_trace
+
+surface_boundary:
+  in_session_result_view:
+    owner: 8D
+    question: what_just_changed_right_now
+    bounded: true
+  assessment_report:
+    owner: progress_8E
+    question: what_happened_across_sessions_over_time
+  either_owns_mastery: false
+  contradictory_truths_allowed: false
+
+technical_english_in_session:
+  task_language_and_target_construct_separate: true
+  scaffold_mode_is_item_metadata: true
+  non_target_language_demand_scaffolded_or_neutralised: true
+  dual_target_component_results_separable: true
+  dual_target_overall_pass_broadcast: false
+  technical_ignorance_masquerades_as_english_failure: false
+  weak_english_produces_negative_technical_evidence: false
+  general_or_official_cefr_claim: false
+  qualified_profile_owner: TEPM-v0
+
+degraded_and_recovery:
+  frame_owner: TRUX-v0
+  ai_evaluator_unavailable:
+    attempt_preserved: true
+    marked_evaluation_pending: true
+    evidence_written: false
+    auto_pass: false
+    auto_fail: false
+  offline:
+    deterministically_evaluable_items_runnable: true
+    remote_evaluation_items_park_as_pending: true
+    remote_evaluation_items_fail: false
+  interruption_and_crash:
+    restores_last_durable_checkpoint_and_frozen_boundaries: true
+    claims_unpersisted_work: false
+  data_recovery:
+    supersedes_normal_session_work: true
+    silent_progress_reset: false
+
+semantic_states:
+  - entering_revalidating
+  - blocked_not_startable
+  - session_orientation
+  - item_active
+  - assistance_open
+  - submitting_boundary
+  - boundary_frozen
+  - block_checkpoint
+  - session_paused
+  - resume_revalidating
+  - slot_recomposed
+  - evaluation_pending
+  - result_ready
+  - result_partial
+  - item_contested
+  - offline_local_capable
+  - ai_unavailable_deterministic_core
+  - error_recoverable
+  - data_recovery_required
+
+state_distinguishable_in_text: true
+state_distinguishable_by_color_or_motion_only: false
+
+accessibility_baseline:
+  response_affordance_accessible_name: true
+  submit_action_accessible_name: true
+  exit_pause_accessible_name: true
+  independence_and_tools_in_text: true
+  assistance_level_and_consequence_in_text: true
+  pending_contested_recomposed_recovery_announcable: true
+  block_and_boundary_position_semantic: true
+  result_families_readable_as_text: true
+  result_meaning_by_color_alone: false
+
+forbidden_session_patterns:
+  - gradebook
+  - pass_fail_verdict_screen
+  - percentage_or_letter_grade_report
+  - broad_numeric_domain_mastery_dashboard
+  - countdown_timer_pressure_surface
+  - leaderboard_or_social_comparison
+  - exam_streak_or_quota_tracker
+  - visible_penalty_for_asking_help
+  - skipping_treated_as_wrong_answer
+  - provisional_presented_as_settled
+  - hiding_what_could_not_be_measured
+  - undo_button_for_inconvenient_results
+  - second_mastery_or_retention_engine
+  - duplicate_assessment_report
+  - diagnostic_runner_competing_with_task_runner_flow
+
+future_stage_boundaries:
+  8E: skill_progress_weakness_labels_and_assessment_report
+  8F: visual_design_system
+  8G: wireframe_and_prototype_geometry
+  9A: mobile_technology_choice
+  9C: physical_data_model
+  9E: evaluator_code_runner_and_provider_integration
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  15: question_bank_content_authoring
+  16: detailed_settings_notifications_analytics
+  17: final_accessibility_usability_polish
+  18: empirical_usability_calibration
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - TRUX-v0
+    - DMA-v0
+    - WBA-v0
+    - MCA-v0
+    - QAB-v0
+    - AIV-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - PBR-v0
+    - PDT-v0
+    - TEIP-v0
+    - TEPM-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true
+  stage8b_regression_required: true
+  stage8c_regression_required: true
