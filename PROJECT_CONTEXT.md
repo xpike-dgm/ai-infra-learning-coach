@@ -193,12 +193,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8B ✅ Ana ekran — THUX-v0 / D-069**
 - **8C ✅ Günlük çalışma akışı — TRUX-v0 / D-070**
 - **8D ✅ Sınav UX — ASUX-v0 / D-071**
-- **8E 🟡 Skill/progress/weakness UX — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8F–20 ⬜
+- **8E ✅ Skill/progress/weakness UX — SPWX-v0 / D-072**
+- **8F 🟡 Tasarım sistemi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8G–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -223,6 +224,12 @@ Canonical: `docs/DAILY_WORKING_FLOW_SPEC.md` / D-070.
 Assessment session interior ve result presentation kilitlendi. Session bir evidence-collection workflow'udur; gradebook, score-based mastery authority veya ikinci state engine değildir. Üç scope (daily/weekly/monthly) için **tek interior** kullanılır; scope yalnız gösterilen context'tir ve ek evidence ağırlığı kazandırmaz. Submission birimi atomic evidence boundary'dir; bölünmez ve kısmen puanlanmaz. Submit edilen boundary dondurulur; açık blok içinde submit edilmemiş boundary'ler serbestçe gezilebilir. Skip meşrudur ve incorrect sayılmaz. `h0_required` varsayılanı ile allowed-tools policy cevap öncesi açıklanır; objective-appropriate tool kullanımı H0'ı bozmaz. Yardım engellenmez; H1/H2 assisted, H3/H4 solution-exposed olur ve fresh unseen item gerektirir; conversion açık ve cezasızdır, recheck planner-owned kalır. Resume'da unresolved slot beş koşuldan biriyle recompose edilir ve completed valid evidence silinmez. Incomplete session partial olabilir; exam debt yoktur. Item dispute evidence'ı contested tutar fakat auto-invalidate etmez ve undo button değildir. Provisional her yerde etiketlidir; invalid ne kredi ne ceza verir. Result semantic'tir ve altı family kullanır; pass/fail banner, yüzde/harf notu, geçme eşiği ve broad score yasaktır. `not_reliably_measured` first-class'tır. State-change iddiası yalnız canonical değişimde yapılır; mastered Skill'de ilk contradiction `verification_due` açar.
 
 Canonical: `docs/ASSESSMENT_SESSION_UX_SPEC.md` / D-071.
+
+## 11.5 8E Progress / Skill / Weakness UX — SPWX-v0 / D-072
+
+Progress domain sunumu kilitlendi. Progress canonical evidence state'in projection'ıdır; mastery engine, score, competence yüzdesi, career tracker veya streak dashboard değildir. `TEPM-v0`nin 8 derived presentation state'i ve precedence'ı bütün Skill'lere genelleştirildi; technical Skill'ler için ikinci bir etiket sistemi üretilmedi ve TEPM-v0 değişmedi. 8 Türkçe Skill etiketi ile 6 Türkçe Topic etiketi kilitlendi; internal state ID'leri sabit kaldı. `at_risk` dokuzuncu state değil, attention qualifier'dır. Multi-axis truth sıralanır fakat çökertilmez: primary state eksenlerin yerini almaz ve `skill_detail` her ekseni ayrı incelenebilir tutar. Topic state derived orchestration'dır; prerequisite iddiası, Skill ortalaması ve yüzde yoktur. Progress sayabilir fakat puanlayamaz — count yalnız etiketli inventory'dir ve competence ima etmek için total'e bölünmez. Yalnız `supported`/`confirmed` weakness gösterilir; AI hypothesis confirmed olamaz; `remediation_task_completed != remediation_closed`. Learning history streak calendar değildir; assessment_report longitudinal'dir ve session'ları score'a toplayamaz. `review_due` nötr, `verification_due` history silmez.
+
+Canonical: `docs/PROGRESS_SKILL_UX_SPEC.md` / D-072.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

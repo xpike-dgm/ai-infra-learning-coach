@@ -1,0 +1,519 @@
+stage_step: 8E
+model: SPWX-v0
+candidate_decision: D-072
+result: PASS
+status_observed: accepted_8e
+checks_total: 128
+checks_passed: 128
+checks_failed: 0
+owned_surfaces: 6
+skill_presentation_states: 8
+topic_states: 6
+semantic_states: 10
+forbidden_progress_patterns: 14
+checks:
+- check: E8E-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E8E-00_required_file
+  result: PASS
+  details: docs\PROGRESS_SKILL_UX_SPEC.md
+- check: E8E-00_required_file
+  result: PASS
+  details: research\8e_progress_skill_weakness_research.md
+- check: E8E-00_required_file
+  result: PASS
+  details: ux\8a_information_architecture\ia.yaml
+- check: E8E-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E8E-00_required_file
+  result: PASS
+  details: curriculum\english\7e_mastery_profile\policy.yaml
+- check: E8E-00_required_file
+  result: PASS
+  details: docs\TOPIC_STATE_MACHINE.md
+- check: E8E-00_required_file
+  result: PASS
+  details: docs\WEAKNESS_LOCALIZATION_REMEDIATION_MAP.md
+- check: E8E-00_required_file
+  result: PASS
+  details: docs\RETENTION_FORGETTING_SPEC.md
+- check: E8E-01_identity
+  result: PASS
+  details: model=SPWX-v0 step=8E
+- check: E8E-01_status
+  result: PASS
+  details: status=accepted_8e
+- check: E8E-01_decision
+  result: PASS
+  details: decision=D-072
+- check: E8E-01_parent_ia
+  result: PASS
+  details: parent=UXIA-v0
+- check: E8E-01_destination
+  result: PASS
+  details: destination=progress
+- check: E8E-01_owned_surfaces
+  result: PASS
+  details: surfaces=['progress_overview', 'skill_detail', 'topic_detail', 'technical_english_profile',
+    'learning_history', 'assessment_report']
+- check: E8E-02_semantic_only
+  result: PASS
+  details: 8E remains a semantic presentation contract
+- check: E8E-02_upstream_untouched
+  result: PASS
+  details: violations=[]
+- check: E8E-02_no_premature_lock
+  result: PASS
+  details: violations=[]
+- check: E8E-02_no_invented_metrics
+  result: PASS
+  details: violations=[]
+- check: E8E-03_truth_owners
+  result: PASS
+  details: 'owners={''mastery'': ''GRE-v0'', ''retention'': ''RVR-v0'', ''prerequisite'':
+    ''PRG-v0'', ''topic_orchestration'': ''TSM-v0'', ''weakness_remediation'': ''WLRM-v0'',
+    ''english_profile_semantics'': ''TEPM-v0'', ''assessment_evidence'': ''DMA_WBA_MCA_pipeline'',
+    ''assessment_session_interior'': ''ASUX-v0'', ''planner_explanation'': ''PDT-v0'',
+    ''planner_priority'': ''PBR-v0'', ''focused_flow_frame'': ''TRUX-v0''}'
+- check: E8E-03_progress_owns_no_engine_truth
+  result: PASS
+  details: Progress must not own any canonical engine truth
+- check: E8E-04_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8E-04_true_guards
+  result: PASS
+  details: violations=[]
+- check: E8E-04_guard_count
+  result: PASS
+  details: false_guards=50
+- check: E8E-05_states_match_tepm
+  result: PASS
+  details: 8E=['not_yet_evidenced', 'developing_with_support', 'developing_independent',
+    'confirmed_current', 'confirmed_review_due', 'confirmation_verification_due',
+    'remediation_required', 'prerequisite_unresolved'] vs TEPM=['not_yet_evidenced',
+    'developing_with_support', 'developing_independent', 'confirmed_current', 'confirmed_review_due',
+    'confirmation_verification_due', 'remediation_required', 'prerequisite_unresolved']
+- check: E8E-05_precedence_matches_tepm
+  result: PASS
+  details: 8E=['remediation_required', 'confirmation_verification_due', 'confirmed_review_due',
+    'confirmed_current', 'prerequisite_unresolved', 'developing_independent', 'developing_with_support',
+    'not_yet_evidenced'] vs TEPM=['remediation_required', 'confirmation_verification_due',
+    'confirmed_review_due', 'confirmed_current', 'prerequisite_unresolved', 'developing_independent',
+    'developing_with_support', 'not_yet_evidenced']
+- check: E8E-05_exactly_eight
+  result: PASS
+  details: count=8
+- check: E8E-05_precedence_covers_states
+  result: PASS
+  details: precedence covers exactly the declared states
+- check: E8E-05_generalized
+  result: PASS
+  details: generalization=TEPM-v0
+- check: E8E-06_labels_complete
+  result: PASS
+  details: missing labels=[]
+- check: E8E-06_labels_unique
+  result: PASS
+  details: labels=['Bağımsız Gelişiyor', 'Destekle Gelişiyor', 'Doğrulanmış', 'Doğrulanmış
+    · Tekrar Zamanı', 'Doğrulanmış · Yeniden Kontrol Gerekli', 'Henüz Kanıt Yok',
+    'Pekiştirme Gerekli', 'Ön Koşul Bekliyor']
+- check: E8E-06_internal_ids_fixed
+  result: PASS
+  details: internal state ids stay fixed
+- check: E8E-07_projection_fields
+  result: PASS
+  details: missing=[]
+- check: E8E-07_orders_not_replaces
+  result: PASS
+  details: 'multi_axis={''projection_fields'': [''primary_presentation_state'', ''mastery_axis_state'',
+    ''retention_axis_state'', ''prerequisite_axis_state'', ''weakness_axis_state'',
+    ''attention_qualifiers'', ''contributing_evidence_summary_ref''], ''primary_state_orders_axes'':
+    True, ''primary_state_replaces_axes'': False, ''list_surface_may_show_primary_only'':
+    True, ''primary_state_claimed_as_whole_truth'': False, ''attention_qualifiers'':
+    [''retention_at_risk'', ''requires_independent_recheck'', ''contested_evidence_present'',
+    ''provisional_evaluation_present''], ''at_risk_handling'': {''is_primary_state'':
+    False, ''is_attention_qualifier'': True, ''silently_dropped'': False, ''explained_as_mixed_or_repeated_signal'':
+    True, ''explained_as_elapsed_time'': False}}'
+- check: E8E-08_at_risk_qualifier
+  result: PASS
+  details: 'at_risk={''is_primary_state'': False, ''is_attention_qualifier'': True,
+    ''silently_dropped'': False, ''explained_as_mixed_or_repeated_signal'': True,
+    ''explained_as_elapsed_time'': False}'
+- check: E8E-08_at_risk_in_qualifiers
+  result: PASS
+  details: qualifiers=['retention_at_risk', 'requires_independent_recheck', 'contested_evidence_present',
+    'provisional_evaluation_present']
+- check: E8E-08_at_risk_not_a_state
+  result: PASS
+  details: at_risk is not a primary presentation state
+- check: E8E-08_rvr_defines_at_risk
+  result: PASS
+  details: RVR-v0 defines at_risk
+- check: E8E-08_rvr_at_risk_not_time_only
+  result: PASS
+  details: RVR-v0 states at_risk is not caused by overdue duration alone
+- check: E8E-09_topic_states
+  result: PASS
+  details: states=['locked', 'available', 'learning', 'mastered', 'weakening', 'remediation_required']
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=locked
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=available
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=learning
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=mastered
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=weakening
+- check: E8E-09_topic_state_in_tsm
+  result: PASS
+  details: state=remediation_required
+- check: E8E-09_topic_labels_complete
+  result: PASS
+  details: missing=[]
+- check: E8E-09_topic_labels_unique
+  result: PASS
+  details: labels=['Hazır', 'Kilitli', 'Pekiştirme Gerekli', 'Tekrar Gerekebilir',
+    'Öğrenildi', 'Öğreniliyor']
+- check: E8E-09_topic_ids_unchanged
+  result: PASS
+  details: topic internal ids unchanged
+- check: E8E-10_topic_semantics
+  result: PASS
+  details: 'topic semantics={''source_contract'': ''TSM-v0'', ''internal_states'':
+    [''locked'', ''available'', ''learning'', ''mastered'', ''weakening'', ''remediation_required''],
+    ''labels_tr'': {''locked'': ''Kilitli'', ''available'': ''Hazır'', ''learning'':
+    ''Öğreniliyor'', ''mastered'': ''Öğrenildi'', ''weakening'': ''Tekrar Gerekebilir'',
+    ''remediation_required'': ''Pekiştirme Gerekli''}, ''internal_ids_changed'': False,
+    ''state_is_derived_orchestration'': True, ''state_is_prerequisite_claim'': False,
+    ''state_is_average_of_skills'': False, ''percentage_shown'': False, ''locked_reason_reachable'':
+    True, ''locked_is_permanent_verdict'': False}'
+- check: E8E-10_locked_reason
+  result: PASS
+  details: locked reason reachable and not permanent
+- check: E8E-10_tsm_delegates_wording
+  result: PASS
+  details: TSM-v0 delegates UI wording to 8E while fixing internal ids
+- check: E8E-11_halves
+  result: PASS
+  details: halves=['demonstrated_capability_inventory', 'attention_set']
+- check: E8E-11_inventory_not_ratio
+  result: PASS
+  details: 'inventory={''halves'': [''demonstrated_capability_inventory'', ''attention_set''],
+    ''inventory_counts_allowed'': True, ''inventory_counts_labelled_as_inventory'':
+    True, ''inventory_ratio_or_percentage'': False, ''attention_reasons'': [''remediation_open'',
+    ''verification_due'', ''review_due'', ''retention_at_risk'', ''prerequisite_blocked'',
+    ''assessment_opportunity''], ''attention_is_backlog_or_debt'': False, ''attention_is_todo_count'':
+    False, ''creates_planner_priority'': False, ''forbidden_overview_shapes'': [''career_completion_percentage'',
+    ''broad_domain_score'', ''mastery_gauge_level_or_rank'', ''streak_or_attendance_dashboard'',
+    ''second_planner_start_now_surface'', ''assessment_gradebook'']}'
+- check: E8E-11_attention_reasons
+  result: PASS
+  details: reasons=['remediation_open', 'verification_due', 'review_due', 'retention_at_risk',
+    'prerequisite_blocked', 'assessment_opportunity']
+- check: E8E-12_attention_not_backlog
+  result: PASS
+  details: 'attention semantics={''halves'': [''demonstrated_capability_inventory'',
+    ''attention_set''], ''inventory_counts_allowed'': True, ''inventory_counts_labelled_as_inventory'':
+    True, ''inventory_ratio_or_percentage'': False, ''attention_reasons'': [''remediation_open'',
+    ''verification_due'', ''review_due'', ''retention_at_risk'', ''prerequisite_blocked'',
+    ''assessment_opportunity''], ''attention_is_backlog_or_debt'': False, ''attention_is_todo_count'':
+    False, ''creates_planner_priority'': False, ''forbidden_overview_shapes'': [''career_completion_percentage'',
+    ''broad_domain_score'', ''mastery_gauge_level_or_rank'', ''streak_or_attendance_dashboard'',
+    ''second_planner_start_now_surface'', ''assessment_gradebook'']}'
+- check: E8E-12_forbidden_overview
+  result: PASS
+  details: missing=[]
+- check: E8E-13_shared
+  result: PASS
+  details: reachable=['today', 'learn', 'progress']
+- check: E8E-13_fields
+  result: PASS
+  details: missing=[]
+- check: E8E-13_no_hidden_gap
+  result: PASS
+  details: Skill state never hides an Objective-level gap
+- check: E8E-14_evidence_kinds
+  result: PASS
+  details: evidence kinds=['independent', 'assisted', 'provisional', 'invalid']
+- check: E8E-14_shared_truth
+  result: PASS
+  details: shared truth, no numeric exposure
+- check: E8E-14_prereq_links
+  result: PASS
+  details: prerequisite context links the blocking Skill
+- check: E8E-15_topic_detail
+  result: PASS
+  details: 'topic_detail={''shows_topic_state_and_skill_structure'': True, ''creates_mastery_truth'':
+    False, ''creates_prerequisite_truth'': False, ''creates_evidence_truth'': False,
+    ''skills_link_to_shared_skill_detail'': True, ''structural_placement_rendered_as_dependency_chain'':
+    False, ''completion_percentage'': False}'
+- check: E8E-16_lifecycle
+  result: PASS
+  details: lifecycle=['none', 'hypothesis', 'supported', 'confirmed', 'resolved']
+- check: E8E-16_lifecycle_matches_wlrm
+  result: PASS
+  details: lifecycle matches WLRM-v0 canonical text
+- check: E8E-16_display_rules
+  result: PASS
+  details: 'display_rules={''hypothesis'': ''open_question_at_most'', ''supported'':
+    ''localized_weakness_signal'', ''confirmed'': ''localized_confirmed_weakness'',
+    ''resolved'': ''history_not_current_problem''}'
+- check: E8E-17_hypothesis_guard
+  result: PASS
+  details: hypothesis is never a deficiency or a confirmed claim
+- check: E8E-17_localization
+  result: PASS
+  details: 'localization={''source_contract'': ''WLRM-v0'', ''lifecycle'': [''none'',
+    ''hypothesis'', ''supported'', ''confirmed'', ''resolved''], ''display_rules'':
+    {''hypothesis'': ''open_question_at_most'', ''supported'': ''localized_weakness_signal'',
+    ''confirmed'': ''localized_confirmed_weakness'', ''resolved'': ''history_not_current_problem''},
+    ''hypothesis_shown_as_deficiency'': False, ''ai_hypothesis_shown_as_confirmed'':
+    False, ''localization_preserved'': True, ''broadcast_upward_to_domain'': False,
+    ''broadcast_downward_to_dependents'': False, ''closure_requires_canonical_evidence'':
+    True, ''closure_evidence_properties'': [''fresh'', ''context_diverse'', ''h0_independent'',
+    ''direct'', ''verified'', ''prerequisite_valid''], ''task_completion_closes_remediation'':
+    False, ''framing_describes_located_gap_not_the_user'': True, ''uses_failure_language'':
+    False, ''ranks_the_user'': False}'
+- check: E8E-18_closure_evidence
+  result: PASS
+  details: closure=['fresh', 'context_diverse', 'h0_independent', 'direct', 'verified',
+    'prerequisite_valid']
+- check: E8E-18_wlrm_closure_rule
+  result: PASS
+  details: WLRM-v0 states task completion does not close remediation
+- check: E8E-18_non_punitive
+  result: PASS
+  details: weakness framing is non-punitive
+- check: E8E-19_bands
+  result: PASS
+  details: bands=['A1', 'A2', 'B1']
+- check: E8E-19_uneven_first_class
+  result: PASS
+  details: uneven per-Skill detail is first-class
+- check: E8E-19_same_states
+  result: PASS
+  details: English uses the same eight presentation states
+- check: E8E-20_no_overclaim
+  result: PASS
+  details: 'english overclaim guards={''source_contract'': ''TEPM-v0'', ''presents_qualified_base_band'':
+    True, ''base_bands'': [''A1'', ''A2'', ''B1''], ''uneven_per_skill_detail_first_class'':
+    True, ''flattened_single_level'': False, ''b2_plus_bounded_per_capability_extension'':
+    True, ''historical_confirmed_band_provenance_retained'': True, ''uses_same_eight_presentation_states'':
+    True, ''second_state_model_for_english'': False, ''general_or_official_cefr_claim'':
+    False, ''certification_claim'': False, ''numeric_aggregate_or_average'': False,
+    ''aggregate_b2_plus_complete_claim'': False, ''presented_as_technical_gate'':
+    False}'
+- check: E8E-20_b2_bounded
+  result: PASS
+  details: B2+ stays a bounded per-capability extension
+- check: E8E-21_history_families
+  result: PASS
+  details: families=['learning', 'assessment', 'review', 'remediation']
+- check: E8E-21_not_streak
+  result: PASS
+  details: 'history={''records_meaningful_events'': True, ''event_families'': [''learning'',
+    ''assessment'', ''review'', ''remediation''], ''records_what_changed'': True,
+    ''is_streak_calendar'': False, ''is_contribution_graph'': False, ''is_attendance_heatmap'':
+    False, ''attendance_rendered_as_achievement'': False, ''consecutive_day_count_as_success_metric'':
+    False, ''gap_marked_as_failure_or_missed_obligation'': False, ''entries_link_to_subject'':
+    True}'
+- check: E8E-21_history_links
+  result: PASS
+  details: history records events and links subjects
+- check: E8E-22_families_match_8d
+  result: PASS
+  details: 8E=['confirmed_capabilities', 'verification_needed', 'persistent_targeted_gaps',
+    'retention_revalidated', 'not_reliably_measured', 'plan_changes'] vs 8D=['confirmed_capabilities',
+    'verification_needed', 'persistent_targeted_gaps', 'retention_revalidated', 'not_reliably_measured',
+    'plan_changes']
+- check: E8E-22_handoff
+  result: PASS
+  details: 'handoff={''handed_over_by'': ''ASUX-v0'', ''scope'': ''longitudinal_across_sessions'',
+    ''in_session_view_owner'': ''8D'', ''semantic_families'': [''confirmed_capabilities'',
+    ''verification_needed'', ''persistent_targeted_gaps'', ''retention_revalidated'',
+    ''not_reliably_measured'', ''plan_changes''], ''owns_mastery'': False, ''aggregates_sessions_into_score'':
+    False, ''aggregates_sessions_into_grade'': False, ''shows_competence_trend_line'':
+    False, ''not_reliably_measured_first_class'': True, ''not_reliably_measured_folded_into_failure'':
+    False, ''provisional_labelled'': True, ''contradicts_in_session_view'': False}'
+- check: E8E-23_no_gradebook
+  result: PASS
+  details: 'report guards={''handed_over_by'': ''ASUX-v0'', ''scope'': ''longitudinal_across_sessions'',
+    ''in_session_view_owner'': ''8D'', ''semantic_families'': [''confirmed_capabilities'',
+    ''verification_needed'', ''persistent_targeted_gaps'', ''retention_revalidated'',
+    ''not_reliably_measured'', ''plan_changes''], ''owns_mastery'': False, ''aggregates_sessions_into_score'':
+    False, ''aggregates_sessions_into_grade'': False, ''shows_competence_trend_line'':
+    False, ''not_reliably_measured_first_class'': True, ''not_reliably_measured_folded_into_failure'':
+    False, ''provisional_labelled'': True, ''contradicts_in_session_view'': False}'
+- check: E8E-23_nrm_and_provisional
+  result: PASS
+  details: not_reliably_measured stays first-class; provisional labelled
+- check: E8E-23_8d_deferred_report
+  result: PASS
+  details: 8D deferred assessment_report to 8E
+- check: E8E-24_counting
+  result: PASS
+  details: 'counting={''counts_allowed'': True, ''counts_must_be_labelled_inventory'':
+    True, ''count_divided_by_total_to_imply_competence'': False, ''progress_bar_toward_mastery_or_career'':
+    False, ''allowed_examples'': [''skills_confirmed_count'', ''objectives_awaiting_remediation_count''],
+    ''forbidden_examples'': [''percent_complete'', ''domain_percentage_score'', ''numeric_level'',
+    ''confirmed_over_total_ratio'']}'
+- check: E8E-24_forbidden_counts
+  result: PASS
+  details: missing=[]
+- check: E8E-25_review_neutral
+  result: PASS
+  details: 'review framing={''review_due_is_neutral_scheduled_opportunity'': True,
+    ''review_due_means_forgotten'': False, ''review_due_demotes_confirmed_state'':
+    False, ''review_due_styled_as_decay_or_error'': False, ''verification_due_states_current_uncertainty'':
+    True, ''verification_due_deletes_confirmed_history'': False, ''verification_due_is_demotion_event'':
+    False, ''at_risk_explained_as_mixed_or_repeated_signal'': True, ''at_risk_explained_as_elapsed_time'':
+    False, ''visual_severity_beyond_canonical_state'': False}'
+- check: E8E-25_rvr_review_rule
+  result: PASS
+  details: RVR-v0 states review_due does not mean forgotten
+- check: E8E-26_verification_framing
+  result: PASS
+  details: 'verification framing={''review_due_is_neutral_scheduled_opportunity'':
+    True, ''review_due_means_forgotten'': False, ''review_due_demotes_confirmed_state'':
+    False, ''review_due_styled_as_decay_or_error'': False, ''verification_due_states_current_uncertainty'':
+    True, ''verification_due_deletes_confirmed_history'': False, ''verification_due_is_demotion_event'':
+    False, ''at_risk_explained_as_mixed_or_repeated_signal'': True, ''at_risk_explained_as_elapsed_time'':
+    False, ''visual_severity_beyond_canonical_state'': False}'
+- check: E8E-26_no_excess_severity
+  result: PASS
+  details: no visual severity beyond canonical state
+- check: E8E-27_offline
+  result: PASS
+  details: 'offline={''locally_derived_state_viewable'': True, ''remote_dependent_labelled_unavailable'':
+    True, ''remote_dependent_shown_as_zero_or_empty'': False}'
+- check: E8E-27_ai_unavailable
+  result: PASS
+  details: 'ai_unavailable={''progress_fully_usable'': True, ''ai_required_to_render_state'':
+    False, ''unevaluated_attempts_shown_pending'': True, ''unevaluated_attempts_contribute_state'':
+    False}'
+- check: E8E-28_recomputing
+  result: PASS
+  details: 'recomputing={''stale_projection_presented_as_current'': False, ''recomputation_state_visible'':
+    True}'
+- check: E8E-28_recovery
+  result: PASS
+  details: 'recovery={''supersedes_normal_presentation'': True, ''silent_progress_reset'':
+    False}'
+- check: E8E-29_states_exact
+  result: PASS
+  details: states=['loading_projection', 'recomputing_projection', 'ready_with_evidence',
+    'empty_no_evidence_yet', 'empty_no_attention_needed', 'partial_projection_available',
+    'offline_local_capable', 'ai_unavailable_full_state_available', 'error_recoverable',
+    'data_recovery_required']
+- check: E8E-29_states_unique
+  result: PASS
+  details: count=10
+- check: E8E-29_empty_semantics
+  result: PASS
+  details: 'empty={''empty_no_evidence_yet_is_failure'': False, ''empty_no_attention_needed_implies_all_mastered'':
+    False, ''empty_no_attention_needed_implies_professional_ready'': False}'
+- check: E8E-29_states_textual
+  result: PASS
+  details: states distinguishable in text
+- check: E8E-30_accessibility
+  result: PASS
+  details: violations=[]
+- check: E8E-30_no_color_only
+  result: PASS
+  details: state never conveyed by color alone
+- check: E8E-31_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E8E-31_forbidden_count
+  result: PASS
+  details: count=14
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=progress
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=skill_detail
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=topic_detail
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=technical_english_profile
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=learning_history
+- check: E8E-32_ia_surface_exists
+  result: PASS
+  details: surface=assessment_report
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=8F
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=8G
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=9A
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=10
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=12
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=13
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=14
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=16
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=17
+- check: E8E-33_boundary_open
+  result: PASS
+  details: stage=18
+- check: E8E-33_8f_owns_visual
+  result: PASS
+  details: 8F=visual_design_system
+- check: E8E-34_required_models
+  result: PASS
+  details: missing=[]
+- check: E8E-34_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''UXIA-v0'', ''THUX-v0'', ''TRUX-v0'',
+    ''ASUX-v0'', ''GRE-v0'', ''RVR-v0'', ''PRG-v0'', ''TSM-v0'', ''WLRM-v0'', ''TEPM-v0'',
+    ''PDT-v0''], ''independent_qa_required'': True, ''stage6_regression_required'':
+    True, ''stage7_regression_required'': True, ''stage8a_regression_required'': True,
+    ''stage8b_regression_required'': True, ''stage8c_regression_required'': True,
+    ''stage8d_regression_required'': True}'
+- check: E8E-35_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8E-35_spec_no_invented_metrics
+  result: PASS
+  details: spec refuses invented metrics
+- check: E8E-35_labels_documented
+  result: PASS
+  details: missing_from_spec=[]
+- check: E8E-36_research_synthesis
+  result: PASS
+  details: missing=[]
+- check: E8E-37_no_stray_percentage
+  result: PASS
+  details: stray_percentages=['%64']
+failures: []

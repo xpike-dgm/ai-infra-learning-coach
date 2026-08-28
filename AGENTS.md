@@ -52,11 +52,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 8B: ✅ `THUX-v0 / D-069` tamamlandı — action-first Today/Home hierarchy, current PlannedTask queue, hard-capacity/reason/empty/degraded semantics; 90/90 QA PASS.
 - 8C: ✅ `TRUX-v0 / D-070` tamamlandı — Task Runner execution-surface sınırı, emergent ungraded working session, shared focused-flow frame, deterministic entry/resume revalidation, non-punitive assistance escalation, asked-not-inferred provenance, in-flight replan koruması, `evaluation_pending` truthfulness; 123/123 QA PASS.
 - 8D: ✅ `ASUX-v0 / D-071` tamamlandı — üç scope için tek assessment session interior, atomic evidence boundary submission, frozen submitted boundary, skip != incorrect, disclosed independence/tools, non-punitive in-session assistance, beş koşullu slot recomposition, contested item dispute, provisional/invalid güvenliği, semantic result ve first-class `not_reliably_measured`; 107/107 QA PASS.
-- **Aktif adım: 8E — Skill/progress/weakness UX.**
-- **8E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 8F–20 bekliyor.
+- 8E: ✅ `SPWX-v0 / D-072` tamamlandı — TEPM-v0'dan genelleştirilen tek 8-state Skill vokabüleri, qualifier olarak `at_risk`, sıralanan fakat çökertilmeyen multi-axis truth, kilitlenmiş 8 Skill + 6 Topic etiketi, inventory-only counting, hypothesis != deficiency, `remediation_task_completed != remediation_closed`, streak olmayan learning history, gradebook olmayan longitudinal assessment_report; 128/128 QA PASS.
+- **Aktif adım: 8F — Tasarım sistemi.**
+- **8F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 8G–20 bekliyor.
 
-**8E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8E için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**8F'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8F için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

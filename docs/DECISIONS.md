@@ -676,3 +676,32 @@ Ayrıntı: `docs/DAILY_WORKING_FLOW_SPEC.md`.
 - Sonraki numbered step `8E — Skill/progress/weakness UX`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/ASSESSMENT_SESSION_UX_SPEC.md`.
+
+
+## D-072 — Progress / Skill / Weakness UX = SPWX-v0
+**Durum:** Kabul edildi — 2026-08-29
+
+- 8E final modeli `SPWX-v0 — Progress, Skill State & Weakness UX` oldu.
+- Canonical spec `docs/PROGRESS_SKILL_UX_SPEC.md`; machine-readable contract `ux/8e_progress_skill_weakness/progress.yaml`; research/contract synthesis `research/8e_progress_skill_weakness_research.md`.
+- Progress canonical evidence state'in projection'ıdır; mastery engine, score, competence yüzdesi, career-completion tracker veya streak dashboard değildir.
+- **Tek Skill presentation vokabüleri:** `TEPM-v0`nin 8 derived state'i ve precedence'ı bütün Skill'lere genelleştirildi. `TEPM-v0` değişmedi ve tek genel kuralın English örneği hâline geldi; technical Skill'ler için ikinci bir etiket sistemi üretilmedi. Dokuzuncu primary state eklenemez.
+- Türkçe Skill etiketleri kilitlendi: `Henüz Kanıt Yok`, `Destekle Gelişiyor`, `Bağımsız Gelişiyor`, `Doğrulanmış`, `Doğrulanmış · Tekrar Zamanı`, `Doğrulanmış · Yeniden Kontrol Gerekli`, `Pekiştirme Gerekli`, `Ön Koşul Bekliyor`. Internal ID'ler sabittir; sonraki microcopy çalışması yalnız semantics korunursa sözcük rafine edebilir.
+- **Multi-axis truth sıralanır, çökertilmez.** Bir Skill aynı anda mastery, retention, prerequisite ve weakness ekseni taşır. Primary presentation state bu eksenleri sıralar; yerlerini almaz. `skill_detail` her ekseni ayrı ayrı incelenebilir tutmak zorundadır ve headline ile çelişen bir ekseni atamaz.
+- **`at_risk` bir attention qualifier'dır**, dokuzuncu primary state değildir ve sessizce düşürülmez. `TEPM-v0`nin exactly-8 kontratı bozulmadan RVR-v0'nun `at_risk` sinyali korunur; mixed/repeated retention signal olarak açıklanır, geçen süre olarak değil.
+- **Topic UI etiketleri kilitlendi** (`TSM-v0` §2 bu yetkiyi açıkça 8E'ye devretmişti): `Kilitli`, `Hazır`, `Öğreniliyor`, `Öğrenildi`, `Tekrar Gerekebilir`, `Pekiştirme Gerekli`. Internal state kimlikleri değişmedi. `weakening` bilinçli olarak kayıp değil fırsat dili ile yazıldı. Topic state derived orchestration'dır; prerequisite iddiası değildir, Skill ortalaması değildir ve Topic yüzdesi yoktur.
+- `progress_overview` iki yarıdan oluşur: `demonstrated_capability_inventory` ve `attention_set`. Attention altı gerekçeye göre gruplanır, backlog/debt/to-do sayacı değildir ve planner priority üretmez.
+- **Progress sayabilir, puanlayamaz.** Count'lar yalnız açıkça inventory olarak etiketlenerek gösterilir; hiçbir count competence ima etmek için total'e bölünmez. Mastery yüzdesi, competence ratio, `confirmed/total`, career bar, broad domain score, level/rank/tier/badge ekonomisi ve internal mastery heuristic değeri yasaktır.
+- `skill_detail` tek paylaşılan Skill yüzeyidir; Learn ve Progress'ten aynı truth görünür. Objective-level gap Skill state'i tarafından gizlenemez; evidence summary independent/assisted/provisional/invalid ayrımını korur ve tek sayıya indirgenmez.
+- **Weakness sunumu:** yalnız `supported` ve `confirmed` weakness olarak gösterilir. `hypothesis` en fazla açık soru olarak görünebilir, asla eksiklik olarak değil; AI-önerili hypothesis confirmed gibi gösterilemez. Localization korunur; domain'e yukarı veya dependent'lara aşağı yayılım yasaktır.
+- **`remediation_task_completed != remediation_closed`.** Remediation ancak canonical closure gerçekleştiğinde — fresh, context-diverse, H0, direct, verified, prerequisite-valid evidence — kapalı gösterilir. Weakness dili located gap'i tarif eder, kullanıcıyı değil.
+- `technical_english_profile` `TEPM-v0` semantiğini değiştirmeden sunar: qualified A1/A2/B1 base profile, first-class uneven per-Skill detail, bounded B2+ per-capability extension, historical band provenance. General/official CEFR claim, certification claim, numeric aggregate ve `B2+ complete` iddiası yasaktır; English technical gate olarak sunulamaz.
+- `learning_history` anlamlı learning/assessment/review/remediation olaylarının kronolojisidir. Streak calendar, contribution graph veya attendance heatmap değildir; katılım başarı olarak gösterilmez ve timeline boşluğu failure olarak işaretlenmez.
+- `assessment_report` 8D'den devralınan longitudinal yüzeydir ve `ASUX-v0` semantic family'lerini aynen taşır. Mastery sahibi değildir; geçmiş session'ları score, grade veya competence trend line hâline getiremez. `not_reliably_measured` first-class kalır ve provisional etiketli kalır.
+- `review_due` nötr bir planlı fırsattır: unutulmuş demek değildir, confirmed state'i düşürmez ve decay/error gibi stillendirilemez. `verification_due` dürüst current uncertainty bildirir; confirmed history'yi silmez ve demotion event değildir. Hiçbir görsel severity canonical state'in iddia etmediği bir ağırlığı ima edemez.
+- 10 Progress domain semantic state metinle ayırt edilebilir. `empty_no_evidence_yet` meşru bir başlangıçtır ve failure değildir; `empty_no_attention_needed` her şeyin mastered veya professional-ready olduğunu ima etmez.
+- Degraded davranış: offline'da locally derived state tam görünür ve remote-bağımlı veri sıfır olarak değil `unavailable` olarak etiketlenir; AI olmadan Progress tamamen kullanılabilir; recomputation sırasında stale projection current gibi sunulamaz; data recovery normal sunumu geçersiz kılar ve sessiz reset yasaktır.
+- 8E hiçbir mastery/retention/prerequisite/weakness/assessment algoritmasını değiştirmez ve visual design system, geometry, implementation technology veya threshold calibration kilitlemez; sahipleri 8F–10/16–18'dir.
+- Independent 8E QA: **128/128 PASS**; 6 owned surface / 8 Skill presentation state / 6 Topic state / 10 semantic state / 14 forbidden Progress anti-pattern. Validator, 8 state ve precedence'ı doğrudan `curriculum/english/7e_mastery_profile/policy.yaml` ile, Topic state'lerini `TOPIC_STATE_MACHINE.md` ile, weakness lifecycle'ını `WLRM` ile ve report family'lerini 8D `session.yaml` ile çapraz doğrular; ayrıca mutation test ile sınandı. Stage 6, Stage 7, accepted 8A, 8B, 8C, 8D ve external-memory regressions PASS.
+- Sonraki numbered step `8F — Tasarım sistemi`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/PROGRESS_SKILL_UX_SPEC.md`.
