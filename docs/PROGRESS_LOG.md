@@ -557,3 +557,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST accepted artifact revalidation + living-memory sync + repo-wide stale-reference audit ile 8A kapatıldı; 8B active-not-executed yapıldı.
 
 **Sonraki kesin adım:** `8B — Ana ekran`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-28 — 8B Ana ekran tamamlandı — THUX-v0 / D-069
+
+- Kullanıcının açık onayı sonrası 8A'nın kalan D-050 stale mirror'u kapatıldı, PR #10 main'e merge edildi ve fresh 8B PRE main üzerinden yapıldı; living execution seti 8A complete / 8B active-not-executed olarak tutarlı bulundu.
+- 8B separate external Research AI istemedi: yeni algorithm/technology/literature kararı değil, accepted product + UXIA-v0 + planner/capacity/prerequisite/explainability + assessment/English contracts üzerinde internal UX synthesis idi. Independent QA zorunlu tutuldu.
+- Today/Home action-first semantic hierarchy tanımlandı: primary action, day plan context, current remaining PlannedTask sequence, conditional attention ve progressive supporting navigation.
+- Current-day capacity override → immediate replan; capacity progress/mastery değildir ve removed work failure/debt olmaz.
+- Queue yalnız selected/current PlannedTask'lardan oluşur; LearningNeed/TaskCandidate universe veya old-day backlog UI'ya sızmaz; blocked dependent work startable değildir.
+- PDT-v0 bounded reason projection, contextual assessment/Technical English, SRR missed-day behavior, truthful empty/offline/AI-degraded/data-recovery states ve no-completion-to-mastery guards kilitlendi.
+- İlk independent validator turu 89/90 geçti; tek fail research-decision cümlesindeki brittle exact-text marker idi. Semantik karar değişmeden wording netleştirildi; ikinci tur **90/90 PASS** oldu.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted 8A regressions PASS.
+- D-050 POST living-memory accepted state'i `8B ✅ / 8C active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
+
+**Sonraki kesin adım:** `8C — Günlük çalışma akışı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

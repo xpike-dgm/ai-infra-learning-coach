@@ -114,8 +114,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 8 — UX ve Ekranlar
 - [x] **8A — Bilgi mimarisi** — `UXIA-v0 / D-068`
-- [ ] **8B — Ana ekran** **AKTİF**
-- [ ] **8C — Günlük çalışma akışı**
+- [x] **8B — Ana ekran** — `THUX-v0 / D-069`
+- [ ] **8C — Günlük çalışma akışı** **AKTİF**
 - [ ] **8D — Sınav UX**
 - [ ] **8E — Skill/progress/weakness UX**
 - [ ] **8F — Tasarım sistemi**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A`  
-**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
-**Aktif:** **`8B — Ana ekran`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8B`  
+**Son tamamlanan:** **`8B — THUX-v0 / D-069`**  
+**Aktif:** **`8C — Günlük çalışma akışı`** — active-not-executed
 
-8A `UXIA-v0` ile Today/Learn/Progress/Profile semantic shell'i, shared detail surfaces ve focused task/assessment flows kilitlendi; UI hierarchy canonical mastery/prerequisite truth yerine geçmez.
+8B `THUX-v0` ile Today/Home action-first hierarchy, current PlannedTask queue, hard-capacity context, PDT-v0 reason projection ve truthful empty/degraded states kilitlendi; completion/mastery, backlog/debt, English quota ve gradebook shortcuts yasaktır.
 
-8B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

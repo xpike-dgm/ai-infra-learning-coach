@@ -49,11 +49,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 7E: ✅ `TEPM-v0 / D-067` tamamlandı — 8 derived Skill presentation state; qualified A1/A2/B1 Technical English profile; B2+ per-capability evidence; no general-English/official CEFR/numeric aggregate overclaim.
 - **AŞAMA 7 tamamen tamamlandı.**
 - 8A: ✅ `UXIA-v0 / D-068` tamamlandı — Today/Learn/Progress/Profile semantic information architecture; shared detail/focused-flow ownership; 49/49 QA PASS.
-- **Aktif adım: 8B — Ana ekran.**
-- **8B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 8C–20 bekliyor.
+- 8B: ✅ `THUX-v0 / D-069` tamamlandı — action-first Today/Home hierarchy, current PlannedTask queue, hard-capacity/reason/empty/degraded semantics; 90/90 QA PASS.
+- **Aktif adım: 8C — Günlük çalışma akışı.**
+- **8C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 8D–20 bekliyor.
 
-**8B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**8C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

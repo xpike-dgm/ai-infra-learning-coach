@@ -1,0 +1,72 @@
+stage_step: 8B
+model: THUX-v0
+decision: D-069
+audit: repo_wide_stale_reference_post_step
+result: PASS
+repo_files_scanned: 314
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: tools/audit_8b_post_step_stale.py
+  sample: 8B ✅ Ana ekran — THUX-v0 / D-069", "8C 🟡
+  classification: historical_non_blocking
+- file: tools/fix_8b_living_state.py
+  sample: 8B henüz yürütülmedi
+  classification: historical_non_blocking
+- file: tools/audit_8a_post_step_stale.py
+  sample: 8B 🟡
+  classification: historical_non_blocking
+- file: tools/finalize_8b_post_step.py
+  sample: 8B — Ana ekran`\*\* — active-not-executed
+  classification: historical_non_blocking
+- file: tools/fix_8a_living_state.py
+  sample: 8B 🟡 active-not-executed
+  classification: historical_non_blocking
+- file: tools/finalize_8a_post_step.py
+  sample: 8B henüz yürütülmedi
+  classification: historical_non_blocking
+- file: docs/PROGRESS_LOG.md
+  sample: 8B active-not-executed
+  classification: historical_non_blocking
+- file: ux/8a_information_architecture/stale_reference_audit.yaml
+  sample: 8B 🟡
+  classification: historical_non_blocking
+- file: vault/agent/session-logs/2026-08-27-8a-information-architecture.md
+  sample: 8B active-not-executed
+  classification: historical_non_blocking
+- file: vault/agent/session-logs/2026-08-28-8b-today-home.md
+  sample: 8B active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  8B future/candidate language; current/living sources must agree on 8B complete and
+  8C active-not-executed.

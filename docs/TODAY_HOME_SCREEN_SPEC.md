@@ -1,8 +1,8 @@
 # Today / Home Screen Specification — THUX-v0
 
 **Stage step:** 8B — Ana ekran  
-**Status:** CANDIDATE — independent 8B QA required  
-**Candidate decision:** `D-069`  
+**Status:** ACCEPTED — independent 8B QA PASS  
+**Decision:** `D-069`  
 **Model:** `THUX-v0 — Today Home UX`  
 **Parent IA:** `UXIA-v0 / D-068`
 

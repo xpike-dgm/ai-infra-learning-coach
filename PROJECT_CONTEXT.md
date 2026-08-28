@@ -1,6 +1,6 @@
 # Project Context — Kısa Yaşayan Proje Hafızası
 
-**Son senkron:** 2026-08-27
+**Son senkron:** 2026-08-28
 **Dosya rolü:** Kısa current snapshot. Her numaralı adım sonunda D-050 / `docs/PROJECT_MEMORY_PROTOCOL.md` gereği kontrol edilir ve execution state değiştiyse güncellenir.
 
 Bu dosya sohbet bağlamı kaybolsa bile projenin yönünü ve **şu an nerede olduğumuzu** hızlıca yeniden kurmak için tutulur. Ayrıntılı bootstrap için `docs/START_HERE.md`, uzun/stabil bağlam için `docs/PROJECT_MASTER_CONTEXT.md` canonicaldır.
@@ -190,18 +190,25 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 7D ✅ TEIP-v0 / D-066
   - 7E ✅ TEPM-v0 / D-067
 - **8A ✅ Bilgi mimarisi — UXIA-v0 / D-068**
-- **8B 🟡 Ana ekran — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8C–20 ⬜
+- **8B ✅ Ana ekran — THUX-v0 / D-069**
+- **8C 🟡 Günlük çalışma akışı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
 AŞAMA 8'in semantic information architecture temeli kilitlendi. Primary shell exactly four destination kullanır: `Today · Learn · Progress · Profile`; normal entry `Today`'dir. Assessment, Technical English, AI Tutor, retention/remediation gibi engine/workflow'lar ayrı top-level silo değildir. Exact Skill detail shared surface'tir; planner explanation PDT-v0 reason trace'ten türetilir; browse hierarchy prerequisite graph yerine geçmez. Visual layout/design system ve runtime navigation implementation 8B–10'a bırakılmıştır.
 
 Canonical: `docs/INFORMATION_ARCHITECTURE_SPEC.md` / D-068.
+
+## 11.2 8B Today Home UX — THUX-v0 / D-069
+
+Today/Home semantic contract action-first olarak kilitlendi. Dominant content current valid action'dır; queue yalnız selected PlannedTask'lardan oluşur. Daily capacity time budget context'idir, mastery/progress değildir; Today current-day override ile replan tetikleyebilir. Planner reasons PDT-v0 trace facts'ten bounded biçimde türetilir. Assessment ve Technical English contextual kalır; quota/streak/debt/gradebook shortcuts yoktur. Missed-day fresh-plan, offline/local-core, AI-degraded ve data-recovery semantics açıkça ayrılır. Fixed visual/card/pixel geometry 8F/8G'ye; Task Runner interaction choreography 8C'ye bırakılmıştır.
+
+Canonical: `docs/TODAY_HOME_SCREEN_SPEC.md` / D-069.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

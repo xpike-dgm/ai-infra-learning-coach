@@ -1,7 +1,7 @@
 model: THUX-v0
 stage_step: 8B
-status: candidate_8b
-candidate_decision: D-069
+status: accepted_8b
+decision: D-069
 parent_ia: UXIA-v0
 purpose: today_home_action_first_projection
 

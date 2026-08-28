@@ -2,7 +2,7 @@ stage_step: 8B
 model: THUX-v0
 candidate_decision: D-069
 result: PASS
-status_observed: candidate_8b
+status_observed: accepted_8b
 checks_total: 90
 checks_passed: 90
 checks_failed: 0
@@ -27,7 +27,7 @@ checks:
   details: model=THUX-v0 step=8B
 - check: E8B-01_status
   result: PASS
-  details: status=candidate_8b
+  details: status=accepted_8b
 - check: E8B-01_decision
   result: PASS
   details: decision=D-069

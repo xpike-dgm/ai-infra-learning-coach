@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068`; aktif adımın `8B active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069`; aktif adımın `8C active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1105,28 +1105,30 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 7D ✅ TEIP-v0 / D-066
 - AŞAMA 7E ✅ TEPM-v0 / D-067
 - AŞAMA 8A ✅ UXIA-v0 / D-068
-- 8B 🟡 active-not-executed
-- 8B–20 ⬜
+- AŞAMA 8B ✅ THUX-v0 / D-069
+- AŞAMA 8C 🟡 active-not-executed
+- 8D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `8A — Bilgi mimarisi`  
-**Final:** `UXIA-v0 — Adaptive Learning Information Architecture` / D-068  
-**Canonical:** `docs/INFORMATION_ARCHITECTURE_SPEC.md` + `ux/8a_information_architecture/`
+**Son tamamlanan numaralı adım:** `8B — Ana ekran`  
+**Final:** `THUX-v0 — Today Home UX` / D-069  
+**Canonical:** `docs/TODAY_HOME_SCREEN_SPEC.md` + `ux/8b_today_home/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
-**Aktif adım:** `8B — Ana ekran`  
+**AŞAMA 8B:** ✅ TAMAMLANDI  
+**Aktif adım:** `8C — Günlük çalışma akışı`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-8A exactly four semantic primary destination'ı kilitledi: Today / Learn / Progress / Profile. Assessment, English, AI Tutor ve remediation/retention top-level silo değildir; canonical mastery/prerequisite/planner truth ownership korunur.
+8B Today'i canonical planner/state projection olarak kilitledi: dominant valid action, current selected PlannedTask queue, hard capacity context, PDT-v0 reason projection, contextual assessment/English ve truthful empty/degraded/recovery states. Completion mastery değildir; missed day debt değildir.
 
-8B için:
+8C için:
 
 ```text
-fresh 8B PRE-STEP GitHub refresh
+fresh 8C PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 8B execution
+→ 8C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1658,27 +1660,26 @@ Bu living handoff'un current canonical execution özeti:
 
 ```text
 AŞAMA 1–6 ✅
-7A ✅ EED-v0 / D-063
-7B ✅ TECP-v0 / D-064
-7C ✅ DECP-v0 / D-065
-7D ✅ TEIP-v0 / D-066
-7E ✅ TEPM-v0 / D-067
-8A ✅ UXIA-v0 / D-068 ACTIVE — NOT EXECUTED
-8–20 ⬜
+AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
+8A ✅ UXIA-v0 / D-068
+8B ✅ THUX-v0 / D-069
+8C 🟡 active-not-executed
+8D–20 ⬜
 ```
 
-7C final:
-- Technical English common daily capacity içinde parallel candidate opportunity olarak çalışır,
-- fixed daily minute/percentage/completion/streak/debt yok,
-- PBR-v0 balance/starvation semantics'i reuse edilir,
-- task mix exact Skill/Objective state'inden türetilir,
-- spacing RVR-v0'da kalır,
-- feedback-assisted revision independent mastery evidence değildir,
-- technical integration 7D'ye ve learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
+8B final:
+- Today/Home canonical planner/state projection'ıdır; ikinci planner değildir,
+- dominant valid action + current selected PlannedTask queue kullanır,
+- capacity hard time budget context'idir; progress/mastery değildir,
+- PDT-v0 reason projection bounded ve trace-backed'dir,
+- task completion mastery değildir; missed day debt değildir,
+- assessment ve Technical English contextual kalır,
+- offline/AI-degraded/recovery states truthful biçimde ayrılır,
+- independent 8B QA 90/90 PASS.
 
-**Sıradaki gerçek numbered work:** `8B — Ana ekran`.
+**Sıradaki gerçek numbered work:** `8C — Günlük çalışma akışı`.
 
-**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1709,5 +1710,24 @@ AŞAMA 1–6 ✅
 - PDT-v0 explanation, TEPM-v0 profile ve canonical engine ownership korunur,
 - independent QA 49/49 PASS.
 
-**Sıradaki gerçek numbered work:** `8B — Ana ekran`.  
-**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8A sonrası:** `8B — Ana ekran` THUX-v0 / D-069 ile tamamlandı. Güncel active step için yukarıdaki Final takeover state bölümünü kullan.
+
+
+---
+
+# 8B completion addendum — D-069
+
+8B `THUX-v0 — Today Home UX` ile tamamlandı.
+
+- Today action-first canonical planner/state projection,
+- 5 semantic content region,
+- current selected PlannedTask queue; no candidate/backlog/debt leakage,
+- hard daily-capacity context + today override replan,
+- PDT-v0 bounded trace-backed reasons,
+- contextual assessment + Technical English,
+- completion != mastery; missed day != debt,
+- 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
+- independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
+
+**Sıradaki gerçek numbered work:** `8C — Günlük çalışma akışı`.  
+**8C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

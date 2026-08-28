@@ -121,6 +121,12 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-067 — TEPM-v0
 7E final `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`; exact 15 D01 Skill state'ini 8 derived learner-facing presentation state ve qualified A1/A2/B1 Technical English profile'a projekte eder; B2+ per-capability evidence'dır, general-English/official CEFR veya numeric aggregate değildir.
 
+### D-068 — UXIA-v0
+8A final `docs/INFORMATION_ARCHITECTURE_SPEC.md`; Today/Learn/Progress/Profile semantic shell, shared detail surfaces ve focused flows kilitlendi.
+
+### D-069 — THUX-v0
+8B final `docs/TODAY_HOME_SCREEN_SPEC.md`; Today/Home action-first hierarchy, current PlannedTask queue, hard-capacity context, PDT-v0 reason projection ve truthful empty/degraded states kilitlendi. Fixed visual geometry ve Task Runner choreography daha sonraki adımlardadır.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -137,8 +143,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
 - 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
-- 8 UX — **8A ✅ UXIA-v0 / D-068**
-  - **8B 🟡 active-not-executed**
+- 8 UX — **8A ✅ UXIA-v0 / D-068; 8B ✅ THUX-v0 / D-069**
+  - **8C 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -232,6 +238,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11ah. `docs/INFORMATION_ARCHITECTURE_SPEC.md`
 11ai. `ux/8a_information_architecture/ia.yaml`
 11aj. `ux/8a_information_architecture/qa_report.yaml`
+11ak. `docs/TODAY_HOME_SCREEN_SPEC.md`
+11al. `ux/8b_today_home/home.yaml`
+11am. `ux/8b_today_home/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -268,15 +277,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
 - AŞAMA 7 ✅ **EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067**
 - AŞAMA 8A ✅ **UXIA-v0 / D-068**
-- AŞAMA 8B 🟡 **active-not-executed**
+- AŞAMA 8B ✅ **THUX-v0 / D-069**
+- AŞAMA 8C 🟡 **active-not-executed**
 
 7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
-**Aktif:** **`8B — Ana ekran`**  
-**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`8B — THUX-v0 / D-069`**  
+**Aktif:** **`8C — Günlük çalışma akışı`**  
+**8C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068 tamamlandı: semantic shell Today · Learn · Progress · Profile; Assessment/English/AI/remediation contextual; shared Skill detail + PDT-v0 explanation; visual implementation henüz kilitli değil. Aktif step 8B — Ana ekran; 8B henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068 ve 8B THUX-v0 / D-069 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Aktif step 8C — Günlük çalışma akışı; 8C henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

@@ -1,6 +1,6 @@
 # HANDOFF STATE — Güncel Proje Durumu
 
-**Son güncelleme:** 2026-08-27
+**Son güncelleme:** 2026-08-28
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ## 0. Zorunlu protokol — D-024 / D-027 / D-050
@@ -230,14 +230,15 @@ PEM-v0:
 - AŞAMA 7D ✅ — TEIP-v0 / D-066
 - AŞAMA 7 ✅ — EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067
 - 8A ✅ UXIA-v0 / D-068
-- 8B 🟡 active-not-executed
-- 8C–20 ⬜
+- 8B ✅ THUX-v0 / D-069
+- 8C 🟡 active-not-executed
+- 8D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8A — UXIA-v0 / D-068`  
-**Aktif:** `8B — Ana ekran`  
-**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8B — THUX-v0 / D-069`  
+**Aktif:** `8C — Günlük çalışma akışı`  
+**8C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -389,3 +390,27 @@ UXIA-v0:
 ## 21. 8B handoff
 
 8B — Ana ekran; UXIA-v0 `today` information ownership üzerinden Today/home content hierarchy, next-action emphasis, plan summary, capacity context and attention/reason presentation'ını tasarlayacaktır. 8B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+
+## 22. D-069 / 8B final özeti
+
+Canonical: `docs/TODAY_HOME_SCREEN_SPEC.md`.  
+Contract/QA: `ux/8b_today_home/`.  
+Synthesis: `research/8b_today_home_research.md`.
+
+THUX-v0:
+- Today is canonical planner/state projection, not a second planner,
+- 5 semantic content regions with primary action dominant,
+- current queue only selected PlannedTasks; no candidate/backlog/debt list,
+- recovery → revalidated resume → next task → replan/loading → valid empty/capacity-limited → recoverable-error precedence,
+- daily capacity is hard time budget; Today override may replan; persistent preference Profile-owned,
+- PDT-v0 owns bounded user-facing reasons,
+- assessment/Technical English contextual; quota/streak/gradebook/general-CEFR shortcuts forbidden,
+- task completion != mastery; missed day != debt,
+- 12 semantic overview states including offline local-core, AI-degraded and data-recovery,
+- visual system/geometry and focused interaction choreography remain deferred,
+- independent 8B QA 90/90 PASS; Stage 6/7/8A regressions + external memory PASS.
+
+## 23. 8C handoff
+
+8C — Günlük çalışma akışı. THUX-v0 primary action/resume/return semantics, UXIA-v0 `task_runner_flow` ownership, learning/evidence/assistance contracts ve deterministic replan behavior üzerinden focused daily Task Runner/session choreography tasarlanacaktır. 8C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
