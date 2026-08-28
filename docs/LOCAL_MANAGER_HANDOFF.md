@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072`; aktif adımın `8F active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073`; aktif adımın `8G active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1109,14 +1109,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 8C ✅ TRUX-v0 / D-070
 - AŞAMA 8D ✅ ASUX-v0 / D-071
 - AŞAMA 8E ✅ SPWX-v0 / D-072
-- AŞAMA 8F 🟡 active-not-executed
-- 8G–20 ⬜
+- AŞAMA 8F ✅ VDSX-v0 / D-073
+- AŞAMA 8G 🟡 active-not-executed
+- 9–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `8E — Skill/progress/weakness UX`  
-**Final:** `SPWX-v0 — Progress, Skill State & Weakness UX` / D-072  
-**Canonical:** `docs/PROGRESS_SKILL_UX_SPEC.md` + `ux/8e_progress_skill_weakness/`
+**Son tamamlanan numaralı adım:** `8F — Tasarım sistemi`  
+**Final:** `VDSX-v0 — Visual Design System` / D-073  
+**Canonical:** `docs/DESIGN_SYSTEM_SPEC.md` + `ux/8f_design_system/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1124,17 +1125,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 8C:** ✅ TAMAMLANDI  
 **AŞAMA 8D:** ✅ TAMAMLANDI  
 **AŞAMA 8E:** ✅ TAMAMLANDI  
-**Aktif adım:** `8F — Tasarım sistemi`  
+**AŞAMA 8F:** ✅ TAMAMLANDI  
+**Aktif adım:** `8G — Wireframe/prototip`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-8F için:
+8G için:
 
 ```text
-fresh 8F PRE-STEP GitHub refresh
+fresh 8G PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 8F execution
+→ 8G execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1672,9 +1674,24 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 8C ✅ TRUX-v0 / D-070
 8D ✅ ASUX-v0 / D-071
 8E ✅ SPWX-v0 / D-072
-8F 🟡 active-not-executed
-8G–20 ⬜
+8F ✅ VDSX-v0 / D-073
+8G 🟡 active-not-executed
+9–20 ⬜
 ```
+
+8F final:
+- design system expression layer'dır; `visual_severity <= canonical_severity`,
+- tam 6 tone; tone anlamdan atanır, histen değil,
+- 46 surface + 8 Skill + 6 Topic + 4 qualifier state eksiksiz eşlendi,
+- `system_fault` yalnız gerçek arızaya izinli; hiçbir learning state alarm tonu almaz,
+- attention grubu tone yükseltmez; `confirmed_review_due` ve `weakening` neutral,
+- WCAG çapalı kontrast tema başına ölçülür; renk asla tek taşıyıcı değil,
+- en az 48dp hedef, %200 metin desteği, Türkçe casing koruması,
+- motion ikna edici değil; countdown, task-completion ödülü, decay ve streak yasak,
+- 18 component; hiçbiri surface/state icat edemez,
+- progress-bar yalnız bounded factual konum için,
+- somut hex 8G/10'da ölçülerek üretilir,
+- independent 8F QA 121/121 PASS.
 
 8E final:
 - Progress canonical evidence state'in projection'ıdır; mastery engine/score/gradebook değildir,
@@ -1715,9 +1732,9 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `8F — Tasarım sistemi`.
+**Sıradaki gerçek numbered work:** `8G — Wireframe/prototip`.
 
-**8F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1767,5 +1784,5 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `8F — Tasarım sistemi`.  
-**8F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `8G — Wireframe/prototip`.  
+**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

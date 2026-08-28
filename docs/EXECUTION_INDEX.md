@@ -118,8 +118,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **8C — Günlük çalışma akışı** — `TRUX-v0 / D-070`
 - [x] **8D — Sınav UX** — `ASUX-v0 / D-071`
 - [x] **8E — Skill/progress/weakness UX** — `SPWX-v0 / D-072`
-- [ ] **8F — Tasarım sistemi** **AKTİF**
-- [ ] **8G — Wireframe/prototip**
+- [x] **8F — Tasarım sistemi** — `VDSX-v0 / D-073`
+- [ ] **8G — Wireframe/prototip** **AKTİF**
 
 ---
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8E`  
-**Son tamamlanan:** **`8E — SPWX-v0 / D-072`**  
-**Aktif:** **`8F — Tasarım sistemi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8F`  
+**Son tamamlanan:** **`8F — VDSX-v0 / D-073`**  
+**Aktif:** **`8G — Wireframe/prototip`** — active-not-executed
 
-8E `SPWX-v0` ile Progress domain kilitlendi: TEPM-v0'dan genelleştirilen tek 8-state Skill vokabüleri, qualifier olarak `at_risk`, sıralanan fakat çökertilmeyen multi-axis truth, kilitlenmiş Topic etiketleri, inventory-only counting, hypothesis != deficiency, `remediation_task_completed != remediation_closed`, streak olmayan learning history ve gradebook olmayan longitudinal assessment report. Mastery yüzdesi, competence ratio, career bar, level/rank ve streak calendar yasaktır.
+8F `VDSX-v0` ile expression layer kilitlendi: `visual_severity <= canonical_severity`, 6 tone, 46-of-46 surface state + 8 Skill + 6 Topic + 4 qualifier tone eşlemesi, yalnız gerçek arızaya izinli `system_fault`, attention grubunun tone yükseltmemesi, WCAG-çapalı kontrast/48dp hedef/%200 metin, Türkçe casing koruması, ikna edici olmayan motion ve competence progress-bar yasağı. Somut hex paleti 8G/10'da ölçülerek üretilir.
 
-8F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8G başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

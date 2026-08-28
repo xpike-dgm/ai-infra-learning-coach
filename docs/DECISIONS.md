@@ -705,3 +705,32 @@ Ayrıntı: `docs/ASSESSMENT_SESSION_UX_SPEC.md`.
 - Sonraki numbered step `8F — Tasarım sistemi`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/PROGRESS_SKILL_UX_SPEC.md`.
+
+
+## D-073 — Visual Design System = VDSX-v0
+**Durum:** Kabul edildi — 2026-08-29
+
+- 8F final modeli `VDSX-v0 — Visual Design System` oldu.
+- Canonical spec `docs/DESIGN_SYSTEM_SPEC.md`; machine-readable contract `ux/8f_design_system/design_system.yaml`; research/contract synthesis `research/8f_design_system_research.md`.
+- Design system bir **expression layer**'dır. Canonical state'in iddia etmediği hiçbir anlamı, severity'yi, aciliyeti, sıralamayı veya hiyerarşiyi ekleyemez: `visual_severity <= canonical_severity`.
+- **Severity kuralı kilitlendi.** Tone, bir state'in *ne anlama geldiğinden* atanır; ne kadar alarm verici hissettirdiğinden değil. Her kabul edilmiş state'in tam olarak bir declared tone'u vardır ve hiçbir yüzey farklı bir tone seçemez.
+- Tam altı tone: `neutral`, `active`, `positive_confirmed`, `attention`, `pending_unresolved`, `system_fault`. `positive_confirmed` sakin olup kutlayıcı değildir; `attention` "yapılacak bir şey var" demektir, "kötü yaptın" değil; `pending_unresolved` ne pass ne fail'dir.
+- **Hiçbir learning state `system_fault` tone'u kullanamaz.** Bu tone yalnız gerçek teknik arızalara ayrılmıştır ve tam olarak iki state'e izinlidir: `error_recoverable` ve `data_recovery_required`. Alarm görünümüne izinli tek tone budur.
+- **Attention grubunda görünmek tone'u yükseltmez.** Gruplama organizasyondur, tone valans'tır. Bu sayede `confirmed_review_due` Progress attention set'inde yer alsa bile `neutral` kalır.
+- 8A–8E'nin 46 surface state'inin tamamı, 8 Skill presentation state, 6 Topic state ve 4 attention qualifier tone'a eşlendi; eksik veya uydurulmuş state yoktur. `confirmed_review_due` ve Topic `weakening` bilinçle `neutral`'dır; `stopped_no_penalty`, `resume_invalidated`, `slot_recomposed`, `capacity_zero`, `capacity_too_small_no_candidate`, `empty_no_evidence_yet`, `not_yet_evidenced` ve `prerequisite_unresolved` için non-negative tone zorunludur.
+- Typography 8 role kullanır ve technical content için `mono` role içerir. Type scale ve spacing rhythm açıkça **product default**'tur, bilimsel değer değildir ve 17–18 için calibration girdisidir. Metin scalable birimlerdedir, sistem font boyutunu onurlandırır ve %200 metin boyutunda kullanılabilir kalır; state label'ı body içerikten önce truncate olamaz — state bilgidir, süs değil.
+- **Türkçe casing korundu.** Locale-naive case transform yasaktır: `i → İ` ve `I → ı` garanti edilemiyorsa dönüşüm yapılamaz. Kilitlenmiş SPWX-v0 etiketleri yazıldığı gibi render edilir, hiçbir component all-caps zorunlu kılamaz ve seçilen typeface'ler `ı İ ş Ş ğ Ğ ç Ç ö Ö ü Ü` karakterlerini `mono` role dahil tam desteklemek zorundadır.
+- Renk yalnız **semantic role** olarak belirtilir; ürün kodunda ham değer bulunmaz. Kontrast WCAG 2.2'ye çapalandı: gövde/label metni ≥ 4.5:1 (1.4.3), büyük metin ve state indicator/UI component ≥ 3:1 (1.4.3 / 1.4.11); focus göstergesi her yüzeyde görünür. Kontrast **tema başına ölçülür**; dark theme light'ın inversiyonu değildir.
+- Renk asla tek taşıyıcı değildir (WCAG 1.4.1): her tone bir metin etiketi ve renk-dışı bir ayırt edici ile birlikte gelir; `review_due` ve `verification_due` hue'ya bağlı olmadan ayırt edilebilir.
+- Spacing 4dp temel ritim ve `4/8/12/16/24/32/48` adım seti kullanır. Dokunma hedefi **en az 48dp**'dir; WCAG 2.2 2.5.8'in 24×24 tabanı yerine daha katı Android/Material kuralı benimsenmiştir. Focused flow'da exit/pause, shell görsel olarak bastırılmış olsa bile tam hedef boyutunu korur.
+- İkonlar destekleyicidir ve asla tek taşıyıcı değildir; state ikonu daima metin etiketiyle görünür, bir semantic state için tek metafor kullanılır ve anlamlı ikonlar 3:1 kontrast kuralına uyar.
+- **Motion'ın ikna edici rolü yoktur.** Dört purpose class (`orientation`, `continuity`, `feedback`, `state_change`) tanımlıdır; süre bantları product default'tur. Yasak: countdown/timer animasyonu, urgency pulse, **task completion'da ödül animasyonu** (çünkü `task_completed != mastery_confirmed`), learning state için decay/düşme animasyonu, streak/combo/score animasyonu, tek state-change göstergesi olarak motion ve focused flow çıkışını engelleyen motion. Kutlama yalnız canonical state gerçekten değiştiğinde ve orantılı biçimde yapılabilir.
+- Platform reduced-motion ayarı onurlandırılır ve motion azaltıldığında hiçbir bilgi kaybolmaz.
+- 18 component'lik vocabulary tanımlandı; her component kabul edilmiş bir yüzeye ve sahibi bir spec'e eşlenir. **Hiçbir component surface veya state icat edemez.**
+- **Progress-bar şekli kısıtlandı:** yalnız bounded ve factual, competence olmayan nicelikler için (assessment session içindeki konum, task segment içindeki konum). Mastery/capability, competence ratio, career/curriculum completion, `confirmed/total`, Topic/Domain yüzdesi ve English level için kullanılamaz. Gauge, dial, level meter, rank badge, tier emblem, streak counter, calendar heatmap, leaderboard ve score trend line component şekli olarak yasaktır.
+- Somut hex paleti 8F'de kilitlenmedi; token role'leri, tone eşlemeleri ve kontrast kısıtları kilitlendi. Palet 8G/10'da üretilir ve shipping öncesi tema başına §7'ye karşı ölçülmek zorundadır. Ölçülmemiş renk değerini sabitleyen bir spec, kısıtı sabitleyenden zayıftır.
+- 8F hiçbir destination, surface, state, label, davranış veya truth ownership eklemez/değiştirmez; wireframe geometry, implementation technology, component library seçimi, persistence schema ve empirical calibration kilitlenmemiştir. Sahipleri 8G–10/16–18'dir.
+- Independent 8F QA: **121/121 PASS**; 6 tone / 46-of-46 surface state eşlemesi / 18 component / 14 forbidden design anti-pattern. Validator tone kapsamını doğrudan 8A–8E yaml kontratlarından hesaplanan state union'ına karşı doğrular (eksik veya uydurulmuş state yakalanır) ve mutation test ile sınandı. Stage 6, Stage 7, accepted 8A–8E ve external-memory regressions PASS.
+- Sonraki numbered step `8G — Wireframe/prototip`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/DESIGN_SYSTEM_SPEC.md`.

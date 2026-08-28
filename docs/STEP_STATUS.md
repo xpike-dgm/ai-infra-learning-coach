@@ -38,8 +38,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8C — Günlük çalışma akışı** | ✅ | TRUX-v0 / D-070. Focused daily working flow + Task Runner choreography + shared focused-flow frame; 123/123 QA PASS. |
 | **8D — Sınav UX** | ✅ | ASUX-v0 / D-071. Tek assessment session interior + atomic boundary submission + semantic result; 107/107 QA PASS. |
 | **8E — Skill/progress/weakness UX** | ✅ | SPWX-v0 / D-072. Tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting; 128/128 QA PASS. |
-| **8F — Tasarım sistemi** | 🟡 Aktif | Typography/color/spacing/iconography/motion/component library; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8G–20** | ⬜ Bekliyor | 8F sonrası canonical sırada. |
+| **8F — Tasarım sistemi** | ✅ | VDSX-v0 / D-073. Expression layer + 6 tone + 46/46 state eşlemesi + WCAG çapaları; 121/121 QA PASS. |
+| **8G — Wireframe/prototip** | 🟡 Aktif | Concrete wireframe + prototype geometry + ölçülmüş palet; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9–20** | ⬜ Bekliyor | 8G sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -58,29 +59,29 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8E
+## Son tamamlanan numaralı adım — 8F
 
-**Final:** `SPWX-v0 — Progress, Skill State & Weakness UX` / D-072.  
-**Ana çıktı:** `docs/PROGRESS_SKILL_UX_SPEC.md` + `ux/8e_progress_skill_weakness/`.
+**Final:** `VDSX-v0 — Visual Design System` / D-073.  
+**Ana çıktı:** `docs/DESIGN_SYSTEM_SPEC.md` + `ux/8f_design_system/`.
 
-8E sonucu:
-- Progress canonical evidence state'in projection'ıdır; mastery engine, score, competence yüzdesi, career tracker veya streak dashboard değildir,
-- `TEPM-v0`nin 8 derived presentation state'i ve precedence'ı bütün Skill'lere genelleştirildi; technical Skill'ler için ikinci vokabüler üretilmedi ve TEPM-v0 değişmedi,
-- 8 Türkçe Skill etiketi ve 6 Türkçe Topic etiketi kilitlendi; internal state ID'leri sabit kaldı,
-- `at_risk` attention qualifier'dır; dokuzuncu primary state değildir ve sessizce düşürülmez,
-- multi-axis truth sıralanır fakat çökertilmez; `skill_detail` mastery/retention/prerequisite/weakness eksenlerini ayrı ayrı incelenebilir tutar,
-- Topic state derived orchestration'dır; prerequisite iddiası değildir, Skill ortalaması değildir ve yüzdesi yoktur,
-- progress overview `demonstrated_capability_inventory` + `attention_set` yarılarından oluşur ve planner priority üretmez,
-- Progress sayabilir fakat puanlayamaz; count yalnız etiketli inventory'dir ve competence ima etmek için total'e bölünmez,
-- yalnız `supported` ve `confirmed` weakness gösterilir; AI hypothesis confirmed gibi sunulamaz; localization yukarı/aşağı yayılmaz,
-- `remediation_task_completed != remediation_closed`; closure fresh/H0/direct/verified/prerequisite-valid evidence ister,
-- `technical_english_profile` TEPM-v0 semantiğini değiştirmeden sunar; general/official CEFR, certification ve numeric aggregate yasak,
-- `learning_history` streak calendar/contribution graph değildir; attendance başarı sayılmaz,
-- `assessment_report` longitudinal'dir, mastery sahibi değildir ve session'ları score/grade/trend line hâline getiremez,
-- `review_due` nötr ve non-demoting; `verification_due` history silmez; görsel severity canonical state'i aşamaz,
-- 10 Progress semantic state / 14 forbidden anti-pattern,
-- independent validator **128/128 PASS**; state seti doğrudan TEPM policy, TSM, WLRM ve 8D session.yaml ile çapraz doğrulandı ve mutation test uygulandı. Stage 6 + Stage 7 + 8A + 8B + 8C + 8D + external-memory regressions PASS.
+8F sonucu:
+- design system bir expression layer'dır; canonical state'in iddia etmediği anlam, severity, aciliyet veya hiyerarşi ekleyemez (`visual_severity <= canonical_severity`),
+- tam 6 tone: `neutral`, `active`, `positive_confirmed`, `attention`, `pending_unresolved`, `system_fault`; tone anlamdan atanır, histen değil,
+- 8A–8E'nin 46 surface state'i, 8 Skill state'i, 6 Topic state'i ve 4 qualifier'ı eksiksiz eşlendi; eksik veya uydurulmuş state yok,
+- `system_fault` yalnız `error_recoverable` ve `data_recovery_required`'a izinlidir; hiçbir learning state alarm tonu alamaz,
+- attention grubunda görünmek tone yükseltmez; `confirmed_review_due` ve Topic `weakening` bilinçle `neutral`,
+- `stopped_no_penalty`, `resume_invalidated`, `slot_recomposed`, `capacity_zero`, `empty_no_evidence_yet` için non-negative tone zorunlu,
+- typography 8 role + technical içerik için `mono`; scalable units, %200 metin desteği, state label body'den önce truncate olmaz,
+- Türkçe casing korundu: locale-naive case transform yasak, kilitli etiketler yazıldığı gibi render edilir, zorunlu all-caps yok,
+- renk semantic role olarak belirtilir; WCAG 1.4.3/1.4.11 eşikleri, tema başına ölçüm, dark inversiyon değil, renk asla tek taşıyıcı değil,
+- 4dp ritim + `4/8/12/16/24/32/48`; en az 48dp dokunma hedefi; focused-flow exit tam hedefi korur,
+- ikonlar destekleyicidir ve state ikonu daima metin etiketiyle görünür,
+- motion'ın ikna edici rolü yok; countdown, task-completion ödül animasyonu, decay ve streak animasyonu yasak; reduced-motion bilgi kaybettirmez,
+- 18 component kabul edilmiş yüzeylere ve sahibi spec'lere eşlendi; hiçbiri surface/state icat edemez,
+- progress-bar yalnız bounded factual konum için; competence, career, oran ve level için yasak; gauge/dial/level meter/rank/tier/streak/heatmap/leaderboard/trend-line yasak,
+- somut hex paleti kilitlenmedi; token role'leri, tone eşlemeleri ve kontrast kısıtları kilitlendi, palet 8G/10'da ölçülerek üretilir,
+- independent validator **121/121 PASS**; tone kapsamı doğrudan 8A–8E yaml kontratlarından hesaplanan state union'ına karşı doğrulanır ve mutation test uygulandı. Stage 6 + Stage 7 + 8A–8E + external-memory regressions PASS.
 
-## Aktif adım — 8F Tasarım sistemi
+## Aktif adım — 8G Wireframe/prototip
 
-**8F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

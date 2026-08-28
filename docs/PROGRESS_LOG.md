@@ -635,3 +635,22 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `8E ✅ / 8F active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
 
 **Sonraki kesin adım:** `8F — Tasarım sistemi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-29 — 8F Tasarım sistemi tamamlandı — VDSX-v0 / D-073
+
+- 8E merge edildikten sonra fresh 8F PRE main üzerinden yapıldı; beş kanonik kaynak `8E ✅ / 8F active-not-executed` gösterdi ve kullanıcı açık onay verdi.
+- 8F yeni bir external Research AI istemedi fakat bilinçli olarak **değer uydurmak yerine adlandırılmış dış standartlara çapalandı**; bir design system'ın doğaçlama yapmaması gereken tek yer accessibility'dir. 8A'da kabul edilmiş external provenance (developer.android.com, w3.org/WAI, NN/g), kontrast/resize/target size'ı yöneten spesifik WCAG success criteria ile genişletildi.
+- **Adımın çözdüğü asıl problem: severity görsel bir serbest değişken ve olmaması gerekiyor.** `review_due` kanonik olarak unutma *değildir*; `remediation_required` kanonik olarak failure *değildir*. Hiçbir şey bir tasarımcının bunları alarm kırmızısıyla göstermesini engellemez ve o anda ekrandaki en güçlü sinyal, etiketin söylediğini yalanlar. Çözüm: `visual_severity <= canonical_severity` kuralı ve tone'un histen değil anlamdan atanması.
+- Tam altı tone tanımlandı ve **8A–8E'nin bütün kabul edilmiş state'leri eksiksiz eşlendi**: 46 surface state, 8 Skill state, 6 Topic state, 4 attention qualifier. Eksik veya uydurulmuş state yok.
+- **Hiçbir learning state `system_fault` tonunu kullanamaz.** Bu tone yalnız gerçek teknik arızaya (`error_recoverable`, `data_recovery_required`) ayrıldı. Learning state'lerin error stilini ödünç almasına izin verilseydi, ürünün beş adım boyunca sildiği bütün "geride kaldın" ifadesi palet üzerinden geri gelirdi.
+- **Attention grubunda görünmek tone yükseltmez.** Gruplama organizasyondur, tone valans'tır. Bu ayrım sayesinde `confirmed_review_due` Progress attention set'inde yer alsa bile neutral kalır — 8E'nin "review_due nötr bir planlı fırsattır" kararıyla tutarlı.
+- Task completion'da **ödül animasyonu yasaklandı**: `task_completed != mastery_confirmed` kurucu invariant'tır ve bir başarı animasyonu tam olarak ürünün reddettiği şeyi iddia eder. Kutlama yalnız canonical state gerçekten değiştiğinde ve orantılı biçimde yapılabilir.
+- **Progress-bar şekli açıkça kısıtlandı.** 8E competence ratio'yu yasaklamıştı; bir progress bar resme dönüşmüş bir orandır ve örtük değil açık bir kısıt gerektirir. Yalnız bounded factual konum (session/segment içindeki yer) için izinlidir.
+- **Türkçe casing korundu.** Kilitlenmiş etiketler Türkçedir ve locale-naive uppercase Türkçeyi bozar: `i` → `İ` yerine `I` olur. "Uppercase butonlar" diyen bir design system, ürünün kendi etiketlerini sessizce bozardı. Locale-naive case transform yasaklandı ve typeface'lerin `mono` role dahil tam Türkçe glyph desteği zorunlu kılındı.
+- Somut hex paleti bilinçle kilitlenmedi. 8F token role'lerini, tone eşlemelerini ve kontrast kısıtlarını kilitler; palet 8G/10'da üretilir ve shipping öncesi tema başına ölçülür. Ölçülmemiş renk değerini sabitleyen bir spec, kısıtı sabitleyenden zayıftır. Dark theme light'ın inversiyonu değildir; bir tema tutan çift diğerinde kalabilir.
+- Independent 8F validator **121/121 PASS**. Validator tone kapsamını kendi dosyasından değil, doğrudan 8A–8E yaml kontratlarından hesaplanan state union'ından doğrular; hem eksik hem uydurulmuş state yakalanır. Ayrıca mutation test: 6 kasıtlı ihlal (learning state'e fault tonu, `stopped_no_penalty`'ye negatif ton, `weakening`'e attention, competence progress-bar, task-completion ödül animasyonu, bir state'in eşlemeden düşürülmesi) 11 check FAIL verdi ve dosya geri alındı.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted 8A–8E regressions PASS.
+- D-050 POST living-memory accepted state'i `8F ✅ / 8G active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
+
+**Sonraki kesin adım:** `8G — Wireframe/prototip`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

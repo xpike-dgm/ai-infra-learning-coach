@@ -1,0 +1,482 @@
+model: VDSX-v0
+stage_step: 8F
+status: accepted_8f
+decision: D-073
+parent_ia: UXIA-v0
+purpose: visual_expression_layer_for_accepted_semantics
+
+scope:
+  expression_layer_only: true
+  wireframe_geometry_locked: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  component_library_choice_locked: false
+  semantics_changed: false
+  states_added_or_removed: false
+  labels_changed: false
+  truth_ownership_changed: false
+  concrete_hex_palette_locked: false
+  fixed_pixel_geometry: null
+  fixed_screen_layout: null
+  passing_threshold: null
+
+design_question: How do we show accepted meaning without adding anything to it?
+
+canonical_truth_owners:
+  destinations_and_surfaces: UXIA-v0
+  today_semantics: THUX-v0
+  task_runner_semantics: TRUX-v0
+  assessment_session_semantics: ASUX-v0
+  progress_state_semantics: SPWX-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  planner_explanation: PDT-v0
+
+external_standards:
+  - id: wcag_1_4_1_use_of_color
+    criterion: "1.4.1"
+    requirement: color_not_sole_visual_means
+  - id: wcag_1_4_3_contrast_minimum
+    criterion: "1.4.3"
+    requirement: text_4_5_to_1_large_text_3_to_1
+  - id: wcag_1_4_4_resize_text
+    criterion: "1.4.4"
+    requirement: usable_at_200_percent_text
+  - id: wcag_1_4_11_non_text_contrast
+    criterion: "1.4.11"
+    requirement: ui_components_and_meaningful_graphics_3_to_1
+  - id: wcag_2_5_8_target_size_minimum
+    criterion: "2.5.8"
+    requirement: floor_24_by_24
+  - id: android_material_touch_target
+    requirement: minimum_48dp
+  - id: android_reduced_motion_setting
+    requirement: honour_platform_motion_reduction
+
+invariants:
+  design_system_adds_meaning: false
+  design_system_adds_severity: false
+  design_system_adds_hierarchy_contradicting_spec: false
+  component_invents_surface: false
+  component_invents_state: false
+  learning_state_uses_fault_tone: false
+  attention_grouping_upgrades_tone: false
+  visual_severity_exceeds_canonical: false
+  color_is_sole_carrier: false
+  icon_is_sole_carrier: false
+  motion_is_sole_carrier_of_state_change: false
+  motion_blocks_focused_flow_exit: false
+  countdown_or_urgency_motion: false
+  reward_animation_on_task_completion: false
+  decay_or_loss_animation_for_learning_state: false
+  streak_or_combo_animation: false
+  competence_progress_bar: false
+  gauge_dial_or_level_meter: false
+  rank_tier_or_badge_visual: false
+  streak_counter_visual: false
+  calendar_heatmap_or_contribution_graph: false
+  leaderboard_visual: false
+  score_trend_line_visual: false
+  locale_naive_case_transform: false
+  all_caps_required_by_any_component: false
+  locked_labels_restyled_to_other_case: false
+  dark_theme_is_inversion_without_remeasurement: false
+  concrete_hex_locked_without_measurement: false
+  state_information_truncates_before_body_content: false
+  tone_count_other_than_six: false
+  celebration_without_canonical_state_change: false
+  color_never_sole_carrier: true
+  every_state_has_exactly_one_tone: true
+  contrast_measured_per_theme: true
+  reduced_motion_loses_no_information: true
+  state_exposed_as_text_to_assistive_tech: true
+
+tones:
+  - id: neutral
+    meaning: informational_no_valence
+    may_look_alarming: false
+  - id: active
+    meaning: this_is_the_live_thing_now
+    may_look_alarming: false
+  - id: positive_confirmed
+    meaning: canonical_confirmation_actually_occurred
+    celebratory: false
+    may_look_alarming: false
+  - id: attention
+    meaning: action_or_check_needed_not_failure
+    implies_failure: false
+    may_look_alarming: false
+  - id: pending_unresolved
+    meaning: truthfully_incomplete_neither_pass_nor_fail
+    implies_failure: false
+    may_look_alarming: false
+  - id: system_fault
+    meaning: genuine_technical_error_or_integrity_risk
+    may_look_alarming: true
+    allowed_for_learning_state: false
+
+fault_tone_allowed_states:
+  - error_recoverable
+  - data_recovery_required
+
+surface_state_tones:
+  loading: neutral
+  loading_initial_plan: neutral
+  loading_projection: neutral
+  recomputing_projection: neutral
+  replanning: neutral
+  entering_revalidating: neutral
+  resume_revalidating: neutral
+  orientation: neutral
+  session_orientation: neutral
+  ready_plan: neutral
+  ready_with_evidence: neutral
+  resumable_session: active
+  active_work: active
+  item_active: active
+  assistance_open: active
+  submitting: active
+  submitting_boundary: active
+  feedback_resolved: neutral
+  boundary_frozen: neutral
+  block_checkpoint: neutral
+  result_ready: neutral
+  result_partial: pending_unresolved
+  checkpoint_paused: neutral
+  session_paused: neutral
+  stopped_no_penalty: neutral
+  resume_invalidated: neutral
+  slot_recomposed: neutral
+  replan_interrupted: neutral
+  blocked_not_startable: attention
+  evaluation_pending: pending_unresolved
+  item_contested: pending_unresolved
+  partial_projection_available: pending_unresolved
+  empty_valid: neutral
+  empty_no_open_need: neutral
+  empty_no_eligible_task: neutral
+  empty_no_evidence_yet: neutral
+  empty_no_attention_needed: neutral
+  capacity_zero: neutral
+  capacity_too_small_no_candidate: neutral
+  offline_local_available: neutral
+  offline_local_capable: neutral
+  ai_unavailable_core_available: neutral
+  ai_unavailable_deterministic_core: neutral
+  ai_unavailable_full_state_available: neutral
+  error_recoverable: system_fault
+  data_recovery_required: system_fault
+
+skill_state_tones:
+  not_yet_evidenced: neutral
+  developing_with_support: active
+  developing_independent: active
+  confirmed_current: positive_confirmed
+  confirmed_review_due: neutral
+  confirmation_verification_due: attention
+  remediation_required: attention
+  prerequisite_unresolved: neutral
+
+topic_state_tones:
+  locked: neutral
+  available: neutral
+  learning: active
+  mastered: positive_confirmed
+  weakening: neutral
+  remediation_required: attention
+
+qualifier_tones:
+  retention_at_risk: attention
+  requires_independent_recheck: attention
+  contested_evidence_present: pending_unresolved
+  provisional_evaluation_present: pending_unresolved
+
+severity_rule:
+  tone_assigned_from_meaning_not_feel: true
+  one_declared_tone_per_state: true
+  surface_may_choose_different_tone: false
+  learning_state_may_use_fault_tone: false
+  attention_group_membership_changes_tone: false
+  implies_loss_decay_failure_or_ranking_without_canonical_basis: false
+  non_negative_tone_required_for:
+    - stopped_no_penalty
+    - resume_invalidated
+    - slot_recomposed
+    - capacity_zero
+    - capacity_too_small_no_candidate
+    - empty_no_evidence_yet
+    - confirmed_review_due
+    - not_yet_evidenced
+    - prerequisite_unresolved
+
+typography:
+  roles:
+    - display
+    - title_large
+    - title
+    - body_large
+    - body
+    - label
+    - caption
+    - mono
+  mono_role_for_technical_content: true
+  scale_is_product_default_not_scientific: true
+  scalable_units_required: true
+  honours_system_font_size: true
+  usable_at_200_percent: true
+  state_label_truncates_before_body_content: false
+  turkish_safe:
+    locale_naive_case_transform_allowed: false
+    dotted_dotless_i_preserved: true
+    required_glyphs:
+      - ı
+      - İ
+      - ş
+      - Ş
+      - ğ
+      - Ğ
+      - ç
+      - Ç
+      - ö
+      - Ö
+      - ü
+      - Ü
+    required_in_mono_role: true
+    locked_labels_rendered_as_authored: true
+    all_caps_required_by_component: false
+
+color:
+  specified_as_semantic_roles: true
+  raw_values_in_product_code: false
+  token_roles:
+    - surface
+    - surface_variant
+    - on_surface
+    - on_surface_muted
+    - outline
+    - tone_neutral
+    - on_tone_neutral
+    - tone_active
+    - on_tone_active
+    - tone_positive
+    - on_tone_positive
+    - tone_attention
+    - on_tone_attention
+    - tone_pending
+    - on_tone_pending
+    - tone_fault
+    - on_tone_fault
+    - focus_ring
+  each_tone_maps_to_one_token_pair: true
+  contrast:
+    body_and_label_text_min: 4.5
+    large_text_min: 3.0
+    state_indicator_and_ui_component_min: 3.0
+    focus_indicator_visible_on_all_surfaces: true
+    measured_per_theme: true
+    dark_derived_by_inversion_without_measurement: false
+  color_alone:
+    sole_carrier_allowed: false
+    text_label_required: true
+    non_color_differentiator_required: true
+    review_and_verification_distinguishable_without_hue: true
+  theming:
+    light_first_class: true
+    dark_first_class: true
+    theme_preference_owner: profile
+    tone_identity_changes_with_theme: false
+
+spacing_and_targets:
+  base_rhythm_dp: 4
+  step_scale_dp:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 24
+    - 32
+    - 48
+  scale_is_product_default_not_scientific: true
+  minimum_touch_target_dp: 48
+  wcag_target_floor_px: 24
+  adopts_stricter_platform_rule: true
+  focused_flow_exit_keeps_full_target: true
+  grouping_by_boxes_alone: false
+  fixed_screen_layout_defined: false
+
+iconography:
+  supportive_only: true
+  sole_carrier_allowed: false
+  state_icon_appears_with_text_label: true
+  one_metaphor_per_semantic_state: true
+  meaningful_icon_contrast_min: 3.0
+  icon_encodes_state_without_text_label_anywhere: false
+  decorative_icons_marked_decorative: true
+
+motion:
+  has_persuasive_role: false
+  purpose_classes:
+    - orientation
+    - continuity
+    - feedback
+    - state_change
+  duration_bands_are_product_defaults: true
+  duration_bands_are_scientific: false
+  delays_next_action_in_normal_use: false
+  forbidden:
+    - countdown_or_timer_animation
+    - urgency_pulse_or_pressure_motion
+    - reward_animation_on_task_completion
+    - decay_or_falling_animation_for_learning_state
+    - streak_or_combo_or_score_animation
+    - motion_as_sole_state_change_indicator
+    - motion_blocking_focused_flow_exit
+  celebration:
+    allowed_only_on_canonical_state_change: true
+    proportionate_required: true
+    overstates_evidence: false
+  reduced_motion:
+    platform_setting_honoured: true
+    information_lost_when_reduced: false
+
+component_vocabulary:
+  component_may_invent_surface: false
+  component_may_invent_state: false
+  components:
+    - id: shell_navigation
+      renders: primary_destinations
+      semantics_owner: UXIA-v0
+    - id: primary_action_block
+      renders: today_dominant_action
+      semantics_owner: THUX-v0
+    - id: planned_task_row
+      renders: selected_planned_task_projection
+      semantics_owner: THUX-v0
+    - id: capacity_context_block
+      renders: daily_capacity_context
+      semantics_owner: THUX-v0
+    - id: attention_item
+      renders: conditional_attention_entry
+      semantics_owner: THUX-v0
+    - id: reason_snippet
+      renders: bounded_planner_reason
+      semantics_owner: PDT-v0
+    - id: focused_flow_frame
+      renders: entry_pause_exit_return_chrome
+      semantics_owner: TRUX-v0
+    - id: task_segment_block
+      renders: task_run_segment
+      semantics_owner: TRUX-v0
+    - id: assistance_panel
+      renders: assistance_request_and_consequence
+      semantics_owner: TRUX-v0
+    - id: provenance_prompt
+      renders: artifact_origin_question
+      semantics_owner: TRUX-v0
+    - id: assessment_item_view
+      renders: atomic_evidence_boundary
+      semantics_owner: ASUX-v0
+    - id: result_family_block
+      renders: semantic_result_family
+      semantics_owner: ASUX-v0
+    - id: state_chip
+      renders: presentation_state_and_qualifiers
+      semantics_owner: SPWX-v0
+    - id: skill_detail_block
+      renders: skill_axes_and_evidence
+      semantics_owner: SPWX-v0
+    - id: inventory_count
+      renders: labelled_inventory_count
+      semantics_owner: SPWX-v0
+    - id: history_entry
+      renders: learning_history_event
+      semantics_owner: SPWX-v0
+    - id: empty_state_block
+      renders: truthful_empty_state
+      semantics_owner: owning_surface_spec
+    - id: degraded_state_banner
+      renders: offline_ai_unavailable_or_recovery
+      semantics_owner: owning_surface_spec
+
+restricted_shapes:
+  progress_bar:
+    allowed_for:
+      - position_within_assessment_session
+      - position_within_task_segments
+    forbidden_for:
+      - mastery_or_capability
+      - competence_ratio
+      - career_or_curriculum_completion
+      - confirmed_over_total_ratio
+      - topic_or_domain_percentage
+      - english_level
+  forbidden_component_shapes:
+    - gauge
+    - dial
+    - level_meter
+    - rank_badge
+    - tier_emblem
+    - streak_counter
+    - calendar_heatmap
+    - leaderboard
+    - score_trend_line
+
+accessibility_rules:
+  stable_meaningful_accessible_name: true
+  accessible_name_matches_semantic_label: true
+  focus_order_follows_owning_spec_reading_order: true
+  focus_indicator_always_visible: true
+  focus_indicator_contrast_min: 3.0
+  state_exposed_as_text: true
+  minimum_target_dp: 48
+  usable_at_200_percent_without_losing_state: true
+  reduced_motion_loses_no_information: true
+  critical_meaning_by_color_icon_or_motion_alone: false
+
+forbidden_design_patterns:
+  - red_or_alarm_styled_learning_state
+  - fault_tone_on_non_fault
+  - reward_animation_on_task_completion
+  - countdown_or_urgency_device
+  - competence_progress_bar_gauge_or_level_meter
+  - rank_tier_badge_or_streak_visual
+  - calendar_heatmap_or_contribution_graph
+  - score_trend_line
+  - color_icon_or_motion_as_sole_carrier
+  - locale_naive_case_transform
+  - component_inventing_surface_or_state
+  - visual_hierarchy_contradicting_owning_spec
+  - dark_theme_inverted_without_remeasurement
+  - motion_blocking_focused_flow_exit
+
+future_stage_boundaries:
+  8G: wireframe_and_prototype_geometry
+  9A: mobile_technology_choice
+  9C: physical_data_model
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  16: analytics_settings_and_notifications
+  17: final_accessibility_and_microcopy_polish
+  18: empirical_usability_and_contrast_motion_calibration
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - TRUX-v0
+    - ASUX-v0
+    - SPWX-v0
+    - GRE-v0
+    - RVR-v0
+    - PDT-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true
+  stage8b_regression_required: true
+  stage8c_regression_required: true
+  stage8d_regression_required: true
+  stage8e_regression_required: true

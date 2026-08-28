@@ -1,0 +1,433 @@
+stage_step: 8F
+model: VDSX-v0
+candidate_decision: D-073
+result: PASS
+status_observed: accepted_8f
+checks_total: 121
+checks_passed: 121
+checks_failed: 0
+tones: 6
+surface_states_mapped: 46
+upstream_state_union: 46
+components: 18
+forbidden_design_patterns: 14
+checks:
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8f_design_system\design_system.yaml
+- check: E8F-00_required_file
+  result: PASS
+  details: docs\DESIGN_SYSTEM_SPEC.md
+- check: E8F-00_required_file
+  result: PASS
+  details: research\8f_design_system_research.md
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8a_information_architecture\ia.yaml
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8b_today_home\home.yaml
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E8F-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E8F-01_identity
+  result: PASS
+  details: model=VDSX-v0 step=8F
+- check: E8F-01_status
+  result: PASS
+  details: status=accepted_8f
+- check: E8F-01_decision
+  result: PASS
+  details: decision=D-073
+- check: E8F-01_parent_ia
+  result: PASS
+  details: parent=UXIA-v0
+- check: E8F-02_expression_only
+  result: PASS
+  details: 8F is an expression layer
+- check: E8F-02_semantics_untouched
+  result: PASS
+  details: violations=[]
+- check: E8F-02_no_premature_lock
+  result: PASS
+  details: violations=[]
+- check: E8F-02_no_geometry
+  result: PASS
+  details: violations=[]
+- check: E8F-03_truth_owners
+  result: PASS
+  details: 'owners={''destinations_and_surfaces'': ''UXIA-v0'', ''today_semantics'':
+    ''THUX-v0'', ''task_runner_semantics'': ''TRUX-v0'', ''assessment_session_semantics'':
+    ''ASUX-v0'', ''progress_state_semantics'': ''SPWX-v0'', ''mastery'': ''GRE-v0'',
+    ''retention'': ''RVR-v0'', ''prerequisite'': ''PRG-v0'', ''planner_explanation'':
+    ''PDT-v0''}'
+- check: E8F-03_ds_owns_nothing
+  result: PASS
+  details: design system owns no canonical truth
+- check: E8F-04_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8F-04_true_guards
+  result: PASS
+  details: violations=[]
+- check: E8F-04_guard_count
+  result: PASS
+  details: false_guards=31
+- check: E8F-05_tone_set
+  result: PASS
+  details: tones=['active', 'attention', 'neutral', 'pending_unresolved', 'positive_confirmed',
+    'system_fault']
+- check: E8F-05_exactly_six
+  result: PASS
+  details: count=6
+- check: E8F-05_only_fault_alarming
+  result: PASS
+  details: alarming=['system_fault']
+- check: E8F-05_positive_not_celebratory
+  result: PASS
+  details: positive_confirmed is calm, not celebratory
+- check: E8F-05_attention_not_failure
+  result: PASS
+  details: attention and pending do not imply failure
+- check: E8F-05_fault_not_for_learning
+  result: PASS
+  details: fault tone not allowed for learning state
+- check: E8F-06_no_unmapped_state
+  result: PASS
+  details: unmapped=[]
+- check: E8F-06_no_invented_state
+  result: PASS
+  details: invented=[]
+- check: E8F-06_coverage_exact
+  result: PASS
+  details: mapped=46 union=46
+- check: E8F-06_union_size
+  result: PASS
+  details: union=46
+- check: E8F-07_all_tones_valid
+  result: PASS
+  details: invalid=[]
+- check: E8F-08_fault_only_two
+  result: PASS
+  details: fault_states=['data_recovery_required', 'error_recoverable']
+- check: E8F-08_fault_allowlist_matches
+  result: PASS
+  details: allowlist=['data_recovery_required', 'error_recoverable']
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: stopped_no_penalty=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: resume_invalidated=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: slot_recomposed=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: capacity_zero=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: capacity_too_small_no_candidate=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: empty_no_evidence_yet=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: confirmed_review_due=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: not_yet_evidenced=neutral
+- check: E8F-09_non_negative_tone
+  result: PASS
+  details: prerequisite_unresolved=neutral
+- check: E8F-09_review_due_neutral
+  result: PASS
+  details: confirmed_review_due=neutral
+- check: E8F-09_weakening_neutral
+  result: PASS
+  details: weakening=neutral
+- check: E8F-09_stopped_neutral
+  result: PASS
+  details: stopped_no_penalty=neutral
+- check: E8F-10_severity_rule
+  result: PASS
+  details: 'severity_rule={''tone_assigned_from_meaning_not_feel'': True, ''one_declared_tone_per_state'':
+    True, ''surface_may_choose_different_tone'': False, ''learning_state_may_use_fault_tone'':
+    False, ''attention_group_membership_changes_tone'': False, ''implies_loss_decay_failure_or_ranking_without_canonical_basis'':
+    False, ''non_negative_tone_required_for'': [''stopped_no_penalty'', ''resume_invalidated'',
+    ''slot_recomposed'', ''capacity_zero'', ''capacity_too_small_no_candidate'', ''empty_no_evidence_yet'',
+    ''confirmed_review_due'', ''not_yet_evidenced'', ''prerequisite_unresolved'']}'
+- check: E8F-11_skill_coverage
+  result: PASS
+  details: missing=[] extra=[]
+- check: E8F-11_skill_tones_valid
+  result: PASS
+  details: invalid=[]
+- check: E8F-11_no_skill_fault
+  result: PASS
+  details: no Skill state uses the fault tone
+- check: E8F-12_topic_coverage
+  result: PASS
+  details: missing=[] extra=[]
+- check: E8F-12_topic_tones_valid
+  result: PASS
+  details: invalid=[]
+- check: E8F-12_no_topic_fault
+  result: PASS
+  details: no Topic state uses the fault tone
+- check: E8F-13_qualifier_coverage
+  result: PASS
+  details: missing=[] extra=[]
+- check: E8F-13_qualifier_tones_valid
+  result: PASS
+  details: invalid=[]
+- check: E8F-13_no_qualifier_fault
+  result: PASS
+  details: no qualifier uses the fault tone
+- check: E8F-14_standards
+  result: PASS
+  details: missing=[]
+- check: E8F-15_type_roles
+  result: PASS
+  details: roles=['display', 'title_large', 'title', 'body_large', 'body', 'label',
+    'caption', 'mono']
+- check: E8F-15_mono_present
+  result: PASS
+  details: mono role for technical content
+- check: E8F-15_scale_is_default
+  result: PASS
+  details: type scale declared as product default
+- check: E8F-15_resize
+  result: PASS
+  details: 'typography={''roles'': [''display'', ''title_large'', ''title'', ''body_large'',
+    ''body'', ''label'', ''caption'', ''mono''], ''mono_role_for_technical_content'':
+    True, ''scale_is_product_default_not_scientific'': True, ''scalable_units_required'':
+    True, ''honours_system_font_size'': True, ''usable_at_200_percent'': True, ''state_label_truncates_before_body_content'':
+    False, ''turkish_safe'': {''locale_naive_case_transform_allowed'': False, ''dotted_dotless_i_preserved'':
+    True, ''required_glyphs'': [''ı'', ''İ'', ''ş'', ''Ş'', ''ğ'', ''Ğ'', ''ç'', ''Ç'',
+    ''ö'', ''Ö'', ''ü'', ''Ü''], ''required_in_mono_role'': True, ''locked_labels_rendered_as_authored'':
+    True, ''all_caps_required_by_component'': False}}'
+- check: E8F-16_turkish_case
+  result: PASS
+  details: 'turkish_safe={''locale_naive_case_transform_allowed'': False, ''dotted_dotless_i_preserved'':
+    True, ''required_glyphs'': [''ı'', ''İ'', ''ş'', ''Ş'', ''ğ'', ''Ğ'', ''ç'', ''Ç'',
+    ''ö'', ''Ö'', ''ü'', ''Ü''], ''required_in_mono_role'': True, ''locked_labels_rendered_as_authored'':
+    True, ''all_caps_required_by_component'': False}'
+- check: E8F-16_turkish_glyphs
+  result: PASS
+  details: missing=[]
+- check: E8F-16_turkish_mono
+  result: PASS
+  details: Turkish glyphs required in mono role
+- check: E8F-17_semantic_roles
+  result: PASS
+  details: colour specified as semantic roles
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=neutral
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=active
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=system_fault
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=attention
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=pending_unresolved
+- check: E8F-17_tone_token_pair
+  result: PASS
+  details: tone=positive_confirmed
+- check: E8F-17_one_pair_per_tone
+  result: PASS
+  details: one token pair per tone
+- check: E8F-18_contrast_thresholds
+  result: PASS
+  details: 'contrast={''body_and_label_text_min'': 4.5, ''large_text_min'': 3.0, ''state_indicator_and_ui_component_min'':
+    3.0, ''focus_indicator_visible_on_all_surfaces'': True, ''measured_per_theme'':
+    True, ''dark_derived_by_inversion_without_measurement'': False}'
+- check: E8F-18_per_theme
+  result: PASS
+  details: 'contrast theming={''body_and_label_text_min'': 4.5, ''large_text_min'':
+    3.0, ''state_indicator_and_ui_component_min'': 3.0, ''focus_indicator_visible_on_all_surfaces'':
+    True, ''measured_per_theme'': True, ''dark_derived_by_inversion_without_measurement'':
+    False}'
+- check: E8F-18_color_alone
+  result: PASS
+  details: 'color_alone={''sole_carrier_allowed'': False, ''text_label_required'':
+    True, ''non_color_differentiator_required'': True, ''review_and_verification_distinguishable_without_hue'':
+    True}'
+- check: E8F-19_theming
+  result: PASS
+  details: 'theming={''light_first_class'': True, ''dark_first_class'': True, ''theme_preference_owner'':
+    ''profile'', ''tone_identity_changes_with_theme'': False}'
+- check: E8F-20_rhythm
+  result: PASS
+  details: spacing=[4, 8, 12, 16, 24, 32, 48]
+- check: E8F-20_scale_is_default
+  result: PASS
+  details: spacing scale declared as product default
+- check: E8F-20_touch_target
+  result: PASS
+  details: 'targets={''base_rhythm_dp'': 4, ''step_scale_dp'': [4, 8, 12, 16, 24,
+    32, 48], ''scale_is_product_default_not_scientific'': True, ''minimum_touch_target_dp'':
+    48, ''wcag_target_floor_px'': 24, ''adopts_stricter_platform_rule'': True, ''focused_flow_exit_keeps_full_target'':
+    True, ''grouping_by_boxes_alone'': False, ''fixed_screen_layout_defined'': False}'
+- check: E8F-20_exit_target
+  result: PASS
+  details: focused-flow exit keeps full target size
+- check: E8F-20_no_layout
+  result: PASS
+  details: no screen layout defined in 8F
+- check: E8F-21_icons
+  result: PASS
+  details: 'iconography={''supportive_only'': True, ''sole_carrier_allowed'': False,
+    ''state_icon_appears_with_text_label'': True, ''one_metaphor_per_semantic_state'':
+    True, ''meaningful_icon_contrast_min'': 3.0, ''icon_encodes_state_without_text_label_anywhere'':
+    False, ''decorative_icons_marked_decorative'': True}'
+- check: E8F-22_no_persuasion
+  result: PASS
+  details: motion has no persuasive role
+- check: E8F-22_purpose_classes
+  result: PASS
+  details: purpose_classes=['orientation', 'continuity', 'feedback', 'state_change']
+- check: E8F-22_durations_default
+  result: PASS
+  details: 'durations={''has_persuasive_role'': False, ''purpose_classes'': [''orientation'',
+    ''continuity'', ''feedback'', ''state_change''], ''duration_bands_are_product_defaults'':
+    True, ''duration_bands_are_scientific'': False, ''delays_next_action_in_normal_use'':
+    False, ''forbidden'': [''countdown_or_timer_animation'', ''urgency_pulse_or_pressure_motion'',
+    ''reward_animation_on_task_completion'', ''decay_or_falling_animation_for_learning_state'',
+    ''streak_or_combo_or_score_animation'', ''motion_as_sole_state_change_indicator'',
+    ''motion_blocking_focused_flow_exit''], ''celebration'': {''allowed_only_on_canonical_state_change'':
+    True, ''proportionate_required'': True, ''overstates_evidence'': False}, ''reduced_motion'':
+    {''platform_setting_honoured'': True, ''information_lost_when_reduced'': False}}'
+- check: E8F-23_forbidden_motion
+  result: PASS
+  details: missing=[]
+- check: E8F-23_celebration
+  result: PASS
+  details: 'celebration={''allowed_only_on_canonical_state_change'': True, ''proportionate_required'':
+    True, ''overstates_evidence'': False}'
+- check: E8F-23_reduced_motion
+  result: PASS
+  details: 'reduced_motion={''platform_setting_honoured'': True, ''information_lost_when_reduced'':
+    False}'
+- check: E8F-24_no_invention
+  result: PASS
+  details: components invent nothing
+- check: E8F-24_component_owners
+  result: PASS
+  details: bad_owner=[]
+- check: E8F-24_component_count
+  result: PASS
+  details: count=18
+- check: E8F-24_component_ids_unique
+  result: PASS
+  details: duplicates=0
+- check: E8F-25_progress_bar_allowed
+  result: PASS
+  details: allowed_for=['position_within_assessment_session', 'position_within_task_segments']
+- check: E8F-25_progress_bar_forbidden
+  result: PASS
+  details: missing=[]
+- check: E8F-26_forbidden_shapes
+  result: PASS
+  details: missing=[]
+- check: E8F-27_accessibility
+  result: PASS
+  details: violations=[]
+- check: E8F-27_targets_and_focus
+  result: PASS
+  details: 'accessibility={''stable_meaningful_accessible_name'': True, ''accessible_name_matches_semantic_label'':
+    True, ''focus_order_follows_owning_spec_reading_order'': True, ''focus_indicator_always_visible'':
+    True, ''focus_indicator_contrast_min'': 3.0, ''state_exposed_as_text'': True,
+    ''minimum_target_dp'': 48, ''usable_at_200_percent_without_losing_state'': True,
+    ''reduced_motion_loses_no_information'': True, ''critical_meaning_by_color_icon_or_motion_alone'':
+    False}'
+- check: E8F-28_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E8F-28_forbidden_count
+  result: PASS
+  details: count=14
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=8G
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=9A
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=10
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=12
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=13
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=14
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=16
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=17
+- check: E8F-29_boundary_open
+  result: PASS
+  details: stage=18
+- check: E8F-29_8g_owns_geometry
+  result: PASS
+  details: 8G=wireframe_and_prototype_geometry
+- check: E8F-30_required_models
+  result: PASS
+  details: missing=[]
+- check: E8F-30_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''UXIA-v0'', ''THUX-v0'', ''TRUX-v0'',
+    ''ASUX-v0'', ''SPWX-v0'', ''GRE-v0'', ''RVR-v0'', ''PDT-v0''], ''independent_qa_required'':
+    True, ''stage6_regression_required'': True, ''stage7_regression_required'': True,
+    ''stage8a_regression_required'': True, ''stage8b_regression_required'': True,
+    ''stage8c_regression_required'': True, ''stage8d_regression_required'': True,
+    ''stage8e_regression_required'': True}'
+- check: E8F-31_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8F-31_spec_defers_hex
+  result: PASS
+  details: spec defers concrete hex with measurement rule
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=neutral
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=active
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=system_fault
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=attention
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=pending_unresolved
+- check: E8F-31_tone_documented
+  result: PASS
+  details: tone=positive_confirmed
+- check: E8F-32_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

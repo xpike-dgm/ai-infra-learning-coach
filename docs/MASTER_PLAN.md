@@ -421,8 +421,25 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 10 semantic state / 14 forbidden Progress anti-pattern,
 - independent validator **128/128 PASS** (TEPM policy + TSM + WLRM + 8D session.yaml çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + 8A–8D + external-memory regressions PASS.
 
-### [ ] 8F — Tasarım sistemi — **AKTİF**
-### [ ] 8G — Wireframe/prototip
+### [x] 8F — Tasarım sistemi — VDSX-v0 / D-073
+
+**8F final coverage:**
+- design system expression layer'dır; `visual_severity <= canonical_severity`,
+- tam 6 tone; tone anlamdan atanır, histen değil,
+- 46-of-46 surface state + 8 Skill + 6 Topic + 4 qualifier tone eşlemesi; eksik/uydurma state yok,
+- `system_fault` yalnız `error_recoverable` ve `data_recovery_required`; hiçbir learning state alarm tonu almaz,
+- attention grubunda görünmek tone yükseltmez; `confirmed_review_due` ve `weakening` neutral,
+- typography 8 role + mono; scalable units, %200 metin, state label body'den önce truncate olmaz,
+- Türkçe casing korundu; locale-naive case transform ve zorunlu all-caps yasak,
+- renk semantic role; WCAG 1.4.3/1.4.11 eşikleri, tema başına ölçüm, renk asla tek taşıyıcı değil,
+- 4dp ritim, en az 48dp dokunma hedefi, focused-flow exit tam hedef korur,
+- motion 4 purpose class; countdown, task-completion ödül animasyonu, decay ve streak yasak; reduced-motion bilgi kaybettirmez,
+- 18 component; hiçbiri surface/state icat edemez,
+- progress-bar yalnız bounded factual konum için; gauge/level/rank/streak/heatmap/leaderboard/trend-line yasak,
+- somut hex 8G/10'da ölçülerek üretilir,
+- independent validator **121/121 PASS** (8A–8E state union'ına karşı exhaustiveness doğrulamalı, mutation-tested); Stage 6 + Stage 7 + 8A–8E + external-memory regressions PASS.
+
+### [ ] 8G — Wireframe/prototip — **AKTİF**
 
 ---
 
@@ -576,14 +593,15 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8E`  
-**Son tamamlanan:** **`8E — SPWX-v0 / D-072`**  
-**Aktif:** **`8F — Tasarım sistemi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8F`  
+**Son tamamlanan:** **`8F — VDSX-v0 / D-073`**  
+**Aktif:** **`8G — Wireframe/prototip`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8F fresh PRE-STEP → 8A–8E'de kilitlenen semantic destination/state/label setini değiştirmeden typography, color, spacing, iconography, motion ve component library tasarımı → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8G fresh PRE-STEP → 8A–8E semantiği ve VDSX-v0 token/tone sistemi üzerinden concrete wireframe ve prototype geometry; ölçülmüş palet dahil → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
 - D-070: 8C final `TRUX-v0`.
 - D-071: 8D final `ASUX-v0`.
 - D-072: 8E final `SPWX-v0`.
+- D-073: 8F final `VDSX-v0`.
