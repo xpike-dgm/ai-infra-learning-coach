@@ -366,8 +366,24 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - task completion != mastery; missed day != debt,
 - 90/90 independent 8B QA PASS.
 
-### [ ] 8C — Günlük çalışma akışı — **AKTİF**
-### [ ] 8D — Sınav UX
+### [x] 8C — Günlük çalışma akışı — TRUX-v0 / D-070
+
+**8C final coverage:**
+- Task Runner execution-surface sınırı; planner/mastery/prerequisite/evidence authority değil,
+- emergent ungraded working session; required count/duration/percentage yok,
+- shared focused-flow frame `task_runner_flow` + `assessment_session_flow` tarafından devralınır; assessment interior 8D'de,
+- lifecycle `enter → orient → work → submit → resolve → transition` + `pause | abandon | recover`,
+- deterministic entry/resume revalidation; prerequisite ve content-version bypass yok,
+- assistance her zaman talep edilebilir; escalation yalnız talep üzerine H1→H4; H3/H4 öncesi consequence disclosure,
+- solution exposure sonrası same-item mastery path yok; recheck scheduling planner-owned,
+- provenance sorulur, çıkarsanmaz; dürüst beyan cezasız,
+- 3 pause class + ResumeContext; in-flight run replan'dan korunur,
+- `evaluation_pending` evidence yazmaz, pass/fail değildir,
+- 4 TEIP integration mode component-separable,
+- 17 semantic state / 13 forbidden flow anti-pattern,
+- independent validator **123/123 PASS**; Stage 6 + Stage 7 + 8A + 8B + external-memory regressions PASS.
+
+### [ ] 8D — Sınav UX — **AKTİF**
 ### [ ] 8E — Skill/progress/weakness UX
 ### [ ] 8F — Tasarım sistemi
 ### [ ] 8G — Wireframe/prototip
@@ -524,11 +540,12 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8B`  
-**Son tamamlanan:** **`8B — THUX-v0 / D-069`**  
-**Aktif:** **`8C — Günlük çalışma akışı`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8C`  
+**Son tamamlanan:** **`8C — TRUX-v0 / D-070`**  
+**Aktif:** **`8D — Sınav UX`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8C fresh PRE-STEP → THUX-v0 Home entry/return + UXIA-v0 focused Task Runner ownership + accepted teaching/evidence/planner contracts üzerinden daily task/session choreography → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8D fresh PRE-STEP → TRUX-v0 shared focused-flow frame + UXIA-v0 `assessment_session_flow` ownership + accepted DMA/WBA/MCA evidence contracts üzerinden assessment session interior ve result presentation → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
+- D-070: 8C final `TRUX-v0`.

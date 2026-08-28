@@ -35,8 +35,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **7E — English mastery** | ✅ | TEPM-v0 / D-067. 8 derived Skill state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence; QA PASS. |
 | **8A — Bilgi mimarisi** | ✅ | UXIA-v0 / D-068. Today/Learn/Progress/Profile semantic shell + shared detail/focused-flow IA; 49/49 QA PASS. |
 | **8B — Ana ekran** | ✅ | THUX-v0 / D-069. Action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics; 90/90 QA PASS. |
-| **8C — Günlük çalışma akışı** | 🟡 Aktif | Task Runner / daily-session interaction choreography; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8D–20** | ⬜ Bekliyor | 8C sonrası canonical sırada. |
+| **8C — Günlük çalışma akışı** | ✅ | TRUX-v0 / D-070. Focused daily working flow + Task Runner choreography + shared focused-flow frame; 123/123 QA PASS. |
+| **8D — Sınav UX** | 🟡 Aktif | Assessment session interior + result presentation; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8E–20** | ⬜ Bekliyor | 8D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -55,25 +56,29 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8B
+## Son tamamlanan numaralı adım — 8C
 
-**Final:** `THUX-v0 — Today Home UX` / D-069.  
-**Ana çıktı:** `docs/TODAY_HOME_SCREEN_SPEC.md` + `ux/8b_today_home/`.
+**Final:** `TRUX-v0 — Task Runner & Daily Working Flow UX` / D-070.  
+**Ana çıktı:** `docs/DAILY_WORKING_FLOW_SPEC.md` + `ux/8c_daily_working_flow/`.
 
-8B sonucu:
-- Today/Home action-first semantic hierarchy: `primary_action → day_plan_context → remaining_plan → conditional attention → supporting navigation`,
-- current queue only selected `PlannedTask`; candidate/backlog/debt leakage yok,
-- data recovery / revalidated resume / next task / replanning / empty / recoverable-error precedence,
-- daily capacity hard time budget; Today override → replan; persistent preference Profile-owned,
-- purpose/activity/track separated; duration estimate; completion != mastery,
-- PDT-v0 trace-backed bounded reason summary + shared full explanation,
-- contextual assessment; no daily quota/gradebook/broad-score mastery,
-- contextual Technical English; no separate budget/quota/streak/debt/general CEFR,
-- SRR-v0 missed-day fresh-plan behavior preserved,
-- 12 truthful loading/ready/empty/offline/AI-degraded/recovery semantic state,
-- final visual geometry/design system and 8C/8D interaction choreography deferred,
-- independent validator **90/90 PASS**; Stage 6 + Stage 7 + 8A + external-memory regressions PASS.
+8C sonucu:
+- Task Runner execution surface'tir; planner, mastery engine, prerequisite engine, evidence evaluator veya scoring device değildir,
+- daily working session emergent ve ungraded; required task count/duration/percentage ve session score yok,
+- shared focused-flow frame tek yerde tanımlandı ve `task_runner_flow` + `assessment_session_flow` tarafından devralınır; assessment interior 8D'de kalır,
+- lifecycle `enter → orient → work → submit → resolve → transition`; `pause | abandon | recover` non-linear,
+- deterministic entry/resume revalidation; prerequisite ve content-version bypass yok; invalidated resume negative evidence değil,
+- orientation bağımsız çalışmadan önce assistance policy'yi açıklar,
+- assistance daima talep edilebilir; escalation yalnız talep üzerine H1→H4; H3/H4 öncesi ölçüm dilinde consequence disclosure,
+- solution exposure sonrası same-item mastery path yok; `requires_independent_recheck` yükseltilir, scheduling planner-owned,
+- submit attempt'i dondurur; post-submit açıklama geriye dönük kirletmez; attempt yoksa evidence yok,
+- provenance sorulur, çıkarsanmaz; dürüst beyan cezasız; cheating interrogation yasak,
+- 3 pause class + ResumeContext; in-flight run replan'dan korunur; continuity recomputed planner selection ile,
+- `evaluation_pending` evidence yazmaz ve pass/fail değildir; offline'da local core çalışır,
+- 4 TEIP integration mode component-separable; flow içinde English quota/streak/debt yok,
+- 17 semantic state / 13 forbidden flow anti-pattern; state'ler metinle ayırt edilebilir,
+- final visual geometry/design system, assessment interior ve implementation boundaries açık bırakıldı,
+- independent validator **123/123 PASS**; Stage 6 + Stage 7 + 8A + 8B + external-memory regressions PASS.
 
-## Aktif adım — 8C Günlük çalışma akışı
+## Aktif adım — 8D Sınav UX
 
-**8C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

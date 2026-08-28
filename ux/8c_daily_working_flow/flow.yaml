@@ -1,0 +1,483 @@
+model: TRUX-v0
+stage_step: 8C
+status: accepted_8c
+decision: D-070
+parent_ia: UXIA-v0
+home_contract: THUX-v0
+purpose: focused_daily_working_flow_and_task_runner_choreography
+
+scope:
+  semantic_flow_only: true
+  final_visual_design_locked: false
+  assessment_interior_locked: false
+  skill_progress_visual_semantics_locked: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  code_runner_integration_locked: false
+  ai_tutor_prompt_behavior_locked: false
+  fixed_step_count: null
+  fixed_session_length_minutes: null
+  fixed_daily_task_count: null
+  fixed_pixel_geometry: null
+
+flow_question: How do I do this work now, and what happens when I stop?
+owning_ia_surface: task_runner_flow
+
+canonical_truth_owners:
+  current_plan: planner
+  task_selection: PBR-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  planner_explanation: PDT-v0
+  reentry_recovery: SRR-v0
+  capacity: D-033
+  task_taxonomy: D-034
+  assistance_evidence: AI_assistance_2D_contract
+  weakness_remediation: WLRM-v0
+  assessment_evidence: DMA_WBA_MCA_pipeline
+  english_integration: TEIP-v0
+  assessment_interior: 8D
+
+invariants:
+  runner_is_planner: false
+  runner_is_mastery_authority: false
+  runner_is_evidence_evaluator: false
+  runner_is_prerequisite_authority: false
+  runner_advances_cached_task_list: false
+  session_is_graded_unit: false
+  session_has_required_task_count: false
+  session_has_required_duration: false
+  plan_exhausted_means_day_succeeded: false
+  user_stopped_means_day_failed: false
+  task_completion_is_mastery: false
+  lifecycle_state_is_evidence: false
+  pause_is_failure: false
+  stop_creates_debt: false
+  stop_creates_streak_loss: false
+  incomplete_attempt_is_negative_evidence: false
+  invalidated_resume_is_negative_evidence: false
+  resume_can_bypass_prerequisite: false
+  resume_can_bypass_version_validity: false
+  blocked_task_is_startable: false
+  assistance_request_is_negative_evidence: false
+  assistance_withheld_to_force_independence: false
+  auto_reveal_solution_on_first_error: false
+  same_item_after_exposure_is_mastery_path: false
+  runner_schedules_recheck: false
+  post_submit_explanation_contaminates_prior_attempt: false
+  provenance_inferred_by_suspicion: false
+  honest_provenance_disclosure_penalised: false
+  evidence_written_without_attempt: false
+  evaluation_pending_writes_evidence: false
+  evaluation_pending_is_pass: false
+  evaluation_pending_is_fail: false
+  ai_unavailable_fakes_success: false
+  offline_always_blocks_flow: false
+  countdown_timer_pressure: false
+  english_quota_or_streak_in_flow: false
+  dual_target_overall_pass_broadcast: false
+  english_scaffold_shown_as_penalty: false
+  reason_can_exceed_trace_facts: false
+  duplicate_assessment_interior: false
+  in_flight_run_destroyed_by_replan: false
+  assistance_policy_disclosed_before_independent_work: true
+  consequence_disclosed_before_h3_h4: true
+  exit_reachable_in_one_deliberate_action: true
+  next_task_is_recomputed_planner_selection: true
+
+session_model:
+  emergent_not_container: true
+  semantic_fields:
+    - session_id
+    - started_at
+    - entry_source
+    - task_runs
+    - remaining_capacity_context_ref
+    - ended_reason
+  entry_sources:
+    - today_primary_action
+    - today_queue_row
+    - entity_context
+    - resume_entry
+  ended_reasons:
+    - user_stopped
+    - plan_exhausted
+    - capacity_reached
+    - interrupted
+    - recovery_required
+  session_level_score: false
+  session_level_grade: false
+  session_completion_percentage: false
+  session_identity_is_evidence: false
+
+shared_focused_flow_frame:
+  owned_by: 8C
+  inherited_by:
+    - task_runner_flow
+    - assessment_session_flow
+  frame_elements:
+    - entry_revalidation
+    - safe_pause_and_exit_availability
+    - resume_revalidation
+    - capacity_and_replan_interaction
+    - degraded_and_recovery_behavior
+    - deterministic_semantic_return
+  interior_owned_by_8c:
+    - task_runner_flow
+  interior_owned_by_8d:
+    - assessment_session_flow
+  assess_purpose_delegates_interior_to_8d: true
+
+task_run_lifecycle:
+  phases:
+    - id: enter
+      order: 1
+      goal: revalidate_before_startable
+    - id: orient
+      order: 2
+      goal: state_what_why_how_long_and_what_counts
+    - id: work
+      order: 3
+      goal: perform_activity_shaped_segments
+    - id: submit
+      order: 4
+      goal: freeze_attempt
+    - id: resolve
+      order: 5
+      goal: feedback_and_handoff_without_mastery_claim
+    - id: transition
+      order: 6
+      goal: return_or_continue_on_recomputed_plan
+  non_linear_transitions:
+    - pause
+    - abandon
+    - recover
+
+entry_revalidation:
+  conditions:
+    - planned_task_still_selected
+    - hard_prerequisites_satisfied
+    - learning_need_still_open
+    - content_version_compatible
+    - required_local_capability_available
+  failure_starts_flow: false
+  failure_returns_to_today_with_trace_reason: true
+  failure_is_negative_evidence: false
+  failure_is_user_error_message: false
+
+orientation:
+  required_semantics:
+    - task_purpose_in_learner_terms
+    - target_skill_objective_context
+    - duration_estimate_as_planning_context
+    - planner_explanation_entry
+    - assistance_policy_disclosure
+  forbidden_semantics:
+    - answer_preview
+    - mastery_prediction
+    - guaranteed_completion_time
+    - career_completion_percentage
+
+work_phase:
+  activity_shaped_not_universal_question_screen: true
+  segmented: true
+  segment_boundaries_are_checkpoint_candidates: true
+  forbidden:
+    - force_linear_completion_of_whole_day_plan_before_exit
+    - visible_countdown_pressure
+    - slower_work_treated_as_mastery_signal
+
+submit_phase:
+  submission_freezes_attempt: true
+  post_submit_explanation_contaminates_prior_attempt: false
+  same_item_after_exposure_is_independent_evidence: false
+  task_may_end_without_attempt: true
+  no_attempt_means_no_evidence: true
+  no_attempt_is_missing_result: false
+
+resolve_phase:
+  allowed_presentation:
+    - correctness_feedback
+    - worked_explanation
+    - attempt_recorded_acknowledgement
+  forbidden_presentation:
+    - mastery_or_level_change_claim
+    - score_as_capability_verdict
+    - skill_state_not_produced_by_canonical_state
+  attempt_submission_semantics:
+    - planned_task_ref
+    - target_objective_refs
+    - artifact_refs
+    - artifact_origin
+    - assistance_events
+    - highest_assistance_level
+    - assistance_timing_summary
+    - component_results
+    - integration_mode
+    - runner_completion_state
+    - requires_independent_recheck_flag
+  runner_completion_state_is_mastery_value: false
+
+transition_phase:
+  next_task_source: recomputed_planner_selection
+  cached_local_list_advance: false
+  continuity_allowed: true
+  return_target_deterministic: true
+  stale_expectation_shown_when_replan_removed_task: false
+  replan_removal_explained_from_trace: true
+
+checkpoint_model:
+  safe_checkpoint_conditions:
+    - segment_pedagogically_meaningful_alone
+    - artifact_and_runner_state_persistable_honestly
+    - no_partially_exposed_solution_state
+    - no_half_evaluated_independent_attempt
+  pause_classes:
+    - id: checkpoint_pause
+      durable: true
+      produces_resume_context: true
+      maps_to: paused_progress
+    - id: mid_segment_pause
+      durable: false
+      produces_resume_context: false
+      presented_as_saved_progress: false
+    - id: high_stakes_pause
+      durable: true
+      marked: true
+      silent_independent_continuation_after_long_gap: false
+  resume_context_fields:
+    - learning_need_key
+    - source_task_id
+    - checkpoint_id
+    - completed_segments
+    - remaining_segments
+    - artifact_state_ref
+  paused_checkpoint_is_automatic_next_day_first_task: false
+  paused_checkpoint_reenters_as_continue_learning_need: true
+
+resume_revalidation:
+  conditions:
+    - content_version_compatible
+    - prerequisites_still_eligible
+    - learning_need_still_open
+    - runner_and_artifact_state_intact
+    - high_stakes_gap_integrity_acceptable
+  failure_offers_fresh_alternative: true
+  failure_is_negative_evidence: false
+  failure_is_failure_message: false
+
+abandon_and_stop:
+  exit_always_available: true
+  exit_reachable_in_one_deliberate_action: true
+  planned_but_not_started_is_learning_gap: false
+  started_but_user_stopped_is_history_only: true
+  incomplete_attempt_is_wrong_answer: false
+  creates_debt: false
+  creates_streak_loss: false
+  creates_catch_up_obligation: false
+  forbidden_exit_framing:
+    - you_will_lose_your_progress
+    - your_streak_will_break
+    - only_n_more_minutes_to_succeed_today
+    - guilt_confirmation_dialog
+
+assistance_choreography:
+  source_contract: AI_assistance_2D_contract
+  always_requestable_in_teaching_practice: true
+  withholding_to_force_independence: false
+  escalation_order:
+    - H1
+    - H2
+    - H3
+    - H4
+  jump_to_h4_without_request: false
+  auto_reveal_on_first_error: false
+  mislabel_h3_scaffold_as_hint: false
+  consequence_disclosed_before_h3_h4: true
+  consequence_framing_allowed: changes_what_this_attempt_can_prove
+  consequence_framing_forbidden: penalty_language
+  after_exposure:
+    same_item_repeat_allowed_for_learning: true
+    same_item_repeat_labelled_practice: true
+    same_item_repeat_is_mastery_path: false
+    raises_requires_independent_recheck: true
+    runner_schedules_recheck: false
+    recheck_owner: planner_and_remediation_retention_pipelines
+  assistance_event_fields:
+    - level
+    - timing
+    - target_scope
+    - source
+    - requested_by_user
+  assistance_levels:
+    - H1
+    - H2
+    - H3
+    - H4
+  assistance_timings:
+    - before_attempt
+    - during_attempt
+    - after_submit
+    - after_failure
+  target_scopes:
+    - target_objective
+    - non_target_support
+  assessment_mode_conversion:
+    revealing_help_converts_item_to_learning: true
+    conversion_flags_fresh_recheck: true
+    conversion_is_punitive: false
+    presentation_owner: 8D
+
+artifact_provenance:
+  asked_not_inferred: true
+  disclosure_low_friction: true
+  honest_disclosure_framed_as_confession: false
+  honest_disclosure_penalised: false
+  unknown_recorded_not_guessed: true
+  generated_or_copied_retains_learning_value: true
+  origin_values:
+    - user_authored
+    - user_authored_with_assistance
+    - mixed_authorship
+    - generated_or_copied
+    - unknown_provenance
+  forbidden:
+    - accuse_user_of_cheating
+    - silent_state_downgrade_on_suspicion
+    - honest_answer_is_slow_or_discouraged_path
+
+capacity_and_replan:
+  in_flight_run_destroyed_by_replan: false
+  replan_preserves_completed_evidence: true
+  replan_reresolves_unstarted_only: true
+  invalid_in_flight_task_drives_to_safe_checkpoint: true
+  remaining_time_decreased:
+    current_run_may_finish_or_checkpoint_pause: true
+    unstarted_reresolved: true
+    removed_unstarted_is_failure: false
+    removed_unstarted_is_debt: false
+  remaining_time_increased:
+    fresh_mini_plan_from_current_state: true
+    blind_replay_of_deferred_list: false
+  early_finish_trigger: TASK_FINISHED_EARLY
+  overrun_trigger: TASK_OVERRAN_ESTIMATE
+  force_cut_evidence_integral_work: false
+  in_flow_reason_source: PDT-v0
+  in_flow_reason_bounded: true
+  full_explanation_route: planner_explanation
+  free_form_ai_reason_truth: false
+
+technical_english_in_flow:
+  scaffold_mode_is_task_metadata: true
+  runner_improvises_scaffold: false
+  supported_integration_modes:
+    - technical_only_localized
+    - technical_with_english_exposure
+    - dual_target_integrated
+    - english_primary_technical_context
+  dual_target_component_results_separable: true
+  dual_target_overall_pass_broadcast: false
+  non_target_gloss_is_support_not_target_assistance: true
+  scaffold_shown_as_penalty_or_level: false
+  english_quota_streak_debt_in_flow: false
+
+degraded_and_recovery:
+  offline:
+    locally_runnable_work_remains_runnable: true
+    network_dependent_degrades_truthfully: true
+    fakes_completed_remote_step: false
+  ai_unavailable:
+    deterministic_core_runs: true
+    open_ended_becomes_evaluation_pending: true
+    evaluation_pending_writes_evidence: false
+    auto_pass: false
+    auto_fail: false
+    evaluation_pending_visible: true
+  interruption_and_crash:
+    restores_last_durable_checkpoint_only: true
+    claims_unpersisted_work: false
+    silently_discards_persisted_work: false
+  data_recovery:
+    supersedes_normal_work_when_integrity_uncertain: true
+    silent_progress_reset: false
+
+semantic_states:
+  - entering_revalidating
+  - blocked_not_startable
+  - orientation
+  - active_work
+  - assistance_open
+  - submitting
+  - feedback_resolved
+  - evaluation_pending
+  - checkpoint_paused
+  - resume_revalidating
+  - resume_invalidated
+  - replan_interrupted
+  - stopped_no_penalty
+  - offline_local_capable
+  - ai_unavailable_deterministic_core
+  - error_recoverable
+  - data_recovery_required
+
+state_distinguishable_in_text: true
+state_distinguishable_by_color_or_motion_only: false
+
+accessibility_baseline:
+  primary_work_action_accessible_name: true
+  exit_pause_accessible_name: true
+  exit_pause_reachable_when_shell_suppressed: true
+  assistance_level_and_consequence_in_text: true
+  pending_invalidated_recovery_announcable: true
+  segment_progress_semantic_not_decorative_only: true
+  duration_not_only_task_identifier: true
+
+forbidden_flow_patterns:
+  - guilt_driven_exit_gate
+  - streak_or_daily_goal_enforcement
+  - countdown_timer_pressure_surface
+  - second_planner_cached_list_advance
+  - mastery_or_level_up_announcer
+  - solution_auto_reveal_on_first_error
+  - same_item_retry_as_independent_proof
+  - cheating_detection_interrogation
+  - visible_penalty_for_asking_help
+  - evidence_written_without_attempt
+  - fake_success_while_evaluator_unavailable
+  - duplicate_assessment_interior
+  - pause_presented_as_losing_progress
+
+future_stage_boundaries:
+  8D: assessment_session_interior_and_result_presentation
+  8E: skill_progress_weakness_visual_semantics
+  8F: visual_design_system
+  8G: wireframe_and_prototype_geometry
+  9A: mobile_technology_choice
+  9C: physical_data_model
+  9E: code_runner_compiler_and_provider_integration
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  16: detailed_settings_notifications_analytics
+  17: final_accessibility_usability_polish
+  18: empirical_usability_calibration
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - GRE-v0
+    - RVR-v0
+    - PBR-v0
+    - PRG-v0
+    - PDT-v0
+    - SRR-v0
+    - TEIP-v0
+    - WLRM-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true
+  stage8b_regression_required: true

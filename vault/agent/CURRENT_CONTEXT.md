@@ -1,7 +1,7 @@
 ---
 type: derived-session-context
 status: volatile-summary
-last_verified: 2026-08-28
+last_verified: 2026-08-29
 must_verify_before_action: true
 canonical_state_source: "[[vault/wiki/sources/Execution State Source]]"
 ---
@@ -35,10 +35,11 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - `TEPM-v0 / D-067`: Technical English mastery/profile projection; 8 derived Skill presentation state, qualified A1/A2/B1 profile, B2+ per-capability evidence; no broad/general/official CEFR or numeric aggregate.
 - `UXIA-v0 / D-068`: Today/Learn/Progress/Profile semantic information architecture.
 - `THUX-v0 / D-069`: action-first Today/Home contract; current PlannedTask queue + hard-capacity/reason/empty/degraded semantics.
+- `TRUX-v0 / D-070`: focused daily working flow; Task Runner execution surface, emergent ungraded session, shared focused-flow frame, non-punitive assistance, asked-not-inferred provenance.
 
 ## Exact execution state
 
-AŞAMA 6 ve AŞAMA 7 tamamlandı. 8A **UXIA-v0 / D-068** ve 8B **THUX-v0 / D-069** ile tamamlandı. Today action-first canonical planner/state projection'ıdır; queue current selected PlannedTasks, capacity hard time budget, reasons PDT-v0 trace-derived, completion != mastery, missed-day debt yok, assessment/English contextual. Son tamamlanan adım **8B — Ana ekran**. Aktif adım **8C — Günlük çalışma akışı**; henüz yürütülmedi. 8C başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve AŞAMA 7 tamamlandı. 8A **UXIA-v0 / D-068**, 8B **THUX-v0 / D-069** ve 8C **TRUX-v0 / D-070** ile tamamlandı. Today action-first canonical planner/state projection'ıdır; queue current selected PlannedTasks, capacity hard time budget, reasons PDT-v0 trace-derived, completion != mastery, missed-day debt yok, assessment/English contextual. Task Runner execution surface'tir; working session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur, çıkarsanmaz; `evaluation_pending` evidence yazmaz. Son tamamlanan adım **8C — Günlük çalışma akışı**. Aktif adım **8D — Sınav UX**; henüz yürütülmedi. 8D başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

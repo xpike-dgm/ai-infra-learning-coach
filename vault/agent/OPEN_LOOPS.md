@@ -1,7 +1,7 @@
 ---
 type: open-loops
 status: active
-last_reviewed: 2026-08-28
+last_reviewed: 2026-08-29
 ---
 
 # Open Loops
@@ -22,7 +22,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 7E English mastery: TEPM-v0 / D-067 ile tamamlandı; 8 derived profile state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence.
 - [x] 8A Bilgi mimarisi: UXIA-v0 / D-068 ile tamamlandı; Today/Learn/Progress/Profile semantic IA + shared detail/focused flows.
 - [x] 8B Ana ekran: THUX-v0 / D-069 ile tamamlandı; action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics.
-- [ ] 8C Günlük çalışma akışı **AKTİF**: THUX-v0 Home entry/return + UXIA-v0 focused Task Runner ownership üzerinden daily task/session choreography.
+- [x] 8C Günlük çalışma akışı: TRUX-v0 / D-070 ile tamamlandı; execution-surface sınırı + emergent ungraded session + shared focused-flow frame + non-punitive assistance + asked-not-inferred provenance.
+- [ ] 8D Sınav UX **AKTİF**: TRUX-v0 shared focused-flow frame + UXIA-v0 `assessment_session_flow` ownership üzerinden assessment session interior ve result presentation.
 
 ## Knowledge-base operations
 

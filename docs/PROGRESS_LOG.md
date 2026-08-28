@@ -572,3 +572,24 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `8B ✅ / 8C active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
 
 **Sonraki kesin adım:** `8C — Günlük çalışma akışı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-29 — 8C Günlük çalışma akışı tamamlandı — TRUX-v0 / D-070
+
+- Oturum, yerel repo `main`'in 204 commit geride olduğu bir snapshot'tan gelen stale bir talep ile açıldı ("aktif adım 6D"). Fresh PRE-STEP refresh sonrası 6D'nin `SDM-v0 / D-058` ile çoktan kapandığı, gerçek aktif adımın 8C olduğu beş kanonik kaynakla doğrulandı; tamamlanmış canonical paketi yeniden yazmak yerine kullanıcı onayı alınarak 8C yürütüldü.
+- 8C separate external Research AI istemedi: yeni algorithm/threshold/literature kararı değil, accepted UXIA-v0 + THUX-v0 + planner/capacity/re-entry/explainability + 2D assistance/evidence + TEIP-v0 contracts üzerinde interaction-choreography synthesis idi. Independent QA zorunlu tutuldu.
+- Task Runner execution surface olarak sınırlandı: `Attempt`, `Artifact`, assistance metadata ve provenance üretir; planner, mastery engine, prerequisite engine, evidence evaluator veya scoring device olamaz.
+- Daily working session emergent ve ungraded tanımlandı; required task count/duration/completion percentage ve session score/grade yoktur. `plan_exhausted` başarı, `user_stopped` başarısızlık değildir.
+- Shared focused-flow frame tek yerde tanımlandı ve hem `task_runner_flow` hem `assessment_session_flow` tarafından devralınır; böylece 8C ve 8D iki çelişkili focused-flow truth'u üretemez. Assessment interior açıkça 8D'ye bırakıldı.
+- Lifecycle `enter → orient → work → submit → resolve → transition` + `pause | abandon | recover` kilitlendi; entry ve resume revalidation deterministiktir ve prerequisite/content-version geçerliliği bypass edilemez.
+- Assistance ambush'ı yasaklandı: orientation bağımsız çalışmadan önce assistance policy'yi açıklar, escalation yalnız talep üzerine H1→H4 ilerler, ilk yanlışta otomatik reveal yoktur ve H3/H4 öncesi consequence ceza dili yerine ölçüm dili ile bildirilir.
+- Solution exposure sonrası same-item mastery path kapatıldı; runner `requires_independent_recheck` yükseltir fakat recheck'i zamanlamaz — sahibi planner + remediation/retention pipeline'larıdır.
+- Provenance policing yerine asked-not-inferred modeli kabul edildi: dürüst beyan ucuz ve cezasızdır, şüpheye dayalı sessiz state düşürme ve cheating interrogation yasaktır, bilinmeyen köken tahmin edilmez.
+- In-flight run replan tarafından yok edilmez; continuity izinlidir fakat sonraki task daima planner'ın recomputed selection'ıdır — cached local list üzerinden ilerleme second-planner sayılır ve yasaktır.
+- AI evaluator yokluğunda open-ended attempt `evaluation_pending` olur: evidence yazılmaz, otomatik pass/fail verilmez, durum görünür kalır.
+- Repo-wide POST audit sırasında 8C dışı bir stale living gate bulundu: `tools/validate_english_entry_diagnostic.py` içindeki `E7A-15` check'i, 7B'nin (`TECP-v0 / D-064`) resolved ettiği `review.6c.english.cefr_alignment` review'ının hâlâ `open` olduğunu iddia ediyordu. Check adı ve 7A'nın saklı qa_report'u korunarak assertion ownership-handoff'a daraltıldı; 7A canonical spec'i ve kararı değiştirilmedi.
+- Independent 8C validator **123/123 PASS**; 6 lifecycle phase / 17 semantic state / 3 pause class / 13 forbidden flow anti-pattern.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted 8A + accepted 8B regressions PASS.
+- D-050 POST living-memory accepted state'i `8C ✅ / 8D active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
+
+**Sonraki kesin adım:** `8D — Sınav UX`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

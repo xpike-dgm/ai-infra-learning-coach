@@ -191,12 +191,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 7E ✅ TEPM-v0 / D-067
 - **8A ✅ Bilgi mimarisi — UXIA-v0 / D-068**
 - **8B ✅ Ana ekran — THUX-v0 / D-069**
-- **8C 🟡 Günlük çalışma akışı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8D–20 ⬜
+- **8C ✅ Günlük çalışma akışı — TRUX-v0 / D-070**
+- **8D 🟡 Sınav UX — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -206,9 +207,15 @@ Canonical: `docs/INFORMATION_ARCHITECTURE_SPEC.md` / D-068.
 
 ## 11.2 8B Today Home UX — THUX-v0 / D-069
 
-Today/Home semantic contract action-first olarak kilitlendi. Dominant content current valid action'dır; queue yalnız selected PlannedTask'lardan oluşur. Daily capacity time budget context'idir, mastery/progress değildir; Today current-day override ile replan tetikleyebilir. Planner reasons PDT-v0 trace facts'ten bounded biçimde türetilir. Assessment ve Technical English contextual kalır; quota/streak/debt/gradebook shortcuts yoktur. Missed-day fresh-plan, offline/local-core, AI-degraded ve data-recovery semantics açıkça ayrılır. Fixed visual/card/pixel geometry 8F/8G'ye; Task Runner interaction choreography 8C'ye bırakılmıştır.
+Today/Home semantic contract action-first olarak kilitlendi. Dominant content current valid action'dır; queue yalnız selected PlannedTask'lardan oluşur. Daily capacity time budget context'idir, mastery/progress değildir; Today current-day override ile replan tetikleyebilir. Planner reasons PDT-v0 trace facts'ten bounded biçimde türetilir. Assessment ve Technical English contextual kalır; quota/streak/debt/gradebook shortcuts yoktur. Missed-day fresh-plan, offline/local-core, AI-degraded ve data-recovery semantics açıkça ayrılır. Fixed visual/card/pixel geometry 8F/8G'ye; Task Runner interaction choreography 8C'de kilitlenmiştir.
 
 Canonical: `docs/TODAY_HOME_SCREEN_SPEC.md` / D-069.
+
+## 11.3 8C Daily Working Flow — TRUX-v0 / D-070
+
+Focused günlük çalışma akışı kilitlendi. Task Runner bir execution surface'tir; planner, mastery engine, prerequisite engine veya evidence evaluator değildir. Working session emergent ve ungraded'dır; required task count/duration/percentage yoktur. Tek bir shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır; assessment interior 8D'ye aittir. Lifecycle `enter → orient → work → submit → resolve → transition` olup entry/resume revalidation deterministiktir ve prerequisite/content-version bypass edilemez. Assistance daima talep edilebilir, yalnız talep üzerine H1→H4 yükselir ve H3/H4 öncesi consequence ölçüm dilinde açıklanır; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır. Provenance sorulur, çıkarsanmaz; dürüst beyan cezasızdır. In-flight run replan'dan korunur; continuity recomputed planner selection kullanır. AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz. Guilt/streak/debt framing, countdown pressure ve cached-list ilerleme yasaktır.
+
+Canonical: `docs/DAILY_WORKING_FLOW_SPEC.md` / D-070.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

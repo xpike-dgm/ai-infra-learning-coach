@@ -115,8 +115,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 8 — UX ve Ekranlar
 - [x] **8A — Bilgi mimarisi** — `UXIA-v0 / D-068`
 - [x] **8B — Ana ekran** — `THUX-v0 / D-069`
-- [ ] **8C — Günlük çalışma akışı** **AKTİF**
-- [ ] **8D — Sınav UX**
+- [x] **8C — Günlük çalışma akışı** — `TRUX-v0 / D-070`
+- [ ] **8D — Sınav UX** **AKTİF**
 - [ ] **8E — Skill/progress/weakness UX**
 - [ ] **8F — Tasarım sistemi**
 - [ ] **8G — Wireframe/prototip**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8B`  
-**Son tamamlanan:** **`8B — THUX-v0 / D-069`**  
-**Aktif:** **`8C — Günlük çalışma akışı`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8C`  
+**Son tamamlanan:** **`8C — TRUX-v0 / D-070`**  
+**Aktif:** **`8D — Sınav UX`** — active-not-executed
 
-8B `THUX-v0` ile Today/Home action-first hierarchy, current PlannedTask queue, hard-capacity context, PDT-v0 reason projection ve truthful empty/degraded states kilitlendi; completion/mastery, backlog/debt, English quota ve gradebook shortcuts yasaktır.
+8C `TRUX-v0` ile focused daily working flow kilitlendi: execution-surface sınırı, emergent ungraded session, shared focused-flow frame, deterministic entry/resume revalidation, non-punitive assistance escalation + consequence disclosure, asked-not-inferred provenance, in-flight replan koruması ve `evaluation_pending` truthfulness. Guilt/streak/debt framing, cached-list ilerleme ve same-item mastery path yasaktır.
 
-8C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
