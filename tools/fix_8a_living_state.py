@@ -114,6 +114,8 @@ text = re.sub(r"(?m)^- AŞAMA 8A 🟡(?: active-not-executed)?\s*$", "- AŞAMA 8
 text = re.sub(r"(?m)^\*\*Aktif adım:\*\* `8A — Bilgi mimarisi`\s*$", "**Aktif adım:** `8B — Ana ekran`  ", text)
 text = re.sub(r"(?i)\b8A henüz yürütülmedi\b", "8B henüz yürütülmedi", text)
 text = re.sub(r"(?i)(Sıradaki gerçek numbered work:\*\*\s*`)8A\b[^`]*`", r"\g<1>8B — Ana ekran`", text)
+# Handoff is itself a living current-state summary: no remaining amber marker may refer to 8A.
+text = text.replace("8A 🟡", "8A ✅ UXIA-v0 / D-068")
 write(rel, text)
 
 
