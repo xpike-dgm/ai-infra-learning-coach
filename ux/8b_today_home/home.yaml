@@ -282,12 +282,13 @@ semantic_states:
   - data_recovery_required
 
 empty_state_distinctions:
-  - no_open_need
-  - no_eligible_task
-  - no_capacity
-  - capacity_too_small
-  - loading
-  - recoverable_error
+  causes:
+    - no_open_need
+    - no_eligible_task
+    - no_capacity
+    - capacity_too_small
+    - loading
+    - recoverable_error
   no_task_implies_all_mastered: false
   no_task_implies_professional_ready: false
 
