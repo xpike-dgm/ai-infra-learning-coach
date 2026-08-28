@@ -544,3 +544,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST ile AŞAMA 7 kapatıldı ve `8A — Bilgi mimarisi` active-not-executed yapıldı; external-memory + repo-wide stale audit zorunlu final gates olarak çalıştırıldı.
 
 **Sonraki kesin adım:** `8A — Bilgi mimarisi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-27 — 8A Bilgi mimarisi tamamlandı — UXIA-v0 / D-068
+
+- Kullanıcı açık onayı sonrası fresh PRE yapıldı; PRE sırasında `HANDOFF_STATE` ve `LOCAL_MANAGER_HANDOFF` içinde 7E sonrası kalan stale current-state mirror'ları bulundu ve execution başlamadan deterministic repair + external-memory QA ile temizlendi.
+- Android adaptive/navigation guidance, W3C consistent navigation/identification ve NN/g mobile IA/progressive-disclosure research girdisi incelendi; fixed visual/card-count gibi unsupported precision türetilmedi.
+- Exactly four semantic top-level destination kabul edildi: Today / Learn / Progress / Profile; Today normal start.
+- Assessment, English, AI Tutor, remediation/retention top-level silo yapılmadı; contextual workflow/state olarak doğru information owner'a bağlandı.
+- Shared entity/detail surfaces ve focused Task Runner / assessment flows tanımlandı; browse hierarchy != prerequisite truth ve UI != mastery truth invariant'ları korundu.
+- Candidate core QA external-memory + Stage 6 + accepted Stage 7 regressions ile birlikte PASS; independent 8A validator 49/49 PASS.
+- D-050 POST accepted artifact revalidation + living-memory sync + repo-wide stale-reference audit ile 8A kapatıldı; 8B active-not-executed yapıldı.
+
+**Sonraki kesin adım:** `8B — Ana ekran`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

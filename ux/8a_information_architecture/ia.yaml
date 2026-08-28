@@ -1,0 +1,345 @@
+model: UXIA-v0
+stage_step: 8A
+status: accepted_8a
+decision: D-068
+purpose: adaptive_learning_mobile_information_architecture
+
+scope:
+  top_level_destination_count: 4
+  normal_start_destination: today
+  final_visual_design_locked: false
+  implementation_technology_locked: false
+  physical_navigation_component_locked: false
+  physical_data_schema_locked: false
+
+canonical_truth_owners:
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  planner_priority: PBR-v0
+  planner_explanation: PDT-v0
+  diagnostic_waiver: VDW-v0
+  weakness_remediation: WLRM-v0
+  curriculum_identity: KGC-v0
+  english_progression: TECP-v0
+  english_daily: DECP-v0
+  english_integration: TEIP-v0
+  english_profile: TEPM-v0
+
+invariants:
+  ui_is_mastery_source_of_truth: false
+  ui_hierarchy_is_prerequisite_truth: false
+  task_completion_is_mastery: false
+  assessment_score_is_direct_mastery: false
+  english_is_global_technical_gate: false
+  general_cefr_claim_allowed: false
+  career_completion_percentage_primary: false
+  streak_primary_success_metric: false
+  ai_chat_default_start: false
+  ai_required_for_primary_shell: false
+  stale_deep_link_can_bypass_eligibility: false
+  shared_skill_detail_single_semantic_surface: true
+  adaptive_layout_changes_semantic_ia: false
+
+primary_destinations:
+  - id: today
+    order: 1
+    working_label: Today
+    role: action_now
+    primary_question: What should I do now?
+    shell_root: today_overview
+    primary_information:
+      - current_plan
+      - next_task
+      - current_capacity_context
+      - attention_items
+      - planner_reason_entry
+  - id: learn
+    order: 2
+    working_label: Learn
+    role: curriculum_browse
+    primary_question: What is the learning map and where can I go?
+    shell_root: learn_overview
+    primary_information:
+      - curriculum_hierarchy
+      - entity_discovery
+      - topic_availability
+      - route_context
+  - id: progress
+    order: 3
+    working_label: Progress
+    role: evidence_backed_state
+    primary_question: What have I demonstrated and what needs attention?
+    shell_root: progress_overview
+    primary_information:
+      - capability_summary
+      - weakness_remediation_summary
+      - review_verification_summary
+      - assessment_history
+      - technical_english_profile
+      - learning_history
+  - id: profile
+    order: 4
+    working_label: Profile
+    role: personal_operation
+    primary_question: How should this personal app operate for me?
+    shell_root: profile_overview
+    primary_information:
+      - capacity_preferences
+      - reminders
+      - theme_accessibility_preferences
+      - backup_export_restore
+      - future_provider_settings
+
+top_level_forbidden:
+  - assessment
+  - exams
+  - english
+  - ai_chat
+  - ai_tutor
+  - mastery
+  - retention
+  - remediation
+  - weakness
+  - streak
+  - leaderboard
+
+surface_families:
+  shell_roots:
+    - id: today_overview
+      owner: today
+    - id: learn_overview
+      owner: learn
+    - id: progress_overview
+      owner: progress
+    - id: profile_overview
+      owner: profile
+  shared_details:
+    - id: topic_detail
+      primary_owner: learn
+      reachable_from: [today, learn, progress]
+      canonical_entity: Topic
+      writes_mastery: false
+      writes_prerequisite: false
+    - id: skill_detail
+      primary_owner: progress
+      reachable_from: [today, learn, progress]
+      canonical_entity: Skill
+      shared_single_semantic_surface: true
+      writes_mastery: false
+      writes_prerequisite: false
+    - id: planner_explanation
+      primary_owner: today
+      reachable_from: [today, task_runner_flow, topic_detail, skill_detail]
+      source_contract: PDT-v0
+      free_form_ai_truth: false
+    - id: assessment_report
+      primary_owner: progress
+      reachable_from: [today, progress, skill_detail]
+      direct_mastery_authority: false
+    - id: technical_english_profile
+      primary_owner: progress
+      reachable_from: [progress, skill_detail]
+      source_contract: TEPM-v0
+      general_cefr_claim: false
+    - id: learning_history
+      primary_owner: progress
+      reachable_from: [progress, skill_detail, assessment_report]
+      streak_calendar_truth: false
+  focused_flows:
+    - id: task_runner_flow
+      entry_from: [today, topic_detail, skill_detail]
+      persistent_shell_may_be_suppressed: true
+      safe_pause_exit_required: true
+      detailed_choreography_owner: 8C
+    - id: assessment_session_flow
+      entry_from: [today]
+      contextual_entry_from: [skill_detail]
+      persistent_shell_may_be_suppressed: true
+      safe_pause_exit_required: true
+      detailed_choreography_owner: 8D
+  setup:
+    - id: initial_setup_flow
+      pre_shell: true
+      minimum_local_setup_then: today
+      mandatory_diagnostic_invented_by_ia: false
+
+information_ownership:
+  - object: current_plan
+    primary_home: today
+    contextual: [task_runner_flow]
+  - object: next_task
+    primary_home: today
+    contextual: [notifications]
+  - object: current_capacity
+    primary_home: today
+    setting_home: profile
+  - object: planner_reason
+    primary_home: planner_explanation
+    contextual: [today, task_runner_flow]
+  - object: curriculum_hierarchy
+    primary_home: learn
+  - object: topic_state
+    primary_home: topic_detail
+    contextual: [learn, today, progress]
+  - object: exact_skill_state
+    primary_home: skill_detail
+    contextual: [progress, today, learn]
+  - object: weakness_remediation
+    primary_home: progress
+    contextual: [today]
+  - object: review_verification_due
+    primary_home: progress
+    contextual: [today]
+  - object: assessment_due
+    primary_home: today
+  - object: assessment_report_history
+    primary_home: progress
+  - object: technical_english_profile
+    primary_home: technical_english_profile
+    contextual: [progress]
+  - object: learning_history
+    primary_home: learning_history
+    contextual: [progress, skill_detail]
+  - object: daily_capacity_preference
+    primary_home: profile
+    contextual: [today]
+  - object: reminders
+    primary_home: profile
+  - object: theme_accessibility_preferences
+    primary_home: profile
+  - object: backup_export_restore
+    primary_home: profile
+
+navigation_edges:
+  shell_peer_switching:
+    - [today, learn]
+    - [today, progress]
+    - [today, profile]
+    - [learn, progress]
+    - [learn, profile]
+    - [progress, profile]
+  contextual:
+    - [today, task_runner_flow]
+    - [today, planner_explanation]
+    - [today, skill_detail]
+    - [today, topic_detail]
+    - [today, assessment_session_flow]
+    - [learn, topic_detail]
+    - [learn, skill_detail]
+    - [topic_detail, skill_detail]
+    - [progress, skill_detail]
+    - [progress, topic_detail]
+    - [progress, technical_english_profile]
+    - [progress, assessment_report]
+    - [progress, learning_history]
+    - [skill_detail, learning_history]
+    - [assessment_report, learning_history]
+
+focus_flow_return_semantics:
+  task_runner_normal: today
+  assessment_completed_from_today: today
+  entity_context_flow: return_to_origin_if_still_valid_else_today
+  stale_or_invalid_origin: today
+
+progress_guards:
+  forbidden_primary_summaries:
+    - career_completion_percentage
+    - elapsed_day_percentage
+    - streak_success
+    - task_completion_as_mastery
+    - numeric_cefr_average
+    - broad_domain_failure_without_skill_detail
+  distinct_states_must_remain_representable:
+    - not_started
+    - developing
+    - confirmed
+    - review_due
+    - verification_due
+    - remediation_required
+    - prerequisite_unresolved
+
+assessment_guards:
+  workflow_pipeline:
+    - assessment_session
+    - attempt_artifact
+    - validity_attribution_evidence
+    - canonical_state_update
+    - planner_replan
+    - report_explanation
+  score_to_broad_mastery_shortcut: forbidden
+  permanent_top_level_destination: false
+
+english_guards:
+  contexts:
+    today: selected_or_integrated_task
+    learn: D01_capability_context
+    progress: TEPM_profile
+  permanent_top_level_destination: false
+  global_technical_gate: false
+  official_or_general_cefr_claim: false
+
+cross_cutting_surface_states:
+  - loading
+  - empty_valid
+  - error_recoverable
+  - offline_local_available
+  - ai_unavailable_core_available
+  - data_recovery_required
+
+external_entry_points:
+  supported_semantic_targets:
+    - today
+    - selected_or_due_task
+    - due_review_or_verification_skill
+    - eligible_assessment_session
+    - assessment_report
+    - skill_detail
+    - topic_detail
+    - profile_settings_or_recovery
+  must_revalidate_current_state_before_action: true
+
+adaptive_navigation:
+  semantic_order: [today, learn, progress, profile]
+  compact_candidate_component: navigation_bar
+  expanded_candidate_component: navigation_rail_or_panel
+  component_choice_deferred: true
+  semantic_labels_consistent_across_window_sizes: true
+
+accessibility_semantics:
+  stable_destination_ids: true
+  stable_relative_order: true
+  same_function_consistent_semantic_label: true
+  critical_state_not_color_only: true
+  critical_state_not_icon_only: true
+  focused_flow_safe_exit: true
+
+future_stage_boundaries:
+  8B: today_content_hierarchy_and_home_layout
+  8C: task_runner_and_daily_flow_interaction
+  8D: assessment_interaction_and_report_layout
+  8E: skill_progress_weakness_visual_semantics
+  8F: visual_design_system
+  8G: wireframe_and_prototype_validation
+  9A: mobile_technology_choice
+  9C: physical_domain_data_model
+  10: navigation_and_ui_implementation
+  16: detailed_analytics_settings_and_daily_tools
+  17: final_usability_accessibility_polish
+  18: empirical_usability_calibration
+
+research_sources:
+  - id: android_navigation_bar
+    url: https://developer.android.com/develop/ui/compose/components/navigation-bar
+  - id: android_layout_navigation_patterns
+    url: https://developer.android.com/design/ui/mobile/guides/layout-and-content/layout-and-nav-patterns
+  - id: android_adaptive_navigation
+    url: https://developer.android.com/develop/adaptive-apps/guides/build-adaptive-navigation
+  - id: wcag_consistent_navigation
+    url: https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation
+  - id: wcag_consistent_identification
+    url: https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification
+  - id: nng_mobile_ia
+    url: https://www.nngroup.com/articles/mobile-sharpens-usability-guidelines/
+  - id: nng_mini_ia
+    url: https://www.nngroup.com/articles/mini-ia-structuring-information/

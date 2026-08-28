@@ -1,0 +1,55 @@
+name: PRE-8A Living State Repair
+
+on:
+  push:
+    branches:
+      - work/8a-information-architecture
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/8a-information-architecture
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Repair PRE-8A living state
+        run: python tools/fix_pre_8a_living_state.py
+      - name: Validate persistent external memory
+        run: python tools/validate_external_memory.py
+      - name: Assert PRE-8A execution agreement
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required = {
+              'docs/EXECUTION_INDEX.md': ['8A — Bilgi mimarisi', '**AKTİF**'],
+              'docs/STEP_STATUS.md': ['8A — Bilgi mimarisi', '🟡 Aktif'],
+              'docs/HANDOFF_STATE.md': ['**Son tamamlanan:** `7E — TEPM-v0 / D-067`', '**Aktif:** `8A — Bilgi mimarisi`'],
+              'PROJECT_CONTEXT.md': ['8A 🟡 Bilgi mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ'],
+              'docs/MASTER_PLAN.md': ['**Aktif:** **`8A — Bilgi mimarisi`** — henüz yürütülmedi.'],
+          }
+          for rel, markers in required.items():
+              text = Path(rel).read_text(encoding='utf-8')
+              missing = [m for m in markers if m not in text]
+              if missing:
+                  raise SystemExit(f'{rel}: missing PRE-8A markers: {missing}')
+          print('PRE_8A_EXECUTION_AGREEMENT=PASS')
+          PY
+      - name: Commit living-state repair
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No repair changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/HANDOFF_STATE.md docs/LOCAL_MANAGER_HANDOFF.md
+          git commit -m "Repair PRE-8A living execution state [skip ci]"
+          git push

@@ -137,7 +137,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
   - 6G ✅ WLRM-v0 / D-061
   - 6H ✅ S6ERQA-v0 / D-062
 - 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
-- 8 UX — **8A 🟡 active-not-executed**
+- 8 UX — **8A ✅ UXIA-v0 / D-068**
+  - **8B 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -228,6 +229,9 @@ README ve `PROJECT_MASTER_CONTEXT` volatile aktif step taşımaz; yalnız kendi 
 11ae. `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`
 11af. `curriculum/english/7e_mastery_profile/policy.yaml`
 11ag. `curriculum/english/7e_mastery_profile/qa_report.yaml`
+11ah. `docs/INFORMATION_ARCHITECTURE_SPEC.md`
+11ai. `ux/8a_information_architecture/ia.yaml`
+11aj. `ux/8a_information_architecture/qa_report.yaml`
 12. `docs/LEARNING_ENGINE_SPEC.md`
 13. `docs/LEARNING_BEHAVIOR_RULES.md`
 14. `docs/MASTERY_SIGNALS_SPEC.md`
@@ -263,15 +267,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 5 ✅ PDM-v0 / KGC-v0 / FBB-v0 / GQA-v0
 - AŞAMA 6 ✅ GNS-v0 / FRDB-v0 / FDM-v0 / SDM-v0 / GIM-v0 / PEM-v0 / WLRM-v0 / **S6ERQA-v0 / D-062**
 - AŞAMA 7 ✅ **EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067**
+- AŞAMA 8A ✅ **UXIA-v0 / D-068**
+- AŞAMA 8B 🟡 **active-not-executed**
 
 7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
-**AŞAMA 7:** **✅ TAMAMLANDI**  
-**Aktif:** **`8A — Bilgi mimarisi`**  
-**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
+**Aktif:** **`8B — Ana ekran`**  
+**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. AŞAMA 7 TEPM-v0 / D-067 ile tamamlandı: exact D01 mastery GRE/RVR-backed Skill state, 8 derived presentation state, qualified A1/A2/B1 Technical English profile, B2+ per-capability evidence, no general-English/official CEFR/numeric overclaim. Aktif step 8A — Bilgi mimarisi; 8A henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068 tamamlandı: semantic shell Today · Learn · Progress · Profile; Assessment/English/AI/remediation contextual; shared Skill detail + PDT-v0 explanation; visual implementation henüz kilitli değil. Aktif step 8B — Ana ekran; 8B henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

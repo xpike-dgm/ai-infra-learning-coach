@@ -577,3 +577,20 @@ Ayrıntı: `docs/TECHNICAL_ENGLISH_INTEGRATION_SPEC.md`.
 - AŞAMA 7 tamamlandı. Sonraki numbered step `8A — Bilgi mimarisi`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`.
+
+
+## D-068 — UX Information Architecture = UXIA-v0
+**Durum:** Kabul edildi — 2026-08-27
+
+- 8A final modeli `UXIA-v0 — Adaptive Learning Information Architecture` oldu.
+- Primary semantic shell exactly four destination kullanır ve sıra sabittir: `Today → Learn → Progress → Profile`; normal start `Today`'dir.
+- Assessment, Technical English, AI Tutor/chat, mastery/retention/remediation/weakness ayrı top-level destination değildir; kendi workflow/context/home'larında görünür.
+- Shared semantic detail surfaces: Topic, Skill, planner explanation, assessment report, Technical English profile, learning history. Aynı Skill için Learn/Progress altında farklı truth kopyaları üretilmez.
+- Task Runner ve assessment session focused flow'dur; shell'den ayrılabilir fakat safe pause/exit ve deterministic semantic return gerekir.
+- UI hierarchy prerequisite truth değildir; planner reason PDT-v0 trace'ten, English profile TEPM-v0'dan, mastery GRE/RVR pipeline'ından türetilir.
+- Progress career %, elapsed time, streak, task completion veya numeric/general CEFR'i primary mastery truth olarak kullanamaz.
+- Compact/expanded navigation component'i 8A'da kilitlenmedi; semantic destination identity/order window size ile değişmez.
+- Final visual hierarchy 8B–8G'ye, implementation 9–10'a bırakıldı.
+- Independent validator: 49/49 PASS; 4 primary destination / 6 shared detail / 2 focused flow / 17 information object / 7 research source.
+
+Ayrıntı: `docs/INFORMATION_ARCHITECTURE_SPEC.md`.

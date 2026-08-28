@@ -113,8 +113,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 8 — UX ve Ekranlar
-- [ ] **8A — Bilgi mimarisi** **AKTİF**
-- [ ] **8B — Ana ekran**
+- [x] **8A — Bilgi mimarisi** — `UXIA-v0 / D-068`
+- [ ] **8B — Ana ekran** **AKTİF**
 - [ ] **8C — Günlük çalışma akışı**
 - [ ] **8D — Sınav UX**
 - [ ] **8E — Skill/progress/weakness UX**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`  
-**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
-**Aktif:** **`8A — Bilgi mimarisi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A`  
+**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
+**Aktif:** **`8B — Ana ekran`** — active-not-executed
 
-AŞAMA 7 tamamen tamamlandı: EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0. English mastery truth exact GRE/RVR-backed Skill/Objective state'tir; CEFR yalnız qualified Technical English profile metadata/summary'dir.
+8A `UXIA-v0` ile Today/Learn/Progress/Profile semantic shell'i, shared detail surfaces ve focused task/assessment flows kilitlendi; UI hierarchy canonical mastery/prerequisite truth yerine geçmez.
 
-8A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+8B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

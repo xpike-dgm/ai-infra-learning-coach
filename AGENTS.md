@@ -48,11 +48,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 7D: ✅ `TEIP-v0 / D-066` tamamlandı — 4 construct-aware integration mode; component attribution; bidirectional contamination + reversible scaffold guards.
 - 7E: ✅ `TEPM-v0 / D-067` tamamlandı — 8 derived Skill presentation state; qualified A1/A2/B1 Technical English profile; B2+ per-capability evidence; no general-English/official CEFR/numeric aggregate overclaim.
 - **AŞAMA 7 tamamen tamamlandı.**
-- **Aktif adım: 8A — Bilgi mimarisi.**
-- **8A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 8B–20 bekliyor.
+- 8A: ✅ `UXIA-v0 / D-068` tamamlandı — Today/Learn/Progress/Profile semantic information architecture; shared detail/focused-flow ownership; 49/49 QA PASS.
+- **Aktif adım: 8B — Ana ekran.**
+- **8B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 8C–20 bekliyor.
 
-**8A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**8B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

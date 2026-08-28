@@ -341,8 +341,19 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ---
 
 # AŞAMA 8 — UX ve Ekranlar
-### [ ] 8A — Bilgi mimarisi — **AKTİF**
-### [ ] 8B — Ana ekran
+### [x] 8A — Bilgi mimarisi — UXIA-v0 / D-068
+**Final:** `docs/INFORMATION_ARCHITECTURE_SPEC.md` + `ux/8a_information_architecture/`
+
+- 4 top-level semantic destinations: Today / Learn / Progress / Profile,
+- Today normal start destination,
+- shared entity/detail surfaces + focused task/assessment flows,
+- Assessment/English/AI/remediation are contextual, not top-level silos,
+- exact Skill state + PDT explanation + TEPM profile truth ownership preserved,
+- no time/streak/task-completion/general-CEFR progress overclaim,
+- adaptive navigation semantics stable; concrete component/visual layout deferred,
+- independent 8A QA 49/49 PASS.
+
+### [ ] 8B — Ana ekran — **AKTİF**
 ### [ ] 8C — Günlük çalışma akışı
 ### [ ] 8D — Sınav UX
 ### [ ] 8E — Skill/progress/weakness UX
@@ -501,14 +512,10 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`  
-**Son tamamlanan:** **`7E — TEPM-v0 / D-067`**  
-**Aktif:** **`8A — Bilgi mimarisi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A`  
+**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
+**Aktif:** **`8B — Ana ekran`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8A fresh PRE-STEP → accepted product/learning/planner/assessment/curriculum/English contracts üzerinden UX information architecture → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8B fresh PRE-STEP → UXIA-v0 Today ownership + accepted planner/capacity/explainability contracts üzerinden home/Today content hierarchy → independent QA → D-050 POST sync + stale audit.**
 
-- D-063: 7A final `EED-v0`.
-- D-064: 7B final `TECP-v0`.
-- D-065: 7C final `DECP-v0`.
-- D-066: 7D final `TEIP-v0`.
-- D-067: 7E final `TEPM-v0`; Stage 7 complete.
+- D-068: 8A final `UXIA-v0`.

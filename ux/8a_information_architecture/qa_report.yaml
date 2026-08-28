@@ -1,0 +1,172 @@
+stage_step: 8A
+model: UXIA-v0
+candidate_decision: D-068
+result: PASS
+status_observed: accepted_8a
+counts:
+  checks: 49
+  failures: 0
+  top_level_destinations: 4
+  shared_detail_surfaces: 6
+  focused_flows: 2
+  information_objects: 17
+  research_sources: 7
+checks:
+- check: E8A-00_required_file
+  result: PASS
+  details: ux/8a_information_architecture/ia.yaml
+- check: E8A-00_required_file
+  result: PASS
+  details: docs/INFORMATION_ARCHITECTURE_SPEC.md
+- check: E8A-00_required_file
+  result: PASS
+  details: research/8a_information_architecture_research.md
+- check: E8A-01_identity
+  result: PASS
+  details: model=UXIA-v0 step=8A
+- check: E8A-01_status
+  result: PASS
+  details: status=accepted_8a
+- check: E8A-01_decision
+  result: PASS
+  details: decision=D-068
+- check: E8A-02_primary_count
+  result: PASS
+  details: count=4
+- check: E8A-02_primary_exact_order
+  result: PASS
+  details: order=['today', 'learn', 'progress', 'profile']
+- check: E8A-02_start_today
+  result: PASS
+  details: start=today
+- check: E8A-02_unique_primary
+  result: PASS
+  details: ids=['today', 'learn', 'progress', 'profile']
+- check: E8A-03_forbidden_not_primary
+  result: PASS
+  details: intersection=[]
+- check: E8A-03_forbidden_policy_complete
+  result: PASS
+  details: missing=[]
+- check: E8A-04_shell_roots
+  result: PASS
+  details: roots=['today_overview', 'learn_overview', 'progress_overview', 'profile_overview']
+- check: E8A-04_shell_owner_exact
+  result: PASS
+  details: owners=['learn', 'profile', 'progress', 'today']
+- check: E8A-05_shared_required
+  result: PASS
+  details: missing=[]
+- check: E8A-05_shared_unique
+  result: PASS
+  details: ids=['topic_detail', 'skill_detail', 'planner_explanation', 'assessment_report',
+    'technical_english_profile', 'learning_history']
+- check: E8A-05_single_skill_detail
+  result: PASS
+  details: rows=1
+- check: E8A-05_planner_trace_owner
+  result: PASS
+  details: source=PDT-v0
+- check: E8A-05_english_profile_owner
+  result: PASS
+  details: source=TEPM-v0
+- check: E8A-05_assessment_not_truth
+  result: PASS
+  details: assessment report cannot own mastery
+- check: E8A-06_focus_flows
+  result: PASS
+  details: flows=['assessment_session_flow', 'task_runner_flow']
+- check: E8A-06_safe_exit
+  result: PASS
+  details: all focused flows require safe pause/exit
+- check: E8A-06_future_owners
+  result: PASS
+  details: 'owners={''task_runner_flow'': ''8C'', ''assessment_session_flow'': ''8D''}'
+- check: E8A-07_setup_boundary
+  result: PASS
+  details: 'setup=[{''id'': ''initial_setup_flow'', ''pre_shell'': True, ''minimum_local_setup_then'':
+    ''today'', ''mandatory_diagnostic_invented_by_ia'': False}]'
+- check: E8A-08_information_coverage
+  result: PASS
+  details: missing=[]
+- check: E8A-08_plan_today
+  result: PASS
+  details: plan/next task owned by Today
+- check: E8A-08_curriculum_learn
+  result: PASS
+  details: curriculum owned by Learn
+- check: E8A-08_progress_states
+  result: PASS
+  details: state/history owned by Progress
+- check: E8A-08_profile_ops
+  result: PASS
+  details: operation settings owned by Profile
+- check: E8A-09_invariant_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8A-09_single_skill_truth
+  result: PASS
+  details: shared skill detail invariant
+- check: E8A-10_progress_guards
+  result: PASS
+  details: missing=[]
+- check: E8A-10_state_distinctions
+  result: PASS
+  details: missing=[]
+- check: E8A-11_assessment_pipeline
+  result: PASS
+  details: pipeline=['assessment_session', 'attempt_artifact', 'validity_attribution_evidence',
+    'canonical_state_update', 'planner_replan', 'report_explanation']
+- check: E8A-11_no_gradebook_shortcut
+  result: PASS
+  details: assessment remains contextual workflow
+- check: E8A-12_english_contexts
+  result: PASS
+  details: contexts=['learn', 'progress', 'today']
+- check: E8A-12_english_no_silo
+  result: PASS
+  details: English integrated without overclaim
+- check: E8A-13_cross_cutting_states
+  result: PASS
+  details: states=['ai_unavailable_core_available', 'data_recovery_required', 'empty_valid',
+    'error_recoverable', 'loading', 'offline_local_available']
+- check: E8A-14_deeplink_revalidation
+  result: PASS
+  details: stale external entries are revalidated
+- check: E8A-15_adaptive_semantic_order
+  result: PASS
+  details: order=['today', 'learn', 'progress', 'profile']
+- check: E8A-15_component_deferred
+  result: PASS
+  details: component implementation deferred, semantics stable
+- check: E8A-16_accessibility_baseline
+  result: PASS
+  details: 'values={''stable_destination_ids'': True, ''stable_relative_order'': True,
+    ''same_function_consistent_semantic_label'': True, ''critical_state_not_color_only'':
+    True, ''critical_state_not_icon_only'': True, ''focused_flow_safe_exit'': True}'
+- check: E8A-17_8b_8g_boundaries
+  result: PASS
+  details: keys=['8B', '8C', '8D', '8E', '8F', '8G', '9A', '9C', 10, 16, 17, 18]
+- check: E8A-17_no_premature_lock
+  result: PASS
+  details: later-stage boundaries preserved
+- check: E8A-18_route_reachability
+  result: PASS
+  details: unreachable=[]
+- check: E8A-19_truth_owners
+  result: PASS
+  details: 'owners={''mastery'': ''GRE-v0'', ''retention'': ''RVR-v0'', ''prerequisite'':
+    ''PRG-v0'', ''planner_priority'': ''PBR-v0'', ''planner_explanation'': ''PDT-v0'',
+    ''diagnostic_waiver'': ''VDW-v0'', ''weakness_remediation'': ''WLRM-v0'', ''curriculum_identity'':
+    ''KGC-v0'', ''english_progression'': ''TECP-v0'', ''english_daily'': ''DECP-v0'',
+    ''english_integration'': ''TEIP-v0'', ''english_profile'': ''TEPM-v0''}'
+- check: E8A-20_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8A-21_research_authoritative
+  result: PASS
+  details: missing=[]
+- check: E8A-21_research_no_visual_overreach
+  result: PASS
+  details: research does not invent visual precision
+failures: []
