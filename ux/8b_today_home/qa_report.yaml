@@ -1,0 +1,307 @@
+stage_step: 8B
+model: THUX-v0
+candidate_decision: D-069
+result: PASS
+status_observed: candidate_8b
+checks_total: 90
+checks_passed: 90
+checks_failed: 0
+content_regions: 5
+semantic_states: 12
+forbidden_home_patterns: 11
+checks:
+- check: E8B-00_required_file
+  result: PASS
+  details: ux/8b_today_home/home.yaml
+- check: E8B-00_required_file
+  result: PASS
+  details: docs/TODAY_HOME_SCREEN_SPEC.md
+- check: E8B-00_required_file
+  result: PASS
+  details: research/8b_today_home_research.md
+- check: E8B-00_required_file
+  result: PASS
+  details: ux/8a_information_architecture/ia.yaml
+- check: E8B-01_identity
+  result: PASS
+  details: model=THUX-v0 step=8B
+- check: E8B-01_status
+  result: PASS
+  details: status=candidate_8b
+- check: E8B-01_decision
+  result: PASS
+  details: decision=D-069
+- check: E8B-01_parent
+  result: PASS
+  details: parent=UXIA-v0
+- check: E8B-01_today_root
+  result: PASS
+  details: root=today
+- check: E8B-02_semantic_only
+  result: PASS
+  details: 8B remains semantic home contract
+- check: E8B-02_no_premature_lock
+  result: PASS
+  details: violations=[]
+- check: E8B-02_no_fake_geometry
+  result: PASS
+  details: fixed cards/pixels remain deferred
+- check: E8B-03_truth_owners
+  result: PASS
+  details: 'owners={''current_plan'': ''planner'', ''mastery'': ''GRE-v0'', ''retention'':
+    ''RVR-v0'', ''prerequisite'': ''PRG-v0'', ''priority'': ''PBR-v0'', ''planner_explanation'':
+    ''PDT-v0'', ''weakness_remediation'': ''WLRM-v0'', ''assessment_evidence'': ''DMA_WBA_MCA_pipeline'',
+    ''english_daily'': ''DECP-v0'', ''english_integration'': ''TEIP-v0'', ''english_profile'':
+    ''TEPM-v0''}'
+- check: E8B-04_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8B-04_capacity_override
+  result: PASS
+  details: Today override / Profile persistent ownership
+- check: E8B-05_hierarchy_exact
+  result: PASS
+  details: hierarchy=['primary_action', 'day_plan_context', 'remaining_plan', 'attention_context',
+    'supporting_navigation']
+- check: E8B-05_primary_highest
+  result: PASS
+  details: 'primary={''id'': ''primary_action'', ''order'': 1, ''prominence'': ''highest'',
+    ''always_or_stateful'': ''stateful'', ''primary_goal'': ''act_now''}'
+- check: E8B-05_attention_conditional
+  result: PASS
+  details: attention conditional
+- check: E8B-05_support_progressive
+  result: PASS
+  details: 'support={''id'': ''supporting_navigation'', ''order'': 5, ''prominence'':
+    ''low'', ''always_or_stateful'': ''progressive_disclosure'', ''primary_goal'':
+    ''reach_detail_without_blocking_action''}'
+- check: E8B-06_primary_semantics
+  result: PASS
+  details: missing=[]
+- check: E8B-06_primary_forbidden
+  result: PASS
+  details: missing=[]
+- check: E8B-07_precedence
+  result: PASS
+  details: precedence=['data_recovery_required', 'valid_resumable_focused_session',
+    'selected_next_planned_task', 'plan_loading_or_replanning', 'valid_empty_or_capacity_limited_state',
+    'recoverable_error']
+- check: E8B-07_resume_revalidate
+  result: PASS
+  details: resume is revalidated
+- check: E8B-07_no_stale_action
+  result: PASS
+  details: replan does not expose stale action
+- check: E8B-07_degraded_not_supersede
+  result: PASS
+  details: offline/AI degraded remain contextual
+- check: E8B-07_recovery_supersedes
+  result: PASS
+  details: data integrity may supersede normal plan
+- check: E8B-08_capacity_owner
+  result: PASS
+  details: source=D-033
+- check: E8B-08_capacity_guards
+  result: PASS
+  details: missing=[]
+- check: E8B-08_estimate_truth
+  result: PASS
+  details: duration remains estimate; reserve not fake UI precision
+- check: E8B-08_today_override_replan
+  result: PASS
+  details: today override triggers replan
+- check: E8B-08_profile_persistent_owner
+  result: PASS
+  details: home=profile
+- check: E8B-08_capacity_change_no_failure
+  result: PASS
+  details: capacity changes do not invent failure/task count
+- check: E8B-09_queue_entity
+  result: PASS
+  details: source=PlannedTask
+- check: E8B-09_no_backlog_leak
+  result: PASS
+  details: queue is current selected plan only
+- check: E8B-09_not_prereq_order
+  result: PASS
+  details: list order is not prerequisite truth
+- check: E8B-09_blocked_not_actionable
+  result: PASS
+  details: blocked work cannot start
+- check: E8B-09_replan_replaces_rows
+  result: PASS
+  details: queue tracks current plan
+- check: E8B-09_history_progress
+  result: PASS
+  details: history_owner=progress
+- check: E8B-10_row_separation
+  result: PASS
+  details: purpose/activity/track remain separate
+- check: E8B-10_row_duration_guard
+  result: PASS
+  details: duration not mastery
+- check: E8B-10_row_completion_guard
+  result: PASS
+  details: local completion cannot infer Skill state
+- check: E8B-10_dispositions
+  result: PASS
+  details: dispositions=['current', 'upcoming', 'paused']
+- check: E8B-11_reason_owner
+  result: PASS
+  details: source=PDT-v0
+- check: E8B-11_reason_bounded
+  result: PASS
+  details: overview reason is bounded
+- check: E8B-11_reason_no_cot_ai_truth
+  result: PASS
+  details: no CoT/free-form truth
+- check: E8B-11_plan_change_trace
+  result: PASS
+  details: plan change explanation trace-backed
+- check: E8B-12_attention_families
+  result: PASS
+  details: families=['plan_changed', 'verification_attention', 'remediation_attention',
+    'prerequisite_blocker', 'retention_attention', 'assessment_attention', 'recovery_attention']
+- check: E8B-12_attention_not_priority
+  result: PASS
+  details: attention cannot rescore
+- check: E8B-12_no_duplicate_cta
+  result: PASS
+  details: no duplicate competing CTA
+- check: E8B-13_support_not_block
+  result: PASS
+  details: details optional before action
+- check: E8B-13_support_routes
+  result: PASS
+  details: routes=['planner_explanation', 'skill_detail', 'topic_detail', 'progress',
+    'profile_capacity_settings']
+- check: E8B-14_assessment_contextual
+  result: PASS
+  details: assessment remains contextual
+- check: E8B-14_assessment_purpose_guard
+  result: PASS
+  details: UI form does not define purpose
+- check: E8B-14_assessment_mastery_guard
+  result: PASS
+  details: score not mastery; report belongs Progress
+- check: E8B-14_assessment_owner_8d
+  result: PASS
+  details: owner=8D
+- check: E8B-15_english_common_capacity
+  result: PASS
+  details: English contextual/common capacity
+- check: E8B-15_english_no_quota
+  result: PASS
+  details: no quota/streak/debt
+- check: E8B-15_track_not_purpose
+  result: PASS
+  details: track/purpose separation
+- check: E8B-15_cefr_guard
+  result: PASS
+  details: no general CEFR; profile under Progress
+- check: E8B-16_return_pipeline
+  result: PASS
+  details: pipeline=['attempt_or_artifact', 'evidence_validation_and_attribution',
+    'canonical_state_update_if_warranted', 'planner_replan_if_warranted', 'render_current_today_plan']
+- check: E8B-16_stale_plan_guard
+  result: PASS
+  details: render current post-attempt plan
+- check: E8B-16_completion_guard
+  result: PASS
+  details: completion does not fabricate mastery
+- check: E8B-16_state_claim_guard
+  result: PASS
+  details: state wording requires canonical change
+- check: E8B-17_missed_day_owner
+  result: PASS
+  details: SRR fresh plan
+- check: E8B-17_no_missed_debt
+  result: PASS
+  details: no missed-day debt
+- check: E8B-17_forbidden_framing
+  result: PASS
+  details: framing=['overdue_tasks_from_yesterday', 'catch_up_missed_day', 'streak_loss_punishment']
+- check: E8B-18_states
+  result: PASS
+  details: states=['ai_unavailable_core_available', 'capacity_too_small_no_candidate',
+    'capacity_zero', 'data_recovery_required', 'empty_no_eligible_task', 'empty_no_open_need',
+    'error_recoverable', 'loading_initial_plan', 'offline_local_available', 'ready_plan',
+    'replanning', 'resumable_session']
+- check: E8B-18_empty_distinctions
+  result: PASS
+  details: empty-state structure present
+- check: E8B-18_empty_truth
+  result: PASS
+  details: no task does not overclaim mastery/readiness
+- check: E8B-18_empty_causes_in_spec
+  result: PASS
+  details: required=['capacity_too_small', 'loading', 'no_capacity', 'no_eligible_task',
+    'no_open_need', 'recoverable_error']
+- check: E8B-19_small_capacity
+  result: PASS
+  details: small capacity has no failure/debt
+- check: E8B-19_micro_task
+  result: PASS
+  details: valid tiny task may be selected
+- check: E8B-20_offline_core
+  result: PASS
+  details: offline local core remains usable
+- check: E8B-20_ai_core
+  result: PASS
+  details: AI unavailable cannot erase/improvise core
+- check: E8B-20_recovery
+  result: PASS
+  details: safe recovery without reset
+- check: E8B-21_disclosure_guards
+  result: PASS
+  details: missing=[]
+- check: E8B-21_no_fixed_rows
+  result: PASS
+  details: no fixed row count
+- check: E8B-22_responsive_primary
+  result: PASS
+  details: responsive semantics stable
+- check: E8B-22_geometry_deferred
+  result: PASS
+  details: geometry deferred
+- check: E8B-22_attention_integrity
+  result: PASS
+  details: only integrity/recovery may overtake action
+- check: E8B-23_accessibility_semantics
+  result: PASS
+  details: 'values={''primary_action_textual_accessible_name'': True, ''critical_state_not_color_only'':
+    True, ''reason_attention_text_semantics'': True, ''loading_replan_recovery_announcable'':
+    True, ''linear_traversal_semantic_order'': True, ''duration_not_only_task_identifier'':
+    True}'
+- check: E8B-24_forbidden_patterns
+  result: PASS
+  details: forbidden=['ai_chat_home', 'assessment_gradebook', 'broad_numeric_domain_mastery',
+    'calendar_backlog_debt_tracker', 'career_completion_dashboard', 'daily_english_quota_tracker',
+    'duplicate_progress_screen', 'fixed_category_percentage_dashboard', 'permanently_blocked_task_list',
+    'raw_planner_debug_console', 'streak_dashboard']
+- check: E8B-25_future_boundaries
+  result: PASS
+  details: missing=[]
+- check: E8B-26_qa_required
+  result: PASS
+  details: independent QA required
+- check: E8B-26_regressions
+  result: PASS
+  details: Stage 6/7/8A regressions required
+- check: E8B-27_parent_today_ownership
+  result: PASS
+  details: today_info=['current_plan', 'next_task', 'current_capacity_context', 'attention_items',
+    'planner_reason_entry']
+- check: E8B-27_parent_start_today
+  result: PASS
+  details: start=today
+- check: E8B-27_parent_flow_owners
+  result: PASS
+  details: 8C/8D ownership preserved
+- check: E8B-28_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8B-29_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []
