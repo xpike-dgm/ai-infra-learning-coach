@@ -1,0 +1,464 @@
+model: SPWX-v0
+stage_step: 8E
+status: accepted_8e
+decision: D-072
+parent_ia: UXIA-v0
+purpose: progress_domain_state_labels_weakness_and_reporting_semantics
+
+scope:
+  semantic_presentation_only: true
+  final_visual_design_locked: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  mastery_algorithm_changed: false
+  retention_algorithm_changed: false
+  prerequisite_rule_changed: false
+  weakness_rule_changed: false
+  assessment_policy_changed: false
+  tepm_contract_changed: false
+  topic_internal_state_ids_changed: false
+  mastery_percentage: null
+  competence_ratio: null
+  career_completion_bar: null
+  streak_calendar: null
+  fixed_pixel_geometry: null
+
+progress_question: What have I actually demonstrated and what needs attention?
+owning_ia_destination: progress
+
+owned_surfaces:
+  - progress_overview
+  - skill_detail
+  - topic_detail
+  - technical_english_profile
+  - learning_history
+  - assessment_report
+
+canonical_truth_owners:
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  topic_orchestration: TSM-v0
+  weakness_remediation: WLRM-v0
+  english_profile_semantics: TEPM-v0
+  assessment_evidence: DMA_WBA_MCA_pipeline
+  assessment_session_interior: ASUX-v0
+  planner_explanation: PDT-v0
+  planner_priority: PBR-v0
+  focused_flow_frame: TRUX-v0
+
+invariants:
+  progress_is_mastery_engine: false
+  progress_is_second_planner: false
+  progress_is_gradebook: false
+  progress_creates_planner_priority: false
+  mastery_percentage_shown: false
+  competence_ratio_shown: false
+  confirmed_over_total_ratio_shown: false
+  career_completion_percentage_shown: false
+  broad_domain_score_shown: false
+  mastery_gauge_level_or_rank_shown: false
+  internal_mastery_heuristic_value_exposed: false
+  streak_calendar_shown: false
+  attendance_rendered_as_achievement: false
+  contribution_graph_shown: false
+  timeline_gap_marked_as_failure: false
+  ninth_primary_presentation_state_added: false
+  at_risk_is_primary_state: false
+  at_risk_dropped: false
+  primary_state_replaces_axes: false
+  contradicting_axis_discarded: false
+  topic_state_is_prerequisite_claim: false
+  topic_percentage_shown: false
+  topic_state_is_average_of_skills: false
+  browse_placement_implies_prerequisite: false
+  hypothesis_shown_as_deficiency: false
+  ai_hypothesis_shown_as_confirmed: false
+  weakness_broadcast_upward: false
+  weakness_broadcast_downward: false
+  remediation_task_completion_closes_remediation: false
+  review_due_styled_as_decay: false
+  review_due_demotes_confirmed_state: false
+  verification_due_deletes_history: false
+  verification_due_is_demotion_event: false
+  at_risk_derived_from_elapsed_time_alone: false
+  assessment_report_owns_mastery: false
+  assessment_report_aggregates_sessions_into_score: false
+  assessment_report_shows_competence_trend_line: false
+  not_reliably_measured_folded_into_failure: false
+  provisional_presented_as_settled: false
+  general_or_official_cefr_claim: false
+  numeric_english_aggregate: false
+  aggregate_b2_plus_complete_claim: false
+  english_presented_as_technical_gate: false
+  duplicate_skill_truth_contradicting_learn: false
+  empty_state_implies_all_mastered: false
+  empty_state_implies_professional_ready: false
+  stale_projection_presented_as_current: false
+  ai_required_to_render_state: false
+  offline_shows_missing_remote_data_as_zero: false
+  silent_progress_reset: false
+  exactly_eight_presentation_states: true
+  presentation_projection_deterministic: true
+  axes_individually_inspectable_in_skill_detail: true
+  counts_allowed_as_labelled_inventory: true
+  same_skill_truth_from_learn_and_progress: true
+
+skill_presentation:
+  generalized_from: TEPM-v0
+  applies_to_all_skills: true
+  second_vocabulary_for_technical_skills: false
+  states:
+    - not_yet_evidenced
+    - developing_with_support
+    - developing_independent
+    - confirmed_current
+    - confirmed_review_due
+    - confirmation_verification_due
+    - remediation_required
+    - prerequisite_unresolved
+  precedence:
+    - remediation_required
+    - confirmation_verification_due
+    - confirmed_review_due
+    - confirmed_current
+    - prerequisite_unresolved
+    - developing_independent
+    - developing_with_support
+    - not_yet_evidenced
+  labels_tr:
+    not_yet_evidenced: Henüz Kanıt Yok
+    developing_with_support: Destekle Gelişiyor
+    developing_independent: Bağımsız Gelişiyor
+    confirmed_current: Doğrulanmış
+    confirmed_review_due: Doğrulanmış · Tekrar Zamanı
+    confirmation_verification_due: Doğrulanmış · Yeniden Kontrol Gerekli
+    remediation_required: Pekiştirme Gerekli
+    prerequisite_unresolved: Ön Koşul Bekliyor
+  internal_ids_fixed: true
+  microcopy_may_refine_if_semantics_preserved: true
+
+multi_axis_presentation:
+  projection_fields:
+    - primary_presentation_state
+    - mastery_axis_state
+    - retention_axis_state
+    - prerequisite_axis_state
+    - weakness_axis_state
+    - attention_qualifiers
+    - contributing_evidence_summary_ref
+  primary_state_orders_axes: true
+  primary_state_replaces_axes: false
+  list_surface_may_show_primary_only: true
+  primary_state_claimed_as_whole_truth: false
+  attention_qualifiers:
+    - retention_at_risk
+    - requires_independent_recheck
+    - contested_evidence_present
+    - provisional_evaluation_present
+  at_risk_handling:
+    is_primary_state: false
+    is_attention_qualifier: true
+    silently_dropped: false
+    explained_as_mixed_or_repeated_signal: true
+    explained_as_elapsed_time: false
+
+topic_presentation:
+  source_contract: TSM-v0
+  internal_states:
+    - locked
+    - available
+    - learning
+    - mastered
+    - weakening
+    - remediation_required
+  labels_tr:
+    locked: Kilitli
+    available: Hazır
+    learning: Öğreniliyor
+    mastered: Öğrenildi
+    weakening: Tekrar Gerekebilir
+    remediation_required: Pekiştirme Gerekli
+  internal_ids_changed: false
+  state_is_derived_orchestration: true
+  state_is_prerequisite_claim: false
+  state_is_average_of_skills: false
+  percentage_shown: false
+  locked_reason_reachable: true
+  locked_is_permanent_verdict: false
+
+progress_overview:
+  halves:
+    - demonstrated_capability_inventory
+    - attention_set
+  inventory_counts_allowed: true
+  inventory_counts_labelled_as_inventory: true
+  inventory_ratio_or_percentage: false
+  attention_reasons:
+    - remediation_open
+    - verification_due
+    - review_due
+    - retention_at_risk
+    - prerequisite_blocked
+    - assessment_opportunity
+  attention_is_backlog_or_debt: false
+  attention_is_todo_count: false
+  creates_planner_priority: false
+  forbidden_overview_shapes:
+    - career_completion_percentage
+    - broad_domain_score
+    - mastery_gauge_level_or_rank
+    - streak_or_attendance_dashboard
+    - second_planner_start_now_surface
+    - assessment_gradebook
+
+skill_detail:
+  shared_surface: true
+  reachable_from:
+    - today
+    - learn
+    - progress
+  semantic_fields:
+    - skill_ref
+    - display_name
+    - primary_presentation_state
+    - attention_qualifiers
+    - mastery_axis_state
+    - retention_axis_state
+    - prerequisite_axis_state
+    - weakness_axis_state
+    - objective_level_breakdown
+    - evidence_summary
+    - evidence_history_entry
+    - prerequisite_context
+    - remediation_context_optional
+    - related_topic_placements
+    - planner_explanation_entry
+    - integration_or_english_context_optional
+  objective_level_gap_hidden_by_skill_state: false
+  evidence_summary_distinguishes:
+    - independent
+    - assisted
+    - provisional
+    - invalid
+  evidence_kinds_merged_into_one_count: false
+  prerequisite_context_links_blocking_skill: true
+  same_truth_from_learn_and_progress: true
+  exposes_mastery_percentage_or_confidence_number: false
+
+topic_detail:
+  shows_topic_state_and_skill_structure: true
+  creates_mastery_truth: false
+  creates_prerequisite_truth: false
+  creates_evidence_truth: false
+  skills_link_to_shared_skill_detail: true
+  structural_placement_rendered_as_dependency_chain: false
+  completion_percentage: false
+
+weakness_presentation:
+  source_contract: WLRM-v0
+  lifecycle:
+    - none
+    - hypothesis
+    - supported
+    - confirmed
+    - resolved
+  display_rules:
+    hypothesis: open_question_at_most
+    supported: localized_weakness_signal
+    confirmed: localized_confirmed_weakness
+    resolved: history_not_current_problem
+  hypothesis_shown_as_deficiency: false
+  ai_hypothesis_shown_as_confirmed: false
+  localization_preserved: true
+  broadcast_upward_to_domain: false
+  broadcast_downward_to_dependents: false
+  closure_requires_canonical_evidence: true
+  closure_evidence_properties:
+    - fresh
+    - context_diverse
+    - h0_independent
+    - direct
+    - verified
+    - prerequisite_valid
+  task_completion_closes_remediation: false
+  framing_describes_located_gap_not_the_user: true
+  uses_failure_language: false
+  ranks_the_user: false
+
+technical_english_profile:
+  source_contract: TEPM-v0
+  presents_qualified_base_band: true
+  base_bands:
+    - A1
+    - A2
+    - B1
+  uneven_per_skill_detail_first_class: true
+  flattened_single_level: false
+  b2_plus_bounded_per_capability_extension: true
+  historical_confirmed_band_provenance_retained: true
+  uses_same_eight_presentation_states: true
+  second_state_model_for_english: false
+  general_or_official_cefr_claim: false
+  certification_claim: false
+  numeric_aggregate_or_average: false
+  aggregate_b2_plus_complete_claim: false
+  presented_as_technical_gate: false
+
+learning_history:
+  records_meaningful_events: true
+  event_families:
+    - learning
+    - assessment
+    - review
+    - remediation
+  records_what_changed: true
+  is_streak_calendar: false
+  is_contribution_graph: false
+  is_attendance_heatmap: false
+  attendance_rendered_as_achievement: false
+  consecutive_day_count_as_success_metric: false
+  gap_marked_as_failure_or_missed_obligation: false
+  entries_link_to_subject: true
+
+assessment_report:
+  handed_over_by: ASUX-v0
+  scope: longitudinal_across_sessions
+  in_session_view_owner: 8D
+  semantic_families:
+    - confirmed_capabilities
+    - verification_needed
+    - persistent_targeted_gaps
+    - retention_revalidated
+    - not_reliably_measured
+    - plan_changes
+  owns_mastery: false
+  aggregates_sessions_into_score: false
+  aggregates_sessions_into_grade: false
+  shows_competence_trend_line: false
+  not_reliably_measured_first_class: true
+  not_reliably_measured_folded_into_failure: false
+  provisional_labelled: true
+  contradicts_in_session_view: false
+
+counting_rules:
+  counts_allowed: true
+  counts_must_be_labelled_inventory: true
+  count_divided_by_total_to_imply_competence: false
+  progress_bar_toward_mastery_or_career: false
+  allowed_examples:
+    - skills_confirmed_count
+    - objectives_awaiting_remediation_count
+  forbidden_examples:
+    - percent_complete
+    - domain_percentage_score
+    - numeric_level
+    - confirmed_over_total_ratio
+
+review_verification_framing:
+  review_due_is_neutral_scheduled_opportunity: true
+  review_due_means_forgotten: false
+  review_due_demotes_confirmed_state: false
+  review_due_styled_as_decay_or_error: false
+  verification_due_states_current_uncertainty: true
+  verification_due_deletes_confirmed_history: false
+  verification_due_is_demotion_event: false
+  at_risk_explained_as_mixed_or_repeated_signal: true
+  at_risk_explained_as_elapsed_time: false
+  visual_severity_beyond_canonical_state: false
+
+degraded_and_recovery:
+  offline:
+    locally_derived_state_viewable: true
+    remote_dependent_labelled_unavailable: true
+    remote_dependent_shown_as_zero_or_empty: false
+  ai_unavailable:
+    progress_fully_usable: true
+    ai_required_to_render_state: false
+    unevaluated_attempts_shown_pending: true
+    unevaluated_attempts_contribute_state: false
+  recomputing:
+    stale_projection_presented_as_current: false
+    recomputation_state_visible: true
+  data_recovery:
+    supersedes_normal_presentation: true
+    silent_progress_reset: false
+
+semantic_states:
+  - loading_projection
+  - recomputing_projection
+  - ready_with_evidence
+  - empty_no_evidence_yet
+  - empty_no_attention_needed
+  - partial_projection_available
+  - offline_local_capable
+  - ai_unavailable_full_state_available
+  - error_recoverable
+  - data_recovery_required
+
+empty_state_semantics:
+  empty_no_evidence_yet_is_failure: false
+  empty_no_attention_needed_implies_all_mastered: false
+  empty_no_attention_needed_implies_professional_ready: false
+
+state_distinguishable_in_text: true
+state_distinguishable_by_color_or_motion_only: false
+
+accessibility_baseline:
+  every_presentation_state_has_accessible_name: true
+  state_conveyed_by_color_alone: false
+  attention_qualifiers_in_text: true
+  inventory_counts_readable_as_text: true
+  objective_breakdown_reachable_by_linear_traversal: true
+  history_readable_as_list: true
+  review_and_verification_distinguishable_without_hue: true
+
+forbidden_progress_patterns:
+  - mastery_percentage_or_competence_ratio
+  - career_completion_or_readiness_bar
+  - broad_domain_score
+  - level_rank_tier_or_badge_economy
+  - streak_calendar_or_contribution_graph
+  - assessment_gradebook_or_score_trend_line
+  - second_planner
+  - single_badge_replacing_contradicting_axes
+  - ai_hypothesis_shown_as_confirmed_weakness
+  - remediation_task_completion_read_as_fixed
+  - review_due_styled_as_decay_or_failure
+  - topic_label_implying_hard_prerequisite
+  - general_or_official_cefr_claim
+  - duplicate_skill_truth_contradicting_learn
+
+future_stage_boundaries:
+  8F: visual_design_system
+  8G: wireframe_and_prototype_geometry
+  9A: mobile_technology_choice
+  9C: physical_data_model
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  16: analytics_settings_and_notifications
+  17: final_microcopy_and_accessibility_polish
+  18: empirical_usability_and_threshold_calibration
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - TRUX-v0
+    - ASUX-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - TSM-v0
+    - WLRM-v0
+    - TEPM-v0
+    - PDT-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true
+  stage8b_regression_required: true
+  stage8c_regression_required: true
+  stage8d_regression_required: true

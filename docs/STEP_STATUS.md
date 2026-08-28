@@ -37,8 +37,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8B — Ana ekran** | ✅ | THUX-v0 / D-069. Action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics; 90/90 QA PASS. |
 | **8C — Günlük çalışma akışı** | ✅ | TRUX-v0 / D-070. Focused daily working flow + Task Runner choreography + shared focused-flow frame; 123/123 QA PASS. |
 | **8D — Sınav UX** | ✅ | ASUX-v0 / D-071. Tek assessment session interior + atomic boundary submission + semantic result; 107/107 QA PASS. |
-| **8E — Skill/progress/weakness UX** | 🟡 Aktif | Progress domain label/state semantics + assessment_report; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8F–20** | ⬜ Bekliyor | 8E sonrası canonical sırada. |
+| **8E — Skill/progress/weakness UX** | ✅ | SPWX-v0 / D-072. Tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting; 128/128 QA PASS. |
+| **8F — Tasarım sistemi** | 🟡 Aktif | Typography/color/spacing/iconography/motion/component library; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8G–20** | ⬜ Bekliyor | 8F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -57,30 +58,29 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8D
+## Son tamamlanan numaralı adım — 8E
 
-**Final:** `ASUX-v0 — Assessment Session & Result UX` / D-071.  
-**Ana çıktı:** `docs/ASSESSMENT_SESSION_UX_SPEC.md` + `ux/8d_assessment_session/`.
+**Final:** `SPWX-v0 — Progress, Skill State & Weakness UX` / D-072.  
+**Ana çıktı:** `docs/PROGRESS_SKILL_UX_SPEC.md` + `ux/8e_progress_skill_weakness/`.
 
-8D sonucu:
-- assessment session bir evidence-collection workflow'udur; gradebook, score-based mastery authority veya ikinci state engine değildir,
-- üç scope (`daily_micro` / `weekly_blueprint` / `monthly_capability`) için tek interior; scope yalnız displayed context ve ek evidence ağırlığı yok,
-- submission birimi atomic evidence boundary; boundary bölünmez, kesilmez, kısmen puanlanmaz,
-- submitted boundary frozen (revisit/edit/resubmit yok); açık blok içinde unsubmitted boundary'ler serbestçe gezilebilir,
-- skip meşru; `unsubmitted_boundary != incorrect` ve penalty üretmez,
-- `h0_required` varsayılanı ve allowed-tools policy cevap öncesi açıklanır; objective-appropriate tool kullanımı H0'ı bozmaz,
-- assessment içinde yardım engellenmez; H1/H2 assisted, H3/H4 solution-exposed + fresh unseen item; conversion açık ve cezasız; recheck planner-owned,
-- pause failure/assistance/mastery signal değildir; resume'da beş koşullu slot recomposition, completed valid evidence silinmeden,
-- incomplete session partial olabilir; exam debt ve missed-cycle failure yok,
-- item dispute evidence'ı contested tutar, auto-invalidate etmez, undo button değildir ve state'e zarar vermez,
-- provisional her yerde etiketli ve tek başına critical transition belirleyemez; invalid ne kredi ne ceza verir,
-- semantic result 6 family; pass/fail banner, yüzde/harf notu, geçme eşiği, broad domain score ve karşılaştırma yasak,
-- raw count yalnız informational; `not_reliably_measured` first-class ve boş değilse daima gösterilir,
-- state-change iddiası yalnız canonical değişimde; mastered Skill'de ilk contradiction `verification_due`,
-- in-session result view ile Progress-owned `assessment_report` rolleri ayrı; TRUX-v0 frame devralınır; diagnostics `task_runner_flow`'da kalır,
-- 19 semantic state / 15 forbidden anti-pattern,
-- independent validator **107/107 PASS** ve mutation test ile doğrulandı; Stage 6 + Stage 7 + 8A + 8B + 8C + external-memory regressions PASS.
+8E sonucu:
+- Progress canonical evidence state'in projection'ıdır; mastery engine, score, competence yüzdesi, career tracker veya streak dashboard değildir,
+- `TEPM-v0`nin 8 derived presentation state'i ve precedence'ı bütün Skill'lere genelleştirildi; technical Skill'ler için ikinci vokabüler üretilmedi ve TEPM-v0 değişmedi,
+- 8 Türkçe Skill etiketi ve 6 Türkçe Topic etiketi kilitlendi; internal state ID'leri sabit kaldı,
+- `at_risk` attention qualifier'dır; dokuzuncu primary state değildir ve sessizce düşürülmez,
+- multi-axis truth sıralanır fakat çökertilmez; `skill_detail` mastery/retention/prerequisite/weakness eksenlerini ayrı ayrı incelenebilir tutar,
+- Topic state derived orchestration'dır; prerequisite iddiası değildir, Skill ortalaması değildir ve yüzdesi yoktur,
+- progress overview `demonstrated_capability_inventory` + `attention_set` yarılarından oluşur ve planner priority üretmez,
+- Progress sayabilir fakat puanlayamaz; count yalnız etiketli inventory'dir ve competence ima etmek için total'e bölünmez,
+- yalnız `supported` ve `confirmed` weakness gösterilir; AI hypothesis confirmed gibi sunulamaz; localization yukarı/aşağı yayılmaz,
+- `remediation_task_completed != remediation_closed`; closure fresh/H0/direct/verified/prerequisite-valid evidence ister,
+- `technical_english_profile` TEPM-v0 semantiğini değiştirmeden sunar; general/official CEFR, certification ve numeric aggregate yasak,
+- `learning_history` streak calendar/contribution graph değildir; attendance başarı sayılmaz,
+- `assessment_report` longitudinal'dir, mastery sahibi değildir ve session'ları score/grade/trend line hâline getiremez,
+- `review_due` nötr ve non-demoting; `verification_due` history silmez; görsel severity canonical state'i aşamaz,
+- 10 Progress semantic state / 14 forbidden anti-pattern,
+- independent validator **128/128 PASS**; state seti doğrudan TEPM policy, TSM, WLRM ve 8D session.yaml ile çapraz doğrulandı ve mutation test uygulandı. Stage 6 + Stage 7 + 8A + 8B + 8C + 8D + external-memory regressions PASS.
 
-## Aktif adım — 8E Skill/progress/weakness UX
+## Aktif adım — 8F Tasarım sistemi
 
-**8E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -24,7 +24,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 8B Ana ekran: THUX-v0 / D-069 ile tamamlandı; action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics.
 - [x] 8C Günlük çalışma akışı: TRUX-v0 / D-070 ile tamamlandı; execution-surface sınırı + emergent ungraded session + shared focused-flow frame + non-punitive assistance + asked-not-inferred provenance.
 - [x] 8D Sınav UX: ASUX-v0 / D-071 ile tamamlandı; tek session interior + atomic boundary submission + non-punitive assistance + semantic result + first-class `not_reliably_measured`.
-- [ ] 8E Skill/progress/weakness UX **AKTİF**: UXIA-v0 progress/skill_detail/topic_detail/technical_english_profile/learning_history/assessment_report ownership üzerinden exact state label ve görsel semantics.
+- [x] 8E Skill/progress/weakness UX: SPWX-v0 / D-072 ile tamamlandı; tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting + non-punitive weakness sunumu.
+- [ ] 8F Tasarım sistemi **AKTİF**: 8A–8E semantic setini değiştirmeden typography/color/spacing/iconography/motion/component library.
 
 ## Knowledge-base operations
 

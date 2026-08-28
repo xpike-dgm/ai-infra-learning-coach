@@ -44,6 +44,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-058:** SDM-v0 Systems Detailed Map; D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı.
 - **D-070:** TRUX-v0 Task Runner & Daily Working Flow UX; 8C tamamlandı.
 - **D-071:** ASUX-v0 Assessment Session & Result UX; 8D tamamlandı.
+- **D-072:** SPWX-v0 Progress, Skill State & Weakness UX; 8E tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -235,14 +236,15 @@ PEM-v0:
 - 8B ✅ THUX-v0 / D-069
 - 8C ✅ TRUX-v0 / D-070
 - 8D ✅ ASUX-v0 / D-071
-- 8E 🟡 active-not-executed
-- 8F–20 ⬜
+- 8E ✅ SPWX-v0 / D-072
+- 8F 🟡 active-not-executed
+- 8G–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8D — ASUX-v0 / D-071`  
-**Aktif:** `8E — Skill/progress/weakness UX`  
-**8E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8E — SPWX-v0 / D-072`  
+**Aktif:** `8F — Tasarım sistemi`  
+**8F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -462,6 +464,30 @@ ASUX-v0:
 - 19 semantic states / 15 forbidden anti-patterns,
 - independent 8D QA 107/107 PASS, mutation-tested; Stage 6/7/8A/8B/8C regressions + external memory PASS.
 
-## 25. 8E handoff
+## 25. D-072 / 8E final özeti
 
-8E — Skill/progress/weakness UX. UXIA-v0 `progress`, `skill_detail`, `topic_detail`, `technical_english_profile`, `learning_history` ve `assessment_report` ownership'i ile accepted GRE-v0 / RVR-v0 / PRG-v0 / WLRM-v0 / TEPM-v0 contracts üzerinden exact Skill/Topic state label'ları, weakness ve remediation sunumu, Technical English profile yüzeyi, learning history ve longitudinal assessment reporting tasarlanacaktır. Mastery/retention/prerequisite truth ownership dışarıda kalır. 8E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/PROGRESS_SKILL_UX_SPEC.md`.  
+Contract/QA: `ux/8e_progress_skill_weakness/`.  
+Synthesis: `research/8e_progress_skill_weakness_research.md`.
+
+SPWX-v0:
+- Progress is a projection of canonical evidence state, never a mastery engine, score, competence percentage, career tracker or streak dashboard,
+- the `TEPM-v0` eight derived presentation states and precedence are generalized to every Skill; no second vocabulary exists and `TEPM-v0` is unchanged,
+- eight Turkish Skill labels and six Turkish Topic labels are locked with internal state identities untouched,
+- `at_risk` is an attention qualifier, never a ninth primary state and never silently dropped,
+- multi-axis truth is ordered, not collapsed; `skill_detail` keeps mastery, retention, prerequisite and weakness axes individually inspectable,
+- Topic state is derived orchestration, never a prerequisite claim, never a Skill average, with no percentage,
+- progress overview is a demonstrated-capability inventory plus an attention set, and creates no planner priority,
+- Progress may count but may not score; counts are labelled inventory and are never divided by a total,
+- only `supported` and `confirmed` weakness is shown as weakness; an AI hypothesis is never confirmed; localization never broadcasts,
+- `remediation_task_completed != remediation_closed`; closure requires fresh H0 direct verified prerequisite-valid evidence,
+- `technical_english_profile` presents TEPM-v0 unchanged with no general/official CEFR, certification or numeric aggregate,
+- `learning_history` is not a streak calendar and attendance is never achievement,
+- `assessment_report` is longitudinal, owns no mastery and cannot aggregate sessions into a score or competence trend,
+- `review_due` stays neutral and non-demoting; `verification_due` states uncertainty without deleting history,
+- 10 Progress semantic states / 14 forbidden anti-patterns,
+- independent 8E QA 128/128 PASS, cross-validated against the TEPM policy file, TSM, WLRM and the 8D session contract, and mutation-tested; Stage 6/7/8A/8B/8C/8D regressions + external memory PASS.
+
+## 26. 8F handoff
+
+8F — Tasarım sistemi. 8A–8E'de kilitlenen semantic destination, surface, state ve label setini değiştirmeden typography, color, spacing, iconography, motion ve component library tasarlanacaktır. Design system hiçbir IA truth ownership'ini, state semantiğini veya etiket anlamını değiştiremez; özellikle hiçbir görsel treatment canonical state'in iddia etmediği bir severity ima edemez. 8F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

@@ -402,8 +402,26 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 19 semantic state / 15 forbidden session anti-pattern,
 - independent validator **107/107 PASS** (mutation-tested); Stage 6 + Stage 7 + 8A + 8B + 8C + external-memory regressions PASS.
 
-### [ ] 8E — Skill/progress/weakness UX — **AKTİF**
-### [ ] 8F — Tasarım sistemi
+### [x] 8E — Skill/progress/weakness UX — SPWX-v0 / D-072
+
+**8E final coverage:**
+- Progress canonical evidence state'in projection'ıdır; mastery engine/score/gradebook değildir,
+- TEPM-v0'dan genelleştirilen tek 8-state Skill presentation vokabüleri + aynı precedence; ikinci vokabüler yok,
+- `at_risk` attention qualifier'dır; dokuzuncu primary state değildir ve düşürülmez,
+- multi-axis truth sıralanır, çökertilmez; `skill_detail` her ekseni incelenebilir tutar,
+- 6 Topic UI etiketi kilitlendi; internal ID'ler değişmedi; Topic yüzdesi ve prerequisite iddiası yok,
+- progress overview = demonstrated inventory + attention set; planner priority üretmez,
+- Progress sayabilir, puanlayamaz: count yalnız etiketli inventory, total'e bölünmez,
+- yalnız `supported`/`confirmed` weakness gösterilir; AI hypothesis confirmed olamaz; localization korunur,
+- `remediation_task_completed != remediation_closed`; closure canonical evidence ister,
+- TEPM-v0 English profile semantiği değişmeden sunulur; general/official CEFR ve numeric aggregate yasak,
+- learning history streak calendar değildir; attendance başarı değildir,
+- assessment_report longitudinal'dir, mastery sahibi değildir ve session'ları score'a toplayamaz,
+- `review_due` nötr, `verification_due` history silmez, görsel severity canonical state'i aşamaz,
+- 10 semantic state / 14 forbidden Progress anti-pattern,
+- independent validator **128/128 PASS** (TEPM policy + TSM + WLRM + 8D session.yaml çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + 8A–8D + external-memory regressions PASS.
+
+### [ ] 8F — Tasarım sistemi — **AKTİF**
 ### [ ] 8G — Wireframe/prototip
 
 ---
@@ -558,13 +576,14 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8D`  
-**Son tamamlanan:** **`8D — ASUX-v0 / D-071`**  
-**Aktif:** **`8E — Skill/progress/weakness UX`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8E`  
+**Son tamamlanan:** **`8E — SPWX-v0 / D-072`**  
+**Aktif:** **`8F — Tasarım sistemi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8E fresh PRE-STEP → UXIA-v0 `progress` / `skill_detail` / `topic_detail` / `technical_english_profile` / `learning_history` / `assessment_report` ownership + accepted GRE/RVR/PRG/WLRM/TEPM contracts üzerinden exact Skill/progress/weakness label ve görsel state semantics → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8F fresh PRE-STEP → 8A–8E'de kilitlenen semantic destination/state/label setini değiştirmeden typography, color, spacing, iconography, motion ve component library tasarımı → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
 - D-070: 8C final `TRUX-v0`.
 - D-071: 8D final `ASUX-v0`.
+- D-072: 8E final `SPWX-v0`.
