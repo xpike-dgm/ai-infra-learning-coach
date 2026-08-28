@@ -1,0 +1,437 @@
+stage_step: 8D
+model: ASUX-v0
+candidate_decision: D-071
+result: PASS
+status_observed: accepted_8d
+checks_total: 107
+checks_passed: 107
+checks_failed: 0
+assessment_scopes: 3
+result_families: 6
+recomposition_conditions: 5
+semantic_states: 19
+forbidden_session_patterns: 15
+checks:
+- check: E8D-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E8D-00_required_file
+  result: PASS
+  details: docs\ASSESSMENT_SESSION_UX_SPEC.md
+- check: E8D-00_required_file
+  result: PASS
+  details: research\8d_assessment_session_research.md
+- check: E8D-00_required_file
+  result: PASS
+  details: ux\8a_information_architecture\ia.yaml
+- check: E8D-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E8D-01_identity
+  result: PASS
+  details: model=ASUX-v0 step=8D
+- check: E8D-01_status
+  result: PASS
+  details: status=accepted_8d
+- check: E8D-01_decision
+  result: PASS
+  details: decision=D-071
+- check: E8D-01_parent_ia
+  result: PASS
+  details: parent=UXIA-v0
+- check: E8D-01_frame
+  result: PASS
+  details: frame=TRUX-v0
+- check: E8D-01_owning_surface
+  result: PASS
+  details: surface=assessment_session_flow
+- check: E8D-02_semantic_only
+  result: PASS
+  details: 8D remains a semantic session contract
+- check: E8D-02_no_premature_lock
+  result: PASS
+  details: violations=[]
+- check: E8D-02_stage4_untouched
+  result: PASS
+  details: 8D does not change Stage 4 blueprint policy
+- check: E8D-02_no_invented_constants
+  result: PASS
+  details: violations=[]
+- check: E8D-03_truth_owners
+  result: PASS
+  details: 'owners={''what_is_measured'': ''stage4_blueprint_policy'', ''daily_scope'':
+    ''DMA-v0'', ''weekly_scope'': ''WBA-v0'', ''monthly_scope'': ''MCA-v0'', ''item_trust'':
+    ''QAB-v0+AIV-v0'', ''assistance_evidence'': ''AI_assistance_2D_contract'', ''mastery'':
+    ''GRE-v0'', ''retention'': ''RVR-v0'', ''prerequisite'': ''PRG-v0'', ''priority'':
+    ''PBR-v0'', ''planner_explanation'': ''PDT-v0'', ''focused_flow_frame'': ''TRUX-v0'',
+    ''english_integration'': ''TEIP-v0'', ''english_profile'': ''TEPM-v0'', ''longitudinal_reporting'':
+    ''assessment_report'', ''diagnostic_execution'': ''task_runner_flow''}'
+- check: E8D-03_session_owns_no_engine_truth
+  result: PASS
+  details: session must not own any canonical engine truth
+- check: E8D-03_diagnostics_not_owned
+  result: PASS
+  details: diagnostics remain task_runner_flow work
+- check: E8D-04_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8D-04_true_guards
+  result: PASS
+  details: violations=[]
+- check: E8D-04_guard_count
+  result: PASS
+  details: false_guards=55
+- check: E8D-05_scopes
+  result: PASS
+  details: scopes=['daily_micro', 'weekly_blueprint', 'monthly_capability']
+- check: E8D-05_scope_context_only
+  result: PASS
+  details: scope is displayed context, not a screen family
+- check: E8D-05_intents
+  result: PASS
+  details: intents=['checkpoint', 'mastery_evidence', 'verification', 'integration_check']
+- check: E8D-05_session_fields
+  result: PASS
+  details: missing=[]
+- check: E8D-06_submission_unit
+  result: PASS
+  details: submission_unit=atomic_evidence_boundary
+- check: E8D-06_boundary_kinds
+  result: PASS
+  details: boundary_kinds=['item', 'testlet']
+- check: E8D-06_boundary_integrity
+  result: PASS
+  details: atomic evidence boundary is never split or partially scored
+- check: E8D-06_checkpoint_inherited
+  result: PASS
+  details: checkpoint contract=TRUX-v0
+- check: E8D-06_artifact_not_split
+  result: PASS
+  details: artifact work without a safe checkpoint is not arbitrarily split
+- check: E8D-06_dependency_group
+  result: PASS
+  details: dependency group is one evidence group
+- check: E8D-07_item_fields
+  result: PASS
+  details: missing=[]
+- check: E8D-07_item_forbidden
+  result: PASS
+  details: missing=[]
+- check: E8D-07_position_orientation
+  result: PASS
+  details: position context is orientation, not performance
+- check: E8D-08_h0_default
+  result: PASS
+  details: default=h0_required
+- check: E8D-08_disclosed
+  result: PASS
+  details: 'disclosure={''default_mode_for_mastery_or_verification'': ''h0_required'',
+    ''disclosed_before_response'': True, ''allowed_tools_disclosed_before_response'':
+    True, ''objective_appropriate_tool_use_breaks_h0'': False, ''undisclosed_independence_rules'':
+    False}'
+- check: E8D-08_tool_use_ok
+  result: PASS
+  details: objective-appropriate tool use does not break H0
+- check: E8D-09_frozen
+  result: PASS
+  details: 'submission freeze={''submitted_boundary_is_frozen'': True, ''submitted_boundary_revisitable'':
+    False, ''submitted_boundary_editable'': False, ''submitted_boundary_resubmittable'':
+    False, ''unsubmitted_boundary_navigable_within_open_block'': True, ''free_order_answering_allowed'':
+    True, ''skipping_allowed'': True, ''unsubmitted_is_incorrect'': False, ''skipping_leaves_need_unresolved'':
+    True, ''exit_always_available'': True, ''exit_framed_as_quitting_or_waste'': False}'
+- check: E8D-09_pre_submit_navigable
+  result: PASS
+  details: unsubmitted boundaries stay navigable
+- check: E8D-10_skipping
+  result: PASS
+  details: 'skipping={''submitted_boundary_is_frozen'': True, ''submitted_boundary_revisitable'':
+    False, ''submitted_boundary_editable'': False, ''submitted_boundary_resubmittable'':
+    False, ''unsubmitted_boundary_navigable_within_open_block'': True, ''free_order_answering_allowed'':
+    True, ''skipping_allowed'': True, ''unsubmitted_is_incorrect'': False, ''skipping_leaves_need_unresolved'':
+    True, ''exit_always_available'': True, ''exit_framed_as_quitting_or_waste'': False}'
+- check: E8D-10_exit
+  result: PASS
+  details: exit available and never framed as waste
+- check: E8D-11_not_blocked
+  result: PASS
+  details: assistance=False
+- check: E8D-11_consequence
+  result: PASS
+  details: framing=what_this_attempt_can_still_prove/penalty_language
+- check: E8D-11_levels
+  result: PASS
+  details: levels=['H1', 'H2', 'H3', 'H4']
+- check: E8D-12_no_independent_from_assistance
+  result: PASS
+  details: no assistance level yields independent mastery evidence
+- check: E8D-12_h1_h2_assisted
+  result: PASS
+  details: H1/H2 class=assisted/assisted
+- check: E8D-12_h3_h4_exposed
+  result: PASS
+  details: H3/H4 are solution-exposed and require a fresh unseen item
+- check: E8D-13_conversion
+  result: PASS
+  details: 'conversion={''blocked'': False, ''request_is_negative_evidence'': False,
+    ''consequence_disclosed_before_revealing_help'': True, ''consequence_framing_allowed'':
+    ''what_this_attempt_can_still_prove'', ''consequence_framing_forbidden'': ''penalty_language'',
+    ''levels'': [{''id'': ''H1'', ''class'': ''assisted'', ''independent_mastery_evidence'':
+    False}, {''id'': ''H2'', ''class'': ''assisted'', ''independent_mastery_evidence'':
+    False}, {''id'': ''H3'', ''class'': ''practice_only_solution_exposed'', ''independent_mastery_evidence'':
+    False, ''requires_fresh_unseen_item'': True}, {''id'': ''H4'', ''class'': ''practice_only_solution_exposed'',
+    ''independent_mastery_evidence'': False, ''requires_fresh_unseen_item'': True}],
+    ''mode_conversion_explicit'': True, ''mode_conversion_silent'': False, ''mode_conversion_framed_as_violation'':
+    False, ''session_may_continue_teaching'': True, ''raises_requires_independent_recheck'':
+    True, ''session_schedules_recheck'': False, ''recheck_owner'': ''planner_and_remediation_retention_pipelines''}'
+- check: E8D-13_recheck_owner
+  result: PASS
+  details: recheck_owner=planner_and_remediation_retention_pipelines
+- check: E8D-14_frame_owner
+  result: PASS
+  details: frame_owner=TRUX-v0
+- check: E8D-14_pause_neutral
+  result: PASS
+  details: 'pause={''frame_owner'': ''TRUX-v0'', ''session_is_high_stakes_by_default'':
+    True, ''pause_is_failure'': False, ''pause_is_assistance'': False, ''pause_is_mastery_signal'':
+    False, ''recomposition_conditions'': [''solution_or_explanation_exposed'', ''item_version_or_validation_changed'',
+    ''prerequisite_state_changed_meaningfully'', ''freshness_no_longer_trustworthy_after_long_gap'',
+    ''user_requested_reset_or_alternative''], ''recomposition_deletes_completed_valid_evidence'':
+    False, ''recomposed_slot_presented_as_retry_of_failure'': False, ''recomposed_slot_presented_as_fresh_measurement'':
+    True}'
+- check: E8D-15_recomposition_conditions
+  result: PASS
+  details: conditions=['solution_or_explanation_exposed', 'item_version_or_validation_changed',
+    'prerequisite_state_changed_meaningfully', 'freshness_no_longer_trustworthy_after_long_gap',
+    'user_requested_reset_or_alternative']
+- check: E8D-15_recomposition_count
+  result: PASS
+  details: count=5
+- check: E8D-15_recomposition_safe
+  result: PASS
+  details: 'recomposition semantics={''frame_owner'': ''TRUX-v0'', ''session_is_high_stakes_by_default'':
+    True, ''pause_is_failure'': False, ''pause_is_assistance'': False, ''pause_is_mastery_signal'':
+    False, ''recomposition_conditions'': [''solution_or_explanation_exposed'', ''item_version_or_validation_changed'',
+    ''prerequisite_state_changed_meaningfully'', ''freshness_no_longer_trustworthy_after_long_gap'',
+    ''user_requested_reset_or_alternative''], ''recomposition_deletes_completed_valid_evidence'':
+    False, ''recomposed_slot_presented_as_retry_of_failure'': False, ''recomposed_slot_presented_as_fresh_measurement'':
+    True}'
+- check: E8D-16_incomplete
+  result: PASS
+  details: 'incomplete={''submitted_valid_attempts_produce_evidence'': True, ''unsubmitted_counted_incorrect'':
+    False, ''unresolved_slot_mastery_penalty'': False, ''session_may_be_partial'':
+    True, ''unresolved_needs_remain_in_current_state'': True, ''creates_exam_debt'':
+    False, ''missed_cycle_is_failure'': False}'
+- check: E8D-17_dispute_semantics
+  result: PASS
+  details: 'dispute={''reporting_low_friction'': True, ''auto_sets_item_invalid'':
+    False, ''evidence_held_as_contested'': True, ''critical_transition_decided_on_contested_item_alone'':
+    False, ''triggers_validator_answer_key_rubric_recheck'': True, ''flags_item_or_template_for_qa'':
+    True, ''treated_as_excuse_or_complaint'': False, ''is_undo_button'': False, ''harms_user_state'':
+    False}'
+- check: E8D-17_dispute_non_punitive
+  result: PASS
+  details: dispute is non-punitive and not an undo button
+- check: E8D-18_values
+  result: PASS
+  details: values=['verified', 'provisional', 'invalid']
+- check: E8D-18_provisional
+  result: PASS
+  details: 'provisional={''values'': [''verified'', ''provisional'', ''invalid''],
+    ''verified_may_present_settled_outcome'': True, ''provisional_labelled_everywhere'':
+    True, ''provisional_may_inform'': True, ''provisional_may_open_confirmation_need'':
+    True, ''provisional_presented_as_verdict'': False, ''provisional_alone_settles_critical_transition'':
+    False, ''invalid_gives_credit'': False, ''invalid_gives_penalty'': False, ''invalid_slot_counts_as_covered'':
+    False, ''invalid_explained_plainly_to_user'': True}'
+- check: E8D-18_invalid
+  result: PASS
+  details: 'invalid={''values'': [''verified'', ''provisional'', ''invalid''], ''verified_may_present_settled_outcome'':
+    True, ''provisional_labelled_everywhere'': True, ''provisional_may_inform'': True,
+    ''provisional_may_open_confirmation_need'': True, ''provisional_presented_as_verdict'':
+    False, ''provisional_alone_settles_critical_transition'': False, ''invalid_gives_credit'':
+    False, ''invalid_gives_penalty'': False, ''invalid_slot_counts_as_covered'': False,
+    ''invalid_explained_plainly_to_user'': True}'
+- check: E8D-19_result_question
+  result: PASS
+  details: result_question=what_just_changed
+- check: E8D-19_families
+  result: PASS
+  details: families=['confirmed_capabilities', 'verification_needed', 'persistent_targeted_gaps',
+    'retention_revalidated', 'not_reliably_measured', 'plan_changes']
+- check: E8D-19_forbidden_verdicts
+  result: PASS
+  details: missing=[]
+- check: E8D-20_raw_counts
+  result: PASS
+  details: 'raw_counts={''result_question'': ''what_just_changed'', ''semantic_families'':
+    [''confirmed_capabilities'', ''verification_needed'', ''persistent_targeted_gaps'',
+    ''retention_revalidated'', ''not_reliably_measured'', ''plan_changes''], ''forbidden_verdicts'':
+    [''pass_fail_banner'', ''percentage_or_letter_grade'', ''passing_threshold'',
+    ''score_equals_mastered_rule'', ''broad_domain_score'', ''career_completion_percentage'',
+    ''comparison_to_other_people_or_target_curve''], ''raw_counts_allowed'': True,
+    ''raw_counts_are_informational_only'': True, ''raw_counts_separated_from_state'':
+    True, ''not_reliably_measured_first_class'': True, ''not_reliably_measured_always_shown_when_non_empty'':
+    True, ''not_reliably_measured_sources'': [''invalid_item'', ''provisional_evaluation'',
+    ''assisted_attempt'', ''solution_exposed_attempt'', ''contested_item'', ''unsubmitted_slot''],
+    ''not_reliably_measured_folded_into_incorrect'': False, ''state_change_claim_requires_canonical_state_change'':
+    True, ''first_contradiction_on_mastered_skill'': ''verification_due'', ''first_contradiction_causes_instant_unmastery'':
+    False, ''no_change_stated_plainly'': True, ''manufactured_progress_claim'': False,
+    ''reason_source'': ''PDT-v0'', ''reason_bounded'': True, ''full_explanation_route'':
+    ''planner_explanation''}'
+- check: E8D-20_not_reliably_measured
+  result: PASS
+  details: nrm=['invalid_item', 'provisional_evaluation', 'assisted_attempt', 'solution_exposed_attempt',
+    'contested_item', 'unsubmitted_slot']
+- check: E8D-21_state_claim
+  result: PASS
+  details: state claim=verification_due
+- check: E8D-21_reason_source
+  result: PASS
+  details: reason=PDT-v0
+- check: E8D-22_replan_chain
+  result: PASS
+  details: chain=['attempt', 'evidence_validation', 'gre_rvr_update', 'weakness_remediation_verification_update',
+    'prg_readiness', 'topic_derived_state', 'open_learning_needs', 'pbr_priority',
+    'remaining_capacity', 'new_plan_version', 'pdt_trace']
+- check: E8D-23_surface_split
+  result: PASS
+  details: 'surface_boundary={''in_session_result_view'': {''owner'': ''8D'', ''question'':
+    ''what_just_changed_right_now'', ''bounded'': True}, ''assessment_report'': {''owner'':
+    ''progress_8E'', ''question'': ''what_happened_across_sessions_over_time''}, ''either_owns_mastery'':
+    False, ''contradictory_truths_allowed'': False}'
+- check: E8D-24_english_safety
+  result: PASS
+  details: 'english={''task_language_and_target_construct_separate'': True, ''scaffold_mode_is_item_metadata'':
+    True, ''non_target_language_demand_scaffolded_or_neutralised'': True, ''dual_target_component_results_separable'':
+    True, ''dual_target_overall_pass_broadcast'': False, ''technical_ignorance_masquerades_as_english_failure'':
+    False, ''weak_english_produces_negative_technical_evidence'': False, ''general_or_official_cefr_claim'':
+    False, ''qualified_profile_owner'': ''TEPM-v0''}'
+- check: E8D-25_frame_owner
+  result: PASS
+  details: frame_owner=TRUX-v0
+- check: E8D-25_evaluation_pending
+  result: PASS
+  details: 'ai_unavailable={''attempt_preserved'': True, ''marked_evaluation_pending'':
+    True, ''evidence_written'': False, ''auto_pass'': False, ''auto_fail'': False}'
+- check: E8D-25_offline
+  result: PASS
+  details: 'offline={''deterministically_evaluable_items_runnable'': True, ''remote_evaluation_items_park_as_pending'':
+    True, ''remote_evaluation_items_fail'': False}'
+- check: E8D-26_crash
+  result: PASS
+  details: 'crash={''restores_last_durable_checkpoint_and_frozen_boundaries'': True,
+    ''claims_unpersisted_work'': False}'
+- check: E8D-26_recovery
+  result: PASS
+  details: 'recovery={''supersedes_normal_session_work'': True, ''silent_progress_reset'':
+    False}'
+- check: E8D-27_states_exact
+  result: PASS
+  details: states=['entering_revalidating', 'blocked_not_startable', 'session_orientation',
+    'item_active', 'assistance_open', 'submitting_boundary', 'boundary_frozen', 'block_checkpoint',
+    'session_paused', 'resume_revalidating', 'slot_recomposed', 'evaluation_pending',
+    'result_ready', 'result_partial', 'item_contested', 'offline_local_capable', 'ai_unavailable_deterministic_core',
+    'error_recoverable', 'data_recovery_required']
+- check: E8D-27_states_unique
+  result: PASS
+  details: count=19
+- check: E8D-27_states_textual
+  result: PASS
+  details: states distinguishable in text
+- check: E8D-28_accessibility
+  result: PASS
+  details: violations=[]
+- check: E8D-28_no_color_only_result
+  result: PASS
+  details: result meaning is never color-only
+- check: E8D-29_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E8D-29_forbidden_count
+  result: PASS
+  details: count=15
+- check: E8D-30_ia_surface_exists
+  result: PASS
+  details: assessment_session_flow present in accepted 8A IA
+- check: E8D-30_ia_report_exists
+  result: PASS
+  details: assessment_report present in accepted 8A IA
+- check: E8D-31_frame_inherited
+  result: PASS
+  details: '8C frame handoff={''owned_by'': ''8C'', ''inherited_by'': [''task_runner_flow'',
+    ''assessment_session_flow''], ''frame_elements'': [''entry_revalidation'', ''safe_pause_and_exit_availability'',
+    ''resume_revalidation'', ''capacity_and_replan_interaction'', ''degraded_and_recovery_behavior'',
+    ''deterministic_semantic_return''], ''interior_owned_by_8c'': [''task_runner_flow''],
+    ''interior_owned_by_8d'': [''assessment_session_flow''], ''assess_purpose_delegates_interior_to_8d'':
+    True}'
+- check: E8D-31_8c_deferred_assessment
+  result: PASS
+  details: 8C deferred the assessment interior to 8D
+- check: E8D-31_diagnostics_stay_with_runner
+  result: PASS
+  details: task runner interior remains 8C's, including diagnostics
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=8E
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=8F
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=8G
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=9A
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=9E
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=10
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=12
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=13
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=14
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=15
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=16
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=17
+- check: E8D-32_boundary_open
+  result: PASS
+  details: stage=18
+- check: E8D-32_8e_owns_report
+  result: PASS
+  details: 8E=skill_progress_weakness_labels_and_assessment_report
+- check: E8D-33_required_models
+  result: PASS
+  details: missing=[]
+- check: E8D-33_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''UXIA-v0'', ''THUX-v0'', ''TRUX-v0'',
+    ''DMA-v0'', ''WBA-v0'', ''MCA-v0'', ''QAB-v0'', ''AIV-v0'', ''GRE-v0'', ''RVR-v0'',
+    ''PRG-v0'', ''PBR-v0'', ''PDT-v0'', ''TEIP-v0'', ''TEPM-v0''], ''independent_qa_required'':
+    True, ''stage6_regression_required'': True, ''stage7_regression_required'': True,
+    ''stage8a_regression_required'': True, ''stage8b_regression_required'': True,
+    ''stage8c_regression_required'': True}'
+- check: E8D-34_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8D-34_spec_no_invented_constants
+  result: PASS
+  details: spec refuses invented thresholds/geometry
+- check: E8D-35_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

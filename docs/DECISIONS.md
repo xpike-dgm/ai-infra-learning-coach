@@ -645,3 +645,34 @@ Ayrıntı: `docs/TODAY_HOME_SCREEN_SPEC.md`.
 - Sonraki numbered step `8D — Sınav UX`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/DAILY_WORKING_FLOW_SPEC.md`.
+
+
+## D-071 — Assessment Session UX = ASUX-v0
+**Durum:** Kabul edildi — 2026-08-29
+
+- 8D final modeli `ASUX-v0 — Assessment Session & Result UX` oldu.
+- Canonical spec `docs/ASSESSMENT_SESSION_UX_SPEC.md`; machine-readable contract `ux/8d_assessment_session/session.yaml`; research/contract synthesis `research/8d_assessment_session_research.md`.
+- Assessment session bir evidence-collection workflow'udur; gradebook, score-based mastery authority, pass/fail verdict veya ikinci state engine değildir.
+- **Tek bir assessment session interior** üç scope'un (`daily_micro` / `weekly_blueprint` / `monthly_capability`) tamamına hizmet eder. `assessment_scope` yalnız gösterilen context'tir; ayrı ekran ailesi veya ayrı kural seti değildir ve weekly/monthly etiketi evidence'a ek ağırlık kazandırmaz.
+- Submission birimi **atomic evidence boundary**'dir (item veya testlet); boundary asla bölünmez, ortadan kesilmez ve kısmen puanlanmaz. `dependency_group` tek evidence group gibi davranır ve üyeleri birbirini doğrulamaz.
+- Submit edilen boundary **dondurulur**: revisit, edit veya resubmit edilemez; submit sonrası feedback önceki attempt'i geriye dönük kirletmez. Açık blok içindeki submit edilmemiş boundary'ler serbestçe gezilebilir ve serbest sırayla cevaplanabilir.
+- Skip meşrudur: `unsubmitted_boundary != incorrect`. Skip negative evidence, penalty veya failure değildir; ilgili measurement need current state'te açık kalır.
+- `independence_mode` (mastery/verification için varsayılan `h0_required`) ve allowed-tools policy **cevap vermeden önce** açıklanır. Objective gerçekten terminal/debugger/profiler kullanımını ölçüyorsa izin verilen tool kullanımı H0'ı bozmaz. Undisclosed independence rule yasaktır.
+- Assessment sırasında yardım engellenmez ve yardım istemek negative evidence değildir. Consequence ölçüm dilinde açıklanır: H1/H2 assisted olur ve independent mastery evidence üretmez; H3/H4 practice-only / solution-exposed olur ve fresh unseen item gerektirir. Mode conversion açık yapılır, ihlal olarak çerçevelenmez ve session öğretime devam edebilir. Session `requires_independent_recheck` yükseltir fakat recheck'i zamanlamaz.
+- Pause failure, assistance veya mastery signal değildir. Resume'da unresolved slot tam beş koşuldan biri gerçekleşirse fresh item ile recompose edilir: solution/explanation exposure, item version/validation değişimi, anlamlı prerequisite değişimi, uzun ara nedeniyle freshness güvenilirliğinin kaybı, kullanıcı reset/alternative talebi. Recomposition completed valid evidence'ı silmez ve recomposed slot failure retry'ı olarak sunulmaz.
+- Incomplete session meşrudur: submitted valid attempt'ler normal evidence üretir, unsubmitted item incorrect sayılmaz, unresolved slot mastery penalty vermez, session `partial` olabilir ve exam debt oluşmaz. Missed cycle failure değildir.
+- Item dispute ucuz ve cezasızdır: user report tek başına `item_invalid` yapmaz, ilgili evidence contested tutulur, critical transition yalnız contested item'a dayandırılmaz, validator/answer-key/rubric yeniden kontrol edilir ve item QA'ya flag'lenir. Dispute bir undo button değildir ve kullanıcı state'ine zarar vermez.
+- Evaluator status `verified | provisional | invalid` olarak sunulur. Provisional her yerde provisional etiketlenir; bilgilendirebilir ve confirmation need açabilir fakat settled verdict gibi gösterilemez ve tek başına critical transition'ı belirleyemez. Invalid item ne kredi ne ceza üretir ve slot'u kapatmış sayılmaz.
+- Result surface **semantic**'tir ve `what just changed` sorusunu cevaplar; altı family kullanır: `confirmed_capabilities`, `verification_needed`, `persistent_targeted_gaps`, `retention_revalidated`, `not_reliably_measured`, `plan_changes`. Pass/fail banner, yüzde/harf notu, geçme eşiği, `8/10 = mastered` kuralı, broad domain score, career percentage ve başkalarıyla karşılaştırma yasaktır.
+- Raw doğru/yanlış sayısı gösterilebilir fakat açıkça informational'dır ve state'ten ayrılır; verdict değildir.
+- `not_reliably_measured` **first-class** bir sonuçtur ve boş değilse daima gösterilir. Kaynakları: invalid item, provisional evaluation, assisted attempt, solution-exposed attempt, contested item, unsubmitted slot. Bu family gizlenemez ve incorrect kategorisine katlanamaz.
+- State-change iddiası yalnız canonical state gerçekten değiştiyse yapılır. Mastered bir Skill'deki ilk clean contradiction `verification_due` açar; instant unmastery veya demotion event değildir. Hiçbir şey değişmediyse bu düz biçimde söylenir; motivasyon için sahte ilerleme iddiası üretilmez.
+- In-session result view (`what just changed, right now`) ile Progress-owned `assessment_report` (`what happened across sessions over time`) rolleri ayrıdır; ikisi de mastery sahibi değildir ve çelişkili truth sunamaz.
+- `TRUX-v0` shared focused-flow frame devralınır, yeniden tanımlanmaz. Diagnostics `task_runner_flow` işidir; 8D diagnostic execution'ı sahiplenmez.
+- AI evaluator yoksa attempt korunur ve `evaluation_pending` işaretlenir; evidence yazılmaz, otomatik pass/fail verilmez. Offline'da deterministik değerlendirilebilir item'lar tam çalışır; remote evaluation gerektirenler fail değil pending olur.
+- 19 assessment session semantic state metinle ayırt edilebilir; renk veya motion tek başına anlam taşıyamaz.
+- 8D Stage 4 blueprint policy'sini değiştirmez; passing threshold, percentage grade, fixed question count, countdown clock veya fixed geometry kilitlemez. Sahipleri 8E–10/13–18'dir.
+- Independent 8D QA: **107/107 PASS**; 3 assessment scope / 6 result family / 5 recomposition condition / 19 semantic state / 15 forbidden session anti-pattern. Validator ayrıca mutation test ile doğrulandı. Stage 6, Stage 7, accepted 8A, 8B, 8C ve external-memory regressions PASS.
+- Sonraki numbered step `8E — Skill/progress/weakness UX`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/ASSESSMENT_SESSION_UX_SPEC.md`.

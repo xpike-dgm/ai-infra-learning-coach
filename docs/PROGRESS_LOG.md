@@ -593,3 +593,26 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `8C ✅ / 8D active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
 
 **Sonraki kesin adım:** `8D — Sınav UX`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-29 — 8D Sınav UX tamamlandı — ASUX-v0 / D-071
+
+- 8C merge edildikten sonra fresh 8D PRE main üzerinden yapıldı; `EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN` beşi birden `8C ✅ / 8D active-not-executed` gösterdi ve kullanıcı açık onay verdi.
+- 8D separate external Research AI istemedi: neyin ölçüleceği, ne zaman ölçülebileceği, item güveninin ne olduğu ve evidence'ın nasıl yorumlanacağı zaten AŞAMA 4'te kararlaştırılmıştı. 8D yalnız bu yürütmenin nasıl sunulacağını ve gezileceğini kararlaştırdı. Independent QA yine zorunlu tutuldu; bir sınav ekranı, bir öğrenme ürününün en kolay gradebook'a kaydığı yerdir.
+- **Üç scope için tek interior** kabul edildi. Daily/weekly/monthly aynı evidence validity, assistance, prerequisite ve item-trust kurallarını paylaşır; yalnız blueprint composition'da ayrılırlar. Üç ayrı sınav ekranı tasarlamak gradebook'un geri sızması için üç ayrı yer açardı.
+- Submission birimi **atomic evidence boundary** olarak tanımlandı — "bir sayfa" değil. Boundary bölünmez, ortadan kesilmez ve kısmen puanlanmaz; `dependency_group` tek evidence group gibi davranır.
+- Submit edilen boundary donduruldu (TRUX-v0 ile tutarlı): revisit/edit/resubmit yok. Buna karşılık açık blok içindeki submit edilmemiş boundary'ler serbestçe gezilebilir ve serbest sırayla cevaplanabilir — bu sıradan sınav ergonomisidir ve donmuş bir şey olmadığı için evidence sorunu yaratmaz.
+- Skip meşrulaştırıldı: `unsubmitted_boundary != incorrect`. Skip ne negative evidence ne penalty'dir; measurement need current state'te açık kalır.
+- `h0_required` varsayılanı ve allowed-tools policy **cevap vermeden önce** açıklanır. Undisclosed independence rule yasaklandı: kullanıcı, izin verilen bir eylemin denemesini bozduğunu sonradan öğrenemez.
+- Assessment içinde yardım engellenmedi; engellemek merakı cezalandırır ve ürünün teaching-first duruşunu bozar. Bunun yerine consequence ölçüm dilinde görünür kılındı ve mode conversion açık, ihlal olarak çerçevelenmeyen bir olay yapıldı.
+- Result surface **semantic** yapıldı: `confirmed_capabilities`, `verification_needed`, `persistent_targeted_gaps`, `retention_revalidated`, `not_reliably_measured`, `plan_changes`. Pass/fail banner, yüzde/harf notu, geçme eşiği, `8/10 = mastered`, broad domain score ve karşılaştırma yasaklandı. Raw doğru/yanlış sayısı yalnız informational olarak, state'ten ayrılmış biçimde gösterilebilir.
+- `not_reliably_measured` **first-class** yapıldı. Invalid item, provisional evaluation, assisted attempt, solution-exposed attempt, contested item ve unsubmitted slot buraya düşer. Gizlenirse kullanıcı sessizliği başarısızlık olarak okur; incorrect'e katlanırsa sistem yalan söyler.
+- Item dispute ucuz ve cezasız yapıldı fakat undo button olmasına izin verilmedi: report tek başına `item_invalid` yapmaz, evidence contested tutulur, critical transition yalnız contested item'a dayandırılmaz ve item QA'ya flag'lenir.
+- Diagnostics'in `task_runner_flow`'da kaldığı açıkça yazıldı; 8D diagnostic execution'ı sahiplenmedi. In-session result view ile Progress-owned `assessment_report` rolleri ayrıldı.
+- Independent 8D validator **107/107 PASS**. Validator ilk turda geçtiği için ayrıca mutation test uygulandı: 4 kasıtlı ihlal (pass/fail banner, revisitable submitted boundary, `not_reliably_measured` katlaması, diagnostics ownership kayması) enjekte edildi ve 5 check FAIL verdi; dosya geri alındı.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted 8A + 8B + 8C regressions PASS.
+- D-050 POST living-memory accepted state'i `8D ✅ / 8E active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
+
+- POST audit sırasında sistemik bir tooling gerçeği netleşti ve kalıcılaştırıldı: `tools/audit_*_post_step_stale.py` script'leri tasarımı gereği `<step> complete AND <next step> active-not-executed` iddiasını sabitler, dolayısıyla bir sonraki adım tamamlanınca doğal olarak FAIL vermeye başlar. 7E/8A/8B/8C closure audit'lerinin hepsi bu nedenle şu an FAIL durumdadır ve bu bir regresyon değildir. Ayrım `docs/PROJECT_MEMORY_PROTOCOL.md` §4.4 olarak yazıldı: standing regression sweep yalnız `validate_*.py` içerir; closure audit'leri yalnız kendi adımının POST-STEP'inde çalıştırılır ve kalıcı kanıt ürettikleri `stale_reference_audit.yaml` raporudur.
+
+**Sonraki kesin adım:** `8E — Skill/progress/weakness UX`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -23,7 +23,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 8A Bilgi mimarisi: UXIA-v0 / D-068 ile tamamlandı; Today/Learn/Progress/Profile semantic IA + shared detail/focused flows.
 - [x] 8B Ana ekran: THUX-v0 / D-069 ile tamamlandı; action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics.
 - [x] 8C Günlük çalışma akışı: TRUX-v0 / D-070 ile tamamlandı; execution-surface sınırı + emergent ungraded session + shared focused-flow frame + non-punitive assistance + asked-not-inferred provenance.
-- [ ] 8D Sınav UX **AKTİF**: TRUX-v0 shared focused-flow frame + UXIA-v0 `assessment_session_flow` ownership üzerinden assessment session interior ve result presentation.
+- [x] 8D Sınav UX: ASUX-v0 / D-071 ile tamamlandı; tek session interior + atomic boundary submission + non-punitive assistance + semantic result + first-class `not_reliably_measured`.
+- [ ] 8E Skill/progress/weakness UX **AKTİF**: UXIA-v0 progress/skill_detail/topic_detail/technical_english_profile/learning_history/assessment_report ownership üzerinden exact state label ve görsel semantics.
 
 ## Knowledge-base operations
 

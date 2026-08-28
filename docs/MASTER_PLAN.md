@@ -383,8 +383,26 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 17 semantic state / 13 forbidden flow anti-pattern,
 - independent validator **123/123 PASS**; Stage 6 + Stage 7 + 8A + 8B + external-memory regressions PASS.
 
-### [ ] 8D — Sınav UX — **AKTİF**
-### [ ] 8E — Skill/progress/weakness UX
+### [x] 8D — Sınav UX — ASUX-v0 / D-071
+
+**8D final coverage:**
+- üç assessment scope için tek session interior; scope yalnız displayed context,
+- atomic evidence boundary submission birimi; bölünmez ve kısmen puanlanmaz,
+- submitted boundary frozen; unsubmitted boundary açık blok içinde gezilebilir,
+- skip meşru; `unsubmitted_boundary != incorrect`,
+- independence mode + allowed tools cevap öncesi açıklanır; objective-appropriate tool H0'ı bozmaz,
+- in-session assistance engellenmez; consequence ölçüm dilinde açıklanır; recheck planner-owned,
+- beş koşullu slot recomposition; completed valid evidence silinmez,
+- incomplete session partial; exam debt yok,
+- item dispute contested tutar, auto-invalidate etmez, cezasızdır,
+- provisional her yerde etiketli; invalid ne kredi ne ceza,
+- semantic result: 6 family; pass/fail banner, grade, threshold ve broad score yasak,
+- `not_reliably_measured` first-class ve boş değilse daima gösterilir,
+- state-change iddiası yalnız canonical değişimde; ilk contradiction `verification_due`,
+- 19 semantic state / 15 forbidden session anti-pattern,
+- independent validator **107/107 PASS** (mutation-tested); Stage 6 + Stage 7 + 8A + 8B + 8C + external-memory regressions PASS.
+
+### [ ] 8E — Skill/progress/weakness UX — **AKTİF**
 ### [ ] 8F — Tasarım sistemi
 ### [ ] 8G — Wireframe/prototip
 
@@ -540,12 +558,13 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8C`  
-**Son tamamlanan:** **`8C — TRUX-v0 / D-070`**  
-**Aktif:** **`8D — Sınav UX`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8D`  
+**Son tamamlanan:** **`8D — ASUX-v0 / D-071`**  
+**Aktif:** **`8E — Skill/progress/weakness UX`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8D fresh PRE-STEP → TRUX-v0 shared focused-flow frame + UXIA-v0 `assessment_session_flow` ownership + accepted DMA/WBA/MCA evidence contracts üzerinden assessment session interior ve result presentation → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8E fresh PRE-STEP → UXIA-v0 `progress` / `skill_detail` / `topic_detail` / `technical_english_profile` / `learning_history` / `assessment_report` ownership + accepted GRE/RVR/PRG/WLRM/TEPM contracts üzerinden exact Skill/progress/weakness label ve görsel state semantics → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
 - D-070: 8C final `TRUX-v0`.
+- D-071: 8D final `ASUX-v0`.

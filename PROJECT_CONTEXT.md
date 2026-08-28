@@ -192,12 +192,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8A ✅ Bilgi mimarisi — UXIA-v0 / D-068**
 - **8B ✅ Ana ekran — THUX-v0 / D-069**
 - **8C ✅ Günlük çalışma akışı — TRUX-v0 / D-070**
-- **8D 🟡 Sınav UX — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8E–20 ⬜
+- **8D ✅ Sınav UX — ASUX-v0 / D-071**
+- **8E 🟡 Skill/progress/weakness UX — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8F–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -216,6 +217,12 @@ Canonical: `docs/TODAY_HOME_SCREEN_SPEC.md` / D-069.
 Focused günlük çalışma akışı kilitlendi. Task Runner bir execution surface'tir; planner, mastery engine, prerequisite engine veya evidence evaluator değildir. Working session emergent ve ungraded'dır; required task count/duration/percentage yoktur. Tek bir shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır; assessment interior 8D'ye aittir. Lifecycle `enter → orient → work → submit → resolve → transition` olup entry/resume revalidation deterministiktir ve prerequisite/content-version bypass edilemez. Assistance daima talep edilebilir, yalnız talep üzerine H1→H4 yükselir ve H3/H4 öncesi consequence ölçüm dilinde açıklanır; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır. Provenance sorulur, çıkarsanmaz; dürüst beyan cezasızdır. In-flight run replan'dan korunur; continuity recomputed planner selection kullanır. AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz. Guilt/streak/debt framing, countdown pressure ve cached-list ilerleme yasaktır.
 
 Canonical: `docs/DAILY_WORKING_FLOW_SPEC.md` / D-070.
+
+## 11.4 8D Assessment Session UX — ASUX-v0 / D-071
+
+Assessment session interior ve result presentation kilitlendi. Session bir evidence-collection workflow'udur; gradebook, score-based mastery authority veya ikinci state engine değildir. Üç scope (daily/weekly/monthly) için **tek interior** kullanılır; scope yalnız gösterilen context'tir ve ek evidence ağırlığı kazandırmaz. Submission birimi atomic evidence boundary'dir; bölünmez ve kısmen puanlanmaz. Submit edilen boundary dondurulur; açık blok içinde submit edilmemiş boundary'ler serbestçe gezilebilir. Skip meşrudur ve incorrect sayılmaz. `h0_required` varsayılanı ile allowed-tools policy cevap öncesi açıklanır; objective-appropriate tool kullanımı H0'ı bozmaz. Yardım engellenmez; H1/H2 assisted, H3/H4 solution-exposed olur ve fresh unseen item gerektirir; conversion açık ve cezasızdır, recheck planner-owned kalır. Resume'da unresolved slot beş koşuldan biriyle recompose edilir ve completed valid evidence silinmez. Incomplete session partial olabilir; exam debt yoktur. Item dispute evidence'ı contested tutar fakat auto-invalidate etmez ve undo button değildir. Provisional her yerde etiketlidir; invalid ne kredi ne ceza verir. Result semantic'tir ve altı family kullanır; pass/fail banner, yüzde/harf notu, geçme eşiği ve broad score yasaktır. `not_reliably_measured` first-class'tır. State-change iddiası yalnız canonical değişimde yapılır; mastered Skill'de ilk contradiction `verification_due` açar.
+
+Canonical: `docs/ASSESSMENT_SESSION_UX_SPEC.md` / D-071.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

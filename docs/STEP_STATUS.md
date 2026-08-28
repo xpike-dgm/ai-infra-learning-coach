@@ -36,8 +36,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8A — Bilgi mimarisi** | ✅ | UXIA-v0 / D-068. Today/Learn/Progress/Profile semantic shell + shared detail/focused-flow IA; 49/49 QA PASS. |
 | **8B — Ana ekran** | ✅ | THUX-v0 / D-069. Action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics; 90/90 QA PASS. |
 | **8C — Günlük çalışma akışı** | ✅ | TRUX-v0 / D-070. Focused daily working flow + Task Runner choreography + shared focused-flow frame; 123/123 QA PASS. |
-| **8D — Sınav UX** | 🟡 Aktif | Assessment session interior + result presentation; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8E–20** | ⬜ Bekliyor | 8D sonrası canonical sırada. |
+| **8D — Sınav UX** | ✅ | ASUX-v0 / D-071. Tek assessment session interior + atomic boundary submission + semantic result; 107/107 QA PASS. |
+| **8E — Skill/progress/weakness UX** | 🟡 Aktif | Progress domain label/state semantics + assessment_report; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8F–20** | ⬜ Bekliyor | 8E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -56,29 +57,30 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8C
+## Son tamamlanan numaralı adım — 8D
 
-**Final:** `TRUX-v0 — Task Runner & Daily Working Flow UX` / D-070.  
-**Ana çıktı:** `docs/DAILY_WORKING_FLOW_SPEC.md` + `ux/8c_daily_working_flow/`.
+**Final:** `ASUX-v0 — Assessment Session & Result UX` / D-071.  
+**Ana çıktı:** `docs/ASSESSMENT_SESSION_UX_SPEC.md` + `ux/8d_assessment_session/`.
 
-8C sonucu:
-- Task Runner execution surface'tir; planner, mastery engine, prerequisite engine, evidence evaluator veya scoring device değildir,
-- daily working session emergent ve ungraded; required task count/duration/percentage ve session score yok,
-- shared focused-flow frame tek yerde tanımlandı ve `task_runner_flow` + `assessment_session_flow` tarafından devralınır; assessment interior 8D'de kalır,
-- lifecycle `enter → orient → work → submit → resolve → transition`; `pause | abandon | recover` non-linear,
-- deterministic entry/resume revalidation; prerequisite ve content-version bypass yok; invalidated resume negative evidence değil,
-- orientation bağımsız çalışmadan önce assistance policy'yi açıklar,
-- assistance daima talep edilebilir; escalation yalnız talep üzerine H1→H4; H3/H4 öncesi ölçüm dilinde consequence disclosure,
-- solution exposure sonrası same-item mastery path yok; `requires_independent_recheck` yükseltilir, scheduling planner-owned,
-- submit attempt'i dondurur; post-submit açıklama geriye dönük kirletmez; attempt yoksa evidence yok,
-- provenance sorulur, çıkarsanmaz; dürüst beyan cezasız; cheating interrogation yasak,
-- 3 pause class + ResumeContext; in-flight run replan'dan korunur; continuity recomputed planner selection ile,
-- `evaluation_pending` evidence yazmaz ve pass/fail değildir; offline'da local core çalışır,
-- 4 TEIP integration mode component-separable; flow içinde English quota/streak/debt yok,
-- 17 semantic state / 13 forbidden flow anti-pattern; state'ler metinle ayırt edilebilir,
-- final visual geometry/design system, assessment interior ve implementation boundaries açık bırakıldı,
-- independent validator **123/123 PASS**; Stage 6 + Stage 7 + 8A + 8B + external-memory regressions PASS.
+8D sonucu:
+- assessment session bir evidence-collection workflow'udur; gradebook, score-based mastery authority veya ikinci state engine değildir,
+- üç scope (`daily_micro` / `weekly_blueprint` / `monthly_capability`) için tek interior; scope yalnız displayed context ve ek evidence ağırlığı yok,
+- submission birimi atomic evidence boundary; boundary bölünmez, kesilmez, kısmen puanlanmaz,
+- submitted boundary frozen (revisit/edit/resubmit yok); açık blok içinde unsubmitted boundary'ler serbestçe gezilebilir,
+- skip meşru; `unsubmitted_boundary != incorrect` ve penalty üretmez,
+- `h0_required` varsayılanı ve allowed-tools policy cevap öncesi açıklanır; objective-appropriate tool kullanımı H0'ı bozmaz,
+- assessment içinde yardım engellenmez; H1/H2 assisted, H3/H4 solution-exposed + fresh unseen item; conversion açık ve cezasız; recheck planner-owned,
+- pause failure/assistance/mastery signal değildir; resume'da beş koşullu slot recomposition, completed valid evidence silinmeden,
+- incomplete session partial olabilir; exam debt ve missed-cycle failure yok,
+- item dispute evidence'ı contested tutar, auto-invalidate etmez, undo button değildir ve state'e zarar vermez,
+- provisional her yerde etiketli ve tek başına critical transition belirleyemez; invalid ne kredi ne ceza verir,
+- semantic result 6 family; pass/fail banner, yüzde/harf notu, geçme eşiği, broad domain score ve karşılaştırma yasak,
+- raw count yalnız informational; `not_reliably_measured` first-class ve boş değilse daima gösterilir,
+- state-change iddiası yalnız canonical değişimde; mastered Skill'de ilk contradiction `verification_due`,
+- in-session result view ile Progress-owned `assessment_report` rolleri ayrı; TRUX-v0 frame devralınır; diagnostics `task_runner_flow`'da kalır,
+- 19 semantic state / 15 forbidden anti-pattern,
+- independent validator **107/107 PASS** ve mutation test ile doğrulandı; Stage 6 + Stage 7 + 8A + 8B + 8C + external-memory regressions PASS.
 
-## Aktif adım — 8D Sınav UX
+## Aktif adım — 8E Skill/progress/weakness UX
 
-**8D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
