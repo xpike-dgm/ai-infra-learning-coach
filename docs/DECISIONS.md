@@ -617,3 +617,31 @@ Ayrıntı: `docs/INFORMATION_ARCHITECTURE_SPEC.md`.
 - Sonraki numbered step `8C — Günlük çalışma akışı`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TODAY_HOME_SCREEN_SPEC.md`.
+
+
+## D-070 — Daily Working Flow / Task Runner UX = TRUX-v0
+**Durum:** Kabul edildi — 2026-08-29
+
+- 8C final modeli `TRUX-v0 — Task Runner & Daily Working Flow UX` oldu.
+- Canonical spec `docs/DAILY_WORKING_FLOW_SPEC.md`; machine-readable contract `ux/8c_daily_working_flow/flow.yaml`; research/contract synthesis `research/8c_daily_working_flow_research.md`.
+- Task Runner bir execution surface'tir: `Attempt`, `Artifact`, assistance metadata ve provenance üretir; planner, mastery engine, prerequisite engine, evidence evaluator veya motivational scoring device değildir.
+- Daily working session emergent ve ungraded'dır: required task count, required duration, completion percentage, session score/grade yoktur. `plan_exhausted` gün başarılı, `user_stopped` gün başarısız anlamına gelmez.
+- 8C shared focused-flow frame'i (`entry_revalidation`, `safe_pause_and_exit_availability`, `resume_revalidation`, `capacity_and_replan_interaction`, `degraded_and_recovery_behavior`, `deterministic_semantic_return`) tek yerde tanımlar; frame hem `task_runner_flow` hem `assessment_session_flow` tarafından devralınır. Interior choreography yalnız `task_runner_flow` için 8C'ye, assessment interior 8D'ye aittir.
+- Task-run lifecycle `enter → orient → work → submit → resolve → transition` olarak kilitlendi; `pause | abandon | recover` non-linear geçişlerdir.
+- Entry ve resume revalidation deterministiktir; prerequisite veya content-version geçerliliği bypass edilemez. Başarısız entry/resume negative evidence değildir ve failure mesajı olarak sunulmaz.
+- Orientation, bağımsız çalışmadan önce task'in assistance policy'sini açıklamak zorundadır; kullanıcı aldığı yardımın evidence yorumunu nasıl değiştirdiğini sonradan öğrenmez.
+- Assistance teaching/practice işinde daima talep edilebilir; bağımsızlığı zorlamak için yardım kısıtlanamaz. Escalation yalnız talep üzerine `H1 → H2 → H3 → H4` ilerler; ilk yanlışta otomatik solution reveal ve H3 scaffold'ı hint diye etiketleme yasaktır. H3/H4 öncesi consequence, ceza dili yerine ölçüm dili ile açıklanır.
+- Solution exposure sonrası aynı item yalnız practice olarak tekrarlanabilir; mastery path olarak sunulamaz. Runner `requires_independent_recheck` bayrağını yükseltir fakat recheck'i **zamanlamaz**; sahibi planner + remediation/retention pipeline'larıdır.
+- Submit attempt'i dondurur; submit sonrası açıklama önceki tamamlanmış attempt'i geriye dönük kirletmez. Attempt olmayan task evidence üretmez ve bu eksik sonuç değildir.
+- Artifact provenance **sorulur, çıkarsanmaz**. Dürüst beyan ucuz ve cezasızdır; şüpheye dayalı sessiz state düşürme, cheating suçlaması ve dürüst cevabı zorlaştırma yasaktır. Bilinmeyen köken tahmin edilmez, `unknown_provenance` olarak kaydedilir.
+- Pause üç sınıfa ayrılır: durable `checkpoint_pause` (ResumeContext üretir), transient `mid_segment_pause` (saved progress olarak sunulamaz) ve marked `high_stakes_pause` (uzun aradan sonra sessizce independent evidence olarak sürdürülemez).
+- Stop her zaman ve tek deliberate action ile erişilebilirdir; debt, streak loss veya catch-up yükümlülüğü üretmez. Guilt framing ve streak-kaybı uyarısı yasaktır.
+- In-flight run replan tarafından yok edilmez; replan completed evidence'ı korur ve yalnız unstarted işi yeniden çözer. Continuity izinlidir fakat sonraki task daima planner'ın recomputed current selection'ıdır; cached local list üzerinden ilerleme yasaktır.
+- AI evaluator yoksa open-ended attempt `evaluation_pending` olur: evidence yazılmaz, otomatik pass/fail verilmez ve durum görünür kalır. Offline'da locally runnable iş tam çalışır; sahte tamamlanmış remote step gösterilmez.
+- Dört `TEIP-v0` integration mode frame değiştirmeden desteklenir; `dual_target_integrated` component-separable kalır, overall pass broadcast yasaktır; flow içinde English quota/streak/debt yoktur.
+- 17 runner semantic state metinle ayırt edilebilir; renk veya motion tek başına state taşıyamaz.
+- 8C final visual design, fixed step count/session length/daily task count/pixel geometry, assessment interior, Skill/progress visualization, code-runner entegrasyonu ve implementation technology'yi kilitlemez; sahipleri 8D–10/14/16–18'dir.
+- Independent 8C QA: **123/123 PASS**; 6 lifecycle phase / 17 semantic state / 3 pause class / 13 forbidden flow anti-pattern. Stage 6, Stage 7, accepted 8A, accepted 8B ve external-memory regressions PASS.
+- Sonraki numbered step `8D — Sınav UX`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/DAILY_WORKING_FLOW_SPEC.md`.

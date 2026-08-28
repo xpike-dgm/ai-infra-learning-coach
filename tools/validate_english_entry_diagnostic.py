@@ -146,7 +146,10 @@ def main(write_report: bool) -> int:
     check("E7A-15_stage_boundary", all(step in future for step in ["7B", "7C", "7D", "7E", 15, 18]), "future ownership boundaries declared")
 
     cefr_review = next((row for row in reviews if row.get("review_id") == "review.6c.english.cefr_alignment"), None)
-    check("E7A-15_cefr_review_stays_open_for_7B", bool(cefr_review) and cefr_review.get("status") == "open" and cefr_review.get("resolution_owner_step") == "7B", "CEFR alignment review remains owned by 7B")
+    # 7A hands CEFR alignment to 7B and must not claim it itself. At 7A time the row was `open`;
+    # 7B (TECP-v0 / D-064) resolved it, so this gate asserts the ownership handoff rather than a
+    # still-open status. The at-the-time `expected_status: open` stays recorded in 7A's own qa_report.
+    check("E7A-15_cefr_review_stays_open_for_7B", bool(cefr_review) and cefr_review.get("status") in {"open", "resolved"} and cefr_review.get("resolution_owner_step") == "7B", f"CEFR alignment review owned by 7B; status={cefr_review.get('status') if cefr_review else None}")
 
     check("research_basis_exists", RESEARCH.is_file(), str(RESEARCH.relative_to(ROOT)))
     check("spec_exists", SPEC.is_file() and "EED-v0" in spec_text and "D-063" in spec_text, str(SPEC.relative_to(ROOT)))

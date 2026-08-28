@@ -1,0 +1,82 @@
+stage_step: 8C
+model: TRUX-v0
+decision: D-070
+audit: repo_wide_stale_reference_post_step
+result: PASS
+repo_files_scanned: 326
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 8C active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_8b_post_step_stale.py
+  sample: 8C 🟡
+  classification: historical_non_blocking
+- file: tools\audit_8c_post_step_stale.py
+  sample: 8C ✅ Günlük çalışma akışı — TRUX-v0 / D-070", "8D 🟡
+  classification: historical_non_blocking
+- file: tools\finalize_8a_post_step.py
+  sample: 'Aktif adım: 8B — Ana ekran.**\n- **8B henüz yürütülmedi.** Fresh PRE-STEP
+    + kullanıcı açık onayı zorunludur.\n- AŞAMA 8C'
+  classification: historical_non_blocking
+- file: tools\finalize_8b_post_step.py
+  sample: 8C — Günlük çalışma akışı`** — active-not-executed
+  classification: historical_non_blocking
+- file: tools\fix_8b_living_state.py
+  sample: 8C 🟡 active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-28-8b-today-home.md
+  sample: 8C — Günlük çalışma akışı is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-29-8c-daily-working-flow.md
+  sample: aktif adım 6D" diyordu. Fresh PRE-STEP refresh 6D'nin `SDM-v0 / D-058` ile
+    çoktan kapandığını, gerçek aktif adımın 8C
+  classification: historical_non_blocking
+- file: ux\8b_today_home\stale_reference_audit.yaml
+  sample: 8C 🟡
+  classification: historical_non_blocking
+- file: ux\8c_daily_working_flow\stale_reference_audit.yaml
+  sample: 8C active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+cross_step_corrections:
+- file: tools/validate_english_entry_diagnostic.py
+  check: E7A-15_cefr_review_stays_open_for_7B
+  finding: Living 7A gate asserted review.6c.english.cefr_alignment was still `open`,
+    contradicting 7B (TECP-v0 / D-064) which resolved it; the 7A regression failed
+    as a result.
+  action: Assertion narrowed to the 7B ownership handoff; check name and 7A stored
+    qa_report left unchanged; 7A canonical spec and decision untouched.
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  8C future/candidate language; current/living sources must agree on 8C complete and
+  8D active-not-executed.

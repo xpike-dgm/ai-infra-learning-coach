@@ -1,6 +1,6 @@
 # HANDOFF STATE — Güncel Proje Durumu
 
-**Son güncelleme:** 2026-08-28
+**Son güncelleme:** 2026-08-29
 Repo: `xpike-dgm/ai-infra-learning-coach`
 
 ## 0. Zorunlu protokol — D-024 / D-027 / D-050
@@ -42,6 +42,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-056:** FRDB-v0 Full-Route Decomposition Blueprint; 6C–6F ortak authoring package + QA contract'ı tamamlandı.
 - **D-057:** FDM-v0 Foundations Detailed Map; D01–D05 package + FBB seed mapping + internal graph QA tamamlandı.
 - **D-058:** SDM-v0 Systems Detailed Map; D06–D13 package + 6C cross-package reuse + birleşik hard-graph QA tamamlandı.
+- **D-070:** TRUX-v0 Task Runner & Daily Working Flow UX; 8C tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -231,14 +232,15 @@ PEM-v0:
 - AŞAMA 7 ✅ — EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067
 - 8A ✅ UXIA-v0 / D-068
 - 8B ✅ THUX-v0 / D-069
-- 8C 🟡 active-not-executed
-- 8D–20 ⬜
+- 8C ✅ TRUX-v0 / D-070
+- 8D 🟡 active-not-executed
+- 8E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8B — THUX-v0 / D-069`  
-**Aktif:** `8C — Günlük çalışma akışı`  
-**8C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8C — TRUX-v0 / D-070`  
+**Aktif:** `8D — Sınav UX`  
+**8D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -411,6 +413,28 @@ THUX-v0:
 - visual system/geometry and focused interaction choreography remain deferred,
 - independent 8B QA 90/90 PASS; Stage 6/7/8A regressions + external memory PASS.
 
-## 23. 8C handoff
+## 23. D-070 / 8C final özeti
 
-8C — Günlük çalışma akışı. THUX-v0 primary action/resume/return semantics, UXIA-v0 `task_runner_flow` ownership, learning/evidence/assistance contracts ve deterministic replan behavior üzerinden focused daily Task Runner/session choreography tasarlanacaktır. 8C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DAILY_WORKING_FLOW_SPEC.md`.  
+Contract/QA: `ux/8c_daily_working_flow/`.  
+Synthesis: `research/8c_daily_working_flow_research.md`.
+
+TRUX-v0:
+- Task Runner is an execution surface, never planner/mastery/prerequisite/evidence authority,
+- working session is emergent and ungraded; no required count, duration or completion percentage,
+- one shared focused-flow frame inherited by `task_runner_flow` and `assessment_session_flow`; assessment interior stays 8D's,
+- lifecycle `enter → orient → work → submit → resolve → transition` plus `pause | abandon | recover`,
+- deterministic entry/resume revalidation; no prerequisite or content-version bypass; invalidated resume is not negative evidence,
+- assistance policy disclosed before independent work; escalation only on request H1→H4; consequence disclosed before H3/H4 in measurement language,
+- solution exposure never becomes a same-item mastery path; runner raises `requires_independent_recheck` but never schedules it,
+- submission freezes the attempt; post-submit explanation does not retroactively contaminate; no attempt means no evidence,
+- provenance asked not inferred; honest disclosure non-punitive; cheating interrogation forbidden,
+- 3 pause classes + ResumeContext; in-flight run survives replan; continuity uses recomputed planner selection,
+- `evaluation_pending` writes no evidence and is neither pass nor fail; offline preserves local core,
+- 4 TEIP integration modes with component-separable dual-target results; no English quota/streak/debt in flow,
+- 17 semantic states / 13 forbidden flow anti-patterns; states distinguishable in text,
+- independent 8C QA 123/123 PASS; Stage 6/7/8A/8B regressions + external memory PASS.
+
+## 24. 8D handoff
+
+8D — Sınav UX. TRUX-v0 shared focused-flow frame, UXIA-v0 `assessment_session_flow` ownership ve accepted DMA/WBA/MCA evidence contracts üzerinden assessment session interior — question navigation, item submission, in-assessment pause/resume ve result presentation — tasarlanacaktır. Evidence/state/replan ayrımı korunur. 8D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
