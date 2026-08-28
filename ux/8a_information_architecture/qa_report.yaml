@@ -2,7 +2,7 @@ stage_step: 8A
 model: UXIA-v0
 candidate_decision: D-068
 result: PASS
-status_observed: candidate_8a
+status_observed: accepted_8a
 counts:
   checks: 49
   failures: 0
@@ -26,7 +26,7 @@ checks:
   details: model=UXIA-v0 step=8A
 - check: E8A-01_status
   result: PASS
-  details: status=candidate_8a
+  details: status=accepted_8a
 - check: E8A-01_decision
   result: PASS
   details: decision=D-068

@@ -1,7 +1,7 @@
 model: UXIA-v0
 stage_step: 8A
-status: candidate_8a
-candidate_decision: D-068
+status: accepted_8a
+decision: D-068
 purpose: adaptive_learning_mobile_information_architecture
 
 scope:

@@ -1,0 +1,72 @@
+stage_step: 8A
+model: UXIA-v0
+decision: D-068
+audit: repo_wide_stale_reference_post_step
+result: PASS
+repo_files_scanned: 303
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: tools/finalize_7e_post_step.py
+  sample: 8A — Bilgi mimarisi` active-not-executed
+  classification: historical_non_blocking
+- file: tools/audit_8a_post_step_stale.py
+  sample: 8A ✅ Bilgi mimarisi — UXIA-v0 / D-068", "8B 🟡
+  classification: historical_non_blocking
+- file: tools/fix_7e_living_handoff.py
+  sample: 8A 🟡
+  classification: historical_non_blocking
+- file: tools/fix_8a_living_state.py
+  sample: 8A 🟡 active-not-executed
+  classification: historical_non_blocking
+- file: tools/audit_7e_post_step_stale.py
+  sample: 8A 🟡
+  classification: historical_non_blocking
+- file: tools/fix_pre_8a_living_state.py
+  sample: 8A 🟡 active-not-executed
+  classification: historical_non_blocking
+- file: tools/finalize_8a_post_step.py
+  sample: 8A 🟡 Bilgi mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ
+  classification: historical_non_blocking
+- file: docs/PROGRESS_LOG.md
+  sample: 8A — Bilgi mimarisi` active-not-executed
+  classification: historical_non_blocking
+- file: curriculum/english/7e_mastery_profile/stale_reference_audit.yaml
+  sample: 8A 🟡
+  classification: historical_non_blocking
+- file: .github/workflows/pre-8a-living-state-repair.yml
+  sample: 8A — Bilgi mimarisi', '🟡
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  8A future-state language; current/living sources must agree on 8A complete and 8B
+  active-not-executed.

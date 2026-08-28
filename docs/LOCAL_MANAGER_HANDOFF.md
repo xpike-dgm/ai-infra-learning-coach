@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068`; aktif adımın `8B active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1104,27 +1104,29 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 7C ✅ DECP-v0 / D-065
 - AŞAMA 7D ✅ TEIP-v0 / D-066
 - AŞAMA 7E ✅ TEPM-v0 / D-067
-- AŞAMA 8A 🟡 active-not-executed
+- AŞAMA 8A ✅ UXIA-v0 / D-068
+- 8B 🟡 active-not-executed
 - 8B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `7E — English mastery`  
-**Final:** `TEPM-v0 — Technical English Mastery Profile` / D-067  
-**Canonical:** `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md` + `curriculum/english/7e_mastery_profile/`
+**Son tamamlanan numaralı adım:** `8A — Bilgi mimarisi`  
+**Final:** `UXIA-v0 — Adaptive Learning Information Architecture` / D-068  
+**Canonical:** `docs/INFORMATION_ARCHITECTURE_SPEC.md` + `ux/8a_information_architecture/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
-**Aktif adım:** `8A — Bilgi mimarisi`  
+**AŞAMA 8A:** ✅ TAMAMLANDI  
+**Aktif adım:** `8B — Ana ekran`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
-7E exact GRE/RVR-backed English Skill state'ini learner-facing derived profile'a dönüştürür; CEFR qualified Technical English summary'dir, general-English certification değildir. B2+ aggregate completion değildir.
+8A exactly four semantic primary destination'ı kilitledi: Today / Learn / Progress / Profile. Assessment, English, AI Tutor ve remediation/retention top-level silo değildir; canonical mastery/prerequisite/planner truth ownership korunur.
 
-8A için:
+8B için:
 
 ```text
-fresh 8A PRE-STEP GitHub refresh
+fresh 8B PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 8A execution
+→ 8B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1661,7 +1663,7 @@ AŞAMA 1–6 ✅
 7C ✅ DECP-v0 / D-065
 7D ✅ TEIP-v0 / D-066
 7E ✅ TEPM-v0 / D-067
-8A 🟡 ACTIVE — NOT EXECUTED
+8A ✅ UXIA-v0 / D-068 ACTIVE — NOT EXECUTED
 8–20 ⬜
 ```
 
@@ -1674,9 +1676,9 @@ AŞAMA 1–6 ✅
 - feedback-assisted revision independent mastery evidence değildir,
 - technical integration 7D'ye ve learner-facing English mastery/CEFR behavior 7E'ye bırakılmıştır.
 
-**Sıradaki gerçek numbered work:** `8A — Bilgi mimarisi`.
+**Sıradaki gerçek numbered work:** `8B — Ana ekran`.
 
-**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1691,3 +1693,21 @@ AŞAMA 1–6 ✅
 ## 7E completion addendum — D-067
 
 7E `TEPM-v0 — Technical English Mastery Profile` ile tamamlandı. Canonical: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`; policy/QA: `curriculum/english/7e_mastery_profile/`. Exact 15 D01 Skill korunur; 8 derived Skill presentation state, qualified A1/A2/B1 Technical English base profile, review/verification/remediation hysteresis presentation, first-class uneven profile ve exact 4-Skill B2+ extension evidence semantics kabul edildi. General-English/official CEFR veya numeric aggregate claim yoktur. Independent QA 54/54 PASS. AŞAMA 7 tamamlandı. Current active numbered step 8A'dır; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+# 8A completion addendum — D-068
+
+8A `UXIA-v0 — Adaptive Learning Information Architecture` ile tamamlandı.
+
+- semantic primary shell: Today / Learn / Progress / Profile,
+- Assessment/Technical English/AI/remediation-retention contextual; ayrı top-level silo değil,
+- shared Topic/Skill/explanation/report/English-profile/history detail family,
+- focused Task Runner + assessment-session flows,
+- UI hierarchy prerequisite truth veya mastery source of truth değildir,
+- PDT-v0 explanation, TEPM-v0 profile ve canonical engine ownership korunur,
+- independent QA 49/49 PASS.
+
+**Sıradaki gerçek numbered work:** `8B — Ana ekran`.  
+**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

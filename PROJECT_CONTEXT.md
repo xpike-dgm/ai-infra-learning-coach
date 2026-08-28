@@ -189,12 +189,19 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
   - 7C ✅ DECP-v0 / D-065
   - 7D ✅ TEIP-v0 / D-066
   - 7E ✅ TEPM-v0 / D-067
-- **8A 🟡 Bilgi mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 8B–20 ⬜
+- **8A ✅ Bilgi mimarisi — UXIA-v0 / D-068**
+- **8B 🟡 Ana ekran — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 8C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 8B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+
+## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
+
+AŞAMA 8'in semantic information architecture temeli kilitlendi. Primary shell exactly four destination kullanır: `Today · Learn · Progress · Profile`; normal entry `Today`'dir. Assessment, Technical English, AI Tutor, retention/remediation gibi engine/workflow'lar ayrı top-level silo değildir. Exact Skill detail shared surface'tir; planner explanation PDT-v0 reason trace'ten türetilir; browse hierarchy prerequisite graph yerine geçmez. Visual layout/design system ve runtime navigation implementation 8B–10'a bırakılmıştır.
+
+Canonical: `docs/INFORMATION_ARCHITECTURE_SPEC.md` / D-068.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

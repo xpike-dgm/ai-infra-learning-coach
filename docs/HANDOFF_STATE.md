@@ -229,15 +229,15 @@ PEM-v0:
 - AŞAMA 7C ✅ — DECP-v0 / D-065
 - AŞAMA 7D ✅ — TEIP-v0 / D-066
 - AŞAMA 7 ✅ — EED-v0 / D-063 → TECP-v0 / D-064 → DECP-v0 / D-065 → TEIP-v0 / D-066 → TEPM-v0 / D-067
-- 8A 🟡 active-not-executed
-- 8B–20 ⬜
+- 8A ✅ UXIA-v0 / D-068
+- 8B 🟡 active-not-executed
+- 8C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `7E — TEPM-v0 / D-067`  
-**AŞAMA 7:** ✅ TAMAMLANDI  
-**Aktif:** `8A — Bilgi mimarisi`  
-**8A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8A — UXIA-v0 / D-068`  
+**Aktif:** `8B — Ana ekran`  
+**8B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -366,3 +366,26 @@ AŞAMA 7 tamamlandı.
 ## 19. 8A handoff
 
 8A — Bilgi mimarisi; accepted product + planner + assessment + granular curriculum + Stage 7 English profile contracts üzerinden uygulamanın ekran/section/navigation information architecture'ını tasarlayacaktır. 8A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+
+## 20. D-068 / 8A final özeti
+
+Canonical: `docs/INFORMATION_ARCHITECTURE_SPEC.md`.  
+IA/QA: `ux/8a_information_architecture/`.  
+Research: `research/8a_information_architecture_research.md`.
+
+UXIA-v0:
+- exactly 4 semantic primary destination: Today / Learn / Progress / Profile,
+- normal start = Today,
+- 6 shared detail surface + 2 focused flow,
+- Assessment/English/AI/remediation-retention are contextual, not shell silos,
+- exact Skill detail is shared; browse hierarchy never substitutes PRG-v0 prerequisite truth,
+- PDT-v0 owns planner explanations; assessment report does not own mastery,
+- TEPM-v0 owns qualified Technical English profile semantics,
+- local/offline/AI-degraded/recovery states remain cross-cutting,
+- concrete visual layout/component implementation is deferred to 8B–10,
+- independent 8A QA 49/49 PASS.
+
+## 21. 8B handoff
+
+8B — Ana ekran; UXIA-v0 `today` information ownership üzerinden Today/home content hierarchy, next-action emphasis, plan summary, capacity context and attention/reason presentation'ını tasarlayacaktır. 8B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

@@ -36,7 +36,7 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 
 ## Exact execution state
 
-AŞAMA 6 ve AŞAMA 7 tamamlandı. Son tamamlanan adım **7E — TEPM-v0 / D-067**. English mastery truth exact GRE/RVR-backed D01 Skill/Objective state'tir; learner-facing CEFR yalnız qualified Technical English profile summary'dir. Aktif adım **8A — Bilgi mimarisi**; henüz yürütülmedi. 8A başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve AŞAMA 7 tamamlandı. 8A da **UXIA-v0 / D-068** ile tamamlandı: primary semantic shell `Today · Learn · Progress · Profile`; Assessment/English/AI/remediation contextual; shared Skill detail + PDT-v0 explanation ownership preserved. Son tamamlanan adım **8A — Bilgi mimarisi**. Aktif adım **8B — Ana ekran**; henüz yürütülmedi. 8B başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 

@@ -33,8 +33,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **7C — Günlük English bileşeni** | ✅ | DECP-v0 / D-065. Common capacity + daily candidate opportunity + PBR balance/starvation + state-driven task mix; QA PASS. |
 | **7D — Teknik entegrasyon** | ✅ | TEIP-v0 / D-066. 4 construct-aware integration mode + component attribution + bidirectional contamination/scaffold guards; QA PASS. |
 | **7E — English mastery** | ✅ | TEPM-v0 / D-067. 8 derived Skill state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence; QA PASS. |
-| **8A — Bilgi mimarisi** | 🟡 Aktif | UX information architecture; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8B–20** | ⬜ Bekliyor | 8A sonrası canonical sırada. |
+| **8A — Bilgi mimarisi** | ✅ | UXIA-v0 / D-068. Today/Learn/Progress/Profile semantic shell + shared detail/focused-flow IA; 49/49 QA PASS. |
+| **8B — Ana ekran** | 🟡 Aktif | Today content hierarchy / home UX; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8C–20** | ⬜ Bekliyor | 8B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -53,28 +54,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 7E
+## Son tamamlanan numaralı adım — 8A
 
-**Final:** `TEPM-v0 — Technical English Mastery Profile` / D-067.  
-**Ana çıktı:** `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md` + `curriculum/english/7e_mastery_profile/`.
+**Final:** `UXIA-v0 — Adaptive Learning Information Architecture` / D-068.  
+**Ana çıktı:** `docs/INFORMATION_ARCHITECTURE_SPEC.md` + `ux/8a_information_architecture/`.
 
-7E sonucu:
-- exact D01 15 Skill unchanged; no graph/mastery-engine mutation,
-- 8 deterministic learner-facing derived Skill presentation state,
-- qualified A1/A2/B1 Technical English base profile; uneven exact Skill detail preserved,
-- `review_due` no demotion; `verification_due` uncertainty without instant deletion,
-- confirmed remediation current profile'ı real evidence ile recompute eder; historical confirmation provenance korunur,
-- no numeric English %, CEFR average, general-English/official/certification overclaim,
-- B2+ only per-capability professional extension evidence on exact 4 TECP Skills,
-- assisted/provisional/contaminated evidence cannot create independent-confirmed state,
-- TEIP-v0 component attribution and contamination guards preserved,
-- 18/18 safety fixture and 54/54 independent validator check PASS,
-- Stage 6 + accepted 7B + 7C + 7D regressions PASS.
+8A sonucu:
+- exactly 4 semantic top-level destination: `Today → Learn → Progress → Profile`,
+- `Today` normal start destination,
+- Assessment / Technical English / AI Tutor / remediation-retention engine'leri top-level silo değildir,
+- shared `topic_detail`, `skill_detail`, `planner_explanation`, `assessment_report`, `technical_english_profile`, `learning_history`,
+- focused `task_runner_flow` ve `assessment_session_flow`,
+- browse hierarchy != prerequisite truth; UI/mastery truth separation preserved,
+- planner explanation PDT-v0 trace-derived,
+- progress time/streak/task-completion/general-CEFR overclaim yapmaz,
+- adaptive layout semantic destination set/order'i değiştirmez,
+- 49/49 independent validator check PASS.
 
-## AŞAMA 7 — tamamlandı
+## Aktif adım — 8B Ana ekran
 
-7A EED-v0 / D-063 → 7B TECP-v0 / D-064 → 7C DECP-v0 / D-065 → 7D TEIP-v0 / D-066 → 7E TEPM-v0 / D-067.
-
-## Aktif adım — 8A Bilgi mimarisi
-
-**8A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

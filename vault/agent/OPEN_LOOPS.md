@@ -20,7 +20,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 7C Daily English component: DECP-v0 / D-065 ile tamamlandı; common-capacity daily candidate + no quota/streak/debt + PBR balance/starvation + state-driven task mix.
 - [x] 7D Technical integration: TEIP-v0 / D-066 ile tamamlandı
 - [x] 7E English mastery: TEPM-v0 / D-067 ile tamamlandı; 8 derived profile state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence.
-- [ ] 8A Bilgi mimarisi **AKTİF**: accepted product/learning/planner/assessment/curriculum/English contracts üzerinden UX information architecture.
+- [x] 8A Bilgi mimarisi: UXIA-v0 / D-068 ile tamamlandı; Today/Learn/Progress/Profile semantic IA + shared detail/focused flows.
+- [ ] 8B Ana ekran **AKTİF**: UXIA-v0 `today` ownership üzerinden Today/home content hierarchy ve next-action UX.
 
 ## Knowledge-base operations
 

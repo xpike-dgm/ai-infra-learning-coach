@@ -1,8 +1,8 @@
 # UX Information Architecture Specification — UXIA-v0
 
 **Stage step:** 8A — Bilgi mimarisi  
-**Status:** CANDIDATE — independent 8A QA pending  
-**Candidate decision:** `D-068`  
+**Status:** ACCEPTED — independent 8A QA PASS  
+**Decision:** `D-068`  
 **Model:** `UXIA-v0 — Adaptive Learning Information Architecture`  
 **Research:** `research/8a_information_architecture_research.md`
 
@@ -539,4 +539,4 @@ Validate the complete route graph and user jobs with concrete wireframes/prototy
 14. Semantic navigation remains stable across adaptive layouts.
 15. 8B–8G boundaries are explicit and no final visual implementation is prematurely locked.
 
-Until independent QA and D-050 POST are complete, this document remains candidate rather than accepted.
+Independent 8A QA passed; D-050 POST living-memory and stale-reference audit are the final closure gates for the accepted step state.
