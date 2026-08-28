@@ -594,3 +594,26 @@ Ayrıntı: `docs/TECHNICAL_ENGLISH_MASTERY_PROFILE_SPEC.md`.
 - Independent validator: 49/49 PASS; 4 primary destination / 6 shared detail / 2 focused flow / 17 information object / 7 research source.
 
 Ayrıntı: `docs/INFORMATION_ARCHITECTURE_SPEC.md`.
+
+
+## D-069 — Today Home UX = THUX-v0
+**Durum:** Kabul edildi — 2026-08-28
+
+- 8B final modeli `THUX-v0 — Today Home UX` oldu.
+- Canonical spec `docs/TODAY_HOME_SCREEN_SPEC.md`; machine-readable contract `ux/8b_today_home/home.yaml`; research/contract synthesis `research/8b_today_home_research.md`.
+- Today ana soruyu action-first biçimde cevaplar: `Bugün şimdi ne yapmalıyım?`; Today canonical planner/state truth'un projection'ıdır, ikinci planner/mastery engine değildir.
+- Semantic content hierarchy `primary_action → day_plan_context → remaining_plan → conditional attention_context → supporting_navigation` olarak kilitlendi; bu sıra fixed card/pixel geometry değildir.
+- Dominant action precedence data-recovery safety → valid revalidated resume → selected next PlannedTask → loading/replanning → valid empty/capacity-limited → recoverable error şeklindedir.
+- Today kuyruğu yalnız current selected `PlannedTask`'ları temsil eder; bütün LearningNeed/TaskCandidate evreni, eski gün backlog'u veya debt listesi değildir. Blocked dependent work startable gösterilemez.
+- Daily capacity hard time budget context'idir, progress/mastery değildir. Today current-day override sağlayabilir ve override replan tetikler; persistent capacity preference Profile-owned kalır.
+- Task purpose/activity/track ayrımı korunur; duration estimate'tir ve mastery signal değildir; task completion mastery/failure çıkarımı yapamaz.
+- Planner reason snippet'i yalnız PDT-v0 trace facts'ten türetilir: overview'da bir primary + en fazla bir materially useful supporting reason; full explanation shared `planner_explanation` surface'indedir.
+- Assessment Today'de contextual PlannedTask/attention olarak görünür; daily quota/permanent gradebook yoktur ve assessment score broad mastery truth değildir.
+- Technical English common capacity içinde contextual track'tir; separate budget/fixed quota/streak/debt/general-CEFR claim yoktur.
+- SRR-v0 korunur: missed day backlog/debt/failure üretmez; Today current state'ten fresh plan gösterir.
+- Empty/loading/replanning/offline/AI-degraded/recovery states semantically ayrılır; `no task today` all-mastered/professional-ready anlamına gelmez.
+- 8B final visual design, fixed card count/pixels, task-runner choreography, assessment interaction, Skill/progress visualization ve implementation technology'yi kilitlemez; sahipleri 8C–10/17–18'dir.
+- Independent 8B QA: **90/90 PASS**; 5 semantic content region / 12 semantic state / 11 forbidden Home anti-pattern. Stage 6, Stage 7, accepted 8A ve external-memory regressions PASS.
+- Sonraki numbered step `8C — Günlük çalışma akışı`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/TODAY_HOME_SCREEN_SPEC.md`.

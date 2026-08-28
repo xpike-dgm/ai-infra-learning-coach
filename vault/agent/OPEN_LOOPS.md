@@ -1,7 +1,7 @@
 ---
 type: open-loops
 status: active
-last_reviewed: 2026-08-27
+last_reviewed: 2026-08-28
 ---
 
 # Open Loops
@@ -21,7 +21,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 7D Technical integration: TEIP-v0 / D-066 ile tamamlandı
 - [x] 7E English mastery: TEPM-v0 / D-067 ile tamamlandı; 8 derived profile state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence.
 - [x] 8A Bilgi mimarisi: UXIA-v0 / D-068 ile tamamlandı; Today/Learn/Progress/Profile semantic IA + shared detail/focused flows.
-- [ ] 8B Ana ekran **AKTİF**: UXIA-v0 `today` ownership üzerinden Today/home content hierarchy ve next-action UX.
+- [x] 8B Ana ekran: THUX-v0 / D-069 ile tamamlandı; action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics.
+- [ ] 8C Günlük çalışma akışı **AKTİF**: THUX-v0 Home entry/return + UXIA-v0 focused Task Runner ownership üzerinden daily task/session choreography.
 
 ## Knowledge-base operations
 

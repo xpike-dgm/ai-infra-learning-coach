@@ -8,7 +8,7 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 - ⬜ Bekliyor
 - 🔴 Bloke
 
-## Güncel durum — 2026-08-27
+## Güncel durum — 2026-08-28
 
 | Adım | Durum | Açıklama |
 |---|---|---|
@@ -34,8 +34,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **7D — Teknik entegrasyon** | ✅ | TEIP-v0 / D-066. 4 construct-aware integration mode + component attribution + bidirectional contamination/scaffold guards; QA PASS. |
 | **7E — English mastery** | ✅ | TEPM-v0 / D-067. 8 derived Skill state + qualified A1/A2/B1 Technical English profile + B2+ per-capability evidence; QA PASS. |
 | **8A — Bilgi mimarisi** | ✅ | UXIA-v0 / D-068. Today/Learn/Progress/Profile semantic shell + shared detail/focused-flow IA; 49/49 QA PASS. |
-| **8B — Ana ekran** | 🟡 Aktif | Today content hierarchy / home UX; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **8C–20** | ⬜ Bekliyor | 8B sonrası canonical sırada. |
+| **8B — Ana ekran** | ✅ | THUX-v0 / D-069. Action-first Today hierarchy + current PlannedTask queue + capacity/reason/empty/degraded semantics; 90/90 QA PASS. |
+| **8C — Günlük çalışma akışı** | 🟡 Aktif | Task Runner / daily-session interaction choreography; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **8D–20** | ⬜ Bekliyor | 8C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -54,23 +55,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8A
+## Son tamamlanan numaralı adım — 8B
 
-**Final:** `UXIA-v0 — Adaptive Learning Information Architecture` / D-068.  
-**Ana çıktı:** `docs/INFORMATION_ARCHITECTURE_SPEC.md` + `ux/8a_information_architecture/`.
+**Final:** `THUX-v0 — Today Home UX` / D-069.  
+**Ana çıktı:** `docs/TODAY_HOME_SCREEN_SPEC.md` + `ux/8b_today_home/`.
 
-8A sonucu:
-- exactly 4 semantic top-level destination: `Today → Learn → Progress → Profile`,
-- `Today` normal start destination,
-- Assessment / Technical English / AI Tutor / remediation-retention engine'leri top-level silo değildir,
-- shared `topic_detail`, `skill_detail`, `planner_explanation`, `assessment_report`, `technical_english_profile`, `learning_history`,
-- focused `task_runner_flow` ve `assessment_session_flow`,
-- browse hierarchy != prerequisite truth; UI/mastery truth separation preserved,
-- planner explanation PDT-v0 trace-derived,
-- progress time/streak/task-completion/general-CEFR overclaim yapmaz,
-- adaptive layout semantic destination set/order'i değiştirmez,
-- 49/49 independent validator check PASS.
+8B sonucu:
+- Today/Home action-first semantic hierarchy: `primary_action → day_plan_context → remaining_plan → conditional attention → supporting navigation`,
+- current queue only selected `PlannedTask`; candidate/backlog/debt leakage yok,
+- data recovery / revalidated resume / next task / replanning / empty / recoverable-error precedence,
+- daily capacity hard time budget; Today override → replan; persistent preference Profile-owned,
+- purpose/activity/track separated; duration estimate; completion != mastery,
+- PDT-v0 trace-backed bounded reason summary + shared full explanation,
+- contextual assessment; no daily quota/gradebook/broad-score mastery,
+- contextual Technical English; no separate budget/quota/streak/debt/general CEFR,
+- SRR-v0 missed-day fresh-plan behavior preserved,
+- 12 truthful loading/ready/empty/offline/AI-degraded/recovery semantic state,
+- final visual geometry/design system and 8C/8D interaction choreography deferred,
+- independent validator **90/90 PASS**; Stage 6 + Stage 7 + 8A + external-memory regressions PASS.
 
-## Aktif adım — 8B Ana ekran
+## Aktif adım — 8C Günlük çalışma akışı
 
-**8B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**8C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

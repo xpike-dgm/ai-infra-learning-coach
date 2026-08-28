@@ -353,8 +353,20 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - adaptive navigation semantics stable; concrete component/visual layout deferred,
 - independent 8A QA 49/49 PASS.
 
-### [ ] 8B — Ana ekran — **AKTİF**
-### [ ] 8C — Günlük çalışma akışı
+### [x] 8B — Ana ekran — THUX-v0 / D-069
+**Final:** `docs/TODAY_HOME_SCREEN_SPEC.md` + `ux/8b_today_home/`
+
+- action-first primary action + plan/capacity context,
+- remaining queue only current selected PlannedTasks; no candidate/backlog/debt leakage,
+- safe recovery/resume/next-task/replan/empty precedence,
+- current-day capacity override triggers replan; persistent settings remain Profile-owned,
+- PDT-v0 bounded reason projection; attention never rescores planner priority,
+- contextual assessment + Technical English without quotas/gradebook/general CEFR,
+- truthful empty/offline/AI-degraded/recovery states,
+- task completion != mastery; missed day != debt,
+- 90/90 independent 8B QA PASS.
+
+### [ ] 8C — Günlük çalışma akışı — **AKTİF**
 ### [ ] 8D — Sınav UX
 ### [ ] 8E — Skill/progress/weakness UX
 ### [ ] 8F — Tasarım sistemi
@@ -512,10 +524,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A`  
-**Son tamamlanan:** **`8A — UXIA-v0 / D-068`**  
-**Aktif:** **`8B — Ana ekran`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8B`  
+**Son tamamlanan:** **`8B — THUX-v0 / D-069`**  
+**Aktif:** **`8C — Günlük çalışma akışı`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8B fresh PRE-STEP → UXIA-v0 Today ownership + accepted planner/capacity/explainability contracts üzerinden home/Today content hierarchy → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **8C fresh PRE-STEP → THUX-v0 Home entry/return + UXIA-v0 focused Task Runner ownership + accepted teaching/evidence/planner contracts üzerinden daily task/session choreography → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
+- D-069: 8B final `THUX-v0`.

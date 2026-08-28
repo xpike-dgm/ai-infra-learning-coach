@@ -1,0 +1,388 @@
+model: THUX-v0
+stage_step: 8B
+status: accepted_8b
+decision: D-069
+parent_ia: UXIA-v0
+purpose: today_home_action_first_projection
+
+scope:
+  semantic_home_only: true
+  final_visual_design_locked: false
+  task_runner_choreography_locked: false
+  assessment_interaction_locked: false
+  skill_progress_visual_semantics_locked: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  fixed_card_count: null
+  fixed_pixel_geometry: null
+
+home_question: What should I do now?
+normal_shell_destination: today
+
+canonical_truth_owners:
+  current_plan: planner
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  priority: PBR-v0
+  planner_explanation: PDT-v0
+  weakness_remediation: WLRM-v0
+  assessment_evidence: DMA_WBA_MCA_pipeline
+  english_daily: DECP-v0
+  english_integration: TEIP-v0
+  english_profile: TEPM-v0
+
+invariants:
+  today_is_second_planner: false
+  task_completion_is_mastery: false
+  queue_is_candidate_backlog: false
+  deferred_work_is_debt: false
+  missed_day_is_failure: false
+  blocked_task_is_actionable: false
+  capacity_is_progress_metric: false
+  duration_is_mastery_signal: false
+  career_completion_percentage_primary: false
+  broad_numeric_mastery_primary: false
+  streak_primary_success_metric: false
+  general_cefr_claim_allowed: false
+  english_fixed_daily_quota: false
+  assessment_score_direct_mastery: false
+  ai_required_for_core_home: false
+  offline_always_blocks_home: false
+  reason_can_exceed_trace_facts: false
+  current_day_capacity_override_may_replan: true
+  persistent_capacity_setting_owner_profile: true
+
+content_hierarchy:
+  - id: primary_action
+    order: 1
+    prominence: highest
+    always_or_stateful: stateful
+    primary_goal: act_now
+  - id: day_plan_context
+    order: 2
+    prominence: supporting
+    always_or_stateful: stateful
+    primary_goal: understand_today_budget_and_plan
+  - id: remaining_plan
+    order: 3
+    prominence: normal
+    always_or_stateful: stateful
+    primary_goal: preview_selected_upcoming_work
+  - id: attention_context
+    order: 4
+    prominence: conditional
+    always_or_stateful: conditional
+    primary_goal: explain_actionable_state_or_plan_consequence
+  - id: supporting_navigation
+    order: 5
+    prominence: low
+    always_or_stateful: progressive_disclosure
+    primary_goal: reach_detail_without_blocking_action
+
+primary_action:
+  required_semantics:
+    - action_kind
+    - planned_task_or_session_ref
+    - display_title
+    - task_context
+    - primary_purpose
+    - estimated_duration_if_available
+    - reason_summary
+    - start_or_resume_action
+    - planner_explanation_entry
+  optional_context:
+    - curriculum_track
+    - topic_ref
+    - skill_refs
+    - integration_mode
+  forbidden_semantics:
+    - mastery_delta
+    - career_completion_percentage
+    - streak_pressure
+    - fake_urgency_score
+    - raw_priority_rank_vector
+    - free_form_ai_reason_truth
+
+primary_action_precedence:
+  - data_recovery_required
+  - valid_resumable_focused_session
+  - selected_next_planned_task
+  - plan_loading_or_replanning
+  - valid_empty_or_capacity_limited_state
+  - recoverable_error
+
+precedence_rules:
+  resumable_session_must_revalidate: true
+  stale_session_can_bypass_prerequisite: false
+  stale_plan_action_during_replan: false
+  ai_unavailable_supersedes_valid_local_plan: false
+  offline_supersedes_valid_local_plan: false
+  recovery_can_supersede_unsafe_plan: true
+
+capacity_context:
+  source_contract: D-033
+  hard_budget_visible_as_time_context: true
+  allowed_summary_fields:
+    - resolved_daily_capacity
+    - current_day_override_state
+    - estimated_total_planned_work
+    - estimated_remaining_planned_work
+    - plan_recalculated_state
+  forbidden_interpretations:
+    - progress_percentage
+    - mastery_percentage
+    - required_minimum_for_success
+    - fixed_category_split
+    - guaranteed_countdown
+  planning_reserve_must_be_exposed: false
+  duration_is_estimate: true
+  today_override_action: change_today_capacity
+  today_override_triggers_replan: true
+  persistent_preferences_home: profile
+  capacity_decrease_removed_tasks_are_failure: false
+  capacity_increase_promises_fixed_extra_tasks: false
+
+remaining_plan:
+  source_entity: PlannedTask
+  includes_only_current_selected_tasks: true
+  contains_all_open_learning_needs: false
+  contains_unselected_task_candidates: false
+  contains_old_daily_backlog: false
+  planner_order_is_prerequisite_order: false
+  blocked_dependent_work_actionable: false
+  replan_replaces_invalidated_rows: true
+  main_focus_is_remaining_actionable_work: true
+  completed_activity_history_owner: progress
+  completed_activity_may_have_low_emphasis_acknowledgement: true
+
+planned_task_row:
+  semantic_fields:
+    - planned_task_ref
+    - display_title
+    - primary_purpose
+    - activity_kind_optional
+    - curriculum_track_context_optional
+    - topic_ref_optional
+    - target_skill_refs
+    - estimated_minutes_optional
+    - disposition
+    - reason_summary_ref
+    - integration_mode_optional
+  allowed_dispositions:
+    - current
+    - upcoming
+    - paused
+  purpose_activity_track_separate: true
+  duration_is_mastery_signal: false
+  local_completion_can_infer_mastered: false
+  local_completion_can_infer_failed: false
+
+reason_presentation:
+  source_contract: PDT-v0
+  overview_primary_reason_count: 1
+  overview_supporting_reason_max: 1
+  full_detail_route: planner_explanation
+  subset_of_trace_facts_required: true
+  private_chain_of_thought: false
+  free_form_ai_truth: false
+  forbidden_claims:
+    - review_due_means_forgotten
+    - capacity_deferred_means_failed
+    - hidden_weighted_score_is_truth
+  plan_change_reason_trace_backed: true
+
+attention_context:
+  conditional: true
+  allowed_families:
+    - plan_changed
+    - verification_attention
+    - remediation_attention
+    - prerequisite_blocker
+    - retention_attention
+    - assessment_attention
+    - recovery_attention
+  creates_planner_priority: false
+  duplicate_competing_cta_when_primary_task_represents_same_need: false
+  may_link_to:
+    - planner_explanation
+    - skill_detail
+    - topic_detail
+    - progress
+    - profile
+
+supporting_navigation:
+  must_not_block_primary_action: true
+  routes:
+    - planner_explanation
+    - skill_detail
+    - topic_detail
+    - progress
+    - profile_capacity_settings
+
+assessment_today:
+  contextual_only: true
+  permanent_exam_section_required: false
+  daily_quota: false
+  selected_assessment_can_be_primary_action: true
+  selected_assessment_can_be_upcoming_task: true
+  attention_only_when_useful: true
+  question_like_ui_implies_assess_purpose: false
+  score_direct_broad_mastery: false
+  completed_report_home: progress
+  exact_session_result_layout_owner: 8D
+
+technical_english_today:
+  contextual_only: true
+  separate_budget: false
+  fixed_daily_quota: false
+  english_streak: false
+  omitted_selected_due_capacity_is_debt: false
+  track_is_primary_purpose: false
+  integration_contract: TEIP-v0
+  general_or_official_cefr_claim: false
+  qualified_profile_home: progress
+
+return_to_today:
+  pipeline:
+    - attempt_or_artifact
+    - evidence_validation_and_attribution
+    - canonical_state_update_if_warranted
+    - planner_replan_if_warranted
+    - render_current_today_plan
+  stale_pre_attempt_plan_preserved: false
+  completion_implies_mastery: false
+  false_progress_claim_if_no_state_change: false
+  activity_acknowledgement_allowed: true
+  state_change_claim_requires_canonical_state_change: true
+
+missed_day:
+  source_contract: SRR-v0
+  replay_yesterday_plan_as_backlog: false
+  absence_is_failure: false
+  absence_is_debt: false
+  fresh_plan_from_current_state: true
+  forbidden_home_framing:
+    - overdue_tasks_from_yesterday
+    - catch_up_missed_day
+    - streak_loss_punishment
+
+semantic_states:
+  - loading_initial_plan
+  - replanning
+  - ready_plan
+  - resumable_session
+  - empty_no_open_need
+  - empty_no_eligible_task
+  - capacity_zero
+  - capacity_too_small_no_candidate
+  - offline_local_available
+  - ai_unavailable_core_available
+  - error_recoverable
+  - data_recovery_required
+
+empty_state_distinctions:
+  causes:
+    - no_open_need
+    - no_eligible_task
+    - no_capacity
+    - capacity_too_small
+    - loading
+    - recoverable_error
+  no_task_implies_all_mastered: false
+  no_task_implies_professional_ready: false
+
+small_capacity_behavior:
+  capacity_zero_is_failure: false
+  tiny_valid_micro_task_may_be_selected: true
+  no_valid_micro_task_is_failure: false
+  debt_created: false
+
+degraded_behavior:
+  offline_local_available:
+    core_home_usable_when_local_capability_exists: true
+    network_required_task_may_revalidate_or_replan: true
+  ai_unavailable_core_available:
+    deterministic_home_usable: true
+    ui_may_improvise_replacement_task: false
+  error_recoverable:
+    safe_retry_or_recovery_required: true
+  data_recovery_required:
+    may_block_normal_plan_until_safe: true
+    silent_progress_reset: false
+
+progressive_disclosure:
+  overview_must_not_dump:
+    - all_open_learning_needs
+    - full_prerequisite_graph
+    - raw_evidence_history
+    - raw_priority_rank_vector
+    - full_planner_trace
+    - every_weak_skill
+    - entire_curriculum_hierarchy
+    - technical_english_profile
+    - assessment_history
+  fixed_visible_task_row_count: null
+  long_plan_rendering_strategy_deferred: true
+
+responsive_semantics:
+  primary_action_remains_highest_priority: true
+  capacity_remains_today_context: true
+  remaining_plan_remains_single_planner_sequence: true
+  attention_overtakes_primary_only_for_recovery_integrity_blocker: true
+  supporting_context_may_move_spatially: true
+  truth_ownership_changes_with_window_size: false
+  exact_geometry_deferred: true
+
+accessibility_baseline:
+  primary_action_textual_accessible_name: true
+  critical_state_not_color_only: true
+  reason_attention_text_semantics: true
+  loading_replan_recovery_announcable: true
+  linear_traversal_semantic_order: true
+  duration_not_only_task_identifier: true
+
+forbidden_home_patterns:
+  - streak_dashboard
+  - career_completion_dashboard
+  - calendar_backlog_debt_tracker
+  - fixed_category_percentage_dashboard
+  - assessment_gradebook
+  - broad_numeric_domain_mastery
+  - daily_english_quota_tracker
+  - ai_chat_home
+  - raw_planner_debug_console
+  - permanently_blocked_task_list
+  - duplicate_progress_screen
+
+future_stage_boundaries:
+  8C: task_runner_and_daily_session_choreography
+  8D: assessment_interaction_and_result_layout
+  8E: skill_progress_weakness_visual_semantics
+  8F: visual_design_system
+  8G: wireframe_and_prototype_geometry
+  9A: mobile_technology_choice
+  9C: physical_data_model
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  16: detailed_settings_notifications_analytics
+  17: final_accessibility_usability_polish
+  18: empirical_usability_calibration
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - GRE-v0
+    - RVR-v0
+    - PBR-v0
+    - PRG-v0
+    - PDT-v0
+    - SRR-v0
+    - DECP-v0
+    - TEIP-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true

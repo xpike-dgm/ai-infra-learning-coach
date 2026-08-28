@@ -1,7 +1,7 @@
 ---
 type: derived-session-context
 status: volatile-summary
-last_verified: 2026-08-27
+last_verified: 2026-08-28
 must_verify_before_action: true
 canonical_state_source: "[[vault/wiki/sources/Execution State Source]]"
 ---
@@ -33,10 +33,12 @@ Ana invariant: zaman, streak, ders veya task tamamlaması mastery/readiness değ
 - `DECP-v0 / D-065`: Daily Technical English common capacity içinde candidate opportunity; fixed quota/streak/debt yok; PBR balance/starvation + state-driven task mix.
 - `TEIP-v0 / D-066`: Technical English integration; 4 construct-aware mode, component attribution, bidirectional contamination guard, evidence-driven reversible scaffold; no global English/CEFR technical gate.
 - `TEPM-v0 / D-067`: Technical English mastery/profile projection; 8 derived Skill presentation state, qualified A1/A2/B1 profile, B2+ per-capability evidence; no broad/general/official CEFR or numeric aggregate.
+- `UXIA-v0 / D-068`: Today/Learn/Progress/Profile semantic information architecture.
+- `THUX-v0 / D-069`: action-first Today/Home contract; current PlannedTask queue + hard-capacity/reason/empty/degraded semantics.
 
 ## Exact execution state
 
-AŞAMA 6 ve AŞAMA 7 tamamlandı. 8A da **UXIA-v0 / D-068** ile tamamlandı: primary semantic shell `Today · Learn · Progress · Profile`; Assessment/English/AI/remediation contextual; shared Skill detail + PDT-v0 explanation ownership preserved. Son tamamlanan adım **8A — Bilgi mimarisi**. Aktif adım **8B — Ana ekran**; henüz yürütülmedi. 8B başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+AŞAMA 6 ve AŞAMA 7 tamamlandı. 8A **UXIA-v0 / D-068** ve 8B **THUX-v0 / D-069** ile tamamlandı. Today action-first canonical planner/state projection'ıdır; queue current selected PlannedTasks, capacity hard time budget, reasons PDT-v0 trace-derived, completion != mastery, missed-day debt yok, assessment/English contextual. Son tamamlanan adım **8B — Ana ekran**. Aktif adım **8C — Günlük çalışma akışı**; henüz yürütülmedi. 8C başlamadan fresh PRE-STEP + kullanıcı açık onayı zorunludur.
 
 Bu snapshot'tan daha güncel veya çelişen bir iddia varsa [[vault/wiki/sources/Execution State Source|living-memory seti]] kazanır.
 
