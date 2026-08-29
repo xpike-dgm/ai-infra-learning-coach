@@ -30,7 +30,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 9A Mobil teknoloji seçimi: AMTS-v0 / D-075 ile tamamlandı; Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core + Türkçe casing koruması.
 - [x] 9B Veri saklama / local-first: LFPS-v0 / D-076 ile tamamlandı; evidence = truth / state = projection, append-only, SQLite, kalıcı exposure, atomik migration/restore.
 - [x] 9C Domain veri modeli: DDM-v0 / D-077 ile tamamlandı; 11 curriculum + 12 truth + 8 projection entity, yapısal pinning, dört eksen, üç-değerli zaman, watermark'lı projeksiyon.
-- [ ] 9D Servis sınırları **AKTİF**: saf Kotlin core'un nerede bittiği, persistence/curriculum/assessment/planner/AI/UI ayrımı ve bağımlılık yönleri.
+- [x] 9D Servis sınırları: MSBX-v0 / D-078 ile tamamlandı; 10 modül, içe-doğru dependency kuralı, 4 port, port olarak saat, ürünle sevk edilen null evaluator.
+- [ ] 9E AI entegrasyon mimarisi **AKTİF**: EvaluatorPort arkasındaki AI davranışı, provisional sınırları, hata/timeout degrade davranışı ve AIV-v0 validation gereksinimleri.
 - [ ] 10A'ya devredilen bounded verification list (AMTS-v0 §9): güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk` politikasını karşılayan güncel API seviyesi (gerçek cihaza karşı), screen-reader semantics API'leri, reduced-motion tespiti ve seçilen `minSdk`de compatibility library gerekip gerekmediği. Araştırma AI konusudur; seçimi değiştiremez.
 - [ ] Hedef Android cihaz repoda kayıtlı değil; `minSdk` doğrulaması için 10A'da gerekli.
 

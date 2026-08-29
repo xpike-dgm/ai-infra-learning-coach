@@ -511,7 +511,22 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - core-visible modelde platform tipi yok,
 - independent validator **114/114 PASS** (LFPS/KGC/GNS/GRE/TRUX/ASUX/SPWX çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B regressions PASS.
 
-### [ ] 9D — Servis sınırları — **AKTİF**
+### [x] 9D — Servis sınırları — MSBX-v0 / D-078
+
+**9D final coverage:**
+- sınırlar garantileri yapısal yapar; "core AI olmadan çalışır" vaatten dependency kuralına dönüştü,
+- 10 modül, içe-doğru dependency kuralı, asiklik graf; `core-*` asla `data-*`/`ai-*`/`app-*`'e bağımlı olamaz,
+- `app-wiring` her implementasyonu bilen tek modül ve domain logic içermiyor,
+- 4 port: PersistencePort, ContentPort, ClockPort, EvaluatorPort — hepsi core'da ve platform tipsiz,
+- **saat bir port**: zaman ortam gerçeği değil girdi; determinizm ve timezone mantığı test edilebilir,
+- core'da rastgelelik yok; beraberlik beyan edilmiş total ordering ile çözülür (seeded random reddedildi),
+- **null evaluator ürünle sevk edilir**; app `ai-adapter` olmadan build/run olur; `evaluation_pending` evidence yazmaz,
+- engine başına tek state ailesi; planner mastery/retention/readiness/weakness yazmaz,
+- transaction sınırı `core-application`da; engine'ler saf policy,
+- presentation projection `core-presentation`da; `app-ui` yalnız render eder,
+- independent validator **93/93 PASS**; dependency grafı hesaplanarak doğrulanır (cycle + forbidden edge), mutation-tested; Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + 9C regressions PASS.
+
+### [ ] 9E — AI entegrasyon mimarisi — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -658,11 +673,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9C`  
-**Son tamamlanan:** **`9C — DDM-v0 / D-077`**  
-**Aktif:** **`9D — Servis sınırları`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9D`  
+**Son tamamlanan:** **`9D — MSBX-v0 / D-078`**  
+**Aktif:** **`9E — AI entegrasyon mimarisi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **9D fresh PRE-STEP → DDM-v0 modeli üzerinde module ve service boundary'leri; saf Kotlin core'un nerede bittiği, persistence/assessment/planner/AI/UI katmanlarının nasıl ayrıldığı ve her bağımlılığın hangi yöne baktığı → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **9E fresh PRE-STEP → MSBX-v0 `EvaluatorPort` arkasında AI adaptörünün davranışı; AI'ın neye karar verip veremeyeceği, provisional evaluation'ın sınırları, hata durumlarında degrade davranışı ve AIV-v0 validation gereksinimlerinin nasıl karşılanacağı → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -674,3 +689,4 @@ Bir sonraki yürütme: **9D fresh PRE-STEP → DDM-v0 modeli üzerinde module ve
 - D-075: 9A final `AMTS-v0`.
 - D-076: 9B final `LFPS-v0`.
 - D-077: 9C final `DDM-v0`.
+- D-078: 9D final `MSBX-v0`.

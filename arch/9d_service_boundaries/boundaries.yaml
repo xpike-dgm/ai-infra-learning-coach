@@ -1,0 +1,310 @@
+model: MSBX-v0
+stage_step: 9D
+status: accepted_9d
+decision: D-078
+platform: AMTS-v0
+persistence: LFPS-v0
+data_model: DDM-v0
+purpose: module_and_service_boundaries_and_dependency_direction
+
+scope:
+  boundaries_only: true
+  di_library_locked: false
+  build_syntax_locked: false
+  test_strategy_locked: false
+  ai_provider_and_prompts_locked: false
+  concrete_names_locked: false
+  stage8_semantics_changed: false
+  persistence_rules_changed: false
+  data_model_changed: false
+  module_count_target: null
+  layer_depth_rule: null
+  package_naming_convention: null
+  performance_claim: null
+
+boundaries_question: Which guarantee is protected by which boundary?
+
+canonical_truth_owners:
+  platform: AMTS-v0
+  persistence: LFPS-v0
+  data_model: DDM-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  topic_state: TSM-v0
+  weakness_remediation: WLRM-v0
+  priority: PBR-v0
+  planner_explanation: PDT-v0
+  english_profile: TEPM-v0
+  presentation_state: SPWX-v0
+  ai_integration: 9E
+  test_strategy: 9F
+  di_and_build: 10A
+
+invariants:
+  core_depends_on_data: false
+  core_depends_on_ai: false
+  core_depends_on_app: false
+  dependency_cycle_present: false
+  ai_client_referenced_from_core: false
+  http_or_network_type_in_core: false
+  core_reads_system_clock_directly: false
+  randomness_in_core: false
+  seeded_random_in_core: false
+  engine_writes_another_engines_state: false
+  planner_writes_learner_state: false
+  transaction_opened_inside_engine: false
+  persistence_called_from_ui: false
+  presentation_state_computed_in_ui_toolkit: false
+  platform_type_in_port_signature: false
+  domain_logic_in_wiring: false
+  null_evaluator_is_test_only_fixture: false
+  ships_without_null_evaluator: false
+  deterministic_capability_degrades_without_evaluator: false
+  library_named_here: false
+  dependency_rule_is_checkable: true
+  null_evaluator_ships_with_product: true
+  app_builds_without_ai_adapter: true
+  clock_is_a_port: true
+  ties_broken_by_declared_total_ordering: true
+  transaction_boundary_in_core_application: true
+  presentation_projection_in_core: true
+
+modules:
+  - id: core-model
+    layer: core
+    responsibility: domain_types_state_vocabularies_logical_ids
+    depends_on: []
+  - id: core-ports
+    layer: core
+    responsibility: interfaces_the_core_needs_from_outside
+    depends_on: [core-model]
+  - id: core-engines
+    layer: core
+    responsibility: gre_rvr_prg_pbr_pdt_tsm_wlrm_tepm_policy
+    depends_on: [core-model, core-ports]
+  - id: core-application
+    layer: core
+    responsibility: use_cases_and_transaction_boundary
+    depends_on: [core-model, core-ports, core-engines]
+  - id: core-presentation
+    layer: core
+    responsibility: spwx_state_projection_and_surface_view_models
+    depends_on: [core-model, core-engines]
+  - id: data-persistence
+    layer: data
+    responsibility: sqlite_adapters_implementing_persistence_ports
+    depends_on: [core-model, core-ports]
+  - id: data-curriculum
+    layer: data
+    responsibility: curriculum_and_resource_content_adapters
+    depends_on: [core-model, core-ports]
+  - id: ai-adapter
+    layer: ai
+    responsibility: evaluator_and_tutor_port_implementation
+    optional: true
+    depends_on: [core-model, core-ports]
+  - id: app-ui
+    layer: app
+    responsibility: compose_rendering_only
+    depends_on: [core-model, core-presentation, core-application]
+  - id: app-wiring
+    layer: app
+    responsibility: composition_root
+    is_composition_root: true
+    contains_domain_logic: false
+    depends_on: [core-model, core-ports, core-engines, core-application, core-presentation, data-persistence, data-curriculum, ai-adapter, app-ui]
+
+dependency_rule:
+  direction: inward_only
+  forbidden_edges:
+    - from_layer: core
+      to_layer: data
+    - from_layer: core
+      to_layer: ai
+    - from_layer: core
+      to_layer: app
+  graph_must_be_acyclic: true
+  only_composition_root_may_depend_on_all: true
+  rule_is_checkable_not_aspirational: true
+  rationale: a_promise_everyone_must_remember_for_years_is_not_a_guarantee_a_dependency_rule_is
+
+ports:
+  live_in: core-ports
+  expressed_in_core_types: true
+  platform_type_in_signature: false
+  set:
+    - id: PersistencePort
+      provides: truth_append_projection_read_write_transactions
+      implemented_by: data-persistence
+    - id: ContentPort
+      provides: curriculum_and_resource_content_by_logical_id_and_version
+      implemented_by: data-curriculum
+    - id: ClockPort
+      provides: current_instant_learner_local_study_day_and_utc_offset
+      implemented_by: platform_injected
+    - id: EvaluatorPort
+      provides: open_ended_evaluation
+      implemented_by: ai-adapter_or_null_evaluator
+
+clock_port:
+  is_a_port: true
+  core_reads_system_clock_directly: false
+  provides:
+    - instant
+    - learner_local_study_day
+    - utc_offset
+  rationale_determinism: planner_output_must_be_a_function_of_declared_inputs
+  rationale_timezone: instant_study_day_offset_logic_must_be_testable
+  time_is_ambient_fact: false
+  time_is_input: true
+
+determinism:
+  randomness_in_core: false
+  seeded_random_port: false
+  seeded_random_rejected_because: it_would_make_determinism_a_configuration_rather_than_a_property
+  tie_breaking: declared_total_ordering
+  tie_breaking_contract: PBR-v0
+  same_inputs_same_result: true
+  source_contract: ADAPTIVE_PLANNER_SPEC_section_18
+
+ai_absence:
+  core_references_ai_client: false
+  core_references_http_client: false
+  core_references_network_type: false
+  evaluator_is_a_port: true
+  null_evaluator_ships_with_product: true
+  null_evaluator_is_test_fixture: false
+  app_builds_without_ai_adapter: true
+  app_runs_without_ai_adapter: true
+  with_null_evaluator_open_ended_becomes: evaluation_pending
+  with_null_evaluator_evidence_written: false
+  deterministic_capability_degrades: false
+  satisfies_v1_criterion: 8
+  satisfied_by: wiring_not_hope
+  demonstrable_by: building_without_the_adapter
+
+engine_ownership:
+  - engine: GRE-v0
+    owns: mastery_state
+    may_read: [evidence, curriculum]
+  - engine: RVR-v0
+    owns: retention_state
+    may_read: [evidence, mastery]
+  - engine: PRG-v0
+    owns: prerequisite_readiness
+    may_read: [mastery, retention, curriculum]
+  - engine: TSM-v0
+    owns: topic_state
+    may_read: [mastery, retention, readiness]
+  - engine: WLRM-v0
+    owns: weakness_and_remediation_state
+    may_read: [evidence, mastery]
+  - engine: PBR-v0
+    owns: candidate_priority_and_rank
+    may_read: [all_read_only_state]
+  - engine: PDT-v0
+    owns: plan_versions_planned_tasks_and_decision_traces
+    may_read: [all_read_only_state]
+  - engine: TEPM-v0
+    owns: technical_english_profile
+    may_read: [english_skill_state]
+engine_rules:
+  one_state_family_per_engine: true
+  engine_writes_another_engines_state: false
+  planner_writes_mastery: false
+  planner_writes_retention: false
+  planner_writes_readiness: false
+  planner_writes_weakness: false
+  assessment_writes_retention_directly: false
+  cross_engine_effects_via: core_application_calling_engines_in_declared_order
+  rationale: allowing_one_engine_to_write_anothers_state_recreates_the_second_source_of_truth
+
+transaction_boundary:
+  owner_module: core-application
+  lives_in_ui_handlers: false
+  lives_in_engine: false
+  engine_opens_transaction: false
+  engine_calls_persistence_directly: false
+  engines_are_pure_policy: true
+  use_case_shape:
+    - validate_against_current_state
+    - append_truth_records
+    - run_engines_in_declared_order
+    - write_updated_projections
+    - commit_as_one_transaction
+  source_contract: LFPS-v0
+
+presentation:
+  projection_module: core-presentation
+  computed_in_ui_toolkit: false
+  outputs_pure_data: true
+  covers:
+    - spwx_presentation_state
+    - today_view_model
+    - task_runner_view_model
+    - assessment_session_view_model
+    - progress_view_model
+  ui_module_responsibility: rendering_only
+  ui_carries_meaning_beyond_rendering: false
+  rationale: presentation_projection_in_compose_would_make_capability_labelling_testable_only_on_a_device
+  source_contract: SPWX-v0
+
+composition_root:
+  module: app-wiring
+  only_module_knowing_every_implementation: true
+  contains_domain_logic: false
+  contains_policy: false
+  contains_state: false
+  chooses_real_or_null_evaluator: true
+  swapping_implementation_touches_only_this_module: true
+
+forbidden_boundary_patterns:
+  - core_module_depending_on_data_ai_or_app
+  - cycle_in_module_graph
+  - ai_http_or_network_type_referenced_from_core
+  - core_reading_system_clock_directly
+  - randomness_in_core_seeded_or_otherwise
+  - engine_writing_another_engines_state
+  - planner_writing_mastery_retention_readiness_or_weakness
+  - transaction_opened_inside_engine
+  - persistence_called_directly_from_ui
+  - presentation_state_computation_inside_compose
+  - platform_type_in_port_signature
+  - domain_logic_in_wiring
+  - shipping_without_null_evaluator
+  - treating_null_evaluator_as_test_only_fixture
+  - naming_di_or_build_library_here
+
+future_stage_boundaries:
+  9E: ai_integration_architecture_behind_evaluator_port
+  9F: test_strategy_and_ci_enforcement_of_dependency_rule
+  10A: di_library_build_syntax_and_module_declaration
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+
+acceptance:
+  required_previous_models:
+    - AMTS-v0
+    - LFPS-v0
+    - DDM-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - TSM-v0
+    - WLRM-v0
+    - PBR-v0
+    - PDT-v0
+    - TEPM-v0
+    - SPWX-v0
+    - TRUX-v0
+    - ASUX-v0
+  independent_qa_required: true
+  dependency_graph_must_be_verified: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9a_regression_required: true
+  stage9b_regression_required: true
+  stage9c_regression_required: true
