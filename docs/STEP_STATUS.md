@@ -41,8 +41,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8F — Tasarım sistemi** | ✅ | VDSX-v0 / D-073. Expression layer + 6 tone + 46/46 state eşlemesi + WCAG çapaları; 121/121 QA PASS. |
 | **8G — Wireframe/prototip** | ✅ | WFPX-v0 / D-074. 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti; 222/222 QA PASS. **AŞAMA 8 kapandı.** |
 | **9A — Mobil teknoloji seçimi** | ✅ | AMTS-v0 / D-075. Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core; 100/100 QA PASS. |
-| **9B — Veri saklama / local-first** | 🟡 Aktif | Local-first persistence, migration, backup/export/restore; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9C–20** | ⬜ Bekliyor | 9B sonrası canonical sırada. |
+| **9B — Veri saklama / local-first** | ✅ | LFPS-v0 / D-076. Evidence = truth, state = projection; SQLite; append-only; atomik migration/restore; 100/100 QA PASS. |
+| **9C — Domain veri modeli** | 🟡 Aktif | Entity/field/relation + physical schema; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9D–20** | ⬜ Bekliyor | 9C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -61,28 +62,27 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9A
+## Son tamamlanan numaralı adım — 9B
 
-**Final:** `AMTS-v0 — Android Mobile Technology Selection` / D-075.  
-**Ana çıktı:** `docs/MOBILE_TECHNOLOGY_SPEC.md` + `arch/9a_mobile_technology/`.
+**Final:** `LFPS-v0 — Local-First Persistence Architecture` / D-076.  
+**Ana çıktı:** `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` + `arch/9b_local_first_persistence/`.
 
-9A sonucu:
-- teknoloji seçimi kabul edilmiş kontratlara hizmet eder; library default'u ile kontrat çelişirse kontrat kazanır,
-- **Android native**; V1'de cross-platform UI katmanı yoktur — V1 tek platforma çıkar, fayda mevcut değildir ve maliyet tam olarak AŞAMA 8'in kontrata bağladığı üç yere iner,
-- taşınabilirlik hedge'i UI değil domain core'dur,
-- **Kotlin + Jetpack Compose**; declarative/state-driven toolkit token+state design system'e ve state projeksiyonu olan Skill görünümüne doğrudan karşılık gelir,
-- Material 3 yalnız substrate'tir; `VDSX-v0` token'ları otoriterdir ve library default'ları ekrana ulaşamaz,
-- **dynamic colour kapatıldı** — ölçülmüş paleti, kontrast kanıtını ve hue politikasını yok ederdi,
-- **domain core saf Kotlin**: Android API, UI toolkit, networking ve AI client bağımlılığı yasak; V1 kriteri 8 yapısal garanti altına alındı,
-- 3 window class `WFPX-v0` ile birebir; destination kimliği ve sırası değişmez,
-- accessibility gereksinimleri platform mekanizmalarına eşlendi (48dp, %200 metin, screen-reader state, focus ≥3:1, reduced motion, renk tek taşıyıcı değil),
-- **default-locale case transform yasak**; `i ↔ İ` ve `ı ↔ I` round-trip eder; kilitli etiketler case-transform edilemez; identifier karşılaştırması locale-sensitive casing kullanamaz,
-- `minSdk` politikadır; working default API 26 ve 10A'da gerçek cihaza karşı doğrulanacaktır,
-- kurulabilir APK ve gerçek cihaz QA zorunludur,
-- **6 maddelik bounded verification list** 10A'ya devredildi; framework güncelliği iddiası bu adımda kesinleştirilmedi,
-- 9A depolama, veri modeli, boundary, AI entegrasyonu ve test stratejisini kararlaştırmaz,
-- independent validator **100/100 PASS**; kontratlara karşı çapraz doğrulanır ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + external-memory regressions PASS.
+9B sonucu:
+- **kanıt source of truth'tur; öğrenci state'i onun yeniden hesaplanabilir projeksiyonudur.** Attempt, artifact, evidence event, assistance metadata, provenance, exposure, assessment session ve planner trace append-only'dir; mastery/retention/readiness/Topic/weakness/English profile cache'tir,
+- öğrencinin kanıtladığı yetkinliği yalnız yeni kanıt değiştirebilir; geçersiz kanıt silinmez, işaretlenir,
+- storage engine **SQLite** (embedded transactional relational); gerekçe kontratlardan türetildi ve reddedilen alternatiflerin kaybettikleri kaydedildi,
+- ORM/mapping library seçilmedi; 10A verification item'ı (AMTS-v0 emsali),
+- persistence interface'leri core'a aittir ve platform bunları SQLite üzerinde implemente eder; core signature'ında storage/Android/fs tipi yoktur ve core cihazsız test edilebilir,
+- curriculum ve user state ayrı saklanır ve ayrı versiyonlanır; published version'lar korunur; user kayıtları curriculum version'ını pin'ler; **curriculum güncellemesi tek başına learner state değiştiremez**,
+- **exposure kayıtları kalıcı ve first-class'tır**; kaybı veri kaybıdır — kaybolursa solution-exposed bir item taze bağımsız kontrol olarak sunulabilir ve ürün sessizce sahte independent evidence üretir,
+- bir öğrenci eylemi bir transaction'dır; attempt asla assistance metadata/provenance olmadan yazılmaz; `evaluation_pending` evidence yazmaz,
+- migration forward-only ve versiyonludur; kanıtı/exposure'ı/provenance'ı asla yok etmez; dolu DB'ye karşı test edilir; yarım kalırsa intact bırakıp `data_recovery_required` yüzeyler; downgrade yerine backup restore,
+- export profili yeniden kurmaya yeter ve schema/policy version kaydeder; restore atomik ve doğrulanmıştır, daha yeni schema reddedilir, sessiz merge yoktur,
+- bozulma `data_recovery_required` yüzeyler ve sessiz reset yasaktır; truth sağlamken tutarsız projeksiyon **reset değil recomputation** ile onarılır (`recomputing_projection`),
+- V1'de kanıt budanmaz; gelecekteki budama açık ve kullanıcıya görünür olmak zorundadır,
+- core okuma/yazma ağsız çalışır; V1'de cloud sync yoktur; persistence AI client'a bağımlı değildir,
+- independent validator **100/100 PASS**; karar kontratlara karşı doğrulanır (V1_SCOPE, KGC, QAB, ASUX, TRUX, SPWX, AMTS) ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + external-memory regressions PASS.
 
-## Aktif adım — 9B Veri saklama / local-first
+## Aktif adım — 9C Domain veri modeli
 
-**9B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**9C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

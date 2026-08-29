@@ -476,8 +476,25 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 6 maddelik bounded verification list 10A'ya devredildi (library güncelliği Araştırma AI konusudur),
 - independent validator **100/100 PASS** (WFPX/VDSX/SPWX/V1_SCOPE/AI_AGENT_WORKFLOW çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 regressions PASS.
 
-### [ ] 9B — Veri saklama/local-first — **AKTİF**
-### [ ] 9C — Domain veri modeli
+### [x] 9B — Veri saklama/local-first — LFPS-v0 / D-076
+
+**9B final coverage:**
+- kanıt source of truth; mastery/retention/readiness/Topic/weakness/English profile yeniden hesaplanabilir projeksiyon,
+- truth kayıtları append-only; yerinde güncellenmez, silinmez; geçersiz kanıt işaretlenir,
+- storage engine SQLite (embedded transactional relational); alternatifler ve kayıpları kayıtlı,
+- ORM/mapping library seçilmedi → 10A,
+- persistence interface'leri core'a ait; core signature'ında storage/Android/fs tipi yok,
+- curriculum ve user state ayrı saklanır ve ayrı versiyonlanır; user kayıtları curriculum version'ını pin'ler,
+- curriculum güncellemesi tek başına learner state değiştiremez,
+- exposure kayıtları kalıcı ve first-class; kaybı veri kaybıdır,
+- bir öğrenci eylemi bir transaction; `evaluation_pending` evidence yazmaz,
+- migration forward-only, kanıtı asla yok etmez, dolu DB'ye karşı test edilir, yarım kalırsa intact bırakır,
+- export profili yeniden kurmaya yeter ve schema/policy version kaydeder; restore atomik ve doğrulanmış, yeni schema reddedilir,
+- bozulma `data_recovery_required` yüzeyler; sessiz reset yasak; tutarsız projeksiyon reset değil recomputation ile onarılır,
+- V1'de kanıt budanmaz,
+- independent validator **100/100 PASS** (V1_SCOPE/KGC/QAB/ASUX/TRUX/SPWX/AMTS çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A regressions PASS.
+
+### [ ] 9C — Domain veri modeli — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -624,11 +641,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A`  
-**Son tamamlanan:** **`9A — AMTS-v0 / D-075`**  
-**Aktif:** **`9B — Veri saklama / local-first`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9B`  
+**Son tamamlanan:** **`9B — LFPS-v0 / D-076`**  
+**Aktif:** **`9C — Domain veri modeli`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **9B fresh PRE-STEP → granular Skill/Objective evidence, assessment kayıtları ve yıllarca history için local-first persistence; curriculum data ile user state ayrımı; migration, backup, export ve restore davranışı → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **9C fresh PRE-STEP → LFPS-v0 persistence mimarisi üzerinde granular Skill/Objective state, assessment-resource version/exposure/validation kayıtları, yıllarca history ve curriculum versioning için entity/field/relation ve physical schema → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -638,3 +655,4 @@ Bir sonraki yürütme: **9B fresh PRE-STEP → granular Skill/Objective evidence
 - D-073: 8F final `VDSX-v0`.
 - D-074: 8G final `WFPX-v0`; AŞAMA 8 kapandı.
 - D-075: 9A final `AMTS-v0`.
+- D-076: 9B final `LFPS-v0`.

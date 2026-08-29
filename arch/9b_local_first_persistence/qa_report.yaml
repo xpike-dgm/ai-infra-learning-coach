@@ -1,0 +1,334 @@
+stage_step: 9B
+model: LFPS-v0
+candidate_decision: D-076
+result: PASS
+status_observed: accepted_9b
+checks_total: 100
+checks_passed: 100
+checks_failed: 0
+storage_engine: sqlite
+truth_records: 8
+derived_projections: 7
+forbidden_persistence_patterns: 17
+checks:
+- check: E9B-00_required_file
+  result: PASS
+  details: arch\9b_local_first_persistence\persistence.yaml
+- check: E9B-00_required_file
+  result: PASS
+  details: docs\LOCAL_FIRST_PERSISTENCE_SPEC.md
+- check: E9B-00_required_file
+  result: PASS
+  details: research\9b_local_first_persistence_research.md
+- check: E9B-00_required_file
+  result: PASS
+  details: arch\9a_mobile_technology\technology.yaml
+- check: E9B-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E9B-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E9B-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E9B-00_required_file
+  result: PASS
+  details: docs\V1_SCOPE.md
+- check: E9B-00_required_file
+  result: PASS
+  details: docs\CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md
+- check: E9B-00_required_file
+  result: PASS
+  details: docs\QUESTION_BANK_SPEC.md
+- check: E9B-01_identity
+  result: PASS
+  details: model=LFPS-v0 step=9B
+- check: E9B-01_status
+  result: PASS
+  details: status=accepted_9b
+- check: E9B-01_decision
+  result: PASS
+  details: decision=D-076
+- check: E9B-01_platform
+  result: PASS
+  details: platform=AMTS-v0
+- check: E9B-02_architecture_only
+  result: PASS
+  details: 9B is architecture only
+- check: E9B-02_deferred_open
+  result: PASS
+  details: violations=[]
+- check: E9B-02_stage8_untouched
+  result: PASS
+  details: AŞAMA 8 semantics untouched
+- check: E9B-02_no_invented_numbers
+  result: PASS
+  details: violations=[]
+- check: E9B-02_schema_owner
+  result: PASS
+  details: schema owner=9C
+- check: E9B-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E9B-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E9B-03_guard_count
+  result: PASS
+  details: false_guards=30
+- check: E9B-04_truth_records
+  result: PASS
+  details: missing=[]
+- check: E9B-04_derived_projections
+  result: PASS
+  details: missing=[]
+- check: E9B-04_no_overlap
+  result: PASS
+  details: overlap=[]
+- check: E9B-05_append_only
+  result: PASS
+  details: append-only=True
+- check: E9B-05_projection_is_cache
+  result: PASS
+  details: projection is a deterministic rebuildable cache
+- check: E9B-05_only_evidence_changes_capability
+  result: PASS
+  details: only new evidence changes demonstrated capability
+- check: E9B-06_mark_not_erase
+  result: PASS
+  details: invalid evidence is marked, not erased
+- check: E9B-07_engine_class
+  result: PASS
+  details: engine=embedded_transactional_relational/sqlite
+- check: E9B-07_justified_from_contracts
+  result: PASS
+  details: engine justified from contracts
+- check: E9B-07_required_properties
+  result: PASS
+  details: properties=5
+- check: E9B-07_alternatives_recorded
+  result: PASS
+  details: rejected=['document_or_key_value_store', 'flat_files_or_serialized_snapshots']
+- check: E9B-07_alternatives_losses
+  result: PASS
+  details: each rejected alternative records its loss
+- check: E9B-08_orm_deferred
+  result: PASS
+  details: orm=False owner=10A
+- check: E9B-08_9a_precedent_real
+  result: PASS
+  details: AMTS-v0 really defers library currency to 10A
+- check: E9B-09_core_owns_interfaces
+  result: PASS
+  details: 'dependency={''core_declares_persistence_interfaces'': True, ''platform_implements_over_sqlite'':
+    True, ''interfaces_expressed_in_core_types'': True, ''storage_type_in_core_signature'':
+    False, ''android_type_in_core_signature'': False, ''filesystem_type_in_core_signature'':
+    False, ''core_runnable_against_fake_or_in_memory_impl'': True, ''core_testable_without_device'':
+    True, ''module_layout_owner'': ''9D''}'
+- check: E9B-09_no_leak
+  result: PASS
+  details: no storage/android/fs type in core signature
+- check: E9B-09_core_testable
+  result: PASS
+  details: core testable without a device
+- check: E9B-09_amts_core_purity
+  result: PASS
+  details: AMTS core forbidden=['android_api', 'ui_toolkit', 'networking', 'ai_client']
+- check: E9B-09_boundary_owner
+  result: PASS
+  details: module owner=9D
+- check: E9B-10_separation
+  result: PASS
+  details: 'separation={''separately_stored'': True, ''separately_versioned'': True,
+    ''published_versions_retained'': True, ''published_version_overwritten'': False,
+    ''user_records_pin_curriculum_version'': True, ''curriculum_update_adds_versions_only'':
+    True, ''curriculum_update_rewrites_evidence'': False, ''curriculum_update_invalidates_evidence'':
+    False, ''historical_evidence_reconstructable_against_producing_version'': True,
+    ''curriculum_update_is_a_state_change'': False, ''semantic_change_expressed_as_new_need_through_engines'':
+    True}'
+- check: E9B-10_v1_requires_separation
+  result: PASS
+  details: V1_SCOPE requires curriculum/user state separation
+- check: E9B-10_kgc_immutability
+  result: PASS
+  details: KGC-v0 forbids silent change to published graph state
+- check: E9B-11_versions_retained
+  result: PASS
+  details: published versions retained
+- check: E9B-11_update_is_not_state_change
+  result: PASS
+  details: a curriculum update cannot change learner state by itself
+- check: E9B-11_reconstructable
+  result: PASS
+  details: historical evidence stays reconstructable
+- check: E9B-12_permanence
+  result: PASS
+  details: exposure=life_of_profile
+- check: E9B-12_kinds
+  result: PASS
+  details: kinds=['solution_exposure', 'item_version_seen', 'variant_family_exposure']
+- check: E9B-12_included_everywhere
+  result: PASS
+  details: exposure included in backup/export/migration
+- check: E9B-12_loss_is_data_loss
+  result: PASS
+  details: loss=data_loss
+- check: E9B-12_qab_separates_exposure
+  result: PASS
+  details: QAB-v0 keeps user exposure history separate
+- check: E9B-12_asux_forbids_reuse
+  result: PASS
+  details: ASUX-v0 forbids reusing an exposed item as an independent recheck
+- check: E9B-13_tx_unit
+  result: PASS
+  details: unit=one_learner_action_is_one_transaction
+- check: E9B-13_committed_together
+  result: PASS
+  details: missing=[]
+- check: E9B-13_no_partial
+  result: PASS
+  details: no observable partial write
+- check: E9B-13_metadata_always
+  result: PASS
+  details: attempts always carry assistance metadata and provenance
+- check: E9B-14_evaluation_pending
+  result: PASS
+  details: evaluation_pending writes no evidence, atomically
+- check: E9B-14_trux_pending_real
+  result: PASS
+  details: TRUX-v0 really forbids evidence for evaluation_pending
+- check: E9B-14_asux_pending_real
+  result: PASS
+  details: ASUX-v0 really forbids evidence for evaluation_pending
+- check: E9B-15_forward_only
+  result: PASS
+  details: migration=True
+- check: E9B-15_never_destroys
+  result: PASS
+  details: migration never destroys evidence/exposure/provenance
+- check: E9B-15_derived_rebuild_ok
+  result: PASS
+  details: discarding derived state is not data loss
+- check: E9B-16_migration_tested
+  result: PASS
+  details: migration tested against populated data
+- check: E9B-16_fails_intact
+  result: PASS
+  details: incomplete migration fails intact and surfaces recovery
+- check: E9B-17_user_initiated
+  result: PASS
+  details: backup/export user initiated, no auto cloud upload
+- check: E9B-17_export_complete
+  result: PASS
+  details: missing=[]
+- check: E9B-17_export_versions
+  result: PASS
+  details: export records schema and policy versions
+- check: E9B-17_export_no_loss
+  result: PASS
+  details: omitting derived state loses no information
+- check: E9B-18_restore_atomic
+  result: PASS
+  details: restore=True
+- check: E9B-18_restore_versions
+  result: PASS
+  details: newer-schema restore refused
+- check: E9B-18_no_silent_merge
+  result: PASS
+  details: restore never silently merges
+- check: E9B-18_v1_requires_backup
+  result: PASS
+  details: V1_SCOPE requires backup/export/restore
+- check: E9B-19_integrity_checks
+  result: PASS
+  details: integrity checked at all three points
+- check: E9B-19_corruption_state
+  result: PASS
+  details: corruption=data_recovery_required
+- check: E9B-19_state_is_accepted
+  result: PASS
+  details: both surfaced states are accepted SPWX-v0 states
+- check: E9B-20_recompute_not_reset
+  result: PASS
+  details: recomputation preferred over reset
+- check: E9B-20_no_false_claims
+  result: PASS
+  details: unpersisted work never claimed as saved
+- check: E9B-20_trux_recovery_real
+  result: PASS
+  details: TRUX-v0 really forbids claiming unpersisted work
+- check: E9B-21_no_pruning
+  result: PASS
+  details: 'pruning={''history_accumulates_by_design'': True, ''reads_backwards_for'':
+    [''retention'', ''remediation'', ''verification''], ''evidence_pruned_in_v1'':
+    False, ''automatic_deletion'': False, ''rolling_window'': False, ''tidy_up_job'':
+    False, ''derived_state_and_caches_discardable'': True, ''future_pruning_must_be_explicit_and_user_visible'':
+    True, ''future_pruning_may_touch_data_current_state_depends_on'': False}'
+- check: E9B-21_future_pruning_explicit
+  result: PASS
+  details: future pruning is explicit and cannot touch depended-upon data
+- check: E9B-21_reads_backwards
+  result: PASS
+  details: reads_backwards_for=['retention', 'remediation', 'verification']
+- check: E9B-22_offline_core
+  result: PASS
+  details: 'local_first={''core_read_write_works_offline'': True, ''realtime_multi_device_cloud_sync_in_v1'':
+    False, ''network_absence_degrades_optional_capability_only'': True, ''network_absence_degrades_deterministic_core'':
+    False, ''persistence_depends_on_ai_client'': False}'
+- check: E9B-22_no_cloud_sync
+  result: PASS
+  details: no realtime cloud sync in V1
+- check: E9B-22_v1_local_first
+  result: PASS
+  details: V1_SCOPE states local-first
+- check: E9B-23_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E9B-23_forbidden_count
+  result: PASS
+  details: count=17
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=9D
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=9E
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=9F
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=10A
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=16
+- check: E9B-24_boundary_open
+  result: PASS
+  details: stage=19
+- check: E9B-24_9c_owns_schema
+  result: PASS
+  details: 9C=domain_data_model_entities_relations_and_physical_schema
+- check: E9B-25_required_models
+  result: PASS
+  details: missing=[]
+- check: E9B-25_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''AMTS-v0'', ''KGC-v0'', ''QAB-v0'',
+    ''AIV-v0'', ''GRE-v0'', ''RVR-v0'', ''PRG-v0'', ''TSM-v0'', ''WLRM-v0'', ''TEPM-v0'',
+    ''TRUX-v0'', ''ASUX-v0'', ''SPWX-v0''], ''independent_qa_required'': True, ''stage6_regression_required'':
+    True, ''stage7_regression_required'': True, ''stage8_regression_required'': True,
+    ''stage9a_regression_required'': True}'
+- check: E9B-26_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E9B-26_spec_no_invented_numbers
+  result: PASS
+  details: spec refuses invented numbers
+- check: E9B-27_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

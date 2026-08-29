@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075`; AŞAMA 8'in kapandığını ve aktif adımın `9B active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076`; AŞAMA 8'in kapandığını ve aktif adımın `9C active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1113,14 +1113,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 8G ✅ WFPX-v0 / D-074
 - **AŞAMA 8 ✅ TAMAMLANDI**
 - AŞAMA 9A ✅ AMTS-v0 / D-075
-- AŞAMA 9B 🟡 active-not-executed
-- 9C–20 ⬜
+- AŞAMA 9B ✅ LFPS-v0 / D-076
+- AŞAMA 9C 🟡 active-not-executed
+- 9D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9A — Mobil teknoloji seçimi`  
-**Final:** `AMTS-v0 — Android Mobile Technology Selection` / D-075  
-**Canonical:** `docs/MOBILE_TECHNOLOGY_SPEC.md` + `arch/9a_mobile_technology/`
+**Son tamamlanan numaralı adım:** `9B — Veri saklama / local-first`  
+**Final:** `LFPS-v0 — Local-First Persistence Architecture` / D-076  
+**Canonical:** `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` + `arch/9b_local_first_persistence/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1132,17 +1133,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 8G:** ✅ TAMAMLANDI  
 **AŞAMA 8:** ✅ TAMAMLANDI  
 **AŞAMA 9A:** ✅ TAMAMLANDI  
-**Aktif adım:** `9B — Veri saklama / local-first`  
+**AŞAMA 9B:** ✅ TAMAMLANDI  
+**Aktif adım:** `9C — Domain veri modeli`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9B için:
+9C için:
 
 ```text
-fresh 9B PRE-STEP GitHub refresh
+fresh 9C PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9B execution
+→ 9C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1684,9 +1686,23 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 8G ✅ WFPX-v0 / D-074
 AŞAMA 8 ✅ TAMAMLANDI
 9A ✅ AMTS-v0 / D-075
-9B 🟡 active-not-executed
-9C–20 ⬜
+9B ✅ LFPS-v0 / D-076
+9C 🟡 active-not-executed
+9D–20 ⬜
 ```
+
+9B final:
+- kanıt source of truth; öğrenci state'i yeniden hesaplanabilir projeksiyon,
+- truth kayıtları append-only; geçersiz kanıt silinmez işaretlenir,
+- storage engine SQLite; ORM library 10A'ya bırakıldı,
+- persistence interface'leri core-owned; core signature'ında storage/Android/fs tipi yok,
+- curriculum ve user state ayrı versiyonlanır; curriculum güncellemesi learner state değiştiremez,
+- exposure kayıtları kalıcı ve first-class; kaybı veri kaybıdır,
+- bir eylem bir transaction; `evaluation_pending` evidence yazmaz,
+- migration forward-only ve kanıtı yok etmez; restore atomik ve doğrulanmış,
+- bozulma `data_recovery_required`; sessiz reset yasak; tutarsız projeksiyon recomputation ile onarılır,
+- V1'de kanıt budanmaz,
+- independent 9B QA 100/100 PASS.
 
 9A final:
 - teknoloji seçimi kontratlara hizmet eder; çelişkide kontrat kazanır,
@@ -1768,9 +1784,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9B — Veri saklama / local-first`.
+**Sıradaki gerçek numbered work:** `9C — Domain veri modeli`.
 
-**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1820,5 +1836,5 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9B — Veri saklama / local-first`.  
-**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9C — Domain veri modeli`.  
+**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

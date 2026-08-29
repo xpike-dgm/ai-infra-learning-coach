@@ -198,12 +198,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8G ✅ Wireframe/prototip — WFPX-v0 / D-074**
 - **AŞAMA 8 ✅ TAMAMLANDI**
 - **9A ✅ Mobil teknoloji seçimi — AMTS-v0 / D-075**
-- **9B 🟡 Veri saklama / local-first — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9C–20 ⬜
+- **9B ✅ Veri saklama / local-first — LFPS-v0 / D-076**
+- **9C 🟡 Domain veri modeli — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 9B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -252,6 +253,12 @@ Canonical: `docs/WIREFRAME_PROTOTYPE_SPEC.md` / D-074.
 Platform ve UI teknolojisi seçildi; AŞAMA 9 başladı. Teknoloji seçimi kabul edilmiş kontratlara hizmet eder ve hiçbirini zayıflatamaz — bir library default'u kontratla çelişirse kontrat kazanır. **Android native** seçildi ve V1'de cross-platform UI katmanı yoktur: V1 tek platforma çıkıp iOS/web/desktop'ı açıkça dışladığı için cross-platform fayda mevcut değildir, maliyeti ise tam olarak AŞAMA 8'in kontrata bağladığı üç yere iner (screen-reader state, Türkçe casing, adaptive navigation). Taşınabilirlik hedge'i UI değil domain core'dur. **Kotlin + Jetpack Compose** kullanılır; declarative/state-driven toolkit, token ve state olarak tanımlı design system'e doğrudan karşılık gelir. Material 3 yalnız substrate'tir ve **dynamic colour kapatılmıştır** — ölçülmüş paleti, tema başına kontrast kanıtını ve menekşe-değil-kehribar hue politikasını yok ederdi. **Domain core saf Kotlin'dir** ve Android API, UI toolkit, networking ya da AI client'a bağımlı olamaz; bu, "AI Tutor yokken core çökmemeli" kriterini konvansiyon değil yapı hâline getirir. Üç window class `WFPX-v0` ile birebir eşleşir. Default-locale case transform yasaktır ve Türkçe `i ↔ İ` / `ı ↔ I` round-trip etmelidir. `minSdk` bir politikadır (working default API 26) ve 10A'da gerçek cihaza karşı doğrulanacaktır. Framework güncelliği iddiası kesinleştirilmedi; 6 maddelik bounded verification list 10A'ya devredildi.
 
 Canonical: `docs/MOBILE_TECHNOLOGY_SPEC.md` / D-075.
+
+## 12.2 9B Local-first persistence — LFPS-v0 / D-076
+
+Veri saklama mimarisi kilitlendi. **Kanıt source of truth'tur; öğrenci state'i onun yeniden hesaplanabilir projeksiyonudur.** Attempt, artifact, evidence event, assistance metadata, provenance, exposure kaydı, assessment session ve planner trace append-only truth kayıtlarıdır; mastery, retention, readiness, Topic state, weakness ve English profile cache'tir ve her an yeniden kurulabilir. Öğrencinin kanıtladığı yetkinliği yalnız yeni kanıt değiştirebilir; geçersiz kanıt silinmez, işaretlenir. Storage engine SQLite'tır; ORM library seçilmedi ve 10A'ya bırakıldı. Persistence interface'leri core'a aittir, platform onları implemente eder ve core signature'ında storage/Android/fs tipi bulunmaz. Curriculum ve user state ayrı saklanır ve ayrı versiyonlanır; user kayıtları curriculum version'ını pin'ler ve bir curriculum güncellemesi tek başına learner state değiştiremez. Exposure kayıtları kalıcı ve first-class'tır — kaybı veri kaybıdır, çünkü kaybolursa solution-exposed bir item taze bağımsız kontrol olarak sunulabilir. Bir öğrenci eylemi bir transaction'dır ve `evaluation_pending` evidence yazmaz. Migration forward-only'dir ve kanıtı asla yok etmez; restore atomik ve doğrulanmıştır. Bozulma `data_recovery_required` yüzeyler, sessiz reset yasaktır ve tutarsız projeksiyon recomputation ile onarılır. V1'de kanıt budanmaz.
+
+Canonical: `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` / D-076.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 
