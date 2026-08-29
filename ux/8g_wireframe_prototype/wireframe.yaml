@@ -1,0 +1,283 @@
+model: WFPX-v0
+stage_step: 8G
+status: accepted_8g
+decision: D-074
+parent_ia: UXIA-v0
+design_system: VDSX-v0
+purpose: concrete_layout_geometry_and_measured_palette
+
+scope:
+  geometry_and_palette_only: true
+  semantics_changed: false
+  states_added_or_removed: false
+  labels_changed: false
+  tones_changed: false
+  truth_ownership_changed: false
+  implementation_technology_locked: false
+  physical_data_schema_locked: false
+  prototype_is_implementation: false
+  prototype_is_technology_choice: false
+  fixed_card_count: null
+  passing_threshold: null
+
+geometry_question: How do these lay out on screen, and are the colours actually readable?
+
+canonical_truth_owners:
+  destinations_and_surfaces: UXIA-v0
+  today_semantics: THUX-v0
+  task_runner_semantics: TRUX-v0
+  assessment_session_semantics: ASUX-v0
+  progress_state_semantics: SPWX-v0
+  tones_and_tokens: VDSX-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  planner_explanation: PDT-v0
+
+invariants:
+  geometry_changes_meaning: false
+  region_order_differs_from_owning_spec: false
+  destination_identity_changes_by_window_class: false
+  destination_order_changes_by_window_class: false
+  region_added_or_removed_by_window_class: false
+  second_copy_of_shared_surface_with_own_truth: false
+  countdown_in_focused_flow_chrome: false
+  urgency_element_in_focused_flow_chrome: false
+  exit_below_min_target: false
+  exit_hidden_behind_menu: false
+  ratio_or_percentage_in_progress_overview: false
+  bar_or_gauge_in_progress_overview: false
+  primary_chip_replaces_axis_block: false
+  state_truncated_at_large_text: false
+  traffic_light_severity_ramp: false
+  attention_is_amber_or_orange: false
+  non_fault_tone_is_red: false
+  dark_derived_by_inverting_light: false
+  contrast_asserted_without_computation: false
+  prototype_presented_as_implementation: false
+  fixed_card_count_imposed: false
+  semantic_order_invariant_across_classes: true
+  palette_measured_per_theme: true
+  layouts_reflow_at_200_percent: true
+
+window_classes:
+  - id: compact
+    max_width_dp: 599
+    shell: bottom_navigation_bar
+  - id: medium
+    min_width_dp: 600
+    max_width_dp: 839
+    shell: navigation_rail
+  - id: expanded
+    min_width_dp: 840
+    shell: navigation_rail_with_optional_detail_pane
+destination_order:
+  - today
+  - learn
+  - progress
+  - profile
+destination_order_invariant: true
+detail_pane_shows_same_surface_same_truth: true
+
+surface_geometry:
+  today_overview:
+    owning_spec: THUX-v0
+    region_order:
+      - primary_action
+      - day_plan_context
+      - remaining_plan
+      - attention_context
+      - supporting_navigation
+    primary_action_dominant_in_all_classes: true
+    fixed_card_count: null
+  progress_overview:
+    owning_spec: SPWX-v0
+    region_order:
+      - demonstrated_capability_inventory
+      - attention_set
+    counts_rendered_as_inventory: true
+    ratio_bar_gauge_or_percentage_present: false
+  skill_detail:
+    owning_spec: SPWX-v0
+    region_order:
+      - identity_and_primary_state
+      - attention_qualifiers
+      - axis_block
+      - objective_breakdown
+      - evidence_summary
+      - prerequisite_context
+    axis_block_always_present: true
+    primary_chip_replaces_axis_block: false
+    axes_shown:
+      - mastery_axis_state
+      - retention_axis_state
+      - prerequisite_axis_state
+      - weakness_axis_state
+    evidence_kinds_shown_separately:
+      - independent
+      - assisted
+      - provisional
+      - invalid
+  topic_detail:
+    owning_spec: SPWX-v0
+    region_order:
+      - topic_identity_and_state
+      - skill_list
+    completion_percentage_present: false
+  task_runner_flow:
+    owning_spec: TRUX-v0
+    region_order:
+      - flow_chrome
+      - work_content
+      - action_bar
+      - position_context
+    shell_may_be_suppressed: true
+    exit_and_pause_always_present: true
+    exit_min_target_dp: 48
+    exit_position_fixed_in_all_classes: true
+    countdown_present: false
+  assessment_session_flow:
+    owning_spec: ASUX-v0
+    region_order:
+      - flow_chrome
+      - item_content
+      - action_bar
+      - position_context
+    position_context_is_orientation_only: true
+    countdown_present: false
+    exit_min_target_dp: 48
+
+palette:
+  measured_per_theme: true
+  dark_is_inversion_of_light: false
+  hue_policy:
+    attention_hue: violet
+    attention_is_amber_or_orange: false
+    fault_hue: red
+    fault_is_only_red: true
+    traffic_light_ramp: false
+    rationale: a green_amber_red ramp would encode learning states as severity levels
+  themes:
+    light:
+      surface: "#FFFFFF"
+      surface_variant: "#F1F3F5"
+      on_surface: "#16181B"
+      on_surface_muted: "#565C63"
+      outline: "#767C84"
+      focus_ring: "#0B5FBF"
+      tone_neutral: "#4A5058"
+      on_tone_neutral: "#FFFFFF"
+      tone_active: "#0B5FBF"
+      on_tone_active: "#FFFFFF"
+      tone_positive: "#1B6E3C"
+      on_tone_positive: "#FFFFFF"
+      tone_attention: "#6A3FB5"
+      on_tone_attention: "#FFFFFF"
+      tone_pending: "#2F6B72"
+      on_tone_pending: "#FFFFFF"
+      tone_fault: "#B3261E"
+      on_tone_fault: "#FFFFFF"
+    dark:
+      surface: "#121417"
+      surface_variant: "#1D2126"
+      on_surface: "#E6E9ED"
+      on_surface_muted: "#A8B0B8"
+      outline: "#7A828B"
+      focus_ring: "#7FB0F5"
+      tone_neutral: "#A9B1BA"
+      on_tone_neutral: "#16181B"
+      tone_active: "#7FB0F5"
+      on_tone_active: "#0A1B2E"
+      tone_positive: "#79D3A0"
+      on_tone_positive: "#0A1F13"
+      tone_attention: "#C0A6F5"
+      on_tone_attention: "#1E1030"
+      tone_pending: "#8FCBD3"
+      on_tone_pending: "#0B2124"
+      tone_fault: "#F2B8B5"
+      on_tone_fault: "#3A0B08"
+  contrast_requirements:
+    text_on_surface_min: 4.5
+    text_on_tone_min: 4.5
+    non_text_and_boundary_min: 3.0
+  measured_minima:
+    text_on_surface: 6.08
+    non_text_and_boundary: 3.79
+    text_on_tone: 6.06
+  ratios_are_evidence_not_source_of_truth: true
+  validator_recomputes_from_hex: true
+
+tone_token_map:
+  neutral: [tone_neutral, on_tone_neutral]
+  active: [tone_active, on_tone_active]
+  positive_confirmed: [tone_positive, on_tone_positive]
+  attention: [tone_attention, on_tone_attention]
+  pending_unresolved: [tone_pending, on_tone_pending]
+  system_fault: [tone_fault, on_tone_fault]
+
+text_scaling:
+  max_supported_percent: 200
+  layouts_reflow: true
+  state_truncated: false
+  skill_row_wraps_to_two_lines: true
+  chips_wrap_before_name_elided: true
+  elision_order:
+    - secondary_metadata
+    - duration
+  state_information_elided: false
+  exit_and_pause_shrink_below_min_target: false
+
+prototype:
+  file: ux/8g_wireframe_prototype/prototype.html
+  self_contained: true
+  renders_wireframes: true
+  renders_both_palettes: true
+  binding: false
+  is_implementation: false
+  is_technology_choice: false
+  commits_to_framework: false
+  spec_wins_on_disagreement: true
+
+forbidden_geometry_patterns:
+  - region_order_differing_from_owning_spec
+  - destination_identity_or_order_changing_by_window_class
+  - second_copy_of_shared_surface_with_own_truth
+  - countdown_or_urgency_in_focused_flow_chrome
+  - exit_below_min_target_or_hidden_in_menu
+  - ratio_bar_gauge_or_percentage_in_progress_overview
+  - primary_chip_replacing_axis_block
+  - state_truncation_at_large_text
+  - green_amber_red_severity_ramp
+  - dark_palette_inverted_without_measurement
+  - prototype_presented_as_implementation
+
+future_stage_boundaries:
+  9A: mobile_technology_and_architecture_choice
+  9C: physical_data_model
+  10: runtime_navigation_and_ui_implementation
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  16: analytics_settings_and_notifications
+  17: final_microcopy_and_accessibility_polish
+  18: empirical_usability_contrast_and_motion_calibration
+
+stage_8_closes_on_acceptance: true
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - TRUX-v0
+    - ASUX-v0
+    - SPWX-v0
+    - VDSX-v0
+  independent_qa_required: true
+  contrast_must_be_computed_not_asserted: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8a_regression_required: true
+  stage8b_regression_required: true
+  stage8c_regression_required: true
+  stage8d_regression_required: true
+  stage8e_regression_required: true
+  stage8f_regression_required: true

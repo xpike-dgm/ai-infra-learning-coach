@@ -119,12 +119,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **8D — Sınav UX** — `ASUX-v0 / D-071`
 - [x] **8E — Skill/progress/weakness UX** — `SPWX-v0 / D-072`
 - [x] **8F — Tasarım sistemi** — `VDSX-v0 / D-073`
-- [ ] **8G — Wireframe/prototip** **AKTİF**
+- [x] **8G — Wireframe/prototip** — `WFPX-v0 / D-074`
 
 ---
 
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
-- [ ] **9A — Mobil teknoloji seçimi**
+- [ ] **9A — Mobil teknoloji seçimi** **AKTİF**
 - [ ] **9B — Veri saklama / local-first**
 - [ ] **9C — Domain veri modeli** — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
 - [ ] **9D — Servis sınırları**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8F`  
-**Son tamamlanan:** **`8F — VDSX-v0 / D-073`**  
-**Aktif:** **`8G — Wireframe/prototip`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`  
+**Son tamamlanan:** **`8G — WFPX-v0 / D-074`**  
+**Aktif:** **`9A — Mobil teknoloji seçimi`** — active-not-executed
 
-8F `VDSX-v0` ile expression layer kilitlendi: `visual_severity <= canonical_severity`, 6 tone, 46-of-46 surface state + 8 Skill + 6 Topic + 4 qualifier tone eşlemesi, yalnız gerçek arızaya izinli `system_fault`, attention grubunun tone yükseltmemesi, WCAG-çapalı kontrast/48dp hedef/%200 metin, Türkçe casing koruması, ikna edici olmayan motion ve competence progress-bar yasağı. Somut hex paleti 8G/10'da ölçülerek üretilir.
+**AŞAMA 8 tamamlandı.** 8G `WFPX-v0` ile concrete geometry ve ölçülmüş palet kilitlendi: 3 window class, 6 surface region geometry'si sahibi spec'lere karşı doğrulanmış, focused-flow exit 48dp sabit, 52 kontrast çifti hesaplanarak ölçülmüş (min 3.79 non-text / 6.08 metin), `attention` menekşe ve kırmızı yalnız `system_fault` — traffic-light rampası yok. Prototip bağlayıcı değildir.
 
-8G başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+9A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

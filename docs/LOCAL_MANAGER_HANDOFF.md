@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073`; aktif adımın `8G active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074`; AŞAMA 8'in kapandığını ve aktif adımın `9A active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1110,14 +1110,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 8D ✅ ASUX-v0 / D-071
 - AŞAMA 8E ✅ SPWX-v0 / D-072
 - AŞAMA 8F ✅ VDSX-v0 / D-073
-- AŞAMA 8G 🟡 active-not-executed
-- 9–20 ⬜
+- AŞAMA 8G ✅ WFPX-v0 / D-074
+- **AŞAMA 8 ✅ TAMAMLANDI**
+- AŞAMA 9A 🟡 active-not-executed
+- 9B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `8F — Tasarım sistemi`  
-**Final:** `VDSX-v0 — Visual Design System` / D-073  
-**Canonical:** `docs/DESIGN_SYSTEM_SPEC.md` + `ux/8f_design_system/`
+**Son tamamlanan numaralı adım:** `8G — Wireframe/prototip`  
+**Final:** `WFPX-v0 — Wireframe & Prototype Geometry` / D-074  
+**Canonical:** `docs/WIREFRAME_PROTOTYPE_SPEC.md` + `ux/8g_wireframe_prototype/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1126,17 +1128,19 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 8D:** ✅ TAMAMLANDI  
 **AŞAMA 8E:** ✅ TAMAMLANDI  
 **AŞAMA 8F:** ✅ TAMAMLANDI  
-**Aktif adım:** `8G — Wireframe/prototip`  
+**AŞAMA 8G:** ✅ TAMAMLANDI  
+**AŞAMA 8:** ✅ TAMAMLANDI  
+**Aktif adım:** `9A — Mobil teknoloji seçimi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-8G için:
+9A için:
 
 ```text
-fresh 8G PRE-STEP GitHub refresh
+fresh 9A PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 8G execution
+→ 9A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1675,9 +1679,23 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 8D ✅ ASUX-v0 / D-071
 8E ✅ SPWX-v0 / D-072
 8F ✅ VDSX-v0 / D-073
-8G 🟡 active-not-executed
-9–20 ⬜
+8G ✅ WFPX-v0 / D-074
+AŞAMA 8 ✅ TAMAMLANDI
+9A 🟡 active-not-executed
+9B–20 ⬜
 ```
+
+8G final:
+- geometry kabul edilmiş anlamı yerleştirir; semantic/state/label/tone/ownership değiştirmez,
+- 3 window class; destination kimliği ve sırası her sınıfta değişmez,
+- 6 surface region geometry'si sahibi spec'lere karşı çapraz doğrulandı,
+- `skill_detail` chip + dört ekseni birlikte gösterir; `progress_overview` yalnız envanter,
+- focused-flow exit/pause her sınıfta 48dp sabit; countdown yok,
+- palet tema başına ölçüldü; 52 kontrast çifti geçti (min 6.08 / 3.79 / 6.06),
+- `attention` menekşe, kırmızı yalnız `system_fault` — traffic-light rampası yok,
+- kontrast her çalıştırmada hex'ten yeniden hesaplanır,
+- `prototype.html` bağlayıcı değildir; teknoloji seçimi yapmaz,
+- independent 8G QA 222/222 PASS.
 
 8F final:
 - design system expression layer'dır; `visual_severity <= canonical_severity`,
@@ -1732,9 +1750,9 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `8G — Wireframe/prototip`.
+**Sıradaki gerçek numbered work:** `9A — Mobil teknoloji seçimi`.
 
-**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**AŞAMA 8 tamamlandı. 9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1784,5 +1802,5 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `8G — Wireframe/prototip`.  
-**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9A — Mobil teknoloji seçimi`.  
+**AŞAMA 8 tamamlandı. 9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

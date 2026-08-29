@@ -195,12 +195,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8D ✅ Sınav UX — ASUX-v0 / D-071**
 - **8E ✅ Skill/progress/weakness UX — SPWX-v0 / D-072**
 - **8F ✅ Tasarım sistemi — VDSX-v0 / D-073**
-- **8G 🟡 Wireframe/prototip — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9–20 ⬜
+- **8G ✅ Wireframe/prototip — WFPX-v0 / D-074**
+- **AŞAMA 8 ✅ TAMAMLANDI**
+- **9A 🟡 Mobil teknoloji seçimi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 8G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -237,6 +239,12 @@ Canonical: `docs/PROGRESS_SKILL_UX_SPEC.md` / D-072.
 Görsel ifade katmanı kilitlendi. Design system canonical state'in iddia etmediği hiçbir anlamı, severity'yi, aciliyeti veya hiyerarşiyi ekleyemez: `visual_severity <= canonical_severity`. Tam altı tone vardır ve tone bir state'in ne anlama geldiğinden atanır, ne kadar alarm verici hissettirdiğinden değil. 8A–8E'nin 46 surface state'i, 8 Skill state'i, 6 Topic state'i ve 4 qualifier'ı eksiksiz eşlendi. `system_fault` yalnız gerçek teknik arızaya (`error_recoverable`, `data_recovery_required`) izinlidir; hiçbir learning state alarm tonu alamaz ve attention grubunda görünmek tone yükseltmez — bu yüzden `confirmed_review_due` ve Topic `weakening` neutral kalır. Kontrast WCAG 1.4.3/1.4.11'e çapalandı ve tema başına ölçülür; renk asla tek taşıyıcı değildir; dokunma hedefi en az 48dp'dir ve içerik %200 metin boyutunda kullanılabilir kalır. Türkçe casing korundu: locale-naive case transform yasak. Motion'ın ikna edici rolü yoktur; countdown, task-completion ödül animasyonu, decay ve streak animasyonu yasaktır. Progress-bar yalnız bounded factual konum için kullanılabilir; competence, career, oran ve level için yasaktır. Somut hex paleti kilitlenmedi; token role'leri, tone eşlemeleri ve kontrast kısıtları kilitlendi.
 
 Canonical: `docs/DESIGN_SYSTEM_SPEC.md` / D-073.
+
+## 11.7 8G Wireframe & Prototype Geometry — WFPX-v0 / D-074
+
+Concrete geometry ve ölçülmüş palet kilitlendi; AŞAMA 8 kapandı. Geometry kabul edilmiş anlamı yerleştirir ve hiçbir surface anlamını, region sırasını, state'i veya tone'u değiştiremez. Üç window class (compact/medium/expanded) tanımlıdır; dört destination'ın kimliği ve sırası her sınıfta aynıdır ve hiçbir sınıf region ekleyip çıkaramaz. Altı surface'in region geometry'si sahibi spec'lere karşı doğrulandı: `skill_detail` primary chip ile dört ekseni birlikte gösterir, `progress_overview` yalnız envanter tutar, focused-flow'da exit ve pause her sınıfta 48dp sabit kalır ve countdown yoktur. Palet light ve dark için bağımsız ölçüldü; 52 zorunlu kontrast çifti geçer (min 6.08 metin / 3.79 non-text / 6.06 tone-üstü metin) ve oranlar her validator çalıştırmasında hex'ten yeniden hesaplanır. `attention` menekşedir ve kırmızı yalnız `system_fault` içindir — böylece palet bir yeşil→sarı→kırmızı şiddet rampası oluşturmaz. %200 metinde layout reflow eder ve state truncate edilmez. `prototype.html` bağlayıcı değildir; implementasyon veya teknoloji seçimi yapmaz.
+
+Canonical: `docs/WIREFRAME_PROTOTYPE_SPEC.md` / D-074.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

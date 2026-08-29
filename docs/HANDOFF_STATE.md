@@ -46,6 +46,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-071:** ASUX-v0 Assessment Session & Result UX; 8D tamamlandı.
 - **D-072:** SPWX-v0 Progress, Skill State & Weakness UX; 8E tamamlandı.
 - **D-073:** VDSX-v0 Visual Design System; 8F tamamlandı.
+- **D-074:** WFPX-v0 Wireframe & Prototype Geometry; 8G tamamlandı ve AŞAMA 8 kapandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -239,14 +240,15 @@ PEM-v0:
 - 8D ✅ ASUX-v0 / D-071
 - 8E ✅ SPWX-v0 / D-072
 - 8F ✅ VDSX-v0 / D-073
-- 8G 🟡 active-not-executed
-- 9–20 ⬜
+- 8G ✅ WFPX-v0 / D-074 — **AŞAMA 8 tamamlandı**
+- 9A 🟡 active-not-executed
+- 9B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8F — VDSX-v0 / D-073`  
-**Aktif:** `8G — Wireframe/prototip`  
-**8G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `8G — WFPX-v0 / D-074`  
+**Aktif:** `9A — Mobil teknoloji seçimi`  
+**9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -512,6 +514,30 @@ VDSX-v0:
 - concrete hex is deliberately not locked; token roles, tone mappings and contrast constraints are, with the palette produced and measured in 8G/10,
 - independent 8F QA 121/121 PASS, exhaustiveness cross-validated against the 8A–8E state union, and mutation-tested; Stage 6/7/8A–8E regressions + external memory PASS.
 
-## 27. 8G handoff
+## 27. D-074 / 8G final özeti
 
-8G — Wireframe/prototip. Kabul edilmiş 8A–8E semantiği ve VDSX-v0 token/tone sistemi üzerinden concrete wireframe ve prototype geometry üretilecektir. Ölçülmüş somut palet bu adımda üretilir ve VDSX-v0 §7 kontrast kurallarına karşı tema başına doğrulanır. 8G hiçbir state, label, tone veya truth ownership'i değiştiremez. 8G fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/WIREFRAME_PROTOTYPE_SPEC.md`.  
+Contract/QA: `ux/8g_wireframe_prototype/`.  
+Prototype: `ux/8g_wireframe_prototype/prototype.html` (non-binding).  
+Synthesis: `research/8g_wireframe_prototype_research.md`.
+
+WFPX-v0:
+- geometry arranges accepted meaning and changes no semantic, state, label, tone or ownership,
+- three window classes with destination identity and order invariant across all of them,
+- six surfaces have declared region geometry, each cross-validated against its owning spec,
+- `skill_detail` shows the primary chip and all four axes; the chip never replaces the axis block,
+- `progress_overview` keeps inventory counts with no ratio, bar, gauge or percentage,
+- focused-flow exit and pause keep 48dp targets and fixed position in every class; no countdown exists,
+- the palette is measured independently per theme; dark is not an inversion of light,
+- 52 required contrast pairs pass, minima 6.08 text / 3.79 non-text / 6.06 text-on-tone,
+- `attention` is violet and red is reserved to `system_fault`, so no traffic-light severity ramp exists,
+- stored ratios are evidence; the validator recomputes every one from hex on each run,
+- layouts reflow at 200% text and state information is never elided first,
+- the prototype is self-contained and explicitly non-binding; it is not an implementation or technology choice,
+- independent 8G QA 222/222 PASS, mutation-tested; Stage 6/7/8A–8F regressions + external memory PASS.
+
+**AŞAMA 8 tamamlandı.**
+
+## 28. AŞAMA 9 handoff
+
+9A — Mobil teknoloji seçimi. AŞAMA 8'de kilitlenen semantic architecture (UXIA-v0), surface contracts (THUX/TRUX/ASUX/SPWX-v0), design system (VDSX-v0) ve geometry (WFPX-v0) uygulanabilir olmalıdır. Teknoloji seçimi bu kontratları değiştiremez; onları karşılayabildiğini göstermelidir. Özellikle local-first çalışma, AI-degraded deterministic core, %200 metin desteği, 48dp hedefler ve tema başına ölçülen kontrast gereksinimleri seçim kriterlerindedir. 9A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

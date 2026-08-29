@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WFPX-v0 — Wireframe & Palette Prototype</title>
+<style>
+  /* WFPX-v0 / D-074 — non-binding visualisation. Commits to no framework.
+     Palette values are the measured tokens from ux/8g_wireframe_prototype/wireframe.yaml.
+     If this page ever disagrees with docs/WIREFRAME_PROTOTYPE_SPEC.md, the spec wins. */
+
+  :root {
+    --surface: #FFFFFF;
+    --surface-variant: #F1F3F5;
+    --on-surface: #16181B;
+    --on-surface-muted: #565C63;
+    --outline: #767C84;
+    --focus-ring: #0B5FBF;
+    --tone-neutral: #4A5058;   --on-tone-neutral: #FFFFFF;
+    --tone-active: #0B5FBF;    --on-tone-active: #FFFFFF;
+    --tone-positive: #1B6E3C;  --on-tone-positive: #FFFFFF;
+    --tone-attention: #6A3FB5; --on-tone-attention: #FFFFFF;
+    --tone-pending: #2F6B72;   --on-tone-pending: #FFFFFF;
+    --tone-fault: #B3261E;     --on-tone-fault: #FFFFFF;
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+    --sp-6: 24px; --sp-8: 32px; --sp-12: 48px;
+  }
+  [data-theme="dark"] {
+    --surface: #121417;
+    --surface-variant: #1D2126;
+    --on-surface: #E6E9ED;
+    --on-surface-muted: #A8B0B8;
+    --outline: #7A828B;
+    --focus-ring: #7FB0F5;
+    --tone-neutral: #A9B1BA;   --on-tone-neutral: #16181B;
+    --tone-active: #7FB0F5;    --on-tone-active: #0A1B2E;
+    --tone-positive: #79D3A0;  --on-tone-positive: #0A1F13;
+    --tone-attention: #C0A6F5; --on-tone-attention: #1E1030;
+    --tone-pending: #8FCBD3;   --on-tone-pending: #0B2124;
+    --tone-fault: #F2B8B5;     --on-tone-fault: #3A0B08;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: var(--sp-6);
+    background: var(--surface); color: var(--on-surface);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px; line-height: 1.5;
+  }
+  h1 { font-size: 1.5rem; margin: 0 0 var(--sp-2); }
+  h2 { font-size: 1.125rem; margin: var(--sp-8) 0 var(--sp-3); }
+  p.note { color: var(--on-surface-muted); margin: 0 0 var(--sp-4); font-size: 0.9375rem; }
+  code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+
+  .bar { display: flex; gap: var(--sp-2); align-items: center; flex-wrap: wrap; margin-bottom: var(--sp-6); }
+  button {
+    min-height: 48px; min-width: 48px; padding: 0 var(--sp-4);
+    background: var(--surface-variant); color: var(--on-surface);
+    border: 1px solid var(--outline); border-radius: 8px;
+    font: inherit; cursor: pointer;
+  }
+  button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+
+  .grid { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+  .frame {
+    border: 1px solid var(--outline); border-radius: 12px;
+    background: var(--surface); overflow: hidden;
+  }
+  .frame > header {
+    padding: var(--sp-2) var(--sp-3); background: var(--surface-variant);
+    border-bottom: 1px solid var(--outline);
+    font-size: 0.8125rem; color: var(--on-surface-muted);
+  }
+  .region {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px dashed var(--outline);
+  }
+  .region:last-child { border-bottom: 0; }
+  .region .label {
+    font-size: 0.75rem; letter-spacing: 0.04em;
+    color: var(--on-surface-muted); margin-bottom: var(--sp-1);
+  }
+  .primary { background: var(--surface-variant); }
+  .primary .title { font-size: 1.125rem; font-weight: 600; }
+  .cta {
+    display: inline-flex; align-items: center; min-height: 48px;
+    padding: 0 var(--sp-4); margin-top: var(--sp-2);
+    background: var(--tone-active); color: var(--on-tone-active);
+    border-radius: 8px; font-weight: 600;
+  }
+  .row {
+    display: flex; justify-content: space-between; gap: var(--sp-3);
+    padding: var(--sp-2) 0; flex-wrap: wrap;
+  }
+  .row + .row { border-top: 1px solid var(--surface-variant); }
+  .muted { color: var(--on-surface-muted); font-size: 0.875rem; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--sp-1);
+    padding: 2px var(--sp-2); border-radius: 999px;
+    font-size: 0.8125rem; font-weight: 600; white-space: nowrap;
+  }
+  .chip::before { content: attr(data-mark); font-weight: 700; }
+  .t-neutral   { background: var(--tone-neutral);   color: var(--on-tone-neutral); }
+  .t-active    { background: var(--tone-active);    color: var(--on-tone-active); }
+  .t-positive  { background: var(--tone-positive);  color: var(--on-tone-positive); }
+  .t-attention { background: var(--tone-attention); color: var(--on-tone-attention); }
+  .t-pending   { background: var(--tone-pending);   color: var(--on-tone-pending); }
+  .t-fault     { background: var(--tone-fault);     color: var(--on-tone-fault); }
+
+  .nav {
+    display: flex; border-top: 1px solid var(--outline);
+    background: var(--surface-variant);
+  }
+  .nav span {
+    flex: 1; text-align: center; padding: var(--sp-3) 0;
+    min-height: 48px; font-size: 0.8125rem; color: var(--on-surface-muted);
+  }
+  .nav span[aria-current] { color: var(--on-surface); font-weight: 600; }
+
+  .flowbar {
+    display: flex; justify-content: space-between; gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-3); background: var(--surface-variant);
+    border-bottom: 1px solid var(--outline);
+  }
+  .flowbar span {
+    display: inline-flex; align-items: center; min-height: 48px;
+    padding: 0 var(--sp-3); border: 1px solid var(--outline);
+    border-radius: 8px; font-size: 0.875rem;
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+  th, td { text-align: left; padding: var(--sp-2); border-bottom: 1px solid var(--surface-variant); }
+  th { color: var(--on-surface-muted); font-weight: 600; }
+  .sw { display: inline-block; width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--outline); vertical-align: middle; margin-right: var(--sp-2); }
+  .wrap { overflow-x: auto; }
+</style>
+</head>
+<body data-theme="light">
+
+<h1>WFPX-v0 — Wireframe &amp; Palette Prototype</h1>
+<p class="note">
+  <strong>Bu prototip bağlayıcı değildir (non-binding).</strong> Bir implementasyon veya teknoloji
+  seçimi değildir; yalnız 8A–8F semantiğinin ve ölçülmüş paletin görsel kontrolü içindir.
+  <code>docs/WIREFRAME_PROTOTYPE_SPEC.md</code> ile çelişirse spec kazanır.
+</p>
+
+<div class="bar">
+  <button id="theme">Tema: Açık</button>
+  <button id="scale">Metin: %100</button>
+</div>
+
+<div class="grid">
+
+  <div class="frame">
+    <header>today_overview · compact</header>
+    <div class="region primary">
+      <div class="label">PRIMARY ACTION</div>
+      <div class="title">Pointer dereference — uygulama</div>
+      <div class="muted">practice · yaklaşık 20 dk</div>
+      <div class="cta">Başla</div>
+      <div class="muted" style="margin-top:8px">Bağımsız uygulama kanıtı eksik olduğu için seçildi →</div>
+    </div>
+    <div class="region">
+      <div class="label">DAY PLAN CONTEXT</div>
+      <div class="muted">Bugünkü süre: 45 dk · Planlanan: 38 dk</div>
+    </div>
+    <div class="region">
+      <div class="label">REMAINING PLAN</div>
+      <div class="row"><span>C pointer aritmetiği</span><span class="chip t-active" data-mark="▶">Sıradaki</span></div>
+      <div class="row"><span>Teknik İngilizce — hata mesajı okuma</span><span class="chip t-neutral" data-mark="·">Bekliyor</span></div>
+    </div>
+    <div class="region">
+      <div class="label">ATTENTION</div>
+      <div class="row"><span>Bellek modeli</span><span class="chip t-attention" data-mark="!">Yeniden Kontrol Gerekli</span></div>
+    </div>
+    <div class="region">
+      <div class="label">SUPPORTING NAVIGATION</div>
+      <div class="muted">Planı neden böyle? · Skill detayları</div>
+    </div>
+    <div class="nav">
+      <span aria-current="page">Bugün</span><span>Öğren</span><span>İlerleme</span><span>Profil</span>
+    </div>
+  </div>
+
+  <div class="frame">
+    <header>progress_overview · inventory + attention</header>
+    <div class="region">
+      <div class="label">KANITLANMIŞ YETKİNLİK</div>
+      <div class="row"><span class="chip t-positive" data-mark="✓">Doğrulanmış</span><span>12</span></div>
+      <div class="row"><span class="chip t-active" data-mark="▶">Bağımsız Gelişiyor</span><span>5</span></div>
+      <div class="row"><span class="chip t-neutral" data-mark="·">Henüz Kanıt Yok</span><span>31</span></div>
+      <div class="muted" style="margin-top:8px">Bunlar mevcut durumun envanteridir; oran veya puan değildir.</div>
+    </div>
+    <div class="region">
+      <div class="label">DİKKAT GEREKTİRENLER</div>
+      <div class="row"><span class="chip t-attention" data-mark="!">Pekiştirme Gerekli</span><span>3</span></div>
+      <div class="row"><span class="chip t-attention" data-mark="!">Yeniden Kontrol Gerekli</span><span>1</span></div>
+      <div class="row"><span class="chip t-neutral" data-mark="·">Tekrar Zamanı</span><span>4</span></div>
+      <div class="row"><span class="chip t-pending" data-mark="?">Güvenilir Ölçülemedi</span><span>2</span></div>
+    </div>
+  </div>
+
+  <div class="frame">
+    <header>skill_detail · chip + axis block</header>
+    <div class="region">
+      <div class="label">SKILL</div>
+      <div class="title" style="font-weight:600">Pointer dereference</div>
+      <div style="margin-top:8px"><span class="chip t-neutral" data-mark="·">Doğrulanmış · Tekrar Zamanı</span></div>
+      <div class="muted" style="margin-top:8px">Retention izlemede — karışık/tekrarlı sinyal</div>
+    </div>
+    <div class="region">
+      <div class="label">EKSENLER</div>
+      <div class="row"><span class="muted">Mastery</span><span>Doğrulanmış</span></div>
+      <div class="row"><span class="muted">Retention</span><span>Tekrar zamanı</span></div>
+      <div class="row"><span class="muted">Ön koşul</span><span>Hazır</span></div>
+      <div class="row"><span class="muted">Zayıflık</span><span>Yok</span></div>
+    </div>
+    <div class="region">
+      <div class="label">KANIT ÖZETİ</div>
+      <div class="row"><span class="muted">Bağımsız</span><span>4</span></div>
+      <div class="row"><span class="muted">Destekli</span><span>2</span></div>
+      <div class="row"><span class="muted">Geçici</span><span>1</span></div>
+      <div class="row"><span class="muted">Geçersiz</span><span>0</span></div>
+    </div>
+  </div>
+
+  <div class="frame">
+    <header>task_runner_flow · shell suppressed</header>
+    <div class="flowbar"><span>Duraklat</span><span>Çık</span></div>
+    <div class="region" style="min-height:140px">
+      <div class="label">WORK</div>
+      <div>Aşağıdaki kodda <code>*p</code> ifadesinin değerini izleyip düzelt.</div>
+    </div>
+    <div class="flowbar" style="border-bottom:0;border-top:1px solid var(--outline)">
+      <span>Yardım</span><span>Gönder</span>
+    </div>
+    <div class="region">
+      <div class="muted">Bölüm 2 / 4 — yalnız yön bilgisi, geri sayım değil</div>
+    </div>
+  </div>
+
+  <div class="frame">
+    <header>degraded states</header>
+    <div class="region"><span class="chip t-pending" data-mark="?">Değerlendirme Bekliyor</span>
+      <div class="muted" style="margin-top:6px">AI değerlendirici yok; kanıt yazılmadı, geçti/kaldı verilmedi.</div></div>
+    <div class="region"><span class="chip t-neutral" data-mark="·">Çevrimdışı — Yerel Çekirdek Çalışıyor</span></div>
+    <div class="region"><span class="chip t-fault" data-mark="×">Veri Kurtarma Gerekli</span>
+      <div class="muted" style="margin-top:6px">Alarm tonu yalnız gerçek teknik arızaya ayrılmıştır.</div></div>
+  </div>
+
+</div>
+
+<h2>Ölçülmüş palet</h2>
+<p class="note">
+  Değerler <code>wireframe.yaml</code> içindeki token'lardır ve
+  <code>tools/validate_wireframe_prototype.py</code> tarafından her çalıştırmada hex'ten
+  yeniden hesaplanır. <code>attention</code> menekşedir, kehribar değil; kırmızı yalnız
+  <code>system_fault</code> içindir — böylece palet bir yeşil→sarı→kırmızı şiddet rampası oluşturmaz.
+</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Tone</th><th>Açık tema</th><th>Koyu tema</th><th>Örnek</th></tr></thead>
+  <tbody>
+    <tr><td>neutral</td><td><span class="sw" style="background:#4A5058"></span>#4A5058</td><td><span class="sw" style="background:#A9B1BA"></span>#A9B1BA</td><td><span class="chip t-neutral" data-mark="·">Nötr</span></td></tr>
+    <tr><td>active</td><td><span class="sw" style="background:#0B5FBF"></span>#0B5FBF</td><td><span class="sw" style="background:#7FB0F5"></span>#7FB0F5</td><td><span class="chip t-active" data-mark="▶">Aktif</span></td></tr>
+    <tr><td>positive_confirmed</td><td><span class="sw" style="background:#1B6E3C"></span>#1B6E3C</td><td><span class="sw" style="background:#79D3A0"></span>#79D3A0</td><td><span class="chip t-positive" data-mark="✓">Doğrulanmış</span></td></tr>
+    <tr><td>attention</td><td><span class="sw" style="background:#6A3FB5"></span>#6A3FB5</td><td><span class="sw" style="background:#C0A6F5"></span>#C0A6F5</td><td><span class="chip t-attention" data-mark="!">Dikkat</span></td></tr>
+    <tr><td>pending_unresolved</td><td><span class="sw" style="background:#2F6B72"></span>#2F6B72</td><td><span class="sw" style="background:#8FCBD3"></span>#8FCBD3</td><td><span class="chip t-pending" data-mark="?">Belirsiz</span></td></tr>
+    <tr><td>system_fault</td><td><span class="sw" style="background:#B3261E"></span>#B3261E</td><td><span class="sw" style="background:#F2B8B5"></span>#F2B8B5</td><td><span class="chip t-fault" data-mark="×">Arıza</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<script>
+  var body = document.body;
+  var tBtn = document.getElementById('theme');
+  var sBtn = document.getElementById('scale');
+  var scales = [100, 150, 200];
+  var si = 0;
+  tBtn.addEventListener('click', function () {
+    var dark = body.getAttribute('data-theme') === 'dark';
+    body.setAttribute('data-theme', dark ? 'light' : 'dark');
+    tBtn.textContent = 'Tema: ' + (dark ? 'Açık' : 'Koyu');
+  });
+  sBtn.addEventListener('click', function () {
+    si = (si + 1) % scales.length;
+    body.style.fontSize = (16 * scales[si] / 100) + 'px';
+    sBtn.textContent = 'Metin: %' + scales[si];
+  });
+</script>
+
+</body>
+</html>

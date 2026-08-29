@@ -39,8 +39,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8D — Sınav UX** | ✅ | ASUX-v0 / D-071. Tek assessment session interior + atomic boundary submission + semantic result; 107/107 QA PASS. |
 | **8E — Skill/progress/weakness UX** | ✅ | SPWX-v0 / D-072. Tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting; 128/128 QA PASS. |
 | **8F — Tasarım sistemi** | ✅ | VDSX-v0 / D-073. Expression layer + 6 tone + 46/46 state eşlemesi + WCAG çapaları; 121/121 QA PASS. |
-| **8G — Wireframe/prototip** | 🟡 Aktif | Concrete wireframe + prototype geometry + ölçülmüş palet; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9–20** | ⬜ Bekliyor | 8G sonrası canonical sırada. |
+| **8G — Wireframe/prototip** | ✅ | WFPX-v0 / D-074. 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti; 222/222 QA PASS. **AŞAMA 8 kapandı.** |
+| **9A — Mobil teknoloji seçimi** | 🟡 Aktif | AŞAMA 8 semantiğini uygulayacak mobil teknoloji; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9B–20** | ⬜ Bekliyor | 9A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -59,29 +60,28 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8F
+## Son tamamlanan numaralı adım — 8G
 
-**Final:** `VDSX-v0 — Visual Design System` / D-073.  
-**Ana çıktı:** `docs/DESIGN_SYSTEM_SPEC.md` + `ux/8f_design_system/`.
+**Final:** `WFPX-v0 — Wireframe & Prototype Geometry` / D-074.  
+**Ana çıktı:** `docs/WIREFRAME_PROTOTYPE_SPEC.md` + `ux/8g_wireframe_prototype/`.
 
-8F sonucu:
-- design system bir expression layer'dır; canonical state'in iddia etmediği anlam, severity, aciliyet veya hiyerarşi ekleyemez (`visual_severity <= canonical_severity`),
-- tam 6 tone: `neutral`, `active`, `positive_confirmed`, `attention`, `pending_unresolved`, `system_fault`; tone anlamdan atanır, histen değil,
-- 8A–8E'nin 46 surface state'i, 8 Skill state'i, 6 Topic state'i ve 4 qualifier'ı eksiksiz eşlendi; eksik veya uydurulmuş state yok,
-- `system_fault` yalnız `error_recoverable` ve `data_recovery_required`'a izinlidir; hiçbir learning state alarm tonu alamaz,
-- attention grubunda görünmek tone yükseltmez; `confirmed_review_due` ve Topic `weakening` bilinçle `neutral`,
-- `stopped_no_penalty`, `resume_invalidated`, `slot_recomposed`, `capacity_zero`, `empty_no_evidence_yet` için non-negative tone zorunlu,
-- typography 8 role + technical içerik için `mono`; scalable units, %200 metin desteği, state label body'den önce truncate olmaz,
-- Türkçe casing korundu: locale-naive case transform yasak, kilitli etiketler yazıldığı gibi render edilir, zorunlu all-caps yok,
-- renk semantic role olarak belirtilir; WCAG 1.4.3/1.4.11 eşikleri, tema başına ölçüm, dark inversiyon değil, renk asla tek taşıyıcı değil,
-- 4dp ritim + `4/8/12/16/24/32/48`; en az 48dp dokunma hedefi; focused-flow exit tam hedefi korur,
-- ikonlar destekleyicidir ve state ikonu daima metin etiketiyle görünür,
-- motion'ın ikna edici rolü yok; countdown, task-completion ödül animasyonu, decay ve streak animasyonu yasak; reduced-motion bilgi kaybettirmez,
-- 18 component kabul edilmiş yüzeylere ve sahibi spec'lere eşlendi; hiçbiri surface/state icat edemez,
-- progress-bar yalnız bounded factual konum için; competence, career, oran ve level için yasak; gauge/dial/level meter/rank/tier/streak/heatmap/leaderboard/trend-line yasak,
-- somut hex paleti kilitlenmedi; token role'leri, tone eşlemeleri ve kontrast kısıtları kilitlendi, palet 8G/10'da ölçülerek üretilir,
-- independent validator **121/121 PASS**; tone kapsamı doğrudan 8A–8E yaml kontratlarından hesaplanan state union'ına karşı doğrulanır ve mutation test uygulandı. Stage 6 + Stage 7 + 8A–8E + external-memory regressions PASS.
+8G sonucu:
+- geometry kabul edilmiş anlamı yerleştirir; surface anlamını, region sırasını, state'i veya tone'u değiştiremez,
+- 3 window class: `compact` (<600dp), `medium` (600–839dp), `expanded` (≥840dp); destination kimliği ve sırası her sınıfta aynıdır ve hiçbir sınıf region ekleyip çıkaramaz,
+- `expanded` detail pane aynı surface'i aynı truth ile gösterir; ikinci kopya değildir,
+- 6 surface için region geometry'si sahibi spec'lere karşı çapraz doğrulandı,
+- `skill_detail` primary chip **ve** dört ekseni birlikte gösterir; chip axis block'un yerini alamaz,
+- `progress_overview` yalnız envanter sayıları gösterir; oran, bar, gauge veya yüzde yoktur,
+- focused-flow'da shell bastırılabilir fakat exit/pause her sınıfta 48dp tam hedef ve sabit konum korur; countdown yoktur,
+- **ölçülmüş palet:** light ve dark bağımsız ölçüldü, dark inversiyon değildir; 52 zorunlu çift geçer, minimumlar 6.08 metin / 3.79 non-text / 6.06 tone-üstü metin,
+- `attention` menekşedir ve kırmızı yalnız `system_fault` içindir; yeşil→sarı→kırmızı şiddet rampası yoktur,
+- kontrast oranları kanıttır, source of truth değildir; validator her çalıştırmada hex'ten yeniden hesaplar,
+- %200 metinde layout reflow eder; state truncate edilmez, secondary metadata ve duration state'ten önce elenir,
+- `prototype.html` self-contained, her iki paleti render eder ve **bağlayıcı değildir**; implementasyon veya teknoloji seçimi değildir,
+- independent validator **222/222 PASS**; 52 kontrast çifti hesaplandı, ilk turda yanlış beyan edilen bir minimum validator tarafından yakalanıp düzeltildi, ayrıca mutation test uygulandı. Stage 6 + Stage 7 + 8A–8F + external-memory regressions PASS.
 
-## Aktif adım — 8G Wireframe/prototip
+**AŞAMA 8 tamamlandı.**
 
-**8G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+## Aktif adım — 9A Mobil teknoloji seçimi
+
+**9A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
