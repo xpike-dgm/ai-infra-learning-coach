@@ -54,11 +54,13 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 8D: ✅ `ASUX-v0 / D-071` tamamlandı — üç scope için tek assessment session interior, atomic evidence boundary submission, frozen submitted boundary, skip != incorrect, disclosed independence/tools, non-punitive in-session assistance, beş koşullu slot recomposition, contested item dispute, provisional/invalid güvenliği, semantic result ve first-class `not_reliably_measured`; 107/107 QA PASS.
 - 8E: ✅ `SPWX-v0 / D-072` tamamlandı — TEPM-v0'dan genelleştirilen tek 8-state Skill vokabüleri, qualifier olarak `at_risk`, sıralanan fakat çökertilmeyen multi-axis truth, kilitlenmiş 8 Skill + 6 Topic etiketi, inventory-only counting, hypothesis != deficiency, `remediation_task_completed != remediation_closed`, streak olmayan learning history, gradebook olmayan longitudinal assessment_report; 128/128 QA PASS.
 - 8F: ✅ `VDSX-v0 / D-073` tamamlandı — expression layer (`visual_severity <= canonical_severity`), 6 tone, 46 surface + 8 Skill + 6 Topic + 4 qualifier state eksiksiz tone eşlemesi, yalnız gerçek arızaya izinli `system_fault`, attention grubunun tone yükseltmemesi, WCAG çapalı kontrast/48dp/%200 metin, Türkçe casing koruması, ikna edici olmayan motion, competence progress-bar yasağı; 121/121 QA PASS.
-- **Aktif adım: 8G — Wireframe/prototip.**
-- **8G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 9–20 bekliyor.
+- 8G: ✅ `WFPX-v0 / D-074` tamamlandı — 3 window class, 6 surface region geometry'si sahibi spec'lere karşı doğrulanmış, focused-flow exit 48dp sabit, 52 kontrast çifti hesaplanarak ölçülmüş, `attention` menekşe ve kırmızı yalnız `system_fault`, prototip bağlayıcı değil; 222/222 QA PASS.
+- **AŞAMA 8 TAMAMLANDI** — UXIA-v0 → THUX-v0 → TRUX-v0 → ASUX-v0 → SPWX-v0 → VDSX-v0 → WFPX-v0.
+- **Aktif adım: 9A — Mobil teknoloji seçimi.**
+- **9A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 9B–20 bekliyor.
 
-**8G'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 8G için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**9A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

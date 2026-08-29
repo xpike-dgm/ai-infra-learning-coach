@@ -734,3 +734,26 @@ Ayrıntı: `docs/PROGRESS_SKILL_UX_SPEC.md`.
 - Sonraki numbered step `8G — Wireframe/prototip`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/DESIGN_SYSTEM_SPEC.md`.
+
+
+## D-074 — Wireframe & Prototype Geometry = WFPX-v0
+**Durum:** Kabul edildi — 2026-08-29
+
+- 8G final modeli `WFPX-v0 — Wireframe & Prototype Geometry` oldu ve **AŞAMA 8 kapandı**.
+- Canonical spec `docs/WIREFRAME_PROTOTYPE_SPEC.md`; machine-readable contract `ux/8g_wireframe_prototype/wireframe.yaml`; görülebilir prototip `ux/8g_wireframe_prototype/prototype.html`; research/contract synthesis `research/8g_wireframe_prototype_research.md`.
+- Geometry kabul edilmiş anlamı **yerleştirir**; bir surface'in ne anlama geldiğini, region sırasını, bir şeyin hangi state'te olduğunu veya o state'in tone'unu değiştiremez.
+- Üç window class tanımlandı: `compact` (<600dp, bottom navigation), `medium` (600–839dp, navigation rail), `expanded` (≥840dp, rail + opsiyonel detail pane). Dört destination'ın kimliği ve sırası (`Today → Learn → Progress → Profile`) her sınıfta aynıdır; semantic region sırası değişmezdir ve hiçbir sınıf region ekleyemez, çıkaramaz veya yeniden sıralayamaz. `expanded`'daki detail pane aynı surface'i aynı truth ile gösterir, ikinci bir kopya değildir.
+- Altı surface için concrete region geometry tanımlandı ve her biri sahibi spec'e karşı doğrulandı: Today (THUX-v0 5 region sırası birebir), Progress overview (SPWX-v0 iki yarı), Skill detail, Topic detail, Task runner flow ve Assessment session flow.
+- `skill_detail` primary state chip'i **ve** dört ekseni birlikte gösterir; chip axis block'un yerini alamaz. Evidence summary independent/assisted/provisional/invalid ayrımını korur.
+- `progress_overview` yalnız envanter sayıları gösterir; oran, bar, gauge veya yüzde yoktur.
+- Focused flow'larda shell görsel olarak bastırılabilir fakat **exit ve pause her window class'ta 48dp tam hedefi ve sabit konumu korur** — shell gizliyken tek çıkış yolu oldukları için bu bir layout tercihi değil güvenlik gereğidir. Focused-flow chrome'unda countdown veya urgency öğesi yoktur; position context yalnız yön bilgisidir.
+- **Ölçülmüş palet üretildi.** `VDSX-v0` §3 somut rengi bilinçle kilitlememiş ve paletin burada üretilip tema başına ölçülmesini şart koşmuştu. Light ve dark bağımsız olarak ölçüldü; dark, light'ın inversiyonu değildir. 52 zorunlu çiftin tamamı geçer; gözlenen minimumlar: yüzey üstü metin **6.08** (gereken ≥4.5), non-text ve sınır **3.79** (gereken ≥3.0), tone container üstü metin **6.06** (gereken ≥4.5).
+- **Hue politikası bir severity kararıdır, zevk kararı değildir.** `attention` menekşedir (`#6A3FB5` / `#C0A6F5`), kehribar değil; kırmızı yalnız `system_fault` içindir. Attention kehribar, fault kırmızı olsaydı palet yeşil→sarı→kırmızı bir şiddet rampası oluşturur ve tone tablosu ne derse desin her `attention` state'i "başarısızlığa bir adım" gibi okunurdu. `VDSX-v0` §4'ün görsel severity yasağı fiilen burada uygulanır.
+- Depolanan kontrast oranları **kanıttır, source of truth değildir**; `tools/validate_wireframe_prototype.py` her çalıştırmada WCAG relative-luminance formülünü uygulayarak hex'ten yeniden hesaplar ve beyan edilen minimumların hesaplananla eşleştiğini doğrular.
+- %200 metin boyutuna kadar layout'lar **reflow eder, state'i truncate etmez**. Skill satırı sığmazsa iki satıra sarar; chip'ler Skill adı elenmeden önce sarar; secondary metadata ve duration state bilgisinden **önce** elenir; exit/pause hiçbir koşulda 48dp altına inmez.
+- `prototype.html` self-contained tek sayfadır, wireframe'leri ve her iki paleti insan incelemesi için render eder ve **bağlayıcı değildir**: implementasyon değildir, teknoloji seçimi değildir, hiçbir framework'e bağlanmaz ve spec ile çelişirse spec kazanır. 9A/10 teknoloji seçiminde tamamen serbesttir.
+- Independent 8G QA: **222/222 PASS**; 3 window class / 6 surface / **52 ölçülen kontrast çifti** / 11 forbidden geometry anti-pattern. Validator region sıralarını doğrudan THUX/SPWX/ASUX/TRUX kontratlarından, tone token'larını VDSX-v0'dan, destination sırasını UXIA-v0'dan çapraz doğrular; kontrastı iddia etmez hesaplar ve hex'lerin hem spec'te hem prototipte göründüğünü kontrol eder. İlk turda beyan edilen bir minimum yanlış çıktı (6.76 yerine gerçek 6.08) ve validator bunu yakaladı; düzeltildi. Ayrıca mutation test uygulandı: 6 kasıtlı ihlal 16 check FAIL verdi.
+- Stage 6, Stage 7, accepted 8A–8F ve external-memory regressions PASS.
+- **AŞAMA 8 tamamlandı.** Sonraki numbered step `9A — Teknik mimari / platform seçimi`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/WIREFRAME_PROTOTYPE_SPEC.md`.

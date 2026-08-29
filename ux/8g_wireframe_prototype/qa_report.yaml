@@ -1,0 +1,918 @@
+stage_step: 8G
+model: WFPX-v0
+candidate_decision: D-074
+result: PASS
+status_observed: accepted_8g
+checks_total: 222
+checks_passed: 222
+checks_failed: 0
+window_classes: 3
+surfaces_with_geometry: 6
+contrast_pairs_measured: 52
+contrast_min_observed: 3.79
+forbidden_geometry_patterns: 11
+measured_contrast:
+- theme: light
+  pair: on_surface/surface
+  ratio: 17.79
+  required: 4.5
+- theme: light
+  pair: on_surface/surface_variant
+  ratio: 15.99
+  required: 4.5
+- theme: light
+  pair: on_surface_muted/surface
+  ratio: 6.76
+  required: 4.5
+- theme: light
+  pair: on_surface_muted/surface_variant
+  ratio: 6.08
+  required: 4.5
+- theme: light
+  pair: outline/surface
+  ratio: 4.21
+  required: 3.0
+- theme: light
+  pair: outline/surface_variant
+  ratio: 3.79
+  required: 3.0
+- theme: light
+  pair: focus_ring/surface
+  ratio: 6.17
+  required: 3.0
+- theme: light
+  pair: focus_ring/surface_variant
+  ratio: 5.55
+  required: 3.0
+- theme: light
+  pair: on_tone_neutral/tone_neutral
+  ratio: 8.14
+  required: 4.5
+- theme: light
+  pair: tone_neutral/surface
+  ratio: 8.14
+  required: 3.0
+- theme: light
+  pair: tone_neutral/surface_variant
+  ratio: 7.32
+  required: 3.0
+- theme: light
+  pair: on_tone_active/tone_active
+  ratio: 6.17
+  required: 4.5
+- theme: light
+  pair: tone_active/surface
+  ratio: 6.17
+  required: 3.0
+- theme: light
+  pair: tone_active/surface_variant
+  ratio: 5.55
+  required: 3.0
+- theme: light
+  pair: on_tone_positive/tone_positive
+  ratio: 6.28
+  required: 4.5
+- theme: light
+  pair: tone_positive/surface
+  ratio: 6.28
+  required: 3.0
+- theme: light
+  pair: tone_positive/surface_variant
+  ratio: 5.65
+  required: 3.0
+- theme: light
+  pair: on_tone_attention/tone_attention
+  ratio: 7.02
+  required: 4.5
+- theme: light
+  pair: tone_attention/surface
+  ratio: 7.02
+  required: 3.0
+- theme: light
+  pair: tone_attention/surface_variant
+  ratio: 6.31
+  required: 3.0
+- theme: light
+  pair: on_tone_pending/tone_pending
+  ratio: 6.06
+  required: 4.5
+- theme: light
+  pair: tone_pending/surface
+  ratio: 6.06
+  required: 3.0
+- theme: light
+  pair: tone_pending/surface_variant
+  ratio: 5.45
+  required: 3.0
+- theme: light
+  pair: on_tone_fault/tone_fault
+  ratio: 6.54
+  required: 4.5
+- theme: light
+  pair: tone_fault/surface
+  ratio: 6.54
+  required: 3.0
+- theme: light
+  pair: tone_fault/surface_variant
+  ratio: 5.88
+  required: 3.0
+- theme: dark
+  pair: on_surface/surface
+  ratio: 15.15
+  required: 4.5
+- theme: dark
+  pair: on_surface/surface_variant
+  ratio: 13.29
+  required: 4.5
+- theme: dark
+  pair: on_surface_muted/surface
+  ratio: 8.41
+  required: 4.5
+- theme: dark
+  pair: on_surface_muted/surface_variant
+  ratio: 7.37
+  required: 4.5
+- theme: dark
+  pair: outline/surface
+  ratio: 4.74
+  required: 3.0
+- theme: dark
+  pair: outline/surface_variant
+  ratio: 4.16
+  required: 3.0
+- theme: dark
+  pair: focus_ring/surface
+  ratio: 8.29
+  required: 3.0
+- theme: dark
+  pair: focus_ring/surface_variant
+  ratio: 7.27
+  required: 3.0
+- theme: dark
+  pair: on_tone_neutral/tone_neutral
+  ratio: 8.2
+  required: 4.5
+- theme: dark
+  pair: tone_neutral/surface
+  ratio: 8.51
+  required: 3.0
+- theme: dark
+  pair: tone_neutral/surface_variant
+  ratio: 7.46
+  required: 3.0
+- theme: dark
+  pair: on_tone_active/tone_active
+  ratio: 7.8
+  required: 4.5
+- theme: dark
+  pair: tone_active/surface
+  ratio: 8.29
+  required: 3.0
+- theme: dark
+  pair: tone_active/surface_variant
+  ratio: 7.27
+  required: 3.0
+- theme: dark
+  pair: on_tone_positive/tone_positive
+  ratio: 9.55
+  required: 4.5
+- theme: dark
+  pair: tone_positive/surface
+  ratio: 10.23
+  required: 3.0
+- theme: dark
+  pair: tone_positive/surface_variant
+  ratio: 8.97
+  required: 3.0
+- theme: dark
+  pair: on_tone_attention/tone_attention
+  ratio: 8.54
+  required: 4.5
+- theme: dark
+  pair: tone_attention/surface
+  ratio: 8.8
+  required: 3.0
+- theme: dark
+  pair: tone_attention/surface_variant
+  ratio: 7.72
+  required: 3.0
+- theme: dark
+  pair: on_tone_pending/tone_pending
+  ratio: 9.27
+  required: 4.5
+- theme: dark
+  pair: tone_pending/surface
+  ratio: 10.24
+  required: 3.0
+- theme: dark
+  pair: tone_pending/surface_variant
+  ratio: 8.98
+  required: 3.0
+- theme: dark
+  pair: on_tone_fault/tone_fault
+  ratio: 9.99
+  required: 4.5
+- theme: dark
+  pair: tone_fault/surface
+  ratio: 10.81
+  required: 3.0
+- theme: dark
+  pair: tone_fault/surface_variant
+  ratio: 9.48
+  required: 3.0
+checks:
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8g_wireframe_prototype\wireframe.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: docs\WIREFRAME_PROTOTYPE_SPEC.md
+- check: E8G-00_required_file
+  result: PASS
+  details: research\8g_wireframe_prototype_research.md
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8g_wireframe_prototype\prototype.html
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8a_information_architecture\ia.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8b_today_home\home.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E8G-00_required_file
+  result: PASS
+  details: ux\8f_design_system\design_system.yaml
+- check: E8G-01_identity
+  result: PASS
+  details: model=WFPX-v0 step=8G
+- check: E8G-01_status
+  result: PASS
+  details: status=accepted_8g
+- check: E8G-01_decision
+  result: PASS
+  details: decision=D-074
+- check: E8G-01_parent
+  result: PASS
+  details: parent=UXIA-v0 ds=VDSX-v0
+- check: E8G-02_geometry_only
+  result: PASS
+  details: 8G is geometry + palette
+- check: E8G-02_semantics_untouched
+  result: PASS
+  details: violations=[]
+- check: E8G-02_prototype_not_impl
+  result: PASS
+  details: prototype commits to nothing
+- check: E8G-02_no_fixed_cards
+  result: PASS
+  details: no invented constants
+- check: E8G-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E8G-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E8G-04_window_classes
+  result: PASS
+  details: classes=['compact', 'expanded', 'medium']
+- check: E8G-04_breakpoints_ordered
+  result: PASS
+  details: breakpoints=[599, 600, 839, 840]
+- check: E8G-05_destination_order_matches_ia
+  result: PASS
+  details: 8G=['today', 'learn', 'progress', 'profile'] vs IA=['today', 'learn', 'progress',
+    'profile']
+- check: E8G-05_order_invariant
+  result: PASS
+  details: destination order invariant; detail pane shares truth
+- check: E8G-06_today_order_matches_thux
+  result: PASS
+  details: 8G=['primary_action', 'day_plan_context', 'remaining_plan', 'attention_context',
+    'supporting_navigation'] vs THUX=['primary_action', 'day_plan_context', 'remaining_plan',
+    'attention_context', 'supporting_navigation']
+- check: E8G-06_today_owner
+  result: PASS
+  details: Today owned by THUX-v0
+- check: E8G-06_today_dominant_and_uncounted
+  result: PASS
+  details: primary dominant, no fixed card count
+- check: E8G-07_progress_halves_match_spwx
+  result: PASS
+  details: 8G=['demonstrated_capability_inventory', 'attention_set'] vs SPWX=['demonstrated_capability_inventory',
+    'attention_set']
+- check: E8G-07_progress_no_ratio
+  result: PASS
+  details: inventory only, no ratio/bar/gauge
+- check: E8G-08_axes_match_spwx
+  result: PASS
+  details: axes=['mastery_axis_state', 'retention_axis_state', 'prerequisite_axis_state',
+    'weakness_axis_state']
+- check: E8G-08_axis_block_kept
+  result: PASS
+  details: chip never replaces the axis block
+- check: E8G-08_evidence_kinds_match_spwx
+  result: PASS
+  details: 8G=['independent', 'assisted', 'provisional', 'invalid'] vs SPWX=['assisted',
+    'independent', 'invalid', 'provisional']
+- check: E8G-09_topic_no_percentage
+  result: PASS
+  details: no Topic completion percentage
+- check: E8G-10_runner_exit
+  result: PASS
+  details: 'runner chrome={''owning_spec'': ''TRUX-v0'', ''region_order'': [''flow_chrome'',
+    ''work_content'', ''action_bar'', ''position_context''], ''shell_may_be_suppressed'':
+    True, ''exit_and_pause_always_present'': True, ''exit_min_target_dp'': 48, ''exit_position_fixed_in_all_classes'':
+    True, ''countdown_present'': False}'
+- check: E8G-10_assessment_chrome
+  result: PASS
+  details: 'assessment chrome={''owning_spec'': ''ASUX-v0'', ''region_order'': [''flow_chrome'',
+    ''item_content'', ''action_bar'', ''position_context''], ''position_context_is_orientation_only'':
+    True, ''countdown_present'': False, ''exit_min_target_dp'': 48}'
+- check: E8G-10_target_matches_vdsx
+  result: PASS
+  details: 8G=48 vs VDSX=48
+- check: E8G-11_tone_map_covers_vdsx
+  result: PASS
+  details: missing=[] extra=[]
+- check: E8G-11_tokens_declared_in_vdsx
+  result: PASS
+  details: undeclared=[]
+- check: E8G-12_measured_per_theme
+  result: PASS
+  details: palette policy=True
+- check: E8G-12_thresholds_match_vdsx
+  result: PASS
+  details: '8G={''text_on_surface_min'': 4.5, ''text_on_tone_min'': 4.5, ''non_text_and_boundary_min'':
+    3.0} vs VDSX={''body_and_label_text_min'': 4.5, ''large_text_min'': 3.0, ''state_indicator_and_ui_component_min'':
+    3.0, ''focus_indicator_visible_on_all_surfaces'': True, ''measured_per_theme'':
+    True, ''dark_derived_by_inversion_without_measurement'': False}'
+- check: E8G-13_two_themes
+  result: PASS
+  details: themes=['dark', 'light']
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.surface=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.surface_variant=#F1F3F5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_surface=#16181B
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_surface_muted=#565C63
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.outline=#767C84
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.focus_ring=#0B5FBF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_neutral=#4A5058
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_neutral=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_active=#0B5FBF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_active=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_positive=#1B6E3C
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_positive=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_attention=#6A3FB5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_attention=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_pending=#2F6B72
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_pending=#FFFFFF
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.tone_fault=#B3261E
+- check: E8G-13_valid_hex
+  result: PASS
+  details: light.on_tone_fault=#FFFFFF
+- check: E8G-14_text_contrast
+  result: PASS
+  details: light on_surface/surface=17.79 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: light on_surface/surface_variant=15.99 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: light on_surface_muted/surface=6.76 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: light on_surface_muted/surface_variant=6.08 < 4.5
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: light outline/surface=4.21 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: light outline/surface_variant=3.79 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: light focus_ring/surface=6.17 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: light focus_ring/surface_variant=5.55 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_neutral/tone_neutral=8.14 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_neutral/surface=8.14 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_neutral/surface_variant=7.32 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_active/tone_active=6.17 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_active/surface=6.17 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_active/surface_variant=5.55 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_positive/tone_positive=6.28 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_positive/surface=6.28 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_positive/surface_variant=5.65 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_attention/tone_attention=7.02 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_attention/surface=7.02 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_attention/surface_variant=6.31 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_pending/tone_pending=6.06 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_pending/surface=6.06 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_pending/surface_variant=5.45 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: light on_tone_fault/tone_fault=6.54 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_fault/surface=6.54 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: light tone_fault/surface_variant=5.88 < 3.0
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.surface=#121417
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.surface_variant=#1D2126
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_surface=#E6E9ED
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_surface_muted=#A8B0B8
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.outline=#7A828B
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.focus_ring=#7FB0F5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_neutral=#A9B1BA
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_neutral=#16181B
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_active=#7FB0F5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_active=#0A1B2E
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_positive=#79D3A0
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_positive=#0A1F13
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_attention=#C0A6F5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_attention=#1E1030
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_pending=#8FCBD3
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_pending=#0B2124
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.tone_fault=#F2B8B5
+- check: E8G-13_valid_hex
+  result: PASS
+  details: dark.on_tone_fault=#3A0B08
+- check: E8G-14_text_contrast
+  result: PASS
+  details: dark on_surface/surface=15.15 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: dark on_surface/surface_variant=13.29 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: dark on_surface_muted/surface=8.41 < 4.5
+- check: E8G-14_text_contrast
+  result: PASS
+  details: dark on_surface_muted/surface_variant=7.37 < 4.5
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: dark outline/surface=4.74 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: dark outline/surface_variant=4.16 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: dark focus_ring/surface=8.29 < 3.0
+- check: E8G-15_non_text_contrast
+  result: PASS
+  details: dark focus_ring/surface_variant=7.27 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_neutral/tone_neutral=8.20 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_neutral/surface=8.51 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_neutral/surface_variant=7.46 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_active/tone_active=7.80 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_active/surface=8.29 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_active/surface_variant=7.27 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_positive/tone_positive=9.55 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_positive/surface=10.23 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_positive/surface_variant=8.97 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_attention/tone_attention=8.54 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_attention/surface=8.80 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_attention/surface_variant=7.72 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_pending/tone_pending=9.27 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_pending/surface=10.24 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_pending/surface_variant=8.98 < 3.0
+- check: E8G-16_tone_text_contrast
+  result: PASS
+  details: dark on_tone_fault/tone_fault=9.99 < 4.5
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_fault/surface=10.81 < 3.0
+- check: E8G-17_tone_indicator_contrast
+  result: PASS
+  details: dark tone_fault/surface_variant=9.48 < 3.0
+- check: E8G-18_declared_min_text
+  result: PASS
+  details: computed=6.08 declared=6.08
+- check: E8G-18_declared_min_nontext
+  result: PASS
+  details: computed=3.79 declared=3.79
+- check: E8G-18_declared_min_tone
+  result: PASS
+  details: computed=6.06 declared=6.06
+- check: E8G-19_hue_policy_declared
+  result: PASS
+  details: 'hue_policy={''attention_hue'': ''violet'', ''attention_is_amber_or_orange'':
+    False, ''fault_hue'': ''red'', ''fault_is_only_red'': True, ''traffic_light_ramp'':
+    False, ''rationale'': ''a green_amber_red ramp would encode learning states as
+    severity levels''}'
+- check: E8G-20_attention_not_amber
+  result: PASS
+  details: light tone_attention=#6A3FB5 reads as amber/orange
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: light tone_neutral=#4A5058 reads as red but tone is neutral
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: light tone_active=#0B5FBF reads as red but tone is active
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: light tone_positive=#1B6E3C reads as red but tone is positive_confirmed
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: light tone_attention=#6A3FB5 reads as red but tone is attention
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: light tone_pending=#2F6B72 reads as red but tone is pending_unresolved
+- check: E8G-20_fault_is_red
+  result: PASS
+  details: light tone_fault=#B3261E
+- check: E8G-20_attention_not_amber
+  result: PASS
+  details: dark tone_attention=#C0A6F5 reads as amber/orange
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: dark tone_neutral=#A9B1BA reads as red but tone is neutral
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: dark tone_active=#7FB0F5 reads as red but tone is active
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: dark tone_positive=#79D3A0 reads as red but tone is positive_confirmed
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: dark tone_attention=#C0A6F5 reads as red but tone is attention
+- check: E8G-20_only_fault_is_red
+  result: PASS
+  details: dark tone_pending=#8FCBD3 reads as red but tone is pending_unresolved
+- check: E8G-20_fault_is_red
+  result: PASS
+  details: dark tone_fault=#F2B8B5
+- check: E8G-21_not_an_inversion
+  result: PASS
+  details: inverted_tokens=0
+- check: E8G-22_text_scaling
+  result: PASS
+  details: 'text_scaling={''max_supported_percent'': 200, ''layouts_reflow'': True,
+    ''state_truncated'': False, ''skill_row_wraps_to_two_lines'': True, ''chips_wrap_before_name_elided'':
+    True, ''elision_order'': [''secondary_metadata'', ''duration''], ''state_information_elided'':
+    False, ''exit_and_pause_shrink_below_min_target'': False}'
+- check: E8G-22_elision_order
+  result: PASS
+  details: elision_order=['secondary_metadata', 'duration']
+- check: E8G-23_prototype_declared
+  result: PASS
+  details: 'prototype={''file'': ''ux/8g_wireframe_prototype/prototype.html'', ''self_contained'':
+    True, ''renders_wireframes'': True, ''renders_both_palettes'': True, ''binding'':
+    False, ''is_implementation'': False, ''is_technology_choice'': False, ''commits_to_framework'':
+    False, ''spec_wins_on_disagreement'': True}'
+- check: E8G-23_prototype_no_remote
+  result: PASS
+  details: prototype is self-contained (no remote refs)
+- check: E8G-23_prototype_marks_non_binding
+  result: PASS
+  details: prototype states it is non-binding
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.surface=#FFFFFF missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.on_surface=#16181B missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_neutral=#4A5058 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_active=#0B5FBF missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_positive=#1B6E3C missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_attention=#6A3FB5 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_pending=#2F6B72 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: light.tone_fault=#B3261E missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.surface=#121417 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.on_surface=#E6E9ED missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_neutral=#A9B1BA missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_active=#7FB0F5 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_positive=#79D3A0 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_attention=#C0A6F5 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_pending=#8FCBD3 missing from prototype
+- check: E8G-24_prototype_uses_palette
+  result: PASS
+  details: dark.tone_fault=#F2B8B5 missing from prototype
+- check: E8G-25_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E8G-25_forbidden_count
+  result: PASS
+  details: count=11
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=9A
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=10
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=12
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=13
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=14
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=16
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=17
+- check: E8G-26_boundary_open
+  result: PASS
+  details: stage=18
+- check: E8G-26_stage8_closes
+  result: PASS
+  details: Stage 8 closes on acceptance
+- check: E8G-27_required_models
+  result: PASS
+  details: missing=[]
+- check: E8G-27_contrast_computed_required
+  result: PASS
+  details: acceptance requires computed contrast
+- check: E8G-27_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''UXIA-v0'', ''THUX-v0'', ''TRUX-v0'',
+    ''ASUX-v0'', ''SPWX-v0'', ''VDSX-v0''], ''independent_qa_required'': True, ''contrast_must_be_computed_not_asserted'':
+    True, ''stage6_regression_required'': True, ''stage7_regression_required'': True,
+    ''stage8a_regression_required'': True, ''stage8b_regression_required'': True,
+    ''stage8c_regression_required'': True, ''stage8d_regression_required'': True,
+    ''stage8e_regression_required'': True, ''stage8f_regression_required'': True}'
+- check: E8G-28_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.surface=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.surface_variant=#F1F3F5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_surface=#16181B missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_surface_muted=#565C63 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.outline=#767C84 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.focus_ring=#0B5FBF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_neutral=#4A5058 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_neutral=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_active=#0B5FBF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_active=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_positive=#1B6E3C missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_positive=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_attention=#6A3FB5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_attention=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_pending=#2F6B72 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_pending=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.tone_fault=#B3261E missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: light.on_tone_fault=#FFFFFF missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.surface=#121417 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.surface_variant=#1D2126 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_surface=#E6E9ED missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_surface_muted=#A8B0B8 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.outline=#7A828B missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.focus_ring=#7FB0F5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_neutral=#A9B1BA missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_neutral=#16181B missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_active=#7FB0F5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_active=#0A1B2E missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_positive=#79D3A0 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_positive=#0A1F13 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_attention=#C0A6F5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_attention=#1E1030 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_pending=#8FCBD3 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_pending=#0B2124 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.tone_fault=#F2B8B5 missing from spec
+- check: E8G-28_spec_documents_hex
+  result: PASS
+  details: dark.on_tone_fault=#3A0B08 missing from spec
+- check: E8G-29_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

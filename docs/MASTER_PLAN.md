@@ -439,7 +439,22 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - somut hex 8G/10'da ölçülerek üretilir,
 - independent validator **121/121 PASS** (8A–8E state union'ına karşı exhaustiveness doğrulamalı, mutation-tested); Stage 6 + Stage 7 + 8A–8E + external-memory regressions PASS.
 
-### [ ] 8G — Wireframe/prototip — **AKTİF**
+### [x] 8G — Wireframe/prototip — WFPX-v0 / D-074
+
+**8G final coverage:**
+- geometry kabul edilmiş anlamı yerleştirir; semantic/state/label/tone/ownership değiştirmez,
+- 3 window class (compact/medium/expanded); destination kimliği ve sırası her sınıfta değişmez,
+- 6 surface region geometry'si sahibi spec'lere karşı çapraz doğrulandı,
+- `skill_detail` chip + dört ekseni birlikte gösterir; chip axis block'un yerini almaz,
+- `progress_overview` yalnız envanter; oran/bar/gauge/yüzde yok,
+- focused-flow exit ve pause her sınıfta 48dp sabit; countdown yok,
+- ölçülmüş palet: light ve dark bağımsız, 52 kontrast çifti hesaplandı, min 6.08 metin / 3.79 non-text,
+- `attention` menekşe, kırmızı yalnız `system_fault` — yeşil→sarı→kırmızı şiddet rampası yok,
+- %200 metinde reflow; state truncate edilmez, secondary metadata önce elenir,
+- `prototype.html` self-contained ve bağlayıcı değildir; teknoloji seçimi yapmaz,
+- independent validator **222/222 PASS**; kontrast iddia edilmez hesaplanır, mutation-tested; Stage 6 + Stage 7 + 8A–8F + external-memory regressions PASS.
+
+**AŞAMA 8 kapandı.**
 
 ---
 
@@ -593,11 +608,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8F`  
-**Son tamamlanan:** **`8F — VDSX-v0 / D-073`**  
-**Aktif:** **`8G — Wireframe/prototip`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`  
+**Son tamamlanan:** **`8G — WFPX-v0 / D-074`**  
+**Aktif:** **`9A — Mobil teknoloji seçimi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **8G fresh PRE-STEP → 8A–8E semantiği ve VDSX-v0 token/tone sistemi üzerinden concrete wireframe ve prototype geometry; ölçülmüş palet dahil → independent QA → D-050 POST sync + stale audit.**
+**AŞAMA 8 tamamlandı.** Bir sonraki yürütme: **9A fresh PRE-STEP → AŞAMA 8'de kilitlenen semantik, design system ve geometry'yi uygulayacak mobil teknoloji seçimi → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -605,3 +620,4 @@ Bir sonraki yürütme: **8G fresh PRE-STEP → 8A–8E semantiği ve VDSX-v0 tok
 - D-071: 8D final `ASUX-v0`.
 - D-072: 8E final `SPWX-v0`.
 - D-073: 8F final `VDSX-v0`.
+- D-074: 8G final `WFPX-v0`; AŞAMA 8 kapandı.

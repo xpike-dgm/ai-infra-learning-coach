@@ -654,3 +654,22 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `8F ✅ / 8G active-not-executed` konumuna taşır ve repo-wide stale-reference audit final closure gate'idir.
 
 **Sonraki kesin adım:** `8G — Wireframe/prototip`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-29 — 8G Wireframe/prototip tamamlandı — WFPX-v0 / D-074 — AŞAMA 8 KAPANDI
+
+- Kullanıcı 8F PR #15'i merge etti; fresh 8G PRE main üzerinden yapıldı. Üç ref koşulu doğrulandı (`HEAD=main`, `HEAD==origin/main`, açık PR yok) ve beş kanonik kaynak `8F ✅ / 8G active-not-executed` gösterdi. Kullanıcı açık onay verdi.
+- 8G'nin, önceki adımlardan farklı olarak **yeni bir teknik yükümlülüğü** vardı: `VDSX-v0` somut rengi bilinçle kilitlememiş ve paletin burada üretilip tema başına ölçülmesini şart koşmuştu. Bu araştırma değil, adlandırılmış bir standarda karşı aritmetiktir — ve validator'ın ilk kez **iddia etmek yerine hesaplaması** gerektiği anlamına geldi.
+- **Palet hesaplandı, iddia edilmedi.** Light ve dark bağımsız olarak ölçüldü; 52 zorunlu kontrast çiftinin tamamı geçti. Gözlenen minimumlar: yüzey üstü metin 6.08, non-text ve sınır 3.79, tone container üstü metin 6.06. Validator WCAG relative-luminance formülünü uygulayarak her oranı hex'ten yeniden hesaplar; depolanan oranlar kanıttır, source of truth değildir.
+- **İlk turda validator beni yakaladı.** `measured_minima.text_on_surface` değerini 6.76 yazmıştım; gerçek minimum 6.08'di (muted metin `surface_variant` üzerinde, `surface` üzerinde değil). Beyan edilen minimumun hesaplananla eşleşmesini kontrol eden check FAIL verdi ve değer düzeltildi. Bu tam olarak "hesapla, iddia etme" kuralının işe yaradığı an oldu.
+- **Hue politikası bir severity kararı olarak ele alındı.** `attention` kehribar, `system_fault` kırmızı olsaydı palet yeşil→sarı→kırmızı bir şiddet rampası oluştururdu ve tone tablosu ne derse desin her `attention` state'i "başarısızlığa bir adım" gibi okunurdu. `attention` menekşe yapıldı ve kırmızı yalnız `system_fault`'a ayrıldı. `VDSX-v0` §4'ün görsel severity yasağı fiilen palette uygulanır; validator hem kehribar hem kırmızı tonları algoritmik olarak tespit eder.
+- Geometry **declared structure** olarak ifade edildi, pixel comp olarak değil — bir markdown/YAML/Python reposu pixel comp'u anlamlı biçimde tutamaz ve pixel comp regression-check edilemez. Altı surface'in region sırası doğrudan sahibi kontrattan (THUX/SPWX/ASUX/TRUX) çapraz doğrulanır.
+- Focused-flow'da exit ve pause geometry'si bir layout tercihi değil **güvenlik gereği** olarak yazıldı: shell bastırıldığında tek çıkış yolu onlardır, bu yüzden her window class'ta 48dp tam hedefi ve sabit konumu korurlar.
+- `prototype.html` self-contained tek sayfa olarak eklendi ve **açıkça bağlayıcı değildir**: implementasyon değildir, teknoloji seçimi değildir, hiçbir framework'e bağlanmaz ve spec ile çelişirse spec kazanır. 9A/10 teknoloji seçiminde tamamen serbesttir. Validator prototipte uzak kaynak olmadığını ve palet hex'lerinin hem spec'te hem prototipte göründüğünü kontrol eder.
+- Independent 8G validator **222/222 PASS**; 3 window class / 6 surface / 52 ölçülen kontrast çifti / 11 forbidden geometry anti-pattern. Mutation test: 6 kasıtlı ihlal (kehribar attention, kontrast kırma, Today region sırası kaydırma, progress overview'a oran, prototype binding, assessment chrome'a countdown) 16 check FAIL verdi ve dosya geri alındı.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted 8A–8F regressions PASS.
+- D-050 POST living-memory accepted state'i `8G ✅ / AŞAMA 8 kapandı / 9A active-not-executed` konumuna taşır.
+
+**AŞAMA 8 tamamlandı:** 8A UXIA-v0 → 8B THUX-v0 → 8C TRUX-v0 → 8D ASUX-v0 → 8E SPWX-v0 → 8F VDSX-v0 → 8G WFPX-v0.
+
+**Sonraki kesin adım:** `9A — Mobil teknoloji seçimi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

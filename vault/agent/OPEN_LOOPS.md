@@ -26,7 +26,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 8D Sınav UX: ASUX-v0 / D-071 ile tamamlandı; tek session interior + atomic boundary submission + non-punitive assistance + semantic result + first-class `not_reliably_measured`.
 - [x] 8E Skill/progress/weakness UX: SPWX-v0 / D-072 ile tamamlandı; tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting + non-punitive weakness sunumu.
 - [x] 8F Tasarım sistemi: VDSX-v0 / D-073 ile tamamlandı; expression layer + 6 tone + eksiksiz state tone eşlemesi + WCAG çapaları + Türkçe casing koruması.
-- [ ] 8G Wireframe/prototip **AKTİF**: 8A–8E semantiği ve VDSX-v0 token/tone sistemi üzerinden concrete wireframe/geometry + tema başına ölçülmüş palet.
+- [x] 8G Wireframe/prototip: WFPX-v0 / D-074 ile tamamlandı; 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti + bağlayıcı olmayan prototip. **AŞAMA 8 kapandı.**
+- [ ] 9A Mobil teknoloji seçimi **AKTİF**: AŞAMA 8 kontratlarını (UXIA/THUX/TRUX/ASUX/SPWX/VDSX/WFPX) karşılayabilecek mobil teknoloji seçimi; local-first, AI-degraded core, %200 metin, 48dp hedef ve tema başına kontrast gereksinimleri kriterdir.
 
 ## Knowledge-base operations
 
