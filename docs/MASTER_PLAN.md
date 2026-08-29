@@ -459,8 +459,24 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 ---
 
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
-### [ ] 9A — Mobil teknoloji seçimi
-### [ ] 9B — Veri saklama/local-first
+### [x] 9A — Mobil teknoloji seçimi — AMTS-v0 / D-075
+
+**9A final coverage:**
+- teknoloji seçimi kabul edilmiş kontratlara hizmet eder; çelişkide kontrat kazanır,
+- Android native; V1'de cross-platform UI katmanı yok (V1 tek platforma çıkar, fayda yok maliyet var),
+- taşınabilirlik hedge'i UI değil domain core'dur,
+- Kotlin + Jetpack Compose; declarative/state-driven toolkit token+state tabanlı design system'e karşılık gelir,
+- Material 3 yalnız substrate; VDSX-v0 token'ları otoriter; **dynamic colour kapalı** (ölçülmüş paleti ve hue politikasını yok ederdi),
+- domain core saf Kotlin: Android API / UI toolkit / networking / AI client bağımlılığı yasak,
+- 3 window class WFPX-v0 ile birebir; destination kimliği ve sırası değişmez,
+- accessibility gereksinimleri platform mekanizmalarına eşlendi (48dp, %200 metin, screen-reader state, focus ≥3:1, reduced motion),
+- default-locale case transform yasak; Türkçe `i ↔ İ` / `ı ↔ I` round-trip; kilitli etiketler case-transform edilmez,
+- `minSdk` politikadır; working default API 26, 10A'da gerçek cihaza karşı doğrulanacak,
+- kurulabilir APK ve gerçek cihaz QA zorunlu,
+- 6 maddelik bounded verification list 10A'ya devredildi (library güncelliği Araştırma AI konusudur),
+- independent validator **100/100 PASS** (WFPX/VDSX/SPWX/V1_SCOPE/AI_AGENT_WORKFLOW çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 regressions PASS.
+
+### [ ] 9B — Veri saklama/local-first — **AKTİF**
 ### [ ] 9C — Domain veri modeli
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
@@ -608,11 +624,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`  
-**Son tamamlanan:** **`8G — WFPX-v0 / D-074`**  
-**Aktif:** **`9A — Mobil teknoloji seçimi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A`  
+**Son tamamlanan:** **`9A — AMTS-v0 / D-075`**  
+**Aktif:** **`9B — Veri saklama / local-first`** — henüz yürütülmedi.
 
-**AŞAMA 8 tamamlandı.** Bir sonraki yürütme: **9A fresh PRE-STEP → AŞAMA 8'de kilitlenen semantik, design system ve geometry'yi uygulayacak mobil teknoloji seçimi → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **9B fresh PRE-STEP → granular Skill/Objective evidence, assessment kayıtları ve yıllarca history için local-first persistence; curriculum data ile user state ayrımı; migration, backup, export ve restore davranışı → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -621,3 +637,4 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 - D-072: 8E final `SPWX-v0`.
 - D-073: 8F final `VDSX-v0`.
 - D-074: 8G final `WFPX-v0`; AŞAMA 8 kapandı.
+- D-075: 9A final `AMTS-v0`.

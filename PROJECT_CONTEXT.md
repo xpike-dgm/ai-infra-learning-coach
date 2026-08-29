@@ -197,12 +197,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **8F ✅ Tasarım sistemi — VDSX-v0 / D-073**
 - **8G ✅ Wireframe/prototip — WFPX-v0 / D-074**
 - **AŞAMA 8 ✅ TAMAMLANDI**
-- **9A 🟡 Mobil teknoloji seçimi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9B–20 ⬜
+- **9A ✅ Mobil teknoloji seçimi — AMTS-v0 / D-075**
+- **9B 🟡 Veri saklama / local-first — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 9A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -245,6 +246,12 @@ Canonical: `docs/DESIGN_SYSTEM_SPEC.md` / D-073.
 Concrete geometry ve ölçülmüş palet kilitlendi; AŞAMA 8 kapandı. Geometry kabul edilmiş anlamı yerleştirir ve hiçbir surface anlamını, region sırasını, state'i veya tone'u değiştiremez. Üç window class (compact/medium/expanded) tanımlıdır; dört destination'ın kimliği ve sırası her sınıfta aynıdır ve hiçbir sınıf region ekleyip çıkaramaz. Altı surface'in region geometry'si sahibi spec'lere karşı doğrulandı: `skill_detail` primary chip ile dört ekseni birlikte gösterir, `progress_overview` yalnız envanter tutar, focused-flow'da exit ve pause her sınıfta 48dp sabit kalır ve countdown yoktur. Palet light ve dark için bağımsız ölçüldü; 52 zorunlu kontrast çifti geçer (min 6.08 metin / 3.79 non-text / 6.06 tone-üstü metin) ve oranlar her validator çalıştırmasında hex'ten yeniden hesaplanır. `attention` menekşedir ve kırmızı yalnız `system_fault` içindir — böylece palet bir yeşil→sarı→kırmızı şiddet rampası oluşturmaz. %200 metinde layout reflow eder ve state truncate edilmez. `prototype.html` bağlayıcı değildir; implementasyon veya teknoloji seçimi yapmaz.
 
 Canonical: `docs/WIREFRAME_PROTOTYPE_SPEC.md` / D-074.
+
+## 12.1 9A Mobil teknoloji seçimi — AMTS-v0 / D-075
+
+Platform ve UI teknolojisi seçildi; AŞAMA 9 başladı. Teknoloji seçimi kabul edilmiş kontratlara hizmet eder ve hiçbirini zayıflatamaz — bir library default'u kontratla çelişirse kontrat kazanır. **Android native** seçildi ve V1'de cross-platform UI katmanı yoktur: V1 tek platforma çıkıp iOS/web/desktop'ı açıkça dışladığı için cross-platform fayda mevcut değildir, maliyeti ise tam olarak AŞAMA 8'in kontrata bağladığı üç yere iner (screen-reader state, Türkçe casing, adaptive navigation). Taşınabilirlik hedge'i UI değil domain core'dur. **Kotlin + Jetpack Compose** kullanılır; declarative/state-driven toolkit, token ve state olarak tanımlı design system'e doğrudan karşılık gelir. Material 3 yalnız substrate'tir ve **dynamic colour kapatılmıştır** — ölçülmüş paleti, tema başına kontrast kanıtını ve menekşe-değil-kehribar hue politikasını yok ederdi. **Domain core saf Kotlin'dir** ve Android API, UI toolkit, networking ya da AI client'a bağımlı olamaz; bu, "AI Tutor yokken core çökmemeli" kriterini konvansiyon değil yapı hâline getirir. Üç window class `WFPX-v0` ile birebir eşleşir. Default-locale case transform yasaktır ve Türkçe `i ↔ İ` / `ı ↔ I` round-trip etmelidir. `minSdk` bir politikadır (working default API 26) ve 10A'da gerçek cihaza karşı doğrulanacaktır. Framework güncelliği iddiası kesinleştirilmedi; 6 maddelik bounded verification list 10A'ya devredildi.
+
+Canonical: `docs/MOBILE_TECHNOLOGY_SPEC.md` / D-075.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

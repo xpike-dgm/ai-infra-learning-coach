@@ -1,0 +1,67 @@
+stage_step: 9A
+model: AMTS-v0
+decision: D-075
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_opened: true
+repo_files_scanned: 367
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 9A active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_8g_post_step_stale.py
+  sample: 9A active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_9a_post_step_stale.py
+  sample: 9A complete and 9B active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-29-8g-wireframe-prototype.md
+  sample: 9A — Mobil teknoloji seçimi is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-29-9a-mobile-technology.md
+  sample: 9A active-not-executed
+  classification: historical_non_blocking
+- file: ux\8g_wireframe_prototype\stale_reference_audit.yaml
+  sample: 9A active-not-executed
+  classification: historical_non_blocking
+- file: arch\9a_mobile_technology\stale_reference_audit.yaml
+  sample: 9A active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  9A future/candidate language; current/living sources must agree on 9A complete and
+  9B active-not-executed.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 9B completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

@@ -47,6 +47,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-072:** SPWX-v0 Progress, Skill State & Weakness UX; 8E tamamlandı.
 - **D-073:** VDSX-v0 Visual Design System; 8F tamamlandı.
 - **D-074:** WFPX-v0 Wireframe & Prototype Geometry; 8G tamamlandı ve AŞAMA 8 kapandı.
+- **D-075:** AMTS-v0 Android Mobile Technology Selection; 9A tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -241,14 +242,15 @@ PEM-v0:
 - 8E ✅ SPWX-v0 / D-072
 - 8F ✅ VDSX-v0 / D-073
 - 8G ✅ WFPX-v0 / D-074 — **AŞAMA 8 tamamlandı**
-- 9A 🟡 active-not-executed
-- 9B–20 ⬜
+- 9A ✅ AMTS-v0 / D-075
+- 9B 🟡 active-not-executed
+- 9C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `8G — WFPX-v0 / D-074`  
-**Aktif:** `9A — Mobil teknoloji seçimi`  
-**9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9A — AMTS-v0 / D-075`  
+**Aktif:** `9B — Veri saklama / local-first`  
+**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -538,6 +540,27 @@ WFPX-v0:
 
 **AŞAMA 8 tamamlandı.**
 
-## 28. AŞAMA 9 handoff
+## 28. D-075 / 9A final özeti
 
-9A — Mobil teknoloji seçimi. AŞAMA 8'de kilitlenen semantic architecture (UXIA-v0), surface contracts (THUX/TRUX/ASUX/SPWX-v0), design system (VDSX-v0) ve geometry (WFPX-v0) uygulanabilir olmalıdır. Teknoloji seçimi bu kontratları değiştiremez; onları karşılayabildiğini göstermelidir. Özellikle local-first çalışma, AI-degraded deterministic core, %200 metin desteği, 48dp hedefler ve tema başına ölçülen kontrast gereksinimleri seçim kriterlerindedir. 9A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/MOBILE_TECHNOLOGY_SPEC.md`.  
+Contract/QA: `arch/9a_mobile_technology/`.  
+Synthesis: `research/9a_mobile_technology_research.md`.
+
+AMTS-v0:
+- the technology choice serves the accepted contracts and weakens none; on conflict the contract wins,
+- Android native with no cross-platform UI layer in V1 — V1 ships to one platform, so the cross-platform benefit is unavailable while its cost lands exactly where AŞAMA 8 became contractual,
+- the portability hedge is the domain core, not the UI,
+- Kotlin and Jetpack Compose; a declarative state-driven toolkit matches a token-and-state design system and a Skill appearance that is a deterministic state projection,
+- Material 3 is a substrate only and `VDSX-v0` tokens are authoritative; **dynamic colour is disabled** because it would discard the measured palette, the per-theme contrast evidence and the violet-not-amber hue policy,
+- the domain core is pure Kotlin with no Android, UI, network or AI dependency, making V1 criterion 8 structural rather than conventional,
+- the three window classes map one-to-one onto `WFPX-v0` with invariant destination identity and order,
+- every accepted accessibility requirement maps to a platform mechanism,
+- default-locale case transforms are forbidden; Turkish casing round-trips and locked `SPWX-v0` labels are never case-transformed,
+- `minSdk` is a policy with an API 26 working default, to be confirmed at 10A against the real device, which is not yet recorded,
+- an installable APK and real-device QA remain required,
+- a six-item bounded verification list is handed to 10A because `AI_AGENT_WORKFLOW` §3 routes framework currency to Research AI and no currency claim is asserted here,
+- independent 9A QA 100/100 PASS, cross-validated against the WFPX/VDSX/SPWX/IA contracts and the V1_SCOPE and AI_AGENT_WORKFLOW texts, and mutation-tested; Stage 6/7/8 regressions + external memory PASS.
+
+## 29. 9B handoff
+
+9B — Veri saklama / local-first. `AMTS-v0` platform seçimi üzerinde local-first persistence tasarlanacaktır: granular Skill/Objective evidence, assessment kayıtları, exposure/validation kayıtları ve yıllarca uzanan history nasıl saklanır; curriculum data ile user state nasıl ayrılır; restart/update sonrası progress nasıl korunur; migration, backup, export ve restore nasıl davranır. Depolama motoru bu adımda seçilir; domain veri modeli 9C'ye aittir. 9B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

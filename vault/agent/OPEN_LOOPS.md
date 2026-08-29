@@ -27,7 +27,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 8E Skill/progress/weakness UX: SPWX-v0 / D-072 ile tamamlandı; tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting + non-punitive weakness sunumu.
 - [x] 8F Tasarım sistemi: VDSX-v0 / D-073 ile tamamlandı; expression layer + 6 tone + eksiksiz state tone eşlemesi + WCAG çapaları + Türkçe casing koruması.
 - [x] 8G Wireframe/prototip: WFPX-v0 / D-074 ile tamamlandı; 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti + bağlayıcı olmayan prototip. **AŞAMA 8 kapandı.**
-- [ ] 9A Mobil teknoloji seçimi **AKTİF**: AŞAMA 8 kontratlarını (UXIA/THUX/TRUX/ASUX/SPWX/VDSX/WFPX) karşılayabilecek mobil teknoloji seçimi; local-first, AI-degraded core, %200 metin, 48dp hedef ve tema başına kontrast gereksinimleri kriterdir.
+- [x] 9A Mobil teknoloji seçimi: AMTS-v0 / D-075 ile tamamlandı; Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core + Türkçe casing koruması.
+- [ ] 9B Veri saklama / local-first **AKTİF**: granular evidence, assessment kayıtları ve yıllarca history için persistence; curriculum/user state ayrımı; migration, backup, export, restore.
+- [ ] 10A'ya devredilen bounded verification list (AMTS-v0 §9): güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk` politikasını karşılayan güncel API seviyesi (gerçek cihaza karşı), screen-reader semantics API'leri, reduced-motion tespiti ve seçilen `minSdk`de compatibility library gerekip gerekmediği. Araştırma AI konusudur; seçimi değiştiremez.
+- [ ] Hedef Android cihaz repoda kayıtlı değil; `minSdk` doğrulaması için 10A'da gerekli.
 
 ## Knowledge-base operations
 
