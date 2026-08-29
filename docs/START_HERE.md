@@ -154,6 +154,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-078 — MSBX-v0
 9D final `docs/SERVICE_BOUNDARIES_SPEC.md`; modül ve servis sınırları kilitlendi. 10 modül, içe-doğru dependency kuralı (`core-*` asla `data-*`/`ai-*`/`app-*`'e bağımlı olamaz), 4 port, port olarak saat, core'da rastgelelik yok, ürünle sevk edilen null evaluator, engine başına tek state ailesi, `core-application`da transaction sınırı ve core'da presentation projection. DI/build 10A'ya, AI davranışı 9E'ye bırakıldı.
 
+### D-079 — AIAX-v0
+9E final `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md`; `EvaluatorPort` arkasındaki AI entegrasyonu kilitlendi. AI port arkasında yardımcıdır ve mastery/retention/prerequisite/planner/curriculum truth üzerinde otorite kazanamaz — AI önerir, deterministic engine'ler karar verir. `LEARNING_BEHAVIOR_RULES` §17 model seçimi ve §18 güvenlik/proxy/backend kararları burada kapatıldı. Evaluator çıktısı schema-constrained; schema'ya uymayan yanıt hüküm değil hatadır; kalibre edilmemiş LLM değerlendirmesi `provisional`; **refusal yanlış cevap değildir** ve her yanıtsızlık `evaluation_pending`e düşüp evidence yazmaz; timeout bütçesi uçtan uca; model adı konfigürasyonda, provider-independent adapter + router; deterministik iş asla AI çağırmaz; APK'da hardcoded/paylaşılan key yok ve V1'de backend proxy yok, öğrenci kendi key'ini platform secure storage'da tutar; yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar; generated item untrusted girer; her AI-türevli evidence satırı evaluator_ref kaydeder. Prompt/rubric metni ve tutor UX 14'e, kalibrasyon 18'e, SDK çağrı noktaları 10A/14'e, test stratejisi 9F'ye bırakıldı.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -172,8 +175,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 - 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
 - 8 UX — **8A ✅ UXIA-v0 / D-068; 8B ✅ THUX-v0 / D-069; 8C ✅ TRUX-v0 / D-070; 8D ✅ ASUX-v0 / D-071; 8E ✅ SPWX-v0 / D-072; 8F ✅ VDSX-v0 / D-073; 8G ✅ WFPX-v0 / D-074**
   - **AŞAMA 8 ✅ tamamlandı**
-- 9 Architecture — **9A ✅ AMTS-v0 / D-075; 9B ✅ LFPS-v0 / D-076; 9C ✅ DDM-v0 / D-077; 9D ✅ MSBX-v0 / D-078**
-  - **9E 🟡 active-not-executed**
+- 9 Architecture — **9A ✅ AMTS-v0 / D-075; 9B ✅ LFPS-v0 / D-076; 9C ✅ DDM-v0 / D-077; 9D ✅ MSBX-v0 / D-078; 9E ✅ AIAX-v0 / D-079**
+  - **9F 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -317,15 +320,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - AŞAMA 9B ✅ **LFPS-v0 / D-076**
 - AŞAMA 9C ✅ **DDM-v0 / D-077**
 - AŞAMA 9D ✅ **MSBX-v0 / D-078**
-- AŞAMA 9E 🟡 **active-not-executed**
+- AŞAMA 9E ✅ **AIAX-v0 / D-079**
+- AŞAMA 9F 🟡 **active-not-executed**
 
 7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`9D — MSBX-v0 / D-078`**  
-**Aktif:** **`9E — AI entegrasyon mimarisi`**  
-**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`9E — AIAX-v0 / D-079`**  
+**Aktif:** **`9F — Test stratejisi`**  
+**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071, 8E SPWX-v0 / D-072, 8F VDSX-v0 / D-073 ve 8G WFPX-v0 / D-074 tamamlandı; AŞAMA 8 kapandı. 9A AMTS-v0 / D-075, 9B LFPS-v0 / D-076, 9C DDM-v0 / D-077 ve 9D MSBX-v0 / D-078 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Design system expression layer'dır ve canonical state'in iddia etmediği severity'yi ekleyemez; hiçbir learning state alarm tonu almaz. Geometry kabul edilmiş anlamı yerleştirir ve state/label/tone değiştiremez; palet tema başına ölçüldü ve traffic-light rampası yoktur. Teknoloji Android native + Kotlin/Compose'dur; dynamic colour kapalıdır ve domain core saf Kotlin'dir. Kanıt source of truth'tur ve öğrenci state'i yeniden hesaplanabilir projeksiyondur; exposure kayıtları kalıcıdır. Schema mimariyi uygular; pinning yapısaldır ve truth tablolarında UPDATE yolu yoktur. Sınırlar garantileri yapısal yapar: core `data-*`/`ai-*`/`app-*`'e bağımlı olamaz ve null evaluator ürünle sevk edilir. Aktif step 9E — AI entegrasyon mimarisi; 9E henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071, 8E SPWX-v0 / D-072, 8F VDSX-v0 / D-073 ve 8G WFPX-v0 / D-074 tamamlandı; AŞAMA 8 kapandı. 9A AMTS-v0 / D-075, 9B LFPS-v0 / D-076, 9C DDM-v0 / D-077, 9D MSBX-v0 / D-078 ve 9E AIAX-v0 / D-079 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Design system expression layer'dır ve canonical state'in iddia etmediği severity'yi ekleyemez; hiçbir learning state alarm tonu almaz. Geometry kabul edilmiş anlamı yerleştirir ve state/label/tone değiştiremez; palet tema başına ölçüldü ve traffic-light rampası yoktur. Teknoloji Android native + Kotlin/Compose'dur; dynamic colour kapalıdır ve domain core saf Kotlin'dir. Kanıt source of truth'tur ve öğrenci state'i yeniden hesaplanabilir projeksiyondur; exposure kayıtları kalıcıdır. Schema mimariyi uygular; pinning yapısaldır ve truth tablolarında UPDATE yolu yoktur. Sınırlar garantileri yapısal yapar: core `data-*`/`ai-*`/`app-*`'e bağımlı olamaz ve null evaluator ürünle sevk edilir. AI port arkasında yardımcıdır ve otorite değildir; refusal yanlış cevap değildir ve her yanıtsızlık `evaluation_pending`e düşer; APK'da key yok, öğrenci kendi key'ini girer; yalnız asgari attempt içeriği cihazdan çıkar. Aktif step 9F — Test stratejisi; 9F henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

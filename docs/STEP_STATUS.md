@@ -44,8 +44,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9B — Veri saklama / local-first** | ✅ | LFPS-v0 / D-076. Evidence = truth, state = projection; SQLite; append-only; atomik migration/restore; 100/100 QA PASS. |
 | **9C — Domain veri modeli** | ✅ | DDM-v0 / D-077. 11 curriculum + 12 truth + 8 projection entity; yapısal pinning, dört eksen, üç-değerli zaman; 114/114 QA PASS. |
 | **9D — Servis sınırları** | ✅ | MSBX-v0 / D-078. 10 modül + içe-doğru dependency kuralı + 4 port + null evaluator; 93/93 QA PASS. |
-| **9E — AI entegrasyon mimarisi** | 🟡 Aktif | EvaluatorPort arkasındaki AI davranışı ve sınırları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9F–20** | ⬜ Bekliyor | 9E sonrası canonical sırada. |
+| **9E — AI entegrasyon mimarisi** | ✅ | AIAX-v0 / D-079. AI port arkasında yardımcı; refusal != yanlış cevap; key APK'da değil; 86/86 QA PASS. |
+| **9F — Test stratejisi** | 🟡 Aktif | Garantilerin nasıl doğrulanacağı ve releasable eşiği; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **10–20** | ⬜ Bekliyor | 9F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -64,24 +65,27 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9D
+## Son tamamlanan numaralı adım — 9E
 
-**Final:** `MSBX-v0 — Module & Service Boundaries` / D-078.  
-**Ana çıktı:** `docs/SERVICE_BOUNDARIES_SPEC.md` + `arch/9d_service_boundaries/`.
+**Final:** `AIAX-v0 — AI Integration Architecture` / D-079.  
+**Ana çıktı:** `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md` + `arch/9e_ai_integration/`.
 
-9D sonucu:
-- **sınırlar garantileri yapısal hâle getirir**; "core AI ve ağ olmadan ayakta kalır" bir vaat olmaktan çıkıp dependency kuralı oldu,
-- 10 modül ve katı içe-doğru dependency kuralı; `core-*` asla `data-*`, `ai-*` veya `app-*`'e bağımlı olamaz; graf asiklikdir ve kural kontrol edilebilirdir,
-- `app-wiring` her implementasyonu bilen tek modüldür, composition root'tur ve domain logic içermez,
-- core'un dışarıdan ihtiyaç duyduğu her şey port'tur: `PersistencePort`, `ContentPort`, `ClockPort`, `EvaluatorPort` — hepsi core'da, core tipleriyle, platform tipi olmadan,
-- **saat bir port'tur**: zaman ortam gerçeği değil girdidir; aksi hâlde timezone mantığı test edilemez ve planner çıktısı beyan edilen girdilerinin fonksiyonu olmaktan çıkardı,
-- **core'da rastgelelik yoktur**; beraberlikler `PBR-v0` uyumlu beyan edilmiş total ordering ile çözülür. Seeded random reddedildi çünkü determinizmi özellik olmaktan çıkarıp yanlış ayarlanabilir konfigürasyona indirgerdi,
-- **null evaluator ürünle sevk edilir** ve test fixture'ı değildir; app `ai-adapter` olmadan build edilip çalışır; bu durumda open-ended attempt `evaluation_pending` olur ve evidence yazılmaz; hiçbir deterministic kabiliyet düşmez — V1 kriteri 8 wiring ile karşılanır,
-- her engine tam olarak bir state ailesine sahiptir ve başkasınınkini yazmaz; planner mastery/retention/readiness/weakness yazmaz; cross-engine etkiler `core-application` üzerinden olur,
-- transaction sınırı `core-application`dadır; engine'ler transaction açmaz ve persistence'ı doğrudan çağırmaz,
-- presentation projection `core-presentation`dadır ve saf veri üretir; `app-ui` yalnız render eder — aksi hâlde en güvenlik-kritik etiketleme yalnız cihazda test edilebilirdi,
-- independent validator **93/93 PASS**; dependency grafı iddia edilmez **hesaplanır** (bilinmeyen bağımlılık, cycle, forbidden layer edge) ve karar upstream kontratlara karşı doğrulanır. Mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + 9C + external-memory regressions PASS.
+9E sonucu:
+- **AI bir port arkasındaki yardımcıdır**; mastery, retention, prerequisite, planner veya curriculum truth üzerinde asla otorite kazanmaz ve yokluğu/hatası negative evidence üretmez. Kural: AI önerir, deterministic engine'ler karar verir,
+- iki kanonik spec kararı bu adıma devretmişti ve ikisi de kapatıldı: `LEARNING_BEHAVIOR_RULES` §17 model seçimi, §18 güvenlik/proxy/backend,
+- AI'ın gerçek katkıları korundu; amaç AI'ı azaltmak değil yetkisini sınırlamak,
+- evaluator çıktısı **schema-constrained**'dir; schema'ya uymayan yanıt hüküm değil **hatadır**; serbest metinden hüküm ayrıştırmak yasak çünkü bir misparse hata gibi değil hüküm gibi görünür,
+- kalibre edilmemiş LLM değerlendirmesi **`provisional`**'dır; `verified` deterministik bir yol gerektirir,
+- 7 sonuçlu taksonomi; **refusal bir yanlış cevap değildir** — refused/timed_out/transport_error/invalid_response/unavailable hepsi `evaluation_pending`e düşer ve evidence yazmaz. Aksi hâlde öğrenci, kendi kod örneğinde bir filtre tetiklendiği için negative evidence alırdı,
+- timeout bütçesi **uçtan ucadır** ve retry'ları kapsar; per-call timeout kullanıcıya verilen garanti değildir; retry'lar sınırlı ve sessiz arka plan retry'ı yok,
+- model adı **konfigürasyonda**dır, core'da değil; provider-independent adapter ve router vardır; task class'a göre varsayılanlar gerekçesiyle kayıtlı ve currency 10A/14'te yeniden doğrulanacak,
+- **deterministik iş asla AI çağırmaz**; toplu latency-duyarsız iş batch kullanır; maliyet hiçbir evidence kuralını zayıflatmanın gerekçesi değildir,
+- **APK'da hardcoded/paylaşılan key yok ve V1'de backend proxy yok**; öğrenci kendi key'ini girer, platform secure storage'da tutulur, log/export/backup/diagnostics'te görünmez ve key olmadan uygulama tamamen kullanılabilir,
+- yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar; evidence history, mastery state, plan, profile, exposure, provenance ve trace **asla** gitmez; AI kapatılabilir,
+- generated item untrusted girer, generator ≠ validator ve doğrulanmamış item güçlü mastery-changing evidence üretemez,
+- her AI-türevli evidence satırı provider + model + prompt/schema version kaydeder,
+- independent validator **86/86 PASS**; karar kaynak kontrat metinlerine ve yaml'larına karşı doğrulanır, spec'in hiçbir somut model kimliğini kanonik yapmadığı algoritmik kontrol edilir ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A–9D + external-memory regressions PASS.
 
-## Aktif adım — 9E AI entegrasyon mimarisi
+## Aktif adım — 9F Test stratejisi
 
-**9E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**9F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

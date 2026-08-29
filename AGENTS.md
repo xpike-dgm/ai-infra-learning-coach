@@ -60,11 +60,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 9B: ✅ `LFPS-v0 / D-076` tamamlandı — kanıt source of truth ve öğrenci state'i yeniden hesaplanabilir projeksiyon, append-only truth kayıtları, SQLite, core-owned persistence interface'leri, ayrı versiyonlanan curriculum/user state, kalıcı exposure kayıtları, tek-eylem-tek-transaction, forward-only migration, atomik doğrulanmış restore, sessiz reset yasak; 100/100 QA PASS.
 - 9C: ✅ `DDM-v0 / D-077` tamamlandı — schema mimariyi uygular; üç store bölgesi, `(logical_id, version)` composite kimlik ve yapısal pinning, UPDATE yolu olmayan append-only truth tabloları, dört ayrı evidence ekseni, append edilen disposition, instant + study day + offset üçlüsü, watermark'lı projection provenance, indekslenmiş exposure, library-neutral schema; 114/114 QA PASS.
 - 9D: ✅ `MSBX-v0 / D-078` tamamlandı — sınırlar garantileri yapısal yapar; 10 modül, içe-doğru dependency kuralı, `core-*` asla `data-*`/`ai-*`/`app-*`'e bağımlı olamaz, 4 port, port olarak saat, core'da rastgelelik yok, ürünle sevk edilen null evaluator, engine başına tek state ailesi, `core-application`da transaction, core'da presentation projection; 93/93 QA PASS.
-- **Aktif adım: 9E — AI entegrasyon mimarisi.**
-- **9E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 9F–20 bekliyor.
+- 9E: ✅ `AIAX-v0 / D-079` tamamlandı — AI port arkasında yardımcıdır ve otorite değildir (AI önerir, deterministic engine'ler karar verir); `LEARNING_BEHAVIOR_RULES` §17 model seçimi ve §18 güvenlik/proxy/backend kararları kapatıldı; schema-constrained evaluator çıktısı ve serbest metin ayrıştırma yasağı, `provisional` uncalibrated LLM, 7 sonuçlu taksonomi ve **refusal yanlış cevap değildir**, her yanıtsızlık `evaluation_pending`, uçtan uca timeout bütçesi, konfigürasyondaki model adı + provider-independent adapter, deterministik iş için AI çağrısı yasağı, APK'da key yok ve V1'de proxy yok, asgari-içerik gizlilik sınırı, untrusted generated item, her evidence satırında evaluator_ref; 86/86 QA PASS.
+- **Aktif adım: 9F — Test stratejisi.**
+- **9F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 10–20 bekliyor.
 
-**9E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9E için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**9F'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9F için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

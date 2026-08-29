@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078`; AŞAMA 8'in kapandığını ve aktif adımın `9E active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079`; AŞAMA 8'in kapandığını ve aktif adımın `9F active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1116,14 +1116,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 9B ✅ LFPS-v0 / D-076
 - AŞAMA 9C ✅ DDM-v0 / D-077
 - AŞAMA 9D ✅ MSBX-v0 / D-078
-- AŞAMA 9E 🟡 active-not-executed
-- 9F–20 ⬜
+- AŞAMA 9E ✅ AIAX-v0 / D-079
+- AŞAMA 9F 🟡 active-not-executed
+- 10–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9D — Servis sınırları`  
-**Final:** `MSBX-v0 — Module & Service Boundaries` / D-078  
-**Canonical:** `docs/SERVICE_BOUNDARIES_SPEC.md` + `arch/9d_service_boundaries/`
+**Son tamamlanan numaralı adım:** `9E — AI entegrasyon mimarisi`  
+**Final:** `AIAX-v0 — AI Integration Architecture` / D-079  
+**Canonical:** `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md` + `arch/9e_ai_integration/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1138,17 +1139,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9B:** ✅ TAMAMLANDI  
 **AŞAMA 9C:** ✅ TAMAMLANDI  
 **AŞAMA 9D:** ✅ TAMAMLANDI  
-**Aktif adım:** `9E — AI entegrasyon mimarisi`  
+**AŞAMA 9E:** ✅ TAMAMLANDI  
+**Aktif adım:** `9F — Test stratejisi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9E için:
+9F için:
 
 ```text
-fresh 9E PRE-STEP GitHub refresh
+fresh 9F PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9E execution
+→ 9F execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1693,9 +1695,24 @@ AŞAMA 8 ✅ TAMAMLANDI
 9B ✅ LFPS-v0 / D-076
 9C ✅ DDM-v0 / D-077
 9D ✅ MSBX-v0 / D-078
-9E 🟡 active-not-executed
-9F–20 ⬜
+9E ✅ AIAX-v0 / D-079
+9F 🟡 active-not-executed
+10–20 ⬜
 ```
+
+9E final:
+- AI bir port arkasındaki yardımcıdır ve otorite değildir; AI önerir, deterministic engine'ler karar verir,
+- `LEARNING_BEHAVIOR_RULES` §17 model seçimi ve §18 güvenlik/proxy/backend kararları burada kapatıldı,
+- evaluator çıktısı schema-constrained; schema'ya uymayan yanıt hüküm değil hatadır; serbest metin ayrıştırma yasak,
+- kalibre edilmemiş LLM değerlendirmesi `provisional`; `verified` deterministik yol ister,
+- 7 sonuçlu taksonomi; **refusal yanlış cevap değildir**; her yanıtsızlık `evaluation_pending`, evidence yazmaz,
+- timeout bütçesi uçtan uca ve retry'ları kapsar; sessiz arka plan retry'ı yok,
+- model adı konfigürasyonda, core'da değil; provider-independent adapter + router; currency 10A/14'te doğrulanacak,
+- deterministik iş asla AI çağırmaz; maliyet evidence kuralını zayıflatamaz,
+- APK'da hardcoded/paylaşılan key yok; V1'de backend proxy yok; key platform secure storage'da,
+- yalnız asgari attempt içeriği cihazdan çıkar; history/mastery/plan/profile asla gitmez,
+- generated item untrusted girer; generator ≠ validator; her evidence satırında evaluator_ref,
+- independent 9E QA 86/86 PASS (mutation-tested).
 
 9D final:
 - sınırlar garantileri yapısal yapar; core'un AI'sız çalışması dependency kuralıdır,
@@ -1814,9 +1831,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9E — AI entegrasyon mimarisi`.
+**Sıradaki gerçek numbered work:** `9F — Test stratejisi`.
 
-**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1866,5 +1883,14 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9E — AI entegrasyon mimarisi`.  
-**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9F — Test stratejisi`.  
+**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+
+
+---
+
+## 9E completion addendum — D-079
+
+9E `AIAX-v0 — AI Integration Architecture` ile tamamlandı. Canonical: `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md`; contract/QA: `arch/9e_ai_integration/`; synthesis: `research/9e_ai_integration_research.md`.
+
+`MSBX-v0`nin `EvaluatorPort`'u arkasındaki AI davranışı kilitlendi. AI bir yardımcıdır ve mastery, retention, prerequisite, planner veya curriculum truth üzerinde asla otorite kazanmaz; yokluğu ya da hatası negative evidence üretmez. `LEARNING_BEHAVIOR_RULES` §17 (model seçimi) ve §18 (güvenlik/proxy/backend) bu adıma devredilmişti ve ikisi de kapatıldı. AI'ın gerçek katkıları korundu; amaç yetkiyi sınırlamak, AI'ı azaltmak değil. Evaluator çıktısı schema-constrained'dir ve schema'ya uymayan yanıt bir hatadır — serbest metinden hüküm ayrıştırmak yasak, çünkü bir misparse hüküm gibi görünür. Kalibre edilmemiş LLM değerlendirmesi `provisional`dır. **Refusal bir yanlış cevap değildir**: `refused`, `timed_out`, `transport_error`, `invalid_response` ve `unavailable` hepsi `evaluation_pending`e düşer ve evidence yazmaz. Timeout bütçesi uçtan ucadır. Model adı konfigürasyonda yaşar; adapter provider-independent'tır ve somut model kimliklerinin güncelliği 10A/14'te yeniden doğrulanacaktır. Deterministik iş asla AI çağırmaz. APK'ya hardcoded veya paylaşılan key konmaz ve V1'de backend proxy yoktur; öğrenci kendi key'ini girer, key platform secure storage'da tutulur ve log/export/backup/diagnostics'te görünmez. Yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar. Generated item untrusted girer ve generator ile validator ayrıdır. Her AI-türevli evidence satırı provider, model ve prompt/schema version kaydeder. Independent QA 86/86 PASS; Stage 6/7/8 + 9A–9D + external-memory regressions PASS. Current active numbered step 9F'dir; fresh PRE + kullanıcı açık onayı gerekir.

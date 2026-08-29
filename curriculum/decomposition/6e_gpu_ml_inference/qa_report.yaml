@@ -13,9 +13,9 @@ counts:
   hard_prerequisite_edges: 260
   soft_prerequisite_edges: 36
   cross_package_prerequisite_edges: 89
-  reused_prior_package_skills: 59
+  reused_prior_package_skills: 61
   reused_6c_skills: 9
-  reused_6d_skills: 50
+  reused_6d_skills: 52
   capability_requirements: 296
   professional_attributions: 222
   project_attributions: 21

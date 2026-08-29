@@ -51,6 +51,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-076:** LFPS-v0 Local-First Persistence Architecture; 9B tamamlandı.
 - **D-077:** DDM-v0 Domain Data Model; 9C tamamlandı.
 - **D-078:** MSBX-v0 Module & Service Boundaries; 9D tamamlandı.
+- **D-079:** AIAX-v0 AI Integration Architecture; 9E tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -249,14 +250,15 @@ PEM-v0:
 - 9B ✅ LFPS-v0 / D-076
 - 9C ✅ DDM-v0 / D-077
 - 9D ✅ MSBX-v0 / D-078
-- 9E 🟡 active-not-executed
-- 9F–20 ⬜
+- 9E ✅ AIAX-v0 / D-079
+- 9F 🟡 active-not-executed
+- 10–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9D — MSBX-v0 / D-078`  
-**Aktif:** `9E — AI entegrasyon mimarisi`  
-**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9E — AIAX-v0 / D-079`  
+**Aktif:** `9F — Test stratejisi`  
+**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -628,6 +630,28 @@ MSBX-v0:
 - presentation projection lives in `core-presentation` as pure data and `app-ui` only renders, so capability labelling is testable without a device,
 - independent 9D QA 93/93 PASS with the dependency graph computed rather than asserted, and mutation-tested.
 
-## 32. 9E handoff
+## 32. D-079 / 9E final özeti
 
-9E — AI entegrasyon mimarisi. `MSBX-v0`nin `EvaluatorPort`u arkasında AI adaptörünün davranışı tanımlanacaktır: AI'ın neye karar verip veremeyeceği, provisional evaluation'ın sınırları, hata ve zaman aşımı durumlarında nasıl degrade olacağı, `AIV-v0` validation gereksinimlerinin nasıl karşılanacağı ve AI-generated içeriğin hangi koşullarda kullanılabileceği. AI hiçbir koşulda mastery, prerequisite veya planner truth'u üzerinde yetki kazanamaz ve `evaluation_pending` semantiği korunur. 9E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md`.  
+Contract/QA: `arch/9e_ai_integration/`.  
+Synthesis: `research/9e_ai_integration_research.md`.
+
+AIAX-v0:
+- AI is an assistant behind a port and never an authority over mastery, retention, prerequisite, planner or curriculum truth: AI proposes, deterministic engines decide,
+- two canonical deferrals were closed here — `LEARNING_BEHAVIOR_RULES` §17 (model selection) and §18 (security/proxy/backend),
+- AI's genuine contributions are preserved; the integration bounds authority rather than minimising usefulness,
+- evaluator output is schema-constrained and a schema-invalid response is an error, not a verdict; parsing a verdict out of free text is forbidden because a misparse looks like a verdict rather than a failure,
+- an uncalibrated LLM evaluation is `provisional`; `verified` requires a deterministic path,
+- a seven-outcome taxonomy separates refusal from failure — **a refusal is not a wrong answer** — and every non-answer degrades to `evaluation_pending` writing no evidence,
+- the timeout budget is end-to-end across retries; a per-call timeout is not a user-facing guarantee; retries are bounded with no silent background retry against the learner's key,
+- the model name lives in configuration with a provider-independent adapter and router; per-task-class defaults are recorded with reasoning and currency must be re-verified at 10A/14,
+- deterministic work never calls AI; bulk latency-insensitive work uses batch; cost is never a reason to weaken an evidence rule,
+- no hardcoded or shared key ships in the APK and no backend proxy exists in V1; the learner supplies their own key in platform secure storage, it never appears in logs, exports, backups or diagnostics, and the app is fully usable without one,
+- only the minimum content needed for the current attempt leaves the device; evidence history, mastery state, plan, profile, exposure, provenance and traces never do,
+- generated items enter untrusted, generator and validator are separate, and an unvalidated item cannot produce strong mastery-changing evidence,
+- every AI-derived evidence row records provider, model and prompt/schema version,
+- independent 9E QA 86/86 PASS, cross-validated against the source contract texts and yaml contracts, with an algorithmic check that the spec names no concrete model identifier as canonical, and mutation-tested.
+
+## 33. 9F handoff
+
+9F — Test stratejisi. AŞAMA 9'da kurulan garantilerin nasıl doğrulanacağı tanımlanacaktır: `MSBX-v0` dependency kuralının nasıl zorlanacağı, `LFPS-v0` append-only ve atomik transaction davranışının nasıl test edileceği, `MSBX-v0` null-evaluator yolunun ve `AIAX-v0` refusal/timeout degrade semantiğinin nasıl doğrulanacağı, planner determinizminin nasıl egzersiz edileceği, migration'ların dolu veriye karşı nasıl test edileceği, `WFPX-v0` kontrast ve %200 metin gereksinimlerinin nasıl kontrol edileceği ve bir build'in releasable sayılması için nelerin geçmesi gerektiği. 9F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

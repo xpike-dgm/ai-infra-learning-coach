@@ -140,8 +140,11 @@ check(len(source_ids) == len(sources), "duplicate source ID")
 check(all((ROOT / x["ref"]).is_file() for x in sources), "source path missing")
 check(manifest["blocking_review_count"] == 0, "manifest reports blocking review")
 check(not any(x["severity"] == "blocking" and x["status"] == "open" for x in reviews), "open blocking review")
-check(qa["result"] == "PASS_WITH_OPEN_NON_BLOCKING_REVIEWS", "QA result mismatch")
-check(qa["external_research_qa"]["status"] == "pending" and qa["external_research_qa"]["owner_step"] == "6H", "6H external QA guard missing")
+check(qa["result"] in {"PASS", "PASS_WITH_OPEN_NON_BLOCKING_REVIEWS"}
+      and (qa["result"] == "PASS") == (qa["counts"]["open_non_blocking_reviews"] == 0),
+      "QA result mismatch")
+check(qa["external_research_qa"]["status"] in {"pending", "validated_6H"}
+      and qa["external_research_qa"]["owner_step"] == "6H", "6H external QA guard missing")
 
 if failures:
     print("FOUNDATIONS_PACKAGE_QA=FAIL")
