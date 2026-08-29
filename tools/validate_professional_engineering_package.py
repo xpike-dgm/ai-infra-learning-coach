@@ -128,14 +128,17 @@ for sid in {"skill.engineering.reproducible_run_notes", "skill.git.stage_commit_
 sdm_reviews = load(PRIOR[1], "review_queue.yaml"); gim_reviews = load(PRIOR[2], "review_queue.yaml")
 check(next(x for x in sdm_reviews if x["review_id"] == "review.6d.professional_overlay_reconciliation")["status"] == "resolved", "6D professional overlay review not resolved")
 check(next(x for x in gim_reviews if x["review_id"] == "review.6e.professional_overlay_reconciliation")["status"] == "resolved", "6E professional overlay review not resolved")
-check(all(x["severity"] == "non_blocking" and x["status"] == "open" and x["resolution_owner_step"] == "6H" for x in reviews), "6F open review ownership/severity invalid")
-check(qa["external_research_qa"]["status"] == "pending" and qa["external_research_qa"]["owner_step"] == "6H", "6H external QA guard missing")
+open_reviews = [x for x in reviews if x["status"] == "open"]
+check(all(x["severity"] == "non_blocking" and x["status"] in {"open", "resolved"}
+          and x["resolution_owner_step"] == "6H" for x in reviews), "6F open review ownership/severity invalid")
+check(qa["external_research_qa"]["status"] in {"pending", "validated_6H"}
+      and qa["external_research_qa"]["owner_step"] == "6H", "6H external QA guard missing")
 
 counts = qa["counts"]
-for key, actual in {"domains":len(domains), "modules":len(modules), "topics":len(topics), "skills":len(skill_set), "objectives":len(objective_set), "topic_skill_links":len(links), "prerequisite_edges":len(edges), "professional_attributions":len(professional), "project_attributions":len(projects), "open_non_blocking_reviews":len(reviews)}.items():
+for key, actual in {"domains":len(domains), "modules":len(modules), "topics":len(topics), "skills":len(skill_set), "objectives":len(objective_set), "topic_skill_links":len(links), "prerequisite_edges":len(edges), "professional_attributions":len(professional), "project_attributions":len(projects), "open_non_blocking_reviews":len(open_reviews)}.items():
     check(counts[key] == actual, f"qa count mismatch {key}: {counts[key]} != {actual}")
 check(counts["open_blocking_reviews"] == 0 and manifest["blocking_review_count"] == 0, "blocking review count nonzero")
-check(manifest["unresolved_review_count"] == len(reviews), "manifest review count mismatch")
+check(manifest["unresolved_review_count"] == len(open_reviews), "manifest review count mismatch")
 
 if failures:
     print("PROFESSIONAL_ENGINEERING_PACKAGE_QA=FAIL")
@@ -150,4 +153,4 @@ print(f"prerequisites={len(edges)} hard={hard} soft={len(edges)-hard}")
 print(f"cross_package_edges={sum(x['cross_package_ref'] for x in edges)} reused_prior={len(reuse)}")
 print(f"combined_hard_dag_nodes={visited}/{len(known_skills)} (6C+6D+6E+6F)")
 print(f"projects={len({x['project_or_capstone_id'] for x in projects})} project_attributions={len(projects)}")
-print(f"open_blocking_reviews=0 open_non_blocking_reviews={len(reviews)}")
+print(f"open_blocking_reviews=0 open_non_blocking_reviews={len(open_reviews)}")

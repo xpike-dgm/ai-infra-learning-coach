@@ -194,6 +194,11 @@ Kabul edilmiş bir modelin kalıcı davranış sözleşmesini doğrular. **Her z
 
 Örnek: 8C POST audit'i sırasında `validate_english_entry_diagnostic.py` içindeki `E7A-15`, 7B'nin resolved ettiği `review.6c.english.cefr_alignment` review'ının hâlâ `open` olduğunu iddia ederken bulundu ve assertion 7B ownership-handoff'una daraltıldı.
 
+**Sweep kapsamı:** standing sweep elle tutulan bir liste değil, `tools/validate_*.py` glob'unun tamamıdır. 9E POST'unda sweep ilk kez glob ile çalıştırıldığında beş package validator'ının 6H'den (D-062) beri FAIL verdiği ortaya çıktı — bunlar 8C–9D sweep'lerinde çalıştırılmayan script'lerdi. İki ayrı sınıf bulundu ve ikisi de aynı POST içinde kapatıldı:
+
+- **Stale living gate:** `validate_foundations_package`, `validate_systems_package`, `validate_gpu_ml_inference_package`, `validate_professional_engineering_package` ve `validate_weakness_remediation_overlay` hâlâ 6H-öncesi state'i (`external_research_qa.status == "pending"`, sabit `PASS_WITH_OPEN_NON_BLOCKING_REVIEWS`, `status == "open"` review'lar) iddia ediyordu. Assertion'lar E7A-15 emsaliyle 6H ownership-handoff'una daraltıldı: status `{pending, validated_6H}` + `owner_step == "6H"`, QA result artık sabit değil open review sayısıyla tutarlılık üzerinden kontrol ediliyor ve review/manifest sayıları queue'dan hesaplanıyor.
+- **Gerçek veri regresyonu:** 6H reconciliation'ı 6E'ye iki 6D Skill'ini (`skill.os.numa_locality_affinity`, `skill.platform.scheduling_placement_constraints`) kullanan cross-package prerequisite edge'leri ekledi fakat karşılık gelen `seed_mappings` reuse beyanlarını eklemedi. Validator haklıydı; eksik iki beyan 6H provenance'ıyla eklendi ve `reused_prior_package_skills` 59→61, `reused_6d_skills` 50→52 düzeltildi. Hiçbir öğrenme semantiği değişmedi — edge'ler zaten vardı, eksik olan provenance kaydıydı.
+
 ### `tools/audit_*_post_step_stale.py` — one-time step-closure gate
 Yalnız kendi adımının kapanış anındaki state'i doğrular ve tasarımı gereği `<step> complete AND <next step> active-not-executed` iddiasını sabitler.
 

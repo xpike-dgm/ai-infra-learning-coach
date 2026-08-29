@@ -526,7 +526,24 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - presentation projection `core-presentation`da; `app-ui` yalnız render eder,
 - independent validator **93/93 PASS**; dependency grafı hesaplanarak doğrulanır (cycle + forbidden edge), mutation-tested; Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + 9C regressions PASS.
 
-### [ ] 9E — AI entegrasyon mimarisi — **AKTİF**
+### [x] 9E — AI entegrasyon mimarisi — AIAX-v0 / D-079
+
+**9E final coverage:**
+- AI bir port arkasındaki yardımcıdır; mastery/retention/prerequisite/planner/curriculum truth üzerinde otorite kazanamaz,
+- AI'ın gerçek katkıları korundu (açıklama, ipucu, değerlendirmeye yardım, kod feedback, kök neden, misconception hipotezi, varyant üretimi),
+- evaluator çıktısı schema-constrained; schema'ya uymayan yanıt hükümdür değil **hatadır**; serbest metin ayrıştırma yasak,
+- kalibre edilmemiş LLM değerlendirmesi `provisional`; `verified` deterministik yol ister,
+- 7 sonuçlu taksonomi; **refusal yanlış cevap değildir** ve her yanıtsızlık `evaluation_pending`e düşer, evidence yazmaz,
+- timeout bütçesi uçtan uca (retry'lar dahil); retry'lar sınırlı; sessiz arka plan retry yok,
+- model adı konfigürasyonda; provider-independent adapter + router; task class'a göre varsayılanlar ve currency re-verification,
+- deterministik iş asla AI çağırmaz; toplu iş batch; maliyet evidence kuralını zayıflatamaz,
+- APK'da hardcoded/paylaşılan key yok; V1'de backend proxy yok; öğrenci kendi key'ini girer ve platform secure storage'da tutulur,
+- yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar; history/mastery/plan/profile asla gitmez,
+- generated item untrusted girer; generator ≠ validator; doğrulanmamış item güçlü evidence üretemez,
+- her AI-türevli evidence satırı provider+model+prompt/schema version kaydeder,
+- independent validator **86/86 PASS** (LEARNING_BEHAVIOR_RULES/AIV/TRUX/ASUX/MSBX/DDM/LFPS metin ve yaml çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A–9D regressions PASS.
+
+### [ ] 9F — Test stratejisi — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -673,11 +690,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9D`  
-**Son tamamlanan:** **`9D — MSBX-v0 / D-078`**  
-**Aktif:** **`9E — AI entegrasyon mimarisi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9E`  
+**Son tamamlanan:** **`9E — AIAX-v0 / D-079`**  
+**Aktif:** **`9F — Test stratejisi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **9E fresh PRE-STEP → MSBX-v0 `EvaluatorPort` arkasında AI adaptörünün davranışı; AI'ın neye karar verip veremeyeceği, provisional evaluation'ın sınırları, hata durumlarında degrade davranışı ve AIV-v0 validation gereksinimlerinin nasıl karşılanacağı → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **9F fresh PRE-STEP → bu garantilerin nasıl doğrulanacağı; dependency kuralının nasıl zorlanacağı, append-only ve null-evaluator yolunun nasıl test edileceği, planner determinizminin nasıl egzersiz edileceği, migration'ların dolu veriye karşı nasıl test edileceği ve bir build'in releasable sayılması için nelerin geçmesi gerektiği → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -690,3 +707,4 @@ Bir sonraki yürütme: **9E fresh PRE-STEP → MSBX-v0 `EvaluatorPort` arkasınd
 - D-076: 9B final `LFPS-v0`.
 - D-077: 9C final `DDM-v0`.
 - D-078: 9D final `MSBX-v0`.
+- D-079: 9E final `AIAX-v0`.

@@ -1,0 +1,300 @@
+stage_step: 9E
+model: AIAX-v0
+candidate_decision: D-079
+result: PASS
+status_observed: accepted_9e
+checks_total: 86
+checks_passed: 86
+checks_failed: 0
+ai_may: 8
+ai_may_never: 9
+outcomes: 7
+forbidden_ai_patterns: 18
+checks:
+- check: E9E-00_required_file
+  result: PASS
+  details: arch\9e_ai_integration\ai_integration.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: docs\AI_INTEGRATION_ARCHITECTURE_SPEC.md
+- check: E9E-00_required_file
+  result: PASS
+  details: research\9e_ai_integration_research.md
+- check: E9E-00_required_file
+  result: PASS
+  details: arch\9d_service_boundaries\boundaries.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: arch\9c_domain_data_model\data_model.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: arch\9b_local_first_persistence\persistence.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E9E-00_required_file
+  result: PASS
+  details: docs\LEARNING_BEHAVIOR_RULES.md
+- check: E9E-00_required_file
+  result: PASS
+  details: docs\AI_GENERATED_RESOURCE_VALIDATION_SPEC.md
+- check: E9E-00_required_file
+  result: PASS
+  details: docs\V1_SCOPE.md
+- check: E9E-01_identity
+  result: PASS
+  details: model=AIAX-v0 step=9E
+- check: E9E-01_status
+  result: PASS
+  details: status=accepted_9e
+- check: E9E-01_decision
+  result: PASS
+  details: decision=D-079
+- check: E9E-01_boundaries
+  result: PASS
+  details: boundaries=MSBX-v0
+- check: E9E-02_architecture_only
+  result: PASS
+  details: 9E is architecture only
+- check: E9E-02_deferred_open
+  result: PASS
+  details: violations=[]
+- check: E9E-02_upstream_untouched
+  result: PASS
+  details: violations=[]
+- check: E9E-02_no_claims
+  result: PASS
+  details: violations=[]
+- check: E9E-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E9E-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E9E-03_guard_count
+  result: PASS
+  details: false_guards=32
+- check: E9E-04_ai_may
+  result: PASS
+  details: missing=[]
+- check: E9E-04_ai_may_never
+  result: PASS
+  details: missing=[]
+- check: E9E-04_no_overlap
+  result: PASS
+  details: overlap=[]
+- check: E9E-04_authority_rule
+  result: PASS
+  details: authority=ai_proposes_deterministic_engines_decide
+- check: E9E-04_rules_forbid_bypass
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really forbids AI bypassing a prerequisite
+- check: E9E-05_schema_constrained
+  result: PASS
+  details: evaluator output=error
+- check: E9E-05_free_text_rationale
+  result: PASS
+  details: free-text rationale recorded
+- check: E9E-05_result_fields
+  result: PASS
+  details: missing=[]
+- check: E9E-05_no_verdict
+  result: PASS
+  details: evaluator returns no verdict
+- check: E9E-06_provisional
+  result: PASS
+  details: provisional=provisional
+- check: E9E-06_verified_deterministic
+  result: PASS
+  details: verified_paths=6
+- check: E9E-06_aiv_agrees
+  result: PASS
+  details: AIV-v0 really names uncalibrated single-LLM scoring as insufficient
+- check: E9E-06_aiv_ceiling
+  result: PASS
+  details: AIV-v0 really caps uncalibrated-LLM-only resources below the critical mastery
+    ceiling
+- check: E9E-07_outcome_set
+  result: PASS
+  details: outcomes=['evaluated_provisional', 'evaluated_verified', 'invalid_response',
+    'refused', 'timed_out', 'transport_error', 'unavailable']
+- check: E9E-07_non_answers_pending
+  result: PASS
+  details: violations=[]
+- check: E9E-08_refusal_distinct
+  result: PASS
+  details: refusal handling=False
+- check: E9E-08_refusal_rationale
+  result: PASS
+  details: refusal rationale recorded
+- check: E9E-08_trux_pending
+  result: PASS
+  details: TRUX-v0 really forbids evidence for evaluation_pending
+- check: E9E-08_asux_pending
+  result: PASS
+  details: ASUX-v0 really forbids evidence and auto-fail for evaluation_pending
+- check: E9E-09_budget_end_to_end
+  result: PASS
+  details: budget=True
+- check: E9E-09_budget_rationale
+  result: PASS
+  details: rationale=sdk_clients_retry_by_default_so_wall_clock_can_reach_timeout_times_attempts
+- check: E9E-09_retries_bounded
+  result: PASS
+  details: retries bounded and not silent
+- check: E9E-10_degradation
+  result: PASS
+  details: 'degradation={''budget_is_end_to_end'': True, ''budget_covers_all_attempts'':
+    True, ''budget_is_product_default_not_scientific'': True, ''budget_is_configurable'':
+    True, ''per_call_timeout_is_user_facing_guarantee'': False, ''retries_bounded'':
+    True, ''retries_unthrottled'': False, ''silent_background_retry'': False, ''rationale'':
+    ''sdk_clients_retry_by_default_so_wall_clock_can_reach_timeout_times_attempts'',
+    ''degradation_uniform'': True, ''deterministic_capability_degrades'': False, ''learner_sees_truthful_pending_state'':
+    True, ''fabricated_result_on_failure'': False, ''app_usable_with_ai_disabled'':
+    True}'
+- check: E9E-10_msbx_null_evaluator
+  result: PASS
+  details: MSBX-v0 really ships a null evaluator with no degradation
+- check: E9E-11_provider_independent
+  result: PASS
+  details: model_selection=configuration
+- check: E9E-11_rules_require_independence
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really requires a provider-independent adapter
+- check: E9E-11_rules_assign_to_9e
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really assigns model selection to 9E
+- check: E9E-12_task_classes
+  result: PASS
+  details: classes=['bulk_validation_of_generated_items', 'explanation_hint_feedback',
+    'generated_item_drafting', 'open_response_evaluation']
+- check: E9E-12_quality_for_evaluation
+  result: PASS
+  details: learner-facing evaluation uses the quality tier
+- check: E9E-12_all_have_rationale
+  result: PASS
+  details: every default records a rationale
+- check: E9E-12_currency_deferred
+  result: PASS
+  details: currency=True
+- check: E9E-13_never_calls_ai
+  result: PASS
+  details: missing=[]
+- check: E9E-13_cost_discipline
+  result: PASS
+  details: 'call_discipline={''never_calls_ai'': [''deterministic_answer_key_checks'',
+    ''prerequisite_and_graph_evaluation'', ''planner_candidate_priority_and_capacity_logic'',
+    ''mastery_retention_and_readiness_computation'', ''progress_and_history_lookups'',
+    ''projection_rebuilds''], ''bulk_non_latency_sensitive_uses_batch'': True, ''stable_prefixes_structured_for_caching'':
+    True, ''repeats_evaluation_for_unchanged_input'': False, ''cost_is_reason_to_weaken_evidence_rule'':
+    False, ''source_contract'': ''LEARNING_BEHAVIOR_RULES_section_17''}'
+- check: E9E-13_rules_require_local
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really forbids AI calls for deterministic work
+- check: E9E-14_decided_here
+  result: PASS
+  details: credential decision settled here as deferred
+- check: E9E-14_no_shipped_key
+  result: PASS
+  details: no shipped key, no V1 backend proxy
+- check: E9E-14_user_key
+  result: PASS
+  details: storage=platform_secure_storage
+- check: E9E-14_threat_model
+  result: PASS
+  details: threat model stated
+- check: E9E-15_handling_rules
+  result: PASS
+  details: violations=[]
+- check: E9E-15_no_key_no_loss
+  result: PASS
+  details: no key means null evaluator, not data loss
+- check: E9E-15_rules_forbid_hardcode
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really rejects a hardcoded key as the default design
+- check: E9E-15_rules_assign_security_to_9e
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES really assigns the security decision to 9E
+- check: E9E-15_v1_local_first
+  result: PASS
+  details: V1_SCOPE really states local-first
+- check: E9E-15_key_not_in_lfps_export
+  result: PASS
+  details: the LFPS export carries preferences but never the key
+- check: E9E-16_never_sent
+  result: PASS
+  details: missing=[]
+- check: E9E-16_minimum_content
+  result: PASS
+  details: may_send=minimum_content_needed_to_evaluate_current_attempt
+- check: E9E-16_visible_and_optional
+  result: PASS
+  details: 'privacy={''product_otherwise_never_leaves_device'': True, ''may_send'':
+    ''minimum_content_needed_to_evaluate_current_attempt'', ''never_sent'': [''evidence_history'',
+    ''mastery_state'', ''plan'', ''profile'', ''exposure_records'', ''provenance'',
+    ''planner_traces''], ''ai_use_visible_to_learner'': True, ''ai_can_be_disabled'':
+    True, ''with_ai_disabled_nothing_leaves_device'': True}'
+- check: E9E-17_untrusted
+  result: PASS
+  details: 'generated resources={''generated_item_enters_untrusted'': True, ''usable_for_high_stakes_before_validation'':
+    False, ''generator_and_validator_separate'': True, ''generator_self_grade_is_validation'':
+    False, ''uncalibrated_single_llm_score_sufficient_alone'': False, ''unvalidated_item_produces_strong_mastery_changing_evidence'':
+    False, ''validation_status_recorded_on_resource_version'': True, ''source_contract'':
+    ''AIV-v0''}'
+- check: E9E-17_status_recorded
+  result: PASS
+  details: DDM-v0 really has a resource_validation_record entity
+- check: E9E-18_provenance
+  result: PASS
+  details: provenance=['provider', 'model', 'prompt_or_schema_version']
+- check: E9E-18_ddm_has_evaluator
+  result: PASS
+  details: DDM-v0 evidence_event really carries evaluator and evaluator_status
+- check: E9E-18_disposition_not_edit
+  result: PASS
+  details: later judgement is an appended disposition, per LFPS-v0
+- check: E9E-19_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E9E-19_forbidden_count
+  result: PASS
+  details: count=18
+- check: E9E-20_boundary_open
+  result: PASS
+  details: stage=9F
+- check: E9E-20_boundary_open
+  result: PASS
+  details: stage=10A
+- check: E9E-20_boundary_open
+  result: PASS
+  details: stage=14
+- check: E9E-20_boundary_open
+  result: PASS
+  details: stage=18
+- check: E9E-20_required_models
+  result: PASS
+  details: missing=[]
+- check: E9E-20_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''MSBX-v0'', ''AIV-v0'', ''GRE-v0'',
+    ''RVR-v0'', ''PRG-v0'', ''PBR-v0'', ''WLRM-v0'', ''DDM-v0'', ''LFPS-v0'', ''TRUX-v0'',
+    ''ASUX-v0''], ''independent_qa_required'': True, ''stage6_regression_required'':
+    True, ''stage7_regression_required'': True, ''stage8_regression_required'': True,
+    ''stage9a_regression_required'': True, ''stage9b_regression_required'': True,
+    ''stage9c_regression_required'': True, ''stage9d_regression_required'': True}'
+- check: E9E-21_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E9E-21_spec_no_claims
+  result: PASS
+  details: spec refuses claims
+- check: E9E-21_spec_names_no_model
+  result: PASS
+  details: spec names no concrete model identifier as canonical
+- check: E9E-22_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

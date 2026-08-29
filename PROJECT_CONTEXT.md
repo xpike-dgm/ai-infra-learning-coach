@@ -201,12 +201,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **9B ✅ Veri saklama / local-first — LFPS-v0 / D-076**
 - **9C ✅ Domain veri modeli — DDM-v0 / D-077**
 - **9D ✅ Servis sınırları — MSBX-v0 / D-078**
-- **9E 🟡 AI entegrasyon mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9F–20 ⬜
+- **9E ✅ AI entegrasyon mimarisi — AIAX-v0 / D-079**
+- **9F 🟡 Test stratejisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 10–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 9E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -273,6 +274,12 @@ Canonical: `docs/DOMAIN_DATA_MODEL_SPEC.md` / D-077.
 Modül ve servis sınırları kilitlendi. **Sınırlar garantileri yapısal hâle getirir**: "core AI ve ağ olmadan ayakta kalır" artık yıllarca hatırlanması gereken bir vaat değil, dependency kuralının bir özelliğidir. On modül ve katı içe-doğru bağımlılık kuralı vardır; `core-*` asla `data-*`, `ai-*` veya `app-*`'e bağımlı olamaz, graf asiklikdir ve `app-wiring` her implementasyonu bilen tek modüldür. Core'un dışarıdan ihtiyaç duyduğu her şey port'tur: `PersistencePort`, `ContentPort`, `ClockPort`, `EvaluatorPort`. **Saat bir port'tur** — zaman ortam gerçeği değil girdidir; aksi hâlde timezone mantığı test edilemez ve planner çıktısı beyan edilen girdilerinin fonksiyonu olmaktan çıkardı. **Core'da rastgelelik yoktur**; beraberlikler beyan edilmiş total ordering ile çözülür ve seeded random reddedilmiştir. **Null evaluator ürünle sevk edilir**; uygulama `ai-adapter` olmadan build edilip çalışır ve bu durumda open-ended attempt `evaluation_pending` olup evidence yazmaz — V1 kriteri 8 umutla değil wiring ile karşılanır. Her engine tam olarak bir state ailesine sahiptir ve başkasınınkini yazmaz; planner hiçbir learner state yazmaz. Transaction sınırı `core-application`da, presentation projection `core-presentation`dadır; `app-ui` yalnız render eder.
 
 Canonical: `docs/SERVICE_BOUNDARIES_SPEC.md` / D-078.
+
+## 12.5 9E AI entegrasyon mimarisi — AIAX-v0 / D-079
+
+`EvaluatorPort` arkasındaki AI davranışı kilitlendi. **AI bir port arkasındaki yardımcıdır ve asla bir otorite değildir**: mastery yazamaz, retention/review scheduling'i değiştiremez, prerequisite'i karşılayamaz veya aşamaz, planner priority/rank/capacity'yi değiştiremez, assessment quota koyamaz, kendi ürettiği item'ı doğrulayamaz, weakness'i tek başına confirmed yapamaz ve refusal/timeout/error'ı olumsuz sonuca çeviremez. Kural: **AI önerir, deterministic engine'ler karar verir.** İki kanonik spec kararı açıkça bu adıma devretmişti ve ikisi de burada kapatıldı: `LEARNING_BEHAVIOR_RULES` §17 model seçimi ve §18 güvenlik/proxy/backend. AI'ın gerçek katkıları korundu — alternatif anlatım, istenen seviyede ipucu, açık uçlu cevabın değerlendirilmesine yardım, kod feedback'i, kök neden analizi, misconception hipotezi ve soru varyantı taslağı; amaç AI'ı azaltmak değil yetkisini sınırlamaktır. Evaluator çıktısı **schema-constrained**'dir ve schema'ya uymayan yanıt bir hüküm değil **hata**dır; serbest metinden hüküm ayrıştırmak yasaktır çünkü bir misparse hata gibi değil hüküm gibi görünür. Kalibre edilmemiş LLM değerlendirmesi **`provisional`**'dır; bilgilendirebilir ve confirmation need açabilir fakat tek başına critical mastery gate'i geçemez, `verified` deterministik bir yol ister. **Refusal bir yanlış cevap değildir**: yedi sonuçlu taksonomide `refused`, `timed_out`, `transport_error`, `invalid_response` ve `unavailable` aynı biçimde `evaluation_pending`e düşer ve evidence yazmaz — aksi hâlde öğrenci, kendi kod örneğinde bir güvenlik filtresi tetiklendiği için negative evidence alırdı. Timeout bütçesi **uçtan ucadır** ve retry'ları kapsar; per-call timeout kullanıcıya verilen bir garanti değildir ve kullanıcının key'ine karşı sessiz arka plan retry'ı yoktur. Model adı **konfigürasyonda** yaşar, core'da değil; provider-independent adapter ve router vardır, task class'a göre varsayılanlar gerekçesiyle kayıtlıdır ve somut model kimlikleri konfigürasyon değeridir, güncellikleri 10A/14'te yeniden doğrulanmak zorundadır. **Deterministik iş asla AI çağırmaz** ve maliyet hiçbir evidence kuralını zayıflatmanın gerekçesi değildir. Credential kararı: **APK'da hardcoded veya paylaşılan key yoktur ve V1'de backend proxy yoktur**; öğrenci kendi key'ini girer, key platform secure storage'da tutulur, log/export/backup/diagnostics'te asla görünmez, provider endpoint'i dışında hiçbir yere gönderilmez ve uygulama hiç key girilmeden tamamen kullanılabilir. Gizlilik sınırı: yalnız mevcut attempt'i değerlendirmek için gereken asgari içerik cihazdan çıkabilir; evidence history, mastery state, plan, profile, exposure, provenance ve planner trace'leri **asla** gitmez ve AI kapalıyken cihazdan hiçbir şey çıkmaz. Generated item untrusted girer, generator ile validator ayrıdır ve doğrulanmamış item güçlü mastery-changing evidence üretemez. Her AI-türevli evidence satırı provider, model ve prompt/schema version kaydeder. Prompt metni ve rubric ifadesi 14'e, tutor UX 14'e, evaluator kalibrasyonu 18'e, somut SDK çağrı noktaları 10A/14'e ve test stratejisi 9F'ye bırakıldı.
+
+Canonical: `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md` / D-079.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

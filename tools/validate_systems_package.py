@@ -231,8 +231,11 @@ check(manifest["unresolved_review_count"] == len([x for x in reviews if x["statu
 check(bool(manifest["known_exclusions"]), "manifest declares no explicit exclusions")
 check(not any(x["severity"] == "blocking" and x["status"] == "open" for x in reviews), "open blocking review")
 check(all(x["severity"] in {"blocking", "non_blocking", "advisory"} for x in reviews), "invalid review severity")
-check(qa["result"] == "PASS_WITH_OPEN_NON_BLOCKING_REVIEWS", "QA result mismatch")
-check(qa["external_research_qa"]["status"] == "pending" and qa["external_research_qa"]["owner_step"] == "6H",
+check(qa["result"] in {"PASS", "PASS_WITH_OPEN_NON_BLOCKING_REVIEWS"}
+      and (qa["result"] == "PASS") == (qa["counts"]["open_non_blocking_reviews"] == 0),
+      "QA result mismatch")
+check(qa["external_research_qa"]["status"] in {"pending", "validated_6H"}
+      and qa["external_research_qa"]["owner_step"] == "6H",
       "6H external QA guard missing")
 check(qa["counts"]["skills"] == len(skill_set) and qa["counts"]["objectives"] == len(objective_set),
       "QA report counts do not match the emitted collections")

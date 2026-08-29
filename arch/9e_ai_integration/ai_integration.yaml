@@ -1,0 +1,337 @@
+model: AIAX-v0
+stage_step: 9E
+status: accepted_9e
+decision: D-079
+boundaries: MSBX-v0
+purpose: ai_integration_architecture_behind_evaluator_port
+
+scope:
+  integration_architecture_only: true
+  prompt_text_locked: false
+  tutor_ux_locked: false
+  evaluator_calibration_locked: false
+  sdk_call_sites_locked: false
+  test_strategy_locked: false
+  stage8_semantics_changed: false
+  persistence_rules_changed: false
+  data_model_changed: false
+  boundaries_changed: false
+  accuracy_claim: null
+  latency_guarantee: null
+  monthly_cost_estimate: null
+  availability_promise: null
+
+integration_question: Where does AI genuinely help, and what authority can it never gain?
+
+canonical_truth_owners:
+  boundaries: MSBX-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  planner_priority: PBR-v0
+  weakness: WLRM-v0
+  assessment_resource_validation: AIV-v0
+  assistance_evidence: AI_assistance_2D_contract
+  data_model: DDM-v0
+  persistence: LFPS-v0
+  prompt_and_rubric_text: 14
+  evaluator_calibration: 18
+  test_strategy: 9F
+
+invariants:
+  ai_writes_mastery: false
+  ai_writes_retention: false
+  ai_satisfies_or_bypasses_prerequisite: false
+  ai_changes_planner_priority: false
+  ai_sets_assessment_quota: false
+  ai_decides_learner_has_learned: false
+  ai_validates_its_own_generated_item: false
+  ai_confirms_weakness_alone: false
+  uncalibrated_llm_evaluation_is_verified: false
+  evaluator_returns_mastery_verdict: false
+  free_text_parsing_of_verdict: false
+  schema_invalid_response_treated_as_verdict: false
+  refusal_treated_as_wrong_answer: false
+  refusal_produces_negative_evidence: false
+  timeout_produces_negative_evidence: false
+  transport_error_produces_negative_evidence: false
+  unbounded_retries: false
+  silent_background_retry_against_user_key: false
+  per_call_timeout_presented_as_end_to_end_guarantee: false
+  deterministic_work_calls_ai: false
+  hardcoded_or_shared_key_in_apk: false
+  backend_proxy_in_v1: false
+  key_in_logs_exports_backups_or_diagnostics: false
+  key_included_in_export: false
+  evidence_history_sent_to_provider: false
+  mastery_state_sent_to_provider: false
+  plan_or_profile_sent_to_provider: false
+  durable_semantic_bound_to_model_name: false
+  model_name_in_core: false
+  currency_asserted_without_source: false
+  unvalidated_item_produces_strong_evidence: false
+  deterministic_capability_degrades_without_ai: false
+  ai_proposes_engines_decide: true
+  evaluator_output_schema_constrained: true
+  uncalibrated_llm_evaluation_is_provisional: true
+  non_answer_yields_evaluation_pending: true
+  timeout_budget_is_end_to_end: true
+  model_name_in_configuration: true
+  learner_supplies_own_key: true
+  key_in_platform_secure_storage: true
+  app_usable_with_ai_disabled: true
+  evaluator_ref_recorded_on_evidence: true
+
+ai_may:
+  - alternative_explanation
+  - hint_at_requested_assistance_level
+  - help_evaluate_open_ended_response
+  - code_feedback
+  - root_cause_analysis
+  - misconception_hypothesis
+  - candidate_question_variant_generation
+  - transfer_and_comprehension_item_drafting
+
+ai_may_never:
+  - write_or_change_mastery_state
+  - change_retention_or_review_scheduling
+  - satisfy_or_bypass_prerequisite
+  - change_planner_priority_rank_or_capacity
+  - set_assessment_quota
+  - decide_learner_has_learned
+  - validate_its_own_generated_item
+  - confirm_weakness_on_its_own_judgement
+  - turn_refusal_timeout_or_error_into_negative_result
+
+authority_rule: ai_proposes_deterministic_engines_decide
+
+evaluator_contract:
+  output_is_schema_constrained: true
+  free_text_parsing_allowed: false
+  schema_invalid_response_is: error
+  schema_invalid_response_is_verdict: false
+  free_text_rationale: a_misparse_looks_like_a_verdict_rather_than_a_failure
+  result_fields:
+    - target_objective_refs
+    - component_results
+    - outcome_signal
+    - rubric_findings
+    - misconception_hypotheses
+    - evaluator_confidence
+    - evaluator_ref
+  outcome_signal_is_mastery_verdict: false
+  evaluator_confidence_is_a_gate: false
+  misconception_hypotheses_are_confirmed: false
+  component_results_separable_for_dual_target: true
+  uncalibrated_llm_status: provisional
+  provisional_may_inform: true
+  provisional_may_open_confirmation_need: true
+  provisional_passes_critical_gate_alone: false
+  provisional_drives_heavy_remediation_alone: false
+  verified_requires_deterministic_path: true
+  verified_paths:
+    - deterministic_answer_key
+    - objective_specific_tests
+    - compiler_or_runtime_verifier
+    - deterministic_trace_checker
+    - validated_benchmark_criterion
+    - prevalidated_rubric_under_calibrated_policy
+  source_contracts:
+    - AI_assistance_2D_contract
+    - AIV-v0
+
+outcome_taxonomy:
+  outcomes:
+    - id: evaluated_verified
+      writes_evidence: true
+    - id: evaluated_provisional
+      writes_evidence: true
+      status: provisional
+    - id: refused
+      writes_evidence: false
+      degrades_to: evaluation_pending
+    - id: timed_out
+      writes_evidence: false
+      degrades_to: evaluation_pending
+    - id: transport_error
+      writes_evidence: false
+      degrades_to: evaluation_pending
+    - id: invalid_response
+      writes_evidence: false
+      degrades_to: evaluation_pending
+    - id: unavailable
+      writes_evidence: false
+      degrades_to: evaluation_pending
+  refusal_is_distinct_from_failure: true
+  refusal_is_wrong_answer: false
+  stop_reason_inspected_before_reading_content: true
+  verdict_inferred_from_empty_or_unexpected_response: false
+  refusal_rationale: a_learner_would_receive_negative_evidence_because_a_filter_fired_on_their_code_sample
+
+failure_and_timeout:
+  budget_is_end_to_end: true
+  budget_covers_all_attempts: true
+  budget_is_product_default_not_scientific: true
+  budget_is_configurable: true
+  per_call_timeout_is_user_facing_guarantee: false
+  retries_bounded: true
+  retries_unthrottled: false
+  silent_background_retry: false
+  rationale: sdk_clients_retry_by_default_so_wall_clock_can_reach_timeout_times_attempts
+  degradation_uniform: true
+  deterministic_capability_degrades: false
+  learner_sees_truthful_pending_state: true
+  fabricated_result_on_failure: false
+  app_usable_with_ai_disabled: true
+
+model_selection:
+  provider_independent_adapter: true
+  router_present: true
+  model_name_location: configuration
+  model_name_in_core: false
+  durable_semantic_depends_on_model_name: false
+  swapping_touches: [ai-adapter, configuration]
+  defaults_by_task_class:
+    - task_class: open_response_evaluation
+      tier: quality
+      rationale: evaluation_quality_directly_affects_what_the_learner_is_told
+    - task_class: explanation_hint_feedback
+      tier: quality
+      rationale: learner_facing_correctness_matters
+    - task_class: generated_item_drafting
+      tier: cost
+      rationale: output_is_untrusted_until_validated
+    - task_class: bulk_validation_of_generated_items
+      tier: cost
+      mode: batch
+      rationale: latency_insensitive_and_high_volume
+  concrete_identifiers_are_configuration: true
+  concrete_identifiers_asserted_as_permanent: false
+  currency_reverification_required: true
+  currency_reverification_owner: [10A, 14]
+  reference_recorded_with_build: true
+  precedent: AMTS-v0_currency_is_verified_not_asserted
+  source_contract: LEARNING_BEHAVIOR_RULES_section_17
+
+call_discipline:
+  never_calls_ai:
+    - deterministic_answer_key_checks
+    - prerequisite_and_graph_evaluation
+    - planner_candidate_priority_and_capacity_logic
+    - mastery_retention_and_readiness_computation
+    - progress_and_history_lookups
+    - projection_rebuilds
+  bulk_non_latency_sensitive_uses_batch: true
+  stable_prefixes_structured_for_caching: true
+  repeats_evaluation_for_unchanged_input: false
+  cost_is_reason_to_weaken_evidence_rule: false
+  source_contract: LEARNING_BEHAVIOR_RULES_section_17
+
+credentials:
+  decided_here: true
+  deferred_by: LEARNING_BEHAVIOR_RULES_section_18
+  hardcoded_or_shared_key_in_apk: false
+  backend_proxy_in_v1: false
+  backend_proxy_rationale: v1_is_local_first_with_no_server_and_a_proxy_solely_for_a_key_would_contradict_that
+  learner_supplies_own_key: true
+  storage: platform_secure_storage
+  stored_in_plain_preferences_or_files: false
+  threat_model: a_user_supplied_key_on_the_users_own_device_belongs_to_the_person_holding_it_a_hardcoded_developer_key_ships_one_shared_secret_to_every_install
+  handling_rules:
+    key_in_logs: false
+    key_in_crash_reports: false
+    key_in_exports: false
+    key_in_backups: false
+    key_in_diagnostics: false
+    key_sent_anywhere_but_provider_endpoint: false
+    removing_key_returns_to_null_evaluator: true
+    removing_key_causes_data_loss: false
+    app_usable_without_key_ever_entered: true
+  future_backend_is_explicit_later_decision: true
+
+privacy:
+  product_otherwise_never_leaves_device: true
+  may_send: minimum_content_needed_to_evaluate_current_attempt
+  never_sent:
+    - evidence_history
+    - mastery_state
+    - plan
+    - profile
+    - exposure_records
+    - provenance
+    - planner_traces
+  ai_use_visible_to_learner: true
+  ai_can_be_disabled: true
+  with_ai_disabled_nothing_leaves_device: true
+
+generated_resource_integration:
+  generated_item_enters_untrusted: true
+  usable_for_high_stakes_before_validation: false
+  generator_and_validator_separate: true
+  generator_self_grade_is_validation: false
+  uncalibrated_single_llm_score_sufficient_alone: false
+  unvalidated_item_produces_strong_mastery_changing_evidence: false
+  validation_status_recorded_on_resource_version: true
+  source_contract: AIV-v0
+
+evaluator_provenance:
+  recorded_on_every_ai_derived_evidence_row: true
+  fields:
+    - provider
+    - model
+    - prompt_or_schema_version
+  maps_to_ddm_field: evaluator
+  enables:
+    - explaining_a_past_evaluation
+    - reasoning_about_a_model_change
+    - scoping_re_evaluation
+  later_judgement_is: appended_evidence_disposition
+  later_judgement_is_edit: false
+
+forbidden_ai_patterns:
+  - ai_writing_mastery_retention_readiness_weakness_or_planner_state
+  - ai_satisfying_or_bypassing_prerequisite
+  - ai_setting_assessment_quota
+  - treating_uncalibrated_llm_evaluation_as_verified
+  - generator_validating_its_own_output
+  - unvalidated_ai_item_producing_strong_mastery_changing_evidence
+  - parsing_an_evaluation_verdict_out_of_free_text
+  - treating_schema_invalid_response_as_verdict
+  - treating_refusal_as_wrong_answer
+  - turning_timeout_or_transport_error_into_negative_evidence
+  - unbounded_or_unthrottled_retries_against_learner_key
+  - per_call_timeout_presented_as_end_to_end_guarantee
+  - calling_ai_for_deterministic_work
+  - hardcoded_or_shared_api_key_in_apk
+  - key_in_logs_exports_backups_or_diagnostics
+  - sending_evidence_history_mastery_plan_or_profile_to_provider
+  - binding_durable_learning_semantic_to_model_name
+  - asserting_model_currency_accuracy_latency_or_cost_without_source
+
+future_stage_boundaries:
+  9F: test_strategy_including_null_evaluator_path_verification
+  10A: sdk_call_sites_and_currency_reverification
+  14: prompt_text_rubric_wording_and_tutor_ux
+  18: evaluator_calibration_against_human_judgement
+
+acceptance:
+  required_previous_models:
+    - MSBX-v0
+    - AIV-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - PBR-v0
+    - WLRM-v0
+    - DDM-v0
+    - LFPS-v0
+    - TRUX-v0
+    - ASUX-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9a_regression_required: true
+  stage9b_regression_required: true
+  stage9c_regression_required: true
+  stage9d_regression_required: true

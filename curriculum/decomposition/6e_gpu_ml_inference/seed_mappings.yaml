@@ -1060,3 +1060,39 @@
   - source.repo.sdm_v0
   - source.repo.frdb_v0
   review_refs: []
+- seed_id: skill.os.numa_locality_affinity
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.os.numa_locality_affinity
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: 6H external research reconciliation added NUMA locality/affinity as a cross-package prerequisite for multi-GPU topology discovery and worker resource binding.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []
+- seed_id: skill.platform.scheduling_placement_constraints
+  seed_kind: skill
+  disposition: ratify_as_is
+  result_entity_refs:
+  - skill.platform.scheduling_placement_constraints
+  evidence_compatibility: not_applicable_not_published
+  rationale:
+    semantic_boundary: Existing accepted capability is semantically identical and reused without clone.
+    prerequisite_effect: 6H external research reconciliation added orchestrator scheduling/placement constraints as a cross-package prerequisite for topology-aware placement.
+    evidence_effect: 6E does not copy or synthesize prior learner evidence.
+    remediation_effect: Weakness remains attached to the original canonical Skill.
+    reuse_effect: Accelerator/inference context adds placement/edges, not a duplicate learner state.
+  mapping_class: reused_from_prior_package
+  origin_package: 6d_systems
+  source_refs:
+  - source.repo.sdm_v0
+  - source.repo.external_6h_research_qa
+  review_refs: []

@@ -31,9 +31,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 9B Veri saklama / local-first: LFPS-v0 / D-076 ile tamamlandı; evidence = truth / state = projection, append-only, SQLite, kalıcı exposure, atomik migration/restore.
 - [x] 9C Domain veri modeli: DDM-v0 / D-077 ile tamamlandı; 11 curriculum + 12 truth + 8 projection entity, yapısal pinning, dört eksen, üç-değerli zaman, watermark'lı projeksiyon.
 - [x] 9D Servis sınırları: MSBX-v0 / D-078 ile tamamlandı; 10 modül, içe-doğru dependency kuralı, 4 port, port olarak saat, ürünle sevk edilen null evaluator.
-- [ ] 9E AI entegrasyon mimarisi **AKTİF**: EvaluatorPort arkasındaki AI davranışı, provisional sınırları, hata/timeout degrade davranışı ve AIV-v0 validation gereksinimleri.
+- [x] 9E AI entegrasyon mimarisi: AIAX-v0 / D-079 ile tamamlandı; AI port arkasında yardımcı, schema-constrained evaluator, `provisional` uncalibrated LLM, refusal != yanlış cevap, uçtan uca timeout bütçesi, konfigürasyondaki model adı, APK'da key yok, asgari-içerik gizlilik sınırı.
+- [ ] 9F Test stratejisi **AKTİF**: dependency kuralının nasıl zorlanacağı, append-only ve null-evaluator yolunun nasıl test edileceği, planner determinizminin nasıl egzersiz edileceği, migration'ların dolu veriye karşı nasıl test edileceği, kontrast/%200 metin kontrolü ve bir build'in releasable sayılma eşiği.
+- [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
+- [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.
 - [ ] 10A'ya devredilen bounded verification list (AMTS-v0 §9): güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk` politikasını karşılayan güncel API seviyesi (gerçek cihaza karşı), screen-reader semantics API'leri, reduced-motion tespiti ve seçilen `minSdk`de compatibility library gerekip gerekmediği. Araştırma AI konusudur; seçimi değiştiremez.
 - [ ] Hedef Android cihaz repoda kayıtlı değil; `minSdk` doğrulaması için 10A'da gerekli.
+- [x] Standing regression sweep kapsamı: elle tutulan liste yerine `tools/validate_*.py` glob'u; 9E POST'unda 6H'den beri FAIL veren beş package validator bulundu ve kapatıldı (dördü stale gate, biri gerçek 6E seed_mappings veri regresyonu).
 
 ## Knowledge-base operations
 

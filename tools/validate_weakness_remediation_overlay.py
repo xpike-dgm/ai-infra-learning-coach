@@ -188,13 +188,15 @@ for inv in {
 
 # Review / QA handoff.
 check(all(x["severity"] == "non_blocking" for x in reviews), "blocking review unexpectedly present")
-check(any(x["resolution_owner_step"] == "6H" and x["status"] == "open" for x in reviews), "6H external review handoff missing")
+check(any(x["resolution_owner_step"] == "6H" and x["status"] in {"open", "resolved"} for x in reviews),
+      "6H external review handoff missing")
 check(qa["result"] == "PASS_WITH_OPEN_NON_BLOCKING_REVIEWS", "QA result unexpected")
 check(qa["counts"]["skills_covered"] == len(accepted_skills), "QA Skill count mismatch")
 check(qa["counts"]["objectives_covered"] == len(accepted_objectives), "QA Objective count mismatch")
 check(qa["counts"]["remediation_routes"] == len(accepted_objectives), "QA route count mismatch")
 check(qa["counts"]["open_blocking_reviews"] == 0, "QA reports blocking review")
-check(qa["external_research_qa"]["status"] == "pending" and qa["external_research_qa"]["owner_step"] == "6H", "external Research QA handoff wrong")
+check(qa["external_research_qa"]["status"] in {"pending", "validated_6H"}
+      and qa["external_research_qa"]["owner_step"] == "6H", "external Research QA handoff wrong")
 
 if failures:
     print("WEAKNESS_REMEDIATION_OVERLAY_QA=FAIL")
