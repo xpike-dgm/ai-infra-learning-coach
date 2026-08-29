@@ -1,0 +1,338 @@
+stage_step: 9A
+model: AMTS-v0
+candidate_decision: D-075
+result: PASS
+status_observed: accepted_9a
+checks_total: 100
+checks_passed: 100
+checks_failed: 0
+platform: android_native
+ui_toolkit: jetpack_compose
+window_classes: 3
+verification_items: 6
+forbidden_selection_patterns: 10
+checks:
+- check: E9A-00_required_file
+  result: PASS
+  details: arch\9a_mobile_technology\technology.yaml
+- check: E9A-00_required_file
+  result: PASS
+  details: docs\MOBILE_TECHNOLOGY_SPEC.md
+- check: E9A-00_required_file
+  result: PASS
+  details: research\9a_mobile_technology_research.md
+- check: E9A-00_required_file
+  result: PASS
+  details: ux\8g_wireframe_prototype\wireframe.yaml
+- check: E9A-00_required_file
+  result: PASS
+  details: ux\8f_design_system\design_system.yaml
+- check: E9A-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E9A-00_required_file
+  result: PASS
+  details: ux\8a_information_architecture\ia.yaml
+- check: E9A-00_required_file
+  result: PASS
+  details: docs\V1_SCOPE.md
+- check: E9A-00_required_file
+  result: PASS
+  details: docs\AI_AGENT_WORKFLOW.md
+- check: E9A-01_identity
+  result: PASS
+  details: model=AMTS-v0 step=9A
+- check: E9A-01_status
+  result: PASS
+  details: status=accepted_9a
+- check: E9A-01_decision
+  result: PASS
+  details: decision=D-075
+- check: E9A-01_implements_stage8
+  result: PASS
+  details: contracts=['UXIA-v0', 'THUX-v0', 'TRUX-v0', 'ASUX-v0', 'SPWX-v0', 'VDSX-v0',
+    'WFPX-v0']
+- check: E9A-02_selection_only
+  result: PASS
+  details: 9A is selection only
+- check: E9A-02_deferred_open
+  result: PASS
+  details: violations=[]
+- check: E9A-02_stage8_untouched
+  result: PASS
+  details: violations=[]
+- check: E9A-02_no_unverified_claims
+  result: PASS
+  details: no version/benchmark/currency asserted
+- check: E9A-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E9A-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E9A-04_android_native
+  result: PASS
+  details: target=android_native
+- check: E9A-04_no_cross_platform
+  result: PASS
+  details: cross_platform=none
+- check: E9A-04_excluded_platforms
+  result: PASS
+  details: excluded=['ios', 'web', 'desktop']
+- check: E9A-04_v1_says_android_only
+  result: PASS
+  details: V1_SCOPE states Android focus
+- check: E9A-04_v1_excludes_others
+  result: PASS
+  details: V1_SCOPE excludes iOS/web/desktop clients
+- check: E9A-04_portability_hedge
+  result: PASS
+  details: hedge=domain_core_is_the_portable_asset_not_the_ui
+- check: E9A-05_language
+  result: PASS
+  details: language=kotlin
+- check: E9A-05_ui_toolkit
+  result: PASS
+  details: 'ui={''choice'': ''jetpack_compose'', ''paradigm'': ''declarative_state_driven'',
+    ''rationale'': ''design_system_is_tokens_and_states_and_skill_appearance_is_a_deterministic_state_projection''}'
+- check: E9A-06_substrate_only
+  result: PASS
+  details: 'component_library={''choice'': ''material3'', ''role'': ''substrate_only'',
+    ''is_source_of_colour_truth'': False, ''dynamic_color_enabled'': False, ''dynamic_color_rationale'':
+    ''wallpaper_derived_palette_would_discard_measured_palette_and_hue_policy'', ''default_colours_reach_screen'':
+    False, ''default_typography_reaches_screen'': False, ''tokens_authoritative'':
+    ''VDSX-v0'', ''may_introduce_undefined_state_or_tone'': False, ''conflict_resolution'':
+    ''contract_wins''}'
+- check: E9A-06_dynamic_color_off
+  result: PASS
+  details: dynamic colour disabled
+- check: E9A-06_dynamic_color_rationale
+  result: PASS
+  details: rationale=wallpaper_derived_palette_would_discard_measured_palette_and_hue_policy
+- check: E9A-06_no_default_leak
+  result: PASS
+  details: no library defaults on screen
+- check: E9A-06_vdsx_forbids_default_override
+  result: PASS
+  details: VDSX-v0 keeps colour semantic and adds no meaning
+- check: E9A-06_palette_is_measured
+  result: PASS
+  details: WFPX-v0 palette is measured per theme — dynamic colour would discard it
+- check: E9A-06_hue_policy_exists
+  result: PASS
+  details: WFPX-v0 hue policy exists and would be destroyed by dynamic colour
+- check: E9A-07_core_forbidden_deps
+  result: PASS
+  details: forbidden=['android_api', 'ui_toolkit', 'networking', 'ai_client']
+- check: E9A-07_core_purity
+  result: PASS
+  details: purity=no_android_no_ui_no_network_no_ai
+- check: E9A-07_core_owns
+  result: PASS
+  details: owns=['curriculum_graph', 'mastery', 'retention', 'prerequisite', 'planner',
+    'evidence']
+- check: E9A-07_core_runnable
+  result: PASS
+  details: core testable without device and runnable without network
+- check: E9A-07_boundary_deferred
+  result: PASS
+  details: boundary owner=9D
+- check: E9A-07_v1_requires_degraded_core
+  result: PASS
+  details: V1_SCOPE requires the core to survive AI absence
+- check: E9A-08_class_ids_match
+  result: PASS
+  details: 9A=['compact', 'expanded', 'medium'] vs WFPX=['compact', 'expanded', 'medium']
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'compact.min_width_dp: 9A=None vs WFPX=None'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'compact.max_width_dp: 9A=599 vs WFPX=599'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'compact.shell: 9A=bottom_navigation_bar vs WFPX=bottom_navigation_bar'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'medium.min_width_dp: 9A=600 vs WFPX=600'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'medium.max_width_dp: 9A=839 vs WFPX=839'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'medium.shell: 9A=navigation_rail vs WFPX=navigation_rail'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'expanded.min_width_dp: 9A=840 vs WFPX=840'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'expanded.max_width_dp: 9A=None vs WFPX=None'
+- check: E9A-08_class_field_matches
+  result: PASS
+  details: 'expanded.shell: 9A=navigation_rail_with_optional_detail_pane vs WFPX=navigation_rail_with_optional_detail_pane'
+- check: E9A-08_one_to_one
+  result: PASS
+  details: one-to-one mapping declared
+- check: E9A-09_invariance
+  result: PASS
+  details: destination identity/order invariant, no region drift
+- check: E9A-09_ia_has_four_destinations
+  result: PASS
+  details: destinations=4
+- check: E9A-10_target_matches_vdsx
+  result: PASS
+  details: 9A=48 vs VDSX=48
+- check: E9A-10_focus_contrast_matches_vdsx
+  result: PASS
+  details: 9A=3.0 vs VDSX=3.0
+- check: E9A-10_mapping_present
+  result: PASS
+  details: 'missing mapping: state_exposed_as_text'
+- check: E9A-10_mapping_present
+  result: PASS
+  details: 'missing mapping: text_scaling_200_percent'
+- check: E9A-10_mapping_present
+  result: PASS
+  details: 'missing mapping: focus_indicator'
+- check: E9A-10_mapping_present
+  result: PASS
+  details: 'missing mapping: reduced_motion'
+- check: E9A-10_mapping_present
+  result: PASS
+  details: 'missing mapping: colour_never_sole_carrier'
+- check: E9A-10_contractual
+  result: PASS
+  details: accessibility treated as contractual
+- check: E9A-10_vdsx_requires_200
+  result: PASS
+  details: VDSX-v0 requires 200% usability
+- check: E9A-11_no_default_locale_casing
+  result: PASS
+  details: 'locale casing={''ui_language'': ''tr'', ''default_locale_case_transform_allowed'':
+    False, ''explicit_locale_required_for_case_conversion'': True, ''turkish_casing_round_trips'':
+    True, ''casing_pairs'': [[''i'', ''İ''], [''ı'', ''I'']], ''locked_labels_rendered_as_authored'':
+    True, ''locked_labels_case_transformed_for_styling'': False, ''required_glyphs'':
+    [''ı'', ''İ'', ''ş'', ''Ş'', ''ğ'', ''Ğ'', ''ç'', ''Ç'', ''ö'', ''Ö'', ''ü'',
+    ''Ü''], ''required_in_mono_role'': True, ''identifier_comparison_uses_locale_sensitive_casing'':
+    False}'
+- check: E9A-11_casing_pairs
+  result: PASS
+  details: casing_pairs=[['i', 'İ'], ['ı', 'I']]
+- check: E9A-11_glyphs_match_vdsx
+  result: PASS
+  details: 9A=['Ç', 'Ö', 'Ü', 'ç', 'ö', 'ü', 'Ğ', 'ğ', 'İ', 'ı', 'Ş', 'ş'] vs VDSX=['Ç',
+    'Ö', 'Ü', 'ç', 'ö', 'ü', 'Ğ', 'ğ', 'İ', 'ı', 'Ş', 'ş']
+- check: E9A-11_mono_required
+  result: PASS
+  details: mono role must cover Turkish glyphs in both specs
+- check: E9A-12_locked_labels_safe
+  result: PASS
+  details: locked labels rendered as authored
+- check: E9A-12_spwx_labels_exist
+  result: PASS
+  details: SPWX-v0 locked labels present
+- check: E9A-12_identifier_casing_safe
+  result: PASS
+  details: identifier comparison avoids locale-sensitive casing
+- check: E9A-13_policy_not_number
+  result: PASS
+  details: 'min_sdk={''is_policy_not_magic_number'': True, ''policy'': ''lowest_level_supporting_required_accessibility_locale_adaptive_and_datetime_behaviour_without_weakening_shims'',
+    ''working_default_api'': 26, ''working_default_rationale'': ''modern_datetime_api_available_natively_and_product_is_scheduling_and_history_heavy'',
+    ''is_product_default_not_scientific'': True, ''target_device_recorded_in_repo'':
+    False, ''must_be_confirmed_at_10a_against_real_device'': True}'
+- check: E9A-13_working_default
+  result: PASS
+  details: working_default_api=26
+- check: E9A-13_rationale_recorded
+  result: PASS
+  details: rationale recorded
+- check: E9A-13_device_verification
+  result: PASS
+  details: device verification deferred to 10A and flagged as unrecorded
+- check: E9A-14_apk_required
+  result: PASS
+  details: 'release={''installable_apk_required'': True, ''apk_required_by'': ''v1_release_criterion_10'',
+    ''app_bundle_optional'': True, ''app_bundle_required_in_v1'': False, ''real_device_qa_required'':
+    True, ''real_device_qa_required_by'': ''v1_release_criterion_9''}'
+- check: E9A-14_device_qa
+  result: PASS
+  details: real-device QA required
+- check: E9A-14_v1_requires_apk
+  result: PASS
+  details: V1_SCOPE requires an installable release APK
+- check: E9A-14_v1_requires_device_qa
+  result: PASS
+  details: V1_SCOPE requires real-device independent QA
+- check: E9A-15_owner
+  result: PASS
+  details: owner=10A
+- check: E9A-15_non_empty
+  result: PASS
+  details: items=6
+- check: E9A-15_cannot_change_selection
+  result: PASS
+  details: verification cannot change the selection
+- check: E9A-15_research_routing_real
+  result: PASS
+  details: AI_AGENT_WORKFLOW really routes these to Research AI
+- check: E9A-16_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E9A-16_forbidden_count
+  result: PASS
+  details: count=10
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=9B
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=9C
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=9D
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=9E
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=9F
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=10A
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=12
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=13
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=14
+- check: E9A-17_boundary_open
+  result: PASS
+  details: stage=19
+- check: E9A-17_9b_owns_storage
+  result: PASS
+  details: 9B=local_first_persistence
+- check: E9A-18_required_models
+  result: PASS
+  details: missing=[]
+- check: E9A-18_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''UXIA-v0'', ''THUX-v0'', ''TRUX-v0'',
+    ''ASUX-v0'', ''SPWX-v0'', ''VDSX-v0'', ''WFPX-v0''], ''independent_qa_required'':
+    True, ''verification_list_required_non_empty'': True, ''stage6_regression_required'':
+    True, ''stage7_regression_required'': True, ''stage8_regression_required'': True}'
+- check: E9A-19_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E9A-19_spec_has_verification_list
+  result: PASS
+  details: spec carries the verification list
+- check: E9A-19_spec_no_currency_claim
+  result: PASS
+  details: spec refuses currency claims
+- check: E9A-20_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

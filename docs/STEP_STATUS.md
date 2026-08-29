@@ -40,8 +40,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8E — Skill/progress/weakness UX** | ✅ | SPWX-v0 / D-072. Tek 8-state Skill vokabüleri + kilitli Topic etiketleri + inventory-only counting; 128/128 QA PASS. |
 | **8F — Tasarım sistemi** | ✅ | VDSX-v0 / D-073. Expression layer + 6 tone + 46/46 state eşlemesi + WCAG çapaları; 121/121 QA PASS. |
 | **8G — Wireframe/prototip** | ✅ | WFPX-v0 / D-074. 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti; 222/222 QA PASS. **AŞAMA 8 kapandı.** |
-| **9A — Mobil teknoloji seçimi** | 🟡 Aktif | AŞAMA 8 semantiğini uygulayacak mobil teknoloji; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9B–20** | ⬜ Bekliyor | 9A sonrası canonical sırada. |
+| **9A — Mobil teknoloji seçimi** | ✅ | AMTS-v0 / D-075. Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core; 100/100 QA PASS. |
+| **9B — Veri saklama / local-first** | 🟡 Aktif | Local-first persistence, migration, backup/export/restore; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9C–20** | ⬜ Bekliyor | 9B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -60,28 +61,28 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 8G
+## Son tamamlanan numaralı adım — 9A
 
-**Final:** `WFPX-v0 — Wireframe & Prototype Geometry` / D-074.  
-**Ana çıktı:** `docs/WIREFRAME_PROTOTYPE_SPEC.md` + `ux/8g_wireframe_prototype/`.
+**Final:** `AMTS-v0 — Android Mobile Technology Selection` / D-075.  
+**Ana çıktı:** `docs/MOBILE_TECHNOLOGY_SPEC.md` + `arch/9a_mobile_technology/`.
 
-8G sonucu:
-- geometry kabul edilmiş anlamı yerleştirir; surface anlamını, region sırasını, state'i veya tone'u değiştiremez,
-- 3 window class: `compact` (<600dp), `medium` (600–839dp), `expanded` (≥840dp); destination kimliği ve sırası her sınıfta aynıdır ve hiçbir sınıf region ekleyip çıkaramaz,
-- `expanded` detail pane aynı surface'i aynı truth ile gösterir; ikinci kopya değildir,
-- 6 surface için region geometry'si sahibi spec'lere karşı çapraz doğrulandı,
-- `skill_detail` primary chip **ve** dört ekseni birlikte gösterir; chip axis block'un yerini alamaz,
-- `progress_overview` yalnız envanter sayıları gösterir; oran, bar, gauge veya yüzde yoktur,
-- focused-flow'da shell bastırılabilir fakat exit/pause her sınıfta 48dp tam hedef ve sabit konum korur; countdown yoktur,
-- **ölçülmüş palet:** light ve dark bağımsız ölçüldü, dark inversiyon değildir; 52 zorunlu çift geçer, minimumlar 6.08 metin / 3.79 non-text / 6.06 tone-üstü metin,
-- `attention` menekşedir ve kırmızı yalnız `system_fault` içindir; yeşil→sarı→kırmızı şiddet rampası yoktur,
-- kontrast oranları kanıttır, source of truth değildir; validator her çalıştırmada hex'ten yeniden hesaplar,
-- %200 metinde layout reflow eder; state truncate edilmez, secondary metadata ve duration state'ten önce elenir,
-- `prototype.html` self-contained, her iki paleti render eder ve **bağlayıcı değildir**; implementasyon veya teknoloji seçimi değildir,
-- independent validator **222/222 PASS**; 52 kontrast çifti hesaplandı, ilk turda yanlış beyan edilen bir minimum validator tarafından yakalanıp düzeltildi, ayrıca mutation test uygulandı. Stage 6 + Stage 7 + 8A–8F + external-memory regressions PASS.
+9A sonucu:
+- teknoloji seçimi kabul edilmiş kontratlara hizmet eder; library default'u ile kontrat çelişirse kontrat kazanır,
+- **Android native**; V1'de cross-platform UI katmanı yoktur — V1 tek platforma çıkar, fayda mevcut değildir ve maliyet tam olarak AŞAMA 8'in kontrata bağladığı üç yere iner,
+- taşınabilirlik hedge'i UI değil domain core'dur,
+- **Kotlin + Jetpack Compose**; declarative/state-driven toolkit token+state design system'e ve state projeksiyonu olan Skill görünümüne doğrudan karşılık gelir,
+- Material 3 yalnız substrate'tir; `VDSX-v0` token'ları otoriterdir ve library default'ları ekrana ulaşamaz,
+- **dynamic colour kapatıldı** — ölçülmüş paleti, kontrast kanıtını ve hue politikasını yok ederdi,
+- **domain core saf Kotlin**: Android API, UI toolkit, networking ve AI client bağımlılığı yasak; V1 kriteri 8 yapısal garanti altına alındı,
+- 3 window class `WFPX-v0` ile birebir; destination kimliği ve sırası değişmez,
+- accessibility gereksinimleri platform mekanizmalarına eşlendi (48dp, %200 metin, screen-reader state, focus ≥3:1, reduced motion, renk tek taşıyıcı değil),
+- **default-locale case transform yasak**; `i ↔ İ` ve `ı ↔ I` round-trip eder; kilitli etiketler case-transform edilemez; identifier karşılaştırması locale-sensitive casing kullanamaz,
+- `minSdk` politikadır; working default API 26 ve 10A'da gerçek cihaza karşı doğrulanacaktır,
+- kurulabilir APK ve gerçek cihaz QA zorunludur,
+- **6 maddelik bounded verification list** 10A'ya devredildi; framework güncelliği iddiası bu adımda kesinleştirilmedi,
+- 9A depolama, veri modeli, boundary, AI entegrasyonu ve test stratejisini kararlaştırmaz,
+- independent validator **100/100 PASS**; kontratlara karşı çapraz doğrulanır ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + external-memory regressions PASS.
 
-**AŞAMA 8 tamamlandı.**
+## Aktif adım — 9B Veri saklama / local-first
 
-## Aktif adım — 9A Mobil teknoloji seçimi
-
-**9A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**9B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

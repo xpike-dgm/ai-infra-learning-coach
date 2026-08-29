@@ -1,0 +1,226 @@
+model: AMTS-v0
+stage_step: 9A
+status: accepted_9a
+decision: D-075
+purpose: platform_and_ui_technology_selection_for_stage8_contracts
+
+implements_contracts:
+  - UXIA-v0
+  - THUX-v0
+  - TRUX-v0
+  - ASUX-v0
+  - SPWX-v0
+  - VDSX-v0
+  - WFPX-v0
+
+scope:
+  selection_only: true
+  storage_engine_locked: false
+  domain_data_model_locked: false
+  service_boundaries_locked: false
+  ai_integration_locked: false
+  test_strategy_locked: false
+  di_and_navigation_library_locked: false
+  build_pipeline_locked: false
+  stage8_semantics_changed: false
+  states_or_labels_changed: false
+  tones_or_geometry_changed: false
+  library_version_locked: null
+  benchmark_number: null
+  currency_claim: null
+
+selection_question: Which technology can actually satisfy these contracts?
+
+invariants:
+  technology_overrides_contract: false
+  library_default_overrides_token: false
+  dynamic_color_enabled: false
+  component_library_is_source_of_truth: false
+  component_introduces_undefined_state_or_tone: false
+  core_depends_on_android_api: false
+  core_depends_on_ui_toolkit: false
+  core_depends_on_network: false
+  core_depends_on_ai_client: false
+  cross_platform_ui_layer_in_v1: false
+  default_locale_case_transform_allowed: false
+  locked_labels_case_transformed_for_styling: false
+  accessibility_reimplemented_instead_of_platform: false
+  min_sdk_is_fixed_magic_number: false
+  currency_claim_asserted_without_source: false
+  storage_or_data_model_decided_here: false
+  contract_wins_on_conflict: true
+  core_is_pure_kotlin: true
+  window_classes_map_one_to_one: true
+  installable_apk_required: true
+  real_device_qa_required: true
+
+platform:
+  target: android_native
+  cross_platform_ui_framework: none
+  rationale: v1_ships_one_platform_so_cross_platform_benefit_is_unavailable_while_its_cost_is_immediate
+  v1_excluded_platforms:
+    - ios
+    - web
+    - desktop
+  portability_hedge: domain_core_is_the_portable_asset_not_the_ui
+
+language: kotlin
+
+ui_toolkit:
+  choice: jetpack_compose
+  paradigm: declarative_state_driven
+  rationale: design_system_is_tokens_and_states_and_skill_appearance_is_a_deterministic_state_projection
+
+component_library:
+  choice: material3
+  role: substrate_only
+  is_source_of_colour_truth: false
+  dynamic_color_enabled: false
+  dynamic_color_rationale: wallpaper_derived_palette_would_discard_measured_palette_and_hue_policy
+  default_colours_reach_screen: false
+  default_typography_reaches_screen: false
+  tokens_authoritative: VDSX-v0
+  may_introduce_undefined_state_or_tone: false
+  conflict_resolution: contract_wins
+
+deterministic_core:
+  language: kotlin
+  purity: no_android_no_ui_no_network_no_ai
+  forbidden_dependencies:
+    - android_api
+    - ui_toolkit
+    - networking
+    - ai_client
+  owns:
+    - curriculum_graph
+    - mastery
+    - retention
+    - prerequisite
+    - planner
+    - evidence
+  testable_without_device: true
+  runnable_without_network: true
+  boundary_layout_owner: 9D
+
+window_classes:
+  source_contract: WFPX-v0
+  mapping_is_one_to_one: true
+  classes:
+    - id: compact
+      max_width_dp: 599
+      shell: bottom_navigation_bar
+    - id: medium
+      min_width_dp: 600
+      max_width_dp: 839
+      shell: navigation_rail
+    - id: expanded
+      min_width_dp: 840
+      shell: navigation_rail_with_optional_detail_pane
+  destination_identity_invariant: true
+  destination_order_invariant: true
+  region_added_or_removed_by_class: false
+
+accessibility_mapping:
+  state_exposed_as_text: screen_reader_semantics_on_state_bearing_components
+  text_scaling_200_percent: scalable_text_units_with_system_font_scale_and_reflow
+  minimum_target_dp: 48
+  focus_indicator: focus_semantics_with_vdsx_focus_ring_token
+  focus_indicator_contrast_min: 3.0
+  reduced_motion: platform_animation_reduction_setting_honoured
+  colour_never_sole_carrier: text_label_plus_non_colour_differentiator
+  requirements_are_contractual_not_aspirational: true
+
+locale:
+  ui_language: tr
+  default_locale_case_transform_allowed: false
+  explicit_locale_required_for_case_conversion: true
+  turkish_casing_round_trips: true
+  casing_pairs:
+    - [i, İ]
+    - [ı, I]
+  locked_labels_rendered_as_authored: true
+  locked_labels_case_transformed_for_styling: false
+  required_glyphs:
+    - ı
+    - İ
+    - ş
+    - Ş
+    - ğ
+    - Ğ
+    - ç
+    - Ç
+    - ö
+    - Ö
+    - ü
+    - Ü
+  required_in_mono_role: true
+  identifier_comparison_uses_locale_sensitive_casing: false
+
+min_sdk:
+  is_policy_not_magic_number: true
+  policy: lowest_level_supporting_required_accessibility_locale_adaptive_and_datetime_behaviour_without_weakening_shims
+  working_default_api: 26
+  working_default_rationale: modern_datetime_api_available_natively_and_product_is_scheduling_and_history_heavy
+  is_product_default_not_scientific: true
+  target_device_recorded_in_repo: false
+  must_be_confirmed_at_10a_against_real_device: true
+
+release:
+  installable_apk_required: true
+  apk_required_by: v1_release_criterion_10
+  app_bundle_optional: true
+  app_bundle_required_in_v1: false
+  real_device_qa_required: true
+  real_device_qa_required_by: v1_release_criterion_9
+
+verification_list:
+  owner_step: 10A
+  research_ai_routed: true
+  routed_by: AI_AGENT_WORKFLOW_section_3
+  cannot_change_selection: true
+  items:
+    - current_compose_and_material3_adaptive_navigation_apis_for_three_window_classes
+    - current_mechanism_for_disabling_dynamic_colour_and_supplying_fixed_token_palette
+    - current_minimum_api_level_satisfying_min_sdk_policy_against_real_device
+    - current_screen_reader_semantics_apis_for_state_text_and_focus_order
+    - current_platform_mechanism_for_detecting_reduced_motion
+    - whether_accessibility_or_locale_behaviour_requires_compatibility_library_at_chosen_min_sdk
+
+forbidden_selection_patterns:
+  - cross_platform_layer_for_platforms_v1_excludes
+  - dynamic_colour_or_library_default_palette_on_screen
+  - component_library_introducing_undefined_state_or_tone
+  - core_depending_on_android_ui_network_or_ai
+  - default_locale_case_transform
+  - case_transforming_locked_labels_for_styling
+  - reimplementing_platform_accessibility_behaviour
+  - asserting_library_version_or_currency_without_source
+  - treating_min_sdk_as_fixed_number_without_device_verification
+  - deciding_storage_data_model_boundaries_ai_or_test_strategy_here
+
+future_stage_boundaries:
+  9B: local_first_persistence
+  9C: domain_data_model
+  9D: module_and_service_boundaries
+  9E: ai_integration_architecture
+  9F: test_strategy
+  10A: project_skeleton_di_and_navigation_libraries
+  12: planner_mastery_implementation
+  13: assessment_retention_remediation_implementation
+  14: ai_tutor_evaluation_implementation
+  19: build_and_release_pipeline
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - THUX-v0
+    - TRUX-v0
+    - ASUX-v0
+    - SPWX-v0
+    - VDSX-v0
+    - WFPX-v0
+  independent_qa_required: true
+  verification_list_required_non_empty: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true

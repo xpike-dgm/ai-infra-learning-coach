@@ -124,8 +124,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
-- [ ] **9A — Mobil teknoloji seçimi** **AKTİF**
-- [ ] **9B — Veri saklama / local-first**
+- [x] **9A — Mobil teknoloji seçimi** — `AMTS-v0 / D-075`
+- [ ] **9B — Veri saklama / local-first** **AKTİF**
 - [ ] **9C — Domain veri modeli** — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
 - [ ] **9D — Servis sınırları**
 - [ ] **9E — AI entegrasyon mimarisi**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`  
-**Son tamamlanan:** **`8G — WFPX-v0 / D-074`**  
-**Aktif:** **`9A — Mobil teknoloji seçimi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A`  
+**Son tamamlanan:** **`9A — AMTS-v0 / D-075`**  
+**Aktif:** **`9B — Veri saklama / local-first`** — active-not-executed
 
-**AŞAMA 8 tamamlandı.** 8G `WFPX-v0` ile concrete geometry ve ölçülmüş palet kilitlendi: 3 window class, 6 surface region geometry'si sahibi spec'lere karşı doğrulanmış, focused-flow exit 48dp sabit, 52 kontrast çifti hesaplanarak ölçülmüş (min 3.79 non-text / 6.08 metin), `attention` menekşe ve kırmızı yalnız `system_fault` — traffic-light rampası yok. Prototip bağlayıcı değildir.
+**AŞAMA 8 tamamlandı.** 9A `AMTS-v0` ile platform ve UI teknolojisi seçildi: Android native (V1'de cross-platform UI katmanı yok), Kotlin + Jetpack Compose, Material 3 yalnız substrate ve dynamic colour kapalı, domain core saf Kotlin ve Android/UI/network/AI bağımsız, window class'lar WFPX-v0 ile birebir, default-locale case transform yasak, `minSdk` politika olarak tanımlı ve 10A'da gerçek cihazda doğrulanacak. Library güncelliği 10A'daki bounded verification list'e bırakıldı.
 
-9A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+9B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

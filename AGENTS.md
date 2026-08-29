@@ -56,11 +56,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 8F: ✅ `VDSX-v0 / D-073` tamamlandı — expression layer (`visual_severity <= canonical_severity`), 6 tone, 46 surface + 8 Skill + 6 Topic + 4 qualifier state eksiksiz tone eşlemesi, yalnız gerçek arızaya izinli `system_fault`, attention grubunun tone yükseltmemesi, WCAG çapalı kontrast/48dp/%200 metin, Türkçe casing koruması, ikna edici olmayan motion, competence progress-bar yasağı; 121/121 QA PASS.
 - 8G: ✅ `WFPX-v0 / D-074` tamamlandı — 3 window class, 6 surface region geometry'si sahibi spec'lere karşı doğrulanmış, focused-flow exit 48dp sabit, 52 kontrast çifti hesaplanarak ölçülmüş, `attention` menekşe ve kırmızı yalnız `system_fault`, prototip bağlayıcı değil; 222/222 QA PASS.
 - **AŞAMA 8 TAMAMLANDI** — UXIA-v0 → THUX-v0 → TRUX-v0 → ASUX-v0 → SPWX-v0 → VDSX-v0 → WFPX-v0.
-- **Aktif adım: 9A — Mobil teknoloji seçimi.**
-- **9A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 9B–20 bekliyor.
+- 9A: ✅ `AMTS-v0 / D-075` tamamlandı — Android native (V1'de cross-platform UI katmanı yok), Kotlin + Jetpack Compose, Material 3 yalnız substrate ve dynamic colour kapalı, domain core saf Kotlin ve Android/UI/network/AI bağımsız, window class'lar WFPX-v0 ile birebir, default-locale case transform yasak, `minSdk` politika; 6 maddelik verification list 10A'ya devredildi; 100/100 QA PASS.
+- **Aktif adım: 9B — Veri saklama / local-first.**
+- **9B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 9C–20 bekliyor.
 
-**9A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**9B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074`; AŞAMA 8'in kapandığını ve aktif adımın `9A active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075`; AŞAMA 8'in kapandığını ve aktif adımın `9B active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1112,14 +1112,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 8F ✅ VDSX-v0 / D-073
 - AŞAMA 8G ✅ WFPX-v0 / D-074
 - **AŞAMA 8 ✅ TAMAMLANDI**
-- AŞAMA 9A 🟡 active-not-executed
-- 9B–20 ⬜
+- AŞAMA 9A ✅ AMTS-v0 / D-075
+- AŞAMA 9B 🟡 active-not-executed
+- 9C–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `8G — Wireframe/prototip`  
-**Final:** `WFPX-v0 — Wireframe & Prototype Geometry` / D-074  
-**Canonical:** `docs/WIREFRAME_PROTOTYPE_SPEC.md` + `ux/8g_wireframe_prototype/`
+**Son tamamlanan numaralı adım:** `9A — Mobil teknoloji seçimi`  
+**Final:** `AMTS-v0 — Android Mobile Technology Selection` / D-075  
+**Canonical:** `docs/MOBILE_TECHNOLOGY_SPEC.md` + `arch/9a_mobile_technology/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1130,17 +1131,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 8F:** ✅ TAMAMLANDI  
 **AŞAMA 8G:** ✅ TAMAMLANDI  
 **AŞAMA 8:** ✅ TAMAMLANDI  
-**Aktif adım:** `9A — Mobil teknoloji seçimi`  
+**AŞAMA 9A:** ✅ TAMAMLANDI  
+**Aktif adım:** `9B — Veri saklama / local-first`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9A için:
+9B için:
 
 ```text
-fresh 9A PRE-STEP GitHub refresh
+fresh 9B PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9A execution
+→ 9B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1681,9 +1683,25 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 8F ✅ VDSX-v0 / D-073
 8G ✅ WFPX-v0 / D-074
 AŞAMA 8 ✅ TAMAMLANDI
-9A 🟡 active-not-executed
-9B–20 ⬜
+9A ✅ AMTS-v0 / D-075
+9B 🟡 active-not-executed
+9C–20 ⬜
 ```
+
+9A final:
+- teknoloji seçimi kontratlara hizmet eder; çelişkide kontrat kazanır,
+- Android native; V1'de cross-platform UI katmanı yok,
+- taşınabilirlik hedge'i UI değil domain core,
+- Kotlin + Jetpack Compose,
+- Material 3 yalnız substrate; **dynamic colour kapalı**,
+- domain core saf Kotlin: Android/UI/network/AI bağımlılığı yasak,
+- 3 window class WFPX-v0 ile birebir,
+- accessibility gereksinimleri platform mekanizmalarına eşlendi,
+- default-locale case transform yasak; Türkçe casing round-trip eder,
+- `minSdk` politika; API 26 working default, 10A'da cihazda doğrulanacak,
+- kurulabilir APK + gerçek cihaz QA zorunlu,
+- 6 maddelik verification list 10A'ya devredildi,
+- independent 9A QA 100/100 PASS.
 
 8G final:
 - geometry kabul edilmiş anlamı yerleştirir; semantic/state/label/tone/ownership değiştirmez,
@@ -1750,9 +1768,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9A — Mobil teknoloji seçimi`.
+**Sıradaki gerçek numbered work:** `9B — Veri saklama / local-first`.
 
-**AŞAMA 8 tamamlandı. 9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1802,5 +1820,5 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9A — Mobil teknoloji seçimi`.  
-**AŞAMA 8 tamamlandı. 9A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9B — Veri saklama / local-first`.  
+**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
