@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077`; AŞAMA 8'in kapandığını ve aktif adımın `9D active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078`; AŞAMA 8'in kapandığını ve aktif adımın `9E active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1115,14 +1115,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 9A ✅ AMTS-v0 / D-075
 - AŞAMA 9B ✅ LFPS-v0 / D-076
 - AŞAMA 9C ✅ DDM-v0 / D-077
-- AŞAMA 9D 🟡 active-not-executed
-- 9E–20 ⬜
+- AŞAMA 9D ✅ MSBX-v0 / D-078
+- AŞAMA 9E 🟡 active-not-executed
+- 9F–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9C — Domain veri modeli`  
-**Final:** `DDM-v0 — Domain Data Model` / D-077  
-**Canonical:** `docs/DOMAIN_DATA_MODEL_SPEC.md` + `arch/9c_domain_data_model/`
+**Son tamamlanan numaralı adım:** `9D — Servis sınırları`  
+**Final:** `MSBX-v0 — Module & Service Boundaries` / D-078  
+**Canonical:** `docs/SERVICE_BOUNDARIES_SPEC.md` + `arch/9d_service_boundaries/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1136,17 +1137,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9A:** ✅ TAMAMLANDI  
 **AŞAMA 9B:** ✅ TAMAMLANDI  
 **AŞAMA 9C:** ✅ TAMAMLANDI  
-**Aktif adım:** `9D — Servis sınırları`  
+**AŞAMA 9D:** ✅ TAMAMLANDI  
+**Aktif adım:** `9E — AI entegrasyon mimarisi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9D için:
+9E için:
 
 ```text
-fresh 9D PRE-STEP GitHub refresh
+fresh 9E PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9D execution
+→ 9E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1690,9 +1692,22 @@ AŞAMA 8 ✅ TAMAMLANDI
 9A ✅ AMTS-v0 / D-075
 9B ✅ LFPS-v0 / D-076
 9C ✅ DDM-v0 / D-077
-9D 🟡 active-not-executed
-9E–20 ⬜
+9D ✅ MSBX-v0 / D-078
+9E 🟡 active-not-executed
+9F–20 ⬜
 ```
+
+9D final:
+- sınırlar garantileri yapısal yapar; core'un AI'sız çalışması dependency kuralıdır,
+- 10 modül, içe-doğru bağımlılık, asiklik graf; `core-*` → `data-*`/`ai-*`/`app-*` yasak,
+- `app-wiring` composition root; domain logic içermez,
+- 4 port: Persistence, Content, Clock, Evaluator — hepsi core'da ve platform tipsiz,
+- saat bir port; core sistem saatini okumaz,
+- core'da rastgelelik yok; beraberlik beyan edilmiş total ordering ile,
+- null evaluator ürünle sevk edilir; app `ai-adapter` olmadan build/run olur,
+- engine başına tek state ailesi; planner learner state yazmaz,
+- transaction `core-application`da; presentation projection `core-presentation`da,
+- independent 9D QA 93/93 PASS (graf hesaplanarak doğrulandı).
 
 9C final:
 - schema mimariyi uygular; LFPS-v0 garantileri yapısal,
@@ -1799,9 +1814,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9D — Servis sınırları`.
+**Sıradaki gerçek numbered work:** `9E — AI entegrasyon mimarisi`.
 
-**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1851,5 +1866,5 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9D — Servis sınırları`.  
-**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9E — AI entegrasyon mimarisi`.  
+**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**

@@ -50,6 +50,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-075:** AMTS-v0 Android Mobile Technology Selection; 9A tamamlandı.
 - **D-076:** LFPS-v0 Local-First Persistence Architecture; 9B tamamlandı.
 - **D-077:** DDM-v0 Domain Data Model; 9C tamamlandı.
+- **D-078:** MSBX-v0 Module & Service Boundaries; 9D tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -247,14 +248,15 @@ PEM-v0:
 - 9A ✅ AMTS-v0 / D-075
 - 9B ✅ LFPS-v0 / D-076
 - 9C ✅ DDM-v0 / D-077
-- 9D 🟡 active-not-executed
-- 9E–20 ⬜
+- 9D ✅ MSBX-v0 / D-078
+- 9E 🟡 active-not-executed
+- 9F–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9C — DDM-v0 / D-077`  
-**Aktif:** `9D — Servis sınırları`  
-**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9D — MSBX-v0 / D-078`  
+**Aktif:** `9E — AI entegrasyon mimarisi`  
+**9E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -607,6 +609,25 @@ DDM-v0:
 - no platform type appears in the core-visible model,
 - independent 9C QA 114/114 PASS, cross-validated against LFPS-v0, KGC-v0, GNS-v0, GRE-v0, TRUX-v0, ASUX-v0 and SPWX-v0, and mutation-tested.
 
-## 31. 9D handoff
+## 31. D-078 / 9D final özeti
 
-9D — Servis sınırları. `DDM-v0` modeli ve `AMTS-v0` core purity kuralı üzerinde module ve service boundary'leri tanımlanacaktır: saf Kotlin core'un tam olarak nerede bittiği; persistence, curriculum, assessment, planner, AI ve UI katmanlarının nasıl ayrıldığı; her bağımlılığın hangi yöne baktığı; ve deterministic core'un AI ile ağ yokluğunda çalışmasını yapısal olarak garanti eden sınırlar. 9D hiçbir accepted semantic, persistence kuralı veya veri modelini değiştiremez. 9D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/SERVICE_BOUNDARIES_SPEC.md`.  
+Contract/QA: `arch/9d_service_boundaries/`.  
+Synthesis: `research/9d_service_boundaries_research.md`.
+
+MSBX-v0:
+- boundaries make the guarantees structural: a deterministic core surviving AI and network absence is enforced by the dependency rule rather than by remembering,
+- ten modules with a strictly inward dependency rule; `core-*` may never depend on `data-*`, `ai-*` or `app-*`; the graph is acyclic and the rule is checkable,
+- `app-wiring` is the composition root, the only module knowing every implementation, and holds no domain logic,
+- everything the core needs from outside is a port — persistence, content, clock, evaluator — expressed in core types with no platform type,
+- the clock is a port, so time is an input rather than an ambient fact; otherwise timezone logic is untestable and planner output stops being a function of its declared inputs,
+- there is no randomness in the core and no seeded random port; ties are broken by a declared total ordering, because a seed would make determinism a configuration rather than a property,
+- a null evaluator ships with the product and is not a test fixture; the app builds and runs without `ai-adapter`, open-ended attempts become `evaluation_pending` writing no evidence, and no deterministic capability degrades — V1 criterion 8 is satisfied by wiring,
+- each engine owns exactly one state family and writes no other; the planner writes no learner state; cross-engine effects go through `core-application`,
+- the transaction boundary lives in `core-application` and engines stay pure policy,
+- presentation projection lives in `core-presentation` as pure data and `app-ui` only renders, so capability labelling is testable without a device,
+- independent 9D QA 93/93 PASS with the dependency graph computed rather than asserted, and mutation-tested.
+
+## 32. 9E handoff
+
+9E — AI entegrasyon mimarisi. `MSBX-v0`nin `EvaluatorPort`u arkasında AI adaptörünün davranışı tanımlanacaktır: AI'ın neye karar verip veremeyeceği, provisional evaluation'ın sınırları, hata ve zaman aşımı durumlarında nasıl degrade olacağı, `AIV-v0` validation gereksinimlerinin nasıl karşılanacağı ve AI-generated içeriğin hangi koşullarda kullanılabileceği. AI hiçbir koşulda mastery, prerequisite veya planner truth'u üzerinde yetki kazanamaz ve `evaluation_pending` semantiği korunur. 9E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

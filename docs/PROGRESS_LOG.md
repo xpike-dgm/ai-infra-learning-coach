@@ -727,3 +727,22 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `9C ✅ / 9D active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `9D — Servis sınırları`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-08-29 — 9D Servis sınırları tamamlandı — MSBX-v0 / D-078
+
+- 9C merge edildikten sonra fresh 9D PRE main üzerinden yapıldı; üç ref koşulu doğrulandı ve beş kanonik kaynak `9C ✅ / 9D active-not-executed` gösterdi. Kullanıcı açık onay verdi.
+- 9D ayrı Araştırma AI istemedi: hiçbir library, framework veya dış seçenek seçmiyor; karar verdiği her şey zaten kabul edilmiş kısıtlardan türüyor. Hem `AMTS-v0` hem `LFPS-v0` module layout'u açıkça bu adıma devretmişti.
+- **Adımın çözdüğü asıl problem: "core AI olmadan da çalışır" şu ana kadar bir vaatti.** Hiçbir şey yarın bir engine'in AI client import etmesini yapısal olarak engellemiyordu. Yıllarca herkesin hatırlamasına bağlı bir vaat garanti değildir; bir dependency kuralı garantidir. Bu yüzden ana invariant "sınırlar garantileri yapısal hâle getirir" oldu.
+- On modül ve katı içe-doğru bağımlılık kuralı tanımlandı: `core-*` asla `data-*`, `ai-*` veya `app-*`'e bağımlı olamaz, graf asiklikdir ve `app-wiring` her implementasyonu bilen tek modüldür. Kural kontrol edilebilirdir — validator grafı iddia etmek yerine hesaplar.
+- **Saat port'a çevrildi.** `DDM-v0` her timestamp'li kayıtta instant, learner-local study day ve offset istiyor; `ADAPTIVE_PLANNER_SPEC` §18 ise aynı girdilerin aynı sonucu üretmesini. Bir engine sistem saatini doğrudan okusa ikisi de bozulurdu: timezone mantığı test edilemez hâle gelir ve planner çıktısı beyan edilen girdilerinin fonksiyonu olmaktan çıkardı. Determinizm sessizce ölür ve hata bug gibi değil flakiness gibi görünür.
+- **Core'da rastgelelik yasaklandı ve seeded random port'u reddedildi.** Beraberlikler `PBR-v0` uyumlu beyan edilmiş total ordering ile çözülüyor. Seed eklemek determinizmi ihlal edilemez bir özellik olmaktan çıkarıp yanlış ayarlanabilir bir konfigürasyona indirgerdi.
+- **AI yokluğu yapısal hâle getirildi.** Null evaluator implementasyonu test fixture'ı değil, ürünle sevk edilen bir parça; uygulama `ai-adapter` olmadan build edilip çalışabilmeli. Bu durumda open-ended attempt `evaluation_pending` olur ve evidence yazılmaz, hiçbir deterministic kabiliyet düşmez. V1 release kriteri 8 böylece umutla değil wiring ile karşılanıyor ve adaptör olmadan build alarak gösterilebiliyor.
+- Her engine tam olarak bir state ailesine sahip kılındı ve başkasınınkini yazması yasaklandı; planner hiçbir learner state yazmıyor ve cross-engine etkiler `core-application`ın engine'leri beyan edilmiş sırayla çağırmasıyla oluyor. Bir engine'in başkasının state'ini yazmasına izin vermek, önceki her aşamanın yasakladığı ikinci source of truth'u sessizce geri getirirdi.
+- Transaction sınırı `core-application`a yerleştirildi; engine'ler saf policy kaldı ve transaction açmıyor, persistence'ı doğrudan çağırmıyor.
+- **Presentation projection core'a alındı.** `SPWX-v0` derived presentation state'i beyan edilmiş precedence'lı deterministik bir projeksiyon yapıyor; bu hesaplama Compose içinde yaşasaydı üründeki en güvenlik-kritik etiketleme — bir chip'in öğrencinin yetkinliği hakkında ne iddia ettiği — yalnız cihazda test edilebilirdi. Şimdi saf fonksiyon olarak test edilebilir.
+- Independent 9D validator **93/93 PASS**; 10 modül / 4 port / 8 engine / 15 forbidden anti-pattern. Validator dependency grafını hesaplıyor: bilinmeyen bağımlılık, renklendirmeli DFS ile cycle ve forbidden layer edge kontrolü. Ayrıca kararı upstream kontratlara karşı doğruluyor — `AMTS-v0` ve `LFPS-v0`nin boundary layout'u gerçekten 9D'ye devrettiği, `DDM-v0`nin üç zaman değerini gerçekten istediği, `ADAPTIVE_PLANNER_SPEC`in determinizmi gerçekten şart koştuğu, `TRUX-v0` ve `ASUX-v0`nin `evaluation_pending` için evidence'ı gerçekten yasakladığı, `SPWX-v0`nin projeksiyonu deterministik ilan ettiği ve V1 kriteri 8'in metinde bulunduğu. Mutation test: 6 kasıtlı ihlal (core→ai kenarı, graf cycle'ı, core'da rastgelelik, null evaluator'ın fixture'a indirgenmesi, planner'ın mastery yazması, presentation'ın UI'a taşınması) 8 check FAIL verdi.
+- External-memory + final Stage 6 + accepted Stage 7 + accepted AŞAMA 8 + 9A + 9B + 9C regressions PASS.
+- D-050 POST living-memory accepted state'i `9D ✅ / 9E active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `9E — AI entegrasyon mimarisi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

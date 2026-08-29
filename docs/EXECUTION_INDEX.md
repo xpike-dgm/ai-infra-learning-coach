@@ -127,8 +127,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **9A — Mobil teknoloji seçimi** — `AMTS-v0 / D-075`
 - [x] **9B — Veri saklama / local-first** — `LFPS-v0 / D-076`
 - [x] **9C — Domain veri modeli** — `DDM-v0 / D-077` — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
-- [ ] **9D — Servis sınırları** **AKTİF**
-- [ ] **9E — AI entegrasyon mimarisi**
+- [x] **9D — Servis sınırları** — `MSBX-v0 / D-078`
+- [ ] **9E — AI entegrasyon mimarisi** **AKTİF**
 - [ ] **9F — Test stratejisi**
 
 ---
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9C`  
-**Son tamamlanan:** **`9C — DDM-v0 / D-077`**  
-**Aktif:** **`9D — Servis sınırları`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9D`  
+**Son tamamlanan:** **`9D — MSBX-v0 / D-078`**  
+**Aktif:** **`9E — AI entegrasyon mimarisi`** — active-not-executed
 
-**AŞAMA 8 tamamlandı.** 9C `DDM-v0` ile domain veri modeli kilitlendi: üç store bölgesi, `(logical_id, version)` composite kimlik ve yapısal pinning, truth tablolarında UPDATE yolu olmayan append-only tasarım, dört ayrı evidence ekseni, append edilen disposition kayıtları, her timestamp'te instant + study day + offset, watermark'lı projection provenance, seçim yolunda indekslenen exposure ve library-neutral physical schema. ORM 10A'ya, boundary'ler 9D'ye bırakıldı.
+**AŞAMA 8 tamamlandı.** 9D `MSBX-v0` ile modül ve servis sınırları kilitlendi: 10 modül, içe-doğru dependency kuralı, `core-*` asla `data-*`/`ai-*`/`app-*`'e bağımlı olamaz, 4 port (persistence/content/clock/evaluator), port olarak saat, core'da rastgelelik yok, ürünle sevk edilen null evaluator, engine başına tek state ailesi, `core-application`da transaction sınırı ve core'da presentation projection. DI/build 10A'ya, AI davranışı 9E'ye bırakıldı.
 
-9D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+9E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

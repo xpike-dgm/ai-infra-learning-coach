@@ -200,12 +200,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **9A ✅ Mobil teknoloji seçimi — AMTS-v0 / D-075**
 - **9B ✅ Veri saklama / local-first — LFPS-v0 / D-076**
 - **9C ✅ Domain veri modeli — DDM-v0 / D-077**
-- **9D 🟡 Servis sınırları — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9E–20 ⬜
+- **9D ✅ Servis sınırları — MSBX-v0 / D-078**
+- **9E 🟡 AI entegrasyon mimarisi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9F–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 9D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -266,6 +267,12 @@ Canonical: `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` / D-076.
 Veri modeli kilitlendi. **Schema mimariyi uygular**: `LFPS-v0`nin truth/projection ayrımı, append-only kuralı, exposure kalıcılığı ve version pinning garantileri burada konvansiyon değil yapısaldır — çünkü bir schema bir mimariyi sessizce yürürlükten kaldırabilir. Üç store bölgesi vardır ve curriculum store'dan user store'a foreign key yoktur. Versiyonlu kimlik `(logical_id, version)` composite'tir ve her user referansı version taşır; yalnız logical ID ile referans yasaktır çünkü version anahtarda olmazsa referans curriculum güncellendiği anda sessizce en yeni version'a kayar. Truth tablolarında UPDATE/DELETE yolu yoktur; düzeltme append edilen bir `evidence_disposition` satırıdır. Bir evidence satırının dört bağımsız ekseni dört ayrı kolondur: outcome, evaluator_status, independence_class ve contested. Her timestamp'li satır instant, learner-local study day ve UTC offset saklar — DST veya seyahat sonrası hiçbiri diğerinden güvenilir türetilemez. Her projection satırı policy version ve truth watermark kaydeder, böylece bayatlık tespit edilebilir. Exposure seçim yolundaki lookup için indekslenir ve asla silinmez. Physical schema library-neutral'dır ve core'un gördüğü modelde platform tipi yoktur.
 
 Canonical: `docs/DOMAIN_DATA_MODEL_SPEC.md` / D-077.
+
+## 12.4 9D Servis sınırları — MSBX-v0 / D-078
+
+Modül ve servis sınırları kilitlendi. **Sınırlar garantileri yapısal hâle getirir**: "core AI ve ağ olmadan ayakta kalır" artık yıllarca hatırlanması gereken bir vaat değil, dependency kuralının bir özelliğidir. On modül ve katı içe-doğru bağımlılık kuralı vardır; `core-*` asla `data-*`, `ai-*` veya `app-*`'e bağımlı olamaz, graf asiklikdir ve `app-wiring` her implementasyonu bilen tek modüldür. Core'un dışarıdan ihtiyaç duyduğu her şey port'tur: `PersistencePort`, `ContentPort`, `ClockPort`, `EvaluatorPort`. **Saat bir port'tur** — zaman ortam gerçeği değil girdidir; aksi hâlde timezone mantığı test edilemez ve planner çıktısı beyan edilen girdilerinin fonksiyonu olmaktan çıkardı. **Core'da rastgelelik yoktur**; beraberlikler beyan edilmiş total ordering ile çözülür ve seeded random reddedilmiştir. **Null evaluator ürünle sevk edilir**; uygulama `ai-adapter` olmadan build edilip çalışır ve bu durumda open-ended attempt `evaluation_pending` olup evidence yazmaz — V1 kriteri 8 umutla değil wiring ile karşılanır. Her engine tam olarak bir state ailesine sahiptir ve başkasınınkini yazmaz; planner hiçbir learner state yazmaz. Transaction sınırı `core-application`da, presentation projection `core-presentation`dadır; `app-ui` yalnız render eder.
+
+Canonical: `docs/SERVICE_BOUNDARIES_SPEC.md` / D-078.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

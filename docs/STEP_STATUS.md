@@ -43,8 +43,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9A — Mobil teknoloji seçimi** | ✅ | AMTS-v0 / D-075. Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core; 100/100 QA PASS. |
 | **9B — Veri saklama / local-first** | ✅ | LFPS-v0 / D-076. Evidence = truth, state = projection; SQLite; append-only; atomik migration/restore; 100/100 QA PASS. |
 | **9C — Domain veri modeli** | ✅ | DDM-v0 / D-077. 11 curriculum + 12 truth + 8 projection entity; yapısal pinning, dört eksen, üç-değerli zaman; 114/114 QA PASS. |
-| **9D — Servis sınırları** | 🟡 Aktif | Module/service boundary'leri ve bağımlılık yönleri; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9E–20** | ⬜ Bekliyor | 9D sonrası canonical sırada. |
+| **9D — Servis sınırları** | ✅ | MSBX-v0 / D-078. 10 modül + içe-doğru dependency kuralı + 4 port + null evaluator; 93/93 QA PASS. |
+| **9E — AI entegrasyon mimarisi** | 🟡 Aktif | EvaluatorPort arkasındaki AI davranışı ve sınırları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9F–20** | ⬜ Bekliyor | 9E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -63,26 +64,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9C
+## Son tamamlanan numaralı adım — 9D
 
-**Final:** `DDM-v0 — Domain Data Model` / D-077.  
-**Ana çıktı:** `docs/DOMAIN_DATA_MODEL_SPEC.md` + `arch/9c_domain_data_model/`.
+**Final:** `MSBX-v0 — Module & Service Boundaries` / D-078.  
+**Ana çıktı:** `docs/SERVICE_BOUNDARIES_SPEC.md` + `arch/9d_service_boundaries/`.
 
-9C sonucu:
-- **schema mimariyi uygular**; `LFPS-v0`nin truth/projection, append-only, exposure kalıcılığı ve version pinning garantileri konvansiyon değil yapısaldır,
-- üç store bölgesi (curriculum / user truth / user projection); curriculum store'dan user store'a foreign key yoktur,
-- versiyonlu kimlik `(logical_id, version)` composite'tir ve her user referansı version taşır — yalnız logical ID ile referans yasaktır, çünkü version anahtarda olmazsa referans curriculum güncellendiği anda sessizce en yeni version'a kayar,
-- truth tablolarında UPDATE/DELETE yolu yoktur; düzeltme, orijinali referans veren append edilmiş bir `evidence_disposition` satırıdır ve yeniden hesaplama yoklukla değil kuralla dışlar,
-- **dört bağımsız eksen dört ayrı kolondur**: outcome, evaluator_status, independence_class, contested — herhangi ikisini birleştirmek provisional/settled veya bağımsız/cevabı-görmüş ayrımını siler,
-- `evidence_event`, `GRE-v0`nin bu adıma açıkça devrettiği alan sözleşmesini karşılar ve skill/resource version'larını pinler,
-- **her timestamp'li satır üç değer saklar**: instant (retention interval'ı), study day (günlük plan ve history) ve UTC offset — DST veya seyahat sonrası hiçbiri diğerinden güvenilir türetilemez,
-- her projection satırı policy version, truth watermark, build time ve input curriculum version kaydeder; watermark olmadan bayat projeksiyon güncelinden ayırt edilemez,
-- `SPWX-v0`nin dört Skill ekseni storage'da da ayrı saklanır ve presentation state yerlerini almaz,
-- exposure seçim yolundaki lookup için indekslenir; silinmez, arşivlenmez, truth ile birlikte export/migrate edilir,
-- physical schema library-neutral'dır: entity başına tablo, polymorphic catch-all yok, composite PK, version taşıyan FK, constrained string enum'lar, watermark için monotonic sequence,
-- core'un gördüğü modelde platform tipi yoktur,
-- independent validator **114/114 PASS**; model kendine değil kaynak kontratlara karşı doğrulanır (LFPS, KGC, GNS, GRE, TRUX, ASUX, SPWX) ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + external-memory regressions PASS.
+9D sonucu:
+- **sınırlar garantileri yapısal hâle getirir**; "core AI ve ağ olmadan ayakta kalır" bir vaat olmaktan çıkıp dependency kuralı oldu,
+- 10 modül ve katı içe-doğru dependency kuralı; `core-*` asla `data-*`, `ai-*` veya `app-*`'e bağımlı olamaz; graf asiklikdir ve kural kontrol edilebilirdir,
+- `app-wiring` her implementasyonu bilen tek modüldür, composition root'tur ve domain logic içermez,
+- core'un dışarıdan ihtiyaç duyduğu her şey port'tur: `PersistencePort`, `ContentPort`, `ClockPort`, `EvaluatorPort` — hepsi core'da, core tipleriyle, platform tipi olmadan,
+- **saat bir port'tur**: zaman ortam gerçeği değil girdidir; aksi hâlde timezone mantığı test edilemez ve planner çıktısı beyan edilen girdilerinin fonksiyonu olmaktan çıkardı,
+- **core'da rastgelelik yoktur**; beraberlikler `PBR-v0` uyumlu beyan edilmiş total ordering ile çözülür. Seeded random reddedildi çünkü determinizmi özellik olmaktan çıkarıp yanlış ayarlanabilir konfigürasyona indirgerdi,
+- **null evaluator ürünle sevk edilir** ve test fixture'ı değildir; app `ai-adapter` olmadan build edilip çalışır; bu durumda open-ended attempt `evaluation_pending` olur ve evidence yazılmaz; hiçbir deterministic kabiliyet düşmez — V1 kriteri 8 wiring ile karşılanır,
+- her engine tam olarak bir state ailesine sahiptir ve başkasınınkini yazmaz; planner mastery/retention/readiness/weakness yazmaz; cross-engine etkiler `core-application` üzerinden olur,
+- transaction sınırı `core-application`dadır; engine'ler transaction açmaz ve persistence'ı doğrudan çağırmaz,
+- presentation projection `core-presentation`dadır ve saf veri üretir; `app-ui` yalnız render eder — aksi hâlde en güvenlik-kritik etiketleme yalnız cihazda test edilebilirdi,
+- independent validator **93/93 PASS**; dependency grafı iddia edilmez **hesaplanır** (bilinmeyen bağımlılık, cycle, forbidden layer edge) ve karar upstream kontratlara karşı doğrulanır. Mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + 9C + external-memory regressions PASS.
 
-## Aktif adım — 9D Servis sınırları
+## Aktif adım — 9E AI entegrasyon mimarisi
 
-**9D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**9E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -1,0 +1,337 @@
+stage_step: 9D
+model: MSBX-v0
+candidate_decision: D-078
+result: PASS
+status_observed: accepted_9d
+checks_total: 93
+checks_passed: 93
+checks_failed: 0
+modules: 10
+module_ids:
+- ai-adapter
+- app-ui
+- app-wiring
+- core-application
+- core-engines
+- core-model
+- core-ports
+- core-presentation
+- data-curriculum
+- data-persistence
+ports: 4
+engines: 8
+forbidden_boundary_patterns: 15
+checks:
+- check: E9D-00_required_file
+  result: PASS
+  details: arch\9d_service_boundaries\boundaries.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: docs\SERVICE_BOUNDARIES_SPEC.md
+- check: E9D-00_required_file
+  result: PASS
+  details: research\9d_service_boundaries_research.md
+- check: E9D-00_required_file
+  result: PASS
+  details: arch\9a_mobile_technology\technology.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: arch\9b_local_first_persistence\persistence.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: arch\9c_domain_data_model\data_model.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E9D-00_required_file
+  result: PASS
+  details: docs\ADAPTIVE_PLANNER_SPEC.md
+- check: E9D-00_required_file
+  result: PASS
+  details: docs\V1_SCOPE.md
+- check: E9D-01_identity
+  result: PASS
+  details: model=MSBX-v0 step=9D
+- check: E9D-01_status
+  result: PASS
+  details: status=accepted_9d
+- check: E9D-01_decision
+  result: PASS
+  details: decision=D-078
+- check: E9D-01_lineage
+  result: PASS
+  details: lineage=AMTS-v0/LFPS-v0/DDM-v0
+- check: E9D-02_boundaries_only
+  result: PASS
+  details: 9D is boundaries only
+- check: E9D-02_deferred_open
+  result: PASS
+  details: violations=[]
+- check: E9D-02_upstream_untouched
+  result: PASS
+  details: upstream contracts untouched
+- check: E9D-02_no_invented_rules
+  result: PASS
+  details: violations=[]
+- check: E9D-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E9D-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E9D-04_module_set
+  result: PASS
+  details: modules=['ai-adapter', 'app-ui', 'app-wiring', 'core-application', 'core-engines',
+    'core-model', 'core-ports', 'core-presentation', 'data-curriculum', 'data-persistence']
+- check: E9D-04_no_unknown_dep
+  result: PASS
+  details: unknown_deps=[]
+- check: E9D-05_acyclic
+  result: PASS
+  details: cycle=[]
+- check: E9D-06_no_forbidden_edge
+  result: PASS
+  details: violations=[]
+- check: E9D-06_forbidden_set
+  result: PASS
+  details: forbidden=[('core', 'ai'), ('core', 'app'), ('core', 'data')]
+- check: E9D-07_core_isolated
+  result: PASS
+  details: core edges=[]
+- check: E9D-07_core_model_leaf
+  result: PASS
+  details: core-model deps=[]
+- check: E9D-08_only_root_knows_all
+  result: PASS
+  details: non_root_knowing_all=[]
+- check: E9D-08_root_is_root
+  result: PASS
+  details: app-wiring is the composition root without domain logic
+- check: E9D-08_root_depends_on_all
+  result: PASS
+  details: root deps=['ai-adapter', 'app-ui', 'core-application', 'core-engines',
+    'core-model', 'core-ports', 'core-presentation', 'data-curriculum', 'data-persistence']
+- check: E9D-08_rule_checkable
+  result: PASS
+  details: dependency rule is checkable with rationale
+- check: E9D-09_port_set
+  result: PASS
+  details: ports=['ClockPort', 'ContentPort', 'EvaluatorPort', 'PersistencePort']
+- check: E9D-09_ports_in_core
+  result: PASS
+  details: ports=core-ports
+- check: E9D-09_persistence_impl
+  result: PASS
+  details: persistence impl=data-persistence
+- check: E9D-09_lfps_core_owned
+  result: PASS
+  details: LFPS-v0 really assigns module layout to 9D
+- check: E9D-09_amts_defers_boundary
+  result: PASS
+  details: AMTS-v0 really assigns boundary layout to 9D
+- check: E9D-10_clock_port
+  result: PASS
+  details: clock=True
+- check: E9D-10_clock_provides
+  result: PASS
+  details: provides=['instant', 'learner_local_study_day', 'utc_offset']
+- check: E9D-10_clock_matches_ddm
+  result: PASS
+  details: DDM-v0 really requires all three time values
+- check: E9D-10_clock_rationale
+  result: PASS
+  details: clock port rationale recorded
+- check: E9D-11_no_randomness
+  result: PASS
+  details: determinism=False
+- check: E9D-11_tie_breaking
+  result: PASS
+  details: tie_breaking=declared_total_ordering
+- check: E9D-11_planner_requires_determinism
+  result: PASS
+  details: ADAPTIVE_PLANNER_SPEC really requires determinism
+- check: E9D-12_core_clean
+  result: PASS
+  details: core references no AI/HTTP/network type
+- check: E9D-12_null_evaluator
+  result: PASS
+  details: null evaluator ships with the product
+- check: E9D-12_builds_without_adapter
+  result: PASS
+  details: app builds and runs without the AI adapter
+- check: E9D-13_pending_semantics
+  result: PASS
+  details: 'pending={''core_references_ai_client'': False, ''core_references_http_client'':
+    False, ''core_references_network_type'': False, ''evaluator_is_a_port'': True,
+    ''null_evaluator_ships_with_product'': True, ''null_evaluator_is_test_fixture'':
+    False, ''app_builds_without_ai_adapter'': True, ''app_runs_without_ai_adapter'':
+    True, ''with_null_evaluator_open_ended_becomes'': ''evaluation_pending'', ''with_null_evaluator_evidence_written'':
+    False, ''deterministic_capability_degrades'': False, ''satisfies_v1_criterion'':
+    8, ''satisfied_by'': ''wiring_not_hope'', ''demonstrable_by'': ''building_without_the_adapter''}'
+- check: E9D-13_trux_agrees
+  result: PASS
+  details: TRUX-v0 really forbids evidence for evaluation_pending
+- check: E9D-13_asux_agrees
+  result: PASS
+  details: ASUX-v0 really forbids evidence for evaluation_pending
+- check: E9D-13_v1_criterion
+  result: PASS
+  details: V1 criterion 8 is real and satisfied structurally
+- check: E9D-13_ai_adapter_optional
+  result: PASS
+  details: ai-adapter is declared optional
+- check: E9D-14_engine_set
+  result: PASS
+  details: engines=['GRE-v0', 'PBR-v0', 'PDT-v0', 'PRG-v0', 'RVR-v0', 'TEPM-v0', 'TSM-v0',
+    'WLRM-v0']
+- check: E9D-14_one_owner_each
+  result: PASS
+  details: duplicate owners=0
+- check: E9D-15_engine_rules
+  result: PASS
+  details: 'engine rules={''one_state_family_per_engine'': True, ''engine_writes_another_engines_state'':
+    False, ''planner_writes_mastery'': False, ''planner_writes_retention'': False,
+    ''planner_writes_readiness'': False, ''planner_writes_weakness'': False, ''assessment_writes_retention_directly'':
+    False, ''cross_engine_effects_via'': ''core_application_calling_engines_in_declared_order'',
+    ''rationale'': ''allowing_one_engine_to_write_anothers_state_recreates_the_second_source_of_truth''}'
+- check: E9D-15_cross_engine_via_application
+  result: PASS
+  details: cross-engine effects go through the application layer
+- check: E9D-15_gre_owns_mastery
+  result: PASS
+  details: GRE owns=mastery_state
+- check: E9D-15_planner_owns_plans
+  result: PASS
+  details: PDT owns=plan_versions_planned_tasks_and_decision_traces
+- check: E9D-16_owner
+  result: PASS
+  details: owner=core-application
+- check: E9D-16_not_elsewhere
+  result: PASS
+  details: 'transaction={''owner_module'': ''core-application'', ''lives_in_ui_handlers'':
+    False, ''lives_in_engine'': False, ''engine_opens_transaction'': False, ''engine_calls_persistence_directly'':
+    False, ''engines_are_pure_policy'': True, ''use_case_shape'': [''validate_against_current_state'',
+    ''append_truth_records'', ''run_engines_in_declared_order'', ''write_updated_projections'',
+    ''commit_as_one_transaction''], ''source_contract'': ''LFPS-v0''}'
+- check: E9D-16_use_case_shape
+  result: PASS
+  details: shape=['validate_against_current_state', 'append_truth_records', 'run_engines_in_declared_order',
+    'write_updated_projections', 'commit_as_one_transaction']
+- check: E9D-16_lfps_atomic
+  result: PASS
+  details: LFPS-v0 really requires one action per transaction
+- check: E9D-17_projection_module
+  result: PASS
+  details: module=core-presentation
+- check: E9D-17_not_in_ui
+  result: PASS
+  details: 'presentation={''projection_module'': ''core-presentation'', ''computed_in_ui_toolkit'':
+    False, ''outputs_pure_data'': True, ''covers'': [''spwx_presentation_state'',
+    ''today_view_model'', ''task_runner_view_model'', ''assessment_session_view_model'',
+    ''progress_view_model''], ''ui_module_responsibility'': ''rendering_only'', ''ui_carries_meaning_beyond_rendering'':
+    False, ''rationale'': ''presentation_projection_in_compose_would_make_capability_labelling_testable_only_on_a_device'',
+    ''source_contract'': ''SPWX-v0''}'
+- check: E9D-17_covers_surfaces
+  result: PASS
+  details: covers=['spwx_presentation_state', 'today_view_model', 'task_runner_view_model',
+    'assessment_session_view_model', 'progress_view_model']
+- check: E9D-17_spwx_deterministic
+  result: PASS
+  details: SPWX-v0 really declares the projection deterministic
+- check: E9D-17_rationale
+  result: PASS
+  details: presentation placement rationale recorded
+- check: E9D-18_root
+  result: PASS
+  details: 'root={''module'': ''app-wiring'', ''only_module_knowing_every_implementation'':
+    True, ''contains_domain_logic'': False, ''contains_policy'': False, ''contains_state'':
+    False, ''chooses_real_or_null_evaluator'': True, ''swapping_implementation_touches_only_this_module'':
+    True}'
+- check: E9D-19_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E9D-19_forbidden_count
+  result: PASS
+  details: count=15
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=9E
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=9F
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=10A
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=12
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=13
+- check: E9D-20_boundary_open
+  result: PASS
+  details: stage=14
+- check: E9D-20_9e_owns_ai
+  result: PASS
+  details: 9E=ai_integration_architecture_behind_evaluator_port
+- check: E9D-21_required_models
+  result: PASS
+  details: missing=[]
+- check: E9D-21_graph_verification_required
+  result: PASS
+  details: acceptance requires graph verification
+- check: E9D-21_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''AMTS-v0'', ''LFPS-v0'', ''DDM-v0'',
+    ''GRE-v0'', ''RVR-v0'', ''PRG-v0'', ''TSM-v0'', ''WLRM-v0'', ''PBR-v0'', ''PDT-v0'',
+    ''TEPM-v0'', ''SPWX-v0'', ''TRUX-v0'', ''ASUX-v0''], ''independent_qa_required'':
+    True, ''dependency_graph_must_be_verified'': True, ''stage6_regression_required'':
+    True, ''stage7_regression_required'': True, ''stage8_regression_required'': True,
+    ''stage9a_regression_required'': True, ''stage9b_regression_required'': True,
+    ''stage9c_regression_required'': True}'
+- check: E9D-22_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E9D-22_spec_no_invented_rules
+  result: PASS
+  details: spec refuses invented rules
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=core-ports
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=app-wiring
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=core-engines
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=app-ui
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=core-presentation
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=core-model
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=data-persistence
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=data-curriculum
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=core-application
+- check: E9D-22_spec_lists_module
+  result: PASS
+  details: module=ai-adapter
+- check: E9D-23_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []
