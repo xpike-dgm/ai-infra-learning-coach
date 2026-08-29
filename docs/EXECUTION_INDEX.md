@@ -125,8 +125,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
 - [x] **9A — Mobil teknoloji seçimi** — `AMTS-v0 / D-075`
-- [ ] **9B — Veri saklama / local-first** **AKTİF**
-- [ ] **9C — Domain veri modeli** — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
+- [x] **9B — Veri saklama / local-first** — `LFPS-v0 / D-076`
+- [ ] **9C — Domain veri modeli** **AKTİF** — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
 - [ ] **9D — Servis sınırları**
 - [ ] **9E — AI entegrasyon mimarisi**
 - [ ] **9F — Test stratejisi**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A`  
-**Son tamamlanan:** **`9A — AMTS-v0 / D-075`**  
-**Aktif:** **`9B — Veri saklama / local-first`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9B`  
+**Son tamamlanan:** **`9B — LFPS-v0 / D-076`**  
+**Aktif:** **`9C — Domain veri modeli`** — active-not-executed
 
-**AŞAMA 8 tamamlandı.** 9A `AMTS-v0` ile platform ve UI teknolojisi seçildi: Android native (V1'de cross-platform UI katmanı yok), Kotlin + Jetpack Compose, Material 3 yalnız substrate ve dynamic colour kapalı, domain core saf Kotlin ve Android/UI/network/AI bağımsız, window class'lar WFPX-v0 ile birebir, default-locale case transform yasak, `minSdk` politika olarak tanımlı ve 10A'da gerçek cihazda doğrulanacak. Library güncelliği 10A'daki bounded verification list'e bırakıldı.
+**AŞAMA 8 tamamlandı.** 9B `LFPS-v0` ile local-first persistence kilitlendi: kanıt source of truth ve öğrenci state'i yeniden hesaplanabilir projeksiyon, append-only truth kayıtları, SQLite embedded transactional store, core-owned persistence interface'leri, ayrı versiyonlanan curriculum/user state, kalıcı exposure kayıtları, tek-eylem-tek-transaction, forward-only migration ve atomik doğrulanmış restore. ORM library 10A'ya, physical schema 9C'ye bırakıldı.
 
-9B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+9C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

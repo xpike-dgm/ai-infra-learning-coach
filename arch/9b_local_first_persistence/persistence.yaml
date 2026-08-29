@@ -1,0 +1,305 @@
+model: LFPS-v0
+stage_step: 9B
+status: accepted_9b
+decision: D-076
+platform: AMTS-v0
+purpose: local_first_persistence_architecture
+
+scope:
+  persistence_architecture_only: true
+  physical_schema_locked: false
+  entities_and_relations_locked: false
+  service_boundaries_locked: false
+  ai_integration_locked: false
+  test_strategy_locked: false
+  orm_library_locked: false
+  encryption_posture_locked: false
+  stage8_semantics_changed: false
+  storage_size_budget: null
+  query_performance_number: null
+  retention_cutoff: null
+  library_version_locked: null
+
+persistence_question: How does evidence survive for years without ever silently changing?
+
+canonical_truth_owners:
+  platform: AMTS-v0
+  curriculum_graph_contract: KGC-v0
+  assessment_resource_contract: QAB-v0
+  ai_resource_validation: AIV-v0
+  mastery: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  topic_state: TSM-v0
+  weakness_remediation: WLRM-v0
+  english_profile: TEPM-v0
+  physical_schema: 9C
+
+invariants:
+  derived_state_is_source_of_truth: false
+  truth_record_updated_in_place: false
+  truth_record_deleted: false
+  invalid_evidence_deleted_instead_of_marked: false
+  curriculum_update_changes_learner_state: false
+  published_curriculum_version_overwritten: false
+  curriculum_update_reinterprets_past_evidence: false
+  exposure_record_droppable: false
+  exposure_loss_is_cache_eviction: false
+  attempt_persisted_without_assistance_metadata: false
+  attempt_persisted_without_provenance: false
+  evidence_written_for_evaluation_pending: false
+  partial_write_observable: false
+  partial_migration_applied: false
+  partial_restore_applied: false
+  schema_downgrade_supported: false
+  restore_from_newer_schema_best_effort: false
+  restore_silently_merges: false
+  silent_progress_reset: false
+  reset_preferred_over_recomputation: false
+  evidence_pruned_in_v1: false
+  implicit_pruning_allowed: false
+  core_signature_exposes_storage_type: false
+  core_depends_on_android_for_persistence: false
+  persistence_requires_network: false
+  persistence_requires_ai_client: false
+  realtime_cloud_sync_in_v1: false
+  automatic_cloud_upload_in_v1: false
+  orm_library_named_here: false
+  schema_defined_here: false
+  evidence_is_source_of_truth: true
+  truth_records_append_only: true
+  derived_state_rebuildable: true
+  one_action_one_transaction: true
+  migration_forward_only: true
+  restore_is_atomic_and_verified: true
+  curriculum_and_user_state_separately_versioned: true
+
+source_of_truth:
+  truth_records:
+    - attempt
+    - artifact
+    - evidence_event
+    - assistance_metadata
+    - artifact_provenance
+    - exposure_record
+    - assessment_session
+    - planner_decision_trace
+  derived_projections:
+    - skill_and_objective_mastery
+    - retention_state
+    - prerequisite_readiness
+    - topic_state
+    - weakness_and_remediation_state
+    - technical_english_profile
+    - planner_visible_derived_summaries
+  append_only: true
+  updated_in_place: false
+  deleted: false
+  projection_is_cache: true
+  projection_rebuildable_at_any_time: true
+  rebuild_is_deterministic_for_same_inputs_and_policy_version: true
+  only_new_evidence_changes_demonstrated_capability: true
+  invalid_evidence_marked_not_erased: true
+  disposition_is_part_of_record: true
+  recomputation_excludes_by_rule_not_by_absence: true
+
+storage_engine:
+  class: embedded_transactional_relational
+  choice: sqlite
+  justified_from_contracts_not_preference: true
+  required_properties:
+    - referential_integrity_across_versioned_graph_and_evidence
+    - cross_entity_queries_by_skill_objective_time_and_validity
+    - transactional_all_or_nothing_writes
+    - forward_migration_over_years_of_schema_change
+    - fully_on_device_no_server_no_network_in_read_write_path
+  rejected_alternatives:
+    - id: document_or_key_value_store
+      loses:
+        - referential_integrity
+        - cross_entity_queries_planner_needs
+    - id: flat_files_or_serialized_snapshots
+      loses:
+        - transactions
+        - credible_migration_path
+  orm_or_mapping_library_chosen: false
+  orm_library_owner_step: 10A
+  orm_deferral_precedent: AMTS-v0_library_currency_is_verified_not_asserted
+
+dependency_direction:
+  core_declares_persistence_interfaces: true
+  platform_implements_over_sqlite: true
+  interfaces_expressed_in_core_types: true
+  storage_type_in_core_signature: false
+  android_type_in_core_signature: false
+  filesystem_type_in_core_signature: false
+  core_runnable_against_fake_or_in_memory_impl: true
+  core_testable_without_device: true
+  module_layout_owner: 9D
+
+curriculum_and_user_state:
+  separately_stored: true
+  separately_versioned: true
+  published_versions_retained: true
+  published_version_overwritten: false
+  user_records_pin_curriculum_version: true
+  curriculum_update_adds_versions_only: true
+  curriculum_update_rewrites_evidence: false
+  curriculum_update_invalidates_evidence: false
+  historical_evidence_reconstructable_against_producing_version: true
+  curriculum_update_is_a_state_change: false
+  semantic_change_expressed_as_new_need_through_engines: true
+
+exposure_records:
+  permanence: life_of_profile
+  first_class: true
+  retained_kinds:
+    - solution_exposure
+    - item_version_seen
+    - variant_family_exposure
+  included_in_backup: true
+  included_in_export: true
+  included_in_migration: true
+  loss_classified_as: data_loss
+  loss_classified_as_cache_eviction: false
+  rationale: a_lost_exposure_record_lets_a_solution_exposed_item_be_served_as_a_fresh_independent_check
+
+transactional_boundaries:
+  unit: one_learner_action_is_one_transaction
+  committed_together:
+    - attempt
+    - artifact
+    - assistance_metadata
+    - artifact_provenance
+    - evidence_event
+    - resulting_derived_state_update
+  partial_write_observable: false
+  attempt_without_assistance_metadata: false
+  attempt_without_provenance: false
+  evaluation_pending_writes_evidence: false
+  evaluation_pending_attempt_write_is_atomic: true
+  failed_write_leaves_previous_state_intact: true
+
+migration:
+  forward_only: true
+  versioned: true
+  deletes_evidence: false
+  rewrites_evidence: false
+  reinterprets_evidence: false
+  deletes_exposure_or_provenance: false
+  may_discard_and_rebuild_derived_state: true
+  discarding_derived_state_is_data_loss: false
+  tested_against_populated_database: true
+  tested_only_against_empty_database: false
+  downgrade_supported: false
+  revert_mechanism: restore_from_backup
+  incomplete_migration_leaves_previous_state_intact: true
+  incomplete_migration_surfaces: data_recovery_required
+
+backup_export_restore:
+  user_initiated: true
+  automatic_cloud_upload_in_v1: false
+  export_complete_enough_to_reconstruct_profile: true
+  export_includes:
+    - truth_records
+    - exposure_records
+    - provenance
+    - curriculum_version_pins
+    - preferences
+  export_requires_derived_state: false
+  export_omission_loses_information: false
+  export_records_schema_version: true
+  export_records_policy_version: true
+  export_stays_on_device_unless_user_moves_it: true
+  restore_atomic: true
+  restore_verified_before_replacing: true
+  restore_verification:
+    - structural_integrity
+    - version_compatibility
+  restore_from_older_schema_runs_forward_migration: true
+  restore_from_newer_schema: refused
+  restore_silently_merges: false
+  profile_replacement_is_explicit: true
+
+integrity_and_recovery:
+  integrity_checked_on_open: true
+  integrity_checked_after_migration: true
+  integrity_checked_after_restore: true
+  corruption_surfaces_state: data_recovery_required
+  silent_progress_reset: false
+  recovery_restores_last_durable_checkpoint: true
+  recovery_offers_backup_restore_when_insufficient: true
+  unpersisted_work_claimed_as_saved: false
+  inconsistent_projection_repair: recomputation
+  inconsistent_projection_reset: false
+  recomputation_surfaces_state: recomputing_projection
+
+history_growth:
+  history_accumulates_by_design: true
+  reads_backwards_for:
+    - retention
+    - remediation
+    - verification
+  evidence_pruned_in_v1: false
+  automatic_deletion: false
+  rolling_window: false
+  tidy_up_job: false
+  derived_state_and_caches_discardable: true
+  future_pruning_must_be_explicit_and_user_visible: true
+  future_pruning_may_touch_data_current_state_depends_on: false
+
+local_first_boundary:
+  core_read_write_works_offline: true
+  realtime_multi_device_cloud_sync_in_v1: false
+  network_absence_degrades_optional_capability_only: true
+  network_absence_degrades_deterministic_core: false
+  persistence_depends_on_ai_client: false
+
+forbidden_persistence_patterns:
+  - derived_state_as_source_of_truth
+  - truth_record_updated_or_deleted_in_place
+  - deleting_invalid_evidence_instead_of_marking_disposition
+  - curriculum_update_rewriting_or_invalidating_evidence
+  - overwriting_published_curriculum_version
+  - dropping_exposure_records_in_migration_export_or_cleanup
+  - persisting_attempt_without_assistance_metadata_or_provenance
+  - writing_evidence_for_evaluation_pending_attempt
+  - partially_applied_write_migration_or_restore
+  - schema_downgrade_instead_of_backup_restore
+  - best_effort_restore_from_newer_schema
+  - silent_progress_reset_on_corruption
+  - resetting_when_recomputation_would_repair
+  - implicit_evidence_pruning
+  - storage_or_android_type_in_core_signature
+  - naming_orm_library_or_asserting_currency_here
+  - deciding_entities_relations_or_physical_schema_here
+
+future_stage_boundaries:
+  9C: domain_data_model_entities_relations_and_physical_schema
+  9D: module_and_service_boundaries
+  9E: ai_integration_architecture
+  9F: test_strategy
+  10A: orm_and_migration_tooling_libraries
+  16: settings_and_analytics
+  19: release_data_reliability_and_encryption_posture
+
+acceptance:
+  required_previous_models:
+    - AMTS-v0
+    - KGC-v0
+    - QAB-v0
+    - AIV-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - TSM-v0
+    - WLRM-v0
+    - TEPM-v0
+    - TRUX-v0
+    - ASUX-v0
+    - SPWX-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9a_regression_required: true

@@ -48,6 +48,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-073:** VDSX-v0 Visual Design System; 8F tamamlandı.
 - **D-074:** WFPX-v0 Wireframe & Prototype Geometry; 8G tamamlandı ve AŞAMA 8 kapandı.
 - **D-075:** AMTS-v0 Android Mobile Technology Selection; 9A tamamlandı.
+- **D-076:** LFPS-v0 Local-First Persistence Architecture; 9B tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -243,14 +244,15 @@ PEM-v0:
 - 8F ✅ VDSX-v0 / D-073
 - 8G ✅ WFPX-v0 / D-074 — **AŞAMA 8 tamamlandı**
 - 9A ✅ AMTS-v0 / D-075
-- 9B 🟡 active-not-executed
-- 9C–20 ⬜
+- 9B ✅ LFPS-v0 / D-076
+- 9C 🟡 active-not-executed
+- 9D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9A — AMTS-v0 / D-075`  
-**Aktif:** `9B — Veri saklama / local-first`  
-**9B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9B — LFPS-v0 / D-076`  
+**Aktif:** `9C — Domain veri modeli`  
+**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -561,6 +563,27 @@ AMTS-v0:
 - a six-item bounded verification list is handed to 10A because `AI_AGENT_WORKFLOW` §3 routes framework currency to Research AI and no currency claim is asserted here,
 - independent 9A QA 100/100 PASS, cross-validated against the WFPX/VDSX/SPWX/IA contracts and the V1_SCOPE and AI_AGENT_WORKFLOW texts, and mutation-tested; Stage 6/7/8 regressions + external memory PASS.
 
-## 29. 9B handoff
+## 29. D-076 / 9B final özeti
 
-9B — Veri saklama / local-first. `AMTS-v0` platform seçimi üzerinde local-first persistence tasarlanacaktır: granular Skill/Objective evidence, assessment kayıtları, exposure/validation kayıtları ve yıllarca uzanan history nasıl saklanır; curriculum data ile user state nasıl ayrılır; restart/update sonrası progress nasıl korunur; migration, backup, export ve restore nasıl davranır. Depolama motoru bu adımda seçilir; domain veri modeli 9C'ye aittir. 9B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md`.  
+Contract/QA: `arch/9b_local_first_persistence/`.  
+Synthesis: `research/9b_local_first_persistence_research.md`.
+
+LFPS-v0:
+- evidence is the source of truth and all learner state is a recomputable projection; only new evidence changes demonstrated capability,
+- truth records are append-only and invalid evidence is marked rather than erased, so history stays explicable,
+- the storage engine is an embedded transactional relational store (SQLite), justified from contracts with rejected alternatives and their losses recorded,
+- the mapping/ORM library is deferred to 10A, following the AMTS-v0 precedent that library currency is verified rather than asserted,
+- persistence interfaces are core-owned and no storage, Android or filesystem type appears in a core signature,
+- curriculum and user state are separately stored and versioned; user records pin the curriculum version and a curriculum update cannot change learner state by itself,
+- exposure records are permanent and first-class; losing one is data loss, because a lost record lets a solution-exposed item be served as a fresh independent check,
+- one learner action is one transaction; attempts always carry assistance metadata and provenance; `evaluation_pending` writes no evidence,
+- migration is forward-only, never destroys evidence, is tested against populated data and fails intact; reverting is a backup restore,
+- export reconstructs the profile and records schema and policy versions; restore is atomic and verified and refuses newer-schema sources,
+- corruption surfaces `data_recovery_required`, silent reset is forbidden, and an inconsistent projection is repaired by recomputation,
+- evidence is not pruned in V1 and any future pruning must be explicit and user-visible,
+- independent 9B QA 100/100 PASS, cross-validated against V1_SCOPE, KGC-v0, QAB-v0, ASUX-v0, TRUX-v0, SPWX-v0 and AMTS-v0, and mutation-tested.
+
+## 30. 9C handoff
+
+9C — Domain veri modeli. `LFPS-v0` persistence mimarisi üzerinde domain veri modeli tanımlanacaktır: granular Skill/Objective state, assessment-resource version/exposure/validation kayıtları, yıllarca uzanan history ve curriculum versioning; entity, field ve relation düzeyinde ve physical schema dahil. 9C, LFPS-v0'nin truth/projection ayrımını, append-only kuralını ve exposure kalıcılığını schema düzeyinde somutlaştırmak zorundadır; bunları zayıflatamaz. 9C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
