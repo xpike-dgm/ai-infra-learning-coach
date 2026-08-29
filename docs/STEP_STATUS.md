@@ -45,8 +45,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9C — Domain veri modeli** | ✅ | DDM-v0 / D-077. 11 curriculum + 12 truth + 8 projection entity; yapısal pinning, dört eksen, üç-değerli zaman; 114/114 QA PASS. |
 | **9D — Servis sınırları** | ✅ | MSBX-v0 / D-078. 10 modül + içe-doğru dependency kuralı + 4 port + null evaluator; 93/93 QA PASS. |
 | **9E — AI entegrasyon mimarisi** | ✅ | AIAX-v0 / D-079. AI port arkasında yardımcı; refusal != yanlış cevap; key APK'da değil; 86/86 QA PASS. |
-| **9F — Test stratejisi** | 🟡 Aktif | Garantilerin nasıl doğrulanacağı ve releasable eşiği; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **10–20** | ⬜ Bekliyor | 9F sonrası canonical sırada. |
+| **9F — Test stratejisi** | ✅ | TVSX-v0 / D-081. Sahipsiz invariant release'i bloklar; coverage yüzdesi gate değildir; 288/288 QA PASS. **AŞAMA 9 kapandı.** |
+| **10A — Proje kurulumu** | 🟡 Aktif | Somut library/version, build/modül yapılandırması, DI wiring, CI job'ları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **10B–20** | ⬜ Bekliyor | 10A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -65,27 +66,28 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9E
+## Son tamamlanan numaralı adım — 9F
 
-**Final:** `AIAX-v0 — AI Integration Architecture` / D-079.  
-**Ana çıktı:** `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md` + `arch/9e_ai_integration/`.
+**Final:** `TVSX-v0 — Test & Verification Strategy` / D-081. **AŞAMA 9 kapandı.**  
+**Ana çıktı:** `docs/TEST_STRATEGY_SPEC.md` + `arch/9f_test_strategy/`.
 
-9E sonucu:
-- **AI bir port arkasındaki yardımcıdır**; mastery, retention, prerequisite, planner veya curriculum truth üzerinde asla otorite kazanmaz ve yokluğu/hatası negative evidence üretmez. Kural: AI önerir, deterministic engine'ler karar verir,
-- iki kanonik spec kararı bu adıma devretmişti ve ikisi de kapatıldı: `LEARNING_BEHAVIOR_RULES` §17 model seçimi, §18 güvenlik/proxy/backend,
-- AI'ın gerçek katkıları korundu; amaç AI'ı azaltmak değil yetkisini sınırlamak,
-- evaluator çıktısı **schema-constrained**'dir; schema'ya uymayan yanıt hüküm değil **hatadır**; serbest metinden hüküm ayrıştırmak yasak çünkü bir misparse hata gibi değil hüküm gibi görünür,
-- kalibre edilmemiş LLM değerlendirmesi **`provisional`**'dır; `verified` deterministik bir yol gerektirir,
-- 7 sonuçlu taksonomi; **refusal bir yanlış cevap değildir** — refused/timed_out/transport_error/invalid_response/unavailable hepsi `evaluation_pending`e düşer ve evidence yazmaz. Aksi hâlde öğrenci, kendi kod örneğinde bir filtre tetiklendiği için negative evidence alırdı,
-- timeout bütçesi **uçtan ucadır** ve retry'ları kapsar; per-call timeout kullanıcıya verilen garanti değildir; retry'lar sınırlı ve sessiz arka plan retry'ı yok,
-- model adı **konfigürasyonda**dır, core'da değil; provider-independent adapter ve router vardır; task class'a göre varsayılanlar gerekçesiyle kayıtlı ve currency 10A/14'te yeniden doğrulanacak,
-- **deterministik iş asla AI çağırmaz**; toplu latency-duyarsız iş batch kullanır; maliyet hiçbir evidence kuralını zayıflatmanın gerekçesi değildir,
-- **APK'da hardcoded/paylaşılan key yok ve V1'de backend proxy yok**; öğrenci kendi key'ini girer, platform secure storage'da tutulur, log/export/backup/diagnostics'te görünmez ve key olmadan uygulama tamamen kullanılabilir,
-- yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar; evidence history, mastery state, plan, profile, exposure, provenance ve trace **asla** gitmez; AI kapatılabilir,
-- generated item untrusted girer, generator ≠ validator ve doğrulanmamış item güçlü mastery-changing evidence üretemez,
-- her AI-türevli evidence satırı provider + model + prompt/schema version kaydeder,
-- independent validator **86/86 PASS**; karar kaynak kontrat metinlerine ve yaml'larına karşı doğrulanır, spec'in hiçbir somut model kimliğini kanonik yapmadığı algoritmik kontrol edilir ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A–9D + external-memory regressions PASS.
+9F sonucu:
+- **Üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir.** Kabul edilmiş her invariant'ın, ihlal edildiğinde FAIL veren adı konmuş bir sahibi vardır,
+- beş kanonik spec test stratejisini bu adıma devretmişti (`AMTS-v0`, `LFPS-v0`, `DDM-v0`, `MSBX-v0`, `AIAX-v0`) ve hepsi karşılandı,
+- **altı katman**: T1 pure domain, T2 persistence contract, T3 structural (build time'da düşer), T4 presentation & accessibility, T5 adapter & integration, T6 device smoke — ve **cihaz katmanı en küçüktür**,
+- **coverage yüzdesi release gate değildir**; gate invariant coverage'dır. Bu proje learner state için proxy sayıları zaten reddediyor ve bir yüzde, önemli invariant'lar kontrolsüzken yükselebilir,
+- **negatif doğrulama zorunludur**: yasaklanan denenir ve reddedilmesi şart koşulur; yalnız izinli yolu çalıştıran bir check yasak hakkında hiçbir şey kanıtlamaz,
+- append-only **schema seviyesinde** doğrulanır; düzeltme append edilen disposition olarak ve orijinal satır değişmeden,
+- **migration'lar dolu fixture'lara karşı** doğrulanır; evidence/exposure/provenance birebir korunur, derived state atılıp yeniden kurulabilir ve rebuild aynı projeksiyonu üretmelidir,
+- **hiçbir check canlı AI provider çağırmaz**; yedi sonucun tamamı kayıtlı yanıtlarla üretilir ve payload'da mastery/history/plan/profile bulunmadığı doğrulanır,
+- **null-evaluator yolu `ai-adapter` olmadan build alınarak** doğrulanır; V1 kriteri 8 böylece wiring olur,
+- determinizm enjekte saat ve tekrarlanan koşularla egzersiz edilir; **flaky check düşmüş check'tir** ve retry-to-green yasaktır,
+- altı severity sınıfı; `evidence_correctness` her zaman bloklar,
+- **11 koşullu release gate**; on V1 kriteri eşlenir ve `tools/validate_*.py` glob'unun tamamı geçmelidir,
+- 66 kayıtlı invariant, her biri upstream kontratta gerçekten var olan bir anahtar; 9F yeni ürün semantiği icat etmez,
+- geçen bir suite'in **kanıtlamadıkları** açıkça yazıldı: modellerin doğruluğu, pedagojik doğruluk ve öğrenme kalitesi,
+- independent validator **288/288 PASS**, mutation-tested (8/8); 26/26 validator sweep PASS.
 
-## Aktif adım — 9F Test stratejisi
+## Aktif adım — 10A Proje kurulumu
 
-**9F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**10A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. İki devralınmış yükümlülük: `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve **repoda hâlâ kayıtlı olmayan hedef cihaz**.

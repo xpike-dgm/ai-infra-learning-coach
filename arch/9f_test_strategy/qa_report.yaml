@@ -1,0 +1,896 @@
+model: TVSX-v0
+stage_step: 9F
+decision: D-081
+result: PASS
+checks_total: 288
+checks_passed: 288
+checks_failed: 0
+register_entries: 66
+tiers: 6
+release_gate_conditions: 11
+checks:
+- check: E9F-01_model
+  result: PASS
+  details: TVSX-v0
+- check: E9F-01_status
+  result: PASS
+  details: accepted_9f
+- check: E9F-01_decision
+  result: PASS
+  details: D-081
+- check: E9F-01_boundaries
+  result: PASS
+  details: MSBX-v0
+- check: E9F-01_distribution_scope
+  result: PASS
+  details: D-080
+- check: E9F-01_closes_stage_9
+  result: PASS
+  details: 'True'
+- check: E9F-02_scope_verification_strategy_only
+  result: PASS
+  details: verification_strategy_only=True
+- check: E9F-02_scope_test_libraries_locked
+  result: PASS
+  details: test_libraries_locked=False
+- check: E9F-02_scope_ci_platform_locked
+  result: PASS
+  details: ci_platform_locked=False
+- check: E9F-02_scope_build_files_locked
+  result: PASS
+  details: build_files_locked=False
+- check: E9F-02_scope_new_product_semantics_introduced
+  result: PASS
+  details: new_product_semantics_introduced=False
+- check: E9F-02_scope_stage8_semantics_changed
+  result: PASS
+  details: stage8_semantics_changed=False
+- check: E9F-02_scope_persistence_rules_changed
+  result: PASS
+  details: persistence_rules_changed=False
+- check: E9F-02_scope_data_model_changed
+  result: PASS
+  details: data_model_changed=False
+- check: E9F-02_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E9F-02_scope_ai_integration_changed
+  result: PASS
+  details: ai_integration_changed=False
+- check: E9F-02_noclaim_defect_detection_rate_claim
+  result: PASS
+  details: defect_detection_rate_claim=None
+- check: E9F-02_noclaim_coverage_number_claim
+  result: PASS
+  details: coverage_number_claim=None
+- check: E9F-02_noclaim_suite_runtime_budget
+  result: PASS
+  details: suite_runtime_budget=None
+- check: E9F-02_noclaim_tooling_currency_claim
+  result: PASS
+  details: tooling_currency_claim=None
+- check: E9F-03_inv_guarantee_without_a_failing_check_is_a_preference
+  result: PASS
+  details: guarantee_without_a_failing_check_is_a_preference=True
+- check: E9F-03_inv_every_accepted_invariant_has_an_owning_check
+  result: PASS
+  details: every_accepted_invariant_has_an_owning_check=True
+- check: E9F-03_inv_unowned_invariant_blocks_release
+  result: PASS
+  details: unowned_invariant_blocks_release=True
+- check: E9F-03_inv_coverage_percentage_is_a_release_gate
+  result: PASS
+  details: coverage_percentage_is_a_release_gate=False
+- check: E9F-03_inv_negative_verification_required_for_prohibitions
+  result: PASS
+  details: negative_verification_required_for_prohibitions=True
+- check: E9F-03_inv_append_only_verified_by_attempted_violation
+  result: PASS
+  details: append_only_verified_by_attempted_violation=True
+- check: E9F-03_inv_migration_verified_against_populated_fixtures
+  result: PASS
+  details: migration_verified_against_populated_fixtures=True
+- check: E9F-03_inv_migration_verified_only_against_empty_database
+  result: PASS
+  details: migration_verified_only_against_empty_database=False
+- check: E9F-03_inv_null_evaluator_verified_by_building_without_adapter
+  result: PASS
+  details: null_evaluator_verified_by_building_without_adapter=True
+- check: E9F-03_inv_live_ai_provider_called_in_checks
+  result: PASS
+  details: live_ai_provider_called_in_checks=False
+- check: E9F-03_inv_all_seven_ai_outcomes_covered
+  result: PASS
+  details: all_seven_ai_outcomes_covered=True
+- check: E9F-03_inv_refusal_fixture_treated_as_wrong_answer
+  result: PASS
+  details: refusal_fixture_treated_as_wrong_answer=False
+- check: E9F-03_inv_end_to_end_timeout_budget_verified
+  result: PASS
+  details: end_to_end_timeout_budget_verified=True
+- check: E9F-03_inv_per_call_timeout_asserted_as_end_to_end
+  result: PASS
+  details: per_call_timeout_asserted_as_end_to_end=False
+- check: E9F-03_inv_determinism_exercised_with_injected_clock
+  result: PASS
+  details: determinism_exercised_with_injected_clock=True
+- check: E9F-03_inv_system_clock_read_in_checks
+  result: PASS
+  details: system_clock_read_in_checks=False
+- check: E9F-03_inv_repeated_runs_must_be_byte_identical
+  result: PASS
+  details: repeated_runs_must_be_byte_identical=True
+- check: E9F-03_inv_flaky_check_is_a_failing_check
+  result: PASS
+  details: flaky_check_is_a_failing_check=True
+- check: E9F-03_inv_retry_to_green_allowed
+  result: PASS
+  details: retry_to_green_allowed=False
+- check: E9F-03_inv_failing_check_disabled_to_unblock_release
+  result: PASS
+  details: failing_check_disabled_to_unblock_release=False
+- check: E9F-03_inv_fake_may_implement_guarantee_under_test
+  result: PASS
+  details: fake_may_implement_guarantee_under_test=False
+- check: E9F-03_inv_contrast_recomputed_not_asserted
+  result: PASS
+  details: contrast_recomputed_not_asserted=True
+- check: E9F-03_inv_hand_computed_value_asserted_where_computable
+  result: PASS
+  details: hand_computed_value_asserted_where_computable=False
+- check: E9F-03_inv_mutation_discipline_applies_to_product_suite
+  result: PASS
+  details: mutation_discipline_applies_to_product_suite=True
+- check: E9F-03_inv_product_suite_replaces_spec_validators
+  result: PASS
+  details: product_suite_replaces_spec_validators=False
+- check: E9F-03_inv_spec_validator_sweep_is_full_glob
+  result: PASS
+  details: spec_validator_sweep_is_full_glob=True
+- check: E9F-03_inv_passing_suite_presented_as_learning_quality_evidence
+  result: PASS
+  details: passing_suite_presented_as_learning_quality_evidence=False
+- check: E9F-03_inv_new_product_semantics_introduced_by_test_strategy
+  result: PASS
+  details: new_product_semantics_introduced_by_test_strategy=False
+- check: E9F-04_tier_count
+  result: PASS
+  details: tiers=['T1', 'T2', 'T3', 'T4', 'T5', 'T6']
+- check: E9F-04_tier_ids
+  result: PASS
+  details: '[''T1'', ''T2'', ''T3'', ''T4'', ''T5'', ''T6'']'
+- check: E9F-04_t1_no_device
+  result: PASS
+  details: '{''id'': ''T1'', ''name'': ''pure_domain'', ''runtime'': ''jvm'', ''device'':
+    False, ''network'': False, ''database'': False, ''clock'': ''injected'', ''ai'':
+    False, ''covers'': [''core-model'', ''core-engines'', ''core-application'', ''core-presentation''],
+    ''enabled_by'': ''MSBX-v0_pure_policy_engines_clock_port_and_core_presentation''}'
+- check: E9F-04_t1_clock_injected
+  result: PASS
+  details: injected
+- check: E9F-04_t2_fake_not_substitute
+  result: PASS
+  details: 'False'
+- check: E9F-04_t3_build_time
+  result: PASS
+  details: build_time
+- check: E9F-04_t4_contrast_recomputed
+  result: PASS
+  details: recomputed_from_declared_hex
+- check: E9F-04_t5_no_live_provider
+  result: PASS
+  details: 'False'
+- check: E9F-04_t6_single_device
+  result: PASS
+  details: '{''id'': ''T6'', ''name'': ''device_smoke'', ''runtime'': ''single_target_device'',
+    ''scope_source'': ''D-080'', ''smallest_tier'': True, ''covers'': [''critical_flows''],
+    ''satisfies_v1_criterion'': 9}'
+- check: E9F-04_t6_criterion_9
+  result: PASS
+  details: '9'
+- check: E9F-05_negative_count
+  result: PASS
+  details: count=9
+- check: E9F-05_negative_coverage
+  result: PASS
+  details: missing=[]
+- check: E9F-05_negative_rejectors
+  result: PASS
+  details: every negative check names the layer that must reject it
+- check: E9F-05_migration_surfaces
+  result: PASS
+  details: data_recovery_required
+- check: E9F-06_clock_injected
+  result: PASS
+  details: 'True'
+- check: E9F-06_no_system_clock
+  result: PASS
+  details: 'False'
+- check: E9F-06_repeated_runs
+  result: PASS
+  details: 'True'
+- check: E9F-06_no_retry_to_green
+  result: PASS
+  details: 'False'
+- check: E9F-06_time_cases
+  result: PASS
+  details: '[''day_boundary'', ''dst_transition'', ''travel_offset_change'']'
+- check: E9F-06_upstream_no_randomness
+  result: PASS
+  details: MSBX randomness_in_core=False
+- check: E9F-06_upstream_same_inputs
+  result: PASS
+  details: MSBX same_inputs_same_result=True
+- check: E9F-06_no_seed_available
+  result: PASS
+  details: no seeded random exists upstream to seed
+- check: E9F-06_clock_port_name
+  result: PASS
+  details: clock port name matches the accepted port set
+- check: E9F-07_append_schema_level
+  result: PASS
+  details: schema_level
+- check: E9F-07_append_attempted_violation
+  result: PASS
+  details: attempted_update_and_delete_must_be_rejected
+- check: E9F-07_upstream_no_update
+  result: PASS
+  details: LFPS forbids in-place truth update
+- check: E9F-07_tx_stages
+  result: PASS
+  details: '[''attempt'', ''artifact'', ''assistance_metadata'', ''provenance'', ''evidence'',
+    ''derived_state_update'']'
+- check: E9F-07_tx_no_partial
+  result: PASS
+  details: 'False'
+- check: E9F-07_mig_populated
+  result: PASS
+  details: 'True'
+- check: E9F-07_mig_upstream_requires_populated
+  result: PASS
+  details: LFPS requires migration tested against a populated database
+- check: E9F-07_mig_preserved
+  result: PASS
+  details: '[''evidence'', ''exposure'', ''provenance'']'
+- check: E9F-07_mig_comparison
+  result: PASS
+  details: counts_and_content_not_sampled
+- check: E9F-07_mig_interrupted
+  result: PASS
+  details: interrupted migration surfaces the upstream recovery state
+- check: E9F-07_mig_downgrade
+  result: PASS
+  details: downgrade stays unsupported
+- check: E9F-07_export_no_key
+  result: PASS
+  details: 'False'
+- check: E9F-07_upstream_export_no_key
+  result: PASS
+  details: AIAX forbids the key in the export
+- check: E9F-07_restore_atomic
+  result: PASS
+  details: restore atomic upstream and here
+- check: E9F-07_restore_verified_first
+  result: PASS
+  details: restore verified before replacing
+- check: E9F-07_exposure_blocking
+  result: PASS
+  details: 'True'
+- check: E9F-07_upstream_exposure_permanent
+  result: PASS
+  details: LFPS forbids dropping exposure records
+- check: E9F-08_live_provider
+  result: PASS
+  details: 'False'
+- check: E9F-08_outcome_set_matches_aiax
+  result: PASS
+  details: declared=['evaluated_provisional', 'evaluated_verified', 'invalid_response',
+    'refused', 'timed_out', 'transport_error', 'unavailable'] upstream=['evaluated_provisional',
+    'evaluated_verified', 'invalid_response', 'refused', 'timed_out', 'transport_error',
+    'unavailable']
+- check: E9F-08_seven_outcomes
+  result: PASS
+  details: count=7
+- check: E9F-08_outcome_evaluated_verified
+  result: PASS
+  details: declared=True upstream=True
+- check: E9F-08_outcome_evaluated_provisional
+  result: PASS
+  details: declared=True upstream=True
+- check: E9F-08_outcome_refused
+  result: PASS
+  details: declared=False upstream=False
+- check: E9F-08_outcome_timed_out
+  result: PASS
+  details: declared=False upstream=False
+- check: E9F-08_outcome_transport_error
+  result: PASS
+  details: declared=False upstream=False
+- check: E9F-08_outcome_invalid_response
+  result: PASS
+  details: declared=False upstream=False
+- check: E9F-08_outcome_unavailable
+  result: PASS
+  details: declared=False upstream=False
+- check: E9F-08_non_answer_count
+  result: PASS
+  details: non_answers=['invalid_response', 'refused', 'timed_out', 'transport_error',
+    'unavailable']
+- check: E9F-08_non_answer_no_evidence
+  result: PASS
+  details: every non-answer outcome writes no evidence
+- check: E9F-08_refusal_not_wrong_answer
+  result: PASS
+  details: refusal is not a wrong answer here or upstream
+- check: E9F-08_no_free_text_fallback
+  result: PASS
+  details: 'False'
+- check: E9F-08_payload_never_sent
+  result: PASS
+  details: declared=['evidence_history', 'exposure_records', 'mastery_state', 'plan',
+    'planner_traces', 'profile', 'provenance'] upstream=['evidence_history', 'exposure_records',
+    'mastery_state', 'plan', 'planner_traces', 'profile', 'provenance']
+- check: E9F-08_deterministic_zero_calls
+  result: PASS
+  details: '0'
+- check: E9F-08_upstream_deterministic_no_ai
+  result: PASS
+  details: AIAX forbids AI calls for deterministic work
+- check: E9F-09_method_build
+  result: PASS
+  details: build_product_without_ai_adapter
+- check: E9F-09_stub_insufficient
+  result: PASS
+  details: 'False'
+- check: E9F-09_upstream_ships
+  result: PASS
+  details: MSBX ships the null evaluator and refuses to call it a fixture
+- check: E9F-09_upstream_builds
+  result: PASS
+  details: 'True'
+- check: E9F-09_pending
+  result: PASS
+  details: open-ended attempt becomes evaluation_pending here and upstream
+- check: E9F-09_no_evidence
+  result: PASS
+  details: no evidence on the null path
+- check: E9F-09_no_degradation
+  result: PASS
+  details: 'False'
+- check: E9F-09_criterion_8
+  result: PASS
+  details: both target V1 criterion 8
+- check: E9F-09_release_blocking
+  result: PASS
+  details: 'True'
+- check: E9F-10_contrast_text_anchor
+  result: PASS
+  details: declared=4.5 upstream=4.5
+- check: E9F-10_contrast_nontext_anchor
+  result: PASS
+  details: declared=3.0 upstream=3.0
+- check: E9F-10_recomputed
+  result: PASS
+  details: contrast recomputed here and required upstream
+- check: E9F-10_target_dp
+  result: PASS
+  details: declared=48
+- check: E9F-10_text_scales
+  result: PASS
+  details: 200% text checked and supported upstream
+- check: E9F-10_themes
+  result: PASS
+  details: '[''light'', ''dark'']'
+- check: E9F-10_skill_states
+  result: PASS
+  details: '8'
+- check: E9F-10_forbidden_presentations
+  result: PASS
+  details: '[''pass_fail_banner'', ''grade'', ''threshold'', ''mastery_percentage'',
+    ''streak'', ''competence_progress_bar'']'
+- check: E9F-10_no_fault_tone_on_learning_state
+  result: PASS
+  details: no learning state carries the fault tone here or upstream
+- check: E9F-11_severity_count
+  result: PASS
+  details: '[''advisory'', ''behavioural'', ''data_safety'', ''evidence_correctness'',
+    ''presentation'', ''structural'']'
+- check: E9F-11_evidence_always_blocking
+  result: PASS
+  details: always_blocking
+- check: E9F-11_structural_blocking
+  result: PASS
+  details: always_blocking
+- check: E9F-11_data_safety_blocking
+  result: PASS
+  details: always_blocking
+- check: E9F-11_advisory_non_blocking
+  result: PASS
+  details: non_blocking_recorded
+- check: E9F-12_no_partial_pass
+  result: PASS
+  details: 'False'
+- check: E9F-12_no_coverage_gate
+  result: PASS
+  details: 'False'
+- check: E9F-12_gate_is_invariant_coverage
+  result: PASS
+  details: invariant_coverage
+- check: E9F-12_condition_count
+  result: PASS
+  details: count=11
+- check: E9F-12_condition_ids_unique
+  result: PASS
+  details: release gate ids unique
+- check: E9F-12_full_glob_condition
+  result: PASS
+  details: release gate requires the full validator glob
+- check: E9F-12_device_condition
+  result: PASS
+  details: release gate names the single target device
+- check: E9F-13_v1_has_ten_criteria
+  result: PASS
+  details: parsed=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+- check: E9F-13_criteria_mapped
+  result: PASS
+  details: mapped=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+- check: E9F-13_criteria_nonempty
+  result: PASS
+  details: every criterion maps to at least one check
+- check: E9F-13_criterion_8_null_eval
+  result: PASS
+  details: criterion 8 -> ['T5-NULLEVAL-01', 'T5-NULLEVAL-02']
+- check: E9F-13_criterion_9_device
+  result: PASS
+  details: criterion 9 -> ['T6-SMOKE-01']
+- check: E9F-13_criterion_7_persistence
+  result: PASS
+  details: criterion 7 -> ['T2-MIG-01', 'T2-MIG-02', 'T2-RESTORE-01']
+- check: E9F-14_register_nonempty
+  result: PASS
+  details: entries=66
+- check: E9F-14_upstream_MSBX-v0_core_depends_on_data
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_core_depends_on_app
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_core_depends_on_ai
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_dependency_cycle_present
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_dependency_rule_is_checkable
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_MSBX-v0_platform_type_in_port_signature
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_randomness_in_core
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_MSBX-v0_core_references_ai_client
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_null_evaluator_ships_with_product
+  result: PASS
+  details: expected=True upstream=[True, True]
+- check: E9F-14_upstream_MSBX-v0_app_builds_without_ai_adapter
+  result: PASS
+  details: expected=True upstream=[True, True]
+- check: E9F-14_upstream_MSBX-v0_with_null_evaluator_evidence_written
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_planner_writes_learner_state
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_MSBX-v0_same_inputs_same_result
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_LFPS-v0_truth_record_updated_in_place
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_truth_record_deleted
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_invalid_evidence_deleted_instead_of_marked
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_evidence_pruned_in_v1
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_LFPS-v0_partial_write_observable
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_LFPS-v0_attempt_persisted_without_provenance
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_attempt_persisted_without_assistance_metadata
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_partial_migration_applied
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_schema_downgrade_supported
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_partial_restore_applied
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_restore_from_newer_schema_best_effort
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_restore_silently_merges
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_LFPS-v0_silent_progress_reset
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_LFPS-v0_exposure_record_droppable
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_evidence_written_for_evaluation_pending
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_LFPS-v0_curriculum_update_changes_learner_state
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_DDM-v0_versioned_identity_is_composite
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_DDM-v0_reference_without_version_allowed
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_DDM-v0_presentation_state_replaces_axes_in_storage
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_DDM-v0_timestamp_stores_instant_only
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_DDM-v0_timestamp_stores_local_date_only
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_DDM-v0_sequence_used_as_projection_watermark
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_DDM-v0_exposure_lookup_expensive_at_selection_time
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_refusal_treated_as_wrong_answer
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_refusal_produces_negative_evidence
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_timeout_produces_negative_evidence
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_transport_error_produces_negative_evidence
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_non_answer_yields_evaluation_pending
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_AIAX-v0_free_text_parsing_of_verdict
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_schema_invalid_response_treated_as_verdict
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_timeout_budget_is_end_to_end
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_AIAX-v0_per_call_timeout_presented_as_end_to_end_guarantee
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_uncalibrated_llm_evaluation_is_verified
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_deterministic_work_calls_ai
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_evidence_history_sent_to_provider
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_mastery_state_sent_to_provider
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_plan_or_profile_sent_to_provider
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_key_included_in_export
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AIAX-v0_app_usable_with_ai_disabled
+  result: PASS
+  details: expected=True upstream=[True, True]
+- check: E9F-14_upstream_AIAX-v0_evaluator_ref_recorded_on_evidence
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_SPWX-v0_presentation_projection_deterministic
+  result: PASS
+  details: expected=True upstream=[True]
+- check: E9F-14_upstream_SPWX-v0_at_risk_is_primary_state
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_SPWX-v0_at_risk_dropped
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_SPWX-v0_remediation_task_completion_closes_remediation
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_VDSX-v0_visual_severity_exceeds_canonical
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_VDSX-v0_learning_state_uses_fault_tone
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_VDSX-v0_design_system_adds_severity
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_AMTS-v0_dynamic_color_enabled
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_AMTS-v0_default_locale_case_transform_allowed
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_AMTS-v0_locked_labels_case_transformed_for_styling
+  result: PASS
+  details: expected=False upstream=[False, False]
+- check: E9F-14_upstream_WFPX-v0_contrast_asserted_without_computation
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_WFPX-v0_exit_below_min_target
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_upstream_WFPX-v0_state_truncated_at_large_text
+  result: PASS
+  details: expected=False upstream=[False]
+- check: E9F-14_no_duplicate_entries
+  result: PASS
+  details: register has no duplicate rows
+- check: E9F-15_owner_present
+  result: PASS
+  details: every registered invariant has an owning check
+- check: E9F-15_owner_tier_prefix
+  result: PASS
+  details: owner check id prefix matches its tier
+- check: E9F-15_tier_valid
+  result: PASS
+  details: every register tier exists
+- check: E9F-15_severity_valid
+  result: PASS
+  details: every register severity is a declared class
+- check: E9F-16_offdevice_tiers_own_something
+  result: PASS
+  details: tiers without a registered invariant=[]
+- check: E9F-16_device_tier_owns_no_invariant
+  result: PASS
+  details: the device tier verifies flows, not invariants that could be checked off-device
+- check: E9F-16_device_tier_owns_criteria
+  result: PASS
+  details: the device tier owns at least one V1 criterion
+- check: E9F-17_all_source_models_present
+  result: PASS
+  details: missing=[]
+- check: E9F-18_mutation_required
+  result: PASS
+  details: 'True'
+- check: E9F-18_fake_rule
+  result: PASS
+  details: 'False'
+- check: E9F-18_fixed_clock_allowed
+  result: PASS
+  details: a fixed clock is an input, not the guarantee under test
+- check: E9F-18_no_disable
+  result: PASS
+  details: 'False'
+- check: E9F-18_separate_systems
+  result: PASS
+  details: 'True'
+- check: E9F-18_full_glob
+  result: PASS
+  details: 'True'
+- check: E9F-18_recomputed_values
+  result: PASS
+  details: '[''contrast'', ''counts'', ''orderings'', ''hashes'']'
+- check: E9F-19_capabilities_listed
+  result: PASS
+  details: count=8
+- check: E9F-19_no_concrete_libraries
+  result: PASS
+  details: 'False'
+- check: E9F-19_library_owner
+  result: PASS
+  details: 10A
+- check: E9F-19_currency_reverified
+  result: PASS
+  details: 'True'
+- check: E9F-19_spec_names_no_library
+  result: PASS
+  details: named=[]
+- check: E9F-19_contract_names_no_library
+  result: PASS
+  details: named=[]
+- check: E9F-19_no_adapter_build_capability
+  result: PASS
+  details: tooling must be able to build the product without the AI adapter
+- check: E9F-20_forbidden_coverage_percentage_as_release_gate
+  result: PASS
+  details: missing=coverage_percentage_as_release_gate
+- check: E9F-20_forbidden_invariant_with_no_owning_check
+  result: PASS
+  details: missing=invariant_with_no_owning_check
+- check: E9F-20_forbidden_verifying_only_the_allowed_path_for_a_
+  result: PASS
+  details: missing=verifying_only_the_allowed_path_for_a_prohibition
+- check: E9F-20_forbidden_append_only_check_that_never_attempts_
+  result: PASS
+  details: missing=append_only_check_that_never_attempts_update_or_delete
+- check: E9F-20_forbidden_migrating_only_an_empty_database
+  result: PASS
+  details: missing=migrating_only_an_empty_database
+- check: E9F-20_forbidden_fake_implementing_the_guarantee_under_
+  result: PASS
+  details: missing=fake_implementing_the_guarantee_under_test
+- check: E9F-20_forbidden_calling_a_live_ai_provider_from_a_chec
+  result: PASS
+  details: missing=calling_a_live_ai_provider_from_a_check
+- check: E9F-20_forbidden_treating_a_refusal_fixture_as_a_wrong_
+  result: PASS
+  details: missing=treating_a_refusal_fixture_as_a_wrong_answer
+- check: E9F-20_forbidden_reading_the_system_clock_inside_a_chec
+  result: PASS
+  details: missing=reading_the_system_clock_inside_a_check
+- check: E9F-20_forbidden_retrying_a_flaky_check_until_green
+  result: PASS
+  details: missing=retrying_a_flaky_check_until_green
+- check: E9F-20_forbidden_disabling_or_quarantining_a_failing_ch
+  result: PASS
+  details: missing=disabling_or_quarantining_a_failing_check_to_unblock_a_release
+- check: E9F-20_forbidden_presenting_a_passing_suite_as_learning
+  result: PASS
+  details: missing=presenting_a_passing_suite_as_learning_quality_evidence
+- check: E9F-20_forbidden_running_a_hand_maintained_subset_of_va
+  result: PASS
+  details: missing=running_a_hand_maintained_subset_of_validate_scripts_as_the_sweep
+- check: E9F-20_forbidden_device_only_verification_of_something_
+  result: PASS
+  details: missing=device_only_verification_of_something_verifiable_off_device
+- check: E9F-20_forbidden_introducing_new_product_semantics_in_t
+  result: PASS
+  details: missing=introducing_new_product_semantics_in_the_test_strategy
+- check: E9F-20_forbidden_count
+  result: PASS
+  details: count=19
+- check: E9F-21_spec_**Status:** ACCEPTED — independent 9F QA
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 9F QA PASS'
+- check: E9F-21_spec_**Decision:** `D-081`
+  result: PASS
+  details: missing='**Decision:** `D-081`'
+- check: E9F-21_spec_A guarantee that nothing fails on is a p
+  result: PASS
+  details: missing='A guarantee that nothing fails on is a preference'
+- check: E9F-21_spec_Coverage percentage is not a gate
+  result: PASS
+  details: missing='Coverage percentage is not a gate'
+- check: 'E9F-21_spec_A check that only passes sometimes is a '
+  result: PASS
+  details: missing='A check that only passes sometimes is a failing check'
+- check: E9F-21_spec_No check calls a live AI provider
+  result: PASS
+  details: missing='No check calls a live AI provider'
+- check: E9F-21_spec_building the product without `ai-adapter
+  result: PASS
+  details: missing='building the product without `ai-adapter`'
+- check: E9F-21_spec_populated fixtures
+  result: PASS
+  details: missing='populated fixtures'
+- check: E9F-21_spec_recomputed from the declared hex values
+  result: PASS
+  details: missing='recomputed from the declared hex values'
+- check: E9F-21_spec_A green suite proves the product behaves
+  result: PASS
+  details: missing='A green suite proves the product behaves as its accepted models
+    say'
+- check: E9F-21_spec_invariant coverage
+  result: PASS
+  details: missing='invariant coverage'
+- check: E9F-21_spec_closes_stage9
+  result: PASS
+  details: spec states Stage 9 closes
+- check: E9F-21_spec_next_step
+  result: PASS
+  details: spec hands over to 10A and names the unrecorded target device
+- check: E9F-21_spec_no_coverage_number
+  result: PASS
+  details: spec claims no coverage percentage
+- check: E9F-22_deferral_MOBILE_TECHNOLOGY_SPEC
+  result: PASS
+  details: 'missing deferral in docs/MOBILE_TECHNOLOGY_SPEC.md: ''test strategy and
+    tooling'''
+- check: E9F-22_deferral_LOCAL_FIRST_PERSISTENCE_SPEC
+  result: PASS
+  details: 'missing deferral in docs/LOCAL_FIRST_PERSISTENCE_SPEC.md: ''test strategy'''
+- check: E9F-22_deferral_DOMAIN_DATA_MODEL_SPEC
+  result: PASS
+  details: 'missing deferral in docs/DOMAIN_DATA_MODEL_SPEC.md: ''test strategy, including
+    how append-only is enforced and verified'''
+- check: E9F-22_deferral_SERVICE_BOUNDARIES_SPEC
+  result: PASS
+  details: 'missing deferral in docs/SERVICE_BOUNDARIES_SPEC.md: ''test strategy and
+    CI enforcement of the dependency rule'''
+- check: E9F-22_deferral_AI_INTEGRATION_ARCHITECTURE_SPEC
+  result: PASS
+  details: 'missing deferral in docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md: ''test strategy,
+    including verification of the null-evaluator path'''
+- check: E9F-23_research_A guarantee that nothing fails on is
+  result: PASS
+  details: missing='A guarantee that nothing fails on is a preference'
+- check: E9F-23_research_Coverage percentage is the wrong gat
+  result: PASS
+  details: missing='Coverage percentage is the wrong gate'
+- check: E9F-23_research_Tests must never call a live AI prov
+  result: PASS
+  details: missing='Tests must never call a live AI provider'
+- check: E9F-23_research_Migrations are only meaningful again
+  result: PASS
+  details: missing='Migrations are only meaningful against populated data'
+- check: E9F-23_research_Flaky tests are worse than failing t
+  result: PASS
+  details: missing='Flaky tests are worse than failing tests here'
+- check: E9F-24_d080_recorded
+  result: PASS
+  details: D-080 recorded in DECISIONS
+- check: E9F-24_d080_in_v1_scope
+  result: PASS
+  details: D-080 reflected in V1_SCOPE
+- check: E9F-24_scope_decision_ref
+  result: PASS
+  details: D-080
+- check: E9F-24_single_device
+  result: PASS
+  details: single_target_device
+- check: E9F-24_target_device_open
+  result: PASS
+  details: the target device is still not recorded and 9F says so
+- check: E9F-24_store_out_of_scope
+  result: PASS
+  details: out_of_scope
+- check: E9F-24_key_invariant_untouched
+  result: PASS
+  details: D-080 did not silently relax the AIAX key-storage invariant
+- check: E9F-25_required_models
+  result: PASS
+  details: '[''MSBX-v0'', ''LFPS-v0'', ''DDM-v0'', ''AIAX-v0'', ''AMTS-v0'', ''SPWX-v0'',
+    ''VDSX-v0'', ''WFPX-v0'', ''PBR-v0'']'
+- check: E9F-25_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E9F-25_stage6_regression_required
+  result: PASS
+  details: stage6_regression_required=True
+- check: E9F-25_stage7_regression_required
+  result: PASS
+  details: stage7_regression_required=True
+- check: E9F-25_stage8_regression_required
+  result: PASS
+  details: stage8_regression_required=True
+- check: E9F-25_stage9a_regression_required
+  result: PASS
+  details: stage9a_regression_required=True
+- check: E9F-25_stage9b_regression_required
+  result: PASS
+  details: stage9b_regression_required=True
+- check: E9F-25_stage9c_regression_required
+  result: PASS
+  details: stage9c_regression_required=True
+- check: E9F-25_stage9d_regression_required
+  result: PASS
+  details: stage9d_regression_required=True
+- check: E9F-25_stage9e_regression_required
+  result: PASS
+  details: stage9e_regression_required=True
+failures: []

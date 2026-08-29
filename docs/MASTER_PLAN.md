@@ -543,7 +543,25 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - her AI-türevli evidence satırı provider+model+prompt/schema version kaydeder,
 - independent validator **86/86 PASS** (LEARNING_BEHAVIOR_RULES/AIV/TRUX/ASUX/MSBX/DDM/LFPS metin ve yaml çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A–9D regressions PASS.
 
-### [ ] 9F — Test stratejisi — **AKTİF**
+### [x] 9F — Test stratejisi — TVSX-v0 / D-081
+
+**9F final coverage:**
+- ana invariant: üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; kabul edilmiş her invariant'ın adı konmuş bir sahibi vardır,
+- 6 doğrulama katmanı (T1 pure domain, T2 persistence contract, T3 structural/CI, T4 presentation & accessibility, T5 adapter & integration, T6 device smoke) ve cihaz katmanı en küçüğüdür,
+- **coverage yüzdesi gate değildir**; gate invariant coverage'dır ve sahipsiz invariant tek başına bloklar,
+- negatif doğrulama zorunlu: yasaklanan denenir ve reddedilmesi şart koşulur (truth UPDATE/DELETE, core→data/ai/app, port'ta platform tipi, yarım migration, yeni schema'dan restore),
+- append-only schema seviyesinde, migration dolu fixture'lara karşı, evidence/exposure/provenance birebir korunarak doğrulanır,
+- hiçbir check canlı AI provider çağırmaz; 7 sonucun tamamı kayıtlı yanıtlarla, 5 yanıtsızlık `evaluation_pending` ve evidence yok,
+- null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır (V1 kriteri 8 = wiring),
+- determinizm enjekte saat + tekrarlanan koşu + byte-identical sıralı çıktı ile egzersiz edilir; flaky check düşmüş check'tir, retry-to-green yasak,
+- 6 severity sınıfı; `evidence_correctness`/`structural`/`data_safety` her zaman bloklar,
+- 11 koşullu release gate; `V1_SCOPE`in 10 kriteri eşlenir ve `tools/validate_*.py` glob'unun tamamı geçmelidir,
+- 66 kayıtlı invariant, her biri upstream kontratta gerçekten var olan bir anahtar; 9F yeni ürün semantiği icat etmez,
+- independent validator **288/288 PASS** (MSBX/LFPS/DDM/AIAX/AMTS/SPWX/VDSX/WFPX yaml + upstream deferral ham metni + V1_SCOPE parse çapraz doğrulamalı, mutation-tested); 26/26 validator sweep PASS.
+
+**AŞAMA 9 TAMAMLANDI.**
+
+### [ ] 10A — Proje kurulumu — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -690,21 +708,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9E`  
-**Son tamamlanan:** **`9E — AIAX-v0 / D-079`**  
-**Aktif:** **`9F — Test stratejisi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`  
+**Son tamamlanan:** **`9F — TVSX-v0 / D-081`** — **AŞAMA 9 kapandı**  
+**Aktif:** **`10A — Proje kurulumu`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **9F fresh PRE-STEP → bu garantilerin nasıl doğrulanacağı; dependency kuralının nasıl zorlanacağı, append-only ve null-evaluator yolunun nasıl test edileceği, planner determinizminin nasıl egzersiz edileceği, migration'ların dolu veriye karşı nasıl test edileceği ve bir build'in releasable sayılması için nelerin geçmesi gerektiği → independent QA → D-050 POST sync + stale audit.**
-
-- D-068: 8A final `UXIA-v0`.
-- D-069: 8B final `THUX-v0`.
-- D-070: 8C final `TRUX-v0`.
-- D-071: 8D final `ASUX-v0`.
-- D-072: 8E final `SPWX-v0`.
-- D-073: 8F final `VDSX-v0`.
-- D-074: 8G final `WFPX-v0`; AŞAMA 8 kapandı.
-- D-075: 9A final `AMTS-v0`.
-- D-076: 9B final `LFPS-v0`.
-- D-077: 9C final `DDM-v0`.
-- D-078: 9D final `MSBX-v0`.
-- D-079: 9E final `AIAX-v0`.
+Bir sonraki yürütme: **10A fresh PRE-STEP → somut library/version seçimi, build ve modül yapılandırması, DI wiring ve `TVSX-v0` katmanlarını çalıştıran CI job'ları; `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve hedef cihaz kaydı bu adıma devrediliyor → independent QA → D-050 POST sync + stale audit.**

@@ -52,6 +52,8 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-077:** DDM-v0 Domain Data Model; 9C tamamlandı.
 - **D-078:** MSBX-v0 Module & Service Boundaries; 9D tamamlandı.
 - **D-079:** AIAX-v0 AI Integration Architecture; 9E tamamlandı.
+- **D-080:** dağıtım kapsamı — kişisel kullanım, store dağıtımı yok; numaralı adım değildir.
+- **D-081:** TVSX-v0 Test & Verification Strategy; 9F tamamlandı ve AŞAMA 9 kapandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -251,14 +253,15 @@ PEM-v0:
 - 9C ✅ DDM-v0 / D-077
 - 9D ✅ MSBX-v0 / D-078
 - 9E ✅ AIAX-v0 / D-079
-- 9F 🟡 active-not-executed
-- 10–20 ⬜
+- 9F ✅ TVSX-v0 / D-081 — **AŞAMA 9 kapandı**
+- 10A 🟡 active-not-executed
+- 10B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9E — AIAX-v0 / D-079`  
-**Aktif:** `9F — Test stratejisi`  
-**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9F — TVSX-v0 / D-081`  
+**Aktif:** `10A — Proje kurulumu`  
+**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -652,6 +655,29 @@ AIAX-v0:
 - every AI-derived evidence row records provider, model and prompt/schema version,
 - independent 9E QA 86/86 PASS, cross-validated against the source contract texts and yaml contracts, with an algorithmic check that the spec names no concrete model identifier as canonical, and mutation-tested.
 
-## 33. 9F handoff
+## 33. D-081 / 9F final özeti
 
-9F — Test stratejisi. AŞAMA 9'da kurulan garantilerin nasıl doğrulanacağı tanımlanacaktır: `MSBX-v0` dependency kuralının nasıl zorlanacağı, `LFPS-v0` append-only ve atomik transaction davranışının nasıl test edileceği, `MSBX-v0` null-evaluator yolunun ve `AIAX-v0` refusal/timeout degrade semantiğinin nasıl doğrulanacağı, planner determinizminin nasıl egzersiz edileceği, migration'ların dolu veriye karşı nasıl test edileceği, `WFPX-v0` kontrast ve %200 metin gereksinimlerinin nasıl kontrol edileceği ve bir build'in releasable sayılması için nelerin geçmesi gerektiği. 9F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TEST_STRATEGY_SPEC.md`.  
+Contract/QA: `arch/9f_test_strategy/`.  
+Synthesis: `research/9f_test_strategy_research.md`.
+
+TVSX-v0:
+- a guarantee that nothing fails on is a preference; every accepted invariant has a named owning check and an unowned invariant blocks the release by itself,
+- five canonical specs had deferred test strategy here — `AMTS-v0`, `LFPS-v0`, `DDM-v0`, `MSBX-v0`, `AIAX-v0` — and all five are answered,
+- six tiers, with the device tier the smallest: anything verifiable off-device is verified off-device,
+- coverage percentage is not a gate; invariant coverage is, for the same reason this product refuses proxy numbers for learner state,
+- negative verification is a tier requirement: the forbidden thing is attempted and must be rejected by the layer that forbids it,
+- append-only is verified at the schema level, and correction is verified as an appended disposition leaving the original row unchanged,
+- migrations are verified against populated fixtures per prior schema version with evidence, exposure and provenance preserved exactly,
+- no check calls a live AI provider; all seven outcomes come from recorded responses and the payload is asserted to carry no history, mastery, plan or profile,
+- the null-evaluator path is verified by building without `ai-adapter`, turning V1 criterion 8 into wiring,
+- determinism is exercised with an injected clock and repeated byte-identical runs; a flaky check is a failing check and retry-to-green is forbidden,
+- six severity classes with `evidence_correctness` always blocking,
+- an eleven-condition release gate that maps every V1 criterion and requires the full `tools/validate_*.py` glob,
+- a 66-entry invariant register whose every row is a key that genuinely exists in an upstream accepted contract; 9F invents no product semantics,
+- what a green suite cannot establish is stated explicitly,
+- independent 9F QA 288/288 PASS, mutation-tested 8/8; 26/26 validator sweep PASS.
+
+## 34. 10A handoff
+
+10A — Proje kurulumu. **AŞAMA 9 kapandı**; 10A ilk implementation adımıdır. Somut library ve version seçimi, build/modül yapılandırması, DI wiring ve `TVSX-v0` katmanlarını çalıştıran CI job'ları burada kesinleşir. İki devralınmış yükümlülük: `AMTS-v0` §9'un 6 maddelik bounded verification list'i (güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk`, screen-reader semantics API'leri, reduced-motion tespiti, compatibility library ihtiyacı) ve **repoda hâlâ kayıtlı olmayan hedef Android cihaz**. Ayrıca `D-080` gereği API key'in repoya girmemesi için gitignore kuralı 10A'da uygulanır. 10A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

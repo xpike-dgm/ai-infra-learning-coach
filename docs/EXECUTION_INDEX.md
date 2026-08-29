@@ -129,12 +129,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **9C — Domain veri modeli** — `DDM-v0 / D-077` — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
 - [x] **9D — Servis sınırları** — `MSBX-v0 / D-078`
 - [x] **9E — AI entegrasyon mimarisi** — `AIAX-v0 / D-079`
-- [ ] **9F — Test stratejisi** **AKTİF**
+- [x] **9F — Test stratejisi** — `TVSX-v0 / D-081` — **AŞAMA 9 TAMAMLANDI**
 
 ---
 
 # AŞAMA 10 — Mobil Proje İskeleti ve Tasarım Sistemini Kur
-- [ ] **10A — Proje kurulumu**
+- [ ] **10A — Proje kurulumu** **AKTİF**
 - [ ] **10B — Navigation**
 - [ ] **10C — Design system implementation**
 - [ ] **10D — Local database**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9E`  
-**Son tamamlanan:** **`9E — AIAX-v0 / D-079`**  
-**Aktif:** **`9F — Test stratejisi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`  
+**Son tamamlanan:** **`9F — TVSX-v0 / D-081`** — **AŞAMA 9 kapandı**  
+**Aktif:** **`10A — Proje kurulumu`** — active-not-executed
 
-**AŞAMA 8 tamamlandı.** 9E `AIAX-v0` ile AI entegrasyonu kilitlendi: AI bir port arkasındaki yardımcıdır ve mastery/prerequisite/planner truth üzerinde otorite kazanamaz; evaluator çıktısı schema-constrained'dir; kalibre edilmemiş LLM değerlendirmesi `provisional`dır; **refusal bir yanlış cevap değildir** ve her yanıtsızlık `evaluation_pending`e düşer; timeout bütçesi uçtan ucadır; model adı konfigürasyondadır; deterministik iş AI çağırmaz; APK'da key yoktur ve V1'de backend proxy yoktur.
+**AŞAMA 8 ve AŞAMA 9 tamamlandı.** 9F `TVSX-v0` ile doğrulama stratejisi kilitlendi: üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; kabul edilmiş her invariant'ın adı konmuş bir sahibi vardır; coverage yüzdesi gate değildir, gate invariant coverage'dır; yasaklanan her şey denenip reddedilmesi şart koşulur; append-only schema seviyesinde ve migration dolu fixture'lara karşı doğrulanır; hiçbir check canlı AI provider çağırmaz; null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır; determinizm enjekte saatle egzersiz edilir ve flaky check düşmüş check'tir; release gate 11 koşuldur ve `tools/validate_*.py` glob'unun tamamını içerir.
 
-9F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+10A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur. 10A iki devralınmış yükümlülük taşır: `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve **repoda hâlâ kayıtlı olmayan hedef cihaz** (`minSdk` doğrulaması ve T6 için gerekli).
