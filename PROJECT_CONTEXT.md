@@ -199,12 +199,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 8 ✅ TAMAMLANDI**
 - **9A ✅ Mobil teknoloji seçimi — AMTS-v0 / D-075**
 - **9B ✅ Veri saklama / local-first — LFPS-v0 / D-076**
-- **9C 🟡 Domain veri modeli — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 9D–20 ⬜
+- **9C ✅ Domain veri modeli — DDM-v0 / D-077**
+- **9D 🟡 Servis sınırları — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 9E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 9C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 9D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -259,6 +260,12 @@ Canonical: `docs/MOBILE_TECHNOLOGY_SPEC.md` / D-075.
 Veri saklama mimarisi kilitlendi. **Kanıt source of truth'tur; öğrenci state'i onun yeniden hesaplanabilir projeksiyonudur.** Attempt, artifact, evidence event, assistance metadata, provenance, exposure kaydı, assessment session ve planner trace append-only truth kayıtlarıdır; mastery, retention, readiness, Topic state, weakness ve English profile cache'tir ve her an yeniden kurulabilir. Öğrencinin kanıtladığı yetkinliği yalnız yeni kanıt değiştirebilir; geçersiz kanıt silinmez, işaretlenir. Storage engine SQLite'tır; ORM library seçilmedi ve 10A'ya bırakıldı. Persistence interface'leri core'a aittir, platform onları implemente eder ve core signature'ında storage/Android/fs tipi bulunmaz. Curriculum ve user state ayrı saklanır ve ayrı versiyonlanır; user kayıtları curriculum version'ını pin'ler ve bir curriculum güncellemesi tek başına learner state değiştiremez. Exposure kayıtları kalıcı ve first-class'tır — kaybı veri kaybıdır, çünkü kaybolursa solution-exposed bir item taze bağımsız kontrol olarak sunulabilir. Bir öğrenci eylemi bir transaction'dır ve `evaluation_pending` evidence yazmaz. Migration forward-only'dir ve kanıtı asla yok etmez; restore atomik ve doğrulanmıştır. Bozulma `data_recovery_required` yüzeyler, sessiz reset yasaktır ve tutarsız projeksiyon recomputation ile onarılır. V1'de kanıt budanmaz.
 
 Canonical: `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` / D-076.
+
+## 12.3 9C Domain veri modeli — DDM-v0 / D-077
+
+Veri modeli kilitlendi. **Schema mimariyi uygular**: `LFPS-v0`nin truth/projection ayrımı, append-only kuralı, exposure kalıcılığı ve version pinning garantileri burada konvansiyon değil yapısaldır — çünkü bir schema bir mimariyi sessizce yürürlükten kaldırabilir. Üç store bölgesi vardır ve curriculum store'dan user store'a foreign key yoktur. Versiyonlu kimlik `(logical_id, version)` composite'tir ve her user referansı version taşır; yalnız logical ID ile referans yasaktır çünkü version anahtarda olmazsa referans curriculum güncellendiği anda sessizce en yeni version'a kayar. Truth tablolarında UPDATE/DELETE yolu yoktur; düzeltme append edilen bir `evidence_disposition` satırıdır. Bir evidence satırının dört bağımsız ekseni dört ayrı kolondur: outcome, evaluator_status, independence_class ve contested. Her timestamp'li satır instant, learner-local study day ve UTC offset saklar — DST veya seyahat sonrası hiçbiri diğerinden güvenilir türetilemez. Her projection satırı policy version ve truth watermark kaydeder, böylece bayatlık tespit edilebilir. Exposure seçim yolundaki lookup için indekslenir ve asla silinmez. Physical schema library-neutral'dır ve core'un gördüğü modelde platform tipi yoktur.
+
+Canonical: `docs/DOMAIN_DATA_MODEL_SPEC.md` / D-077.
 
 ## 12. Proje hafızası / repository hygiene — D-050
 

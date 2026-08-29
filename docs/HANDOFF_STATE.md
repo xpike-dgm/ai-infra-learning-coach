@@ -49,6 +49,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-074:** WFPX-v0 Wireframe & Prototype Geometry; 8G tamamlandı ve AŞAMA 8 kapandı.
 - **D-075:** AMTS-v0 Android Mobile Technology Selection; 9A tamamlandı.
 - **D-076:** LFPS-v0 Local-First Persistence Architecture; 9B tamamlandı.
+- **D-077:** DDM-v0 Domain Data Model; 9C tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -245,14 +246,15 @@ PEM-v0:
 - 8G ✅ WFPX-v0 / D-074 — **AŞAMA 8 tamamlandı**
 - 9A ✅ AMTS-v0 / D-075
 - 9B ✅ LFPS-v0 / D-076
-- 9C 🟡 active-not-executed
-- 9D–20 ⬜
+- 9C ✅ DDM-v0 / D-077
+- 9D 🟡 active-not-executed
+- 9E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9B — LFPS-v0 / D-076`  
-**Aktif:** `9C — Domain veri modeli`  
-**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `9C — DDM-v0 / D-077`  
+**Aktif:** `9D — Servis sınırları`  
+**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -584,6 +586,27 @@ LFPS-v0:
 - evidence is not pruned in V1 and any future pruning must be explicit and user-visible,
 - independent 9B QA 100/100 PASS, cross-validated against V1_SCOPE, KGC-v0, QAB-v0, ASUX-v0, TRUX-v0, SPWX-v0 and AMTS-v0, and mutation-tested.
 
-## 30. 9C handoff
+## 30. D-077 / 9C final özeti
 
-9C — Domain veri modeli. `LFPS-v0` persistence mimarisi üzerinde domain veri modeli tanımlanacaktır: granular Skill/Objective state, assessment-resource version/exposure/validation kayıtları, yıllarca uzanan history ve curriculum versioning; entity, field ve relation düzeyinde ve physical schema dahil. 9C, LFPS-v0'nin truth/projection ayrımını, append-only kuralını ve exposure kalıcılığını schema düzeyinde somutlaştırmak zorundadır; bunları zayıflatamaz. 9C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DOMAIN_DATA_MODEL_SPEC.md`.  
+Contract/QA: `arch/9c_domain_data_model/`.  
+Synthesis: `research/9c_domain_data_model_research.md`.
+
+DDM-v0:
+- the schema enforces the architecture: every LFPS-v0 guarantee is structural rather than conventional,
+- three store regions — versioned curriculum, append-only user truth, rebuildable user projections — with no curriculum-to-user foreign key,
+- versioned identity is `(logical_id, version)` and every user reference carries the version, because a reference without it silently re-points at the newest version on curriculum update,
+- truth tables have no UPDATE or DELETE path; correction is an appended `evidence_disposition` and recomputation excludes by rule, not by absence,
+- outcome, evaluator status, independence class and contested are four separate columns, because collapsing any pair erases a real distinction,
+- `evidence_event` covers the GRE-v0 field contract that spec explicitly handed to 9C,
+- every timestamped row stores instant, learner-local study day and UTC offset, since after DST or travel neither derives reliably from the other,
+- every projection row records policy version, truth watermark, build time and input curriculum version, so staleness is detectable,
+- the four SPWX-v0 Skill axes are stored separately and the presentation state never replaces them,
+- exposure is indexed for the selection-time lookup and is never deleted or archived,
+- the physical schema is library-neutral: one table per entity, composite keys, version-carrying foreign keys, constrained-string enums and a monotonic sequence used as the watermark,
+- no platform type appears in the core-visible model,
+- independent 9C QA 114/114 PASS, cross-validated against LFPS-v0, KGC-v0, GNS-v0, GRE-v0, TRUX-v0, ASUX-v0 and SPWX-v0, and mutation-tested.
+
+## 31. 9D handoff
+
+9D — Servis sınırları. `DDM-v0` modeli ve `AMTS-v0` core purity kuralı üzerinde module ve service boundary'leri tanımlanacaktır: saf Kotlin core'un tam olarak nerede bittiği; persistence, curriculum, assessment, planner, AI ve UI katmanlarının nasıl ayrıldığı; her bağımlılığın hangi yöne baktığı; ve deterministic core'un AI ile ağ yokluğunda çalışmasını yapısal olarak garanti eden sınırlar. 9D hiçbir accepted semantic, persistence kuralı veya veri modelini değiştiremez. 9D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

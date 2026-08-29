@@ -58,11 +58,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - **AŞAMA 8 TAMAMLANDI** — UXIA-v0 → THUX-v0 → TRUX-v0 → ASUX-v0 → SPWX-v0 → VDSX-v0 → WFPX-v0.
 - 9A: ✅ `AMTS-v0 / D-075` tamamlandı — Android native (V1'de cross-platform UI katmanı yok), Kotlin + Jetpack Compose, Material 3 yalnız substrate ve dynamic colour kapalı, domain core saf Kotlin ve Android/UI/network/AI bağımsız, window class'lar WFPX-v0 ile birebir, default-locale case transform yasak, `minSdk` politika; 6 maddelik verification list 10A'ya devredildi; 100/100 QA PASS.
 - 9B: ✅ `LFPS-v0 / D-076` tamamlandı — kanıt source of truth ve öğrenci state'i yeniden hesaplanabilir projeksiyon, append-only truth kayıtları, SQLite, core-owned persistence interface'leri, ayrı versiyonlanan curriculum/user state, kalıcı exposure kayıtları, tek-eylem-tek-transaction, forward-only migration, atomik doğrulanmış restore, sessiz reset yasak; 100/100 QA PASS.
-- **Aktif adım: 9C — Domain veri modeli.**
-- **9C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 9D–20 bekliyor.
+- 9C: ✅ `DDM-v0 / D-077` tamamlandı — schema mimariyi uygular; üç store bölgesi, `(logical_id, version)` composite kimlik ve yapısal pinning, UPDATE yolu olmayan append-only truth tabloları, dört ayrı evidence ekseni, append edilen disposition, instant + study day + offset üçlüsü, watermark'lı projection provenance, indekslenmiş exposure, library-neutral schema; 114/114 QA PASS.
+- **Aktif adım: 9D — Servis sınırları.**
+- **9D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 9E–20 bekliyor.
 
-**9C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**9D'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 9D için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

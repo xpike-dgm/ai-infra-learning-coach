@@ -1,0 +1,64 @@
+stage_step: 9C
+model: DDM-v0
+decision: D-077
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_in_progress: true
+repo_files_scanned: 382
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 9C active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_9b_post_step_stale.py
+  sample: 9C 🟡
+  classification: historical_non_blocking
+- file: tools\audit_9c_post_step_stale.py
+  sample: 9C ✅ Domain veri modeli — DDM-v0 / D-077", "9D 🟡
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-29-9b-local-first-persistence.md
+  sample: 9C — Domain veri modeli is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-08-29-9c-domain-data-model.md
+  sample: 9C active-not-executed
+  classification: historical_non_blocking
+- file: arch\9b_local_first_persistence\stale_reference_audit.yaml
+  sample: 9C 🟡
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  9C future/candidate language; current/living sources must agree on 9C complete and
+  9D active-not-executed.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 9D completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

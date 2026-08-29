@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076`; AŞAMA 8'in kapandığını ve aktif adımın `9C active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077`; AŞAMA 8'in kapandığını ve aktif adımın `9D active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1114,14 +1114,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - **AŞAMA 8 ✅ TAMAMLANDI**
 - AŞAMA 9A ✅ AMTS-v0 / D-075
 - AŞAMA 9B ✅ LFPS-v0 / D-076
-- AŞAMA 9C 🟡 active-not-executed
-- 9D–20 ⬜
+- AŞAMA 9C ✅ DDM-v0 / D-077
+- AŞAMA 9D 🟡 active-not-executed
+- 9E–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9B — Veri saklama / local-first`  
-**Final:** `LFPS-v0 — Local-First Persistence Architecture` / D-076  
-**Canonical:** `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` + `arch/9b_local_first_persistence/`
+**Son tamamlanan numaralı adım:** `9C — Domain veri modeli`  
+**Final:** `DDM-v0 — Domain Data Model` / D-077  
+**Canonical:** `docs/DOMAIN_DATA_MODEL_SPEC.md` + `arch/9c_domain_data_model/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1134,17 +1135,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 8:** ✅ TAMAMLANDI  
 **AŞAMA 9A:** ✅ TAMAMLANDI  
 **AŞAMA 9B:** ✅ TAMAMLANDI  
-**Aktif adım:** `9C — Domain veri modeli`  
+**AŞAMA 9C:** ✅ TAMAMLANDI  
+**Aktif adım:** `9D — Servis sınırları`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9C için:
+9D için:
 
 ```text
-fresh 9C PRE-STEP GitHub refresh
+fresh 9D PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9C execution
+→ 9D execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1687,9 +1689,22 @@ AŞAMA 7 ✅ — EED-v0 → TECP-v0 → DECP-v0 → TEIP-v0 → TEPM-v0
 AŞAMA 8 ✅ TAMAMLANDI
 9A ✅ AMTS-v0 / D-075
 9B ✅ LFPS-v0 / D-076
-9C 🟡 active-not-executed
-9D–20 ⬜
+9C ✅ DDM-v0 / D-077
+9D 🟡 active-not-executed
+9E–20 ⬜
 ```
+
+9C final:
+- schema mimariyi uygular; LFPS-v0 garantileri yapısal,
+- üç store bölgesi; curriculum→user foreign key yok,
+- `(logical_id, version)` composite kimlik; her user referansı version taşır,
+- truth tablolarında UPDATE/DELETE yolu yok; düzeltme append edilen disposition,
+- dört bağımsız evidence ekseni ayrı kolon,
+- her timestamp'te instant + study day + UTC offset,
+- her projection satırında policy version + truth watermark,
+- SPWX dört ekseni storage'da da ayrı; exposure seçim yolunda indeksli,
+- physical schema library-neutral; core'da platform tipi yok,
+- independent 9C QA 114/114 PASS.
 
 9B final:
 - kanıt source of truth; öğrenci state'i yeniden hesaplanabilir projeksiyon,
@@ -1784,9 +1799,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9C — Domain veri modeli`.
+**Sıradaki gerçek numbered work:** `9D — Servis sınırları`.
 
-**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1836,5 +1851,5 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9C — Domain veri modeli`.  
-**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `9D — Servis sınırları`.  
+**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
