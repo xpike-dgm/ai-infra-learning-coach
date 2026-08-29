@@ -126,8 +126,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 9 — Teknik Mimari ve Veri Modeli
 - [x] **9A — Mobil teknoloji seçimi** — `AMTS-v0 / D-075`
 - [x] **9B — Veri saklama / local-first** — `LFPS-v0 / D-076`
-- [ ] **9C — Domain veri modeli** **AKTİF** — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
-- [ ] **9D — Servis sınırları**
+- [x] **9C — Domain veri modeli** — `DDM-v0 / D-077` — granular Skill/Objective state, assessment-resource versions/exposure/validation records, years-long history, curriculum versioning
+- [ ] **9D — Servis sınırları** **AKTİF**
 - [ ] **9E — AI entegrasyon mimarisi**
 - [ ] **9F — Test stratejisi**
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9B`  
-**Son tamamlanan:** **`9B — LFPS-v0 / D-076`**  
-**Aktif:** **`9C — Domain veri modeli`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9C`  
+**Son tamamlanan:** **`9C — DDM-v0 / D-077`**  
+**Aktif:** **`9D — Servis sınırları`** — active-not-executed
 
-**AŞAMA 8 tamamlandı.** 9B `LFPS-v0` ile local-first persistence kilitlendi: kanıt source of truth ve öğrenci state'i yeniden hesaplanabilir projeksiyon, append-only truth kayıtları, SQLite embedded transactional store, core-owned persistence interface'leri, ayrı versiyonlanan curriculum/user state, kalıcı exposure kayıtları, tek-eylem-tek-transaction, forward-only migration ve atomik doğrulanmış restore. ORM library 10A'ya, physical schema 9C'ye bırakıldı.
+**AŞAMA 8 tamamlandı.** 9C `DDM-v0` ile domain veri modeli kilitlendi: üç store bölgesi, `(logical_id, version)` composite kimlik ve yapısal pinning, truth tablolarında UPDATE yolu olmayan append-only tasarım, dört ayrı evidence ekseni, append edilen disposition kayıtları, her timestamp'te instant + study day + offset, watermark'lı projection provenance, seçim yolunda indekslenen exposure ve library-neutral physical schema. ORM 10A'ya, boundary'ler 9D'ye bırakıldı.
 
-9C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+9D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

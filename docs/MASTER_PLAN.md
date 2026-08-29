@@ -494,7 +494,24 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - V1'de kanıt budanmaz,
 - independent validator **100/100 PASS** (V1_SCOPE/KGC/QAB/ASUX/TRUX/SPWX/AMTS çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A regressions PASS.
 
-### [ ] 9C — Domain veri modeli — **AKTİF**
+### [x] 9C — Domain veri modeli — DDM-v0 / D-077
+
+**9C final coverage:**
+- schema mimariyi uygular; LFPS-v0 garantileri konvansiyon değil yapısal,
+- üç store bölgesi; curriculum store'dan user store'a foreign key yok,
+- versiyonlu kimlik `(logical_id, version)`; her user referansı version taşır — pinning yapısal,
+- truth tablolarında UPDATE/DELETE yolu yok; düzeltme append edilen `evidence_disposition`,
+- dört bağımsız evidence ekseni ayrı kolon: outcome / evaluator_status / independence_class / contested,
+- `evidence_event` GRE-v0'nin 9C'ye devrettiği alan sözleşmesini karşılar,
+- her timestamp'li satır instant + study day + UTC offset saklar (DST/seyahat doğruluğu),
+- her projection satırı policy version + truth watermark + build time + curriculum version kaydeder,
+- SPWX-v0'nin dört Skill ekseni storage'da da ayrı; presentation state yerlerini almaz,
+- exposure seçim yolunda indekslenir; silinmez, arşivlenmez,
+- physical schema library-neutral: entity başına tablo, composite PK, versiyonlu FK, constrained string enum'lar, monotonic sequence watermark,
+- core-visible modelde platform tipi yok,
+- independent validator **114/114 PASS** (LFPS/KGC/GNS/GRE/TRUX/ASUX/SPWX çapraz doğrulamalı, mutation-tested); Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B regressions PASS.
+
+### [ ] 9D — Servis sınırları — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -641,11 +658,11 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9B`  
-**Son tamamlanan:** **`9B — LFPS-v0 / D-076`**  
-**Aktif:** **`9C — Domain veri modeli`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9C`  
+**Son tamamlanan:** **`9C — DDM-v0 / D-077`**  
+**Aktif:** **`9D — Servis sınırları`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **9C fresh PRE-STEP → LFPS-v0 persistence mimarisi üzerinde granular Skill/Objective state, assessment-resource version/exposure/validation kayıtları, yıllarca history ve curriculum versioning için entity/field/relation ve physical schema → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **9D fresh PRE-STEP → DDM-v0 modeli üzerinde module ve service boundary'leri; saf Kotlin core'un nerede bittiği, persistence/assessment/planner/AI/UI katmanlarının nasıl ayrıldığı ve her bağımlılığın hangi yöne baktığı → independent QA → D-050 POST sync + stale audit.**
 
 - D-068: 8A final `UXIA-v0`.
 - D-069: 8B final `THUX-v0`.
@@ -656,3 +673,4 @@ Bir sonraki yürütme: **9C fresh PRE-STEP → LFPS-v0 persistence mimarisi üze
 - D-074: 8G final `WFPX-v0`; AŞAMA 8 kapandı.
 - D-075: 9A final `AMTS-v0`.
 - D-076: 9B final `LFPS-v0`.
+- D-077: 9C final `DDM-v0`.

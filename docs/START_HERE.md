@@ -148,6 +148,9 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 ### D-076 — LFPS-v0
 9B final `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md`; local-first persistence kilitlendi. Kanıt source of truth, öğrenci state'i yeniden hesaplanabilir projeksiyon; truth kayıtları append-only; storage engine SQLite; persistence interface'leri core-owned; curriculum ve user state ayrı versiyonlanır; exposure kayıtları kalıcı ve kaybı veri kaybıdır; bir eylem bir transaction; migration forward-only; restore atomik ve doğrulanmış; bozulma `data_recovery_required` yüzeyler ve sessiz reset yasaktır; V1'de kanıt budanmaz. ORM library 10A'ya, physical schema 9C'ye bırakıldı.
 
+### D-077 — DDM-v0
+9C final `docs/DOMAIN_DATA_MODEL_SPEC.md`; domain veri modeli kilitlendi. Schema mimariyi uygular: üç store bölgesi, `(logical_id, version)` composite kimlik ve yapısal pinning, truth tablolarında UPDATE yolu olmayan append-only tasarım, dört ayrı evidence ekseni, append edilen disposition, her timestamp'te instant + study day + offset, watermark'lı projection provenance, seçim yolunda indekslenen exposure ve library-neutral physical schema. ORM 10A'ya, boundary'ler 9D'ye bırakıldı.
+
 ## 4. Güncel stage mapping
 - 1 Product framing ✅
 - 2 Learning/mastery ✅
@@ -166,8 +169,8 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. GitHub d
 - 7 English parallel line ✅ — **7A EED-v0 / D-063; 7B TECP-v0 / D-064; 7C DECP-v0 / D-065; 7D TEIP-v0 / D-066; 7E TEPM-v0 / D-067**
 - 8 UX — **8A ✅ UXIA-v0 / D-068; 8B ✅ THUX-v0 / D-069; 8C ✅ TRUX-v0 / D-070; 8D ✅ ASUX-v0 / D-071; 8E ✅ SPWX-v0 / D-072; 8F ✅ VDSX-v0 / D-073; 8G ✅ WFPX-v0 / D-074**
   - **AŞAMA 8 ✅ tamamlandı**
-- 9 Architecture — **9A ✅ AMTS-v0 / D-075; 9B ✅ LFPS-v0 / D-076**
-  - **9C 🟡 active-not-executed**
+- 9 Architecture — **9A ✅ AMTS-v0 / D-075; 9B ✅ LFPS-v0 / D-076; 9C ✅ DDM-v0 / D-077**
+  - **9D 🟡 active-not-executed**
 - 9 Architecture/data model
 - 10 Mobile skeleton
 - 11 Daily learning MVP
@@ -309,15 +312,16 @@ Bu lineer takvim değildir. PDM-v0 high-level boundaries'i, KGC-v0 graph contrac
 - **AŞAMA 8 ✅ TAMAMLANDI**
 - AŞAMA 9A ✅ **AMTS-v0 / D-075**
 - AŞAMA 9B ✅ **LFPS-v0 / D-076**
-- AŞAMA 9C 🟡 **active-not-executed**
+- AŞAMA 9C ✅ **DDM-v0 / D-077**
+- AŞAMA 9D 🟡 **active-not-executed**
 
 7E final: English mastery exact GRE/RVR-backed D01 Skill state'inden derived profile olarak sunulur; 8 presentation state, qualified A1/A2/B1 base profile, B2+ per-capability evidence ve no-overclaim guards kabul edildi.
 
 ## 9. Güncel çalışma konumu
 
-**Son tamamlanan:** **`9B — LFPS-v0 / D-076`**  
-**Aktif:** **`9C — Domain veri modeli`**  
-**9C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** **`9C — DDM-v0 / D-077`**  
+**Aktif:** **`9D — Servis sınırları`**  
+**9D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 10. Yeni sohbet için kısa komut
-> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071, 8E SPWX-v0 / D-072, 8F VDSX-v0 / D-073 ve 8G WFPX-v0 / D-074 tamamlandı; AŞAMA 8 kapandı. 9A AMTS-v0 / D-075 ve 9B LFPS-v0 / D-076 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Design system expression layer'dır ve canonical state'in iddia etmediği severity'yi ekleyemez; hiçbir learning state alarm tonu almaz. Geometry kabul edilmiş anlamı yerleştirir ve state/label/tone değiştiremez; palet tema başına ölçüldü ve traffic-light rampası yoktur. Teknoloji Android native + Kotlin/Compose'dur; dynamic colour kapalıdır ve domain core saf Kotlin'dir. Kanıt source of truth'tur ve öğrenci state'i yeniden hesaplanabilir projeksiyondur; exposure kayıtları kalıcıdır. Aktif step 9C — Domain veri modeli; 9C henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`
+> `xpike-dgm/ai-infra-learning-coach reposunda AGENTS.md + SESSION_START + START_HERE + PROJECT_MEMORY_PROTOCOL ile başla. Current execution için EXECUTION_INDEX + STEP_STATUS + HANDOFF_STATE + PROJECT_CONTEXT + MASTER_PLAN'ı fresh çapraz doğrula. 8A UXIA-v0 / D-068, 8B THUX-v0 / D-069, 8C TRUX-v0 / D-070, 8D ASUX-v0 / D-071, 8E SPWX-v0 / D-072, 8F VDSX-v0 / D-073 ve 8G WFPX-v0 / D-074 tamamlandı; AŞAMA 8 kapandı. 9A AMTS-v0 / D-075, 9B LFPS-v0 / D-076 ve 9C DDM-v0 / D-077 tamamlandı. Today action-first; queue current selected PlannedTasks; capacity time budget; reasons PDT-v0 trace-derived; completion != mastery; missed-day debt yok; assessment/English contextual. Task Runner execution surface'tir; session emergent/ungraded; shared focused-flow frame assessment session tarafından da devralınır; assistance non-punitive ve recheck planner-owned; provenance sorulur. Assessment session evidence-collection workflow'udur; üç scope tek interior; atomic boundary submission; submitted boundary frozen; skip != incorrect; result semantic ve pass/fail banner yok. Progress canonical evidence state projection'ıdır; tek 8-state Skill vokabüleri bütün Skill'lere uygulanır; `at_risk` qualifier'dır; multi-axis truth çökertilmez; Progress sayabilir fakat puanlayamaz; remediation task completion closure değildir. Design system expression layer'dır ve canonical state'in iddia etmediği severity'yi ekleyemez; hiçbir learning state alarm tonu almaz. Geometry kabul edilmiş anlamı yerleştirir ve state/label/tone değiştiremez; palet tema başına ölçüldü ve traffic-light rampası yoktur. Teknoloji Android native + Kotlin/Compose'dur; dynamic colour kapalıdır ve domain core saf Kotlin'dir. Kanıt source of truth'tur ve öğrenci state'i yeniden hesaplanabilir projeksiyondur; exposure kayıtları kalıcıdır. Schema mimariyi uygular; pinning yapısaldır ve truth tablolarında UPDATE yolu yoktur. Aktif step 9D — Servis sınırları; 9D henüz yürütülmedi. Numaralı adımı fresh PRE ve kullanıcı açık onayı olmadan yürütme.`

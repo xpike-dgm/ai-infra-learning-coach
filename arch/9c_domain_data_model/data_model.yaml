@@ -1,0 +1,466 @@
+model: DDM-v0
+stage_step: 9C
+status: accepted_9c
+decision: D-077
+persistence: LFPS-v0
+platform: AMTS-v0
+purpose: domain_data_model_entities_relations_and_physical_schema
+
+scope:
+  data_model_only: true
+  orm_library_locked: false
+  migration_scripts_locked: false
+  service_boundaries_locked: false
+  ai_integration_locked: false
+  test_strategy_locked: false
+  encryption_at_rest_locked: false
+  stage8_semantics_changed: false
+  persistence_rules_changed: false
+  row_count_budget: null
+  query_latency_target: null
+  storage_size_estimate: null
+  index_implementation: null
+
+model_question: How do accepted contracts become tables, fields and relations without losing a guarantee?
+
+canonical_truth_owners:
+  persistence_architecture: LFPS-v0
+  platform: AMTS-v0
+  curriculum_graph_contract: KGC-v0
+  id_format: GNS-v0
+  assessment_resources: QAB-v0
+  resource_validation: AIV-v0
+  evidence_contract: GRE-v0
+  retention: RVR-v0
+  prerequisite: PRG-v0
+  topic_state: TSM-v0
+  weakness: WLRM-v0
+  english_profile: TEPM-v0
+  skill_axes: SPWX-v0
+  orm_library: 10A
+  service_boundaries: 9D
+
+invariants:
+  schema_enforces_architecture: true
+  truth_table_has_update_path: false
+  truth_table_has_delete_path: false
+  soft_delete_flag_on_truth_row: false
+  correction_is_appended_disposition: true
+  curriculum_row_overwritten_when_published: false
+  resource_version_overwritten: false
+  reference_without_version_allowed: false
+  curriculum_to_user_foreign_key: false
+  outcome_and_evaluator_status_collapsed: false
+  outcome_and_independence_collapsed: false
+  contested_collapsed_into_outcome: false
+  presentation_state_replaces_axes_in_storage: false
+  timestamp_stores_instant_only: false
+  timestamp_stores_local_date_only: false
+  projection_without_provenance: false
+  exposure_row_deleted: false
+  exposure_lookup_expensive_at_selection_time: false
+  polymorphic_catch_all_table: false
+  orm_annotation_in_model: false
+  dialect_specific_ddl_in_model: false
+  platform_type_in_core_visible_entity: false
+  row_count_or_latency_asserted: false
+  boundaries_ai_tests_or_encryption_decided_here: false
+  versioned_identity_is_composite: true
+  pinning_is_structural: true
+  projections_droppable_and_rebuildable: true
+  truth_tables_carry_monotonic_sequence: true
+
+store_regions:
+  - id: curriculum_store
+    mutability: immutable_once_published
+    versioned: true
+  - id: user_truth_store
+    mutability: append_only
+    versioned: false
+  - id: user_projection_store
+    mutability: droppable_and_rebuildable
+    versioned: false
+curriculum_to_user_foreign_key: false
+projection_rebuild_touches_truth_tables: false
+
+identity:
+  id_format_contract: GNS-v0
+  id_case: lowercase_ascii
+  id_shape: dotted_namespace_snake_case_segments
+  id_independent_of:
+    - locale
+    - ordering
+    - version
+  forbidden_inside_id:
+    - week
+    - stage
+    - release
+    - band
+    - difficulty
+    - role
+  versioned_entity_primary_key:
+    - logical_id
+    - version
+  user_reference_carries_version: true
+  reference_by_logical_id_alone: false
+  pinning_rationale: a_reference_without_version_silently_repoints_at_the_newest_version_on_curriculum_update
+
+curriculum_entities:
+  - id: curriculum_version
+    key: [version]
+    notes: manifest_published_at_source_refs_provenance
+  - id: domain
+    key: [logical_id, version]
+  - id: module
+    key: [logical_id, version]
+  - id: topic
+    key: [logical_id, version]
+  - id: skill
+    key: [logical_id, version]
+    fields:
+      - canonical_name
+      - capability_statement
+      - lifecycle_status
+      - capability_kind
+      - retention_profile
+      - critical_prerequisite
+      - remediation_tags
+      - professional_capability_tags
+      - project_capability_tags
+      - source_refs
+      - provenance
+      - freshness_policy_ref
+      - aliases
+  - id: objective
+    key: [logical_id, version]
+    fields:
+      - parent_skill_logical_id
+      - parent_skill_version
+      - required
+      - criticality
+      - acceptable_evidence_types
+      - direct_evidence_types
+      - required_direct_type
+  - id: topic_skill_link
+    key: [topic_logical_id, topic_version, skill_logical_id, skill_version]
+  - id: skill_prerequisite_edge
+    key: [prerequisite_skill_logical_id, prerequisite_skill_version, target_skill_logical_id, target_skill_version, edge_version]
+    fields:
+      - edge_kind
+      - reason_kind
+      - strictness_profile
+      - lifecycle_status
+      - provenance
+  - id: assessment_resource
+    key: [logical_id]
+  - id: assessment_resource_version
+    key: [logical_id, version]
+    fields:
+      - content_ref
+      - rubric_ref
+      - evidence_type
+      - allowed_tools_policy
+      - variant_family_id
+      - dependency_group_id
+      - content_origin
+  - id: resource_validation_record
+    key: [logical_id, version, validated_at_instant]
+    fields:
+      - validation_status
+      - validator
+      - origin
+
+truth_entities:
+  - id: attempt
+    maps_to_lfps: attempt
+  - id: artifact
+    maps_to_lfps: artifact
+  - id: evidence_event
+    maps_to_lfps: evidence_event
+  - id: assistance_event
+    maps_to_lfps: assistance_metadata
+  - id: artifact_provenance
+    maps_to_lfps: artifact_provenance
+  - id: exposure_record
+    maps_to_lfps: exposure_record
+  - id: assessment_session
+    maps_to_lfps: assessment_session
+  - id: planner_decision_trace
+    maps_to_lfps: planner_decision_trace
+  - id: plan_version
+  - id: planned_task
+  - id: resume_checkpoint
+  - id: evidence_disposition
+
+evidence_event:
+  covers_contract: GRE-v0
+  fields:
+    - id
+    - sequence
+    - occurred_at_instant
+    - occurred_on_study_day
+    - utc_offset_minutes
+    - skill_logical_id
+    - skill_version
+    - objective_logical_ids
+    - objective_versions
+    - evidence_type
+    - source_attempt_id
+    - resource_logical_id
+    - resource_version
+    - artifact_id
+    - variant_family_id
+    - outcome
+    - correctness_or_rubric_result
+    - difficulty
+    - novelty_familiarity
+    - assistance_context
+    - duration_ms
+    - prerequisite_snapshot
+    - delay_since_last_exposure_ms
+    - evaluator
+    - evaluator_status
+    - independence_class
+    - contested
+    - provenance
+    - misconception_tags
+  independent_axes:
+    outcome:
+      - positive
+      - negative
+      - partial
+      - invalid
+    evaluator_status:
+      - verified
+      - provisional
+      - invalid
+    independence_class:
+      - independent
+      - assisted
+      - practice_only
+      - requires_independent_recheck
+    contested:
+      - true
+      - false
+  axes_collapsed: false
+  collapse_rationale: folding_evaluator_status_into_outcome_makes_provisional_indistinguishable_from_settled
+
+evidence_disposition:
+  appended_not_updated: true
+  fields:
+    - evidence_event_id
+    - disposition
+    - reason_code
+    - decided_at_instant
+    - decided_on_study_day
+    - decided_by
+  disposition_values:
+    - invalidated
+    - contested
+    - superseded
+    - reinstated
+  decided_by_values:
+    - deterministic_rule
+    - validator
+    - user_report
+  recomputation_excludes_by_rule_not_by_absence: true
+
+assistance_event:
+  fields:
+    - id
+    - attempt_id
+    - level
+    - timing
+    - target_scope
+    - source
+    - requested_by_user
+    - occurred_at_instant
+  level_values: [H1, H2, H3, H4]
+  timing_values: [before_attempt, during_attempt, after_submit, after_failure]
+  target_scope_values: [target_objective, non_target_support]
+  source_values: [deterministic_content, ai_generated]
+
+artifact_provenance:
+  asked_not_inferred: true
+  fields:
+    - artifact_id
+    - origin
+    - answered_at_instant
+  origin_values:
+    - user_authored
+    - user_authored_with_assistance
+    - mixed_authorship
+    - generated_or_copied
+    - unknown_provenance
+
+exposure_record:
+  fields:
+    - id
+    - resource_logical_id
+    - resource_version
+    - variant_family_id
+    - exposure_kind
+    - max_exposure_level
+    - occurred_at_instant
+    - occurred_on_study_day
+    - source_attempt_id
+  exposure_kinds:
+    - solution_exposure
+    - item_version_seen
+    - variant_family_exposure
+  deleted: false
+  archived: false
+  exported_with_truth_records: true
+  migrated_with_truth_records: true
+  indexed_for_selection_lookup: true
+  indexed_by:
+    - resource_logical_id
+    - variant_family_id
+    - exposure_kind
+  rationale: never_serving_a_solution_exposed_item_as_a_fresh_independent_check_is_a_hot_path_lookup
+
+time_representation:
+  fields_on_every_timestamped_row:
+    - occurred_at_instant
+    - occurred_on_study_day
+    - utc_offset_minutes
+  instant_only: false
+  local_date_only: false
+  instant_purpose: interval_arithmetic_for_retention
+  study_day_purpose: daily_planning_and_history
+  offset_purpose: reconstructing_what_was_in_effect
+  rationale: after_dst_or_travel_neither_value_derives_reliably_from_the_other
+  recorded_at_write_time: true
+
+projection_entities:
+  - id: skill_state
+    grain: per_skill
+    stores_axes_separately: true
+    axes:
+      - mastery_axis_state
+      - retention_axis_state
+      - prerequisite_axis_state
+      - weakness_axis_state
+    derived_field: primary_presentation_state
+    presentation_state_replaces_axes: false
+  - id: objective_state
+    grain: per_objective
+  - id: retention_state
+    grain: per_skill
+  - id: prerequisite_readiness
+    grain: per_skill
+  - id: topic_state
+    grain: per_topic
+  - id: weakness_state
+    grain: per_objective
+  - id: english_profile
+    grain: per_d01_skill_plus_qualified_band_summary
+  - id: planner_summary
+    grain: derived_planner_visible_summaries
+
+projection_provenance:
+  required_on_every_projection_row: true
+  fields:
+    - policy_version
+    - truth_watermark
+    - built_at_instant
+    - input_curriculum_version
+  rationale: without_a_watermark_a_stale_projection_is_indistinguishable_from_a_current_one
+  enables_state: recomputing_projection
+
+physical_schema:
+  library_neutral: true
+  orm_annotations: false
+  dialect_specific_ddl: false
+  one_table_per_entity: true
+  polymorphic_catch_all_table: false
+  composite_primary_keys_on_versioned_entities: true
+  foreign_keys_carry_version_column: true
+  enum_like_fields_are_constrained_strings: true
+  enum_allowed_sets_documented: true
+  truth_tables_carry_monotonic_sequence: true
+  sequence_used_as_projection_watermark: true
+  projection_tables_droppable_without_touching_truth: true
+  metadata_table_stores:
+    - schema_version
+    - policy_version
+  index_intent:
+    - evidence_by_skill
+    - evidence_by_objective
+    - evidence_by_time_range
+    - exposure_by_resource_logical_id
+    - exposure_by_variant_family
+    - exposure_by_exposure_kind
+    - attempts_by_assessment_session
+    - planned_tasks_by_plan_version
+    - dispositions_by_evidence_event
+  concrete_index_definitions_owner: implementation_and_18E
+
+history_growth:
+  truth_tables_grow_without_pruning: true
+  writes_are_append_only_so_cost_is_independent_of_history_size: true
+  read_cost_controlled_by: [index_shape, bounded_query_windows_in_engines]
+  read_cost_controlled_by_deleting_history: false
+  projection_tables_keyed_by_entity_not_by_event: true
+
+core_visible_types:
+  identifier: string
+  instant: epoch_value
+  study_day: iso_date_string
+  enum_like: constrained_string
+  platform_type_present: false
+  forbidden_types:
+    - sqlite_type
+    - android_type
+    - orm_type
+    - filesystem_type
+
+forbidden_model_patterns:
+  - mutable_outcome_column_without_disposition_table
+  - update_or_delete_path_on_truth_table
+  - soft_delete_flag_instead_of_disposition_record
+  - curriculum_reference_without_version_column
+  - foreign_key_from_curriculum_store_into_user_store
+  - collapsing_outcome_evaluator_independence_or_contested
+  - timestamp_with_instant_only_or_local_date_only
+  - projection_row_without_policy_version_and_watermark
+  - deleting_or_archiving_exposure_rows
+  - exposure_design_making_selection_lookup_expensive
+  - polymorphic_catch_all_table
+  - orm_annotations_or_dialect_specific_ddl_here
+  - platform_type_in_core_visible_entity
+  - overwriting_published_curriculum_or_resource_version
+  - deciding_boundaries_ai_tests_or_encryption_here
+
+future_stage_boundaries:
+  9D: module_and_service_boundaries
+  9E: ai_integration_architecture
+  9F: test_strategy_including_append_only_enforcement
+  10A: orm_library_and_migration_scripts
+  12: planner_mastery_implementation
+  18: index_tuning_and_performance_calibration
+  19: encryption_at_rest_and_release_data_reliability
+
+acceptance:
+  required_previous_models:
+    - LFPS-v0
+    - AMTS-v0
+    - KGC-v0
+    - GNS-v0
+    - QAB-v0
+    - AIV-v0
+    - GRE-v0
+    - RVR-v0
+    - PRG-v0
+    - TSM-v0
+    - WLRM-v0
+    - TEPM-v0
+    - SPWX-v0
+    - TRUX-v0
+    - ASUX-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9a_regression_required: true
+  stage9b_regression_required: true

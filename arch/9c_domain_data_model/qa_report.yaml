@@ -1,0 +1,379 @@
+stage_step: 9C
+model: DDM-v0
+candidate_decision: D-077
+result: PASS
+status_observed: accepted_9c
+checks_total: 114
+checks_passed: 114
+checks_failed: 0
+curriculum_entities: 11
+truth_entities: 12
+projection_entities: 8
+forbidden_model_patterns: 15
+checks:
+- check: E9C-00_required_file
+  result: PASS
+  details: arch\9c_domain_data_model\data_model.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: docs\DOMAIN_DATA_MODEL_SPEC.md
+- check: E9C-00_required_file
+  result: PASS
+  details: research\9c_domain_data_model_research.md
+- check: E9C-00_required_file
+  result: PASS
+  details: arch\9b_local_first_persistence\persistence.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: arch\9a_mobile_technology\technology.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: ux\8e_progress_skill_weakness\progress.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: ux\8c_daily_working_flow\flow.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: ux\8d_assessment_session\session.yaml
+- check: E9C-00_required_file
+  result: PASS
+  details: docs\MASTERY_SIGNALS_SPEC.md
+- check: E9C-00_required_file
+  result: PASS
+  details: docs\CURRICULUM_KNOWLEDGE_GRAPH_CONTRACT.md
+- check: E9C-00_required_file
+  result: PASS
+  details: docs\GRANULARITY_NAMING_STANDARD.md
+- check: E9C-01_identity
+  result: PASS
+  details: model=DDM-v0 step=9C
+- check: E9C-01_status
+  result: PASS
+  details: status=accepted_9c
+- check: E9C-01_decision
+  result: PASS
+  details: decision=D-077
+- check: E9C-01_lineage
+  result: PASS
+  details: persistence=LFPS-v0 platform=AMTS-v0
+- check: E9C-02_model_only
+  result: PASS
+  details: 9C is the data model only
+- check: E9C-02_deferred_open
+  result: PASS
+  details: violations=[]
+- check: E9C-02_upstream_untouched
+  result: PASS
+  details: AŞAMA 8 semantics and LFPS rules untouched
+- check: E9C-02_no_invented_numbers
+  result: PASS
+  details: violations=[]
+- check: E9C-03_false_guards
+  result: PASS
+  details: violations=[]
+- check: E9C-03_true_guards
+  result: PASS
+  details: violations=[]
+- check: E9C-04_regions
+  result: PASS
+  details: regions=['curriculum_store', 'user_projection_store', 'user_truth_store']
+- check: E9C-04_mutability
+  result: PASS
+  details: store mutability matches LFPS-v0
+- check: E9C-04_no_cross_fk
+  result: PASS
+  details: no curriculum→user FK; rebuild does not touch truth
+- check: E9C-04_lfps_append_only
+  result: PASS
+  details: LFPS-v0 really requires append-only truth
+- check: E9C-05_truth_coverage
+  result: PASS
+  details: unmapped LFPS truth records=[]
+- check: E9C-05_disposition_entity
+  result: PASS
+  details: evidence_disposition entity exists
+- check: E9C-06_projection_coverage
+  result: PASS
+  details: projections=8 vs LFPS derived=7
+- check: E9C-06_no_truth_projection_overlap
+  result: PASS
+  details: overlap=[]
+- check: E9C-07_id_contract
+  result: PASS
+  details: id=GNS-v0
+- check: E9C-07_id_independence
+  result: PASS
+  details: independent_of=['locale', 'ordering', 'version']
+- check: E9C-07_id_forbidden
+  result: PASS
+  details: forbidden=['week', 'stage', 'release', 'band', 'difficulty', 'role']
+- check: E9C-07_gns_real
+  result: PASS
+  details: GNS-v0 really forbids those inside logical IDs
+- check: E9C-08_composite_key
+  result: PASS
+  details: pk=['logical_id', 'version']
+- check: E9C-08_pinning
+  result: PASS
+  details: pinning is structural with recorded rationale
+- check: E9C-08_lfps_pinning_real
+  result: PASS
+  details: LFPS-v0 really requires version pinning
+- check: E9C-08_kgc_immutability
+  result: PASS
+  details: KGC-v0 forbids silent published-state change
+- check: E9C-09_curriculum_entities
+  result: PASS
+  details: missing=[]
+- check: E9C-09_versioned_key
+  result: PASS
+  details: domain.key=['logical_id', 'version']
+- check: E9C-09_versioned_key
+  result: PASS
+  details: module.key=['logical_id', 'version']
+- check: E9C-09_versioned_key
+  result: PASS
+  details: topic.key=['logical_id', 'version']
+- check: E9C-09_versioned_key
+  result: PASS
+  details: skill.key=['logical_id', 'version']
+- check: E9C-09_versioned_key
+  result: PASS
+  details: objective.key=['logical_id', 'version']
+- check: E9C-09_versioned_key
+  result: PASS
+  details: assessment_resource_version.key=['logical_id', 'version']
+- check: E9C-10_skill_fields_cover_kgc
+  result: PASS
+  details: missing=[]
+- check: E9C-10_objective_pins_parent
+  result: PASS
+  details: objective fields=['parent_skill_logical_id', 'parent_skill_version', 'required',
+    'criticality', 'acceptable_evidence_types', 'direct_evidence_types', 'required_direct_type']
+- check: E9C-10_link_key_has_versions
+  result: PASS
+  details: link key=['topic_logical_id', 'topic_version', 'skill_logical_id', 'skill_version']
+- check: E9C-10_edge_fields
+  result: PASS
+  details: edge fields=['edge_kind', 'reason_kind', 'strictness_profile', 'lifecycle_status',
+    'provenance']
+- check: E9C-11_covers_gre
+  result: PASS
+  details: covers=GRE-v0
+- check: E9C-11_gre_hands_to_9c
+  result: PASS
+  details: GRE-v0 really hands the EvidenceEvent contract to 9C
+- check: E9C-11_gre_fields
+  result: PASS
+  details: missing=[]
+- check: E9C-11_pins_versions
+  result: PASS
+  details: evidence pins skill and resource versions
+- check: E9C-12_axis_count
+  result: PASS
+  details: axes=['contested', 'evaluator_status', 'independence_class', 'outcome']
+- check: E9C-12_outcome_values
+  result: PASS
+  details: outcome=['positive', 'negative', 'partial', 'invalid']
+- check: E9C-12_evaluator_values
+  result: PASS
+  details: evaluator=['verified', 'provisional', 'invalid']
+- check: E9C-12_independence_values
+  result: PASS
+  details: independence=['independent', 'assisted', 'practice_only', 'requires_independent_recheck']
+- check: E9C-12_axes_are_columns
+  result: PASS
+  details: all four axes are fields
+- check: E9C-12_not_collapsed
+  result: PASS
+  details: axes not collapsed, rationale recorded
+- check: E9C-12_evaluator_matches_asux
+  result: PASS
+  details: 9C=['invalid', 'provisional', 'verified'] vs ASUX=['invalid', 'provisional',
+    'verified']
+- check: E9C-13_appended
+  result: PASS
+  details: disposition is appended
+- check: E9C-13_values
+  result: PASS
+  details: values=['invalidated', 'contested', 'superseded', 'reinstated']
+- check: E9C-13_decided_by
+  result: PASS
+  details: decided_by=['deterministic_rule', 'validator', 'user_report']
+- check: E9C-13_rule_not_absence
+  result: PASS
+  details: recomputation excludes by rule
+- check: E9C-13_lfps_mark_not_erase
+  result: PASS
+  details: LFPS-v0 requires marking rather than erasing
+- check: E9C-14_assistance_fields
+  result: PASS
+  details: fields=['id', 'attempt_id', 'level', 'timing', 'target_scope', 'source',
+    'requested_by_user', 'occurred_at_instant']
+- check: E9C-14_levels_match_trux
+  result: PASS
+  details: 9C=['H1', 'H2', 'H3', 'H4'] vs TRUX=['H1', 'H2', 'H3', 'H4']
+- check: E9C-14_timings_match_trux
+  result: PASS
+  details: 9C=['after_failure', 'after_submit', 'before_attempt', 'during_attempt']
+    vs TRUX=['after_failure', 'after_submit', 'before_attempt', 'during_attempt']
+- check: E9C-14_scopes_match_trux
+  result: PASS
+  details: 9C=['non_target_support', 'target_objective'] vs TRUX=['non_target_support',
+    'target_objective']
+- check: E9C-15_provenance_asked
+  result: PASS
+  details: provenance asked, not inferred, in both specs
+- check: E9C-15_origin_values_match_trux
+  result: PASS
+  details: 9C=['generated_or_copied', 'mixed_authorship', 'unknown_provenance', 'user_authored',
+    'user_authored_with_assistance'] vs TRUX=['generated_or_copied', 'mixed_authorship',
+    'unknown_provenance', 'user_authored', 'user_authored_with_assistance']
+- check: E9C-16_exposure_kinds
+  result: PASS
+  details: 9C=['item_version_seen', 'solution_exposure', 'variant_family_exposure']
+    vs LFPS=['item_version_seen', 'solution_exposure', 'variant_family_exposure']
+- check: E9C-16_never_removed
+  result: PASS
+  details: exposure lifecycle=False/False
+- check: E9C-16_indexed
+  result: PASS
+  details: indexed_by=['resource_logical_id', 'variant_family_id', 'exposure_kind']
+- check: E9C-16_pins_version
+  result: PASS
+  details: exposure pins the resource version
+- check: E9C-16_lfps_data_loss
+  result: PASS
+  details: LFPS-v0 classifies exposure loss as data loss
+- check: E9C-17_three_fields
+  result: PASS
+  details: fields=['occurred_at_instant', 'occurred_on_study_day', 'utc_offset_minutes']
+- check: E9C-17_not_one_sided
+  result: PASS
+  details: neither representation alone
+- check: E9C-17_purposes
+  result: PASS
+  details: each value has a recorded purpose
+- check: E9C-17_write_time
+  result: PASS
+  details: recorded at write time
+- check: E9C-17_applied_to_entity
+  result: PASS
+  details: evidence_event timestamp fields
+- check: E9C-17_applied_to_entity
+  result: PASS
+  details: exposure_record timestamp fields
+- check: E9C-18_axes_stored_separately
+  result: PASS
+  details: 'skill_state={''id'': ''skill_state'', ''grain'': ''per_skill'', ''stores_axes_separately'':
+    True, ''axes'': [''mastery_axis_state'', ''retention_axis_state'', ''prerequisite_axis_state'',
+    ''weakness_axis_state''], ''derived_field'': ''primary_presentation_state'', ''presentation_state_replaces_axes'':
+    False}'
+- check: E9C-18_axes_match_spwx
+  result: PASS
+  details: SPWX-v0 really declares these four axes
+- check: E9C-19_projection_provenance
+  result: PASS
+  details: provenance=['policy_version', 'truth_watermark', 'built_at_instant', 'input_curriculum_version']
+- check: E9C-19_state_is_accepted
+  result: PASS
+  details: recomputing_projection is an accepted SPWX-v0 state
+- check: E9C-20_library_neutral
+  result: PASS
+  details: schema is library-neutral
+- check: E9C-20_table_shape
+  result: PASS
+  details: table and key shape
+- check: E9C-20_enums
+  result: PASS
+  details: enum-like fields constrained and documented
+- check: E9C-21_watermark
+  result: PASS
+  details: monotonic sequence drives the watermark
+- check: E9C-21_metadata
+  result: PASS
+  details: metadata=['schema_version', 'policy_version']
+- check: E9C-21_index_intent
+  result: PASS
+  details: missing=[]
+- check: E9C-21_index_tuning_deferred
+  result: PASS
+  details: index owner=implementation_and_18E
+- check: E9C-22_core_types
+  result: PASS
+  details: 'core types={''identifier'': ''string'', ''instant'': ''epoch_value'',
+    ''study_day'': ''iso_date_string'', ''enum_like'': ''constrained_string'', ''platform_type_present'':
+    False, ''forbidden_types'': [''sqlite_type'', ''android_type'', ''orm_type'',
+    ''filesystem_type'']}'
+- check: E9C-22_no_platform_type
+  result: PASS
+  details: forbidden=['sqlite_type', 'android_type', 'orm_type', 'filesystem_type']
+- check: E9C-22_amts_core_purity
+  result: PASS
+  details: core purity really required upstream
+- check: E9C-23_growth
+  result: PASS
+  details: 'growth={''truth_tables_grow_without_pruning'': True, ''writes_are_append_only_so_cost_is_independent_of_history_size'':
+    True, ''read_cost_controlled_by'': [''index_shape'', ''bounded_query_windows_in_engines''],
+    ''read_cost_controlled_by_deleting_history'': False, ''projection_tables_keyed_by_entity_not_by_event'':
+    True}'
+- check: E9C-23_lfps_no_pruning
+  result: PASS
+  details: LFPS-v0 forbids pruning in V1
+- check: E9C-24_forbidden_patterns
+  result: PASS
+  details: missing=[]
+- check: E9C-24_forbidden_count
+  result: PASS
+  details: count=15
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=9D
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=9E
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=9F
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=10A
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=12
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=18
+- check: E9C-25_boundary_open
+  result: PASS
+  details: stage=19
+- check: E9C-25_9d_owns_boundaries
+  result: PASS
+  details: 9D=module_and_service_boundaries
+- check: E9C-26_required_models
+  result: PASS
+  details: missing=[]
+- check: E9C-26_regressions_required
+  result: PASS
+  details: 'acceptance={''required_previous_models'': [''LFPS-v0'', ''AMTS-v0'', ''KGC-v0'',
+    ''GNS-v0'', ''QAB-v0'', ''AIV-v0'', ''GRE-v0'', ''RVR-v0'', ''PRG-v0'', ''TSM-v0'',
+    ''WLRM-v0'', ''TEPM-v0'', ''SPWX-v0'', ''TRUX-v0'', ''ASUX-v0''], ''independent_qa_required'':
+    True, ''stage6_regression_required'': True, ''stage7_regression_required'': True,
+    ''stage8_regression_required'': True, ''stage9a_regression_required'': True, ''stage9b_regression_required'':
+    True}'
+- check: E9C-27_entity_id_format
+  result: PASS
+  details: bad_ids=[]
+- check: E9C-27_entity_ids_unique
+  result: PASS
+  details: duplicates=0
+- check: E9C-28_spec_contract
+  result: PASS
+  details: missing=[]
+- check: E9C-28_spec_no_numbers
+  result: PASS
+  details: spec refuses invented numbers
+- check: E9C-29_research_synthesis
+  result: PASS
+  details: missing=[]
+failures: []

@@ -42,8 +42,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **8G — Wireframe/prototip** | ✅ | WFPX-v0 / D-074. 3 window class + 6 surface geometry + 52 ölçülen kontrast çifti; 222/222 QA PASS. **AŞAMA 8 kapandı.** |
 | **9A — Mobil teknoloji seçimi** | ✅ | AMTS-v0 / D-075. Android native + Kotlin/Compose + dynamic colour kapalı + saf Kotlin core; 100/100 QA PASS. |
 | **9B — Veri saklama / local-first** | ✅ | LFPS-v0 / D-076. Evidence = truth, state = projection; SQLite; append-only; atomik migration/restore; 100/100 QA PASS. |
-| **9C — Domain veri modeli** | 🟡 Aktif | Entity/field/relation + physical schema; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **9D–20** | ⬜ Bekliyor | 9C sonrası canonical sırada. |
+| **9C — Domain veri modeli** | ✅ | DDM-v0 / D-077. 11 curriculum + 12 truth + 8 projection entity; yapısal pinning, dört eksen, üç-değerli zaman; 114/114 QA PASS. |
+| **9D — Servis sınırları** | 🟡 Aktif | Module/service boundary'leri ve bağımlılık yönleri; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **9E–20** | ⬜ Bekliyor | 9D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -62,27 +63,26 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9B
+## Son tamamlanan numaralı adım — 9C
 
-**Final:** `LFPS-v0 — Local-First Persistence Architecture` / D-076.  
-**Ana çıktı:** `docs/LOCAL_FIRST_PERSISTENCE_SPEC.md` + `arch/9b_local_first_persistence/`.
+**Final:** `DDM-v0 — Domain Data Model` / D-077.  
+**Ana çıktı:** `docs/DOMAIN_DATA_MODEL_SPEC.md` + `arch/9c_domain_data_model/`.
 
-9B sonucu:
-- **kanıt source of truth'tur; öğrenci state'i onun yeniden hesaplanabilir projeksiyonudur.** Attempt, artifact, evidence event, assistance metadata, provenance, exposure, assessment session ve planner trace append-only'dir; mastery/retention/readiness/Topic/weakness/English profile cache'tir,
-- öğrencinin kanıtladığı yetkinliği yalnız yeni kanıt değiştirebilir; geçersiz kanıt silinmez, işaretlenir,
-- storage engine **SQLite** (embedded transactional relational); gerekçe kontratlardan türetildi ve reddedilen alternatiflerin kaybettikleri kaydedildi,
-- ORM/mapping library seçilmedi; 10A verification item'ı (AMTS-v0 emsali),
-- persistence interface'leri core'a aittir ve platform bunları SQLite üzerinde implemente eder; core signature'ında storage/Android/fs tipi yoktur ve core cihazsız test edilebilir,
-- curriculum ve user state ayrı saklanır ve ayrı versiyonlanır; published version'lar korunur; user kayıtları curriculum version'ını pin'ler; **curriculum güncellemesi tek başına learner state değiştiremez**,
-- **exposure kayıtları kalıcı ve first-class'tır**; kaybı veri kaybıdır — kaybolursa solution-exposed bir item taze bağımsız kontrol olarak sunulabilir ve ürün sessizce sahte independent evidence üretir,
-- bir öğrenci eylemi bir transaction'dır; attempt asla assistance metadata/provenance olmadan yazılmaz; `evaluation_pending` evidence yazmaz,
-- migration forward-only ve versiyonludur; kanıtı/exposure'ı/provenance'ı asla yok etmez; dolu DB'ye karşı test edilir; yarım kalırsa intact bırakıp `data_recovery_required` yüzeyler; downgrade yerine backup restore,
-- export profili yeniden kurmaya yeter ve schema/policy version kaydeder; restore atomik ve doğrulanmıştır, daha yeni schema reddedilir, sessiz merge yoktur,
-- bozulma `data_recovery_required` yüzeyler ve sessiz reset yasaktır; truth sağlamken tutarsız projeksiyon **reset değil recomputation** ile onarılır (`recomputing_projection`),
-- V1'de kanıt budanmaz; gelecekteki budama açık ve kullanıcıya görünür olmak zorundadır,
-- core okuma/yazma ağsız çalışır; V1'de cloud sync yoktur; persistence AI client'a bağımlı değildir,
-- independent validator **100/100 PASS**; karar kontratlara karşı doğrulanır (V1_SCOPE, KGC, QAB, ASUX, TRUX, SPWX, AMTS) ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + external-memory regressions PASS.
+9C sonucu:
+- **schema mimariyi uygular**; `LFPS-v0`nin truth/projection, append-only, exposure kalıcılığı ve version pinning garantileri konvansiyon değil yapısaldır,
+- üç store bölgesi (curriculum / user truth / user projection); curriculum store'dan user store'a foreign key yoktur,
+- versiyonlu kimlik `(logical_id, version)` composite'tir ve her user referansı version taşır — yalnız logical ID ile referans yasaktır, çünkü version anahtarda olmazsa referans curriculum güncellendiği anda sessizce en yeni version'a kayar,
+- truth tablolarında UPDATE/DELETE yolu yoktur; düzeltme, orijinali referans veren append edilmiş bir `evidence_disposition` satırıdır ve yeniden hesaplama yoklukla değil kuralla dışlar,
+- **dört bağımsız eksen dört ayrı kolondur**: outcome, evaluator_status, independence_class, contested — herhangi ikisini birleştirmek provisional/settled veya bağımsız/cevabı-görmüş ayrımını siler,
+- `evidence_event`, `GRE-v0`nin bu adıma açıkça devrettiği alan sözleşmesini karşılar ve skill/resource version'larını pinler,
+- **her timestamp'li satır üç değer saklar**: instant (retention interval'ı), study day (günlük plan ve history) ve UTC offset — DST veya seyahat sonrası hiçbiri diğerinden güvenilir türetilemez,
+- her projection satırı policy version, truth watermark, build time ve input curriculum version kaydeder; watermark olmadan bayat projeksiyon güncelinden ayırt edilemez,
+- `SPWX-v0`nin dört Skill ekseni storage'da da ayrı saklanır ve presentation state yerlerini almaz,
+- exposure seçim yolundaki lookup için indekslenir; silinmez, arşivlenmez, truth ile birlikte export/migrate edilir,
+- physical schema library-neutral'dır: entity başına tablo, polymorphic catch-all yok, composite PK, version taşıyan FK, constrained string enum'lar, watermark için monotonic sequence,
+- core'un gördüğü modelde platform tipi yoktur,
+- independent validator **114/114 PASS**; model kendine değil kaynak kontratlara karşı doğrulanır (LFPS, KGC, GNS, GRE, TRUX, ASUX, SPWX) ve mutation test uygulandı. Stage 6 + Stage 7 + AŞAMA 8 + 9A + 9B + external-memory regressions PASS.
 
-## Aktif adım — 9C Domain veri modeli
+## Aktif adım — 9D Servis sınırları
 
-**9C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**9D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
