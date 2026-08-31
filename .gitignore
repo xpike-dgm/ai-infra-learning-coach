@@ -4,3 +4,18 @@ __pycache__/
 # Obsidian per-machine UI state; vault settings themselves are tracked.
 .obsidian/workspace.json
 vault/.obsidian/workspace.json
+
+# Android build outputs and per-machine Gradle state.
+android/.gradle/
+android/build/
+android/*/build/
+android/local.properties
+android/.kotlin/
+
+# D-080: the API key never enters the repo. The git history is permanent even in a private
+# repo, and a leaked key is billed to the owner. The key lives in platform secure storage
+# (AIAX-v0) and any local override file stays untracked.
+android/secrets.properties
+android/**/secrets.properties
+*.keystore
+*.jks

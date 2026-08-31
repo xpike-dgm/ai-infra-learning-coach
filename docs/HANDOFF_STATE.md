@@ -54,6 +54,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-079:** AIAX-v0 AI Integration Architecture; 9E tamamlandı.
 - **D-080:** dağıtım kapsamı — kişisel kullanım, store dağıtımı yok; numaralı adım değildir.
 - **D-081:** TVSX-v0 Test & Verification Strategy; 9F tamamlandı ve AŞAMA 9 kapandı.
+- **D-082:** MPSX-v0 Mobile Project Skeleton; 10A tamamlandı, hedef cihaz kaydedildi.
 
 ## 4. D-049 / 5A final özeti
 
@@ -254,14 +255,15 @@ PEM-v0:
 - 9D ✅ MSBX-v0 / D-078
 - 9E ✅ AIAX-v0 / D-079
 - 9F ✅ TVSX-v0 / D-081 — **AŞAMA 9 kapandı**
-- 10A 🟡 active-not-executed
-- 10B–20 ⬜
+- 10A ✅ MPSX-v0 / D-082
+- 10B 🟡 active-not-executed
+- 10C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `9F — TVSX-v0 / D-081`  
-**Aktif:** `10A — Proje kurulumu`  
-**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `10A — MPSX-v0 / D-082`  
+**Aktif:** `10B — Navigation`  
+**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -678,6 +680,29 @@ TVSX-v0:
 - what a green suite cannot establish is stated explicitly,
 - independent 9F QA 288/288 PASS, mutation-tested 8/8; 26/26 validator sweep PASS.
 
-## 34. 10A handoff
+## 34. D-082 / 10A final özeti
 
-10A — Proje kurulumu. **AŞAMA 9 kapandı**; 10A ilk implementation adımıdır. Somut library ve version seçimi, build/modül yapılandırması, DI wiring ve `TVSX-v0` katmanlarını çalıştıran CI job'ları burada kesinleşir. İki devralınmış yükümlülük: `AMTS-v0` §9'un 6 maddelik bounded verification list'i (güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk`, screen-reader semantics API'leri, reduced-motion tespiti, compatibility library ihtiyacı) ve **repoda hâlâ kayıtlı olmayan hedef Android cihaz**. Ayrıca `D-080` gereği API key'in repoya girmemesi için gitignore kuralı 10A'da uygulanır. 10A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/PROJECT_SETUP_SPEC.md`.  
+Contract/QA: `arch/10a_project_setup/`.  
+Synthesis: `research/10a_project_setup_research.md`.  
+Project: `android/`.
+
+MPSX-v0:
+- nothing is claimed that was not run: every version came from a current source, every structural rule fails a real build, and every recorded result came from executing the command,
+- the build immediately corrected two things this step would otherwise have asserted from memory — no Gradle 9.5 distribution resolves (pinned 9.7.1), and AGP 9.0+ rejects the standalone Kotlin Android plugin,
+- toolchain verified 2026-08-31; minSdk 26 / targetSdk 36 / compileSdk 37, the last forced by Compose 1.12,
+- the target device is recorded — Poco M6 Pro, `2312FPCA6G`, Android 16 / API 36 — closing the item `AMTS-v0` §8.1 left open; under `D-080` it is the single target device for T6 and V1 criterion 9,
+- `minSdk` was not raised toward the device's level: §8.1 asks for the lowest level needing no weakening shim, and 26 is where `java.time` becomes native,
+- all six `AMTS-v0` §9 items are answered from current sources, and no compatibility library is needed at 26,
+- the ten `MSBX-v0` modules live in `android/` and every module's declared project dependencies equal that contract's `depends_on`, checked mechanically so build and contract cannot drift,
+- only the two `app-*` modules apply an Android plugin, which is what keeps T2 and adapter verification off-device,
+- `verifyModuleBoundaries` fails the build on a forbidden edge, an unknown layer, a non-root module reaching every layer, or a computed cycle; it is mutation-tested, and testing it exposed and fixed its own cycle reporting,
+- the product builds without `:ai-adapter` (9 modules) and selects the shipped `NullEvaluator`, so V1 criterion 8 is demonstrable in one command,
+- no DI framework, ORM, HTTP client or architecture-rule library is declared, each for a recorded reason,
+- the system clock is read in exactly one place, dynamic colour appears nowhere, and no key or keystore can enter the repository,
+- CI runs T3, T1 and both builds plus the full validator glob, and deliberately does not pretend to run T6,
+- independent 10A QA 127/127 PASS against the real Gradle and Kotlin files, mutation-tested 7/7; 27/27 sweep PASS.
+
+## 35. 10B handoff
+
+10B — Navigation. `UXIA-v0`nin dört destination'lı shell'i (`Today · Learn · Progress · Profile`) 10A'da pinlenen adaptive API'ler üzerine kurulacak: window class `WindowSizeClass`ten, navigation sunumu `NavigationSuiteScaffold`tan gelir ve `WFPX-v0`nin üç window class geometrisi kanonik kalır. `SPWX-v0` state metni 10A'da adlandırılan semantics API'leriyle taşınır; `THUX-v0` Today kontratı ve `TRUX-v0` focused-flow frame'i navigation'ın sınırlarını belirler. Tema ve token'lar 10C'ye, veri 10D'ye aittir. 10B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

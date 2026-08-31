@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colours live in the Compose theme built from the WFPX-v0 measured tokens (10C).
+     This resource theme exists only so the activity has a launch theme. -->
+<resources>
+    <style name="Theme.Coach" parent="android:Theme.Material.NoActionBar" />
+</resources>

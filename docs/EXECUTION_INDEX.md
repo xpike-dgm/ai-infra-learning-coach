@@ -134,8 +134,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 10 — Mobil Proje İskeleti ve Tasarım Sistemini Kur
-- [ ] **10A — Proje kurulumu** **AKTİF**
-- [ ] **10B — Navigation**
+- [x] **10A — Proje kurulumu** — `MPSX-v0 / D-082`
+- [ ] **10B — Navigation** **AKTİF**
 - [ ] **10C — Design system implementation**
 - [ ] **10D — Local database**
 - [ ] **10E — Temel uygulama sağlığı**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`  
-**Son tamamlanan:** **`9F — TVSX-v0 / D-081`** — **AŞAMA 9 kapandı**  
-**Aktif:** **`10A — Proje kurulumu`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A`  
+**Son tamamlanan:** **`10A — MPSX-v0 / D-082`**  
+**Aktif:** **`10B — Navigation`** — active-not-executed
 
-**AŞAMA 8 ve AŞAMA 9 tamamlandı.** 9F `TVSX-v0` ile doğrulama stratejisi kilitlendi: üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; kabul edilmiş her invariant'ın adı konmuş bir sahibi vardır; coverage yüzdesi gate değildir, gate invariant coverage'dır; yasaklanan her şey denenip reddedilmesi şart koşulur; append-only schema seviyesinde ve migration dolu fixture'lara karşı doğrulanır; hiçbir check canlı AI provider çağırmaz; null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır; determinizm enjekte saatle egzersiz edilir ve flaky check düşmüş check'tir; release gate 11 koşuldur ve `tools/validate_*.py` glob'unun tamamını içerir.
+**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 başladı.** 10A `MPSX-v0` ile repodaki ilk çalıştırılabilir çıktı üretildi: `android/` altında `MSBX-v0`nin on modülü, her modülün beyan ettiği bağımlılıklar kontrata eşit, `verifyModuleBoundaries` yasak kenarı ve cycle'ı hesaplayarak build'i düşürüyor, `-PwithAiAdapter=false` ile adaptörsüz build gerçekten geçiyor (V1 kriteri 8 artık tek komutla gösterilebilir), APK üretildi, saat tek yerde okunuyor ve dynamic colour hiçbir yerde çağrılmıyor. Hedef cihaz kaydedildi: **Poco M6 Pro / API 36**. Toolchain 2026-08-31'de doğrulandı ve build iki yanlış pin'i (Gradle 9.5, `kotlin.android` plugin'i) anında yakaladı.
 
-10A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur. 10A iki devralınmış yükümlülük taşır: `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve **repoda hâlâ kayıtlı olmayan hedef cihaz** (`minSdk` doğrulaması ve T6 için gerekli).
+10B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

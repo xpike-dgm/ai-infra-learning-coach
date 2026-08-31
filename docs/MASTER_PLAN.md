@@ -561,7 +561,23 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 **AŞAMA 9 TAMAMLANDI.**
 
-### [ ] 10A — Proje kurulumu — **AKTİF**
+### [x] 10A — Proje kurulumu — MPSX-v0 / D-082
+
+**10A final coverage:**
+- repodaki ilk çalıştırılabilir çıktı; `android/` altında `MSBX-v0`nin on modülü ve kontrata **eşit** bağımlılık beyanları,
+- toolchain 2026-08-31'de doğrulandı: AGP 9.3.0, Gradle 9.7.1, Kotlin 2.4.0, Compose BOM 2026.08.00, adaptive 1.3.0, androidx.sqlite 2.7.0; `minSdk` 26 / `targetSdk` 36 / `compileSdk` 37,
+- build iki yanlış pin'i yakaladı: Gradle 9.5 dağıtımı yok (→ 9.7.1) ve AGP 9+ `org.jetbrains.kotlin.android`ı reddediyor,
+- hedef cihaz kaydedildi — **Poco M6 Pro / 2312FPCA6G / Android 16 (API 36)**; `AMTS-v0` §8.1'in açık maddesi kapandı ve `minSdk` yükseltilmedi,
+- `AMTS-v0` §9'un altı maddesi güncel kaynaklarla kapandı; `minSdk` 26'da compatibility library gerekmiyor,
+- `verifyModuleBoundaries` yasak kenarı, unknown layer'ı, composition-root ayrıcalığını ve renklendirmeli DFS ile cycle'ı kontrol edip build'i düşürüyor; mutation-test edildi ve kendi cycle raporlaması düzeltildi,
+- `-PwithAiAdapter=false` ile adaptörsüz build **geçiyor** (9 modül) ve `NullEvaluator` ürünle sevk ediliyor — V1 kriteri 8 wiring,
+- yalnız iki `app-*` modülü Android modülü; `data-*`/`ai-*` cihaz dışında test edilebilir kalıyor,
+- DI framework / ORM / HTTP client / architecture-rule library yok, her biri gerekçeli,
+- saat tek yerde okunuyor, dynamic colour hiçbir yerde yok, key repoya giremiyor,
+- CI T3 → T1 → adaptörsüz build → adaptörlü build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok,
+- independent validator **127/127 PASS** (gerçek Gradle/Kotlin dosyalarını `boundaries.yaml`/`TVSX-v0`/`AMTS-v0`/`AIAX-v0`a karşı okuyor, mutation-tested 7/7); 27/27 sweep PASS.
+
+### [ ] 10B — Navigation — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -708,8 +724,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`  
-**Son tamamlanan:** **`9F — TVSX-v0 / D-081`** — **AŞAMA 9 kapandı**  
-**Aktif:** **`10A — Proje kurulumu`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A`  
+**Son tamamlanan:** **`10A — MPSX-v0 / D-082`**  
+**Aktif:** **`10B — Navigation`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **10A fresh PRE-STEP → somut library/version seçimi, build ve modül yapılandırması, DI wiring ve `TVSX-v0` katmanlarını çalıştıran CI job'ları; `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve hedef cihaz kaydı bu adıma devrediliyor → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **10B fresh PRE-STEP → `UXIA-v0`nin dört destination'lı shell'i, 10A'da pinlenen adaptive API'ler üzerinde `WFPX-v0` window class'ları ve geometrisiyle, `SPWX-v0` state metni 10A §6'da adlandırılan semantics API'leriyle taşınarak → independent QA → D-050 POST sync + stale audit.**
