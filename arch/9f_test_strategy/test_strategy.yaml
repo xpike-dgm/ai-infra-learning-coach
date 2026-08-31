@@ -1,0 +1,848 @@
+model: TVSX-v0
+stage_step: 9F
+status: accepted_9f
+decision: D-081
+boundaries: MSBX-v0
+distribution_scope: D-080
+purpose: verification_strategy_and_release_gate
+
+scope:
+  verification_strategy_only: true
+  test_libraries_locked: false
+  ci_platform_locked: false
+  build_files_locked: false
+  evaluator_calibration_locked: false
+  performance_budgets_locked: false
+  new_product_semantics_introduced: false
+  stage8_semantics_changed: false
+  persistence_rules_changed: false
+  data_model_changed: false
+  boundaries_changed: false
+  ai_integration_changed: false
+  defect_detection_rate_claim: null
+  coverage_number_claim: null
+  suite_runtime_budget: null
+  tooling_currency_claim: null
+
+verification_question: How is each accepted guarantee verified, and when is a build releasable?
+
+canonical_truth_owners:
+  boundaries: MSBX-v0
+  persistence: LFPS-v0
+  data_model: DDM-v0
+  ai_integration: AIAX-v0
+  planner_determinism: ADAPTIVE_PLANNER_SPEC_section_18
+  tie_breaking: PBR-v0
+  presentation_projection: SPWX-v0
+  visual_expression: VDSX-v0
+  geometry_and_palette: WFPX-v0
+  platform: AMTS-v0
+  release_criteria: V1_SCOPE
+  distribution_scope: D-080
+  test_libraries_and_ci: 10A
+  evaluator_calibration: 18
+  performance_calibration: 18E
+
+invariants:
+  guarantee_without_a_failing_check_is_a_preference: true
+  every_accepted_invariant_has_an_owning_check: true
+  unowned_invariant_blocks_release: true
+  coverage_percentage_is_a_release_gate: false
+  negative_verification_required_for_prohibitions: true
+  append_only_verified_by_attempted_violation: true
+  migration_verified_against_populated_fixtures: true
+  migration_verified_only_against_empty_database: false
+  restore_verified_atomic_and_verified_before_replace: true
+  exposure_preservation_verified: true
+  null_evaluator_verified_by_building_without_adapter: true
+  live_ai_provider_called_in_checks: false
+  all_seven_ai_outcomes_covered: true
+  refusal_fixture_treated_as_wrong_answer: false
+  end_to_end_timeout_budget_verified: true
+  per_call_timeout_asserted_as_end_to_end: false
+  determinism_exercised_with_injected_clock: true
+  system_clock_read_in_checks: false
+  repeated_runs_must_be_byte_identical: true
+  flaky_check_is_a_failing_check: true
+  retry_to_green_allowed: false
+  failing_check_disabled_to_unblock_release: false
+  fake_may_implement_guarantee_under_test: false
+  contrast_recomputed_not_asserted: true
+  hand_computed_value_asserted_where_computable: false
+  mutation_discipline_applies_to_product_suite: true
+  product_suite_replaces_spec_validators: false
+  spec_validator_sweep_is_full_glob: true
+  device_verification_used_where_off_device_possible: false
+  passing_suite_presented_as_learning_quality_evidence: false
+  new_product_semantics_introduced_by_test_strategy: false
+
+verification_capability:
+  can_establish:
+    - engine_computes_what_its_accepted_model_says
+    - forbidden_operation_is_impossible_at_the_forbidding_layer
+    - same_declared_inputs_produce_same_result
+    - guarantee_still_holds_after_a_change
+    - product_runs_with_ai_adapter_absent
+  cannot_establish:
+    - learning_model_teaches_well
+    - mastery_rule_is_pedagogically_correct
+    - curriculum_decomposition_is_complete
+    - learner_is_actually_improving
+
+tiers:
+  - id: T1
+    name: pure_domain
+    runtime: jvm
+    device: false
+    network: false
+    database: false
+    clock: injected
+    ai: false
+    covers: [core-model, core-engines, core-application, core-presentation]
+    enabled_by: MSBX-v0_pure_policy_engines_clock_port_and_core_presentation
+  - id: T2
+    name: persistence_contract
+    runtime: real_storage_engine
+    device: false
+    network: false
+    database: true
+    fake_repository_substitutes_for_this_tier: false
+    covers: [transactions, append_only, migration, backup_export_restore, integrity_recovery]
+  - id: T3
+    name: structural
+    runtime: static_analysis_in_ci
+    fails_at: build_time
+    covers: [dependency_rule, port_purity, no_randomness_in_core, no_ai_http_network_type_in_core]
+  - id: T4
+    name: presentation_and_accessibility
+    runtime: jvm_or_ui_harness
+    covers: [derived_presentation_state, tone_mapping, contrast, target_size, text_scaling, turkish_casing]
+    contrast_source: recomputed_from_declared_hex
+  - id: T5
+    name: adapter_and_integration
+    runtime: jvm_with_recorded_responses
+    live_provider: false
+    covers: [ai_outcomes, null_evaluator_path, end_to_end_flows_through_real_ports]
+  - id: T6
+    name: device_smoke
+    runtime: single_target_device
+    scope_source: D-080
+    smallest_tier: true
+    covers: [critical_flows]
+    satisfies_v1_criterion: 9
+
+negative_checks_required:
+  - id: NEG-01
+    forbidden: update_on_truth_table
+    must_be_rejected_by: storage_layer
+  - id: NEG-02
+    forbidden: delete_on_truth_table
+    must_be_rejected_by: storage_layer
+  - id: NEG-03
+    forbidden: core_module_depends_on_data_ai_or_app
+    must_be_rejected_by: build
+  - id: NEG-04
+    forbidden: platform_type_in_port_signature
+    must_be_rejected_by: build
+  - id: NEG-05
+    forbidden: observable_partial_write_after_failed_transaction
+    must_be_rejected_by: transaction_boundary
+  - id: NEG-06
+    forbidden: partial_migration_applied
+    must_be_rejected_by: migration_runner
+    must_surface: data_recovery_required
+  - id: NEG-07
+    forbidden: restore_from_newer_schema
+    must_be_rejected_by: restore_verification
+  - id: NEG-08
+    forbidden: schema_invalid_evaluator_response_treated_as_verdict
+    must_be_rejected_by: ai_adapter
+    must_produce: invalid_response
+  - id: NEG-09
+    forbidden: refusal_producing_negative_evidence
+    must_be_rejected_by: ai_adapter
+
+determinism_verification:
+  clock_is_injected: true
+  clock_port: ClockPort
+  system_clock_read_in_checks: false
+  repeated_runs_required: true
+  output_comparison: byte_identical_ordered_output
+  tie_breaking_exercised_with_tied_candidates: true
+  tie_breaking_contract: PBR-v0
+  time_cases_exercised: [day_boundary, dst_transition, travel_offset_change]
+  time_contract: DDM-v0_instant_study_day_offset
+  randomness_available_to_seed: false
+  flaky_check_policy: quarantine_and_treat_as_release_blocker
+  retry_to_green: false
+  source_contract: ADAPTIVE_PLANNER_SPEC_section_18
+
+persistence_verification:
+  append_only:
+    verified_at: schema_level
+    method: attempted_update_and_delete_must_be_rejected
+    correction_path_verified_as: appended_evidence_disposition
+    original_row_unchanged_after_correction: true
+  transactions:
+    one_action_one_transaction: true
+    failure_injected_at_each_stage: true
+    partial_state_observable: false
+    stages: [attempt, artifact, assistance_metadata, provenance, evidence, derived_state_update]
+  migration:
+    populated_fixtures_required: true
+    fixture_per_prior_schema_version: true
+    fixture_contents: [evidence, exposure, provenance, version_pins]
+    preserved_exactly: [evidence, exposure, provenance]
+    comparison: counts_and_content_not_sampled
+    derived_state_may_be_rebuilt: true
+    rebuild_reproduces_same_projection: true
+    interrupted_migration_leaves_previous_state_intact: true
+    interrupted_migration_surfaces: data_recovery_required
+    downgrade_verified_unsupported: true
+  backup_export_restore:
+    export_reconstructs_profile: true
+    export_records_schema_and_policy_version: true
+    export_contains_api_key: false
+    restore_atomic: true
+    restore_verified_before_replacing: true
+    corrupted_or_newer_archive_leaves_profile_untouched: true
+    silent_merge_possible: false
+    silent_reset_possible: false
+  exposure:
+    survives: [migration, restore, derived_state_rebuild]
+    loss_severity: data_safety
+    release_blocking: true
+    source_contract: LFPS-v0
+
+ai_verification:
+  live_provider_called: false
+  rationale: nondeterministic_costs_the_learners_own_money_requires_their_key_and_makes_failures_unattributable
+  fixtures: recorded_or_synthesized_responses
+  outcomes_covered:
+    - id: evaluated_verified
+      writes_evidence: true
+      records_evaluator_ref: true
+    - id: evaluated_provisional
+      writes_evidence: true
+      status: provisional
+      passes_critical_gate_alone: false
+    - id: refused
+      writes_evidence: false
+      degrades_to: evaluation_pending
+      treated_as_wrong_answer: false
+    - id: timed_out
+      writes_evidence: false
+      degrades_to: evaluation_pending
+      budget_checked_end_to_end: true
+    - id: transport_error
+      writes_evidence: false
+      degrades_to: evaluation_pending
+    - id: invalid_response
+      writes_evidence: false
+      degrades_to: evaluation_pending
+      verdict_parsed: false
+    - id: unavailable
+      writes_evidence: false
+      degrades_to: evaluation_pending
+      deterministic_capability_intact: true
+  free_text_fallback_path_exists: false
+  payload_assertions:
+    must_contain: minimum_content_for_current_attempt
+    must_not_contain:
+      - evidence_history
+      - mastery_state
+      - plan
+      - profile
+      - exposure_records
+      - provenance
+      - planner_traces
+  deterministic_operations_evaluator_calls: 0
+  source_contract: AIAX-v0
+
+null_evaluator_verification:
+  method: build_product_without_ai_adapter
+  stub_alone_is_sufficient: false
+  build_succeeds_without_adapter: true
+  app_runs_without_adapter: true
+  open_ended_attempt_becomes: evaluation_pending
+  evidence_written: false
+  deterministic_capability_degrades: false
+  unaffected_capabilities:
+    - planning
+    - answer_key_scoring
+    - mastery
+    - retention
+    - readiness
+    - progress
+    - history
+  removing_key_at_runtime_returns_to_same_path: true
+  removing_key_causes_data_loss: false
+  satisfies_v1_criterion: 8
+  release_blocking: true
+
+presentation_verification:
+  derived_presentation_state_is_pure_projection: true
+  skill_states_verified: 8
+  at_risk_is_qualifier: true
+  declared_precedence_verified: true
+  independent_axes_verified: 4
+  visual_severity_never_exceeds_canonical: true
+  learning_state_may_carry_fault_tone: false
+  contrast_recomputed_from_hex: true
+  contrast_anchors:
+    text: 4.5
+    large_text_and_non_text: 3.0
+  themes_checked: [light, dark]
+  minimum_target_dp: 48
+  focused_flow_exit_checked: true
+  text_scales_checked: [100, 150, 200]
+  turkish_casing_locale_naive_transform: false
+  forbidden_presentations_verified_absent:
+    - pass_fail_banner
+    - grade
+    - threshold
+    - mastery_percentage
+    - streak
+    - competence_progress_bar
+
+severity_classes:
+  - id: evidence_correctness
+    meaning: product_would_make_a_wrong_claim_about_learner_capability_or_mishandle_evidence
+    release_effect: always_blocking
+  - id: structural
+    meaning: boundary_port_determinism_or_append_only_guarantee_violated
+    release_effect: always_blocking
+  - id: data_safety
+    meaning: migration_restore_exposure_or_transaction_integrity_at_risk
+    release_effect: always_blocking
+  - id: behavioural
+    meaning: flow_incorrect_without_misrepresenting_learner_capability
+    release_effect: blocking_for_affected_v1_criterion
+  - id: presentation
+    meaning: labelling_tone_contrast_or_layout_guarantee_violated
+    release_effect: blocking_when_it_changes_what_a_surface_claims
+  - id: advisory
+    meaning: style_performance_observation_or_non_guaranteed_detail
+    release_effect: non_blocking_recorded
+
+release_gate:
+  partial_pass_allowed: false
+  coverage_percentage_gate: false
+  gate_is: invariant_coverage
+  conditions:
+    - id: RG-01
+      condition: all_structural_t3_checks_pass
+    - id: RG-02
+      condition: every_registered_invariant_has_a_named_check_and_it_passes
+    - id: RG-03
+      condition: persistence_suite_passes_including_populated_migration_atomic_restore_and_exposure_preservation
+    - id: RG-04
+      condition: build_without_ai_adapter_succeeds_runs_and_behaves_correctly
+    - id: RG-05
+      condition: all_seven_ai_outcomes_behave_correctly_against_recorded_responses
+    - id: RG-06
+      condition: determinism_checks_pass_with_repeated_identical_ordered_output
+    - id: RG-07
+      condition: accessibility_checks_pass_recomputed_contrast_48dp_and_100_150_200_text
+    - id: RG-08
+      condition: every_v1_scope_release_criterion_maps_to_at_least_one_passing_check
+    - id: RG-09
+      condition: critical_flows_pass_on_the_single_target_device
+    - id: RG-10
+      condition: no_check_is_quarantined_as_flaky
+    - id: RG-11
+      condition: full_tools_validate_glob_passes
+
+v1_criteria_map:
+  1: [T5-FLOW-01, T6-SMOKE-01]
+  2: [T1-PLAN-01, T5-FLOW-01, T6-SMOKE-01]
+  3: [T1-ASSESS-01, T1-PLAN-02]
+  4: [T1-RET-01, T1-WEAK-01]
+  5: [T1-ENG-01]
+  6: [T1-WEAK-01, T1-WEAK-02]
+  7: [T2-MIG-01, T2-MIG-02, T2-RESTORE-01]
+  8: [T5-NULLEVAL-01, T5-NULLEVAL-02]
+  9: [T6-SMOKE-01]
+  10: [T6-SMOKE-02]
+
+invariant_register:
+  - invariant: core_depends_on_data
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DEP-01
+    tier: T3
+    severity: structural
+  - invariant: core_depends_on_app
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DEP-02
+    tier: T3
+    severity: structural
+  - invariant: core_depends_on_ai
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DEP-03
+    tier: T3
+    severity: structural
+  - invariant: dependency_cycle_present
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DEP-04
+    tier: T3
+    severity: structural
+  - invariant: dependency_rule_is_checkable
+    source_model: MSBX-v0
+    expected: true
+    owner_check: T3-DEP-01
+    tier: T3
+    severity: structural
+  - invariant: platform_type_in_port_signature
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-PORT-01
+    tier: T3
+    severity: structural
+  - invariant: randomness_in_core
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DET-01
+    tier: T3
+    severity: structural
+  - invariant: core_references_ai_client
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T3-DEP-03
+    tier: T3
+    severity: structural
+  - invariant: null_evaluator_ships_with_product
+    source_model: MSBX-v0
+    expected: true
+    owner_check: T5-NULLEVAL-01
+    tier: T5
+    severity: structural
+  - invariant: app_builds_without_ai_adapter
+    source_model: MSBX-v0
+    expected: true
+    owner_check: T5-NULLEVAL-01
+    tier: T5
+    severity: structural
+  - invariant: with_null_evaluator_evidence_written
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T5-NULLEVAL-02
+    tier: T5
+    severity: evidence_correctness
+  - invariant: planner_writes_learner_state
+    source_model: MSBX-v0
+    expected: false
+    owner_check: T1-PLAN-03
+    tier: T1
+    severity: evidence_correctness
+  - invariant: same_inputs_same_result
+    source_model: MSBX-v0
+    expected: true
+    owner_check: T1-DET-01
+    tier: T1
+    severity: structural
+  - invariant: truth_record_updated_in_place
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-APPEND-01
+    tier: T2
+    severity: evidence_correctness
+  - invariant: truth_record_deleted
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-APPEND-02
+    tier: T2
+    severity: evidence_correctness
+  - invariant: invalid_evidence_deleted_instead_of_marked
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-APPEND-03
+    tier: T2
+    severity: evidence_correctness
+  - invariant: evidence_pruned_in_v1
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-APPEND-04
+    tier: T2
+    severity: evidence_correctness
+  - invariant: partial_write_observable
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-TX-01
+    tier: T2
+    severity: data_safety
+  - invariant: attempt_persisted_without_provenance
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-TX-02
+    tier: T2
+    severity: evidence_correctness
+  - invariant: attempt_persisted_without_assistance_metadata
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-TX-03
+    tier: T2
+    severity: evidence_correctness
+  - invariant: partial_migration_applied
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-MIG-02
+    tier: T2
+    severity: data_safety
+  - invariant: schema_downgrade_supported
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-MIG-03
+    tier: T2
+    severity: data_safety
+  - invariant: partial_restore_applied
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-RESTORE-01
+    tier: T2
+    severity: data_safety
+  - invariant: restore_from_newer_schema_best_effort
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-RESTORE-02
+    tier: T2
+    severity: data_safety
+  - invariant: restore_silently_merges
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-RESTORE-03
+    tier: T2
+    severity: data_safety
+  - invariant: silent_progress_reset
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-RECOVER-01
+    tier: T2
+    severity: evidence_correctness
+  - invariant: exposure_record_droppable
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-EXPOSURE-01
+    tier: T2
+    severity: data_safety
+  - invariant: evidence_written_for_evaluation_pending
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T5-AI-03
+    tier: T5
+    severity: evidence_correctness
+  - invariant: curriculum_update_changes_learner_state
+    source_model: LFPS-v0
+    expected: false
+    owner_check: T2-PIN-01
+    tier: T2
+    severity: evidence_correctness
+  - invariant: versioned_identity_is_composite
+    source_model: DDM-v0
+    expected: true
+    owner_check: T2-PIN-01
+    tier: T2
+    severity: evidence_correctness
+  - invariant: reference_without_version_allowed
+    source_model: DDM-v0
+    expected: false
+    owner_check: T2-PIN-02
+    tier: T2
+    severity: evidence_correctness
+  - invariant: presentation_state_replaces_axes_in_storage
+    source_model: DDM-v0
+    expected: false
+    owner_check: T2-AXES-01
+    tier: T2
+    severity: evidence_correctness
+  - invariant: timestamp_stores_instant_only
+    source_model: DDM-v0
+    expected: false
+    owner_check: T1-TIME-01
+    tier: T1
+    severity: evidence_correctness
+  - invariant: timestamp_stores_local_date_only
+    source_model: DDM-v0
+    expected: false
+    owner_check: T1-TIME-01
+    tier: T1
+    severity: evidence_correctness
+  - invariant: sequence_used_as_projection_watermark
+    source_model: DDM-v0
+    expected: true
+    owner_check: T2-PROJ-01
+    tier: T2
+    severity: data_safety
+  - invariant: exposure_lookup_expensive_at_selection_time
+    source_model: DDM-v0
+    expected: false
+    owner_check: T2-EXPOSURE-02
+    tier: T2
+    severity: behavioural
+  - invariant: refusal_treated_as_wrong_answer
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-01
+    tier: T5
+    severity: evidence_correctness
+  - invariant: refusal_produces_negative_evidence
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-01
+    tier: T5
+    severity: evidence_correctness
+  - invariant: timeout_produces_negative_evidence
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-02
+    tier: T5
+    severity: evidence_correctness
+  - invariant: transport_error_produces_negative_evidence
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-02
+    tier: T5
+    severity: evidence_correctness
+  - invariant: non_answer_yields_evaluation_pending
+    source_model: AIAX-v0
+    expected: true
+    owner_check: T5-AI-03
+    tier: T5
+    severity: evidence_correctness
+  - invariant: free_text_parsing_of_verdict
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-04
+    tier: T5
+    severity: evidence_correctness
+  - invariant: schema_invalid_response_treated_as_verdict
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-04
+    tier: T5
+    severity: evidence_correctness
+  - invariant: timeout_budget_is_end_to_end
+    source_model: AIAX-v0
+    expected: true
+    owner_check: T5-AI-05
+    tier: T5
+    severity: behavioural
+  - invariant: per_call_timeout_presented_as_end_to_end_guarantee
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-05
+    tier: T5
+    severity: behavioural
+  - invariant: uncalibrated_llm_evaluation_is_verified
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-06
+    tier: T5
+    severity: evidence_correctness
+  - invariant: deterministic_work_calls_ai
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-07
+    tier: T5
+    severity: structural
+  - invariant: evidence_history_sent_to_provider
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-08
+    tier: T5
+    severity: evidence_correctness
+  - invariant: mastery_state_sent_to_provider
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-08
+    tier: T5
+    severity: evidence_correctness
+  - invariant: plan_or_profile_sent_to_provider
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T5-AI-08
+    tier: T5
+    severity: evidence_correctness
+  - invariant: key_included_in_export
+    source_model: AIAX-v0
+    expected: false
+    owner_check: T2-EXPORT-01
+    tier: T2
+    severity: data_safety
+  - invariant: app_usable_with_ai_disabled
+    source_model: AIAX-v0
+    expected: true
+    owner_check: T5-NULLEVAL-02
+    tier: T5
+    severity: behavioural
+  - invariant: evaluator_ref_recorded_on_evidence
+    source_model: AIAX-v0
+    expected: true
+    owner_check: T5-AI-09
+    tier: T5
+    severity: evidence_correctness
+  - invariant: presentation_projection_deterministic
+    source_model: SPWX-v0
+    expected: true
+    owner_check: T1-PRES-01
+    tier: T1
+    severity: presentation
+  - invariant: at_risk_is_primary_state
+    source_model: SPWX-v0
+    expected: false
+    owner_check: T1-PRES-02
+    tier: T1
+    severity: presentation
+  - invariant: at_risk_dropped
+    source_model: SPWX-v0
+    expected: false
+    owner_check: T1-PRES-02
+    tier: T1
+    severity: presentation
+  - invariant: remediation_task_completion_closes_remediation
+    source_model: SPWX-v0
+    expected: false
+    owner_check: T1-WEAK-02
+    tier: T1
+    severity: evidence_correctness
+  - invariant: visual_severity_exceeds_canonical
+    source_model: VDSX-v0
+    expected: false
+    owner_check: T4-TONE-01
+    tier: T4
+    severity: presentation
+  - invariant: learning_state_uses_fault_tone
+    source_model: VDSX-v0
+    expected: false
+    owner_check: T4-TONE-02
+    tier: T4
+    severity: presentation
+  - invariant: design_system_adds_severity
+    source_model: VDSX-v0
+    expected: false
+    owner_check: T4-TONE-01
+    tier: T4
+    severity: presentation
+  - invariant: dynamic_color_enabled
+    source_model: AMTS-v0
+    expected: false
+    owner_check: T4-TONE-03
+    tier: T4
+    severity: presentation
+  - invariant: default_locale_case_transform_allowed
+    source_model: AMTS-v0
+    expected: false
+    owner_check: T4-CASE-01
+    tier: T4
+    severity: presentation
+  - invariant: locked_labels_case_transformed_for_styling
+    source_model: AMTS-v0
+    expected: false
+    owner_check: T4-CASE-01
+    tier: T4
+    severity: presentation
+  - invariant: contrast_asserted_without_computation
+    source_model: WFPX-v0
+    expected: false
+    owner_check: T4-CONTRAST-01
+    tier: T4
+    severity: presentation
+  - invariant: exit_below_min_target
+    source_model: WFPX-v0
+    expected: false
+    owner_check: T4-TARGET-01
+    tier: T4
+    severity: presentation
+  - invariant: state_truncated_at_large_text
+    source_model: WFPX-v0
+    expected: false
+    owner_check: T4-TEXT-01
+    tier: T4
+    severity: presentation
+
+meta_rules:
+  mutation_discipline_required: true
+  mutation_rule: a_deliberate_violation_must_make_a_named_check_fail
+  check_passing_against_broken_implementation_is_not_a_check: true
+  values_recomputed_not_hand_asserted: [contrast, counts, orderings, hashes]
+  fake_implements_guarantee_under_test: false
+  fixed_clock_fake_allowed: true
+  fixed_clock_rationale: the_clock_is_an_input_not_the_guarantee
+  depends_on_wall_clock_locale_default_network_or_live_provider: false
+  failing_check_disabled_to_unblock_release: false
+  spec_validators_and_product_suite_are_separate_systems: true
+  sweep_is_full_validate_glob: true
+
+tooling_capabilities_required:
+  - jvm_unit_test_runner_without_device
+  - real_storage_engine_execution_path_with_real_schema_and_migrations
+  - static_checker_failing_build_on_forbidden_dependency_or_platform_type_in_port
+  - ui_harness_inspecting_semantics_target_size_and_text_scaling
+  - instrumented_device_runner
+  - build_configuration_producing_product_without_ai_adapter
+  - recorded_ai_response_fixtures_covering_all_seven_outcomes
+  - populated_database_fixtures_per_prior_schema_version
+concrete_libraries_named: false
+library_selection_owner: 10A
+currency_reverification_required: true
+currency_precedent: AMTS-v0_currency_is_verified_not_asserted
+
+distribution_scope_effects:
+  decision: D-080
+  store_release_verification: out_of_scope
+  device_matrix: single_target_device
+  target_device_recorded_in_repo: false
+  target_device_required_by: [10A, T6]
+
+forbidden_test_patterns:
+  - coverage_percentage_as_release_gate
+  - invariant_with_no_owning_check
+  - verifying_only_the_allowed_path_for_a_prohibition
+  - append_only_check_that_never_attempts_update_or_delete
+  - migrating_only_an_empty_database
+  - fake_implementing_the_guarantee_under_test
+  - calling_a_live_ai_provider_from_a_check
+  - parsing_a_verdict_out_of_free_text_in_a_fixture
+  - treating_a_refusal_fixture_as_a_wrong_answer
+  - asserting_per_call_timeout_as_end_to_end_budget
+  - reading_the_system_clock_inside_a_check
+  - retrying_a_flaky_check_until_green
+  - disabling_or_quarantining_a_failing_check_to_unblock_a_release
+  - asserting_a_hand_computed_value_that_could_be_recomputed
+  - presenting_a_passing_suite_as_learning_quality_evidence
+  - running_a_hand_maintained_subset_of_validate_scripts_as_the_sweep
+  - substituting_product_suite_for_spec_validators_or_the_reverse
+  - device_only_verification_of_something_verifiable_off_device
+  - introducing_new_product_semantics_in_the_test_strategy
+
+future_stage_boundaries:
+  10A: concrete_libraries_versions_build_files_ci_jobs_and_di_wiring
+  11_to_18: individual_test_bodies_for_features_as_they_are_built
+  18: evaluator_calibration_against_human_judgement
+  18E: performance_budget_calibration_on_the_real_device
+
+closes_stage_9: true
+
+acceptance:
+  required_previous_models:
+    - MSBX-v0
+    - LFPS-v0
+    - DDM-v0
+    - AIAX-v0
+    - AMTS-v0
+    - SPWX-v0
+    - VDSX-v0
+    - WFPX-v0
+    - PBR-v0
+  independent_qa_required: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9a_regression_required: true
+  stage9b_regression_required: true
+  stage9c_regression_required: true
+  stage9d_regression_required: true
+  stage9e_regression_required: true

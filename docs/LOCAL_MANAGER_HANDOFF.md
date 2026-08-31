@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079`; AŞAMA 8'in kapandığını ve aktif adımın `9F active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10A active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1117,14 +1117,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 9C ✅ DDM-v0 / D-077
 - AŞAMA 9D ✅ MSBX-v0 / D-078
 - AŞAMA 9E ✅ AIAX-v0 / D-079
-- AŞAMA 9F 🟡 active-not-executed
-- 10–20 ⬜
+- AŞAMA 9F ✅ TVSX-v0 / D-081
+- **AŞAMA 9 ✅ TAMAMLANDI**
+- AŞAMA 10A 🟡 active-not-executed
+- 10B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9E — AI entegrasyon mimarisi`  
-**Final:** `AIAX-v0 — AI Integration Architecture` / D-079  
-**Canonical:** `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md` + `arch/9e_ai_integration/`
+**Son tamamlanan numaralı adım:** `9F — Test stratejisi`  
+**Final:** `TVSX-v0 — Test & Verification Strategy` / D-081  
+**Canonical:** `docs/TEST_STRATEGY_SPEC.md` + `arch/9f_test_strategy/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1140,17 +1142,19 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9C:** ✅ TAMAMLANDI  
 **AŞAMA 9D:** ✅ TAMAMLANDI  
 **AŞAMA 9E:** ✅ TAMAMLANDI  
-**Aktif adım:** `9F — Test stratejisi`  
+**AŞAMA 9F:** ✅ TAMAMLANDI  
+**AŞAMA 9:** ✅ TAMAMLANDI  
+**Aktif adım:** `10A — Proje kurulumu`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-9F için:
+10A için:
 
 ```text
-fresh 9F PRE-STEP GitHub refresh
+fresh 10A PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 9F execution
+→ 10A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1696,9 +1700,25 @@ AŞAMA 8 ✅ TAMAMLANDI
 9C ✅ DDM-v0 / D-077
 9D ✅ MSBX-v0 / D-078
 9E ✅ AIAX-v0 / D-079
-9F 🟡 active-not-executed
-10–20 ⬜
+9F ✅ TVSX-v0 / D-081
+AŞAMA 9 ✅ TAMAMLANDI
+10A 🟡 active-not-executed
+10B–20 ⬜
 ```
+
+9F final:
+- üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; her invariant'ın adı konmuş sahibi vardır,
+- 6 katman; cihaz katmanı en küçüğü, T3 build time'da düşer,
+- coverage yüzdesi gate değil; gate invariant coverage ve sahipsiz invariant tek başına bloklar,
+- negatif doğrulama zorunlu: yasaklanan denenir ve reddedilmesi şart koşulur,
+- append-only schema seviyesinde; migration dolu fixture'lara karşı, evidence/exposure/provenance birebir korunur,
+- hiçbir check canlı AI provider çağırmaz; 7 sonuç kayıtlı yanıtlarla, payload'da history/mastery/plan/profile yok,
+- null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır (V1 kriteri 8),
+- determinizm enjekte saatle egzersiz edilir; flaky check düşmüş check'tir, retry-to-green yasak,
+- 6 severity sınıfı; `evidence_correctness` her zaman bloklar,
+- 11 koşullu release gate; 10 V1 kriteri eşlenir ve `validate_*.py` glob'unun tamamı geçmeli,
+- 66 kayıtlı invariant, hepsi upstream kontratta gerçekten var olan anahtarlar,
+- independent 9F QA 288/288 PASS, mutation-tested 8/8; 26/26 sweep PASS.
 
 9E final:
 - AI bir port arkasındaki yardımcıdır ve otorite değildir; AI önerir, deterministic engine'ler karar verir,
@@ -1831,9 +1851,9 @@ AŞAMA 8 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `9F — Test stratejisi`.
+**Sıradaki gerçek numbered work:** `10A — Proje kurulumu`.
 
-**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1883,8 +1903,8 @@ AŞAMA 8 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `9F — Test stratejisi`.  
-**9F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `10A — Proje kurulumu`.  
+**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1894,3 +1914,12 @@ AŞAMA 8 ✅ TAMAMLANDI
 9E `AIAX-v0 — AI Integration Architecture` ile tamamlandı. Canonical: `docs/AI_INTEGRATION_ARCHITECTURE_SPEC.md`; contract/QA: `arch/9e_ai_integration/`; synthesis: `research/9e_ai_integration_research.md`.
 
 `MSBX-v0`nin `EvaluatorPort`'u arkasındaki AI davranışı kilitlendi. AI bir yardımcıdır ve mastery, retention, prerequisite, planner veya curriculum truth üzerinde asla otorite kazanmaz; yokluğu ya da hatası negative evidence üretmez. `LEARNING_BEHAVIOR_RULES` §17 (model seçimi) ve §18 (güvenlik/proxy/backend) bu adıma devredilmişti ve ikisi de kapatıldı. AI'ın gerçek katkıları korundu; amaç yetkiyi sınırlamak, AI'ı azaltmak değil. Evaluator çıktısı schema-constrained'dir ve schema'ya uymayan yanıt bir hatadır — serbest metinden hüküm ayrıştırmak yasak, çünkü bir misparse hüküm gibi görünür. Kalibre edilmemiş LLM değerlendirmesi `provisional`dır. **Refusal bir yanlış cevap değildir**: `refused`, `timed_out`, `transport_error`, `invalid_response` ve `unavailable` hepsi `evaluation_pending`e düşer ve evidence yazmaz. Timeout bütçesi uçtan ucadır. Model adı konfigürasyonda yaşar; adapter provider-independent'tır ve somut model kimliklerinin güncelliği 10A/14'te yeniden doğrulanacaktır. Deterministik iş asla AI çağırmaz. APK'ya hardcoded veya paylaşılan key konmaz ve V1'de backend proxy yoktur; öğrenci kendi key'ini girer, key platform secure storage'da tutulur ve log/export/backup/diagnostics'te görünmez. Yalnız mevcut attempt için gereken asgari içerik cihazdan çıkar. Generated item untrusted girer ve generator ile validator ayrıdır. Her AI-türevli evidence satırı provider, model ve prompt/schema version kaydeder. Independent QA 86/86 PASS; Stage 6/7/8 + 9A–9D + external-memory regressions PASS. Current active numbered step 9F'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 9F completion addendum — D-081
+
+9F `TVSX-v0 — Test & Verification Strategy` ile tamamlandı ve **AŞAMA 9 kapandı**. Canonical: `docs/TEST_STRATEGY_SPEC.md`; contract/QA: `arch/9f_test_strategy/`; synthesis: `research/9f_test_strategy_research.md`.
+
+Ana invariant: **üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir.** AŞAMA 9 vaatleri yapıya çevirmişti; check'i olmayan bir dependency kuralı bir yorum, negatif testi olmayan bir append-only schema'sı kimsenin doğrulamadığı bir varsayımdır. Beş kanonik spec test stratejisini bu adıma devretmişti ve hepsi karşılandı. Altı katman tanımlandı ve cihaz katmanı en küçüktür. Coverage yüzdesi gate değildir; gate invariant coverage'dır ve sahipsiz bir invariant tek başına bloklar. Negatif doğrulama zorunludur. Append-only schema seviyesinde, migration'lar dolu fixture'lara karşı doğrulanır. Hiçbir check canlı AI provider çağırmaz. Null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır. Determinizm enjekte saatle egzersiz edilir ve flaky check düşmüş check'tir. Release gate 11 koşuldur ve `tools/validate_*.py` glob'unun tamamını içerir. 66 kayıtlı invariant'ın her biri upstream kontratta gerçekten var olan bir anahtardır. Independent QA 288/288 PASS, mutation-tested 8/8; 26/26 validator sweep PASS. Ayrıca `D-080` ile dağıtım kapsamı kişisel kullanıma kilitlendi: store QA yok, device QA tek cihaz, kanıt ve AI yetki kuralları değişmez. Current active numbered step 10A'dır; fresh PRE + kullanıcı açık onayı gerekir ve 10A iki devralınmış yükümlülük taşır: `AMTS-v0` §9 bounded verification list ve repoda kayıtlı olmayan hedef cihaz.

@@ -23,6 +23,7 @@ Yeni long-term hedef professional readiness olsa da V1 tüm 4+ yıllık content'
 - Android odaklı kişisel mobil uygulama.
 - Auth/payment/multi-tenant SaaS zorunluluğu yok.
 - Başlangıç teknik ve English state local profilde tutulur.
+- **D-080:** ürün hiçbir uygulama merkezine yüklenmeyecek ve halka açık paylaşılmayacaktır. Store yayın gereksinimleri, dağıtım imzalama seremonisi, güvenlik amaçlı obfuscation/pinning ve cihaz matrisi kapsam dışıdır; `minSdk` ve device QA tek hedef cihaza sabitlenir. Kanıt/evidence ve AI yetki kuralları bundan **etkilenmez**.
 - Günlük çalışma süresi ayarlanabilir.
 
 ## 2. Today / Bugünkü Çalışma
