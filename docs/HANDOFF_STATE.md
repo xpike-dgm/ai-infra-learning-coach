@@ -55,6 +55,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-080:** dağıtım kapsamı — kişisel kullanım, store dağıtımı yok; numaralı adım değildir.
 - **D-081:** TVSX-v0 Test & Verification Strategy; 9F tamamlandı ve AŞAMA 9 kapandı.
 - **D-082:** MPSX-v0 Mobile Project Skeleton; 10A tamamlandı, hedef cihaz kaydedildi.
+- **D-083:** NSHX-v0 Navigation Shell; 10B tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -256,14 +257,15 @@ PEM-v0:
 - 9E ✅ AIAX-v0 / D-079
 - 9F ✅ TVSX-v0 / D-081 — **AŞAMA 9 kapandı**
 - 10A ✅ MPSX-v0 / D-082
-- 10B 🟡 active-not-executed
-- 10C–20 ⬜
+- 10B ✅ NSHX-v0 / D-083
+- 10C 🟡 active-not-executed
+- 10D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `10A — MPSX-v0 / D-082`  
-**Aktif:** `10B — Navigation`  
-**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `10B — NSHX-v0 / D-083`  
+**Aktif:** `10C — Design system implementation`  
+**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -703,6 +705,27 @@ MPSX-v0:
 - CI runs T3, T1 and both builds plus the full validator glob, and deliberately does not pretend to run T6,
 - independent 10A QA 127/127 PASS against the real Gradle and Kotlin files, mutation-tested 7/7; 27/27 sweep PASS.
 
-## 35. 10B handoff
+## 35. D-083 / 10B final özeti
 
-10B — Navigation. `UXIA-v0`nin dört destination'lı shell'i (`Today · Learn · Progress · Profile`) 10A'da pinlenen adaptive API'ler üzerine kurulacak: window class `WindowSizeClass`ten, navigation sunumu `NavigationSuiteScaffold`tan gelir ve `WFPX-v0`nin üç window class geometrisi kanonik kalır. `SPWX-v0` state metni 10A'da adlandırılan semantics API'leriyle taşınır; `THUX-v0` Today kontratı ve `TRUX-v0` focused-flow frame'i navigation'ın sınırlarını belirler. Tema ve token'lar 10C'ye, veri 10D'ye aittir. 10B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/NAVIGATION_SHELL_SPEC.md`.
+Contract/QA: `arch/10b_navigation/`.
+Synthesis: `research/10b_navigation_research.md`.
+Code: `android/core-presentation/.../Navigation.kt`, `android/app-ui/.../AppShell.kt`.
+
+NSHX-v0:
+- the navigation rules live in `core-presentation`, not in the UI toolkit, so a violation is a failing test on a laptop rather than something noticed on a phone,
+- no external research was needed: the adaptive APIs were verified and pinned at 10A,
+- four destinations in the accepted order with `today` first; the enum's declaration order is canonical and there is no second list to drift,
+- none of the eleven forbidden top-level ids is a destination, and a test says so,
+- one surface object per canonical entity, so `UXIA-v0`'s forbidden contradictory Skill detail pages are unrepresentable rather than discouraged,
+- the contextual edge set is closed and compared against `ia.yaml`, because "anything can open anything" is how browse placement quietly starts implying prerequisite truth,
+- a focused flow suspends the shell, and shell suppression and safe-exit are derived from the surface so the unsafe state cannot be constructed; the detail pane is suppressed too,
+- the return rule is deterministic and treats origin validity as an explicit input, so a replan cannot strand the learner,
+- window classes come from `WFPX-v0`'s breakpoints computed in core, not from the toolkit's own bucketing, and change presentation only,
+- destinations carry text labels, `stateDescription` and `traversalIndex`; an icon is never the only carrier of meaning,
+- four runs executed, including the no-adapter build, so V1 criterion 8 still holds after the shell landed,
+- independent 10B QA 104/104 PASS against the real Kotlin source, mutation-tested 8/8; 28/28 sweep PASS.
+
+## 36. 10C handoff
+
+10C — Design system implementation. `VDSX-v0`nin expression layer'ı ve `WFPX-v0`nin ölçülmüş paleti Compose teması olarak inşa edilecek: `lightColorScheme`/`darkColorScheme` ölçülmüş token'lardan kurulur ve dynamic colour fonksiyonları yine hiç çağrılmaz, altı tone kabul edilmiş state vokabülerine eşlenir, `visual_severity <= canonical_severity` zorlanır, hiçbir learning state alarm tonu almaz, Türkçe casing locale-naive dönüşümlere karşı korunur ve 48dp ile %200 metin garantileri gerçek bileşenlere taşınır. Kontrast token'lardan yeniden hesaplanmalı, iddia edilmemeli. 10C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

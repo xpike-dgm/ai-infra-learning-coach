@@ -1,0 +1,168 @@
+model: NSHX-v0
+stage_step: 10B
+status: accepted_10b
+decision: D-083
+information_architecture: UXIA-v0
+geometry: WFPX-v0
+boundaries: MSBX-v0
+project: MPSX-v0
+purpose: navigation_shell_implementation
+
+scope:
+  navigation_shell_only: true
+  destination_interiors_implemented: false
+  design_system_implemented: false
+  persistence_implemented: false
+  deep_links_implemented: false
+  search_implemented: false
+  new_ia_introduced: false
+  ia_changed: false
+  geometry_changed: false
+  boundaries_changed: false
+  animation_claim: null
+  navigation_performance_claim: null
+
+navigation_question: Where do the IA rules live, and how does the shell render them?
+
+model_location:
+  module: core-presentation
+  rules_in_ui_toolkit: false
+  rationale: a NavHost full of route strings would put the destination set, its order and the return rule inside Compose where they could only be tested on a device
+  app_ui_role: render_only
+
+destinations:
+  count: 4
+  order_source: UXIA-v0
+  enum_order_is_canonical: true
+  second_list_to_keep_in_sync: false
+  ids: [today, learn, progress, profile]
+  start: today
+
+forbidden_top_level_present: false
+
+surfaces:
+  shell_roots: [today_overview, learn_overview, progress_overview, profile_overview]
+  shared_details:
+    - skill_detail
+    - topic_detail
+    - planner_explanation
+    - assessment_report
+    - learning_history
+    - technical_english_profile
+  focused_flows: [task_runner_flow, assessment_session_flow]
+  one_surface_object_per_canonical_entity: true
+  duplicate_skill_detail_possible: false
+
+contextual_edges_closed: true
+contextual_edges_source: UXIA-v0_navigation_edges
+unlisted_transition_navigable: false
+peer_switching_total: true
+
+focused_flow:
+  is_a_destination: false
+  suppresses_shell: true
+  suppression_is_derived_not_set: true
+  requires_safe_exit: true
+  unsafe_state_representable: false
+  exit_owner: TRUX-v0
+
+return_rule:
+  source: UXIA-v0_focus_flow_return_semantics
+  task_runner_normal: today
+  assessment_completed_from_today: today
+  entity_context_flow: return_to_origin_if_still_valid_else_today
+  stale_or_invalid_origin: today
+  deterministic: true
+  can_strand_learner: false
+
+window_classes:
+  source: WFPX-v0
+  computed_in: core-presentation
+  computed_by_ui_toolkit_bucketing: false
+  breakpoints:
+    medium_min_width_dp: 600
+    expanded_min_width_dp: 840
+  presentation:
+    compact: bottom_navigation_bar
+    medium: navigation_rail
+    expanded: navigation_rail_with_detail_pane
+  destination_set_changes_with_window_class: false
+  destination_order_changes_with_window_class: false
+  detail_pane_only_in_expanded: true
+  detail_pane_hidden_during_focused_flow: true
+
+accessibility:
+  labels_are_text: true
+  icon_is_sole_carrier_of_meaning: false
+  icon_content_description: null_because_label_names_it
+  state_exposed_via: stateDescription
+  traversal_order_via: traversalIndex
+  traversal_index_follows_destination_order: true
+  semantics_api_source: MPSX-v0
+
+labels:
+  destination_labels_are_canonical: false
+  label_owner: 14
+  working_labels_tr:
+    today: Bugün
+    learn: Öğren
+    progress: İlerleme
+    profile: Profil
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-presentation:test
+    tier: T1
+    result: PASS
+    covers: destination order, breakpoints, edges, focused flow, return rule
+  - id: RUN-02
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+    artifact: app-wiring/build/outputs/apk/debug/app-wiring-debug.apk
+  - id: RUN-04
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+    proves: v1_criterion_8_still_holds
+
+forbidden_navigation_patterns:
+  - deciding_the_destination_set_inside_compose
+  - a_second_destination_list_that_can_drift_from_the_enum
+  - a_separate_skill_detail_surface_per_origin
+  - allowing_an_unlisted_contextual_transition
+  - a_top_level_destination_for_assessment_english_ai_or_an_engine
+  - a_focused_flow_that_can_hide_the_shell_without_an_exit
+  - changing_the_destination_set_or_order_with_the_window_class
+  - computing_window_breakpoints_in_the_ui_toolkit
+  - an_icon_as_the_only_carrier_of_a_destination_meaning
+  - stranding_the_learner_on_a_stale_origin_after_a_replan
+  - treating_browse_placement_as_prerequisite_truth
+
+future_stage_boundaries:
+  10C: design_system_implementation_and_theme
+  10D: persistence_schema_and_content_loading
+  10E: app_health_and_diagnostics
+  11: today_interior_and_task_runner
+  13: assessment_session_interior
+  14: microcopy_and_final_labels
+
+acceptance:
+  required_previous_models:
+    - UXIA-v0
+    - WFPX-v0
+    - TRUX-v0
+    - SPWX-v0
+    - MSBX-v0
+    - MPSX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true
+  stage10a_regression_required: true

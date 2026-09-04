@@ -34,7 +34,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 9E AI entegrasyon mimarisi: AIAX-v0 / D-079 ile tamamlandı; AI port arkasında yardımcı, schema-constrained evaluator, `provisional` uncalibrated LLM, refusal != yanlış cevap, uçtan uca timeout bütçesi, konfigürasyondaki model adı, APK'da key yok, asgari-içerik gizlilik sınırı.
 - [x] 9F Test stratejisi: TVSX-v0 / D-081 ile tamamlandı; her invariant'ın adı konmuş sahibi, 6 katman, invariant-coverage gate, negatif doğrulama, dolu fixture migration'ları, canlı provider çağrısız AI doğrulaması, adapter'sız build ile null-evaluator doğrulaması. **AŞAMA 9 kapandı.**
 - [x] 10A Proje kurulumu: MPSX-v0 / D-082 ile tamamlandı; doğrulanmış toolchain pinleri, `android/` altında on modül, build'i düşüren boundary kuralı, adaptörsüz build, CI ve gitignore kuralı.
-- [ ] 10B Navigation **AKTİF**: `UXIA-v0` dört destination shell'i, `WindowSizeClass` + `NavigationSuiteScaffold` üzerinde `WFPX-v0` geometrisi, `SPWX-v0` state metni semantics API'leriyle.
+- [x] 10B Navigation: NSHX-v0 / D-083 ile tamamlandı; kurallar core'da, kapalı edge kümesi, shell'i askıya alan focused flow, deterministik dönüş kuralı, core'da hesaplanan window class'lar.
+- [ ] 10C Design system implementation **AKTİF**: `VDSX-v0` expression layer ve `WFPX-v0` ölçülmüş paleti Compose teması olarak; dynamic colour yine çağrılmayacak, kontrast token'lardan yeniden hesaplanacak.
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.

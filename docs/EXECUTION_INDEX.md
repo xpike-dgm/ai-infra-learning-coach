@@ -135,8 +135,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 10 — Mobil Proje İskeleti ve Tasarım Sistemini Kur
 - [x] **10A — Proje kurulumu** — `MPSX-v0 / D-082`
-- [ ] **10B — Navigation** **AKTİF**
-- [ ] **10C — Design system implementation**
+- [x] **10B — Navigation** — `NSHX-v0 / D-083`
+- [ ] **10C — Design system implementation** **AKTİF**
 - [ ] **10D — Local database**
 - [ ] **10E — Temel uygulama sağlığı**
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A`  
-**Son tamamlanan:** **`10A — MPSX-v0 / D-082`**  
-**Aktif:** **`10B — Navigation`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10B`  
+**Son tamamlanan:** **`10B — NSHX-v0 / D-083`**  
+**Aktif:** **`10C — Design system implementation`** — active-not-executed
 
-**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 başladı.** 10A `MPSX-v0` ile repodaki ilk çalıştırılabilir çıktı üretildi: `android/` altında `MSBX-v0`nin on modülü, her modülün beyan ettiği bağımlılıklar kontrata eşit, `verifyModuleBoundaries` yasak kenarı ve cycle'ı hesaplayarak build'i düşürüyor, `-PwithAiAdapter=false` ile adaptörsüz build gerçekten geçiyor (V1 kriteri 8 artık tek komutla gösterilebilir), APK üretildi, saat tek yerde okunuyor ve dynamic colour hiçbir yerde çağrılmıyor. Hedef cihaz kaydedildi: **Poco M6 Pro / API 36**. Toolchain 2026-08-31'de doğrulandı ve build iki yanlış pin'i (Gradle 9.5, `kotlin.android` plugin'i) anında yakaladı.
+**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10B `NSHX-v0` ile shell kuruldu: navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil. Dört destination kabul edilmiş sırada ve enum sırası kanonik; yasak top-level id'lerin hiçbiri destination değil; kanonik entity başına tek surface objesi olduğu için çelişkili Skill detail sayfası temsil edilemez; contextual edge kümesi kapalı ve `ia.yaml` ile karşılaştırılıyor; focused flow shell'i askıya alıyor ve `showsShell`/`requiresSafeExit` türetildiği için "gizli shell + çıkış yok" durumu inşa edilemiyor; dönüş kuralı deterministik ve bayat origin'de öğrenciyi mahsur bırakmıyor; window class'lar `WFPX-v0` breakpoint'lerinden core'da hesaplanıyor ve yalnız çizimi değiştiriyor.
 
-10B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+10C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
