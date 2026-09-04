@@ -65,11 +65,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - **AŞAMA 9 TAMAMLANDI** — AMTS-v0 → LFPS-v0 → DDM-v0 → MSBX-v0 → AIAX-v0 → TVSX-v0.
 - `D-080`: ürün kişisel kullanım içindir; store dağıtımı ve halka açık paylaşım yoktur. Store QA, dağıtım imzalama, güvenlik amaçlı obfuscation/pinning ve cihaz matrisi kapsam dışıdır; kanıt ve AI yetki kuralları değişmez.
 - 10A: ✅ `MPSX-v0 / D-082` tamamlandı — repodaki ilk çalıştırılabilir çıktı; çalıştırılmamış hiçbir şey iddia edilmez ve build iki yanlış pin'i (Gradle 9.5, `kotlin.android`) anında yakaladı; on modül `android/` altında ve bağımlılıklar `boundaries.yaml`a eşit; `verifyModuleBoundaries` yasak kenarı/cycle'ı hesaplayıp build'i düşürüyor; `-PwithAiAdapter=false` adaptörsüz build geçiyor (V1 kriteri 8) ve APK üretildi; hedef cihaz **Poco M6 Pro / API 36** kaydedildi; `AMTS-v0` §9'un altı maddesi kapandı; DI/ORM/HTTP client yok; saat tek yerde; dynamic colour yok; key repoya giremiyor; 127/127 QA PASS.
-- **Aktif adım: 10B — Navigation.**
-- **10B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 10C–20 bekliyor.
+- 10B: ✅ `NSHX-v0 / D-083` tamamlandı — navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil; dört destination kabul edilmiş sırada ve enum sırası kanonik; yasak top-level id yok; kanonik entity başına tek surface objesi olduğu için çelişkili Skill detail temsil edilemez; contextual edge kümesi kapalı ve `ia.yaml` ile karşılaştırılıyor; focused flow shell'i askıya alıyor ve `showsShell`/`requiresSafeExit` türetiliyor; dönüş kuralı deterministik; window class'lar core'da hesaplanıyor ve yalnız çizimi değiştiriyor; 104/104 QA PASS.
+- **Aktif adım: 10C — Design system implementation.**
+- **10C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 10D–20 bekliyor.
 
-**10B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**10C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

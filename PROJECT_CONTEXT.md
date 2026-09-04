@@ -205,12 +205,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **9F ✅ Test stratejisi — TVSX-v0 / D-081**
 - **AŞAMA 9 ✅ TAMAMLANDI**
 - **10A ✅ Proje kurulumu — MPSX-v0 / D-082**
-- **10B 🟡 Navigation — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 10C–20 ⬜
+- **10B ✅ Navigation — NSHX-v0 / D-083**
+- **10C 🟡 Design system implementation — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 10D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 10B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 10C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -295,6 +296,12 @@ Canonical: `docs/TEST_STRATEGY_SPEC.md` / D-081.
 Repodaki **ilk çalıştırılabilir çıktı** üretildi ve AŞAMA 10 başladı. Ana invariant: **çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F arası her adım birbirine karşı doğrulanan spec üretiyordu; 10A'nın çıktısını bir makine çalıştırıyor ve bu "doğrulanmış"ın anlamını değiştiriyor — build ya geçer ya geçmez, iç tutarlılık bunun yerine geçmez. Nitekim build, bu adımın hafızadan iddia edeceği iki şeyi anında yanlışladı: AGP uyumluluk tablosundan okunan Gradle `9.5.0` dağıtımı çözülmüyor (wrapper 404 verdi; pin **9.7.1** oldu) ve Android modüllerine uygulanan `org.jetbrains.kotlin.android` plugin'ini **AGP 9.0+ açıkça reddediyor** çünkü Kotlin desteği artık yerleşik. İkisi de sessizce düzeltilmek yerine kaydedildi. Toolchain 2026-08-31'de doğrulandı: AGP 9.3.0, Gradle 9.7.1, Kotlin 2.4.0, Compose BOM 2026.08.00, adaptive 1.3.0, androidx.sqlite 2.7.0; `compileSdk` 37 (Compose 1.12 API 37'ye derleniyor), `targetSdk` 36, `minSdk` 26. **Hedef cihaz kaydedildi** — Poco M6 Pro, `2312FPCA6G`, Android 16 / API 36 — ve `AMTS-v0` §8.1'in "henüz repoda kayıtlı değil" maddesi kapandı; `D-080` gereği bu tek hedef cihazdır. `minSdk` cihazın seviyesine yükseltilmedi çünkü §8.1 shim gerektirmeyen **en düşük** seviyeyi istiyor ve 26 `java.time`ın native olduğu seviyedir. `AMTS-v0` §9'un altı maddesi güncel kaynaklarla kapandı ve 26'da hiçbir compatibility library gerekmiyor. On modül `android/` altında ve her modülün beyan ettiği project dependency'ler `boundaries.yaml`daki `depends_on` ile **eşit**, makine tarafından kontrol ediliyor. Yalnız iki `app-*` modülü Android modülüdür; `data-*` ve `ai-*`ın Android plugin'i uygulamaması `TVSX-v0` T2'nin ve adaptör doğrulamasının **cihaz dışında** koşmasını sağlar. `verifyModuleBoundaries` yasak kenarı, tanınmayan katmanı, composition-root ayrıcalığını ve renklendirmeli DFS ile hesaplanan cycle'ı kontrol edip build'i düşürüyor; üçüncü parti architecture-rule library kullanılmadı. Kural mutation-test edildi ve o sırada check'in kendi cycle **raporlaması** hatalı bulunup düzeltildi. **Adaptörsüz build gerçekten alınıyor**: `-PwithAiAdapter=false` ile 9 modül yapılandırılıyor ve `core-application`da sevk edilen `NullEvaluator` seçiliyor — V1 kriteri 8 artık tek komutla gösterilebilir. Saat tam olarak tek yerde okunuyor, dynamic colour hiçbir yerde çağrılmıyor ve `D-080` gereği key/keystore repoya giremiyor.
 
 Canonical: `docs/PROJECT_SETUP_SPEC.md` / D-082.
+
+## 12.9 10B Navigation — NSHX-v0 / D-083
+
+Shell kuruldu. Ana invariant: **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil.** Route string'leriyle dolu bir `NavHost` dört kabul edilmiş kararı — destination kümesi, sırası, paylaşılan surface kimliği ve focused-flow dönüş kuralı — Compose'un içine sokardı; `MSBX-v0` bunu presentation state için zaten reddetmişti, çünkü o hâlde üründeki en güvenlik-kritik etiketleme yalnız cihazda test edilebilir olurdu. Dört destination kabul edilmiş sırada (`today → learn → progress → profile`) ve **enum bildirim sırası kanoniktir**; senkron tutulacak ikinci bir liste olmadığı için yeniden sıralama kazara olamaz. On bir yasak top-level id'nin hiçbiri destination değildir. **Kanonik entity başına tek surface objesi** vardır: Skill detail Today, Learn ve Progress'ten erişilir ve her seferinde aynı objedir, yani `UXIA-v0`nin yasakladığı çelişkili Skill detail sayfaları caydırılmış değil **temsil edilemez**. Contextual edge kümesi sayılı ve **kapalıdır** ve validator onu `ia.yaml` ile karşılaştırır; her surface her şeyi açabilseydi öğrencinin izlediği yol curriculum yapısı gibi görünmeye başlardı — §10.2'nin yasakladığı şey. **Focused flow shell'i askıya alır** ve `showsShell` ile `requiresSafeExit` surface'tan türetilir, böylece "gizli shell + çıkış yok" durumu inşa edilemez; detail pane de focused flow sırasında bastırılır. Dönüş kuralı deterministiktir ve origin geçerliliğini açık bir girdi olarak alır, yani bir replan öğrenciyi bayat bir yüzeyde mahsur bırakamaz. Window class'lar `WFPX-v0` breakpoint'lerinden **core'da** hesaplanır (toolkit'in kendi bucketing'inden değil) ve yalnız çizimi değiştirir; küme, sıra ve anlam üç sınıfta da aynıdır. Her destination metin etiketi taşır, ikonun content description'ı null'dır, seçim `stateDescription` ile verilir ve `traversalIndex` kanonik sırayı izler.
+
+Canonical: `docs/NAVIGATION_SHELL_SPEC.md` / D-083.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

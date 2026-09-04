@@ -1,0 +1,327 @@
+model: NSHX-v0
+stage_step: 10B
+decision: D-083
+result: PASS
+checks_total: 104
+checks_passed: 104
+checks_failed: 0
+destinations: 4
+contextual_edges: 15
+shared_details: 6
+checks:
+- check: E10B-00_exists_Navigation.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\Navigation.kt
+- check: E10B-00_exists_NavigationTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\test\kotlin\coach\presentation\NavigationTest.kt
+- check: E10B-00_exists_AppShell.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\app-ui\src\main\kotlin\coach\ui\AppShell.kt
+- check: E10B-00_exists_MainActivity.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: E10B-00_exists_NAVIGATION_SHELL_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\docs\NAVIGATION_SHELL_SPEC.md
+- check: E10B-00_exists_10b_navigation_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\research\10b_navigation_research.md
+- check: E10B-01_model
+  result: PASS
+  details: NSHX-v0
+- check: E10B-01_status
+  result: PASS
+  details: accepted_10b
+- check: E10B-01_decision
+  result: PASS
+  details: D-083
+- check: E10B-01_ia_ref
+  result: PASS
+  details: UXIA-v0
+- check: E10B-01_scope_ia_changed
+  result: PASS
+  details: ia_changed=False
+- check: E10B-01_scope_geometry_changed
+  result: PASS
+  details: geometry_changed=False
+- check: E10B-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E10B-01_scope_new_ia_introduced
+  result: PASS
+  details: new_ia_introduced=False
+- check: E10B-01_noclaim_animation_claim
+  result: PASS
+  details: animation_claim=None
+- check: E10B-01_noclaim_navigation_performance_claim
+  result: PASS
+  details: navigation_performance_claim=None
+- check: E10B-02_enum_found
+  result: PASS
+  details: Destination enum not found
+- check: E10B-02_ids_and_order_match_ia
+  result: PASS
+  details: kotlin=['today', 'learn', 'progress', 'profile'] ia=['today', 'learn',
+    'progress', 'profile']
+- check: E10B-02_exactly_four
+  result: PASS
+  details: ia=4 kotlin=4
+- check: E10B-02_start_is_today
+  result: PASS
+  details: today must be the start destination
+- check: E10B-02_enum_order_is_canonical
+  result: PASS
+  details: the enum must be the only ordered list
+- check: E10B-03_no_forbidden_destination
+  result: PASS
+  details: 'forbidden ids present: []'
+- check: E10B-03_forbidden_set_nonempty
+  result: PASS
+  details: ia lists 11 forbidden top-level ids
+- check: E10B-03_tested
+  result: PASS
+  details: a test must assert the forbidden ids are not destinations
+- check: E10B-04_edge_block_found
+  result: PASS
+  details: contextualEdges not found
+- check: E10B-04_edges_match_ia
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10B-04_edges_closed
+  result: PASS
+  details: an unlisted transition must be non-navigable and tested
+- check: E10B-04_peer_switching_total
+  result: PASS
+  details: all four destinations must be mutual peers
+- check: E10B-05_shared_details_present
+  result: PASS
+  details: missing=[]
+- check: E10B-05_single_surface_assessment_report
+  result: PASS
+  details: assessment_report declared 1 times; a shared surface must be one object
+- check: E10B-05_single_surface_learning_history
+  result: PASS
+  details: learning_history declared 1 times; a shared surface must be one object
+- check: E10B-05_single_surface_planner_explanation
+  result: PASS
+  details: planner_explanation declared 1 times; a shared surface must be one object
+- check: E10B-05_single_surface_skill_detail
+  result: PASS
+  details: skill_detail declared 1 times; a shared surface must be one object
+- check: E10B-05_single_surface_technical_english_profile
+  result: PASS
+  details: technical_english_profile declared 1 times; a shared surface must be one
+    object
+- check: E10B-05_single_surface_topic_detail
+  result: PASS
+  details: topic_detail declared 1 times; a shared surface must be one object
+- check: E10B-05_skill_detail_shared_flag
+  result: PASS
+  details: UXIA-v0 declares skill_detail a single shared semantic surface
+- check: E10B-05_skill_detail_reachable_from_three
+  result: PASS
+  details: reachable_from=['today', 'learn', 'progress']
+- check: E10B-06_root_today_overview
+  result: PASS
+  details: missing shell root today_overview
+- check: E10B-06_root_learn_overview
+  result: PASS
+  details: missing shell root learn_overview
+- check: E10B-06_root_progress_overview
+  result: PASS
+  details: missing shell root progress_overview
+- check: E10B-06_root_profile_overview
+  result: PASS
+  details: missing shell root profile_overview
+- check: E10B-06_root_count
+  result: PASS
+  details: count=4
+- check: E10B-06_root_per_destination
+  result: PASS
+  details: one shell root per destination must be tested
+- check: E10B-07_flows_not_destinations
+  result: PASS
+  details: a focused flow must not be a destination
+- check: E10B-07_suppresses_shell
+  result: PASS
+  details: showsShell must be derived from the surface
+- check: E10B-07_exit_derived
+  result: PASS
+  details: requiresSafeExit must be derived, so 'hidden shell with no exit' is unrepresentable
+- check: E10B-07_contract_agrees
+  result: PASS
+  details: the contract must record the derived-state decision
+- check: E10B-07_upstream_requires_exit
+  result: PASS
+  details: UXIA-v0 requires a safe exit from a focused flow
+- check: E10B-07_ui_hides_shell_for_flow
+  result: PASS
+  details: app-ui must honour shell suppression rather than deciding it
+- check: E10B-08_normal_returns_today
+  result: PASS
+  details: the normal return target must be today and tested
+- check: E10B-08_entity_context_rule
+  result: PASS
+  details: contract=return_to_origin_if_still_valid_else_today ia=return_to_origin_if_still_valid_else_today
+- check: E10B-08_stale_origin_rule
+  result: PASS
+  details: a stale origin must fall back to today
+- check: E10B-08_return_only_for_flows
+  result: PASS
+  details: asking for the return target of a non-flow must fail
+- check: E10B-09_class_count
+  result: PASS
+  details: '[''compact'', ''expanded'', ''medium'']'
+- check: E10B-09_medium_breakpoint
+  result: PASS
+  details: wfpx=600
+- check: E10B-09_expanded_breakpoint
+  result: PASS
+  details: wfpx=840
+- check: E10B-09_compact_upper_bound
+  result: PASS
+  details: wfpx compact max=599
+- check: E10B-09_shell_mapping
+  result: PASS
+  details: the WFPX shell mapping must be the one implemented
+- check: E10B-09_breakpoints_tested
+  result: PASS
+  details: the boundary widths must be tested
+- check: E10B-09_computed_in_core
+  result: PASS
+  details: breakpoints must be computed in core, not in app-ui
+- check: E10B-09_order_invariant_upstream
+  result: PASS
+  details: wfpx order=['today', 'learn', 'progress', 'profile']
+- check: E10B-09_detail_pane_same_truth
+  result: PASS
+  details: the detail pane must show the same surface and truth
+- check: E10B-09_detail_pane_hidden_in_flow
+  result: PASS
+  details: the detail pane must not appear during a focused flow
+- check: E10B-10_ui_iterates_enum
+  result: PASS
+  details: app-ui must iterate the canonical enum rather than a local list
+- check: E10B-10_no_id_literals_in_ui
+  result: PASS
+  details: 'app-ui hardcodes destination ids: []'
+- check: E10B-10_no_presentation_logic_in_ui
+  result: PASS
+  details: app-ui must not compute the presentation; core does
+- check: E10B-10_activity_uses_core_window_class
+  result: PASS
+  details: the window class must come from core
+- check: E10B-10_upstream_ui_renders_only
+  result: PASS
+  details: MSBX-v0 presentation=rendering_only
+- check: E10B-11_text_label_present
+  result: PASS
+  details: every destination must render a text label
+- check: E10B-11_icon_not_sole_meaning
+  result: PASS
+  details: the icon is decorative because the label already names the destination
+- check: E10B-11_state_description
+  result: PASS
+  details: selection state must be exposed as text
+- check: E10B-11_traversal_index
+  result: PASS
+  details: traversal order must follow the destination order
+- check: E10B-11_upstream_requires_text
+  result: PASS
+  details: UXIA-v0 forbids colour-only and icon-only meaning
+- check: E10B-11_labels_not_canonical
+  result: PASS
+  details: the Turkish labels are working microcopy owned by 14
+- check: E10B-12_runs_recorded
+  result: PASS
+  details: count=4
+- check: E10B-12_all_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS''}'
+- check: E10B-12_no_adapter_still_builds
+  result: PASS
+  details: the no-adapter build must still be verified after the shell landed
+- check: E10B-12_build_not_asserted
+  result: PASS
+  details: 10B must not claim a build result it did not run
+- check: E10B-13_forbidden_deciding_the_destination_set_inside_
+  result: PASS
+  details: missing=deciding_the_destination_set_inside_compose
+- check: E10B-13_forbidden_a_second_destination_list_that_can_d
+  result: PASS
+  details: missing=a_second_destination_list_that_can_drift_from_the_enum
+- check: E10B-13_forbidden_a_separate_skill_detail_surface_per_
+  result: PASS
+  details: missing=a_separate_skill_detail_surface_per_origin
+- check: E10B-13_forbidden_allowing_an_unlisted_contextual_tran
+  result: PASS
+  details: missing=allowing_an_unlisted_contextual_transition
+- check: E10B-13_forbidden_a_top_level_destination_for_assessme
+  result: PASS
+  details: missing=a_top_level_destination_for_assessment_english_ai_or_an_engine
+- check: E10B-13_forbidden_a_focused_flow_that_can_hide_the_she
+  result: PASS
+  details: missing=a_focused_flow_that_can_hide_the_shell_without_an_exit
+- check: E10B-13_forbidden_changing_the_destination_set_or_orde
+  result: PASS
+  details: missing=changing_the_destination_set_or_order_with_the_window_class
+- check: E10B-13_forbidden_computing_window_breakpoints_in_the_
+  result: PASS
+  details: missing=computing_window_breakpoints_in_the_ui_toolkit
+- check: E10B-13_forbidden_an_icon_as_the_only_carrier_of_a_des
+  result: PASS
+  details: missing=an_icon_as_the_only_carrier_of_a_destination_meaning
+- check: E10B-13_forbidden_stranding_the_learner_on_a_stale_ori
+  result: PASS
+  details: missing=stranding_the_learner_on_a_stale_origin_after_a_replan
+- check: E10B-13_forbidden_treating_browse_placement_as_prerequ
+  result: PASS
+  details: missing=treating_browse_placement_as_prerequisite_truth
+- check: E10B-14_spec_**Status:** ACCEPTED — indepen
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 10B QA PASS'
+- check: E10B-14_spec_**Decision:** `D-083`
+  result: PASS
+  details: missing='**Decision:** `D-083`'
+- check: E10B-14_spec_core-presentation
+  result: PASS
+  details: missing='core-presentation'
+- check: E10B-14_spec_NavigationSuiteScaffold
+  result: PASS
+  details: missing='NavigationSuiteScaffold'
+- check: E10B-14_spec_safe exit
+  result: PASS
+  details: missing='safe exit'
+- check: E10B-14_spec_unlisted
+  result: PASS
+  details: missing='unlisted'
+- check: E10B-15_research_No external research pass was re
+  result: PASS
+  details: missing='No external research pass was required'
+- check: E10B-15_research_one surface object per canonical
+  result: PASS
+  details: missing='one surface object per canonical entity'
+- check: E10B-16_required_models
+  result: PASS
+  details: '[''UXIA-v0'', ''WFPX-v0'', ''TRUX-v0'', ''SPWX-v0'', ''MSBX-v0'', ''MPSX-v0'']'
+- check: E10B-16_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E10B-16_stage6_regression_required
+  result: PASS
+  details: stage6_regression_required=True
+- check: E10B-16_stage7_regression_required
+  result: PASS
+  details: stage7_regression_required=True
+- check: E10B-16_stage8_regression_required
+  result: PASS
+  details: stage8_regression_required=True
+- check: E10B-16_stage9_regression_required
+  result: PASS
+  details: stage9_regression_required=True
+- check: E10B-16_stage10a_regression_required
+  result: PASS
+  details: stage10a_regression_required=True
+failures: []

@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10B active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10C active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1120,14 +1120,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 9F ✅ TVSX-v0 / D-081
 - **AŞAMA 9 ✅ TAMAMLANDI**
 - AŞAMA 10A ✅ MPSX-v0 / D-082
-- AŞAMA 10B 🟡 active-not-executed
-- 10C–20 ⬜
+- AŞAMA 10B ✅ NSHX-v0 / D-083
+- AŞAMA 10C 🟡 active-not-executed
+- 10D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `10A — Proje kurulumu`  
-**Final:** `MPSX-v0 — Mobile Project Skeleton` / D-082  
-**Canonical:** `docs/PROJECT_SETUP_SPEC.md` + `arch/10a_project_setup/` + `android/`
+**Son tamamlanan numaralı adım:** `10B — Navigation`  
+**Final:** `NSHX-v0 — Navigation Shell` / D-083  
+**Canonical:** `docs/NAVIGATION_SHELL_SPEC.md` + `arch/10b_navigation/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1146,17 +1147,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9F:** ✅ TAMAMLANDI  
 **AŞAMA 9:** ✅ TAMAMLANDI  
 **AŞAMA 10A:** ✅ TAMAMLANDI  
-**Aktif adım:** `10B — Navigation`  
+**AŞAMA 10B:** ✅ TAMAMLANDI  
+**Aktif adım:** `10C — Design system implementation`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-10B için:
+10C için:
 
 ```text
-fresh 10B PRE-STEP GitHub refresh
+fresh 10C PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 10B execution
+→ 10C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1705,9 +1707,23 @@ AŞAMA 8 ✅ TAMAMLANDI
 9F ✅ TVSX-v0 / D-081
 AŞAMA 9 ✅ TAMAMLANDI
 10A ✅ MPSX-v0 / D-082
-10B 🟡 active-not-executed
-10C–20 ⬜
+10B ✅ NSHX-v0 / D-083
+10C 🟡 active-not-executed
+10D–20 ⬜
 ```
+
+10B final:
+- navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil,
+- dört destination kabul edilmiş sırada; enum sırası kanonik, senkron tutulacak ikinci liste yok,
+- on bir yasak top-level id'nin hiçbiri destination değil,
+- kanonik entity başına tek surface objesi; çelişkili Skill detail temsil edilemez,
+- contextual edge kümesi kapalı ve `ia.yaml` ile karşılaştırılıyor,
+- focused flow shell'i askıya alır; `showsShell`/`requiresSafeExit` türetilir, çıkışsız gizli shell inşa edilemez,
+- dönüş kuralı deterministik; bayat origin öğrenciyi mahsur bırakmaz,
+- window class'lar `WFPX-v0` breakpoint'lerinden core'da hesaplanır ve yalnız çizimi değiştirir,
+- metin etiketi + `stateDescription` + `traversalIndex`; ikon tek anlam taşıyıcısı değil,
+- 4 run çalıştırıldı; adaptörsüz build hâlâ geçiyor,
+- independent 10B QA 104/104 PASS, mutation-tested 8/8; 28/28 sweep PASS.
 
 10A final:
 - repodaki ilk çalıştırılabilir çıktı; çalıştırılmamış hiçbir şey iddia edilmez,
@@ -1868,9 +1884,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `10B — Navigation`.
+**Sıradaki gerçek numbered work:** `10C — Design system implementation`.
 
-**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1920,8 +1936,8 @@ AŞAMA 9 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `10B — Navigation`.  
-**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `10C — Design system implementation`.  
+**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1949,3 +1965,12 @@ Ana invariant: **üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir.
 10A `MPSX-v0 — Mobile Project Skeleton` ile tamamlandı ve **AŞAMA 10 başladı**. Canonical: `docs/PROJECT_SETUP_SPEC.md`; contract/QA: `arch/10a_project_setup/`; synthesis: `research/10a_project_setup_research.md`; proje: `android/`.
 
 Ana invariant: **çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F birbirine karşı doğrulanan spec üretiyordu; 10A'nın çıktısını bir makine çalıştırıyor. Build, bu adımın hafızadan iddia edeceği iki şeyi anında yanlışladı — Gradle `9.5.0` dağıtımı çözülmüyor (pin 9.7.1) ve AGP 9.0+ `org.jetbrains.kotlin.android`ı reddediyor — ve ikisi de gizlenmeden kaydedildi. Toolchain 2026-08-31'de doğrulandı; `minSdk` 26 / `targetSdk` 36 / `compileSdk` 37. **Hedef cihaz kaydedildi**: Poco M6 Pro, `2312FPCA6G`, Android 16 / API 36 — `AMTS-v0` §8.1'in açık maddesi kapandı ve `D-080` gereği bu tek hedef cihazdır. `minSdk` cihaz seviyesine yükseltilmedi çünkü §8.1 shim gerektirmeyen en düşük seviyeyi istiyor. `AMTS-v0` §9'un altı maddesi güncel kaynaklarla kapandı. On modül `android/` altında ve her modülün beyan ettiği bağımlılıklar `boundaries.yaml`a eşit; yalnız iki `app-*` modülü Android modülü olduğu için T2 ve adaptör doğrulaması cihaz dışında koşabiliyor. `verifyModuleBoundaries` yasak kenarı, tanınmayan katmanı, composition-root ayrıcalığını ve hesaplanan cycle'ı bulup build'i düşürüyor; mutation-test edildi ve kendi cycle raporlaması düzeltildi. `-PwithAiAdapter=false` ile adaptörsüz build geçiyor ve `NullEvaluator` seçiliyor; V1 kriteri 8 tek komutla gösterilebilir. Saat tek yerde okunuyor, dynamic colour hiçbir yerde yok, key repoya giremiyor. CI T3/T1/iki build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok. Independent QA 127/127 PASS, mutation-tested 7/7; 27/27 sweep PASS. Current active numbered step 10B'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 10B completion addendum — D-083
+
+10B `NSHX-v0 — Navigation Shell` ile tamamlandı. Canonical: `docs/NAVIGATION_SHELL_SPEC.md`; contract/QA: `arch/10b_navigation/`; synthesis: `research/10b_navigation_research.md`; kod: `android/core-presentation/.../Navigation.kt` ve `android/app-ui/.../AppShell.kt`.
+
+10B dış araştırma gerektirmedi: ihtiyaç duyulabilecek tek ekosistem bilgisi olan adaptive navigation API'leri 10A'da doğrulanıp pinlenmişti. Ana invariant: **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil.** Route string'leriyle dolu bir `NavHost` destination kümesini, sırasını, paylaşılan surface kimliğini ve dönüş kuralını Compose'a sokardı; `MSBX-v0` bunu presentation state için zaten reddetmişti. Dört destination kabul edilmiş sırada ve **enum bildirim sırası kanoniktir**. On bir yasak top-level id'nin hiçbiri destination değildir. **Kanonik entity başına tek surface objesi** vardır, yani `UXIA-v0`nin yasakladığı çelişkili Skill detail sayfaları temsil edilemez. Contextual edge kümesi kapalıdır ve validator onu `ia.yaml` ile karşılaştırır. **Focused flow shell'i askıya alır** ve `showsShell` ile `requiresSafeExit` türetildiği için çıkışsız gizli shell inşa edilemez; detail pane de bastırılır. Dönüş kuralı deterministiktir ve origin geçerliliğini açık girdi alır. Window class'lar `WFPX-v0` breakpoint'lerinden core'da hesaplanır ve yalnız çizimi değiştirir. Her destination metin etiketi, `stateDescription` ve `traversalIndex` taşır. Dört run çalıştırıldı ve adaptörsüz build hâlâ geçiyor, yani shell V1 kriteri 8'i zayıflatmadı. Independent QA 104/104 PASS, mutation-tested 8/8; 28/28 sweep PASS. Current active numbered step 10C'dir; fresh PRE + kullanıcı açık onayı gerekir.

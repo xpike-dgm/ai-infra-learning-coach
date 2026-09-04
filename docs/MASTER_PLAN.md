@@ -577,7 +577,23 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - CI T3 → T1 → adaptörsüz build → adaptörlü build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok,
 - independent validator **127/127 PASS** (gerçek Gradle/Kotlin dosyalarını `boundaries.yaml`/`TVSX-v0`/`AMTS-v0`/`AIAX-v0`a karşı okuyor, mutation-tested 7/7); 27/27 sweep PASS.
 
-### [ ] 10B — Navigation — **AKTİF**
+### [x] 10B — Navigation — NSHX-v0 / D-083
+
+**10B final coverage:**
+- navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil; `app-ui` yalnız render eder,
+- 10B dış araştırma gerektirmedi: adaptive API'ler 10A'da doğrulanıp pinlenmişti,
+- dört destination kabul edilmiş sırada (`today → learn → progress → profile`), `today` başlangıç; **enum sırası kanonik**, senkron tutulacak ikinci liste yok,
+- on bir yasak top-level id'nin hiçbiri destination değil ve bu test ediliyor,
+- **kanonik entity başına tek surface objesi**; çelişkili Skill detail sayfası temsil edilemez,
+- contextual edge kümesi sayılı ve **kapalı**; validator onu `ia.yaml` ile karşılaştırıyor,
+- **focused flow shell'i askıya alır**; `showsShell` ve `requiresSafeExit` türetildiği için çıkışsız gizli shell inşa edilemez; detail pane de bastırılır,
+- dönüş kuralı deterministik ve origin geçerliliği açık girdi; replan öğrenciyi mahsur bırakamaz,
+- window class'lar `WFPX-v0` breakpoint'lerinden **core'da** hesaplanır ve yalnız çizimi değiştirir; 599/600/839/840 test edildi,
+- metin etiketi + `stateDescription` + `traversalIndex`; ikon tek anlam taşıyıcısı değil,
+- 4 run çalıştırıldı ve `-PwithAiAdapter=false` hâlâ geçiyor: shell V1 kriteri 8'i zayıflatmadı,
+- independent validator **104/104 PASS** (gerçek Kotlin'i `ia.yaml` ve `wireframe.yaml`a karşı okuyor, mutation-tested 8/8); 28/28 sweep PASS.
+
+### [ ] 10C — Design system implementation — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -724,8 +740,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A`  
-**Son tamamlanan:** **`10A — MPSX-v0 / D-082`**  
-**Aktif:** **`10B — Navigation`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10B`  
+**Son tamamlanan:** **`10B — NSHX-v0 / D-083`**  
+**Aktif:** **`10C — Design system implementation`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **10B fresh PRE-STEP → `UXIA-v0`nin dört destination'lı shell'i, 10A'da pinlenen adaptive API'ler üzerinde `WFPX-v0` window class'ları ve geometrisiyle, `SPWX-v0` state metni 10A §6'da adlandırılan semantics API'leriyle taşınarak → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **10C fresh PRE-STEP → `VDSX-v0` expression layer'ı ve `WFPX-v0` ölçülmüş paleti Compose teması olarak; `lightColorScheme`/`darkColorScheme` ölçülmüş token'lardan, dynamic colour yine yok, altı tone kabul edilmiş state vokabülerine eşlenir, `visual_severity <= canonical_severity` zorlanır, Türkçe casing korunur, 48dp ve %200 metin garantileri bileşenlere taşınır ve kontrast token'lardan yeniden hesaplanır → independent QA → D-050 POST sync + stale audit.**

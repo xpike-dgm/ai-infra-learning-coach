@@ -47,8 +47,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9E — AI entegrasyon mimarisi** | ✅ | AIAX-v0 / D-079. AI port arkasında yardımcı; refusal != yanlış cevap; key APK'da değil; 86/86 QA PASS. |
 | **9F — Test stratejisi** | ✅ | TVSX-v0 / D-081. Sahipsiz invariant release'i bloklar; coverage yüzdesi gate değildir; 288/288 QA PASS. **AŞAMA 9 kapandı.** |
 | **10A — Proje kurulumu** | ✅ | MPSX-v0 / D-082. İlk çalıştırılabilir iskelet; boundary kuralı build'i düşürüyor, adaptörsüz build geçiyor, hedef cihaz kaydedildi; 127/127 QA PASS. |
-| **10B — Navigation** | 🟡 Aktif | UXIA-v0 shell'i adaptive API'ler üzerinde; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **10C–20** | ⬜ Bekliyor | 10B sonrası canonical sırada. |
+| **10B — Navigation** | ✅ | NSHX-v0 / D-083. Navigasyon modeli core'da; kapalı edge kümesi; focused flow shell'i askıya alıyor; 104/104 QA PASS. |
+| **10C — Design system implementation** | 🟡 Aktif | VDSX-v0 expression layer + WFPX-v0 ölçülmüş palet Compose teması olarak; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **10D–20** | ⬜ Bekliyor | 10C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -67,26 +68,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 10A
+## Son tamamlanan numaralı adım — 10B
 
-**Final:** `MPSX-v0 — Mobile Project Skeleton` / D-082.  
-**Ana çıktı:** `docs/PROJECT_SETUP_SPEC.md` + `arch/10a_project_setup/` + `android/`.
+**Final:** `NSHX-v0 — Navigation Shell` / D-083.
+**Ana çıktı:** `docs/NAVIGATION_SHELL_SPEC.md` + `arch/10b_navigation/` + `android/core-presentation` + `android/app-ui`.
 
-10A sonucu:
-- **Çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F birbirine karşı doğrulanan spec üretti; 10A'nın çıktısını bir makine çalıştırıyor ve build ya geçer ya geçmez,
-- **build iki yanlışı anında yakaladı:** Gradle 9.5 dağıtımı yok (wrapper 404 → 9.7.1) ve AGP 9+ `org.jetbrains.kotlin.android`ı reddediyor. İkisi de gizlenmeden kaydedildi,
-- toolchain 2026-08-31'de doğrulandı; `minSdk` 26 / `targetSdk` 36 / `compileSdk` 37,
-- **hedef cihaz kaydedildi**: Poco M6 Pro / `2312FPCA6G` / Android 16 (API 36). `AMTS-v0` §8.1'in açık maddesi kapandı; `minSdk` yükseltilmedi çünkü §8.1 en düşük shim'siz seviyeyi istiyor,
-- `AMTS-v0` §9'un altı maddesi kapandı ve `minSdk` 26'da compatibility library gerekmiyor,
-- on modül `android/` altında, her modülün beyan ettiği bağımlılıklar `boundaries.yaml`a **eşit** ve makine kontrol ediyor,
-- yalnız iki `app-*` modülü Android modülü; `data-*`/`ai-*` cihaz dışında test edilebilir kalıyor,
-- `verifyModuleBoundaries` build'i düşürüyor; mutation-test edildi ve o sırada kendi cycle raporlaması düzeltildi,
-- `-PwithAiAdapter=false` adaptörsüz build **geçiyor** (9 modül) — V1 kriteri 8 wiring, tek komutla gösterilebilir,
-- 4 run kaydedildi: T3, T1, adaptörlü build (APK üretildi) ve adaptörsüz build,
-- DI framework/ORM/HTTP client/architecture-rule library yok, hepsi gerekçeli; saat tek yerde okunuyor; dynamic colour hiçbir yerde yok; key repoya giremiyor,
-- CI T3/T1/iki build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok,
-- independent validator **127/127 PASS**, mutation-tested 7/7; 27/27 sweep PASS.
+10B sonucu:
+- **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil**; destination kümesi, sırası, paylaşılan surface kimliği, geçişler ve dönüş kuralı saf fonksiyonlar,
+- 10B dış araştırma gerektirmedi: adaptive API'ler 10A'da doğrulanıp pinlenmişti,
+- dört destination kabul edilmiş sırada, `today` başlangıç; **enum sırası kanonik** ve senkron tutulacak ikinci liste yok,
+- on bir yasak top-level id'nin hiçbiri destination değil ve bu test ediliyor,
+- **kanonik entity başına tek surface objesi**: Skill detail üç yerden erişilebilir ve her seferinde aynı obje; çelişkili detay sayfası temsil edilemez,
+- contextual edge kümesi **kapalı** ve validator onu `ia.yaml` ile karşılaştırıyor; listelenmemiş geçiş navigable değil,
+- **focused flow shell'i askıya alır**; `showsShell` ve `requiresSafeExit` türetilir, böylece "gizli shell + çıkış yok" inşa edilemez; detail pane de bastırılır,
+- dönüş kuralı deterministik: normal iş → `today`, entity akışı → origin geçerliyse oraya, bayat origin → `today`,
+- window class'lar `WFPX-v0` breakpoint'lerinden **core'da** hesaplanır ve yalnız çizimi değiştirir; 599/600/839/840 test edildi,
+- her destination metin etiketi taşır, ikon tek anlam taşıyıcısı değil, seçim `stateDescription`, sıra `traversalIndex`,
+- 4 run çalıştırıldı; `-PwithAiAdapter=false` hâlâ geçiyor, yani shell V1 kriteri 8'i zayıflatmadı,
+- independent validator **104/104 PASS** (gerçek Kotlin'i `ia.yaml` ve `wireframe.yaml`a karşı okuyor), mutation-tested 8/8; 28/28 sweep PASS.
 
-## Aktif adım — 10B Navigation
+## Aktif adım — 10C Design system implementation
 
-**10B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**10C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

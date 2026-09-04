@@ -822,3 +822,23 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `10A ✅ / 10B active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `10B — Navigation`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-04 — 10B Navigation tamamlandı — NSHX-v0 / D-083
+
+- 10A merge edildikten sonra fresh 10B PRE main üzerinden yapıldı; beş kanonik kaynak `10A ✅ / 10B active-not-executed` gösterdi. Kullanıcı açık onay verdi.
+- **10B dış araştırma gerektirmedi.** İhtiyaç duyulabilecek tek ekosistem bilgisi — güncel adaptive navigation API'leri — 10A'da doğrulanıp pinlenmişti. `AMTS-v0`ın "güncellik doğrulanır, iddia edilmez" disiplininin amacı tam olarak bu: doğrulama toolchain'i pinleyen adımda bir kez yapılır ve sonraki adım onu harcar, tekrar etmez.
+- **Adımın çözdüğü asıl problem: bu işi yapmanın olağan yolu kabul edilmiş dört kararı yanlış yere koyuyor.** Route string'leriyle dolu bir `NavHost`, destination kümesini, sırasını, paylaşılan surface kimlik kuralını ve focused-flow dönüş kuralını UI toolkit'inin içine yerleştirir. `MSBX-v0` bunu presentation state için zaten reddetmişti — aksi hâlde üründeki en güvenlik-kritik etiketleme yalnız cihazda test edilebilirdi. Navigasyon aynı sınıf karardır: `UXIA-v0` "Learn ve Progress altında çelişkili Skill detail sayfaları"nı yasaklıyor ve bu bir **kimlik** iddiasıdır; kimlik routing tablosuna değil modele aittir.
+- **Enum sırası kanonik yapıldı.** Dört destination `today → learn → progress → profile` sırasında ve senkron tutulacak ikinci bir liste yok; bir yeniden sıralama kazara kayma değil, bilinçli bir kaynak değişikliği olmak zorunda.
+- **Kanonik entity başına tek surface objesi.** Origin başına bir route tutan bir kayıt defteri, yasaklanan çelişkili-detay ihlalini yazmayı kolaylaştırırdı. Tek obje bunu **temsil edilemez** yapıyor ve validator, bildirim sayısını sayarak öyle kalmasını sağlıyor.
+- **Contextual edge kümesi kapalı tutuldu.** Her surface her şeyi açabilseydi, öğrencinin izlediği yol curriculum yapısı gibi görünmeye başlardı — `UXIA-v0` §10.2'nin açıkça yasakladığı şey. Kod içindeki kenar kümesi `ia.yaml` ile karşılaştırılıyor, yani shell ile kabul edilmiş IA sessizce ayrışamaz.
+- **Tehlikeli durum temsil edilemez kılındı.** `showsShell` ve `requiresSafeExit` parametre değil surface'tan türetiliyor; iki bağımsız bayrak olsalardı "gizli shell + çıkış yok" diye bir durum var olurdu. Çıkışın kendisi `TRUX-v0`a ait ve `WFPX-v0` onu 48dp'ye sabitliyor.
+- **Dönüş kuralında replan riski açık girdi yapıldı.** Entity context'inden açılan bir akış origin'e döner, fakat yalnız origin hâlâ geçerliyken; aksi hâlde `today`. Geçerliliği varsaymak, öğrenciyi planını artık tarif etmeyen bir yüzeyde bırakırdı.
+- **Window class'lar core'da hesaplanıyor.** Shell `NavigationSuiteScaffold` ile çiziliyor ama eşikleri o belirlemiyor; bir library varsayılan breakpoint'ini değiştirse bile kabul edilmiş `WFPX-v0` geometrisi kazanıyor. 599/600/839/840 sınırları test edildi. Window class yalnız çizimi değiştiriyor; küme, sıra ve anlam üç sınıfta aynı.
+- Erişilebilirlik: her destination metin etiketi taşıyor ve ikonun content description'ı null — etiket zaten adlandırıyor; seçim `stateDescription` ile metin olarak veriliyor; `traversalIndex` kanonik sırayı izliyor.
+- Dört run çalıştırıldı: `:core-presentation:test` (T1), `verifyModuleBoundaries` (T3), `:app-wiring:assembleDebug` (T5, APK üretildi) ve `-PwithAiAdapter=false` (T5). Sonuncusu bu adımın ötesinde önemli: shell V1 kriteri 8'i zayıflatmadan indi.
+- Independent 10B validator **104/104 PASS**; 10B'nin kendi kontratını değil **gerçek Kotlin kaynağını** okuyor ve destination id/sırasını, yasak top-level kümesini, 15 contextual edge'i, 6 shared detail'i ve dönüş semantiğini `ia.yaml`dan, window class'ları `wireframe.yaml`dan alıp karşılaştırıyor. Mutation test: 8 kasıtlı ihlal 8 FAIL verdi.
+- External-memory + Stage 6 + Stage 7 + AŞAMA 8 + AŞAMA 9 + 10A regressions PASS (28/28 validator).
+- D-050 POST living-memory accepted state'i `10B ✅ / 10C active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `10C — Design system implementation`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
