@@ -842,3 +842,23 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `10B ✅ / 10C active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `10C — Design system implementation`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-04 — 10C Design system implementation tamamlandı — DSIX-v0 / D-084
+
+- 10B merge edildikten sonra fresh 10C PRE main üzerinden yapıldı; beş kanonik kaynak `10B ✅ / 10C active-not-executed` gösterdi. Kullanıcı açık onay verdi.
+- **10C dış araştırma gerektirmedi.** Renkler zaten seçilmiş değil **ölçülmüş**tü ve sabit palet sağlama mekanizması 10A'da doğrulanıp pinlenmişti. Bu adımın ihtiyacı olan şey bir mimari karardı: token'lar nerede yaşamalı.
+- **Adımın çözdüğü asıl problem: renk değerleri için bariz yer tema dosyasıydı ve bu bir hata olurdu.** Hex'ler yalnız Compose'un içinde yaşasaydı kontrastı doğrulamak UI toolkit'i gerektirir, doğal kısayol da hesaplamak yerine hatırlanan bir oranı iddia etmek olurdu. Bu kısayol projede bir kez zaten başarısız oldu: 8G'de elle beyan edilen bir minimum yanlıştı ve yalnız yeniden hesaplama yakaladı. Bu yüzden token'lar `core-presentation`da düz veri, WCAG formülleri yanlarında ve ürünün kendi suite'i her oranı cihazsız/Compose'suz bir JVM testinde yeniden hesaplıyor.
+- Palet birebir kopyalandı: tema başına 18 token, iki temada aynı küme, dark light'ın tersi değil. Yeşil–amber–kırmızı rampası yok. **Palet burada revize edilmedi** ve bu bilinçli bir kural: bir check düşseydi düzeltilecek şey kod olurdu, ölçülmüş token değil.
+- **Kontrast iddia edilmedi, yeniden hesaplandı** — hem ürün testinde hem validator'da, iki temada: her iki yüzeyde metin ve muted metin, outline ve focus ring, altı tone container'ında on-tone metin, her tone container'ı yüzeye karşı. Validator kayıtlı minimumları (6.08 / 3.79 / 6.06) token'lardan yeniden türetti ve üçü de birebir tuttu — paletin bozulmadığının bağımsız kanıtı.
+- **Fault tone learning state için temsil edilemez kılındı.** "Hiçbir learning state fault tonu giymez" söylemesi kolay, bir yıl sonra ihlal etmesi de kolay bir kural. `Tone` altı değerli kaldı ama **`LearningTone` beş değerli ve atanacak bir fault değeri yok**; `SkillPresentationState.tone` `LearningTone` döndürüyor. Gözden geçirilecek bir kod yolu yok çünkü yazılacak bir ifade yok.
+- **Material'ın semantic rolleri bir tuzaktı.** Altı tonu Material'ın rollerine eşlemek, herhangi bir bileşenin "hata rengi"ne uzanıp onu bir learning state'e uygulamasına izin verirdi. Tonlar ayrı bir `CompositionLocal` olarak veriliyor ve Material'ın `error` rolü yalnız `system_fault` taşıyor.
+- **Gruplama severity değildir.** Attention grubunda görünmek tonu değiştirmiyor ve bu, state'in kendi tonunu döndüren adı konmuş bir fonksiyon — niyet kodun yokluğuyla ima edilmek yerine test ediliyor. Davranış mutation'ı (fonksiyonun tonu yükseltmesi) Kotlin testini düşürdü.
+- 48dp hedef tabanı per-component disiplin yerine `minimumTouchTarget()` modifier'ı; %100/150/200 metin ölçekleri; state chip'i etiketini metin olarak render edip `stateDescription` ile veriyor; hiçbir yerde locale-naive case transform yok.
+- **Dynamic colour scan'i bu adımın kendi yorumunu yakaladı.** Tema dosyasının açıklaması kuralı iki dynamic scheme builder'ının adını yazarak anlatıyordu; düz metin taraması bir yorumu bir çağrıdan ayıramaz. **Gate gevşetilmedi, yorum yeniden yazıldı** — katı yokluk daha güçlü bir garanti ve "geçmesi serbest, çağırmak yasak" diyen bir kural şu an ihtiyaç duymadığı bir parser ile yargı gerektirirdi.
+- Dört run çalıştırıldı: `:core-presentation:test` (T1), `verifyModuleBoundaries` (T3), `:app-wiring:assembleDebug` (T5), `-PwithAiAdapter=false` (T5).
+- Independent 10C validator **146/146 PASS**; 10C'nin kendi kontratını değil kabul edilmiş tasarım sistemini referans alıyor. Mutation test 8/8: 7 validator ihlali (token ayarı, `LearningTone`a fault eklenmesi, state tone değişimi, dynamic colour, locale-naive casing, hedef tabanının düşürülmesi, chip'ten state metninin kaldırılması) ve 1 davranış ihlali (grouping'in tonu yükseltmesi).
+- External-memory + Stage 6 + Stage 7 + AŞAMA 8 + AŞAMA 9 + 10A + 10B regressions PASS (29/29 validator).
+- D-050 POST living-memory accepted state'i `10C ✅ / 10D active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `10D — Local database`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10C active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10D active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1121,14 +1121,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - **AŞAMA 9 ✅ TAMAMLANDI**
 - AŞAMA 10A ✅ MPSX-v0 / D-082
 - AŞAMA 10B ✅ NSHX-v0 / D-083
-- AŞAMA 10C 🟡 active-not-executed
-- 10D–20 ⬜
+- AŞAMA 10C ✅ DSIX-v0 / D-084
+- AŞAMA 10D 🟡 active-not-executed
+- 10E–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `10B — Navigation`  
-**Final:** `NSHX-v0 — Navigation Shell` / D-083  
-**Canonical:** `docs/NAVIGATION_SHELL_SPEC.md` + `arch/10b_navigation/`
+**Son tamamlanan numaralı adım:** `10C — Design system implementation`  
+**Final:** `DSIX-v0 — Design System Implementation` / D-084  
+**Canonical:** `docs/DESIGN_SYSTEM_IMPL_SPEC.md` + `arch/10c_design_system/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1148,17 +1149,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9:** ✅ TAMAMLANDI  
 **AŞAMA 10A:** ✅ TAMAMLANDI  
 **AŞAMA 10B:** ✅ TAMAMLANDI  
-**Aktif adım:** `10C — Design system implementation`  
+**AŞAMA 10C:** ✅ TAMAMLANDI  
+**Aktif adım:** `10D — Local database`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-10C için:
+10D için:
 
 ```text
-fresh 10C PRE-STEP GitHub refresh
+fresh 10D PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 10C execution
+→ 10D execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1708,9 +1710,21 @@ AŞAMA 8 ✅ TAMAMLANDI
 AŞAMA 9 ✅ TAMAMLANDI
 10A ✅ MPSX-v0 / D-082
 10B ✅ NSHX-v0 / D-083
-10C 🟡 active-not-executed
-10D–20 ⬜
+10C ✅ DSIX-v0 / D-084
+10D 🟡 active-not-executed
+10E–20 ⬜
 ```
+
+10C final:
+- tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez,
+- token'lar `core-presentation`da düz veri; kontrast cihazsız JVM testinde yeniden hesaplanır,
+- palet birebir kopyalandı, revize edilmedi; kayıtlı minimumlar token'lardan yeniden türetildi ve tuttu,
+- `LearningTone`da fault değeri yok → learning state'e fault tonu yazılamaz; Material `error` yalnız `system_fault`,
+- sekiz state'in her birinin tam bir tonu; üçü bilinçle nötr,
+- attention grubu tonu yükseltmez (adı konmuş, test edilen fonksiyon),
+- 48dp modifier, %200 metin, metin olarak verilen state, locale-naive casing yok,
+- dynamic colour scan'i kendi yorumumuzu yakaladı; gate gevşetilmedi,
+- independent 10C QA 146/146 PASS, mutation-tested 8/8; 29/29 sweep PASS.
 
 10B final:
 - navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil,
@@ -1884,9 +1898,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `10C — Design system implementation`.
+**Sıradaki gerçek numbered work:** `10D — Local database`.
 
-**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1936,8 +1950,8 @@ AŞAMA 9 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `10C — Design system implementation`.  
-**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `10D — Local database`.  
+**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1974,3 +1988,12 @@ Ana invariant: **çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F bi
 10B `NSHX-v0 — Navigation Shell` ile tamamlandı. Canonical: `docs/NAVIGATION_SHELL_SPEC.md`; contract/QA: `arch/10b_navigation/`; synthesis: `research/10b_navigation_research.md`; kod: `android/core-presentation/.../Navigation.kt` ve `android/app-ui/.../AppShell.kt`.
 
 10B dış araştırma gerektirmedi: ihtiyaç duyulabilecek tek ekosistem bilgisi olan adaptive navigation API'leri 10A'da doğrulanıp pinlenmişti. Ana invariant: **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil.** Route string'leriyle dolu bir `NavHost` destination kümesini, sırasını, paylaşılan surface kimliğini ve dönüş kuralını Compose'a sokardı; `MSBX-v0` bunu presentation state için zaten reddetmişti. Dört destination kabul edilmiş sırada ve **enum bildirim sırası kanoniktir**. On bir yasak top-level id'nin hiçbiri destination değildir. **Kanonik entity başına tek surface objesi** vardır, yani `UXIA-v0`nin yasakladığı çelişkili Skill detail sayfaları temsil edilemez. Contextual edge kümesi kapalıdır ve validator onu `ia.yaml` ile karşılaştırır. **Focused flow shell'i askıya alır** ve `showsShell` ile `requiresSafeExit` türetildiği için çıkışsız gizli shell inşa edilemez; detail pane de bastırılır. Dönüş kuralı deterministiktir ve origin geçerliliğini açık girdi alır. Window class'lar `WFPX-v0` breakpoint'lerinden core'da hesaplanır ve yalnız çizimi değiştirir. Her destination metin etiketi, `stateDescription` ve `traversalIndex` taşır. Dört run çalıştırıldı ve adaptörsüz build hâlâ geçiyor, yani shell V1 kriteri 8'i zayıflatmadı. Independent QA 104/104 PASS, mutation-tested 8/8; 28/28 sweep PASS. Current active numbered step 10C'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 10C completion addendum — D-084
+
+10C `DSIX-v0 — Design System Implementation` ile tamamlandı. Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md`; contract/QA: `arch/10c_design_system/`; synthesis: `research/10c_design_system_research.md`; kod: `android/core-presentation/.../DesignTokens.kt`, `.../Tone.kt` ve `android/app-ui/.../CoachTheme.kt`.
+
+Ana invariant: tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez ve bir kural temsil edilemez kılınabiliyorsa öyle yapılır. Token'lar tema dosyasında değil `core-presentation`da düz veridir, çünkü hex'ler yalnız Compose'da yaşasaydı doğal kısayol hatırlanan bir oranı iddia etmek olurdu — 8G'de tam olarak bu başarısız oldu. Palet birebir kopyalandı ve revize edilmedi; kontrast iki temada hex'ten yeniden hesaplandı ve kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetilip tuttu. `LearningTone` beş değerlidir ve atanacak bir fault değeri olmadığı için bir learning state'e fault tonu vermek yazılamaz; Material'ın `error` rolü yalnız `system_fault` taşır. Sekiz Skill state'inin her birinin tam bir tonu vardır ve üçü bilinçle nötrdür çünkü bekleme başarısızlık değildir. Attention grubunda görünmek tonu değiştirmez ve bu adı konmuş, test edilen bir fonksiyondur. 48dp bir modifier'dır, metin %200'e ölçeklenir, state her zaman metin olarak da verilir ve locale-naive case transform yoktur. Dynamic colour scan'i bu adımın kendi yorumunu yakaladı ve gate gevşetilmek yerine yorum yeniden yazıldı. Independent QA 146/146 PASS, mutation-tested 8/8; 29/29 sweep PASS. Current active numbered step 10D'dir; fresh PRE + kullanıcı açık onayı gerekir.

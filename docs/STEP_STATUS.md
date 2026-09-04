@@ -48,8 +48,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9F — Test stratejisi** | ✅ | TVSX-v0 / D-081. Sahipsiz invariant release'i bloklar; coverage yüzdesi gate değildir; 288/288 QA PASS. **AŞAMA 9 kapandı.** |
 | **10A — Proje kurulumu** | ✅ | MPSX-v0 / D-082. İlk çalıştırılabilir iskelet; boundary kuralı build'i düşürüyor, adaptörsüz build geçiyor, hedef cihaz kaydedildi; 127/127 QA PASS. |
 | **10B — Navigation** | ✅ | NSHX-v0 / D-083. Navigasyon modeli core'da; kapalı edge kümesi; focused flow shell'i askıya alıyor; 104/104 QA PASS. |
-| **10C — Design system implementation** | 🟡 Aktif | VDSX-v0 expression layer + WFPX-v0 ölçülmüş palet Compose teması olarak; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **10D–20** | ⬜ Bekliyor | 10C sonrası canonical sırada. |
+| **10C — Design system implementation** | ✅ | DSIX-v0 / D-084. Token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez; 146/146 QA PASS. |
+| **10D — Local database** | 🟡 Aktif | DDM-v0 physical schema, append-only trigger'lar, dolu fixture migration'ları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **10E–20** | ⬜ Bekliyor | 10D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -68,25 +69,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 10B
+## Son tamamlanan numaralı adım — 10C
 
-**Final:** `NSHX-v0 — Navigation Shell` / D-083.
-**Ana çıktı:** `docs/NAVIGATION_SHELL_SPEC.md` + `arch/10b_navigation/` + `android/core-presentation` + `android/app-ui`.
+**Final:** `DSIX-v0 — Design System Implementation` / D-084.
+**Ana çıktı:** `docs/DESIGN_SYSTEM_IMPL_SPEC.md` + `arch/10c_design_system/` + `android/core-presentation` + `android/app-ui`.
 
-10B sonucu:
-- **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil**; destination kümesi, sırası, paylaşılan surface kimliği, geçişler ve dönüş kuralı saf fonksiyonlar,
-- 10B dış araştırma gerektirmedi: adaptive API'ler 10A'da doğrulanıp pinlenmişti,
-- dört destination kabul edilmiş sırada, `today` başlangıç; **enum sırası kanonik** ve senkron tutulacak ikinci liste yok,
-- on bir yasak top-level id'nin hiçbiri destination değil ve bu test ediliyor,
-- **kanonik entity başına tek surface objesi**: Skill detail üç yerden erişilebilir ve her seferinde aynı obje; çelişkili detay sayfası temsil edilemez,
-- contextual edge kümesi **kapalı** ve validator onu `ia.yaml` ile karşılaştırıyor; listelenmemiş geçiş navigable değil,
-- **focused flow shell'i askıya alır**; `showsShell` ve `requiresSafeExit` türetilir, böylece "gizli shell + çıkış yok" inşa edilemez; detail pane de bastırılır,
-- dönüş kuralı deterministik: normal iş → `today`, entity akışı → origin geçerliyse oraya, bayat origin → `today`,
-- window class'lar `WFPX-v0` breakpoint'lerinden **core'da** hesaplanır ve yalnız çizimi değiştirir; 599/600/839/840 test edildi,
-- her destination metin etiketi taşır, ikon tek anlam taşıyıcısı değil, seçim `stateDescription`, sıra `traversalIndex`,
-- 4 run çalıştırıldı; `-PwithAiAdapter=false` hâlâ geçiyor, yani shell V1 kriteri 8'i zayıflatmadı,
-- independent validator **104/104 PASS** (gerçek Kotlin'i `ia.yaml` ve `wireframe.yaml`a karşı okuyor), mutation-tested 8/8; 28/28 sweep PASS.
+10C sonucu:
+- **tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez**; bir kural temsil edilemez kılınabiliyorsa öyle yapıldı,
+- **token'lar `core-presentation`da düz veri**: hex'ler yalnız Compose'da yaşasaydı doğal kısayol hatırlanan bir oranı iddia etmek olurdu ve o kısayol 8G'de zaten bir kez başarısız olmuştu,
+- palet birebir kopyalandı, **revize edilmedi**; validator her token'ı `WFPX-v0` ile bayt bayt karşılaştırıyor,
+- **kontrast iki temada da hex'ten yeniden hesaplanıyor**; kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetildi ve tuttu,
+- **`LearningTone` beş değerli ve fault değeri yok** → learning state'e fault tonu atamak yazılamaz; Material `error` rolü yalnız `system_fault` taşır,
+- sekiz Skill state'inin her birinin tam bir tonu var; üçü bilinçle nötr çünkü bekleme başarısızlık değil,
+- **attention grubunda görünmek tonu değiştirmiyor** ve bu adı konmuş, test edilen bir fonksiyon,
+- 48dp `minimumTouchTarget()` modifier'ı, %100/150/200 metin, metin olarak verilen state, locale-naive casing yok,
+- **dynamic colour scan'i bu adımın kendi yorumunu yakaladı**; gate gevşetilmedi, yorum yeniden yazıldı,
+- 4 run çalıştırıldı; adaptörsüz build hâlâ geçiyor,
+- independent validator **146/146 PASS**, mutation-tested 8/8 (7 validator + 1 davranış); 29/29 sweep PASS.
 
-## Aktif adım — 10C Design system implementation
+## Aktif adım — 10D Local database
 
-**10C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**10D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

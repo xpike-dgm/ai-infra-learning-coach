@@ -1,0 +1,183 @@
+model: DSIX-v0
+stage_step: 10C
+status: accepted_10c
+decision: D-084
+design_system: VDSX-v0
+geometry: WFPX-v0
+state_vocabulary: SPWX-v0
+boundaries: MSBX-v0
+project: MPSX-v0
+purpose: design_system_implementation
+
+scope:
+  theme_and_tokens_only: true
+  destination_interiors_implemented: false
+  persistence_implemented: false
+  component_library_completed: false
+  new_visual_semantics_introduced: false
+  design_system_changed: false
+  geometry_changed: false
+  state_vocabulary_changed: false
+  palette_revised: false
+  aesthetic_quality_claim: null
+  rendering_performance_claim: null
+
+design_question: How do the accepted expression rules become a theme that cannot break them?
+
+token_location:
+  module: core-presentation
+  tokens_in_theme_file_only: false
+  rationale: contrast must be recomputed from the hex values by an ordinary JVM test with no device and no Compose
+  precedent: WFPX-v0_validator_caught_a_hand_declared_minimum
+
+palette:
+  source: WFPX-v0
+  measured_per_theme: true
+  dark_is_inversion_of_light: false
+  themes: [light, dark]
+  token_count_per_theme: 18
+  same_token_set_in_both_themes: true
+  revised_here: false
+
+contrast:
+  recomputed_from_hex: true
+  asserted_from_stored_ratio: false
+  computed_where: core-presentation_jvm_test
+  formula: wcag_2_2_relative_luminance
+  text_min: 4.5
+  non_text_min: 3.0
+  pairs_checked:
+    text_on_surface: true
+    text_on_surface_variant: true
+    muted_text_on_both_surfaces: true
+    text_on_every_tone_container: true
+    tone_container_against_surface: true
+    outline_and_focus_ring: true
+  both_themes_checked: true
+
+tones:
+  count: 6
+  ids: [neutral, active, positive_confirmed, attention, pending_unresolved, system_fault]
+  token_map_source: WFPX-v0_tone_token_map
+  one_declared_tone_per_state: true
+
+learning_tone:
+  separate_type: true
+  count: 5
+  system_fault_available_to_learning_state: false
+  enforcement: structural_type_has_no_fault_value
+  rationale: a five value type makes the forbidden assignment impossible to write rather than something a reviewer must notice
+
+skill_state_tone_map:
+  not_yet_evidenced: neutral
+  developing_with_support: active
+  developing_independent: active
+  confirmed_current: positive_confirmed
+  confirmed_review_due: neutral
+  confirmation_verification_due: attention
+  remediation_required: attention
+  prerequisite_unresolved: neutral
+
+qualifier_tone_map:
+  retention_at_risk: attention
+  requires_independent_recheck: attention
+  contested_evidence_present: pending_unresolved
+  provisional_evaluation_present: pending_unresolved
+
+attention_group:
+  membership_changes_tone: false
+  rule_is_a_named_function: true
+  rationale: grouping is a grouping fact not a severity fact and the intent must be testable
+
+system_fault_states:
+  count: 2
+  ids: [error_recoverable, data_recovery_required]
+  are_learner_judgements: false
+  material_error_role_reserved_for: system_fault
+
+dynamic_colour:
+  enabled: false
+  builders_present_anywhere_in_project: false
+  enforcement: source_scan
+  scan_owner: MPSX-v0
+  mention_in_prose_also_fails: true
+
+targets_and_scaling:
+  minimum_touch_target_dp: 48
+  adopts_stricter_platform_rule_over_wcag_24px: true
+  modifier_provided: minimumTouchTarget
+  supported_text_scales_percent: [100, 150, 200]
+
+colour_alone:
+  state_conveyed_by_colour_only: false
+  state_chip_renders_text: true
+  state_exposed_via_state_description: true
+
+turkish_casing:
+  default_locale_case_transform_present: false
+  locked_labels_rendered_as_authored: true
+  enforcement: source_scan_for_locale_naive_transforms
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-presentation:test
+    tier: T1
+    result: PASS
+    covers: recomputed contrast in both themes, tone map, fault-tone prohibition, targets, scaling
+  - id: RUN-02
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+    proves: v1_criterion_8_still_holds
+
+build_corrections:
+  - claim: naming the dynamic scheme builders inside a comment is harmless
+    correction: the 10A source scan is a plain text scan and failed on the comment
+    resolution: the prose was reworded rather than the gate weakened, because strict absence is the stronger guarantee
+    found_by: running the 10A validator
+
+forbidden_design_impl_patterns:
+  - deriving_the_palette_from_the_wallpaper
+  - naming_a_dynamic_scheme_builder_anywhere_including_prose
+  - asserting_a_contrast_ratio_instead_of_recomputing_it
+  - revising_a_measured_token_to_make_a_check_pass
+  - giving_a_learning_state_the_fault_tone
+  - letting_a_component_choose_a_different_tone_than_the_state_declares
+  - upgrading_a_tone_because_the_state_appears_in_an_attention_group
+  - conveying_state_by_colour_alone
+  - an_interactive_target_below_the_accepted_floor
+  - a_locale_naive_case_transform_on_a_locked_label
+  - introducing_a_visual_severity_the_canonical_state_does_not_claim
+
+future_stage_boundaries:
+  10D: persistence_schema_and_content_loading
+  10E: app_health_and_diagnostics
+  11: today_interior_and_first_real_components
+  14: microcopy_and_final_labels
+  17: accessibility_verification_on_device
+
+acceptance:
+  required_previous_models:
+    - VDSX-v0
+    - WFPX-v0
+    - SPWX-v0
+    - MSBX-v0
+    - MPSX-v0
+    - NSHX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  contrast_must_be_recomputed_not_asserted: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true
+  stage10a_regression_required: true
+  stage10b_regression_required: true

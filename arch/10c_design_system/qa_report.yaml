@@ -1,0 +1,463 @@
+model: DSIX-v0
+stage_step: 10C
+decision: D-084
+result: PASS
+checks_total: 146
+checks_passed: 146
+checks_failed: 0
+tokens_per_theme: 18
+recomputed_minima:
+  text_on_surface: 6.08
+  non_text_and_boundary: 3.79
+  text_on_tone: 6.06
+checks:
+- check: E10C-00_exists_DesignTokens.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\DesignTokens.kt
+- check: E10C-00_exists_Tone.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\Tone.kt
+- check: E10C-00_exists_DesignSystemTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\test\kotlin\coach\presentation\DesignSystemTest.kt
+- check: E10C-00_exists_CoachTheme.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\app-ui\src\main\kotlin\coach\ui\CoachTheme.kt
+- check: E10C-00_exists_DESIGN_SYSTEM_IMPL_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\docs\DESIGN_SYSTEM_IMPL_SPEC.md
+- check: E10C-00_exists_10c_design_system_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\research\10c_design_system_research.md
+- check: E10C-01_model
+  result: PASS
+  details: DSIX-v0
+- check: E10C-01_status
+  result: PASS
+  details: accepted_10c
+- check: E10C-01_decision
+  result: PASS
+  details: D-084
+- check: E10C-01_scope_design_system_changed
+  result: PASS
+  details: design_system_changed=False
+- check: E10C-01_scope_geometry_changed
+  result: PASS
+  details: geometry_changed=False
+- check: E10C-01_scope_state_vocabulary_changed
+  result: PASS
+  details: state_vocabulary_changed=False
+- check: E10C-01_scope_palette_revised
+  result: PASS
+  details: palette_revised=False
+- check: E10C-01_scope_new_visual_semantics_introduced
+  result: PASS
+  details: new_visual_semantics_introduced=False
+- check: E10C-01_noclaim_aesthetic_quality_claim
+  result: PASS
+  details: aesthetic_quality_claim=None
+- check: E10C-01_noclaim_rendering_performance_claim
+  result: PASS
+  details: rendering_performance_claim=None
+- check: E10C-02_token_set_light
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10C-02_token_values_light
+  result: PASS
+  details: mismatched={}
+- check: E10C-02_token_set_dark
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10C-02_token_values_dark
+  result: PASS
+  details: mismatched={}
+- check: E10C-02_token_count
+  result: PASS
+  details: light=18 dark=18
+- check: E10C-02_palette_not_revised
+  result: PASS
+  details: 10C may not revise the measured palette
+- check: E10C-02_dark_not_inversion
+  result: PASS
+  details: WFPX-v0 measured each theme separately
+- check: E10C-03_text_light_on_surface_on_surface
+  result: PASS
+  details: 17.79:1 < 4.5
+- check: E10C-03_text_light_on_surface_on_surface_variant
+  result: PASS
+  details: 15.99:1 < 4.5
+- check: E10C-03_text_light_on_surface_muted_on_surface
+  result: PASS
+  details: 6.76:1 < 4.5
+- check: E10C-03_text_light_on_surface_muted_on_surface_variant
+  result: PASS
+  details: 6.08:1 < 4.5
+- check: E10C-03_nontext_light_outline_on_surface
+  result: PASS
+  details: 4.21:1 < 3.0
+- check: E10C-03_nontext_light_outline_on_surface_variant
+  result: PASS
+  details: 3.79:1 < 3.0
+- check: E10C-03_nontext_light_focus_ring_on_surface
+  result: PASS
+  details: 6.17:1 < 3.0
+- check: E10C-03_nontext_light_focus_ring_on_surface_variant
+  result: PASS
+  details: 5.55:1 < 3.0
+- check: E10C-03_tone_text_light_neutral
+  result: PASS
+  details: 8.14:1 < 4.5
+- check: E10C-03_tone_boundary_light_neutral
+  result: PASS
+  details: 8.14:1 < 3.0
+- check: E10C-03_tone_text_light_active
+  result: PASS
+  details: 6.17:1 < 4.5
+- check: E10C-03_tone_boundary_light_active
+  result: PASS
+  details: 6.17:1 < 3.0
+- check: E10C-03_tone_text_light_positive_confirmed
+  result: PASS
+  details: 6.28:1 < 4.5
+- check: E10C-03_tone_boundary_light_positive_confirmed
+  result: PASS
+  details: 6.28:1 < 3.0
+- check: E10C-03_tone_text_light_attention
+  result: PASS
+  details: 7.02:1 < 4.5
+- check: E10C-03_tone_boundary_light_attention
+  result: PASS
+  details: 7.02:1 < 3.0
+- check: E10C-03_tone_text_light_pending_unresolved
+  result: PASS
+  details: 6.06:1 < 4.5
+- check: E10C-03_tone_boundary_light_pending_unresolved
+  result: PASS
+  details: 6.06:1 < 3.0
+- check: E10C-03_tone_text_light_system_fault
+  result: PASS
+  details: 6.54:1 < 4.5
+- check: E10C-03_tone_boundary_light_system_fault
+  result: PASS
+  details: 6.54:1 < 3.0
+- check: E10C-03_text_dark_on_surface_on_surface
+  result: PASS
+  details: 15.15:1 < 4.5
+- check: E10C-03_text_dark_on_surface_on_surface_variant
+  result: PASS
+  details: 13.29:1 < 4.5
+- check: E10C-03_text_dark_on_surface_muted_on_surface
+  result: PASS
+  details: 8.41:1 < 4.5
+- check: E10C-03_text_dark_on_surface_muted_on_surface_variant
+  result: PASS
+  details: 7.37:1 < 4.5
+- check: E10C-03_nontext_dark_outline_on_surface
+  result: PASS
+  details: 4.74:1 < 3.0
+- check: E10C-03_nontext_dark_outline_on_surface_variant
+  result: PASS
+  details: 4.16:1 < 3.0
+- check: E10C-03_nontext_dark_focus_ring_on_surface
+  result: PASS
+  details: 8.29:1 < 3.0
+- check: E10C-03_nontext_dark_focus_ring_on_surface_variant
+  result: PASS
+  details: 7.27:1 < 3.0
+- check: E10C-03_tone_text_dark_neutral
+  result: PASS
+  details: 8.2:1 < 4.5
+- check: E10C-03_tone_boundary_dark_neutral
+  result: PASS
+  details: 8.51:1 < 3.0
+- check: E10C-03_tone_text_dark_active
+  result: PASS
+  details: 7.8:1 < 4.5
+- check: E10C-03_tone_boundary_dark_active
+  result: PASS
+  details: 8.29:1 < 3.0
+- check: E10C-03_tone_text_dark_positive_confirmed
+  result: PASS
+  details: 9.55:1 < 4.5
+- check: E10C-03_tone_boundary_dark_positive_confirmed
+  result: PASS
+  details: 10.23:1 < 3.0
+- check: E10C-03_tone_text_dark_attention
+  result: PASS
+  details: 8.54:1 < 4.5
+- check: E10C-03_tone_boundary_dark_attention
+  result: PASS
+  details: 8.8:1 < 3.0
+- check: E10C-03_tone_text_dark_pending_unresolved
+  result: PASS
+  details: 9.27:1 < 4.5
+- check: E10C-03_tone_boundary_dark_pending_unresolved
+  result: PASS
+  details: 10.24:1 < 3.0
+- check: E10C-03_tone_text_dark_system_fault
+  result: PASS
+  details: 9.99:1 < 4.5
+- check: E10C-03_tone_boundary_dark_system_fault
+  result: PASS
+  details: 10.81:1 < 3.0
+- check: E10C-04_minimum_text_on_surface
+  result: PASS
+  details: recomputed=6.08 recorded=6.08
+- check: E10C-04_minimum_non_text_and_boundary
+  result: PASS
+  details: recomputed=3.79 recorded=3.79
+- check: E10C-04_minimum_text_on_tone
+  result: PASS
+  details: recomputed=6.06 recorded=6.06
+- check: E10C-04_recomputed_not_asserted
+  result: PASS
+  details: contrast must be recomputed, never asserted
+- check: E10C-04_product_test_recomputes
+  result: PASS
+  details: the product's own suite must recompute contrast too
+- check: E10C-04_both_themes_in_test
+  result: PASS
+  details: both themes must be checked by the product test
+- check: E10C-05_tone_count
+  result: PASS
+  details: vdsx tones=['neutral', 'active', 'positive_confirmed', 'attention', 'pending_unresolved',
+    'system_fault']
+- check: E10C-05_tone_ids_match
+  result: PASS
+  details: kotlin=['active', 'attention', 'neutral', 'pending_unresolved', 'positive_confirmed',
+    'system_fault'] vdsx=['active', 'attention', 'neutral', 'pending_unresolved',
+    'positive_confirmed', 'system_fault']
+- check: E10C-05_tone_token_map_matches
+  result: PASS
+  details: contract=['active', 'attention', 'neutral', 'pending_unresolved', 'positive_confirmed',
+    'system_fault'] wfpx=['active', 'attention', 'neutral', 'pending_unresolved',
+    'positive_confirmed', 'system_fault']
+- check: E10C-06_learning_tone_type_exists
+  result: PASS
+  details: a separate learning-tone type must exist
+- check: E10C-06_learning_tone_count
+  result: PASS
+  details: values=['NEUTRAL', 'ACTIVE', 'POSITIVE_CONFIRMED', 'ATTENTION', 'PENDING_UNRESOLVED']
+- check: E10C-06_no_fault_in_learning_tone
+  result: PASS
+  details: LearningTone must not contain a fault value
+- check: E10C-06_skill_tone_returns_learning_tone
+  result: PASS
+  details: a Skill state must be typed so it cannot return the fault tone
+- check: E10C-06_upstream_forbids
+  result: PASS
+  details: VDSX-v0 forbids the fault tone on a learning state
+- check: E10C-06_tested
+  result: PASS
+  details: the prohibition must be tested
+- check: E10C-06_enforcement_recorded
+  result: PASS
+  details: structural_type_has_no_fault_value
+- check: E10C-07_skill_tone_not_yet_evidenced
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E10C-07_skill_tone_developing_with_support
+  result: PASS
+  details: kotlin=ACTIVE vdsx=ACTIVE
+- check: E10C-07_skill_tone_developing_independent
+  result: PASS
+  details: kotlin=ACTIVE vdsx=ACTIVE
+- check: E10C-07_skill_tone_confirmed_current
+  result: PASS
+  details: kotlin=POSITIVE_CONFIRMED vdsx=POSITIVE_CONFIRMED
+- check: E10C-07_skill_tone_confirmed_review_due
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E10C-07_skill_tone_confirmation_verification_due
+  result: PASS
+  details: kotlin=ATTENTION vdsx=ATTENTION
+- check: E10C-07_skill_tone_remediation_required
+  result: PASS
+  details: kotlin=ATTENTION vdsx=ATTENTION
+- check: E10C-07_skill_tone_prerequisite_unresolved
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E10C-07_skill_tone_count
+  result: PASS
+  details: '8'
+- check: E10C-07_contract_map_matches
+  result: PASS
+  details: the contract's map must equal VDSX-v0's
+- check: E10C-08_qualifier_map_matches
+  result: PASS
+  details: 'contract={''retention_at_risk'': ''attention'', ''requires_independent_recheck'':
+    ''attention'', ''contested_evidence_present'': ''pending_unresolved'', ''provisional_evaluation_present'':
+    ''pending_unresolved''} vdsx={''retention_at_risk'': ''attention'', ''requires_independent_recheck'':
+    ''attention'', ''contested_evidence_present'': ''pending_unresolved'', ''provisional_evaluation_present'':
+    ''pending_unresolved''}'
+- check: E10C-08_qualifier_present_retention_at_risk
+  result: PASS
+  details: missing qualifier retention_at_risk
+- check: E10C-08_qualifier_present_requires_independent_recheck
+  result: PASS
+  details: missing qualifier requires_independent_recheck
+- check: E10C-08_qualifier_present_contested_evidence_present
+  result: PASS
+  details: missing qualifier contested_evidence_present
+- check: E10C-08_qualifier_present_provisional_evaluation_present
+  result: PASS
+  details: missing qualifier provisional_evaluation_present
+- check: E10C-09_grouping_named_function
+  result: PASS
+  details: the grouping rule must be a named function so it can be tested
+- check: E10C-09_grouping_does_not_upgrade
+  result: PASS
+  details: grouping must not change a tone, and it must be tested
+- check: E10C-10_fault_states_match
+  result: PASS
+  details: contract=['error_recoverable', 'data_recovery_required'] vdsx=['error_recoverable',
+    'data_recovery_required']
+- check: E10C-10_fault_state_error_recoverable
+  result: PASS
+  details: missing error_recoverable
+- check: E10C-10_fault_state_data_recovery_required
+  result: PASS
+  details: missing data_recovery_required
+- check: E10C-10_material_error_reserved
+  result: PASS
+  details: Material's error role must carry the system fault tone and nothing else
+- check: E10C-11_no_dynamic_colour_anywhere
+  result: PASS
+  details: found in []
+- check: E10C-11_fixed_schemes_used
+  result: PASS
+  details: the theme must be built from the fixed schemes
+- check: E10C-11_upstream_forbids
+  result: PASS
+  details: AMTS-v0 disables dynamic colour
+- check: E10C-11_contract_records_scan
+  result: PASS
+  details: the scan is a plain text scan and the contract must say so
+- check: E10C-12_touch_target
+  result: PASS
+  details: the 48dp floor must be a real modifier
+- check: E10C-12_stricter_than_wcag
+  result: PASS
+  details: VDSX-v0 adopts the stricter platform rule
+- check: E10C-13_text_scales
+  result: PASS
+  details: the supported text scales must reach 200%
+- check: E10C-14_state_has_text
+  result: PASS
+  details: a state chip must expose its state as text
+- check: E10C-14_chip_renders_text
+  result: PASS
+  details: a state chip must render a text label
+- check: E10C-14_not_colour_only
+  result: PASS
+  details: state may not be carried by colour alone
+- check: E10C-15_no_locale_naive_case
+  result: PASS
+  details: 'locale-naive transforms: []'
+- check: E10C-15_upstream_forbids
+  result: PASS
+  details: AMTS-v0 forbids default-locale transforms and styling-driven casing
+- check: E10C-15_contract_records
+  result: PASS
+  details: 'False'
+- check: E10C-16_runs_recorded
+  result: PASS
+  details: count=4
+- check: E10C-16_all_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS''}'
+- check: E10C-16_no_adapter_still_builds
+  result: PASS
+  details: the no-adapter build must still be verified
+- check: E10C-16_corrections_recorded
+  result: PASS
+  details: what the checks corrected must be recorded rather than quietly fixed
+- check: E10C-17_forbidden_deriving_the_palette_from_the_wall
+  result: PASS
+  details: missing=deriving_the_palette_from_the_wallpaper
+- check: E10C-17_forbidden_naming_a_dynamic_scheme_builder_an
+  result: PASS
+  details: missing=naming_a_dynamic_scheme_builder_anywhere_including_prose
+- check: E10C-17_forbidden_asserting_a_contrast_ratio_instead
+  result: PASS
+  details: missing=asserting_a_contrast_ratio_instead_of_recomputing_it
+- check: E10C-17_forbidden_revising_a_measured_token_to_make_
+  result: PASS
+  details: missing=revising_a_measured_token_to_make_a_check_pass
+- check: E10C-17_forbidden_giving_a_learning_state_the_fault_
+  result: PASS
+  details: missing=giving_a_learning_state_the_fault_tone
+- check: E10C-17_forbidden_letting_a_component_choose_a_diffe
+  result: PASS
+  details: missing=letting_a_component_choose_a_different_tone_than_the_state_declares
+- check: E10C-17_forbidden_upgrading_a_tone_because_the_state
+  result: PASS
+  details: missing=upgrading_a_tone_because_the_state_appears_in_an_attention_group
+- check: E10C-17_forbidden_conveying_state_by_colour_alone
+  result: PASS
+  details: missing=conveying_state_by_colour_alone
+- check: E10C-17_forbidden_an_interactive_target_below_the_ac
+  result: PASS
+  details: missing=an_interactive_target_below_the_accepted_floor
+- check: E10C-17_forbidden_a_locale_naive_case_transform_on_a
+  result: PASS
+  details: missing=a_locale_naive_case_transform_on_a_locked_label
+- check: E10C-17_forbidden_introducing_a_visual_severity_the_
+  result: PASS
+  details: missing=introducing_a_visual_severity_the_canonical_state_does_not_claim
+- check: E10C-18_spec_**Status:** ACCEPTED — indep
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 10C QA PASS'
+- check: E10C-18_spec_**Decision:** `D-084`
+  result: PASS
+  details: missing='**Decision:** `D-084`'
+- check: E10C-18_spec_recomputed
+  result: PASS
+  details: missing='recomputed'
+- check: E10C-18_spec_LearningTone
+  result: PASS
+  details: missing='LearningTone'
+- check: E10C-18_spec_48dp
+  result: PASS
+  details: missing='48dp'
+- check: E10C-18_spec_records_correction
+  result: PASS
+  details: the spec must record the check that caught its own comment
+- check: E10C-19_research_measured, not chosen
+  result: PASS
+  details: missing='measured, not chosen'
+- check: E10C-19_research_structurally
+  result: PASS
+  details: missing='structurally'
+- check: E10C-20_required_models
+  result: PASS
+  details: '[''VDSX-v0'', ''WFPX-v0'', ''SPWX-v0'', ''MSBX-v0'', ''MPSX-v0'', ''NSHX-v0'']'
+- check: E10C-20_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E10C-20_build_must_be_run_not_asserted
+  result: PASS
+  details: build_must_be_run_not_asserted=True
+- check: E10C-20_contrast_must_be_recomputed_not_asserted
+  result: PASS
+  details: contrast_must_be_recomputed_not_asserted=True
+- check: E10C-20_stage6_regression_required
+  result: PASS
+  details: stage6_regression_required=True
+- check: E10C-20_stage7_regression_required
+  result: PASS
+  details: stage7_regression_required=True
+- check: E10C-20_stage8_regression_required
+  result: PASS
+  details: stage8_regression_required=True
+- check: E10C-20_stage9_regression_required
+  result: PASS
+  details: stage9_regression_required=True
+- check: E10C-20_stage10a_regression_required
+  result: PASS
+  details: stage10a_regression_required=True
+- check: E10C-20_stage10b_regression_required
+  result: PASS
+  details: stage10b_regression_required=True
+failures: []
