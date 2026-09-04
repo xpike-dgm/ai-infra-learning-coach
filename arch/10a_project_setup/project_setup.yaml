@@ -1,0 +1,250 @@
+model: MPSX-v0
+stage_step: 10A
+status: accepted_10a
+decision: D-082
+boundaries: MSBX-v0
+verification_strategy: TVSX-v0
+platform: AMTS-v0
+distribution_scope: D-080
+purpose: buildable_project_skeleton_and_toolchain_pins
+
+scope:
+  project_skeleton_only: true
+  navigation_graph_locked: false
+  design_system_implemented: false
+  physical_schema_locked: false
+  feature_code_written: false
+  new_product_semantics_introduced: false
+  boundaries_changed: false
+  persistence_rules_changed: false
+  data_model_changed: false
+  ai_integration_changed: false
+  verification_strategy_changed: false
+  build_performance_claim: null
+  apk_size_claim: null
+  newest_version_claim: null
+
+setup_question: What concrete project makes MSBX-v0's boundaries and TVSX-v0's tiers executable?
+
+gradle_root: android
+
+toolchain:
+  verified_on: 2026-08-31
+  currency_asserted: false
+  currency_verified: true
+  precedent: AMTS-v0_currency_is_verified_not_asserted
+  pins:
+    agp: 9.3.0
+    gradle: 9.7.1
+    kotlin: 2.4.0
+    compose_bom: 2026.08.00
+    compose_adaptive: 1.3.0
+    androidx_sqlite: 2.7.0
+    jvm_toolchain: 17
+  platform_levels:
+    min_sdk: 26
+    target_sdk: 36
+    compile_sdk: 37
+  build_corrections:
+    - claim: AGP 9.3.0 release notes list Gradle 9.5.0 as the minimum
+      correction: no gradle-9.5 distribution resolves; the wrapper 404s
+      resolution: pinned Gradle 9.7.1, the version Gradle's own release service reports as current
+      found_by: running the build
+    - claim: an Android Kotlin module applies org.jetbrains.kotlin.android
+      correction: AGP 9.0+ provides Kotlin support built in and rejects the standalone plugin
+      resolution: the plugin is absent from the version catalog and from both Android modules
+      found_by: running the build
+
+target_device:
+  recorded_here: true
+  previously_recorded_in_repo: false
+  resolves: AMTS-v0_section_8_1_open_item
+  name: Poco M6 Pro
+  model: 2312FPCA6G
+  android_release: "16"
+  api_level: 36
+  build: BP2A.250605.031.A3
+  os_version: 3.0.304.0.WNFMIXM.C10
+  kernel: 6.12.30-android16-5-g6e872b4863d6-ab13847919-4k
+  soc: Helio G99-Ultra
+  memory_gb: "12+6"
+  is_single_target_device: true
+  scope_source: D-080
+  satisfies_min_sdk: true
+
+amts_verification_list:
+  all_six_answered: true
+  items:
+    - id: 1
+      question: current adaptive navigation APIs for the three window classes
+      answer: WindowSizeClass from androidx.compose.material3.adaptive:adaptive; NavigationSuiteScaffold from androidx.compose.material3:material3-adaptive-navigation-suite; pane scaffolds from adaptive-navigation
+      changes_wfpx_geometry: false
+    - id: 2
+      question: mechanism for disabling dynamic colour and supplying a fixed palette
+      answer: dynamic colour is opt-in; never call dynamicLightColorScheme or dynamicDarkColorScheme, build the theme from lightColorScheme/darkColorScheme with the WFPX-v0 measured tokens
+      enforced_by: source_scan
+    - id: 3
+      question: minimum API level satisfying AMTS section 8.1 against the actual device
+      answer: 26 confirmed; java.time is native from 26 so retention and review timing need no desugaring, and the device runs API 36
+      raised_above_lowest_workable: false
+    - id: 4
+      question: screen-reader semantics APIs
+      answer: Modifier.semantics with stateDescription, contentDescription, heading and live region; traversal order via isTraversalGroup and traversalIndex
+      platform_level_implied: false
+    - id: 5
+      question: reduced-motion detection
+      answer: Settings.Global.ANIMATOR_DURATION_SCALE reads 0f when animations are disabled; no dedicated reduced-motion flag exists
+      available_below_min_sdk: true
+    - id: 6
+      question: compatibility library needed at the chosen minSdk
+      answer: none; java.time native from 26, Settings.Global far below 26, Compose semantics and adaptive APIs are library-level, androidx.sqlite requires API 23
+      compatibility_library_required: false
+
+modules:
+  count: 10
+  source: MSBX-v0_boundaries_yaml
+  gradle_kind:
+    core-model: kotlin_jvm
+    core-ports: kotlin_jvm
+    core-engines: kotlin_jvm
+    core-application: kotlin_jvm
+    core-presentation: kotlin_jvm
+    data-persistence: kotlin_jvm
+    data-curriculum: kotlin_jvm
+    ai-adapter: kotlin_jvm
+    app-ui: android_library
+    app-wiring: android_application
+  android_plugin_in_core: false
+  android_plugin_in_data: false
+  android_plugin_in_ai: false
+  rationale: keeping data-* and ai-* off the Android plugin is what lets tier T2 and the adapter tests run off-device
+
+dependency_rule_enforcement:
+  mechanism: gradle_task
+  task: verifyModuleBoundaries
+  third_party_analyser: false
+  third_party_rationale: the rule is fully expressible over Gradle's own project dependencies and a library would add currency risk for nothing
+  fails_at: build_time
+  runs_with_check: true
+  checks:
+    - unknown_layer_prefix
+    - forbidden_edge_core_to_data_ai_or_app
+    - only_composition_root_reaches_every_layer
+    - dependency_cycle_computed_by_colored_dfs
+  cycle_reporting: first_cycle_only
+  cycle_reporting_rationale: after the first cycle the traversal stack is no longer a faithful path
+  verified_run:
+    with_adapter_modules: 10
+    without_adapter_modules: 9
+    result: no_forbidden_edge_no_cycle
+  mutation_tested: true
+  mutation: core-model declared a dependency on data-persistence
+  mutation_detected: true
+
+ai_absence:
+  seam: source_set_selection
+  with_adapter_source_set: src/withAi/kotlin
+  without_adapter_source_set: src/withoutAi/kotlin
+  property: withAiAdapter
+  build_without_adapter_command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+  build_without_adapter_succeeds: true
+  adapter_absent_module_count: 9
+  null_evaluator_module: core-application
+  null_evaluator_is_test_fixture: false
+  null_evaluator_result: evaluation_pending
+  evidence_written_without_adapter: false
+  satisfies_v1_criterion: 8
+  satisfied_by: wiring_not_hope
+  demonstrated: true
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :core-model:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+    artifact: app-wiring/build/outputs/apk/debug/app-wiring-debug.apk
+  - id: RUN-04
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+    proves: v1_criterion_8
+
+dependencies_deliberately_absent:
+  - id: di_framework
+    reason: app-wiring is a hand-written composition root; one object graph, one user, and core must stay free of framework annotations
+  - id: orm
+    reason: DDM-v0 requires a library-neutral physical schema and TVSX-v0 requires append-only enforced by the storage layer and proven by attempted UPDATE and DELETE
+  - id: architecture_rule_library
+    reason: verifyModuleBoundaries needs no dependency and already fails the build
+  - id: http_client
+    reason: AIAX-v0's adapter has no call sites until 14; nothing speculative is declared
+  - id: kotlin_android_plugin
+    reason: AGP 9.0+ provides Kotlin support built in and rejects the standalone plugin
+
+credential_handling:
+  decision: D-080
+  key_in_repo: false
+  key_in_version_catalog: false
+  gitignore_covers_secrets: true
+  gitignore_entries:
+    - android/local.properties
+    - android/secrets.properties
+    - "*.keystore"
+    - "*.jks"
+  rationale: git history is permanent even in a private repo and a leaked key is billed to the owner
+  key_storage: platform_secure_storage
+  key_storage_owner: AIAX-v0
+
+ci:
+  workflow: .github/workflows/android.yml
+  runs_tiers: [T3, T1, T5]
+  runs_device_tier: false
+  device_tier_rationale: T6 runs on the single target device by hand; an emulator job would make the release gate claim something it does not check
+  runs_spec_validator_sweep: true
+  sweep_is_full_glob: true
+
+forbidden_setup_patterns:
+  - naming_a_library_version_without_verifying_it
+  - declaring_a_dependency_the_skeleton_does_not_use
+  - applying_the_android_plugin_to_a_core_module
+  - calling_dynamic_colour_functions_anywhere
+  - enforcing_the_dependency_rule_only_by_convention
+  - stubbing_the_ai_adapter_instead_of_building_without_it
+  - computing_presentation_state_inside_app_ui
+  - reading_the_system_clock_outside_the_clock_port_implementation
+  - committing_an_api_key_or_keystore
+  - claiming_a_build_result_that_was_not_run
+  - treating_an_emulator_run_as_the_device_tier
+
+future_stage_boundaries:
+  10B: navigation_graph_and_destinations
+  10C: design_system_implementation_and_compose_theme
+  10D: physical_schema_ddl_migrations_and_content_loading
+  10E: app_health_and_diagnostics
+  14: ai_call_sites_prompt_text_and_tutor_ux
+  18E: performance_budget_calibration
+
+acceptance:
+  required_previous_models:
+    - MSBX-v0
+    - TVSX-v0
+    - AMTS-v0
+    - LFPS-v0
+    - DDM-v0
+    - AIAX-v0
+    - SPWX-v0
+    - WFPX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true

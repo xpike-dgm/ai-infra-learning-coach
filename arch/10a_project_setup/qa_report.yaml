@@ -1,0 +1,404 @@
+model: MPSX-v0
+stage_step: 10A
+decision: D-082
+result: PASS
+checks_total: 127
+checks_passed: 127
+checks_failed: 0
+modules_verified: 10
+kotlin_sources: 18
+checks:
+- check: E10A-01_model
+  result: PASS
+  details: MPSX-v0
+- check: E10A-01_status
+  result: PASS
+  details: accepted_10a
+- check: E10A-01_decision
+  result: PASS
+  details: D-082
+- check: E10A-01_boundaries_ref
+  result: PASS
+  details: MSBX-v0
+- check: E10A-01_strategy_ref
+  result: PASS
+  details: TVSX-v0
+- check: E10A-01_noclaim_build_performance_claim
+  result: PASS
+  details: build_performance_claim=None
+- check: E10A-01_noclaim_apk_size_claim
+  result: PASS
+  details: apk_size_claim=None
+- check: E10A-01_noclaim_newest_version_claim
+  result: PASS
+  details: newest_version_claim=None
+- check: E10A-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E10A-01_scope_persistence_rules_changed
+  result: PASS
+  details: persistence_rules_changed=False
+- check: E10A-01_scope_data_model_changed
+  result: PASS
+  details: data_model_changed=False
+- check: E10A-01_scope_ai_integration_changed
+  result: PASS
+  details: ai_integration_changed=False
+- check: E10A-01_scope_verification_strategy_changed
+  result: PASS
+  details: verification_strategy_changed=False
+- check: E10A-01_scope_new_product_semantics_introduced
+  result: PASS
+  details: new_product_semantics_introduced=False
+- check: E10A-02_exists_settings.gradle.kts
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\settings.gradle.kts
+- check: E10A-02_exists_build.gradle.kts
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\build.gradle.kts
+- check: E10A-02_exists_libs.versions.toml
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\gradle\libs.versions.toml
+- check: E10A-02_exists_gradle-wrapper.properties
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\gradle\wrapper\gradle-wrapper.properties
+- check: E10A-02_exists_gradle.properties
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\gradle.properties
+- check: E10A-02_wrapper_jar
+  result: PASS
+  details: the wrapper jar must be committed or nobody else can build
+- check: E10A-02_gradlew
+  result: PASS
+  details: missing gradlew
+- check: E10A-03_module_set_matches_msbx
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10A-03_module_count
+  result: PASS
+  details: count=10
+- check: E10A-03_adapter_is_conditional
+  result: PASS
+  details: ai-adapter must be conditionally included so the product can build without
+    it
+- check: E10A-04_deps_core-model
+  result: PASS
+  details: declared=[] canonical=[]
+- check: E10A-04_deps_core-ports
+  result: PASS
+  details: declared=['core-model'] canonical=['core-model']
+- check: E10A-04_deps_core-engines
+  result: PASS
+  details: declared=['core-model', 'core-ports'] canonical=['core-model', 'core-ports']
+- check: E10A-04_deps_core-application
+  result: PASS
+  details: declared=['core-engines', 'core-model', 'core-ports'] canonical=['core-engines',
+    'core-model', 'core-ports']
+- check: E10A-04_deps_core-presentation
+  result: PASS
+  details: declared=['core-engines', 'core-model'] canonical=['core-engines', 'core-model']
+- check: E10A-04_deps_data-persistence
+  result: PASS
+  details: declared=['core-model', 'core-ports'] canonical=['core-model', 'core-ports']
+- check: E10A-04_deps_data-curriculum
+  result: PASS
+  details: declared=['core-model', 'core-ports'] canonical=['core-model', 'core-ports']
+- check: E10A-04_deps_ai-adapter
+  result: PASS
+  details: declared=['core-model', 'core-ports'] canonical=['core-model', 'core-ports']
+- check: E10A-04_deps_app-ui
+  result: PASS
+  details: declared=['core-application', 'core-model', 'core-presentation'] canonical=['core-application',
+    'core-model', 'core-presentation']
+- check: E10A-04_deps_app-wiring
+  result: PASS
+  details: declared=['ai-adapter', 'app-ui', 'core-application', 'core-engines', 'core-model',
+    'core-ports', 'core-presentation', 'data-curriculum', 'data-persistence'] canonical=['ai-adapter',
+    'app-ui', 'core-application', 'core-engines', 'core-model', 'core-ports', 'core-presentation',
+    'data-curriculum', 'data-persistence']
+- check: E10A-05_task_registered
+  result: PASS
+  details: verifyModuleBoundaries task must exist
+- check: E10A-05_forbidden_edges_mirrored
+  result: PASS
+  details: the task must encode every forbidden edge from boundaries.yaml
+- check: E10A-05_forbidden_edges_match_contract
+  result: PASS
+  details: 'upstream forbidden edges changed: [(''core'', ''ai''), (''core'', ''app''),
+    (''core'', ''data'')]'
+- check: E10A-05_throws_on_violation
+  result: PASS
+  details: a violation must fail the build, not print a warning
+- check: E10A-05_wired_into_check
+  result: PASS
+  details: the rule must run with the rest of verification
+- check: E10A-05_cycle_computed
+  result: PASS
+  details: the cycle must be computed, not assumed
+- check: E10A-05_upstream_requires_checkable
+  result: PASS
+  details: MSBX-v0 declares the rule checkable, which is what 10A had to deliver
+- check: E10A-05_fails_at_build_time
+  result: PASS
+  details: build_time
+- check: E10A-05_no_third_party_analyser
+  result: PASS
+  details: 'False'
+- check: E10A-05_mutation_tested
+  result: PASS
+  details: the rule itself was mutation-tested
+- check: E10A-05_tier_matches_strategy
+  result: PASS
+  details: TVSX-v0 T3 requires build-time failure
+- check: E10A-06_no_android_plugin_ai-adapter
+  result: PASS
+  details: ai-adapter must not apply an Android plugin
+- check: E10A-06_no_android_plugin_core-application
+  result: PASS
+  details: core-application must not apply an Android plugin
+- check: E10A-06_no_android_plugin_core-engines
+  result: PASS
+  details: core-engines must not apply an Android plugin
+- check: E10A-06_no_android_plugin_core-model
+  result: PASS
+  details: core-model must not apply an Android plugin
+- check: E10A-06_no_android_plugin_core-ports
+  result: PASS
+  details: core-ports must not apply an Android plugin
+- check: E10A-06_no_android_plugin_core-presentation
+  result: PASS
+  details: core-presentation must not apply an Android plugin
+- check: E10A-06_no_android_plugin_data-curriculum
+  result: PASS
+  details: data-curriculum must not apply an Android plugin
+- check: E10A-06_no_android_plugin_data-persistence
+  result: PASS
+  details: data-persistence must not apply an Android plugin
+- check: E10A-07_min_sdk_matches
+  result: PASS
+  details: catalog=26 contract=26
+- check: E10A-07_target_sdk_matches
+  result: PASS
+  details: catalog=36 contract=36
+- check: E10A-07_compile_sdk_matches
+  result: PASS
+  details: catalog=37 contract=37
+- check: E10A-07_device_recorded
+  result: PASS
+  details: the target device must be recorded here; AMTS-v0 left it open
+- check: E10A-07_device_satisfies_min_sdk
+  result: PASS
+  details: device api=36 minSdk=26
+- check: E10A-07_target_sdk_matches_device
+  result: PASS
+  details: targetSdk=36 device=36
+- check: E10A-07_min_sdk_is_amts_working_default
+  result: PASS
+  details: AMTS-v0 §8.1 asks for the lowest level needing no weakening shim; java.time
+    is native from 26
+- check: E10A-07_amts_left_device_open
+  result: PASS
+  details: AMTS-v0 is the spec that left the device open; 10A is where it closes
+- check: E10A-07_single_device_scope
+  result: PASS
+  details: D-080 makes this a single target device
+- check: E10A-08_six_items
+  result: PASS
+  details: ids=[1, 2, 3, 4, 5, 6]
+- check: E10A-08_all_answered
+  result: PASS
+  details: every item must carry an answer
+- check: E10A-08_no_compat_library
+  result: PASS
+  details: item 6 must state whether a compatibility library is needed
+- check: E10A-08_upstream_deferred_to_10a
+  result: PASS
+  details: AMTS-v0 must actually have deferred this list to 10A
+- check: E10A-09_sources_exist
+  result: PASS
+  details: kotlin files=18
+- check: E10A-09_no_dynamic_colour
+  result: PASS
+  details: dynamic colour used in []
+- check: E10A-09_upstream_forbids_dynamic_colour
+  result: PASS
+  details: AMTS-v0 forbids dynamic colour
+- check: E10A-10_clock_read_once
+  result: PASS
+  details: system clock read in ['android\\app-wiring\\src\\main\\kotlin\\coach\\wiring\\AppGraph.kt']
+- check: E10A-10_clock_read_in_wiring
+  result: PASS
+  details: the only clock read must be the ClockPort implementation, found in ['android\\app-wiring\\src\\main\\kotlin\\coach\\wiring\\AppGraph.kt']
+- check: E10A-10_clock_is_a_port
+  result: PASS
+  details: MSBX-v0 makes the clock a port
+- check: E10A-11_both_source_sets_exist
+  result: PASS
+  details: both evaluator source sets must exist
+- check: E10A-11_without_ai_uses_null_evaluator
+  result: PASS
+  details: the no-adapter build must select the shipped null evaluator
+- check: E10A-11_without_ai_does_not_import_adapter
+  result: PASS
+  details: the no-adapter source set must not reference the adapter package
+- check: E10A-11_with_ai_uses_adapter
+  result: PASS
+  details: the adapter build selects the adapter
+- check: E10A-11_null_evaluator_ships
+  result: PASS
+  details: the null evaluator must live in a shipped core module, not in a test source
+    set
+- check: E10A-11_null_evaluator_pending
+  result: PASS
+  details: the null evaluator must yield evaluation_pending
+- check: E10A-11_upstream_ships_null_evaluator
+  result: PASS
+  details: MSBX-v0 ships it and refuses to call it a fixture
+- check: E10A-11_criterion_8
+  result: PASS
+  details: V1 criterion 8 must be satisfied by a build that actually ran
+- check: E10A-11_adapter_absent_count
+  result: PASS
+  details: '9'
+- check: E10A-11_strategy_requires_build_not_stub
+  result: PASS
+  details: TVSX-v0 refuses a stub as sufficient
+- check: E10A-12_no_forbidden_libraries
+  result: PASS
+  details: declared=[]
+- check: E10A-12_absences_are_reasoned
+  result: PASS
+  details: each absent dependency must carry a reason
+- check: E10A-13_pin_agp
+  result: PASS
+  details: catalog=9.3.0 contract=9.3.0
+- check: E10A-13_pin_kotlin
+  result: PASS
+  details: catalog=2.4.0 contract=2.4.0
+- check: E10A-13_pin_compose_bom
+  result: PASS
+  details: catalog=2026.08.00 contract=2026.08.00
+- check: E10A-13_pin_compose_adaptive
+  result: PASS
+  details: catalog=1.3.0 contract=1.3.0
+- check: E10A-13_pin_androidx_sqlite
+  result: PASS
+  details: catalog=2.7.0 contract=2.7.0
+- check: E10A-13_pin_gradle
+  result: PASS
+  details: 'wrapper does not pin 9.7.1: distributionUrl=https\://services.gradle.org/distributions/gradle-9.7.1-bin.zip'
+- check: E10A-13_currency_verified
+  result: PASS
+  details: currency is verified, not asserted (AMTS-v0 precedent)
+- check: E10A-13_verification_date
+  result: PASS
+  details: the verification date must be recorded
+- check: E10A-13_build_corrections_recorded
+  result: PASS
+  details: corrections the build produced must be recorded rather than quietly fixed
+- check: E10A-14_runs_recorded
+  result: PASS
+  details: count=4
+- check: E10A-14_all_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS''}'
+- check: E10A-14_boundary_run
+  result: PASS
+  details: the boundary task run must be recorded
+- check: E10A-14_no_adapter_run
+  result: PASS
+  details: the no-adapter build must be recorded
+- check: E10A-14_apk_produced
+  result: PASS
+  details: V1 criterion 10 needs an installable APK to remain producible
+- check: E10A-14_build_not_asserted
+  result: PASS
+  details: 10A must not claim a build result it did not run
+- check: E10A-15_gitignore_android/local.properties
+  result: PASS
+  details: missing gitignore entry android/local.properties
+- check: E10A-15_gitignore_android/secrets.properties
+  result: PASS
+  details: missing gitignore entry android/secrets.properties
+- check: E10A-15_gitignore_*.keystore
+  result: PASS
+  details: missing gitignore entry *.keystore
+- check: E10A-15_gitignore_*.jks
+  result: PASS
+  details: missing gitignore entry *.jks
+- check: E10A-15_no_key_in_catalog
+  result: PASS
+  details: no key material in the version catalog
+- check: E10A-15_key_storage_owner
+  result: PASS
+  details: AIAX-v0 still owns key storage and 10A did not relax it
+- check: E10A-15_no_hardcoded_key_upstream
+  result: PASS
+  details: AIAX-v0 forbids a key in the APK
+- check: E10A-16_workflow_exists
+  result: PASS
+  details: missing android workflow
+- check: E10A-16_runs_boundaries
+  result: PASS
+  details: CI must run T3
+- check: E10A-16_runs_no_adapter_build
+  result: PASS
+  details: CI must build without the adapter
+- check: E10A-16_runs_full_validator_glob
+  result: PASS
+  details: the sweep must be the full glob, never a subset (TVSX-v0 RG-11)
+- check: E10A-16_no_emulator_as_device_tier
+  result: PASS
+  details: an emulator job must not be presented as the device tier
+- check: E10A-17_spec_**Status:** ACCEPTED — independent
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 10A QA PASS'
+- check: E10A-17_spec_**Decision:** `D-082`
+  result: PASS
+  details: missing='**Decision:** `D-082`'
+- check: E10A-17_spec_Poco M6 Pro
+  result: PASS
+  details: missing='Poco M6 Pro'
+- check: E10A-17_spec_verifyModuleBoundaries
+  result: PASS
+  details: missing='verifyModuleBoundaries'
+- check: E10A-17_spec_-PwithAiAdapter=false
+  result: PASS
+  details: missing='-PwithAiAdapter=false'
+- check: E10A-17_spec_currency is verified
+  result: PASS
+  details: missing='currency is verified'
+- check: E10A-17_spec_records_corrections
+  result: PASS
+  details: the spec must record what the build corrected rather than presenting a
+    clean story
+- check: E10A-18_research_Poco M6 Pro
+  result: PASS
+  details: missing='Poco M6 Pro'
+- check: E10A-18_research_currency is **verified, not as
+  result: PASS
+  details: missing='currency is **verified, not asserted**'
+- check: E10A-18_research_No DI framework
+  result: PASS
+  details: missing='No DI framework'
+- check: E10A-19_required_models
+  result: PASS
+  details: '[''MSBX-v0'', ''TVSX-v0'', ''AMTS-v0'', ''LFPS-v0'', ''DDM-v0'', ''AIAX-v0'',
+    ''SPWX-v0'', ''WFPX-v0'']'
+- check: E10A-19_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E10A-19_stage6_regression_required
+  result: PASS
+  details: stage6_regression_required=True
+- check: E10A-19_stage7_regression_required
+  result: PASS
+  details: stage7_regression_required=True
+- check: E10A-19_stage8_regression_required
+  result: PASS
+  details: stage8_regression_required=True
+- check: E10A-19_stage9_regression_required
+  result: PASS
+  details: stage9_regression_required=True
+failures: []

@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10A active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10B active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1119,14 +1119,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 9E ✅ AIAX-v0 / D-079
 - AŞAMA 9F ✅ TVSX-v0 / D-081
 - **AŞAMA 9 ✅ TAMAMLANDI**
-- AŞAMA 10A 🟡 active-not-executed
-- 10B–20 ⬜
+- AŞAMA 10A ✅ MPSX-v0 / D-082
+- AŞAMA 10B 🟡 active-not-executed
+- 10C–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `9F — Test stratejisi`  
-**Final:** `TVSX-v0 — Test & Verification Strategy` / D-081  
-**Canonical:** `docs/TEST_STRATEGY_SPEC.md` + `arch/9f_test_strategy/`
+**Son tamamlanan numaralı adım:** `10A — Proje kurulumu`  
+**Final:** `MPSX-v0 — Mobile Project Skeleton` / D-082  
+**Canonical:** `docs/PROJECT_SETUP_SPEC.md` + `arch/10a_project_setup/` + `android/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1144,17 +1145,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 9E:** ✅ TAMAMLANDI  
 **AŞAMA 9F:** ✅ TAMAMLANDI  
 **AŞAMA 9:** ✅ TAMAMLANDI  
-**Aktif adım:** `10A — Proje kurulumu`  
+**AŞAMA 10A:** ✅ TAMAMLANDI  
+**Aktif adım:** `10B — Navigation`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-10A için:
+10B için:
 
 ```text
-fresh 10A PRE-STEP GitHub refresh
+fresh 10B PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 10A execution
+→ 10B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1702,9 +1704,24 @@ AŞAMA 8 ✅ TAMAMLANDI
 9E ✅ AIAX-v0 / D-079
 9F ✅ TVSX-v0 / D-081
 AŞAMA 9 ✅ TAMAMLANDI
-10A 🟡 active-not-executed
-10B–20 ⬜
+10A ✅ MPSX-v0 / D-082
+10B 🟡 active-not-executed
+10C–20 ⬜
 ```
+
+10A final:
+- repodaki ilk çalıştırılabilir çıktı; çalıştırılmamış hiçbir şey iddia edilmez,
+- build iki yanlış pin'i yakaladı: Gradle 9.5 dağıtımı yok (→ 9.7.1), AGP 9+ `kotlin.android`ı reddediyor,
+- toolchain 2026-08-31'de doğrulandı; minSdk 26 / targetSdk 36 / compileSdk 37,
+- hedef cihaz kaydedildi: Poco M6 Pro / 2312FPCA6G / Android 16 (API 36); `AMTS-v0` §8.1 kapandı,
+- `AMTS-v0` §9'un altı maddesi kapandı; 26'da compatibility library gerekmiyor,
+- on modül `android/` altında, bağımlılıklar `boundaries.yaml`a eşit ve makine kontrol ediyor,
+- yalnız iki `app-*` modülü Android modülü; T2 ve adaptör doğrulaması cihaz dışında koşabiliyor,
+- `verifyModuleBoundaries` build'i düşürüyor, mutation-tested; cycle raporlaması o sırada düzeltildi,
+- adaptörsüz build geçiyor (9 modül) ve `NullEvaluator` sevk ediliyor — V1 kriteri 8 wiring,
+- 4 run kaydedildi (T3, T1, iki build); APK üretildi,
+- DI/ORM/HTTP client/architecture-rule library yok; saat tek yerde; dynamic colour yok; key repoya giremiyor,
+- independent 10A QA 127/127 PASS, mutation-tested 7/7; 27/27 sweep PASS.
 
 9F final:
 - üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; her invariant'ın adı konmuş sahibi vardır,
@@ -1851,9 +1868,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `10A — Proje kurulumu`.
+**Sıradaki gerçek numbered work:** `10B — Navigation`.
 
-**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1903,8 +1920,8 @@ AŞAMA 9 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `10A — Proje kurulumu`.  
-**10A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `10B — Navigation`.  
+**10B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1923,3 +1940,12 @@ AŞAMA 9 ✅ TAMAMLANDI
 9F `TVSX-v0 — Test & Verification Strategy` ile tamamlandı ve **AŞAMA 9 kapandı**. Canonical: `docs/TEST_STRATEGY_SPEC.md`; contract/QA: `arch/9f_test_strategy/`; synthesis: `research/9f_test_strategy_research.md`.
 
 Ana invariant: **üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir.** AŞAMA 9 vaatleri yapıya çevirmişti; check'i olmayan bir dependency kuralı bir yorum, negatif testi olmayan bir append-only schema'sı kimsenin doğrulamadığı bir varsayımdır. Beş kanonik spec test stratejisini bu adıma devretmişti ve hepsi karşılandı. Altı katman tanımlandı ve cihaz katmanı en küçüktür. Coverage yüzdesi gate değildir; gate invariant coverage'dır ve sahipsiz bir invariant tek başına bloklar. Negatif doğrulama zorunludur. Append-only schema seviyesinde, migration'lar dolu fixture'lara karşı doğrulanır. Hiçbir check canlı AI provider çağırmaz. Null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır. Determinizm enjekte saatle egzersiz edilir ve flaky check düşmüş check'tir. Release gate 11 koşuldur ve `tools/validate_*.py` glob'unun tamamını içerir. 66 kayıtlı invariant'ın her biri upstream kontratta gerçekten var olan bir anahtardır. Independent QA 288/288 PASS, mutation-tested 8/8; 26/26 validator sweep PASS. Ayrıca `D-080` ile dağıtım kapsamı kişisel kullanıma kilitlendi: store QA yok, device QA tek cihaz, kanıt ve AI yetki kuralları değişmez. Current active numbered step 10A'dır; fresh PRE + kullanıcı açık onayı gerekir ve 10A iki devralınmış yükümlülük taşır: `AMTS-v0` §9 bounded verification list ve repoda kayıtlı olmayan hedef cihaz.
+
+
+---
+
+## 10A completion addendum — D-082
+
+10A `MPSX-v0 — Mobile Project Skeleton` ile tamamlandı ve **AŞAMA 10 başladı**. Canonical: `docs/PROJECT_SETUP_SPEC.md`; contract/QA: `arch/10a_project_setup/`; synthesis: `research/10a_project_setup_research.md`; proje: `android/`.
+
+Ana invariant: **çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F birbirine karşı doğrulanan spec üretiyordu; 10A'nın çıktısını bir makine çalıştırıyor. Build, bu adımın hafızadan iddia edeceği iki şeyi anında yanlışladı — Gradle `9.5.0` dağıtımı çözülmüyor (pin 9.7.1) ve AGP 9.0+ `org.jetbrains.kotlin.android`ı reddediyor — ve ikisi de gizlenmeden kaydedildi. Toolchain 2026-08-31'de doğrulandı; `minSdk` 26 / `targetSdk` 36 / `compileSdk` 37. **Hedef cihaz kaydedildi**: Poco M6 Pro, `2312FPCA6G`, Android 16 / API 36 — `AMTS-v0` §8.1'in açık maddesi kapandı ve `D-080` gereği bu tek hedef cihazdır. `minSdk` cihaz seviyesine yükseltilmedi çünkü §8.1 shim gerektirmeyen en düşük seviyeyi istiyor. `AMTS-v0` §9'un altı maddesi güncel kaynaklarla kapandı. On modül `android/` altında ve her modülün beyan ettiği bağımlılıklar `boundaries.yaml`a eşit; yalnız iki `app-*` modülü Android modülü olduğu için T2 ve adaptör doğrulaması cihaz dışında koşabiliyor. `verifyModuleBoundaries` yasak kenarı, tanınmayan katmanı, composition-root ayrıcalığını ve hesaplanan cycle'ı bulup build'i düşürüyor; mutation-test edildi ve kendi cycle raporlaması düzeltildi. `-PwithAiAdapter=false` ile adaptörsüz build geçiyor ve `NullEvaluator` seçiliyor; V1 kriteri 8 tek komutla gösterilebilir. Saat tek yerde okunuyor, dynamic colour hiçbir yerde yok, key repoya giremiyor. CI T3/T1/iki build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok. Independent QA 127/127 PASS, mutation-tested 7/7; 27/27 sweep PASS. Current active numbered step 10B'dir; fresh PRE + kullanıcı açık onayı gerekir.

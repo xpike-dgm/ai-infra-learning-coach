@@ -64,11 +64,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 9F: ✅ `TVSX-v0 / D-081` tamamlandı — üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir; kabul edilmiş her invariant'ın adı konmuş sahibi vardır ve sahipsiz invariant release'i bloklar; 6 doğrulama katmanı ve en küçüğü cihaz katmanı; coverage yüzdesi gate değil, gate invariant coverage; negatif doğrulama zorunlu; append-only schema seviyesinde, migration dolu fixture'lara karşı; hiçbir check canlı AI provider çağırmaz; null-evaluator yolu `ai-adapter` olmadan build alınarak doğrulanır; determinizm enjekte saatle egzersiz edilir ve flaky check düşmüş check'tir; 11 koşullu release gate `validate_*.py` glob'unun tamamını içerir; 288/288 QA PASS.
 - **AŞAMA 9 TAMAMLANDI** — AMTS-v0 → LFPS-v0 → DDM-v0 → MSBX-v0 → AIAX-v0 → TVSX-v0.
 - `D-080`: ürün kişisel kullanım içindir; store dağıtımı ve halka açık paylaşım yoktur. Store QA, dağıtım imzalama, güvenlik amaçlı obfuscation/pinning ve cihaz matrisi kapsam dışıdır; kanıt ve AI yetki kuralları değişmez.
-- **Aktif adım: 10A — Proje kurulumu.**
-- **10A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. İki devralınmış yükümlülük: `AMTS-v0` §9 bounded verification list ve repoda kayıtlı olmayan hedef cihaz.
-- AŞAMA 10B–20 bekliyor.
+- 10A: ✅ `MPSX-v0 / D-082` tamamlandı — repodaki ilk çalıştırılabilir çıktı; çalıştırılmamış hiçbir şey iddia edilmez ve build iki yanlış pin'i (Gradle 9.5, `kotlin.android`) anında yakaladı; on modül `android/` altında ve bağımlılıklar `boundaries.yaml`a eşit; `verifyModuleBoundaries` yasak kenarı/cycle'ı hesaplayıp build'i düşürüyor; `-PwithAiAdapter=false` adaptörsüz build geçiyor (V1 kriteri 8) ve APK üretildi; hedef cihaz **Poco M6 Pro / API 36** kaydedildi; `AMTS-v0` §9'un altı maddesi kapandı; DI/ORM/HTTP client yok; saat tek yerde; dynamic colour yok; key repoya giremiyor; 127/127 QA PASS.
+- **Aktif adım: 10B — Navigation.**
+- **10B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 10C–20 bekliyor.
 
-**10A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**10B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

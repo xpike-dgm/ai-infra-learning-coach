@@ -46,8 +46,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **9D — Servis sınırları** | ✅ | MSBX-v0 / D-078. 10 modül + içe-doğru dependency kuralı + 4 port + null evaluator; 93/93 QA PASS. |
 | **9E — AI entegrasyon mimarisi** | ✅ | AIAX-v0 / D-079. AI port arkasında yardımcı; refusal != yanlış cevap; key APK'da değil; 86/86 QA PASS. |
 | **9F — Test stratejisi** | ✅ | TVSX-v0 / D-081. Sahipsiz invariant release'i bloklar; coverage yüzdesi gate değildir; 288/288 QA PASS. **AŞAMA 9 kapandı.** |
-| **10A — Proje kurulumu** | 🟡 Aktif | Somut library/version, build/modül yapılandırması, DI wiring, CI job'ları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **10B–20** | ⬜ Bekliyor | 10A sonrası canonical sırada. |
+| **10A — Proje kurulumu** | ✅ | MPSX-v0 / D-082. İlk çalıştırılabilir iskelet; boundary kuralı build'i düşürüyor, adaptörsüz build geçiyor, hedef cihaz kaydedildi; 127/127 QA PASS. |
+| **10B — Navigation** | 🟡 Aktif | UXIA-v0 shell'i adaptive API'ler üzerinde; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **10C–20** | ⬜ Bekliyor | 10B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -66,28 +67,26 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 9F
+## Son tamamlanan numaralı adım — 10A
 
-**Final:** `TVSX-v0 — Test & Verification Strategy` / D-081. **AŞAMA 9 kapandı.**  
-**Ana çıktı:** `docs/TEST_STRATEGY_SPEC.md` + `arch/9f_test_strategy/`.
+**Final:** `MPSX-v0 — Mobile Project Skeleton` / D-082.  
+**Ana çıktı:** `docs/PROJECT_SETUP_SPEC.md` + `arch/10a_project_setup/` + `android/`.
 
-9F sonucu:
-- **Üzerine hiçbir şeyin düşmediği bir garanti bir tercihtir.** Kabul edilmiş her invariant'ın, ihlal edildiğinde FAIL veren adı konmuş bir sahibi vardır,
-- beş kanonik spec test stratejisini bu adıma devretmişti (`AMTS-v0`, `LFPS-v0`, `DDM-v0`, `MSBX-v0`, `AIAX-v0`) ve hepsi karşılandı,
-- **altı katman**: T1 pure domain, T2 persistence contract, T3 structural (build time'da düşer), T4 presentation & accessibility, T5 adapter & integration, T6 device smoke — ve **cihaz katmanı en küçüktür**,
-- **coverage yüzdesi release gate değildir**; gate invariant coverage'dır. Bu proje learner state için proxy sayıları zaten reddediyor ve bir yüzde, önemli invariant'lar kontrolsüzken yükselebilir,
-- **negatif doğrulama zorunludur**: yasaklanan denenir ve reddedilmesi şart koşulur; yalnız izinli yolu çalıştıran bir check yasak hakkında hiçbir şey kanıtlamaz,
-- append-only **schema seviyesinde** doğrulanır; düzeltme append edilen disposition olarak ve orijinal satır değişmeden,
-- **migration'lar dolu fixture'lara karşı** doğrulanır; evidence/exposure/provenance birebir korunur, derived state atılıp yeniden kurulabilir ve rebuild aynı projeksiyonu üretmelidir,
-- **hiçbir check canlı AI provider çağırmaz**; yedi sonucun tamamı kayıtlı yanıtlarla üretilir ve payload'da mastery/history/plan/profile bulunmadığı doğrulanır,
-- **null-evaluator yolu `ai-adapter` olmadan build alınarak** doğrulanır; V1 kriteri 8 böylece wiring olur,
-- determinizm enjekte saat ve tekrarlanan koşularla egzersiz edilir; **flaky check düşmüş check'tir** ve retry-to-green yasaktır,
-- altı severity sınıfı; `evidence_correctness` her zaman bloklar,
-- **11 koşullu release gate**; on V1 kriteri eşlenir ve `tools/validate_*.py` glob'unun tamamı geçmelidir,
-- 66 kayıtlı invariant, her biri upstream kontratta gerçekten var olan bir anahtar; 9F yeni ürün semantiği icat etmez,
-- geçen bir suite'in **kanıtlamadıkları** açıkça yazıldı: modellerin doğruluğu, pedagojik doğruluk ve öğrenme kalitesi,
-- independent validator **288/288 PASS**, mutation-tested (8/8); 26/26 validator sweep PASS.
+10A sonucu:
+- **Çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F birbirine karşı doğrulanan spec üretti; 10A'nın çıktısını bir makine çalıştırıyor ve build ya geçer ya geçmez,
+- **build iki yanlışı anında yakaladı:** Gradle 9.5 dağıtımı yok (wrapper 404 → 9.7.1) ve AGP 9+ `org.jetbrains.kotlin.android`ı reddediyor. İkisi de gizlenmeden kaydedildi,
+- toolchain 2026-08-31'de doğrulandı; `minSdk` 26 / `targetSdk` 36 / `compileSdk` 37,
+- **hedef cihaz kaydedildi**: Poco M6 Pro / `2312FPCA6G` / Android 16 (API 36). `AMTS-v0` §8.1'in açık maddesi kapandı; `minSdk` yükseltilmedi çünkü §8.1 en düşük shim'siz seviyeyi istiyor,
+- `AMTS-v0` §9'un altı maddesi kapandı ve `minSdk` 26'da compatibility library gerekmiyor,
+- on modül `android/` altında, her modülün beyan ettiği bağımlılıklar `boundaries.yaml`a **eşit** ve makine kontrol ediyor,
+- yalnız iki `app-*` modülü Android modülü; `data-*`/`ai-*` cihaz dışında test edilebilir kalıyor,
+- `verifyModuleBoundaries` build'i düşürüyor; mutation-test edildi ve o sırada kendi cycle raporlaması düzeltildi,
+- `-PwithAiAdapter=false` adaptörsüz build **geçiyor** (9 modül) — V1 kriteri 8 wiring, tek komutla gösterilebilir,
+- 4 run kaydedildi: T3, T1, adaptörlü build (APK üretildi) ve adaptörsüz build,
+- DI framework/ORM/HTTP client/architecture-rule library yok, hepsi gerekçeli; saat tek yerde okunuyor; dynamic colour hiçbir yerde yok; key repoya giremiyor,
+- CI T3/T1/iki build ve `validate_*.py` glob'unun tamamını koşuyor; T6 kasıtlı olarak yok,
+- independent validator **127/127 PASS**, mutation-tested 7/7; 27/27 sweep PASS.
 
-## Aktif adım — 10A Proje kurulumu
+## Aktif adım — 10B Navigation
 
-**10A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. İki devralınmış yükümlülük: `AMTS-v0` §9'un 6 maddelik bounded verification list'i ve **repoda hâlâ kayıtlı olmayan hedef cihaz**.
+**10B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

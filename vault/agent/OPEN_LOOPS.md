@@ -33,12 +33,14 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 9D Servis sınırları: MSBX-v0 / D-078 ile tamamlandı; 10 modül, içe-doğru dependency kuralı, 4 port, port olarak saat, ürünle sevk edilen null evaluator.
 - [x] 9E AI entegrasyon mimarisi: AIAX-v0 / D-079 ile tamamlandı; AI port arkasında yardımcı, schema-constrained evaluator, `provisional` uncalibrated LLM, refusal != yanlış cevap, uçtan uca timeout bütçesi, konfigürasyondaki model adı, APK'da key yok, asgari-içerik gizlilik sınırı.
 - [x] 9F Test stratejisi: TVSX-v0 / D-081 ile tamamlandı; her invariant'ın adı konmuş sahibi, 6 katman, invariant-coverage gate, negatif doğrulama, dolu fixture migration'ları, canlı provider çağrısız AI doğrulaması, adapter'sız build ile null-evaluator doğrulaması. **AŞAMA 9 kapandı.**
-- [ ] 10A Proje kurulumu **AKTİF**: somut library/version seçimi, build ve modül yapılandırması, DI wiring, `TVSX-v0` katmanlarını çalıştıran CI job'ları, `D-080` gereği API key gitignore kuralı.
+- [x] 10A Proje kurulumu: MPSX-v0 / D-082 ile tamamlandı; doğrulanmış toolchain pinleri, `android/` altında on modül, build'i düşüren boundary kuralı, adaptörsüz build, CI ve gitignore kuralı.
+- [ ] 10B Navigation **AKTİF**: `UXIA-v0` dört destination shell'i, `WindowSizeClass` + `NavigationSuiteScaffold` üzerinde `WFPX-v0` geometrisi, `SPWX-v0` state metni semantics API'leriyle.
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.
-- [ ] 10A'ya devredilen bounded verification list (AMTS-v0 §9): güncel Compose/Material 3 adaptive navigation API'leri, dynamic colour'ı kapatma mekanizması, `minSdk` politikasını karşılayan güncel API seviyesi (gerçek cihaza karşı), screen-reader semantics API'leri, reduced-motion tespiti ve seçilen `minSdk`de compatibility library gerekip gerekmediği. Araştırma AI konusudur; seçimi değiştiremez.
-- [ ] Hedef Android cihaz repoda kayıtlı değil; `minSdk` doğrulaması için 10A'da gerekli.
+- [x] AMTS-v0 §9 bounded verification list: altı maddenin tamamı 10A'da güncel kaynaklarla kapandı; `minSdk` 26'da compatibility library gerekmiyor.
+- [x] Hedef Android cihaz kaydedildi: **Poco M6 Pro**, `2312FPCA6G`, Android 16 / API 36, HyperOS 3.0.304.0.WNFMIXM.C10, Helio G99-Ultra, 12+6 GB. `D-080` gereği tek hedef cihaz; `TVSX-v0` T6 bu telefonda elle koşar.
+- [ ] T6 device smoke henüz hiç koşulmadı; ilk gerçek akışlar 10B–11'de ortaya çıktıkça cihazda doğrulanacak.
 - [x] Standing regression sweep kapsamı: elle tutulan liste yerine `tools/validate_*.py` glob'u; 9E POST'unda 6H'den beri FAIL veren beş package validator bulundu ve kapatıldı (dördü stale gate, biri gerçek 6E seed_mappings veri regresyonu).
 
 ## Knowledge-base operations

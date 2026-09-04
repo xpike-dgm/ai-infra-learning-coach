@@ -1,0 +1,68 @@
+# TVSX-v0 / D-081 tiers, as far as they can run without a device.
+#
+# T6 (device smoke on the single target device, D-080) is deliberately absent: it runs on the
+# Poco M6 Pro by hand, and pretending an emulator job is the same thing would make the release
+# gate claim something it does not check.
+
+name: android
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # T3 — structural. The dependency rule fails the build, not a test run.
+      - name: T3 module boundaries
+        run: ./gradlew verifyModuleBoundaries
+
+      # T1 — pure domain. No device, no network, no database.
+      - name: T1 pure domain
+        run: >-
+          ./gradlew :core-model:test :core-ports:test :core-engines:test
+          :core-application:test :core-presentation:test
+
+      # T5 — the null-evaluator path is proven by building the product without the adapter,
+      # not by stubbing it. This is V1 criterion 8 as wiring (MSBX-v0, TVSX-v0 T5-NULLEVAL-01).
+      - name: T5 build without the AI adapter
+        run: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+
+      - name: Build with the AI adapter
+        run: ./gradlew :app-wiring:assembleDebug
+
+  # The repo's accepted specifications are guarded by their own validators. These are a separate
+  # system from the product suite and neither substitutes for the other (TVSX-v0 §15).
+  specs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      # The sweep is the full glob, never a hand-maintained subset (TVSX-v0 §13 RG-11).
+      - name: Standing validator sweep
+        run: |
+          set -e
+          for f in tools/validate_*.py; do
+            echo "== $f"
+            python "$f" > /dev/null
+          done
