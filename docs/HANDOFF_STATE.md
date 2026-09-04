@@ -56,6 +56,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-081:** TVSX-v0 Test & Verification Strategy; 9F tamamlandı ve AŞAMA 9 kapandı.
 - **D-082:** MPSX-v0 Mobile Project Skeleton; 10A tamamlandı, hedef cihaz kaydedildi.
 - **D-083:** NSHX-v0 Navigation Shell; 10B tamamlandı.
+- **D-084:** DSIX-v0 Design System Implementation; 10C tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -258,14 +259,15 @@ PEM-v0:
 - 9F ✅ TVSX-v0 / D-081 — **AŞAMA 9 kapandı**
 - 10A ✅ MPSX-v0 / D-082
 - 10B ✅ NSHX-v0 / D-083
-- 10C 🟡 active-not-executed
-- 10D–20 ⬜
+- 10C ✅ DSIX-v0 / D-084
+- 10D 🟡 active-not-executed
+- 10E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `10B — NSHX-v0 / D-083`  
-**Aktif:** `10C — Design system implementation`  
-**10C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `10C — DSIX-v0 / D-084`  
+**Aktif:** `10D — Local database`  
+**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -726,6 +728,25 @@ NSHX-v0:
 - four runs executed, including the no-adapter build, so V1 criterion 8 still holds after the shell landed,
 - independent 10B QA 104/104 PASS against the real Kotlin source, mutation-tested 8/8; 28/28 sweep PASS.
 
-## 36. 10C handoff
+## 36. D-084 / 10C final özeti
 
-10C — Design system implementation. `VDSX-v0`nin expression layer'ı ve `WFPX-v0`nin ölçülmüş paleti Compose teması olarak inşa edilecek: `lightColorScheme`/`darkColorScheme` ölçülmüş token'lardan kurulur ve dynamic colour fonksiyonları yine hiç çağrılmaz, altı tone kabul edilmiş state vokabülerine eşlenir, `visual_severity <= canonical_severity` zorlanır, hiçbir learning state alarm tonu almaz, Türkçe casing locale-naive dönüşümlere karşı korunur ve 48dp ile %200 metin garantileri gerçek bileşenlere taşınır. Kontrast token'lardan yeniden hesaplanmalı, iddia edilmemeli. 10C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md`.
+Contract/QA: `arch/10c_design_system/`.
+Synthesis: `research/10c_design_system_research.md`.
+Code: `android/core-presentation/.../DesignTokens.kt`, `.../Tone.kt`, `android/app-ui/.../CoachTheme.kt`.
+
+DSIX-v0:
+- the design system may not add severity the canonical state does not claim, and where a rule can be made unrepresentable instead of merely reviewed, it is,
+- tokens are plain data in `core-presentation`, not values buried in the theme file, because contrast has to be recomputed by an ordinary JVM test rather than asserted from a remembered ratio — the shortcut that already failed once at 8G,
+- the measured palette is copied exactly and is not revised here; the validator compares every token byte-for-byte with `WFPX-v0`,
+- contrast is recomputed from hex in both the product suite and the validator, in both themes, and the recorded minima (6.08 / 3.79 / 6.06) were re-derived from the tokens and matched,
+- `LearningTone` has five values and no fault value exists to assign, so giving a learning state the fault tone cannot be written; Material's `error` role carries the system fault tone alone,
+- each of the eight Skill states has exactly one declared tone, and three stay neutral deliberately because waiting is not failing,
+- attention-group membership never changes a tone, expressed as a named function so the intent is testable; a behavioural mutation of it fails the Kotlin test,
+- the 48dp floor is a modifier, text scales to 200%, state is always available as text, and no locale-naive case transform exists,
+- dynamic colour stays off and the source scan caught this step's own prose; the comment was reworded rather than the gate loosened, because strict absence is the stronger guarantee,
+- independent 10C QA 146/146 PASS, mutation-tested 8/8; 29/29 sweep PASS.
+
+## 37. 10D handoff
+
+10D — Local database. `DDM-v0`nin physical schema'sı 10A'da pinlenen `androidx.sqlite` bundled driver üzerine kurulacak: üç store bölgesi, `(logical_id, version)` composite anahtarlar ve version taşıyan foreign key'ler, **UPDATE/DELETE yolu olmayan** truth tabloları — storage katmanı tarafından zorlanan ve `TVSX-v0` gereği deneme ile kanıtlanan —, dört evidence ekseni dört kolon, her timestamp'li satırda üç-değerli zaman, policy version ve truth watermark taşıyan projection provenance, indeksli ve kalıcı exposure kayıtları, ileri-yönlü migration'lar ve dolu fixture'lara karşı test. Bundled driver JVM'de koştuğu için T2 cihaz dışında çalışmalı. 10D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

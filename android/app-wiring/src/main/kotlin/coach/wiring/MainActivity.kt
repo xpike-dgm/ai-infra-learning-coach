@@ -14,6 +14,7 @@ import coach.presentation.Surface
 import coach.presentation.WindowClass
 import coach.ui.AppRoot
 import coach.ui.AppShell
+import coach.ui.CoachTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +33,10 @@ class MainActivity : ComponentActivity() {
                 windowClass = windowClass,
             )
 
-            AppShell(state = state, onSelect = { selected = it }) {
-                AppRoot(statusLine = "${state.surface.id} · study day ${graph.clock.now().studyDay}")
+            CoachTheme {
+                AppShell(state = state, onSelect = { selected = it }) {
+                    AppRoot(statusLine = "${state.surface.id} · study day ${graph.clock.now().studyDay}")
+                }
             }
         }
     }

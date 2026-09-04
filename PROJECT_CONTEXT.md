@@ -206,12 +206,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 9 ✅ TAMAMLANDI**
 - **10A ✅ Proje kurulumu — MPSX-v0 / D-082**
 - **10B ✅ Navigation — NSHX-v0 / D-083**
-- **10C 🟡 Design system implementation — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 10D–20 ⬜
+- **10C ✅ Design system implementation — DSIX-v0 / D-084**
+- **10D 🟡 Local database — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 10E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 10C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 10D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -302,6 +303,12 @@ Canonical: `docs/PROJECT_SETUP_SPEC.md` / D-082.
 Shell kuruldu. Ana invariant: **navigasyon kuralları `core-presentation`da yaşar, UI toolkit'inde değil.** Route string'leriyle dolu bir `NavHost` dört kabul edilmiş kararı — destination kümesi, sırası, paylaşılan surface kimliği ve focused-flow dönüş kuralı — Compose'un içine sokardı; `MSBX-v0` bunu presentation state için zaten reddetmişti, çünkü o hâlde üründeki en güvenlik-kritik etiketleme yalnız cihazda test edilebilir olurdu. Dört destination kabul edilmiş sırada (`today → learn → progress → profile`) ve **enum bildirim sırası kanoniktir**; senkron tutulacak ikinci bir liste olmadığı için yeniden sıralama kazara olamaz. On bir yasak top-level id'nin hiçbiri destination değildir. **Kanonik entity başına tek surface objesi** vardır: Skill detail Today, Learn ve Progress'ten erişilir ve her seferinde aynı objedir, yani `UXIA-v0`nin yasakladığı çelişkili Skill detail sayfaları caydırılmış değil **temsil edilemez**. Contextual edge kümesi sayılı ve **kapalıdır** ve validator onu `ia.yaml` ile karşılaştırır; her surface her şeyi açabilseydi öğrencinin izlediği yol curriculum yapısı gibi görünmeye başlardı — §10.2'nin yasakladığı şey. **Focused flow shell'i askıya alır** ve `showsShell` ile `requiresSafeExit` surface'tan türetilir, böylece "gizli shell + çıkış yok" durumu inşa edilemez; detail pane de focused flow sırasında bastırılır. Dönüş kuralı deterministiktir ve origin geçerliliğini açık bir girdi olarak alır, yani bir replan öğrenciyi bayat bir yüzeyde mahsur bırakamaz. Window class'lar `WFPX-v0` breakpoint'lerinden **core'da** hesaplanır (toolkit'in kendi bucketing'inden değil) ve yalnız çizimi değiştirir; küme, sıra ve anlam üç sınıfta da aynıdır. Her destination metin etiketi taşır, ikonun content description'ı null'dır, seçim `stateDescription` ile verilir ve `traversalIndex` kanonik sırayı izler.
 
 Canonical: `docs/NAVIGATION_SHELL_SPEC.md` / D-083.
+
+## 12.10 10C Design system implementation — DSIX-v0 / D-084
+
+Tasarım sistemi koda geçti. Ana invariant: **tasarım sistemi, kanonik state'in iddia etmediği severity'yi ekleyemez** — ve bir kural yalnız gözden geçirilmek yerine temsil edilemez kılınabiliyorsa öyle yapılır. **Token'lar tema dosyasında değil `core-presentation`da düz veri**: hex değerleri yalnız Compose'un içinde yaşasaydı kontrastı doğrulamak UI toolkit'i gerektirirdi ve doğal kısayol, hesaplamak yerine hatırlanan bir oranı iddia etmek olurdu — bu kısayol 8G'de zaten bir kez başarısız oldu ve yanlış bir minimumu yalnız yeniden hesaplama yakaladı. Palet birebir kopyalandı ve **revize edilmedi**; validator Kotlin'deki her token'ı `WFPX-v0` ile bayt bayt karşılaştırıyor, yani bir check'i geçirmek için sessiz bir ayar düşerdi. Kontrast iki temada da hex'ten yeniden hesaplanıyor ve kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetilip birebir tuttu. **Fault tone bir learning state için temsil edilemez**: `Tone` altı değerli ama `LearningTone` beş değerli ve atanacak bir fault değeri yok; gözden geçirilecek kod yolu yok çünkü yazılacak ifade yok. Material'ın `error` rolü yalnız `system_fault` taşıyor, böylece bir bileşen "hata rengi"ne uzanıp öğrencinin state'ine uygulayamıyor. Sekiz Skill state'inin her birinin tam bir tonu var ve üçü bilinçle nötr: bekleme başarısızlık değil. **Attention grubunda görünmek tonu değiştirmiyor** ve bu adı konmuş, test edilen bir fonksiyon. 48dp `minimumTouchTarget()` modifier'ı, %100/150/200 metin ölçeği, metin olarak verilen state ve hiçbir yerde locale-naive case transform yok. Dynamic colour kapalı ve bu bir yokluk olduğu için source scan ile denetleniyor — scan bu adımın **kendi yorumunu** yakaladı ve gate gevşetilmek yerine yorum yeniden yazıldı.
+
+Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md` / D-084.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

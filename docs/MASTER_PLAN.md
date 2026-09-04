@@ -593,7 +593,21 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 4 run çalıştırıldı ve `-PwithAiAdapter=false` hâlâ geçiyor: shell V1 kriteri 8'i zayıflatmadı,
 - independent validator **104/104 PASS** (gerçek Kotlin'i `ia.yaml` ve `wireframe.yaml`a karşı okuyor, mutation-tested 8/8); 28/28 sweep PASS.
 
-### [ ] 10C — Design system implementation — **AKTİF**
+### [x] 10C — Design system implementation — DSIX-v0 / D-084
+
+**10C final coverage:**
+- tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez; kural temsil edilemez kılınabildiği yerde öyle yapıldı,
+- token'lar tema dosyasında değil `core-presentation`da düz veri, çünkü kontrast cihazsız bir JVM testinde **yeniden hesaplanmak** zorunda,
+- palet birebir kopyalandı ve **revize edilmedi**; validator her token'ı `WFPX-v0` ile bayt bayt karşılaştırıyor,
+- kontrast iki temada hex'ten yeniden hesaplanıyor; kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetildi ve tuttu,
+- **`LearningTone` beş değerli ve fault değeri yok** → learning state'e fault tonu vermek yazılamaz; Material `error` rolü yalnız `system_fault`,
+- sekiz Skill state'inin her birinin tam bir tonu var; üçü bilinçle nötr çünkü bekleme başarısızlık değil,
+- attention grubunda görünmek tonu değiştirmiyor; adı konmuş ve test edilen bir fonksiyon,
+- 48dp `minimumTouchTarget()` modifier'ı, %100/150/200 metin, metin olarak verilen state, locale-naive casing yok,
+- dynamic colour scan'i bu adımın kendi yorumunu yakaladı; gate gevşetilmedi, yorum yeniden yazıldı,
+- independent validator **146/146 PASS** (token'ları `WFPX-v0`, tone haritalarını `VDSX-v0` ile karşılaştırıyor, kontrastı yeniden hesaplıyor), mutation-tested 8/8; 29/29 sweep PASS.
+
+### [ ] 10D — Local database — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -740,8 +754,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10B`  
-**Son tamamlanan:** **`10B — NSHX-v0 / D-083`**  
-**Aktif:** **`10C — Design system implementation`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10C`  
+**Son tamamlanan:** **`10C — DSIX-v0 / D-084`**  
+**Aktif:** **`10D — Local database`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **10C fresh PRE-STEP → `VDSX-v0` expression layer'ı ve `WFPX-v0` ölçülmüş paleti Compose teması olarak; `lightColorScheme`/`darkColorScheme` ölçülmüş token'lardan, dynamic colour yine yok, altı tone kabul edilmiş state vokabülerine eşlenir, `visual_severity <= canonical_severity` zorlanır, Türkçe casing korunur, 48dp ve %200 metin garantileri bileşenlere taşınır ve kontrast token'lardan yeniden hesaplanır → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **10D fresh PRE-STEP → `DDM-v0` physical schema'sı `androidx.sqlite` bundled driver üzerinde; üç store bölgesi, `(logical_id, version)` composite anahtarlar, storage seviyesinde zorlanan ve deneme ile kanıtlanan append-only, dört evidence ekseni, üç-değerli zaman, watermark'lı projection, kalıcı exposure ve dolu fixture'lara karşı ileri-yönlü migration'lar → independent QA → D-050 POST sync + stale audit.**

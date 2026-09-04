@@ -136,8 +136,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 10 — Mobil Proje İskeleti ve Tasarım Sistemini Kur
 - [x] **10A — Proje kurulumu** — `MPSX-v0 / D-082`
 - [x] **10B — Navigation** — `NSHX-v0 / D-083`
-- [ ] **10C — Design system implementation** **AKTİF**
-- [ ] **10D — Local database**
+- [x] **10C — Design system implementation** — `DSIX-v0 / D-084`
+- [ ] **10D — Local database** **AKTİF**
 - [ ] **10E — Temel uygulama sağlığı**
 
 ---
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10B`  
-**Son tamamlanan:** **`10B — NSHX-v0 / D-083`**  
-**Aktif:** **`10C — Design system implementation`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10C`  
+**Son tamamlanan:** **`10C — DSIX-v0 / D-084`**  
+**Aktif:** **`10D — Local database`** — active-not-executed
 
-**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10B `NSHX-v0` ile shell kuruldu: navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil. Dört destination kabul edilmiş sırada ve enum sırası kanonik; yasak top-level id'lerin hiçbiri destination değil; kanonik entity başına tek surface objesi olduğu için çelişkili Skill detail sayfası temsil edilemez; contextual edge kümesi kapalı ve `ia.yaml` ile karşılaştırılıyor; focused flow shell'i askıya alıyor ve `showsShell`/`requiresSafeExit` türetildiği için "gizli shell + çıkış yok" durumu inşa edilemiyor; dönüş kuralı deterministik ve bayat origin'de öğrenciyi mahsur bırakmıyor; window class'lar `WFPX-v0` breakpoint'lerinden core'da hesaplanıyor ve yalnız çizimi değiştiriyor.
+**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10C `DSIX-v0` ile tasarım sistemi koda geçti: token'lar tema dosyasında değil `core-presentation`da düz veri, çünkü kontrast hatırlanan bir orandan iddia edilmek yerine cihazsız bir JVM testinde **yeniden hesaplanmak** zorunda — 8G'de elle beyan edilen bir minimum tam da bu yüzden yakalanmıştı. Palet birebir kopyalandı ve revize edilmedi; kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetildi ve tuttu. **`LearningTone` beş değerli ve fault değeri yok**, yani bir learning state'e fault tonu vermek temsil edilemez; Material'ın `error` rolü yalnız `system_fault` taşıyor. Attention grubunda görünmek tonu değiştirmiyor ve bu adı konmuş bir fonksiyon. 48dp modifier, %200 metin, metin olarak verilen state ve locale-naive casing yok. Dynamic colour scan'i bu adımın kendi yorumunu yakaladı; gate gevşetilmedi, yorum yeniden yazıldı.
 
-10C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+10D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
