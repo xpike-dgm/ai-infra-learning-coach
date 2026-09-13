@@ -19,7 +19,9 @@ import coach.ui.CoachTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val graph = AppGraph()
+        // Opened once per process. 10E owns moving this off the main thread and surfacing
+        // data_recovery_required as a real state rather than a crash.
+        val graph = AppGraph.open(getDatabasePath(AppGraph.DATABASE_NAME).absolutePath)
         setContent {
             var selected by remember { mutableStateOf(Destination.start) }
 

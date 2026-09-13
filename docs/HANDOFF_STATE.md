@@ -57,6 +57,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-082:** MPSX-v0 Mobile Project Skeleton; 10A tamamlandı, hedef cihaz kaydedildi.
 - **D-083:** NSHX-v0 Navigation Shell; 10B tamamlandı.
 - **D-084:** DSIX-v0 Design System Implementation; 10C tamamlandı.
+- **D-085:** LDBX-v0 Local Database; 10D tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -260,14 +261,15 @@ PEM-v0:
 - 10A ✅ MPSX-v0 / D-082
 - 10B ✅ NSHX-v0 / D-083
 - 10C ✅ DSIX-v0 / D-084
-- 10D 🟡 active-not-executed
-- 10E–20 ⬜
+- 10D ✅ LDBX-v0 / D-085
+- 10E 🟡 active-not-executed
+- 11–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `10C — DSIX-v0 / D-084`  
-**Aktif:** `10D — Local database`  
-**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `10D — LDBX-v0 / D-085`  
+**Aktif:** `10E — Temel uygulama sağlığı`  
+**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -747,6 +749,28 @@ DSIX-v0:
 - dynamic colour stays off and the source scan caught this step's own prose; the comment was reworded rather than the gate loosened, because strict absence is the stronger guarantee,
 - independent 10C QA 146/146 PASS, mutation-tested 8/8; 29/29 sweep PASS.
 
-## 37. 10D handoff
+## 37. D-085 / 10D final özeti
 
-10D — Local database. `DDM-v0`nin physical schema'sı 10A'da pinlenen `androidx.sqlite` bundled driver üzerine kurulacak: üç store bölgesi, `(logical_id, version)` composite anahtarlar ve version taşıyan foreign key'ler, **UPDATE/DELETE yolu olmayan** truth tabloları — storage katmanı tarafından zorlanan ve `TVSX-v0` gereği deneme ile kanıtlanan —, dört evidence ekseni dört kolon, her timestamp'li satırda üç-değerli zaman, policy version ve truth watermark taşıyan projection provenance, indeksli ve kalıcı exposure kayıtları, ileri-yönlü migration'lar ve dolu fixture'lara karşı test. Bundled driver JVM'de koştuğu için T2 cihaz dışında çalışmalı. 10D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/LOCAL_DATABASE_SPEC.md`.
+Contract/QA: `arch/10d_local_database/`.
+Synthesis: `research/10d_local_database_research.md`.
+Code: `android/data-persistence/.../Schema.kt`, `.../Migrations.kt`, `.../SqlitePersistence.kt`.
+
+LDBX-v0:
+- the storage engine refuses what the architecture forbids, and every refusal is proven by attempting it,
+- the first draft of the schema diverged from `DDM-v0` — the evaluator signal enum had been used for the evidence outcome axis, two axes were missing values, the offset was stored in seconds, evidence was keyed to one objective and only four truth tables existed. Its own tests passed because they were written against the same draft; the validator reading the contract caught it, and the schema was rewritten before acceptance. The divergences are recorded,
+- the library API was read from the resolved jar with `javap`, not remembered,
+- 11 immutable curriculum tables, 13 append-only truth tables (12 DDM entities plus the relational form of plural objective references) and 8 rebuildable projection tables; no user→curriculum foreign key,
+- BEFORE UPDATE and BEFORE DELETE triggers abort on every truth and curriculum table, generated from the inventories,
+- every DDM allowed value set is a CHECK constraint; pinning is structural; the offset is stored in minutes and a non-whole-minute offset is refused rather than truncated,
+- one global monotonic truth sequence is the projection watermark; every projection row carries full provenance and so does the port type,
+- migration is forward-only and transactional and was tested against a populated fixture by content, row for row,
+- the adapter reads column requirements from SQLite rather than keeping its own list,
+- the same schema runs on the JVM for T2 and on the device, verified by finding the arm64-v8a native library inside the APK,
+- columns the model does not name are disclosed with their owning steps,
+- 22 T2 checks; 9/9 implementation mutations caught, one only after its test was strengthened,
+- independent 10D QA 163/163 PASS, validator mutation 9/9 including all three first-draft errors; 30/30 sweep PASS.
+
+## 38. 10E handoff
+
+10E — Temel uygulama sağlığı. Veritabanı açılışı `MainActivity`de main thread'den alınacak; `DataRecoveryRequired` bir çökme olmaktan çıkıp `SPWX-v0`nin zaten tanımladığı `data_recovery_required` state'i olacak; uygulama dürüst bir başlangıç ve degraded-state yolu kazanacak (`loading_projection`, `offline_local_capable`, `ai_unavailable_full_state_available`, `error_recoverable`). Backup/export ve atomik doğrulanmış restore'un nerede implemente edileceği netleştirilecek. 10E AŞAMA 10'u kapatır ve fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

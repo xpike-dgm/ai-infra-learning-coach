@@ -49,8 +49,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **10A — Proje kurulumu** | ✅ | MPSX-v0 / D-082. İlk çalıştırılabilir iskelet; boundary kuralı build'i düşürüyor, adaptörsüz build geçiyor, hedef cihaz kaydedildi; 127/127 QA PASS. |
 | **10B — Navigation** | ✅ | NSHX-v0 / D-083. Navigasyon modeli core'da; kapalı edge kümesi; focused flow shell'i askıya alıyor; 104/104 QA PASS. |
 | **10C — Design system implementation** | ✅ | DSIX-v0 / D-084. Token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez; 146/146 QA PASS. |
-| **10D — Local database** | 🟡 Aktif | DDM-v0 physical schema, append-only trigger'lar, dolu fixture migration'ları; henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **10E–20** | ⬜ Bekliyor | 10D sonrası canonical sırada. |
+| **10D — Local database** | ✅ | LDBX-v0 / D-085. Engine yasakları reddediyor ve denenerek kanıtlanıyor; ilk taslağın DDM sapmaları düzeltilip kaydedildi; 163/163 QA PASS. |
+| **10E — Temel uygulama sağlığı** | 🟡 Aktif | DB açılışını main thread'den almak, `data_recovery_required`ı çökme değil state yapmak; AŞAMA 10'u kapatır. Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **11–20** | ⬜ Bekliyor | 10E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -69,24 +70,26 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 10C
+## Son tamamlanan numaralı adım — 10D
 
-**Final:** `DSIX-v0 — Design System Implementation` / D-084.
-**Ana çıktı:** `docs/DESIGN_SYSTEM_IMPL_SPEC.md` + `arch/10c_design_system/` + `android/core-presentation` + `android/app-ui`.
+**Final:** `LDBX-v0 — Local Database` / D-085.
+**Ana çıktı:** `docs/LOCAL_DATABASE_SPEC.md` + `arch/10d_local_database/` + `android/data-persistence`.
 
-10C sonucu:
-- **tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez**; bir kural temsil edilemez kılınabiliyorsa öyle yapıldı,
-- **token'lar `core-presentation`da düz veri**: hex'ler yalnız Compose'da yaşasaydı doğal kısayol hatırlanan bir oranı iddia etmek olurdu ve o kısayol 8G'de zaten bir kez başarısız olmuştu,
-- palet birebir kopyalandı, **revize edilmedi**; validator her token'ı `WFPX-v0` ile bayt bayt karşılaştırıyor,
-- **kontrast iki temada da hex'ten yeniden hesaplanıyor**; kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetildi ve tuttu,
-- **`LearningTone` beş değerli ve fault değeri yok** → learning state'e fault tonu atamak yazılamaz; Material `error` rolü yalnız `system_fault` taşır,
-- sekiz Skill state'inin her birinin tam bir tonu var; üçü bilinçle nötr çünkü bekleme başarısızlık değil,
-- **attention grubunda görünmek tonu değiştirmiyor** ve bu adı konmuş, test edilen bir fonksiyon,
-- 48dp `minimumTouchTarget()` modifier'ı, %100/150/200 metin, metin olarak verilen state, locale-naive casing yok,
-- **dynamic colour scan'i bu adımın kendi yorumunu yakaladı**; gate gevşetilmedi, yorum yeniden yazıldı,
-- 4 run çalıştırıldı; adaptörsüz build hâlâ geçiyor,
-- independent validator **146/146 PASS**, mutation-tested 8/8 (7 validator + 1 davranış); 29/29 sweep PASS.
+10D sonucu:
+- **storage engine mimarinin yasakladığını reddediyor** ve her ret denenerek kanıtlanıyor,
+- **ilk taslak `DDM-v0`den sapmıştı**: yanlış outcome değerleri (10A'nın evaluator sinyali enum'u), eksik eksen değerleri, saniye cinsinden offset, tek objective, 4 truth tablosu. Kendi testleri aynı taslağa karşı yazıldığı için geçiyordu; kontratı okuyan validator yakaladı ve şema kabulden önce yeniden yazıldı. Sapmalar kaydedildi,
+- library API'si çözülmüş jar'dan `javap` ile okundu, hatırlanmadı,
+- 11 curriculum (değişmez), 13 truth (append-only), 8 projection tablosu; user→curriculum foreign key yok,
+- her truth ve curriculum tablosunda abort eden UPDATE/DELETE trigger'ları, envanterden üretilmiş,
+- her DDM değer kümesi CHECK; pinning yapısal; offset dakika ve tam dakika olmayan reddediliyor,
+- tek global truth sequence watermark; her projection satırında tam provenance ve port tipi de taşıyor,
+- migration ileri-yönlü, transaction'lı, dolu fixture'a karşı satır satır içerikle test edildi,
+- adapter kolonları SQLite'tan okuyor, kendi listesini tutmuyor,
+- aynı şema JVM'de ve cihazda; **arm64-v8a native kütüphane APK içinde doğrulandı**,
+- modelin adlandırmadığı kolonlar sahipleriyle açıklandı,
+- 22 T2 check; mutation 9/9 — biri başta kaçmıştı ve test güçlendirildi,
+- independent validator **163/163 PASS**, kendi mutation testi 9/9 (ilk taslağın üç hatası dahil); 30/30 sweep PASS.
 
-## Aktif adım — 10D Local database
+## Aktif adım — 10E Temel uygulama sağlığı
 
-**10D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**10E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

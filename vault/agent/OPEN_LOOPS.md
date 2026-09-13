@@ -36,7 +36,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 10A Proje kurulumu: MPSX-v0 / D-082 ile tamamlandı; doğrulanmış toolchain pinleri, `android/` altında on modül, build'i düşüren boundary kuralı, adaptörsüz build, CI ve gitignore kuralı.
 - [x] 10B Navigation: NSHX-v0 / D-083 ile tamamlandı; kurallar core'da, kapalı edge kümesi, shell'i askıya alan focused flow, deterministik dönüş kuralı, core'da hesaplanan window class'lar.
 - [x] 10C Design system implementation: DSIX-v0 / D-084 ile tamamlandı; token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez, 48dp modifier ve %200 metin.
-- [ ] 10D Local database **AKTİF**: `DDM-v0` physical schema, storage seviyesinde zorlanan append-only, dört evidence ekseni, üç-değerli zaman, watermark'lı projection, kalıcı exposure ve dolu fixture migration'ları.
+- [x] 10D Local database: LDBX-v0 / D-085 ile tamamlandı; engine yasakları reddediyor, DDM ile birebir şema, transaction'lı ileri-yönlü migration dolu fixture'a karşı, arm64-v8a native kütüphane APK'da doğrulandı.
+- [ ] 10E Temel uygulama sağlığı **AKTİF**: veritabanı açılışını main thread'den almak, `DataRecoveryRequired`ı çökme değil `data_recovery_required` state'i yapmak, dürüst başlangıç ve degraded-state yolu. AŞAMA 10'u kapatır.
+- [ ] Backup/export ve atomik doğrulanmış restore `LFPS-v0`de tanımlı ve `TVSX-v0`de doğrulanmış ama henüz implemente edilmedi; hangi adımın sahiplendiği 10E'de netleşmeli.
+- [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.

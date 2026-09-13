@@ -1,0 +1,531 @@
+model: LDBX-v0
+stage_step: 10D
+decision: D-085
+result: PASS
+checks_total: 163
+checks_passed: 163
+checks_failed: 0
+curriculum_tables: 11
+truth_tables: 13
+projection_tables: 8
+checks:
+- check: E10D-00_exists_Schema.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\Schema.kt
+- check: E10D-00_exists_Migrations.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+- check: E10D-00_exists_SqlitePersistence.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\SqlitePersistence.kt
+- check: E10D-00_exists_Ports.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: E10D-00_exists_LOCAL_DATABASE_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\docs\LOCAL_DATABASE_SPEC.md
+- check: E10D-00_exists_10d_local_database_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\research\10d_local_database_research.md
+- check: E10D-01_model
+  result: PASS
+  details: LDBX-v0
+- check: E10D-01_status
+  result: PASS
+  details: accepted_10d
+- check: E10D-01_decision
+  result: PASS
+  details: D-085
+- check: E10D-01_scope_data_model_changed
+  result: PASS
+  details: data_model_changed=False
+- check: E10D-01_scope_persistence_rules_changed
+  result: PASS
+  details: persistence_rules_changed=False
+- check: E10D-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E10D-01_scope_new_entities_invented
+  result: PASS
+  details: new_entities_invented=False
+- check: E10D-01_noclaim_row_count_claim
+  result: PASS
+  details: row_count_claim=None
+- check: E10D-01_noclaim_query_latency_claim
+  result: PASS
+  details: query_latency_claim=None
+- check: E10D-01_noclaim_database_size_claim
+  result: PASS
+  details: database_size_claim=None
+- check: E10D-02_curriculum_inventory
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10D-02_truth_covers_ddm
+  result: PASS
+  details: missing=[]
+- check: E10D-02_truth_extra_is_documented
+  result: PASS
+  details: 'undocumented extra truth tables: [''evidence_event_objective'']'
+- check: E10D-02_projection_inventory
+  result: PASS
+  details: missing=[] extra=[]
+- check: E10D-03_ddl_curriculum_version
+  result: PASS
+  details: no CREATE TABLE for curriculum_version
+- check: E10D-03_ddl_domain
+  result: PASS
+  details: no CREATE TABLE for domain
+- check: E10D-03_ddl_module
+  result: PASS
+  details: no CREATE TABLE for module
+- check: E10D-03_ddl_topic
+  result: PASS
+  details: no CREATE TABLE for topic
+- check: E10D-03_ddl_skill
+  result: PASS
+  details: no CREATE TABLE for skill
+- check: E10D-03_ddl_objective
+  result: PASS
+  details: no CREATE TABLE for objective
+- check: E10D-03_ddl_topic_skill_link
+  result: PASS
+  details: no CREATE TABLE for topic_skill_link
+- check: E10D-03_ddl_skill_prerequisite_edge
+  result: PASS
+  details: no CREATE TABLE for skill_prerequisite_edge
+- check: E10D-03_ddl_assessment_resource
+  result: PASS
+  details: no CREATE TABLE for assessment_resource
+- check: E10D-03_ddl_assessment_resource_version
+  result: PASS
+  details: no CREATE TABLE for assessment_resource_version
+- check: E10D-03_ddl_resource_validation_record
+  result: PASS
+  details: no CREATE TABLE for resource_validation_record
+- check: E10D-03_ddl_attempt
+  result: PASS
+  details: no CREATE TABLE for attempt
+- check: E10D-03_ddl_artifact
+  result: PASS
+  details: no CREATE TABLE for artifact
+- check: E10D-03_ddl_evidence_event
+  result: PASS
+  details: no CREATE TABLE for evidence_event
+- check: E10D-03_ddl_assistance_event
+  result: PASS
+  details: no CREATE TABLE for assistance_event
+- check: E10D-03_ddl_artifact_provenance
+  result: PASS
+  details: no CREATE TABLE for artifact_provenance
+- check: E10D-03_ddl_exposure_record
+  result: PASS
+  details: no CREATE TABLE for exposure_record
+- check: E10D-03_ddl_assessment_session
+  result: PASS
+  details: no CREATE TABLE for assessment_session
+- check: E10D-03_ddl_planner_decision_trace
+  result: PASS
+  details: no CREATE TABLE for planner_decision_trace
+- check: E10D-03_ddl_plan_version
+  result: PASS
+  details: no CREATE TABLE for plan_version
+- check: E10D-03_ddl_planned_task
+  result: PASS
+  details: no CREATE TABLE for planned_task
+- check: E10D-03_ddl_resume_checkpoint
+  result: PASS
+  details: no CREATE TABLE for resume_checkpoint
+- check: E10D-03_ddl_evidence_disposition
+  result: PASS
+  details: no CREATE TABLE for evidence_disposition
+- check: E10D-03_ddl_skill_state
+  result: PASS
+  details: no CREATE TABLE for skill_state
+- check: E10D-03_ddl_objective_state
+  result: PASS
+  details: no CREATE TABLE for objective_state
+- check: E10D-03_ddl_retention_state
+  result: PASS
+  details: no CREATE TABLE for retention_state
+- check: E10D-03_ddl_prerequisite_readiness
+  result: PASS
+  details: no CREATE TABLE for prerequisite_readiness
+- check: E10D-03_ddl_topic_state
+  result: PASS
+  details: no CREATE TABLE for topic_state
+- check: E10D-03_ddl_weakness_state
+  result: PASS
+  details: no CREATE TABLE for weakness_state
+- check: E10D-03_ddl_english_profile
+  result: PASS
+  details: no CREATE TABLE for english_profile
+- check: E10D-03_ddl_planner_summary
+  result: PASS
+  details: no CREATE TABLE for planner_summary
+- check: E10D-04_values_outcomeValues
+  result: PASS
+  details: kotlin=['positive', 'negative', 'partial', 'invalid'] ddm=['positive',
+    'negative', 'partial', 'invalid']
+- check: E10D-04_values_evaluatorStatusValues
+  result: PASS
+  details: kotlin=['verified', 'provisional', 'invalid'] ddm=['verified', 'provisional',
+    'invalid']
+- check: E10D-04_values_independenceClassValues
+  result: PASS
+  details: kotlin=['independent', 'assisted', 'practice_only', 'requires_independent_recheck']
+    ddm=['independent', 'assisted', 'practice_only', 'requires_independent_recheck']
+- check: E10D-04_values_dispositionValues
+  result: PASS
+  details: kotlin=['invalidated', 'contested', 'superseded', 'reinstated'] ddm=['invalidated',
+    'contested', 'superseded', 'reinstated']
+- check: E10D-04_values_decidedByValues
+  result: PASS
+  details: kotlin=['deterministic_rule', 'validator', 'user_report'] ddm=['deterministic_rule',
+    'validator', 'user_report']
+- check: E10D-04_values_assistanceLevelValues
+  result: PASS
+  details: kotlin=['H1', 'H2', 'H3', 'H4'] ddm=['H1', 'H2', 'H3', 'H4']
+- check: E10D-04_values_assistanceTimingValues
+  result: PASS
+  details: kotlin=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+    ddm=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+- check: E10D-04_values_assistanceScopeValues
+  result: PASS
+  details: kotlin=['target_objective', 'non_target_support'] ddm=['target_objective',
+    'non_target_support']
+- check: E10D-04_values_assistanceSourceValues
+  result: PASS
+  details: kotlin=['deterministic_content', 'ai_generated'] ddm=['deterministic_content',
+    'ai_generated']
+- check: E10D-04_values_provenanceOriginValues
+  result: PASS
+  details: kotlin=['user_authored', 'user_authored_with_assistance', 'mixed_authorship',
+    'generated_or_copied', 'unknown_provenance'] ddm=['user_authored', 'user_authored_with_assistance',
+    'mixed_authorship', 'generated_or_copied', 'unknown_provenance']
+- check: E10D-04_values_exposureKindValues
+  result: PASS
+  details: kotlin=['solution_exposure', 'item_version_seen', 'variant_family_exposure']
+    ddm=['solution_exposure', 'item_version_seen', 'variant_family_exposure']
+- check: E10D-04_axes_not_collapsed
+  result: PASS
+  details: the four axes must be four columns
+- check: E10D-04_checks_generated
+  result: PASS
+  details: each value set must be enforced by a CHECK constraint built from the same
+    list
+- check: E10D-04_contested_boolean
+  result: PASS
+  details: contested must be 0/1
+- check: E10D-05_time_fields_are_ddm
+  result: PASS
+  details: ddm=['occurred_at_instant', 'occurred_on_study_day', 'utc_offset_minutes']
+- check: E10D-05_offset_in_minutes
+  result: PASS
+  details: utc_offset_minutes missing
+- check: E10D-05_no_seconds_offset_column
+  result: PASS
+  details: an offset column in seconds contradicts DDM-v0
+- check: E10D-05_instant_and_day_generated
+  result: PASS
+  details: timestamped rows must carry DDM's instant and study-day columns
+- check: E10D-05_disposition_decided_names
+  result: PASS
+  details: evidence_disposition must use DDM's decided_at naming
+- check: E10D-05_provenance_answered_names
+  result: PASS
+  details: artifact_provenance must use DDM's answered_at naming
+- check: E10D-05_offset_refused_not_truncated
+  result: PASS
+  details: a non-whole-minute offset must be refused, never truncated
+- check: E10D-05_not_instant_only
+  result: PASS
+  details: DDM-v0 forbids instant-only and date-only timestamps
+- check: E10D-06_truth_guards_cover_all
+  result: PASS
+  details: update/delete guards must be generated for every truth table, not a subset
+- check: E10D-06_update_guard
+  result: PASS
+  details: an UPDATE on a truth table must abort
+- check: E10D-06_delete_guard
+  result: PASS
+  details: a DELETE on a truth table must abort
+- check: E10D-06_guards_installed
+  result: PASS
+  details: the guards must be part of the installed schema
+- check: E10D-06_upstream_no_update_path
+  result: PASS
+  details: DDM-v0 forbids update/delete paths and soft-delete flags
+- check: E10D-06_no_soft_delete_column
+  result: PASS
+  details: a soft-delete flag is an update path in disguise
+- check: E10D-06_curriculum_guards
+  result: PASS
+  details: curriculum rows must be immutable
+- check: E10D-06_correction_is_disposition
+  result: PASS
+  details: a correction is an appended disposition
+- check: E10D-07_composite_keys
+  result: PASS
+  details: 'composite keys found: 6'
+- check: E10D-07_fk_carries_version
+  result: PASS
+  details: foreign keys must carry the version column
+- check: E10D-07_no_user_to_curriculum_fk
+  result: PASS
+  details: 'truth tables reference curriculum: []'
+- check: E10D-07_resource_pinned_or_absent
+  result: PASS
+  details: a resource reference must never be version-free
+- check: E10D-07_projection_key_pinned
+  result: PASS
+  details: a projection must not be addressable by logical id alone
+- check: E10D-08_sequence_on_truth
+  result: PASS
+  details: truth tables must carry a monotonic sequence
+- check: E10D-08_sequence_is_watermark
+  result: PASS
+  details: the sequence must be the projection watermark
+- check: E10D-09_projection_provenance_policy_version
+  result: PASS
+  details: missing policy_version
+- check: E10D-09_projection_provenance_truth_watermark
+  result: PASS
+  details: missing truth_watermark
+- check: E10D-09_projection_provenance_built_at_instant
+  result: PASS
+  details: missing built_at_instant
+- check: E10D-09_projection_provenance_input_curriculum_version
+  result: PASS
+  details: missing input_curriculum_version
+- check: E10D-09_port_carries_provenance
+  result: PASS
+  details: ProjectionRecord must carry every DDM provenance field
+- check: E10D-09_skill_state_axis_mastery_axis_state
+  result: PASS
+  details: skill_state missing mastery_axis_state
+- check: E10D-09_skill_state_axis_retention_axis_state
+  result: PASS
+  details: skill_state missing retention_axis_state
+- check: E10D-09_skill_state_axis_prerequisite_axis_state
+  result: PASS
+  details: skill_state missing prerequisite_axis_state
+- check: E10D-09_skill_state_axis_weakness_axis_state
+  result: PASS
+  details: skill_state missing weakness_axis_state
+- check: E10D-09_presentation_not_replacing_axes
+  result: PASS
+  details: the presentation state is derived and stored beside the axes
+- check: E10D-10_metadata_schema_version
+  result: PASS
+  details: metadata missing schema_version
+- check: E10D-10_metadata_policy_version
+  result: PASS
+  details: metadata missing policy_version
+- check: E10D-11_index_evidence_by_skill
+  result: PASS
+  details: missing index evidence_by_skill
+- check: E10D-11_index_evidence_by_objective
+  result: PASS
+  details: missing index evidence_by_objective
+- check: E10D-11_index_evidence_by_time_range
+  result: PASS
+  details: missing index evidence_by_time_range
+- check: E10D-11_index_exposure_by_resource_logical_id
+  result: PASS
+  details: missing index exposure_by_resource_logical_id
+- check: E10D-11_index_exposure_by_variant_family
+  result: PASS
+  details: missing index exposure_by_variant_family
+- check: E10D-11_index_exposure_by_exposure_kind
+  result: PASS
+  details: missing index exposure_by_exposure_kind
+- check: E10D-11_index_attempts_by_assessment_session
+  result: PASS
+  details: missing index attempts_by_assessment_session
+- check: E10D-11_index_planned_tasks_by_plan_version
+  result: PASS
+  details: missing index planned_tasks_by_plan_version
+- check: E10D-11_index_dispositions_by_evidence_event
+  result: PASS
+  details: missing index dispositions_by_evidence_event
+- check: E10D-12_forward_only
+  result: PASS
+  details: a newer schema must be refused
+- check: E10D-12_transactional
+  result: PASS
+  details: each migration step must be all-or-nothing
+- check: E10D-12_surfaces_recovery
+  result: PASS
+  details: a failed migration must surface data_recovery_required
+- check: E10D-12_populated_required
+  result: PASS
+  details: migrations must be tested against populated data
+- check: E10D-12_real_forward_step
+  result: PASS
+  details: a real forward step must exist so a populated migration is exercised
+- check: E10D-13_columns_from_database
+  result: PASS
+  details: the adapter must read columns from SQLite, not keep its own list
+- check: E10D-13_transaction_rollback
+  result: PASS
+  details: a failed action must roll back and rethrow
+- check: E10D-13_bundled_driver
+  result: PASS
+  details: the bundled driver without an ORM
+- check: E10D-13_api_read_not_guessed
+  result: PASS
+  details: the library API must be read from the resolved jar
+- check: E10D-14_test_every truth table refuses update and del
+  result: PASS
+  details: 'missing T2 test: every truth table refuses update and delete at the storage
+    layer'
+- check: E10D-14_test_every curriculum table refuses update an
+  result: PASS
+  details: 'missing T2 test: every curriculum table refuses update and delete'
+- check: 'E10D-14_test_a correction is an appended disposition '
+  result: PASS
+  details: 'missing T2 test: a correction is an appended disposition and the original
+    row is unchanged'
+- check: E10D-14_test_exposure records are permanent
+  result: PASS
+  details: 'missing T2 test: exposure records are permanent'
+- check: E10D-14_test_a resource reference is pinned or absent
+  result: PASS
+  details: 'missing T2 test: a resource reference is pinned or absent never version
+    free'
+- check: 'E10D-14_test_an offset that is not a whole number of '
+  result: PASS
+  details: 'missing T2 test: an offset that is not a whole number of minutes is refused
+    rather than truncated'
+- check: E10D-14_test_failure injected at each stage of an act
+  result: PASS
+  details: 'missing T2 test: failure injected at each stage of an action always rolls
+    back completely'
+- check: E10D-14_test_migrating a populated database preserves
+  result: PASS
+  details: 'missing T2 test: migrating a populated database preserves evidence exposure
+    and provenance exactly'
+- check: E10D-14_test_a migration that fails part way leaves t
+  result: PASS
+  details: 'missing T2 test: a migration that fails part way leaves the previous state
+    intact and surfaces data recovery'
+- check: E10D-14_test_a database from a newer schema is refuse
+  result: PASS
+  details: 'missing T2 test: a database from a newer schema is refused rather than
+    opened on a guess'
+- check: E10D-14_test_no foreign key crosses from the user sto
+  result: PASS
+  details: 'missing T2 test: no foreign key crosses from the user store into curriculum'
+- check: E10D-14_attempts_forbidden_update
+  result: PASS
+  details: the suite must actually execute the forbidden UPDATE
+- check: E10D-14_attempts_forbidden_delete
+  result: PASS
+  details: the suite must actually execute the forbidden DELETE
+- check: E10D-14_partial_failure_sabotage
+  result: PASS
+  details: the migration failure must be injected after a partial change
+- check: E10D-14_upstream_requires_negative
+  result: PASS
+  details: TVSX-v0 requires attempted violation and populated fixtures
+- check: E10D-15_divergences_recorded
+  result: PASS
+  details: the first draft's divergences from DDM-v0 must be recorded
+- check: E10D-15_mutation_results
+  result: PASS
+  details: '{''total'': 9, ''detected'': 9, ''mutants'': [''truth_triggers_removed'',
+    ''curriculum_triggers_removed'', ''outcome_value_set_unchecked'', ''version_free_resource_reference_allowed'',
+    ''rollback_removed_from_learner_action'', ''migration_no_longer_transactional'',
+    ''newer_schema_opened_on_a_guess'', ''offset_silently_truncated'', ''truth_sequence_does_not_advance''],
+    ''strengthened_during_step'': {''test'': ''a migration that fails part way leaves
+    the previous state intact'', ''original_weakness'': ''the sabotage failed the
+    first statement so nothing had changed and replacing ROLLBACK with COMMIT still
+    passed'', ''fix'': ''fail after the step has already changed something so only
+    a real rollback restores the database'', ''found_by'': ''mutation_testing''}}'
+- check: E10D-15_strengthened_test_recorded
+  result: PASS
+  details: the test mutation testing strengthened must be recorded
+- check: E10D-15_minimal_columns_disclosed
+  result: PASS
+  details: columns DDM-v0 does not name must be disclosed with their owner
+- check: E10D-15_runs_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS''}'
+- check: E10D-15_device_variant_verified
+  result: PASS
+  details: the Android variant and target-ABI native library must be verified, not
+    assumed
+- check: E10D-16_forbidden_an_update_or_delete_path_on_a_trut
+  result: PASS
+  details: missing=an_update_or_delete_path_on_a_truth_table
+- check: E10D-16_forbidden_a_foreign_key_from_user_truth_into
+  result: PASS
+  details: missing=a_foreign_key_from_user_truth_into_curriculum
+- check: E10D-16_forbidden_a_reference_by_logical_id_alone
+  result: PASS
+  details: missing=a_reference_by_logical_id_alone
+- check: E10D-16_forbidden_collapsing_the_evidence_axes_into_
+  result: PASS
+  details: missing=collapsing_the_evidence_axes_into_one_column
+- check: E10D-16_forbidden_silently_truncating_a_utc_offset
+  result: PASS
+  details: missing=silently_truncating_a_utc_offset
+- check: E10D-16_forbidden_a_migration_that_can_apply_partial
+  result: PASS
+  details: missing=a_migration_that_can_apply_partially
+- check: E10D-16_forbidden_migrating_only_an_empty_database
+  result: PASS
+  details: missing=migrating_only_an_empty_database
+- check: E10D-16_forbidden_a_hand_maintained_column_list_besi
+  result: PASS
+  details: missing=a_hand_maintained_column_list_beside_the_schema
+- check: E10D-16_forbidden_guessing_a_library_api_instead_of_
+  result: PASS
+  details: missing=guessing_a_library_api_instead_of_reading_it
+- check: E10D-16_forbidden_inventing_entity_fields_the_data_m
+  result: PASS
+  details: missing=inventing_entity_fields_the_data_model_does_not_name
+- check: E10D-17_spec_**Status:** ACCEPTED — indep
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 10D QA PASS'
+- check: E10D-17_spec_**Decision:** `D-085`
+  result: PASS
+  details: missing='**Decision:** `D-085`'
+- check: E10D-17_spec_positive
+  result: PASS
+  details: missing='positive'
+- check: E10D-17_spec_utc_offset_minutes
+  result: PASS
+  details: missing='utc_offset_minutes'
+- check: E10D-17_spec_arm64-v8a
+  result: PASS
+  details: missing='arm64-v8a'
+- check: E10D-17_spec_ROLLBACK
+  result: PASS
+  details: missing='ROLLBACK'
+- check: E10D-18_research_javap
+  result: PASS
+  details: missing='javap'
+- check: E10D-18_research_first draft
+  result: PASS
+  details: missing='first draft'
+- check: E10D-19_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E10D-19_build_must_be_run_not_asserted
+  result: PASS
+  details: build_must_be_run_not_asserted=True
+- check: E10D-19_negative_checks_must_attempt_the_forbidden_operation
+  result: PASS
+  details: negative_checks_must_attempt_the_forbidden_operation=True
+- check: E10D-19_migration_must_be_tested_against_populated_data
+  result: PASS
+  details: migration_must_be_tested_against_populated_data=True
+- check: E10D-19_stage9_regression_required
+  result: PASS
+  details: stage9_regression_required=True
+- check: E10D-19_stage10abc_regression_required
+  result: PASS
+  details: stage10abc_regression_required=True
+failures: []

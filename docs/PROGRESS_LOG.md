@@ -862,3 +862,24 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `10C ✅ / 10D active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `10D — Local database`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-14 — 10D Local database tamamlandı — LDBX-v0 / D-085
+
+- 10C merge edildikten sonra fresh 10D PRE main üzerinden yapıldı; beş kanonik kaynak `10C ✅ / 10D active-not-executed` gösterdi. Kullanıcı açık onay verdi.
+- **Library API'si hatırlamadan yazılmadı.** `BundledSQLiteDriver` doküman sayfası render olmadı; 10A hatırlanan API'lerin bedelini iki kez göstermişti. Çözülmüş jar'lar Gradle ile bulunup `javap` ile incelendi ve gerçek imzalar oradan alındı.
+- **Bu adımın en önemli bulgusu kendi ilk taslağının yanlışlığıydı.** İlk şema kontrattan değil önceki adımların hafızasından yazılmıştı: outcome ekseni `met/partially_met/not_met/not_reliably_measured` idi — oysa `DDM-v0`nin değerleri `positive/negative/partial/invalid`; `evaluator_status`ta `invalid`, `independence_class`ta `practice_only` ve `requires_independent_recheck` yoktu; offset **saniye** tutuluyordu — alan `utc_offset_minutes`; evidence tek objective'e bağlıydı; 12 truth entity yerine 4 tablo vardı. **Kendi testleri geçiyordu**, çünkü aynı taslağa karşı yazılmışlardı. Sapmayı, validator yazılırken taslağın `data_model.yaml`a karşı okunması ortaya çıkardı. Outcome hatası öğreticiydi: 10A'da tanıtılan evaluator **sinyali** enum'u evidence **outcome** eksenine kullanılmıştı — benzer görünen iki farklı kavram. Şema kabulden önce kontrata göre yeniden yazıldı ve sapmalar silinmek yerine kaydedildi. Kalıcı ders: **bir taslağa karşı yazılmış suite o taslağın kontratı yanlış okumasını yakalayamaz.**
+- Yeniden yazımda da bir hata çıktı ve yakalandı: Kotlin `object` başlatma sırası yüzünden `truthGuards()` henüz başlatılmamış `truthTables` listesini okuyordu ve tüm testler `ExceptionInInitializerError` ile düştü. Liste yukarı taşındı ve migration listeleri hesaplanan property yapıldı, böylece hata yapısal olarak tekrarlanamaz.
+- **Append-only engine'in reddi, adapter'ın ölçülülüğü değil.** Her truth ve curriculum tablosunda abort eden `BEFORE UPDATE` ve `BEFORE DELETE` trigger'ları var ve envanterden üretiliyor, yani hiçbir tablo dışarıda kalamaz. Düzeltme append edilen bir disposition; orijinal satırın değişmediği kontrol ediliyor.
+- **Adapter kendi kolon listesini tutmuyor** — SQLite'a `PRAGMA table_info` ile soruyor. Elle tutulan ikinci liste şemadan ilk değişiklikte kopar.
+- **Offset dönüşümü sessizce bilgi kaybedebilirdi.** Core tip saniye, storage dakika taşıyor. Tam dakika olmayan offset kesilmek yerine reddediliyor; her gerçek zone offset'i tam dakika olduğundan ret yalnız bozuk girdide tetikleniyor.
+- **Watermark her tür truth'u görmeli.** Tablo başına id bir projection'a kendisinden sonra exposure geldiğini söyleyemezdi; tek global truth sequence söylüyor ve geri alınan eylemde ilerlemiyor.
+- **Migration testi başta hiçbir şey kanıtlamıyordu.** Sabote edilmiş migration ilk ifadede, hiçbir şey değişmeden düşüyordu — `ROLLBACK` yerine `COMMIT` yazan mutant geçti. Test, hatayı adım indeksleri oluşturup metadata satırını temizledikten **sonra** enjekte edecek biçimde yeniden yazıldı ve artık yakalıyor.
+- **JVM build'inin geçmesi cihaz hakkında hiçbir şey söylemiyordu.** `data-persistence` bir JVM kütüphanesi ve Android uygulaması onu tüketiyor; yanlış varyant çözülse APK derlenir ve telefonda native kütüphane yokluğundan çökerdi. `debugRuntimeClasspath`'in `sqlite-bundled-android` çözdüğü ve APK içinde `lib/arm64-v8a/libsqliteJni.so` bulunduğu doğrulandı — Poco M6 Pro'nun ABI'si.
+- `DDM-v0`nin alanlarını adlandırmadığı entity'lerde yalnız kimlik, sequence, zaman ve DDM'nin ima ettiği referanslar sabitlendi, artı satırın ihtiyaç duyduğu en küçük içerik kolonu; her biri sahibi olan adımla açıklandı.
+- Dört run çalıştırıldı: `:data-persistence:test` (T2, 22 test), `verifyModuleBoundaries` (T3), `:app-wiring:assembleDebug` (T5, Android varyantı ve arm64 native kütüphane doğrulandı), `-PwithAiAdapter=false` (T5).
+- Implementasyon mutation'ı 9/9; validator 163/163 PASS ve kendi mutation testi 9/9 — **ilk taslağın üç hatasının üçü de dahil**, yani validator o taslağı gerçekten reddederdi.
+- External-memory + Stage 6 + Stage 7 + AŞAMA 8 + AŞAMA 9 + 10A–10C regressions PASS (30/30 validator).
+- D-050 POST living-memory accepted state'i `10D ✅ / 10E active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `10E — Temel uygulama sağlığı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

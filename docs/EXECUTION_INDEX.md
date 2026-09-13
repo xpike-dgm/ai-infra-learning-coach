@@ -137,8 +137,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **10A — Proje kurulumu** — `MPSX-v0 / D-082`
 - [x] **10B — Navigation** — `NSHX-v0 / D-083`
 - [x] **10C — Design system implementation** — `DSIX-v0 / D-084`
-- [ ] **10D — Local database** **AKTİF**
-- [ ] **10E — Temel uygulama sağlığı**
+- [x] **10D — Local database** — `LDBX-v0 / D-085`
+- [ ] **10E — Temel uygulama sağlığı** **AKTİF**
 
 ---
 
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10C`  
-**Son tamamlanan:** **`10C — DSIX-v0 / D-084`**  
-**Aktif:** **`10D — Local database`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10D`  
+**Son tamamlanan:** **`10D — LDBX-v0 / D-085`**  
+**Aktif:** **`10E — Temel uygulama sağlığı`** — active-not-executed
 
-**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10C `DSIX-v0` ile tasarım sistemi koda geçti: token'lar tema dosyasında değil `core-presentation`da düz veri, çünkü kontrast hatırlanan bir orandan iddia edilmek yerine cihazsız bir JVM testinde **yeniden hesaplanmak** zorunda — 8G'de elle beyan edilen bir minimum tam da bu yüzden yakalanmıştı. Palet birebir kopyalandı ve revize edilmedi; kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetildi ve tuttu. **`LearningTone` beş değerli ve fault değeri yok**, yani bir learning state'e fault tonu vermek temsil edilemez; Material'ın `error` rolü yalnız `system_fault` taşıyor. Attention grubunda görünmek tonu değiştirmiyor ve bu adı konmuş bir fonksiyon. 48dp modifier, %200 metin, metin olarak verilen state ve locale-naive casing yok. Dynamic colour scan'i bu adımın kendi yorumunu yakaladı; gate gevşetilmedi, yorum yeniden yazıldı.
+**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10D `LDBX-v0` ile `DDM-v0`nin fiziksel şeması gerçek bir SQLite veritabanı oldu: storage engine mimarinin yasakladığını reddediyor ve her ret **denenerek** kanıtlanıyor. Truth ve curriculum tablolarında UPDATE/DELETE trigger'la abort ediliyor; her DDM değer kümesi CHECK; pinning yapısal ve user→curriculum foreign key yok; offset dakika ve tam dakika olmayan değer reddediliyor; tek global truth sequence watermark; migration ileri-yönlü, transaction'lı ve dolu fixture'a karşı içerik olarak test edildi. Aynı şema JVM'de ve cihazda koşuyor — arm64-v8a native kütüphanesi APK'da doğrulandı. **İlk taslak `DDM-v0`den sapmıştı** (yanlış outcome değerleri, saniye offset, eksik entity'ler) ve kontratı okuyan validator sayesinde kabulden önce düzeltilip kaydedildi. Mutation 9/9; biri başta kaçmıştı ve test güçlendirildi.
 
-10D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+10E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
