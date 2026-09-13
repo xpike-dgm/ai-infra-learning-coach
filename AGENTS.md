@@ -67,11 +67,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 10A: ✅ `MPSX-v0 / D-082` tamamlandı — repodaki ilk çalıştırılabilir çıktı; çalıştırılmamış hiçbir şey iddia edilmez ve build iki yanlış pin'i (Gradle 9.5, `kotlin.android`) anında yakaladı; on modül `android/` altında ve bağımlılıklar `boundaries.yaml`a eşit; `verifyModuleBoundaries` yasak kenarı/cycle'ı hesaplayıp build'i düşürüyor; `-PwithAiAdapter=false` adaptörsüz build geçiyor (V1 kriteri 8) ve APK üretildi; hedef cihaz **Poco M6 Pro / API 36** kaydedildi; `AMTS-v0` §9'un altı maddesi kapandı; DI/ORM/HTTP client yok; saat tek yerde; dynamic colour yok; key repoya giremiyor; 127/127 QA PASS.
 - 10B: ✅ `NSHX-v0 / D-083` tamamlandı — navigasyon kuralları `core-presentation`da saf fonksiyonlar, UI toolkit'inde değil; dört destination kabul edilmiş sırada ve enum sırası kanonik; yasak top-level id yok; kanonik entity başına tek surface objesi olduğu için çelişkili Skill detail temsil edilemez; contextual edge kümesi kapalı ve `ia.yaml` ile karşılaştırılıyor; focused flow shell'i askıya alıyor ve `showsShell`/`requiresSafeExit` türetiliyor; dönüş kuralı deterministik; window class'lar core'da hesaplanıyor ve yalnız çizimi değiştiriyor; 104/104 QA PASS.
 - 10C: ✅ `DSIX-v0 / D-084` tamamlandı — tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez; token'lar `core-presentation`da düz veri ve kontrast iki temada hex'ten yeniden hesaplanıyor (kayıtlı minimumlar token'lardan yeniden türetildi); palet revize edilmedi; `LearningTone` beş değerli ve fault değeri yok, yani learning state'e fault tonu vermek yazılamaz; Material `error` rolü yalnız `system_fault`; attention grubu tonu yükseltmez; 48dp modifier, %200 metin, metin olarak verilen state, locale-naive casing yok; dynamic colour scan'i kendi yorumunu yakaladı ve gate gevşetilmedi; 146/146 QA PASS.
-- **Aktif adım: 10D — Local database.**
-- **10D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 10E–20 bekliyor.
+- 10D: ✅ `LDBX-v0 / D-085` tamamlandı — storage engine mimarinin yasakladığını reddeder ve her ret denenerek kanıtlanır; 11 değişmez curriculum, 13 append-only truth, 8 projection tablosu; abort eden UPDATE/DELETE trigger'ları; CHECK olarak DDM değer kümeleri; yapısal pinning ve user→curriculum FK yok; dakika offset, tam dakika olmayan reddedilir; global truth sequence watermark; ileri-yönlü transaction'lı migration dolu fixture'a karşı; adapter kolonları SQLite'tan okur; arm64-v8a native kütüphane APK'da doğrulandı. **İlk taslak `DDM-v0`den sapmıştı** ve kontratı okuyan validator yakaladı; 163/163 QA PASS, mutation 9/9.
+- **Aktif adım: 10E — Temel uygulama sağlığı.**
+- **10E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 11–20 bekliyor.
 
-**10D'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10D için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**10E'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 10E için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

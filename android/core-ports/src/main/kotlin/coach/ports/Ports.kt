@@ -51,10 +51,18 @@ data class TruthRecord(
     val payload: Map<String, String>,
 )
 
+/**
+ * A rebuildable projection row with the provenance `DDM-v0` requires on every one: which policy
+ * produced it, the truth watermark it was computed from, when it was built and against which
+ * curriculum version. Without a watermark a stale projection is indistinguishable from a current
+ * one.
+ */
 data class ProjectionRecord(
     val key: String,
     val policyVersion: String,
     val truthWatermark: Long,
+    val builtAtInstant: Long,
+    val inputCurriculumVersion: Int,
     val payload: Map<String, String>,
 )
 

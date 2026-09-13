@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10D active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10E active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1122,14 +1122,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 10A ✅ MPSX-v0 / D-082
 - AŞAMA 10B ✅ NSHX-v0 / D-083
 - AŞAMA 10C ✅ DSIX-v0 / D-084
-- AŞAMA 10D 🟡 active-not-executed
-- 10E–20 ⬜
+- AŞAMA 10D ✅ LDBX-v0 / D-085
+- AŞAMA 10E 🟡 active-not-executed
+- 11–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `10C — Design system implementation`  
-**Final:** `DSIX-v0 — Design System Implementation` / D-084  
-**Canonical:** `docs/DESIGN_SYSTEM_IMPL_SPEC.md` + `arch/10c_design_system/`
+**Son tamamlanan numaralı adım:** `10D — Local database`  
+**Final:** `LDBX-v0 — Local Database` / D-085  
+**Canonical:** `docs/LOCAL_DATABASE_SPEC.md` + `arch/10d_local_database/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1150,17 +1151,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 10A:** ✅ TAMAMLANDI  
 **AŞAMA 10B:** ✅ TAMAMLANDI  
 **AŞAMA 10C:** ✅ TAMAMLANDI  
-**Aktif adım:** `10D — Local database`  
+**AŞAMA 10D:** ✅ TAMAMLANDI  
+**Aktif adım:** `10E — Temel uygulama sağlığı`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-10D için:
+10E için:
 
 ```text
-fresh 10D PRE-STEP GitHub refresh
+fresh 10E PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 10D execution
+→ 10E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1711,9 +1713,21 @@ AŞAMA 9 ✅ TAMAMLANDI
 10A ✅ MPSX-v0 / D-082
 10B ✅ NSHX-v0 / D-083
 10C ✅ DSIX-v0 / D-084
-10D 🟡 active-not-executed
-10E–20 ⬜
+10D ✅ LDBX-v0 / D-085
+10E 🟡 active-not-executed
+11–20 ⬜
 ```
+
+10D final:
+- storage engine mimarinin yasakladığını reddeder; her ret denenerek kanıtlanır,
+- ilk taslak `DDM-v0`den sapmıştı ve kendi testleri geçiyordu; kontratı okuyan validator yakaladı,
+- API çözülmüş jar'dan `javap` ile okundu,
+- 11 curriculum / 13 truth / 8 projection tablosu; user→curriculum FK yok,
+- abort eden UPDATE/DELETE trigger'ları; CHECK değer kümeleri; yapısal pinning,
+- dakika offset, tam dakika olmayan reddedilir; global truth sequence watermark,
+- migration ileri-yönlü, transaction'lı, dolu fixture'a karşı içerikle test edildi,
+- adapter kolonları SQLite'tan okur; arm64-v8a native kütüphane APK'da doğrulandı,
+- 22 T2 check, mutation 9/9; independent QA 163/163 PASS; 30/30 sweep PASS.
 
 10C final:
 - tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez,
@@ -1898,9 +1912,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `10D — Local database`.
+**Sıradaki gerçek numbered work:** `10E — Temel uygulama sağlığı`.
 
-**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1950,8 +1964,8 @@ AŞAMA 9 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `10D — Local database`.  
-**10D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `10E — Temel uygulama sağlığı`.  
+**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1997,3 +2011,12 @@ Ana invariant: **çalıştırılmamış hiçbir şey iddia edilmez.** 1A–9F bi
 10C `DSIX-v0 — Design System Implementation` ile tamamlandı. Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md`; contract/QA: `arch/10c_design_system/`; synthesis: `research/10c_design_system_research.md`; kod: `android/core-presentation/.../DesignTokens.kt`, `.../Tone.kt` ve `android/app-ui/.../CoachTheme.kt`.
 
 Ana invariant: tasarım sistemi kanonik state'in iddia etmediği severity'yi ekleyemez ve bir kural temsil edilemez kılınabiliyorsa öyle yapılır. Token'lar tema dosyasında değil `core-presentation`da düz veridir, çünkü hex'ler yalnız Compose'da yaşasaydı doğal kısayol hatırlanan bir oranı iddia etmek olurdu — 8G'de tam olarak bu başarısız oldu. Palet birebir kopyalandı ve revize edilmedi; kontrast iki temada hex'ten yeniden hesaplandı ve kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetilip tuttu. `LearningTone` beş değerlidir ve atanacak bir fault değeri olmadığı için bir learning state'e fault tonu vermek yazılamaz; Material'ın `error` rolü yalnız `system_fault` taşır. Sekiz Skill state'inin her birinin tam bir tonu vardır ve üçü bilinçle nötrdür çünkü bekleme başarısızlık değildir. Attention grubunda görünmek tonu değiştirmez ve bu adı konmuş, test edilen bir fonksiyondur. 48dp bir modifier'dır, metin %200'e ölçeklenir, state her zaman metin olarak da verilir ve locale-naive case transform yoktur. Dynamic colour scan'i bu adımın kendi yorumunu yakaladı ve gate gevşetilmek yerine yorum yeniden yazıldı. Independent QA 146/146 PASS, mutation-tested 8/8; 29/29 sweep PASS. Current active numbered step 10D'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 10D completion addendum — D-085
+
+10D `LDBX-v0 — Local Database` ile tamamlandı. Canonical: `docs/LOCAL_DATABASE_SPEC.md`; contract/QA: `arch/10d_local_database/`; synthesis: `research/10d_local_database_research.md`; kod: `android/data-persistence`.
+
+Ana invariant: storage engine mimarinin yasakladığını reddeder ve her ret denenerek kanıtlanır. **İlk taslak `DDM-v0`den sapmıştı** — outcome ekseninde 10A'nın evaluator sinyali enum'u kullanılmıştı, iki eksende değerler eksikti, offset saniye tutuluyordu ve 12 truth entity yerine 4 tablo vardı. Kendi testleri aynı taslağa karşı yazıldığı için geçiyordu; kontratı okuyan validator yakaladı ve şema kabulden önce yeniden yazıldı. Library API'si çözülmüş jar'dan `javap` ile okundu. 11 değişmez curriculum, 13 append-only truth ve 8 yeniden kurulabilir projection tablosu var; user truth'tan curriculum'a foreign key yok. Truth ve curriculum tablolarında abort eden UPDATE/DELETE trigger'ları envanterden üretiliyor; her DDM değer kümesi CHECK; pinning yapısal; offset dakika ve tam dakika olmayan reddediliyor; tek global truth sequence watermark. Migration ileri-yönlü ve transaction'lı, dolu fixture'a karşı içerikle test edildi. Adapter kolonları SQLite'tan okuyor. Aynı şema JVM'de ve cihazda koşuyor; arm64-v8a native kütüphane APK içinde doğrulandı. 22 T2 check ve mutation 9/9 — biri başta kaçtı ve test güçlendirildi. Independent QA 163/163 PASS; 30/30 sweep PASS. Current active numbered step 10E'dir; fresh PRE + kullanıcı açık onayı gerekir.

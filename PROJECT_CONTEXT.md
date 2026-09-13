@@ -207,12 +207,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **10A ✅ Proje kurulumu — MPSX-v0 / D-082**
 - **10B ✅ Navigation — NSHX-v0 / D-083**
 - **10C ✅ Design system implementation — DSIX-v0 / D-084**
-- **10D 🟡 Local database — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 10E–20 ⬜
+- **10D ✅ Local database — LDBX-v0 / D-085**
+- **10E 🟡 Temel uygulama sağlığı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 11–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 10D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 10E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -309,6 +310,12 @@ Canonical: `docs/NAVIGATION_SHELL_SPEC.md` / D-083.
 Tasarım sistemi koda geçti. Ana invariant: **tasarım sistemi, kanonik state'in iddia etmediği severity'yi ekleyemez** — ve bir kural yalnız gözden geçirilmek yerine temsil edilemez kılınabiliyorsa öyle yapılır. **Token'lar tema dosyasında değil `core-presentation`da düz veri**: hex değerleri yalnız Compose'un içinde yaşasaydı kontrastı doğrulamak UI toolkit'i gerektirirdi ve doğal kısayol, hesaplamak yerine hatırlanan bir oranı iddia etmek olurdu — bu kısayol 8G'de zaten bir kez başarısız oldu ve yanlış bir minimumu yalnız yeniden hesaplama yakaladı. Palet birebir kopyalandı ve **revize edilmedi**; validator Kotlin'deki her token'ı `WFPX-v0` ile bayt bayt karşılaştırıyor, yani bir check'i geçirmek için sessiz bir ayar düşerdi. Kontrast iki temada da hex'ten yeniden hesaplanıyor ve kayıtlı minimumlar (6.08 / 3.79 / 6.06) token'lardan yeniden türetilip birebir tuttu. **Fault tone bir learning state için temsil edilemez**: `Tone` altı değerli ama `LearningTone` beş değerli ve atanacak bir fault değeri yok; gözden geçirilecek kod yolu yok çünkü yazılacak ifade yok. Material'ın `error` rolü yalnız `system_fault` taşıyor, böylece bir bileşen "hata rengi"ne uzanıp öğrencinin state'ine uygulayamıyor. Sekiz Skill state'inin her birinin tam bir tonu var ve üçü bilinçle nötr: bekleme başarısızlık değil. **Attention grubunda görünmek tonu değiştirmiyor** ve bu adı konmuş, test edilen bir fonksiyon. 48dp `minimumTouchTarget()` modifier'ı, %100/150/200 metin ölçeği, metin olarak verilen state ve hiçbir yerde locale-naive case transform yok. Dynamic colour kapalı ve bu bir yokluk olduğu için source scan ile denetleniyor — scan bu adımın **kendi yorumunu** yakaladı ve gate gevşetilmek yerine yorum yeniden yazıldı.
 
 Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md` / D-084.
+
+## 12.11 10D Local database — LDBX-v0 / D-085
+
+`DDM-v0`nin fiziksel şeması gerçek bir SQLite veritabanı oldu. Ana invariant: **storage engine, mimarinin yasakladığını reddeder** — append-only truth, değişmez curriculum, version pinning ve kalıcı exposure, çağıran kodun uyacağına güvenilen kurallar değil, SQLite'ın reddettiği ifadelerdir ve her ret denenerek kanıtlanır. **İlk taslak yanlıştı ve bu kaydedildi:** şema kontrattan değil önceki adımların hafızasından yazılmıştı ve kendi testleri aynı taslağa karşı yazıldığı için geçiyordu. Validator yazılırken taslak `data_model.yaml`a karşı okununca sapmalar çıktı — outcome ekseninde 10A'nın evaluator **sinyali** enum'u (`met/not_met…`) kullanılmıştı oysa kabul edilmiş değerler `positive/negative/partial/invalid`; iki eksende değerler eksikti; offset saniye tutuluyordu oysa alan `utc_offset_minutes`; 12 truth entity yerine 4 tablo vardı. Şema kabulden önce yeniden yazıldı. Kalıcı ders: bir taslağa karşı yazılmış suite o taslağın kontratı yanlış okumasını yakalayamaz, yalnız kontratı okuyan bir check yakalar. Library API'si hatırlamadan değil çözülmüş jar'dan `javap` ile okundu. Üç store bölgesi DDM ile birebir: 11 değişmez curriculum, 13 append-only truth ve 8 yeniden kurulabilir projection tablosu; user truth'tan curriculum'a foreign key yok. Her truth ve curriculum tablosunda abort eden UPDATE/DELETE trigger'ları envanterden üretiliyor. Her DDM değer kümesi aynı Kotlin listesinden üretilen bir CHECK. Pinning yapısal. Offset dakika tutuluyor ve tam dakika olmayan bir değer kesilmek yerine reddediliyor. Tek global truth sequence projection watermark'ı; her projection satırında tam provenance var ve port tipi de taşıyor. Migration ileri-yönlü ve transaction'lı, dolu fixture'a karşı satır satır içerikle test edildi. Adapter kolon gereksinimlerini SQLite'tan okuyor, kendi listesini tutmuyor. Aynı şema JVM'de ve cihazda koşuyor — arm64-v8a native kütüphanesi APK içinde doğrulandı. 22 T2 check; mutation 9/9, biri başta kaçtı ve test güçlendirildi.
+
+Canonical: `docs/LOCAL_DATABASE_SPEC.md` / D-085.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

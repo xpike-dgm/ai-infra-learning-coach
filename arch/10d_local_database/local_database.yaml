@@ -1,0 +1,271 @@
+model: LDBX-v0
+stage_step: 10D
+status: accepted_10d
+decision: D-085
+data_model: DDM-v0
+persistence: LFPS-v0
+verification_strategy: TVSX-v0
+project: MPSX-v0
+purpose: physical_schema_and_local_database_implementation
+
+scope:
+  local_database_only: true
+  engines_implemented: false
+  content_loading_implemented: false
+  backup_export_restore_implemented: false
+  data_recovery_ui_implemented: false
+  new_entities_invented: false
+  data_model_changed: false
+  persistence_rules_changed: false
+  boundaries_changed: false
+  row_count_claim: null
+  query_latency_claim: null
+  database_size_claim: null
+
+database_question: What physical schema makes DDM-v0's guarantees impossible to bypass?
+
+engine:
+  library: androidx.sqlite
+  version: 2.7.0
+  driver: bundled
+  orm: false
+  api_verified_from: resolved_jar_via_javap
+  api_guessed: false
+  jvm_variant: sqlite-bundled-jvm
+  android_variant: sqlite-bundled-android
+  same_schema_on_jvm_and_device: true
+  native_library_packaged_for_target_abi: arm64-v8a
+  target_device: Poco M6 Pro
+
+first_draft_divergences_found:
+  found_by: cross_reading_the_draft_schema_against_DDM_v0_data_model_yaml
+  corrected_before_acceptance: true
+  recorded_rather_than_hidden: true
+  items:
+    - draft: outcome values met partially_met not_met not_reliably_measured
+      accepted: positive negative partial invalid
+      cause: the evaluator signal enum from 10A was used for the evidence outcome axis, which is a different concept
+    - draft: evaluator_status verified provisional
+      accepted: verified provisional invalid
+    - draft: independence_class independent assisted
+      accepted: independent assisted practice_only requires_independent_recheck
+    - draft: utc offset stored in seconds
+      accepted: utc_offset_minutes
+    - draft: evidence keyed to a single objective
+      accepted: skill reference plus plural pinned objective references
+    - draft: four truth tables
+      accepted: twelve truth entities
+    - draft: time columns named recorded_*
+      accepted: occurred_at_instant occurred_on_study_day utc_offset_minutes and per-entity decided_at answered_at names
+
+store_regions:
+  curriculum_store:
+    tables: 11
+    mutability: immutable
+    update_path: false
+    delete_path: false
+    correction_is: new_version
+  user_truth_store:
+    tables: 13
+    ddm_truth_entities: 12
+    extra_relational_table: evidence_event_objective
+    extra_table_reason: relational_form_of_evidence_event_plural_objective_references_so_each_keeps_its_own_version_pin_and_evidence_by_objective_is_indexable
+    extra_table_is_new_entity: false
+    mutability: append_only
+    update_path: false
+    delete_path: false
+    enforced_by: before_update_and_before_delete_triggers_that_abort
+  user_projection_store:
+    tables: 8
+    mutability: droppable_and_rebuildable
+    droppable_without_touching_truth: true
+  curriculum_to_user_foreign_key: false
+
+identity:
+  versioned_entity_primary_key: [logical_id, version]
+  foreign_keys_carry_version_column: true
+  resource_reference_pinned_or_absent: true
+  projection_key_requires_version: true
+
+evidence_axes:
+  columns: [outcome, evaluator_status, independence_class, contested]
+  collapsed: false
+  outcome: [positive, negative, partial, invalid]
+  evaluator_status: [verified, provisional, invalid]
+  independence_class: [independent, assisted, practice_only, requires_independent_recheck]
+  contested: [0, 1]
+  enforced_by: check_constraints
+  value_sets_source: DDM-v0_independent_axes
+
+time:
+  columns: [occurred_at_instant, occurred_on_study_day, utc_offset_minutes]
+  per_entity_instant_names:
+    evidence_disposition: decided_at
+    artifact_provenance: answered_at
+  offset_unit: minutes
+  core_type_offset_unit: seconds
+  conversion: exact_division_by_60
+  non_whole_minute_offset: refused
+  truncated: false
+  rows_without_time: [evidence_event_objective]
+  rows_without_time_reason: part_of_a_timestamped_event
+
+sequence:
+  global_across_truth_tables: true
+  monotonic: true
+  used_as_truth_watermark: true
+  advances_for_rolled_back_action: false
+  store: truth_sequence_metadata_row
+
+projection_provenance:
+  fields: [policy_version, truth_watermark, built_at_instant, input_curriculum_version]
+  required_on_every_projection_row: true
+  port_refinement: ProjectionRecord gained builtAtInstant and inputCurriculumVersion
+  port_refinement_is_new_port: false
+  axes_stored_separately_in_skill_state: true
+  presentation_state_replaces_axes: false
+
+metadata:
+  table: schema_metadata
+  stores: [schema_version, policy_version]
+
+indexes:
+  source: DDM-v0_physical_schema_index_intent
+  names:
+    - evidence_by_skill
+    - evidence_by_objective
+    - evidence_by_time_range
+    - exposure_by_resource_logical_id
+    - exposure_by_variant_family
+    - exposure_by_exposure_kind
+    - attempts_by_assessment_session
+    - planned_tasks_by_plan_version
+    - dispositions_by_evidence_event
+  added_by_migration: 2
+
+migration:
+  forward_only: true
+  versions: [1, 2]
+  real_forward_step_exists: true
+  transactional_per_step: true
+  failure_surfaces: DataRecoveryRequired
+  failure_leaves_previous_state_intact: true
+  newer_schema: refused
+  downgrade_supported: false
+  tested_against_populated_fixture: true
+  fixture_contents: {evidence_events: 25, exposure_records: 10, evidence_dispositions: 1}
+  comparison: counts_and_content_not_sampled
+
+adapter:
+  reads_columns_from_database: true
+  second_hand_maintained_column_list: false
+  rationale: a second list is exactly the kind of thing that drifts from the schema quietly
+  required_columns_enforced_at_port_and_schema: true
+  transaction_rolls_back_and_rethrows: true
+
+minimal_columns_pending_owner:
+  note: DDM-v0 names these entities but not all their fields; only identity, sequence, time and DDM-implied references are fixed here, plus the smallest content column the row needs
+  columns:
+    - {table: assessment_session, column: scope, owner: 13}
+    - {table: artifact, column: content_ref, owner: 11}
+    - {table: planned_task, column: position, owner: 12}
+    - {table: planner_decision_trace, column: trace, owner: 12}
+    - {table: resume_checkpoint, column: context, owner: 11}
+    - {table: plan_version, column: policy_version, owner: 12}
+    - {table: domain, column: name, owner: 11}
+    - {table: module, column: name, owner: 11}
+    - {table: topic, column: name, owner: 11}
+
+t2_suite:
+  runs_on: jvm
+  device_required: false
+  real_storage_engine: true
+  fake_repository: false
+  tests: 22
+  skipped: 0
+  failures: 0
+
+mutation_results:
+  total: 9
+  detected: 9
+  mutants:
+    - truth_triggers_removed
+    - curriculum_triggers_removed
+    - outcome_value_set_unchecked
+    - version_free_resource_reference_allowed
+    - rollback_removed_from_learner_action
+    - migration_no_longer_transactional
+    - newer_schema_opened_on_a_guess
+    - offset_silently_truncated
+    - truth_sequence_does_not_advance
+  strengthened_during_step:
+    test: a migration that fails part way leaves the previous state intact
+    original_weakness: the sabotage failed the first statement so nothing had changed and replacing ROLLBACK with COMMIT still passed
+    fix: fail after the step has already changed something so only a real rollback restores the database
+    found_by: mutation_testing
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+    tests: 22
+  - id: RUN-02
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+    verified: sqlite-bundled-android resolved and lib/arm64-v8a/libsqliteJni.so packaged
+  - id: RUN-04
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+open_loops:
+  - database opened on the main thread in MainActivity; moving it off and surfacing DataRecoveryRequired as a state instead of a crash belongs to 10E
+  - backup export and atomic verified restore are specified by LFPS-v0 and verified by TVSX-v0 but not implemented here
+  - curriculum content loading into the immutable curriculum store is 11
+
+forbidden_database_patterns:
+  - an_update_or_delete_path_on_a_truth_table
+  - a_correction_by_edit_instead_of_appended_disposition
+  - overwriting_or_deleting_a_curriculum_row
+  - a_foreign_key_from_user_truth_into_curriculum
+  - a_reference_by_logical_id_alone
+  - collapsing_the_evidence_axes_into_one_column
+  - storing_only_the_instant_or_only_the_local_date
+  - silently_truncating_a_utc_offset
+  - a_projection_row_without_provenance
+  - a_migration_that_can_apply_partially
+  - opening_a_newer_schema_on_a_guess
+  - migrating_only_an_empty_database
+  - a_hand_maintained_column_list_beside_the_schema
+  - guessing_a_library_api_instead_of_reading_it
+  - inventing_entity_fields_the_data_model_does_not_name
+
+future_stage_boundaries:
+  10E: app_health_main_thread_database_open_and_data_recovery_state
+  11: curriculum_content_loading_and_minimal_column_completion
+  12: planner_and_mastery_engines_writing_projections
+  13: assessment_session_fields
+  18E: index_tuning_and_query_budgets
+
+acceptance:
+  required_previous_models:
+    - DDM-v0
+    - LFPS-v0
+    - TVSX-v0
+    - MSBX-v0
+    - MPSX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  negative_checks_must_attempt_the_forbidden_operation: true
+  migration_must_be_tested_against_populated_data: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true
+  stage10abc_regression_required: true

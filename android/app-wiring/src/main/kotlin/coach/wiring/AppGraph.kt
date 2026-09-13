@@ -18,11 +18,24 @@ import java.time.ZoneId
  * free of framework annotations. Wiring is plain constructor calls.
  */
 class AppGraph(
+    val persistence: PersistencePort,
     val clock: ClockPort = SystemClock(),
-    val persistence: PersistencePort = SqlitePersistence(),
     val content: ContentPort = FileContentSource(),
     val evaluator: EvaluatorPort = provideEvaluator(),
-)
+) {
+    companion object {
+        /** The single on-device database file. Its location is the platform's concern, not core's. */
+        const val DATABASE_NAME = "coach.db"
+
+        /**
+         * Opens the real store at [databasePath] and migrates it forward. A database from a newer
+         * schema, or one whose migration cannot complete, surfaces `data_recovery_required`
+         * instead of being opened on a guess (LFPS-v0).
+         */
+        fun open(databasePath: String): AppGraph =
+            AppGraph(persistence = SqlitePersistence.open(databasePath))
+    }
+}
 
 /**
  * The only place in the product that reads the system clock. Core receives time as an input.

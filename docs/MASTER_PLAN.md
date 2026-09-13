@@ -607,7 +607,23 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - dynamic colour scan'i bu adımın kendi yorumunu yakaladı; gate gevşetilmedi, yorum yeniden yazıldı,
 - independent validator **146/146 PASS** (token'ları `WFPX-v0`, tone haritalarını `VDSX-v0` ile karşılaştırıyor, kontrastı yeniden hesaplıyor), mutation-tested 8/8; 29/29 sweep PASS.
 
-### [ ] 10D — Local database — **AKTİF**
+### [x] 10D — Local database — LDBX-v0 / D-085
+
+**10D final coverage:**
+- storage engine mimarinin yasakladığını reddediyor ve her ret **denenerek** kanıtlanıyor,
+- **ilk taslak `DDM-v0`den sapmıştı** (evaluator sinyali enum'u outcome ekseni olarak, eksik eksen değerleri, saniye offset, tek objective, 4 truth tablosu); kendi testleri aynı taslağa karşı yazıldığı için geçiyordu, kontratı okuyan validator yakaladı ve şema kabulden önce yeniden yazıldı,
+- library API'si çözülmüş jar'dan `javap` ile okundu,
+- 11 değişmez curriculum, 13 append-only truth, 8 yeniden kurulabilir projection tablosu; user→curriculum foreign key yok,
+- abort eden UPDATE/DELETE trigger'ları envanterden üretiliyor; her DDM değer kümesi CHECK; pinning yapısal,
+- offset dakika; tam dakika olmayan reddediliyor, kesilmiyor,
+- tek global truth sequence watermark; her projection satırında ve port tipinde tam provenance,
+- migration ileri-yönlü, transaction'lı, dolu fixture'a karşı satır satır içerikle test edildi,
+- adapter kolon gereksinimlerini SQLite'tan okuyor,
+- aynı şema JVM'de ve cihazda; arm64-v8a native kütüphane APK içinde doğrulandı,
+- 22 T2 check; mutation 9/9 — biri başta kaçtı ve test güçlendirildi,
+- independent validator **163/163 PASS**, kendi mutation testi 9/9 (ilk taslağın üç hatası dahil); 30/30 sweep PASS.
+
+### [ ] 10E — Temel uygulama sağlığı — **AKTİF**
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -754,8 +770,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10C`  
-**Son tamamlanan:** **`10C — DSIX-v0 / D-084`**  
-**Aktif:** **`10D — Local database`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10D`  
+**Son tamamlanan:** **`10D — LDBX-v0 / D-085`**  
+**Aktif:** **`10E — Temel uygulama sağlığı`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **10D fresh PRE-STEP → `DDM-v0` physical schema'sı `androidx.sqlite` bundled driver üzerinde; üç store bölgesi, `(logical_id, version)` composite anahtarlar, storage seviyesinde zorlanan ve deneme ile kanıtlanan append-only, dört evidence ekseni, üç-değerli zaman, watermark'lı projection, kalıcı exposure ve dolu fixture'lara karşı ileri-yönlü migration'lar → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **10E fresh PRE-STEP → veritabanı açılışını main thread'den almak, `DataRecoveryRequired`ı çökmeden `data_recovery_required` state'ine çevirmek, dürüst başlangıç ve degraded-state yolu, backup/restore sahipliğini netleştirmek; AŞAMA 10'u kapatmak → independent QA → D-050 POST sync + stale audit.**

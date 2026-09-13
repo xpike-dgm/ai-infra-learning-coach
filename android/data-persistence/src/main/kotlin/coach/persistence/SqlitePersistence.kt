@@ -1,30 +1,284 @@
 package coach.persistence
 
+import androidx.sqlite.SQLiteConnection
+import androidx.sqlite.SQLiteDriver
+import androidx.sqlite.SQLiteStatement
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
 import coach.ports.TruthRecord
 
 /**
- * Implements the core-owned PersistencePort. The physical schema, its triggers and its
- * migrations are 10D; this module exists at 10A to fix the boundary and the dependency.
+ * Implements the core-owned `PersistencePort` on SQLite.
  *
- * Two accepted requirements shape what goes here later:
- *  - append-only is enforced by the storage layer, not by discipline in calling code, and is
- *    proven by attempted UPDATE and DELETE being rejected (TVSX-v0 §8.1),
- *  - the bundled SQLite driver runs on the JVM, so tier T2 exercises a real storage engine
- *    off-device instead of only on the phone.
+ * The bundled driver runs on the JVM as well as on the device, which is what lets `TVSX-v0` tier
+ * T2 exercise a **real** storage engine off-device instead of only on a phone. Nothing here is a
+ * fake: the same schema, the same triggers, the same transactions.
+ *
+ * The adapter reads each table's columns from the database itself rather than keeping its own
+ * list. A second hand-maintained column list is exactly the kind of thing that drifts from the
+ * schema quietly; asking SQLite means the DDL is the only source.
  */
-class SqlitePersistence : PersistencePort {
+class SqlitePersistence private constructor(
+    private val connection: SQLiteConnection,
+) : PersistencePort, AutoCloseable {
 
-    override fun <T> inTransaction(block: () -> T): T =
-        TODO("Transaction boundary is wired at 10D; one learner action commits as one transaction.")
+    companion object {
+        /** `:memory:` is a real SQLite database, so T2 checks are not testing a stub. */
+        const val IN_MEMORY = ":memory:"
 
-    override fun appendTruth(record: TruthRecord): Unit =
-        TODO("Append-only truth tables are defined at 10D (DDM-v0 physical schema).")
+        fun open(path: String, driver: SQLiteDriver = BundledSQLiteDriver()): SqlitePersistence {
+            val connection = driver.open(path)
+            connection.execSQL("PRAGMA foreign_keys = ON")
+            Migrations.migrate(connection)
+            return SqlitePersistence(connection)
+        }
 
-    override fun readProjection(key: String): ProjectionRecord? =
-        TODO("Projection storage is defined at 10D.")
+        /**
+         * Opens a database at whatever schema it already has. Test support only: it exists so a
+         * T2 check can populate an **older** schema exactly as a previous build would have left
+         * it, and then prove the forward migration preserves that truth.
+         */
+        internal fun openWithoutMigrating(
+            path: String,
+            driver: SQLiteDriver = BundledSQLiteDriver(),
+        ): SqlitePersistence {
+            val connection = driver.open(path)
+            connection.execSQL("PRAGMA foreign_keys = ON")
+            return SqlitePersistence(connection)
+        }
+    }
 
-    override fun writeProjection(record: ProjectionRecord): Unit =
-        TODO("Projection storage is defined at 10D.")
+    private data class Column(val name: String, val notNull: Boolean, val hasDefault: Boolean)
+
+    private val columnCache = mutableMapOf<String, List<Column>>()
+
+    private fun columns(table: String): List<Column> = columnCache.getOrPut(table) {
+        query("PRAGMA table_info($table)") { s ->
+            Column(name = s.getText(1), notNull = s.getLong(3) == 1L, hasDefault = !s.isNull(4))
+        }
+    }
+
+    /**
+     * One learner action commits as one transaction (`LFPS-v0` §9). A failure anywhere inside
+     * leaves nothing observable behind, which is why the rollback is not optional and the original
+     * error is rethrown rather than swallowed.
+     */
+    override fun <T> inTransaction(block: () -> T): T {
+        connection.execSQL("BEGIN")
+        return try {
+            val result = block()
+            connection.execSQL("COMMIT")
+            result
+        } catch (error: Throwable) {
+            runCatching { connection.execSQL("ROLLBACK") }
+            throw error
+        }
+    }
+
+    /**
+     * Appends a truth row. There is no update counterpart, here or in the schema: a correction is
+     * an appended `evidence_disposition`.
+     *
+     * The adapter fills only what it owns — the id, the global truth sequence and the three time
+     * columns. Every other `NOT NULL` column must arrive in the payload; a row cannot be written
+     * without, say, an attempt's resource version or a disposition's reason.
+     */
+    override fun appendTruth(record: TruthRecord) {
+        require(record.kind in Schema.truthTables) { "not a truth table: ${record.kind}" }
+        val offsetSeconds = record.recordedAt.utcOffsetSeconds
+        // DDM-v0 stores the offset in minutes. Every real zone offset is a whole number of
+        // minutes; a value that is not is refused rather than silently truncated.
+        require(offsetSeconds % 60 == 0) { "UTC offset $offsetSeconds s is not a whole number of minutes" }
+
+        val all = columns(record.kind)
+        // Timestamped rows carry all three time columns. A row that is part of another timestamped
+        // row (an evidence event's targeted Objectives) carries none, and gets none.
+        val instant = all.singleOrNull { it.name.endsWith("_at_instant") }?.name
+        val studyDay = all.singleOrNull { it.name.endsWith("_study_day") }?.name
+        val timeColumns = listOfNotNull(instant, studyDay, all.singleOrNull { it.name == "utc_offset_minutes" }?.name)
+        check(timeColumns.isEmpty() || timeColumns.size == 3) {
+            "${record.kind} must carry all three time columns or none (DDM-v0), found $timeColumns"
+        }
+        val adapterOwned = setOf("id", "sequence") + timeColumns
+
+        val writable = all.map { it.name }.filterNot { it in adapterOwned }
+        val required = all.filter { it.notNull && !it.hasDefault && it.name !in adapterOwned }.map { it.name }
+
+        val missing = required.filterNot { record.payload.containsKey(it) }
+        require(missing.isEmpty()) { "${record.kind} is missing required columns: $missing" }
+        val unknown = record.payload.keys.filterNot { it in writable }
+        require(unknown.isEmpty()) { "${record.kind} has no columns named: $unknown" }
+
+        val sequence = nextSequence()
+        val payloadColumns = writable.filter { record.payload.containsKey(it) }
+        val insertColumns = payloadColumns + listOf("sequence") + timeColumns
+        val sql = "INSERT INTO ${record.kind} (${insertColumns.joinToString(", ")}) " +
+            "VALUES (${insertColumns.joinToString(", ") { "?" }})"
+
+        connection.prepare(sql).use { statement ->
+            var index = 1
+            payloadColumns.forEach { column ->
+                bindValue(statement, index++, record.payload.getValue(column))
+            }
+            statement.bindLong(index++, sequence)
+            if (timeColumns.isNotEmpty()) {
+                statement.bindLong(index++, record.recordedAt.instantEpochMillis)
+                statement.bindText(index++, record.recordedAt.studyDay)
+                statement.bindLong(index, (offsetSeconds / 60).toLong())
+            }
+            statement.step()
+        }
+    }
+
+    /**
+     * Projection keys name the table and the entity, e.g. `skill_state:skill.os.paging@v1` or
+     * `planner_summary:today`. Entity-keyed projections always carry the version, so a projection
+     * cannot be looked up against a version-free reference either.
+     */
+    override fun readProjection(key: String): ProjectionRecord? {
+        val target = ProjectionKey.parse(key)
+        val stateColumns = stateColumns(target.table)
+        val selected = stateColumns + listOf("policy_version", "truth_watermark", "built_at_instant", "input_curriculum_version")
+        val sql = "SELECT ${selected.joinToString(", ")} FROM ${target.table} WHERE ${target.whereClause()}"
+        connection.prepare(sql).use { statement ->
+            target.bind(statement)
+            if (!statement.step()) return null
+            val base = stateColumns.size
+            return ProjectionRecord(
+                key = key,
+                policyVersion = statement.getText(base),
+                truthWatermark = statement.getLong(base + 1),
+                builtAtInstant = statement.getLong(base + 2),
+                inputCurriculumVersion = statement.getLong(base + 3).toInt(),
+                payload = stateColumns.withIndex().associate { (i, column) ->
+                    column to (if (statement.isNull(i)) "" else statement.getText(i))
+                },
+            )
+        }
+    }
+
+    /**
+     * Projections are rebuildable, so this one really does replace. Every row carries the
+     * provenance `DDM-v0` requires, so a stale projection is detectable rather than
+     * indistinguishable from a fresh one.
+     */
+    override fun writeProjection(record: ProjectionRecord) {
+        val target = ProjectionKey.parse(record.key)
+        val stateColumns = stateColumns(target.table)
+        val required = columns(target.table)
+            .filter { it.notNull && it.name in stateColumns }
+            .map { it.name }
+        val missing = required.filterNot { record.payload.containsKey(it) }
+        require(missing.isEmpty()) { "${target.table} projection is missing: $missing" }
+        val unknown = record.payload.keys.filterNot { it in stateColumns }
+        require(unknown.isEmpty()) { "${target.table} has no state columns named: $unknown" }
+
+        val provided = stateColumns.filter { record.payload.containsKey(it) }
+        val columns = target.keyColumns + provided +
+            listOf("policy_version", "truth_watermark", "built_at_instant", "input_curriculum_version")
+        val updates = (provided + listOf("policy_version", "truth_watermark", "built_at_instant", "input_curriculum_version"))
+            .joinToString(", ") { "$it = excluded.$it" }
+        val sql = "INSERT INTO ${target.table} (${columns.joinToString(", ")}) " +
+            "VALUES (${columns.joinToString(", ") { "?" }}) " +
+            "ON CONFLICT (${target.keyColumns.joinToString(", ")}) DO UPDATE SET $updates"
+
+        connection.prepare(sql).use { statement ->
+            var index = target.bind(statement) + 1
+            provided.forEach { bindValue(statement, index++, record.payload.getValue(it)) }
+            statement.bindText(index++, record.policyVersion)
+            statement.bindLong(index++, record.truthWatermark)
+            statement.bindLong(index++, record.builtAtInstant)
+            statement.bindLong(index, record.inputCurriculumVersion.toLong())
+            statement.step()
+        }
+    }
+
+    /**
+     * The global truth sequence: every truth row of every kind advances it. It is the watermark a
+     * projection is computed from (`DDM-v0` §physical_schema).
+     */
+    fun truthWatermark(): Long = query("SELECT value FROM truth_sequence") { it.getLong(0) }.single()
+
+    private fun nextSequence(): Long {
+        connection.execSQL("UPDATE truth_sequence SET value = value + 1")
+        return truthWatermark()
+    }
+
+    private fun stateColumns(table: String): List<String> {
+        require(table in Schema.projectionTables) { "not a projection table: $table" }
+        val provenance = setOf("policy_version", "truth_watermark", "built_at_instant", "input_curriculum_version")
+        return columns(table).map { it.name }
+            .filterNot { it in provenance || it in ProjectionKey.keyColumnsOf(table) }
+    }
+
+    private fun bindValue(statement: SQLiteStatement, index: Int, value: String) {
+        val asLong = value.toLongOrNull()
+        if (asLong != null) statement.bindLong(index, asLong) else statement.bindText(index, value)
+    }
+
+    fun execute(sql: String) = connection.execSQL(sql)
+
+    fun <T> query(sql: String, read: (SQLiteStatement) -> T): List<T> {
+        val rows = mutableListOf<T>()
+        connection.prepare(sql).use { statement ->
+            while (statement.step()) rows += read(statement)
+        }
+        return rows
+    }
+
+    fun count(table: String): Long = query("SELECT COUNT(*) FROM $table") { it.getLong(0) }.single()
+
+    override fun close() = connection.close()
+}
+
+/** Parses and binds projection keys of the form `table:logical_id@vN` or `planner_summary:key`. */
+internal class ProjectionKey private constructor(
+    val table: String,
+    val keyColumns: List<String>,
+    private val values: List<Any>,
+) {
+    fun whereClause(): String = keyColumns.joinToString(" AND ") { "$it = ?" }
+
+    /** Binds the key values starting at parameter 1 and returns how many were bound. */
+    fun bind(statement: SQLiteStatement): Int {
+        values.forEachIndexed { i, value ->
+            when (value) {
+                is Long -> statement.bindLong(i + 1, value)
+                else -> statement.bindText(i + 1, value.toString())
+            }
+        }
+        return values.size
+    }
+
+    companion object {
+        private val entityKeyed = mapOf(
+            "skill_state" to listOf("skill_logical_id", "skill_version"),
+            "retention_state" to listOf("skill_logical_id", "skill_version"),
+            "prerequisite_readiness" to listOf("skill_logical_id", "skill_version"),
+            "english_profile" to listOf("skill_logical_id", "skill_version"),
+            "objective_state" to listOf("objective_logical_id", "objective_version"),
+            "weakness_state" to listOf("objective_logical_id", "objective_version"),
+            "topic_state" to listOf("topic_logical_id", "topic_version"),
+        )
+
+        fun keyColumnsOf(table: String): List<String> =
+            entityKeyed[table] ?: if (table == "planner_summary") listOf("summary_key") else emptyList()
+
+        fun parse(key: String): ProjectionKey {
+            val table = key.substringBefore(":", missingDelimiterValue = "")
+            val rest = key.substringAfter(":", missingDelimiterValue = "")
+            require(table in Schema.projectionTables && rest.isNotEmpty()) {
+                "projection key must be 'table:entity', got: $key"
+            }
+            if (table == "planner_summary") return ProjectionKey(table, listOf("summary_key"), listOf(rest))
+            val parts = rest.split("@v")
+            // A projection looked up by logical id alone would be exactly the version-free
+            // reference DDM-v0 forbids.
+            require(parts.size == 2) { "projection entity must be pinned as 'logical_id@vN', got: $rest" }
+            val version = parts[1].toLongOrNull() ?: error("bad version in projection key: $key")
+            return ProjectionKey(table, entityKeyed.getValue(table), listOf(parts[0], version))
+        }
+    }
 }
