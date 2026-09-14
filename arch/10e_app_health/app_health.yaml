@@ -1,0 +1,284 @@
+model: APHX-v0
+stage_step: 10E
+status: accepted_10e
+decision: D-086
+persistence: LFPS-v0
+information_architecture: UXIA-v0
+today_home: THUX-v0
+design_system: VDSX-v0
+boundaries: MSBX-v0
+ai_integration: AIAX-v0
+verification_strategy: TVSX-v0
+local_database: LDBX-v0
+purpose: truthful_startup_integrity_recovery_state_and_restore_mechanism
+
+scope:
+  app_health_only: true
+  persistence_rules_changed: false
+  surface_semantics_changed: false
+  boundaries_changed: false
+  ports_added: false
+  schema_changed: false
+  restore_mechanism_implemented: true
+  restore_ui_implemented: false
+  startup_time_claim: null
+  integrity_check_time_claim: null
+  database_size_claim: null
+
+health_question: How does the app start truthfully, and what happens when the store is not safe to use?
+
+found_before_10e:
+  - id: main_thread_open
+    was: the store was opened synchronously in MainActivity.onCreate and again on every activity recreation
+    source: LDBX-v0 open loop
+  - id: recovery_was_a_crash
+    was: Migrations.DataRecoveryRequired was uncaught, so a newer schema or a failed migration crashed the app
+    source: LDBX-v0 open loop
+  - id: no_integrity_check_on_open
+    was: the store was trusted as found although LFPS-v0 section 12 requires an integrity check on open
+    source: found_by_reading_the_code_against_LFPS_v0
+  - id: default_build_ai_adapter_threw
+    was: AiEvaluator.evaluate was TODO(), so the default build would crash on the first open-ended attempt
+    source: found_by_reading_the_code_against_AIAX_v0
+
+cross_cutting_states:
+  source: UXIA-v0 ia.yaml cross_cutting_surface_states
+  ids: [loading, empty_valid, error_recoverable, offline_local_available, ai_unavailable_core_available, data_recovery_required]
+  fault_tone: [error_recoverable, data_recovery_required]
+  produced_in_10e: [loading, error_recoverable, ai_unavailable_core_available, data_recovery_required]
+  declared_not_produced:
+    - {state: empty_valid, owner: 11, reason: no destination has content yet}
+    - {state: offline_local_available, owner: 14, reason: nothing in the product uses the network until AI call sites exist}
+  precedence: [data_recovery_required, error_recoverable, loading, normal_use]
+  ai_unavailable_claimed_only_with_working_core: true
+  ai_unavailable_blocks_normal_use: false
+  shell_shown_only_during_normal_use: true
+  computed_in: core-presentation
+  rendered_in: app-ui
+
+actions:
+  values: [RECHECK]
+  recheck_mutates_data: false
+  reset_action_representable: false
+  wipe_delete_or_recreate_action_representable: false
+  rationale: a recovery screen that can offer to start fresh over uncertain data is a silent reset with a button
+
+startup:
+  owner: process
+  orchestration_module: core-application
+  opens_once_per_process: true
+  reopens_on_activity_recreation: false
+  open_runs_on_caller_thread: false
+  status_while_opening: loading
+  opener_defect_becomes: error_recoverable
+  opener_defect_crashes: false
+  database_path_resolved_off_main_thread: true
+  debug_strictmode_disk_detection: true
+  proof: an opener held on a latch; a synchronous start would hang the test instead of observing Opening
+
+store_status:
+  module: core-model
+  values: [Opening, Ready, RecoveryRequired, RecoverableFailure]
+  recovery_reasons: [INTEGRITY_CHECK_FAILED, NEWER_SCHEMA, MIGRATION_INCOMPLETE]
+  reason_travels_as_type: true
+  classified_by_parsing_message: false
+  classification:
+    file_cannot_be_opened_at_all: error_recoverable
+    failure_while_reading_or_checking: data_recovery_required
+    newer_schema: data_recovery_required
+    migration_incomplete: data_recovery_required
+
+opener:
+  module: data-persistence
+  throws: false
+  order: [quick_check_and_foreign_key_check, forward_migration, full_integrity_check_if_migrated]
+  writes_before_integrity_check: false
+  deletes_truncates_or_recreates_on_failure: false
+  no_reset_proven_by: byte_for_byte_file_comparison_and_no_sidecar_created
+  corruption_shapes_tested: [not_a_database, truncated, corrupted_btree_page_behind_valid_header, foreign_key_violation, index_content_mismatch_visible_only_to_full_check]
+  quick_check_vs_full_check_proven_by_fixture: true
+
+restore:
+  decided_by: user_in_10e
+  mechanism_owner: 10E
+  controls_owner: 16D
+  archive_format: sqlite_database_of_the_product_schema
+  archive_complete_by_construction: true
+  second_serialisation: false
+  export:
+    method: vacuum_into
+    verified_when_made: true
+    overwrites_existing_file: false
+    records_schema_and_policy_version: true
+    credential_column_present: false
+  restore:
+    archive_opened_in_place: false
+    staging_copy_verified: true
+    older_archive_migrated_on_copy: true
+    newer_archive: refused
+    not_a_profile: refused
+    incomplete_profile_schema: refused
+    corrupted_archive: refused
+    replacement: single_atomic_rename
+    old_hot_journal: set_aside_before_rename_restored_if_rename_fails
+    merge: false
+    integrity_checked_after_restore: true
+    refusal_leaves_live_and_archive_byte_identical: true
+
+ai_absence:
+  adapter_without_call_sites_returns: evaluation_pending_unavailable
+  adapter_throws: false
+  availability_reported_by_both_source_sets: true
+  availability_in_10e: unavailable_in_both_builds
+
+tests:
+  t1_core_model: 3
+  t1_core_application: 9
+  t1_core_presentation: 42
+  t2_persistence: 46
+  t5_ai_adapter: 2
+  new_in_10e:
+    StoreStartupTest: 7
+    AppHealthTest: 8
+    StoreOpenerTest: 11
+    BackupTest: 13
+    AiEvaluatorTest: 2
+  skipped: 0
+  failures: 0
+
+mutation_results:
+  total: 16
+  detected: 16
+  mutants:
+    - {id: M01, mutant: no_integrity_check_before_migration}
+    - {id: M02, mutant: silent_reset_on_unreadable_store}
+    - {id: M03, mutant: unreadable_file_called_recoverable}
+    - {id: M04, mutant: no_full_check_after_migration}
+    - {id: M05, mutant: restore_without_verification}
+    - {id: M06, mutant: restore_migrates_the_archive_in_place}
+    - {id: M07, mutant: newer_archive_not_refused}
+    - {id: M08, mutant: old_hot_journal_carried_over}
+    - {id: M09, mutant: incomplete_profile_schema_accepted}
+    - {id: M10, mutant: open_on_the_caller_thread}
+    - {id: M11, mutant: start_not_idempotent}
+    - {id: M12, mutant: opener_defect_crashes}
+    - {id: M13, mutant: ai_context_claimed_without_working_core}
+    - {id: M14, mutant: shell_drawn_over_recovery}
+    - {id: M15, mutant: reset_action_added}
+    - {id: M16, mutant: ai_adapter_throws_again}
+  strengthened_during_step:
+    - mutant: M08
+      original_weakness: the test wrote a garbage journal beside the live file; SQLite never treats an invalid header as hot, so removing the set-aside still passed
+      fix: capture a real crash image mid-transaction and prove as a precondition that its journal is replayed
+      found_by: mutation_testing
+    - mutant: M09
+      original_weakness: the only not-a-profile test had no metadata table, so an earlier version check refused it and the table-set check was never exercised
+      fix: an archive with intact metadata and integrity but no exposure table
+      found_by: mutation_testing
+    - mutant: M04
+      original_weakness: no fixture distinguished quick_check from integrity_check, so the post-migration check was unproven
+      fix: an index whose definition no longer matches its entries, asserted to pass quick_check first
+      found_by: reviewing_claims_before_mutation
+  invalid_first_attempt:
+    - mutant: M02
+      problem: the first version did not compile, which is not a detection
+      fix: rewritten to compile and rerun
+
+validator_mutation:
+  total: 12
+  detected: 12
+  mutants: [state_order, fault_tone_removed, reset_action, activity_opens_store, migrate_before_check, archive_verified_in_place, adapter_throws, device_result_claimed, ci_adapter_test_removed, state_label_removed, fifth_port, ai_context_while_loading]
+  negative_control: the rule named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+    tests: 46
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+  note: the phone was not connected during 10E; startup, recovery screen and StrictMode output on the device are unverified
+
+not_verified:
+  - the app launching on the target device and reaching Ready from a clean install (T6)
+  - the recovery screen rendering on the device, including TalkBack announcement of the live region
+  - the absence of StrictMode disk violations on the device main thread
+  - the atomic rename on the device filesystem; it is exercised on the JVM filesystem only
+  - a real process kill mid-restore; the set-aside and rename ordering is reasoned, not crash-tested
+
+known_limits:
+  - {limit: a zero-length or missing database is indistinguishable from a first launch and holds no data to protect, owner: 19B}
+  - {limit: startup and integrity-check duration have no budget, owner: 18E}
+  - {limit: Turkish text is working microcopy, owner: 14}
+
+forbidden_app_health_patterns:
+  - opening_the_store_on_the_main_thread
+  - reopening_the_store_on_every_activity_recreation
+  - crashing_on_data_recovery_required
+  - a_reset_or_start_fresh_action_on_a_recovery_screen
+  - migrating_before_checking_integrity
+  - classifying_a_failure_by_parsing_its_message
+  - drawing_the_shell_over_a_store_that_is_not_ready
+  - claiming_ai_unavailable_while_the_core_is_not_available
+  - an_ai_adapter_that_throws_where_aiax_says_unavailable
+  - restoring_by_merging
+  - verifying_or_migrating_the_archive_in_place
+  - replacing_the_live_profile_before_verification
+  - leaving_the_old_journal_beside_a_restored_profile
+  - a_backup_that_is_not_verified_when_made
+  - asserting_no_reset_without_comparing_bytes
+  - claiming_a_device_result_that_was_not_run
+  - adding_a_port_for_startup
+
+future_stage_boundaries:
+  11: empty_valid_with_first_destination_content
+  12: loading_projection_and_recomputing_projection
+  14: offline_local_available_with_network_ai_and_final_microcopy
+  16D: profile_export_and_restore_controls_and_replaced_profile_retention
+  18E: startup_and_integrity_check_budgets
+  19B: whole_profile_loss_detection
+
+acceptance:
+  required_previous_models:
+    - LFPS-v0
+    - UXIA-v0
+    - THUX-v0
+    - VDSX-v0
+    - MSBX-v0
+    - AIAX-v0
+    - TVSX-v0
+    - LDBX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  no_reset_proven_by_bytes: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true
+  stage10abcd_regression_required: true

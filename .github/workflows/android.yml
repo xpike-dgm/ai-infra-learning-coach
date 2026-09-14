@@ -49,6 +49,11 @@ jobs:
       - name: T2 persistence contract
         run: ./gradlew :data-persistence:test
 
+      # T5 — the adapter degrades to evaluation_pending instead of throwing; AI absence is never a
+      # crash in the default build either (AIAX-v0, APHX-v0).
+      - name: T5 AI adapter
+        run: ./gradlew :ai-adapter:test
+
       # T5 — the null-evaluator path is proven by building the product without the adapter,
       # not by stubbing it. This is V1 criterion 8 as wiring (MSBX-v0, TVSX-v0 T5-NULLEVAL-01).
       - name: T5 build without the AI adapter

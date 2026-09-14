@@ -138,12 +138,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **10B — Navigation** — `NSHX-v0 / D-083`
 - [x] **10C — Design system implementation** — `DSIX-v0 / D-084`
 - [x] **10D — Local database** — `LDBX-v0 / D-085`
-- [ ] **10E — Temel uygulama sağlığı** **AKTİF**
+- [x] **10E — Temel uygulama sağlığı** — `APHX-v0 / D-086` — **AŞAMA 10 TAMAMLANDI**
 
 ---
 
 # AŞAMA 11 — Çekirdek Günlük Öğrenme Akışı MVP’sini Geliştir
-- [ ] **11A — Today ekranı**
+- [ ] **11A — Today ekranı** **AKTİF**
 - [ ] **11B — Task runner**
 - [ ] **11C — Session state**
 - [ ] **11D — Günlük mikro quiz**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10D`  
-**Son tamamlanan:** **`10D — LDBX-v0 / D-085`**  
-**Aktif:** **`10E — Temel uygulama sağlığı`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`  
+**Son tamamlanan:** **`10E — APHX-v0 / D-086`**  
+**Aktif:** **`11A — Today ekranı`** — active-not-executed
 
-**AŞAMA 8 ve AŞAMA 9 tamamlandı; AŞAMA 10 sürüyor.** 10D `LDBX-v0` ile `DDM-v0`nin fiziksel şeması gerçek bir SQLite veritabanı oldu: storage engine mimarinin yasakladığını reddediyor ve her ret **denenerek** kanıtlanıyor. Truth ve curriculum tablolarında UPDATE/DELETE trigger'la abort ediliyor; her DDM değer kümesi CHECK; pinning yapısal ve user→curriculum foreign key yok; offset dakika ve tam dakika olmayan değer reddediliyor; tek global truth sequence watermark; migration ileri-yönlü, transaction'lı ve dolu fixture'a karşı içerik olarak test edildi. Aynı şema JVM'de ve cihazda koşuyor — arm64-v8a native kütüphanesi APK'da doğrulandı. **İlk taslak `DDM-v0`den sapmıştı** (yanlış outcome değerleri, saniye offset, eksik entity'ler) ve kontratı okuyan validator sayesinde kabulden önce düzeltilip kaydedildi. Mutation 9/9; biri başta kaçmıştı ve test güçlendirildi.
+**AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
-10E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+11A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

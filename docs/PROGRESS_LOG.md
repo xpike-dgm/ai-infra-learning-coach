@@ -883,3 +883,27 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `10D ✅ / 10E active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `10E — Temel uygulama sağlığı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-14 — 10E Temel uygulama sağlığı tamamlandı — APHX-v0 / D-086 — AŞAMA 10 kapandı
+
+- Fresh 10E PRE yapıldı; beş kanonik kaynak `10D ✅ / 10E active-not-executed` gösterdi. Kullanıcı açık onay verdi ("10E ye başla").
+- **Handoff iki sorun söylüyordu; kodu kontratlara karşı okumak iki tane daha buldu.** Veritabanı `MainActivity.onCreate`de senkron açılıyordu ve `DataRecoveryRequired` çökmeydi — bunlar biliniyordu. Bilinmeyenler: `LFPS-v0` §12'nin şart koştuğu **açılışta bütünlük kontrolü hiç yoktu**, ve **varsayılan build'in `AiEvaluator.evaluate`i `TODO()` idi** — CI'ın normal build dediği adaptörlü build ilk açık uçlu denemede çökecekti.
+- **Kapsam kararı kullanıcıya soruldu:** backup/export ve doğrulanmış atomik restore. Kullanıcı önerilen seçeneği seçti — **mekanizma 10E'de, Profile kontrolleri 16D'de**.
+- Kullanıcı cihaz testinin ne olduğunu sordu; "smoke test" jargonu açıklandı (telefona kurup çökmeden açıldığını görmek, `TVSX-v0` T6). Telefon bağlanmadı ve **T6 çalıştırılmadı olarak kaydedildi**; hiçbir cihaz sonucu iddia edilmiyor.
+- **Açılış süreçte, arka planda, bir kez.** `StoreStartup` `core-application`da; "çağıranın thread'inde koşmaz" latch'te tutulan bir opener ile JVM testinde kanıtlanıyor. `CoachApplication` onu başlatıyor, activity'ler yalnız gözlüyor. Yeni port eklenmedi.
+- **Yazmadan önce kontrol:** `quick_check` + `foreign_key_check` → migration → migration koştuysa tam `integrity_check`. Her hata bir state; sebep tip olarak taşınıyor, mesaj ayrıştırılmıyor.
+- **"Hiçbir şey sıfırlanmadı" byte ile kanıtlanıyor.** Yedi bozulma/versiyon biçiminin her birinde dosya önce ve sonra byte byte karşılaştırılıyor. Yalnız status assert eden bir test, recovery raporlayıp sessizce boş veritabanı yaratan bir opener'ı geçirirdi.
+- **İki kontrol arasındaki fark varsayılmadı:** tanımı girdileriyle eşleşmeyen bir index `quick_check`ten geçiyor (ön koşul olarak assert ediliyor) ve yalnız migration sonrası tam kontrol yakalıyor. Bu fixture, mutation'dan önce iddiaları gözden geçirirken "tam kontrolü kanıtlayan hiçbir şey yok" fark edildiği için eklendi.
+- **Recovery ekranında reset temsil edilemez:** `HealthAction`ın tek değeri `RECHECK`. Shell yalnız normal kullanım mümkünken çiziliyor; `ai_unavailable_core_available` yalnız core çalışırken üretiliyor.
+- **Restore mekanizması:** arşiv ürünün kendi şemasında; export `VACUUM INTO` + yapıldığı an doğrulama; restore arşivi kopyalayıp yalnız kopyayı doğruluyor ve migrate ediyor, tek atomik rename ile değiştiriyor, eski canlı dosyanın hot journal'ını önce kenara alıyor. Reddedilen arşiv canlı profili ve arşivi byte byte değiştirmiyor.
+- **Mutation testing iki zayıf testi yakaladı.** M08: eski journal set-aside'ı silinse de test geçiyordu çünkü test çöp bir journal yazıyordu ve SQLite geçersiz başlığı asla hot saymaz — test artık transaction ortasında gerçek bir çökme görüntüsü kullanıyor ve journal'ın geri oynatıldığını önce kanıtlıyor. M09: tablo kümesi kontrolü silinse de geçiyordu çünkü tek "profil değil" testi daha önceki bir kontrole takılıyordu — `exposure_record` tablosu olmayan ama metadata'sı sağlam bir arşiv testi eklendi. Ayrıca M02'nin ilk hali derlenmedi; bu yakalama sayılmadı, yeniden yazılıp koşuldu. Sonuç 16/16.
+- Mutation runner'ın ilk koşusu hiçbir sonuç üretmeden düştü (PowerShell 5.1 Gradle stderr'ini hata saydı); her mutant sonrası kaynak dosyanın geri yüklendiği doğrulandı ve runner düzeltilip yeniden koşuldu.
+- Altı run: T1 core testleri, T2 (46 test), T3, `:ai-adapter:test`, adaptörlü ve adaptörsüz `assembleDebug` — hepsi PASS. CI'a adaptör testi eklendi.
+- Validator 152/152 PASS; kendi mutation testi 12/12 ve yorum-içi negatif kontrol false positive vermedi. İlk koşuda validator kendi hatasını gösterdi (YAML çıplak adım numaralarını integer okuyor); kontrat değil karşılaştırma düzeltildi.
+- Sweep sırasında önceki adımların `qa_report.yaml`ları yalnız worktree mutlak yolları ve dosya sayılarıyla yeniden yazıldı; anlamsal fark olmadığı için geri alındı.
+- External-memory + Stage 6 + Stage 7 + AŞAMA 8 + AŞAMA 9 + 10A–10D regressions PASS (31/31 validator).
+- **AŞAMA 10 TAMAMLANDI** — MPSX-v0 → NSHX-v0 → DSIX-v0 → LDBX-v0 → APHX-v0.
+- D-050 POST living-memory accepted state'i `10E ✅ / 11A active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `11A — Today ekranı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

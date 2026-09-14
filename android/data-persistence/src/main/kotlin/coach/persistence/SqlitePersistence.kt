@@ -28,12 +28,22 @@ class SqlitePersistence private constructor(
         /** `:memory:` is a real SQLite database, so T2 checks are not testing a stub. */
         const val IN_MEMORY = ":memory:"
 
+        /**
+         * Opens and migrates, **throwing** [Migrations.DataRecoveryRequired] when that is unsafe.
+         * The product does not call this: it uses [StoreOpener.open], which checks integrity first
+         * and returns a status instead of throwing (`APHX-v0`). Tests use it where a throw is the
+         * point.
+         */
         fun open(path: String, driver: SQLiteDriver = BundledSQLiteDriver()): SqlitePersistence {
             val connection = driver.open(path)
             connection.execSQL("PRAGMA foreign_keys = ON")
             Migrations.migrate(connection)
             return SqlitePersistence(connection)
         }
+
+        /** Wraps a connection [StoreOpener] has already checked and migrated. */
+        internal fun onCheckedConnection(connection: SQLiteConnection): SqlitePersistence =
+            SqlitePersistence(connection)
 
         /**
          * Opens a database at whatever schema it already has. Test support only: it exists so a
@@ -229,6 +239,17 @@ class SqlitePersistence private constructor(
     }
 
     fun count(table: String): Long = query("SELECT COUNT(*) FROM $table") { it.getLong(0) }.single()
+
+    /**
+     * Writes a consistent, compacted copy of the whole database to [path]. SQLite produces it from
+     * a single read transaction, so the copy can never contain half of a learner action.
+     */
+    internal fun vacuumInto(path: String) {
+        connection.prepare("VACUUM INTO ?").use { statement ->
+            statement.bindText(1, path)
+            statement.step()
+        }
+    }
 
     override fun close() = connection.close()
 }

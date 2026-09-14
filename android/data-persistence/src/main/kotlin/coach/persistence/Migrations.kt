@@ -2,6 +2,7 @@ package coach.persistence
 
 import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
+import coach.model.RecoveryReason
 
 /**
  * Forward-only migration (`LFPS-v0` §10).
@@ -15,9 +16,15 @@ object Migrations {
     /** The policy version recorded before any engine has produced a projection. */
     const val INITIAL_POLICY_VERSION = "none"
 
-    /** Raised when a database cannot be brought to the current schema safely. */
-    class DataRecoveryRequired(message: String, cause: Throwable? = null) :
-        IllegalStateException(message, cause)
+    /**
+     * Raised when a database cannot be brought to the current schema safely. It carries the core
+     * [RecoveryReason] so the app can say *why* without parsing a message (`APHX-v0`).
+     */
+    class DataRecoveryRequired(
+        val reason: RecoveryReason,
+        message: String,
+        cause: Throwable? = null,
+    ) : IllegalStateException(message, cause)
 
     /** Statements that take a database from the key version to key + 1. */
     private fun steps(): Map<Int, List<String>> = mapOf(
@@ -48,14 +55,15 @@ object Migrations {
         val from = currentVersion(connection)
         if (from > target) {
             throw DataRecoveryRequired(
-                "database schema $from is newer than this build's $target; downgrade is not supported"
+                RecoveryReason.NEWER_SCHEMA,
+                "database schema $from is newer than this build's $target; downgrade is not supported",
             )
         }
         val steps = steps()
         var version = from
         while (version < target) {
             val statements = steps[version]
-                ?: throw DataRecoveryRequired("no migration from schema $version")
+                ?: throw DataRecoveryRequired(RecoveryReason.MIGRATION_INCOMPLETE, "no migration from schema $version")
             try {
                 connection.execSQL("BEGIN")
                 statements.forEach { connection.execSQL(it.trimIndent()) }
@@ -64,7 +72,9 @@ object Migrations {
             } catch (error: Throwable) {
                 runCatching { connection.execSQL("ROLLBACK") }
                 throw DataRecoveryRequired(
-                    "migration from schema $version failed; previous state left intact", error
+                    RecoveryReason.MIGRATION_INCOMPLETE,
+                    "migration from schema $version failed; previous state left intact",
+                    error,
                 )
             }
             version += 1

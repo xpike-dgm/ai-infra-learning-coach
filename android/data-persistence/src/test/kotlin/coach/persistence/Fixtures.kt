@@ -1,6 +1,9 @@
 package coach.persistence
 
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
 import coach.model.StudyTimestamp
+import java.io.File
 import coach.ports.ProjectionRecord
 import coach.ports.TruthRecord
 
@@ -71,6 +74,34 @@ internal object Fixtures {
             "primary_presentation_state" to state,
         ),
     )
+
+    fun tempDb(): File =
+        File.createTempFile("coach-", ".db").also { it.delete(); it.deleteOnExit() }
+
+    /**
+     * A database at schema [version] holding real truth, as a previous build would have left it:
+     * 25 evidence events, 10 exposure records and a disposition.
+     */
+    fun populated(file: File, version: Int = Schema.VERSION, skillPrefix: String = "skill.fixture.s") {
+        BundledSQLiteDriver().open(file.absolutePath).also { connection ->
+            connection.execSQL("PRAGMA foreign_keys = ON")
+            Migrations.migrate(connection, target = version)
+            connection.close()
+        }
+        SqlitePersistence.openWithoutMigrating(file.absolutePath).use { db ->
+            repeat(25) { db.appendTruth(evidence(skill = "$skillPrefix$it")) }
+            repeat(10) { db.appendTruth(exposure(resource = "item.fixture.i$it")) }
+            db.appendTruth(disposition(3))
+        }
+    }
+
+    /** Every row of every truth table plus the metadata row, as text, in a stable order. */
+    fun truthContent(db: SqlitePersistence): Map<String, List<String>> =
+        (Schema.truthTables + "schema_metadata").associateWith { table ->
+            db.query("SELECT * FROM $table ORDER BY rowid") { s ->
+                (0 until s.getColumnCount()).joinToString("|") { if (s.isNull(it)) "∅" else s.getText(it) }
+            }
+        }
 
     /** Seeds one valid row in [table], creating whatever parent rows it references. */
     fun seed(db: SqlitePersistence, table: String) {
