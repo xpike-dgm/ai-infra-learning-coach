@@ -57,7 +57,7 @@ The outcome mistake is the instructive one: it reused the evaluator **signal** e
 
 - engines that compute projections → 12,
 - curriculum content loading → 11,
-- backup, export and atomic verified restore implementation,
+- backup, export and atomic verified restore implementation → mechanism 10E (`APHX-v0`), Profile controls 16D,
 - moving the database open off the main thread and surfacing `data_recovery_required` as a state → 10E,
 - assessment-session fields → 13,
 - index tuning and query budgets → 18E,

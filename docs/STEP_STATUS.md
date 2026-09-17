@@ -50,8 +50,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **10B — Navigation** | ✅ | NSHX-v0 / D-083. Navigasyon modeli core'da; kapalı edge kümesi; focused flow shell'i askıya alıyor; 104/104 QA PASS. |
 | **10C — Design system implementation** | ✅ | DSIX-v0 / D-084. Token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez; 146/146 QA PASS. |
 | **10D — Local database** | ✅ | LDBX-v0 / D-085. Engine yasakları reddediyor ve denenerek kanıtlanıyor; ilk taslağın DDM sapmaları düzeltilip kaydedildi; 163/163 QA PASS. |
-| **10E — Temel uygulama sağlığı** | 🟡 Aktif | DB açılışını main thread'den almak, `data_recovery_required`ı çökme değil state yapmak; AŞAMA 10'u kapatır. Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **11–20** | ⬜ Bekliyor | 10E sonrası canonical sırada. |
+| **10E — Temel uygulama sağlığı** | ✅ | APHX-v0 / D-086. Store'un hiçbir arızası çökme ya da reset değil; açılış arka planda ve bütünlük migration'dan önce; no-reset byte ile kanıtlanıyor; restore mekanizması kuruldu (kontroller 16D); 152/152 QA PASS, mutation 16/16. **AŞAMA 10 kapandı.** |
+| **11A — Today ekranı** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **11B–20** | ⬜ Bekliyor | 11A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -70,26 +71,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 10D
+## Son tamamlanan numaralı adım — 10E
 
-**Final:** `LDBX-v0 — Local Database` / D-085.
-**Ana çıktı:** `docs/LOCAL_DATABASE_SPEC.md` + `arch/10d_local_database/` + `android/data-persistence`.
+**Final:** `APHX-v0 — App Health` / D-086. **AŞAMA 10 kapandı.**
+**Ana çıktı:** `docs/APP_HEALTH_SPEC.md` + `arch/10e_app_health/` + `android/` (`StoreStartup`, `AppHealth`, `StoreOpener`, `Backup`, `HealthSurface`, `CoachApplication`).
 
-10D sonucu:
-- **storage engine mimarinin yasakladığını reddediyor** ve her ret denenerek kanıtlanıyor,
-- **ilk taslak `DDM-v0`den sapmıştı**: yanlış outcome değerleri (10A'nın evaluator sinyali enum'u), eksik eksen değerleri, saniye cinsinden offset, tek objective, 4 truth tablosu. Kendi testleri aynı taslağa karşı yazıldığı için geçiyordu; kontratı okuyan validator yakaladı ve şema kabulden önce yeniden yazıldı. Sapmalar kaydedildi,
-- library API'si çözülmüş jar'dan `javap` ile okundu, hatırlanmadı,
-- 11 curriculum (değişmez), 13 truth (append-only), 8 projection tablosu; user→curriculum foreign key yok,
-- her truth ve curriculum tablosunda abort eden UPDATE/DELETE trigger'ları, envanterden üretilmiş,
-- her DDM değer kümesi CHECK; pinning yapısal; offset dakika ve tam dakika olmayan reddediliyor,
-- tek global truth sequence watermark; her projection satırında tam provenance ve port tipi de taşıyor,
-- migration ileri-yönlü, transaction'lı, dolu fixture'a karşı satır satır içerikle test edildi,
-- adapter kolonları SQLite'tan okuyor, kendi listesini tutmuyor,
-- aynı şema JVM'de ve cihazda; **arm64-v8a native kütüphane APK içinde doğrulandı**,
-- modelin adlandırmadığı kolonlar sahipleriyle açıklandı,
-- 22 T2 check; mutation 9/9 — biri başta kaçmıştı ve test güçlendirildi,
-- independent validator **163/163 PASS**, kendi mutation testi 9/9 (ilk taslağın üç hatası dahil); 30/30 sweep PASS.
+10E sonucu:
+- **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil**,
+- handoff'un iki sorununa ek olarak kod kontratlara karşı okununca iki sorun daha bulundu: **açılışta bütünlük kontrolü yoktu** ve **varsayılan build'in AI adaptörü `TODO()` ile çökecekti**,
+- store süreçte bir kez, arka planda açılıyor; latch'li JVM testi bunu kanıtlıyor; yeni port yok,
+- `quick_check` + FK kontrolü migration'dan **önce**, tam `integrity_check` sonra; fark bir fixture ile kanıtlandı,
+- sebep `core-model` tipi olarak taşınıyor, mesaj ayrıştırılmıyor,
+- yedi bozulma/versiyon biçiminde dosya **byte byte** değişmeden kalıyor,
+- altı cross-cutting state `UXIA-v0`/`VDSX-v0` ile birebir; shell yalnız normal kullanımda; tek aksiyon `RECHECK`, reset temsil edilemez,
+- restore mekanizması (kullanıcı kararı: mekanizma 10E, kontroller 16D): doğrulanmış export, kopya üzerinde doğrulama, atomik rename, eski hot journal kenara, birleştirme yok,
+- mutation 16/16 — M08 ve M09 başta yaşadı ve testler güçlendirildi; M02'nin ilk hali derlenmediği için sayılmadı,
+- **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
+- independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 10E Temel uygulama sağlığı
+## Aktif adım — 11A Today ekranı
 
-**10E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**11A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

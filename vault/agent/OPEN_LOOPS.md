@@ -37,15 +37,19 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 10B Navigation: NSHX-v0 / D-083 ile tamamlandı; kurallar core'da, kapalı edge kümesi, shell'i askıya alan focused flow, deterministik dönüş kuralı, core'da hesaplanan window class'lar.
 - [x] 10C Design system implementation: DSIX-v0 / D-084 ile tamamlandı; token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez, 48dp modifier ve %200 metin.
 - [x] 10D Local database: LDBX-v0 / D-085 ile tamamlandı; engine yasakları reddediyor, DDM ile birebir şema, transaction'lı ileri-yönlü migration dolu fixture'a karşı, arm64-v8a native kütüphane APK'da doğrulandı.
-- [ ] 10E Temel uygulama sağlığı **AKTİF**: veritabanı açılışını main thread'den almak, `DataRecoveryRequired`ı çökme değil `data_recovery_required` state'i yapmak, dürüst başlangıç ve degraded-state yolu. AŞAMA 10'u kapatır.
-- [ ] Backup/export ve atomik doğrulanmış restore `LFPS-v0`de tanımlı ve `TVSX-v0`de doğrulanmış ama henüz implemente edilmedi; hangi adımın sahiplendiği 10E'de netleşmeli.
+- [x] 10E Temel uygulama sağlığı: APHX-v0 / D-086 ile tamamlandı; store arka planda bir kez açılıyor, bütünlük migration'dan önce, her hata state, no-reset byte ile kanıtlı, reset temsil edilemez. **AŞAMA 10 kapandı.**
+- [ ] 11A Today ekranı **AKTİF**: `THUX-v0` Today interior'u `APHX-v0` sağlık yolu üzerine; `empty_valid` burada üretilmeye başlar.
+- [x] Backup/export ve atomik doğrulanmış restore sahipliği 10E'de netleşti: mekanizma 10E'de kuruldu ve T2'de doğrulandı.
+- [ ] Export/restore Profile kontrolleri (dosya seçimi, değiştirme onayı, ret metni, değiştirilen profilin saklanıp saklanmayacağı) → 16D.
+- [ ] Tüm profil kaybını tespit: sıfır uzunluklu veya eksik veritabanı ilk açılıştan ayırt edilemiyor; veritabanı dışında bir işaret gerekiyor → 19B.
+- [ ] Açılış ve bütünlük kontrolü süre bütçeleri → 18E.
 - [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.
 - [x] AMTS-v0 §9 bounded verification list: altı maddenin tamamı 10A'da güncel kaynaklarla kapandı; `minSdk` 26'da compatibility library gerekmiyor.
 - [x] Hedef Android cihaz kaydedildi: **Poco M6 Pro**, `2312FPCA6G`, Android 16 / API 36, HyperOS 3.0.304.0.WNFMIXM.C10, Helio G99-Ultra, 12+6 GB. `D-080` gereği tek hedef cihaz; `TVSX-v0` T6 bu telefonda elle koşar.
-- [ ] T6 device smoke henüz hiç koşulmadı; ilk gerçek akışlar 10B–11'de ortaya çıktıkça cihazda doğrulanacak.
+- [ ] T6 device smoke henüz hiç koşulmadı; 10E'de de telefon bağlı değildi. Cihazda doğrulanacaklar: temiz kurulumdan `Ready`, recovery ekranı ve TalkBack duyurusu, main thread'de StrictMode disk ihlali olmaması, cihaz dosya sisteminde atomik rename.
 - [x] Standing regression sweep kapsamı: elle tutulan liste yerine `tools/validate_*.py` glob'u; 9E POST'unda 6H'den beri FAIL veren beş package validator bulundu ve kapatıldı (dördü stale gate, biri gerçek 6E seed_mappings veri regresyonu).
 
 ## Knowledge-base operations

@@ -58,6 +58,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-083:** NSHX-v0 Navigation Shell; 10B tamamlandı.
 - **D-084:** DSIX-v0 Design System Implementation; 10C tamamlandı.
 - **D-085:** LDBX-v0 Local Database; 10D tamamlandı.
+- **D-086:** APHX-v0 App Health; 10E tamamlandı ve AŞAMA 10 kapandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -262,14 +263,15 @@ PEM-v0:
 - 10B ✅ NSHX-v0 / D-083
 - 10C ✅ DSIX-v0 / D-084
 - 10D ✅ LDBX-v0 / D-085
-- 10E 🟡 active-not-executed
-- 11–20 ⬜
+- 10E ✅ APHX-v0 / D-086 — **AŞAMA 10 kapandı**
+- 11A 🟡 active-not-executed
+- 11B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `10D — LDBX-v0 / D-085`  
-**Aktif:** `10E — Temel uygulama sağlığı`  
-**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `10E — APHX-v0 / D-086` — AŞAMA 10 tamamlandı  
+**Aktif:** `11A — Today ekranı`  
+**11A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -771,6 +773,29 @@ LDBX-v0:
 - 22 T2 checks; 9/9 implementation mutations caught, one only after its test was strengthened,
 - independent 10D QA 163/163 PASS, validator mutation 9/9 including all three first-draft errors; 30/30 sweep PASS.
 
-## 38. 10E handoff
+## 38. D-086 / 10E final özeti
 
-10E — Temel uygulama sağlığı. Veritabanı açılışı `MainActivity`de main thread'den alınacak; `DataRecoveryRequired` bir çökme olmaktan çıkıp `SPWX-v0`nin zaten tanımladığı `data_recovery_required` state'i olacak; uygulama dürüst bir başlangıç ve degraded-state yolu kazanacak (`loading_projection`, `offline_local_capable`, `ai_unavailable_full_state_available`, `error_recoverable`). Backup/export ve atomik doğrulanmış restore'un nerede implemente edileceği netleştirilecek. 10E AŞAMA 10'u kapatır ve fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/APP_HEALTH_SPEC.md`.
+Contract/QA: `arch/10e_app_health/`.
+Synthesis: `research/10e_app_health_research.md`.
+Code: `android/core-model/.../StoreHealth.kt`, `android/core-application/.../StoreStartup.kt`, `android/core-presentation/.../AppHealth.kt`, `android/data-persistence/.../StoreOpener.kt`, `.../Backup.kt`, `android/app-ui/.../HealthSurface.kt`, `android/app-wiring/.../CoachApplication.kt`.
+
+APHX-v0:
+- no failure of the store is a crash, and no failure of the store is a reset,
+- the handoff named two problems; reading the code against the contracts found two more — integrity was never checked on open (`LFPS-v0` §12), and the default build's `AiEvaluator` was `TODO()` and would have crashed on the first open-ended attempt,
+- the store belongs to the process: `CoachApplication` starts `StoreStartup` once on a background thread and activities only observe; "never on the caller's thread" is a JVM test with an opener held on a latch; no port was added,
+- `StoreOpener` never throws and checks before anything writes: `quick_check` + `foreign_key_check`, then migration, then the full `integrity_check` if a migration ran — the difference between the checks is proven by an index fixture only the full check can see,
+- `StoreStatus` and `RecoveryReason` are core types and the reason travels as a type; nothing parses an exception message,
+- every recovery case compares the file byte for byte and checks no sidecar appeared, across seven corruption and version shapes,
+- the six `UXIA-v0` cross-cutting states with `VDSX-v0` tones and `THUX-v0` precedence; the shell is drawn only during normal use; `ai_unavailable_core_available` only with a working core,
+- `HealthAction` has one value, `RECHECK`; no reset, wipe, delete or recreate is representable,
+- the restore mechanism (the user's decision: mechanism here, Profile controls at 16D): a verified export, a restore that verifies and migrates only a copy, one atomic rename, the old hot journal set aside, no merge, and refusals that leave both the live profile and the archive byte-identical,
+- 16/16 mutations caught — M08 and M09 survived at first and their tests were strengthened; M02's first version did not compile and was not counted,
+- T6 was not run: the phone was not connected, and no device result is claimed,
+- independent 10E QA 152/152 PASS, validator mutation 12/12; 31/31 sweep PASS.
+
+**AŞAMA 10 TAMAMLANDI.**
+
+## 39. 11A handoff
+
+11A — Today ekranı. `THUX-v0`nin Today interior'u `APHX-v0`nin sağlık yolu üzerine kurulur: normal kullanım yalnız `AppHealth.showsShell` iken vardır ve `empty_valid` burada üretilmeye başlar. Açık loop'lar: export/restore Profile kontrolleri 16D, tüm profil kaybı tespiti 19B, açılış bütçeleri 18E, T6 cihaz koşusu hedef cihaz bağlandığında. 11A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

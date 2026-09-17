@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085`; AŞAMA 8 ve AŞAMA 9'un kapandığını ve aktif adımın `10E active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086`; AŞAMA 8, AŞAMA 9 ve AŞAMA 10'un kapandığını ve aktif adımın `11A active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1123,14 +1123,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 10B ✅ NSHX-v0 / D-083
 - AŞAMA 10C ✅ DSIX-v0 / D-084
 - AŞAMA 10D ✅ LDBX-v0 / D-085
-- AŞAMA 10E 🟡 active-not-executed
-- 11–20 ⬜
+- AŞAMA 10E ✅ APHX-v0 / D-086
+- **AŞAMA 10 ✅ TAMAMLANDI**
+- AŞAMA 11A 🟡 active-not-executed
+- 11B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `10D — Local database`  
-**Final:** `LDBX-v0 — Local Database` / D-085  
-**Canonical:** `docs/LOCAL_DATABASE_SPEC.md` + `arch/10d_local_database/`
+**Son tamamlanan numaralı adım:** `10E — Temel uygulama sağlığı`  
+**Final:** `APHX-v0 — App Health` / D-086  
+**Canonical:** `docs/APP_HEALTH_SPEC.md` + `arch/10e_app_health/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1152,17 +1154,19 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 10B:** ✅ TAMAMLANDI  
 **AŞAMA 10C:** ✅ TAMAMLANDI  
 **AŞAMA 10D:** ✅ TAMAMLANDI  
-**Aktif adım:** `10E — Temel uygulama sağlığı`  
+**AŞAMA 10E:** ✅ TAMAMLANDI  
+**AŞAMA 10:** ✅ TAMAMLANDI  
+**Aktif adım:** `11A — Today ekranı`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-10E için:
+11A için:
 
 ```text
-fresh 10E PRE-STEP GitHub refresh
+fresh 11A PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 10E execution
+→ 11A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1714,8 +1718,10 @@ AŞAMA 9 ✅ TAMAMLANDI
 10B ✅ NSHX-v0 / D-083
 10C ✅ DSIX-v0 / D-084
 10D ✅ LDBX-v0 / D-085
-10E 🟡 active-not-executed
-11–20 ⬜
+10E ✅ APHX-v0 / D-086
+AŞAMA 10 ✅ TAMAMLANDI
+11A 🟡 active-not-executed
+11B–20 ⬜
 ```
 
 10D final:
@@ -1912,9 +1918,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `10E — Temel uygulama sağlığı`.
+**Sıradaki gerçek numbered work:** `11A — Today ekranı`.
 
-**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**11A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1964,8 +1970,8 @@ AŞAMA 9 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `10E — Temel uygulama sağlığı`.  
-**10E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `11A — Today ekranı`.  
+**11A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2020,3 +2026,12 @@ Ana invariant: tasarım sistemi kanonik state'in iddia etmediği severity'yi ekl
 10D `LDBX-v0 — Local Database` ile tamamlandı. Canonical: `docs/LOCAL_DATABASE_SPEC.md`; contract/QA: `arch/10d_local_database/`; synthesis: `research/10d_local_database_research.md`; kod: `android/data-persistence`.
 
 Ana invariant: storage engine mimarinin yasakladığını reddeder ve her ret denenerek kanıtlanır. **İlk taslak `DDM-v0`den sapmıştı** — outcome ekseninde 10A'nın evaluator sinyali enum'u kullanılmıştı, iki eksende değerler eksikti, offset saniye tutuluyordu ve 12 truth entity yerine 4 tablo vardı. Kendi testleri aynı taslağa karşı yazıldığı için geçiyordu; kontratı okuyan validator yakaladı ve şema kabulden önce yeniden yazıldı. Library API'si çözülmüş jar'dan `javap` ile okundu. 11 değişmez curriculum, 13 append-only truth ve 8 yeniden kurulabilir projection tablosu var; user truth'tan curriculum'a foreign key yok. Truth ve curriculum tablolarında abort eden UPDATE/DELETE trigger'ları envanterden üretiliyor; her DDM değer kümesi CHECK; pinning yapısal; offset dakika ve tam dakika olmayan reddediliyor; tek global truth sequence watermark. Migration ileri-yönlü ve transaction'lı, dolu fixture'a karşı içerikle test edildi. Adapter kolonları SQLite'tan okuyor. Aynı şema JVM'de ve cihazda koşuyor; arm64-v8a native kütüphane APK içinde doğrulandı. 22 T2 check ve mutation 9/9 — biri başta kaçtı ve test güçlendirildi. Independent QA 163/163 PASS; 30/30 sweep PASS. Current active numbered step 10E'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 10E completion addendum — D-086
+
+10E `APHX-v0 — App Health` ile tamamlandı ve **AŞAMA 10 kapandı**. Canonical: `docs/APP_HEALTH_SPEC.md`; contract/QA: `arch/10e_app_health/`; synthesis: `research/10e_app_health_research.md`; kod: `core-model` (`StoreHealth.kt`), `core-application` (`StoreStartup.kt`), `core-presentation` (`AppHealth.kt`), `data-persistence` (`StoreOpener.kt`, `Backup.kt`), `ai-adapter`, `app-ui` (`HealthSurface.kt`), `app-wiring` (`CoachApplication.kt`).
+
+Ana invariant: store'un hiçbir arızası çökme değildir ve hiçbir arızası reset değildir. Handoff'un iki sorununa (main thread açılışı, çökme olan `DataRecoveryRequired`) ek olarak kod kontratlara karşı okununca iki sorun daha bulundu: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü `TODO()` ile çökecekti. Store süreçte bir kez arka planda açılıyor (latch'li JVM testi, yeni port yok); `quick_check` + FK migration'dan önce, tam `integrity_check` sonra (fark bir fixture ile kanıtlandı); sebep `core-model` tipi; yedi bozulma/versiyon biçiminde dosya byte byte değişmiyor; altı `UXIA-v0` state'i `VDSX-v0` tonlarıyla, shell yalnız normal kullanımda, tek aksiyon `RECHECK` ve reset temsil edilemez. Kullanıcı kararıyla restore mekanizması burada, Profile kontrolleri 16D'de: doğrulanmış export, kopya üzerinde doğrulama, atomik rename, eski hot journal kenara, birleştirme yok. Mutation 16/16 — M08 ve M09 başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı; telefon bağlı değildi. Independent QA 152/152 PASS, validator mutation 12/12; 31/31 sweep PASS. Current active numbered step 11A'dır; fresh PRE + kullanıcı açık onayı gerekir.

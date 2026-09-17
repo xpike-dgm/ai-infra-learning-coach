@@ -623,7 +623,26 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 - 22 T2 check; mutation 9/9 — biri başta kaçtı ve test güçlendirildi,
 - independent validator **163/163 PASS**, kendi mutation testi 9/9 (ilk taslağın üç hatası dahil); 30/30 sweep PASS.
 
-### [ ] 10E — Temel uygulama sağlığı — **AKTİF**
+### [x] 10E — Temel uygulama sağlığı — APHX-v0 / D-086
+
+**10E final coverage:**
+- store'un hiçbir arızası çökme değil, hiçbir arızası reset değil,
+- handoff'un iki sorununa ek olarak kod kontratlara karşı okununca iki sorun daha bulundu: **açılışta bütünlük kontrolü yoktu** (`LFPS-v0` §12) ve **varsayılan build'in `AiEvaluator`ı `TODO()` ile çökecekti** (`AIAX-v0`, V1 kriteri 8),
+- store süreçte bir kez, arka plan thread'inde açılıyor; `StoreStartup` `core-application`da ve latch'li JVM testi senkron açılışı yakalıyor; yeni port yok,
+- `quick_check` + `foreign_key_check` migration'dan **önce**, migration koştuysa tam `integrity_check`; fark yalnız tam kontrolün görebildiği bir index fixture'ı ile kanıtlandı,
+- `StoreStatus`/`RecoveryReason` `core-model` tipi; sebep tip olarak taşınıyor, mesaj ayrıştırılmıyor,
+- yedi bozulma/versiyon biçiminde dosya **byte byte** değişmeden kalıyor ve sidecar oluşmuyor,
+- altı cross-cutting state `UXIA-v0` sırası ve `VDSX-v0` tonlarıyla; öncelik `THUX-v0`; shell yalnız normal kullanımda; `ai_unavailable_core_available` yalnız çalışan core ile,
+- tek aksiyon `RECHECK`; reset/wipe/delete/recreate **temsil edilemez**,
+- restore mekanizması (kullanıcı kararı: mekanizma 10E, kontroller 16D): `VACUUM INTO` + yapıldığı an doğrulanan export; arşiv kopyası üzerinde doğrulama ve migration; tek atomik rename; eski hot journal kenara; yeni/yabancı/eksik/bozuk arşiv reddi; birleştirme yok,
+- 6 run PASS (T1, T2 46 test, T3, adaptör testi, iki `assembleDebug`); CI'a adaptör testi eklendi,
+- mutation 16/16 — M08 (sahte journal hot değildi) ve M09 (tablo kümesi kontrolü egzersiz edilmiyordu) başta yaşadı ve testler güçlendirildi; M02'nin ilk hali derlenmediği için sayılmadı,
+- **T6 çalıştırılmadı** — telefon bağlı değildi; cihaz sonucu iddia edilmiyor,
+- independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
+
+**AŞAMA 10 TAMAMLANDI.**
+
+_Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist kalıntısıdır; 10E kapsamı değildir._
 - granular Skill/Objective state,
 - assessment resource identity/version/lifecycle,
 - AI validation records/use ceilings,
@@ -770,8 +789,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10D`  
-**Son tamamlanan:** **`10D — LDBX-v0 / D-085`**  
-**Aktif:** **`10E — Temel uygulama sağlığı`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`  
+**Son tamamlanan:** **`10E — APHX-v0 / D-086`** — **AŞAMA 10 TAMAMLANDI**  
+**Aktif:** **`11A — Today ekranı`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **10E fresh PRE-STEP → veritabanı açılışını main thread'den almak, `DataRecoveryRequired`ı çökmeden `data_recovery_required` state'ine çevirmek, dürüst başlangıç ve degraded-state yolu, backup/restore sahipliğini netleştirmek; AŞAMA 10'u kapatmak → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **11A fresh PRE-STEP → `THUX-v0`nin Today interior'unu `APHX-v0`nin sağlık yolu üzerine kurmak (`empty_valid` burada üretilmeye başlar) → independent QA → D-050 POST sync + stale audit.**

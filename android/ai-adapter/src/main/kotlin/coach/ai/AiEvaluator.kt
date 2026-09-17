@@ -1,6 +1,8 @@
 package coach.ai
 
 import coach.model.EvaluationResult
+import coach.model.EvaluatorAvailability
+import coach.model.PendingReason
 import coach.ports.EvaluationRequest
 import coach.ports.EvaluatorPort
 
@@ -17,8 +19,15 @@ import coach.ports.EvaluatorPort
  *  - the timeout budget is end-to-end across retries, not per call,
  *  - only the minimum content for the current attempt may leave the device,
  *  - the key lives in platform secure storage and never appears in logs, exports or backups.
+ *
+ * Until those call sites exist the adapter is **unavailable**, and it says so the way AIAX-v0
+ * says every non-answer is said. It used to throw here; in the default build that made the
+ * first open-ended attempt a crash — exactly the "core fails because AI is absent" outcome V1
+ * criterion 8 rules out (APHX-v0).
  */
 class AiEvaluator : EvaluatorPort {
+    val availability: EvaluatorAvailability = EvaluatorAvailability.UNAVAILABLE
+
     override fun evaluate(request: EvaluationRequest): EvaluationResult =
-        TODO("AI call sites are 14; 10A only fixes the module boundary and the wiring seam.")
+        EvaluationResult.EvaluationPending(PendingReason.UNAVAILABLE)
 }

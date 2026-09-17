@@ -1,0 +1,508 @@
+model: APHX-v0
+stage_step: 10E
+decision: D-086
+result: PASS
+checks_total: 152
+checks_passed: 152
+checks_failed: 0
+cross_cutting_states: 6
+health_actions: 1
+checks:
+- check: E10E-00_exists_StoreHealth.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\StoreHealth.kt
+- check: E10E-00_exists_StoreStartup.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\StoreStartup.kt
+- check: E10E-00_exists_AppHealth.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\AppHealth.kt
+- check: E10E-00_exists_StoreOpener.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\StoreOpener.kt
+- check: E10E-00_exists_Backup.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\Backup.kt
+- check: E10E-00_exists_Migrations.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+- check: E10E-00_exists_AiEvaluator.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\ai-adapter\src\main\kotlin\coach\ai\AiEvaluator.kt
+- check: E10E-00_exists_HealthSurface.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\HealthSurface.kt
+- check: E10E-00_exists_MainActivity.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+- check: E10E-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: E10E-00_exists_AppGraph.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\AppGraph.kt
+- check: E10E-00_exists_StoreStartupTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\StoreStartupTest.kt
+- check: E10E-00_exists_AppHealthTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\AppHealthTest.kt
+- check: E10E-00_exists_AiEvaluatorTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\ai-adapter\src\test\kotlin\coach\ai\AiEvaluatorTest.kt
+- check: E10E-00_exists_APP_HEALTH_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\APP_HEALTH_SPEC.md
+- check: E10E-00_exists_10e_app_health_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\10e_app_health_research.md
+- check: E10E-01_model
+  result: PASS
+  details: APHX-v0
+- check: E10E-01_status
+  result: PASS
+  details: accepted_10e
+- check: E10E-01_decision
+  result: PASS
+  details: D-086
+- check: E10E-01_scope_persistence_rules_changed
+  result: PASS
+  details: persistence_rules_changed=False
+- check: E10E-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E10E-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E10E-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E10E-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E10E-01_scope_restore_ui_implemented
+  result: PASS
+  details: restore_ui_implemented=False
+- check: E10E-01_noclaim_startup_time_claim
+  result: PASS
+  details: startup_time_claim=None
+- check: E10E-01_noclaim_integrity_check_time_claim
+  result: PASS
+  details: integrity_check_time_claim=None
+- check: E10E-01_noclaim_database_size_claim
+  result: PASS
+  details: database_size_claim=None
+- check: E10E-02_states_are_uxia
+  result: PASS
+  details: kotlin=['loading', 'empty_valid', 'error_recoverable', 'offline_local_available',
+    'ai_unavailable_core_available', 'data_recovery_required'] ia=['loading', 'empty_valid',
+    'error_recoverable', 'offline_local_available', 'ai_unavailable_core_available',
+    'data_recovery_required']
+- check: E10E-02_contract_states
+  result: PASS
+  details: contract=['loading', 'empty_valid', 'error_recoverable', 'offline_local_available',
+    'ai_unavailable_core_available', 'data_recovery_required']
+- check: E10E-03_tone_loading
+  result: PASS
+  details: kotlin='Tone.NEUTRAL)' vdsx=neutral
+- check: E10E-03_tone_empty_valid
+  result: PASS
+  details: kotlin='Tone.NEUTRAL)' vdsx=neutral
+- check: E10E-03_tone_error_recoverable
+  result: PASS
+  details: kotlin='SystemFaultState.ERROR_RECOVERABLE.tone)' vdsx=system_fault
+- check: E10E-03_tone_offline_local_available
+  result: PASS
+  details: kotlin='Tone.NEUTRAL)' vdsx=neutral
+- check: E10E-03_tone_ai_unavailable_core_available
+  result: PASS
+  details: kotlin='Tone.NEUTRAL)' vdsx=neutral
+- check: E10E-03_tone_data_recovery_required
+  result: PASS
+  details: kotlin='SystemFaultState.DATA_RECOVERY_REQUIRED.tone)' vdsx=system_fault
+- check: E10E-03_fault_allowlist
+  result: PASS
+  details: vdsx=['data_recovery_required', 'error_recoverable']
+- check: E10E-04_recovery_first_in_thux
+  result: PASS
+  details: '[''data_recovery_required'', ''valid_resumable_focused_session'']'
+- check: E10E-04_recovery_blocks
+  result: PASS
+  details: a recovery state must block normal use
+- check: E10E-04_error_offers_retry
+  result: PASS
+  details: error_recoverable must offer a safe retry
+- check: E10E-04_ai_unavailable_not_blocking
+  result: PASS
+  details: AI unavailability must never block, and must be claimed only for a ready
+    store
+- check: E10E-04_shell_follows_normal_use
+  result: PASS
+  details: the shell must be shown exactly when normal use is available
+- check: E10E-05_single_action
+  result: PASS
+  details: actions=['RECHECK']
+- check: E10E-05_no_destructive_action
+  result: PASS
+  details: actions=['RECHECK']
+- check: E10E-05_upstream_no_silent_reset
+  result: PASS
+  details: LFPS-v0 and THUX-v0 forbid silent reset
+- check: E10E-05_opener_never_deletes
+  result: PASS
+  details: the opener must not delete, drop or truncate anything
+- check: E10E-06_activity_does_not_open
+  result: PASS
+  details: MainActivity must not open, or resolve the path of, the store
+- check: E10E-06_graph_has_no_open
+  result: PASS
+  details: a synchronous AppGraph.open must not exist
+- check: E10E-06_wiring_no_throwing_open
+  result: PASS
+  details: the product must use StoreOpener, never the throwing open
+- check: E10E-06_open_runs_in_background
+  result: PASS
+  details: the opener must be invoked inside the background executor
+- check: E10E-06_application_owns_startup
+  result: PASS
+  details: the process, not the activity, must own the store startup
+- check: E10E-06_path_resolved_off_main
+  result: PASS
+  details: the database path must be resolved inside the background opener
+- check: E10E-06_activity_observes
+  result: PASS
+  details: the activity observes and stops observing
+- check: E10E-06_debug_strictmode
+  result: PASS
+  details: debug builds must detect disk access on the main thread
+- check: E10E-06_opener_defect_contained
+  result: PASS
+  details: an opener defect must become a status, not a crash
+- check: E10E-07_ports_unchanged
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E10E-07_ui_no_persistence
+  result: PASS
+  details: app-ui must not reach persistence or the startup
+- check: E10E-07_ui_does_not_decide
+  result: PASS
+  details: app-ui must render the health core computed
+- check: E10E-07_status_is_core_type
+  result: PASS
+  details: the status and its reason must be core-model types
+- check: E10E-07_core_application_platform_free
+  result: PASS
+  details: core-application must stay free of Android
+- check: E10E-08_upstream_integrity_points
+  result: PASS
+  details: '{''integrity_checked_on_open'': True, ''integrity_checked_after_migration'':
+    True, ''integrity_checked_after_restore'': True, ''corruption_surfaces_state'':
+    ''data_recovery_required'', ''silent_progress_reset'': False, ''recovery_restores_last_durable_checkpoint'':
+    True, ''recovery_offers_backup_restore_when_insufficient'': True, ''unpersisted_work_claimed_as_saved'':
+    False, ''inconsistent_projection_repair'': ''recomputation'', ''inconsistent_projection_reset'':
+    False, ''recomputation_surfaces_state'': ''recomputing_projection''}'
+- check: E10E-08_check_before_migration
+  result: PASS
+  details: quick check, then migration, then full check — in that order
+- check: E10E-08_foreign_keys_checked
+  result: PASS
+  details: foreign-key consistency must be checked
+- check: E10E-08_full_check_is_integrity_check
+  result: PASS
+  details: both SQLite checks must be used where the contract says
+- check: E10E-08_reason_travels_as_type
+  result: PASS
+  details: the recovery reason must travel as a type, not a parsed message
+- check: E10E-08_unopenable_is_recoverable
+  result: PASS
+  details: a file that cannot be opened at all is error_recoverable
+- check: E10E-08_unreadable_is_recovery
+  result: PASS
+  details: a file that fails while reading is data_recovery_required
+- check: E10E-09_upstream_restore_rules
+  result: PASS
+  details: '{''user_initiated'': True, ''automatic_cloud_upload_in_v1'': False, ''export_complete_enough_to_reconstruct_profile'':
+    True, ''export_includes'': [''truth_records'', ''exposure_records'', ''provenance'',
+    ''curriculum_version_pins'', ''preferences''], ''export_requires_derived_state'':
+    False, ''export_omission_loses_information'': False, ''export_records_schema_version'':
+    True, ''export_records_policy_version'': True, ''export_stays_on_device_unless_user_moves_it'':
+    True, ''restore_atomic'': True, ''restore_verified_before_replacing'': True, ''restore_verification'':
+    [''structural_integrity'', ''version_compatibility''], ''restore_from_older_schema_runs_forward_migration'':
+    True, ''restore_from_newer_schema'': ''refused'', ''restore_silently_merges'':
+    False, ''profile_replacement_is_explicit'': True}'
+- check: E10E-09_upstream_tvsx
+  result: PASS
+  details: '{''export_reconstructs_profile'': True, ''export_records_schema_and_policy_version'':
+    True, ''export_contains_api_key'': False, ''restore_atomic'': True, ''restore_verified_before_replacing'':
+    True, ''corrupted_or_newer_archive_leaves_profile_untouched'': True, ''silent_merge_possible'':
+    False, ''silent_reset_possible'': False}'
+- check: E10E-09_verify_before_replace
+  result: PASS
+  details: the candidate must be verified before the live file is replaced
+- check: E10E-09_works_on_a_copy
+  result: PASS
+  details: the archive itself must never be opened or migrated
+- check: E10E-09_atomic_rename
+  result: PASS
+  details: the live file must be replaced by one atomic rename
+- check: E10E-09_newer_refused
+  result: PASS
+  details: a newer archive must be refused
+- check: E10E-09_not_a_profile_refused
+  result: PASS
+  details: a database that is not a profile must be refused
+- check: E10E-09_no_merge
+  result: PASS
+  details: restore must replace, never merge
+- check: E10E-09_reopened_after_restore
+  result: PASS
+  details: integrity is checked after restore by reopening through the opener
+- check: E10E-09_export_verified
+  result: PASS
+  details: an export must be verified when it is made
+- check: E10E-09_old_journal_set_aside
+  result: PASS
+  details: a journal beside the old live file must not be replayed into the restored
+    one
+- check: E10E-09_controls_in_profile_owned_by_16D
+  result: PASS
+  details: UXIA-v0 homes backup/export/restore in Profile; its controls are 16D's
+- check: E10E-10_upstream_unavailable_pending
+  result: PASS
+  details: '{''id'': ''unavailable'', ''writes_evidence'': False, ''degrades_to'':
+    ''evaluation_pending''}'
+- check: E10E-10_adapter_does_not_throw
+  result: PASS
+  details: the adapter must not throw where AIAX-v0 says unavailable
+- check: E10E-10_adapter_pending_unavailable
+  result: PASS
+  details: an adapter without call sites is evaluation_pending(unavailable)
+- check: E10E-10_both_builds_report_availability
+  result: PASS
+  details: both evaluator source sets must report availability
+- check: E10E-11_t2_a file that is not a database surfaces recov
+  result: PASS
+  details: 'missing T2 test: a file that is not a database surfaces recovery and is
+    left untouched'
+- check: E10E-11_t2_a truncated database surfaces recovery and i
+  result: PASS
+  details: 'missing T2 test: a truncated database surfaces recovery and is left untouched'
+- check: E10E-11_t2_a corrupted evidence page behind a valid hea
+  result: PASS
+  details: 'missing T2 test: a corrupted evidence page behind a valid header surfaces
+    recovery and is left untouched'
+- check: E10E-11_t2_a foreign key violation written behind the e
+  result: PASS
+  details: 'missing T2 test: a foreign key violation written behind the engine''s
+    back surfaces recovery'
+- check: E10E-11_t2_damage only the full check can see is caught
+  result: PASS
+  details: 'missing T2 test: damage only the full check can see is caught after a
+    migration'
+- check: E10E-11_t2_a newer schema surfaces recovery and is left
+  result: PASS
+  details: 'missing T2 test: a newer schema surfaces recovery and is left untouched'
+- check: E10E-11_t2_a migration that cannot complete surfaces re
+  result: PASS
+  details: 'missing T2 test: a migration that cannot complete surfaces recovery and
+    leaves the older store as it was'
+- check: E10E-11_t2_an opener never throws whatever it finds
+  result: PASS
+  details: 'missing T2 test: an opener never throws whatever it finds'
+- check: E10E-11_t2_backup then restore onto a clean install pre
+  result: PASS
+  details: 'missing T2 test: backup then restore onto a clean install preserves truth
+    row for row'
+- check: E10E-11_t2_restore replaces the live profile entirely a
+  result: PASS
+  details: 'missing T2 test: restore replaces the live profile entirely and never
+    merges'
+- check: E10E-11_t2_an older archive is migrated forward on a co
+  result: PASS
+  details: 'missing T2 test: an older archive is migrated forward on a copy and restored
+    with its truth intact'
+- check: 'E10E-11_t2_a corrupted archive is refused and the live '
+  result: PASS
+  details: 'missing T2 test: a corrupted archive is refused and the live profile is
+    untouched'
+- check: E10E-11_t2_an archive from a newer schema is refused ra
+  result: PASS
+  details: 'missing T2 test: an archive from a newer schema is refused rather than
+    restored best effort'
+- check: E10E-11_t2_a database that is not a profile is refused
+  result: PASS
+  details: 'missing T2 test: a database that is not a profile is refused'
+- check: E10E-11_t2_no column in an archive can hold a credentia
+  result: PASS
+  details: 'missing T2 test: no column in an archive can hold a credential'
+- check: E10E-11_bytes_compared
+  result: PASS
+  details: no-reset and untouched-profile claims must compare bytes
+- check: E10E-11_quick_check_precondition
+  result: PASS
+  details: the full-check fixture must prove quick_check passes first
+- check: E10E-12_test_start returns at once and the open runs on a
+  result: PASS
+  details: 'missing test: start returns at once and the open runs on another thread'
+- check: E10E-12_test_starting twice opens once, so recreating the
+  result: PASS
+  details: 'missing test: starting twice opens once, so recreating the activity never
+    reopens the database'
+- check: 'E10E-12_test_an opener that throws becomes a recoverable '
+  result: PASS
+  details: 'missing test: an opener that throws becomes a recoverable failure instead
+    of a crash'
+- check: E10E-12_test_AI being unavailable never blocks and is onl
+  result: PASS
+  details: 'missing test: AI being unavailable never blocks and is only claimed alongside
+    a working core'
+- check: E10E-12_test_no health action can reset delete or recreat
+  result: PASS
+  details: 'missing test: no health action can reset delete or recreate the learner''s
+    data'
+- check: E10E-12_test_an adapter without call sites degrades to ev
+  result: PASS
+  details: 'missing test: an adapter without call sites degrades to evaluation pending
+    instead of throwing'
+- check: E10E-12_latch_proves_async
+  result: PASS
+  details: the off-thread claim must be proven with a blocked opener
+- check: E10E-12_upstream_negatives
+  result: PASS
+  details: TVSX-v0 NEG-06 and NEG-07
+- check: E10E-13_every_state_labelled
+  result: PASS
+  details: labelled=['LOADING', 'EMPTY_VALID', 'ERROR_RECOVERABLE', 'OFFLINE_LOCAL_AVAILABLE',
+    'AI_UNAVAILABLE_CORE_AVAILABLE', 'DATA_RECOVERY_REQUIRED']
+- check: E10E-13_every_reason_explained
+  result: PASS
+  details: reasons=['INTEGRITY_CHECK_FAILED', 'NEWER_SCHEMA', 'MIGRATION_INCOMPLETE']
+    explained=['INTEGRITY_CHECK_FAILED', 'NEWER_SCHEMA', 'MIGRATION_INCOMPLETE']
+- check: E10E-13_nothing_reset_said
+  result: PASS
+  details: the recovery screen must say nothing was reset
+- check: E10E-13_announced
+  result: PASS
+  details: a state change must be announced
+- check: E10E-13_chip_renders_text
+  result: PASS
+  details: the state is rendered as text through the chip
+- check: E10E-13_touch_target
+  result: PASS
+  details: actions keep the 48dp floor
+- check: E10E-14_ci_core_application
+  result: PASS
+  details: T1 must run the new core tests
+- check: E10E-14_ci_adapter_test
+  result: PASS
+  details: CI must run the adapter test
+- check: E10E-14_ci_t2
+  result: PASS
+  details: CI must run T2
+- check: E10E-15_device_not_claimed
+  result: PASS
+  details: no device result may be claimed when the device was not connected
+- check: E10E-15_mutation_all_detected
+  result: PASS
+  details: '{''total'': 16, ''detected'': 16}'
+- check: E10E-15_runs_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS'', ''RUN-05'': ''PASS'', ''RUN-06'': ''PASS''}'
+- check: E10E-15_undetected_gaps_recorded
+  result: PASS
+  details: what this step does not verify must be written down
+- check: E10E-15_boundary_16D
+  result: PASS
+  details: missing 16D
+- check: E10E-15_boundary_19B
+  result: PASS
+  details: missing 19B
+- check: E10E-15_boundary_14
+  result: PASS
+  details: missing 14
+- check: E10E-15_boundary_12
+  result: PASS
+  details: missing 12
+- check: E10E-15_boundary_11
+  result: PASS
+  details: missing 11
+- check: E10E-15_boundary_18E
+  result: PASS
+  details: missing 18E
+- check: E10E-16_forbidden_opening_the_store_on_the_main_thread
+  result: PASS
+  details: missing=opening_the_store_on_the_main_thread
+- check: E10E-16_forbidden_crashing_on_data_recovery_required
+  result: PASS
+  details: missing=crashing_on_data_recovery_required
+- check: E10E-16_forbidden_a_reset_or_start_fresh_action_on_a_recov
+  result: PASS
+  details: missing=a_reset_or_start_fresh_action_on_a_recovery_screen
+- check: E10E-16_forbidden_migrating_before_checking_integrity
+  result: PASS
+  details: missing=migrating_before_checking_integrity
+- check: E10E-16_forbidden_classifying_a_failure_by_parsing_its_mes
+  result: PASS
+  details: missing=classifying_a_failure_by_parsing_its_message
+- check: E10E-16_forbidden_restoring_by_merging
+  result: PASS
+  details: missing=restoring_by_merging
+- check: E10E-16_forbidden_verifying_or_migrating_the_archive_in_pl
+  result: PASS
+  details: missing=verifying_or_migrating_the_archive_in_place
+- check: E10E-16_forbidden_claiming_ai_unavailable_while_the_core_i
+  result: PASS
+  details: missing=claiming_ai_unavailable_while_the_core_is_not_available
+- check: E10E-16_forbidden_claiming_a_device_result_that_was_not_ru
+  result: PASS
+  details: missing=claiming_a_device_result_that_was_not_run
+- check: E10E-17_spec_**Status:** ACCEPTED — indep
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 10E QA PASS'
+- check: E10E-17_spec_**Decision:** `D-086`
+  result: PASS
+  details: missing='**Decision:** `D-086`'
+- check: E10E-17_spec_data_recovery_required
+  result: PASS
+  details: missing='data_recovery_required'
+- check: E10E-17_spec_quick_check
+  result: PASS
+  details: missing='quick_check'
+- check: E10E-17_spec_integrity_check
+  result: PASS
+  details: missing='integrity_check'
+- check: E10E-17_spec_16D
+  result: PASS
+  details: missing='16D'
+- check: E10E-17_spec_byte for byte
+  result: PASS
+  details: missing='byte for byte'
+- check: E10E-18_research_TODO()
+  result: PASS
+  details: missing='TODO()'
+- check: E10E-18_research_quick_check
+  result: PASS
+  details: missing='quick_check'
+- check: E10E-18_research_16D
+  result: PASS
+  details: missing='16D'
+- check: E10E-18_research_19B
+  result: PASS
+  details: missing='19B'
+- check: E10E-19_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E10E-19_build_must_be_run_not_asserted
+  result: PASS
+  details: build_must_be_run_not_asserted=True
+- check: E10E-19_no_reset_proven_by_bytes
+  result: PASS
+  details: no_reset_proven_by_bytes=True
+- check: E10E-19_stage9_regression_required
+  result: PASS
+  details: stage9_regression_required=True
+- check: E10E-19_stage10abcd_regression_required
+  result: PASS
+  details: stage10abcd_regression_required=True
+failures: []

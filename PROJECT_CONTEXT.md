@@ -208,12 +208,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **10B ✅ Navigation — NSHX-v0 / D-083**
 - **10C ✅ Design system implementation — DSIX-v0 / D-084**
 - **10D ✅ Local database — LDBX-v0 / D-085**
-- **10E 🟡 Temel uygulama sağlığı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 11–20 ⬜
+- **10E ✅ Temel uygulama sağlığı — APHX-v0 / D-086**
+- **AŞAMA 10 ✅ TAMAMLANDI**
+- **11A 🟡 Today ekranı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 11B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 10E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 11A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -316,6 +318,12 @@ Canonical: `docs/DESIGN_SYSTEM_IMPL_SPEC.md` / D-084.
 `DDM-v0`nin fiziksel şeması gerçek bir SQLite veritabanı oldu. Ana invariant: **storage engine, mimarinin yasakladığını reddeder** — append-only truth, değişmez curriculum, version pinning ve kalıcı exposure, çağıran kodun uyacağına güvenilen kurallar değil, SQLite'ın reddettiği ifadelerdir ve her ret denenerek kanıtlanır. **İlk taslak yanlıştı ve bu kaydedildi:** şema kontrattan değil önceki adımların hafızasından yazılmıştı ve kendi testleri aynı taslağa karşı yazıldığı için geçiyordu. Validator yazılırken taslak `data_model.yaml`a karşı okununca sapmalar çıktı — outcome ekseninde 10A'nın evaluator **sinyali** enum'u (`met/not_met…`) kullanılmıştı oysa kabul edilmiş değerler `positive/negative/partial/invalid`; iki eksende değerler eksikti; offset saniye tutuluyordu oysa alan `utc_offset_minutes`; 12 truth entity yerine 4 tablo vardı. Şema kabulden önce yeniden yazıldı. Kalıcı ders: bir taslağa karşı yazılmış suite o taslağın kontratı yanlış okumasını yakalayamaz, yalnız kontratı okuyan bir check yakalar. Library API'si hatırlamadan değil çözülmüş jar'dan `javap` ile okundu. Üç store bölgesi DDM ile birebir: 11 değişmez curriculum, 13 append-only truth ve 8 yeniden kurulabilir projection tablosu; user truth'tan curriculum'a foreign key yok. Her truth ve curriculum tablosunda abort eden UPDATE/DELETE trigger'ları envanterden üretiliyor. Her DDM değer kümesi aynı Kotlin listesinden üretilen bir CHECK. Pinning yapısal. Offset dakika tutuluyor ve tam dakika olmayan bir değer kesilmek yerine reddediliyor. Tek global truth sequence projection watermark'ı; her projection satırında tam provenance var ve port tipi de taşıyor. Migration ileri-yönlü ve transaction'lı, dolu fixture'a karşı satır satır içerikle test edildi. Adapter kolon gereksinimlerini SQLite'tan okuyor, kendi listesini tutmuyor. Aynı şema JVM'de ve cihazda koşuyor — arm64-v8a native kütüphanesi APK içinde doğrulandı. 22 T2 check; mutation 9/9, biri başta kaçtı ve test güçlendirildi.
 
 Canonical: `docs/LOCAL_DATABASE_SPEC.md` / D-085.
+
+## 12.12 10E Temel uygulama sağlığı — APHX-v0 / D-086
+
+Uygulama dürüst bir başlangıç kazandı ve **AŞAMA 10 kapandı**. Ana invariant: **store'un hiçbir arızası çökme değildir ve hiçbir arızası reset değildir.** Handoff iki sorun söylüyordu — veritabanı main thread'de açılıyordu ve `DataRecoveryRequired` bir çökmeydi — ama kod kontratlara karşı okununca iki sorun daha çıktı: `LFPS-v0` §12'nin şart koştuğu **açılışta bütünlük kontrolü yoktu**, ve **varsayılan build'in AI adaptörü `TODO()` ile çökecekti** — CI'ın normal build dediği adaptörlü build güvensiz olandı. Store artık sürecin: `CoachApplication` bir `StoreStartup`ı bir kez, arka plan thread'inde başlatıyor ve activity'ler yalnız gözlüyor; orkestrasyon `core-application`da olduğu için "çağıranın thread'inde açılmaz" latch'te tutulan bir opener ile JVM testinde kanıtlanıyor. Yeni port eklenmedi. `StoreOpener` asla fırlatmıyor ve **yazmadan önce kontrol ediyor**: `quick_check` + `foreign_key_check`, sonra ileri migration, migration koştuysa tam `integrity_check` — iki kontrol arasındaki fark varsayılmadı, yalnız tam kontrolün görebildiği bir index fixture'ı ile kanıtlandı. Sebep `core-model` tipi olarak taşınıyor, mesaj ayrıştırılmıyor. **"Hiçbir şey sıfırlanmadı" byte ile kanıtlanıyor**: yedi bozulma/versiyon biçiminin her birinde dosya önce ve sonra byte byte karşılaştırılıyor, çünkü yalnız status assert eden bir test recovery raporlayıp sessizce boş veritabanı yaratan bir opener'ı geçirirdi. Öğrenci `UXIA-v0`nin altı cross-cutting state'ini `VDSX-v0` tonlarıyla görüyor; shell yalnız normal kullanım mümkünken çiziliyor; `ai_unavailable_core_available` yalnız core çalışırken üretiliyor; **tek aksiyon `RECHECK` ve reset temsil edilemez**. Kullanıcının kararıyla restore **mekanizması** burada kuruldu, Profile kontrolleri 16D'de: arşiv ürünün kendi şemasında; export yapıldığı an doğrulanıyor; restore arşivi kopyalayıp yalnız kopyayı doğruluyor ve migrate ediyor, tek atomik rename ile değiştiriyor, eski canlı dosyanın hot journal'ını önce kenara alıyor ve reddedilen arşiv hem canlı profili hem arşivi byte byte değiştirmiyor. Mutation 16/16, ama ikisi başta yaşadı: sahte journal SQLite için hot değildi ve tablo kümesi kontrolü hiç egzersiz edilmiyordu — iki test de güçlendirildi. **T6 çalıştırılmadı**; telefon bağlı değildi ve hiçbir cihaz sonucu iddia edilmiyor.
+
+Canonical: `docs/APP_HEALTH_SPEC.md` / D-086.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

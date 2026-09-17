@@ -201,6 +201,7 @@ class TransactionAndMigrationTest {
         )
         val failure = assertFailsWith<Migrations.DataRecoveryRequired> { Migrations.migrate(connection) }
         assertTrue("previous state left intact" in failure.message.orEmpty())
+        assertEquals(coach.model.RecoveryReason.MIGRATION_INCOMPLETE, failure.reason)
         assertEquals(1, Migrations.currentVersion(connection), "a partial migration moved or erased the schema version")
         val leftover = connection.prepare(
             "SELECT COUNT(*) FROM sqlite_master WHERE type = 'index' AND name = 'evidence_by_skill'"
@@ -223,6 +224,7 @@ class TransactionAndMigrationTest {
         }
         val failure = assertFailsWith<Migrations.DataRecoveryRequired> { SqlitePersistence.open(file.absolutePath) }
         assertTrue("downgrade is not supported" in failure.message.orEmpty())
+        assertEquals(coach.model.RecoveryReason.NEWER_SCHEMA, failure.reason)
     }
 
     @Test
