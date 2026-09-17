@@ -50,9 +50,10 @@ jobs:
         run: ./gradlew :data-persistence:test
 
       # T5 — the adapter degrades to evaluation_pending instead of throwing; AI absence is never a
-      # crash in the default build either (AIAX-v0, APHX-v0).
-      - name: T5 AI adapter
-        run: ./gradlew :ai-adapter:test
+      # crash in the default build either (AIAX-v0, APHX-v0). The content adapter is here for the
+      # same reason: asking for unpublished curriculum is a missing resource, not a crash (11A).
+      - name: T5 adapters
+        run: ./gradlew :ai-adapter:test :data-curriculum:test
 
       # T5 — the null-evaluator path is proven by building the product without the adapter,
       # not by stubbing it. This is V1 criterion 8 as wiring (MSBX-v0, TVSX-v0 T5-NULLEVAL-01).

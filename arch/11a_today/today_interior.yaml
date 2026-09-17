@@ -1,0 +1,319 @@
+model: TDYX-v0
+stage_step: 11A
+status: accepted_11a
+decision: D-087
+today_home: THUX-v0
+information_architecture: UXIA-v0
+design_system: VDSX-v0
+geometry: WFPX-v0
+boundaries: MSBX-v0
+app_health: APHX-v0
+local_database: LDBX-v0
+task_taxonomy: TASK_TAXONOMY_SPEC
+purpose: today_interior_as_a_projection_of_canonical_truth
+
+scope:
+  today_interior_only: true
+  planner_implemented: false
+  mastery_engine_implemented: false
+  capacity_setting_implemented: false
+  curriculum_ingestion_implemented: false
+  task_runner_entry_implemented: false
+  surface_semantics_changed: false
+  boundaries_changed: false
+  ports_added: false
+  schema_changed: false
+  task_row_count_claim: null
+  pixel_geometry_claim: null
+  startup_time_claim: null
+
+today_question: What should I do now — and what is true when the answer is nothing?
+
+primary_invariant: >-
+  Today is a projection of canonical planner and state truth. It computes nothing it was not given,
+  so it cannot become a second planner, mastery engine, prerequisite engine, gradebook or English
+  quota system.
+
+found_before_11a:
+  - id: content_port_threw
+    was: FileContentSource.resource was TODO(), so the first caller asking for unpublished content would crash
+    fixed_here: returns null, which is ContentPort's own word for a missing resource
+    same_class_as: the AiEvaluator TODO() found at 10E
+  - id: surface_registry_init_order
+    was: Surface.all was an initialised val, so a module referencing a surface from its own initialiser got a registry containing nulls
+    found_by: 11A referencing Surface from TodayView's companion; NavigationTest failed with a NullPointerException
+    fixed_here: the registry is computed on access, and a structural test fails if it becomes an eager field again
+    same_class_as: the Kotlin initialisation-order defect 10D hit with truthGuards()
+
+vocabularies:
+  semantic_states:
+    source: THUX-v0 semantic_states
+    count: 12
+    order_is_source_order: true
+  primary_action_precedence:
+    source: THUX-v0 primary_action_precedence
+    count: 6
+    order_is_source_order: true
+  task_purposes:
+    source: TASK_TAXONOMY_SPEC section 3.1
+    values: [teach, practice, assess, remediate, retain, diagnose, reinforce]
+    english_is_a_purpose: false
+  reason_families:
+    source: THUX-v0 section 7.1
+    count: 8
+    free_text_field_exists: false
+    rationale: a closed vocabulary makes a free-form AI justification unrepresentable rather than merely forbidden
+  attention_families:
+    source: THUX-v0 attention_context allowed_families
+    count: 7
+  dispositions: [current, upcoming, paused]
+  region_order:
+    source: WFPX-v0 today_overview region_order
+    value: [primary_action, day_plan_context, remaining_plan, attention_context, supporting_navigation]
+
+state_tones:
+  source: VDSX-v0 surface_state_tones
+  copied_not_chosen: true
+  fault_tone_states: [error_recoverable, data_recovery_required]
+  empty_or_waiting_state_is_fault: false
+  resumable_session: active
+
+truthfulness_rules:
+  stale_plan_rendered_as_today: false
+  stale_plan_handling: a plan from another study day is never rendered; the state says a fresh plan is owed
+  blocked_task_actionable: false
+  blocked_task_listed: false
+  all_blocked_plan_state: empty_no_eligible_task
+  replan_exposes_previous_plan: false
+  recovery_renders_plan_rows: false
+  unrevalidated_session_offered: false
+  reason_without_trace_fact: false
+  overview_primary_reason_count: 1
+  overview_supporting_reason_max: 1
+  capacity_verdict_derived_in_presentation: false
+  capacity_verdict_source: planner_reported_fact
+  ai_unavailable_supersedes_valid_plan: false
+  ai_unavailable_is_context: true
+  attention_duplicates_primary_task_subject: false
+  attention_dropped_when_primary_purpose_represents_it: [remediate, retain, assess]
+  empty_state_implies_mastery: false
+  empty_state_implies_professional_readiness: false
+  missed_day_creates_debt: false
+
+empty_valid:
+  produced_here: true
+  deferred_from: 10E
+  condition: no curriculum version has been published
+  distinguished_from: loading_initial_plan when a curriculum exists but no plan has been produced
+
+read_path:
+  module: core-application
+  type: read_only
+  writes: 0
+  study_day_source: ClockPort
+  curriculum_published_source: persistence
+  plan_read: false
+  plan_read_reason: >-
+    a Today row needs the task's purpose, its trace-backed reason and its estimated duration, and
+    DDM-v0's planned_task carries none of those columns yet — 10D recorded them as 12's to complete
+    with the planner that writes them. Reading the partial rows and filling the rest with plausible
+    defaults is how a screen starts claiming what no engine decided.
+  capacity_read: false
+  capacity_read_reason: capacity is a Profile setting owned by 16D and nothing stores one yet
+  runs_off_main_thread: true
+  refreshed_on_resume: true
+  refresh_reason: a process kept open past midnight would otherwise keep yesterday's study day
+
+port_refinement:
+  port: PersistencePort
+  added: [curriculumPublished]
+  new_port: false
+  port_count_unchanged: 4
+  expressed_in_core_types: true
+  precedent: LDBX-v0 refined ProjectionRecord without adding a port
+
+module_placement:
+  facts_and_vocabularies: core-model
+  read_path: core-application
+  projection: core-presentation
+  rendering: app-ui
+  composition: app-wiring
+  rationale: >-
+    core-application may not depend on core-presentation, so the facts both need live in core-model
+    and the presentation input is assembled by a core-presentation function rather than in wiring.
+
+tests:
+  t1_core_presentation: 27
+  t1_core_application: 4
+  t1_data_curriculum: 1
+  t2_persistence_added: 1
+  new_in_11a:
+    TodayPresentationTest: 27
+    TodayFactsQueryTest: 4
+    FileContentSourceTest: 1
+    NavigationTest_registry_guard: 1
+    TransactionAndMigrationTest_curriculum_published: 1
+  skipped: 0
+  failures: 0
+
+mutation_results:
+  total: 16
+  detected: 16
+  mutants:
+    - {id: M01, mutant: stale_plan_rendered_as_today}
+    - {id: M02, mutant: blocked_task_offered}
+    - {id: M03, mutant: unrevalidated_session_accepted}
+    - {id: M04, mutant: reason_invented_without_trace}
+    - {id: M05, mutant: ai_absence_blocks_today}
+    - {id: M06, mutant: replan_shows_the_plan_it_replaces}
+    - {id: M07, mutant: recovery_no_longer_supersedes}
+    - {id: M08, mutant: capacity_verdict_derived_not_reported}
+    - {id: M09, mutant: attention_duplicates_primary}
+    - {id: M10, mutant: supporting_navigation_dropped}
+    - {id: M11, mutant: empty_day_wears_the_fault_tone}
+    - {id: M12, mutant: query_invents_capacity}
+    - {id: M13, mutant: query_invents_plan}
+    - {id: M14, mutant: curriculum_always_published}
+    - {id: M15, mutant: content_port_throws_again}
+    - {id: M16, mutant: surface_registry_eager_again}
+  survived_at_first:
+    - mutant: M08
+      original_weakness: the test reached the loading branch before the capacity branch, so the derived verdict was never evaluated
+      fix: the case now has a plan present, which is the only way the state selection reaches the capacity branch
+      found_by: mutation_testing
+    - mutant: M09
+      original_weakness: >-
+        the rule was written against the primary action kind, and the only test used the recovery
+        branch where the attention list is fixed anyway — so the de-duplication was never exercised
+        and was not implementing THUX-v0's actual rule
+      fix: the rule now compares the primary task's purpose with the attention family, with tests for a dropped and a kept item
+      found_by: mutation_testing
+    - mutant: M16
+      original_weakness: the initialisation-order fix had no check; the NullPointerException reproduces only in the load order that first exposed it
+      fix: a structural test asserts the registry has no backing field, so an eager list fails immediately
+      found_by: mutation_testing
+  invalid_first_attempt:
+    - mutant: M07
+      problem: the first version added an unused parameter and changed no behaviour, which is not a detection
+      fix: rewritten to stop health from blocking at all, and rerun
+
+validator_mutation:
+  total: 16
+  detected: 16
+  mutants: [state_order_changed, precedence_reordered, free_text_reason_field, mastery_field_on_row,
+            stale_plan_filter_removed, capacity_verdict_derived, fault_tone_on_empty_day,
+            english_becomes_a_purpose, query_invents_capacity, query_writes, ui_computes_projection,
+            registry_eager_again, fifth_port_added, read_moved_into_activity, content_port_throws,
+            device_result_claimed]
+  negative_control: the rule named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+  missed_at_first:
+    - mutant: stale_plan_filter_removed
+      problem: >-
+        the check looked for the study-day filter anywhere in the file, and the same expression also
+        appears in the queue builder, so a mutant that removed it from the primary path still passed
+      fix: the check now requires the filter in the projection body and in the queue body separately
+
+standing_gate_updated:
+  gate: tools/validate_app_health.py E10E-06_path_resolved_off_main
+  why: >-
+    11A renamed the composition root's opener when the same background job also began reading
+    Today's facts, and the 10E gate had pinned the function's name rather than the behaviour
+  change: it now finds the private opener the startup is given and requires the path resolution inside it
+  loosened: false
+  verified_by: re-running the gate against a mutant that resolves the path on the main thread, which still fails
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+    tests: 47
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+  note: >-
+    the phone was not connected during 11A either; nothing is claimed about how Today renders,
+    announces its state or scrolls on the device.
+
+not_verified:
+  - Today rendering on the device, including TalkBack traversal order and the announced state change
+  - the screen at 200% text scale on a real display
+  - any Today state other than the empty and loading ones on a real store, because no planner writes plans yet
+  - that the refresh on resume actually re-reads after a real midnight rollover on the device
+
+known_limits:
+  - {limit: no plan can be read until the planner writes rows whose columns exist, owner: 12}
+  - {limit: capacity has no storage and no settings surface, owner: 16D}
+  - {limit: curriculum ingestion is not implemented; the store reports nothing published, owner: 11D}
+  - {limit: starting a task does nothing yet; the Task Runner entry is the next step, owner: 11B}
+  - {limit: supporting navigation routes are rendered but open nothing yet, owner: 11B-11E}
+  - {limit: Turkish text is working microcopy, owner: 14}
+
+forbidden_today_patterns:
+  - rendering_a_plan_from_another_study_day
+  - offering_a_blocked_task_as_startable
+  - listing_blocked_work_as_a_permanent_backlog
+  - showing_the_previous_plan_while_replanning
+  - rendering_plan_rows_while_the_store_needs_recovery
+  - resuming_a_session_that_was_not_revalidated
+  - showing_a_reason_the_planner_never_recorded
+  - free_text_reason_field
+  - deriving_a_capacity_verdict_in_the_presentation
+  - letting_ai_absence_supersede_a_valid_local_plan
+  - repeating_the_primary_task_as_a_competing_attention_entry
+  - implying_mastery_or_readiness_from_an_empty_day
+  - a_mastery_percentage_score_streak_or_rank_field_on_a_row
+  - inventing_a_capacity_the_learner_never_chose
+  - inventing_a_plan_the_planner_never_produced
+
+future_stage_boundaries:
+  11B: task_runner_entry_and_start_action
+  11C: resume_checkpoint_content_and_session_state
+  11D: curriculum_ingestion_and_daily_micro_quiz
+  12: planner_and_mastery_engines_writing_plans_traces_and_capacity_summaries
+  13: assessment_session_interior
+  14: final_microcopy_and_offline_state
+  16D: capacity_settings_and_profile_controls
+  17: accessibility_polish_on_device
+
+acceptance:
+  required_previous_models:
+    - THUX-v0
+    - UXIA-v0
+    - VDSX-v0
+    - WFPX-v0
+    - MSBX-v0
+    - APHX-v0
+    - LDBX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  truthfulness_rules_must_be_mutation_tested: true
+  stage6_regression_required: true
+  stage7_regression_required: true
+  stage8_regression_required: true
+  stage9_regression_required: true
+  stage10_regression_required: true

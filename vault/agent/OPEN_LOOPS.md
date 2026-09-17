@@ -38,7 +38,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 10C Design system implementation: DSIX-v0 / D-084 ile tamamlandı; token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez, 48dp modifier ve %200 metin.
 - [x] 10D Local database: LDBX-v0 / D-085 ile tamamlandı; engine yasakları reddediyor, DDM ile birebir şema, transaction'lı ileri-yönlü migration dolu fixture'a karşı, arm64-v8a native kütüphane APK'da doğrulandı.
 - [x] 10E Temel uygulama sağlığı: APHX-v0 / D-086 ile tamamlandı; store arka planda bir kez açılıyor, bütünlük migration'dan önce, her hata state, no-reset byte ile kanıtlı, reset temsil edilemez. **AŞAMA 10 kapandı.**
-- [ ] 11A Today ekranı **AKTİF**: `THUX-v0` Today interior'u `APHX-v0` sağlık yolu üzerine; `empty_valid` burada üretilmeye başlar.
+- [x] 11A Today ekranı: TDYX-v0 / D-087 ile tamamlandı; Today kanonik gerçeğin projeksiyonu, bayat plan/blocked görev/doğrulanmamış oturum temsil edilemez, `empty_valid` üretiliyor.
+- [ ] 11B Task runner **AKTİF**: Today'in sunduğu başlat aksiyonunu `TRUX-v0`nin Task Runner girişine bağlamak.
+- [ ] Curriculum ingestion henüz yok; store hiçbir şey yayımlanmadığını bildiriyor → 11D, içerik 15.
+- [ ] `planned_task` purpose/trace/süre kolonlarını taşımıyor; Today plan okuyamıyor → 12.
 - [x] Backup/export ve atomik doğrulanmış restore sahipliği 10E'de netleşti: mekanizma 10E'de kuruldu ve T2'de doğrulandı.
 - [ ] Export/restore Profile kontrolleri (dosya seçimi, değiştirme onayı, ret metni, değiştirilen profilin saklanıp saklanmayacağı) → 16D.
 - [ ] Tüm profil kaybını tespit: sıfır uzunluklu veya eksik veritabanı ilk açılıştan ayırt edilemiyor; veritabanı dışında bir işaret gerekiyor → 19B.

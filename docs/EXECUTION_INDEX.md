@@ -143,8 +143,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 11 — Çekirdek Günlük Öğrenme Akışı MVP’sini Geliştir
-- [ ] **11A — Today ekranı** **AKTİF**
-- [ ] **11B — Task runner**
+- [x] **11A — Today ekranı** — `TDYX-v0 / D-087`
+- [ ] **11B — Task runner** **AKTİF**
 - [ ] **11C — Session state**
 - [ ] **11D — Günlük mikro quiz**
 - [ ] **11E — Gün sonu**
@@ -246,10 +246,10 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`  
-**Son tamamlanan:** **`10E — APHX-v0 / D-086`**  
-**Aktif:** **`11A — Today ekranı`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A`  
+**Son tamamlanan:** **`11A — TDYX-v0 / D-087`**  
+**Aktif:** **`11B — Task runner`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
-11A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+11B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

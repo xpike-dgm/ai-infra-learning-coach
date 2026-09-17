@@ -59,6 +59,8 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-084:** DSIX-v0 Design System Implementation; 10C tamamlandı.
 - **D-085:** LDBX-v0 Local Database; 10D tamamlandı.
 - **D-086:** APHX-v0 App Health; 10E tamamlandı ve AŞAMA 10 kapandı.
+- **D-087:** TDYX-v0 Today Interior; 11A tamamlandı ve AŞAMA 11 başladı.
+- **D-087:** TDYX-v0 Today Interior; 11A tamamlandı ve AŞAMA 11 başladı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -264,14 +266,15 @@ PEM-v0:
 - 10C ✅ DSIX-v0 / D-084
 - 10D ✅ LDBX-v0 / D-085
 - 10E ✅ APHX-v0 / D-086 — **AŞAMA 10 kapandı**
-- 11A 🟡 active-not-executed
-- 11B–20 ⬜
+- 11A ✅ TDYX-v0 / D-087
+- 11B 🟡 active-not-executed
+- 11C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `10E — APHX-v0 / D-086` — AŞAMA 10 tamamlandı  
-**Aktif:** `11A — Today ekranı`  
-**11A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `11A — TDYX-v0 / D-087`  
+**Aktif:** `11B — Task runner`  
+**11B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açi̇k onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -796,6 +799,24 @@ APHX-v0:
 
 **AŞAMA 10 TAMAMLANDI.**
 
-## 39. 11A handoff
+## 39. D-087 / 11A final özeti
 
-11A — Today ekranı. `THUX-v0`nin Today interior'u `APHX-v0`nin sağlık yolu üzerine kurulur: normal kullanım yalnız `AppHealth.showsShell` iken vardır ve `empty_valid` burada üretilmeye başlar. Açık loop'lar: export/restore Profile kontrolleri 16D, tüm profil kaybı tespiti 19B, açılış bütçeleri 18E, T6 cihaz koşusu hedef cihaz bağlandığında. 11A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TODAY_INTERIOR_SPEC.md`.
+Contract/QA: `arch/11a_today/`.
+Synthesis: `research/11a_today_research.md`.
+Code: `android/core-model/.../TodayFacts.kt`, `android/core-presentation/.../TodayPresentation.kt`, `android/core-application/.../TodayFactsQuery.kt`, `android/app-ui/.../TodayScreen.kt`.
+
+TDYX-v0:
+- Today is a projection of canonical planner and state truth and computes nothing it was not given; with the planner still at 12 it shows the truthful empty and loading states rather than inventing a plan,
+- reading the code against the contracts found two defects nobody had recorded: the content port threw `TODO()`, and the surface registry could hold nulls because it was an initialised field,
+- the twelve states, six-step precedence, seven purposes, eight reason families, seven attention families, the region order and the tones are copied from their owning contracts, in their order,
+- a stale plan, a blocked task, a replaced plan and an unrevalidated session are filtered out rather than styled differently, so the unsafe state has no code path,
+- a reason cannot be constructed without a planner trace fact and carries no free text; no row or capacity field can claim mastery; the capacity verdict is reported, never derived,
+- `empty_valid` is produced here and distinguished from `loading_initial_plan` and from the capacity states,
+- the read path is read-only, runs on the store thread, refreshes on resume, and invents neither a plan nor a capacity; `curriculumPublished()` is a recorded port refinement, not a fifth port,
+- 16/16 mutations caught, three only after their tests were strengthened; independent QA 150/150, validator mutation 16/16 with one miss found and narrowed; 32/32 sweep PASS,
+- T6 was not run: the phone was not connected, and no device result is claimed.
+
+## 40. 11B handoff
+
+11B — Task runner. Today artık hiçbir şey yapmayan bir başlat aksiyonu sunuyor; 11B `TRUX-v0`nin Task Runner girişini ve focused flow'u sahiplenir. Açık loop'lar: resume checkpoint içeriği 11C, curriculum ingestion 11D, planner ve plan satırları 12, kapasite ayarları 16D, T6 cihaz koşusu hedef cihaz bağlandığında. 11B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

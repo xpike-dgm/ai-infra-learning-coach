@@ -206,6 +206,16 @@ class SqlitePersistence private constructor(
     }
 
     /**
+     * Whether any curriculum version has been published. A published `skill` row is the anchor:
+     * `KGC-v0` makes the Skill the capability identity everything else attributes to, so a store
+     * with topics but no Skills has published nothing a learner can be planned against.
+     *
+     * Curriculum ingestion itself is not 11A's: this only reports what the store holds.
+     */
+    override fun curriculumPublished(): Boolean =
+        query("SELECT EXISTS (SELECT 1 FROM skill)") { it.getLong(0) == 1L }.single()
+
+    /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
      * projection is computed from (`DDM-v0` §physical_schema).
      */

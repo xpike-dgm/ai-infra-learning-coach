@@ -210,12 +210,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **10D ✅ Local database — LDBX-v0 / D-085**
 - **10E ✅ Temel uygulama sağlığı — APHX-v0 / D-086**
 - **AŞAMA 10 ✅ TAMAMLANDI**
-- **11A 🟡 Today ekranı — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 11B–20 ⬜
+- **11A ✅ Today ekranı — TDYX-v0 / D-087**
+- **11B 🟡 Task runner — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 11C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 11A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 11B'dir.** Fresh PRE-STEP + kullanıcı açi̇k onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 

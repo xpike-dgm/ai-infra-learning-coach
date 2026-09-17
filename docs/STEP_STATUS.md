@@ -51,8 +51,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **10C — Design system implementation** | ✅ | DSIX-v0 / D-084. Token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez; 146/146 QA PASS. |
 | **10D — Local database** | ✅ | LDBX-v0 / D-085. Engine yasakları reddediyor ve denenerek kanıtlanıyor; ilk taslağın DDM sapmaları düzeltilip kaydedildi; 163/163 QA PASS. |
 | **10E — Temel uygulama sağlığı** | ✅ | APHX-v0 / D-086. Store'un hiçbir arızası çökme ya da reset değil; açılış arka planda ve bütünlük migration'dan önce; no-reset byte ile kanıtlanıyor; restore mekanizması kuruldu (kontroller 16D); 152/152 QA PASS, mutation 16/16. **AŞAMA 10 kapandı.** |
-| **11A — Today ekranı** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **11B–20** | ⬜ Bekliyor | 11A sonrası canonical sırada. |
+| **11A — Today ekranı** | ✅ | TDYX-v0 / D-087. Today kanonik gerçeğin projeksiyonu; bayat plan, blocked görev ve doğrulanmamı oturum temsil edilemez; reason planner trace'i olmadan kurulamaz; `empty_valid` üretiliyor; 150/150 QA PASS, mutation 16/16. |
+| **11B — Task runner** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **11C–20** | ⬜ Bekliyor | 11B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -71,7 +72,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 10E
+## Son tamamlanan numaralı adım — 11A
+
+**Final:** `TDYX-v0 — Today Interior` / D-087.
+**Ana çıktı:** `docs/TODAY_INTERIOR_SPEC.md` + `arch/11a_today/` + `android/`.
+
+11A sonucu:
+- **Today kendisine verilmeyen hiçbir şeyi hesaplamaz**; planner 12'de olduğu için ekran plan uydurmak yerine dürüst boş/yükleniyor state'lerini gösteriyor,
+- kodu kontratlara karşı okumak iki kusur buldu: içerik portu `TODO()` ile çökecekti ve `Surface` kaydı başlatma sırası yüzünden null içerebiliyordu,
+- 12 state, 6 adımlı precedence, 7 purpose, 8 reason ve 7 attention family sahiplerinden kopyalandı; tonlar `VDSX-v0`nin,
+- bayat plan, blocked görev, değiştirilen plan ve revalidate edilmemiş oturum **süzülür**,
+- reason'da serbest metin, satırda mastery/score alanı, sunumda türetilmiş kapasite hükmü yok,
+- `empty_valid` üretiliyor ve `loading_initial_plan`dan ayrılıyor,
+- read path yalnız okur, store thread'inde koşar, resume'da yenilenir ve ne plan ne kapasite uydurur,
+- mutation 16/16 (üçü test güçlendirilince); validator 150/150, kendi mutation testi 16/16 — biri kaçtı ve check daraltıldı,
+- **T6 çalııştırılmadı**; cihaz sonucu iddia edilmiyor.
+
+## önceki numaralı adım — 10E
 
 **Final:** `APHX-v0 — App Health` / D-086. **AŞAMA 10 kapandı.**
 **Ana çıktı:** `docs/APP_HEALTH_SPEC.md` + `arch/10e_app_health/` + `android/` (`StoreStartup`, `AppHealth`, `StoreOpener`, `Backup`, `HealthSurface`, `CoachApplication`).
@@ -89,6 +106,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 11A Today ekranı
+## Aktif adım — 11B Task runner
 
-**11A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**11B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
