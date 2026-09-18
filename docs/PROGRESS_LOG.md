@@ -946,3 +946,21 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `11B ✅ / 11C active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `11C — Session state`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-19 — 11C Session state tamamlandı — SESX-v0 / D-089
+
+- 11B main'de (2a387d6); fresh 11C PRE yapıldı, `origin/main` = HEAD ve beş kanonik kaynak `11B ✅ / 11C active-not-executed` gösterdi. Kullanıcı açık onay verdi ("11C ile devam et").
+- **Kod yazmadan önce bulunanlar:** `TRUX-v0`nin high-stakes işaretinin `ResumeContext`te yeri yoktu; port truth okuyamıyordu; main'de 11A'dan kalan iki bozuk Türkçe kelime vardı (11B'nin U+0307 guard'ının göremediği türden). Kelimeler düzeltildi ve guard'a bağlandı.
+- **Checkpoint işin nerede olduğunu saklar:** `ResumeContext` + `kind`, `resume_context/1`, katı çözülür. Süre/puan/sayı yok. Tek transaction, tek append-only satır, tüketildi bayrağı yok, şema değişmedi.
+- **Yalnız durable pause yazılır;** sıradan pause dört koşulun hepsi doğrulanınca durable; mid-segment pause'un saklanan biçimi yok ve state'i değiştirmiyor.
+- **Resume yalnız checkpoint'in kanıtladığını doğrular;** high-stakes gap eşiği uydurulmadı (13/18D). Bugün devam ettirilebilen checkpoint yok ve Today checkpoint sunmuyor.
+- **Working session saklanmıyor** — `DDM-v0` adlandırmıyor; tarih 16B. Başlayan koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter; puan tutabilecek alan yok.
+- `readTruth` port incelmesi.
+- Mutation 20/20; koşu mekanizmayı kaydetmek için tekrarlandı ve hepsi testle yakalandı.
+- Altı run PASS (T1, T2 55 test, T3, adaptör testleri, iki `assembleDebug`). Worktree'de gitignore'lu `local.properties` eksikti; yerel olarak eklendi, commit edilmedi.
+- Validator 146/146, kendi mutation testi 20/20 (biri başta kaçtı, düzeltildi). Sweep 34/34.
+- **T6 çalıştırılmadı.**
+- D-050 POST living-memory accepted state'i `11C ✅ / 11D active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `11D — Günlük mikro quiz`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

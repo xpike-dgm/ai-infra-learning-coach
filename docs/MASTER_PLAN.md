@@ -676,7 +676,7 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - `empty_valid` burada üretiliyor ve `loading_initial_plan`dan ayrılıyor,
 - read path yalnız okur, store thread'inde koşar, resume'da yenilenir, plan/kapasite uydurmaz,
 - mutation 16/16 (üçü test güçlendirilince), validator 150/150 ve kendi mutation testi 16/16,
-- **T6 çalııştırılmadı**; cihaz sonucu iddia edilmiyor.
+- **T6 çalıştırılmadı**; cihaz sonucu iddia edilmiyor.
 
 ### [x] 11B — Task runner — RNRX-v0 / D-088
 
@@ -690,8 +690,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 18/18, validator 147/147 ve kendi mutation testi 18/18,
 - **T6 çalıştırılmadı**.
 
-### [ ] 11C — Session state — **AKTİF**
-### [ ] 11D — Günlük mikro quiz
+### [x] 11C — Session state — SESX-v0 / D-089
+
+**11C final coverage:**
+- bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil,
+- checkpoint `ResumeContext` + `TRUX-v0`nin istediği high-stakes işareti; sürümlü, katı çözülen tek append-only satır,
+- sıradan pause yalnız dört güvenli-checkpoint koşulu doğrulanınca durable; mid-segment pause'un saklanan biçimi yok,
+- resume yalnız checkpoint'in kanıtladığını doğrular; high-stakes gap eşiği uydurulmadı (13, 18D); Today checkpoint sunmaz,
+- working session emergent, puansız ve saklanmaz (tarih 16B); bir kez ve `TRUX-v0` sebebiyle biter,
+- `readTruth` port incelmesi; şema değişmedi; main'de 11A'dan kalan iki bozuk kelime düzeltildi,
+- mutation 20/20, validator 146/146 ve kendi mutation testi 20/20,
+- **T6 çalıştırılmadı**.
+
+### [ ] 11D — Günlük mikro quiz — **AKTİF**
 ### [ ] 11E — Gün sonu
 
 ---
@@ -811,8 +822,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11B`  
-**Son tamamlanan:** **`11B — RNRX-v0 / D-088`**  
-**Aktif:** **`11C — Session state`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11C`  
+**Son tamamlanan:** **`11C — SESX-v0 / D-089`**  
+**Aktif:** **`11D — Günlük mikro quiz`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **11C fresh PRE-STEP → resume checkpoint içeriği ve session state → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **11D fresh PRE-STEP → ilk çalıştırılabilir aktivite, segment sınırları ve artifact depolaması → independent QA → D-050 POST sync + stale audit.**

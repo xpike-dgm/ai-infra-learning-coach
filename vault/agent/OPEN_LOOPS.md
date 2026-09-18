@@ -40,7 +40,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 10E Temel uygulama sağlığı: APHX-v0 / D-086 ile tamamlandı; store arka planda bir kez açılıyor, bütünlük migration'dan önce, her hata state, no-reset byte ile kanıtlı, reset temsil edilemez. **AŞAMA 10 kapandı.**
 - [x] 11A Today ekranı: TDYX-v0 / D-087 ile tamamlandı; Today kanonik gerçeğin projeksiyonu, bayat plan/blocked görev/doğrulanmamış oturum temsil edilemez, `empty_valid` üretiliyor.
 - [x] 11B Task runner: RNRX-v0 / D-088 ile tamamlandı; giriş koşulları doğrulanmadan başlatma yok, H3/H4 açıklamalı, deneme tek transaction, evidence yok.
-- [ ] 11C Session state **AKTİF**: resume checkpoint içeriği ve kalıcılığı, emergent session, ended reason'lar.
+- [x] 11C Session state: SESX-v0 / D-089 ile tamamlandı; checkpoint işin nerede olduğunu saklar, yalnız durable pause yazılır, resume yalnız checkpoint'in kanıtladığını doğrular, session puansız ve saklanmaz.
+- [ ] 11D Günlük mikro quiz **AKTİF**: ilk çalıştırılabilir aktivite, segment sınırları ve `checkpoint_ids[]`, artifact gövdesi depolaması.
+- [ ] Resume'da içerik uyumu, prerequisite ve açık ihtiyacı doğrulayan olgular; `resume_context_ref` ve `continue_learning` yeniden girişi → 12.
+- [ ] High-stakes pause için gap politikası (uydurulmadı; bugün hiçbir high-stakes devam bağımsız sayılmaz) → 13, kalibrasyon 18D.
+- [ ] Kalıcı oturum/öğrenme geçmişi; working session bugün saklanmıyor → 16B.
+- [ ] `plan_exhausted` ve `capacity_reached` oturum sebeplerinin üreticisi (planner'ın yeniden hesaplanan seçimi ve kapasite hükmü) → 12.
 - [ ] Attempt üzerinde `planned_task_ref` ve `runner_completion_state` saklanmıyor (DDM adlandırmıyor) → 12.
 - [ ] Artifact gövdesi depolaması (`content_ref` arkası) → 11D.
 - [ ] Curriculum ingestion henüz yok; store hiçbir şey yayımlanmadığını bildiriyor → 11D, içerik 15.
@@ -49,7 +54,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Export/restore Profile kontrolleri (dosya seçimi, değiştirme onayı, ret metni, değiştirilen profilin saklanıp saklanmayacağı) → 16D.
 - [ ] Tüm profil kaybını tespit: sıfır uzunluklu veya eksik veritabanı ilk açılıştan ayırt edilemiyor; veritabanı dışında bir işaret gerekiyor → 19B.
 - [ ] Açılış ve bütünlük kontrolü süre bütçeleri → 18E.
-- [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
+- [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11C'de dolduruldu: `resume_context/1`), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.

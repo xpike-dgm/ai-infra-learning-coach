@@ -145,8 +145,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 11 — Çekirdek Günlük Öğrenme Akışı MVP’sini Geliştir
 - [x] **11A — Today ekranı** — `TDYX-v0 / D-087`
 - [x] **11B — Task runner** — `RNRX-v0 / D-088`
-- [ ] **11C — Session state** **AKTİF**
-- [ ] **11D — Günlük mikro quiz**
+- [x] **11C — Session state** — `SESX-v0 / D-089`
+- [ ] **11D — Günlük mikro quiz** **AKTİF**
 - [ ] **11E — Gün sonu**
 
 ---
@@ -246,10 +246,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11B`  
-**Son tamamlanan:** **`11B — RNRX-v0 / D-088`**  
-**Aktif:** **`11C — Session state`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11C`  
+**Son tamamlanan:** **`11C — SESX-v0 / D-089`**  
+**Aktif:** **`11D — Günlük mikro quiz`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
-11C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+11C `SESX-v0` ile bir duraklatmanın gerçekte neyi sakladığı kilitlendi: işin nerede olduğunu, süresini ya da sonucunu değil; yalnız durable pause yazılır; resume yalnız checkpoint'in kanıtladığını doğrular ve gap eşiği uydurulmadı; working session puansızdır ve saklanmaz. T6 çalıştırılmadı.
+
+11D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

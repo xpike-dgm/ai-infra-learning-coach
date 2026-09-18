@@ -247,6 +247,15 @@ object RunnerCopy {
     const val STOPPED =
         "Durdun. Bu bir kayıp değil: borç, seri ya da telafi yükümlülüğü oluşmaz."
 
+    /** Only for a durable pause (11C): the place really was written. */
+    const val CHECKPOINT_SAVED =
+        "Kaldığın yer kaydedildi. Devam etmek istediğinde, devam etmeden önce yeniden kontrol edilir."
+
+    /** A resume that cannot be confirmed (11C): not the learner's error, and nothing was erased. */
+    const val RESUME_INVALIDATED =
+        "Bu çalışma olduğu gibi devam ettirilemiyor. Bu bir hata ya da başarısızlık değil; " +
+            "kaydedilmiş hiçbir şey silinmedi."
+
     const val ASSISTANCE_POLICY =
         "Yardım her zaman istenebilir. İpucu ve kavram yardımı denemeyi yardımlı yapar; kısmi ya da " +
             "tam çözüm istersen, bunun ne değiştirdiği önce söylenir."

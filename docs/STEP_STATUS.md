@@ -51,10 +51,11 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **10C — Design system implementation** | ✅ | DSIX-v0 / D-084. Token'lar core'da, kontrast yeniden hesaplanıyor, fault tonu learning state için temsil edilemez; 146/146 QA PASS. |
 | **10D — Local database** | ✅ | LDBX-v0 / D-085. Engine yasakları reddediyor ve denenerek kanıtlanıyor; ilk taslağın DDM sapmaları düzeltilip kaydedildi; 163/163 QA PASS. |
 | **10E — Temel uygulama sağlığı** | ✅ | APHX-v0 / D-086. Store'un hiçbir arızası çökme ya da reset değil; açılış arka planda ve bütünlük migration'dan önce; no-reset byte ile kanıtlanıyor; restore mekanizması kuruldu (kontroller 16D); 152/152 QA PASS, mutation 16/16. **AŞAMA 10 kapandı.** |
-| **11A — Today ekranı** | ✅ | TDYX-v0 / D-087. Today kanonik gerçeğin projeksiyonu; bayat plan, blocked görev ve doğrulanmamı oturum temsil edilemez; reason planner trace'i olmadan kurulamaz; `empty_valid` üretiliyor; 150/150 QA PASS, mutation 16/16. |
+| **11A — Today ekranı** | ✅ | TDYX-v0 / D-087. Today kanonik gerçeğin projeksiyonu; bayat plan, blocked görev ve doğrulanmamış oturum temsil edilemez; reason planner trace'i olmadan kurulamaz; `empty_valid` üretiliyor; 150/150 QA PASS, mutation 16/16. |
 | **11B — Task runner** | ✅ | RNRX-v0 / D-088. Runner bir execution surface; girişte doğrulanmayan koşul `unmet`, hiçbiri varsayılmaz; H3/H4 açıklamasız verilmez; deneme tek transaction, evidence yok; 147/147 QA PASS, mutation 18/18. |
-| **11C — Session state** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **11D–20** | ⬜ Bekliyor | 11C sonrası canonical sırada. |
+| **11C — Session state** | ✅ | SESX-v0 / D-089. Pause işin nerede olduğunu saklar, süre/sonuç değil; yalnız durable pause yazılır; resume yalnız checkpoint'in kanıtladığını doğrular, gap eşiği uydurulmadı; session puansız ve saklanmaz; 146/146 QA PASS, mutation 20/20. |
+| **11D — Günlük mikro quiz** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **11E–20** | ⬜ Bekliyor | 11D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -73,7 +74,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 11B
+## Son tamamlanan numaralı adım — 11C
+
+**Final:** `SESX-v0 — Session State` / D-089.
+**Ana çıktı:** `docs/SESSION_STATE_SPEC.md` + `arch/11c_session_state/` + `android/`.
+
+11C sonucu:
+- bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil,
+- checkpoint `ResumeContext` + high-stakes işareti; `resume_context/1`, katı çözülür, okunamayan satır kaybolmaz,
+- bir pause tek transaction, tek append-only satır; tüketildi bayrağı yok; şema değişmedi,
+- sıradan pause yalnız dört koşul doğrulanınca durable; mid-segment pause yazılmaz ve kaydedilmiş gösterilmez,
+- resume en çok iki koşulu doğrular; gap eşiği uydurulmadı; bugün devam ettirilebilen checkpoint yok; Today checkpoint sunmaz,
+- working session emergent, puansız, saklanmaz; bir kez ve `TRUX-v0` sebebiyle biter,
+- `readTruth` port incelmesi; main'de 11A'dan kalan iki bozuk kelime düzeltildi ve korunuyor,
+- mutation 20/20 (hepsi testle); validator 146/146 ve kendi mutation testi 20/20 — biri kaçtı ve düzeltildi,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 11B
 
 **Final:** `RNRX-v0 — Task Runner` / D-088.
 **Ana çıktı:** `docs/TASK_RUNNER_SPEC.md` + `arch/11b_task_runner/` + `android/`.
@@ -88,7 +105,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 18/18; validator 147/147 ve kendi mutation testi 18/18,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 11A
+## önceki numaralı adım — 11A
 
 **Final:** `TDYX-v0 — Today Interior` / D-087.
 **Ana çıktı:** `docs/TODAY_INTERIOR_SPEC.md` + `arch/11a_today/` + `android/`.
@@ -102,7 +119,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - `empty_valid` üretiliyor ve `loading_initial_plan`dan ayrılıyor,
 - read path yalnız okur, store thread'inde koşar, resume'da yenilenir ve ne plan ne kapasite uydurur,
 - mutation 16/16 (üçü test güçlendirilince); validator 150/150, kendi mutation testi 16/16 — biri kaçtı ve check daraltıldı,
-- **T6 çalııştırılmadı**; cihaz sonucu iddia edilmiyor.
+- **T6 çalıştırılmadı**; cihaz sonucu iddia edilmiyor.
 
 ## önceki numaralı adım — 10E
 
@@ -122,6 +139,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 11C Session state
+## Aktif adım — 11D Günlük mikro quiz
 
-**11C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**11D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
