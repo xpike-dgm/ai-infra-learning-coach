@@ -907,3 +907,23 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `10E ✅ / 11A active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `11A — Today ekranı`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-17 — 11A Today ekranı tamamlandı — TDYX-v0 / D-087
+
+- 10E merge edildikten sonra fresh 11A PRE main üzerinden yapıldı; beş kanonik kaynak `10E ✅ / 11A active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi diğer adıma geçebilirsin").
+- Worktree merge sonrası 10D'nin eski branch'inde kalmıştı; main'e alındı ve 10E içeriğinin geldiği doğrulandı.
+- **Ana gerilim: ekranın konusu henüz yok.** Planner 12'de, içerik 15'te, kapasite ayarı 16D'de. Yine de bir şey çizen bir Today, yalan söyleyen bir Today olurdu. Karar: Today kendisine verilmeyeni hesaplamaz ve dürüst boş/yükleniyor state'lerini gösterir.
+- **Read path plan okumuyor.** Bir satır purpose, trace'e dayalı gerekçe ve süre ister; `planned_task` bu kolonları taşımıyor çünkü 10D onları 12'ye bırakmıştı. Var olanı okuyup gerisini makul varsayılanla doldurmak, bir ekranın hiçbir engine'in karar vermediğini iddia etmeye başlamasıdır.
+- **Kodu kontratlara karşı okumak iki kusur buldu:** `FileContentSource.resource` `TODO()` idi (10E'nin AI adaptöründe bulduğunun aynısı) ve `Surface.all` başlatılmış bir `val` olduğu için kayıt null içerebiliyordu — 11A `TodayView`'dan bir surface'a referans verir vermez 10B'nin kendi testi `NullPointerException` ile düştü. Bu, 10D'nin `truthGuards()` ile karşılaştığı Kotlin başlatma-sırası tuzağı.
+- **Yazılamayanlar:** reason'da serbest metin alanı yok (private constructor + `fromTraceFacts`), satırda mastery/score/streak alanı yok, kapasite hükmü sunumda türetilmiyor.
+- **Süzülenler:** başka günün planı, blocked görev, değiştirilen plan ve revalidate edilmemiş oturum — biçimlendirilmiyor, hiç render edilmiyor.
+- **`empty_valid` üretiliyor** ve "hiçbir şey yayımlanmadı" ile "plan henüz üretilmedi" ayrılıyor; kapasite sıfırsa ya da hiçbir aday sığmıyorsa buna "yükleniyor" denmiyor.
+- **Mutation 16/16 — üçü test güçlendirildikten sonra.** M08 kapasite dalına hiç ulaşamıyordu. **M09 zayıf testten fazlasını gösterdi:** attention kuralı yanlış özneye (primary action kind) göre yazılmıştı ve tek test onu tetikleyemeyen dalda çalışıyordu; kural `THUX-v0`nin gerçek kuralına (primary task'ın purpose'u) göre yeniden yazıldı. M16 yalnız onu ortaya çıkaran yükleme sırasında tekrarlandığı için yapısal bir test eklendi. M07'nin ilk hali davranışı değiştirmediği için yakalama sayılmadı.
+- **Validator'ın kendi mutation testinde biri kaçtı:** bayat-plan filtresi kontrolü dosyada "herhangi bir yerde" arıyordu ve aynı ifade `queueOf()` içinde de geçtiği için ana yolu filtresiz bırakan mutantı geçiriyordu; check iki fonksiyon gövdesini ayrı ayrı arayacak biçimde daraltıldı. Sonuç 16/16 + temiz negatif kontrol.
+- Altı run: T1 core testleri, T2 (47 test), T3, `:data-curriculum:test` + `:ai-adapter:test`, adaptörlü ve adaptörsüz `assembleDebug` — hepsi PASS. CI'ın adaptör adımı artık içerik adaptörünü de koşuyor.
+- Independent 11A QA **150/150 PASS**; sweep 32/32.
+- **T6 çalıştırılmadı** — telefon yine bağlı değildi; cihazda hiçbir sonuç iddia edilmiyor.
+- D-050 POST living-memory accepted state'i `11A ✅ / 11B active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `11B — Task runner`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

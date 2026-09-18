@@ -7,10 +7,15 @@ import android.os.StrictMode
 import android.util.Log
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
+import coach.application.TodayFactsQuery
+import coach.model.TodayFacts
 import coach.persistence.StoreOpener
 import java.io.File
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+
+/** The opened store, plus what it could say about today when it opened. */
+class OpenedApp(val graph: AppGraph, val today: TodayFacts)
 
 /**
  * Process scope for the store (`APHX-v0`).
@@ -19,11 +24,20 @@ import java.util.concurrent.Executors
  * theme change, and reopening the database each time would repeat the integrity check and could
  * race a write. So opening starts here, once, on a dedicated background thread, and activities only
  * observe it.
+ *
+ * Today's facts are read on that same thread, in the same job, because reading them is disk work
+ * too — the thing 10E moved off the main thread in the first place.
  */
 class CoachApplication : Application() {
 
-    lateinit var startup: StoreStartup<AppGraph>
+    lateinit var startup: StoreStartup<OpenedApp>
         private set
+
+    private val main = Handler(Looper.getMainLooper())
+
+    private val storeThread: Executor = Executors.newSingleThreadExecutor { runnable ->
+        Thread(runnable, "coach-store").apply { isDaemon = true }
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -35,23 +49,36 @@ class CoachApplication : Application() {
             )
         }
 
-        val main = Handler(Looper.getMainLooper())
         startup = StoreStartup(
-            open = ::openGraph,
-            background = Executors.newSingleThreadExecutor { runnable ->
-                Thread(runnable, "coach-store").apply { isDaemon = true }
-            },
+            open = ::openApp,
+            background = storeThread,
             deliver = Executor { main.post(it) },
         )
         startup.start()
     }
 
+    /**
+     * Re-reads today's facts off the main thread. The activity asks on resume, because a process
+     * that stayed open past midnight would otherwise keep yesterday's study day — and a stale study
+     * day is exactly how a stale plan gets shown as today's (`SRR-v0`).
+     */
+    fun refreshToday(onLoaded: (TodayFacts) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = TodayFactsQuery(opened.graph.persistence, opened.graph.clock).load()
+            main.post { onLoaded(facts) }
+        }
+    }
+
     /** Runs on the store thread. Resolving the path touches the filesystem too, so it happens here. */
-    private fun openGraph(): StoreOpenOutcome<AppGraph> {
+    private fun openApp(): StoreOpenOutcome<OpenedApp> {
         val path: File = getDatabasePath(AppGraph.DATABASE_NAME)
         path.parentFile?.mkdirs()
         return when (val result = StoreOpener.open(path.absolutePath)) {
-            is StoreOpener.Result.Opened -> StoreOpenOutcome.Opened(AppGraph(persistence = result.store))
+            is StoreOpener.Result.Opened -> {
+                val graph = AppGraph(persistence = result.store)
+                StoreOpenOutcome.Opened(OpenedApp(graph, TodayFactsQuery(graph.persistence, graph.clock).load()))
+            }
             is StoreOpener.Result.NotOpened -> {
                 // Diagnostics only. The store holds no credential, so nothing secret can be logged.
                 Log.w(TAG, "store not opened: ${result.status}", result.cause)

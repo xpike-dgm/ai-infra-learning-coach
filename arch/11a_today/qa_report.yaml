@@ -1,0 +1,502 @@
+model: TDYX-v0
+stage_step: 11A
+decision: D-087
+result: PASS
+checks_total: 150
+checks_passed: 150
+checks_failed: 0
+semantic_states: 12
+reason_families: 8
+checks:
+- check: E11A-00_exists_TodayFacts.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\TodayFacts.kt
+- check: E11A-00_exists_TodayPresentation.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\TodayPresentation.kt
+- check: E11A-00_exists_TodayFactsQuery.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\TodayFactsQuery.kt
+- check: E11A-00_exists_TodayScreen.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\TodayScreen.kt
+- check: E11A-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: E11A-00_exists_TodayPresentationTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\TodayPresentationTest.kt
+- check: E11A-00_exists_TodayFactsQueryTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\TodayFactsQueryTest.kt
+- check: E11A-00_exists_FileContentSourceTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-curriculum\src\test\kotlin\coach\curriculum\FileContentSourceTest.kt
+- check: E11A-00_exists_TODAY_INTERIOR_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\TODAY_INTERIOR_SPEC.md
+- check: E11A-00_exists_11a_today_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\11a_today_research.md
+- check: E11A-01_model
+  result: PASS
+  details: TDYX-v0
+- check: E11A-01_status
+  result: PASS
+  details: accepted_11a
+- check: E11A-01_decision
+  result: PASS
+  details: D-087
+- check: E11A-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E11A-01_scope_mastery_engine_implemented
+  result: PASS
+  details: mastery_engine_implemented=False
+- check: E11A-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E11A-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E11A-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E11A-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E11A-01_noclaim_task_row_count_claim
+  result: PASS
+  details: task_row_count_claim=None
+- check: E11A-01_noclaim_pixel_geometry_claim
+  result: PASS
+  details: pixel_geometry_claim=None
+- check: E11A-01_noclaim_startup_time_claim
+  result: PASS
+  details: startup_time_claim=None
+- check: E11A-02_states_are_thux
+  result: PASS
+  details: kotlin=['loading_initial_plan', 'replanning', 'ready_plan', 'resumable_session',
+    'empty_no_open_need', 'empty_no_eligible_task', 'capacity_zero', 'capacity_too_small_no_candidate',
+    'offline_local_available', 'ai_unavailable_core_available', 'error_recoverable',
+    'data_recovery_required'] thux=['loading_initial_plan', 'replanning', 'ready_plan',
+    'resumable_session', 'empty_no_open_need', 'empty_no_eligible_task', 'capacity_zero',
+    'capacity_too_small_no_candidate', 'offline_local_available', 'ai_unavailable_core_available',
+    'error_recoverable', 'data_recovery_required']
+- check: E11A-02_precedence_is_thux
+  result: PASS
+  details: kotlin=['data_recovery_required', 'valid_resumable_focused_session', 'selected_next_planned_task',
+    'plan_loading_or_replanning', 'valid_empty_or_capacity_limited_state', 'recoverable_error']
+    thux=['data_recovery_required', 'valid_resumable_focused_session', 'selected_next_planned_task',
+    'plan_loading_or_replanning', 'valid_empty_or_capacity_limited_state', 'recoverable_error']
+- check: E11A-02_attention_is_thux
+  result: PASS
+  details: kotlin=['plan_changed', 'verification_attention', 'remediation_attention',
+    'prerequisite_blocker', 'retention_attention', 'assessment_attention', 'recovery_attention']
+    thux=['plan_changed', 'verification_attention', 'remediation_attention', 'prerequisite_blocker',
+    'retention_attention', 'assessment_attention', 'recovery_attention']
+- check: E11A-02_dispositions_are_thux
+  result: PASS
+  details: kotlin=['current', 'upcoming', 'paused']
+- check: E11A-03_purposes_are_canonical
+  result: PASS
+  details: kotlin=['teach', 'practice', 'assess', 'remediate', 'retain', 'diagnose',
+    'reinforce'] spec=['teach', 'practice', 'assess', 'remediate', 'retain', 'diagnose',
+    'reinforce']
+- check: E11A-03_english_is_not_a_purpose
+  result: PASS
+  details: English is a track, never a purpose (TEIP-v0)
+- check: E11A-04_reason_families_closed
+  result: PASS
+  details: families=['continue_current_learning', 'repair_confirmed_weakness', 'verify_uncertain_state',
+    'review_due_knowledge', 'collect_missing_evidence', 'parallel_technical_english',
+    'fit_available_capacity', 'resume_valid_paused_work']
+- check: E11A-04_reason_has_no_free_text
+  result: PASS
+  details: a String on the reason type is where a free-form AI justification would
+    live
+- check: E11A-04_reason_is_trace_derived
+  result: PASS
+  details: a reason must only be constructible from the planner's trace facts
+- check: E11A-04_one_primary_one_supporting
+  result: PASS
+  details: exactly one primary and at most one supporting reason
+- check: E11A-04_upstream_subset_rule
+  result: PASS
+  details: THUX-v0 requires reasons to be a subset of trace facts
+- check: E11A-05_row_field_plannedTaskRef
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_field_displayTitle
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_field_primaryPurpose
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_field_targetSkillRefs
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_field_disposition
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_field_reason
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_row_claims_nothing
+  result: PASS
+  details: row fields=['plannedTaskRef', 'displayTitle', 'primaryPurpose', 'targetSkillRefs',
+    'disposition', 'reason', 'activityKind', 'curriculumTrack', 'topicRef', 'estimatedMinutes',
+    'integrationMode']
+- check: E11A-05_purpose_activity_track_separate
+  result: PASS
+  details: purpose, activity and track must stay three fields
+- check: E11A-06_capacity_fields_allowed
+  result: PASS
+  details: unexpected=[]
+- check: E11A-06_capacity_claims_nothing
+  result: PASS
+  details: capacity fields=['resolvedDailyMinutes', 'currentDayOverride', 'estimatedTotalPlannedMinutes',
+    'estimatedRemainingPlannedMinutes', 'planRecalculated', 'tooSmallForAnyCandidate']
+- check: E11A-06_verdict_not_derived
+  result: PASS
+  details: the presentation must not compare estimates to decide a capacity verdict
+- check: E11A-06_upstream_forbids_interpretation
+  result: PASS
+  details: D-033/THUX-v0 forbid reading capacity as progress
+- check: E11A-07_stale_plan_filtered
+  result: PASS
+  details: a plan from another study day must never become today's action or today's
+    queue
+- check: E11A-07_upstream_no_replay
+  result: PASS
+  details: SRR-v0/THUX-v0 forbid replaying an old plan
+- check: E11A-07_blocked_filtered
+  result: PASS
+  details: blocked work must not be actionable or listed
+- check: E11A-07_session_revalidated
+  result: PASS
+  details: an unrevalidated session must not be offered
+- check: E11A-07_ai_never_supersedes
+  result: PASS
+  details: AI absence is context, never a blocking state
+- check: E11A-07_queue_is_current_selection
+  result: PASS
+  details: the queue is the current selection only
+- check: E11A-08_tone_loading_initial_plan
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_replanning
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_ready_plan
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_resumable_session
+  result: PASS
+  details: vdsx=active
+- check: E11A-08_tone_empty_no_open_need
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_empty_no_eligible_task
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_capacity_zero
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_capacity_too_small_no_candidate
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_offline_local_available
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_ai_unavailable_core_available
+  result: PASS
+  details: vdsx=neutral
+- check: E11A-08_tone_error_recoverable
+  result: PASS
+  details: vdsx=system_fault
+- check: E11A-08_tone_data_recovery_required
+  result: PASS
+  details: vdsx=system_fault
+- check: E11A-08_only_two_fault_states
+  result: PASS
+  details: only the two system conditions may wear the fault tone
+- check: E11A-09_region_order
+  result: PASS
+  details: the region order is WFPX-v0's
+- check: E11A-09_supporting_routes
+  result: PASS
+  details: THUX-v0's supporting routes must be reachable
+- check: E11A-09_registry_computed_on_access
+  result: PASS
+  details: the surface registry must be computed on access, not held as an initialised
+    field
+- check: E11A-10_facts_in_core_model
+  result: PASS
+  details: the facts must live in core-model
+- check: E11A-10_projection_in_core_presentation
+  result: PASS
+  details: the projection must live in core-presentation
+- check: E11A-10_query_is_core_application
+  result: PASS
+  details: the read path must live in core-application and stay free of Android
+- check: E11A-10_ui_renders_only
+  result: PASS
+  details: app-ui must not compute the projection or reach persistence
+- check: E11A-10_ports_unchanged
+  result: PASS
+  details: no fifth port may be added
+- check: E11A-10_port_refinement_recorded
+  result: PASS
+  details: the port refinement must be recorded
+- check: E11A-11_query_reads_only
+  result: PASS
+  details: the Today read path must not write
+- check: E11A-11_no_invented_plan
+  result: PASS
+  details: no plan may be invented before the planner exists
+- check: E11A-11_no_invented_capacity
+  result: PASS
+  details: no capacity may be invented before the learner chooses one
+- check: E11A-11_study_day_from_clock
+  result: PASS
+  details: the study day comes from ClockPort
+- check: E11A-11_off_main_thread
+  result: PASS
+  details: reading Today must happen on the store thread, never in the activity
+- check: E11A-11_refreshed_on_resume
+  result: PASS
+  details: a process kept open past midnight must re-read the study day
+- check: E11A-12_empty_valid_was_deferred
+  result: PASS
+  details: 'APHX-v0 deferred: [''empty_valid'', ''offline_local_available'']'
+- check: E11A-12_empty_valid_now_produced
+  result: PASS
+  details: 11A must produce the empty_valid it was handed
+- check: E11A-12_empty_valid_is_uxia
+  result: PASS
+  details: empty_valid is UXIA-v0's
+- check: E11A-12_empty_is_not_mastery
+  result: PASS
+  details: an empty day claims nothing about mastery
+- check: E11A-13_content_port_returns_null
+  result: PASS
+  details: asking for unpublished content is a missing resource, not a crash
+- check: E11A-14_label_loading_initial_plan
+  result: PASS
+  details: no Turkish label for loading_initial_plan
+- check: E11A-14_label_replanning
+  result: PASS
+  details: no Turkish label for replanning
+- check: E11A-14_label_ready_plan
+  result: PASS
+  details: no Turkish label for ready_plan
+- check: E11A-14_label_resumable_session
+  result: PASS
+  details: no Turkish label for resumable_session
+- check: E11A-14_label_empty_no_open_need
+  result: PASS
+  details: no Turkish label for empty_no_open_need
+- check: E11A-14_label_empty_no_eligible_task
+  result: PASS
+  details: no Turkish label for empty_no_eligible_task
+- check: E11A-14_label_capacity_zero
+  result: PASS
+  details: no Turkish label for capacity_zero
+- check: E11A-14_label_capacity_too_small_no_candidate
+  result: PASS
+  details: no Turkish label for capacity_too_small_no_candidate
+- check: E11A-14_label_offline_local_available
+  result: PASS
+  details: no Turkish label for offline_local_available
+- check: E11A-14_label_ai_unavailable_core_available
+  result: PASS
+  details: no Turkish label for ai_unavailable_core_available
+- check: E11A-14_label_error_recoverable
+  result: PASS
+  details: no Turkish label for error_recoverable
+- check: E11A-14_label_data_recovery_required
+  result: PASS
+  details: no Turkish label for data_recovery_required
+- check: E11A-14_state_is_text
+  result: PASS
+  details: the state must be text and announced
+- check: E11A-14_touch_target
+  result: PASS
+  details: actions keep the 48dp floor
+- check: E11A-14_no_locale_naive_case
+  result: PASS
+  details: no locale-naive case transform
+- check: E11A-14_primary_action_first
+  result: PASS
+  details: the regions must be rendered in the accepted order
+- check: E11A-15_test_the twelve semantic states are THUX-v0's, in
+  result: PASS
+  details: 'missing test: the twelve semantic states are THUX-v0''s, in its order'
+- check: E11A-15_test_yesterday's plan is never shown as today's
+  result: PASS
+  details: 'missing test: yesterday''s plan is never shown as today''s'
+- check: E11A-15_test_a blocked task is never actionable and never
+  result: PASS
+  details: 'missing test: a blocked task is never actionable and never fills the queue'
+- check: E11A-15_test_a plan whose every task is blocked is an emp
+  result: PASS
+  details: 'missing test: a plan whose every task is blocked is an empty state, not
+    a blocked task list'
+- check: E11A-15_test_replanning never exposes the plan it is repl
+  result: PASS
+  details: 'missing test: replanning never exposes the plan it is replacing'
+- check: E11A-15_test_a reason cannot be invented, only taken from
+  result: PASS
+  details: 'missing test: a reason cannot be invented, only taken from the planner''s
+    trace facts'
+- check: E11A-15_test_no reason carries free text that an AI could
+  result: PASS
+  details: 'missing test: no reason carries free text that an AI could fill'
+- check: E11A-15_test_capacity too small for any candidate is repo
+  result: PASS
+  details: 'missing test: capacity too small for any candidate is reported by the
+    planner, never derived here'
+- check: E11A-15_test_a fresh install says nothing is published ye
+  result: PASS
+  details: 'missing test: a fresh install says nothing is published yet and claims
+    no mastery'
+- check: E11A-15_test_AI being unavailable is context and never su
+  result: PASS
+  details: 'missing test: AI being unavailable is context and never supersedes a valid
+    local plan'
+- check: E11A-15_test_attention does not duplicate what the primar
+  result: PASS
+  details: 'missing test: attention does not duplicate what the primary task already
+    represents'
+- check: E11A-15_test_every Today state wears the tone VDSX-v0 ass
+  result: PASS
+  details: 'missing test: every Today state wears the tone VDSX-v0 assigned it'
+- check: E11A-15_test_nothing on a task row can claim mastery, a s
+  result: PASS
+  details: 'missing test: nothing on a task row can claim mastery, a score or a streak'
+- check: E11A-15_registry_guard_test
+  result: PASS
+  details: the initialisation-order fix must have a check
+- check: E11A-15_query_tests
+  result: PASS
+  details: the read path's claims must be tested
+- check: E11A-15_t2_curriculum_published
+  result: PASS
+  details: the curriculum-published read must be tested against a real store
+- check: E11A-15_content_test
+  result: PASS
+  details: the content port must be tested for not throwing
+- check: E11A-16_ci_runs_curriculum_tests
+  result: PASS
+  details: CI must run the data-curriculum tests
+- check: E11A-17_device_not_claimed
+  result: PASS
+  details: no device result may be claimed when the device was not connected
+- check: E11A-17_mutation_all_detected
+  result: PASS
+  details: '{''total'': 16, ''detected'': 16}'
+- check: E11A-17_survivors_recorded
+  result: PASS
+  details: mutants that survived at first must be recorded with the fix
+- check: E11A-17_found_before_recorded
+  result: PASS
+  details: defects found by reading the code against the contracts must be recorded
+- check: E11A-17_not_verified_recorded
+  result: PASS
+  details: what this step does not verify must be written down
+- check: E11A-17_runs_pass
+  result: PASS
+  details: '{''RUN-01'': ''PASS'', ''RUN-02'': ''PASS'', ''RUN-03'': ''PASS'', ''RUN-04'':
+    ''PASS'', ''RUN-05'': ''PASS'', ''RUN-06'': ''PASS''}'
+- check: E11A-17_boundary_11B
+  result: PASS
+  details: missing 11B
+- check: E11A-17_boundary_11C
+  result: PASS
+  details: missing 11C
+- check: E11A-17_boundary_11D
+  result: PASS
+  details: missing 11D
+- check: E11A-17_boundary_12
+  result: PASS
+  details: missing 12
+- check: E11A-17_boundary_16D
+  result: PASS
+  details: missing 16D
+- check: E11A-18_forbidden_rendering_a_plan_from_another_study_day
+  result: PASS
+  details: missing=rendering_a_plan_from_another_study_day
+- check: E11A-18_forbidden_offering_a_blocked_task_as_startable
+  result: PASS
+  details: missing=offering_a_blocked_task_as_startable
+- check: E11A-18_forbidden_showing_the_previous_plan_while_replanni
+  result: PASS
+  details: missing=showing_the_previous_plan_while_replanning
+- check: E11A-18_forbidden_showing_a_reason_the_planner_never_recor
+  result: PASS
+  details: missing=showing_a_reason_the_planner_never_recorded
+- check: E11A-18_forbidden_free_text_reason_field
+  result: PASS
+  details: missing=free_text_reason_field
+- check: E11A-18_forbidden_deriving_a_capacity_verdict_in_the_prese
+  result: PASS
+  details: missing=deriving_a_capacity_verdict_in_the_presentation
+- check: E11A-18_forbidden_letting_ai_absence_supersede_a_valid_loc
+  result: PASS
+  details: missing=letting_ai_absence_supersede_a_valid_local_plan
+- check: E11A-18_forbidden_implying_mastery_or_readiness_from_an_em
+  result: PASS
+  details: missing=implying_mastery_or_readiness_from_an_empty_day
+- check: E11A-18_forbidden_inventing_a_plan_the_planner_never_produ
+  result: PASS
+  details: missing=inventing_a_plan_the_planner_never_produced
+- check: E11A-19_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 11A QA PASS'
+- check: E11A-19_spec_**Decision:** `D-087`
+  result: PASS
+  details: missing='**Decision:** `D-087`'
+- check: E11A-19_spec_empty_valid
+  result: PASS
+  details: missing='empty_valid'
+- check: E11A-19_spec_study day
+  result: PASS
+  details: missing='study day'
+- check: E11A-19_spec_12
+  result: PASS
+  details: missing='12'
+- check: E11A-20_research_TODO()
+  result: PASS
+  details: missing='TODO()'
+- check: E11A-20_research_planned_task
+  result: PASS
+  details: missing='planned_task'
+- check: E11A-20_research_empty_valid
+  result: PASS
+  details: missing='empty_valid'
+- check: E11A-21_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E11A-21_build_must_be_run_not_asserted
+  result: PASS
+  details: build_must_be_run_not_asserted=True
+- check: E11A-21_truthfulness_rules_must_be_mutation_tested
+  result: PASS
+  details: truthfulness_rules_must_be_mutation_tested=True
+- check: E11A-21_stage10_regression_required
+  result: PASS
+  details: stage10_regression_required=True
+failures: []

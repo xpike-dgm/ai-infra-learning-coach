@@ -666,7 +666,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 11 — Günlük Öğrenme MVP
-### [ ] 11A — Today
+### [x] 11A — Today ekranı — TDYX-v0 / D-087
+
+**11A final coverage:**
+- Today kanonik planner/state gerçeğinin projeksiyonudur ve kendisine verilmeyeni hesaplamaz,
+- kodu kontratlara karşı okumak iki kusur buldu: `FileContentSource` `TODO()` ile çökecekti ve `Surface` kaydı başlatma sırası yüzünden null içerebiliyordu,
+- 12 semantic state, 6 adımlı precedence, 7 purpose, 8 reason ve 7 attention family, region sırası ve tonlar sahiplerinden kopyalandı,
+- bayat plan, blocked görev, değiştirilen plan ve doğrulanmamış oturum süzülür; reason planner trace'i olmadan kurulamaz; satırda mastery alanı, sunumda türetilmiş kapasite hükmü yoktur,
+- `empty_valid` burada üretiliyor ve `loading_initial_plan`dan ayrılıyor,
+- read path yalnız okur, store thread'inde koşar, resume'da yenilenir, plan/kapasite uydurmaz,
+- mutation 16/16 (üçü test güçlendirilince), validator 150/150 ve kendi mutation testi 16/16,
+- **T6 çalııştırılmadı**; cihaz sonucu iddia edilmiyor.
+
+### [ ] 11B — Task runner
 ### [ ] 11B — Task runner
 ### [ ] 11C — Session state
 ### [ ] 11D — Günlük mikro quiz
@@ -789,8 +801,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`  
-**Son tamamlanan:** **`10E — APHX-v0 / D-086`** — **AŞAMA 10 TAMAMLANDI**  
-**Aktif:** **`11A — Today ekranı`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A`  
+**Son tamamlanan:** **`11A — TDYX-v0 / D-087`**  
+**Aktif:** **`11B — Task runner`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **11A fresh PRE-STEP → `THUX-v0`nin Today interior'unu `APHX-v0`nin sağlık yolu üzerine kurmak (`empty_valid` burada üretilmeye başlar) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **11B fresh PRE-STEP — `TRUX-v0`nin Task Runner girişini Today'in start action'ına bağlamak — independent QA — D-050 POST sync + stale audit.**

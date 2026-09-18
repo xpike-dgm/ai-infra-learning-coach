@@ -208,8 +208,15 @@ check("E10E-06_application_owns_startup",
       and re.search(r"override fun onCreate\(\)", application) is not None
       and 'android:name=".CoachApplication"' in manifest,
       "the process, not the activity, must own the store startup")
+# The opener's name is not the guarantee; where the work happens is. 11A renamed it when the
+# background job also began reading Today's facts, so this asks for the private opener the startup
+# is given, whatever it is called, and requires the path resolution to happen inside it.
+opener_fun = re.search(r"private fun (\w+)\(\): StoreOpenOutcome", application)
+opener_body = application[application.find(f"private fun {opener_fun.group(1)}("):] if opener_fun else ""
 check("E10E-06_path_resolved_off_main",
-      ordered(application, "private fun openGraph()", "getDatabasePath", "StoreOpener.open"),
+      opener_fun is not None
+      and f"::{opener_fun.group(1)}" in application
+      and ordered(opener_body, "getDatabasePath", "StoreOpener.open"),
       "the database path must be resolved inside the background opener")
 check("E10E-06_activity_observes", "startup.observe(listener)" in activity and "startup.stopObserving(listener)" in activity,
       "the activity observes and stops observing")

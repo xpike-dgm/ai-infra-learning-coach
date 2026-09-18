@@ -30,6 +30,16 @@ interface PersistencePort {
     fun readProjection(key: String): ProjectionRecord?
 
     fun writeProjection(record: ProjectionRecord)
+
+    /**
+     * Whether any curriculum version has been published into the immutable curriculum store.
+     *
+     * Today needs it to tell two truthful situations apart: nothing has been published yet, which is
+     * `empty_valid`, and a published curriculum whose plan has not been produced yet, which is
+     * `loading_initial_plan` (`THUX-v0`, 11A). This is a refinement of an existing port, not a fifth
+     * port, and it stays in core types.
+     */
+    fun curriculumPublished(): Boolean
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */

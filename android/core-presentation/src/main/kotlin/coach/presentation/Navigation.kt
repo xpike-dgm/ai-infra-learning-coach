@@ -85,17 +85,25 @@ sealed interface Surface {
     }
 
     companion object {
-        val shellRoots: List<ShellRoot> =
-            listOf(TodayOverview, LearnOverview, ProgressOverview, ProfileOverview)
+        // These are computed on access rather than held as initialised fields. A `val` here is
+        // filled while the companion initialises, which can run before the nested objects it names
+        // exist — and then the registry silently contains nulls, as it did the first time another
+        // module referenced a surface from its own initialiser (11A). The same Kotlin
+        // initialisation-order trap cost 10D a whole failing suite; `get()` removes it structurally.
+        val shellRoots: List<ShellRoot>
+            get() = listOf(TodayOverview, LearnOverview, ProgressOverview, ProfileOverview)
 
-        val sharedDetails: List<Surface> = listOf(
-            SkillDetail, TopicDetail, PlannerExplanation,
-            AssessmentReport, LearningHistory, TechnicalEnglishProfile,
-        )
+        val sharedDetails: List<Surface>
+            get() = listOf(
+                SkillDetail, TopicDetail, PlannerExplanation,
+                AssessmentReport, LearningHistory, TechnicalEnglishProfile,
+            )
 
-        val focusedFlows: List<Surface> = listOf(TaskRunnerFlow, AssessmentSessionFlow)
+        val focusedFlows: List<Surface>
+            get() = listOf(TaskRunnerFlow, AssessmentSessionFlow)
 
-        val all: List<Surface> = shellRoots + sharedDetails + focusedFlows
+        val all: List<Surface>
+            get() = shellRoots + sharedDetails + focusedFlows
 
         fun rootOf(destination: Destination): ShellRoot =
             shellRoots.first { it.destination == destination }

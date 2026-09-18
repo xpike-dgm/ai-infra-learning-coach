@@ -55,6 +55,19 @@ class NavigationTest {
     }
 
     @Test
+    fun `the surface registry is computed on access, not held as an initialised field`() {
+        // A `val` here is filled while the companion initialises, which can run before the nested
+        // objects it names exist — and the registry then holds nulls. That really happened when
+        // another module first referenced a surface from its own initialiser (11A). A getter has no
+        // backing field, so this fails the moment someone turns it back into an eager list.
+        val backingFields = Surface.Companion::class.java.declaredFields.map { it.name }
+        listOf("shellRoots", "sharedDetails", "focusedFlows", "all").forEach { property ->
+            assertFalse(property in backingFields, "$property must be computed on access")
+        }
+        assertTrue(Surface.all.none { it == null }, "the registry contains an uninitialised surface")
+    }
+
+    @Test
     fun `peer switching is total between shell roots`() {
         Destination.entries.forEach { from ->
             Destination.entries.forEach { to ->

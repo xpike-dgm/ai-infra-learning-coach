@@ -243,6 +243,21 @@ class TransactionAndMigrationTest {
     }
 
     @Test
+    fun `an empty curriculum store and a published one are told apart`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            // A fresh install: Today must be able to say "nothing is published yet" rather than
+            // "your plan is loading" (THUX-v0, 11A).
+            assertEquals(false, db.curriculumPublished())
+            db.execute(
+                "INSERT INTO skill (logical_id, version, canonical_name, capability_statement, lifecycle_status, " +
+                    "capability_kind, retention_profile, source_refs, provenance) " +
+                    "VALUES ('skill.python.loops', 1, 'Loops', 'write a loop', 'published', 'procedural', 'standard', 'src', 'prov')"
+            )
+            assertEquals(true, db.curriculumPublished())
+        }
+    }
+
+    @Test
     fun `no foreign key crosses from the user store into curriculum`() {
         SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
             val crossing = Schema.truthTables.flatMap { table ->
