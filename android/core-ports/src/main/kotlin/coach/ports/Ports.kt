@@ -25,7 +25,12 @@ interface ClockPort {
 interface PersistencePort {
     fun <T> inTransaction(block: () -> T): T
 
-    fun appendTruth(record: TruthRecord)
+    /**
+     * Appends one truth row and returns its row id. The id is what lets rows written in the same
+     * learner action refer to each other — an artifact to its attempt, provenance to its artifact —
+     * inside one transaction (11B). Returning it is a refinement of this port, not a new one.
+     */
+    fun appendTruth(record: TruthRecord): Long
 
     fun readProjection(key: String): ProjectionRecord?
 

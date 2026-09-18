@@ -257,6 +257,69 @@ class TransactionAndMigrationTest {
         }
     }
 
+    // ---------------------------------------------------------------- a learner action (11B)
+
+    /** The rows one submitted attempt writes, linked by the ids the store returns. */
+    private fun recordAttempt(db: SqlitePersistence, failAfter: String? = null): Long {
+        val attemptId = db.appendTruth(Fixtures.attempt())
+        if (failAfter == "attempt") error("fail after attempt")
+        val artifactId = db.appendTruth(
+            coach.ports.TruthRecord("artifact", Fixtures.at, mapOf("attempt_id" to "$attemptId", "content_ref" to "artifact://1"))
+        )
+        if (failAfter == "artifact") error("fail after artifact")
+        db.appendTruth(
+            coach.ports.TruthRecord("artifact_provenance", Fixtures.at, mapOf("artifact_id" to "$artifactId", "origin" to "unknown_provenance"))
+        )
+        if (failAfter == "provenance") error("fail after provenance")
+        db.appendTruth(
+            coach.ports.TruthRecord("assistance_event", Fixtures.at, mapOf(
+                "attempt_id" to "$attemptId", "level" to "H3", "timing" to "during_attempt",
+                "target_scope" to "target_objective", "source" to "deterministic_content", "requested_by_user" to "1",
+            ))
+        )
+        return attemptId
+    }
+
+    @Test
+    fun `an attempt with its artifact provenance and assistance commits as one action`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            val attemptId = db.inTransaction { recordAttempt(db) }
+            assertEquals(1, db.count("attempt"))
+            // The ids the store returned are the ones the rows really point at.
+            assertEquals(listOf(attemptId), db.query("SELECT attempt_id FROM artifact") { it.getLong(0) })
+            assertEquals(listOf(attemptId), db.query("SELECT attempt_id FROM assistance_event") { it.getLong(0) })
+            assertEquals(listOf("unknown_provenance"), db.query("SELECT origin FROM artifact_provenance") { it.getText(0) })
+            assertEquals(0, db.count("evidence_event"), "recording an attempt wrote evidence")
+        }
+    }
+
+    @Test
+    fun `an attempt never survives without its assistance metadata or provenance`() {
+        listOf("attempt", "artifact", "provenance").forEach { stage ->
+            SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+                runCatching { db.inTransaction { recordAttempt(db, failAfter = stage) } }
+                listOf("attempt", "artifact", "artifact_provenance", "assistance_event").forEach { table ->
+                    assertEquals(0, db.count(table), "$table survived a failure after $stage")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `a provenance the learner could not have given is refused`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            val attemptId = db.appendTruth(Fixtures.attempt())
+            val artifactId = db.appendTruth(
+                coach.ports.TruthRecord("artifact", Fixtures.at, mapOf("attempt_id" to "$attemptId", "content_ref" to "artifact://1"))
+            )
+            assertFailsWith<Throwable> {
+                db.appendTruth(
+                    coach.ports.TruthRecord("artifact_provenance", Fixtures.at, mapOf("artifact_id" to "$artifactId", "origin" to "suspected_cheating"))
+                )
+            }
+        }
+    }
+
     @Test
     fun `no foreign key crosses from the user store into curriculum`() {
         SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->

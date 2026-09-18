@@ -1,0 +1,309 @@
+model: RNRX-v0
+stage_step: 11B
+status: accepted_11b
+decision: D-088
+daily_working_flow: TRUX-v0
+today_interior: TDYX-v0
+navigation: NSHX-v0
+design_system: VDSX-v0
+persistence: LFPS-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+boundaries: MSBX-v0
+purpose: task_runner_as_an_execution_surface_with_atomic_attempt_recording
+
+scope:
+  task_runner_only: true
+  evidence_written: false
+  evidence_pipeline_implemented: false
+  planner_implemented: false
+  content_implemented: false
+  resume_checkpoint_persisted: false
+  surface_semantics_changed: false
+  boundaries_changed: false
+  ports_added: false
+  schema_changed: false
+  session_length_claim: null
+  step_count_claim: null
+
+runner_question: How do I do this work now, and what happens when I stop — truthfully, while nothing can be run yet?
+
+primary_invariant: >-
+  The Task Runner is an execution surface. It is not the planner, the mastery authority, the
+  prerequisite authority or the evidence evaluator, so it can neither rank a task, change a state,
+  advance a cached list nor turn an attempt into a pass or a fail.
+
+found_before_11b:
+  - id: combining_dot_in_living_docs
+    was: >-
+      11A's sync script built Turkish text with "İ".lower(), which in Python yields a dotted i
+      followed by U+0307 COMBINING DOT ABOVE; five words (four "açık", one "taşımaz") reached AGENTS.md,
+      PROJECT_CONTEXT.md, HANDOFF_STATE.md and START_HERE.md on main
+    fixed_here: replaced with the dotless ı the words need
+    guarded_by: the 11B validator now fails if any living document contains U+0307
+  - id: sync_rerun_left_duplicates_and_a_gap
+    was: >-
+      the same 11A sync script crashed part way and was re-run in pieces; that left an adjacent
+      duplicate D-087 line in HANDOFF_STATE.md, a duplicate "11B — Task runner" heading in
+      MASTER_PLAN.md, and no 12.13 section for 11A in PROJECT_CONTEXT.md — all on main
+    fixed_here: duplicates removed, the missing 12.13 section added and marked as late
+    same_mistake_nearly_repeated: >-
+      11B's own coverage block for MASTER_PLAN ended in the next heading, which would have duplicated
+      "11C — Session state" the same way; it was caught before commit, and the remaining sync steps
+      were made idempotent — replacements skip what is already applied and appends skip content
+      already present
+
+vocabularies:
+  semantic_states:
+    source: TRUX-v0 semantic_states
+    count: 17
+    order_is_source_order: true
+  lifecycle_phases:
+    source: TRUX-v0 task_run_lifecycle
+    value: [enter, orient, work, submit, resolve, transition]
+  entry_conditions:
+    source: TRUX-v0 entry_revalidation
+    count: 5
+  resume_conditions:
+    source: TRUX-v0 resume_revalidation
+    count: 5
+  assistance:
+    source: DDM-v0 assistance_event
+    levels: [H1, H2, H3, H4]
+    timings: [before_attempt, during_attempt, after_submit, after_failure]
+    scopes: [target_objective, non_target_support]
+    sources: [deterministic_content, ai_generated]
+    equal_to_schema_check_lists: true
+  provenance_origins:
+    source: DDM-v0 artifact_provenance
+    values: [user_authored, user_authored_with_assistance, mixed_authorship, generated_or_copied, unknown_provenance]
+    unknown_is_an_honest_answer: true
+  pause_classes:
+    source: TRUX-v0 checkpoint_model
+    values: [checkpoint_pause, mid_segment_pause, high_stakes_pause]
+  next_task_source:
+    values: [recomputed_planner_selection]
+    cached_local_list_advance: false
+
+state_tones:
+  source: VDSX-v0 surface_state_tones
+  copied_not_chosen: true
+  computed_in: core-presentation
+  first_draft_was_in_the_ui: true
+  first_draft_note: >-
+    the first version computed runner tones inside app-ui with values chosen by hand; they happened
+    to equal VDSX-v0, but a coincidence is not a guarantee and the UI toolkit is the wrong module, so
+    the map moved to core-presentation with a test that pins every state
+
+entry:
+  conditions_must_be_confirmed: true
+  unconfirmed_condition_assumed_to_hold: false
+  result_field: unmet
+  result_field_is_named_failed: false
+  rationale: >-
+    a condition nothing can confirm yet — no prerequisite engine, no published content — is not a
+    failed condition, and the runner does not start on an assumption either
+  confirmable_from_today_now: [planned_task_still_selected]
+  startable_today: false
+  startable_today_reason: prerequisites, the open need, content compatibility and local capability are facts other engines supply (12, 15) and none exists yet
+  failure_is_negative_evidence: false
+  failure_returns_to_today: true
+
+assistance:
+  always_requestable: true
+  withheld_to_force_independence: false
+  granted_without_request: false
+  requested_by_user_on_every_runner_grant: true
+  consequence_disclosure_before: [H3, H4]
+  consequence_disclosure_scope_condition: none
+  consequence_disclosure_scope_note: >-
+    TRUX-v0 states the rule without a scope condition. Narrowing it to target-scoped help was
+    considered and rejected: it would be a reasonable reading and still a quiet reinterpretation of
+    an accepted contract. A mutant that narrows it is caught.
+  consequence_framing: measurement_not_punishment
+  auto_reveal_after_incorrect_attempt: false
+  recheck_flag: derived_from_recorded_assistance
+  recheck_scheduled_by_runner: false
+
+stop_and_exit:
+  exit_available_from_every_state: true
+  exit_is_first_element_of_the_flow: true
+  stop_state: stopped_no_penalty
+  stop_creates_debt_streak_loss_or_catch_up: false
+  mid_segment_pause_presented_as_saved: false
+
+evaluation:
+  pending_is_its_own_state: true
+  pending_is_pass: false
+  pending_is_fail: false
+  runner_is_evidence_evaluator: false
+
+submission:
+  module: core-application
+  one_learner_action_one_transaction: true
+  rows: [attempt, artifact, artifact_provenance, assistance_event]
+  evidence_rows_written: 0
+  single_timestamp_per_action: true
+  provenance_required: true
+  artifact_reference_required: true
+  derived_fields_not_stored: [highest_assistance_level, requires_independent_recheck]
+  derived_fields_reason: a derived fact stored beside its source is a second source of truth waiting to disagree
+  verified_by:
+    t1: use-case shape with a recording store — one transaction, linked ids, no evidence, one timestamp
+    t2: the storage guarantee on real SQLite — the four row kinds commit together, and a failure after any of them leaves none
+  t2_split_reason: >-
+    data-persistence may not depend on core-application, so the use case is proven by shape at T1
+    and the same row sequence is proven atomic against the real engine at T2
+
+port_refinement:
+  port: PersistencePort
+  changed: appendTruth now returns the inserted row id
+  reason: rows of one learner action must refer to each other inside one transaction
+  new_port: false
+  port_count_unchanged: 4
+  precedent: [LDBX-v0 ProjectionRecord, TDYX-v0 curriculumPublished]
+
+not_stored_with_owner:
+  - {field: planned_task_ref on attempt, owner: 12, reason: DDM-v0 does not name attempt fields; adding it would invent a field}
+  - {field: runner_completion_state, owner: 12, reason: TRUX-v0 names the concept but no value set; inventing one is forbidden}
+  - {field: component_results and target_objective_refs, owner: 12, reason: they belong to the evidence pipeline, which the runner is not}
+  - {field: artifact body storage behind content_ref, owner: 11D, reason: the first step whose activities produce artifacts decides where their bodies live}
+  - {field: resume checkpoint content, owner: 11C, reason: session state owns checkpoint persistence}
+
+wiring:
+  today_start_opens_runner: true
+  runner_suspends_shell: true
+  exit_returns_to_today: true
+  entry_decided_in: core-presentation
+
+tests:
+  new_in_11b:
+    TaskRunnerTest: 18
+    SubmitAttemptTest: 7
+    TransactionAndMigrationTest_learner_action: 3
+  t2_total: 50
+  skipped: 0
+  failures: 0
+
+mutation_results:
+  total: 18
+  detected: 18
+  mutants:
+    - {id: R01, mutant: h3_granted_without_disclosure}
+    - {id: R02, mutant: disclosure_narrowed_to_target_scope}
+    - {id: R03, mutant: solution_auto_revealed_after_error}
+    - {id: R04, mutant: help_recorded_as_unrequested}
+    - {id: R05, mutant: unconfirmed_conditions_assumed}
+    - {id: R06, mutant: entry_checks_one_condition}
+    - {id: R07, mutant: invalid_resume_continues}
+    - {id: R08, mutant: pending_resolved_as_verdict}
+    - {id: R09, mutant: stop_is_not_no_penalty}
+    - {id: R10, mutant: mid_segment_pause_claims_saved}
+    - {id: R11, mutant: cached_list_advance_added}
+    - {id: R12, mutant: submission_writes_evidence}
+    - {id: R13, mutant: submission_outside_transaction}
+    - {id: R14, mutant: provenance_dropped}
+    - {id: R15, mutant: recheck_flag_stored}
+    - {id: R16, mutant: append_returns_sequence_not_rowid}
+    - {id: R17, mutant: blocked_start_looks_like_a_fault}
+    - {id: R18, mutant: h3_does_not_reveal}
+  survived_at_first: []
+  note_on_r16: >-
+    expected to slip through, because the first attempt's row id and truth sequence are both 1; it
+    was caught, but by the foreign key rather than by the id assertion — the artifact's sequence (2)
+    names no artifact row, and SQLite refuses the provenance insert. Recorded as the mechanism that
+    actually caught it, not the one that was intended.
+
+validator_mutation:
+  total: 18
+  detected: 18
+  mutants: [state_order, extra_provenance_value, level_renamed, disclosure_narrowed, unrequested_grant,
+            today_assumes_all, failed_not_unmet, blocked_as_fault, ui_chooses_tone, submission_writes_evidence,
+            two_timestamps, recheck_stored, exit_after_state, start_skips_revalidation, append_returns_unit,
+            combining_dot_reintroduced, device_claimed, adjacent_duplicate_line_in_living_doc]
+  negative_control: the disclosure rule named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+  guard_caught_itself: >-
+    on its first run the U+0307 guard failed on the validator's own source, because the tool that
+    wrote the file turned the escape sequence into the literal character; the character is now built
+    with chr(0x0307) so the file never contains what it hunts for
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+    tests: 50
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - the runner screen on the device, including the exit's reachability with TalkBack
+  - any runner state past blocked_not_startable in the real app, because nothing can be confirmed startable yet
+  - the consequence disclosure rendered in a real flow; it is a composable with no caller that can reach it today
+  - the atomic submission from the app; no activity produces an attempt yet, so it is proven at T1 and T2 only
+
+forbidden_runner_patterns:
+  - starting_a_task_on_an_unconfirmed_condition
+  - naming_an_unconfirmed_condition_a_failure
+  - granting_help_that_was_not_requested
+  - granting_h3_or_h4_before_the_consequence_is_disclosed
+  - narrowing_an_accepted_disclosure_rule
+  - revealing_a_solution_after_the_first_error
+  - withholding_help_to_force_independence
+  - a_stop_that_costs_debt_streak_or_catch_up
+  - presenting_a_mid_segment_pause_as_saved
+  - treating_a_pending_evaluation_as_a_pass_or_a_fail
+  - advancing_a_cached_task_list
+  - writing_evidence_from_the_runner
+  - recording_an_attempt_without_provenance_or_assistance_in_the_same_transaction
+  - storing_a_derived_fact_beside_its_source
+  - inventing_attempt_fields_the_data_model_does_not_name
+  - computing_runner_tones_in_the_ui
+
+future_stage_boundaries:
+  11C: resume_checkpoint_content_and_session_state
+  11D: curriculum_ingestion_artifact_storage_and_first_runnable_activity
+  12: evidence_pipeline_planner_linkage_and_confirmable_entry_conditions
+  13: assessment_session_interior_on_the_shared_focused_flow_frame
+  14: ai_assistance_content_and_final_microcopy
+
+acceptance:
+  required_previous_models:
+    - TRUX-v0
+    - TDYX-v0
+    - NSHX-v0
+    - VDSX-v0
+    - LFPS-v0
+    - DDM-v0
+    - LDBX-v0
+    - MSBX-v0
+  independent_qa_required: true
+  build_must_be_run_not_asserted: true
+  atomicity_proven_on_real_storage: true
+  stage10_regression_required: true
+  stage11a_regression_required: true

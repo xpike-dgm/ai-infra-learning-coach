@@ -20,6 +20,9 @@ import coach.model.TodayFacts
 import coach.presentation.AppHealth
 import coach.presentation.Destination
 import coach.presentation.HealthAction
+import coach.presentation.Revalidation
+import coach.presentation.RunnerFlow
+import coach.presentation.RunnerRevalidation
 import coach.presentation.ShellState
 import coach.presentation.Surface
 import coach.presentation.TodayPresentation
@@ -30,6 +33,7 @@ import coach.ui.AppShell
 import coach.ui.CoachTheme
 import coach.ui.HealthBlockingSurface
 import coach.ui.HealthContextLine
+import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 
 class MainActivity : ComponentActivity() {
@@ -93,25 +97,41 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
     var selected by remember { mutableStateOf(Destination.start) }
+    // The focused flow in front of the shell, if any. Its entry decision is made in core.
+    var runnerEntry by remember { mutableStateOf<Revalidation?>(null) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
     val windowClass = WindowClass.ofWidthDp(LocalConfiguration.current.screenWidthDp)
+    val today = TodayPresentation.of(todayInput(facts, health))
 
     val state = ShellState(
         selected = selected,
-        surface = Surface.rootOf(selected),
+        // A focused flow suspends the shell; NSHX-v0 derives that from the surface itself.
+        surface = if (runnerEntry != null) RunnerFlow.surface else Surface.rootOf(selected),
         windowClass = windowClass,
     )
 
     AppShell(state = state, onSelect = { selected = it }) {
-        when (selected) {
-            Destination.TODAY -> TodayScreen(
+        val entry = runnerEntry
+        when {
+            entry != null -> TaskRunnerScreen(
+                state = RunnerRevalidation.stateAtEntry(entry),
+                entry = entry,
+                // Back to Today in one action; NavigationGraph's return rule would also land here,
+                // because a run started from Today returns to Today.
+                onExit = {
+                    runnerEntry = null
+                    selected = Destination.TODAY
+                },
+            )
+            selected == Destination.TODAY -> TodayScreen(
                 // Today's own projection: which state applies and which task may be offered is
                 // decided in core, never here (MSBX-v0).
-                view = TodayPresentation.of(todayInput(facts, health)),
-                // Starting a task is the Task Runner's entry, and that flow is 11B.
-                onStart = {},
+                view = today,
+                // Entry is revalidated in core against what can actually be confirmed; nothing
+                // unconfirmed is assumed to hold (TRUX-v0 entry_revalidation).
+                onStart = { runnerEntry = RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(today)) },
                 onOpen = {},
             )
             else -> Column(

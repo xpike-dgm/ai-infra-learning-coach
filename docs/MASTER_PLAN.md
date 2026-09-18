@@ -678,9 +678,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 16/16 (üçü test güçlendirilince), validator 150/150 ve kendi mutation testi 16/16,
 - **T6 çalııştırılmadı**; cihaz sonucu iddia edilmiyor.
 
-### [ ] 11B — Task runner
-### [ ] 11B — Task runner
-### [ ] 11C — Session state
+### [x] 11B — Task runner — RNRX-v0 / D-088
+
+**11B final coverage:**
+- runner bir execution surface; planner, mastery, prerequisite ya da evidence otoritesi değil,
+- runner kodundan önce main'de U+0307 bulundu (11A'nın sync betiği); düzeltildi ve validator her metin dosyasını tarıyor,
+- 17 state, 6 faz, 5+5 koşul, 3 pause sınıfı `TRUX-v0`den; tonlar `VDSX-v0`den, core'da,
+- girişte doğrulanmayan koşul `unmet`; bugün hiçbir görev başlatılamaz,
+- H3/H4 açıklamasız verilmez; ilk hatada çözüm açılmaz; durmak cezasız; pending ne geçti ne kaldı,
+- deneme tek transaction (attempt + artifact + provenance + assistance), evidence yok,
+- mutation 18/18, validator 147/147 ve kendi mutation testi 18/18,
+- **T6 çalıştırılmadı**.
+
+### [ ] 11C — Session state — **AKTİF**
 ### [ ] 11D — Günlük mikro quiz
 ### [ ] 11E — Gün sonu
 
@@ -801,8 +811,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A`  
-**Son tamamlanan:** **`11A — TDYX-v0 / D-087`**  
-**Aktif:** **`11B — Task runner`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11B`  
+**Son tamamlanan:** **`11B — RNRX-v0 / D-088`**  
+**Aktif:** **`11C — Session state`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **11B fresh PRE-STEP — `TRUX-v0`nin Task Runner girişini Today'in start action'ına bağlamak — independent QA — D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **11C fresh PRE-STEP → resume checkpoint içeriği ve session state → independent QA → D-050 POST sync + stale audit.**

@@ -1,0 +1,473 @@
+model: RNRX-v0
+stage_step: 11B
+decision: D-088
+result: PASS
+checks_total: 147
+checks_passed: 147
+checks_failed: 0
+checks:
+- check: E11B-00_exists_TaskRunner.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\TaskRunner.kt
+- check: E11B-00_exists_AttemptFacts.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\AttemptFacts.kt
+- check: E11B-00_exists_SubmitAttempt.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\SubmitAttempt.kt
+- check: E11B-00_exists_TaskRunnerScreen.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
+- check: E11B-00_exists_TaskRunnerTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\TaskRunnerTest.kt
+- check: E11B-00_exists_SubmitAttemptTest.kt
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\SubmitAttemptTest.kt
+- check: E11B-00_exists_TASK_RUNNER_SPEC.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\TASK_RUNNER_SPEC.md
+- check: E11B-00_exists_11b_task_runner_research.md
+  result: PASS
+  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\11b_task_runner_research.md
+- check: E11B-01_model
+  result: PASS
+  details: RNRX-v0
+- check: E11B-01_status
+  result: PASS
+  details: accepted_11b
+- check: E11B-01_decision
+  result: PASS
+  details: D-088
+- check: E11B-01_scope_evidence_written
+  result: PASS
+  details: evidence_written=False
+- check: E11B-01_scope_evidence_pipeline_implemented
+  result: PASS
+  details: evidence_pipeline_implemented=False
+- check: E11B-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E11B-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E11B-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E11B-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E11B-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E11B-02_states
+  result: PASS
+  details: kotlin=['entering_revalidating', 'blocked_not_startable', 'orientation',
+    'active_work', 'assistance_open', 'submitting', 'feedback_resolved', 'evaluation_pending',
+    'checkpoint_paused', 'resume_revalidating', 'resume_invalidated', 'replan_interrupted',
+    'stopped_no_penalty', 'offline_local_capable', 'ai_unavailable_deterministic_core',
+    'error_recoverable', 'data_recovery_required']
+- check: E11B-02_phases
+  result: PASS
+  details: kotlin=['enter', 'orient', 'work', 'submit', 'resolve', 'transition']
+- check: E11B-02_entry_conditions
+  result: PASS
+  details: kotlin=['planned_task_still_selected', 'hard_prerequisites_satisfied',
+    'learning_need_still_open', 'content_version_compatible', 'required_local_capability_available']
+- check: E11B-02_resume_conditions
+  result: PASS
+  details: kotlin=['content_version_compatible', 'prerequisites_still_eligible', 'learning_need_still_open',
+    'runner_and_artifact_state_intact', 'high_stakes_gap_integrity_acceptable']
+- check: E11B-02_pause_classes
+  result: PASS
+  details: kotlin=['checkpoint_pause', 'mid_segment_pause', 'high_stakes_pause']
+- check: E11B-02_next_task_source
+  result: PASS
+  details: kotlin=['recomputed_planner_selection']
+- check: E11B-03_AssistanceLevel_ddm
+  result: PASS
+  details: kotlin=['H1', 'H2', 'H3', 'H4'] ddm=['H1', 'H2', 'H3', 'H4']
+- check: E11B-03_AssistanceLevel_schema
+  result: PASS
+  details: kotlin=['H1', 'H2', 'H3', 'H4'] schema=['H1', 'H2', 'H3', 'H4']
+- check: E11B-03_AssistanceLevel_trux
+  result: PASS
+  details: trux=['H1', 'H2', 'H3', 'H4']
+- check: E11B-03_AssistanceTiming_ddm
+  result: PASS
+  details: kotlin=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+    ddm=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+- check: E11B-03_AssistanceTiming_schema
+  result: PASS
+  details: kotlin=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+    schema=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+- check: E11B-03_AssistanceTiming_trux
+  result: PASS
+  details: trux=['before_attempt', 'during_attempt', 'after_submit', 'after_failure']
+- check: E11B-03_AssistanceScope_ddm
+  result: PASS
+  details: kotlin=['target_objective', 'non_target_support'] ddm=['target_objective',
+    'non_target_support']
+- check: E11B-03_AssistanceScope_schema
+  result: PASS
+  details: kotlin=['target_objective', 'non_target_support'] schema=['target_objective',
+    'non_target_support']
+- check: E11B-03_AssistanceScope_trux
+  result: PASS
+  details: trux=['target_objective', 'non_target_support']
+- check: E11B-03_AssistanceSource_ddm
+  result: PASS
+  details: kotlin=['deterministic_content', 'ai_generated'] ddm=['deterministic_content',
+    'ai_generated']
+- check: E11B-03_AssistanceSource_schema
+  result: PASS
+  details: kotlin=['deterministic_content', 'ai_generated'] schema=['deterministic_content',
+    'ai_generated']
+- check: E11B-03_provenance_ddm
+  result: PASS
+  details: kotlin=['user_authored', 'user_authored_with_assistance', 'mixed_authorship',
+    'generated_or_copied', 'unknown_provenance']
+- check: E11B-03_provenance_schema
+  result: PASS
+  details: kotlin=['user_authored', 'user_authored_with_assistance', 'mixed_authorship',
+    'generated_or_copied', 'unknown_provenance']
+- check: E11B-03_provenance_trux
+  result: PASS
+  details: kotlin=['user_authored', 'user_authored_with_assistance', 'mixed_authorship',
+    'generated_or_copied', 'unknown_provenance']
+- check: E11B-03_provenance_asked
+  result: PASS
+  details: an honest unknown must be recordable
+- check: E11B-04_tone_entering_revalidating
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_blocked_not_startable
+  result: PASS
+  details: kotlin=ATTENTION vdsx=ATTENTION
+- check: E11B-04_tone_orientation
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_active_work
+  result: PASS
+  details: kotlin=ACTIVE vdsx=ACTIVE
+- check: E11B-04_tone_assistance_open
+  result: PASS
+  details: kotlin=ACTIVE vdsx=ACTIVE
+- check: E11B-04_tone_submitting
+  result: PASS
+  details: kotlin=ACTIVE vdsx=ACTIVE
+- check: E11B-04_tone_feedback_resolved
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_evaluation_pending
+  result: PASS
+  details: kotlin=PENDING_UNRESOLVED vdsx=PENDING_UNRESOLVED
+- check: E11B-04_tone_checkpoint_paused
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_resume_revalidating
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_resume_invalidated
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_replan_interrupted
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_stopped_no_penalty
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_offline_local_capable
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_ai_unavailable_deterministic_core
+  result: PASS
+  details: kotlin=NEUTRAL vdsx=NEUTRAL
+- check: E11B-04_tone_error_recoverable
+  result: PASS
+  details: kotlin=SYSTEM_FAULT vdsx=SYSTEM_FAULT
+- check: E11B-04_tone_data_recovery_required
+  result: PASS
+  details: kotlin=SYSTEM_FAULT vdsx=SYSTEM_FAULT
+- check: E11B-04_ui_does_not_choose_tones
+  result: PASS
+  details: tones are decided in core-presentation, never in app-ui
+- check: E11B-05_upstream_rules
+  result: PASS
+  details: '{''jump_to_h4_without_request'': False, ''auto_reveal_on_first_error'':
+    False}'
+- check: E11B-05_h3_h4_reveal
+  result: PASS
+  details: H3 and H4 are the levels that reveal target reasoning
+- check: E11B-05_disclosure_unconditional_on_scope
+  result: PASS
+  details: TRUX-v0 states the disclosure rule without a scope condition
+- check: E11B-05_grants_are_requested
+  result: PASS
+  details: the runner never grants help that was not requested
+- check: E11B-05_no_auto_reveal
+  result: PASS
+  details: an incorrect attempt only makes every level requestable
+- check: E11B-05_recheck_derived
+  result: PASS
+  details: derived facts are computed, not stored
+- check: E11B-05_runner_does_not_schedule_recheck
+  result: PASS
+  details: the runner never schedules the recheck
+- check: E11B-06_entry_needs_confirmation
+  result: PASS
+  details: every entry condition must be confirmed
+- check: E11B-06_unmet_not_failed
+  result: PASS
+  details: an unconfirmed condition is named unmet, not failed
+- check: E11B-06_today_confirms_only_selection
+  result: PASS
+  details: nothing Today cannot confirm may be assumed
+- check: E11B-06_upstream_entry
+  result: PASS
+  details: TRUX-v0 entry rules
+- check: E11B-06_stop_no_penalty
+  result: PASS
+  details: stopping costs nothing
+- check: E11B-06_exit_everywhere
+  result: PASS
+  details: the exit is always available
+- check: E11B-06_mid_segment_not_saved
+  result: PASS
+  details: a mid-segment pause is not durable and is never presented as saved
+- check: E11B-06_pending_own_state
+  result: PASS
+  details: a pending evaluation is neither a pass nor a fail
+- check: E11B-06_focused_flow
+  result: PASS
+  details: the runner is the task_runner_flow focused flow
+- check: E11B-06_disclosure_is_measurement
+  result: PASS
+  details: the consequence is framed as measurement
+- check: E11B-07_one_transaction
+  result: PASS
+  details: one learner action is one transaction
+- check: E11B-07_rows_in_order
+  result: PASS
+  details: attempt, artifact, provenance, assistance
+- check: E11B-07_no_evidence
+  result: PASS
+  details: the runner writes no evidence
+- check: E11B-07_one_timestamp
+  result: PASS
+  details: one timestamp per action
+- check: E11B-07_derived_not_stored
+  result: PASS
+  details: a derived fact is not stored beside its source
+- check: E11B-07_provenance_required
+  result: PASS
+  details: an attempt cannot be built without the learner's provenance answer
+- check: E11B-07_upstream_no_evidence_without_attempt
+  result: PASS
+  details: 'TRUX-v0: the runner is not the evidence evaluator'
+- check: E11B-08_ports_unchanged
+  result: PASS
+  details: no fifth port
+- check: E11B-08_append_returns_id
+  result: PASS
+  details: appendTruth returns the row id
+- check: E11B-09_exit_first
+  result: PASS
+  details: the exit comes before everything else
+- check: E11B-09_touch_target
+  result: PASS
+  details: 48dp floor
+- check: E11B-09_announced
+  result: PASS
+  details: state changes are announced
+- check: E11B-09_label_entering_revalidating
+  result: PASS
+  details: no label for entering_revalidating
+- check: E11B-09_label_blocked_not_startable
+  result: PASS
+  details: no label for blocked_not_startable
+- check: E11B-09_label_orientation
+  result: PASS
+  details: no label for orientation
+- check: E11B-09_label_active_work
+  result: PASS
+  details: no label for active_work
+- check: E11B-09_label_assistance_open
+  result: PASS
+  details: no label for assistance_open
+- check: E11B-09_label_submitting
+  result: PASS
+  details: no label for submitting
+- check: E11B-09_label_feedback_resolved
+  result: PASS
+  details: no label for feedback_resolved
+- check: E11B-09_label_evaluation_pending
+  result: PASS
+  details: no label for evaluation_pending
+- check: E11B-09_label_checkpoint_paused
+  result: PASS
+  details: no label for checkpoint_paused
+- check: E11B-09_label_resume_revalidating
+  result: PASS
+  details: no label for resume_revalidating
+- check: E11B-09_label_resume_invalidated
+  result: PASS
+  details: no label for resume_invalidated
+- check: E11B-09_label_replan_interrupted
+  result: PASS
+  details: no label for replan_interrupted
+- check: E11B-09_label_stopped_no_penalty
+  result: PASS
+  details: no label for stopped_no_penalty
+- check: E11B-09_label_offline_local_capable
+  result: PASS
+  details: no label for offline_local_capable
+- check: E11B-09_label_ai_unavailable_deterministic_core
+  result: PASS
+  details: no label for ai_unavailable_deterministic_core
+- check: E11B-09_label_error_recoverable
+  result: PASS
+  details: no label for error_recoverable
+- check: E11B-09_label_data_recovery_required
+  result: PASS
+  details: no label for data_recovery_required
+- check: E11B-09_no_locale_naive_case
+  result: PASS
+  details: no locale-naive case transform
+- check: E11B-10_start_revalidates_in_core
+  result: PASS
+  details: Today's start is revalidated in core
+- check: E11B-10_runner_suspends_shell
+  result: PASS
+  details: the runner is a focused flow in front of the shell
+- check: E11B-11_test_the seventeen semantic states are TRUX-v0's,
+  result: PASS
+  details: 'missing test: the seventeen semantic states are TRUX-v0''s, in its order'
+- check: E11B-11_test_any unmet entry condition blocks the start a
+  result: PASS
+  details: 'missing test: any unmet entry condition blocks the start and names what
+    changed'
+- check: E11B-11_test_nothing Today cannot confirm is assumed to h
+  result: PASS
+  details: 'missing test: nothing Today cannot confirm is assumed to hold at entry'
+- check: E11B-11_test_H3 and H4 are never granted before the conse
+  result: PASS
+  details: 'missing test: H3 and H4 are never granted before the consequence is disclosed'
+- check: 'E11B-11_test_an incorrect attempt reveals nothing on its '
+  result: PASS
+  details: 'missing test: an incorrect attempt reveals nothing on its own and leaves
+    every level requestable'
+- check: E11B-11_test_stopping costs nothing and is always the sam
+  result: PASS
+  details: 'missing test: stopping costs nothing and is always the same state'
+- check: E11B-11_test_a pending evaluation is its own state, never
+  result: PASS
+  details: 'missing test: a pending evaluation is its own state, never a pass or a
+    fail'
+- check: E11B-11_test_every runner state wears the tone VDSX-v0 as
+  result: PASS
+  details: 'missing test: every runner state wears the tone VDSX-v0 assigned it'
+- check: E11B-11_test_an attempt is recorded as exactly one transa
+  result: PASS
+  details: 'missing test: an attempt is recorded as exactly one transaction'
+- check: E11B-11_test_the runner writes no evidence
+  result: PASS
+  details: 'missing test: the runner writes no evidence'
+- check: E11B-11_test_revealed target reasoning raises the recheck
+  result: PASS
+  details: 'missing test: revealed target reasoning raises the recheck flag, derived
+    rather than stored'
+- check: 'E11B-11_t2_an attempt with its artifact provenance and '
+  result: PASS
+  details: 'missing T2 test: an attempt with its artifact provenance and assistance
+    commits as one action'
+- check: E11B-11_t2_an attempt never survives without its assist
+  result: PASS
+  details: 'missing T2 test: an attempt never survives without its assistance metadata
+    or provenance'
+- check: E11B-12_no_combining_dot
+  result: PASS
+  details: U+0307 found in [] — a Python '\u0130'.lower() produces it; Turkish needs
+    the dotless \u0131
+- check: E11B-12_no_adjacent_duplicate_lines
+  result: PASS
+  details: adjacent duplicates at []
+- check: E11B-13_device_not_claimed
+  result: PASS
+  details: no device result claimed
+- check: E11B-13_mutation_all_detected
+  result: PASS
+  details: '{''total'': 18, ''detected'': 18}'
+- check: E11B-13_not_stored_recorded
+  result: PASS
+  details: fields the runner does not store must be named with owners
+- check: E11B-13_runs_pass
+  result: PASS
+  details: dict_keys(['RUN-01', 'RUN-02', 'RUN-03', 'RUN-04', 'RUN-05', 'RUN-06'])
+- check: E11B-13_boundary_11C
+  result: PASS
+  details: missing 11C
+- check: E11B-13_boundary_11D
+  result: PASS
+  details: missing 11D
+- check: E11B-13_boundary_12
+  result: PASS
+  details: missing 12
+- check: E11B-13_boundary_13
+  result: PASS
+  details: missing 13
+- check: E11B-14_forbidden_starting_a_task_on_an_unconfirmed_condit
+  result: PASS
+  details: missing=starting_a_task_on_an_unconfirmed_condition
+- check: E11B-14_forbidden_granting_h3_or_h4_before_the_consequence
+  result: PASS
+  details: missing=granting_h3_or_h4_before_the_consequence_is_disclosed
+- check: E11B-14_forbidden_narrowing_an_accepted_disclosure_rule
+  result: PASS
+  details: missing=narrowing_an_accepted_disclosure_rule
+- check: E11B-14_forbidden_writing_evidence_from_the_runner
+  result: PASS
+  details: missing=writing_evidence_from_the_runner
+- check: E11B-14_forbidden_storing_a_derived_fact_beside_its_source
+  result: PASS
+  details: missing=storing_a_derived_fact_beside_its_source
+- check: E11B-14_forbidden_inventing_attempt_fields_the_data_model_
+  result: PASS
+  details: missing=inventing_attempt_fields_the_data_model_does_not_name
+- check: E11B-14_forbidden_computing_runner_tones_in_the_ui
+  result: PASS
+  details: missing=computing_runner_tones_in_the_ui
+- check: E11B-15_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 11B QA PASS'
+- check: E11B-15_spec_**Decision:** `D-088`
+  result: PASS
+  details: missing='**Decision:** `D-088`'
+- check: E11B-15_spec_evaluation_pending
+  result: PASS
+  details: missing='evaluation_pending'
+- check: E11B-15_spec_unmet
+  result: PASS
+  details: missing='unmet'
+- check: E11B-15_spec_one transaction
+  result: PASS
+  details: missing='one transaction'
+- check: E11B-16_research_U+0307
+  result: PASS
+  details: missing='U+0307'
+- check: E11B-16_research_planned_task_ref
+  result: PASS
+  details: missing='planned_task_ref'
+- check: E11B-16_research_runner_completion_state
+  result: PASS
+  details: missing='runner_completion_state'
+- check: E11B-17_independent_qa_required
+  result: PASS
+  details: independent_qa_required=True
+- check: E11B-17_build_must_be_run_not_asserted
+  result: PASS
+  details: build_must_be_run_not_asserted=True
+- check: E11B-17_atomicity_proven_on_real_storage
+  result: PASS
+  details: atomicity_proven_on_real_storage=True
+failures: []

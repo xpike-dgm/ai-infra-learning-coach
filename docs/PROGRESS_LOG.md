@@ -927,3 +927,22 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `11A ✅ / 11B active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `11B — Task runner`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-19 — 11B Task runner tamamlandı — RNRX-v0 / D-088
+
+- 11A merge edildi (CI iki check yeşil); fresh 11B PRE main üzerinden yapıldı ve beş kanonik kaynak `11A ✅ / 11B active-not-executed` gösterdi. Kullanıcı açık onay verdi ("sıradaki adıma geçebilirsin").
+- **PRE sırasında main'de 11A'nın kendi hatası bulundu:** sync betiğinde `"İ".lower()` kullanılmıştı; Python'da bu `i` + U+0307 üretir. Beş kelime dört living dokümana sızmıştı. Düzeltildi; 11B validator'ı artık repodaki her metin dosyasını U+0307 için tarıyor. Guard ilk koşuda kendini yakaladı (yazan araç kaçış dizisini karaktere çevirmişti); karakter artık `chr(0x0307)` ile kuruluyor.
+- **Aynı 11A betiği yarıda çöküp parça parça yeniden koşulduğu için main'de ayrıca** `HANDOFF_STATE`te mükerrer bir D-087 satırı, `MASTER_PLAN`da mükerrer bir "11B" başlığı ve `PROJECT_CONTEXT`te eksik 12.13 bölümü kalmıştı. Düzeltildi. 11B'nin kendi MASTER_PLAN bloğu da aynı hatayı tekrarlamak üzereydi ("11C" başlığıyla bitiyordu); commit'ten önce yakalandı ve kalan sync adımları idempotent yapıldı.
+- **Runner evidence yazmaz** — `TRUX-v0` açıkça "runner evidence evaluator değildir" diyor. Yazma yolu attempt + artifact + provenance + assistance, tek transaction.
+- **`attempt` tablosunda `planned_task_ref` ve `runner_completion_state` yok** ve `DDM-v0` attempt alanlarını adlandırmıyor; eklemek 10D'nin yasakladığı alan uydurma olurdu. Sahipleriyle kaydedildi (12).
+- **Giriş kontrolü:** doğrulanamayan koşul `unmet` olarak adlandırıldı, `failed` değil. Today yalnız görevinin seçili olduğunu doğrulayabildiği için bugün hiçbir görev başlatılamıyor — dürüst sonuç bu.
+- **Kendi kodumda iki hata yakalandı:** H3/H4 sonuç açıklamasını önce hedef-kapsamlı yardımla sınırlamıştım (kabul edilmiş kuralın sessiz daraltması) — literal hâline döndü; runner tonlarını UI'da elle seçmiştim (tesadüfen doğru) — core'a taşındı ve teste bağlandı.
+- **Kanıt ikiye bölündü:** `data-persistence` `core-application`a bağlı olamayacağı için use case'in şekli T1'de, satır dizisinin atomikliği gerçek SQLite'ta T2'de kanıtlandı.
+- `appendTruth` artık satır id'si döndürüyor (kayıtlı port incelmesi).
+- Mutation 18/18, hepsi ilk turda; R16'yı beklenen id kontrolü değil foreign key yakaladı ve kayıt bunu söylüyor.
+- Altı run PASS (T1, T2 50 test, T3, adaptör testleri, iki `assembleDebug`). Validator 147/147, kendi mutation testi 18/18. Sweep 33/33.
+- **T6 çalıştırılmadı.**
+- D-050 POST living-memory accepted state'i `11B ✅ / 11C active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `11C — Session state`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

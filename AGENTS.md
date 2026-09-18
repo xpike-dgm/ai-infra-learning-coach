@@ -71,11 +71,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 10E: ✅ `APHX-v0 / D-086` tamamlandı — store'un hiçbir arızası çökme ya da reset değildir; store süreçte bir kez arka planda açılır; bütünlük migration'dan önce `quick_check` + FK ve migration sonrası tam `integrity_check` ile kontrol edilir; her hata `UXIA-v0`nin kabul edilmiş state'i ve sebep tip olarak taşınır; "hiçbir şey sıfırlanmadı" byte ile kanıtlanır; tek aksiyon `RECHECK`, reset temsil edilemez. Kod kontratlara karşı okununca açılışta bütünlük kontrolünün olmadığı ve varsayılan build'in AI adaptörünün çökeceği bulundu. Restore mekanizması kuruldu (kontroller 16D). T6 çalıştırılmadı. 152/152 QA PASS, mutation 16/16.
 - **AŞAMA 10 TAMAMLANDI** — MPSX-v0 → NSHX-v0 → DSIX-v0 → LDBX-v0 → APHX-v0.
 - 11A: ✅ `TDYX-v0 / D-087` tamamlandı — Today kanonik planner/state gerçeğinin projeksiyonudur ve kendisine verilmeyeni hesaplamaz; planner 12'de olduğu için ekran plan uydurmaz, dürüst boş/yükleniyor state'lerini gösterir. Bayat plan, blocked görev, değiştirilen plan ve doğrulanmamış oturum süzülür; reason planner trace'i olmadan kurulamaz ve serbest metin taşımaz; satırda mastery alanı, sunumda türetilmiş kapasite hükmü yok; `empty_valid` üretiliyor. Kodu kontratlara karşı okumak içerik portundaki `TODO()`yu ve `Surface` kaydındaki başlatma-sırası hatasını buldu. 150/150 QA PASS, mutation 16/16. T6 çalııştırılmadı.
-- **Aktif adım: 11B — Task runner.**
-- **11B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açi̇k onayı zorunludur.
-- AŞAMA 11C–20 bekliyor.
+- 11B: ✅ `RNRX-v0 / D-088` tamamlandı — Task Runner bir execution surface'tir; planner, mastery, prerequisite ya da evidence otoritesi değil. Girişte her koşul doğrulanmalı ve doğrulanamayan `unmet`; bugün hiçbir görev başlatılamaz. Yardım hep istenebilir, istenmeden verilmez, H3/H4 açıklamasız verilmez (kapsam koşulu olmadan). Deneme tek transaction: attempt + artifact + provenance + assistance, evidence yok. Main'de 11A'nın sync betiğinden kalan U+0307 bulundu ve validator ile korunuyor. 147/147 QA PASS, mutation 18/18. T6 çalıştırılmadı.
+- **Aktif adım: 11C — Session state.**
+- **11C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 11D–20 bekliyor.
 
-**11B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 11B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**11C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 11C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 
