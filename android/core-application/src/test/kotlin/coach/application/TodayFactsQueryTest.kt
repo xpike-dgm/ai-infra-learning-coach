@@ -19,7 +19,7 @@ class TodayFactsQueryTest {
             writes += "transaction"
             return block()
         }
-        override fun appendTruth(record: TruthRecord) { writes += "appendTruth" }
+        override fun appendTruth(record: TruthRecord): Long { writes += "appendTruth"; return 0 }
         override fun readProjection(key: String): ProjectionRecord? = null
         override fun writeProjection(record: ProjectionRecord) { writes += "writeProjection" }
         override fun curriculumPublished(): Boolean = published

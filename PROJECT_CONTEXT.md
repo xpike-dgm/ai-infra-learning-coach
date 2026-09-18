@@ -211,12 +211,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **10E ✅ Temel uygulama sağlığı — APHX-v0 / D-086**
 - **AŞAMA 10 ✅ TAMAMLANDI**
 - **11A ✅ Today ekranı — TDYX-v0 / D-087**
-- **11B 🟡 Task runner — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 11C–20 ⬜
+- **11B ✅ Task runner — RNRX-v0 / D-088**
+- **11C 🟡 Session state — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 11D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 11B'dir.** Fresh PRE-STEP + kullanıcı açi̇k onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 11C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -325,6 +326,20 @@ Canonical: `docs/LOCAL_DATABASE_SPEC.md` / D-085.
 Uygulama dürüst bir başlangıç kazandı ve **AŞAMA 10 kapandı**. Ana invariant: **store'un hiçbir arızası çökme değildir ve hiçbir arızası reset değildir.** Handoff iki sorun söylüyordu — veritabanı main thread'de açılıyordu ve `DataRecoveryRequired` bir çökmeydi — ama kod kontratlara karşı okununca iki sorun daha çıktı: `LFPS-v0` §12'nin şart koştuğu **açılışta bütünlük kontrolü yoktu**, ve **varsayılan build'in AI adaptörü `TODO()` ile çökecekti** — CI'ın normal build dediği adaptörlü build güvensiz olandı. Store artık sürecin: `CoachApplication` bir `StoreStartup`ı bir kez, arka plan thread'inde başlatıyor ve activity'ler yalnız gözlüyor; orkestrasyon `core-application`da olduğu için "çağıranın thread'inde açılmaz" latch'te tutulan bir opener ile JVM testinde kanıtlanıyor. Yeni port eklenmedi. `StoreOpener` asla fırlatmıyor ve **yazmadan önce kontrol ediyor**: `quick_check` + `foreign_key_check`, sonra ileri migration, migration koştuysa tam `integrity_check` — iki kontrol arasındaki fark varsayılmadı, yalnız tam kontrolün görebildiği bir index fixture'ı ile kanıtlandı. Sebep `core-model` tipi olarak taşınıyor, mesaj ayrıştırılmıyor. **"Hiçbir şey sıfırlanmadı" byte ile kanıtlanıyor**: yedi bozulma/versiyon biçiminin her birinde dosya önce ve sonra byte byte karşılaştırılıyor, çünkü yalnız status assert eden bir test recovery raporlayıp sessizce boş veritabanı yaratan bir opener'ı geçirirdi. Öğrenci `UXIA-v0`nin altı cross-cutting state'ini `VDSX-v0` tonlarıyla görüyor; shell yalnız normal kullanım mümkünken çiziliyor; `ai_unavailable_core_available` yalnız core çalışırken üretiliyor; **tek aksiyon `RECHECK` ve reset temsil edilemez**. Kullanıcının kararıyla restore **mekanizması** burada kuruldu, Profile kontrolleri 16D'de: arşiv ürünün kendi şemasında; export yapıldığı an doğrulanıyor; restore arşivi kopyalayıp yalnız kopyayı doğruluyor ve migrate ediyor, tek atomik rename ile değiştiriyor, eski canlı dosyanın hot journal'ını önce kenara alıyor ve reddedilen arşiv hem canlı profili hem arşivi byte byte değiştirmiyor. Mutation 16/16, ama ikisi başta yaşadı: sahte journal SQLite için hot değildi ve tablo kümesi kontrolü hiç egzersiz edilmiyordu — iki test de güçlendirildi. **T6 çalıştırılmadı**; telefon bağlı değildi ve hiçbir cihaz sonucu iddia edilmiyor.
 
 Canonical: `docs/APP_HEALTH_SPEC.md` / D-086.
+
+## 12.13 11A Today ekranı — TDYX-v0 / D-087
+
+İlk destination interior'u kuruldu ve **AŞAMA 11 başladı**. Ana invariant: **Today kanonik planner/state gerçeğinin projeksiyonudur** ve kendisine verilmeyen hiçbir şeyi hesaplamaz; planner 12'de olduğu için ekran plan uydurmak yerine dürüst boş/yükleniyor state'lerini gösteriyor. Kodu kontratlara karşı okumak iki kusur buldu: `FileContentSource.resource` `TODO()` idi ve `Surface.all` başlatılmış bir `val` olduğu için kayıt null içerebiliyordu. Vokabülerler (`THUX-v0`nin 12 state'i ve 6 adımlı precedence'ı, yedi purpose, 8 reason ve 7 attention family, region sırası, tonlar) sahiplerinden kopyalandı. Reason'da serbest metin, satırda mastery alanı, sunumda türetilmiş kapasite hükmü yok; bayat plan, blocked görev, değiştirilen plan ve doğrulanmamış oturum süzülür. `empty_valid` burada üretiliyor. Read path plan okumuyor: `planned_task` purpose/gerekçe/süre kolonlarını taşımıyor ve eksiği varsayılanla doldurmak iddia üretmek olurdu. Mutation 16/16; validator 150/150. **T6 çalıştırılmadı.**
+
+Canonical: `docs/TODAY_INTERIOR_SPEC.md` / D-087.
+
+_Bu bölüm 11A'nın POST'unda eksik kaldı (sync betiği bu dosyaya ulaşmadan çöktü) ve 11B POST'unda eklendi._
+
+## 12.14 11B Task runner — RNRX-v0 / D-088
+
+Task Runner kuruldu ve ürünün öğrenci işini yazan ilk yolu açıldı. Ana invariant: **runner bir execution surface'tir** — planner, mastery otoritesi, prerequisite otoritesi ya da evidence evaluator değil. Runner kodundan önce main'de 11A'nın kendi sync betiğinden kalan kusurlar bulundu: `"İ".lower()` Python'da U+0307 birleşik noktası üretiyor ve beş Türkçe kelimeye sızmıştı; betiğin çöküp yeniden koşması da `HANDOFF_STATE` ve `MASTER_PLAN`da mükerrer satır ve burada eksik bir bölüm bırakmıştı. Hepsi düzeltildi ve validator artık U+0307'yi tarıyor. Vokabülerler `TRUX-v0`den, tonlar `VDSX-v0`den ve core'da. **Girişte hiçbir şey varsayılmaz:** her koşul doğrulanmalı, doğrulanamayan `unmet` diye adlandırılır; Today yalnız görevinin seçili olduğunu doğrulayabildiği için bugün hiçbir görev başlatılamaz ve dürüst sonuç budur. Yardım her zaman istenebilir, istenmeden verilmez, H3/H4 sonuç ölçüm diliyle açıklanmadan verilmez — kural kapsam koşulu olmadan, yazıldığı gibi uygulanıyor. **Bir deneme bir transaction'dır:** attempt, artifact, provenance ve assistance birlikte ya da hiç; evidence yazılmaz, türetilmiş olgular saklanmaz, `DDM-v0`nin adlandırmadığı alanlar uydurulmaz. Mutation 18/18; validator 147/147. **T6 çalıştırılmadı.**
+
+Canonical: `docs/TASK_RUNNER_SPEC.md` / D-088.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

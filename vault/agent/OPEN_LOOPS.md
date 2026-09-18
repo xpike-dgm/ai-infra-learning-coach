@@ -39,7 +39,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 10D Local database: LDBX-v0 / D-085 ile tamamlandı; engine yasakları reddediyor, DDM ile birebir şema, transaction'lı ileri-yönlü migration dolu fixture'a karşı, arm64-v8a native kütüphane APK'da doğrulandı.
 - [x] 10E Temel uygulama sağlığı: APHX-v0 / D-086 ile tamamlandı; store arka planda bir kez açılıyor, bütünlük migration'dan önce, her hata state, no-reset byte ile kanıtlı, reset temsil edilemez. **AŞAMA 10 kapandı.**
 - [x] 11A Today ekranı: TDYX-v0 / D-087 ile tamamlandı; Today kanonik gerçeğin projeksiyonu, bayat plan/blocked görev/doğrulanmamış oturum temsil edilemez, `empty_valid` üretiliyor.
-- [ ] 11B Task runner **AKTİF**: Today'in sunduğu başlat aksiyonunu `TRUX-v0`nin Task Runner girişine bağlamak.
+- [x] 11B Task runner: RNRX-v0 / D-088 ile tamamlandı; giriş koşulları doğrulanmadan başlatma yok, H3/H4 açıklamalı, deneme tek transaction, evidence yok.
+- [ ] 11C Session state **AKTİF**: resume checkpoint içeriği ve kalıcılığı, emergent session, ended reason'lar.
+- [ ] Attempt üzerinde `planned_task_ref` ve `runner_completion_state` saklanmıyor (DDM adlandırmıyor) → 12.
+- [ ] Artifact gövdesi depolaması (`content_ref` arkası) → 11D.
 - [ ] Curriculum ingestion henüz yok; store hiçbir şey yayımlanmadığını bildiriyor → 11D, içerik 15.
 - [ ] `planned_task` purpose/trace/süre kolonlarını taşımıyor; Today plan okuyamıyor → 12.
 - [x] Backup/export ve atomik doğrulanmış restore sahipliği 10E'de netleşti: mekanizma 10E'de kuruldu ve T2'de doğrulandı.

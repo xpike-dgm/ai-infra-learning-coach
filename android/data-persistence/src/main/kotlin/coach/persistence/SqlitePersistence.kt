@@ -95,7 +95,7 @@ class SqlitePersistence private constructor(
      * columns. Every other `NOT NULL` column must arrive in the payload; a row cannot be written
      * without, say, an attempt's resource version or a disposition's reason.
      */
-    override fun appendTruth(record: TruthRecord) {
+    override fun appendTruth(record: TruthRecord): Long {
         require(record.kind in Schema.truthTables) { "not a truth table: ${record.kind}" }
         val offsetSeconds = record.recordedAt.utcOffsetSeconds
         // DDM-v0 stores the offset in minutes. Every real zone offset is a whole number of
@@ -140,6 +140,7 @@ class SqlitePersistence private constructor(
             }
             statement.step()
         }
+        return query("SELECT last_insert_rowid()") { it.getLong(0) }.single()
     }
 
     /**

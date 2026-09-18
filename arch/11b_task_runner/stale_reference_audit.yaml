@@ -1,0 +1,72 @@
+stage_step: 11B
+model: RNRX-v0
+decision: D-088
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_closed: true
+stage_10_closed: true
+stage_11_in_progress: true
+repo_files_scanned: 532
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 11A active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_10e_post_step_stale.py
+  sample: 11A 🟡
+  classification: historical_non_blocking
+- file: tools\audit_11a_post_step_stale.py
+  sample: 11A complete and 11B active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-09-14-10e-app-health.md
+  sample: 11A — Today ekranı is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-09-17-11a-today.md
+  sample: 11A active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-09-19-11b-task-runner.md
+  sample: 11A ✅ / 11B active-not-executed
+  classification: historical_non_blocking
+- file: arch\10e_app_health\stale_reference_audit.yaml
+  sample: 11A 🟡
+  classification: historical_non_blocking
+- file: arch\11a_today\stale_reference_audit.yaml
+  sample: 11A active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  11B future/candidate language; current/living sources must agree on 11B complete
+  and 11C active-not-executed.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 11C completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

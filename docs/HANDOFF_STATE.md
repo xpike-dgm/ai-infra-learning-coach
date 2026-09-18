@@ -60,7 +60,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-085:** LDBX-v0 Local Database; 10D tamamlandı.
 - **D-086:** APHX-v0 App Health; 10E tamamlandı ve AŞAMA 10 kapandı.
 - **D-087:** TDYX-v0 Today Interior; 11A tamamlandı ve AŞAMA 11 başladı.
-- **D-087:** TDYX-v0 Today Interior; 11A tamamlandı ve AŞAMA 11 başladı.
+- **D-088:** RNRX-v0 Task Runner; 11B tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -267,14 +267,15 @@ PEM-v0:
 - 10D ✅ LDBX-v0 / D-085
 - 10E ✅ APHX-v0 / D-086 — **AŞAMA 10 kapandı**
 - 11A ✅ TDYX-v0 / D-087
-- 11B 🟡 active-not-executed
-- 11C–20 ⬜
+- 11B ✅ RNRX-v0 / D-088
+- 11C 🟡 active-not-executed
+- 11D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `11A — TDYX-v0 / D-087`  
-**Aktif:** `11B — Task runner`  
-**11B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açi̇k onayı zorunludur.**
+**Son tamamlanan:** `11B — RNRX-v0 / D-088`  
+**Aktif:** `11C — Session state`  
+**11C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -817,6 +818,24 @@ TDYX-v0:
 - 16/16 mutations caught, three only after their tests were strengthened; independent QA 150/150, validator mutation 16/16 with one miss found and narrowed; 32/32 sweep PASS,
 - T6 was not run: the phone was not connected, and no device result is claimed.
 
-## 40. 11B handoff
+## 40. D-088 / 11B final özeti
 
-11B — Task runner. Today artık hiçbir şey yapmayan bir başlat aksiyonu sunuyor; 11B `TRUX-v0`nin Task Runner girişini ve focused flow'u sahiplenir. Açık loop'lar: resume checkpoint içeriği 11C, curriculum ingestion 11D, planner ve plan satırları 12, kapasite ayarları 16D, T6 cihaz koşusu hedef cihaz bağlandığında. 11B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/TASK_RUNNER_SPEC.md`.
+Contract/QA: `arch/11b_task_runner/`.
+Synthesis: `research/11b_task_runner_research.md`.
+Code: `android/core-model/.../AttemptFacts.kt`, `android/core-presentation/.../TaskRunner.kt`, `android/core-application/.../SubmitAttempt.kt`, `android/app-ui/.../TaskRunnerScreen.kt`.
+
+RNRX-v0:
+- the Task Runner is an execution surface — not planner, mastery, prerequisite or evidence authority,
+- before any runner code, main was found to carry U+0307 from 11A's own sync script; it was fixed and the validator now guards every text file,
+- seventeen states, six phases, five entry and five resume conditions and three pause classes are TRUX-v0's; tones are VDSX-v0's and computed in core after a first draft chose them in the UI,
+- entry requires every condition to be confirmed; unconfirmed is `unmet`, not `failed`; nothing is startable today, and that changes by engines supplying facts, not by loosening the rule,
+- help is always requestable, never granted unrequested, and H3/H4 are never granted before the consequence is disclosed — without a scope condition,
+- an attempt is one transaction with its artifact, provenance and assistance, and no evidence; derived facts are not stored; fields the model does not name are listed with owners,
+- `appendTruth` returning the row id is a recorded port refinement,
+- 18/18 mutations caught on the first run; independent QA 147/147; validator mutation 18/18; 33/33 sweep PASS,
+- T6 was not run.
+
+## 41. 11C handoff
+
+11C — Session state. Resume checkpoint içeriği ve kalıcılığı, emergent session ve ended reason'ları, checkpoint pause'un gerçekte neyi kaydettiği. Açık loop'lar: curriculum ingestion ve artifact depolaması 11D, evidence pipeline ve giriş koşullarını doğrulayan olgular 12, kapasite ayarları 16D, T6 cihaz koşusu. 11C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

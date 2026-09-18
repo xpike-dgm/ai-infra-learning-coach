@@ -1085,3 +1085,27 @@ Ayrıntı: `docs/APP_HEALTH_SPEC.md`.
 - Sonraki numbered step `11B — Task runner`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TODAY_INTERIOR_SPEC.md`.
+
+
+## D-088 — Task runner = RNRX-v0
+**Durum:** Kabul edildi — 2026-09-19
+
+- 11B final modeli `RNRX-v0 — Task Runner` oldu.
+- Canonical spec `docs/TASK_RUNNER_SPEC.md`; machine-readable contract `arch/11b_task_runner/task_runner.yaml`; research/decision synthesis `research/11b_task_runner_research.md`; kod `core-model` (`AttemptFacts.kt`), `core-presentation` (`TaskRunner.kt`), `core-application` (`SubmitAttempt.kt`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring`.
+- Ana invariant: **Task Runner bir execution surface'tir.** Planner, mastery otoritesi, prerequisite otoritesi ya da evidence evaluator değildir; bu yüzden görev sıralayamaz, state değiştiremez, önbellekteki listeyi ilerletemez ve bir denemeyi geçti/kaldı yapamaz.
+- **Runner kodundan önce main'de bir kusur bulundu:** 11A'nın sync betiği Türkçe metni `"İ".lower()` ile kurmuştu; Python'da bu noktalı bir `i` artı **U+0307 COMBINING DOT ABOVE** üretir. Beş kelime (dört "açık", bir "taşımaz") `AGENTS.md`, `PROJECT_CONTEXT.md`, `HANDOFF_STATE.md` ve `START_HERE.md`e girmişti. Düzeltildi ve 11B validator'ı artık repodaki herhangi bir metin dosyasında U+0307 görürse düşüyor. Guard ilk koşuda kendini yakaladı — dosyayı yazan araç kaçış dizisini gerçek karaktere çevirmişti — ve karakter artık `chr(0x0307)` ile üretiliyor.
+- **Vokabülerler `TRUX-v0`den sırasıyla:** 17 state, 6 faz, 5 giriş ve 5 resume koşulu, 3 pause sınıfı ve tek bir sonraki-görev kaynağı (yeniden hesaplanmış planner seçimi). Tonlar `VDSX-v0`nin: `blocked_not_startable` `attention`, `evaluation_pending` `pending_unresolved`. **İlk taslak tonları `app-ui` içinde elle seçmişti**; tesadüfen `VDSX-v0` ile birebir aynıydılar ama tesadüf garanti değil ve UI toolkit yanlış modül, harita `core-presentation`a taşındı.
+- **Girişte hiçbir şey varsayılmaz:** her koşul doğrulanmalı; doğrulanamayanlar `unmet` diye adlandırılır, `failed` değil — henüz hiçbir şeyin doğrulayamadığı koşul başarısızlık değildir, runner da bir varsayımla başlamaz. Today yalnızca görevinin hâlâ seçili olduğunu doğrulayabilir; prerequisite, açık ihtiyaç, içerik uyumu ve yerel yetenek başka engine'lerin olguları ve hiçbiri henüz yok. **Bu yüzden bugün hiçbir görev başlatılamaz ve dürüst sonuç budur** — kural gevşetilerek değil, engine'ler olgu sağlayarak değişecek.
+- **Yardım:** her zaman istenebilir; istenmeden verilmez; H3/H4 sonuç ölçüm diliyle açıklanmadan asla verilmez; ilk hatada çözüm açılmaz. **Kural `TRUX-v0`nin yazdığı gibi, kapsam koşulu olmadan uygulanıyor** — hedef-kapsamlı yardıma daraltmak makul bir okuma olurdu ama kabul edilmiş bir kontratın sessiz yeniden yorumu olurdu; daraltan mutant yakalanıyor.
+- **Durmak her zaman `stopped_no_penalty`**, çıkış her state'te ilk öğe, mid-segment pause kaydedilmiş ilerleme gibi gösterilmez, pending değerlendirme ne geçti ne kaldı.
+- **Bir deneme bir transaction:** attempt, artifact, öğrencinin provenance cevabı ve her assistance event birlikte commit olur ya da hiçbiri. **Evidence yazılmaz** — runner evidence evaluator değildir (12). Tek zaman damgası; türetilmiş olgular (`highest_assistance_level`, `requires_independent_recheck`) saklanmaz. Her değer kümesi `DDM-v0`, `TRUX-v0` **ve şemanın kendi CHECK listeleriyle** eşit. Kanıt ikiye bölündü: T1 use case'in şeklini, T2 aynı satır dizisinin gerçek SQLite'ta atomik olduğunu kanıtlıyor.
+- **Port refinement:** `appendTruth` artık eklenen satırın id'sini döndürüyor; beşinci port değil.
+- **Saklanmayanlar, sahipleriyle:** attempt üzerinde `planned_task_ref` ve `runner_completion_state` → 12 (`DDM-v0` attempt alanlarını adlandırmıyor ve 10D alan uydurmayı yasakladı), component results/target objectives → 12, artifact gövdesi depolaması → 11D, resume checkpoint içeriği → 11C.
+- **Today'in başlat aksiyonu artık runner'ı açıyor:** giriş core'da doğrulanıyor, runner focused flow olarak kabuğu askıya alıyor, çıkış Today'e dönüyor.
+- **Mutation 18/18, hepsi ilk turda.** R16 (`appendTruth` row id yerine truth sequence döndürürse) kaçması beklenen mutanttı çünkü ilk denemede ikisi de 1; yakalandı ama id kontrolüyle değil **foreign key** ile — artifact'in sequence'i (2) hiçbir artifact satırını göstermiyor ve SQLite provenance eklemesini reddediyor. Kayıt gerçekten yakalayan mekanizmayı adlandırıyor.
+- Çalıştırılan runlar: T1 PASS, `:data-persistence:test` (T2) PASS — 50 test, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Gerçek uygulamada runner şu an yalnız `blocked_not_startable` gösterebiliyor; sonuç açıklamasının ulaşılabilir çağıranı yok; atomik gönderim yalnız T1/T2'de kanıtlı.
+- Independent 11B QA: **147/147 PASS**; validator'ın kendi mutation testi 18/18 ve yorum-içi negatif kontrol false positive vermedi. Stage 6–11A regressions PASS (33/33 validator).
+- Sonraki numbered step `11C — Session state`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/TASK_RUNNER_SPEC.md`.

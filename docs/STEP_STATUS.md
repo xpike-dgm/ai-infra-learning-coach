@@ -52,8 +52,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **10D — Local database** | ✅ | LDBX-v0 / D-085. Engine yasakları reddediyor ve denenerek kanıtlanıyor; ilk taslağın DDM sapmaları düzeltilip kaydedildi; 163/163 QA PASS. |
 | **10E — Temel uygulama sağlığı** | ✅ | APHX-v0 / D-086. Store'un hiçbir arızası çökme ya da reset değil; açılış arka planda ve bütünlük migration'dan önce; no-reset byte ile kanıtlanıyor; restore mekanizması kuruldu (kontroller 16D); 152/152 QA PASS, mutation 16/16. **AŞAMA 10 kapandı.** |
 | **11A — Today ekranı** | ✅ | TDYX-v0 / D-087. Today kanonik gerçeğin projeksiyonu; bayat plan, blocked görev ve doğrulanmamı oturum temsil edilemez; reason planner trace'i olmadan kurulamaz; `empty_valid` üretiliyor; 150/150 QA PASS, mutation 16/16. |
-| **11B — Task runner** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **11C–20** | ⬜ Bekliyor | 11B sonrası canonical sırada. |
+| **11B — Task runner** | ✅ | RNRX-v0 / D-088. Runner bir execution surface; girişte doğrulanmayan koşul `unmet`, hiçbiri varsayılmaz; H3/H4 açıklamasız verilmez; deneme tek transaction, evidence yok; 147/147 QA PASS, mutation 18/18. |
+| **11C — Session state** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **11D–20** | ⬜ Bekliyor | 11C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -72,7 +73,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 11A
+## Son tamamlanan numaralı adım — 11B
+
+**Final:** `RNRX-v0 — Task Runner` / D-088.
+**Ana çıktı:** `docs/TASK_RUNNER_SPEC.md` + `arch/11b_task_runner/` + `android/`.
+
+11B sonucu:
+- runner bir execution surface; planner, mastery, prerequisite ya da evidence otoritesi değil,
+- runner kodundan önce main'de 11A'nın sync betiğinden kalan U+0307 bulundu, düzeltildi ve validator ile korunuyor,
+- 17 state, 6 faz, 5+5 koşul, 3 pause sınıfı `TRUX-v0`den; tonlar `VDSX-v0`den ve core'da,
+- girişte her koşul doğrulanmalı; doğrulanmayan `unmet`; bugün hiçbir görev başlatılamaz ve dürüst sonuç bu,
+- yardım hep istenebilir, istenmeden verilmez, H3/H4 açıklamasız verilmez (kapsam koşulu olmadan),
+- deneme tek transaction: attempt + artifact + provenance + assistance, evidence yok, türetilmiş olgu saklanmıyor,
+- mutation 18/18; validator 147/147 ve kendi mutation testi 18/18,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 11A
 
 **Final:** `TDYX-v0 — Today Interior` / D-087.
 **Ana çıktı:** `docs/TODAY_INTERIOR_SPEC.md` + `arch/11a_today/` + `android/`.
@@ -106,6 +122,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 11B Task runner
+## Aktif adım — 11C Session state
 
-**11B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**11C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
