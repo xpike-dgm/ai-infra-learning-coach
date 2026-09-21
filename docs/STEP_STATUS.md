@@ -55,8 +55,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **11B — Task runner** | ✅ | RNRX-v0 / D-088. Runner bir execution surface; girişte doğrulanmayan koşul `unmet`, hiçbiri varsayılmaz; H3/H4 açıklamasız verilmez; deneme tek transaction, evidence yok; 147/147 QA PASS, mutation 18/18. |
 | **11C — Session state** | ✅ | SESX-v0 / D-089. Pause işin nerede olduğunu saklar, süre/sonuç değil; yalnız durable pause yazılır; resume yalnız checkpoint'in kanıtladığını doğrular, gap eşiği uydurulmadı; session puansız ve saklanmaz; 146/146 QA PASS, mutation 20/20. |
 | **11D — Günlük mikro quiz** | ✅ | DMAX-v0 / D-090. Curriculum tek yazma yolundan yayımlanır ve üzerine yazılmaz; güven mağazanın validation kaydıdır; kanıt uyumuna Objective karar verir; tek interior bütün scope'lara hizmet eder ve sonuçta puan yoktur; 188/188 QA PASS, mutation 27/27. |
-| **11E — Gün sonu** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12–20** | ⬜ Bekliyor | 11E sonrası canonical sırada. |
+| **11E — Gün sonu** | ✅ | EODX-v0 / D-091. Gün sonu hüküm değil zaman sınırı; sayımlar etiketli envanter ve ilerleme değil; değişiklik ancak kanonik engine bildirdiyse; boş gün başarısızlık değil; yarına borç geçmez; 128/128 QA PASS, mutation 20/20. **AŞAMA 11 kapandı.** |
+| **12A — Mastery Engine v1** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12B–20** | ⬜ Bekliyor | 12A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -75,7 +76,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 11D
+## Son tamamlanan numaralı adım — 11E
+
+**Final:** `EODX-v0 — End of Day` / D-091. **AŞAMA 11 kapandı.**
+**Ana çıktı:** `docs/END_OF_DAY_SPEC.md` + `arch/11e_end_of_day/` + `android/`.
+
+11E sonucu:
+- gün sonu bir hüküm değil, zamanda bir sınır; günü kapatan bir öğrenci aksiyonu yok,
+- kabul edilmiş gün-sonu spec'i yoktu; kurallar sahiplerinden türetildi, uydurulmadı,
+- gün satırın kaydettiği çalışma günüdür ve instant'tan yeniden hesaplanmaz,
+- yeni gün boş başlar; envanter, yarım plan ya da borç sınırı geçmez,
+- sayımlar etiketli envanter; toplam/oran/yüzde/hedef yok ve sayım ilerleme değil,
+- değişiklik ancak kanonik bir engine bildirdiyse iddia edilir,
+- okunamayan sayım 'okunamadı'dır, sıfır değil; boş gün nötr; boşluklar çizilmez,
+- Today'in gün bağlamında render ediliyor; yeni surface, grafik ya da ızgara yok,
+- `countTruth` port incelmesi hiçbir şey yazmıyor; port sayısı dört,
+- mutation 20/20 (biri test güçlendirilince), validator 128/128 ve kendi mutation testi 26/26,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 11D
 
 **Final:** `DMAX-v0 — Daily Micro Assessment Implementation` / D-090.
 **Ana çıktı:** `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` + `arch/11d_daily_micro_assessment/` + `android/`.
@@ -92,7 +111,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - validator 188/188, kendi mutation testi 27/27, sweep 35/35,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 11C
+## önceki numaralı adım — 11C
 
 **Final:** `SESX-v0 — Session State` / D-089.
 **Ana çıktı:** `docs/SESSION_STATE_SPEC.md` + `arch/11c_session_state/` + `android/`.
@@ -157,6 +176,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 11E Gün sonu
+## Aktif adım — 12A Mastery Engine v1
 
-**11E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

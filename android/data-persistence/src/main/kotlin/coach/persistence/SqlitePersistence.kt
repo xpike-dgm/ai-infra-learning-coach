@@ -273,6 +273,23 @@ class SqlitePersistence private constructor(
     override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = curriculumStore.objectiveProfile(ref)
 
     /**
+     * Counts by the row's own study-day column. A table whose rows carry no study day of their own
+     * is refused rather than counted through its parent's day, and the instant columns are never
+     * used for this: the day a row belongs to is the day it recorded, not the day its instant falls
+     * in for whoever is reading (`DDM-v0` §three-value time, 11E).
+     */
+    override fun countTruth(kind: String, studyDay: String): Int {
+        require(kind in Schema.truthTables) { "not a truth table: $kind" }
+        val dayColumn = columns(kind).map { it.name }.singleOrNull { it.endsWith("_study_day") }
+        requireNotNull(dayColumn) { "$kind has no study day of its own" }
+        connection.prepare("SELECT COUNT(*) FROM $kind WHERE $dayColumn = ?").use { statement ->
+            statement.bindText(1, studyDay)
+            statement.step()
+            return statement.getLong(0).toInt()
+        }
+    }
+
+    /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
      * projection is computed from (`DDM-v0` §physical_schema).
      */

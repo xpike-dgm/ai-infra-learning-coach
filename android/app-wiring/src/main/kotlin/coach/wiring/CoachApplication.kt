@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
+import coach.application.DayCloseFacts
 import coach.application.IngestCurriculum
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
@@ -16,8 +17,8 @@ import java.io.File
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-/** The opened store, plus what it could say about today when it opened. */
-class OpenedApp(val graph: AppGraph, val today: TodayFacts)
+/** The opened store, plus what it could say about today — its plan and its record — when it opened. */
+class OpenedApp(val graph: AppGraph, val today: TodayFacts, val day: DayCloseFacts.Loaded)
 
 /**
  * Process scope for the store (`APHX-v0`).
@@ -64,11 +65,14 @@ class CoachApplication : Application() {
      * that stayed open past midnight would otherwise keep yesterday's study day — and a stale study
      * day is exactly how a stale plan gets shown as today's (`SRR-v0`).
      */
-    fun refreshToday(onLoaded: (TodayFacts) -> Unit) {
+    fun refreshToday(onLoaded: (TodayFacts, DayCloseFacts.Loaded) -> Unit) {
         val opened = startup.store ?: return
         storeThread.execute {
             val facts = TodayFactsQuery(opened.graph.persistence, opened.graph.clock).load()
-            main.post { onLoaded(facts) }
+            // The day's own record is read on the same thread and against the same clock, so a
+            // process kept open past midnight reports the new day rather than yesterday's (11E).
+            val day = DayCloseFacts(opened.graph.persistence, opened.graph.clock).load()
+            main.post { onLoaded(facts, day) }
         }
     }
 
@@ -85,7 +89,13 @@ class CoachApplication : Application() {
                 // returning null (11D).
                 val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingest()
                 Log.i(TAG, "curriculum ingestion: ${published ?: "no authored package"}")
-                StoreOpenOutcome.Opened(OpenedApp(graph, TodayFactsQuery(graph.persistence, graph.clock).load()))
+                StoreOpenOutcome.Opened(
+                    OpenedApp(
+                        graph,
+                        TodayFactsQuery(graph.persistence, graph.clock).load(),
+                        DayCloseFacts(graph.persistence, graph.clock).load(),
+                    )
+                )
             }
             is StoreOpener.Result.NotOpened -> {
                 // Diagnostics only. The store holds no credential, so nothing secret can be logged.

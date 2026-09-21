@@ -1,0 +1,407 @@
+model: EODX-v0
+stage_step: 11E
+decision: D-091
+result: PASS
+checks_total: 128
+checks_passed: 128
+checks_failed: 0
+checks:
+- check: E11E-00_exists_DayFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/DayFacts.kt
+- check: E11E-00_exists_EndOfDay.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/EndOfDay.kt
+- check: E11E-00_exists_DayCloseFacts.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/DayCloseFacts.kt
+- check: E11E-00_exists_EndOfDayView.kt
+  result: PASS
+  details: missing android/app-ui/src/main/kotlin/coach/ui/EndOfDayView.kt
+- check: E11E-00_exists_DayFactsTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/DayFactsTest.kt
+- check: E11E-00_exists_EndOfDayTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/EndOfDayTest.kt
+- check: E11E-00_exists_DayCloseFactsTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/DayCloseFactsTest.kt
+- check: E11E-00_exists_DayCountingTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/DayCountingTest.kt
+- check: E11E-00_exists_END_OF_DAY_SPEC.md
+  result: PASS
+  details: missing docs/END_OF_DAY_SPEC.md
+- check: E11E-00_exists_11e_end_of_day_research.md
+  result: PASS
+  details: missing research/11e_end_of_day_research.md
+- check: E11E-01_model
+  result: PASS
+  details: EODX-v0
+- check: E11E-01_status
+  result: PASS
+  details: accepted_11e
+- check: E11E-01_decision
+  result: PASS
+  details: D-091
+- check: E11E-01_scope_evidence_written
+  result: PASS
+  details: evidence_written=False
+- check: E11E-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E11E-01_scope_mastery_engine_implemented
+  result: PASS
+  details: mastery_engine_implemented=False
+- check: E11E-01_scope_longitudinal_history_implemented
+  result: PASS
+  details: longitudinal_history_implemented=False
+- check: E11E-01_scope_new_surface_added
+  result: PASS
+  details: new_surface_added=False
+- check: E11E-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E11E-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E11E-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E11E-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E11E-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E11E-01_no_streak_claim
+  result: PASS
+  details: streak_claim was claimed
+- check: E11E-01_no_daily_goal_claim
+  result: PASS
+  details: daily_goal_claim was claimed
+- check: E11E-01_no_completion_percentage_claim
+  result: PASS
+  details: completion_percentage_claim was claimed
+- check: E11E-01_no_minutes_studied_claim
+  result: PASS
+  details: minutes_studied_claim was claimed
+- check: E11E-02_states
+  result: PASS
+  details: kotlin=['loading_projection', 'recomputing_projection', 'ready_with_evidence',
+    'empty_no_evidence_yet', 'empty_no_attention_needed', 'partial_projection_available',
+    'offline_local_capable', 'ai_unavailable_full_state_available', 'error_recoverable',
+    'data_recovery_required']
+- check: E11E-02_history_families
+  result: PASS
+  details: kotlin=['learning', 'assessment', 'review', 'remediation']
+- check: E11E-02_counted_kinds_are_truth_entities
+  result: PASS
+  details: kinds=['attempt', 'exposure_record', 'resume_checkpoint', 'evidence_event']
+- check: E11E-03_tone_loading_projection
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_recomputing_projection
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_ready_with_evidence
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_empty_no_evidence_yet
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_empty_no_attention_needed
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_partial_projection_available
+  result: PASS
+  details: kotlin=pending_unresolved vdsx=pending_unresolved
+- check: E11E-03_tone_offline_local_capable
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_ai_unavailable_full_state_available
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11E-03_tone_error_recoverable
+  result: PASS
+  details: kotlin=system_fault vdsx=system_fault
+- check: E11E-03_tone_data_recovery_required
+  result: PASS
+  details: kotlin=system_fault vdsx=system_fault
+- check: E11E-03_every_state_has_a_tone
+  result: PASS
+  details: mapped=10
+- check: E11E-03_fault_tone_only_system
+  result: PASS
+  details: fault=['ERROR_RECOVERABLE', 'DATA_RECOVERY_REQUIRED']
+- check: E11E-03_empty_day_is_neutral
+  result: PASS
+  details: an empty day is not neutral
+- check: E11E-04_day_is_study_day
+  result: PASS
+  details: a day is not an ISO study day
+- check: E11E-04_row_day_decides
+  result: PASS
+  details: a row's day is not what decides
+- check: E11E-04_new_day_starts_empty
+  result: PASS
+  details: the new day is not started empty
+- check: E11E-04_no_backward_day
+  result: PASS
+  details: a day may roll backwards
+- check: E11E-04_no_carry_api
+  result: PASS
+  details: there is an API that carries something across the day
+- check: E11E-05_counts_labelled_inventory
+  result: PASS
+  details: counts are not labelled as inventory
+- check: E11E-05_no_ratio_or_total
+  result: PASS
+  details: an inventory carries a ratio, total or goal
+- check: E11E-05_negative_count_refused
+  result: PASS
+  details: a count may go below zero
+- check: E11E-05_recorded_means_nonzero
+  result: PASS
+  details: a zero count reads as a day with work
+- check: E11E-05_no_verdict_field_DayInventory
+  result: PASS
+  details: DayInventory fields=['counts', 'isLabelledInventory', 'recordedAnything',
+    'id', 'family', 'statement', 'subject', 'studyDay', 'inventory', 'changes', 'openNeedCount']
+- check: E11E-05_no_verdict_field_DayRecord
+  result: PASS
+  details: DayRecord fields=['studyDay', 'inventory', 'changes', 'openNeedCount']
+- check: E11E-05_no_verdict_field_DayChange
+  result: PASS
+  details: DayChange fields=['family', 'statement', 'subject', 'studyDay', 'inventory',
+    'changes', 'openNeedCount']
+- check: E11E-05_no_verdict_field_DaySummaryView
+  result: PASS
+  details: DaySummaryView fields=['state', 'studyDay', 'inventory', 'changes', 'unreadKinds',
+    'contexts']
+- check: E11E-05_no_verdict_field_DaySummaryInput
+  result: PASS
+  details: DaySummaryInput fields=['record', 'health', 'loading', 'unreadKinds']
+- check: E11E-06_history_skips_silent_days
+  result: PASS
+  details: history fills in the days that recorded nothing
+- check: E11E-06_no_streak_computation
+  result: PASS
+  details: a streak or gap count is computed
+- check: E11E-06_history_families_from_spwx
+  result: PASS
+  details: SPWX-v0's history rules changed
+- check: E11E-07_recovery_supersedes
+  result: PASS
+  details: data recovery does not supersede the day summary
+- check: E11E-07_error_reported
+  result: PASS
+  details: a recoverable failure is not reported
+- check: E11E-07_partial_state
+  result: PASS
+  details: an unread kind does not produce the partial state
+- check: E11E-07_empty_state
+  result: PASS
+  details: an empty day is not distinguished
+- check: E11E-07_loading_shows_no_counts
+  result: PASS
+  details: a partial count is presented while loading
+- check: E11E-07_changes_are_given_not_derived
+  result: PASS
+  details: a change is derived rather than reported
+- check: E11E-07_empty_is_not_failure
+  result: PASS
+  details: an empty day can be a failure
+- check: E11E-08_day_from_clock
+  result: PASS
+  details: the day does not come from the clock
+- check: E11E-08_unread_named
+  result: PASS
+  details: an unreadable kind is not named
+- check: E11E-08_no_zero_substitute
+  result: PASS
+  details: an unreadable kind becomes a zero
+- check: E11E-08_reads_only
+  result: PASS
+  details: reading a day writes something
+- check: E11E-08_no_change_invented
+  result: PASS
+  details: the day summary invents a change
+- check: E11E-09_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E11E-09_count_truth_declared
+  result: PASS
+  details: countTruth is not a port refinement
+- check: E11E-09_counts_by_study_day
+  result: PASS
+  details: a day is counted by something other than its recorded study day
+- check: E11E-09_never_by_instant
+  result: PASS
+  details: a day is counted by an instant range
+- check: E11E-09_truth_only
+  result: PASS
+  details: a projection or curriculum table can be counted as truth
+- check: E11E-09_dayless_table_refused
+  result: PASS
+  details: a table with no day of its own is counted anyway
+- check: E11E-09_count_writes_nothing
+  result: PASS
+  details: counting writes
+- check: E11E-10_no_new_surface
+  result: PASS
+  details: a surface was invented for the day
+- check: E11E-10_rendered_in_today
+  result: PASS
+  details: the day summary is not rendered in Today's day context
+- check: E11E-10_no_chart_or_grid
+  result: PASS
+  details: the day summary draws a chart, ring or grid
+- check: E11E-10_state_in_text
+  result: PASS
+  details: the day state is not conveyed in text
+- check: E11E-10_ui_names_no_tone
+  result: PASS
+  details: app-ui chooses a tone
+- check: E11E-11_read_on_store_thread
+  result: PASS
+  details: the day is not read on the store thread
+- check: E11E-11_refreshed_on_resume
+  result: PASS
+  details: the day is not refreshed with Today
+- check: E11E-12_t1_model_nothing crosses the day boundary
+  result: PASS
+  details: 'missing test: nothing crosses the day boundary'
+- check: E11E-12_t1_model_history shows the days that recorded som
+  result: PASS
+  details: 'missing test: history shows the days that recorded something and never
+    fills the gaps'
+- check: E11E-12_t1_model_an inventory counts and says it is an in
+  result: PASS
+  details: 'missing test: an inventory counts and says it is an inventory, and carries
+    no ratio'
+- check: 'E11E-12_t1_model_a day is a study day, and a row belongs '
+  result: PASS
+  details: 'missing test: a day is a study day, and a row belongs to the day it recorded'
+- check: E11E-12_t1_eod_a day with nothing recorded is empty and
+  result: PASS
+  details: 'missing test: a day with nothing recorded is empty and never a failure'
+- check: 'E11E-12_t1_eod_activity alone changes nothing, and the '
+  result: PASS
+  details: 'missing test: activity alone changes nothing, and the summary says so'
+- check: E11E-12_t1_eod_a count that could not be read is named,
+  result: PASS
+  details: 'missing test: a count that could not be read is named, never treated as
+    zero'
+- check: E11E-12_t1_eod_a store that cannot be trusted supersede
+  result: PASS
+  details: 'missing test: a store that cannot be trusted supersedes the day summary'
+- check: E11E-12_t1_eod_the view can hold no streak, percentage,
+  result: PASS
+  details: 'missing test: the view can hold no streak, percentage, score, minutes
+    or debt'
+- check: E11E-12_t1_app_the day is the clock's study day, and ev
+  result: PASS
+  details: 'missing test: the day is the clock''s study day, and every kind is counted
+    against it'
+- check: E11E-12_t1_app_a kind that cannot be read is named unre
+  result: PASS
+  details: 'missing test: a kind that cannot be read is named unread, not counted
+    as zero'
+- check: 'E11E-12_t1_app_reading a day writes nothing and claims '
+  result: PASS
+  details: 'missing test: reading a day writes nothing and claims no change'
+- check: E11E-12_t2_the recorded study day decides, even whe
+  result: PASS
+  details: 'missing T2 test: the recorded study day decides, even when the instant
+    says otherwise'
+- check: E11E-12_t2_every kind the day summary counts is cou
+  result: PASS
+  details: 'missing T2 test: every kind the day summary counts is countable, and the
+    rest are refused'
+- check: E11E-12_t2_counting a day writes nothing
+  result: PASS
+  details: 'missing T2 test: counting a day writes nothing'
+- check: E11E-13_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E11E-13_mutation_all_detected
+  result: PASS
+  details: '{''total'': 20, ''detected'': 20}'
+- check: E11E-13_mutation_ran_gradle
+  result: PASS
+  details: the mutation harness was not verified to have run anything
+- check: E11E-13_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E11E-13_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E11E-13_boundary_12
+  result: PASS
+  details: missing 12
+- check: E11E-13_boundary_13
+  result: PASS
+  details: missing 13
+- check: E11E-13_boundary_14
+  result: PASS
+  details: missing 14
+- check: E11E-13_boundary_16B
+  result: PASS
+  details: missing 16B
+- check: E11E-14_forbidden_day_declared_successful_or_failed
+  result: PASS
+  details: missing=day_declared_successful_or_failed
+- check: E11E-14_forbidden_streak_or_consecutive_day_count
+  result: PASS
+  details: missing=streak_or_consecutive_day_count
+- check: E11E-14_forbidden_completion_percentage_or_ratio
+  result: PASS
+  details: missing=completion_percentage_or_ratio
+- check: E11E-14_forbidden_minutes_studied_as_progress
+  result: PASS
+  details: missing=minutes_studied_as_progress
+- check: E11E-14_forbidden_unfinished_work_carried_as_debt
+  result: PASS
+  details: missing=unfinished_work_carried_as_debt
+- check: E11E-14_forbidden_change_claimed_without_canonical_change
+  result: PASS
+  details: missing=change_claimed_without_canonical_change
+- check: E11E-14_forbidden_unreadable_count_presented_as_zero
+  result: PASS
+  details: missing=unreadable_count_presented_as_zero
+- check: E11E-14_forbidden_gap_between_days_rendered_as_missed_obli
+  result: PASS
+  details: missing=gap_between_days_rendered_as_missed_obligation
+- check: E11E-14_forbidden_day_recomputed_from_instant_instead_of_r
+  result: PASS
+  details: missing=day_recomputed_from_instant_instead_of_recorded_study_day
+- check: E11E-15_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 11E QA PASS'
+- check: E11E-15_spec_**Decision:** `D-091`
+  result: PASS
+  details: missing='**Decision:** `D-091`'
+- check: E11E-15_spec_boundary in time, not a ve
+  result: PASS
+  details: missing='boundary in time, not a verdict'
+- check: E11E-15_spec_T6
+  result: PASS
+  details: missing='T6'
+- check: E11E-15_spec_16B
+  result: PASS
+  details: missing='16B'
+- check: E11E-16_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E11E-16_research_SPWX-v0
+  result: PASS
+  details: missing='SPWX-v0'
+- check: E11E-16_research_study day
+  result: PASS
+  details: missing='study day'
+- check: E11E-17_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+failures: []

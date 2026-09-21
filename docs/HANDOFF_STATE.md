@@ -270,14 +270,15 @@ PEM-v0:
 - 11B ✅ RNRX-v0 / D-088
 - 11C ✅ SESX-v0 / D-089
 - 11D ✅ DMAX-v0 / D-090
-- 11E 🟡 active-not-executed
-- 12–20 ⬜
+- 11E ✅ EODX-v0 / D-091 — **AŞAMA 11 kapandı**
+- 12A 🟡 active-not-executed
+- 12B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `11D — DMAX-v0 / D-090`  
-**Aktif:** `11E — Gün sonu`  
-**11E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `11E — EODX-v0 / D-091` — **AŞAMA 11 kapandı**  
+**Aktif:** `12A — Mastery Engine v1`  
+**12A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -878,6 +879,28 @@ DMAX-v0:
 - independent QA 188/188, validator mutation 27/27, sweep 35/35,
 - T6 was not run.
 
-## 43. 11E handoff
+## 43. D-091 / 11E final özeti
 
-11E — Gün sonu. What the end of a day may honestly say and what it may never claim. Açık loop'lar: planner selection ve evidence pipeline 12, haftalık/aylık kompozisyon 13, evaluator davranışı ve microcopy 14, authored içerik 15, `assessment_report` 16B, kalibrasyon 18D, T6 cihaz koşusu. 11E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/END_OF_DAY_SPEC.md`.
+Contract/QA: `arch/11e_end_of_day/`.
+Synthesis: `research/11e_end_of_day_research.md`.
+Code: `android/core-model/.../DayFacts.kt`, `android/core-presentation/.../EndOfDay.kt`, `android/core-application/.../DayCloseFacts.kt`, `PersistencePort.countTruth` + `SqlitePersistence`, `android/app-ui/.../EndOfDayView.kt`, `TodayScreen`, `app-wiring`.
+
+EODX-v0:
+- the end of a day is a boundary in time, not a verdict; the day closes because the study day changed and nothing about the learner's standing changes with it,
+- no accepted spec defined an end-of-day surface, so every rule was derived from an owner (SPWX-v0, SRR-v0, DDM-v0, APHX-v0, VDSX-v0, THUX-v0) rather than invented,
+- the day is the learner-local study day a row recorded; counting is done against that column and never over an instant range,
+- a new day starts empty: no inventory, no unfinished plan and no obligation crosses the boundary, and there is no API that could carry one,
+- counts are labelled inventory with no total, ratio, percentage or goal, and counting is not progress,
+- a change is claimed only when a canonical engine reported one; with no evidence pipeline the summary says plainly that nothing changed,
+- an unreadable count is named, never presented as zero; an empty day is neutral and not a failure; gaps between days are not drawn at all,
+- it renders inside Today's day context: no surface invented, no chart, ring or calendar grid,
+- `countTruth` is a recorded port refinement that writes nothing; the port count stays four,
+- mutation 20/20 (E20 survived at first because a second guard masked the first; the T2 check now asserts each refusal names its own rule), independent QA 128/128, validator mutation 26/26, sweep 36/36,
+- T6 was not run.
+
+**AŞAMA 11 TAMAMLANDI** — TDYX-v0 → RNRX-v0 → SESX-v0 → DMAX-v0 → EODX-v0.
+
+## 44. 12A handoff
+
+12A — Mastery Engine v1. `GRE-v0`'ın kodda karşılığı: bir attempt'in ne kanıtladığına karar veren evidence pipeline'ın ilk parçası. Stage 11 boyunca biriken açık loop'lar buraya akıyor: planner seçimi ve plan değişiklikleri, açık need sayıları, giriş/resume koşullarını doğrulayan olgular, gün özetine bildirilecek gerçek değişiklikler. Diğerleri: haftalık/aylık kompozisyon 13, evaluator davranışı ve microcopy 14, authored içerik 15, `assessment_report` ve kalıcı geçmiş 16B, kalibrasyon 18D, T6 cihaz koşusu. 12A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
