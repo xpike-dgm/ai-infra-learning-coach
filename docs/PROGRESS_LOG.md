@@ -964,3 +964,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `11C ✅ / 11D active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `11D — Günlük mikro quiz`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-21 — 11D Günlük mikro quiz tamamlandı — DMAX-v0 / D-090
+
+- 11C main'de (04e2f3b); fresh 11D PRE yapıldı ve beş kanonik kaynak `11C ✅ / 11D active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebiliriz").
+- **Curriculum bölgesinin hiç yazıcısı yoktu.** `publishCurriculum` tek yazma yolu oldu: tek transaction, yazmadan önce karar verilen ret, yayımlanmış sürüm asla üzerine yazılmaz.
+- **Şemanın adlandırmadığı item alanları içerikte kaldı**; sütun uydurulmadı (10D).
+- **Artifact gövdesi** referansın içinde `data:` URI olarak taşınıyor; 4096 karakter üstü reddediliyor. Tablo, kolon, port ve 10D/10E kontratları değişmedi.
+- **T2 kontrolü gerçek bir tasarım hatası buldu:** yalnız pakete bakan referans çözücü, sonraki bir sürümün yalnız revalidation taşımasını imkânsız kılıyordu.
+- **Mutation koşucusunun Gradle'ı hiç çalıştırmadığı ortaya çıktı** (`cmd /c gradlew.bat` çalışma dizininden çözülmüyor): her mutant yanlış sebeple "yakalandı" sayılıyordu. Koşucu düzeltildi; 11D 27/27 (üçü testler güçlendirildikten sonra) ve **11C'nin seti dürüstçe yeniden koşuldu: 20/20**.
+- **11C'nin POST betiği** `PROJECT_CONTEXT.md` 12.15 bölümünü dört kez eklemişti (yerleştirme metni kendi çapasını içeriyordu); mükerrerler temizlendi, senkron betiği düzeltildi ve validator tekrarlanan bölüm başlığında düşüyor.
+- **11A'nın duran kontrolü bayatladı** (`ContentDocument? = null` gövdesini pinliyordu) ve sahip olduğu garantiye daraltıldı.
+- Altı run PASS (T1, T2, T3, adaptör testleri, iki `assembleDebug`). Validator 188/188, kendi mutation testi 27/27, sweep 35/35.
+- **T6 çalıştırılmadı.**
+- D-050 POST living-memory accepted state'i `11D ✅ / 11E active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `11E — Gün sonu`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

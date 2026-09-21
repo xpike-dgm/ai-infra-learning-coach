@@ -213,12 +213,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **11A ✅ Today ekranı — TDYX-v0 / D-087**
 - **11B ✅ Task runner — RNRX-v0 / D-088**
 - **11C ✅ Session state — SESX-v0 / D-089**
-- **11D 🟡 Günlük mikro quiz — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 11E–20 ⬜
+- **11D ✅ Günlük mikro quiz — DMAX-v0 / D-090**
+- **11E 🟡 Gün sonu — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 11D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 11E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -348,24 +349,6 @@ Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatm
 
 Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
 
-## 12.15 11C Session state — SESX-v0 / D-089
-
-Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
-
-Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
-
-## 12.15 11C Session state — SESX-v0 / D-089
-
-Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
-
-Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
-
-## 12.15 11C Session state — SESX-v0 / D-089
-
-Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
-
-Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
-
 ## 12.7 Dağıtım kapsamı — D-080
 
 Ürün tek kullanıcı içindir, hiçbir uygulama merkezine yüklenmeyecek ve halka açık paylaşılmayacaktır; repo private'dır. Bu, `V1_SCOPE` §1'in tek-kullanıcı ilkesini genişletmez, **dağıtım** boyutunu kilitler. Düşen iş: store yayın gereksinimleri, dağıtım imzalama seremonisi, güvenlik amaçlı obfuscation/pinning, çok kullanıcı/hesap sistemi ve cihaz matrisi — AŞAMA 19 buna göre daralır. `minSdk` ve device QA tek hedef cihaza sabitlenir; **hedef cihaz hâlâ repoda kayıtlı değildir**. Değişmeyenler: AI yetki sınırları, `refusal != yanlış cevap`, schema-constrained evaluator çıktısı, `evaluation_pending` kuralları, append-only ve exposure kalıcılığı — bunlar yabancılardan korunmak için değil, kullanıcının kendi kanıt kaydını bozmamak için vardır. `AIAX-v0`ın asgari-içerik sınırı korunur, gerekçesi bu kapsamda maliyet ve AI-kapalı yolun çalışır kalmasıdır. `key_in_platform_secure_storage` invariant'ı korunur; gevşetilirse açık amendment olarak yapılır. API key repoya commit edilmez.
@@ -377,3 +360,17 @@ Her numaralı adım sonunda yaşayan current-state dosyaları istisnasız kontro
 Dosya rol matrisi ve exact checklist: `docs/PROJECT_MEMORY_PROTOCOL.md`.
 
 D-043 standalone specialization-stage kararı geri çekilmiştir; canonical değildir.
+
+## 12.16 11D Günlük mikro quiz — DMAX-v0 / D-090
+
+Bir ölçümün baştan sona dürüst çalışması kilitlendi. Ana invariant: **assessment session bir kanıt toplama akışıdır** ve **bir item yalnız validation'ının, evaluator'ının ve Objective'in kendi kanıt profilinin izin verdiği kadarını taşıyabilir.**
+
+Curriculum bölgesinin hiç yazıcısı yoktu; `publishCurriculum` tek yazma yolu oldu: tek transaction, yazmadan önce karar verilen ret, yayımlanmış sürümün asla üzerine yazılmaması, düzeltmenin yeni sürüm olması. Authored paket katı ayrıştırılır; bilinmeyen bölüm/anahtar, tekrar eden anahtar, eksik alan, pinlenmemiş referans ya da bilinmeyen değer paketin tamamını reddeder ve ayrıştırılamayan paket hiçbir parçasıyla sunulmaz. `DDM-v0`nin adlandırmadığı item alanları sütun uydurmak yerine authored içerikte kalır.
+
+**Güven mağazanın validation kaydıdır**, item'ın kendi iddiası değil; etkin kullanım tavanı uygulanabilir en kısıtlayıcı kuraldır ve deklare edileni asla aşamaz. Kanıt uyumuna Objective karar verir; mastery ölçümü Objective'in direct tipini gerektirir. Exposure yalnız item gerçekten sunulduğunda ve çözüm gösterildiğinde yazılır.
+
+Tek interior bütün scope'lara hizmet eder: gönderilen sınır donar, gönderilmemiş sınırlar serbestçe gezilir, boş bırakmak yanlış sayılmaz, yardım engellenmez ve sonucu açıklanır, beş koşullu recomposition tamamlanmış kanıta dokunmaz, itiraz kanıtı contested tutar ve sonuç semantiktir — puan, yüzde, not ya da eşik alanı **yoktur**. Kısa artifact gövdesi referansın içinde (`data:` URI) taşınır ya da reddedilir; kırpılmaz.
+
+**Mutation koşucusunun Gradle'ı hiç çalıştırmadığı bulundu** (`cmd /c gradlew.bat` çalışma dizininden çözülmüyor). Düzeltildi; 11D 27/27 (üçü testler güçlendirildikten sonra) ve **11C'nin seti dürüstçe yeniden koşuldu: 20/20**. 11C'nin POST betiğinin bıraktığı üç mükerrer `12.15` bölümü de temizlendi. Validator 188/188, kendi mutation testi 27/27. **T6 çalıştırılmadı.**
+
+Canonical: `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` / D-090.

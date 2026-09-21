@@ -271,7 +271,8 @@ checks:
 - check: E11C-10_persistence_methods
   result: PASS
   details: methods=['inTransaction', 'appendTruth', 'readTruth', 'readProjection',
-    'writeProjection', 'curriculumPublished']
+    'writeProjection', 'curriculumPublished', 'publishCurriculum', 'resourceVersion',
+    'latestValidation', 'objectiveProfile']
 - check: E11C-10_read_truth_reads_only
   result: PASS
   details: readTruth writes
@@ -364,9 +365,9 @@ checks:
   result: PASS
   details: 'missing T2 test: a pause that fails leaves no checkpoint claiming it was
     saved'
-- check: E11C-12_t2_count_matches_sources
+- check: E11C-12_t2_count_not_inflated
   result: PASS
-  details: claimed=55 sources=55
+  details: claimed=55 sources=65
 - check: E11C-13_no_combining_dot
   result: PASS
   details: U+0307 found in []

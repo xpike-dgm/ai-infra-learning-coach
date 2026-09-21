@@ -1,9 +1,15 @@
 package coach.application
 
 import coach.model.CheckpointKind
+import coach.model.CurriculumPackage
+import coach.model.ObjectiveEvidenceProfile
+import coach.model.PublishOutcome
+import coach.model.ResourceVersion
 import coach.model.ResumeContext
 import coach.model.ResumeContextCodec
 import coach.model.StudyTimestamp
+import coach.model.ValidationRecord
+import coach.model.VersionedRef
 import coach.ports.ClockPort
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
@@ -38,6 +44,11 @@ class ResumeCheckpointsTest {
         override fun readProjection(key: String): ProjectionRecord? = null
         override fun writeProjection(record: ProjectionRecord) = error("a pause writes no projection")
         override fun curriculumPublished(): Boolean = true
+        override fun publishCurriculum(curriculum: CurriculumPackage, publishedAtInstant: Long): PublishOutcome =
+            error("this use case publishes no curriculum")
+        override fun resourceVersion(ref: VersionedRef): ResourceVersion? = null
+        override fun latestValidation(ref: VersionedRef): ValidationRecord? = null
+        override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = null
     }
 
     private val clock = object : ClockPort {

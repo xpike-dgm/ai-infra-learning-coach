@@ -54,8 +54,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **11A — Today ekranı** | ✅ | TDYX-v0 / D-087. Today kanonik gerçeğin projeksiyonu; bayat plan, blocked görev ve doğrulanmamış oturum temsil edilemez; reason planner trace'i olmadan kurulamaz; `empty_valid` üretiliyor; 150/150 QA PASS, mutation 16/16. |
 | **11B — Task runner** | ✅ | RNRX-v0 / D-088. Runner bir execution surface; girişte doğrulanmayan koşul `unmet`, hiçbiri varsayılmaz; H3/H4 açıklamasız verilmez; deneme tek transaction, evidence yok; 147/147 QA PASS, mutation 18/18. |
 | **11C — Session state** | ✅ | SESX-v0 / D-089. Pause işin nerede olduğunu saklar, süre/sonuç değil; yalnız durable pause yazılır; resume yalnız checkpoint'in kanıtladığını doğrular, gap eşiği uydurulmadı; session puansız ve saklanmaz; 146/146 QA PASS, mutation 20/20. |
-| **11D — Günlük mikro quiz** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **11E–20** | ⬜ Bekliyor | 11D sonrası canonical sırada. |
+| **11D — Günlük mikro quiz** | ✅ | DMAX-v0 / D-090. Curriculum tek yazma yolundan yayımlanır ve üzerine yazılmaz; güven mağazanın validation kaydıdır; kanıt uyumuna Objective karar verir; tek interior bütün scope'lara hizmet eder ve sonuçta puan yoktur; 188/188 QA PASS, mutation 27/27. |
+| **11E — Gün sonu** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12–20** | ⬜ Bekliyor | 11E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -74,7 +75,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 11C
+## Son tamamlanan numaralı adım — 11D
+
+**Final:** `DMAX-v0 — Daily Micro Assessment Implementation` / D-090.
+**Ana çıktı:** `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` + `arch/11d_daily_micro_assessment/` + `android/`.
+
+11D sonucu:
+- curriculum bölgesinin hiç yazıcısı yoktu; yayımlama tek yol, tek transaction ve yayımlanmış sürüm üzerine yazılmaz,
+- authored paket katı ayrıştırılır ya da hiç sunulmaz; şemanın adlandırmadığı item alanları içerikte kalır,
+- güven mağazanın validation kaydıdır; etkin tavan en kısıtlayıcı kuraldır ve deklare edileni aşmaz,
+- kanıt uyumuna Objective karar verir; mastery ölçümü direct tipi ister,
+- exposure yalnız gerçekten sunulan item için yazılır,
+- tek interior: gönderilen sınır donar, boş bırakmak yanlış değildir, yardım engellenmez, sonuç puansızdır,
+- kısa artifact gövdesi referansın içinde taşınır ya da reddedilir,
+- **mutation koşucusu Gradle'ı hiç çalıştırmamıştı**; düzeltildi, 11D 27/27 ve 11C 20/20 olarak yeniden koşuldu,
+- validator 188/188, kendi mutation testi 27/27, sweep 35/35,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 11C
 
 **Final:** `SESX-v0 — Session State` / D-089.
 **Ana çıktı:** `docs/SESSION_STATE_SPEC.md` + `arch/11c_session_state/` + `android/`.
@@ -90,7 +108,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 20/20 (hepsi testle); validator 146/146 ve kendi mutation testi 20/20 — biri kaçtı ve düzeltildi,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 11B
+## önceki numaralı adım — 11B
 
 **Final:** `RNRX-v0 — Task Runner` / D-088.
 **Ana çıktı:** `docs/TASK_RUNNER_SPEC.md` + `arch/11b_task_runner/` + `android/`.
@@ -139,6 +157,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 11D Günlük mikro quiz
+## Aktif adım — 11E Gün sonu
 
-**11D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**11E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

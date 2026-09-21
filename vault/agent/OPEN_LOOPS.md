@@ -41,14 +41,18 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 11A Today ekranı: TDYX-v0 / D-087 ile tamamlandı; Today kanonik gerçeğin projeksiyonu, bayat plan/blocked görev/doğrulanmamış oturum temsil edilemez, `empty_valid` üretiliyor.
 - [x] 11B Task runner: RNRX-v0 / D-088 ile tamamlandı; giriş koşulları doğrulanmadan başlatma yok, H3/H4 açıklamalı, deneme tek transaction, evidence yok.
 - [x] 11C Session state: SESX-v0 / D-089 ile tamamlandı; checkpoint işin nerede olduğunu saklar, yalnız durable pause yazılır, resume yalnız checkpoint'in kanıtladığını doğrular, session puansız ve saklanmaz.
-- [ ] 11D Günlük mikro quiz **AKTİF**: ilk çalıştırılabilir aktivite, segment sınırları ve `checkpoint_ids[]`, artifact gövdesi depolaması.
+- [x] 11D Günlük mikro quiz: DMAX-v0 / D-090 ile tamamlandı; curriculum ingestion, item güven tavanı, exposure ve tek assessment interior kuruldu.
+- [ ] 11E Gün sonu **AKTİF**: gün sonunun dürüstçe söyleyebilecekleri ve asla iddia edemeyecekleri.
+- [ ] Haftalık/aylık blueprint kompozisyonu (`WBA-v0`, `MCA-v0`) → 13; tek interior hazır, composition değil.
+- [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.
+- [ ] `assessment_resource_version` değer kümeleri şemada CHECK değil; tek yazma yolunda core'da doğrulanıyor → şema sıkılaştırması LDBX sahipliğinde, 12/13.
 - [ ] Resume'da içerik uyumu, prerequisite ve açık ihtiyacı doğrulayan olgular; `resume_context_ref` ve `continue_learning` yeniden girişi → 12.
 - [ ] High-stakes pause için gap politikası (uydurulmadı; bugün hiçbir high-stakes devam bağımsız sayılmaz) → 13, kalibrasyon 18D.
 - [ ] Kalıcı oturum/öğrenme geçmişi; working session bugün saklanmıyor → 16B.
 - [ ] `plan_exhausted` ve `capacity_reached` oturum sebeplerinin üreticisi (planner'ın yeniden hesaplanan seçimi ve kapasite hükmü) → 12.
 - [ ] Attempt üzerinde `planned_task_ref` ve `runner_completion_state` saklanmıyor (DDM adlandırmıyor) → 12.
-- [ ] Artifact gövdesi depolaması (`content_ref` arkası) → 11D.
-- [ ] Curriculum ingestion henüz yok; store hiçbir şey yayımlanmadığını bildiriyor → 11D, içerik 15.
+- [x] Artifact gövdesi depolaması: 11D'de kısa yanıt için `data:` URI; büyüğü reddediliyor (blob store 14/15).
+- [x] Curriculum ingestion 11D'de kuruldu; authored içeriğin kendisi hâlâ 15'in ve bugün hiçbir paket sevk edilmiyor.
 - [ ] `planned_task` purpose/trace/süre kolonlarını taşımıyor; Today plan okuyamıyor → 12.
 - [x] Backup/export ve atomik doğrulanmış restore sahipliği 10E'de netleşti: mekanizma 10E'de kuruldu ve T2'de doğrulandı.
 - [ ] Export/restore Profile kontrolleri (dosya seçimi, değiştirme onayı, ret metni, değiştirilen profilin saklanıp saklanmayacağı) → 16D.

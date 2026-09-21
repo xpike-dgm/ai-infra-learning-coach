@@ -1,0 +1,392 @@
+model: DMAX-v0
+stage_step: 11D
+status: accepted_11d
+decision: D-090
+assessment_interior: ASUX-v0
+daily_scope: DMA-v0
+item_bank: QAB-v0
+item_validation: AIV-v0
+focused_flow_frame: TRUX-v0
+session_state: SESX-v0
+task_runner: RNRX-v0
+persistence: LFPS-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+boundaries: MSBX-v0
+purpose: curriculum_ingestion_item_trust_and_the_one_assessment_session_interior
+
+scope:
+  daily_micro_only: true
+  evidence_written: false
+  planner_implemented: false
+  weekly_or_monthly_blueprint_implemented: false
+  mastery_engine_implemented: false
+  content_authored_here: false
+  schema_changed: false
+  migration_added: false
+  ports_added: false
+  boundaries_changed: false
+  surface_semantics_changed: false
+  passing_threshold: null
+  percentage_grade: null
+  fixed_question_count: null
+  countdown_clock: null
+
+assessment_question: How does one honest measurement run end to end — and what may an item be used for at all?
+
+primary_invariant: >-
+  An assessment session is an evidence-collection workflow. It never becomes a gradebook, a
+  score-based mastery authority, a pass/fail verdict or a second state engine; and an item may only
+  carry what its validation, its evaluator and the Objective's own evidence profile allow.
+
+found_before_11d:
+  - id: no_write_path_into_the_curriculum_region
+    was: >-
+      the store could read curriculum and report whether anything was published, but nothing could
+      publish it; the immutable region had no writer at all, so its rules were untested in practice
+    resolved_here: publishCurriculum as the single write path, one transaction, refusal decided before any write
+  - id: item_metadata_ddm_does_not_name
+    was: >-
+      DDM-v0's assessment_resource_version names content_ref, evidence_type, allowed_tools_policy,
+      variant_family_id, dependency_group_id and content_origin only, while QAB-v0's item carries
+      targets, use ceiling, scope eligibility, evaluator requirement, difficulty and independence mode
+    resolved_here: >-
+      the rest travels in the authored content document, not in invented columns; 10D forbade
+      inventing fields the data model does not name
+  - id: artifact_body_had_nowhere_to_live
+    was: 11B recorded artifact body storage as 11D's, and DDM-v0 says only that an artifact has a content_ref
+    resolved_here: >-
+      a short response is carried inside the reference as an RFC 2397 data: URI, so it commits in the
+      attempt's own transaction and is already inside 10E's verified export; anything larger is
+      refused rather than truncated, and a real blob store belongs to 14/15
+  - id: revalidation_would_have_been_unpublishable
+    was: >-
+      the first reference resolver only looked inside the package being published, so a later version
+      carrying only a revalidation of an already-published resource was refused
+    found_by: the T2 publishing check, not review
+    resolved_here: references resolve against the package or the store; both sides stay version-pinned
+
+vocabularies:
+  assessment_scopes:
+    source: ASUX-v0 session_model.assessment_scopes
+    value: [daily_micro, weekly_blueprint, monthly_capability]
+    scope_is_displayed_context_only: true
+  assessment_intents:
+    source: ASUX-v0 session_model.assessment_intents
+    value: [checkpoint, mastery_evidence, verification, integration_check]
+  semantic_states:
+    source: ASUX-v0 semantic_states
+    count: 19
+    order_is_source_order: true
+  result_families:
+    source: ASUX-v0 result_presentation.semantic_families
+    count: 6
+  not_reliably_measured_sources:
+    source: ASUX-v0 result_presentation.not_reliably_measured_sources
+    count: 6
+  recomposition_conditions:
+    source: ASUX-v0 pause_resume_recomposition.recomposition_conditions
+    count: 5
+  lifecycle_status:
+    source: QAB-v0 §5
+    value: [draft, candidate, validated, trusted, deprecated, invalidated, retired]
+  use_ceiling:
+    source: QAB-v0 §6 / AIV-v0 §22
+    value: [practice_only, low_stakes_assessment, standard_mastery_eligible, critical_mastery_eligible]
+    is_numeric_score: false
+    effective_ceiling_is_most_restrictive_applicable_rule: true
+  content_origin:
+    source: QAB-v0 §7
+    count: 5
+  independence_mode:
+    source: TASK_TAXONOMY_SPEC
+    value: [not_applicable, guided_allowed, independent_expected, h0_required]
+
+curriculum_ingestion:
+  single_write_path: publishCurriculum
+  one_transaction: true
+  published_version_overwritten: false
+  correction_is_a_new_version: true
+  refusal_decided_before_any_write: true
+  refuses:
+    - unresolved_reference_in_package_and_store
+    - row_carrying_another_version_than_the_package
+    - evidence_type_that_is_not_a_single_token
+  writes_into_user_regions: false
+  authored_package_format: curriculum_package/1
+  parser_is_strict: true
+  parser_refuses:
+    - unknown_section
+    - unknown_key
+    - repeated_key
+    - missing_required_key
+    - unpinned_reference
+    - unknown_enum_value
+    - line_that_is_not_section_or_key_value
+  half_loaded_package_served: false
+  content_ships_with_app_today: false
+  content_author_owner: 15
+
+item_trust:
+  trust_source: store_validation_record
+  document_may_promote_itself: false
+  unvalidated_candidate_ceiling: practice_only
+  ai_generated_without_trusted_status_max: standard_mastery_eligible
+  no_deterministic_verification_with_provisional_evaluator_max: low_stakes_assessment
+  deterministic_required_but_absent_max: practice_only
+  evaluator_unavailable_without_deterministic_max: practice_only
+  ceiling_can_exceed_declared: false
+  intent_requirements:
+    checkpoint: low_stakes_assessment
+    integration_check: low_stakes_assessment
+    mastery_evidence: standard_mastery_eligible
+    verification: standard_mastery_eligible
+  evidence_fit_decided_by: objective_profile
+  mastery_requires_objective_direct_type: true
+  unknown_objective_profile_assumed_compatible: false
+  unfit_item_is_negative_evidence: false
+
+exposure:
+  recorded_when_item_is_served: item_version_seen
+  recorded_when_solution_revealed: solution_exposure
+  recorded_for_unusable_item: false
+  permanent: true
+  carries_variant_family: true
+
+session_interior:
+  one_interior_for_all_scopes: true
+  submission_unit: atomic_evidence_boundary
+  item_boundary_holds_one_item: true
+  testlet_split: false
+  submitted_boundary_frozen: true
+  submitted_boundary_revisitable: false
+  unsubmitted_boundary_navigable: true
+  free_order_answering: true
+  skipping_is_incorrect: false
+  skipping_is_penalty: false
+  assistance_blocked: false
+  h1_h2_consequence: assisted
+  h3_h4_consequence: practice_only_solution_exposed
+  independent_mastery_evidence_from_assisted_attempt: false
+  mode_conversion_explicit: true
+  session_schedules_recheck: false
+  recomposition_deletes_frozen_boundary: false
+  recomposed_slot_is_fresh_measurement: true
+  dispute_auto_invalidates_item: false
+  dispute_harms_user_state: false
+  contested_evidence_held: true
+  result_is_semantic: true
+  result_has_score_or_grade_field: false
+  raw_counts_are_informational_only: true
+  not_reliably_measured_first_class: true
+  state_change_claimed_without_canonical_change: false
+  incomplete_session_is_partial_not_failure: true
+  independence_and_tools_disclosed_before_response: true
+
+artifact_body:
+  inline_format: rfc2397_data_uri
+  max_body_chars: 4096
+  oversized_body_truncated: false
+  oversized_body_written_elsewhere: false
+  commits_in_the_attempt_transaction: true
+  included_in_existing_export: true
+  blob_store_owner: [14, 15]
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+  - name: publishCurriculum
+    reason: the immutable curriculum region had no writer
+  - name: resourceVersion
+    reason: a pinned published row is what makes content compatibility checkable
+  - name: latestValidation
+    reason: trust is the store's answer, not the document's claim
+  - name: objectiveProfile
+    reason: the Objective decides what counts as evidence for it
+  - name: assessmentItem
+    reason: item metadata DDM-v0 does not name is authored content, parsed by the content adapter
+  - name: curriculumPackage
+    reason: ingestion reads the authored package through the same content port
+
+wiring:
+  ingestion_runs_on_store_thread: true
+  ingestion_runs_once_per_open: true
+  authored_package_asset: curriculum_package.txt
+  asset_ships_today: false
+  session_reachable_from_today: false
+  session_entry_owner: 12
+
+tests:
+  t1:
+    - core-model AssessmentFactsTest
+    - core-presentation AssessmentSessionTest
+    - core-application DailyMicroAssessmentTest
+  t2:
+    - data-persistence CurriculumPublishingTest
+  t5:
+    - data-curriculum PackageFormatTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 27
+  detected: 27
+  harness_verified_to_run_gradle: true
+  mutants:
+    - {id: T01, mutant: unvalidated_item_claims_any_ceiling}
+    - {id: T02, mutant: ai_generated_reaches_critical_ceiling}
+    - {id: T03, mutant: draft_or_invalidated_becomes_selectable}
+    - {id: T04, mutant: unavailable_evaluator_stops_capping}
+    - {id: T05, mutant: checkpoint_needs_no_ceiling}
+    - {id: T06, mutant: item_declares_its_own_evidence_fit}
+    - {id: T07, mutant: mastery_without_objective_direct_type}
+    - {id: T08, mutant: unknown_objective_profile_assumed_fit}
+    - {id: T09, mutant: scope_eligibility_ignored}
+    - {id: T10, mutant: oversized_artifact_body_truncated}
+    - {id: T11, mutant: foreign_content_reference_guessed}
+    - {id: T12, mutant: unresolved_references_published}
+    - {id: T13, mutant: submitted_boundary_resubmitted}
+    - {id: T14, mutant: frozen_boundary_recomposed}
+    - {id: T15, mutant: revealing_help_treated_as_hint}
+    - {id: T16, mutant: session_schedules_recheck}
+    - {id: T17, mutant: skipped_slot_hidden}
+    - {id: T18, mutant: result_claims_unreported_change}
+    - {id: T19, mutant: unsubmitted_session_reported_complete}
+    - {id: T20, mutant: item_document_decides_trust}
+    - {id: T21, mutant: unpublished_item_served}
+    - {id: T22, mutant: exposure_for_unshown_item}
+    - {id: T23, mutant: published_version_overwritten}
+    - {id: T24, mutant: rows_of_another_version_published}
+    - {id: T25, mutant: parser_accepts_unknown_key}
+    - {id: T26, mutant: parser_accepts_unpinned_reference}
+    - {id: T27, mutant: failed_parse_served_in_pieces}
+  survived_at_first: [T07, T11, T26]
+  survivors_note: >-
+    three mutants survived the first honest run and each named a real gap in the tests, not in the
+    rules: T07's direct-type branch was only ever reached through requiredDirectType, T11's prefix
+    check was untested against a reference made only of characters the encoder leaves alone, and
+    T26's refusal was asserted to happen without asserting that the parser names the rule rather than
+    throwing an index error. The tests were strengthened and all three are now caught.
+
+validator_mutation:
+  total: 27
+  detected: 27
+  negative_control: forbidden words named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+  invalid_mutants_replaced:
+    - id: W11
+      was: renaming an enum constant while keeping its id, which would not compile
+      replaced_with: the fit branch that names an unknown Objective profile is removed
+    - id: W27
+      was: an elvis on a nullable that changed no behaviour
+      replaced_with: a failed parse is re-parsed and served anyway
+  helper_defect_found: >-
+    six checks read an empty string, because the brace-body reader cannot see Kotlin's
+    expression-bodied functions; the validator now reads either form and those checks really run
+
+corrections:
+  11c_mutation_record:
+    was: "20/20 caught, recorded in SESX-v0, its contract and D-089"
+    why_invalid: >-
+      the harness invoked cmd /c gradlew.bat with a working directory, which Windows does not
+      resolve, so Gradle never started; every mutant returned a non-zero exit code for the wrong
+      reason and was recorded as caught
+    corrected_to: >-
+      re-run against the fixed harness: 20/20, every one caught by a failing test. The number stands
+      and is now actually verified, which it was not before
+    harness_fix: >-
+      the wrapper is invoked by absolute path and a run whose output carries no Gradle build result
+      is refused rather than classified
+  11a_stale_living_gate:
+    was: >-
+      validate_today_interior.py pinned the literal body "ContentDocument? = null", which 11D's real
+      content adapter no longer has
+    corrected_to: >-
+      narrowed to the guarantee 11A owns — the resource lookup returns a nullable document, throws
+      nothing and contains no TODO — following the E7A-15 precedent for stale living gates
+  11c_sync_duplication:
+    was: >-
+      11C's POST sync inserted PROJECT_CONTEXT.md section 12.15 four times, because the replacement
+      text contained its own anchor and the idempotency guard therefore never matched
+    corrected_to: the three duplicates were removed and the 11D validator fails if a 12.x heading repeats
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any assessment session in the real app; no planner selects one and no content ships, so none can start
+  - the session screen and its result view rendered on a device
+  - ingestion of a real authored package, which 15 will write
+
+forbidden_daily_micro_patterns:
+  - item_promoting_itself_past_its_validation
+  - unvalidated_ai_item_carrying_mastery_evidence
+  - item_declaring_its_own_evidence_fit
+  - mastery_claim_from_an_item_that_is_not_the_objectives_direct_type
+  - exposure_recorded_for_an_item_never_shown
+  - published_curriculum_version_overwritten
+  - half_published_package
+  - half_loaded_authored_package
+  - artifact_body_truncated_to_fit
+  - submitted_boundary_edited_or_resubmitted
+  - skipping_treated_as_incorrect
+  - assistance_blocked_or_silently_converted
+  - session_scheduling_its_own_recheck
+  - dispute_used_as_an_undo_button
+  - result_with_a_score_grade_percentage_or_threshold
+  - not_reliably_measured_hidden_or_folded_into_incorrect
+  - state_change_claimed_without_canonical_change
+
+future_stage_boundaries:
+  12: planner selection of assessment tasks, evidence pipeline, prerequisite gate facts, plan changes in the result
+  13: weekly and monthly blueprint composition, high-stakes gap policy, remediation
+  14: AI evaluator behaviour, rubric content and final microcopy
+  15: authored curriculum and item content
+  16B: assessment_report and longitudinal history
+  18D: evaluator and item calibration
+  T6: device run
+
+acceptance:
+  - DMAX-v0 is the accepted daily micro assessment implementation
+  - vocabularies equal ASUX-v0, DMA-v0, QAB-v0 and AIV-v0 in their order
+  - curriculum publishing is the single write path, one transaction, and never overwrites a published version
+  - the authored package parses strictly or not at all, and a failed parse serves nothing
+  - trust comes from the store's validation record, never from the item's own claim
+  - the effective use ceiling is the most restrictive applicable rule and never exceeds the declared one
+  - the Objective's evidence profile decides fit; mastery needs its direct type
+  - exposure is recorded when an item is served and when a solution is revealed, never otherwise
+  - one interior serves all scopes; submitted boundaries freeze; skipping is not incorrect
+  - assistance is never blocked, its consequence is disclosed and conversion is explicit
+  - the result is semantic, not_reliably_measured is first class, and no change is claimed without canonical change
+  - an artifact body is carried inline or refused, never truncated
+  - the schema is unchanged, no migration was added and the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 11D QA passes and Stage 6-11C regressions pass

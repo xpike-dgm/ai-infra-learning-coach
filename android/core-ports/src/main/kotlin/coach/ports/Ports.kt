@@ -1,7 +1,13 @@
 package coach.ports
 
+import coach.model.AssessmentItem
+import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
+import coach.model.ObjectiveEvidenceProfile
+import coach.model.PublishOutcome
+import coach.model.ResourceVersion
 import coach.model.StudyTimestamp
+import coach.model.ValidationRecord
 import coach.model.VersionedRef
 
 /**
@@ -53,11 +59,41 @@ interface PersistencePort {
      * port, and it stays in core types.
      */
     fun curriculumPublished(): Boolean
+
+    /**
+     * Publishes one curriculum version into the immutable curriculum region, in one transaction
+     * (11D). A version that is already published is **not** overwritten: the outcome says so, and
+     * a correction is a new version (`LFPS-v0`). Publishing writes nothing in the user regions.
+     */
+    fun publishCurriculum(curriculum: CurriculumPackage, publishedAtInstant: Long): PublishOutcome
+
+    /** The `DDM-v0`-named row of a published assessment resource version, or `null` if unpublished. */
+    fun resourceVersion(ref: VersionedRef): ResourceVersion?
+
+    /**
+     * The most recent validation record for a resource version (`AIV-v0` §31). Trust is the store's
+     * answer, not the item document's own claim about itself.
+     */
+    fun latestValidation(ref: VersionedRef): ValidationRecord?
+
+    /** What the published Objective accepts as evidence; the Objective decides, not the item. */
+    fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile?
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */
 interface ContentPort {
     fun resource(ref: VersionedRef): ContentDocument?
+
+    /**
+     * The authored assessment item behind a pinned reference (11D). The metadata `DDM-v0` does not
+     * name — the item's targets, use ceiling, scope eligibility, evaluator requirement, difficulty
+     * and independence mode — is authored **content**, so it is parsed by the content adapter
+     * rather than stored in invented columns.
+     */
+    fun assessmentItem(ref: VersionedRef): AssessmentItem?
+
+    /** The authored curriculum package awaiting ingestion, or `null` when none ships with the app. */
+    fun curriculumPackage(): CurriculumPackage?
 }
 
 /**

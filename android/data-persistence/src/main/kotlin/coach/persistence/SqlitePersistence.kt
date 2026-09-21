@@ -5,7 +5,13 @@ import androidx.sqlite.SQLiteDriver
 import androidx.sqlite.SQLiteStatement
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
+import coach.model.CurriculumPackage
+import coach.model.ObjectiveEvidenceProfile
+import coach.model.PublishOutcome
+import coach.model.ResourceVersion
 import coach.model.StudyTimestamp
+import coach.model.ValidationRecord
+import coach.model.VersionedRef
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
 import coach.ports.TruthRecord
@@ -64,6 +70,8 @@ class SqlitePersistence private constructor(
     private data class Column(val name: String, val notNull: Boolean, val hasDefault: Boolean)
 
     private val columnCache = mutableMapOf<String, List<Column>>()
+
+    private val curriculumStore = CurriculumStore(connection)
 
     private fun columns(table: String): List<Column> = columnCache.getOrPut(table) {
         query("PRAGMA table_info($table)") { s ->
@@ -247,6 +255,22 @@ class SqlitePersistence private constructor(
      */
     override fun curriculumPublished(): Boolean =
         query("SELECT EXISTS (SELECT 1 FROM skill)") { it.getLong(0) == 1L }.single()
+
+    /**
+     * Publishes one curriculum version in one transaction (11D). A refused or already-published
+     * package leaves the store exactly as it was, because the refusal is decided before anything is
+     * written and the whole publish rolls back together if a write fails.
+     */
+    override fun publishCurriculum(curriculum: CurriculumPackage, publishedAtInstant: Long): PublishOutcome {
+        curriculumStore.refusal(curriculum)?.let { return it }
+        return inTransaction { curriculumStore.write(curriculum, publishedAtInstant) }
+    }
+
+    override fun resourceVersion(ref: VersionedRef): ResourceVersion? = curriculumStore.resourceVersion(ref)
+
+    override fun latestValidation(ref: VersionedRef): ValidationRecord? = curriculumStore.latestValidation(ref)
+
+    override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = curriculumStore.objectiveProfile(ref)
 
     /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a

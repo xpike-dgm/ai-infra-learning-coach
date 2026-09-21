@@ -208,6 +208,11 @@ mutation_results:
     the first sweep failed 10C's standing validator (E10C-15): the session-field test used
     .lowercase(), a locale-naive case transform this repo forbids even in tests; it now compares
     with ignoreCase, and S16 was re-run against the changed test and is still caught
+  harness_verified_to_run_gradle: true
+  verified_by_rerun_in: 11D
+  first_publication_was_unverified: >-
+    the harness invoked cmd /c gradlew.bat with a working directory, which Windows does not resolve,
+    so Gradle never ran; 11D fixed the harness and re-ran this suite, which caught 20/20 by test
   mechanism_recorded: >-
     the run was repeated to record how each mutant was caught; all twenty failed a test, none only
     the compiler
