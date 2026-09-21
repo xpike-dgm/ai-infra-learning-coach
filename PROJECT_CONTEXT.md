@@ -216,12 +216,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **11D ✅ Günlük mikro quiz — DMAX-v0 / D-090**
 - **11E ✅ Gün sonu — EODX-v0 / D-091**
 - **AŞAMA 11 ✅ TAMAMLANDI**
-- **12A 🟡 Mastery Engine v1 — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12B–20 ⬜
+- **12A ✅ Mastery Engine v1 — MSTX-v0 / D-092**
+- **12B 🟡 Prerequisite Engine — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -390,3 +391,17 @@ Kabul edilmiş bir gün-sonu spec'i yoktu; kurallar uydurulmadı, parçaların s
 Boş gün `empty_no_evidence_yet` ve nötr; günler arası boşluk hiç çizilmez. Özet Today'in gün bağlamında render ediliyor; yeni surface yok, grafik/halka/takvim ızgarası yok. `countTruth` kayıtlı port incelmesi ve hiçbir şey yazmıyor. Mutation 20/20 (E20 ikinci bir korumanın birincisini maskelemesi yüzünden ilk turda kaçtı; T2 kontrolü artık her reddin kendi kuralını adlandırdığını doğruluyor). Validator 128/128, kendi mutation testi 26/26. **T6 çalıştırılmadı.**
 
 Canonical: `docs/END_OF_DAY_SPEC.md` / D-091.
+
+## 12.18 12A Mastery Engine v1 — MSTX-v0 / D-092
+
+İlk engine kuruldu: kanıt yorumlanıyor ve mastery ondan projekte ediliyor. Ana invariant: **mastery tek bir soru sorar — yardımsız yapabiliyor mu?** Yardımlı iş, görülmüş çözüm, doğrulanmamış değerlendirme, itirazlı soru ve bozuk prerequisite üzerinde yapılmış iş skora girmez; hiçbiri ceza değildir, başka bir sorunun cevabıdır.
+
+11B ve 11D kasten kanıt yazmamıştı, bu yüzden `DDM-v0`nin dört ekseni ürün tarafından hiç yazılmamıştı. `RecordEvidence` bunu kapatıyor: deneme başına tek transaction, hedeflenen her Objective için bir satır, Objective'in sürümü kendi satırında pinli. **Yanıtsız değerlendirme hiçbir şey yazmaz** (`AIAX-v0`: refusal yanlış cevap değildir) ve **ölçülemeyen cevap sıfır değildir** — `invalid` olarak, sonuçsuz yazılır; sıfır öğrencinin yaptığı bir şeydir, bu değil.
+
+Motor `GRE-v0`ün kendisi: bağımlı grup tek gruptur (aynı soruyu on kez yanıtlamak bağımsız kanıtı şişirmez), pencere son beş gruptur, ortalama eşit ağırlıklıdır ve hiçbir çarpan yoktur. Standart ve kritik kapılar ayrıdır; kritik Objective yalnız basic kanıtla geçemez. **Skill ancak her required ve critical Objective kendi başına geçerse mastered olur** — ortalama olsaydı bir Objective'deki parlak sonuç eksik olanı gizlerdi. Histerezisin iki yarısı da var: ilk temiz çelişki doğrulama açar ve mastery'yi silmez; yeniden kontrol de düşerse doğrulama kapanır ve kapılar yeniden karar verir.
+
+Projeksiyon **yeniden kurulur, düzenlenmez**: aynı kanıt aynı satırı üretir, truth yazılmaz, yalnız mastery ekseni yazılır ve diğer motorların eksenleri taşınır. Her satır `policy_version`, `truth_watermark`, `built_at_instant` ve `input_curriculum_version` taşır; watermark kanıttan **önce** okunur, böylece rebuild sırasında düşen bir yazma satırı sessizce yanlış değil, tespit edilebilir biçimde bayat yapar. Yayımlanmış curriculum yoksa hiçbir şey yazılmaz.
+
+Her sabit (`5`, `0.80`, `2`, `3`) `GRE-v0`ün kalibre edilmemiş cold-start sezgisidir ve 18C'nin sahipliğindedir; hiçbiri olasılık, güven ya da yüzde değildir. Mutation 33/33 (G26 ve G33 ilk turda kaçtı: biri tüm fixture'ların v1 olması, diğeri aralık koşulunu hiç deneyen bir test olmaması yüzünden). Validator 164/164, kendi mutation testi 37/37 — validator'ın imza okuyucusunda 11D'dekiyle aynı sınıf hata bulundu ve düzeltildi. **T6 çalıştırılmadı** ve motor uygulamada erişilebilir değil: değerlendirme üreten bir yol yok (12C).
+
+Canonical: `docs/MASTERY_ENGINE_IMPL_SPEC.md` / D-092.

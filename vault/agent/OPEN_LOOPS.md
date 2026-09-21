@@ -43,8 +43,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 11C Session state: SESX-v0 / D-089 ile tamamlandı; checkpoint işin nerede olduğunu saklar, yalnız durable pause yazılır, resume yalnız checkpoint'in kanıtladığını doğrular, session puansız ve saklanmaz.
 - [x] 11D Günlük mikro quiz: DMAX-v0 / D-090 ile tamamlandı; curriculum ingestion, item güven tavanı, exposure ve tek assessment interior kuruldu.
 - [x] 11E Gün sonu: EODX-v0 / D-091 ile tamamlandı; gün sonu hüküm değil zaman sınırı, sayımlar envanter, borç yok. **AŞAMA 11 kapandı.**
-- [ ] 12A Mastery Engine v1 **AKTİF**: `GRE-v0`ın kodda karşılığı ve evidence pipeline'ın ilk parçası.
-- [ ] Gün özetine bildirilecek gerçek değişiklikler (kanonik engine çıktısı) → 12.
+- [x] 12A Mastery Engine v1: MSTX-v0 / D-092 ile tamamlandı; evidence pipeline, GRE-v0 kapıları, non-compensatory Skill ve yeniden kurulabilir projeksiyon.
+- [ ] 12B Prerequisite Engine **AKTİF**: `PRG-v0`ın kodda karşılığı ve 12A'nın dokunmadığı readiness ekseni.
+- [ ] Motoru tetikleyen yol: bir denemeden sonra kimin recompute ettiği ve ne ölçüleceği → 12C.
+- [ ] Objective gate profilleri authored içerikte; varsayılanlar `GRE-v0`ün → 15 yazar, 18C kalibre eder.
+- [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
+- [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, gün özetine bağlayan yol → 12C.
 - [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
 - [ ] Haftalık/aylık blueprint kompozisyonu (`WBA-v0`, `MCA-v0`) → 13; tek interior hazır, composition değil.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.

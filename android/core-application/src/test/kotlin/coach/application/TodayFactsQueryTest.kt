@@ -7,6 +7,7 @@ import coach.model.ResourceVersion
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
+import coach.model.EvidenceRow
 import coach.ports.ClockPort
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
@@ -36,6 +37,9 @@ class TodayFactsQueryTest {
         override fun latestValidation(ref: VersionedRef): ValidationRecord? = null
         override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = null
         override fun countTruth(kind: String, studyDay: String): Int = 0
+        override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
+        override fun truthWatermark(): Long = 0
+        override fun latestCurriculumVersion(): Int? = null
     }
 
     private val clock = object : ClockPort {

@@ -1,0 +1,522 @@
+model: MSTX-v0
+stage_step: 12A
+decision: D-092
+result: PASS
+checks_total: 164
+checks_passed: 164
+checks_failed: 0
+checks:
+- check: E12A-00_exists_MasteryEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/MasteryEngine.kt
+- check: E12A-00_exists_EvidenceFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/EvidenceFacts.kt
+- check: E12A-00_exists_EvidencePipeline.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/EvidencePipeline.kt
+- check: E12A-00_exists_RebuildMastery.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/RebuildMastery.kt
+- check: E12A-00_exists_MasteryEngineTest.kt
+  result: PASS
+  details: missing android/core-engines/src/test/kotlin/coach/engines/MasteryEngineTest.kt
+- check: E12A-00_exists_EvidencePipelineTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/EvidencePipelineTest.kt
+- check: E12A-00_exists_RebuildMasteryTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/RebuildMasteryTest.kt
+- check: E12A-00_exists_EvidenceStorageTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/EvidenceStorageTest.kt
+- check: E12A-00_exists_MASTERY_ENGINE_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/MASTERY_ENGINE_IMPL_SPEC.md
+- check: E12A-00_exists_12a_mastery_engine_research.md
+  result: PASS
+  details: missing research/12a_mastery_engine_research.md
+- check: E12A-01_model
+  result: PASS
+  details: MSTX-v0
+- check: E12A-01_status
+  result: PASS
+  details: accepted_12a
+- check: E12A-01_decision
+  result: PASS
+  details: D-092
+- check: E12A-01_scope_retention_engine_implemented
+  result: PASS
+  details: retention_engine_implemented=False
+- check: E12A-01_scope_prerequisite_engine_implemented
+  result: PASS
+  details: prerequisite_engine_implemented=False
+- check: E12A-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E12A-01_scope_topic_state_implemented
+  result: PASS
+  details: topic_state_implemented=False
+- check: E12A-01_scope_weakness_engine_implemented
+  result: PASS
+  details: weakness_engine_implemented=False
+- check: E12A-01_scope_rubrics_implemented
+  result: PASS
+  details: rubrics_implemented=False
+- check: E12A-01_scope_threshold_calibrated
+  result: PASS
+  details: threshold_calibrated=False
+- check: E12A-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12A-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12A-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E12A-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12A-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E12A-01_no_mastery_percentage_claim
+  result: PASS
+  details: mastery_percentage_claim was claimed
+- check: E12A-01_no_probability_or_confidence_claim
+  result: PASS
+  details: probability_or_confidence_claim was claimed
+- check: E12A-02_constant_RECENT_WINDOW_MAX_GROUPS_V0
+  result: PASS
+  details: gre=5 kotlin=5
+- check: E12A-02_constant_OBJECTIVE_MASTERY_THRESHOLD_V0
+  result: PASS
+  details: gre=0.80 kotlin=0.80
+- check: E12A-02_minimum_MIN_INDEPENDENT_GROUPS_STANDARD
+  result: PASS
+  details: contract=2 kotlin=2
+- check: E12A-02_minimum_MIN_INDEPENDENT_GROUPS_CRITICAL
+  result: PASS
+  details: contract=3 kotlin=3
+- check: E12A-02_minimum_MIN_VARIANT_FAMILIES_STANDARD
+  result: PASS
+  details: contract=2 kotlin=2
+- check: E12A-02_minimum_MIN_VARIANT_FAMILIES_CRITICAL
+  result: PASS
+  details: contract=2 kotlin=2
+- check: E12A-02_formula_version
+  result: PASS
+  details: the projection is not stamped with GRE-v0
+- check: E12A-02_declared_is_probability
+  result: PASS
+  details: is_probability was claimed
+- check: E12A-02_declared_is_confidence
+  result: PASS
+  details: is_confidence was claimed
+- check: E12A-02_declared_is_ability_estimate
+  result: PASS
+  details: is_ability_estimate was claimed
+- check: E12A-02_declared_shown_to_learner_as_percentage
+  result: PASS
+  details: shown_to_learner_as_percentage was claimed
+- check: E12A-02_calibration_owner
+  result: PASS
+  details: the constants are not recorded as uncalibrated
+- check: E12A-03_excludes_not_direct_evidence_for_objective
+  result: PASS
+  details: not_direct_evidence_for_objective is not enforced
+- check: E12A-03_excludes_not_independent
+  result: PASS
+  details: not_independent is not enforced
+- check: E12A-03_excludes_evaluator_not_verified
+  result: PASS
+  details: evaluator_not_verified is not enforced
+- check: E12A-03_excludes_outcome_invalid
+  result: PASS
+  details: outcome_invalid is not enforced
+- check: E12A-03_excludes_contested
+  result: PASS
+  details: contested is not enforced
+- check: E12A-03_excludes_prerequisite_contaminated
+  result: PASS
+  details: prerequisite_contaminated is not enforced
+- check: E12A-03_excludes_solution_exposed
+  result: PASS
+  details: solution_exposed is not enforced
+- check: E12A-03_excludes_no_group_result
+  result: PASS
+  details: no_group_result is not enforced
+- check: E12A-03_exclusion_vocabulary
+  result: PASS
+  details: kotlin=['not_direct_evidence_for_objective', 'not_independent', 'evaluator_not_verified',
+    'outcome_invalid', 'contested', 'prerequisite_contaminated', 'solution_exposed',
+    'no_group_result']
+- check: E12A-03_group_result_is_bounded
+  result: PASS
+  details: a group result outside [0,1] can be constructed
+- check: E12A-03_assisted_is_not_a_penalty
+  result: PASS
+  details: assisted evidence is recorded as a penalty
+- check: E12A-04_dependency_group_is_one_group
+  result: PASS
+  details: a dependency group does not collapse into one group
+- check: E12A-04_window_bounded
+  result: PASS
+  details: the window is not bounded
+- check: E12A-04_equal_weighted_mean
+  result: PASS
+  details: the score is not an equal-weighted mean of the window
+- check: E12A-04_no_multipliers
+  result: PASS
+  details: a multiplier appears in the engine
+- check: E12A-05_gate_recent_direct_score
+  result: PASS
+  details: missing gate recent_direct_score
+- check: E12A-05_gate_min_independent_groups
+  result: PASS
+  details: missing gate min_independent_groups
+- check: E12A-05_gate_min_variant_families
+  result: PASS
+  details: missing gate min_variant_families
+- check: E12A-05_gate_required_direct_type
+  result: PASS
+  details: missing gate required_direct_type
+- check: E12A-05_gate_no_unresolved_recheck
+  result: PASS
+  details: missing gate no_unresolved_recheck
+- check: E12A-05_gate_no_unresolved_verification
+  result: PASS
+  details: missing gate no_unresolved_verification
+- check: E12A-05_critical_non_basic
+  result: PASS
+  details: a critical Objective may pass on basic evidence
+- check: E12A-05_user_authored_gate
+  result: PASS
+  details: the user-authored artifact gate is missing
+- check: E12A-05_transfer_gate
+  result: PASS
+  details: the transfer gate is missing
+- check: E12A-06_non_compensatory
+  result: PASS
+  details: a Skill is not gated on every required and critical Objective
+- check: E12A-06_no_average_across_objectives
+  result: PASS
+  details: a Skill is decided on an average of its Objectives
+- check: E12A-06_optional_not_gating
+  result: PASS
+  details: an optional Objective gates the Skill
+- check: E12A-06_critical_recheck_blocks
+  result: PASS
+  details: an unresolved critical recheck does not block the Skill
+- check: E12A-07_first_contradiction_keeps_mastery
+  result: PASS
+  details: the first contradiction unmasters instead of opening verification
+- check: E12A-07_failed_recheck_resolves
+  result: PASS
+  details: a failed recheck does not resolve the verification
+- check: E12A-07_contradiction_needs_eligible_evidence
+  result: PASS
+  details: a contradiction is counted from evidence that never qualified
+- check: E12A-08_band_values
+  result: PASS
+  details: kotlin=['low', 'medium', 'high']
+- check: E12A-08_failing_is_low
+  result: PASS
+  details: a failing Objective is not LOW
+- check: E12A-08_trace_masteryFormulaVersion
+  result: PASS
+  details: the trace does not carry masteryFormulaVersion
+- check: E12A-08_trace_objectiveRecentScores
+  result: PASS
+  details: the trace does not carry objectiveRecentScores
+- check: E12A-08_trace_windowGroupKeys
+  result: PASS
+  details: the trace does not carry windowGroupKeys
+- check: E12A-08_trace_passedGates
+  result: PASS
+  details: the trace does not carry passedGates
+- check: E12A-08_trace_failedGates
+  result: PASS
+  details: the trace does not carry failedGates
+- check: E12A-08_trace_excludedEvidence
+  result: PASS
+  details: the trace does not carry excludedEvidence
+- check: E12A-08_trace_assistedEvidenceCount
+  result: PASS
+  details: the trace does not carry assistedEvidenceCount
+- check: E12A-08_trace_unresolvedRechecks
+  result: PASS
+  details: the trace does not carry unresolvedRechecks
+- check: E12A-08_trace_evaluatorStatusSummary
+  result: PASS
+  details: the trace does not carry evaluatorStatusSummary
+- check: E12A-08_trace_decision
+  result: PASS
+  details: the trace does not carry decision
+- check: E12A-08_trace_reasonCodes
+  result: PASS
+  details: the trace does not carry reasonCodes
+- check: E12A-08_no_verdict_field_ObjectiveDecision
+  result: PASS
+  details: ObjectiveDecision fields=['objective', 'passed', 'recentDirectScore', 'independentGroups',
+    'variantFamilies', 'windowGroupKeys', 'passedGates', 'failedGates', 'excluded',
+    'assistedRowCount', 'unresolvedRecheck', 'verificationDue', 'supportBand']
+- check: E12A-08_no_verdict_field_SkillDecision
+  result: PASS
+  details: SkillDecision fields=['skill', 'mastered', 'axisState', 'objectives', 'trace']
+- check: E12A-08_no_verdict_field_MasteryDecisionTrace
+  result: PASS
+  details: MasteryDecisionTrace fields=['skill', 'masteryFormulaVersion', 'objectiveRecentScores',
+    'windowGroupKeys', 'passedGates', 'failedGates', 'excludedEvidence', 'assistedEvidenceCount',
+    'unresolvedRechecks', 'evaluatorStatusSummary', 'decision', 'reasonCodes']
+- check: E12A-08_no_verdict_field_EvidenceGroup
+  result: PASS
+  details: EvidenceGroup fields=['key', 'quality', 'sequence', 'variantFamilyId',
+    'rows']
+- check: E12A-09_pending_writes_nothing
+  result: PASS
+  details: a pending evaluation writes evidence
+- check: E12A-09_one_transaction
+  result: PASS
+  details: evidence is not written in one transaction
+- check: E12A-09_axis_outcome
+  result: PASS
+  details: outcome is not written
+- check: E12A-09_axis_evaluator_status
+  result: PASS
+  details: evaluator_status is not written
+- check: E12A-09_axis_independence_class
+  result: PASS
+  details: independence_class is not written
+- check: E12A-09_axis_contested
+  result: PASS
+  details: contested is not written
+- check: E12A-09_objective_version_pinned
+  result: PASS
+  details: the Objective attribution is not version-pinned
+- check: E12A-09_unmeasurable_is_invalid
+  result: PASS
+  details: an unmeasurable answer is recorded as something other than invalid
+- check: E12A-09_unmeasurable_has_no_result
+  result: PASS
+  details: an unmeasurable answer is scored
+- check: E12A-09_provisional_stays_provisional
+  result: PASS
+  details: a provisional evaluation is written as verified
+- check: E12A-09_evaluator_recorded
+  result: PASS
+  details: the evaluator that produced the row is not recorded
+- check: E12A-09_writes_no_projection
+  result: PASS
+  details: the pipeline writes a projection
+- check: E12A-10_watermark_before_evidence
+  result: PASS
+  details: the watermark is read after the evidence
+- check: E12A-10_no_truth_written
+  result: PASS
+  details: the rebuild writes truth
+- check: E12A-10_provenance_complete
+  result: PASS
+  details: a projection is written without full provenance
+- check: E12A-10_other_axes_carried
+  result: PASS
+  details: the engine overwrites another engine's axis
+- check: E12A-10_no_unpinned_projection
+  result: PASS
+  details: a projection is pinned to a curriculum version that may not exist
+- check: E12A-10_axis_values_are_spwx
+  result: PASS
+  details: kotlin=['not_yet_evidenced', 'developing_with_support', 'developing_independent',
+    'confirmed_current', 'confirmation_verification_due']
+- check: E12A-10_engine_owns_mastery
+  result: PASS
+  details: the ownership map no longer says GRE-v0 owns mastery
+- check: E12A-11_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12A-11_refinement_evidenceFor
+  result: PASS
+  details: missing evidenceFor
+- check: E12A-11_refinement_truthWatermark
+  result: PASS
+  details: missing truthWatermark
+- check: E12A-11_refinement_latestCurriculumVersion
+  result: PASS
+  details: missing latestCurriculumVersion
+- check: E12A-11_evidence_version_pinned
+  result: PASS
+  details: evidence is read without its version pin
+- check: E12A-11_evidence_read_only
+  result: PASS
+  details: reading evidence writes
+- check: E12A-12_schema_axis_outcome
+  result: PASS
+  details: outcome is not its own column
+- check: E12A-12_schema_axis_evaluator_status
+  result: PASS
+  details: evaluator_status is not its own column
+- check: E12A-12_schema_axis_independence_class
+  result: PASS
+  details: independence_class is not its own column
+- check: E12A-12_schema_axis_contested
+  result: PASS
+  details: contested is not its own column
+- check: E12A-12_schema_unchanged
+  result: PASS
+  details: a score column was added to the schema
+- check: E12A-13_engine_test_one easy correct answer is not mastery
+  result: PASS
+  details: 'missing test: one easy correct answer is not mastery'
+- check: E12A-13_engine_test_the same question answered ten times is st
+  result: PASS
+  details: 'missing test: the same question answered ten times is still one kind of
+    evidence'
+- check: E12A-13_engine_test_five correct answers with help are not ind
+  result: PASS
+  details: 'missing test: five correct answers with help are not independent evidence'
+- check: E12A-13_engine_test_code the AI wrote does not pass an Objecti
+  result: PASS
+  details: 'missing test: code the AI wrote does not pass an Objective that requires
+    the learner''s own artifact'
+- check: E12A-13_engine_test_a wrong answer caused by an untaught prere
+  result: PASS
+  details: 'missing test: a wrong answer caused by an untaught prerequisite is excluded,
+    not counted against the learner'
+- check: E12A-13_engine_test_a critical Objective cannot be passed on b
+  result: PASS
+  details: 'missing test: a critical Objective cannot be passed on basic evidence
+    alone'
+- check: E12A-13_engine_test_the first clean contradiction opens verifi
+  result: PASS
+  details: 'missing test: the first clean contradiction opens verification and does
+    not unmaster'
+- check: E12A-13_engine_test_a failed recheck resolves the verification
+  result: PASS
+  details: 'missing test: a failed recheck resolves the verification and lets the
+    gates decide again'
+- check: E12A-13_engine_test_a Skill is mastered only when every requir
+  result: PASS
+  details: 'missing test: a Skill is mastered only when every required and critical
+    Objective passes'
+- check: 'E12A-13_engine_test_every decision explains itself, including '
+  result: PASS
+  details: 'missing test: every decision explains itself, including what it excluded
+    and why'
+- check: E12A-13_pipeline_test_a pending evaluation writes nothing at all
+  result: PASS
+  details: 'missing test: a pending evaluation writes nothing at all'
+- check: E12A-13_pipeline_test_what could not be measured is invalid with
+  result: PASS
+  details: 'missing test: what could not be measured is invalid with no result, never
+    a wrong answer'
+- check: E12A-13_pipeline_test_the four axes are written separately and n
+  result: PASS
+  details: 'missing test: the four axes are written separately and never collapsed'
+- check: E12A-13_rebuild_test_it writes only the mastery axis and carrie
+  result: PASS
+  details: 'missing test: it writes only the mastery axis and carries the other engines''
+    axes'
+- check: E12A-13_rebuild_test_rebuilding twice from the same evidence wr
+  result: PASS
+  details: 'missing test: rebuilding twice from the same evidence writes the same
+    row'
+- check: E12A-13_rebuild_test_the rebuild writes no truth at all
+  result: PASS
+  details: 'missing test: the rebuild writes no truth at all'
+- check: E12A-13_t2_test_an evidence row and its attribution commit
+  result: PASS
+  details: 'missing T2 test: an evidence row and its attribution commit together or
+    not at all'
+- check: 'E12A-13_t2_test_an Objective sees only evidence pinned to '
+  result: PASS
+  details: 'missing T2 test: an Objective sees only evidence pinned to its own version,
+    oldest first'
+- check: E12A-13_t2_test_reading evidence writes nothing
+  result: PASS
+  details: 'missing T2 test: reading evidence writes nothing'
+- check: E12A-14_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12A-14_mutation_all_detected
+  result: PASS
+  details: '{''total'': 33, ''detected'': 33}'
+- check: E12A-14_mutation_ran_gradle
+  result: PASS
+  details: the mutation harness was not verified to have run anything
+- check: E12A-14_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12A-14_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E12A-14_not_reachable_in_app
+  result: PASS
+  details: the contract claims the engine is reachable in the app
+- check: E12A-14_boundary_12B
+  result: PASS
+  details: missing 12B
+- check: E12A-14_boundary_12C
+  result: PASS
+  details: missing 12C
+- check: E12A-14_boundary_13
+  result: PASS
+  details: missing 13
+- check: E12A-14_boundary_14
+  result: PASS
+  details: missing 14
+- check: E12A-14_boundary_18C
+  result: PASS
+  details: missing 18C
+- check: E12A-15_forbidden_assisted_work_counted_as_independent_mas
+  result: PASS
+  details: missing=assisted_work_counted_as_independent_mastery
+- check: E12A-15_forbidden_provisional_evaluation_settling_a_gate
+  result: PASS
+  details: missing=provisional_evaluation_settling_a_gate
+- check: E12A-15_forbidden_exposed_solution_counted_as_fresh_eviden
+  result: PASS
+  details: missing=exposed_solution_counted_as_fresh_evidence
+- check: E12A-15_forbidden_compensatory_average_across_objectives
+  result: PASS
+  details: missing=compensatory_average_across_objectives
+- check: E12A-15_forbidden_instant_unmastery_on_one_contradiction
+  result: PASS
+  details: missing=instant_unmastery_on_one_contradiction
+- check: E12A-15_forbidden_unmeasurable_answer_scored_zero
+  result: PASS
+  details: missing=unmeasurable_answer_scored_zero
+- check: E12A-15_forbidden_mastery_percentage_or_probability
+  result: PASS
+  details: missing=mastery_percentage_or_probability
+- check: E12A-15_forbidden_engine_writing_another_engines_axis
+  result: PASS
+  details: missing=engine_writing_another_engines_axis
+- check: E12A-16_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 12A QA PASS'
+- check: E12A-16_spec_**Decision:** `D-092`
+  result: PASS
+  details: missing='**Decision:** `D-092`'
+- check: E12A-16_spec_without help
+  result: PASS
+  details: missing='without help'
+- check: E12A-16_spec_T6
+  result: PASS
+  details: missing='T6'
+- check: E12A-16_spec_18C
+  result: PASS
+  details: missing='18C'
+- check: E12A-17_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12A-17_research_GRE-v0
+  result: PASS
+  details: missing='GRE-v0'
+- check: E12A-17_research_hysteresis
+  result: PASS
+  details: missing='hysteresis'
+- check: E12A-18_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+failures: []

@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091`; AŞAMA 8, AŞAMA 9, AŞAMA 10 ve AŞAMA 11'in kapandığını ve aktif adımın `12A active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092`; AŞAMA 8, AŞAMA 9, AŞAMA 10 ve AŞAMA 11'in kapandığını, AŞAMA 12'nin başladığını ve aktif adımın `12B active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1131,14 +1131,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 11D ✅ DMAX-v0 / D-090
 - AŞAMA 11E ✅ EODX-v0 / D-091
 - **AŞAMA 11 TAMAMLANDI**
-- AŞAMA 12A 🟡 active-not-executed
-- 12B–20 ⬜
+- AŞAMA 12A ✅ MSTX-v0 / D-092
+- AŞAMA 12B 🟡 active-not-executed
+- 12C–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `11E — Gün sonu`  
-**Final:** `EODX-v0 — End of Day` / D-091  
-**Canonical:** `docs/END_OF_DAY_SPEC.md` + `arch/11e_end_of_day/`
+**Son tamamlanan numaralı adım:** `12A — Mastery Engine v1`  
+**Final:** `MSTX-v0 — Mastery Engine v1` / D-092  
+**Canonical:** `docs/MASTERY_ENGINE_IMPL_SPEC.md` + `arch/12a_mastery_engine/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1168,17 +1169,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 11D:** ✅ TAMAMLANDI  
 **AŞAMA 11E:** ✅ TAMAMLANDI  
 **AŞAMA 11:** ✅ TAMAMLANDI  
-**Aktif adım:** `12A — Mastery Engine v1`  
+**AŞAMA 12A:** ✅ TAMAMLANDI  
+**Aktif adım:** `12B — Prerequisite Engine`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-12A için:
+12B için:
 
 ```text
-fresh 12A PRE-STEP GitHub refresh
+fresh 12B PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 12A execution
+→ 12B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1738,8 +1740,9 @@ AŞAMA 10 ✅ TAMAMLANDI
 11D ✅ DMAX-v0 / D-090
 11E ✅ EODX-v0 / D-091
 AŞAMA 11 ✅ TAMAMLANDI
-12A 🟡 active-not-executed
-12B–20 ⬜
+12A ✅ MSTX-v0 / D-092
+12B 🟡 active-not-executed
+12C–20 ⬜
 ```
 
 10D final:
@@ -1936,9 +1939,9 @@ AŞAMA 11 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `12A — Mastery Engine v1`.
+**Sıradaki gerçek numbered work:** `12B — Prerequisite Engine`.
 
-**12A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**12B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1988,8 +1991,8 @@ AŞAMA 11 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `12A — Mastery Engine v1`.  
-**12A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `12B — Prerequisite Engine`.  
+**12B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2089,3 +2092,12 @@ Ana invariant: assessment session bir kanıt toplama akışıdır ve bir item ya
 11E `EODX-v0 — End of Day` ile tamamlandı ve **AŞAMA 11 kapandı**. Canonical: `docs/END_OF_DAY_SPEC.md`; contract/QA: `arch/11e_end_of_day/`; synthesis: `research/11e_end_of_day_research.md`.
 
 Ana invariant: gün sonu bir hüküm değil, zamanda bir sınırdır. Kabul edilmiş bir gün-sonu spec'i yoktu; her kural bir sahipten türetildi. Gün satırın kaydettiği çalışma günüdür ve instant'tan yeniden hesaplanmaz; yeni gün boş başlar ve sınırı hiçbir şey geçmez. Sayımlar etiketli envanterdir (toplam/oran/yüzde/hedef yok) ve ilerleme değildir; değişiklik ancak kanonik bir engine bildirdiyse iddia edilir; okunamayan sayım adlandırılır; boş gün nötrdür; günler arası boşluk çizilmez. Today'in gün bağlamında render edilir, yeni surface ve grafik yoktur. `countTruth` hiçbir şey yazmayan bir port incelmesidir. Mutation 20/20 (biri test güçlendirilince), 128/128 QA PASS, validator mutation 26/26, 36/36 sweep. T6 çalıştırılmadı. Current active numbered step 12A'dır; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 12A completion addendum — D-092
+
+12A `MSTX-v0 — Mastery Engine v1` ile tamamlandı ve **AŞAMA 12 başladı**. Canonical: `docs/MASTERY_ENGINE_IMPL_SPEC.md`; contract/QA: `arch/12a_mastery_engine/`; synthesis: `research/12a_mastery_engine_research.md`.
+
+Ana invariant: mastery tek bir soru sorar — yardımsız yapabiliyor mu? Yardımlı, görülmüş, doğrulanmamış, itirazlı ve bozuk prerequisite üzerindeki kanıt skora girmez ve bunların hiçbiri ceza değildir. Kanıtı hiçbir şey yazmıyordu; pipeline deneme başına tek transaction yazıyor, Objective sürümü pinli, yanıtsız değerlendirme hiçbir şey yazmıyor ve ölçülemeyen cevap sıfır değil. Bağımlı grup tek grup, pencere son beş, ortalama eşit ağırlıklı; Skill non-compensatory; histerezisin iki yarısı da var. Projeksiyon kanıttan yeniden kurulur, truth yazmaz, provenance taşır ve yalnız kendi eksenini yazar. Sabitler `GRE-v0`ün kalibre edilmemiş sezgileri (18C). Mutation 33/33 (ikisi test güçlendirilince), 164/164 QA PASS, validator mutation 37/37, 37/37 sweep. T6 çalıştırılmadı ve motor uygulamada erişilebilir değil. Current active numbered step 12B'dir; fresh PRE + kullanıcı açık onayı gerekir.

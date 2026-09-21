@@ -3,6 +3,7 @@ package coach.ports
 import coach.model.AssessmentItem
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
+import coach.model.EvidenceRow
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -87,6 +88,24 @@ interface PersistencePort {
      * from one day into another. A truth table with no study day of its own cannot be counted here.
      */
     fun countTruth(kind: String, studyDay: String): Int
+
+    /**
+     * Every evidence row recorded for one pinned Objective, oldest first (12A).
+     *
+     * Mastery is a **projection of evidence**, so the engine has to be able to read all of it and
+     * recompute from scratch; a state that could only be updated incrementally would become a second
+     * source of truth the moment one update was missed.
+     */
+    fun evidenceFor(objective: VersionedRef): List<EvidenceRow>
+
+    /**
+     * The global truth sequence a projection was computed from (`DDM-v0` §projection_provenance).
+     * Without it a stale projection is indistinguishable from a current one.
+     */
+    fun truthWatermark(): Long
+
+    /** The newest published curriculum version, or `null` when nothing has been published. */
+    fun latestCurriculumVersion(): Int?
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */

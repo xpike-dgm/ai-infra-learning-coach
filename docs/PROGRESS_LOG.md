@@ -999,3 +999,20 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `11E ✅ / AŞAMA 11 kapandı / 12A active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12A — Mastery Engine v1`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-21 — 12A Mastery Engine v1 tamamlandı — MSTX-v0 / D-092 — AŞAMA 12 başladı
+
+- 11E main'de (1267d9d); fresh 12A PRE yapıldı ve beş kanonik kaynak `11E ✅ / 12A active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin").
+- **Kanıtı hiçbir şey yazmıyordu.** 11B ve 11D kasten yazmamıştı; `RecordEvidence` bunu kapattı.
+- **Motor `GRE-v0`ün kendisi:** uygunluk, gruplama, pencere, kapılar, non-compensatory Skill toplaması, histerezisin iki yarısı ve support band.
+- **§18/§19 guardrail'leri prose değil test:** tek kolay soru, aynı soru on kez, H2 ile beş doğru, AI'ın yazdığı kod, bilinmeyen prerequisite yüzünden yanlış — hepsi ayrı test.
+- **Ölçülemeyen cevap sıfır değil**, `invalid` ve sonuçsuz.
+- **Projeksiyon yeniden kurulur**, truth yazmaz, provenance taşır ve yalnız kendi eksenini yazar.
+- Mutation 33/33; G26 (sürüm pini) ve G33 (aralık koşulu) ilk turda kaçtı çünkü testler o durumları hiç kurmamıştı.
+- **Validator'ın imza okuyucusunda 11D'dekiyle aynı sınıf hata bulundu**: varsayılan parametredeki `=` yüzünden dokuz kontrol boş metin okuyordu. Düzeltildi; validator mutation 37/37.
+- Altı run PASS. Validator 164/164, sweep 37/37.
+- **T6 çalıştırılmadı** ve motor uygulamada erişilebilir değil: değerlendirme üreten bir yol yok (12C).
+- D-050 POST living-memory accepted state'i `12A ✅ / 12B active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12B — Prerequisite Engine`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
