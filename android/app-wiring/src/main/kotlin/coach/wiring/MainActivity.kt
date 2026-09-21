@@ -23,6 +23,10 @@ import coach.presentation.HealthAction
 import coach.presentation.Revalidation
 import coach.presentation.RunnerFlow
 import coach.presentation.RunnerRevalidation
+import coach.presentation.SessionEntrySource
+import coach.presentation.SessionEvent
+import coach.presentation.WorkingSession
+import coach.presentation.WorkingSessions
 import coach.presentation.ShellState
 import coach.presentation.Surface
 import coach.presentation.TodayPresentation
@@ -99,6 +103,11 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
     var runnerEntry by remember { mutableStateOf<Revalidation?>(null) }
+    // The emergent working session (11C). It is not stored and lives no longer than the focused
+    // flow's own state; it starts only when a run really starts, so while nothing is startable it
+    // never starts at all.
+    var session by remember { mutableStateOf<WorkingSession?>(null) }
+    var sessionsStarted by remember { mutableStateOf(0L) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -121,6 +130,7 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
                 // Back to Today in one action; NavigationGraph's return rule would also land here,
                 // because a run started from Today returns to Today.
                 onExit = {
+                    session = session?.let { WorkingSessions.on(it, SessionEvent.LearnerExited) }
                     runnerEntry = null
                     selected = Destination.TODAY
                 },
@@ -131,7 +141,23 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
                 view = today,
                 // Entry is revalidated in core against what can actually be confirmed; nothing
                 // unconfirmed is assumed to hold (TRUX-v0 entry_revalidation).
-                onStart = { runnerEntry = RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(today)) },
+                onStart = {
+                    val entry = RunnerRevalidation.atEntry(RunnerRevalidation.confirmedFromToday(today))
+                    runnerEntry = entry
+                    val task = today.primaryTask
+                    if (task != null) {
+                        WorkingSessions.startIfRunStarted(
+                            entry = entry,
+                            sessionId = sessionsStarted + 1,
+                            at = opened.graph.clock.now(),
+                            source = SessionEntrySource.TODAY_PRIMARY_ACTION,
+                            sourceTaskId = task.plannedTaskRef.toString(),
+                        )?.let { started ->
+                            sessionsStarted += 1
+                            session = started
+                        }
+                    }
+                },
                 onOpen = {},
             )
             else -> Column(

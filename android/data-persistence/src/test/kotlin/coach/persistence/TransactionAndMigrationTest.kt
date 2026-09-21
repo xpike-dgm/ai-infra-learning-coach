@@ -320,6 +320,78 @@ class TransactionAndMigrationTest {
         }
     }
 
+    // ---------------------------------------------------------------- a durable pause (11C)
+
+    private val pausedContext = coach.model.ResumeContext(
+        kind = coach.model.CheckpointKind.CHECKPOINT_PAUSE,
+        learningNeedKey = "need.skill.python.loops@v1",
+        sourceTaskId = "42",
+        checkpointId = "checkpoint.after_example",
+        completedSegments = listOf("seg.read_example"),
+        remainingSegments = listOf("seg.write_loop", "seg.explain"),
+    )
+
+    private fun checkpointRow(context: coach.model.ResumeContext = pausedContext) =
+        coach.ports.TruthRecord("resume_checkpoint", Fixtures.at, mapOf("context" to coach.model.ResumeContextCodec.encode(context)))
+
+    @Test
+    fun `a checkpoint reads back from SQLite exactly as it was saved`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            val id = db.inTransaction { db.appendTruth(checkpointRow()) }
+            val row = assertNotNull(db.readTruth("resume_checkpoint", id))
+            assertEquals(checkpointRow(), row)
+            assertEquals(pausedContext, coach.model.ResumeContextCodec.decode(row.payload.getValue("context")))
+            assertNull(db.readTruth("resume_checkpoint", id + 1))
+        }
+    }
+
+    @Test
+    fun `a pause writes nothing but its checkpoint`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            db.inTransaction { db.appendTruth(checkpointRow()) }
+            val written = Schema.truthTables.filter { db.count(it) > 0 }
+            assertEquals(listOf("resume_checkpoint"), written)
+        }
+    }
+
+    @Test
+    fun `a saved checkpoint is never rewritten, and a later pause appends beside it`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            val first = db.inTransaction { db.appendTruth(checkpointRow()) }
+            assertFailsWith<Throwable> { db.execute("UPDATE resume_checkpoint SET context = 'resume_context/1' WHERE id = $first") }
+            assertFailsWith<Throwable> { db.execute("DELETE FROM resume_checkpoint WHERE id = $first") }
+            val later = pausedContext.copy(
+                completedSegments = listOf("seg.read_example", "seg.write_loop"), remainingSegments = listOf("seg.explain"),
+            )
+            val second = db.inTransaction { db.appendTruth(checkpointRow(later)) }
+            assertEquals(checkpointRow(), db.readTruth("resume_checkpoint", first))
+            assertEquals(checkpointRow(later), db.readTruth("resume_checkpoint", second))
+        }
+    }
+
+    @Test
+    fun `a pause that fails leaves no checkpoint claiming it was saved`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            runCatching { db.inTransaction { db.appendTruth(checkpointRow()); error("crashed before commit") } }
+            assertEquals(0, db.count("resume_checkpoint"))
+        }
+    }
+
+    @Test
+    fun `truth read back carries the payload and the three-part time it was written with`() {
+        SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
+            val attemptId = db.inTransaction { recordAttempt(db) }
+            val attempt = assertNotNull(db.readTruth("attempt", attemptId))
+            assertEquals(Fixtures.attempt(), attempt)
+            val help = assertNotNull(db.readTruth("assistance_event", 1))
+            assertEquals("H3", help.payload.getValue("level"))
+            assertEquals("$attemptId", help.payload.getValue("attempt_id"))
+            // A row with no time of its own is read through its parent, and projections are not truth.
+            assertFailsWith<IllegalArgumentException> { db.readTruth("evidence_event_objective", 1) }
+            assertFailsWith<IllegalArgumentException> { db.readTruth("skill_state", 1) }
+        }
+    }
+
     @Test
     fun `no foreign key crosses from the user store into curriculum`() {
         SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->

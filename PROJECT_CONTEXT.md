@@ -212,12 +212,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 10 ✅ TAMAMLANDI**
 - **11A ✅ Today ekranı — TDYX-v0 / D-087**
 - **11B ✅ Task runner — RNRX-v0 / D-088**
-- **11C 🟡 Session state — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 11D–20 ⬜
+- **11C ✅ Session state — SESX-v0 / D-089**
+- **11D 🟡 Günlük mikro quiz — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 11E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 11C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 11D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -340,6 +341,30 @@ _Bu bölüm 11A'nın POST'unda eksik kaldı (sync betiği bu dosyaya ulaşmadan 
 Task Runner kuruldu ve ürünün öğrenci işini yazan ilk yolu açıldı. Ana invariant: **runner bir execution surface'tir** — planner, mastery otoritesi, prerequisite otoritesi ya da evidence evaluator değil. Runner kodundan önce main'de 11A'nın kendi sync betiğinden kalan kusurlar bulundu: `"İ".lower()` Python'da U+0307 birleşik noktası üretiyor ve beş Türkçe kelimeye sızmıştı; betiğin çöküp yeniden koşması da `HANDOFF_STATE` ve `MASTER_PLAN`da mükerrer satır ve burada eksik bir bölüm bırakmıştı. Hepsi düzeltildi ve validator artık U+0307'yi tarıyor. Vokabülerler `TRUX-v0`den, tonlar `VDSX-v0`den ve core'da. **Girişte hiçbir şey varsayılmaz:** her koşul doğrulanmalı, doğrulanamayan `unmet` diye adlandırılır; Today yalnız görevinin seçili olduğunu doğrulayabildiği için bugün hiçbir görev başlatılamaz ve dürüst sonuç budur. Yardım her zaman istenebilir, istenmeden verilmez, H3/H4 sonuç ölçüm diliyle açıklanmadan verilmez — kural kapsam koşulu olmadan, yazıldığı gibi uygulanıyor. **Bir deneme bir transaction'dır:** attempt, artifact, provenance ve assistance birlikte ya da hiç; evidence yazılmaz, türetilmiş olgular saklanmaz, `DDM-v0`nin adlandırmadığı alanlar uydurulmaz. Mutation 18/18; validator 147/147. **T6 çalıştırılmadı.**
 
 Canonical: `docs/TASK_RUNNER_SPEC.md` / D-088.
+
+## 12.15 11C Session state — SESX-v0 / D-089
+
+Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
+
+Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
+
+## 12.15 11C Session state — SESX-v0 / D-089
+
+Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
+
+Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
+
+## 12.15 11C Session state — SESX-v0 / D-089
+
+Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
+
+Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
+
+## 12.15 11C Session state — SESX-v0 / D-089
+
+Durmanın gerçekte neyi sakladığı kilitlendi. Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Checkpoint `SRR-v0` `ResumeContext`'idir ve 10D'nin bu adıma bıraktığı `resume_checkpoint.context` kolonuna yazılır; `TRUX-v0`nin high-stakes pause için şart koştuğu **işaret** alan listesinde olmadığı için saklanan durable pause türü olarak eklendi. Biçim sürümlü (`resume_context/1`) ve **katı** çözülür: tam okunamayan hiçbir şey tahminle okunmaz ve okunamayan satır yok sayılmaz. Bir pause bir transaction ve tek append-only satırdır; attempt, evidence ya da projection yazmaz; tüketildi/son bayrağı yoktur. Sıradan bir pause yalnız dört güvenli-checkpoint koşulunun hepsi doğrulanınca durable olur; aksi `mid_segment_pause`'dur, yazılmaz ve runner state'ini değiştirmez. Resume yalnız checkpoint'in kanıtladığını doğrular: çözülen ve artifact göstermeyen bağlam için state bütünlüğü, sıradan pause için high-stakes koşulu. **High-stakes gap eşiği uydurulmadı** (13, kalibrasyon 18D). Bugün hiçbir checkpoint devam ettirilemez ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz (`DDM-v0` adlandırmıyor; tarih 16B); başlayan ilk koşuyla başlar, bir kez ve `TRUX-v0` sebebiyle biter. `readTruth` kayıtlı port incelmesi; şema değişmedi. Main'de 11A'dan kalan iki bozuk kelime (`çalıştırılmadı`, `doğrulanmamış`) düzeltildi ve korunuyor. Mutation 20/20; validator 146/146. **T6 çalıştırılmadı.**
+
+Canonical: `docs/SESSION_STATE_SPEC.md` / D-089.
 
 ## 12.7 Dağıtım kapsamı — D-080
 

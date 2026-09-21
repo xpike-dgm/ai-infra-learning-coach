@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088`; AŞAMA 8, AŞAMA 9 ve AŞAMA 10'un kapandığını, AŞAMA 11'in sürdüğünü ve aktif adımın `11C active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089`; AŞAMA 8, AŞAMA 9 ve AŞAMA 10'un kapandığını, AŞAMA 11'in sürdüğünü ve aktif adımın `11D active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1127,14 +1127,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - **AŞAMA 10 ✅ TAMAMLANDI**
 - AŞAMA 11A ✅ TDYX-v0 / D-087
 - AŞAMA 11B ✅ RNRX-v0 / D-088
-- AŞAMA 11C 🟡 active-not-executed
-- 11B–20 ⬜
+- AŞAMA 11C ✅ SESX-v0 / D-089
+- AŞAMA 11D 🟡 active-not-executed
+- 11E–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `11B — Task runner`  
-**Final:** `RNRX-v0 — Task Runner` / D-088  
-**Canonical:** `docs/TASK_RUNNER_SPEC.md` + `arch/11b_task_runner/`
+**Son tamamlanan numaralı adım:** `11C — Session state`  
+**Final:** `SESX-v0 — Session State` / D-089  
+**Canonical:** `docs/SESSION_STATE_SPEC.md` + `arch/11c_session_state/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1160,17 +1161,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 10:** ✅ TAMAMLANDI  
 **AŞAMA 11A:** ✅ TAMAMLANDI  
 **AŞAMA 11B:** ✅ TAMAMLANDI  
-**Aktif adım:** `11C — Session state`  
+**AŞAMA 11C:** ✅ TAMAMLANDI  
+**Aktif adım:** `11D — Günlük mikro quiz`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-11C için:
+11D için:
 
 ```text
-fresh 11C PRE-STEP GitHub refresh
+fresh 11D PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 11C execution
+→ 11D execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1726,8 +1728,9 @@ AŞAMA 9 ✅ TAMAMLANDI
 AŞAMA 10 ✅ TAMAMLANDI
 11A ✅ TDYX-v0 / D-087
 11B ✅ RNRX-v0 / D-088
-11C 🟡 active-not-executed
-11D–20 ⬜
+11C ✅ SESX-v0 / D-089
+11D 🟡 active-not-executed
+11E–20 ⬜
 ```
 
 10D final:
@@ -1924,9 +1927,9 @@ AŞAMA 10 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `11C — Session state`.
+**Sıradaki gerçek numbered work:** `11D — Günlük mikro quiz`.
 
-**11C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**11D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1976,8 +1979,8 @@ AŞAMA 10 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `11C — Session state`.  
-**11C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `11D — Günlük mikro quiz`.  
+**11D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2049,4 +2052,13 @@ Ana invariant: store'un hiçbir arızası çökme değildir ve hiçbir arızası
 
 11B `RNRX-v0 — Task Runner` ile tamamlandı. Canonical: `docs/TASK_RUNNER_SPEC.md`; contract/QA: `arch/11b_task_runner/`; synthesis: `research/11b_task_runner_research.md`; kod: `core-model` (`AttemptFacts.kt`), `core-presentation` (`TaskRunner.kt`), `core-application` (`SubmitAttempt.kt`), `app-ui` (`TaskRunnerScreen.kt`).
 
-Ana invariant: runner bir execution surface'tir; planner, mastery, prerequisite ya da evidence otoritesi değildir. Runner kodundan önce main'de 11A'nın sync betiğinden kalan U+0307 bulundu, düzeltildi ve validator ile korunuyor. Girişte her koşul doğrulanmalı, doğrulanamayan `unmet`; bugün hiçbir görev başlatılamaz. Yardım hep istenebilir, istenmeden verilmez, H3/H4 açıklamasız verilmez (kapsam koşulu olmadan). Deneme tek transaction: attempt + artifact + provenance + assistance, evidence yok. Mutation 18/18; independent QA 147/147; validator mutation 18/18; 33/33 sweep PASS. T6 çalıştırılmadı. Current active numbered step 11C'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: runner bir execution surface'tir; planner, mastery, prerequisite ya da evidence otoritesi değildir. Runner kodundan önce main'de 11A'nın sync betiğinden kalan U+0307 bulundu, düzeltildi ve validator ile korunuyor. Girişte her koşul doğrulanmalı, doğrulanamayan `unmet`; bugün hiçbir görev başlatılamaz. Yardım hep istenebilir, istenmeden verilmez, H3/H4 açıklamasız verilmez (kapsam koşulu olmadan). Deneme tek transaction: attempt + artifact + provenance + assistance, evidence yok. Mutation 18/18; independent QA 147/147; validator mutation 18/18; 33/33 sweep PASS. T6 çalıştırılmadı.
+
+
+---
+
+## 11C completion addendum — D-089
+
+11C `SESX-v0 — Session State` ile tamamlandı. Canonical: `docs/SESSION_STATE_SPEC.md`; contract/QA: `arch/11c_session_state/`; synthesis: `research/11c_session_state_research.md`; kod: `core-model` (`SessionFacts.kt`), `core-presentation` (`SessionState.kt`), `core-application` (`ResumeCheckpoints.kt`), `PersistencePort.readTruth`.
+
+Ana invariant: bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil. Checkpoint `ResumeContext` + high-stakes işareti; sürümlü, katı çözülen tek append-only satır. Yalnız durable pause yazılır ve kaydedilmiş gösterilir. Resume yalnız checkpoint'in kanıtladığını doğrular; gap eşiği uydurulmadı; bugün devam ettirilebilen checkpoint yok ve Today checkpoint sunmaz. Working session emergent, puansız ve saklanmaz. Main'de 11A'dan kalan iki bozuk kelime düzeltildi ve korunuyor. Mutation 20/20; independent QA 146/146; validator mutation 20/20; 34/34 sweep PASS. T6 çalıştırılmadı. Current active numbered step 11D'dir; fresh PRE + kullanıcı açık onayı gerekir.

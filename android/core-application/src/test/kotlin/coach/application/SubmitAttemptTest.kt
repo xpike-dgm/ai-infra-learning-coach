@@ -40,6 +40,7 @@ class SubmitAttemptTest {
             appended += record
             return nextId++
         }
+        override fun readTruth(kind: String, id: Long): TruthRecord? = null
         override fun readProjection(key: String): ProjectionRecord? = null
         override fun writeProjection(record: ProjectionRecord) = error("the runner writes no projection")
         override fun curriculumPublished(): Boolean = true

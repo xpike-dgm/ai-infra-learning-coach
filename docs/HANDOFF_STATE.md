@@ -268,14 +268,15 @@ PEM-v0:
 - 10E ✅ APHX-v0 / D-086 — **AŞAMA 10 kapandı**
 - 11A ✅ TDYX-v0 / D-087
 - 11B ✅ RNRX-v0 / D-088
-- 11C 🟡 active-not-executed
-- 11D–20 ⬜
+- 11C ✅ SESX-v0 / D-089
+- 11D 🟡 active-not-executed
+- 11E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `11B — RNRX-v0 / D-088`  
-**Aktif:** `11C — Session state`  
-**11C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `11C — SESX-v0 / D-089`  
+**Aktif:** `11D — Günlük mikro quiz`  
+**11D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -836,6 +837,25 @@ RNRX-v0:
 - 18/18 mutations caught on the first run; independent QA 147/147; validator mutation 18/18; 33/33 sweep PASS,
 - T6 was not run.
 
-## 41. 11C handoff
+## 41. D-089 / 11C final özeti
 
-11C — Session state. Resume checkpoint içeriği ve kalıcılığı, emergent session ve ended reason'ları, checkpoint pause'un gerçekte neyi kaydettiği. Açık loop'lar: curriculum ingestion ve artifact depolaması 11D, evidence pipeline ve giriş koşullarını doğrulayan olgular 12, kapasite ayarları 16D, T6 cihaz koşusu. 11C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/SESSION_STATE_SPEC.md`.
+Contract/QA: `arch/11c_session_state/`.
+Synthesis: `research/11c_session_state_research.md`.
+Code: `android/core-model/.../SessionFacts.kt`, `android/core-presentation/.../SessionState.kt`, `android/core-application/.../ResumeCheckpoints.kt`, `PersistencePort.readTruth` + `SqlitePersistence`, `app-ui/.../TaskRunnerScreen.kt`, `app-wiring`.
+
+SESX-v0:
+- a pause saves where the work is, never how long it took or how well it went,
+- the checkpoint is `SRR-v0`'s `ResumeContext` plus the durable pause kind — the high-stakes mark `TRUX-v0` requires but its field list lacked,
+- stored as `resume_context/1`, identity tokens only, decoded strictly; undecodable stays distinct from missing,
+- one pause is one transaction and one append-only row; no attempt, evidence, projection or consumed flag; schema unchanged,
+- an ordinary pause is durable only with all four safe-checkpoint conditions confirmed; a mid-segment pause has no stored form and never becomes `checkpoint_paused`,
+- a resume confirms at most state-intact and the high-stakes condition; no gap threshold was invented (13, 18D); nothing is resumable today; Today offers no checkpoint (12's `continue_learning`),
+- the working session is emergent, unscored and not stored (16B owns history); it starts with a started run and ends once with a `TRUX-v0` reason,
+- `readTruth` is a recorded port refinement; two broken Turkish words left by 11A were found and guarded,
+- 20/20 mutations caught, all by tests; independent QA 146/146; validator mutation 20/20 with one miss found and fixed,
+- T6 was not run.
+
+## 42. 11D handoff
+
+11D — Günlük mikro quiz. The first runnable activity: segment boundaries and `checkpoint_ids[]`, artifact body storage, curriculum ingestion. Açık loop'lar: giriş/resume koşullarını doğrulayan olgular ve `continue_learning` yeniden girişi 12, high-stakes gap politikası 13/18D, kalıcı oturum geçmişi 16B, kapasite ayarları 16D, T6 cihaz koşusu. 11D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

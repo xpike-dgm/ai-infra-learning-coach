@@ -5,6 +5,7 @@ import androidx.sqlite.SQLiteDriver
 import androidx.sqlite.SQLiteStatement
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
+import coach.model.StudyTimestamp
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
 import coach.ports.TruthRecord
@@ -141,6 +142,37 @@ class SqlitePersistence private constructor(
             statement.step()
         }
         return query("SELECT last_insert_rowid()") { it.getLong(0) }.single()
+    }
+
+    /**
+     * Reads a truth row back exactly as it was appended: the payload columns as text, the three time
+     * columns as the [StudyTimestamp] they were written from. Id and sequence are the adapter's and
+     * are not part of the payload, so a read-back record is the record that was appended.
+     */
+    override fun readTruth(kind: String, id: Long): TruthRecord? {
+        require(kind in Schema.truthTables) { "not a truth table: $kind" }
+        val all = columns(kind).map { it.name }
+        // A row that is part of another row (an evidence event's Objectives) has no time of its own
+        // and is read through its parent, not on its own.
+        val instant = requireNotNull(all.singleOrNull { it.endsWith("_at_instant") }) { "$kind has no time of its own" }
+        val studyDay = all.single { it.endsWith("_study_day") }
+        val payloadColumns = all.filterNot { it in setOf("id", "sequence", instant, studyDay, "utc_offset_minutes") }
+        val selected = listOf(instant, studyDay, "utc_offset_minutes") + payloadColumns
+        connection.prepare("SELECT ${selected.joinToString(", ")} FROM $kind WHERE id = ?").use { statement ->
+            statement.bindLong(1, id)
+            if (!statement.step()) return null
+            return TruthRecord(
+                kind = kind,
+                recordedAt = StudyTimestamp(
+                    instantEpochMillis = statement.getLong(0),
+                    studyDay = statement.getText(1),
+                    utcOffsetSeconds = (statement.getLong(2) * 60).toInt(),
+                ),
+                payload = payloadColumns.withIndex()
+                    .filterNot { (i, _) -> statement.isNull(i + 3) }
+                    .associate { (i, column) -> column to statement.getText(i + 3) },
+            )
+        }
     }
 
     /**

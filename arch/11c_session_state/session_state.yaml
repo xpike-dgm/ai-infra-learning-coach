@@ -1,0 +1,305 @@
+model: SESX-v0
+stage_step: 11C
+status: accepted_11c
+decision: D-089
+daily_working_flow: TRUX-v0
+task_runner: RNRX-v0
+recovery: SRR-v0
+task_taxonomy: TASK_TAXONOMY_SPEC
+persistence: LFPS-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+boundaries: MSBX-v0
+purpose: what_a_pause_saves_what_a_resume_can_confirm_and_the_emergent_session
+
+scope:
+  session_state_only: true
+  evidence_written: false
+  planner_implemented: false
+  content_implemented: false
+  artifact_storage_implemented: false
+  working_session_persisted: false
+  resume_offered_on_today: false
+  surface_semantics_changed: false
+  boundaries_changed: false
+  ports_added: false
+  schema_changed: false
+  migration_added: false
+  gap_threshold_claim: null
+  session_length_claim: null
+
+session_question: When the learner stops, what is really kept, what can a later resume truthfully confirm, and what was the session?
+
+primary_invariant: >-
+  A pause saves where the work is, never how long it took or how well it went. Only a durable pause
+  is written and only a written pause may be shown as saved; a resume confirms only what the stored
+  checkpoint can prove; and a session is history, never a score.
+
+found_before_11c:
+  - id: resume_context_has_no_persisted_mark_for_high_stakes
+    was: >-
+      TRUX-v0 requires a high-stakes pause to be marked, but its ResumeContext field list does not
+      carry the pause class; a mark that is not stored cannot be honoured on resume
+    resolved_here: the stored context carries the durable pause kind; it is the mark TRUX-v0 requires, not a new field of meaning
+  - id: no_truth_read_path
+    was: >-
+      PersistencePort could append truth and read projections but could not read a truth row back,
+      so a resume had no way to read the checkpoint it resumes from
+    resolved_here: readTruth(kind, id) as a recorded port refinement; the port count stays four
+  - id: broken_turkish_words_on_main
+    was: >-
+      11A's sync (commit 1cbe4aa) left "çal" + doubled dotless i + "ştırılmadı" in AGENTS.md,
+      MASTER_PLAN.md, START_HERE.md and STEP_STATUS.md, and "doğrulanmamı oturum" (a dropped ş) in
+      STEP_STATUS.md; 11B's U+0307 guard could not see either, because neither contains the character
+    fixed_here: both words restored
+    guarded_by: the 11C validator fails if either exact broken form reappears in a living document
+  - id: worktree_build_environment
+    was: the worktree had no android/local.properties (gitignored), so assembleDebug could not find the SDK
+    resolved_here: a local, ignored file; not a repository change
+
+vocabularies:
+  safe_checkpoint_conditions:
+    source: TRUX-v0 checkpoint_model.safe_checkpoint_conditions
+    order_is_source_order: true
+  durable_pause_kinds:
+    source: TRUX-v0 checkpoint_model.pause_classes where durable
+    value: [checkpoint_pause, high_stakes_pause]
+    mid_segment_pause_storable: false
+  resume_context_fields:
+    source: TRUX-v0 checkpoint_model.resume_context_fields
+    stored_in: resume_checkpoint.context
+    plus: [kind]
+    plus_rationale: the high-stakes mark TRUX-v0 requires
+  entry_sources:
+    source: TRUX-v0 session_model.entry_sources
+    order_is_source_order: true
+  ended_reasons:
+    source: TRUX-v0 session_model.ended_reasons
+    order_is_source_order: true
+
+checkpoint:
+  stored_form:
+    format: resume_context/1
+    encoding: one key=value per line, fixed key order
+    values: identity tokens only; a value that would need escaping is refused at construction
+    decode: strict; missing, unknown, repeated or reordered keys and wrong versions decode to nothing
+  stored_fields: [kind, learning_need_key, source_task_id, checkpoint_id, completed_segments, remaining_segments, artifact_state_ref]
+  not_stored: [elapsed_time, attempt_count, score, progress_fraction, streak, remaining_minutes]
+  completed_segments_nonempty: true
+  remaining_segments_nonempty: true
+  segment_both_completed_and_remaining: false
+  checkpoint_id_is_content_identity_not_row_id: true
+  one_pause_one_transaction_one_row: true
+  pause_writes_attempt: false
+  pause_writes_evidence: false
+  pause_writes_projection: false
+  append_only: true
+  later_pause_appends_beside_earlier: true
+  consumed_or_latest_flag_stored: false
+  which_checkpoint_a_resume_uses: planner resume_context_ref (12)
+  undecodable_distinct_from_missing: true
+
+pause:
+  high_stakes_work_pauses_durable_and_marked: true
+  ordinary_pause_durable_only_when_all_four_confirmed: true
+  unconfirmed_condition_named: unmet
+  mid_segment_pause_written: false
+  mid_segment_pause_changes_runner_state: false
+  only_durable_pause_becomes_checkpoint_paused: true
+  ordinary_pause_durable_today: false
+  why_not_today: segment meaning and artifact persistability are content and artifact facts (11D)
+
+resume:
+  confirmable_from_checkpoint:
+    runner_and_artifact_state_intact: context decodes exactly and references no artifact state
+    high_stakes_gap_integrity_acceptable: ordinary checkpoint_pause only; TRUX-v0 scopes the condition to high-stakes work
+  never_confirmed_from_checkpoint: [content_version_compatible, prerequisites_still_eligible, learning_need_still_open]
+  referenced_artifact_state_assumed_intact: false
+  high_stakes_gap_confirmed_without_accepted_policy: false
+  gap_policy_owner: 13
+  gap_policy_calibration: 18D
+  resumable_today: false
+  invalidated_resume_is_failure: false
+  invalidated_resume_erases_checkpoint: false
+  today_offers_checkpoint_directly: false
+  reentry_owner: planner continue_learning need (12)
+
+working_session:
+  emergent_not_container: true
+  persisted: false
+  why_not_persisted: DDM-v0 names no working-session entity and 10D forbade inventing one; its effects are already truth
+  durable_history_owner: 16B
+  starts_on: the first run that actually starts
+  blocked_entry_starts_session: false
+  session_starts_today: false
+  survives_process_death: false
+  resume_after_process_death_starts_new_session_from: resume_entry
+  ended_reason_by_event:
+    learner_exited: user_stopped
+    selection_recomputed_empty_capacity_verdict_reached: capacity_reached
+    selection_recomputed_empty_otherwise: plan_exhausted
+    selection_recomputed_non_empty: continues
+    flow_left_without_exit: interrupted
+    store_needs_recovery: recovery_required
+  capacity_verdict_derived_here: false
+  ends_once: true
+  ended_session_grows: false
+  fields: [session_id, started_at, entry_source, task_runs, remaining_capacity_context_ref, ended_reason]
+  forbidden_fields: [score, grade, percentage, duration, elapsed, required_count, streak, success]
+  task_run_holds: [source_task_id, last_state]
+  ended_reason_has_tone_or_verdict: false
+  producers_in_app_today: [user_stopped]
+  no_producer_yet:
+    plan_exhausted: 12
+    capacity_reached: 12
+    interrupted: the in-memory session is discarded with the process
+    recovery_required: the shell and the session with it are replaced by the recovery surface
+
+port_refinement:
+  name: readTruth
+  signature: readTruth(kind, id) -> TruthRecord?
+  reason: a resume reads the checkpoint it resumes from
+  mutation_path_added: false
+  time_less_rows_readable_alone: false
+  port_count: 4
+
+wiring:
+  session_started_from_today_start_action: true
+  session_ended_on_exit: user_stopped
+  resume_entry_point_in_app: false
+  resume_entry_point_owner: 12
+  runner_screen_new_states: [checkpoint_paused, resume_invalidated]
+
+tests:
+  t1:
+    - core-model ResumeContextTest (6)
+    - core-presentation SessionStateTest (18)
+    - core-application ResumeCheckpointsTest (5)
+  t2:
+    - data-persistence TransactionAndMigrationTest (5 new; 55 total in the module)
+
+mutation_results:
+  total: 20
+  detected: 20
+  mutants:
+    - {id: S01, mutant: decode_accepts_extra_key}
+    - {id: S02, mutant: decode_ignores_format_version}
+    - {id: S03, mutant: checkpoint_without_completed_segment}
+    - {id: S04, mutant: finished_task_stored_as_paused}
+    - {id: S05, mutant: mid_segment_pause_storable}
+    - {id: S06, mutant: durable_when_any_condition_confirmed}
+    - {id: S07, mutant: high_stakes_not_marked}
+    - {id: S08, mutant: mid_segment_pause_shown_as_saved}
+    - {id: S09, mutant: referenced_artifact_assumed_intact}
+    - {id: S10, mutant: high_stakes_gap_assumed_acceptable}
+    - {id: S11, mutant: checkpoint_confirms_content_compatibility}
+    - {id: S12, mutant: blocked_entry_starts_session}
+    - {id: S13, mutant: capacity_and_plan_exhaustion_swapped}
+    - {id: S14, mutant: ended_session_rewritten}
+    - {id: S15, mutant: ended_session_grows}
+    - {id: S16, mutant: session_gains_duration_field}
+    - {id: S17, mutant: pause_outside_transaction}
+    - {id: S18, mutant: pause_writes_attempt}
+    - {id: S19, mutant: unreadable_checkpoint_reads_as_missing}
+    - {id: S20, mutant: read_offset_minutes_as_seconds}
+  survived_at_first: []
+  caught_by_compilation_only: []
+  caught_by_standing_regression: >-
+    the first sweep failed 10C's standing validator (E10C-15): the session-field test used
+    .lowercase(), a locale-naive case transform this repo forbids even in tests; it now compares
+    with ignoreCase, and S16 was re-run against the changed test and is still caught
+  mechanism_recorded: >-
+    the run was repeated to record how each mutant was caught; all twenty failed a test, none only
+    the compiler
+
+validator_mutation:
+  total: 20
+  detected: 20
+  mutants: [entry_source_order, mid_segment_storable, context_elapsed_field, decode_lenient_keys, pause_two_rows,
+            consumed_flag, any_condition_durable, mid_segment_shown_saved, gap_threshold_invented,
+            checkpoint_confirms_content, session_score_field, blocked_entry_starts, ended_rewritten, fifth_port,
+            read_truth_writes, saved_copy_elsewhere, today_offers_checkpoint, device_claimed, t2_count_inflated,
+            session_reason_tone]
+  missed_at_first:
+    - id: today_offers_checkpoint
+      why: >-
+        the check read the brace body after the Today call, but a call has arguments, not a body, so it
+        looked at an empty string and passed; it now reads the parenthesis-balanced arguments of
+        todayInput and fails if a resumable reaches it
+  negative_control: forbidden words named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+    tests: 55
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any pause, checkpoint or resume in the real app; no activity can reach active work yet, so none can pause
+  - the checkpoint_paused and resume_invalidated texts rendered on a device
+  - a working session started in the real app; nothing is startable, so none starts
+
+forbidden_session_patterns:
+  - mid_segment_pause_written_or_shown_as_saved
+  - checkpoint_storing_elapsed_time_score_or_count
+  - checkpoint_decoded_by_best_guess
+  - checkpoint_updated_or_flagged_consumed
+  - resume_confirmed_on_assumption
+  - high_stakes_gap_threshold_invented
+  - invalidated_resume_as_failure_or_erasure
+  - checkpoint_offered_on_today_bypassing_planner
+  - session_scored_graded_or_timed
+  - session_persisted_as_invented_entity
+  - ended_session_rewritten_or_extended
+  - capacity_verdict_derived_from_session
+
+future_stage_boundaries:
+  11D: artifact body storage, segment boundaries and checkpoint_ids, the first runnable activity
+  12: resume_context_ref and the continue_learning need, the facts that confirm content, prerequisites and need, capacity verdict, plan_exhausted
+  13: high-stakes gap policy for assessment continuation
+  16B: durable learning and session history
+  18D: calibration of any gap policy
+  T6: device run
+
+acceptance:
+  - SESX-v0 is the accepted session state
+  - vocabularies equal TRUX-v0 in its order
+  - a checkpoint stores the ResumeContext plus its durable kind and nothing about time or result
+  - the stored form is versioned and decoded strictly; undecodable is distinct from missing
+  - one pause is one transaction and one append-only row; no attempt, evidence or projection
+  - only a durable pause is written and shown as saved; a mid-segment pause has no stored form
+  - a resume confirms only what the stored checkpoint proves; no gap threshold is invented
+  - no checkpoint is offered on Today; re-entry is the planner's continue_learning need
+  - the working session is emergent, unscored and not stored; it ends once with a TRUX-v0 reason
+  - readTruth is a recorded port refinement; the port count stays four; the schema is unchanged
+  - 20/20 mutations caught
+  - nothing is claimed that was not run; T6 was not run
+  - independent 11C QA passes and Stage 6-11B regressions pass

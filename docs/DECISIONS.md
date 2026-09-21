@@ -1109,3 +1109,25 @@ Ayrıntı: `docs/TODAY_INTERIOR_SPEC.md`.
 - Sonraki numbered step `11C — Session state`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/TASK_RUNNER_SPEC.md`.
+
+
+## D-089 — Session state = SESX-v0
+**Durum:** Kabul edildi — 2026-09-19
+
+- 11C final modeli `SESX-v0 — Session State` oldu.
+- Canonical spec `docs/SESSION_STATE_SPEC.md`; machine-readable contract `arch/11c_session_state/session_state.yaml`; research/decision synthesis `research/11c_session_state_research.md`; kod `core-model` (`SessionFacts.kt`), `core-presentation` (`SessionState.kt`), `core-application` (`ResumeCheckpoints.kt`), `core-ports` + `data-persistence` (`readTruth`), `app-ui` (`TaskRunnerScreen.kt`), `app-wiring`.
+- Ana invariant: **bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil.** Yalnız durable pause yazılır ve yalnız yazılan pause kaydedilmiş gösterilir; resume yalnız saklanan checkpoint'in kanıtladığını doğrular; oturum tarihtir, puan değil.
+- **Kod yazmadan önce bulunanlar:** (1) `TRUX-v0` high-stakes pause'un *işaretlenmesini* şart koşuyor ama `ResumeContext` alan listesi pause sınıfını taşımıyor — saklanmayan bir işaret resume'da uygulanamaz; saklanan bağlam durable pause türünü taşıyor ve bu yeni bir anlam alanı değil, `TRUX-v0`nin istediği işaret. (2) `PersistencePort` truth satırını geri okuyamıyordu. (3) Main'de 11A'nın sync'inden (1cbe4aa) kalan iki bozuk Türkçe kelime: dört living dokümanda çift noktasız ı'lı "çalıştırılmadı" ve `STEP_STATUS`ta ş'si düşmüş "doğrulanmamış oturum"; 11B'nin U+0307 guard'ı ikisini de göremiyordu. Düzeltildi ve 11C validator'ı tam bozuk biçimleri yakalıyor.
+- **Checkpoint:** `SRR-v0` `ResumeContext` (`learning_need_key`, `source_task_id`, `checkpoint_id`, `completed_segments`, `remaining_segments`, `artifact_state_ref?`) + `kind`. Süre, deneme sayısı, puan, ilerleme oranı, seri saklanmaz. Biçim `resume_context/1`, değerler yalnız kimlik token'ları (kaçış kuralı yok), çözme **katı**: eksik/bilinmeyen/tekrar/sırası bozuk anahtar ya da yanlış sürüm tahminle değil *hiçbir şeyle* sonuçlanır; okunamayan satır "yok" ile karışmaz.
+- **Bir pause bir transaction, tek append-only satır;** attempt, evidence, projection yok; tüketildi/son bayrağı yok (truth UPDATE'i ya da türetilebilir bir kopya olurdu). Hangi checkpoint'in kullanılacağı planner'ın `resume_context_ref`'i (12). Şema değişmedi, migration yok.
+- **Durable ne zaman:** high-stakes iş her yerde durable ve işaretli; sıradan iş yalnız dört güvenli-checkpoint koşulunun hepsi *doğrulanınca*; aksi `mid_segment_pause`, doğrulanmayanlar `unmet`. Mid-segment pause yazılmaz ve runner state'ini değiştirmez; `CheckpointKind`in iki durable değeri var. Bugün hiçbir sıradan pause durable değil — segment anlamı ve artifact kalıcılığı 11D'nin olguları.
+- **Resume:** checkpoint en çok iki koşulu doğrular — çözülen ve artifact göstermeyen bağlam için `runner_and_artifact_state_intact`; yalnız sıradan pause için `high_stakes_gap_integrity_acceptable` (`TRUX-v0` koşulu high-stakes işe kapsamlıyor). **High-stakes gap eşiği uydurulmadı**; politika 13'ün, kalibrasyon 18D'nin. İçerik uyumu, prerequisite ve açık ihtiyaç checkpoint'ten asla doğrulanmaz; bugün hiçbir checkpoint devam ettirilemez ve `resume_invalidated` suçlamadan ve hiçbir şeyin silinmediğini söyleyerek gösterilir. **Today checkpoint sunmaz** — yeniden giriş planner'ın `continue_learning` ihtiyacıdır.
+- **Working session:** `TRUX-v0` §4'ün altı alanı; puan, not, yüzde, süre ya da zorunlu sayı tutabilecek alan yok. Başlayan ilk koşuyla başlar (blocked giriş başlatmaz); bir kez biter (öğrenci çıkışı → `user_stopped`, boş seçim + planner'ın kapasite hükmü → `capacity_reached`, boş seçim aksi → `plan_exhausted`, çıkışsız ayrılma → `interrupted`, store kurtarması → `recovery_required`); sebeplerin tonu ya da hükmü yok. **Saklanmaz:** `DDM-v0` adlandırmıyor ve 10D entity uydurmayı yasakladı; kalıcı tarih 16B'nin.
+- **Port refinement:** `readTruth(kind, id)`; yazma yolu eklemez; port sayısı dört kaldı.
+- **Mutation 20/20, hepsi ilk turda ve hepsi testle** — mekanizmayı kaydetmek için koşu tekrarlandı; hiçbiri yalnız derleyiciyle yakalanmadı.
+- Çalıştırılan runlar: T1 PASS, `:data-persistence:test` (T2) PASS — 55 test, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Gerçek uygulamada hiçbir aktivite aktif işe ulaşmadığı için pause, checkpoint, resume ya da oturum görülmedi.
+- Independent 11C QA: **146/146 PASS**; validator'ın kendi mutation testi 20/20 — biri (Today'e checkpoint sızması) başta kaçtı çünkü kontrol çağrı argümanları yerine olmayan bir gövdeyi okuyordu; düzeltildi. Yorum-içi negatif kontrol false positive vermedi. Stage 6–11B regressions PASS.
+- Sonraki numbered step `11D — Günlük mikro quiz`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/SESSION_STATE_SPEC.md`.

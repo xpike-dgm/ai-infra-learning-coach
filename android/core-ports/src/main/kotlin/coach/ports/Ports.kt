@@ -32,6 +32,14 @@ interface PersistencePort {
      */
     fun appendTruth(record: TruthRecord): Long
 
+    /**
+     * Reads one truth row back by its id, or `null` if there is none. Truth is only ever read, so
+     * this adds no mutation path; it exists because a resume has to read the checkpoint it resumes
+     * from (11C). Like `curriculumPublished()`, it is a refinement of this port, not a fifth port,
+     * and the adapter-owned columns (id, sequence, time) come back as [TruthRecord.recordedAt].
+     */
+    fun readTruth(kind: String, id: Long): TruthRecord?
+
     fun readProjection(key: String): ProjectionRecord?
 
     fun writeProjection(record: ProjectionRecord)

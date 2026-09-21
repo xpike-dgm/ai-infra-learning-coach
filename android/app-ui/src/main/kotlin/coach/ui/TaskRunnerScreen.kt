@@ -18,6 +18,7 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import coach.presentation.EntryCondition
+import coach.presentation.ResumeCondition
 import coach.presentation.Revalidation
 import coach.presentation.RunnerCopy
 import coach.presentation.RunnerState
@@ -59,6 +60,11 @@ private val conditionLabelsTr: Map<String, String> = mapOf(
     EntryCondition.LEARNING_NEED_STILL_OPEN.id to "öğrenme ihtiyacının hâlâ açık olduğu doğrulanamadı",
     EntryCondition.CONTENT_VERSION_COMPATIBLE.id to "içerik sürümü doğrulanamadı",
     EntryCondition.REQUIRED_LOCAL_CAPABILITY_AVAILABLE.id to "gereken yerel yetenek doğrulanamadı",
+    // Resume conditions (11C). Two ids are shared with entry and keep the entry label.
+    ResumeCondition.PREREQUISITES_STILL_ELIGIBLE.id to "ön koşulların hâlâ uygun olduğu doğrulanamadı",
+    ResumeCondition.RUNNER_AND_ARTIFACT_STATE_INTACT.id to "kaydedilen çalışma durumunun eksiksiz olduğu doğrulanamadı",
+    ResumeCondition.HIGH_STAKES_GAP_INTEGRITY_ACCEPTABLE.id to
+        "aradan geçen süreden sonra bu çalışmanın bağımsız sayılabileceği doğrulanamadı",
 )
 
 @Composable
@@ -97,6 +103,13 @@ fun TaskRunnerScreen(
                     "Başlamadan önce doğrulanması gerekenler doğrulanamadı. Bu bir hata ya da başarısızlık değil.",
                     style = MaterialTheme.typography.bodyLarge,
                 )
+                (entry as? Revalidation.NotStartable)?.unmet?.sorted()?.forEach { id ->
+                    Text("• " + conditionLabelsTr.getValue(id), style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+            RunnerState.CHECKPOINT_PAUSED -> Text(RunnerCopy.CHECKPOINT_SAVED, style = MaterialTheme.typography.bodyLarge)
+            RunnerState.RESUME_INVALIDATED -> {
+                Text(RunnerCopy.RESUME_INVALIDATED, style = MaterialTheme.typography.bodyLarge)
                 (entry as? Revalidation.NotStartable)?.unmet?.sorted()?.forEach { id ->
                     Text("• " + conditionLabelsTr.getValue(id), style = MaterialTheme.typography.bodyMedium)
                 }

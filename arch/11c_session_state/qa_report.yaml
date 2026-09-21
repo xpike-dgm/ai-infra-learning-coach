@@ -1,0 +1,469 @@
+model: SESX-v0
+stage_step: 11C
+decision: D-089
+result: PASS
+checks_total: 146
+checks_passed: 146
+checks_failed: 0
+checks:
+- check: E11C-00_exists_SessionFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/SessionFacts.kt
+- check: E11C-00_exists_SessionState.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/SessionState.kt
+- check: E11C-00_exists_ResumeCheckpoints.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/ResumeCheckpoints.kt
+- check: E11C-00_exists_ResumeContextTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/ResumeContextTest.kt
+- check: E11C-00_exists_SessionStateTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/SessionStateTest.kt
+- check: E11C-00_exists_ResumeCheckpointsTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/ResumeCheckpointsTest.kt
+- check: E11C-00_exists_SESSION_STATE_SPEC.md
+  result: PASS
+  details: missing docs/SESSION_STATE_SPEC.md
+- check: E11C-00_exists_11c_session_state_research.md
+  result: PASS
+  details: missing research/11c_session_state_research.md
+- check: E11C-01_model
+  result: PASS
+  details: SESX-v0
+- check: E11C-01_status
+  result: PASS
+  details: accepted_11c
+- check: E11C-01_decision
+  result: PASS
+  details: D-089
+- check: E11C-01_scope_evidence_written
+  result: PASS
+  details: evidence_written=False
+- check: E11C-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E11C-01_scope_content_implemented
+  result: PASS
+  details: content_implemented=False
+- check: E11C-01_scope_artifact_storage_implemented
+  result: PASS
+  details: artifact_storage_implemented=False
+- check: E11C-01_scope_working_session_persisted
+  result: PASS
+  details: working_session_persisted=False
+- check: E11C-01_scope_resume_offered_on_today
+  result: PASS
+  details: resume_offered_on_today=False
+- check: E11C-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E11C-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E11C-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E11C-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E11C-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E11C-01_no_gap_threshold_claimed
+  result: PASS
+  details: a gap threshold was claimed
+- check: E11C-02_safe_checkpoint_conditions
+  result: PASS
+  details: kotlin=['segment_pedagogically_meaningful_alone', 'artifact_and_runner_state_persistable_honestly',
+    'no_partially_exposed_solution_state', 'no_half_evaluated_independent_attempt']
+- check: E11C-02_durable_kinds_only
+  result: PASS
+  details: kotlin=['checkpoint_pause', 'high_stakes_pause'] durable=['checkpoint_pause',
+    'high_stakes_pause']
+- check: E11C-02_mid_segment_unstorable
+  result: PASS
+  details: a mid-segment pause has a stored representation
+- check: E11C-02_entry_sources
+  result: PASS
+  details: kotlin=['today_primary_action', 'today_queue_row', 'entity_context', 'resume_entry']
+- check: E11C-02_ended_reasons
+  result: PASS
+  details: kotlin=['user_stopped', 'plan_exhausted', 'capacity_reached', 'interrupted',
+    'recovery_required']
+- check: E11C-02_context_fields
+  result: PASS
+  details: stored=['kind', 'learning_need_key', 'source_task_id', 'checkpoint_id',
+    'completed_segments', 'remaining_segments', 'artifact_state_ref'] trux=['learning_need_key',
+    'source_task_id', 'checkpoint_id', 'completed_segments', 'remaining_segments',
+    'artifact_state_ref']
+- check: E11C-02_session_fields
+  result: PASS
+  details: kotlin=['session_id', 'started_at', 'entry_source', 'task_runs', 'remaining_capacity_context_ref',
+    'ended_reason']
+- check: E11C-02_resume_conditions_are_11b
+  result: PASS
+  details: RNRX-v0 resume conditions drifted
+- check: E11C-03_context_carries_no_time_or_result
+  result: PASS
+  details: fields=['kind', 'learningNeedKey', 'sourceTaskId', 'checkpointId', 'completedSegments',
+    'remainingSegments', 'artifactStateRef']
+- check: E11C-03_format_versioned
+  result: PASS
+  details: no versioned format
+- check: E11C-03_decode_exact_version
+  result: PASS
+  details: decode does not require the exact format
+- check: E11C-03_decode_exact_keys
+  result: PASS
+  details: decode does not require the exact key list
+- check: E11C-03_decode_refuses_rather_than_guesses
+  result: PASS
+  details: decode must return null on anything it cannot read exactly
+- check: E11C-03_values_are_tokens
+  result: PASS
+  details: values are not restricted to identity tokens
+- check: E11C-03_completed_nonempty
+  result: PASS
+  details: a checkpoint may follow no completed work
+- check: E11C-03_remaining_nonempty
+  result: PASS
+  details: a finished task may be stored as paused
+- check: E11C-03_disjoint_segments
+  result: PASS
+  details: a segment may be both completed and remaining
+- check: E11C-03_undecodable_distinct_from_missing
+  result: PASS
+  details: an undecodable checkpoint must stay a row with a null context
+- check: E11C-04_one_transaction
+  result: PASS
+  details: the pause is not exactly one transaction
+- check: E11C-04_one_row
+  result: PASS
+  details: appendTruth count=1
+- check: E11C-04_kind_is_resume_checkpoint
+  result: PASS
+  details: wrong truth table
+- check: E11C-04_single_timestamp
+  result: PASS
+  details: more than one timestamp per action
+- check: E11C-04_pause_writes_no_evidence
+  result: PASS
+  details: evidence in ResumeCheckpoints
+- check: E11C-04_pause_writes_no_attempt
+  result: PASS
+  details: '"attempt" in ResumeCheckpoints'
+- check: E11C-04_pause_writes_no_writeProjection
+  result: PASS
+  details: writeProjection in ResumeCheckpoints
+- check: E11C-04_pause_writes_no_exposure
+  result: PASS
+  details: exposure in ResumeCheckpoints
+- check: E11C-04_no_consumed_flag
+  result: PASS
+  details: a checkpoint carries a consumed/latest flag
+- check: E11C-04_resume_checkpoint_is_truth
+  result: PASS
+  details: resume_checkpoint is not a truth table
+- check: E11C-05_schema_unchanged
+  result: PASS
+  details: "ddl=id      INTEGER PRIMARY KEY AUTOINCREMENT,\n            $SEQUENCE,\n\
+    \            context TEXT    NOT NULL,${time()}"
+- check: E11C-05_context_owned_by_11
+  result: PASS
+  details: LDBX-v0 does not leave resume_checkpoint.context to 11
+- check: E11C-05_ddm_maps_resume_context
+  result: PASS
+  details: DDM-v0 has no resume_checkpoint
+- check: E11C-06_high_stakes_marked
+  result: PASS
+  details: high-stakes work is not paused durably and marked
+- check: E11C-06_all_four_required
+  result: PASS
+  details: an ordinary pause is durable without every condition confirmed
+- check: E11C-06_unmet_not_failed
+  result: PASS
+  details: an unconfirmed condition is called failed
+- check: E11C-06_mid_segment_keeps_state
+  result: PASS
+  details: a mid-segment pause changes the runner state
+- check: E11C-06_only_durable_is_saved
+  result: PASS
+  details: saved state reachable otherwise
+- check: E11C-06_mid_segment_class
+  result: PASS
+  details: NotDurable is not the mid-segment class
+- check: E11C-07_decoded_required
+  result: PASS
+  details: an undecodable checkpoint confirms something
+- check: E11C-07_artifact_not_assumed
+  result: PASS
+  details: referenced artifact state assumed intact
+- check: E11C-07_gap_only_for_ordinary_pause
+  result: PASS
+  details: a high-stakes gap is confirmed without an accepted policy
+- check: E11C-07_never_content_version_compatible
+  result: PASS
+  details: a checkpoint confirms CONTENT_VERSION_COMPATIBLE
+- check: E11C-07_never_prerequisites_still_eligible
+  result: PASS
+  details: a checkpoint confirms PREREQUISITES_STILL_ELIGIBLE
+- check: E11C-07_never_learning_need_still_open
+  result: PASS
+  details: a checkpoint confirms LEARNING_NEED_STILL_OPEN
+- check: E11C-07_no_invented_threshold
+  result: PASS
+  details: a numeric threshold appears in session state
+- check: E11C-07_resume_invalidated_not_fault
+  result: PASS
+  details: resume_invalidated=NEUTRAL checkpoint_paused=NEUTRAL
+- check: E11C-07_today_offers_no_checkpoint
+  result: PASS
+  details: a checkpoint reaches Today past the planner
+- check: E11C-08_session_fields_clean
+  result: PASS
+  details: a session field could hold a score or a time
+- check: E11C-08_constructor_internal
+  result: PASS
+  details: a session can be built outside its rules
+- check: E11C-08_blocked_entry_starts_none
+  result: PASS
+  details: a blocked entry starts a session
+- check: E11C-08_ends_once
+  result: PASS
+  details: an ended session can be rewritten
+- check: E11C-08_ended_does_not_grow
+  result: PASS
+  details: an ended session grows
+- check: E11C-08_reason_user_stopped
+  result: PASS
+  details: SessionEvent.LearnerExited does not end as USER_STOPPED
+- check: E11C-08_reason_capacity_reached
+  result: PASS
+  details: event.capacityReached does not end as CAPACITY_REACHED
+- check: E11C-08_reason_plan_exhausted
+  result: PASS
+  details: else does not end as PLAN_EXHAUSTED
+- check: E11C-08_reason_interrupted
+  result: PASS
+  details: SessionEvent.FlowLeftWithoutExit does not end as INTERRUPTED
+- check: E11C-08_reason_recovery_required
+  result: PASS
+  details: SessionEvent.StoreNeedsRecovery does not end as RECOVERY_REQUIRED
+- check: E11C-08_non_empty_selection_continues
+  result: PASS
+  details: a non-empty selection ends the session
+- check: E11C-08_reason_has_no_tone
+  result: PASS
+  details: a session reason carries a tone
+- check: E11C-08_capacity_not_derived
+  result: PASS
+  details: a capacity verdict is derived in session state
+- check: E11C-09_not_persisted
+  result: PASS
+  details: the working session is persisted
+- check: E11C-10_port_count_four
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+    msbx=['PersistencePort', 'ContentPort', 'ClockPort', 'EvaluatorPort']
+- check: E11C-10_persistence_methods
+  result: PASS
+  details: methods=['inTransaction', 'appendTruth', 'readTruth', 'readProjection',
+    'writeProjection', 'curriculumPublished']
+- check: E11C-10_read_truth_reads_only
+  result: PASS
+  details: readTruth writes
+- check: E11C-10_read_truth_truth_only
+  result: PASS
+  details: readTruth reads projections
+- check: E11C-10_read_truth_offset_minutes
+  result: PASS
+  details: the stored offset unit is lost on read
+- check: E11C-11_session_starts_from_revalidated_entry
+  result: PASS
+  details: the session start is not derived from the revalidated entry
+- check: E11C-11_exit_ends_user_stopped
+  result: PASS
+  details: the exit does not end the session
+- check: E11C-11_saved_copy_only_for_durable
+  result: PASS
+  details: saved text reachable elsewhere
+- check: E11C-11_invalidated_copy
+  result: PASS
+  details: resume_invalidated has no explanation
+- check: E11C-11_invalidated_not_blame
+  result: PASS
+  details: resume_invalidated reads as blame or loss
+- check: E11C-11_label_prerequisites_still_eligible
+  result: PASS
+  details: no label for prerequisites_still_eligible
+- check: E11C-11_label_runner_and_artifact_state_intact
+  result: PASS
+  details: no label for runner_and_artifact_state_intact
+- check: E11C-11_label_high_stakes_gap_integrity_acceptable
+  result: PASS
+  details: no label for high_stakes_gap_integrity_acceptable
+- check: E11C-11_ui_decides_no_tone
+  result: PASS
+  details: app-ui names a tone
+- check: E11C-12_t1_model_a context round-trips exactly
+  result: PASS
+  details: 'missing test: a context round-trips exactly'
+- check: E11C-12_t1_model_anything that does not decode exactly de
+  result: PASS
+  details: 'missing test: anything that does not decode exactly decodes to nothing
+    rather than a guess'
+- check: E11C-12_t1_model_a value that would need escaping is refu
+  result: PASS
+  details: 'missing test: a value that would need escaping is refused rather than
+    escaped'
+- check: E11C-12_t1_state_only a durable pause is shown as saved
+  result: PASS
+  details: 'missing test: only a durable pause is shown as saved'
+- check: E11C-12_t1_state_a high-stakes gap is never confirmed acc
+  result: PASS
+  details: 'missing test: a high-stakes gap is never confirmed acceptable without
+    an accepted gap policy'
+- check: 'E11C-12_t1_state_no checkpoint is resumable today and an '
+  result: PASS
+  details: 'missing test: no checkpoint is resumable today and an invalidated resume
+    is not a failure'
+- check: E11C-12_t1_state_a blocked entry starts no session
+  result: PASS
+  details: 'missing test: a blocked entry starts no session'
+- check: E11C-12_t1_state_a session ends once and its history cann
+  result: PASS
+  details: 'missing test: a session ends once and its history cannot be rewritten
+    or extended'
+- check: E11C-12_t1_state_a session can hold no score, grade, perc
+  result: PASS
+  details: 'missing test: a session can hold no score, grade, percentage, duration
+    or required count'
+- check: E11C-12_t1_app_a pause is one transaction writing one c
+  result: PASS
+  details: 'missing test: a pause is one transaction writing one checkpoint row and
+    nothing else'
+- check: E11C-12_t1_app_an unreadable checkpoint is kept distinc
+  result: PASS
+  details: 'missing test: an unreadable checkpoint is kept distinct from a missing
+    one'
+- check: E11C-12_t2_a checkpoint reads back from SQLite exac
+  result: PASS
+  details: 'missing T2 test: a checkpoint reads back from SQLite exactly as it was
+    saved'
+- check: E11C-12_t2_a pause writes nothing but its checkpoin
+  result: PASS
+  details: 'missing T2 test: a pause writes nothing but its checkpoint'
+- check: E11C-12_t2_a saved checkpoint is never rewritten, a
+  result: PASS
+  details: 'missing T2 test: a saved checkpoint is never rewritten, and a later pause
+    appends beside it'
+- check: 'E11C-12_t2_a pause that fails leaves no checkpoint '
+  result: PASS
+  details: 'missing T2 test: a pause that fails leaves no checkpoint claiming it was
+    saved'
+- check: E11C-12_t2_count_matches_sources
+  result: PASS
+  details: claimed=55 sources=55
+- check: E11C-13_no_combining_dot
+  result: PASS
+  details: U+0307 found in []
+- check: E11C-13_no_adjacent_duplicate_lines
+  result: PASS
+  details: adjacent duplicates at []
+- check: E11C-13_no_broken_turkish_words
+  result: PASS
+  details: found []
+- check: E11C-13_one_11c_heading
+  result: PASS
+  details: 11C headings=['11C — Session state — SESX-v0 / D-089']
+- check: E11C-14_device_not_claimed
+  result: PASS
+  details: no device result claimed
+- check: E11C-14_mutation_all_detected
+  result: PASS
+  details: '{''total'': 20, ''detected'': 20}'
+- check: E11C-14_no_compile_only_catch
+  result: PASS
+  details: a mutant was caught only by the compiler
+- check: E11C-14_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E11C-14_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E11C-14_boundary_11D
+  result: PASS
+  details: missing 11D
+- check: E11C-14_boundary_12
+  result: PASS
+  details: missing 12
+- check: E11C-14_boundary_13
+  result: PASS
+  details: missing 13
+- check: E11C-14_boundary_16B
+  result: PASS
+  details: missing 16B
+- check: E11C-14_boundary_18D
+  result: PASS
+  details: missing 18D
+- check: E11C-14_forbidden_mid_segment_pause_written_or_shown_as_sa
+  result: PASS
+  details: missing=mid_segment_pause_written_or_shown_as_saved
+- check: E11C-14_forbidden_checkpoint_storing_elapsed_time_score_or
+  result: PASS
+  details: missing=checkpoint_storing_elapsed_time_score_or_count
+- check: E11C-14_forbidden_checkpoint_decoded_by_best_guess
+  result: PASS
+  details: missing=checkpoint_decoded_by_best_guess
+- check: E11C-14_forbidden_checkpoint_updated_or_flagged_consumed
+  result: PASS
+  details: missing=checkpoint_updated_or_flagged_consumed
+- check: E11C-14_forbidden_high_stakes_gap_threshold_invented
+  result: PASS
+  details: missing=high_stakes_gap_threshold_invented
+- check: E11C-14_forbidden_checkpoint_offered_on_today_bypassing_pl
+  result: PASS
+  details: missing=checkpoint_offered_on_today_bypassing_planner
+- check: E11C-14_forbidden_session_scored_graded_or_timed
+  result: PASS
+  details: missing=session_scored_graded_or_timed
+- check: E11C-14_forbidden_session_persisted_as_invented_entity
+  result: PASS
+  details: missing=session_persisted_as_invented_entity
+- check: E11C-15_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 11C QA PASS'
+- check: E11C-15_spec_**Decision:** `D-089`
+  result: PASS
+  details: missing='**Decision:** `D-089`'
+- check: E11C-15_spec_unmet
+  result: PASS
+  details: missing='unmet'
+- check: E11C-15_spec_resume_context/1
+  result: PASS
+  details: missing='resume_context/1'
+- check: E11C-15_spec_readTruth
+  result: PASS
+  details: missing='readTruth'
+- check: E11C-15_spec_16B
+  result: PASS
+  details: missing='16B'
+- check: E11C-15_spec_T6
+  result: PASS
+  details: missing='T6'
+- check: E11C-16_research_high-stakes
+  result: PASS
+  details: missing='high-stakes'
+- check: E11C-16_research_readTruth
+  result: PASS
+  details: missing='readTruth'
+- check: E11C-16_research_continue_learning
+  result: PASS
+  details: missing='continue_learning'
+- check: E11C-16_research_No web research pass
+  result: PASS
+  details: missing='No web research pass was needed'
+failures: []
