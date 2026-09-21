@@ -294,8 +294,12 @@ interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
 check("E11C-10_port_count_four", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces} msbx={msbx_ports}")
 persistence_methods = re.findall(r"fun (?:<T> )?(\w+)\(", body(ports, "interface PersistencePort"))
-check("E11C-10_persistence_methods", persistence_methods ==
-      ["inTransaction", "appendTruth", "readTruth", "readProjection", "writeProjection", "curriculumPublished"],
+# 11C owns `readTruth` and the fact that reading truth added no mutation path. It does not own the
+# rest of the port: later steps refine the same interface (11D publishes curriculum), so this check
+# was narrowed from an exact list to what 11C actually decided.
+check("E11C-10_persistence_methods",
+      persistence_methods[:3] == ["inTransaction", "appendTruth", "readTruth"]
+      and {"readProjection", "writeProjection", "curriculumPublished"} <= set(persistence_methods),
       f"methods={persistence_methods}")
 read_truth = body(adapter, "override fun readTruth(")
 check("E11C-10_read_truth_reads_only", "SELECT" in read_truth and not re.search(r"\b(INSERT|UPDATE|DELETE)\b", read_truth),
@@ -340,7 +344,10 @@ for name in ["a checkpoint reads back from SQLite exactly as it was saved", "a p
     check(f"E11C-12_t2_{name[:40]}", f"`{name}`" in t2_test, f"missing T2 test: {name}")
 t2_count = sum(read(p).count("@Test") for p in T2_DIR.rglob("*.kt"))
 run02 = next((r for r in contract["verified_runs"] if r["id"] == "RUN-02"), {})
-check("E11C-12_t2_count_matches_sources", run02.get("tests") == t2_count, f"claimed={run02.get('tests')} sources={t2_count}")
+# 11C claimed the count at its own acceptance; later steps add T2 checks of their own, so the
+# living form of this check is that 11C did not claim more than exists, and that its own checks do.
+check("E11C-12_t2_count_not_inflated", run02.get("tests", 0) <= t2_count,
+      f"claimed={run02.get('tests')} sources={t2_count}")
 
 # ---------------------------------------------------------------- repository hygiene (carried from 11B)
 COMBINING_DOT_ABOVE = chr(0x0307)

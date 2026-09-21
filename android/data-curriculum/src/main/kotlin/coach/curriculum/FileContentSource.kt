@@ -1,5 +1,7 @@
 package coach.curriculum
 
+import coach.model.AssessmentItem
+import coach.model.CurriculumPackage
 import coach.model.VersionedRef
 import coach.ports.ContentDocument
 import coach.ports.ContentPort
@@ -8,15 +10,29 @@ import coach.ports.ContentPort
  * Implements ContentPort. Curriculum is versioned separately from user state and a published
  * version is never overwritten (LFPS-v0), so lookups are always by logical id and version.
  *
- * **Nothing is published yet, and this says so instead of throwing.** `ContentPort` already has a
- * word for "no such resource" — `null` — and returning it is the truthful answer while no
- * curriculum has been ingested. It used to be `TODO()`, which would have crashed the first caller;
- * that is the same defect 10E found in the AI adapter, and a screen asking for content it does not
- * have is a missing resource, not a broken app.
+ * The authored package is supplied as text by the composition root — the platform knows where files
+ * live, core does not — and parsed once, strictly ([PackageFormat]). **When no package ships, every
+ * lookup answers `null`**, which is the truthful "no such resource" rather than a crash; that was
+ * the defect 11A found here, and the answer has not changed now that a package can exist.
  *
- * Curriculum ingestion itself is not 11A's: the first authored content arrives at 15, and the step
- * that first needs it loads it (11D).
+ * A package that does not parse is not half-loaded: the failure is kept and every lookup answers
+ * `null`, so the app behaves exactly as it does with no content rather than serving fragments.
  */
-class FileContentSource : ContentPort {
-    override fun resource(ref: VersionedRef): ContentDocument? = null
+class FileContentSource(private val source: () -> String? = { null }) : ContentPort {
+
+    private val parsed: PackageFormat.Parsed? by lazy {
+        val text = source() ?: return@lazy null
+        runCatching { PackageFormat.parse(text) }.onFailure { failure = it }.getOrNull()
+    }
+
+    /** Why the authored package could not be read, if it could not. Never a guess about its content. */
+    var failure: Throwable? = null
+        private set
+
+    override fun resource(ref: VersionedRef): ContentDocument? =
+        parsed?.documents?.get(ref)?.let { ContentDocument(ref, it) }
+
+    override fun assessmentItem(ref: VersionedRef): AssessmentItem? = parsed?.items?.get(ref)
+
+    override fun curriculumPackage(): CurriculumPackage? = parsed?.curriculum
 }

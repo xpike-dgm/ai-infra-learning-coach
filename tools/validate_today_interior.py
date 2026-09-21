@@ -330,8 +330,12 @@ check("E11A-12_empty_is_not_mastery",
       "an empty day claims nothing about mastery")
 
 # ---------------------------------------------------------------- content port no longer throws
+# 11A owns the guarantee, not the implementation: asking for content that is not there answers
+# "no such resource" instead of crashing. 11D gave the adapter a real package to serve, so pinning
+# the literal `= null` body had become a stale gate; the guarantee is what is checked.
 check("E11A-13_content_port_returns_null",
-      "ContentDocument? = null" in content and "TODO(" not in content,
+      "override fun resource(ref: VersionedRef): ContentDocument?" in content
+      and "TODO(" not in content and "throw" not in content,
       "asking for unpublished content is a missing resource, not a crash")
 
 # ---------------------------------------------------------------- the screen says things in words

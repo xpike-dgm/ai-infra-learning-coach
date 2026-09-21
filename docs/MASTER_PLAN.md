@@ -702,8 +702,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 20/20, validator 146/146 ve kendi mutation testi 20/20,
 - **T6 çalıştırılmadı**.
 
-### [ ] 11D — Günlük mikro quiz — **AKTİF**
-### [ ] 11E — Gün sonu
+### [x] 11D — Günlük mikro quiz — DMAX-v0 / D-090
+
+**11D final coverage:**
+- assessment session bir kanıt toplama akışıdır; item yalnız validation'ının, evaluator'ının ve Objective profilinin izin verdiğini taşır,
+- curriculum bölgesinin yazıcısı yoktu; yayımlama tek yol, tek transaction, yayımlanmış sürüm üzerine yazılmaz,
+- authored paket katı ayrıştırılır ya da hiç sunulmaz; şemanın adlandırmadığı alanlar içerikte kalır,
+- güven mağazanın validation kaydıdır; tavan en kısıtlayıcı kuraldır; kanıt uyumuna Objective karar verir,
+- exposure yalnız gerçekten sunulan item ve gösterilen çözüm için yazılır,
+- tek interior bütün scope'lara hizmet eder; gönderilen sınır donar; boş bırakmak yanlış değildir; sonuç puansızdır,
+- kısa artifact gövdesi referansın içinde taşınır ya da reddedilir; şema, portlar ve 10D/10E kontratları değişmedi,
+- **mutation koşucusu Gradle'ı hiç çalıştırmamıştı**; düzeltildi, 11D 27/27, 11C 20/20 yeniden koşuldu,
+- validator 188/188 ve kendi mutation testi 27/27,
+- **T6 çalıştırılmadı**.
+
+### [ ] 11E — Gün sonu — **AKTİF**
 
 ---
 
@@ -822,8 +835,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11C`  
-**Son tamamlanan:** **`11C — SESX-v0 / D-089`**  
-**Aktif:** **`11D — Günlük mikro quiz`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11D`  
+**Son tamamlanan:** **`11D — DMAX-v0 / D-090`**  
+**Aktif:** **`11E — Gün sonu`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **11D fresh PRE-STEP → ilk çalıştırılabilir aktivite, segment sınırları ve artifact depolaması → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **11E fresh PRE-STEP → gün sonunun dürüstçe söyleyebilecekleri → independent QA → D-050 POST sync + stale audit.**

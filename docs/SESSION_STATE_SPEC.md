@@ -141,6 +141,8 @@ In the app, Today's start action starts a session only if entry was startable, a
 
 Twenty deliberate mutations, **all twenty caught on the first run, every one by a failing test** rather than by a compilation error — the run was repeated to record the mechanism. Among them: a decoder that accepts an extra key or ignores the format version, a storable mid-segment pause, a pause that is durable when *any* condition is confirmed, a mid-segment pause shown as saved, an artifact assumed intact, a high-stakes gap assumed acceptable, a checkpoint that confirms content compatibility, a blocked entry that starts a session, an ended session rewritten or extended, a session with a duration field, a pause outside its transaction or writing an attempt, and a read that loses the offset's unit.
 
+**Correction (11D).** The harness that produced this number had never actually run Gradle: it invoked `cmd /c gradlew.bat` with a working directory, which Windows does not resolve, so every mutant returned a non-zero exit code for the wrong reason and was recorded as caught. 11D found it, fixed the harness — the wrapper is now invoked by absolute path, and a run whose output carries no Gradle build result is refused rather than classified — and **re-ran this suite honestly: 20/20, every one caught by a failing test.** The number stands and is now verified, which it was not when it was first published.
+
 The first regression sweep then failed a **standing** check, not a new one: 10C's validator found `.lowercase()` in the session-field test — a locale-naive case transform this repository forbids everywhere, tests included. The test now compares with `ignoreCase`, and the mutant it guards (a session duration field) was re-run and is still caught.
 
 ---

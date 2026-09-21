@@ -269,14 +269,15 @@ PEM-v0:
 - 11A ✅ TDYX-v0 / D-087
 - 11B ✅ RNRX-v0 / D-088
 - 11C ✅ SESX-v0 / D-089
-- 11D 🟡 active-not-executed
-- 11E–20 ⬜
+- 11D ✅ DMAX-v0 / D-090
+- 11E 🟡 active-not-executed
+- 12–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `11C — SESX-v0 / D-089`  
-**Aktif:** `11D — Günlük mikro quiz`  
-**11D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `11D — DMAX-v0 / D-090`  
+**Aktif:** `11E — Gün sonu`  
+**11E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -856,6 +857,27 @@ SESX-v0:
 - 20/20 mutations caught, all by tests; independent QA 146/146; validator mutation 20/20 with one miss found and fixed,
 - T6 was not run.
 
-## 42. 11D handoff
+## 42. D-090 / 11D final özeti
 
-11D — Günlük mikro quiz. The first runnable activity: segment boundaries and `checkpoint_ids[]`, artifact body storage, curriculum ingestion. Açık loop'lar: giriş/resume koşullarını doğrulayan olgular ve `continue_learning` yeniden girişi 12, high-stakes gap politikası 13/18D, kalıcı oturum geçmişi 16B, kapasite ayarları 16D, T6 cihaz koşusu. 11D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md`.
+Contract/QA: `arch/11d_daily_micro_assessment/`.
+Synthesis: `research/11d_daily_micro_assessment_research.md`.
+Code: `android/core-model/.../AssessmentFacts.kt`, `.../CurriculumPackage.kt`, `.../ArtifactBody.kt`, `android/core-presentation/.../AssessmentSession.kt`, `android/core-application/.../DailyMicroAssessment.kt`, `android/data-persistence/.../CurriculumStore.kt`, `android/data-curriculum/.../PackageFormat.kt`, `android/app-ui/.../AssessmentSessionScreen.kt`, `app-wiring`.
+
+DMAX-v0:
+- an assessment session is an evidence-collection workflow, and an item carries only what its validation, its evaluator and the Objective's evidence profile allow,
+- the curriculum region had no writer at all; publishing is now one path, one transaction, refusal decided before any write, and a published version is never overwritten,
+- the authored package parses strictly or not at all, and a failed parse serves nothing; item metadata DDM-v0 does not name stays in authored content rather than invented columns,
+- trust is the store's validation record, the effective ceiling is the most restrictive applicable rule, and it never exceeds the declared one,
+- the Objective decides evidence fit and a mastery measurement needs its direct type,
+- exposure is recorded when an item is served and when a solution is revealed, never for an item nobody saw,
+- one interior serves all scopes: submitted boundaries freeze, skipping is not incorrect, help is never blocked, recomposition spares completed evidence, and the result is semantic with no score field,
+- a short artifact body is carried inside its own reference or refused, never truncated; the schema, the ports and 10D/10E's contracts are untouched,
+- **the mutation harness had never run Gradle**; it was fixed, 11D caught 27/27 (three after its tests were strengthened) and 11C's suite was re-run honestly at 20/20,
+- three duplicated PROJECT_CONTEXT sections left by 11C's sync were removed and guarded,
+- independent QA 188/188, validator mutation 27/27, sweep 35/35,
+- T6 was not run.
+
+## 43. 11E handoff
+
+11E — Gün sonu. What the end of a day may honestly say and what it may never claim. Açık loop'lar: planner selection ve evidence pipeline 12, haftalık/aylık kompozisyon 13, evaluator davranışı ve microcopy 14, authored içerik 15, `assessment_report` 16B, kalibrasyon 18D, T6 cihaz koşusu. 11E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

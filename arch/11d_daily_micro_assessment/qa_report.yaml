@@ -1,0 +1,608 @@
+model: DMAX-v0
+stage_step: 11D
+decision: D-090
+result: PASS
+checks_total: 188
+checks_passed: 188
+checks_failed: 0
+checks:
+- check: E11D-00_exists_AssessmentFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/AssessmentFacts.kt
+- check: E11D-00_exists_ArtifactBody.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/ArtifactBody.kt
+- check: E11D-00_exists_CurriculumPackage.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/CurriculumPackage.kt
+- check: E11D-00_exists_AssessmentSession.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/AssessmentSession.kt
+- check: E11D-00_exists_DailyMicroAssessment.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/DailyMicroAssessment.kt
+- check: E11D-00_exists_CurriculumStore.kt
+  result: PASS
+  details: missing android/data-persistence/src/main/kotlin/coach/persistence/CurriculumStore.kt
+- check: E11D-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android/data-curriculum/src/main/kotlin/coach/curriculum/PackageFormat.kt
+- check: E11D-00_exists_AssessmentFactsTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/AssessmentFactsTest.kt
+- check: E11D-00_exists_AssessmentSessionTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/AssessmentSessionTest.kt
+- check: E11D-00_exists_DailyMicroAssessmentTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/DailyMicroAssessmentTest.kt
+- check: E11D-00_exists_CurriculumPublishingTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/CurriculumPublishingTest.kt
+- check: E11D-00_exists_PackageFormatTest.kt
+  result: PASS
+  details: missing android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt
+- check: E11D-00_exists_DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md
+- check: E11D-00_exists_11d_daily_micro_assessment_research.md
+  result: PASS
+  details: missing research/11d_daily_micro_assessment_research.md
+- check: E11D-01_model
+  result: PASS
+  details: DMAX-v0
+- check: E11D-01_status
+  result: PASS
+  details: accepted_11d
+- check: E11D-01_decision
+  result: PASS
+  details: D-090
+- check: E11D-01_scope_evidence_written
+  result: PASS
+  details: evidence_written=False
+- check: E11D-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E11D-01_scope_weekly_or_monthly_blueprint_implemented
+  result: PASS
+  details: weekly_or_monthly_blueprint_implemented=False
+- check: E11D-01_scope_mastery_engine_implemented
+  result: PASS
+  details: mastery_engine_implemented=False
+- check: E11D-01_scope_content_authored_here
+  result: PASS
+  details: content_authored_here=False
+- check: E11D-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E11D-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E11D-01_scope_ports_added
+  result: PASS
+  details: ports_added=False
+- check: E11D-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E11D-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E11D-01_no_passing_threshold
+  result: PASS
+  details: passing_threshold was claimed
+- check: E11D-01_no_percentage_grade
+  result: PASS
+  details: percentage_grade was claimed
+- check: E11D-01_no_fixed_question_count
+  result: PASS
+  details: fixed_question_count was claimed
+- check: E11D-01_no_countdown_clock
+  result: PASS
+  details: countdown_clock was claimed
+- check: E11D-02_states
+  result: PASS
+  details: kotlin=['entering_revalidating', 'blocked_not_startable', 'session_orientation',
+    'item_active', 'assistance_open', 'submitting_boundary', 'boundary_frozen', 'block_checkpoint',
+    'session_paused', 'resume_revalidating', 'slot_recomposed', 'evaluation_pending',
+    'result_ready', 'result_partial', 'item_contested', 'offline_local_capable', 'ai_unavailable_deterministic_core',
+    'error_recoverable', 'data_recovery_required']
+- check: E11D-02_scopes
+  result: PASS
+  details: kotlin=['daily_micro', 'weekly_blueprint', 'monthly_capability']
+- check: E11D-02_intents
+  result: PASS
+  details: kotlin=['checkpoint', 'mastery_evidence', 'verification', 'integration_check']
+- check: E11D-02_result_families
+  result: PASS
+  details: kotlin=['confirmed_capabilities', 'verification_needed', 'persistent_targeted_gaps',
+    'retention_revalidated', 'not_reliably_measured', 'plan_changes']
+- check: E11D-02_not_reliably_measured
+  result: PASS
+  details: kotlin=['invalid_item', 'provisional_evaluation', 'assisted_attempt', 'solution_exposed_attempt',
+    'contested_item', 'unsubmitted_slot']
+- check: E11D-02_recomposition
+  result: PASS
+  details: kotlin=['solution_or_explanation_exposed', 'item_version_or_validation_changed',
+    'prerequisite_state_changed_meaningfully', 'freshness_no_longer_trustworthy_after_long_gap',
+    'user_requested_reset_or_alternative']
+- check: E11D-02_boundary_kinds
+  result: PASS
+  details: kotlin=['item', 'testlet']
+- check: E11D-02_lifecycle
+  result: PASS
+  details: kotlin=['draft', 'candidate', 'validated', 'trusted', 'deprecated', 'invalidated',
+    'retired']
+- check: E11D-02_use_ceiling
+  result: PASS
+  details: kotlin=['practice_only', 'low_stakes_assessment', 'standard_mastery_eligible',
+    'critical_mastery_eligible']
+- check: E11D-02_content_origin
+  result: PASS
+  details: '[''human_authored'', ''parameterized_from_trusted_template'', ''ai_generated'',
+    ''mixed_authorship'', ''imported_reference_based'']'
+- check: E11D-03_tone_entering_revalidating
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_blocked_not_startable
+  result: PASS
+  details: kotlin=attention vdsx=attention
+- check: E11D-03_tone_session_orientation
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_item_active
+  result: PASS
+  details: kotlin=active vdsx=active
+- check: E11D-03_tone_assistance_open
+  result: PASS
+  details: kotlin=active vdsx=active
+- check: E11D-03_tone_submitting_boundary
+  result: PASS
+  details: kotlin=active vdsx=active
+- check: E11D-03_tone_boundary_frozen
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_block_checkpoint
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_session_paused
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_resume_revalidating
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_slot_recomposed
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_evaluation_pending
+  result: PASS
+  details: kotlin=pending_unresolved vdsx=pending_unresolved
+- check: E11D-03_tone_result_ready
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_result_partial
+  result: PASS
+  details: kotlin=pending_unresolved vdsx=pending_unresolved
+- check: E11D-03_tone_item_contested
+  result: PASS
+  details: kotlin=pending_unresolved vdsx=pending_unresolved
+- check: E11D-03_tone_offline_local_capable
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_ai_unavailable_deterministic_core
+  result: PASS
+  details: kotlin=neutral vdsx=neutral
+- check: E11D-03_tone_error_recoverable
+  result: PASS
+  details: kotlin=system_fault vdsx=system_fault
+- check: E11D-03_tone_data_recovery_required
+  result: PASS
+  details: kotlin=system_fault vdsx=system_fault
+- check: E11D-03_every_state_has_a_tone
+  result: PASS
+  details: mapped=19 states=19
+- check: E11D-03_fault_tone_only_system
+  result: PASS
+  details: fault states=['ERROR_RECOVERABLE', 'DATA_RECOVERY_REQUIRED']
+- check: E11D-03_ui_names_no_tone
+  result: PASS
+  details: app-ui chooses a tone
+- check: E11D-04_unselectable_has_no_ceiling
+  result: PASS
+  details: a draft or invalidated item still gets a ceiling
+- check: E11D-04_candidate_is_practice_only
+  result: PASS
+  details: an unvalidated item is not capped at practice
+- check: E11D-04_ai_generated_capped
+  result: PASS
+  details: an AI-generated item is not capped below critical
+- check: E11D-04_provisional_evaluator_capped
+  result: PASS
+  details: a provisional evaluator does not cap the item
+- check: E11D-04_deterministic_required
+  result: PASS
+  details: a required deterministic check is not enforced
+- check: E11D-04_evaluator_absent_caps
+  result: PASS
+  details: an unavailable evaluator does not cap the item
+- check: E11D-04_ceiling_only_lowers
+  result: PASS
+  details: the ceiling can be raised
+- check: E11D-04_declared_is_the_start
+  result: PASS
+  details: the ceiling does not start from what the item declared
+- check: E11D-04_mastery_requires_standard
+  result: PASS
+  details: a mastery intent does not require the standard ceiling
+- check: E11D-05_objective_decides_fit
+  result: PASS
+  details: the Objective's profile does not decide evidence fit
+- check: E11D-05_direct_type_for_mastery
+  result: PASS
+  details: a mastery measurement does not require the Objective's direct type
+- check: E11D-05_unknown_profile_unfit
+  result: PASS
+  details: an unknown Objective profile is assumed fit
+- check: E11D-05_scope_checked
+  result: PASS
+  details: scope eligibility is not checked
+- check: E11D-06_store_decides_trust
+  result: PASS
+  details: the item document decides its own trust
+- check: E11D-06_unpublished_is_unknown
+  result: PASS
+  details: an unpublished item is served anyway
+- check: E11D-06_missing_document_is_unknown
+  result: PASS
+  details: an item with no authored document is served anyway
+- check: E11D-06_exposure_only_when_served
+  result: PASS
+  details: exposure is recorded for an item that was not served
+- check: E11D-06_unusable_records_nothing
+  result: PASS
+  details: an unusable item records something
+- check: E11D-06_exposure_kinds
+  result: PASS
+  details: the exposure kinds are not DDM-v0's
+- check: E11D-06_serving_writes_no_evidence
+  result: PASS
+  details: serving an item writes evidence or an attempt
+- check: E11D-07_no_overwrite
+  result: PASS
+  details: a published version can be overwritten
+- check: E11D-07_unresolved_refused
+  result: PASS
+  details: references are not resolved against the package and the store
+- check: E11D-07_version_mismatch_refused
+  result: PASS
+  details: a row of another version can be published
+- check: E11D-07_one_transaction
+  result: PASS
+  details: publishing is not one transaction
+- check: E11D-07_refusal_before_write
+  result: PASS
+  details: a refusal is decided after writing starts
+- check: E11D-07_publishes_no_truth
+  result: PASS
+  details: publishing writes truth rows
+- check: E11D-08_schema_unchanged
+  result: PASS
+  details: schema=['allowed_tools_policy', 'content_origin', 'content_ref', 'dependency_group_id',
+    'evidence_type', 'logical_id', 'rubric_ref', 'variant_family_id', 'version'] ddm=['allowed_tools_policy',
+    'content_origin', 'content_ref', 'dependency_group_id', 'evidence_type', 'rubric_ref',
+    'variant_family_id']
+- check: E11D-08_no_invented_item_columns
+  result: PASS
+  details: item metadata DDM-v0 does not name was added as columns
+- check: E11D-09_format_versioned
+  result: PASS
+  details: the package format is not versioned
+- check: E11D-09_unknown_section_refused
+  result: PASS
+  details: an unknown section is accepted
+- check: E11D-09_unknown_key_refused
+  result: PASS
+  details: an unknown key is accepted
+- check: E11D-09_repeated_key_refused
+  result: PASS
+  details: a repeated key is accepted
+- check: E11D-09_unpinned_ref_refused
+  result: PASS
+  details: an unpinned reference is accepted
+- check: E11D-09_refuses_whole_package
+  result: PASS
+  details: a package with problems is partly imported
+- check: E11D-09_failed_parse_serves_nothing
+  result: PASS
+  details: a failed parse still serves fragments
+- check: E11D-09_no_package_is_null
+  result: PASS
+  details: a missing package is not null
+- check: E11D-10_boundary_is_submission_unit
+  result: PASS
+  details: the submission unit is not the boundary
+- check: E11D-10_item_boundary_one_item
+  result: PASS
+  details: an item boundary may carry several items
+- check: E11D-10_frozen_is_final
+  result: PASS
+  details: a frozen boundary can be changed
+- check: E11D-10_navigable_are_open
+  result: PASS
+  details: navigation is not limited to open boundaries
+- check: E11D-10_skip_is_its_own_status
+  result: PASS
+  details: skipping is not represented as unsubmitted
+- check: E11D-10_assistance_not_blocked
+  result: PASS
+  details: assistance can be blocked
+- check: E11D-10_revealing_help_is_practice_only
+  result: PASS
+  details: revealing help does not become practice-only
+- check: E11D-10_no_assisted_mastery_evidence
+  result: PASS
+  details: an assisted attempt can produce independent mastery evidence
+- check: E11D-10_never_schedules_recheck
+  result: PASS
+  details: the session schedules the recheck
+- check: E11D-10_recomposition_spares_frozen
+  result: PASS
+  details: recomposition deletes completed evidence
+- check: E11D-10_dispute_is_contested
+  result: PASS
+  details: a dispute does not hold evidence as contested
+- check: E11D-10_dispute_does_not_invalidate
+  result: PASS
+  details: a dispute invalidates the item
+- check: E11D-11_change_needs_canonical
+  result: PASS
+  details: a result claims a change nobody reported
+- check: E11D-11_partial_from_unresolved
+  result: PASS
+  details: an unresolved session is not partial
+- check: E11D-11_unsubmitted_is_unreliable
+  result: PASS
+  details: a skipped slot is not surfaced as not-reliably-measured
+- check: E11D-11_contested_is_unreliable
+  result: PASS
+  details: a contested item is not surfaced as not-reliably-measured
+- check: E11D-11_no_verdict_field_SessionResult
+  result: PASS
+  details: SessionResult fields=['families', 'notReliablyMeasured', 'counts', 'partial']
+- check: E11D-11_no_verdict_field_AssessmentSessionView
+  result: PASS
+  details: AssessmentSessionView fields=['scope', 'intents', 'blocks', 'independenceMode',
+    'allowedTools', 'state', 'statuses']
+- check: E11D-11_no_verdict_field_Boundary
+  result: PASS
+  details: Boundary fields=['id', 'kind', 'items', 'dependencyGroupId']
+- check: E11D-11_no_verdict_field_AssessmentItem
+  result: PASS
+  details: AssessmentItem fields=['ref', 'targetObjectives', 'targetSkills', 'requiredSkills',
+    'evidenceType', 'expectedAnswerOrRubricRef', 'evaluatorRequirement', 'allowedTools',
+    'independenceMode', 'difficultyClass', 'lifecycleStatus', 'contentOrigin', 'declaredUseCeiling',
+    'scopeEligibility', 'variantFamilyId', 'dependencyGroupId', 'forbiddenNotYetConcepts',
+    'deterministicVerification']
+- check: E11D-11_counts_are_separate
+  result: PASS
+  details: raw counts are not kept separate from state
+- check: E11D-12_inline_or_refused
+  result: PASS
+  details: an oversized body is not refused
+- check: E11D-12_not_truncated
+  result: PASS
+  details: a body is truncated to fit
+- check: E11D-12_foreign_ref_is_null
+  result: PASS
+  details: a foreign content reference is guessed at
+- check: E11D-12_no_new_table
+  result: PASS
+  details: a table was invented for artifact bodies
+- check: E11D-13_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+    msbx=['PersistencePort', 'ContentPort', 'ClockPort', 'EvaluatorPort']
+- check: E11D-13_refinement_publishCurriculum
+  result: PASS
+  details: missing publishCurriculum
+- check: E11D-13_refinement_resourceVersion
+  result: PASS
+  details: missing resourceVersion
+- check: E11D-13_refinement_latestValidation
+  result: PASS
+  details: missing latestValidation
+- check: E11D-13_refinement_objectiveProfile
+  result: PASS
+  details: missing objectiveProfile
+- check: E11D-13_content_methods
+  result: PASS
+  details: methods=['resource', 'assessmentItem', 'curriculumPackage']
+- check: E11D-13_ingestion_on_store_thread
+  result: PASS
+  details: ingestion does not run where the store is opened
+- check: E11D-13_no_asset_ships
+  result: PASS
+  details: content was authored here; 15 owns authoring
+- check: E11D-14_t1_model_a validated, deterministic, well-attribu
+  result: PASS
+  details: 'missing test: a validated, deterministic, well-attributed item fits a
+    mastery measurement'
+- check: E11D-14_t1_model_the Objective decides what counts as evi
+  result: PASS
+  details: 'missing test: the Objective decides what counts as evidence for it, not
+    the item'
+- check: E11D-14_t1_model_an unvalidated item is practice at best,
+  result: PASS
+  details: 'missing test: an unvalidated item is practice at best, whatever it declares
+    about itself'
+- check: 'E11D-14_t1_model_a body too large is refused rather than '
+  result: PASS
+  details: 'missing test: a body too large is refused rather than truncated'
+- check: E11D-14_t1_session_submission freezes, and a frozen boundar
+  result: PASS
+  details: 'missing test: submission freezes, and a frozen boundary can never be revisited
+    or resubmitted'
+- check: E11D-14_t1_session_skipping is not incorrect and leaves the
+  result: PASS
+  details: 'missing test: skipping is not incorrect and leaves the need unresolved'
+- check: E11D-14_t1_session_revealing help converts the mode explici
+  result: PASS
+  details: 'missing test: revealing help converts the mode explicitly and raises a
+    recheck it never schedules'
+- check: E11D-14_t1_session_a state change is claimed only when cano
+  result: PASS
+  details: 'missing test: a state change is claimed only when canonical state actually
+    changed'
+- check: E11D-14_t1_session_not reliably measured is first class and
+  result: PASS
+  details: 'missing test: not reliably measured is first class and is never folded
+    into incorrect'
+- check: E11D-14_t1_session_the session view can hold no score, grad
+  result: PASS
+  details: 'missing test: the session view can hold no score, grade, percentage or
+    countdown'
+- check: E11D-14_t1_app_the store's validation record decides tr
+  result: PASS
+  details: 'missing test: the store''s validation record decides trust, not the item''s
+    claim about itself'
+- check: E11D-14_t1_app_an unusable item records no exposure, be
+  result: PASS
+  details: 'missing test: an unusable item records no exposure, because the learner
+    never saw it'
+- check: E11D-14_t1_app_ingestion publishes the authored package
+  result: PASS
+  details: 'missing test: ingestion publishes the authored package once and never
+    overwrites it'
+- check: E11D-14_t2_a published version is never overwritten
+  result: PASS
+  details: 'missing T2 test: a published version is never overwritten'
+- check: E11D-14_t2_a package with an unresolved reference i
+  result: PASS
+  details: 'missing T2 test: a package with an unresolved reference is refused whole
+    and writes nothing'
+- check: E11D-14_t2_published curriculum cannot be updated o
+  result: PASS
+  details: 'missing T2 test: published curriculum cannot be updated or deleted at
+    the storage layer'
+- check: 'E11D-14_t2_publishing writes nothing into the user '
+  result: PASS
+  details: 'missing T2 test: publishing writes nothing into the user regions'
+- check: E11D-14_t5_anything the format does not define refu
+  result: PASS
+  details: 'missing T5 test: anything the format does not define refuses the whole
+    package'
+- check: E11D-14_t5_a package that does not parse serves not
+  result: PASS
+  details: 'missing T5 test: a package that does not parse serves nothing at all,
+    and says why'
+- check: E11D-15_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E11D-15_mutation_all_detected
+  result: PASS
+  details: '{''total'': 27, ''detected'': 27}'
+- check: E11D-15_mutation_ran_gradle
+  result: PASS
+  details: the mutation harness was not verified to have run anything
+- check: E11D-15_11c_corrected
+  result: PASS
+  details: 11C's invalidated mutation record is not corrected here
+- check: E11D-15_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E11D-15_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E11D-15_boundary_12
+  result: PASS
+  details: missing 12
+- check: E11D-15_boundary_13
+  result: PASS
+  details: missing 13
+- check: E11D-15_boundary_14
+  result: PASS
+  details: missing 14
+- check: E11D-15_boundary_15
+  result: PASS
+  details: missing 15
+- check: E11D-15_boundary_16B
+  result: PASS
+  details: missing 16B
+- check: E11D-15_boundary_18D
+  result: PASS
+  details: missing 18D
+- check: E11D-16_forbidden_item_promoting_itself_past_its_validatio
+  result: PASS
+  details: missing=item_promoting_itself_past_its_validation
+- check: E11D-16_forbidden_item_declaring_its_own_evidence_fit
+  result: PASS
+  details: missing=item_declaring_its_own_evidence_fit
+- check: E11D-16_forbidden_exposure_recorded_for_an_item_never_show
+  result: PASS
+  details: missing=exposure_recorded_for_an_item_never_shown
+- check: E11D-16_forbidden_published_curriculum_version_overwritten
+  result: PASS
+  details: missing=published_curriculum_version_overwritten
+- check: E11D-16_forbidden_artifact_body_truncated_to_fit
+  result: PASS
+  details: missing=artifact_body_truncated_to_fit
+- check: E11D-16_forbidden_submitted_boundary_edited_or_resubmitted
+  result: PASS
+  details: missing=submitted_boundary_edited_or_resubmitted
+- check: E11D-16_forbidden_skipping_treated_as_incorrect
+  result: PASS
+  details: missing=skipping_treated_as_incorrect
+- check: E11D-16_forbidden_result_with_a_score_grade_percentage_or_
+  result: PASS
+  details: missing=result_with_a_score_grade_percentage_or_threshold
+- check: E11D-16_forbidden_state_change_claimed_without_canonical_c
+  result: PASS
+  details: missing=state_change_claimed_without_canonical_change
+- check: E11D-17_spec_**Status:** ACCEPTED — i
+  result: PASS
+  details: missing='**Status:** ACCEPTED — independent 11D QA PASS'
+- check: E11D-17_spec_**Decision:** `D-090`
+  result: PASS
+  details: missing='**Decision:** `D-090`'
+- check: E11D-17_spec_practice_only
+  result: PASS
+  details: missing='practice_only'
+- check: 'E11D-17_spec_data:'
+  result: PASS
+  details: missing='data:'
+- check: E11D-17_spec_T6
+  result: PASS
+  details: missing='T6'
+- check: E11D-17_spec_11C
+  result: PASS
+  details: missing='11C'
+- check: E11D-18_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E11D-18_research_ASUX-v0
+  result: PASS
+  details: missing='ASUX-v0'
+- check: E11D-18_research_mutation harness
+  result: PASS
+  details: missing='mutation harness'
+- check: E11D-19_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E11D-19_no_adjacent_duplicate_AGENTS.md
+  result: PASS
+  details: lines=[]
+- check: E11D-19_no_adjacent_duplicate_PROJECT_CONTEXT.md
+  result: PASS
+  details: lines=[]
+- check: E11D-19_no_adjacent_duplicate_START_HERE.md
+  result: PASS
+  details: lines=[]
+- check: E11D-19_no_adjacent_duplicate_STEP_STATUS.md
+  result: PASS
+  details: lines=[]
+- check: E11D-19_no_adjacent_duplicate_HANDOFF_STATE.md
+  result: PASS
+  details: lines=[]
+- check: E11D-19_no_adjacent_duplicate_MASTER_PLAN.md
+  result: PASS
+  details: lines=[]
+failures: []

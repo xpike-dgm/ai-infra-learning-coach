@@ -5,10 +5,12 @@ import android.os.Handler
 import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
+import coach.application.IngestCurriculum
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
 import coach.application.TodayFactsQuery
 import coach.model.TodayFacts
+import coach.curriculum.FileContentSource
 import coach.persistence.StoreOpener
 import java.io.File
 import java.util.concurrent.Executor
@@ -76,7 +78,13 @@ class CoachApplication : Application() {
         path.parentFile?.mkdirs()
         return when (val result = StoreOpener.open(path.absolutePath)) {
             is StoreOpener.Result.Opened -> {
-                val graph = AppGraph(persistence = result.store)
+                val graph = AppGraph(persistence = result.store, content = FileContentSource(::authoredPackage))
+                // Ingestion runs here because it is disk work and because Today must be read after
+                // it: publishing is what turns "nothing is published" into a curriculum Today can
+                // report. With no authored package shipping, it publishes nothing and says so by
+                // returning null (11D).
+                val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingest()
+                Log.i(TAG, "curriculum ingestion: ${published ?: "no authored package"}")
                 StoreOpenOutcome.Opened(OpenedApp(graph, TodayFactsQuery(graph.persistence, graph.clock).load()))
             }
             is StoreOpener.Result.NotOpened -> {
@@ -87,7 +95,17 @@ class CoachApplication : Application() {
         }
     }
 
+    /**
+     * The authored curriculum package, when one is bundled. None ships today — authoring the first
+     * content is 15's — so this returns `null` and the app runs exactly as it did, with Today
+     * reporting that nothing has been published.
+     */
+    private fun authoredPackage(): String? = runCatching {
+        assets.open(AUTHORED_PACKAGE).bufferedReader().use { it.readText() }
+    }.getOrNull()
+
     private companion object {
+        const val AUTHORED_PACKAGE = "curriculum_package.txt"
         const val TAG = "coach.store"
     }
 }
