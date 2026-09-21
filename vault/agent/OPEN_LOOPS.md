@@ -42,7 +42,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 11B Task runner: RNRX-v0 / D-088 ile tamamlandı; giriş koşulları doğrulanmadan başlatma yok, H3/H4 açıklamalı, deneme tek transaction, evidence yok.
 - [x] 11C Session state: SESX-v0 / D-089 ile tamamlandı; checkpoint işin nerede olduğunu saklar, yalnız durable pause yazılır, resume yalnız checkpoint'in kanıtladığını doğrular, session puansız ve saklanmaz.
 - [x] 11D Günlük mikro quiz: DMAX-v0 / D-090 ile tamamlandı; curriculum ingestion, item güven tavanı, exposure ve tek assessment interior kuruldu.
-- [ ] 11E Gün sonu **AKTİF**: gün sonunun dürüstçe söyleyebilecekleri ve asla iddia edemeyecekleri.
+- [x] 11E Gün sonu: EODX-v0 / D-091 ile tamamlandı; gün sonu hüküm değil zaman sınırı, sayımlar envanter, borç yok. **AŞAMA 11 kapandı.**
+- [ ] 12A Mastery Engine v1 **AKTİF**: `GRE-v0`ın kodda karşılığı ve evidence pipeline'ın ilk parçası.
+- [ ] Gün özetine bildirilecek gerçek değişiklikler (kanonik engine çıktısı) → 12.
+- [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
 - [ ] Haftalık/aylık blueprint kompozisyonu (`WBA-v0`, `MCA-v0`) → 13; tek interior hazır, composition değil.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.
 - [ ] `assessment_resource_version` değer kümeleri şemada CHECK değil; tek yazma yolunda core'da doğrulanıyor → şema sıkılaştırması LDBX sahipliğinde, 12/13.

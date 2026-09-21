@@ -123,6 +123,7 @@ class DailyMicroAssessmentTest {
         override fun resourceVersion(ref: VersionedRef): ResourceVersion? = resource
         override fun latestValidation(ref: VersionedRef): ValidationRecord? = validation
         override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = profile
+        override fun countTruth(kind: String, studyDay: String): Int = 0
     }
 
     private fun storeWithItem(

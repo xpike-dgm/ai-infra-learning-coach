@@ -49,6 +49,7 @@ class ResumeCheckpointsTest {
         override fun resourceVersion(ref: VersionedRef): ResourceVersion? = null
         override fun latestValidation(ref: VersionedRef): ValidationRecord? = null
         override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = null
+        override fun countTruth(kind: String, studyDay: String): Int = 0
     }
 
     private val clock = object : ClockPort {

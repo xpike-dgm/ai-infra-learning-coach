@@ -1,0 +1,269 @@
+model: EODX-v0
+stage_step: 11E
+status: accepted_11e
+decision: D-091
+progress_presentation: SPWX-v0
+home: THUX-v0
+recovery: SRR-v0
+app_health: APHX-v0
+design_system: VDSX-v0
+navigation: NSHX-v0
+data_model: DDM-v0
+boundaries: MSBX-v0
+purpose: what_the_end_of_a_day_may_honestly_say_and_what_it_may_never_claim
+
+scope:
+  day_summary_only: true
+  evidence_written: false
+  planner_implemented: false
+  mastery_engine_implemented: false
+  longitudinal_history_implemented: false
+  new_surface_added: false
+  schema_changed: false
+  migration_added: false
+  ports_added: false
+  boundaries_changed: false
+  surface_semantics_changed: false
+  streak_claim: null
+  daily_goal_claim: null
+  completion_percentage_claim: null
+  minutes_studied_claim: null
+
+day_question: What did today actually record — and what may never be claimed from it?
+
+primary_invariant: >-
+  The end of a day is a boundary in time, not a verdict. A day closes because the learner-local
+  study day changed, never because the learner finished or failed to finish something, and nothing
+  about their standing changes when it does.
+
+found_before_11e:
+  - id: no_accepted_end_of_day_spec
+    was: >-
+      no accepted document defines an end-of-day surface; its rules had to be derived from the
+      contracts that already own the pieces rather than invented
+    resolved_here: >-
+      states and counting rules from SPWX-v0, absence semantics from SRR-v0, the day itself from
+      DDM-v0's three-value time, health precedence from APHX-v0, tones from VDSX-v0
+  - id: day_had_no_read_path
+    was: nothing could count what a study day recorded; the port could read one truth row by id only
+    resolved_here: countTruth(kind, studyDay) as a recorded port refinement; the port count stays four
+
+vocabularies:
+  presentation_states:
+    source: SPWX-v0 semantic_states
+    count: 10
+    order_is_source_order: true
+    produced_today: [loading_projection, ready_with_evidence, empty_no_evidence_yet,
+                     partial_projection_available, error_recoverable, data_recovery_required]
+    named_but_not_produced:
+      recomputing_projection: 12
+      empty_no_attention_needed: 16
+      offline_local_capable: 14
+      ai_unavailable_full_state_available: 14
+  history_event_families:
+    source: SPWX-v0 learning_history.event_families
+    value: [learning, assessment, review, remediation]
+  countable_kinds:
+    attempts_recorded: attempt
+    items_seen: exposure_record
+    checkpoints_saved: resume_checkpoint
+    evidence_interpreted: evidence_event
+
+day_boundary:
+  day_is_learner_local_study_day: true
+  row_day_recomputed_from_instant: false
+  counted_by_instant_range: false
+  rationale: >-
+    recomputing a row's day from its instant is how a DST change or a flight silently moves work
+    from one day into another
+  new_day_starts_empty: true
+  inventory_carried_across_day: false
+  unfinished_plan_carried_as_debt: false
+  day_rolls_backwards: false
+  closing_a_day_is_a_learner_action: false
+
+counting:
+  counts_allowed: true
+  counts_labelled_as_inventory: true
+  ratio_or_percentage: false
+  total_or_goal: false
+  count_is_progress: false
+  unreadable_kind_counted_as_zero: false
+  unreadable_kind_named: true
+
+changes:
+  claimed_only_when_canonical_engine_reported: true
+  activity_is_a_change: false
+  change_producer_today: none
+  change_producer_owner: 12
+  nothing_changed_stated_plainly: true
+
+absence_and_history:
+  absence_is_failure: false
+  absence_creates_debt: false
+  gap_filled_in_history: false
+  gap_marked_as_missed_obligation: false
+  streak_or_consecutive_day_count: false
+  attendance_heatmap_or_contribution_graph: false
+  calendar_grid_rendered: false
+
+presentation:
+  rendered_in: today_day_plan_context
+  new_destination_or_surface: false
+  longitudinal_history_owner: 16B
+  state_distinguishable_in_text: true
+  fault_tone_states: [error_recoverable, data_recovery_required]
+  empty_day_tone: neutral
+  partial_read_tone: pending_unresolved
+  chart_ring_or_bar_rendered: false
+
+forbidden_view_fields: [streak, percent, score, grade, minutes, elapsed, goal, debt, carried, rank, consecutive]
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+    - name: countTruth
+      signature: countTruth(kind, studyDay) -> Int
+      reason: a day summary counts what a study day recorded
+      counts_by_study_day_column: true
+      counts_by_instant_range: false
+      refuses_rows_without_their_own_day: true
+      writes: false
+
+wiring:
+  day_read_on_store_thread: true
+  day_refreshed_on_resume: true
+  day_read_against_the_same_clock_as_today: true
+  reachable_in_app_today: true
+  content_today: an inventory of what the store really holds, which is empty until work is recorded
+
+tests:
+  t1:
+    - core-model DayFactsTest
+    - core-presentation EndOfDayTest
+    - core-application DayCloseFactsTest
+  t2:
+    - data-persistence DayCountingTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 20
+  detected: 20
+  harness_verified_to_run_gradle: true
+  mutants:
+    - {id: E01, mutant: inventory_carried_into_the_new_day}
+    - {id: E02, mutant: day_rolls_backwards}
+    - {id: E03, mutant: row_belongs_to_any_day_asked}
+    - {id: E04, mutant: history_fills_the_silent_days}
+    - {id: E05, mutant: inventory_counts_below_zero}
+    - {id: E06, mutant: zero_rows_read_as_work}
+    - {id: E07, mutant: blank_change_statement_accepted}
+    - {id: E08, mutant: empty_day_reported_as_ready}
+    - {id: E09, mutant: unread_kind_silently_zero}
+    - {id: E10, mutant: recovery_no_longer_supersedes}
+    - {id: E11, mutant: empty_day_wears_fault_tone}
+    - {id: E12, mutant: partial_read_presented_as_inventory}
+    - {id: E13, mutant: view_gains_a_streak_field}
+    - {id: E14, mutant: change_claimed_without_report}
+    - {id: E15, mutant: unreadable_count_becomes_zero}
+    - {id: E16, mutant: day_read_other_than_the_clocks}
+    - {id: E17, mutant: day_summary_writes_while_reading}
+    - {id: E18, mutant: counted_by_instant_range}
+    - {id: E19, mutant: dayless_table_counted}
+    - {id: E20, mutant: projection_or_curriculum_counted_as_truth}
+  survived_at_first: [E20]
+  survivors_note: >-
+    E20 survived because a second guard masked the first: a projection has no study-day column
+    either, so removing the truth-table check still produced an IllegalArgumentException and the
+    test could not tell the two refusals apart. The T2 check now asserts that each refusal names its
+    own rule, which is the same correction 11D made for its parser refusal.
+
+validator_mutation:
+  total: 26
+  detected: 26
+  negative_control: forbidden words named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+
+stage_11_closure:
+  steps: [11A TDYX-v0 / D-087, 11B RNRX-v0 / D-088, 11C SESX-v0 / D-089, 11D DMAX-v0 / D-090, 11E EODX-v0 / D-091]
+  daily_loop_complete_in_code: true
+  daily_loop_runnable_end_to_end_today: false
+  why_not: >-
+    no planner selects work and no content ships, so Today is honestly empty, nothing is startable,
+    and the day summary reads an empty day; every surface of the loop exists and refuses to invent
+    what it was not given
+  next_stage: 12
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - the day summary drawn on a device, including its announcement and text scaling
+  - a day with recorded work in the real app, because nothing can be started there yet
+  - the midnight rollover observed on a device rather than in a JVM test
+
+forbidden_end_of_day_patterns:
+  - day_declared_successful_or_failed
+  - streak_or_consecutive_day_count
+  - completion_percentage_or_ratio
+  - minutes_studied_as_progress
+  - unfinished_work_carried_as_debt
+  - activity_presented_as_learning
+  - change_claimed_without_canonical_change
+  - unreadable_count_presented_as_zero
+  - gap_between_days_rendered_as_missed_obligation
+  - attendance_grid_or_contribution_graph
+  - day_recomputed_from_instant_instead_of_recorded_study_day
+  - second_surface_invented_for_the_day
+
+future_stage_boundaries:
+  12: the engines that report a real change, open need counts, planner-owned plan changes
+  13: assessment, retention and remediation history entries
+  14: final microcopy, offline and AI-unavailable day states
+  16B: longitudinal learning history and the assessment report across days
+  16E: any notification at the end of a day
+  T6: device run
+
+acceptance:
+  - EODX-v0 is the accepted end-of-day projection
+  - presentation states and counting rules equal SPWX-v0, in its order
+  - the day is the learner-local study day a row recorded, never one recomputed from its instant
+  - a new day starts empty and nothing crosses the boundary, least of all a debt
+  - counts are labelled inventory with no ratio, total or percentage, and are not progress
+  - a change is claimed only when a canonical engine reported one
+  - an unreadable count is named, never presented as zero
+  - an empty day is neutral and is never a failure
+  - history shows the days that recorded something and never fills the gaps
+  - the summary renders inside Today's day context; no surface is invented and no grid is drawn
+  - countTruth is a recorded port refinement that writes nothing; the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 11E QA passes and Stage 6-11D regressions pass

@@ -14,10 +14,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import coach.application.DayCloseFacts
 import coach.application.StoreStartup
 import coach.model.StoreStatus
 import coach.model.TodayFacts
 import coach.presentation.AppHealth
+import coach.presentation.DaySummaryInput
 import coach.presentation.Destination
 import coach.presentation.HealthAction
 import coach.presentation.Revalidation
@@ -27,6 +29,7 @@ import coach.presentation.SessionEntrySource
 import coach.presentation.SessionEvent
 import coach.presentation.WorkingSession
 import coach.presentation.WorkingSessions
+import coach.presentation.EndOfDay
 import coach.presentation.ShellState
 import coach.presentation.Surface
 import coach.presentation.TodayPresentation
@@ -45,10 +48,12 @@ class MainActivity : ComponentActivity() {
     private val storeStatus = mutableStateOf<StoreStatus>(StoreStatus.Opening)
     private val opened = mutableStateOf<OpenedApp?>(null)
     private val todayFacts = mutableStateOf<TodayFacts?>(null)
+    private val dayFacts = mutableStateOf<DayCloseFacts.Loaded?>(null)
     private val listener = StoreStartup.Listener<OpenedApp> { status, store ->
         storeStatus.value = status
         opened.value = store
         todayFacts.value = store?.today
+        dayFacts.value = store?.day
     }
 
     private val app: CoachApplication get() = application as CoachApplication
@@ -80,7 +85,7 @@ class MainActivity : ComponentActivity() {
                         },
                     )
                 } else {
-                    Shell(health, current, facts)
+                    Shell(health, current, facts, dayFacts.value)
                 }
             }
         }
@@ -89,7 +94,10 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         // A process kept open past midnight would otherwise keep yesterday's study day.
-        app.refreshToday { todayFacts.value = it }
+        app.refreshToday { today, day ->
+            todayFacts.value = today
+            dayFacts.value = day
+        }
     }
 
     override fun onDestroy() {
@@ -99,7 +107,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
+private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts, day: DayCloseFacts.Loaded?) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
     var runnerEntry by remember { mutableStateOf<Revalidation?>(null) }
@@ -136,6 +144,10 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts) {
                 },
             )
             selected == Destination.TODAY -> TodayScreen(
+                // The day's own record, projected in core: what today recorded, never how it went.
+                daySummary = day?.let {
+                    EndOfDay.of(DaySummaryInput(record = it.record, health = health, unreadKinds = it.unreadKinds))
+                },
                 // Today's own projection: which state applies and which task may be offered is
                 // decided in core, never here (MSBX-v0).
                 view = today,

@@ -214,12 +214,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **11B ✅ Task runner — RNRX-v0 / D-088**
 - **11C ✅ Session state — SESX-v0 / D-089**
 - **11D ✅ Günlük mikro quiz — DMAX-v0 / D-090**
-- **11E 🟡 Gün sonu — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12–20 ⬜
+- **11E ✅ Gün sonu — EODX-v0 / D-091**
+- **AŞAMA 11 ✅ TAMAMLANDI**
+- **12A 🟡 Mastery Engine v1 — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 11E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -374,3 +376,17 @@ Tek interior bütün scope'lara hizmet eder: gönderilen sınır donar, gönderi
 **Mutation koşucusunun Gradle'ı hiç çalıştırmadığı bulundu** (`cmd /c gradlew.bat` çalışma dizininden çözülmüyor). Düzeltildi; 11D 27/27 (üçü testler güçlendirildikten sonra) ve **11C'nin seti dürüstçe yeniden koşuldu: 20/20**. 11C'nin POST betiğinin bıraktığı üç mükerrer `12.15` bölümü de temizlendi. Validator 188/188, kendi mutation testi 27/27. **T6 çalıştırılmadı.**
 
 Canonical: `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` / D-090.
+
+## 12.17 11E Gün sonu — EODX-v0 / D-091
+
+Günün sonunda neyin dürüstçe söylenebileceği kilitlendi ve **AŞAMA 11 kapandı**. Ana invariant: **gün sonu bir hüküm değil, zamanda bir sınırdır.** Gün, öğrencinin çalışma günü değiştiği için kapanır — öğrenci bir şeyi bitirdiği ya da bitiremediği için değil — ve kapanınca kimsenin durumu değişmez.
+
+Kabul edilmiş bir gün-sonu spec'i yoktu; kurallar uydurulmadı, parçaların sahiplerinden türetildi: state'ler ve sayma kuralları `SPWX-v0`, yokluk anlamı `SRR-v0`, günün kendisi `DDM-v0`nin üç değerli zamanı, öncelik `APHX-v0`, tonlar `VDSX-v0`, render bölgesi `THUX-v0`.
+
+**Gün, satırın kaydettiği çalışma günüdür** ve instant'tan yeniden hesaplanmaz — yeniden hesaplamak, yaz saati ya da bir uçuşun işi bir günden diğerine sessizce taşımasının yoludur. Sayım satırın kendi gün kolonuna karşı yapılır; kendi günü olmayan tablo sayılmaz. **Yeni gün boş başlar:** envanter, yarım plan ya da yükümlülük sınırı geçmez ve gün geriye dönmez; günü kapatan bir öğrenci aksiyonu yoktur.
+
+**Söylenebilenler:** yazılanların etiketli envanteri (deneme, görülen soru, kaydedilen durak, değerlendirilen kanıt) — toplam, oran, yüzde ya da hedef yok; yalnız kanonik bir engine bildirdiyse bir değişiklik; okunamayan sayım "okunamadı" olarak. **Söylenemeyenler:** günün başarılı/başarısız olduğu, seri, tamamlanma yüzdesi, "çalışılan dakika", yarına borç, etkinliğin öğrenme sayılması.
+
+Boş gün `empty_no_evidence_yet` ve nötr; günler arası boşluk hiç çizilmez. Özet Today'in gün bağlamında render ediliyor; yeni surface yok, grafik/halka/takvim ızgarası yok. `countTruth` kayıtlı port incelmesi ve hiçbir şey yazmıyor. Mutation 20/20 (E20 ikinci bir korumanın birincisini maskelemesi yüzünden ilk turda kaçtı; T2 kontrolü artık her reddin kendi kuralını adlandırdığını doğruluyor). Validator 128/128, kendi mutation testi 26/26. **T6 çalıştırılmadı.**
+
+Canonical: `docs/END_OF_DAY_SPEC.md` / D-091.

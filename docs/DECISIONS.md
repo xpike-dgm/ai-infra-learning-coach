@@ -1155,3 +1155,26 @@ Ayrıntı: `docs/SESSION_STATE_SPEC.md`.
 - Sonraki numbered step `11E — Gün sonu`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md`.
+
+
+## D-091 — Gün sonu = EODX-v0
+**Durum:** Kabul edildi — 2026-09-21
+
+- 11E final modeli `EODX-v0 — End of Day` oldu ve **AŞAMA 11 kapandı**.
+- Canonical spec `docs/END_OF_DAY_SPEC.md`; machine-readable contract `arch/11e_end_of_day/end_of_day.yaml`; research/decision synthesis `research/11e_end_of_day_research.md`; kod `core-model` (`DayFacts.kt`), `core-presentation` (`EndOfDay.kt`), `core-application` (`DayCloseFacts.kt`), `core-ports` + `data-persistence` (`countTruth`), `app-ui` (`EndOfDayView.kt`, `TodayScreen`), `app-wiring`.
+- Ana invariant: **gün sonu bir hüküm değil, zamanda bir sınırdır.** Gün, öğrencinin çalışma günü değiştiği için kapanır — öğrenci bir şeyi bitirdiği ya da bitiremediği için değil — ve kapanınca öğrencinin durumu hakkında hiçbir şey değişmez. Günü kapatan bir öğrenci aksiyonu yoktur.
+- **Kabul edilmiş bir gün-sonu spec'i yoktu.** Bu, bu tür ürünlerin seri, halka, günlük hedef ve "bugün 42 dakika çalıştın" için uzandığı tek yer olduğu için önemliydi: kurallar uydurulmadı, parçaların sahiplerinden türetildi — state'ler ve sayma kuralları `SPWX-v0`, yokluk `SRR-v0`, gün `DDM-v0`nin üç değerli zamanı, öncelik `APHX-v0`, tonlar `VDSX-v0`, bölge `THUX-v0`, kapalı surface kümesi `NSHX-v0`.
+- **Gün satırın kaydettiği çalışma günüdür.** Sayım satırın kendi `*_study_day` kolonuna karşı yapılır; instant aralığına karşı asla — yeniden hesaplamak, yaz saati değişiminin ya da bir uçuşun işi bir günden diğerine sessizce taşımasının yoludur. Kendi günü olmayan bir tablo (bir başka satırın parçası olanlar) sayılmaz, projection ve curriculum tabloları truth diye sayılamaz.
+- **Yeni gün boş başlar.** Envanter, yarım plan ya da yükümlülük sınırı geçmez; gün geriye dönmez; borç taşıyabilecek bir API yoktur. `SRR-v0` zaten gelinmeyen günün borç olmadığını söylüyor.
+- **Söylenebilenler:** yazılanların etiketli envanteri (`SPWX-v0` §counting_rules) — toplam, oran, yüzde ya da hedef yok ve sayım ilerleme değil; yalnız kanonik bir engine bildirdiyse bir değişiklik (`learning_history` aileleri); okunamayan sayımın "okunamadı" olarak adlandırılması. Evidence pipeline henüz olmadığı için özet "bugün bir değişiklik olmadı" diyor ve etkinlikten iddia üretmiyor.
+- **Söylenemeyenler — alan olmadığı için:** günün başarılı/başarısız olması, seri ya da ardışık gün sayısı, tamamlanma yüzdesi/oranı, "çalışılan dakika", yarına geçen borç, etkinliğin öğrenme sayılması, kimsenin bildirmediği bir değişiklik. Boş gün `empty_no_evidence_yet` ve nötr; günler arası boşluk hiç çizilmez (ızgaradaki boş kare, yokluğun skora dönüşme biçimidir).
+- **Render:** Today'in `day_plan_context` bölgesinde. `NSHX-v0`nin surface kümesi kapalı olduğu için gün sonuna yeni bir destination icat edilmedi; günler arası kalıcı geçmiş 16B'nin. Grafik, halka, bar ya da takvim ızgarası yok; her şey metin.
+- **Port refinement:** `countTruth(kind, studyDay)`; hiçbir şey yazmaz, yeni interface yok, port sayısı dört.
+- **Mutation 20/20.** E20 ilk turda hayatta kaldı: ikinci bir koruma (gün kolonu yok) birincisini (truth tablosu değil) maskeliyordu ve test iki reddi ayırt edemiyordu. T2 kontrolü artık her reddin kendi kuralını adlandırdığını doğruluyor — 11D'nin parser reddi için yaptığı düzeltmenin aynısı.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Cihazda hiçbir şey doğrulanmadı; gece yarısı dönüşü enjekte saatle JVM testinde kanıtlandı. Gerçek uygulamada gün okunabiliyor ve boş okunuyor.
+- Independent 11E QA: **128/128 PASS**; validator'ın kendi mutation testi 26/26 ve yorum-içi negatif kontrol false positive vermedi. Sweep 36/36.
+- **AŞAMA 11 TAMAMLANDI** — `TDYX-v0 / D-087` → `RNRX-v0 / D-088` → `SESX-v0 / D-089` → `DMAX-v0 / D-090` → `EODX-v0 / D-091`. Günlük döngünün her yüzeyi kodda; planner ve içerik olmadığı için uygulama dürüstçe boş duruyor ve hiçbiri kendisine verilmeyeni uydurmuyor.
+- Sonraki numbered step `12A — Mastery Engine v1`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/END_OF_DAY_SPEC.md`.

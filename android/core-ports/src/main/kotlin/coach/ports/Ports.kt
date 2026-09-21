@@ -78,6 +78,15 @@ interface PersistencePort {
 
     /** What the published Objective accepts as evidence; the Objective decides, not the item. */
     fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile?
+
+    /**
+     * How many rows of [kind] were recorded on [studyDay] (11E).
+     *
+     * The day is the learner-local study day each row carries, never a range over instants:
+     * recomputing a row's day from its instant is how a DST change or a flight silently moves work
+     * from one day into another. A truth table with no study day of its own cannot be counted here.
+     */
+    fun countTruth(kind: String, studyDay: String): Int
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */

@@ -147,12 +147,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **11B — Task runner** — `RNRX-v0 / D-088`
 - [x] **11C — Session state** — `SESX-v0 / D-089`
 - [x] **11D — Günlük mikro quiz** — `DMAX-v0 / D-090`
-- [ ] **11E — Gün sonu** **AKTİF**
+- [x] **11E — Gün sonu** — `EODX-v0 / D-091` — **AŞAMA 11 TAMAMLANDI**
 
 ---
 
 # AŞAMA 12 — Mastery ve Adaptif Planner’ı Koda Dök
-- [ ] **12A — Mastery Engine v1**
+- [ ] **12A — Mastery Engine v1** **AKTİF**
 - [ ] **12B — Prerequisite Engine**
 - [ ] **12C — Planner Engine v1**
 - [ ] **12D — Replan**
@@ -246,9 +246,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11D`  
-**Son tamamlanan:** **`11D — DMAX-v0 / D-090`**  
-**Aktif:** **`11E — Gün sonu`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`  
+**Son tamamlanan:** **`11E — EODX-v0 / D-091`** — **AŞAMA 11 kapandı**  
+**Aktif:** **`12A — Mastery Engine v1`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -256,4 +256,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 11D `DMAX-v0` ile bir ölçüm baştan sona dürüst çalışır hâle geldi: yayımlama tek yol ve üzerine yazmaz, güven mağazanındır, kanıt uyumuna Objective karar verir, tek interior bütün scope'lara hizmet eder ve sonuçta puan yoktur. Mutation koşucusunun hiç koşmadığı bulundu; düzeltildi ve 11C'nin seti yeniden koşuldu. T6 çalıştırılmadı.
 
-11E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+11E `EODX-v0` ile gün sonu kilitlendi: hüküm değil zaman sınırı, sayımlar etiketli envanter ve ilerleme değil, değişiklik ancak kanonik engine bildirdiyse, boş gün başarısızlık değil, yarına borç yok. **AŞAMA 11 kapandı**; günlük döngünün her yüzeyi kodda ve planner/içerik olmadığı için uygulama dürüstçe boş duruyor. T6 çalıştırılmadı.
+
+12A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

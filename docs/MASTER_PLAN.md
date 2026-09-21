@@ -716,12 +716,27 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - validator 188/188 ve kendi mutation testi 27/27,
 - **T6 çalıştırılmadı**.
 
-### [ ] 11E — Gün sonu — **AKTİF**
+### [x] 11E — Gün sonu — EODX-v0 / D-091
+
+**11E final coverage:**
+- gün sonu bir hüküm değil, zamanda bir sınır; gün çalışma günü değiştiği için kapanır,
+- kabul edilmiş gün-sonu spec'i yoktu; her kural bir sahipten türetildi,
+- gün satırın kaydettiği çalışma günüdür; sayım o kolona karşı yapılır, instant aralığına karşı değil,
+- yeni gün boş başlar ve sınırı hiçbir şey geçmez; borç taşıyacak bir API yok,
+- sayımlar etiketli envanter; toplam/oran/yüzde/hedef yok; sayım ilerleme değil,
+- değişiklik ancak kanonik bir engine bildirdiyse; aksi hâlde 'değişen yok' açıkça söylenir,
+- okunamayan sayım adlandırılır; boş gün nötrdür; günler arası boşluk çizilmez,
+- Today'in gün bağlamında render edilir; yeni surface/grafik/ızgara yok,
+- mutation 20/20, validator 128/128 ve kendi mutation testi 26/26,
+- **T6 çalıştırılmadı**.
+
+**AŞAMA 11 TAMAMLANDI** — TDYX-v0 → RNRX-v0 → SESX-v0 → DMAX-v0 → EODX-v0.
+
 
 ---
 
 # AŞAMA 12 — Mastery + Planner Implementasyonu
-### [ ] 12A — Mastery Engine v1
+### [ ] 12A — Mastery Engine v1 — **AKTİF**
 ### [ ] 12B — Prerequisite Engine
 ### [ ] 12C — Planner Engine v1
 ### [ ] 12D — Replan
@@ -835,8 +850,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11D`  
-**Son tamamlanan:** **`11D — DMAX-v0 / D-090`**  
-**Aktif:** **`11E — Gün sonu`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`  
+**Son tamamlanan:** **`11E — EODX-v0 / D-091`** — **AŞAMA 11 kapandı**  
+**Aktif:** **`12A — Mastery Engine v1`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **11E fresh PRE-STEP → gün sonunun dürüstçe söyleyebilecekleri → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12A fresh PRE-STEP → `GRE-v0`'ın kodda karşılığı ve evidence pipeline'ın ilk parçası → independent QA → D-050 POST sync + stale audit.**

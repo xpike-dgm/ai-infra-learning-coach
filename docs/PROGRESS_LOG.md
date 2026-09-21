@@ -981,3 +981,21 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `11D ✅ / 11E active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `11E — Gün sonu`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+
+## 2026-09-21 — 11E Gün sonu tamamlandı — EODX-v0 / D-091 — AŞAMA 11 kapandı
+
+- 11D main'de (d0bfe2d); fresh 11E PRE yapıldı ve beş kanonik kaynak `11D ✅ / 11E active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et").
+- **Kabul edilmiş bir gün-sonu spec'i yoktu.** Kurallar uydurulmadı; `SPWX-v0`, `SRR-v0`, `DDM-v0`, `APHX-v0`, `VDSX-v0`, `THUX-v0` ve `NSHX-v0`den türetildi.
+- **Gün satırın kaydettiği çalışma günüdür**; sayım o kolona karşı yapılıyor, instant aralığına karşı değil. T2 kontrolü instant'ı ve çalışma gününü kasten çelişen satırlarla bunu kanıtlıyor.
+- **Yeni gün boş başlar**; borç taşıyacak bir API yok.
+- **Sayımlar etiketli envanter**; toplam/oran/yüzde/hedef alanı yok. Değişiklik ancak kanonik bir engine bildirdiyse; bugün hiçbiri yok, bu yüzden "değişen yok" deniyor.
+- **Okunamayan sayım sıfır değildir**; adlandırılıyor ve state `partial_projection_available` oluyor.
+- Özet Today'in gün bağlamında; yeni surface, grafik ya da ızgara yok. `countTruth` port incelmesi hiçbir şey yazmıyor.
+- Mutation 20/20 — E20 ilk turda kaçtı çünkü ikinci bir koruma birincisini maskeliyordu; T2 kontrolü artık reddin kendi kuralını adlandırdığını doğruluyor.
+- Validator 128/128, kendi mutation testi 26/26, sweep 36/36.
+- **T6 çalıştırılmadı.**
+- **AŞAMA 11 TAMAMLANDI**: Today, Task Runner, session state, günlük mikro quiz ve gün sonu kodda; planner ve içerik olmadığı için uygulama dürüstçe boş duruyor.
+- D-050 POST living-memory accepted state'i `11E ✅ / AŞAMA 11 kapandı / 12A active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12A — Mastery Engine v1`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
