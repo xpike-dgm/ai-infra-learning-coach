@@ -6,8 +6,10 @@ import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
 import coach.model.LifecycleStatus
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
+import coach.model.SkillRow
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
 
@@ -177,6 +179,53 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
             requiredDirectType = statement.textOrNull(2),
         )
     }
+
+    /** One published Skill version (12B), or `null` if this version was never published. */
+    fun skill(ref: VersionedRef): SkillRow? = queryOne(
+        "SELECT canonical_name, capability_statement, lifecycle_status, capability_kind, retention_profile, " +
+            "critical_prerequisite, source_refs, provenance FROM skill WHERE logical_id = ? AND version = ?",
+        ref.logicalId, ref.version,
+    ) { statement ->
+        SkillRow(
+            ref = ref,
+            canonicalName = statement.getText(0),
+            capabilityStatement = statement.getText(1),
+            lifecycleStatus = statement.getText(2),
+            capabilityKind = statement.getText(3),
+            retentionProfile = statement.getText(4),
+            criticalPrerequisite = statement.getLong(5) == 1L,
+            sourceRefs = statement.getText(6),
+            provenance = statement.getText(7),
+        )
+    }
+
+    /**
+     * Every version of every edge into one pinned target (12B), in every lifecycle, in a stable
+     * order. Nothing is filtered here: which edges gate is the prerequisite engine's decision.
+     */
+    fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> =
+        connection.prepare(
+            "SELECT prerequisite_skill_logical_id, prerequisite_skill_version, edge_version, edge_kind, " +
+                "reason_kind, strictness_profile, lifecycle_status, provenance FROM skill_prerequisite_edge " +
+                "WHERE target_skill_logical_id = ? AND target_skill_version = ? " +
+                "ORDER BY prerequisite_skill_logical_id, prerequisite_skill_version, edge_version",
+        ).use { statement ->
+            bind(statement, arrayOf<Any?>(target.logicalId, target.version))
+            val edges = mutableListOf<PrerequisiteEdge>()
+            while (statement.step()) {
+                edges += PrerequisiteEdge(
+                    prerequisite = VersionedRef(statement.getText(0), statement.getLong(1).toInt()),
+                    target = target,
+                    edgeVersion = statement.getLong(2).toInt(),
+                    edgeKind = statement.getText(3),
+                    reasonKind = statement.getText(4),
+                    strictnessProfile = statement.getText(5),
+                    lifecycleStatus = statement.getText(6),
+                    provenance = statement.getText(7),
+                )
+            }
+            edges
+        }
 
     // ---------------------------------------------------------------- refusals
 

@@ -1,0 +1,622 @@
+model: PRQX-v0
+stage_step: 12B
+decision: D-093
+result: PASS
+checks_total: 184
+checks_passed: 184
+checks_failed: 0
+checks:
+- check: E12B-00_exists_PrerequisiteEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/PrerequisiteEngine.kt
+- check: E12B-00_exists_PrerequisiteFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PrerequisiteFacts.kt
+- check: E12B-00_exists_ResolvePrerequisites.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/ResolvePrerequisites.kt
+- check: E12B-00_exists_PrerequisiteFactsTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/PrerequisiteFactsTest.kt
+- check: E12B-00_exists_PrerequisiteEngineTest.kt
+  result: PASS
+  details: missing android/core-engines/src/test/kotlin/coach/engines/PrerequisiteEngineTest.kt
+- check: E12B-00_exists_ResolvePrerequisitesTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/ResolvePrerequisitesTest.kt
+- check: E12B-00_exists_PrerequisiteStorageTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/PrerequisiteStorageTest.kt
+- check: E12B-00_exists_PREREQUISITE_ENGINE_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/PREREQUISITE_ENGINE_IMPL_SPEC.md
+- check: E12B-00_exists_12b_prerequisite_engine_research.md
+  result: PASS
+  details: missing research/12b_prerequisite_engine_research.md
+- check: E12B-01_model
+  result: PASS
+  details: PRQX-v0
+- check: E12B-01_status
+  result: PASS
+  details: accepted_12b
+- check: E12B-01_decision
+  result: PASS
+  details: D-093
+- check: E12B-01_scope_planner_implemented
+  result: PASS
+  details: planner_implemented=False
+- check: E12B-01_scope_replan_implemented
+  result: PASS
+  details: replan_implemented=False
+- check: E12B-01_scope_reason_text_implemented
+  result: PASS
+  details: reason_text_implemented=False
+- check: E12B-01_scope_retention_engine_implemented
+  result: PASS
+  details: retention_engine_implemented=False
+- check: E12B-01_scope_weakness_engine_implemented
+  result: PASS
+  details: weakness_engine_implemented=False
+- check: E12B-01_scope_topic_state_implemented
+  result: PASS
+  details: topic_state_implemented=False
+- check: E12B-01_scope_skill_state_axis_written
+  result: PASS
+  details: skill_state_axis_written=False
+- check: E12B-01_scope_presentation_state_derived
+  result: PASS
+  details: presentation_state_derived=False
+- check: E12B-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12B-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12B-01_scope_index_added
+  result: PASS
+  details: index_added=False
+- check: E12B-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E12B-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12B-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E12B-01_no_readiness_score_claim
+  result: PASS
+  details: readiness_score_claim was claimed
+- check: E12B-01_no_priority_input_claim
+  result: PASS
+  details: priority_input_claim was claimed
+- check: E12B-02_readiness_read_from_prg
+  result: PASS
+  details: prg=['ready', 'ready_due', 'uncertain', 'not_ready']
+- check: E12B-02_readiness_equals_prg
+  result: PASS
+  details: kotlin=['ready', 'ready_due', 'uncertain', 'not_ready']
+- check: E12B-02_readiness_equals_contract
+  result: PASS
+  details: contract=['ready', 'ready_due', 'uncertain', 'not_ready']
+- check: E12B-02_eligibility_read_from_prg
+  result: PASS
+  details: prg=['eligible', 'conditional_eligible', 'eligible_with_support', 'blocked',
+    'invalid_prerequisite_metadata']
+- check: E12B-02_eligibility_equals_prg
+  result: PASS
+  details: kotlin=['eligible', 'conditional_eligible', 'eligible_with_support', 'blocked',
+    'invalid_prerequisite_metadata']
+- check: E12B-02_decision_field_candidate_id
+  result: PASS
+  details: missing candidateId in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_field_eligibility
+  result: PASS
+  details: missing eligibility in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_field_hard_blocker_skill_ids
+  result: PASS
+  details: missing hardBlockerSkills in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_field_uncertain_skill_ids
+  result: PASS
+  details: missing uncertainSkills in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_field_soft_gap_skill_ids
+  result: PASS
+  details: missing softGapSkills in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_field_readiness_snapshot_refs
+  result: PASS
+  details: missing readinessSnapshotRefs in ['candidateId', 'target', 'eligibility',
+    'hardBlockerSkills', 'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems',
+    'readinessSnapshotRefs', 'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion',
+    'reasonInputs', 'notes']
+- check: E12B-02_decision_field_requires_strict_prerequisite_confidence
+  result: PASS
+  details: missing requiresStrictPrerequisiteConfidence in ['candidateId', 'target',
+    'eligibility', 'hardBlockerSkills', 'uncertainSkills', 'softGapSkills', 'reviewDueSkills',
+    'metadataProblems', 'readinessSnapshotRefs', 'requiresStrictPrerequisiteConfidence',
+    'prerequisitePolicyVersion', 'reasonInputs', 'notes']
+- check: E12B-02_decision_field_prerequisite_policy_version
+  result: PASS
+  details: missing prerequisitePolicyVersion in ['candidateId', 'target', 'eligibility',
+    'hardBlockerSkills', 'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems',
+    'readinessSnapshotRefs', 'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion',
+    'reasonInputs', 'notes']
+- check: E12B-02_decision_field_reason_inputs
+  result: PASS
+  details: missing reasonInputs in ['candidateId', 'target', 'eligibility', 'hardBlockerSkills',
+    'uncertainSkills', 'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_decision_has_no_verdict_field
+  result: PASS
+  details: fields=['candidateId', 'target', 'eligibility', 'hardBlockerSkills', 'uncertainSkills',
+    'softGapSkills', 'reviewDueSkills', 'metadataProblems', 'readinessSnapshotRefs',
+    'requiresStrictPrerequisiteConfidence', 'prerequisitePolicyVersion', 'reasonInputs',
+    'notes']
+- check: E12B-02_readiness_has_no_number
+  result: PASS
+  details: fields=['skill', 'readiness', 'remediationRequired', 'notes', 'snapshotRef']
+- check: E12B-03_reasons_read_from_prg
+  result: PASS
+  details: prg=['blocked_missing_hard_prerequisite', 'blocked_critical_prerequisite_verification_due',
+    'blocked_prerequisite_remediation_required', 'eligible_prerequisite_review_due_not_blocking',
+    'eligible_with_soft_prerequisite_gap', 'conditional_prerequisite_uncertain', 'independent_branch_available',
+    'prerequisite_repaired_replan', 'invalid_due_to_prerequisite_contamination']
+- check: E12B-03_reasons_are_prg_names
+  result: PASS
+  details: 'not in PRG: []'
+- check: E12B-03_every_prg_reason_has_an_owner
+  result: PASS
+  details: unowned=[]
+- check: E12B-03_produced_here_is_the_kotlin_set
+  result: PASS
+  details: kotlin=['blocked_missing_hard_prerequisite', 'blocked_critical_prerequisite_verification_due',
+    'blocked_prerequisite_remediation_required', 'eligible_prerequisite_review_due_not_blocking',
+    'eligible_with_soft_prerequisite_gap', 'conditional_prerequisite_uncertain']
+- check: E12B-04_retention_read_from_rvr
+  result: PASS
+  details: rvr=['untracked', 'fresh', 'stable', 'review_due', 'verification_due',
+    'at_risk']
+- check: E12B-04_retention_is_rvr_plus_unevaluated
+  result: PASS
+  details: kotlin=['untracked', 'fresh', 'stable', 'review_due', 'verification_due',
+    'at_risk', 'not_yet_evaluated']
+- check: E12B-04_unknown_retention_not_guessed
+  result: PASS
+  details: an unknown retention value is guessed
+- check: E12B-05_lifecycle_read_from_kgc
+  result: PASS
+  details: kgc=['draft', 'published', 'deprecated', 'retired', 'invalidated']
+- check: E12B-05_in_force_lifecycles
+  result: PASS
+  details: kotlin=['published', 'deprecated']
+- check: E12B-05_requirements_body_read
+  result: PASS
+  details: the requirements reader returned nothing
+- check: E12B-05_lifecycle_retired_handled
+  result: PASS
+  details: retired edges are not handled as KGC-v0 says
+- check: E12B-05_lifecycle_invalidated_handled
+  result: PASS
+  details: invalidated edges are not handled as KGC-v0 says
+- check: E12B-05_lifecycle_draft_handled
+  result: PASS
+  details: draft edges are not handled as KGC-v0 says
+- check: E12B-05_lifecycle_unknown_handled
+  result: PASS
+  details: unknown edges are not handled as KGC-v0 says
+- check: E12B-05_retired_constant
+  result: PASS
+  details: the retired lifecycle is not the KGC value
+- check: E12B-05_newest_edge_version
+  result: PASS
+  details: the newest edge version is not the one in force
+- check: E12B-05_metadata_problem_vocabulary
+  result: PASS
+  details: kotlin=['unpublished_target', 'unpublished_required_skill', 'self_requirement',
+    'prerequisite_cycle', 'edge_not_published', 'edge_invalidated', 'unknown_edge_lifecycle',
+    'unknown_strictness_profile']
+- check: E12B-06_one_strictness_profile_in_the_graph
+  result: PASS
+  details: profiles={'default_prg_v0'}
+- check: E12B-06_engine_accepts_only_that_profile
+  result: PASS
+  details: another strictness profile could be accepted
+- check: E12B-06_draft_finding_is_true
+  result: PASS
+  details: lifecycles={'draft'} edges=950 hard=851
+- check: E12B-06_draft_is_reported_not_dropped
+  result: PASS
+  details: reported_as_edge_not_published
+- check: E12B-07_readiness_body_read
+  result: PASS
+  details: the readiness reader returned nothing
+- check: E12B-07_readiness_precedence
+  result: PASS
+  details: positions=[35, 112, 206]
+- check: E12B-07_review_due_is_ready_due
+  result: PASS
+  details: missing RetentionAxis.REVIEW_DUE -> PrerequisiteReadiness.READY_DUE
+- check: E12B-07_verification_or_at_risk_uncertain
+  result: PASS
+  details: missing RetentionAxis.VERIFICATION_DUE, RetentionAxis.AT_RISK -> PrerequisiteReadiness.UNCERTAIN
+- check: E12B-07_unevaluated_is_ready
+  result: PASS
+  details: missing RetentionAxis.UNTRACKED, RetentionAxis.NOT_YET_EVALUATED -> PrerequisiteReadiness.READY
+- check: E12B-07_review_due_never_not_ready
+  result: PASS
+  details: review_due is made to block
+- check: E12B-07_names_mastery_not_yet_evaluated
+  result: PASS
+  details: MASTERY_NOT_YET_EVALUATED is never named
+- check: E12B-07_names_retention_not_yet_evaluated
+  result: PASS
+  details: RETENTION_NOT_YET_EVALUATED is never named
+- check: E12B-07_names_remediation_not_yet_evaluated
+  result: PASS
+  details: REMEDIATION_NOT_YET_EVALUATED is never named
+- check: E12B-08_decide_body_read
+  result: PASS
+  details: the decide reader returned nothing
+- check: E12B-08_no_priority_input
+  result: PASS
+  details: params=['candidate', 'requirements', 'readiness', 'criticalPrerequisite']
+- check: E12B-08_fails_closed
+  result: PASS
+  details: a missing readiness does not fail closed
+- check: E12B-08_strict_is_critical_or_requested
+  result: PASS
+  details: strictness is not the source's critical flag or the candidate's request
+- check: E12B-08_hard_wins
+  result: PASS
+  details: a Skill needed both ways is not needed hard
+- check: E12B-08_soft_branch_found
+  result: PASS
+  details: the soft branch could not be read
+- check: E12B-08_soft_gap_never_blocks
+  result: PASS
+  details: a soft requirement can block
+- check: E12B-08_eligibility_precedence
+  result: PASS
+  details: positions=[37, 141, 233, 305, 388]
+- check: E12B-08_deterministic_order
+  result: PASS
+  details: the decision depends on the order its inputs arrive in
+- check: E12B-08_task_requirement_hard
+  result: PASS
+  details: a task requirement is not hard
+- check: E12B-08_matrix_in_contract
+  result: PASS
+  details: the contract's matrix is not PRG-v0 §4/§5
+- check: E12B-08_only_blocked_or_invalid_waits
+  result: PASS
+  details: this == BLOCKED || this == INVALID_PREREQUISITE_METADATA
+- check: E12B-09_cycle_body_read
+  result: PASS
+  details: the cycle reader returned nothing
+- check: E12B-09_cycle_detected
+  result: PASS
+  details: a cycle is never reported
+- check: E12B-09_cycle_walk_bounded
+  result: PASS
+  details: the walk can read a Skill twice
+- check: E12B-09_cycle_follows_edges_in_force
+  result: PASS
+  details: a retired edge can close a cycle
+- check: E12B-10_waiting_candidate_is_contaminated
+  result: PASS
+  details: work on a candidate that should have waited is not marked contaminated
+- check: E12B-10_value_is_cores
+  result: PASS
+  details: the adapter owns its own contamination value
+- check: E12B-10_adapter_reads_it
+  result: PASS
+  details: the adapter no longer reads the snapshot back as contamination
+- check: E12B-11_app_bodies_read
+  result: PASS
+  details: the application reader returned nothing
+- check: E12B-11_resolving_writes_nothing
+  result: PASS
+  details: asking the gate writes
+- check: E12B-11_rebuild_writes_no_truth
+  result: PASS
+  details: the rebuild writes truth
+- check: E12B-11_rebuild_writes_only_its_family
+  result: PASS
+  details: the rebuild writes a family it does not own
+- check: E12B-11_watermark_from_input
+  result: PASS
+  details: the readiness row claims more truth than its input saw
+- check: E12B-11_no_unpinned_projection
+  result: PASS
+  details: a readiness row can be written with nothing published
+- check: E12B-11_provenance_complete
+  result: PASS
+  details: a projection is written without full provenance
+- check: E12B-11_policy_is_prg
+  result: PASS
+  details: the projection is not stamped with PRG-v0
+- check: E12B-11_inputs_body_read
+  result: PASS
+  details: the inputs reader returned nothing
+- check: E12B-11_reads_the_three_axes
+  result: PASS
+  details: an axis PRG-v0 reads is not read
+- check: E12B-11_remediation_only_when_said
+  result: PASS
+  details: remediation is read from something other than the weakness axis saying
+    so
+- check: E12B-11_critical_from_the_store
+  result: PASS
+  details: the critical flag is not read from the published Skill
+- check: E12B-11_cycle_reported
+  result: PASS
+  details: a cycle through the target is not reported
+- check: E12B-11_msbx_ownership
+  result: PASS
+  details: the family PRG-v0 owns is not the one written
+- check: E12B-11_msbx_reads
+  result: PASS
+  details: may_read=['mastery', 'retention', 'curriculum']
+- check: E12B-12_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12B-12_refinement_skill
+  result: PASS
+  details: missing skill
+- check: E12B-12_refinement_prerequisiteEdgesInto
+  result: PASS
+  details: missing prerequisiteEdgesInto
+- check: E12B-12_edges_body_read
+  result: PASS
+  details: the edge reader returned nothing
+- check: E12B-12_edges_version_pinned
+  result: PASS
+  details: edges are read without the target's version pin
+- check: E12B-12_edges_unfiltered
+  result: PASS
+  details: the store filters edges the engine should see
+- check: E12B-12_edges_stable_order
+  result: PASS
+  details: the edge read has no stable order
+- check: E12B-12_edges_read_only
+  result: PASS
+  details: edges read writes
+- check: E12B-12_skill_read_only
+  result: PASS
+  details: skill read writes
+- check: E12B-12_critical_flag_read
+  result: PASS
+  details: the critical flag is misread
+- check: E12B-12_adapter_delegates
+  result: PASS
+  details: the adapter does not delegate to the store
+- check: E12B-12_schema_version_unchanged
+  result: PASS
+  details: the schema version moved
+- check: E12B-12_no_index_on_edges
+  result: PASS
+  details: an index was added
+- check: E12B-12_no_score_column
+  result: PASS
+  details: a readiness number was stored
+- check: E12B-13_facts_test_readiness has exactly the four values PRG-
+  result: PASS
+  details: 'missing test: readiness has exactly the four values PRG-v0 names'
+- check: E12B-13_facts_test_eligibility has exactly the five values PR
+  result: PASS
+  details: 'missing test: eligibility has exactly the five values PRG-v0 names'
+- check: E12B-13_facts_test_work on a candidate that should have waite
+  result: PASS
+  details: 'missing test: work on a candidate that should have waited is recorded
+    as contaminated evidence'
+- check: E12B-13_facts_test_a decision has no priority, score or failu
+  result: PASS
+  details: 'missing test: a decision has no priority, score or failure field'
+- check: E12B-13_engine_test_readiness has four values and review_due i
+  result: PASS
+  details: 'missing test: readiness has four values and review_due is not not_ready'
+- check: E12B-13_engine_test_a missing hard prerequisite blocks only th
+  result: PASS
+  details: 'missing test: a missing hard prerequisite blocks only the work that depends
+    on it'
+- check: E12B-13_engine_test_a critical prerequisite that is only revie
+  result: PASS
+  details: 'missing test: a critical prerequisite that is only review_due does not
+    block'
+- check: 'E12B-13_engine_test_a critical prerequisite with verification '
+  result: PASS
+  details: 'missing test: a critical prerequisite with verification due blocks new
+    dependent work'
+- check: E12B-13_engine_test_a normal hard prerequisite with verificati
+  result: PASS
+  details: 'missing test: a normal hard prerequisite with verification due is conditionally
+    eligible, not blocked'
+- check: E12B-13_engine_test_a soft gap never blocks
+  result: PASS
+  details: 'missing test: a soft gap never blocks'
+- check: 'E12B-13_engine_test_a task-level requirement blocks even when '
+  result: PASS
+  details: 'missing test: a task-level requirement blocks even when the graph does
+    not mention it'
+- check: E12B-13_engine_test_English is never a hidden prerequisite
+  result: PASS
+  details: 'missing test: English is never a hidden prerequisite'
+- check: E12B-13_engine_test_a completed remediation without new eviden
+  result: PASS
+  details: 'missing test: a completed remediation without new evidence does not unblock'
+- check: E12B-13_engine_test_a draft edge is reported, never silently d
+  result: PASS
+  details: 'missing test: a draft edge is reported, never silently dropped'
+- check: 'E12B-13_engine_test_a cycle is found, and the walk is bounded '
+  result: PASS
+  details: 'missing test: a cycle is found, and the walk is bounded by the graph'
+- check: E12B-13_engine_test_the same inputs always give the same decis
+  result: PASS
+  details: 'missing test: the same inputs always give the same decision, whatever
+    order they arrive in'
+- check: E12B-13_engine_test_a missing readiness fails closed
+  result: PASS
+  details: 'missing test: a missing readiness fails closed'
+- check: E12B-13_engine_test_an axis nobody has evaluated yet is named,
+  result: PASS
+  details: 'missing test: an axis nobody has evaluated yet is named, never read as
+    bad news'
+- check: E12B-13_app_test_readiness is read from the axes their engi
+  result: PASS
+  details: 'missing test: readiness is read from the axes their engines wrote'
+- check: E12B-13_app_test_a target on a cycle is invalid metadata
+  result: PASS
+  details: 'missing test: a target on a cycle is invalid metadata'
+- check: E12B-13_app_test_resolving writes nothing at all
+  result: PASS
+  details: 'missing test: resolving writes nothing at all'
+- check: E12B-13_app_test_it writes only prerequisite_readiness, wit
+  result: PASS
+  details: 'missing test: it writes only prerequisite_readiness, with the provenance
+    of what it read'
+- check: E12B-13_app_test_with nothing published nothing is written
+  result: PASS
+  details: 'missing test: with nothing published nothing is written'
+- check: E12B-13_app_test_rebuilding twice from the same state write
+  result: PASS
+  details: 'missing test: rebuilding twice from the same state writes the same row'
+- check: E12B-13_t2_test_edges into a target come back in every lif
+  result: PASS
+  details: 'missing T2 test: edges into a target come back in every lifecycle and
+    version, in a stable order'
+- check: E12B-13_t2_test_an edge into another version of the target
+  result: PASS
+  details: 'missing T2 test: an edge into another version of the target is not returned'
+- check: E12B-13_t2_test_reading the graph writes nothing
+  result: PASS
+  details: 'missing T2 test: reading the graph writes nothing'
+- check: 'E12B-13_t2_test_an attempt made on a blocked candidate is '
+  result: PASS
+  details: 'missing T2 test: an attempt made on a blocked candidate is read back as
+    contaminated'
+- check: E12B-14_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12B-14_mutation_all_detected
+  result: PASS
+  details: '{''total'': 44, ''detected'': 44}'
+- check: E12B-14_mutation_ran_gradle
+  result: PASS
+  details: the mutation harness was not verified to have run anything
+- check: E12B-14_mutation_negative_control
+  result: PASS
+  details: the harness was never shown able to report a survivor
+- check: E12B-14_validator_mutation
+  result: PASS
+  details: '{''total'': 42, ''detected'': 42, ''negative_control'': ''forbidden words
+    written only inside comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''missed_at_first'': [{''id'': ''V41'', ''why'': ''the
+    cycle check only asked whether onCycle was called and PREREQUISITE_CYCLE was named,
+    so a mutant that computed the cycle and then dropped it still passed; the check
+    now asserts that the cycle reaches the problems the decision is made from''}],
+    ''reader_guard'': ''every body the validator reads is itself checked to be non-empty,
+    so the empty-string reader defect 11D and 12A each found would now be a FAIL rather
+    than a silent PASS''}'
+- check: E12B-14_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12B-14_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E12B-14_not_reachable_in_app
+  result: PASS
+  details: the contract claims the gate is reachable in the app
+- check: E12B-14_boundary_12C
+  result: PASS
+  details: missing 12C
+- check: E12B-14_boundary_12D
+  result: PASS
+  details: missing 12D
+- check: E12B-14_boundary_12E
+  result: PASS
+  details: missing 12E
+- check: E12B-14_boundary_13
+  result: PASS
+  details: missing 13
+- check: E12B-14_boundary_15
+  result: PASS
+  details: missing 15
+- check: E12B-15_forbidden_review_due_made_not_ready
+  result: PASS
+  details: missing=review_due_made_not_ready
+- check: E12B-15_forbidden_soft_gap_hard_locking_a_task
+  result: PASS
+  details: missing=soft_gap_hard_locking_a_task
+- check: E12B-15_forbidden_priority_bypassing_the_gate
+  result: PASS
+  details: missing=priority_bypassing_the_gate
+- check: E12B-15_forbidden_untaught_prerequisite_failure_written_ag
+  result: PASS
+  details: missing=untaught_prerequisite_failure_written_against_the_target
+- check: E12B-15_forbidden_english_as_a_hidden_technical_prerequisi
+  result: PASS
+  details: missing=english_as_a_hidden_technical_prerequisite
+- check: E12B-15_forbidden_remediation_completion_counted_as_readin
+  result: PASS
+  details: missing=remediation_completion_counted_as_readiness
+- check: E12B-15_forbidden_blocked_need_recorded_as_failed
+  result: PASS
+  details: missing=blocked_need_recorded_as_failed
+- check: E12B-15_forbidden_draft_edge_silently_dropped
+  result: PASS
+  details: missing=draft_edge_silently_dropped
+- check: E12B-15_forbidden_readiness_as_a_number
+  result: PASS
+  details: missing=readiness_as_a_number
+- check: E12B-16_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 12B QA PASS'''
+- check: E12B-16_spec_**Decision:** `D-093`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-093`'''
+- check: 'E12B-16_spec_only the work that really '
+  result: PASS
+  details: 'spec: ''only the work that really depends on it'''
+- check: E12B-16_spec_T6
+  result: PASS
+  details: 'spec: ''T6'''
+- check: E12B-16_spec_draft
+  result: PASS
+  details: 'spec: ''draft'''
+- check: E12B-16_spec_MUTATION
+  result: PASS
+  details: 'spec: ''MUTATION'''
+- check: E12B-17_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12B-17_research_PRG-v0
+  result: PASS
+  details: missing='PRG-v0'
+- check: E12B-17_research_draft
+  result: PASS
+  details: missing='draft'
+- check: E12B-17_research_one watermark
+  result: PASS
+  details: missing='one watermark'
+- check: E12B-18_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E12B-18_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+failures: []

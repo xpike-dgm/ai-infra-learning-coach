@@ -31,6 +31,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import coach.model.PrerequisiteEdge
 
 /**
  * Ingesting authored curriculum and offering one daily micro item. The storage guarantees — one
@@ -128,6 +129,8 @@ class DailyMicroAssessmentTest {
         override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
         override fun truthWatermark(): Long = 0
         override fun latestCurriculumVersion(): Int? = null
+        override fun skill(ref: VersionedRef): SkillRow? = null
+        override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
     }
 
     private fun storeWithItem(

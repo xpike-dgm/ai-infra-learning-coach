@@ -1202,3 +1202,24 @@ Ayrıntı: `docs/END_OF_DAY_SPEC.md`.
 - Sonraki numbered step `12B — Prerequisite Engine`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/MASTERY_ENGINE_IMPL_SPEC.md`.
+
+## D-093 — Prerequisite Engine = PRQX-v0
+**Durum:** Kabul edildi — 2026-09-27
+
+- 12B final modeli `PRQX-v0 — Prerequisite Engine` oldu.
+- Canonical spec `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`; machine-readable contract `arch/12b_prerequisite_engine/prerequisite_engine.yaml`; research/decision synthesis `research/12b_prerequisite_engine_research.md`; kod `core-engines` (`PrerequisiteEngine.kt`), `core-model` (`PrerequisiteFacts.kt`), `core-application` (`ResolvePrerequisites.kt`), `core-ports` + `data-persistence` (`skill`, `prerequisiteEdgesInto`).
+- Ana invariant: **bir eksik prerequisite yalnız gerçekten ona bağlı işi bekletir.** `review_due` unutma değildir ve bloklamaz; soft eksik hiçbir şeyi kilitlemez; priority kapıyı aşamaz; bekleyen aday başarısız bir ihtiyaç değildir.
+- **Kod yazmadan önce bulunanlar:** (1) Authored 950 kenarın hepsi `draft` (851'i hard) ve `KGC-v0` §27 draft'a runtime seçimi vermiyor; "draft'ı yok say" okuması içerik sevk edildiği anda her hard prerequisite'i sessizce düşürürdü. (2) Graph'ta tek strictness profili var: `default_prg_v0`. (3) `contamination_risk_if_missing` authored ama DDM'de kolonu yok. (4) Retention ve weakness motorları (13) henüz yazmadı. (5) `skill_state` dört motorun eksenini tek watermark altında taşıyor; her motor kendi eksenini kendi watermark'ıyla yazsaydı başka motorun bayat ekseni güncel görünürdü. (6) `prerequisite_readiness` (Skill'in prerequisite olarak değeri) ile `prerequisite_axis_state` (Skill'in kendi prerequisite'lerinin çözülüp çözülmediği) farklı sorular. (7) `contaminated` değeri adaptördeydi.
+- **Readiness (§3):** dört değer, sayı değil. Açık remediation `not_ready`; çelişen mastery `uncertain`; doğrulanmamış mastery `not_ready`; doğrulanmış mastery `review_due` ile `ready_due`, `verification_due`/`at_risk` ile `uncertain`, aksi hâlde `ready`. **Değerlendirilmemiş eksen adlandırılır ve kötü haber sayılmaz**; eksik mastery istisnadır çünkü §3 onu açıkça `not_ready` sayar. Kapanan remediation yeni kanıt olmadan kilidi açmaz.
+- **Eligibility (§4, §5):** normal hard + `uncertain` koşullu uygundur; kritik kaynak ya da adayın strict isteğiyle bekler; soft eksik asla bloklamaz; task'in kendi gereksinimi hard'dır ve iki yoldan istenen Skill hard sayılır; eksik readiness kapıyı kapalı tutar; karar sıradan bağımsızdır. Priority girdisi ve başarısızlık alanı yoktur.
+- **Graph (`KGC-v0` §12, §27):** `published` ve `deprecated` yürürlükte; `retired` artık kapı değil; `draft` `edge_not_published`, `invalidated` `edge_invalidated`, bilinmeyen lifecycle ayrıca adlandırılır — hiçbiri düşürülmez, hiçbiri sessizce uygulanmaz. En yeni `edge_version` yürürlüktedir. `default_prg_v0` dışındaki strictness profili tahmin değil metadata sorunudur. Döngü `prerequisite_cycle`; yürüyüş her Skill'i bir kez okur. Readiness geçişli hesaplanmaz: bir Skill'in readiness'i kendi doğrulanmış mastery'sidir.
+- **Contamination (§13):** bekleyen aday üzerindeki deneme `contaminated` snapshot'ı yazar ve mastery motoru onu `prerequisite_contaminated` olarak dışlar; değer artık `core-model`in ve adaptör onu okuyor.
+- **Projeksiyon:** yalnız `PRG-v0`ın sahibi olduğu `prerequisite_readiness` yazılır; watermark mastery satırınınkidir, yoksa `0`; yayımlanmış curriculum yoksa hiçbir şey yazılmaz. `skill_state`in prerequisite ekseni ve primary presentation state tek watermark okumasıyla 12D'de birleştirilecek; bulgu 12A'nın taşımasına da uygulanır.
+- **Mutation 44/44.** Harness'in bir hayatta kalanı raporlayabildiği yorum-içi bir no-op mutantla gösterildi.
+- **Living memory hijyeni:** 12A senkronunun `MASTER_PLAN`a iki kez yazdığı 12B başlığı, `MASTER_PLAN`da tamamlanmış 9D–9F ve 10A–10E adımlarını hâlâ işaretsiz gösteren eski iskelet başlıkları ve `STEP_STATUS`ta 12A başlığı altında kalan 10E satırları bulundu ve düzeltildi; validator artık tekrarlanan adım başlığını düşürüyor.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS. Kanıt 11B ve 12A'daki gibi bölündü: kararlar T1'de, depolama garantileri T2'de.
+- **Çalıştırılmayan: T6.** Ayrıca kapı uygulamada erişilebilir değil: onu soran planner yok (12C).
+- Independent 12B QA: **184/184 PASS**; validator mutation 42/42 ve yorum-içi negatif kontrol false positive vermedi. Sweep 38/38.
+- Sonraki numbered step `12C — Planner Engine v1`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`.

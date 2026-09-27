@@ -272,14 +272,15 @@ PEM-v0:
 - 11D ✅ DMAX-v0 / D-090
 - 11E ✅ EODX-v0 / D-091 — **AŞAMA 11 kapandı**
 - 12A ✅ MSTX-v0 / D-092
-- 12B 🟡 active-not-executed
-- 12C–20 ⬜
+- 12B ✅ PRQX-v0 / D-093
+- 12C 🟡 active-not-executed
+- 12D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12A — MSTX-v0 / D-092`  
-**Aktif:** `12B — Prerequisite Engine`  
-**12B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12B — PRQX-v0 / D-093`  
+**Aktif:** `12C — Planner Engine v1`  
+**12C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -922,6 +923,26 @@ MSTX-v0:
 - mutation 33/33 (G26 and G33 survived the first run — both were test gaps, not rule gaps), independent QA 164/164, validator mutation 37/37, sweep 37/37,
 - T6 was not run, and the engine is not reachable in the app: no path there produces an evaluation yet (12C).
 
-## 45. 12B handoff
+## 45. D-093 / 12B final özeti
 
-12B — Prerequisite Engine. `PRG-v0`'ın kodda karşılığı ve 12A'nın kasten dokunmadığı readiness ekseni. Açık loop'lar: planner seçimi, recompute tetiği ve plan değişiklikleri 12C/12D, trace'ten üretilecek reason code'lar 12E, retention ve weakness 13, rubric ve evaluator davranışı 14, authored gate profilleri 15, kalibrasyon 18C, T6 cihaz koşusu. 12B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`.
+Contract/QA: `arch/12b_prerequisite_engine/`.
+Synthesis: `research/12b_prerequisite_engine_research.md`.
+Code: `android/core-engines/.../PrerequisiteEngine.kt`, `android/core-model/.../PrerequisiteFacts.kt`, `android/core-application/.../ResolvePrerequisites.kt` (`ResolvePrerequisites`, `RebuildReadiness`), `PersistencePort.skill/prerequisiteEdgesInto` + `CurriculumStore`/`SqlitePersistence`.
+
+PRQX-v0:
+- a missing prerequisite holds back only the work that really depends on it; an independent branch, the blocker's own teaching task and a parallel English track carry on,
+- readiness is `PRG-v0`'s four values and never a number; open remediation is `not_ready`, contradicted mastery is `uncertain`, `review_due` is `ready_due` and does not block,
+- an axis nobody has evaluated yet is named in the decision and never read as bad news; missing mastery is `not_ready`; a missing readiness fails closed,
+- the eligibility matrix is `PRG-v0` §4/§5: normal hard + uncertain is conditional, strict (critical source or the candidate's request) blocks, a soft gap never blocks,
+- a task-level requirement is hard even when the graph does not name it; a Skill needed both ways is needed hard; priority is not an input and there is no failure field,
+- all 950 authored edges are `draft`: a draft edge is reported as `edge_not_published`, never dropped and never quietly enforced; retired edges stop gating, deprecated ones still gate, the newest edge version is in force,
+- `default_prg_v0` is the only strictness profile; unknown profiles, invalidated or unknown lifecycles, self requirements, unpublished Skills and cycles are named metadata problems; the cycle walk reads each Skill once,
+- work on a candidate that should have waited records `contaminated`, which the mastery engine already excludes; the value is now core's,
+- only `prerequisite_readiness` is written; its watermark is the mastery row's or `0`; `skill_state` assembly under one watermark is 12D's,
+- mutation 44/44, independent QA 184/184, validator mutation 42/42, sweep 38/38,
+- T6 was not run, and the gate is not reachable in the app: no planner asks it yet (12C).
+
+## 46. 12C handoff
+
+12C — Planner Engine v1. `PBR-v0`/`PDT-v0`'ın kodda karşılığı: kapıyı soran, blocker için repair ihtiyacı kuran ve bağımsız dalları raporlayan planner. Açık loop'lar: replan tetikleri, bağımlıların ters invalidation'ı ve `skill_state`in tek watermark altında birleştirilmesi 12D, reason metni 12E, retention ve weakness 13, beyan edilmemiş prerequisite keşfi 14, authored kenarların draft'tan çıkması ve `contamination_risk_if_missing` 15, kalibrasyon 18C, T6 cihaz koşusu. 12C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

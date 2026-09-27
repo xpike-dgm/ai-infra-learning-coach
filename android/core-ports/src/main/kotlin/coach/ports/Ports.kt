@@ -5,8 +5,10 @@ import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
+import coach.model.SkillRow
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
@@ -106,6 +108,20 @@ interface PersistencePort {
 
     /** The newest published curriculum version, or `null` when nothing has been published. */
     fun latestCurriculumVersion(): Int?
+
+    /**
+     * One published Skill version, or `null` if it was never published (12B). The prerequisite gate
+     * needs `critical_prerequisite` from it, and treats an unpublished Skill as a metadata problem
+     * rather than as a Skill nobody has learned yet.
+     */
+    fun skill(ref: VersionedRef): SkillRow?
+
+    /**
+     * Every version of every prerequisite edge into one pinned target Skill (12B), in any lifecycle.
+     * Which version is in force and which lifecycles gate is the engine's decision, not the store's:
+     * a store that filtered `draft` edges out would make a missing hard prerequisite invisible.
+     */
+    fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge>
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */

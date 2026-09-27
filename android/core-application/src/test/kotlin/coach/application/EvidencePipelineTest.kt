@@ -21,6 +21,8 @@ import coach.ports.TruthRecord
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import coach.model.SkillRow
+import coach.model.PrerequisiteEdge
 
 /** Turning an attempt into evidence: the shape of it. Atomicity is proven against SQLite in T2. */
 class EvidencePipelineTest {
@@ -62,6 +64,8 @@ class EvidencePipelineTest {
         override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
         override fun truthWatermark(): Long = 0
         override fun latestCurriculumVersion(): Int? = 1
+        override fun skill(ref: VersionedRef): SkillRow? = null
+        override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
     }
 
     private val clock = object : ClockPort {
