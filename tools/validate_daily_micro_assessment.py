@@ -380,7 +380,10 @@ persistence_methods = re.findall(r"fun (?:<T> )?(\w+)\(", body(ports, "interface
 for method in ("publishCurriculum", "resourceVersion", "latestValidation", "objectiveProfile"):
     check(f"E11D-13_refinement_{method}", method in persistence_methods, f"missing {method}")
 content_methods = re.findall(r"fun (\w+)\(", body(ports, "interface ContentPort"))
-check("E11D-13_content_methods", content_methods == ["resource", "assessmentItem", "curriculumPackage"],
+# 11D owns `assessmentItem` and `curriculumPackage` on this port, not the rest of it: 12C refined the same
+# interface (`taskCandidates`), exactly as 11D itself refined PersistencePort after 11C. So this check was
+# narrowed from an exact list to what 11D actually decided (the E11C-10 precedent).
+check("E11D-13_content_methods", content_methods[:3] == ["resource", "assessmentItem", "curriculumPackage"],
       f"methods={content_methods}")
 check("E11D-13_ingestion_on_store_thread", "IngestCurriculum(" in application and "openApp" in application,
       "ingestion does not run where the store is opened")

@@ -1,0 +1,370 @@
+model: PLNX-v0
+stage_step: 12C
+status: accepted_12c
+decision: D-094
+capacity_contract: D-033
+task_taxonomy_contract: D-034
+priority_contract: PBR-v0
+prerequisite_engine: PRQX-v0
+explainability_contract: PDT-v0
+english_component: DECP-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+persistence: LFPS-v0
+boundaries: MSBX-v0
+purpose: initial_daily_plan_generation_with_a_reconstructable_trace
+
+scope:
+  initial_generation_only: true
+  replan_implemented: false
+  reentry_implemented: false
+  paused_continuation_implemented: false
+  reason_text_implemented: false
+  today_reads_plan: false
+  capacity_setting_stored: false
+  authored_tasks_shipped: false
+  starvation_threshold_calibrated: false
+  schema_changed: false
+  migration_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  surface_semantics_changed: false
+  priority_score_claim: null
+  utility_maximisation_claim: null
+
+planner_question: Which of today's open needs are served, by which task, within the minutes the learner has?
+
+primary_invariant: >-
+  Semantic priority first, physical fit second. Priority never rescues a blocked or untrusted task,
+  capacity never rewrites priority, the day is never lengthened to fit more, and a need no task served
+  stays open — it is not tomorrow's debt and not a failure.
+
+found_before_12c:
+  - id: planned_task_cannot_hold_a_today_row
+    was: planned_task carries the Skill and the position only; purpose, title, activity, minutes and reasons have no column
+    resolved_here: >-
+      the whole PDT-v0 trace, including every selected task keyed by position, is stored in
+      planner_decision_trace.trace in the strict versioned format planner_trace/1; no column was invented
+  - id: no_authored_task_exists
+    was: curriculum_package/1 has no task section, so no need a real store opens has a candidate
+    resolved_here: >-
+      ContentPort.taskCandidates(need) is a port refinement and the file adapter answers with an empty list;
+      the need is recorded as having no valid candidate, and no reason code is invented for it
+    owner: 15
+  - id: no_starvation_threshold_exists
+    was: PBR-v0 §6.5 leaves the threshold to 18B/18C and 7C's QA refused to invent one
+    resolved_here: pressure is an input with PBR-v0's promotion limits; the product supplies none
+    owner: 18C
+  - id: retention_and_weakness_not_yet_written
+    was: overdue buckets, at_risk and weakness-derived needs have no input before Stage 13
+    resolved_here: an unwritten axis opens no need; review due is just_due, never overdue_high, until RVR-v0 says so
+    owner: 13
+  - id: every_authored_skill_is_draft
+    was: like the edges in 12B, every authored Skill is draft, and KGC-v0 §27 gives a draft entity no runtime selection
+    resolved_here: a draft or retired Skill opens no need; the count off the route is recorded in the trace
+  - id: candidate_cap_left_to_12c
+    was: 3B §17 names 12C as the owner of the per-need candidate cap
+    resolved_here: five per need, an engineering bound on how much is read, in a stable order with deprecated last
+
+declared_constants:
+  source: D-033
+  calibrated_at: 18C
+  short_profile_minutes_v0: 30
+  normal_profile_minutes_v0: 60
+  intensive_profile_minutes_v0: 90
+  planning_reserve_ratio_v0: 0.10
+  minimum_plannable_block_minutes_v0: 10
+  planner_substitutes_a_default_for_a_setting: false
+  is_ideal_study_time: false
+
+engineering_bounds:
+  max_candidates_per_need_v0: 5
+  owner: 12C
+  learning_meaning: false
+  revisited_at: 18E
+
+capacity:
+  source: D-033
+  resolution_order: [today_override, selected_day_profile, scheduled_default, normal_profile]
+  hard_budget_exceeded: false
+  planning_budget: floor_of_hard_budget_times_0_90
+  below_minimum_block: reserve_relaxed_and_no_new_teaching
+  remediation_lengthens_day: false
+  fixed_category_percentages: false
+
+needs:
+  source: 3B §2.1
+  triggers: [new_learning, continue_learning, weakness_detected, remediation_required, retention_review_due,
+             verification_due, diagnostic_opportunity, reinforcement_opportunity, parallel_track_due,
+             integration_opportunity]
+  generated_from_state: [remediation_required, verification_due, retention_review_due, continue_learning, new_learning]
+  supplied_by_owners: [weakness_detected, diagnostic_opportunity, reinforcement_opportunity, parallel_track_due,
+                       integration_opportunity]
+  need_is_task_id: false
+  unwritten_axis_opens_a_need: false
+  draft_skill_opens_a_need: false
+  deprecated_skill_opens_new_learning: false
+
+candidates:
+  source: 3B §15
+  generated_by: content
+  planner_invents_a_task: false
+  high_stakes_purposes: [assess, retain, diagnose]
+  high_stakes_needs: [validated, trusted, deprecated]
+  unselectable_lifecycles: [draft, invalidated, retired]
+  deprecated_ordered_last: true
+
+gate_order:
+  source: PDT-v0 §17
+  order: [current_state, learning_need_generation, bounded_candidates, validation_trust, prg_eligibility,
+          pbr_priority, capacity_fit]
+  priority_rescues_blocked_or_invalid: false
+  missing_gate_answer: blocked
+
+priority:
+  source: PBR-v0
+  bands: [integrity_blocker, repair_or_verify, maintain_or_continue, planned_progress, reinforce_or_optimize]
+  rank_vector: [integrity_or_blocking_scope, criticality, evidence_severity, temporal_urgency, starvation_pressure,
+                continuation_value, decision_value, track_balance_pressure, duration_fit_class, stable_tie_break_key]
+  rank_vector_summed: false
+  random_tie_break: false
+  p0_from_critical_label_alone: false
+  review_due_is_negative_evidence: false
+  starvation_promotion: planned_progress_to_maintain_only
+  starvation_passes_repair: false
+  duration_before_priority: false
+
+selection:
+  source: D-033 §12, PBR-v0 §8, PDT-v0 §16
+  order: [fits, safe_split, smaller_alternative, defer]
+  atomic_evidence_boundary_split: false
+  one_task_per_need: true
+  knapsack: false
+  deferred_is_debt: false
+  deferred_high_priority_labelled_lower_priority: false
+
+trace:
+  source: PDT-v0 §4-§6
+  format: planner_trace/1
+  stored_in: planner_decision_trace.trace
+  decode_on_unknown_format: refused
+  records: [capacity, policy_versions, need_traces, candidate_traces, selected_tasks, plan_reason_codes,
+            invariant_checks, truth_watermark, curriculum_version, skills_not_on_route]
+  reason_code_invented_for_unserved_need: false
+  private_rationale_stored: false
+
+persistence:
+  tables: [plan_version, planned_task, planner_decision_trace]
+  region: truth
+  one_transaction: true
+  edited_in_place: false
+  written_without_a_published_curriculum: false
+  watermark_read_before_state: true
+  projection_written: false
+  evidence_read: false
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+    - name: publishedSkills
+      port: PersistencePort
+      signature: publishedSkills() -> List<SkillRow>
+      reason: needs are opened from current Skill state, so the planner must know which Skills exist
+      writes: false
+    - name: taskCandidates
+      port: ContentPort
+      signature: taskCandidates(need) -> List<TaskCandidate>
+      reason: which task serves which need, and how long it takes, is authored content
+
+living_gates_narrowed:
+  - check: E11D-13_content_methods
+    validator: tools/validate_daily_micro_assessment.py
+    was: an exact list of ContentPort's methods
+    now: 11D's own three methods, in order, with later refinements allowed
+    why: >-
+      12C's taskCandidates refines the same port; 11D owns assessmentItem and curriculumPackage, not the rest
+      of the interface. Same precedent as E11C-10, narrowed when 11D refined PersistencePort
+    guarantee_weakened: false
+
+wiring:
+  reachable_in_app_today: false
+  why_not: no capacity setting is stored (16D), no authored task ships (15), and Today cannot yet show trace-backed reasons (12E)
+  caller_owner: 12D
+
+tests:
+  t1:
+    - core-model PlannerFactsTest
+    - core-engines PlannerEngineTest
+    - core-application BuildDailyPlanTest
+  t2:
+    - data-persistence PlanStorageTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 55
+  detected: 55
+  harness_verified_to_run_gradle: true
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: Q01, mutant: today_s_override_is_ignored}
+    - {id: Q02, mutant: the_short_profile_uses_the_normal_minutes}
+    - {id: Q03, mutant: no_planning_reserve_is_kept}
+    - {id: Q04, mutant: the_reserve_is_not_d_033_s}
+    - {id: Q05, mutant: the_minimum_block_is_not_d_033_s}
+    - {id: Q06, mutant: new_teaching_is_offered_below_the_minimum_block}
+    - {id: Q07, mutant: open_remediation_opens_no_need}
+    - {id: Q08, mutant: a_contradicted_mastery_opens_no_verification}
+    - {id: Q09, mutant: review_due_is_treated_as_negative_evidence}
+    - {id: Q10, mutant: a_draft_skill_is_on_the_route}
+    - {id: Q11, mutant: a_deprecated_skill_opens_new_learning}
+    - {id: Q12, mutant: a_confirmed_skill_opens_new_learning}
+    - {id: Q13, mutant: the_critical_flag_is_ignored}
+    - {id: Q14, mutant: a_critical_label_alone_makes_p0}
+    - {id: Q15, mutant: blocking_alone_makes_p0}
+    - {id: Q16, mutant: review_due_is_repair_work}
+    - {id: Q17, mutant: paused_work_gets_no_continuation_band}
+    - {id: Q18, mutant: an_optional_reinforcement_becomes_planned_progress}
+    - {id: Q19, mutant: starvation_lifts_past_repair_work}
+    - {id: Q20, mutant: starvation_is_ignored}
+    - {id: Q21, mutant: bands_do_not_order_the_needs}
+    - {id: Q22, mutant: short_tasks_jump_the_queue}
+    - {id: Q23, mutant: a_blocked_candidate_is_usable}
+    - {id: Q24, mutant: an_unanswered_candidate_passes_the_gate}
+    - {id: Q25, mutant: invalid_prerequisite_metadata_is_usable}
+    - {id: Q26, mutant: an_unvalidated_candidate_serves_an_assessment}
+    - {id: Q27, mutant: a_draft_candidate_is_usable}
+    - {id: Q28, mutant: the_candidate_set_is_unbounded}
+    - {id: Q29, mutant: deprecated_candidates_are_preferred_like_any_other}
+    - {id: Q30, mutant: a_split_ignores_the_safe_chunk}
+    - {id: Q31, mutant: a_split_plans_the_whole_task}
+    - {id: Q32, mutant: no_smaller_alternative_is_tried}
+    - {id: Q33, mutant: other_alternatives_of_a_served_need_are_not_recorded}
+    - {id: Q34, mutant: the_remaining_budget_is_not_reduced}
+    - {id: Q35, mutant: a_need_that_did_not_fit_is_called_lower_priority}
+    - {id: Q36, mutant: an_uncertain_blocker_does_not_hold_work_back}
+    - {id: Q37, mutant: a_reason_is_invented_for_a_need_nothing_serves}
+    - {id: Q38, mutant: a_candidate_for_a_closed_need_is_planned}
+    - {id: Q55, mutant: an_independent_branch_that_went_ahead_is_not_said}
+    - {id: Q39, mutant: the_rank_vector_compares_the_tie_break_first}
+    - {id: Q40, mutant: an_atomic_evidence_boundary_may_be_split}
+    - {id: Q41, mutant: the_trace_does_not_escape_what_a_title_contains}
+    - {id: Q42, mutant: an_unknown_trace_section_is_accepted}
+    - {id: Q43, mutant: a_trace_in_another_format_is_accepted}
+    - {id: Q44, mutant: the_watermark_is_read_after_the_state}
+    - {id: Q45, mutant: the_plan_is_not_written_in_one_transaction}
+    - {id: Q46, mutant: a_plan_is_written_with_nothing_published}
+    - {id: Q47, mutant: the_trace_is_not_stored}
+    - {id: Q48, mutant: a_planned_task_names_the_wrong_skill}
+    - {id: Q49, mutant: a_task_s_own_requirements_never_reach_the_gate}
+    - {id: Q50, mutant: a_strict_candidate_is_not_strict_at_the_gate}
+    - {id: Q51, mutant: the_weakness_axis_is_not_read}
+    - {id: Q52, mutant: the_critical_flag_is_not_read}
+    - {id: Q53, mutant: every_version_of_a_skill_is_planned_from}
+    - {id: Q54, mutant: the_store_filters_lifecycles_itself}
+  survived_at_first: [Q06, Q09, Q15, Q22, Q25, Q49, Q50, Q51, Q52]
+  survivors_note: >-
+    every first-run survivor was a gap in the tests, not in the rules. The minimum-block test's teaching task
+    would not have fitted anyway; no test pinned review due as no negative evidence, a non-critical blocker
+    as P1, fit as the ninth rank field, or an invalid-metadata candidate; and the use-case tests never
+    checked that a task's own requirements, its strict request, the weakness axis and the critical flag
+    reach the engine. Each gained a test, Q55 was added with the independent-branch reason, and the whole
+    set was then run again from scratch.
+
+validator_mutation:
+  total: 46
+  detected: 46
+  negative_control: forbidden words written only inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  missed_at_first: []
+  reader_defects_found_on_first_run:
+    - id: rank_fields_anchor
+      why: >-
+        the anchor `PriorityRankVector` sits inside the block it names, so the reader took the next block
+        (§6.1's scope values) as the rank vector; the anchor is now the section heading
+    - id: invariant_names
+      why: >-
+        the invariant reader matched only `"name" to (`, so two checks written as `"name" to assessed...` and
+        across a line break were missed; the reader now takes every name in the invariant block
+  reader_guard: every body the validator reads is itself checked to be non-empty
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any plan in the real app; nothing calls the planner and no authored task ships
+  - the 3H virtual-user scenarios against this implementation (12F)
+  - the reserve, minimum block and candidate cap against real usage (18C, 18E)
+  - starvation and track balance, which have no calibrated threshold
+
+forbidden_planner_patterns:
+  - additive_priority_score
+  - tasks_per_minute_or_knapsack
+  - short_task_bias
+  - review_due_as_forgetting
+  - critical_label_as_p0
+  - deferred_task_as_next_day_debt
+  - fixed_category_percentages
+  - english_as_fixed_share_or_global_blocker
+  - continuation_bonus_over_repair
+  - priority_bypassing_the_gate
+  - random_tie_break
+  - day_lengthened_to_fit_new_remediation
+  - invented_starvation_threshold
+  - invented_reason_for_an_unserved_need
+  - plan_edited_in_place
+
+future_stage_boundaries:
+  12D: replan triggers, re-entry, paused continuation, calling the planner, and skill_state assembly under one watermark
+  12E: user-facing reason text and Today reading the plan
+  12F: the 3H virtual-user scenarios against this implementation
+  13: retention due buckets, at_risk and weakness needs
+  15: authored tasks and their package format
+  16D: the capacity setting
+  18C: starvation and track-balance thresholds
+  18E: the per-need candidate cap against real performance
+  T6: device run
+
+acceptance:
+  - PLNX-v0 is the accepted planner engine
+  - capacity resolves in D-033's order; the hard budget is never exceeded and the planning budget keeps the reserve
+  - needs come from the axis each engine owns; an unwritten axis and a Skill off the route open nothing
+  - the gate order is PDT-v0 §17's; priority never rescues a blocked, invalid or untrusted candidate
+  - bands and the rank vector equal PBR-v0; nothing is summed, no tie is random, and a critical label alone is not P0
+  - selection is fit, safe split, smaller alternative, defer; an atomic boundary is never split and one task serves a need
+  - a need that did not fit is deferred for time, not called less important, and it is neither debt nor failure
+  - no starvation threshold and no reason code is invented
+  - the plan is appended as truth in one transaction with a trace that reads back exactly
+  - the schema is unchanged, no migration was added and the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 12C QA passes and Stage 6-12B regressions pass

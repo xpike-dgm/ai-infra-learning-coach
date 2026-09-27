@@ -755,8 +755,20 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - **T6 çalıştırılmadı**; kapı uygulamada erişilebilir değil (12C).
 - Bu adımın senkronu 12A'nın bıraktığı çift 12B başlığını ve tamamlanmış 9D–9F/10A–10E adımlarının işaretsiz eski iskelet başlıklarını kaldırdı; validator artık tekrarlanan adım başlığını düşürüyor.
 
-### [ ] 12C — Planner Engine v1 — **AKTİF**
-### [ ] 12D — Replan
+### [x] 12C — Planner Engine v1 — PLNX-v0 / D-094
+
+**12C final coverage:**
+- önce semantik öncelik, sonra fiziksel sığma; priority kapıyı aşamaz,
+- kapasite D-033 sırasıyla; sert bütçe aşılmaz, `%10` rezerv, küçük blokta yeni öğretim yok,
+- ihtiyaçlar her motorun kendi ekseninden; yazılmamış eksen hiçbir şey açmaz,
+- `PBR-v0` bantları ve rank vektörü; toplanmaz, rastgele değil, kritik etiket tek başına P0 değil,
+- sığ → böl → küçük alternatif → ertele; sığmayan ihtiyaç borç değil ve 'daha az önemli' diye etiketlenmez,
+- starvation eşiği ve reason kodu uydurulmaz,
+- plan tek transaction'da truth; iz `planner_trace/1`,
+- mutation 55/55, validator 226/226 ve kendi mutation testi 46/46,
+- **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (12D).
+
+### [ ] 12D — Replan — **AKTİF**
 ### [ ] 12E — Reason codes
 ### [ ] 12F — Sanal kullanıcı testleri
 
@@ -867,8 +879,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12B`  
-**Son tamamlanan:** **`12B — PRQX-v0 / D-093`**  
-**Aktif:** **`12C — Planner Engine v1`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12C`  
+**Son tamamlanan:** **`12C — PLNX-v0 / D-094`**  
+**Aktif:** **`12D — Replan`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12C fresh PRE-STEP → kapıyı soran planner (`PBR-v0`/`PDT-v0`) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12D fresh PRE-STEP → replan olayı, re-entry ve planner'ı çağıran yol → independent QA → D-050 POST sync + stale audit.**

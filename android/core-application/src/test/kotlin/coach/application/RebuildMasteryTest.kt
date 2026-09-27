@@ -93,6 +93,7 @@ class RebuildMasteryTest {
         override fun latestCurriculumVersion(): Int? = curriculumVersion
         override fun skill(ref: VersionedRef): SkillRow? = null
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
+        override fun publishedSkills(): List<SkillRow> = emptyList()
     }
 
     private fun skillKey() = "skill_state:${skill.logicalId}@v1"

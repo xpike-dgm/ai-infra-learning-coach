@@ -4,12 +4,14 @@ import coach.model.AssessmentItem
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
+import coach.model.LearningNeed
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
 import coach.model.StudyTimestamp
+import coach.model.TaskCandidate
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
 
@@ -122,6 +124,13 @@ interface PersistencePort {
      * a store that filtered `draft` edges out would make a missing hard prerequisite invisible.
      */
     fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge>
+
+    /**
+     * The newest published version of every Skill, in a stable order (12C). Needs are opened from
+     * current Skill state, so the planner has to know which Skills exist; lifecycle is returned rather
+     * than filtered, because which lifecycles are on the route is the planner's decision.
+     */
+    fun publishedSkills(): List<SkillRow>
 }
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */
@@ -138,6 +147,13 @@ interface ContentPort {
 
     /** The authored curriculum package awaiting ingestion, or `null` when none ships with the app. */
     fun curriculumPackage(): CurriculumPackage?
+
+    /**
+     * The authored tasks that could serve one open need (12C). Which purpose serves which need, and
+     * how long a task takes, is authored content (15), so the content side answers and the planner never
+     * invents a task. An empty list is a truthful answer: nothing authored serves this need yet.
+     */
+    fun taskCandidates(need: LearningNeed): List<TaskCandidate>
 }
 
 /**

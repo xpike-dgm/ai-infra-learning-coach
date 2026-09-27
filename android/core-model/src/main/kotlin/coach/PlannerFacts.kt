@@ -1,0 +1,314 @@
+package coach.model
+
+/**
+ * The planner's vocabulary (12C), as the Stage 3 contracts fixed it: needs and candidates (3B / D-034),
+ * capacity (3A / D-033), priority bands and the rank vector (`PBR-v0`), and the decision trace
+ * (`PDT-v0`).
+ *
+ * Nothing here is a score. A band is a named class, the rank vector is compared field by field and is
+ * never summed, and a deferred need is an open need — never a debt and never a failure.
+ */
+
+/** 3B §2.1: what opened a need. Not a priority order; `PBR-v0` decides that. */
+enum class NeedTrigger(val id: String, val reasonCode: String) {
+    NEW_LEARNING("new_learning", "need.new_learning_available"),
+    CONTINUE_LEARNING("continue_learning", "need.continue_learning_active"),
+    WEAKNESS_DETECTED("weakness_detected", "need.weakness_detected"),
+    REMEDIATION_REQUIRED("remediation_required", "need.remediation_required"),
+    RETENTION_REVIEW_DUE("retention_review_due", "need.retention_review_due"),
+    VERIFICATION_DUE("verification_due", "need.verification_due"),
+    DIAGNOSTIC_OPPORTUNITY("diagnostic_opportunity", "need.diagnostic_opportunity"),
+    REINFORCEMENT_OPPORTUNITY("reinforcement_opportunity", "need.reinforcement_opportunity"),
+    PARALLEL_TRACK_DUE("parallel_track_due", "need.parallel_track_due"),
+    INTEGRATION_OPPORTUNITY("integration_opportunity", "need.integration_opportunity"),
+}
+
+/** `PBR-v0` §4: five named bands. A smaller number is handled earlier; it is not a grade. */
+enum class PriorityBand(val id: String, val reasonCode: String) {
+    P0("integrity_blocker", "priority.p0_integrity_blocker"),
+    P1("repair_or_verify", "priority.p1_repair_or_verify"),
+    P2("maintain_or_continue", "priority.p2_maintain_or_continue"),
+    P3("planned_progress", "priority.p3_planned_progress"),
+    P4("reinforce_or_optimize", "priority.p4_reinforce_or_optimize"),
+}
+
+// `PBR-v0` §6: each rank field is a named order, most pressing first. The declaration order *is* the
+// order; nothing is converted to a number and added.
+
+enum class BlockingScope(val id: String, val reasonCode: String?) {
+    BLOCKS_CURRENT_REQUIRED_PATH("blocks_current_required_path", "priority.blocks_current_required_path"),
+    BLOCKS_NEXT_READY_DEPENDENCY("blocks_next_ready_dependency", "priority.blocks_next_ready_dependency"),
+    NON_BLOCKING("non_blocking", null),
+}
+
+enum class Criticality(val id: String) {
+    CRITICAL_PREREQUISITE("critical_prerequisite"),
+    REQUIRED("required"),
+    SUPPORTING("supporting"),
+    OPTIONAL("optional"),
+}
+
+enum class EvidenceSeverity(val id: String) {
+    CONFIRMED_REPEATED_FAILURE("confirmed_repeated_failure"),
+    CLEAN_CONTRADICTION_OR_VERIFICATION_DUE("clean_contradiction_or_verification_due"),
+    PARTIAL_OR_UNCERTAIN_CONCERN("partial_or_uncertain_concern"),
+    NO_NEGATIVE_EVIDENCE("no_negative_evidence"),
+}
+
+enum class TemporalUrgency(val id: String) {
+    OVERDUE_HIGH("overdue_high"),
+    JUST_DUE("just_due"),
+    DUE_SOON("due_soon"),
+    NOT_TIME_SENSITIVE("not_time_sensitive"),
+}
+
+/** `PBR-v0` §6.5. The threshold that moves a need out of `none` is uncalibrated (18B/18C). */
+enum class StarvationBucket(val id: String) {
+    PROMOTE("promote"),
+    WATCH("watch"),
+    NONE("none"),
+}
+
+enum class ContinuationValue(val id: String) {
+    PAUSED_SAFE_CHECKPOINT("paused_safe_checkpoint"),
+    ACTIVE_LEARNING_CONTEXT("active_learning_context"),
+    FRESH_NEW_CONTEXT("fresh_new_context"),
+}
+
+/** `PBR-v0` §6.7: whether a short check would settle the next larger planning decision. */
+enum class DecisionValue(val id: String) {
+    DECISIVE("decisive"),
+    NONE("none"),
+}
+
+/** `PBR-v0` §6.8: a parallel track repeatedly deferred while eligible. */
+enum class TrackBalance(val id: String) {
+    PRESSURE("pressure"),
+    NONE("none"),
+}
+
+enum class DurationFit(val id: String) {
+    FITS_REMAINING("fits_remaining"),
+    FITS_VIA_SAFE_SPLIT("fits_via_safe_split"),
+    FITS_VIA_SMALLER_ALTERNATIVE("fits_via_smaller_alternative"),
+    CANNOT_FIT_TODAY("cannot_fit_today"),
+}
+
+/**
+ * `PBR-v0` §5. Compared field by field in declaration order; the tie-break key makes the order total,
+ * so the same needs always come out in the same order and no random tie-break is ever needed.
+ */
+data class RankVector(
+    val blockingScope: BlockingScope,
+    val criticality: Criticality,
+    val evidenceSeverity: EvidenceSeverity,
+    val temporalUrgency: TemporalUrgency,
+    val starvation: StarvationBucket,
+    val continuation: ContinuationValue,
+    val decisionValue: DecisionValue,
+    val trackBalance: TrackBalance,
+    val durationFit: DurationFit,
+    val tieBreakKey: String,
+) : Comparable<RankVector> {
+    override fun compareTo(other: RankVector): Int = compareValuesBy(
+        this, other,
+        { it.blockingScope }, { it.criticality }, { it.evidenceSeverity }, { it.temporalUrgency },
+        { it.starvation }, { it.continuation }, { it.decisionValue }, { it.trackBalance },
+        { it.durationFit }, { it.tieBreakKey },
+    )
+}
+
+/** 3B §2: the need survives a day on which no task served it; a task never does. */
+data class LearningNeed(
+    val needKey: String,
+    val trigger: NeedTrigger,
+    val targetSkills: List<VersionedRef>,
+    val criticality: Criticality,
+    val sourceStateRefs: List<String> = emptyList(),
+    val track: String? = null,
+    val evidenceSeverity: EvidenceSeverity = EvidenceSeverity.NO_NEGATIVE_EVIDENCE,
+    val temporalUrgency: TemporalUrgency = TemporalUrgency.NOT_TIME_SENSITIVE,
+    val continuation: ContinuationValue = ContinuationValue.FRESH_NEW_CONTEXT,
+    val decisionValue: DecisionValue = DecisionValue.NONE,
+    /** `PBR-v0` §7: an integration task the curriculum requires is progress, not an optional extra. */
+    val requiredByCurriculum: Boolean = false,
+) {
+    init {
+        require(needKey.isNotBlank()) { "a need is identified by its semantic key" }
+        require(targetSkills.isNotEmpty()) { "a need names the Skill it is about" }
+    }
+}
+
+/**
+ * 3B §15, reduced to what planning reads. Candidates are authored content (15); the planner never
+ * invents one, and a candidate that says nothing about its duration cannot be planned against a
+ * time budget, so the cost is required.
+ */
+data class TaskCandidate(
+    val id: String,
+    val needKey: String,
+    val purpose: TaskPurpose,
+    val activityKind: String,
+    val title: String,
+    val primarySkill: VersionedRef,
+    val costMinutes: Int,
+    val validationStatus: LifecycleStatus,
+    val track: String? = null,
+    val requiredSkills: List<VersionedRef> = emptyList(),
+    val requiresStrictPrerequisiteConfidence: Boolean = false,
+    val splittable: Boolean = false,
+    val minimumSafeChunkMinutes: Int? = null,
+    val atomicEvidenceBoundary: Boolean = false,
+    val generationVersion: String = "authored",
+) {
+    init {
+        require(costMinutes > 0) { "a candidate takes some time" }
+        require(!(splittable && atomicEvidenceBoundary)) {
+            "an atomic evidence boundary is never cut in the middle (3A §12)"
+        }
+        require(!splittable || (minimumSafeChunkMinutes != null && minimumSafeChunkMinutes in 1 until costMinutes)) {
+            "a splittable candidate names a safe chunk smaller than the whole"
+        }
+    }
+}
+
+/** D-033 §3. Editable shortcuts, not ideal study times. */
+enum class CapacityProfile(val id: String) {
+    SHORT("short"),
+    NORMAL("normal"),
+    INTENSIVE("intensive"),
+}
+
+/** D-033 §2 and `PDT-v0` §8.6: where today's minutes came from. */
+enum class CapacitySource(val id: String, val reasonCode: String) {
+    TODAY_OVERRIDE("today_override", "capacity.source_today_override"),
+    SELECTED_SHORT("selected_short_profile", "capacity.source_short_profile"),
+    SELECTED_NORMAL("selected_normal_profile", "capacity.source_normal_profile"),
+    SELECTED_INTENSIVE("selected_intensive_profile", "capacity.source_intensive_profile"),
+    SCHEDULED_DEFAULT("scheduled_default", "capacity.source_scheduled_default"),
+    NORMAL_PROFILE("normal_profile", "capacity.source_normal_profile"),
+}
+
+/** D-033 §15. The learner's settings; the planner reads them and never stores a default of its own. */
+data class DailyCapacityInput(
+    val normalProfileMinutes: Int,
+    val shortProfileMinutes: Int,
+    val intensiveProfileMinutes: Int,
+    val selectedProfile: CapacityProfile? = null,
+    val scheduledDefaultMinutes: Int? = null,
+    val todayOverrideMinutes: Int? = null,
+) {
+    init {
+        listOfNotNull(normalProfileMinutes, shortProfileMinutes, intensiveProfileMinutes,
+            scheduledDefaultMinutes, todayOverrideMinutes).forEach {
+            require(it >= 0) { "a time budget is not negative" }
+        }
+    }
+}
+
+/** D-033 §4. The hard budget is the ceiling; the planning budget is what tasks are fitted into. */
+data class DailyCapacity(
+    val source: CapacitySource,
+    val hardBudgetMinutes: Int,
+    val planningBudgetMinutes: Int,
+    val reserveRelaxed: Boolean,
+    val belowMinimumBlock: Boolean,
+)
+
+/** `PDT-v0` §5. */
+enum class NeedDisposition(val id: String) {
+    SELECTED("selected"),
+    PARTIALLY_SERVED("partially_served"),
+    ELIGIBLE_NOT_SELECTED("eligible_not_selected"),
+    BLOCKED("blocked"),
+    RESOLVED_BEFORE_SELECTION("resolved_before_selection"),
+    NO_VALID_CANDIDATE("no_valid_candidate"),
+}
+
+/** `PDT-v0` §6. */
+enum class CandidateDisposition(val id: String) {
+    SELECTED("selected"),
+    SELECTED_SPLIT("selected_split"),
+    SELECTED_SMALLER_ALTERNATIVE("selected_smaller_alternative"),
+    BLOCKED_PREREQUISITE("blocked_prerequisite"),
+    INVALID_CANDIDATE("invalid_candidate"),
+    CONDITIONAL_NOT_SELECTED("conditional_not_selected"),
+    ELIGIBLE_LOWER_PRIORITY("eligible_lower_priority"),
+    ELIGIBLE_CAPACITY_DEFERRED("eligible_capacity_deferred"),
+    SUPERSEDED_SAME_NEED_ALTERNATIVE("superseded_same_need_alternative"),
+    DUPLICATE_SUPPRESSED("duplicate_suppressed"),
+    RESOLVED_BEFORE_SELECTION("resolved_before_selection"),
+}
+
+/**
+ * One selected task, with everything a Today row needs that `planned_task` has no column for:
+ * purpose, title, activity and minutes live here, in the plan's trace, rather than in invented
+ * columns (10D). [plannedMinutes] is below [estimatedMinutes] only when the task was split.
+ */
+data class PlannedEntry(
+    val position: Int,
+    val candidateId: String,
+    val needKey: String,
+    val purpose: TaskPurpose,
+    val activityKind: String,
+    val title: String,
+    val primarySkill: VersionedRef,
+    val track: String?,
+    val estimatedMinutes: Int,
+    val plannedMinutes: Int,
+    val split: Boolean,
+)
+
+data class NeedTrace(
+    val needKey: String,
+    val trigger: NeedTrigger,
+    val targetSkills: List<VersionedRef>,
+    val sourceStateRefs: List<String>,
+    val band: PriorityBand,
+    val rank: RankVector,
+    val priorityReasonCodes: List<String>,
+    val selectedCandidateId: String?,
+    val disposition: NeedDisposition,
+    val finalReasonCodes: List<String>,
+)
+
+data class CandidateTrace(
+    val candidateId: String,
+    val needKey: String,
+    val validationStatus: LifecycleStatus,
+    val eligibility: PrerequisiteEligibility?,
+    val costMinutes: Int,
+    val disposition: CandidateDisposition,
+    val reasonCodes: List<String>,
+)
+
+/** `PDT-v0` §4, for an `initial` generation. Replan and re-entry traces are 12D's. */
+data class PlanTrace(
+    val generationKind: String,
+    val studyDay: String,
+    val curriculumVersion: Int,
+    val truthWatermark: Long,
+    val policyVersions: Map<String, String>,
+    val capacity: DailyCapacity,
+    val needs: List<NeedTrace>,
+    val candidates: List<CandidateTrace>,
+    val selected: List<PlannedEntry>,
+    val planReasonCodes: List<String>,
+    val invariantChecks: Map<String, Boolean>,
+    /** Published Skills no need could be opened for because their lifecycle keeps them off the route. */
+    val skillsNotOnRoute: Int = 0,
+)
+
+/**
+ * What need generation reads about one published Skill: its curriculum lifecycle and critical flag,
+ * and the axes their own engines last wrote. `null` means that engine has not written it.
+ */
+data class SkillPlanningState(
+    val skill: VersionedRef,
+    val lifecycleStatus: String,
+    val critical: Boolean,
+    val mastery: MasteryAxisState?,
+    val retention: RetentionAxis,
+    val weaknessAxis: String?,
+    val snapshotRef: String? = null,
+)

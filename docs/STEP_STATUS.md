@@ -58,8 +58,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **11E — Gün sonu** | ✅ | EODX-v0 / D-091. Gün sonu hüküm değil zaman sınırı; sayımlar etiketli envanter ve ilerleme değil; değişiklik ancak kanonik engine bildirdiyse; boş gün başarısızlık değil; yarına borç geçmez; 128/128 QA PASS, mutation 20/20. **AŞAMA 11 kapandı.** |
 | **12A — Mastery Engine v1** | ✅ | MSTX-v0 / D-092. Mastery yardımsız yapılanı sorar; yardımlı/görülmüş/doğrulanmamış kanıt skora girmez; Skill non-compensatory; ilk çelişki doğrulama açar; projeksiyon kanıttan yeniden kurulur; 164/164 QA PASS, mutation 33/33. |
 | **12B — Prerequisite Engine** | ✅ | PRQX-v0 / D-093. Eksik prerequisite yalnız bağlı işi bekletir; review_due bloklamaz; soft eksik kilitlemez; priority kapıyı aşamaz; draft kenar adlandırılır; bekleyen aday üzerindeki iş contaminated; 184/184 QA PASS, mutation 44/44. |
-| **12C — Planner Engine v1** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12D–20** | ⬜ Bekliyor | 12C sonrası canonical sırada. |
+| **12C — Planner Engine v1** | ✅ | PLNX-v0 / D-094. Önce semantik öncelik, sonra sığma; priority kapıyı aşamaz; gün uzatılmaz; sığmayan ihtiyaç borç değil; starvation eşiği ve reason kodu uydurulmaz; plan izle truth; 226/226 QA PASS, mutation 55/55. |
+| **12D — Replan** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12E–20** | ⬜ Bekliyor | 12D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -78,25 +79,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12B
+## Son tamamlanan numaralı adım — 12C
 
-**Final:** `PRQX-v0 — Prerequisite Engine` / D-093.
-**Ana çıktı:** `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md` + `arch/12b_prerequisite_engine/` + `android/`.
+**Final:** `PLNX-v0 — Planner Engine v1` / D-094.
+**Ana çıktı:** `docs/PLANNER_ENGINE_IMPL_SPEC.md` + `arch/12c_planner_engine/` + `android/`.
 
-12B sonucu:
-- eksik prerequisite yalnız gerçekten ona bağlı işi bekletir; bağımsız dal, blocker'ın kendi öğretim görevi ve English paralel devam eder,
-- readiness dört değerli ve sayı değil; açık remediation `not_ready`, çelişen mastery `uncertain`, `review_due` bloklamaz,
-- değerlendirilmemiş eksen adlandırılır, kötü haber sayılmaz; kapı eksik readiness'te kapalı kalır,
-- `PRG-v0` §4/§5 matrisi; task'in kendi gereksinimi hard; priority girdi değil, başarısızlık alanı yok,
-- authored 950 kenarın hepsi `draft`; düşürülmüyor, sessizce uygulanmıyor, `edge_not_published` olarak adlandırılıyor,
-- bilinmeyen strictness/lifecycle, kendine gereksinim, yayımlanmamış Skill ve döngü adlandırılmış metadata sorunları,
-- bekleyen aday üzerindeki iş `contaminated` yazılır ve mastery motoru onu dışlar; değer artık core'un,
-- yalnız `prerequisite_readiness` yazılır; `skill_state` birleştirmesi tek watermark altında 12D'de,
-- mutation 44/44, independent validator **184/184 PASS**, kendi mutation testi 42/42; 38/38 sweep PASS,
-- **T6 çalıştırılmadı** — telefon bağlı değildi; kapı uygulamada erişilebilir değil (12C).
+12C sonucu:
+- önce semantik öncelik, sonra fiziksel sığma; sıra `PDT-v0` §17'nin; priority bloklanmış/geçersiz/güvenilmeyen görevi kurtaramaz,
+- kapasite D-033 sırasıyla; sert bütçe aşılmaz, `%10` rezerv, `10` dakikanın altında yeni öğretim yok,
+- ihtiyaçlar her motorun kendi ekseninden; yazılmamış eksen ve rotada olmayan Skill hiçbir şey açmaz,
+- `PBR-v0` bantları ve on alanlı rank vektörü; toplanmaz, rastgele tie-break yok, kritik etiket tek başına P0 değil,
+- sığ → güvenli böl → küçük alternatif → ertele; atomik sınır bölünmez; bir ihtiyaca tek görev; sığmayan ihtiyaç borç değil,
+- starvation eşiği ve reason kodu uydurulmaz; ihtiyaç başına en çok `5` aday,
+- plan tek transaction'da truth; `planned_task`ın taşıyamadığı her şey `planner_trace/1` izinde,
+- mutation 55/55, independent validator **226/226 PASS**, kendi mutation testi 46/46; 39/39 sweep PASS,
+- **T6 çalıştırılmadı** — telefon bağlı değildi; planner uygulamada çağrılmıyor (12D).
 
-Bu bölümün önceki sürümü 12A başlığı altında 10E'den kalan satırlar taşıyordu; 12B senkronu bölümü baştan yazdı.
+## Aktif adım — 12D Replan
 
-## Aktif adım — 12C Planner Engine v1
-
-**12C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

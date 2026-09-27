@@ -360,6 +360,8 @@ class SqlitePersistence private constructor(
     override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> =
         curriculumStore.prerequisiteEdgesInto(target)
 
+    override fun publishedSkills(): List<SkillRow> = curriculumStore.publishedSkills()
+
     /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
      * projection is computed from (`DDM-v0` §physical_schema).

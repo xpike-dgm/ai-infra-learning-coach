@@ -6,6 +6,8 @@ import coach.model.AssessmentItem
 import coach.model.AssessmentScope
 import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
+import coach.model.LearningNeed
+import coach.model.TaskCandidate
 import coach.model.EvaluatorRequirement
 import coach.model.EvaluatorStatusRequirement
 import coach.model.IndependenceMode
@@ -90,6 +92,7 @@ class DailyMicroAssessmentTest {
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = item?.takeIf { it.ref == ref }
         override fun curriculumPackage(): CurriculumPackage? = curriculum
+        override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
     }
 
     private class FakeStore(
@@ -131,6 +134,7 @@ class DailyMicroAssessmentTest {
         override fun latestCurriculumVersion(): Int? = null
         override fun skill(ref: VersionedRef): SkillRow? = null
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
+        override fun publishedSkills(): List<SkillRow> = emptyList()
     }
 
     private fun storeWithItem(

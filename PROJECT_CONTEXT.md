@@ -218,12 +218,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 11 ✅ TAMAMLANDI**
 - **12A ✅ Mastery Engine v1 — MSTX-v0 / D-092**
 - **12B ✅ Prerequisite Engine — PRQX-v0 / D-093**
-- **12C 🟡 Planner Engine v1 — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12D–20 ⬜
+- **12C ✅ Planner Engine v1 — PLNX-v0 / D-094**
+- **12D 🟡 Replan — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -418,3 +419,15 @@ Kod yazmadan önce bulunanlar: **authored 950 kenarın hepsi `draft`**, 851'i ha
 Bekleması gereken aday üzerindeki deneme `contaminated` snapshot'ı yazar ve mastery motoru onu skordan dışlar: öğretilmemiş bir şeydeki hata hedefe karşı yazılmaz. Readiness satırının watermark'ı mastery satırınınkidir, yoksa `0`dır. İki port incelmesi (`skill`, `prerequisiteEdgesInto`); yeni arayüz, şema değişikliği, migration ya da index yok. Mutation 44/44, validator 184/184, kendi mutation testi 42/42. **T6 çalıştırılmadı** ve kapı uygulamada erişilebilir değil: onu soran planner yok (12C).
 
 Canonical: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md` / D-093.
+
+## 12.20 12C Planner Engine v1 — PLNX-v0 / D-094
+
+Üçüncü engine kuruldu: bugün hangi açık ihtiyaçların, hangi görevle, öğrencinin gerçekten ayırdığı süre içinde karşılanacağına karar veren planner. Ana invariant: **önce semantik öncelik, sonra fiziksel sığma.** Priority bloklanmış ya da güvenilmeyen görevi kurtaramaz, kapasite önceliği yeniden yazmaz, gün uzatılmaz ve hiçbir görevin karşılamadığı ihtiyaç açık kalır — yarının borcu da başarısızlık da değildir.
+
+Sıra `PDT-v0` §17'nin kendisi: güncel durum → ihtiyaçlar → sınırlı adaylar → güven → `PRG-v0` uygunluğu → `PBR-v0` önceliği → kapasiteye sığma. Kapasite D-033'ün sırasıyla çözülür (bugünkü değişiklik → günün profili → planlı varsayılan → normal profil); sert bütçe asla aşılmaz, planlama bütçesi `%10` rezervi tutar ve `10` dakikanın altında yeni öğretim yapılmaz. İhtiyaçlar her motorun kendi ekseninden açılır; yazılmamış eksen ve rotada olmayan Skill hiçbir şey açmaz. Bantlar ve on alanlı rank vektörü `PBR-v0`: alan alan karşılaştırılır, toplanmaz, rastgele tie-break yok; P0 gerçek bir blocker ister, kritik etiket tek başına yetmez; `review_due` bakımdır. Seçim: sığ → güvenli böl → küçük alternatif → ertele; atomik kanıt sınırı bölünmez, bir ihtiyaca tek görev.
+
+Kod yazmadan önce bulunanlar: `planned_task` bir Today satırını taşıyamıyor (yalnız Skill ve pozisyon); hiçbir authored görev yok; hiçbir yerde starvation eşiği yok (7C bunu uydurmayı açıkça reddetmişti); retention ve weakness henüz yazılmadı; authored her Skill `draft`. Çözüm: `PDT-v0` izinin tamamı — seçilen her görevin amacı, başlığı, etkinliği ve dakikası dahil — `planner_decision_trace.trace` kolonunda katı ve sürümlü `planner_trace/1` biçiminde; kolon uydurulmadı. Adaylar içeriğin bir ihtiyaca cevabı (`taskCandidates`), dosya adaptörü bugün boş döner ve ihtiyaç 'geçerli aday yok' olarak kaydedilir, reason kodu uydurulmaz. Starvation baskısı girdi; ürün hiçbirini vermez (18C). İhtiyaç başına aday sınırı `5`, öğrenme anlamı olmayan mühendislik sınırı (18E).
+
+Plan truth'tur: `plan_version`, `planned_task` ve iz tek transaction'da eklenir ve asla düzenlenmez; watermark durumdan önce okunur. İki port incelmesi (`publishedSkills`, `taskCandidates`); yeni arayüz, şema değişikliği ya da migration yok. Mutation 55/55, validator 226/226, kendi mutation testi 46/46. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor: kapasite ayarı (16D), authored görev (15) ve Today'in izden gerekçe göstermesi (12E) yok.
+
+Canonical: `docs/PLANNER_ENGINE_IMPL_SPEC.md` / D-094.

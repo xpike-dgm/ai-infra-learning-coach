@@ -63,6 +63,7 @@ class ResolvePrerequisitesTest {
         override fun skill(ref: VersionedRef): SkillRow? = skills[ref]
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> =
             edges.filter { it.target == target }
+        override fun publishedSkills(): List<SkillRow> = skills.values.sortedBy { it.ref.logicalId }
     }
 
     private val clock = object : ClockPort {

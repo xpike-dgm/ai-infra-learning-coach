@@ -66,6 +66,7 @@ class EvidencePipelineTest {
         override fun latestCurriculumVersion(): Int? = 1
         override fun skill(ref: VersionedRef): SkillRow? = null
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
+        override fun publishedSkills(): List<SkillRow> = emptyList()
     }
 
     private val clock = object : ClockPort {
