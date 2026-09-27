@@ -1,0 +1,360 @@
+model: PRQX-v0
+stage_step: 12B
+status: accepted_12b
+decision: D-093
+prerequisite_contract: PRG-v0
+graph_contract: KGC-v0
+mastery_engine: MSTX-v0
+retention_contract: RVR-v0
+skill_presentation: SPWX-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+persistence: LFPS-v0
+boundaries: MSBX-v0
+purpose: prerequisite_readiness_and_candidate_eligibility_in_code
+
+scope:
+  prerequisite_engine_only: true
+  planner_implemented: false
+  replan_implemented: false
+  reason_text_implemented: false
+  retention_engine_implemented: false
+  weakness_engine_implemented: false
+  topic_state_implemented: false
+  skill_state_axis_written: false
+  presentation_state_derived: false
+  schema_changed: false
+  migration_added: false
+  index_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  surface_semantics_changed: false
+  readiness_score_claim: null
+  priority_input_claim: null
+
+gate_question: Would work on this target produce evidence that is interpretable and fair?
+
+primary_invariant: >-
+  A missing prerequisite holds back only the work that really depends on it. Review due is not
+  forgetting, a soft gap never locks anything, priority cannot buy its way past a hard prerequisite,
+  and a blocked candidate is a candidate that waits — never a need that failed.
+
+found_before_12b:
+  - id: every_authored_edge_is_draft
+    was: >-
+      all 950 authored edges carry lifecycle_status draft, and KGC-v0 §27 gives a draft entity no
+      runtime selection; ignoring draft edges would silently drop 851 hard prerequisites
+    resolved_here: >-
+      a draft edge is reported as edge_not_published and the candidate is invalid_prerequisite_metadata;
+      it is neither dropped nor quietly enforced, and promoting edges is authored content's (15)
+  - id: one_strictness_profile_exists
+    was: every authored edge names default_prg_v0, and KGC-v0 §12.2 says a profile only expresses PRG-v0
+    resolved_here: default_prg_v0 is the only accepted profile; any other is unknown_strictness_profile
+  - id: contamination_risk_has_no_column
+    was: >-
+      PRG-v0 §4.2 names contamination_risk_if_missing as a strictness trigger, but DDM-v0 gives the
+      edge no such field and 10D forbids inventing one
+    resolved_here: recorded as not stored; strictness comes from critical_prerequisite and the candidate's request
+    owner: 15
+  - id: retention_and_weakness_not_yet_written
+    was: the retention and weakness engines are Stage 13, so two of the axes PRG-v0 reads have never been written
+    resolved_here: >-
+      an unwritten axis is named in the decision's notes and never read as bad news; confirmed mastery with
+      retention not yet evaluated is ready, and remediation counts only when the weakness axis says so
+  - id: skill_state_has_one_watermark_for_four_axes
+    was: >-
+      12A writes its axis on skill_state and carries the others; a second engine doing the same under its
+      own watermark would make another engine's older axis look current
+    resolved_here: >-
+      12B writes only prerequisite_readiness; assembling skill_state's non-mastery axes and the primary
+      presentation state under one watermark read belongs where recomputation is orchestrated
+    owner: 12D
+  - id: two_different_per_skill_questions
+    was: >-
+      prerequisite_readiness (a Skill's worth as a prerequisite) and prerequisite_axis_state (whether a
+      Skill's own prerequisites are resolved) are different facts
+    resolved_here: >-
+      readiness is persisted; a Skill's own resolution is a decision computed on demand for a candidate
+      targeting it, and becomes the axis when skill_state is assembled (12D)
+  - id: contaminated_value_lived_in_the_adapter
+    was: 12A's SqlitePersistence.CONTAMINATED was the only definition of the value the mastery engine reads
+    resolved_here: PrerequisiteSnapshot.CONTAMINATED is core's, and the adapter reads it
+
+readiness:
+  source: PRG-v0 §3
+  values: [ready, ready_due, uncertain, not_ready]
+  is_a_score: false
+  derived_from: [mastery_axis_state, retention_axis_state, weakness_axis_state]
+  review_due_is_not_ready: false
+  remediation_open_is_not_ready: true
+  contradicted_mastery_is_uncertain: true
+  retention_verification_due_or_at_risk_is_uncertain: true
+  unevaluated_axis_read_as_bad_news: false
+  unevaluated_axis_named: true
+  missing_mastery_is_not_ready: true
+  remediation_closed_without_evidence_unblocks: false
+
+eligibility:
+  source: PRG-v0 §4, §5, §7
+  values: [eligible, conditional_eligible, eligible_with_support, blocked, invalid_prerequisite_metadata]
+  matrix:
+    ready: {hard_normal: eligible, hard_strict: eligible, soft: eligible}
+    ready_due: {hard_normal: eligible, hard_strict: eligible, soft: eligible}
+    uncertain: {hard_normal: conditional_eligible, hard_strict: blocked, soft: eligible_with_support}
+    not_ready: {hard_normal: blocked, hard_strict: blocked, soft: eligible_with_support}
+  strict_when: [source_skill_critical_prerequisite, candidate_requires_strict_prerequisite_confidence]
+  soft_gap_blocks: false
+  task_requirement_kind: hard
+  needed_both_ways_is: hard
+  missing_readiness_fails: closed
+  priority_is_an_input: false
+  blocked_is_failed: false
+  only_dependent_work_waits: true
+  english_hidden_prerequisite: false
+  teach_task_for_the_blocker_blocked: false
+
+graph:
+  source: KGC-v0 §12, §27
+  runtime_unit: skill_to_skill
+  in_force_lifecycles: [published, deprecated]
+  retired_edge_gates: false
+  draft_edge: reported_as_edge_not_published
+  invalidated_edge: reported_as_edge_invalidated
+  unknown_lifecycle: reported
+  newest_edge_version_in_force: true
+  accepted_strictness_profiles: [default_prg_v0]
+  cycle: reported_as_prerequisite_cycle
+  cycle_walk_reads_each_skill_once: true
+  transitive_readiness_computed: false
+  transitive_why: >-
+    a Skill's readiness is its own confirmed mastery; if B is mastered, a gap in B's own prerequisite does
+    not make B unusable, and a gap in an unmastered B already makes B not_ready
+
+metadata_problems:
+  - unpublished_target
+  - unpublished_required_skill
+  - self_requirement
+  - prerequisite_cycle
+  - edge_not_published
+  - edge_invalidated
+  - unknown_edge_lifecycle
+  - unknown_strictness_profile
+
+reason_inputs:
+  source: PRG-v0 §20
+  produced_here:
+    - blocked_missing_hard_prerequisite
+    - blocked_critical_prerequisite_verification_due
+    - blocked_prerequisite_remediation_required
+    - eligible_prerequisite_review_due_not_blocking
+    - eligible_with_soft_prerequisite_gap
+    - conditional_prerequisite_uncertain
+  owned_elsewhere:
+    independent_branch_available: 12C
+    prerequisite_repaired_replan: 12D
+    invalid_due_to_prerequisite_contamination: evidence_written_under_a_contaminated_snapshot
+
+decision_contract:
+  source: PRG-v0 §7
+  fields: [candidate_id, target, eligibility, hard_blocker_skills, uncertain_skills, soft_gap_skills,
+           review_due_skills, metadata_problems, readiness_snapshot_refs,
+           requires_strict_prerequisite_confidence, prerequisite_policy_version, reason_inputs, notes]
+  priority_field: false
+  failure_field: false
+  deterministic: true
+
+contamination:
+  source: PRG-v0 §13
+  snapshot_for_waiting_candidate: contaminated
+  snapshot_owner: core-model
+  mastery_engine_excludes_it: true
+  negative_evidence_written_against_target: false
+
+projection:
+  family: prerequisite_readiness
+  owned_by: PRG-v0
+  payload: [state]
+  writes_truth: false
+  writes_skill_state: false
+  watermark: the_mastery_rows_watermark_or_zero_when_absent
+  written_without_a_published_curriculum: false
+  provenance: [policy_version, truth_watermark, built_at_instant, input_curriculum_version]
+  same_state_same_row: true
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+    - name: skill
+      signature: skill(ref) -> SkillRow?
+      reason: the gate needs critical_prerequisite and must tell an unpublished Skill from an unlearned one
+      writes: false
+    - name: prerequisiteEdgesInto
+      signature: prerequisiteEdgesInto(target) -> List<PrerequisiteEdge>
+      reason: the gate reads the graph; the store returns every lifecycle and version and filters nothing
+      version_pinned: true
+      writes: false
+
+wiring:
+  reachable_in_app_today: false
+  why_not: no planner selects candidates yet, so nothing asks the gate
+  caller_owner: 12C
+
+tests:
+  t1:
+    - core-model PrerequisiteFactsTest
+    - core-engines PrerequisiteEngineTest
+    - core-application ResolvePrerequisitesTest
+  t2:
+    - data-persistence PrerequisiteStorageTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 44
+  detected: 44
+  harness_verified_to_run_gradle: true
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  mutants:
+    - {id: P01, mutant: review_due_is_read_as_not_ready}
+    - {id: P02, mutant: verification_due_retention_reads_as_ready}
+    - {id: P03, mutant: a_contradicted_mastery_reads_as_ready}
+    - {id: P04, mutant: developing_mastery_counts_as_ready}
+    - {id: P05, mutant: open_remediation_is_ignored}
+    - {id: P06, mutant: an_unevaluated_retention_axis_is_read_as_bad_news}
+    - {id: P07, mutant: an_unevaluated_axis_is_not_named}
+    - {id: P08, mutant: a_soft_gap_blocks}
+    - {id: P09, mutant: a_normal_uncertain_prerequisite_blocks}
+    - {id: P10, mutant: a_critical_uncertain_prerequisite_is_only_conditional}
+    - {id: P11, mutant: the_critical_flag_is_ignored}
+    - {id: P12, mutant: the_candidate_s_strict_request_is_ignored}
+    - {id: P13, mutant: a_skill_needed_softly_and_by_the_task_is_needed_softly}
+    - {id: P14, mutant: a_task_requirement_is_soft}
+    - {id: P15, mutant: a_task_requirement_is_ignored}
+    - {id: P16, mutant: a_missing_readiness_fails_open}
+    - {id: P17, mutant: a_draft_edge_is_silently_dropped}
+    - {id: P18, mutant: a_draft_edge_is_reported_as_something_else}
+    - {id: P19, mutant: a_retired_edge_still_gates}
+    - {id: P20, mutant: a_deprecated_edge_stops_gating}
+    - {id: P21, mutant: the_oldest_edge_version_is_in_force}
+    - {id: P22, mutant: an_unknown_strictness_profile_is_accepted}
+    - {id: P23, mutant: a_self_requirement_is_accepted}
+    - {id: P24, mutant: an_unpublished_required_skill_is_accepted}
+    - {id: P25, mutant: invalid_metadata_is_not_reported_as_invalid}
+    - {id: P26, mutant: a_cycle_is_missed}
+    - {id: P27, mutant: the_cycle_walk_rereads_skills}
+    - {id: P28, mutant: a_retired_edge_closes_a_cycle}
+    - {id: P29, mutant: the_decision_depends_on_input_order}
+    - {id: P30, mutant: open_remediation_is_explained_as_a_missing_prerequisite}
+    - {id: P31, mutant: the_decision_names_no_snapshot}
+    - {id: P32, mutant: work_on_a_blocked_candidate_is_not_marked_contaminated}
+    - {id: P33, mutant: invalid_metadata_does_not_wait}
+    - {id: P34, mutant: an_unknown_retention_value_is_guessed_as_fresh}
+    - {id: P35, mutant: the_retention_axis_is_not_read}
+    - {id: P36, mutant: open_remediation_is_read_as_closed}
+    - {id: P37, mutant: the_critical_flag_is_not_read_from_the_published_skill}
+    - {id: P38, mutant: a_cycle_through_the_target_is_not_reported}
+    - {id: P39, mutant: the_readiness_row_claims_the_store_s_newest_watermark}
+    - {id: P40, mutant: a_readiness_row_is_written_with_nothing_published}
+    - {id: P41, mutant: edges_are_read_without_the_target_s_version_pin}
+    - {id: P42, mutant: the_store_filters_draft_edges_away}
+    - {id: P43, mutant: the_critical_flag_is_misread}
+    - {id: P44, mutant: the_adapter_s_contamination_value_drifts_from_core_s}
+  survived_at_first: [P29]
+  survivors_note: >-
+    P29 removed the sort that makes a decision independent of input order, and the determinism test
+    still passed: graph edges already arrive sorted from latestEdges, and the test never varied the
+    order of a task's own requirements, which arrive in whatever order the candidate lists them. The
+    test now reorders task requirements too. It was a gap in the test, not in the rule.
+
+validator_mutation:
+  total: 42
+  detected: 42
+  negative_control: forbidden words written only inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  missed_at_first:
+    - id: V41
+      why: >-
+        the cycle check only asked whether onCycle was called and PREREQUISITE_CYCLE was named, so a
+        mutant that computed the cycle and then dropped it still passed; the check now asserts that the
+        cycle reaches the problems the decision is made from
+  reader_guard: >-
+    every body the validator reads is itself checked to be non-empty, so the empty-string reader defect
+    11D and 12A each found would now be a FAIL rather than a silent PASS
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any prerequisite decision in the real app; no planner asks the gate yet
+  - the authored graph through the gate; its 950 edges are still draft and ship with no content
+  - strictness from contamination_risk_if_missing, which has no column
+  - readiness from real retention and weakness axes, which Stage 13 has not written
+
+forbidden_prerequisite_patterns:
+  - topic_completion_used_as_prerequisite_mastery
+  - whole_domain_locked_for_one_missing_skill
+  - review_due_made_not_ready
+  - soft_gap_hard_locking_a_task
+  - priority_bypassing_the_gate
+  - untaught_prerequisite_failure_written_against_the_target
+  - started_topic_relocked_on_regression
+  - critical_label_freezing_the_curriculum
+  - english_as_a_hidden_technical_prerequisite
+  - remediation_completion_counted_as_readiness
+  - blocked_need_recorded_as_failed
+  - draft_edge_silently_dropped
+  - readiness_as_a_number
+  - unevaluated_axis_read_as_bad_news
+
+future_stage_boundaries:
+  12C: the planner that asks the gate, builds repair needs for blockers and reports independent branches
+  12D: replan triggers, reverse invalidation of dependents, and assembling skill_state under one watermark
+  12E: user-facing text from the reason inputs
+  13: the retention and weakness axes the gate reads
+  14: undeclared prerequisites discovered during evaluation
+  15: promoting authored edges out of draft, and storing contamination_risk_if_missing
+  18: an index on skill_prerequisite_edge if a bounded scan is ever shown to matter
+  T6: device run
+
+acceptance:
+  - PRQX-v0 is the accepted prerequisite engine
+  - readiness has PRG-v0's four values and eligibility its five, and neither is a number
+  - the eligibility matrix equals PRG-v0 §4 and §5, and priority is not an input
+  - review_due does not block, a soft gap never blocks, and only dependent work waits
+  - a task-level requirement is hard even when the graph does not name it
+  - a draft, invalidated or unknown edge, an unknown strictness profile, a self requirement and a cycle are all named metadata problems
+  - an axis nobody has evaluated is named and never read as bad news; the gate fails closed on a missing readiness
+  - work on a candidate that should have waited is recorded as contaminated evidence
+  - only prerequisite_readiness is written, with provenance that cannot claim more than its input saw
+  - the schema is unchanged, no migration or index was added and the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 12B QA passes and Stage 6-12A regressions pass

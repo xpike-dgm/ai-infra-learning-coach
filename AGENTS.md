@@ -77,11 +77,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 11E: ✅ `EODX-v0 / D-091` tamamlandı — gün sonu bir hüküm değil, zamanda bir sınırdır: gün öğrencinin çalışma günü değiştiği için kapanır ve kapanınca kimsenin durumu değişmez. Sayımlar etiketli envanterdir, oran/yüzde/hedef yoktur ve ilerleme sayılmaz; değişiklik ancak kanonik bir engine bildirdiyse iddia edilir; okunamayan sayım sıfır değil 'okunamadı'dır; boş gün nötrdür ve başarısızlık değildir; günler arası boşluk hiç çizilmez; yarına borç geçmez ve satırın günü instant'tan yeniden hesaplanmaz. Mutation 20/20 (biri test güçlendirilince), 128/128 QA PASS. T6 çalıştırılmadı.
 - **AŞAMA 11 TAMAMLANDI** — TDYX-v0 → RNRX-v0 → SESX-v0 → DMAX-v0 → EODX-v0. Günlük döngünün her yüzeyi kodda; planner ve içerik olmadığı için uygulama dürüstçe boş duruyor.
 - 12A: ✅ `MSTX-v0 / D-092` tamamlandı — mastery tek bir soru sorar — yardımsız yapabiliyor mu? Yardımlı iş, görülmüş çözüm, doğrulanmamış değerlendirme, itirazlı soru ve bozuk prerequisite üzerinde yapılmış iş skora girmez ve bu bir ceza değildir; bunlar başka bir sorunun cevabıdır. Bağımlı grup tek gruptur, pencere son beş gruptur ve ortalama eşit ağırlıklıdır; Skill ancak her required ve critical Objective kendi başına geçerse mastered olur; ilk temiz çelişki doğrulama açar, mastery'yi silmez; yeniden kontrol de düşerse kapılar yeniden karar verir; ölçülemeyen cevap sıfır değildir; projeksiyon kanıttan yeniden kurulur ve yalnız kendi eksenini yazar. Mutation 33/33 (ikisi test güçlendirilince), 164/164 QA PASS. T6 çalıştırılmadı ve motor uygulamada henüz erişilebilir değil (değerlendirme üreten bir yol yok).
-- **Aktif adım: 12B — Prerequisite Engine.**
-- **12B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 12C–20 bekliyor.
+- 12B: ✅ `PRQX-v0 / D-093` tamamlandı — prerequisite kapısı kodda: bir eksik prerequisite yalnız gerçekten ona bağlı işi bekletir. `review_due` unutma değildir ve bloklamaz; soft eksik hiçbir şeyi kilitlemez; task'in kendi gereksinimi graph söylemese de hard'dır; priority kapıyı aşamaz ve bekleyen ihtiyaç başarısız sayılmaz. Readiness dört değerlidir ve sayı değildir; henüz değerlendirilmemiş eksen adlandırılır, kötü haber sayılmaz; kapı eksik bilgide kapalı kalır. Authored 950 kenarın hepsinin `draft` olduğu bulundu: düşürülmüyor, sessizce uygulanmıyor, metadata sorunu olarak adlandırılıyor. Bekleması gereken aday üzerindeki iş `contaminated` kanıt olarak yazılır. Yalnız `prerequisite_readiness` yazılır; `skill_state` tek watermark altında 12D'de birleşecek. Mutation 44/44, 184/184 QA PASS. T6 çalıştırılmadı ve kapı uygulamada henüz erişilebilir değil (soran planner yok).
+- **Aktif adım: 12C — Planner Engine v1.**
+- **12C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 12D–20 bekliyor.
 
-**12B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 12B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**12C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 12C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

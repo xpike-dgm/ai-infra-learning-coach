@@ -24,6 +24,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import coach.model.SkillRow
+import coach.model.PrerequisiteEdge
 
 /**
  * The shape of the submission use case: one transaction, every row linked, no evidence. The storage
@@ -59,6 +61,8 @@ class SubmitAttemptTest {
         override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
         override fun truthWatermark(): Long = 0
         override fun latestCurriculumVersion(): Int? = null
+        override fun skill(ref: VersionedRef): SkillRow? = null
+        override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
     }
 
     private val clock = object : ClockPort {

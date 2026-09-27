@@ -217,12 +217,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **11E ✅ Gün sonu — EODX-v0 / D-091**
 - **AŞAMA 11 ✅ TAMAMLANDI**
 - **12A ✅ Mastery Engine v1 — MSTX-v0 / D-092**
-- **12B 🟡 Prerequisite Engine — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12C–20 ⬜
+- **12B ✅ Prerequisite Engine — PRQX-v0 / D-093**
+- **12C 🟡 Planner Engine v1 — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -405,3 +406,15 @@ Projeksiyon **yeniden kurulur, düzenlenmez**: aynı kanıt aynı satırı üret
 Her sabit (`5`, `0.80`, `2`, `3`) `GRE-v0`ün kalibre edilmemiş cold-start sezgisidir ve 18C'nin sahipliğindedir; hiçbiri olasılık, güven ya da yüzde değildir. Mutation 33/33 (G26 ve G33 ilk turda kaçtı: biri tüm fixture'ların v1 olması, diğeri aralık koşulunu hiç deneyen bir test olmaması yüzünden). Validator 164/164, kendi mutation testi 37/37 — validator'ın imza okuyucusunda 11D'dekiyle aynı sınıf hata bulundu ve düzeltildi. **T6 çalıştırılmadı** ve motor uygulamada erişilebilir değil: değerlendirme üreten bir yol yok (12C).
 
 Canonical: `docs/MASTERY_ENGINE_IMPL_SPEC.md` / D-092.
+
+## 12.19 12B Prerequisite Engine — PRQX-v0 / D-093
+
+İkinci engine kuruldu: hedef üzerindeki işin yorumlanabilir ve adil kanıt üretip üretmeyeceğine karar veren kapı. Ana invariant: **bir eksik prerequisite yalnız gerçekten ona bağlı işi bekletir.** `review_due` unutma değildir ve bloklamaz, soft eksik hiçbir şeyi kilitlemez, priority kapıyı aşamaz ve bekleyen aday başarısız bir ihtiyaç değildir.
+
+Readiness `PRG-v0`ın dört değeridir (`ready`, `ready_due`, `uncertain`, `not_ready`) ve sayı değildir; mastery, retention ve weakness eksenlerinden okunur, harmanlanmaz. Açık remediation hazır olmamaktır; çelişen mastery `uncertain`dir; kapanan remediation yeni kanıt olmadan kilidi açmaz. **Henüz değerlendirilmemiş eksen adlandırılır, kötü haber sayılmaz**: retention motoru (13) yokken doğrulanmış bir Skill'in tekrar gerektirdiğini hiçbir şey söylemedi. Eligibility `PRG-v0` §4/§5 matrisi: normal hard + `uncertain` koşullu uygundur, kritik ya da strict istenmişse bekler; task'in kendi gereksinimi graph söylemese de hard'dır; kapı eksik readiness'te kapalı kalır; karar sıradan bağımsızdır.
+
+Kod yazmadan önce bulunanlar: **authored 950 kenarın hepsi `draft`**, 851'i hard. `KGC-v0` §27 draft'a runtime seçimi vermiyor; "draft'ı yok say" okuması içerik sevk edildiği anda her hard prerequisite'i sessizce düşürürdü. Draft kenar ne düşürülüyor ne sessizce uygulanıyor: `edge_not_published` olarak adlandırılıyor ve aday bekliyor. Graph'ta tek strictness profili var (`default_prg_v0`); başkası tahmin değil metadata sorunu. `contamination_risk_if_missing` DDM'de kolon değil (15). `skill_state` dört motorun eksenini tek watermark altında taşıyor; her motor kendi eksenini kendi watermark'ıyla yazsaydı başka motorun bayat ekseni güncel görünürdü — bu yüzden 12B yalnız sahibi olduğu `prerequisite_readiness`ı yazıyor ve birleştirme 12D'nin. `contaminated` değeri adaptördeydi; artık core'un.
+
+Bekleması gereken aday üzerindeki deneme `contaminated` snapshot'ı yazar ve mastery motoru onu skordan dışlar: öğretilmemiş bir şeydeki hata hedefe karşı yazılmaz. Readiness satırının watermark'ı mastery satırınınkidir, yoksa `0`dır. İki port incelmesi (`skill`, `prerequisiteEdgesInto`); yeni arayüz, şema değişikliği, migration ya da index yok. Mutation 44/44, validator 184/184, kendi mutation testi 42/42. **T6 çalıştırılmadı** ve kapı uygulamada erişilebilir değil: onu soran planner yok (12C).
+
+Canonical: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md` / D-093.

@@ -23,6 +23,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
+import coach.model.SkillRow
+import coach.model.PrerequisiteEdge
 
 /**
  * Rebuilding the mastery projection: what it writes, what it refuses to write, and what it leaves
@@ -89,6 +91,8 @@ class RebuildMasteryTest {
         override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = evidence
         override fun truthWatermark(): Long = watermark
         override fun latestCurriculumVersion(): Int? = curriculumVersion
+        override fun skill(ref: VersionedRef): SkillRow? = null
+        override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
     }
 
     private fun skillKey() = "skill_state:${skill.logicalId}@v1"

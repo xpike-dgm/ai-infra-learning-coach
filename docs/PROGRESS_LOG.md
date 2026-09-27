@@ -1016,3 +1016,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `12A ✅ / 12B active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12B — Prerequisite Engine`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-09-27 — 12B Prerequisite Engine tamamlandı — PRQX-v0 / D-093
+
+- 12A kullanıcının talimatıyla main'e merge edildi (#33, f1fa729); fresh 12B PRE yapıldı ve beş kanonik kaynak `12A ✅ / 12B active-not-executed` gösterdi. Kullanıcı açık onay verdi ("sen merge edip devam et").
+- **Authored 950 kenarın hepsi `draft`.** "Draft'ı yok say" her hard prerequisite'i sessizce düşürürdü; kenar adlandırılıyor ve aday bekliyor.
+- **Kapı `PRG-v0`ın kendisi:** dört readiness değeri, §4/§5 matrisi, task gereksinimi hard, priority girdi değil, eksik bilgide kapalı.
+- **§23 örnekleri ve §22 yasakları prose değil test:** eksik hard prerequisite yalnız bağlı işi bekletir, kritik ama yalnız review_due bloklamaz, kritik verification_due bloklar, soft eksik kilitlemez, malloc'u gizlice isteyen pointer görevi bekler, English gizli prerequisite değildir.
+- **Değerlendirilmemiş eksen kötü haber değildir**; adlandırılıyor.
+- **Yalnız `prerequisite_readiness` yazılıyor**: `skill_state` dört motorun eksenini tek watermark altında taşıdığı için birleştirme 12D'nin.
+- Living memory: 12A senkronunun `MASTER_PLAN`a iki kez yazdığı 12B başlığı, tamamlanmış 9D–9F/10A–10E adımlarının işaretsiz eski başlıkları ve `STEP_STATUS`ta kalan 10E satırları düzeltildi; validator artık tekrarlanan adım başlığını düşürüyor.
+- Mutation 44/44. Altı run PASS. Validator 184/184, kendi mutation testi 42/42, sweep 38/38.
+- **T6 çalıştırılmadı** ve kapı uygulamada erişilebilir değil: onu soran planner yok (12C).
+- D-050 POST living-memory accepted state'i `12B ✅ / 12C active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12C — Planner Engine v1`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -57,8 +57,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **11D — Günlük mikro quiz** | ✅ | DMAX-v0 / D-090. Curriculum tek yazma yolundan yayımlanır ve üzerine yazılmaz; güven mağazanın validation kaydıdır; kanıt uyumuna Objective karar verir; tek interior bütün scope'lara hizmet eder ve sonuçta puan yoktur; 188/188 QA PASS, mutation 27/27. |
 | **11E — Gün sonu** | ✅ | EODX-v0 / D-091. Gün sonu hüküm değil zaman sınırı; sayımlar etiketli envanter ve ilerleme değil; değişiklik ancak kanonik engine bildirdiyse; boş gün başarısızlık değil; yarına borç geçmez; 128/128 QA PASS, mutation 20/20. **AŞAMA 11 kapandı.** |
 | **12A — Mastery Engine v1** | ✅ | MSTX-v0 / D-092. Mastery yardımsız yapılanı sorar; yardımlı/görülmüş/doğrulanmamış kanıt skora girmez; Skill non-compensatory; ilk çelişki doğrulama açar; projeksiyon kanıttan yeniden kurulur; 164/164 QA PASS, mutation 33/33. |
-| **12B — Prerequisite Engine** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12C–20** | ⬜ Bekliyor | 12B sonrası canonical sırada. |
+| **12B — Prerequisite Engine** | ✅ | PRQX-v0 / D-093. Eksik prerequisite yalnız bağlı işi bekletir; review_due bloklamaz; soft eksik kilitlemez; priority kapıyı aşamaz; draft kenar adlandırılır; bekleyen aday üzerindeki iş contaminated; 184/184 QA PASS, mutation 44/44. |
+| **12C — Planner Engine v1** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12D–20** | ⬜ Bekliyor | 12C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -77,123 +78,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12A
+## Son tamamlanan numaralı adım — 12B
 
-**Final:** `MSTX-v0 — Mastery Engine v1` / D-092.
-**Ana çıktı:** `docs/MASTERY_ENGINE_IMPL_SPEC.md` + `arch/12a_mastery_engine/` + `android/`.
+**Final:** `PRQX-v0 — Prerequisite Engine` / D-093.
+**Ana çıktı:** `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md` + `arch/12b_prerequisite_engine/` + `android/`.
 
-12A sonucu:
-- mastery tek bir soru sorar: yardımsız yapabiliyor mu,
-- kanıtı hiçbir şey yazmıyordu; pipeline deneme başına tek transaction, Objective sürümü pinli,
-- yanıtsız değerlendirme hiçbir şey yazmaz; ölçülemeyen cevap sıfır değildir,
-- bağımlı grup tek grup, pencere son beş, ortalama eşit ağırlıklı, çarpan yok,
-- Skill ancak her required ve critical Objective kendi başına geçerse mastered,
-- ilk çelişki doğrulama açar ve silmez; yeniden kontrol düşerse kapılar yeniden karar verir,
-- projeksiyon kanıttan yeniden kurulur, truth yazmaz, yalnız kendi eksenini yazar,
-- sabitler `GRE-v0`ün kalibre edilmemiş sezgileri (18C); yüzde/olasılık/güven yok,
-- mutation 33/33 (ikisi test güçlendirilince), validator 164/164 ve kendi mutation testi 37/37,
-- **T6 çalıştırılmadı**; motor uygulamada erişilebilir değil.
+12B sonucu:
+- eksik prerequisite yalnız gerçekten ona bağlı işi bekletir; bağımsız dal, blocker'ın kendi öğretim görevi ve English paralel devam eder,
+- readiness dört değerli ve sayı değil; açık remediation `not_ready`, çelişen mastery `uncertain`, `review_due` bloklamaz,
+- değerlendirilmemiş eksen adlandırılır, kötü haber sayılmaz; kapı eksik readiness'te kapalı kalır,
+- `PRG-v0` §4/§5 matrisi; task'in kendi gereksinimi hard; priority girdi değil, başarısızlık alanı yok,
+- authored 950 kenarın hepsi `draft`; düşürülmüyor, sessizce uygulanmıyor, `edge_not_published` olarak adlandırılıyor,
+- bilinmeyen strictness/lifecycle, kendine gereksinim, yayımlanmamış Skill ve döngü adlandırılmış metadata sorunları,
+- bekleyen aday üzerindeki iş `contaminated` yazılır ve mastery motoru onu dışlar; değer artık core'un,
+- yalnız `prerequisite_readiness` yazılır; `skill_state` birleştirmesi tek watermark altında 12D'de,
+- mutation 44/44, independent validator **184/184 PASS**, kendi mutation testi 42/42; 38/38 sweep PASS,
+- **T6 çalıştırılmadı** — telefon bağlı değildi; kapı uygulamada erişilebilir değil (12C).
 
-## Önceki numaralı adım — 11E
+Bu bölümün önceki sürümü 12A başlığı altında 10E'den kalan satırlar taşıyordu; 12B senkronu bölümü baştan yazdı.
 
-**Final:** `EODX-v0 — End of Day` / D-091. **AŞAMA 11 kapandı.**
-**Ana çıktı:** `docs/END_OF_DAY_SPEC.md` + `arch/11e_end_of_day/` + `android/`.
+## Aktif adım — 12C Planner Engine v1
 
-11E sonucu:
-- gün sonu bir hüküm değil, zamanda bir sınır; günü kapatan bir öğrenci aksiyonu yok,
-- kabul edilmiş gün-sonu spec'i yoktu; kurallar sahiplerinden türetildi, uydurulmadı,
-- gün satırın kaydettiği çalışma günüdür ve instant'tan yeniden hesaplanmaz,
-- yeni gün boş başlar; envanter, yarım plan ya da borç sınırı geçmez,
-- sayımlar etiketli envanter; toplam/oran/yüzde/hedef yok ve sayım ilerleme değil,
-- değişiklik ancak kanonik bir engine bildirdiyse iddia edilir,
-- okunamayan sayım 'okunamadı'dır, sıfır değil; boş gün nötr; boşluklar çizilmez,
-- Today'in gün bağlamında render ediliyor; yeni surface, grafik ya da ızgara yok,
-- `countTruth` port incelmesi hiçbir şey yazmıyor; port sayısı dört,
-- mutation 20/20 (biri test güçlendirilince), validator 128/128 ve kendi mutation testi 26/26,
-- **T6 çalıştırılmadı**.
-
-## önceki numaralı adım — 11D
-
-**Final:** `DMAX-v0 — Daily Micro Assessment Implementation` / D-090.
-**Ana çıktı:** `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` + `arch/11d_daily_micro_assessment/` + `android/`.
-
-11D sonucu:
-- curriculum bölgesinin hiç yazıcısı yoktu; yayımlama tek yol, tek transaction ve yayımlanmış sürüm üzerine yazılmaz,
-- authored paket katı ayrıştırılır ya da hiç sunulmaz; şemanın adlandırmadığı item alanları içerikte kalır,
-- güven mağazanın validation kaydıdır; etkin tavan en kısıtlayıcı kuraldır ve deklare edileni aşmaz,
-- kanıt uyumuna Objective karar verir; mastery ölçümü direct tipi ister,
-- exposure yalnız gerçekten sunulan item için yazılır,
-- tek interior: gönderilen sınır donar, boş bırakmak yanlış değildir, yardım engellenmez, sonuç puansızdır,
-- kısa artifact gövdesi referansın içinde taşınır ya da reddedilir,
-- **mutation koşucusu Gradle'ı hiç çalıştırmamıştı**; düzeltildi, 11D 27/27 ve 11C 20/20 olarak yeniden koşuldu,
-- validator 188/188, kendi mutation testi 27/27, sweep 35/35,
-- **T6 çalıştırılmadı**.
-
-## önceki numaralı adım — 11C
-
-**Final:** `SESX-v0 — Session State` / D-089.
-**Ana çıktı:** `docs/SESSION_STATE_SPEC.md` + `arch/11c_session_state/` + `android/`.
-
-11C sonucu:
-- bir duraklatma işin nerede olduğunu saklar, ne kadar sürdüğünü ya da ne kadar iyi gittiğini değil,
-- checkpoint `ResumeContext` + high-stakes işareti; `resume_context/1`, katı çözülür, okunamayan satır kaybolmaz,
-- bir pause tek transaction, tek append-only satır; tüketildi bayrağı yok; şema değişmedi,
-- sıradan pause yalnız dört koşul doğrulanınca durable; mid-segment pause yazılmaz ve kaydedilmiş gösterilmez,
-- resume en çok iki koşulu doğrular; gap eşiği uydurulmadı; bugün devam ettirilebilen checkpoint yok; Today checkpoint sunmaz,
-- working session emergent, puansız, saklanmaz; bir kez ve `TRUX-v0` sebebiyle biter,
-- `readTruth` port incelmesi; main'de 11A'dan kalan iki bozuk kelime düzeltildi ve korunuyor,
-- mutation 20/20 (hepsi testle); validator 146/146 ve kendi mutation testi 20/20 — biri kaçtı ve düzeltildi,
-- **T6 çalıştırılmadı**.
-
-## önceki numaralı adım — 11B
-
-**Final:** `RNRX-v0 — Task Runner` / D-088.
-**Ana çıktı:** `docs/TASK_RUNNER_SPEC.md` + `arch/11b_task_runner/` + `android/`.
-
-11B sonucu:
-- runner bir execution surface; planner, mastery, prerequisite ya da evidence otoritesi değil,
-- runner kodundan önce main'de 11A'nın sync betiğinden kalan U+0307 bulundu, düzeltildi ve validator ile korunuyor,
-- 17 state, 6 faz, 5+5 koşul, 3 pause sınıfı `TRUX-v0`den; tonlar `VDSX-v0`den ve core'da,
-- girişte her koşul doğrulanmalı; doğrulanmayan `unmet`; bugün hiçbir görev başlatılamaz ve dürüst sonuç bu,
-- yardım hep istenebilir, istenmeden verilmez, H3/H4 açıklamasız verilmez (kapsam koşulu olmadan),
-- deneme tek transaction: attempt + artifact + provenance + assistance, evidence yok, türetilmiş olgu saklanmıyor,
-- mutation 18/18; validator 147/147 ve kendi mutation testi 18/18,
-- **T6 çalıştırılmadı**.
-
-## önceki numaralı adım — 11A
-
-**Final:** `TDYX-v0 — Today Interior` / D-087.
-**Ana çıktı:** `docs/TODAY_INTERIOR_SPEC.md` + `arch/11a_today/` + `android/`.
-
-11A sonucu:
-- **Today kendisine verilmeyen hiçbir şeyi hesaplamaz**; planner 12'de olduğu için ekran plan uydurmak yerine dürüst boş/yükleniyor state'lerini gösteriyor,
-- kodu kontratlara karşı okumak iki kusur buldu: içerik portu `TODO()` ile çökecekti ve `Surface` kaydı başlatma sırası yüzünden null içerebiliyordu,
-- 12 state, 6 adımlı precedence, 7 purpose, 8 reason ve 7 attention family sahiplerinden kopyalandı; tonlar `VDSX-v0`nin,
-- bayat plan, blocked görev, değiştirilen plan ve revalidate edilmemiş oturum **süzülür**,
-- reason'da serbest metin, satırda mastery/score alanı, sunumda türetilmiş kapasite hükmü yok,
-- `empty_valid` üretiliyor ve `loading_initial_plan`dan ayrılıyor,
-- read path yalnız okur, store thread'inde koşar, resume'da yenilenir ve ne plan ne kapasite uydurur,
-- mutation 16/16 (üçü test güçlendirilince); validator 150/150, kendi mutation testi 16/16 — biri kaçtı ve check daraltıldı,
-- **T6 çalıştırılmadı**; cihaz sonucu iddia edilmiyor.
-
-## önceki numaralı adım — 10E
-
-**Final:** `APHX-v0 — App Health` / D-086. **AŞAMA 10 kapandı.**
-**Ana çıktı:** `docs/APP_HEALTH_SPEC.md` + `arch/10e_app_health/` + `android/` (`StoreStartup`, `AppHealth`, `StoreOpener`, `Backup`, `HealthSurface`, `CoachApplication`).
-
-10E sonucu:
-- **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil**,
-- handoff'un iki sorununa ek olarak kod kontratlara karşı okununca iki sorun daha bulundu: **açılışta bütünlük kontrolü yoktu** ve **varsayılan build'in AI adaptörü `TODO()` ile çökecekti**,
-- store süreçte bir kez, arka planda açılıyor; latch'li JVM testi bunu kanıtlıyor; yeni port yok,
-- `quick_check` + FK kontrolü migration'dan **önce**, tam `integrity_check` sonra; fark bir fixture ile kanıtlandı,
-- sebep `core-model` tipi olarak taşınıyor, mesaj ayrıştırılmıyor,
-- yedi bozulma/versiyon biçiminde dosya **byte byte** değişmeden kalıyor,
-- altı cross-cutting state `UXIA-v0`/`VDSX-v0` ile birebir; shell yalnız normal kullanımda; tek aksiyon `RECHECK`, reset temsil edilemez,
-- restore mekanizması (kullanıcı kararı: mekanizma 10E, kontroller 16D): doğrulanmış export, kopya üzerinde doğrulama, atomik rename, eski hot journal kenara, birleştirme yok,
-- mutation 16/16 — M08 ve M09 başta yaşadı ve testler güçlendirildi; M02'nin ilk hali derlenmediği için sayılmadı,
-- **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
-- independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
-
-## Aktif adım — 12B Prerequisite Engine
-
-**12B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

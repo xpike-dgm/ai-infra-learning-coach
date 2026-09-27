@@ -44,7 +44,14 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 11D Günlük mikro quiz: DMAX-v0 / D-090 ile tamamlandı; curriculum ingestion, item güven tavanı, exposure ve tek assessment interior kuruldu.
 - [x] 11E Gün sonu: EODX-v0 / D-091 ile tamamlandı; gün sonu hüküm değil zaman sınırı, sayımlar envanter, borç yok. **AŞAMA 11 kapandı.**
 - [x] 12A Mastery Engine v1: MSTX-v0 / D-092 ile tamamlandı; evidence pipeline, GRE-v0 kapıları, non-compensatory Skill ve yeniden kurulabilir projeksiyon.
-- [ ] 12B Prerequisite Engine **AKTİF**: `PRG-v0`ın kodda karşılığı ve 12A'nın dokunmadığı readiness ekseni.
+- [x] 12B Prerequisite Engine: PRQX-v0 / D-093 ile tamamlandı; readiness, eligibility matrisi, draft kenarların adlandırılması, contamination snapshot'ı ve `prerequisite_readiness` projeksiyonu.
+- [ ] 12C Planner Engine v1 **AKTİF**: kapıyı soran, blocker için repair ihtiyacı kuran ve bağımsız dalları raporlayan planner.
+- [ ] `skill_state`in dört ekseni ve primary presentation state tek watermark altında birleştirilecek; bugün 12A kendi eksenini yazıp diğerlerini taşıyor, 12B yalnız `prerequisite_readiness` yazıyor → 12D.
+- [ ] Prerequisite replan tetikleri (`PRG-v0` §19) ve bağımlıların ters invalidation'ı → 12D.
+- [ ] Authored 950 prerequisite kenarının hepsi `draft`; kapı bunları `edge_not_published` olarak adlandırıyor, yayımlama → 15.
+- [ ] `contamination_risk_if_missing` DDM'de kolon değil; strictness bugün critical bayrağı ve adayın isteğinden → 15.
+- [ ] Değerlendirme sırasında bulunan beyan edilmemiş prerequisite (`TASK_PREREQUISITE_METADATA_INVALID`) → 14.
+- [ ] Yayımlama sırasında döngüsel graph reddi (bugün kapı döngüyü çalışma anında adlandırıyor) → 15H.
 - [ ] Motoru tetikleyen yol: bir denemeden sonra kimin recompute ettiği ve ne ölçüleceği → 12C.
 - [ ] Objective gate profilleri authored içerikte; varsayılanlar `GRE-v0`ün → 15 yazar, 18C kalibre eder.
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.

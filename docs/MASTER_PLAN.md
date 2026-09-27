@@ -561,6 +561,9 @@ Canonical charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`.
 
 **AŞAMA 9 TAMAMLANDI.**
 
+---
+
+# AŞAMA 10 — Mobil Proje İskeleti
 ### [x] 10A — Proje kurulumu — MPSX-v0 / D-082
 
 **10A final coverage:**
@@ -650,18 +653,6 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - per-user exposure,
 - years-long curriculum/user history,
 - migrations.
-### [ ] 9D — Servis sınırları
-### [ ] 9E — AI entegrasyon mimarisi
-### [ ] 9F — Test stratejisi / performance budgets
-
----
-
-# AŞAMA 10 — Mobil Proje İskeleti
-### [ ] 10A — Proje kurulumu
-### [ ] 10B — Navigation
-### [ ] 10C — Design system implementation
-### [ ] 10D — Local database
-### [ ] 10E — Temel uygulama sağlığı
 
 ---
 
@@ -750,9 +741,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 33/33, validator 164/164 ve kendi mutation testi 37/37,
 - **T6 çalıştırılmadı**; motor uygulamada erişilebilir değil (12C).
 
-### [ ] 12B — Prerequisite Engine — **AKTİF**
-### [ ] 12B — Prerequisite Engine
-### [ ] 12C — Planner Engine v1
+### [x] 12B — Prerequisite Engine — PRQX-v0 / D-093
+
+**12B final coverage:**
+- eksik prerequisite yalnız gerçekten ona bağlı işi bekletir; bağımsız dallar devam eder,
+- readiness `PRG-v0`ın dört değeri, sayı değil; `review_due` bloklamaz; açık remediation hazır olmamaktır,
+- değerlendirilmemiş eksen adlandırılır, kötü haber sayılmaz; kapı eksik bilgide kapalı kalır,
+- §4/§5 matrisi; soft eksik kilitlemez; task gereksinimi hard; priority girdi değil,
+- authored 950 kenarın hepsi `draft`; adlandırılıyor, düşürülmüyor ve sessizce uygulanmıyor,
+- bekleyen aday üzerindeki iş `contaminated` yazılır ve mastery onu dışlar,
+- yalnız `prerequisite_readiness` yazılır; `skill_state` birleştirmesi 12D'de,
+- mutation 44/44, validator 184/184 ve kendi mutation testi 42/42,
+- **T6 çalıştırılmadı**; kapı uygulamada erişilebilir değil (12C).
+- Bu adımın senkronu 12A'nın bıraktığı çift 12B başlığını ve tamamlanmış 9D–9F/10A–10E adımlarının işaretsiz eski iskelet başlıklarını kaldırdı; validator artık tekrarlanan adım başlığını düşürüyor.
+
+### [ ] 12C — Planner Engine v1 — **AKTİF**
 ### [ ] 12D — Replan
 ### [ ] 12E — Reason codes
 ### [ ] 12F — Sanal kullanıcı testleri
@@ -864,8 +867,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A`  
-**Son tamamlanan:** **`12A — MSTX-v0 / D-092`**  
-**Aktif:** **`12B — Prerequisite Engine`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12B`  
+**Son tamamlanan:** **`12B — PRQX-v0 / D-093`**  
+**Aktif:** **`12C — Planner Engine v1`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12B fresh PRE-STEP → `PRG-v0`'ın kodda karşılığı ve readiness ekseni → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12C fresh PRE-STEP → kapıyı soran planner (`PBR-v0`/`PDT-v0`) → independent QA → D-050 POST sync + stale audit.**

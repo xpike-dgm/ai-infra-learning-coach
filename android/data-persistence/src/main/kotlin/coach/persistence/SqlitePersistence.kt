@@ -12,8 +12,11 @@ import coach.model.EvidenceOutcome
 import coach.model.EvidenceRow
 import coach.model.IndependenceClass
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.PrerequisiteEdge
+import coach.model.PrerequisiteSnapshot
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
+import coach.model.SkillRow
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
@@ -40,8 +43,11 @@ class SqlitePersistence private constructor(
         /** `:memory:` is a real SQLite database, so T2 checks are not testing a stub. */
         const val IN_MEMORY = ":memory:"
 
-        /** What a prerequisite snapshot says when the target's prerequisites were not eligible. */
-        const val CONTAMINATED = "contaminated"
+        /**
+         * What a prerequisite snapshot says when the target's prerequisites were not eligible. The
+         * vocabulary is core's (12B); the adapter only reads it back.
+         */
+        const val CONTAMINATED = PrerequisiteSnapshot.CONTAMINATED
 
         /**
          * Opens and migrates, **throwing** [Migrations.DataRecoveryRequired] when that is unsafe.
@@ -348,6 +354,11 @@ class SqlitePersistence private constructor(
     override fun latestCurriculumVersion(): Int? =
         query("SELECT MAX(version) FROM curriculum_version") { if (it.isNull(0)) null else it.getLong(0).toInt() }
             .single()
+
+    override fun skill(ref: VersionedRef): SkillRow? = curriculumStore.skill(ref)
+
+    override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> =
+        curriculumStore.prerequisiteEdgesInto(target)
 
     /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
