@@ -56,8 +56,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **11C — Session state** | ✅ | SESX-v0 / D-089. Pause işin nerede olduğunu saklar, süre/sonuç değil; yalnız durable pause yazılır; resume yalnız checkpoint'in kanıtladığını doğrular, gap eşiği uydurulmadı; session puansız ve saklanmaz; 146/146 QA PASS, mutation 20/20. |
 | **11D — Günlük mikro quiz** | ✅ | DMAX-v0 / D-090. Curriculum tek yazma yolundan yayımlanır ve üzerine yazılmaz; güven mağazanın validation kaydıdır; kanıt uyumuna Objective karar verir; tek interior bütün scope'lara hizmet eder ve sonuçta puan yoktur; 188/188 QA PASS, mutation 27/27. |
 | **11E — Gün sonu** | ✅ | EODX-v0 / D-091. Gün sonu hüküm değil zaman sınırı; sayımlar etiketli envanter ve ilerleme değil; değişiklik ancak kanonik engine bildirdiyse; boş gün başarısızlık değil; yarına borç geçmez; 128/128 QA PASS, mutation 20/20. **AŞAMA 11 kapandı.** |
-| **12A — Mastery Engine v1** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12B–20** | ⬜ Bekliyor | 12A sonrası canonical sırada. |
+| **12A — Mastery Engine v1** | ✅ | MSTX-v0 / D-092. Mastery yardımsız yapılanı sorar; yardımlı/görülmüş/doğrulanmamış kanıt skora girmez; Skill non-compensatory; ilk çelişki doğrulama açar; projeksiyon kanıttan yeniden kurulur; 164/164 QA PASS, mutation 33/33. |
+| **12B — Prerequisite Engine** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12C–20** | ⬜ Bekliyor | 12B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -76,7 +77,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 11E
+## Son tamamlanan numaralı adım — 12A
+
+**Final:** `MSTX-v0 — Mastery Engine v1` / D-092.
+**Ana çıktı:** `docs/MASTERY_ENGINE_IMPL_SPEC.md` + `arch/12a_mastery_engine/` + `android/`.
+
+12A sonucu:
+- mastery tek bir soru sorar: yardımsız yapabiliyor mu,
+- kanıtı hiçbir şey yazmıyordu; pipeline deneme başına tek transaction, Objective sürümü pinli,
+- yanıtsız değerlendirme hiçbir şey yazmaz; ölçülemeyen cevap sıfır değildir,
+- bağımlı grup tek grup, pencere son beş, ortalama eşit ağırlıklı, çarpan yok,
+- Skill ancak her required ve critical Objective kendi başına geçerse mastered,
+- ilk çelişki doğrulama açar ve silmez; yeniden kontrol düşerse kapılar yeniden karar verir,
+- projeksiyon kanıttan yeniden kurulur, truth yazmaz, yalnız kendi eksenini yazar,
+- sabitler `GRE-v0`ün kalibre edilmemiş sezgileri (18C); yüzde/olasılık/güven yok,
+- mutation 33/33 (ikisi test güçlendirilince), validator 164/164 ve kendi mutation testi 37/37,
+- **T6 çalıştırılmadı**; motor uygulamada erişilebilir değil.
+
+## Önceki numaralı adım — 11E
 
 **Final:** `EODX-v0 — End of Day` / D-091. **AŞAMA 11 kapandı.**
 **Ana çıktı:** `docs/END_OF_DAY_SPEC.md` + `arch/11e_end_of_day/` + `android/`.
@@ -94,7 +112,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 20/20 (biri test güçlendirilince), validator 128/128 ve kendi mutation testi 26/26,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 11D
+## önceki numaralı adım — 11D
 
 **Final:** `DMAX-v0 — Daily Micro Assessment Implementation` / D-090.
 **Ana çıktı:** `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md` + `arch/11d_daily_micro_assessment/` + `android/`.
@@ -176,6 +194,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — telefon bağlı değildi; hiçbir cihaz sonucu iddia edilmiyor,
 - independent validator **152/152 PASS**, kendi mutation testi 12/12; 31/31 sweep PASS.
 
-## Aktif adım — 12A Mastery Engine v1
+## Aktif adım — 12B Prerequisite Engine
 
-**12A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

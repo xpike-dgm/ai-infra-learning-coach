@@ -1,0 +1,323 @@
+model: MSTX-v0
+stage_step: 12A
+status: accepted_12a
+decision: D-092
+mastery_contract: GRE-v0
+evidence_contract: GRE-v0
+assistance_contract: AI_assistance_2D_contract
+skill_presentation: SPWX-v0
+data_model: DDM-v0
+local_database: LDBX-v0
+persistence: LFPS-v0
+boundaries: MSBX-v0
+ai_integration: AIAX-v0
+purpose: evidence_interpreted_and_mastery_projected_from_it
+
+scope:
+  mastery_engine_only: true
+  retention_engine_implemented: false
+  prerequisite_engine_implemented: false
+  planner_implemented: false
+  topic_state_implemented: false
+  weakness_engine_implemented: false
+  rubrics_implemented: false
+  threshold_calibrated: false
+  schema_changed: false
+  migration_added: false
+  ports_added: false
+  boundaries_changed: false
+  surface_semantics_changed: false
+  mastery_percentage_claim: null
+  probability_or_confidence_claim: null
+
+mastery_question: What does this attempt actually prove — and what does it refuse to prove?
+
+primary_invariant: >-
+  Mastery asks one question: can the learner do it without help? Assisted work, exposed solutions,
+  unverified evaluations, contested items and work done on a contaminated prerequisite are all kept
+  out of the score, and none of that is a penalty — they are answers to a different question.
+
+found_before_12a:
+  - id: evidence_had_no_writer
+    was: >-
+      11B and 11D deliberately wrote no evidence, so nothing in the product turned a recorded attempt
+      into the four axes DDM-v0 stores; mastery had nothing to read
+    resolved_here: RecordEvidence, one transaction per attempt, one row per targeted Objective
+  - id: objective_gate_metadata_not_in_the_schema
+    was: >-
+      GRE-v0's per-Objective gate profile (min_independent_groups, min_variant_families,
+      requires_non_basic/user_authored/transfer) has no column in DDM-v0
+    resolved_here: >-
+      it travels as authored content exactly as 11D's item metadata does, and falls back to GRE-v0's
+      declared defaults rather than to a number invented here
+  - id: group_rubric_does_not_exist_yet
+    was: GRE-v0 §4 asks for an objective-specific rubric to produce a testlet's group quality
+    resolved_here: >-
+      the mean of the group's rows is the stand-in until rubrics exist (14); it can never raise the
+      group count, which is the guard that actually matters
+
+declared_constants:
+  source: GRE-v0
+  calibrated_at: 18C
+  recent_window_max_groups_v0: 5
+  objective_mastery_threshold_v0: 0.80
+  min_independent_groups_standard: 2
+  min_independent_groups_critical: 3
+  min_variant_families_standard: 2
+  min_variant_families_critical: 2
+  is_probability: false
+  is_confidence: false
+  is_ability_estimate: false
+  shown_to_learner_as_percentage: false
+
+eligibility:
+  source: GRE-v0 §3.1
+  excluded_kinds:
+    - not_direct_evidence_for_objective
+    - not_independent
+    - evaluator_not_verified
+    - outcome_invalid
+    - contested
+    - prerequisite_contaminated
+    - solution_exposed
+    - no_group_result
+  assisted_evidence_is_penalty: false
+  assisted_evidence_kept_as_formative: true
+  contextual_signals_produce_score: false
+
+grouping:
+  source: GRE-v0 §4
+  dependency_group_is_one_group: true
+  same_item_repeated_inflates_groups: false
+  group_quality_from_rubric: false
+  group_quality_stand_in: mean_of_group_rows
+  rubric_owner: 14
+
+scoring:
+  window: last_5_eligible_independent_direct_groups
+  aggregation: equal_weighted_mean
+  assistance_multiplier: false
+  evaluator_multiplier: false
+  difficulty_multiplier: false
+  recency_multiplier: false
+
+objective_gates:
+  source: GRE-v0 §8, §9
+  standard: [recent_direct_score, min_independent_groups, min_variant_families, required_direct_type,
+             no_unresolved_recheck, no_unresolved_verification]
+  critical_adds: [non_basic_evidence]
+  profile_may_add: [user_authored_artifact, transfer_evidence]
+  compensatory: false
+
+skill_aggregation:
+  source: GRE-v0 §14
+  rule: all_required_and_critical_objectives_pass
+  average_of_objectives: false
+  unresolved_critical_recheck_blocks: true
+  optional_objective_gates_skill: false
+
+hysteresis:
+  source: GRE-v0 §16.2
+  first_contradiction_opens_verification: true
+  first_contradiction_unmasters: false
+  failed_recheck_resolves_verification_and_lets_gates_decide: true
+  verification_stays_open_forever: false
+
+support_band:
+  source: GRE-v0 §17
+  values: [low, medium, high]
+  is_statistical_confidence: false
+  failing_objective_is_low: true
+
+evidence_pipeline:
+  writes_one_row_per_targeted_objective: true
+  one_transaction_per_attempt: true
+  pending_evaluation_writes_evidence: false
+  axes_written_separately: true
+  not_reliably_measured_is_invalid_not_negative: true
+  not_reliably_measured_scored_zero: false
+  independence_inferred_from_the_answer: false
+  evaluator_recorded_on_every_ai_derived_row: true
+
+projection:
+  rebuilt_not_edited: true
+  same_evidence_same_row: true
+  writes_truth: false
+  writes_only_mastery_axis: true
+  other_axes_carried: true
+  presentation_state_derived_from_one_axis_and_claimed_as_whole_truth: false
+  presentation_state_owner: [12B, 13, SPWX-v0 precedence]
+  provenance: [policy_version, truth_watermark, built_at_instant, input_curriculum_version]
+  watermark_read_before_evidence: true
+  written_without_a_published_curriculum: false
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+    - name: evidenceFor
+      signature: evidenceFor(objective) -> List<EvidenceRow>
+      reason: mastery is a projection of evidence and must be recomputable from all of it
+      version_pinned: true
+      writes: false
+    - name: truthWatermark
+      signature: truthWatermark() -> Long
+      reason: a projection without a watermark is indistinguishable from a stale one
+    - name: latestCurriculumVersion
+      signature: latestCurriculumVersion() -> Int?
+      reason: a projection is pinned to the curriculum version it was computed against
+
+wiring:
+  reachable_in_app_today: false
+  why_not: >-
+    no path in the app produces an evaluation yet: nothing is startable, no content ships and no
+    planner selects work, so no attempt reaches the pipeline
+  trigger_owner: 12C
+
+tests:
+  t1:
+    - core-engines MasteryEngineTest
+    - core-application EvidencePipelineTest
+    - core-application RebuildMasteryTest
+  t2:
+    - data-persistence EvidenceStorageTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 33
+  detected: 33
+  harness_verified_to_run_gradle: true
+  mutants:
+    - {id: G01, mutant: assisted_evidence_enters_the_score}
+    - {id: G02, mutant: provisional_counts_as_verified}
+    - {id: G03, mutant: contested_row_counts}
+    - {id: G04, mutant: contaminated_prerequisite_counts}
+    - {id: G05, mutant: exposed_solution_counts_as_fresh}
+    - {id: G06, mutant: indirect_evidence_carries_the_objective}
+    - {id: G07, mutant: dependency_group_becomes_many_groups}
+    - {id: G08, mutant: window_unbounded}
+    - {id: G09, mutant: threshold_lowered}
+    - {id: G10, mutant: one_group_is_enough}
+    - {id: G11, mutant: critical_needs_no_more_than_standard}
+    - {id: G12, mutant: variant_family_diversity_dropped}
+    - {id: G13, mutant: critical_passes_on_basic_evidence}
+    - {id: G14, mutant: artifact_the_learner_did_not_write_passes}
+    - {id: G15, mutant: required_direct_type_unchecked}
+    - {id: G16, mutant: unresolved_recheck_stops_blocking}
+    - {id: G17, mutant: one_contradiction_unmasters_instantly}
+    - {id: G18, mutant: failed_recheck_keeps_mastery}
+    - {id: G19, mutant: skill_mastered_on_an_average}
+    - {id: G20, mutant: optional_objective_gates_the_skill}
+    - {id: G21, mutant: unresolved_critical_recheck_ignored}
+    - {id: G22, mutant: pending_evaluation_writes_evidence}
+    - {id: G23, mutant: unmeasurable_answer_scored_zero}
+    - {id: G24, mutant: unmeasurable_answer_recorded_as_wrong}
+    - {id: G25, mutant: provisional_written_as_verified}
+    - {id: G26, mutant: attribution_loses_its_version_pin}
+    - {id: G27, mutant: rebuild_writes_truth}
+    - {id: G28, mutant: projection_overwrites_another_engines_axis}
+    - {id: G29, mutant: projection_pinned_to_a_missing_version}
+    - {id: G30, mutant: watermark_read_after_the_evidence}
+    - {id: G31, mutant: evidence_read_without_its_version_pin}
+    - {id: G32, mutant: contaminated_snapshot_reads_as_valid}
+    - {id: G33, mutant: group_result_outside_the_unit_interval}
+  survived_at_first: [G26, G33]
+  survivors_note: >-
+    both survivors were gaps in the tests rather than in the rules, and both were the same kind of
+    gap: a rule that only shows up in a case the tests never built. G26's version pin is invisible
+    while every Objective in the fixtures is version 1, and G33's range check had no test that tried
+    to construct a row outside it. A second Objective version and a core-model invariant check close
+    them.
+
+validator_mutation:
+  total: 37
+  detected: 37
+  negative_control: forbidden words named only in a comment must not fail the validator
+  negative_control_result: no_false_positive
+  missed_at_first:
+    - id: V13
+      why: the check looked for the token `recheckAlsoFailed` rather than how it is computed, so a
+        mutant that set it to a constant still passed; it now asserts the expression
+    - id: V21
+      why: no check covered the group-result range invariant at all; one was added
+  helper_defect_found: >-
+    the declaration reader stopped at the first `=` after a signature, which a default parameter
+    value contains, so nine checks silently read an empty string and passed; the reader now balances
+    the parameter list first. 11D hit the same class of defect in its own reader
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any mastery decision in the real app; nothing produces an evaluation there yet
+  - the threshold, window size and group minimums against real learner data (18C)
+  - a testlet's group quality against a real rubric (14)
+
+forbidden_mastery_patterns:
+  - assisted_work_counted_as_independent_mastery
+  - provisional_evaluation_settling_a_gate
+  - exposed_solution_counted_as_fresh_evidence
+  - contaminated_prerequisite_counted_against_the_learner
+  - same_item_repeated_inflating_independent_groups
+  - compensatory_average_across_objectives
+  - instant_unmastery_on_one_contradiction
+  - verification_left_open_forever
+  - unmeasurable_answer_scored_zero
+  - pending_evaluation_written_as_evidence
+  - mastery_percentage_or_probability
+  - engine_writing_another_engines_axis
+  - projection_written_without_provenance
+
+future_stage_boundaries:
+  12B: prerequisite readiness, the axis this engine leaves untouched
+  12C: the planner that triggers recomputation and selects what to measure next
+  12D: replan after a mastery change
+  12E: user-facing reason codes built from the decision trace
+  13: retention, remediation and the weakness axis
+  14: rubrics, evaluator behaviour and the AI evaluator policy
+  15: authored Objective gate profiles
+  18C: calibration of the threshold, window and minimums
+  T6: device run
+
+acceptance:
+  - MSTX-v0 is the accepted mastery engine
+  - eligibility, grouping, window, gates, aggregation, hysteresis and support band equal GRE-v0
+  - every declared constant is GRE-v0's and is recorded as an uncalibrated cold-start heuristic
+  - assisted, exposed, unverified, contested and contaminated evidence never enters a score
+  - a dependency group is one group, and a repeated item cannot inflate independent evidence
+  - a Skill is mastered only when every required and critical Objective passes on its own
+  - the first clean contradiction opens verification; a failed recheck lets the gates decide again
+  - a pending evaluation writes no evidence and an unmeasurable answer is not a zero
+  - the projection is rebuilt from evidence, carries full provenance and writes only its own axis
+  - no percentage, probability or confidence is produced anywhere
+  - the schema is unchanged, no migration was added and the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 12A QA passes and Stage 6-11E regressions pass

@@ -736,7 +736,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 12 — Mastery + Planner Implementasyonu
-### [ ] 12A — Mastery Engine v1 — **AKTİF**
+### [x] 12A — Mastery Engine v1 — MSTX-v0 / D-092
+
+**12A final coverage:**
+- mastery tek soru sorar: yardımsız yapabiliyor mu; yardımlı/görülmüş/doğrulanmamış/itirazlı/bozuk kanıt skora girmez,
+- kanıtı hiçbir şey yazmıyordu; `RecordEvidence` deneme başına tek transaction ve Objective sürümü pinli,
+- yanıtsız değerlendirme hiçbir şey yazmaz; ölçülemeyen cevap `invalid` ve sonuçsuz, sıfır değil,
+- bağımlı grup tek grup; pencere son beş; eşit ağırlıklı ortalama; çarpan yok,
+- Skill non-compensatory: her required ve critical Objective kendi başına geçmeli,
+- histerezisin iki yarısı: ilk çelişki doğrulama açar, düşen yeniden kontrol kapıları serbest bırakır,
+- projeksiyon yeniden kurulur, truth yazmaz, provenance taşır, yalnız kendi eksenini yazar,
+- sabitler `GRE-v0`ün kalibre edilmemiş sezgileri ve 18C'nin,
+- mutation 33/33, validator 164/164 ve kendi mutation testi 37/37,
+- **T6 çalıştırılmadı**; motor uygulamada erişilebilir değil (12C).
+
+### [ ] 12B — Prerequisite Engine — **AKTİF**
 ### [ ] 12B — Prerequisite Engine
 ### [ ] 12C — Planner Engine v1
 ### [ ] 12D — Replan
@@ -850,8 +864,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`  
-**Son tamamlanan:** **`11E — EODX-v0 / D-091`** — **AŞAMA 11 kapandı**  
-**Aktif:** **`12A — Mastery Engine v1`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A`  
+**Son tamamlanan:** **`12A — MSTX-v0 / D-092`**  
+**Aktif:** **`12B — Prerequisite Engine`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12A fresh PRE-STEP → `GRE-v0`'ın kodda karşılığı ve evidence pipeline'ın ilk parçası → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12B fresh PRE-STEP → `PRG-v0`'ın kodda karşılığı ve readiness ekseni → independent QA → D-050 POST sync + stale audit.**

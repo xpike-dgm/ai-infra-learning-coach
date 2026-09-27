@@ -20,6 +20,7 @@ import coach.model.StudyTimestamp
 import coach.model.UseCeiling
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
+import coach.model.EvidenceRow
 import coach.ports.ClockPort
 import coach.ports.ContentDocument
 import coach.ports.ContentPort
@@ -124,6 +125,9 @@ class DailyMicroAssessmentTest {
         override fun latestValidation(ref: VersionedRef): ValidationRecord? = validation
         override fun objectiveProfile(ref: VersionedRef): ObjectiveEvidenceProfile? = profile
         override fun countTruth(kind: String, studyDay: String): Int = 0
+        override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
+        override fun truthWatermark(): Long = 0
+        override fun latestCurriculumVersion(): Int? = null
     }
 
     private fun storeWithItem(

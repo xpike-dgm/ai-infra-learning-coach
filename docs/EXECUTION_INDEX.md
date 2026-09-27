@@ -152,8 +152,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 12 — Mastery ve Adaptif Planner’ı Koda Dök
-- [ ] **12A — Mastery Engine v1** **AKTİF**
-- [ ] **12B — Prerequisite Engine**
+- [x] **12A — Mastery Engine v1** — `MSTX-v0 / D-092`
+- [ ] **12B — Prerequisite Engine** **AKTİF**
 - [ ] **12C — Planner Engine v1**
 - [ ] **12D — Replan**
 - [ ] **12E — Explanation / reason codes**
@@ -246,9 +246,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`  
-**Son tamamlanan:** **`11E — EODX-v0 / D-091`** — **AŞAMA 11 kapandı**  
-**Aktif:** **`12A — Mastery Engine v1`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A`  
+**Son tamamlanan:** **`12A — MSTX-v0 / D-092`**  
+**Aktif:** **`12B — Prerequisite Engine`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -258,4 +258,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 11E `EODX-v0` ile gün sonu kilitlendi: hüküm değil zaman sınırı, sayımlar etiketli envanter ve ilerleme değil, değişiklik ancak kanonik engine bildirdiyse, boş gün başarısızlık değil, yarına borç yok. **AŞAMA 11 kapandı**; günlük döngünün her yüzeyi kodda ve planner/içerik olmadığı için uygulama dürüstçe boş duruyor. T6 çalıştırılmadı.
 
-12A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+12A `MSTX-v0` ile ilk engine kuruldu: kanıt yorumlanıyor ve mastery ondan projekte ediliyor. Yardımlı, görülmüş, doğrulanmamış, itirazlı ve bozuk prerequisite üzerindeki kanıt skora girmez; Skill non-compensatory; ilk çelişki doğrulama açar; projeksiyon kanıttan yeniden kurulur ve yalnız kendi eksenini yazar. Sabitler kalibre edilmemiş (18C). T6 çalıştırılmadı.
+
+12B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

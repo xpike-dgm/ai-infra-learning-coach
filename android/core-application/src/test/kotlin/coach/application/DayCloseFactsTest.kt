@@ -8,6 +8,7 @@ import coach.model.ResourceVersion
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
+import coach.model.EvidenceRow
 import coach.ports.ClockPort
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
@@ -47,6 +48,9 @@ class DayCloseFactsTest {
             if (kind in unreadable) error("$kind cannot be counted")
             return counts[kind to studyDay] ?: 0
         }
+        override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> = emptyList()
+        override fun truthWatermark(): Long = 0
+        override fun latestCurriculumVersion(): Int? = null
     }
 
     private val clock = object : ClockPort {

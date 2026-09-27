@@ -1178,3 +1178,27 @@ Ayrıntı: `docs/DAILY_MICRO_ASSESSMENT_IMPL_SPEC.md`.
 - Sonraki numbered step `12A — Mastery Engine v1`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/END_OF_DAY_SPEC.md`.
+
+
+## D-092 — Mastery Engine v1 = MSTX-v0
+**Durum:** Kabul edildi — 2026-09-21
+
+- 12A final modeli `MSTX-v0 — Mastery Engine v1` oldu ve **AŞAMA 12 başladı**.
+- Canonical spec `docs/MASTERY_ENGINE_IMPL_SPEC.md`; machine-readable contract `arch/12a_mastery_engine/mastery_engine.yaml`; research/decision synthesis `research/12a_mastery_engine_research.md`; kod `core-engines` (`MasteryEngine.kt`), `core-model` (`EvidenceFacts.kt`), `core-application` (`EvidencePipeline.kt`, `RebuildMastery.kt`), `core-ports` + `data-persistence` (`evidenceFor`, `truthWatermark`, `latestCurriculumVersion`).
+- Ana invariant: **mastery tek bir soru sorar — yardımsız yapabiliyor mu?** Yardımlı iş, görülmüş çözüm, doğrulanmamış değerlendirme, itirazlı soru ve bozuk prerequisite üzerinde yapılmış iş skora girmez. Hiçbiri ceza değildir; başka bir sorunun cevabıdır.
+- **Kod yazmadan önce bulunanlar:** (1) 11B ve 11D kasten kanıt yazmamıştı, yani `DDM-v0`nin dört ekseni ürün tarafından hiç yazılmamıştı ve mastery'nin okuyacağı bir şey yoktu. (2) `GRE-v0`ün Objective gate profili (`min_independent_groups`, `min_variant_families`, `requires_*`) `DDM-v0`de kolon değil; 11D'nin item metadata'sı gibi authored içerikte kalıyor ve varsayılanlar `GRE-v0`ün. (3) Grup rubric'i henüz yok; testlet'in `q_g`'si için grup satırlarının ortalaması stand-in olarak kaydedildi — bağımsız grup sayısını asla artıramaz, asıl koruma budur.
+- **Uygunluk (§3.1):** dokuz koşul tek bir fonksiyonda ve **ihlal edilen kuralları döndürüyor**, böylece her dışlama açıklanabiliyor. Yardımlı kanıt saklanıyor, recheck tetikleyebiliyor ve remediation'a bilgi veriyor; yalnız "yardımsız yapabiliyor mu" sorusunun cevabı değil.
+- **Gruplama ve pencere:** bağımlı grup tek gruptur (aynı soruyu on kez yanıtlamak bağımsız kanıtı şişirmez); pencere son beş gruptur; ortalama eşit ağırlıklıdır ve assistance/evaluator/difficulty/recency çarpanı yoktur — `GRE-v0` cold-start'ta kalibre edilmemiş katsayı uydurmamak için hepsini kaldırmıştı.
+- **Kapılar ve toplama:** standart ve kritik kapılar ayrı; kritik Objective yalnız basic kanıtla geçemez; Objective kendi artifact'ini ya da transfer kanıtını isteyebilir. **Skill non-compensatory**: her required ve critical Objective kendi başına geçmeli — ortalama, bir Objective'deki parlak sonucun eksik olanı gizlemesine izin verirdi.
+- **Histerezis (§16.2) iki yarısıyla:** ilk temiz, prerequisite-valid, bağımsız çelişki `verification_due` açar ve mastery'yi **korur**; doğrulama zaten açıkken gelen yeni çelişki gürültü değildir, doğrulama kapanır ve kapılar yeniden karar verir. Yalnız birini uygulamak farklı bir ürün üretirdi: biri hiç güncellenmeyen, diğeri tek hatada panikleyen.
+- **Kanıt yazımı:** deneme başına tek transaction, hedeflenen Objective başına bir satır, Objective sürümü kendi satırında pinli. **Yanıtsız değerlendirme hiçbir şey yazmaz.** Dört eksen ayrı yazılır. **`not_reliably_measured` `invalid` ve sonuçsuzdur** — sıfır öğrencinin yaptığı bir şeydir, "ölçemedik" değil. Bağımsızlık kaydedilen yardımdan gelir, cevabın görünüşünden çıkarılmaz.
+- **Projeksiyon:** yeniden kurulur, düzenlenmez; truth yazmaz; tam provenance taşır; watermark kanıttan önce okunur; yayımlanmış curriculum yoksa hiçbir şey yazılmaz; yalnız mastery ekseni yazılır ve diğerleri taşınır. `primary_presentation_state` şimdilik mastery ekseni olarak raporlanıyor — `SPWX-v0` onu dört eksenden türetir ve tek eksenden uydurmak o kontratın yasakladığı "bütün gerçek" iddiası olurdu.
+- **Sabitler:** `5`, `0.80`, `2`, `3` — hepsi `GRE-v0`ün kalibre edilmemiş cold-start sezgisi ve 18C'nin sahipliğinde. Hiçbiri olasılık, güven ya da yetenek tahmini değil ve hiçbiri yüzde olarak gösterilmiyor.
+- **Mutation 33/33.** G26 ve G33 ilk dürüst koşuda hayatta kaldı ve ikisi de kuralda değil testlerde aynı tür boşluğu gösterdi: yalnız testlerin hiç kurmadığı bir durumda ortaya çıkan kural. Fixture'ların tamamı v1 olduğu için sürüm pini görünmüyordu ve aralık koşulunu deneyen test yoktu; ikinci bir Objective sürümü ve bir core-model invariant testi bunları kapattı.
+- **Validator'ın kendi kusuru:** imza okuyucusu varsayılan parametre değerindeki `=` işaretinde duruyordu, yani dokuz kontrol boş metin okuyup sessizce geçiyordu. 11D'de aynı sınıf hata bulunmuştu; okuyucu artık parametre listesini dengeliyor.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS. `data-persistence` `core-application`a bağlanamadığı için kanıt 11B'deki gibi bölündü: use case şekli T1'de, depolama garantileri T2'de.
+- **Çalıştırılmayan: T6.** Ayrıca motor uygulamada erişilebilir değil: hiçbir yol değerlendirme üretmiyor (12C).
+- Independent 12A QA: **164/164 PASS**; validator mutation 37/37 ve yorum-içi negatif kontrol false positive vermedi. Sweep 37/37.
+- Sonraki numbered step `12B — Prerequisite Engine`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/MASTERY_ENGINE_IMPL_SPEC.md`.

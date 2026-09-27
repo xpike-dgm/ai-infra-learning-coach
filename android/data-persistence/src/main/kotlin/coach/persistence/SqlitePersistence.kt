@@ -6,6 +6,11 @@ import androidx.sqlite.SQLiteStatement
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
 import coach.model.CurriculumPackage
+import coach.model.DifficultyClass
+import coach.model.EvaluatorStatus
+import coach.model.EvidenceOutcome
+import coach.model.EvidenceRow
+import coach.model.IndependenceClass
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -34,6 +39,9 @@ class SqlitePersistence private constructor(
     companion object {
         /** `:memory:` is a real SQLite database, so T2 checks are not testing a stub. */
         const val IN_MEMORY = ":memory:"
+
+        /** What a prerequisite snapshot says when the target's prerequisites were not eligible. */
+        const val CONTAMINATED = "contaminated"
 
         /**
          * Opens and migrates, **throwing** [Migrations.DataRecoveryRequired] when that is unsafe.
@@ -290,10 +298,62 @@ class SqlitePersistence private constructor(
     }
 
     /**
+     * Every evidence row recorded for one pinned Objective, oldest first (12A).
+     *
+     * The join is on `evidence_event_objective`, so an Objective only ever sees evidence that named
+     * it **and its version**: a row attributed to another version of the same logical id is a
+     * different Objective, exactly as `DDM-v0`'s composite identity requires.
+     */
+    override fun evidenceFor(objective: VersionedRef): List<EvidenceRow> {
+        val sql = """
+            SELECT e.id, e.sequence, e.skill_logical_id, e.skill_version, e.evidence_type, e.outcome,
+                   e.evaluator_status, e.independence_class, e.contested, e.correctness_or_rubric_result,
+                   e.difficulty, e.variant_family_id, e.resource_logical_id, e.resource_version,
+                   e.prerequisite_snapshot
+            FROM evidence_event e
+            JOIN evidence_event_objective o ON o.evidence_event_id = e.id
+            WHERE o.objective_logical_id = ? AND o.objective_version = ?
+            ORDER BY e.sequence
+        """.trimIndent()
+        connection.prepare(sql).use { statement ->
+            statement.bindText(1, objective.logicalId)
+            statement.bindLong(2, objective.version.toLong())
+            val rows = mutableListOf<EvidenceRow>()
+            while (statement.step()) {
+                rows += EvidenceRow(
+                    id = statement.getLong(0),
+                    sequence = statement.getLong(1),
+                    objective = objective,
+                    skill = VersionedRef(statement.getText(2), statement.getLong(3).toInt()),
+                    evidenceType = statement.getText(4),
+                    outcome = EvidenceOutcome.entries.single { it.id == statement.getText(5) },
+                    evaluatorStatus = EvaluatorStatus.entries.single { it.id == statement.getText(6) },
+                    independenceClass = IndependenceClass.entries.single { it.id == statement.getText(7) },
+                    contested = statement.getLong(8) == 1L,
+                    quality = if (statement.isNull(9)) null else statement.getText(9).toDoubleOrNull(),
+                    difficulty = if (statement.isNull(10)) null
+                    else DifficultyClass.entries.firstOrNull { it.id == statement.getText(10) },
+                    variantFamilyId = if (statement.isNull(11)) null else statement.getText(11),
+                    resource = if (statement.isNull(12)) null
+                    else VersionedRef(statement.getText(12), statement.getLong(13).toInt()),
+                    // An absent snapshot is not a claim that prerequisites were fine; it says the
+                    // pipeline recorded none, and the engine treats what it was given.
+                    prerequisiteValid = statement.isNull(14) || statement.getText(14) != CONTAMINATED,
+                )
+            }
+            return rows
+        }
+    }
+
+    override fun latestCurriculumVersion(): Int? =
+        query("SELECT MAX(version) FROM curriculum_version") { if (it.isNull(0)) null else it.getLong(0).toInt() }
+            .single()
+
+    /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
      * projection is computed from (`DDM-v0` §physical_schema).
      */
-    fun truthWatermark(): Long = query("SELECT value FROM truth_sequence") { it.getLong(0) }.single()
+    override fun truthWatermark(): Long = query("SELECT value FROM truth_sequence") { it.getLong(0) }.single()
 
     private fun nextSequence(): Long {
         connection.execSQL("UPDATE truth_sequence SET value = value + 1")

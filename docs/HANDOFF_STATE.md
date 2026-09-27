@@ -271,14 +271,15 @@ PEM-v0:
 - 11C ✅ SESX-v0 / D-089
 - 11D ✅ DMAX-v0 / D-090
 - 11E ✅ EODX-v0 / D-091 — **AŞAMA 11 kapandı**
-- 12A 🟡 active-not-executed
-- 12B–20 ⬜
+- 12A ✅ MSTX-v0 / D-092
+- 12B 🟡 active-not-executed
+- 12C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `11E — EODX-v0 / D-091` — **AŞAMA 11 kapandı**  
-**Aktif:** `12A — Mastery Engine v1`  
-**12A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12A — MSTX-v0 / D-092`  
+**Aktif:** `12B — Prerequisite Engine`  
+**12B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -901,6 +902,26 @@ EODX-v0:
 
 **AŞAMA 11 TAMAMLANDI** — TDYX-v0 → RNRX-v0 → SESX-v0 → DMAX-v0 → EODX-v0.
 
-## 44. 12A handoff
+## 44. D-092 / 12A final özeti
 
-12A — Mastery Engine v1. `GRE-v0`'ın kodda karşılığı: bir attempt'in ne kanıtladığına karar veren evidence pipeline'ın ilk parçası. Stage 11 boyunca biriken açık loop'lar buraya akıyor: planner seçimi ve plan değişiklikleri, açık need sayıları, giriş/resume koşullarını doğrulayan olgular, gün özetine bildirilecek gerçek değişiklikler. Diğerleri: haftalık/aylık kompozisyon 13, evaluator davranışı ve microcopy 14, authored içerik 15, `assessment_report` ve kalıcı geçmiş 16B, kalibrasyon 18D, T6 cihaz koşusu. 12A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/MASTERY_ENGINE_IMPL_SPEC.md`.
+Contract/QA: `arch/12a_mastery_engine/`.
+Synthesis: `research/12a_mastery_engine_research.md`.
+Code: `android/core-engines/.../MasteryEngine.kt`, `android/core-model/.../EvidenceFacts.kt`, `android/core-application/.../EvidencePipeline.kt`, `.../RebuildMastery.kt`, `PersistencePort.evidenceFor/truthWatermark/latestCurriculumVersion` + `SqlitePersistence`.
+
+MSTX-v0:
+- mastery asks one question — can they do it without help? — so assisted, exposed, unverified, contested and prerequisite-contaminated evidence never enters a score, and none of that is a penalty,
+- nothing had ever written evidence: `RecordEvidence` closes that, one transaction per attempt, one row per targeted Objective, the Objective's version pinned in its own row,
+- a pending evaluation writes nothing, and an unmeasurable answer is `invalid` with no result rather than a zero,
+- a dependency group is one group, the window is the last five, the mean is equal-weighted and there are no multipliers,
+- a Skill is mastered only when every required and critical Objective passes on its own; an average would let one result hide a missing one,
+- both halves of hysteresis: the first clean contradiction opens verification and keeps mastery; a failed recheck resolves it and lets the gates decide again,
+- the projection is rebuilt from evidence, writes no truth, carries full provenance, reads the watermark before the evidence and writes only the mastery axis,
+- `GRE-v0`'s gate profile has no columns, so it travels as authored content with GRE-v0's defaults; the group rubric is 14's and the mean of a group's rows stands in,
+- every constant is GRE-v0's uncalibrated cold-start heuristic, owned by 18C; no percentage, probability or confidence is produced,
+- mutation 33/33 (G26 and G33 survived the first run — both were test gaps, not rule gaps), independent QA 164/164, validator mutation 37/37, sweep 37/37,
+- T6 was not run, and the engine is not reachable in the app: no path there produces an evaluation yet (12C).
+
+## 45. 12B handoff
+
+12B — Prerequisite Engine. `PRG-v0`'ın kodda karşılığı ve 12A'nın kasten dokunmadığı readiness ekseni. Açık loop'lar: planner seçimi, recompute tetiği ve plan değişiklikleri 12C/12D, trace'ten üretilecek reason code'lar 12E, retention ve weakness 13, rubric ve evaluator davranışı 14, authored gate profilleri 15, kalibrasyon 18C, T6 cihaz koşusu. 12B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
