@@ -1031,3 +1031,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `12B ✅ / 12C active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12C — Planner Engine v1`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-09-28 — 12C Planner Engine v1 tamamlandı — PLNX-v0 / D-094
+
+- 12B kullanıcının talimatıyla main'e merge edildi (#34, 513d15b); fresh 12C PRE yapıldı ve beş kanonik kaynak `12B ✅ / 12C active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge et ve devam et").
+- **`planned_task` bir Today satırını taşıyamıyor.** İzin tamamı `planner_trace/1` biçiminde `planner_decision_trace.trace`te; kolon uydurulmadı.
+- **Hiçbir authored görev ve hiçbir starvation eşiği yok.** İhtiyaç 'geçerli aday yok' olarak kaydediliyor; baskı girdi, ürün hiçbirini vermiyor.
+- **Planner Stage 3'ün kendisi:** D-033 kapasitesi, 3B ihtiyaçları, `PDT-v0` §17 sırası, `PBR-v0` bantları ve rank vektörü, sığ → böl → küçük alternatif → ertele.
+- **`PBR-v0` §16'nın 80/50 örneği, `PDT-v0` §18 ve §22 yasakları prose değil test.**
+- **Plan tek transaction'da truth** ve düzenlenemiyor; iz SQLite'tan bayt bayt geri okunuyor.
+- Living memory: `OPEN_LOOPS`ta 12C'ye bağlanmış ama kapsamında olmayan iki madde 12D'ye bağlandı.
+- Mutation 55/55. Altı run PASS. Validator 226/226, kendi mutation testi 46/46, sweep 39/39.
+- **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+- D-050 POST living-memory accepted state'i `12C ✅ / 12D active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12D — Replan`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

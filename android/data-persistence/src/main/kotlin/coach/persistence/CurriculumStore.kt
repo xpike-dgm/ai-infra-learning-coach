@@ -200,6 +200,21 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
     }
 
     /**
+     * The newest published version of each Skill (12C), ordered by logical id. Lifecycle is returned,
+     * never filtered: which lifecycles are on the route is the planner's decision.
+     */
+    fun publishedSkills(): List<SkillRow> =
+        connection.prepare(
+            "SELECT s.logical_id, s.version FROM skill s " +
+                "WHERE s.version = (SELECT MAX(n.version) FROM skill n WHERE n.logical_id = s.logical_id) " +
+                "ORDER BY s.logical_id",
+        ).use { statement ->
+            val refs = mutableListOf<VersionedRef>()
+            while (statement.step()) refs += VersionedRef(statement.getText(0), statement.getLong(1).toInt())
+            refs
+        }.mapNotNull { skill(it) }
+
+    /**
      * Every version of every edge into one pinned target (12B), in every lifecycle, in a stable
      * order. Nothing is filtered here: which edges gate is the prerequisite engine's decision.
      */

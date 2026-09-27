@@ -2,6 +2,8 @@ package coach.curriculum
 
 import coach.model.AssessmentItem
 import coach.model.CurriculumPackage
+import coach.model.LearningNeed
+import coach.model.TaskCandidate
 import coach.model.VersionedRef
 import coach.ports.ContentDocument
 import coach.ports.ContentPort
@@ -35,4 +37,11 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
     override fun assessmentItem(ref: VersionedRef): AssessmentItem? = parsed?.items?.get(ref)
 
     override fun curriculumPackage(): CurriculumPackage? = parsed?.curriculum
+
+    /**
+     * `curriculum_package/1` has no task section: authored tasks, their purposes and durations are
+     * content Stage 15 writes. Until a format carries them, no task serves any need, and saying so is
+     * the truthful answer — the planner then records the need as having no valid candidate.
+     */
+    override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
 }

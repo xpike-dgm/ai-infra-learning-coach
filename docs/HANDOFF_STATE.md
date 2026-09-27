@@ -273,14 +273,15 @@ PEM-v0:
 - 11E ✅ EODX-v0 / D-091 — **AŞAMA 11 kapandı**
 - 12A ✅ MSTX-v0 / D-092
 - 12B ✅ PRQX-v0 / D-093
-- 12C 🟡 active-not-executed
-- 12D–20 ⬜
+- 12C ✅ PLNX-v0 / D-094
+- 12D 🟡 active-not-executed
+- 12E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12B — PRQX-v0 / D-093`  
-**Aktif:** `12C — Planner Engine v1`  
-**12C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12C — PLNX-v0 / D-094`  
+**Aktif:** `12D — Replan`  
+**12D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -943,6 +944,24 @@ PRQX-v0:
 - mutation 44/44, independent QA 184/184, validator mutation 42/42, sweep 38/38,
 - T6 was not run, and the gate is not reachable in the app: no planner asks it yet (12C).
 
-## 46. 12C handoff
+## 46. D-094 / 12C final özeti
 
-12C — Planner Engine v1. `PBR-v0`/`PDT-v0`'ın kodda karşılığı: kapıyı soran, blocker için repair ihtiyacı kuran ve bağımsız dalları raporlayan planner. Açık loop'lar: replan tetikleri, bağımlıların ters invalidation'ı ve `skill_state`in tek watermark altında birleştirilmesi 12D, reason metni 12E, retention ve weakness 13, beyan edilmemiş prerequisite keşfi 14, authored kenarların draft'tan çıkması ve `contamination_risk_if_missing` 15, kalibrasyon 18C, T6 cihaz koşusu. 12C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/PLANNER_ENGINE_IMPL_SPEC.md`.
+Contract/QA: `arch/12c_planner_engine/`.
+Synthesis: `research/12c_planner_engine_research.md`.
+Code: `android/core-engines/.../PlannerEngine.kt`, `android/core-model/.../PlannerFacts.kt`, `.../PlanTraceCodec.kt`, `android/core-application/.../BuildDailyPlan.kt`, `PersistencePort.publishedSkills` + `ContentPort.taskCandidates`.
+
+PLNX-v0:
+- semantic priority first, physical fit second; the gate order is `PDT-v0` §17's and priority never rescues a blocked, invalid or untrusted candidate,
+- capacity resolves in D-033's order; the hard budget is never exceeded, the planning budget keeps the `0.10` reserve, and nothing new is taught below the `10`-minute block,
+- needs come from the axis each engine owns; an unwritten axis, a draft or retired Skill open nothing, and a deprecated Skill opens no new learning,
+- `PBR-v0` bands and the ten-field rank vector, compared field by field and never summed, with a stable tie-break; P0 needs a real blocker, `review_due` is maintenance,
+- fit → safe split → smaller alternative → defer; an atomic boundary is never split; one task per need; a need that did not fit is deferred for time, never called less important, never debt,
+- no starvation threshold and no reason code is invented; `assess`/`retain`/`diagnose` need a validated candidate; at most five candidates per need,
+- the plan is truth, appended in one transaction; the watermark is read before state; everything `planned_task` cannot hold is in the `planner_trace/1` trace, which reads back exactly,
+- mutation 55/55, independent QA 226/226, validator mutation 46/46, sweep 39/39,
+- T6 was not run, and nothing in the app calls the planner yet (12D).
+
+## 47. 12D handoff
+
+12D — Replan. `PDT-v0` §15'in replan olayı ve yeni plan sürümü; `SRR-v0` re-entry; duraklatılmış işin devamı; bir denemeden sonra kimin recompute ettiği ve planner'ı çağıran yol; `skill_state`in tek watermark altında birleştirilmesi; `PRG-v0` §19 prerequisite tetikleri ve bağımlıların ters invalidation'ı. Açık loop'lar: reason metni ve Today'in planı okuması 12E, sanal kullanıcı senaryoları 12F, retention/weakness ihtiyaçları 13, authored görevler 15, kapasite ayarı 16D, starvation eşiği 18C, aday sınırı 18E, T6. 12D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

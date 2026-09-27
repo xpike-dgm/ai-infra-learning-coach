@@ -1223,3 +1223,26 @@ Ayrıntı: `docs/MASTERY_ENGINE_IMPL_SPEC.md`.
 - Sonraki numbered step `12C — Planner Engine v1`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`.
+
+## D-094 — Planner Engine v1 = PLNX-v0
+**Durum:** Kabul edildi — 2026-09-28
+
+- 12C final modeli `PLNX-v0 — Planner Engine v1` oldu.
+- Canonical spec `docs/PLANNER_ENGINE_IMPL_SPEC.md`; machine-readable contract `arch/12c_planner_engine/planner_engine.yaml`; research/decision synthesis `research/12c_planner_engine_research.md`; kod `core-engines` (`PlannerEngine.kt`), `core-model` (`PlannerFacts.kt`, `PlanTraceCodec.kt`), `core-application` (`BuildDailyPlan.kt`), `core-ports` + `data-persistence` + `data-curriculum` (`publishedSkills`, `taskCandidates`).
+- Ana invariant: **önce semantik öncelik, sonra fiziksel sığma.** Priority bloklanmış, geçersiz ya da güvenilmeyen görevi kurtaramaz; kapasite önceliği yeniden yazmaz; gün uzatılmaz; hiçbir görevin karşılamadığı ihtiyaç açık kalır, yarının borcu ve başarısızlık değildir.
+- **Kod yazmadan önce bulunanlar:** (1) `planned_task` yalnız Skill ve pozisyon taşıyor; amaç, başlık, etkinlik, dakika ve gerekçe için kolon yok. (2) Hiçbir authored görev yok; `curriculum_package/1`in görev bölümü yok. (3) Hiçbir yerde starvation eşiği yok; `PBR-v0` §6.5 18B/18C'ye bırakıyor ve 7C QA'sı eşik uydurmayı açıkça reddetmiş. (4) Retention ve weakness henüz yazılmadı. (5) Authored her Skill `draft`. (6) İhtiyaç başına aday sınırı 3B §17'de açıkça 12C'ye bırakılmış.
+- **Kapasite (D-033):** bugünkü değişiklik → günün profili → planlı varsayılan → normal profil; sert bütçe asla aşılmaz; planlama bütçesi `floor(sert × 0,90)`; `10` dakikanın altında rezerv gevşer ve yeni öğretim yapılmaz. `30/60/90` bir ayar ekranının (16D) sunduğu varsayılanlar; planner hiçbir ayarın yerine kendi varsayılanını koymaz.
+- **İhtiyaçlar (3B):** remediation weakness ekseninden, verification çelişen mastery ya da retention doğrulamasından, review retention'dan, devam mastery sürerken, yeni öğrenme kanıtsız mastery'den. Yazılmamış eksen, `draft` ya da `retired` Skill hiçbir şey açmaz; `deprecated` Skill yeni başlangıç açmaz.
+- **Aday ve sıra (`PDT-v0` §17):** adaylar içeriğin ihtiyaca cevabı; planner görev uydurmaz. İhtiyaç başına en çok `5` aday, kararlı sırada ve `deprecated` en sonda; bu öğrenme anlamı olmayan bir mühendislik sınırı (18E). `assess`/`retain`/`diagnose` doğrulanmış aday ister. Her aday öncelik hesaplanmadan kapıya sorulur; cevapsız aday bloklanmış sayılır.
+- **Öncelik (`PBR-v0`):** beş bant ve on alanlı rank vektörü, alan alan karşılaştırılır ve toplanmaz, kararlı tie-break. P0 gerçek bir blocker ister (kapıda bağımlı işi gerçekten bekleten kritik Skill); kritik etiket tek başına P1'dir. `review_due` bakımdır. Starvation planlı ilerlemeyi P2'ye kaldırır, onarımı geçemez; baskı girdidir ve ürün hiçbirini vermez.
+- **Seçim:** sığ → güvenli böl → küçük alternatif → ertele; atomik kanıt sınırı bölünmez; bir ihtiyaca tek görev. Sığmayan yüksek öncelikli ihtiyaç zaman yüzünden ertelenir ve iz bunu söyler (`PDT-v0` §18) — 'daha az önemli' diye etiketlenmez.
+- **Plan truth'tur:** `plan_version`, `planned_task` ve `planner_decision_trace` tek transaction'da eklenir ve düzenlenmez; watermark durumdan önce okunur; yayımlanmış curriculum yoksa hiçbir şey yazılmaz. `planned_task`ın taşıyamadığı her şey — amaç, başlık, etkinlik, dakika, gerekçe kodları — katı ve sürümlü `planner_trace/1` izinde; kolon uydurulmadı, bozuk iz tahmin edilmez reddedilir.
+- **Mutation 55/55.** Yalnız yorumu değiştiren kontrol mutantı hayatta kaldı, yani harness hayatta kalanı raporlayabiliyor.
+- **Living memory:** `OPEN_LOOPS`ta 12C'ye bağlanmış iki madde (denemeden sonra recompute eden yol, gün özetine giden değişiklik yolu) 12C'nin kapsamında değildi; uydurulmadan 12D'ye bağlandı.
+- **Daraltılan yaşayan kapı:** 11D'nin `E11D-13_content_methods` kontrolü ContentPort'un tam metod listesini sabitliyordu ve `taskCandidates` incelmesiyle düştü. 11D yalnız kendi iki metodunun sahibi; kontrol E11C-10 emsaliyle 11D'nin gerçekten karar verdiği şeye daraltıldı, garanti zayıflamadı.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS. Kanıt 11B, 12A ve 12B'deki gibi bölündü: kararlar T1'de, depolama garantileri T2'de.
+- **Çalıştırılmayan: T6.** Ayrıca planner uygulamada çağrılmıyor: kapasite ayarı (16D), authored görev (15) ve Today'in izden gerekçe göstermesi (12E) yok.
+- Independent 12C QA: **226/226 PASS**; validator mutation 46/46 ve yorum-içi negatif kontrol false positive vermedi. Sweep 39/39.
+- Sonraki numbered step `12D — Replan`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/PLANNER_ENGINE_IMPL_SPEC.md`.

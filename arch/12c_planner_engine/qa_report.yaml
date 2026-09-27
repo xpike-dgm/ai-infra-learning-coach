@@ -1,0 +1,764 @@
+model: PLNX-v0
+stage_step: 12C
+decision: D-094
+result: PASS
+checks_total: 226
+checks_passed: 226
+checks_failed: 0
+checks:
+- check: E12C-00_exists_PlannerEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/PlannerEngine.kt
+- check: E12C-00_exists_PlannerFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlannerFacts.kt
+- check: E12C-00_exists_PlanTraceCodec.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlanTraceCodec.kt
+- check: E12C-00_exists_BuildDailyPlan.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/BuildDailyPlan.kt
+- check: E12C-00_exists_PlannerFactsTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/PlannerFactsTest.kt
+- check: E12C-00_exists_PlannerEngineTest.kt
+  result: PASS
+  details: missing android/core-engines/src/test/kotlin/coach/engines/PlannerEngineTest.kt
+- check: E12C-00_exists_BuildDailyPlanTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/BuildDailyPlanTest.kt
+- check: E12C-00_exists_PlanStorageTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/PlanStorageTest.kt
+- check: E12C-00_exists_PLANNER_ENGINE_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/PLANNER_ENGINE_IMPL_SPEC.md
+- check: E12C-00_exists_12c_planner_engine_research.md
+  result: PASS
+  details: missing research/12c_planner_engine_research.md
+- check: E12C-01_model
+  result: PASS
+  details: PLNX-v0
+- check: E12C-01_status
+  result: PASS
+  details: accepted_12c
+- check: E12C-01_decision
+  result: PASS
+  details: D-094
+- check: E12C-01_scope_replan_implemented
+  result: PASS
+  details: replan_implemented=False
+- check: E12C-01_scope_reentry_implemented
+  result: PASS
+  details: reentry_implemented=False
+- check: E12C-01_scope_paused_continuation_implemented
+  result: PASS
+  details: paused_continuation_implemented=False
+- check: E12C-01_scope_reason_text_implemented
+  result: PASS
+  details: reason_text_implemented=False
+- check: E12C-01_scope_today_reads_plan
+  result: PASS
+  details: today_reads_plan=False
+- check: E12C-01_scope_capacity_setting_stored
+  result: PASS
+  details: capacity_setting_stored=False
+- check: E12C-01_scope_authored_tasks_shipped
+  result: PASS
+  details: authored_tasks_shipped=False
+- check: E12C-01_scope_starvation_threshold_calibrated
+  result: PASS
+  details: starvation_threshold_calibrated=False
+- check: E12C-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12C-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12C-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E12C-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12C-01_scope_surface_semantics_changed
+  result: PASS
+  details: surface_semantics_changed=False
+- check: E12C-01_no_priority_score_claim
+  result: PASS
+  details: priority_score_claim was claimed
+- check: E12C-01_no_utility_maximisation_claim
+  result: PASS
+  details: utility_maximisation_claim was claimed
+- check: E12C-01_model_constant
+  result: PASS
+  details: the planner does not stamp PLNX-v0
+- check: E12C-02_d033_states_short_profile_minutes_v0
+  result: PASS
+  details: D-033 does not state short_profile_minutes_v0
+- check: E12C-02_d033_states_normal_profile_minutes_v0
+  result: PASS
+  details: D-033 does not state normal_profile_minutes_v0
+- check: E12C-02_d033_states_intensive_profile_minutes_v0
+  result: PASS
+  details: D-033 does not state intensive_profile_minutes_v0
+- check: E12C-02_d033_states_planning_reserve_ratio_v0
+  result: PASS
+  details: D-033 does not state planning_reserve_ratio_v0
+- check: E12C-02_d033_states_minimum_plannable_block_minutes_v0
+  result: PASS
+  details: D-033 does not state minimum_plannable_block_minutes_v0
+- check: E12C-02_constant_SHORT_PROFILE_MINUTES_V0
+  result: PASS
+  details: d033=30 kotlin=30
+- check: E12C-02_constant_NORMAL_PROFILE_MINUTES_V0
+  result: PASS
+  details: d033=60 kotlin=60
+- check: E12C-02_constant_INTENSIVE_PROFILE_MINUTES_V0
+  result: PASS
+  details: d033=90 kotlin=90
+- check: E12C-02_constant_MINIMUM_PLANNABLE_BLOCK_MINUTES_V0
+  result: PASS
+  details: d033=10 kotlin=10
+- check: E12C-02_reserve_is_d033
+  result: PASS
+  details: kotlin=10
+- check: E12C-02_resolve_body_read
+  result: PASS
+  details: the capacity reader returned nothing
+- check: E12C-02_resolution_order
+  result: PASS
+  details: positions=[176, 280, 629, 695]
+- check: E12C-02_planning_budget_exact
+  result: PASS
+  details: the planning budget is not floor(hard * 0.90)
+- check: E12C-02_relaxed_only_below_block
+  result: PASS
+  details: the reserve relaxes outside the minimum block
+- check: E12C-02_no_teaching_below_block
+  result: PASS
+  details: new teaching is offered below the minimum block
+- check: E12C-02_source_codes_are_pdt
+  result: PASS
+  details: pdt=['capacity.source_today_override', 'capacity.source_short_profile',
+    'capacity.source_normal_profile', 'capacity.source_intensive_profile', 'capacity.source_scheduled_default']
+- check: E12C-02_capacity_input_has_no_default
+  result: PASS
+  details: the capacity input substitutes a default for a setting
+- check: E12C-03_triggers_read_from_3b
+  result: PASS
+  details: 3b=['new_learning', 'continue_learning', 'weakness_detected', 'remediation_required',
+    'retention_review_due', 'verification_due', 'diagnostic_opportunity', 'reinforcement_opportunity',
+    'parallel_track_due', 'integration_opportunity']
+- check: E12C-03_triggers_equal_3b
+  result: PASS
+  details: kotlin=['new_learning', 'continue_learning', 'weakness_detected', 'remediation_required',
+    'retention_review_due', 'verification_due', 'diagnostic_opportunity', 'reinforcement_opportunity',
+    'parallel_track_due', 'integration_opportunity']
+- check: E12C-03_need_codes_equal_pdt
+  result: PASS
+  details: pdt=['need.new_learning_available', 'need.continue_learning_active', 'need.weakness_detected',
+    'need.remediation_required', 'need.retention_review_due', 'need.verification_due',
+    'need.diagnostic_opportunity', 'need.reinforcement_opportunity', 'need.parallel_track_due',
+    'need.integration_opportunity']
+- check: E12C-03_purposes_equal_3b
+  result: PASS
+  details: 3b=['teach', 'practice', 'assess', 'remediate', 'retain', 'diagnose', 'reinforce']
+- check: E12C-03_needs_body_read
+  result: PASS
+  details: the needs reader returned nothing
+- check: E12C-03_remediation_from_weakness
+  result: PASS
+  details: missing if (state.weaknessAxis == REMEDIATION_REQUIRED) {
+- check: E12C-03_verification_from_mastery
+  result: PASS
+  details: missing if (state.mastery == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE
+    ||
+- check: E12C-03_review_due_is_not_negative
+  result: PASS
+  details: missing add(need(NeedTrigger.RETENTION_REVIEW_DUE, EvidenceSeverity.NO_NEGATIVE_EVIDENCE,
+- check: E12C-03_review_due_is_just_due
+  result: PASS
+  details: missing TemporalUrgency.JUST_DUE, ContinuationValue.FRESH_NEW_CONTEXT))
+- check: E12C-03_new_learning_only_when_unevidenced
+  result: PASS
+  details: missing (state.mastery == null || state.mastery == MasteryAxisState.NOT_YET_EVIDENCED)
+    &&
+- check: E12C-03_new_learning_only_when_published
+  result: PASS
+  details: missing state.lifecycleStatus == SKILL_PUBLISHED
+- check: E12C-03_off_route_opens_nothing
+  result: PASS
+  details: missing if (!onRoute(state.lifecycleStatus)) return@flatMap emptyList()
+- check: E12C-03_route_lifecycles
+  result: PASS
+  details: kotlin="published", "deprecated"
+- check: E12C-03_no_overdue_invented
+  result: PASS
+  details: the planner invents an overdue bucket
+- check: E12C-04_bands_read_from_pbr
+  result: PASS
+  details: pbr=['integrity_blocker', 'repair_or_verify', 'maintain_or_continue', 'planned_progress',
+    'reinforce_or_optimize']
+- check: E12C-04_bands_equal_pbr
+  result: PASS
+  details: kotlin=['integrity_blocker', 'repair_or_verify', 'maintain_or_continue',
+    'planned_progress', 'reinforce_or_optimize']
+- check: E12C-04_band_codes_equal_pdt
+  result: PASS
+  details: pdt=['priority.p0_integrity_blocker', 'priority.p1_repair_or_verify', 'priority.p2_maintain_or_continue',
+    'priority.p3_planned_progress', 'priority.p4_reinforce_or_optimize']
+- check: E12C-04_rank_fields_read_from_pbr
+  result: PASS
+  details: pbr=['integrity_or_blocking_scope', 'criticality', 'evidence_severity',
+    'temporal_urgency', 'starvation_pressure', 'continuation_value', 'decision_value',
+    'track_balance_pressure', 'duration_fit_class', 'stable_tie_break_key']
+- check: E12C-04_rank_vector_has_ten_fields
+  result: PASS
+  details: kotlin=['blockingScope', 'criticality', 'evidenceSeverity', 'temporalUrgency',
+    'starvation', 'continuation', 'decisionValue', 'trackBalance', 'durationFit',
+    'tieBreakKey']
+- check: E12C-04_rank_compared_in_declared_order
+  result: PASS
+  details: compared=['blockingScope', 'criticality', 'evidenceSeverity', 'temporalUrgency',
+    'starvation', 'continuation', 'decisionValue', 'trackBalance', 'durationFit',
+    'tieBreakKey']
+- check: E12C-04_rank_not_summed
+  result: PASS
+  details: the rank vector is summed
+- check: E12C-04_BlockingScope_order_is_pbr
+  result: PASS
+  details: pbr=['blocks_current_required_path', 'blocks_next_ready_dependency', 'non_blocking']
+    kotlin=['blocks_current_required_path', 'blocks_next_ready_dependency', 'non_blocking']
+- check: E12C-04_Criticality_order_is_pbr
+  result: PASS
+  details: pbr=['critical_prerequisite', 'required', 'supporting', 'optional'] kotlin=['critical_prerequisite',
+    'required', 'supporting', 'optional']
+- check: E12C-04_EvidenceSeverity_order_is_pbr
+  result: PASS
+  details: pbr=['confirmed_repeated_failure', 'clean_contradiction_or_verification_due',
+    'partial_or_uncertain_concern', 'no_negative_evidence'] kotlin=['confirmed_repeated_failure',
+    'clean_contradiction_or_verification_due', 'partial_or_uncertain_concern', 'no_negative_evidence']
+- check: E12C-04_TemporalUrgency_order_is_pbr
+  result: PASS
+  details: pbr=['overdue_high', 'just_due', 'due_soon', 'not_time_sensitive'] kotlin=['overdue_high',
+    'just_due', 'due_soon', 'not_time_sensitive']
+- check: E12C-04_ContinuationValue_order_is_pbr
+  result: PASS
+  details: pbr=['paused_safe_checkpoint', 'active_learning_context', 'fresh_new_context']
+    kotlin=['paused_safe_checkpoint', 'active_learning_context', 'fresh_new_context']
+- check: E12C-04_DurationFit_order_is_pbr
+  result: PASS
+  details: pbr=['fits_remaining', 'fits_via_safe_split', 'fits_via_smaller_alternative',
+    'cannot_fit_today'] kotlin=['fits_remaining', 'fits_via_safe_split', 'fits_via_smaller_alternative',
+    'cannot_fit_today']
+- check: E12C-04_starvation_values_are_pbr
+  result: PASS
+  details: pbr=['none', 'watch', 'promote']
+- check: E12C-04_band_body_read
+  result: PASS
+  details: the band reader returned nothing
+- check: E12C-04_p0_needs_real_blocker
+  result: PASS
+  details: P0 does not need both a critical Skill and real blocking
+- check: E12C-04_review_due_maintenance
+  result: PASS
+  details: review due is not P2/P3
+- check: E12C-04_paused_is_p2
+  result: PASS
+  details: paused work is not P2
+- check: E12C-04_reinforcement_p4
+  result: PASS
+  details: reinforcement is not P4
+- check: E12C-04_starvation_limited
+  result: PASS
+  details: starvation promotion is not limited to planned progress
+- check: E12C-04_plan_body_read
+  result: PASS
+  details: the plan reader returned nothing
+- check: E12C-04_band_before_rank
+  result: PASS
+  details: needs are not ordered by band, then rank
+- check: E12C-04_no_random
+  result: PASS
+  details: randomness in the planner
+- check: E12C-04_no_score
+  result: PASS
+  details: a score or utility appears in the planner
+- check: E12C-05_gate_order
+  result: PASS
+  details: positions=[1174, 4978, 6620]
+- check: E12C-05_untrusted_high_stakes
+  result: PASS
+  details: an unvalidated candidate can serve a high-stakes purpose
+- check: E12C-05_high_stakes_set
+  result: PASS
+  details: kotlin=TaskPurpose.ASSESS, TaskPurpose.RETAIN, TaskPurpose.DIAGNOSE
+- check: E12C-05_unselectable_invalid
+  result: PASS
+  details: a draft candidate is usable
+- check: E12C-05_gate_fails_closed
+  result: PASS
+  details: a candidate the gate never answered for is usable
+- check: E12C-05_blocked_unusable
+  result: PASS
+  details: a blocked candidate is usable
+- check: E12C-05_invalid_unusable
+  result: PASS
+  details: invalid prerequisite metadata is usable
+- check: E12C-05_cap_declared
+  result: PASS
+  details: kotlin=5
+- check: E12C-05_cap_applied
+  result: PASS
+  details: the candidate set is unbounded
+- check: E12C-05_deprecated_last
+  result: PASS
+  details: deprecated candidates are not ordered last
+- check: E12C-05_holds_back_from_gate
+  result: PASS
+  details: blocking scope is not taken from the gate's answers
+- check: E12C-05_no_priority_override_input
+  result: PASS
+  details: params=['capacity', 'needs', 'candidates', 'decisions', 'studyDay', 'curriculumVersion',
+    'truthWatermark', 'starvation', 'trackBalance', 'skillsNotOnRoute']
+- check: E12C-06_fits
+  result: PASS
+  details: missing choice.candidate.costMinutes <= remaining ->
+- check: E12C-06_safe_split
+  result: PASS
+  details: missing choice.candidate.splittable && choice.candidate.minimumSafeChunkMinutes!!
+    <= remaining ->
+- check: E12C-06_split_plans_what_fits
+  result: PASS
+  details: missing take(choice, remaining, split = true)
+- check: E12C-06_smaller_alternative
+  result: PASS
+  details: missing val smaller = offered.drop(1).firstOrNull { it.candidate.costMinutes
+    <= remaining }
+- check: E12C-06_budget_reduced
+  result: PASS
+  details: missing remaining -= minutes
+- check: E12C-06_same_need_superseded
+  result: PASS
+  details: 'missing fun supersedeAllBut(kept: Assessed) = offered.filter { it !==
+    kept }.forEach {'
+- check: E12C-06_deferred_for_time
+  result: PASS
+  details: missing listOf("selection.not_selected_capacity", "capacity.deferred_not_enough_time"))
+- check: E12C-06_no_reason_invented
+  result: PASS
+  details: missing else -> finish(NeedDisposition.NO_VALID_CANDIDATE, null, emptyList())
+- check: E12C-06_closed_need_not_planned
+  result: PASS
+  details: missing if (needKey !in openNeeds) {
+- check: E12C-06_fit_split_smaller_defer
+  result: PASS
+  details: positions=[9343, 9886, 10511, 11644]
+- check: E12C-06_atomic_never_split
+  result: PASS
+  details: an atomic evidence boundary can be split
+- check: E12C-06_no_knapsack
+  result: PASS
+  details: selection orders by cost
+- check: E12C-06_starvation_not_invented
+  result: PASS
+  details: a starvation pressure is supplied without a calibrated threshold
+- check: E12C-06_english_qa_refused_threshold
+  result: PASS
+  details: 7C's QA no longer records the refusal the planner relies on
+- check: E12C-06_independent_branch_is_prg
+  result: PASS
+  details: the reason input 12B handed to the planner is not produced
+- check: E12C-06_independent_branch_only_when_true
+  result: PASS
+  details: the independent-branch reason is not tied to a blocked need and a selected
+    task
+- check: E12C-06_invariant_planned_within_planning_budget
+  result: PASS
+  details: invariants=['planned_within_planning_budget', 'hard_budget_not_exceeded',
+    'no_blocked_or_invalid_candidate_selected', 'one_task_per_need', 'no_teaching_below_minimum_block']
+- check: E12C-06_invariant_hard_budget_not_exceeded
+  result: PASS
+  details: invariants=['planned_within_planning_budget', 'hard_budget_not_exceeded',
+    'no_blocked_or_invalid_candidate_selected', 'one_task_per_need', 'no_teaching_below_minimum_block']
+- check: E12C-06_invariant_no_blocked_or_invalid_candidate_selected
+  result: PASS
+  details: invariants=['planned_within_planning_budget', 'hard_budget_not_exceeded',
+    'no_blocked_or_invalid_candidate_selected', 'one_task_per_need', 'no_teaching_below_minimum_block']
+- check: E12C-06_invariant_one_task_per_need
+  result: PASS
+  details: invariants=['planned_within_planning_budget', 'hard_budget_not_exceeded',
+    'no_blocked_or_invalid_candidate_selected', 'one_task_per_need', 'no_teaching_below_minimum_block']
+- check: E12C-06_invariant_no_teaching_below_minimum_block
+  result: PASS
+  details: invariants=['planned_within_planning_budget', 'hard_budget_not_exceeded',
+    'no_blocked_or_invalid_candidate_selected', 'one_task_per_need', 'no_teaching_below_minimum_block']
+- check: E12C-07_need_dispositions_equal_pdt
+  result: PASS
+  details: pdt=['selected', 'partially_served', 'eligible_not_selected', 'blocked',
+    'resolved_before_selection', 'no_valid_candidate']
+- check: E12C-07_candidate_dispositions_equal_pdt
+  result: PASS
+  details: pdt=['selected', 'selected_split', 'selected_smaller_alternative', 'blocked_prerequisite',
+    'invalid_candidate', 'conditional_not_selected', 'eligible_lower_priority', 'eligible_capacity_deferred',
+    'superseded_same_need_alternative', 'duplicate_suppressed', 'resolved_before_selection']
+- check: E12C-07_every_code_is_pdt
+  result: PASS
+  details: 'not in PDT-v0: []'
+- check: E12C-07_trace_format
+  result: PASS
+  details: the trace format is not planner_trace/1
+- check: E12C-07_decode_body_read
+  result: PASS
+  details: the decode reader returned nothing
+- check: E12C-07_unknown_format_refused
+  result: PASS
+  details: another format is accepted
+- check: E12C-07_unknown_section_refused
+  result: PASS
+  details: an unknown section is accepted
+- check: E12C-07_decode_never_guesses
+  result: PASS
+  details: decoding can return a partial trace
+- check: E12C-07_title_escaped
+  result: PASS
+  details: a title is stored unescaped
+- check: E12C-07_trace_capacity
+  result: PASS
+  details: the trace does not carry capacity
+- check: E12C-07_trace_needs
+  result: PASS
+  details: the trace does not carry needs
+- check: E12C-07_trace_candidates
+  result: PASS
+  details: the trace does not carry candidates
+- check: E12C-07_trace_selected
+  result: PASS
+  details: the trace does not carry selected
+- check: E12C-07_trace_planReasonCodes
+  result: PASS
+  details: the trace does not carry planReasonCodes
+- check: E12C-07_trace_invariantChecks
+  result: PASS
+  details: the trace does not carry invariantChecks
+- check: E12C-07_trace_policyVersions
+  result: PASS
+  details: the trace does not carry policyVersions
+- check: E12C-07_trace_truthWatermark
+  result: PASS
+  details: the trace does not carry truthWatermark
+- check: E12C-07_trace_curriculumVersion
+  result: PASS
+  details: the trace does not carry curriculumVersion
+- check: E12C-07_trace_skillsNotOnRoute
+  result: PASS
+  details: the trace does not carry skillsNotOnRoute
+- check: E12C-07_no_verdict_field_PlannedEntry
+  result: PASS
+  details: PlannedEntry fields=['position', 'candidateId', 'needKey', 'purpose', 'activityKind',
+    'title', 'primarySkill', 'track', 'estimatedMinutes', 'plannedMinutes', 'split']
+- check: E12C-07_no_verdict_field_NeedTrace
+  result: PASS
+  details: NeedTrace fields=['needKey', 'trigger', 'targetSkills', 'sourceStateRefs',
+    'band', 'rank', 'priorityReasonCodes', 'selectedCandidateId', 'disposition', 'finalReasonCodes']
+- check: E12C-07_no_verdict_field_CandidateTrace
+  result: PASS
+  details: CandidateTrace fields=['candidateId', 'needKey', 'validationStatus', 'eligibility',
+    'costMinutes', 'disposition', 'reasonCodes']
+- check: E12C-07_no_verdict_field_PlanTrace
+  result: PASS
+  details: PlanTrace fields=['generationKind', 'studyDay', 'curriculumVersion', 'truthWatermark',
+    'policyVersions', 'capacity', 'needs', 'candidates', 'selected', 'planReasonCodes',
+    'invariantChecks', 'skillsNotOnRoute']
+- check: E12C-07_no_verdict_field_LearningNeed
+  result: PASS
+  details: LearningNeed fields=['needKey', 'trigger', 'targetSkills', 'criticality',
+    'sourceStateRefs', 'track', 'evidenceSeverity', 'temporalUrgency', 'continuation',
+    'decisionValue', 'requiredByCurriculum']
+- check: E12C-07_no_verdict_field_DailyCapacity
+  result: PASS
+  details: DailyCapacity fields=['source', 'hardBudgetMinutes', 'planningBudgetMinutes',
+    'reserveRelaxed', 'belowMinimumBlock']
+- check: E12C-07_no_verdict_field_TaskCandidate
+  result: PASS
+  details: TaskCandidate fields=['id', 'needKey', 'purpose', 'activityKind', 'title',
+    'primarySkill', 'costMinutes', 'validationStatus', 'track', 'requiredSkills',
+    'requiresStrictPrerequisiteConfidence', 'splittable', 'minimumSafeChunkMinutes',
+    'atomicEvidenceBoundary', 'generationVersion']
+- check: E12C-08_build_body_read
+  result: PASS
+  details: the build reader returned nothing
+- check: E12C-08_one_transaction
+  result: PASS
+  details: the plan is not written in one transaction
+- check: E12C-08_watermark_first
+  result: PASS
+  details: the watermark is not read before the state
+- check: E12C-08_nothing_published_writes_nothing
+  result: PASS
+  details: a plan is written with nothing published
+- check: E12C-08_appends_plan_version
+  result: PASS
+  details: plan_version is not appended
+- check: E12C-08_appends_planned_task
+  result: PASS
+  details: planned_task is not appended
+- check: E12C-08_appends_planner_decision_trace
+  result: PASS
+  details: planner_decision_trace is not appended
+- check: E12C-08_trace_stored
+  result: PASS
+  details: the trace is not stored
+- check: E12C-08_no_projection
+  result: PASS
+  details: planning writes a projection or reads evidence
+- check: E12C-08_gate_asked
+  result: PASS
+  details: a candidate's own requirements do not reach the gate
+- check: E12C-08_plan_tables_are_truth
+  result: PASS
+  details: the plan tables are not truth
+- check: E12C-08_planned_task_columns_unchanged
+  result: PASS
+  details: columns=['id', 'plan_version_id', 'skill_logical_id', 'skill_version',
+    'position']
+- check: E12C-08_schema_version_unchanged
+  result: PASS
+  details: the schema version moved
+- check: E12C-09_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12C-09_published_skills
+  result: PASS
+  details: publishedSkills is missing
+- check: E12C-09_task_candidates
+  result: PASS
+  details: taskCandidates is missing
+- check: E12C-09_skills_body_read
+  result: PASS
+  details: the skills reader returned nothing
+- check: E12C-09_newest_version
+  result: PASS
+  details: every version of a Skill is planned from
+- check: E12C-09_lifecycle_unfiltered
+  result: PASS
+  details: the store filters lifecycles
+- check: E12C-09_skills_read_only
+  result: PASS
+  details: reading Skills writes
+- check: E12C-09_adapter_answers_truthfully
+  result: PASS
+  details: the file adapter claims tasks its format cannot carry
+- check: E12C-10_facts_test_the rank vector is compared field by field
+  result: PASS
+  details: 'missing test: the rank vector is compared field by field, never summed'
+- check: E12C-10_facts_test_the stored trace reads back exactly, whate
+  result: PASS
+  details: 'missing test: the stored trace reads back exactly, whatever the title
+    contains'
+- check: E12C-10_facts_test_a trace in another format or with an unkno
+  result: PASS
+  details: 'missing test: a trace in another format or with an unknown part is not
+    guessed at'
+- check: E12C-10_facts_test_nothing in the plan is a score, a percenta
+  result: PASS
+  details: 'missing test: nothing in the plan is a score, a percentage or a debt'
+- check: 'E12C-10_engine_test_eighty minutes of needs in a fifty minute '
+  result: PASS
+  details: 'missing test: eighty minutes of needs in a fifty minute budget is PBR-v0''s
+    worked example'
+- check: E12C-10_engine_test_a critical label alone does not make an in
+  result: PASS
+  details: 'missing test: a critical label alone does not make an integrity blocker'
+- check: E12C-10_engine_test_review due is maintenance, not forgetting,
+  result: PASS
+  details: 'missing test: review due is maintenance, not forgetting, and never an
+    integrity blocker'
+- check: E12C-10_engine_test_priority never rescues a blocked or untrus
+  result: PASS
+  details: 'missing test: priority never rescues a blocked or untrusted candidate'
+- check: E12C-10_engine_test_a short easy task never jumps a long impor
+  result: PASS
+  details: 'missing test: a short easy task never jumps a long important one'
+- check: E12C-10_engine_test_a higher priority task that does not fit i
+  result: PASS
+  details: 'missing test: a higher priority task that does not fit is deferred for
+    time, not called less important'
+- check: E12C-10_engine_test_a safe split plans the part that fits, and
+  result: PASS
+  details: 'missing test: a safe split plans the part that fits, and an atomic evidence
+    boundary is never cut'
+- check: E12C-10_engine_test_starvation lifts planned progress one band
+  result: PASS
+  details: 'missing test: starvation lifts planned progress one band and never past
+    repair work'
+- check: E12C-10_engine_test_no pressure is invented when none is suppl
+  result: PASS
+  details: 'missing test: no pressure is invented when none is supplied'
+- check: E12C-10_engine_test_the same state gives the same plan whateve
+  result: PASS
+  details: 'missing test: the same state gives the same plan whatever order it arrives
+    in'
+- check: E12C-10_engine_test_a need nothing authored serves says so wit
+  result: PASS
+  details: 'missing test: a need nothing authored serves says so without inventing
+    a reason'
+- check: E12C-10_engine_test_needs come from the axis each engine owns,
+  result: PASS
+  details: 'missing test: needs come from the axis each engine owns, and from nothing
+    else'
+- check: 'E12C-10_app_test_with nothing published nothing is planned '
+  result: PASS
+  details: 'missing test: with nothing published nothing is planned and nothing is
+    written'
+- check: E12C-10_app_test_the plan, its tasks and its trace are appe
+  result: PASS
+  details: 'missing test: the plan, its tasks and its trace are appended together
+    in one transaction'
+- check: E12C-10_app_test_the watermark is read before any state, so
+  result: PASS
+  details: 'missing test: the watermark is read before any state, so the plan never
+    claims to have seen more'
+- check: E12C-10_app_test_a candidate is asked about at the prerequi
+  result: PASS
+  details: 'missing test: a candidate is asked about at the prerequisite gate before
+    it is ranked'
+- check: 'E12C-10_t2_test_a plan, its tasks and its trace append as '
+  result: PASS
+  details: 'missing T2 test: a plan, its tasks and its trace append as truth and read
+    back exactly'
+- check: E12C-10_t2_test_a plan is never edited in place
+  result: PASS
+  details: 'missing T2 test: a plan is never edited in place'
+- check: E12C-10_t2_test_planning reads the newest version of every
+  result: PASS
+  details: 'missing T2 test: planning reads the newest version of every Skill, lifecycle
+    included, in a stable order'
+- check: E12C-11_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12C-11_mutation_all_detected
+  result: PASS
+  details: '{''total'': 55, ''detected'': 55}'
+- check: E12C-11_mutation_ran_gradle
+  result: PASS
+  details: the mutation harness was not verified to have run anything
+- check: E12C-11_mutation_negative_control
+  result: PASS
+  details: the harness was never shown able to report a survivor
+- check: E12C-11_validator_mutation
+  result: PASS
+  details: '{''total'': 46, ''detected'': 46, ''negative_control'': ''forbidden words
+    written only inside comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''missed_at_first'': [], ''reader_defects_found_on_first_run'':
+    [{''id'': ''rank_fields_anchor'', ''why'': "the anchor `PriorityRankVector` sits
+    inside the block it names, so the reader took the next block (§6.1''s scope values)
+    as the rank vector; the anchor is now the section heading"}, {''id'': ''invariant_names'',
+    ''why'': ''the invariant reader matched only `"name" to (`, so two checks written
+    as `"name" to assessed...` and across a line break were missed; the reader now
+    takes every name in the invariant block''}], ''reader_guard'': ''every body the
+    validator reads is itself checked to be non-empty''}'
+- check: E12C-11_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12C-11_not_verified_named
+  result: PASS
+  details: what was not verified must be named
+- check: E12C-11_not_reachable_in_app
+  result: PASS
+  details: the contract claims the planner is reachable in the app
+- check: E12C-11_boundary_12D
+  result: PASS
+  details: missing 12D
+- check: E12C-11_boundary_12E
+  result: PASS
+  details: missing 12E
+- check: E12C-11_boundary_12F
+  result: PASS
+  details: missing 12F
+- check: E12C-11_boundary_13
+  result: PASS
+  details: missing 13
+- check: E12C-11_boundary_15
+  result: PASS
+  details: missing 15
+- check: E12C-11_boundary_16D
+  result: PASS
+  details: missing 16D
+- check: E12C-11_boundary_18C
+  result: PASS
+  details: missing 18C
+- check: E12C-12_forbidden_additive_priority_score
+  result: PASS
+  details: missing=additive_priority_score
+- check: E12C-12_forbidden_tasks_per_minute_or_knapsack
+  result: PASS
+  details: missing=tasks_per_minute_or_knapsack
+- check: E12C-12_forbidden_short_task_bias
+  result: PASS
+  details: missing=short_task_bias
+- check: E12C-12_forbidden_review_due_as_forgetting
+  result: PASS
+  details: missing=review_due_as_forgetting
+- check: E12C-12_forbidden_critical_label_as_p0
+  result: PASS
+  details: missing=critical_label_as_p0
+- check: E12C-12_forbidden_deferred_task_as_next_day_debt
+  result: PASS
+  details: missing=deferred_task_as_next_day_debt
+- check: E12C-12_forbidden_fixed_category_percentages
+  result: PASS
+  details: missing=fixed_category_percentages
+- check: E12C-12_forbidden_priority_bypassing_the_gate
+  result: PASS
+  details: missing=priority_bypassing_the_gate
+- check: E12C-12_forbidden_random_tie_break
+  result: PASS
+  details: missing=random_tie_break
+- check: E12C-12_forbidden_invented_starvation_threshold
+  result: PASS
+  details: missing=invented_starvation_threshold
+- check: E12C-12_forbidden_invented_reason_for_an_unserved_need
+  result: PASS
+  details: missing=invented_reason_for_an_unserved_need
+- check: E12C-12_forbidden_plan_edited_in_place
+  result: PASS
+  details: missing=plan_edited_in_place
+- check: E12C-13_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 12C QA PASS'''
+- check: E12C-13_spec_**Decision:** `D-094`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-094`'''
+- check: E12C-13_spec_Semantic priority first, p
+  result: PASS
+  details: 'spec: ''Semantic priority first, physical fit second'''
+- check: E12C-13_spec_T6
+  result: PASS
+  details: 'spec: ''T6'''
+- check: E12C-13_spec_planner_trace/1
+  result: PASS
+  details: 'spec: ''planner_trace/1'''
+- check: E12C-13_spec_MUTATION
+  result: PASS
+  details: 'spec: ''MUTATION'''
+- check: E12C-14_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12C-14_research_PBR-v0
+  result: PASS
+  details: missing='PBR-v0'
+- check: E12C-14_research_no invented
+  result: PASS
+  details: missing='no invented'
+- check: E12C-14_research_planner_trace/1
+  result: PASS
+  details: missing='planner_trace/1'
+- check: E12C-15_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E12C-15_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+failures: []

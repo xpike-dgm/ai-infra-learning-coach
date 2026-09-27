@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093`; AŞAMA 8, AŞAMA 9, AŞAMA 10 ve AŞAMA 11'in kapandığını, AŞAMA 12'nin başladığını ve aktif adımın `12C active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094`; AŞAMA 8, AŞAMA 9, AŞAMA 10 ve AŞAMA 11'in kapandığını, AŞAMA 12'nin başladığını ve aktif adımın `12D active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1133,14 +1133,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - **AŞAMA 11 TAMAMLANDI**
 - AŞAMA 12A ✅ MSTX-v0 / D-092
 - AŞAMA 12B ✅ PRQX-v0 / D-093
-- AŞAMA 12C 🟡 active-not-executed
-- 12D–20 ⬜
+- AŞAMA 12C ✅ PLNX-v0 / D-094
+- AŞAMA 12D 🟡 active-not-executed
+- 12E–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `12B — Prerequisite Engine`  
-**Final:** `PRQX-v0 — Prerequisite Engine` / D-093  
-**Canonical:** `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md` + `arch/12b_prerequisite_engine/`
+**Son tamamlanan numaralı adım:** `12C — Planner Engine v1`  
+**Final:** `PLNX-v0 — Planner Engine v1` / D-094  
+**Canonical:** `docs/PLANNER_ENGINE_IMPL_SPEC.md` + `arch/12c_planner_engine/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1172,17 +1173,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 11:** ✅ TAMAMLANDI  
 **AŞAMA 12A:** ✅ TAMAMLANDI  
 **AŞAMA 12B:** ✅ TAMAMLANDI  
-**Aktif adım:** `12C — Planner Engine v1`  
+**AŞAMA 12C:** ✅ TAMAMLANDI  
+**Aktif adım:** `12D — Replan`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-12C için:
+12D için:
 
 ```text
-fresh 12C PRE-STEP GitHub refresh
+fresh 12D PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 12C execution
+→ 12D execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1744,8 +1746,9 @@ AŞAMA 10 ✅ TAMAMLANDI
 AŞAMA 11 ✅ TAMAMLANDI
 12A ✅ MSTX-v0 / D-092
 12B ✅ PRQX-v0 / D-093
-12C 🟡 active-not-executed
-12D–20 ⬜
+12C ✅ PLNX-v0 / D-094
+12D 🟡 active-not-executed
+12E–20 ⬜
 ```
 
 10D final:
@@ -1942,9 +1945,9 @@ AŞAMA 11 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `12C — Planner Engine v1`.
+**Sıradaki gerçek numbered work:** `12D — Replan`.
 
-**12C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**12D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -1994,8 +1997,8 @@ AŞAMA 11 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `12C — Planner Engine v1`.  
-**12C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `12D — Replan`.  
+**12D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2113,3 +2116,12 @@ Ana invariant: mastery tek bir soru sorar — yardımsız yapabiliyor mu? Yardı
 12B `PRQX-v0 — Prerequisite Engine` ile tamamlandı. Canonical: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`; contract/QA: `arch/12b_prerequisite_engine/`; synthesis: `research/12b_prerequisite_engine_research.md`.
 
 Ana invariant: bir eksik prerequisite yalnız gerçekten ona bağlı işi bekletir. `review_due` bloklamaz, soft eksik kilitlemez, task'in kendi gereksinimi hard'dır, priority kapıyı aşamaz ve bekleyen ihtiyaç başarısız değildir. Readiness dört değerli ve sayı değil; değerlendirilmemiş eksen adlandırılır ve kötü haber sayılmaz; kapı eksik bilgide kapalı kalır. Authored 950 kenarın hepsi `draft` bulundu ve metadata sorunu olarak adlandırılıyor. Bekleyen aday üzerindeki iş `contaminated` yazılır. Yalnız `prerequisite_readiness` yazılır; `skill_state` tek watermark altında 12D'de birleşecek. Mutation 44/44, 184/184 QA PASS, validator mutation 42/42, 38/38 sweep. T6 çalıştırılmadı ve kapı uygulamada erişilebilir değil. Current active numbered step 12C'dir; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 12C completion addendum — D-094
+
+12C `PLNX-v0 — Planner Engine v1` ile tamamlandı. Canonical: `docs/PLANNER_ENGINE_IMPL_SPEC.md`; contract/QA: `arch/12c_planner_engine/`; synthesis: `research/12c_planner_engine_research.md`.
+
+Ana invariant: önce semantik öncelik, sonra fiziksel sığma. Priority bloklanmış, geçersiz ya da güvenilmeyen görevi kurtaramaz; kapasite önceliği yeniden yazmaz; gün uzatılmaz; sığmayan ihtiyaç 'daha az önemli' diye etiketlenmez, borç ve başarısızlık değildir. Kapasite D-033, bantlar ve rank vektörü `PBR-v0`, iz `PDT-v0`. `planned_task` Today satırını taşıyamadığı için izin tamamı `planner_trace/1` biçiminde saklanır; authored görev yok ve ihtiyaç 'geçerli aday yok' olarak kaydedilir; starvation eşiği ve reason kodu uydurulmaz. Plan tek transaction'da truth. Mutation 55/55, 226/226 QA PASS, validator mutation 46/46, 39/39 sweep. T6 çalıştırılmadı ve planner uygulamada çağrılmıyor. Current active numbered step 12D'dir; fresh PRE + kullanıcı açık onayı gerekir.
