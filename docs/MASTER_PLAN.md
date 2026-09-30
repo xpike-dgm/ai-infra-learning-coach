@@ -791,12 +791,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 52/52, validator 219/219 ve kendi mutation testi 40/40,
 - **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (16D).
 
-### [ ] 12F — Sanal kullanıcı testleri — **AKTİF**
+### [x] 12F — Sanal kullanıcı testleri — VUSX-v0 / D-097
+
+**12F final coverage:**
+- 3H'nin sanal kullanıcıları gerçek kapı, planner, replan, depo, Today ve açıklamadan geçiyor; sanal kullanıcı durumdur, cevap değil,
+- 16 senaryodan 15'i koşuldu; S06 (`VDW-v0`) koşulamıyor ve 13'e bağlandı; invariant 17 yapısal, runtime 18E,
+- açıklamada due envanteri tek satır; S07 örnek günü açıklayıcı, kural değişmedi (18C),
+- mutation 27/27 yalnız sanal kullanıcı testleriyle, validator 148/148 ve kendi mutation testi 30/30,
+- **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (16D).
+
+**AŞAMA 12 TAMAMLANDI.**
 
 ---
 
 # AŞAMA 13 — Assessment + Retention + Remediation Implementasyonu
-### [ ] 13A — Haftalık sınav
+### [ ] 13A — Haftalık sınav — **AKTİF**
 ### [ ] 13B — Aylık sınav
 ### [ ] 13C — Spaced repetition
 ### [ ] 13D — Remediation Engine
@@ -900,8 +909,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12E`  
-**Son tamamlanan:** **`12E — RSNX-v0 / D-096`**  
-**Aktif:** **`12F — Sanal kullanıcı testleri`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`  
+**Son tamamlanan:** **`12F — VUSX-v0 / D-097`**  
+**Aktif:** **`13A — Haftalık sınav`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12F fresh PRE-STEP → 3H senaryolarının bugünkü kodla ve açıklamalarıyla koşulması → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13A fresh PRE-STEP → `WBA-v0` haftalık blueprint kompozisyonu → independent QA → D-050 POST sync + stale audit.**

@@ -1293,3 +1293,21 @@ Ayrıntı: `docs/REPLAN_SPEC.md`.
 - Sonraki numbered step `12F — Sanal kullanıcı testleri`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md`.
+
+## D-097 — Sanal kullanıcı testleri = VUSX-v0
+**Durum:** Kabul edildi — 2026-09-30
+
+- 12F final modeli `VUSX-v0 — Virtual User Scenarios` oldu ve **AŞAMA 12 kapandı**.
+- Canonical spec `docs/VIRTUAL_USER_TESTS_SPEC.md`; machine-readable contract `arch/12f_virtual_user_tests/virtual_users.yaml`; research/decision synthesis `research/12f_virtual_user_tests_research.md`; kod `core-engines` test fixtures (`virtual/VirtualUsers.kt`) ve üç suite (`VirtualUserScenariosTest`, `VirtualUserJourneysTest`, `VirtualUserExplanationsTest`), `core-presentation` (`PlannerExplanation.kt` gruplama, `ExplanationCopy.shortNames`), `app-ui` (`PlannerExplanationScreen.kt`).
+- Ana invariant: **sanal kullanıcı durumdur, cevap değil.** İhtiyaç durumdan (`needsFromSkillStates`), karar gerçek kapıdan (`PrerequisiteEngine.decide`), plan gerçek planner'dan, açıklanan iz planner'ın (ve re-entry için `ReplanEngine`in) yazdığından gelir. Yalnız `PLNX-v0` §5'in sahibinden geldiğini söylediği ihtiyaçlar (paralel hat, entegrasyon, pekiştirme) doğrudan verilir.
+- **Tek tanım:** sanal kullanıcılar `core-engines` Gradle test fixture'ı; `core-application` ve `core-presentation` testleri `MSBX-v0`nin zaten izin verdiği kenardan kullanır. Yeni bağımlılık kenarı yok.
+- **Kapsam:** 3H'nin 16 senaryosundan 15'i gerçek kodla koşuldu; S06 koşulamıyor — `VDW-v0` tanısal atlamasının uygulaması ve plan içinde sahibi yoktu — ve `PDT-v0` invariant 12 ile birlikte 13'e bağlandı. Invariant 17 yapısal (aday sınırı, sınırlı iz, geçmişle artmayan okuma); runtime bütçesi 18E.
+- **Bulgu ve düzeltme:** dönen öğrencinin due envanteri `planner_explanation`da satır satır listeleniyordu (`SRR-v0` §9.1). Aynı tetikleyici, aynı gelmeme nedeni ve aynı yeniden değerlendirmeyle gelmeyen ihtiyaçlar tek girdi; hiçbir ihtiyaç ya da Skill düşmez; farklı blocker'lı bekleyen ihtiyaçlar ayrı kalır; ekran üç Skill'i adlandırıp kalanını etiketli envanter olarak sayar. 12E spec'ine açık, tarihli not düşüldü.
+- **Bulgu, kural değişmedi:** 3H S07 örnek günü açıklayıcıdır; her due'nun görevi varsa `PBR-v0` aciliyeti günü tekrarlarla doldurur ve yeni öğrenme süre için bekler (`SRR-v0` §15'e uygun). Koruma starvation/track balance, eşikler 18C.
+- **Mutation 27/27**, yalnız sanal kullanıcı testleri koşarken; F01 (kimseyi bekletmeyen kritik doğrulama P1 kalmalı) ve F06 (sığan kısa ders bile küçük blokta öğretilmez) ilk turda yaşadı — test boşlukları; kapatılıp bütün set yeniden koşuldu. Yorum-içi kontrol hayatta kaldı.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Planner uygulamada çağrılmıyor; sanal kullanıcılar yalnız testlerde yaşadı.
+- Independent 12F QA: **148/148 PASS**; validator mutation 30/30 — W02 validator'ın bir anahtar eksikken hata vermek yerine çöktüğünü buldu, düzeltildi; çökme tespit sayılmaz. Sweep 42/42.
+- Sonraki numbered step `13A — Haftalık sınav`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/VIRTUAL_USER_TESTS_SPEC.md`.

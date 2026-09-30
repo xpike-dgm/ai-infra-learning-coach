@@ -48,7 +48,11 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12C Planner Engine v1: PLNX-v0 / D-094 ile tamamlandı; kapasite, eksenlerden ihtiyaç, güven + kapı + `PBR-v0` sırası, sığdırma ve `planner_trace/1` izli truth plan.
 - [x] 12D Replan: RPLX-v0 / D-095 ile tamamlandı; gerekçeli plan sürümleri, korunan iş, kalan bütçe, re-entry bağlamı ve duraklatılmış işin P2 devamı.
 - [x] 12E Explanation / reason codes: RSNX-v0 / D-096 ile tamamlandı; kapalı katalog, `planner_trace/3` ilgili Skill'ler, izden okunan Today planı ve `planner_explanation` yüzeyi.
-- [ ] 12F Sanal kullanıcı testleri **AKTİF**: 3H senaryoları bugünkü kodla ve açıklamalarıyla.
+- [x] 12F Sanal kullanıcı testleri: VUSX-v0 / D-097 ile tamamlandı; 15/16 senaryo gerçek kodla, açıklamada due envanteri tek satır. AŞAMA 12 kapandı.
+- [ ] 13A Haftalık sınav **AKTİF**: `WBA-v0` blueprint kompozisyonu.
+- [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → 13; uygulaması ve sahibi yoktu.
+- [ ] Dönüş gününün tekrarlarla dolmasına karşı koruma (starvation/track balance) eşikleri → 18C; S07 iki biçimde test ediliyor.
+- [ ] Invariant 17'nin runtime (gecikme/bellek) ölçümü → 18E; 12F'de yalnız yapısal.
 - [ ] Deneme→planlı görev bağı `DDM-v0`de yok; replan'da başlanan işi bugün çağıran bildiriyor → 15 (veri modeliyle).
 - [ ] Planner'ı uygulamadan çağırmak ve odak tercihi (`user_focus_changed`) → 16D; kapasite ayarı olmadan çağrılamaz.
 - [x] Today'in planı okuması ve izden gerekçe ailesi türetmesi 12E'de; iz `planner_trace/3`.

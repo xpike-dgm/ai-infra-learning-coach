@@ -116,6 +116,8 @@ English is a track and never the reason a task exists, except when the need *is*
 
 With no plan, another day's plan or an unreadable one, nothing is explained, and the state says which.
 
+> **12F amendment (`VUSX-v0 / D-097`, 2026-09-30).** Running the 3H virtual users showed a returning learner's seventy-eight due Skills listed as seventy-eight "not today" entries — the backlog `SRR-v0` §9.1 forbids. Needs that did not come for the same recorded reason (same trigger, same why-not, same reconsideration) are now **one entry** that keeps every need key and every Skill; a waiting need whose blockers differ stays apart. The screen names three Skills and counts the rest as labelled inventory. No statement's source changed.
+
 ---
 
 # 9. The words

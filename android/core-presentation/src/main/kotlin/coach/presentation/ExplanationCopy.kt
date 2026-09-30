@@ -199,6 +199,13 @@ object ExplanationCopy {
     /** A Skill is named by its published name, and by its reference when none is published. */
     fun names(skills: List<SkillMention>): String = skills.joinToString(", ") { it.name ?: it.ref.logicalId }
 
+    /**
+     * A grouped entry's Skills for a screen: the first [shown] by name and the rest as a labelled count
+     * (12F). A count of Skills is inventory, not a score, a percentage or a debt.
+     */
+    fun shortNames(skills: List<SkillMention>, shown: Int = 3): String =
+        if (skills.size <= shown) names(skills) else "${names(skills.take(shown))} ve ${skills.size - shown} beceri daha"
+
     /** Every catalogue code has a sentence; a code outside the catalogue has none to be shown through. */
     fun coversCatalogue(): Boolean = codeTemplates.keys.toList() == ReasonCatalog.all
 }

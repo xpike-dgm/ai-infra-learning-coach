@@ -276,14 +276,16 @@ PEM-v0:
 - 12C ✅ PLNX-v0 / D-094
 - 12D ✅ RPLX-v0 / D-095
 - 12E ✅ RSNX-v0 / D-096
-- 12F 🟡 active-not-executed
-- 13–20 ⬜
+- 12F ✅ VUSX-v0 / D-097
+- **AŞAMA 12 TAMAMLANDI**
+- 13A 🟡 active-not-executed
+- 13B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12E — RSNX-v0 / D-096`  
-**Aktif:** `12F — Sanal kullanıcı testleri`  
-**12F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12F — VUSX-v0 / D-097`  
+**Aktif:** `13A — Haftalık sınav`  
+**13A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1006,6 +1008,24 @@ RSNX-v0:
 - mutation 52/52, independent QA 219/219, validator mutation 40/40, sweep 41/41,
 - T6 was not run, and nothing in the app calls the planner yet (16D); the surface opens and says there is no decision to explain.
 
-## 49. 12F handoff
+## 49. D-097 / 12F final özeti
 
-12F — Sanal kullanıcı testleri. `PLANNER_SIMULATION_SUITE`in (3H) senaryolarını bugünkü kodla, açıklamalarıyla birlikte koşmak: aynı girdi aynı plan ve eşdeğer iz, bloklanmış/geçersiz aday seçilmez, sert bütçe aşılmaz, `review_due` unutma diye anlatılmaz, yokluk borç değildir, kapasiteye sığmayan yüksek öncelik gerçek nedeniyle açıklanır. Açık loop'lar: retention/weakness ihtiyaçları ve kodları 13, nihai mikro metin ve LLM paraphrase 14, authored görevler ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak ve kapasite ayarı 16D, starvation eşiği 18C, ters invalidation ve aday sınırı 18E, T6. 12F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/VIRTUAL_USER_TESTS_SPEC.md`.
+Contract/QA: `arch/12f_virtual_user_tests/`.
+Synthesis: `research/12f_virtual_user_tests_research.md`.
+Code: `android/core-engines/src/testFixtures/.../virtual/VirtualUsers.kt`, `.../VirtualUserScenariosTest.kt`, `android/core-application/.../VirtualUserJourneysTest.kt`, `android/core-presentation/.../VirtualUserExplanationsTest.kt`, `PlannerExplanation.kt` (grouping), `ExplanationCopy.shortNames`, `PlannerExplanationScreen.kt`.
+
+VUSX-v0:
+- a virtual user is state, never an answer: needs from Skill state, decisions from the real gate, plans from the real planner, explained traces from what the planner wrote; only owner-supplied needs (parallel track, integration, reinforcement) are given directly,
+- defined once as Gradle test fixtures of `core-engines` and used by the engine, journey and explanation suites, on edges `MSBX-v0` already allows,
+- 15 of 3H's 16 scenarios run against real code; S06 cannot — `VDW-v0` has no implementation and no owner — and is re-pointed to 13 with invariant 12; invariant 17 is structural here, runtime 18E,
+- found: a returning learner's 78 due Skills were 78 not-today rows on `planner_explanation` (`SRR-v0` §9.1); needs that did not come for the same recorded reason are now one entry that drops nothing, and 12E's spec carries an explicit amendment,
+- found: 3H's S07 example day holds only when due reviews lack tasks; with a task for every due Skill urgency fills the day and new learning waits for time — no rule changed, the guard is 18C's,
+- mutation 27/27 with only the virtual-user suites running (F01, F06 survived first — test gaps), independent QA 148/148, validator mutation 30/30 (W02 found the validator crashing instead of failing), sweep 42/42,
+- T6 was not run, and nothing in the app calls the planner yet (16D).
+
+**AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
+
+## 50. 13A handoff
+
+13A — Haftalık sınav. `WBA-v0` blueprint kompozisyonu: öğeden önce duruma dayalı plan, rol aileleri kota değil, puan/süre/kategori yüzdesi yok, oturum bölünebilir ve yarım sınav borç değil; 11D'nin tek assessment interior'u hazır. Açık loop'lar: `VDW-v0` tanısal atlaması ve 3H S06 (13), retention/weakness ihtiyaçları ve kodları (13), nihai mikro metin (14), authored içerik (15), planner'ı uygulamadan çağırmak (16D), starvation eşiği (18C), runtime bütçeleri (18E), T6. 13A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

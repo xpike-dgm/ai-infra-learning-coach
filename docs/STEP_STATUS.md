@@ -61,8 +61,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12C — Planner Engine v1** | ✅ | PLNX-v0 / D-094. Önce semantik öncelik, sonra sığma; priority kapıyı aşamaz; gün uzatılmaz; sığmayan ihtiyaç borç değil; starvation eşiği ve reason kodu uydurulmaz; plan izle truth; 226/226 QA PASS, mutation 55/55. |
 | **12D — Replan** | ✅ | RPLX-v0 / D-095. Plan düzenlenmez, gerekçeli yeni sürümle değişir; aynı gün olay yoksa yazılmaz; başlanan iş korunur, kalan yeniden çözülür; re-entry dünkü planı oynatmaz; yokluk borç değil; 157/157 QA PASS, mutation 33/33. |
 | **12E — Explanation / reason codes** | ✅ | RSNX-v0 / D-096. Açıklama karar izinin projeksiyonu; izde olmayan gerekçe kurulamaz; süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; Today planı okuyor, iz kendi satırlarını anlatmıyorsa okunamaz; 219/219 QA PASS, mutation 52/52. |
-| **12F — Sanal kullanıcı testleri** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **AŞAMA 13–20** | ⬜ Bekliyor | 12F sonrası canonical sırada. |
+| **12F — Sanal kullanıcı testleri** | ✅ | VUSX-v0 / D-097. 3H'nin 16 senaryosu gerçek kodla; sanal kullanıcı durumdur, cevap değil; 15 senaryo koşuldu, S06 (VDW-v0) sahibiyle 13'e bağlandı; açıklamada due envanteri tek satır; 148/148 QA PASS, mutation 27/27 (yalnız sanal kullanıcı testleriyle). **AŞAMA 12 kapandı.** |
+| **13A — Haftalık sınav** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **13B–20** | ⬜ Bekliyor | 13A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -81,21 +82,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12E
+## Son tamamlanan numaralı adım — 12F
 
-**Final:** `RSNX-v0 — Reason Codes & Planner Explanation` / D-096.
-**Ana çıktı:** `docs/PLANNER_EXPLANATION_IMPL_SPEC.md` + `arch/12e_reason_codes/` + `android/`.
+**Final:** `VUSX-v0 — Virtual User Scenarios` / D-097.
+**Ana çıktı:** `docs/VIRTUAL_USER_TESTS_SPEC.md` + `arch/12f_virtual_user_tests/` + `android/`.
 
-12E sonucu:
-- açıklama karar izinin projeksiyonu: her cümle kaydedilmiş bir katalog kodu ya da izin bir alanındaki olgu,
-- katalog `PDT-v0` §8 + `PRG-v0` §20, sırasıyla; dışındaki kod gösterilemez,
-- iz her adayın ilgili Skill'lerini planlama anında kaydeder (`planner_trace/3`); `/2` ve `/1` bunu iddia edemez,
-- plan yalnız izi kendi satırlarını anlatıyorsa okunur; değilse okunamaz ve tahmin edilmez,
-- Today planı okuyor: her satır kendi `planned_task` id'sine, kapasite planner'ın kaydı, korunan iş yeniden başlatılmaz,
-- süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; `review_due` unutmak değil; yokluk borç değil,
-- mutation 52/52, independent validator **219/219 PASS**, kendi mutation testi 40/40; 41/41 sweep PASS,
+12F sonucu:
+- 3H'nin sanal kullanıcıları bir kez, `core-engines` test fixture'ı olarak tanımlandı; motor, yolculuk ve açıklama testleri aynı kullanıcıları kullanıyor,
+- sanal kullanıcı durumdur: ihtiyaç durumdan, karar gerçek kapıdan, plan gerçek planner'dan, açıklanan iz planner'ın yazdığından,
+- 16 senaryodan 15'i koşuldu; S06 `VDW-v0` uygulanmadığı için koşulamıyor ve 13'e bağlandı; invariant 17 yapısal, runtime 18E,
+- bulgu: dönen öğrencinin 78 due becerisi açıklamada 78 satırdı; aynı kaydedilmiş nedenle gelmeyenler artık tek satır,
+- bulgu: 3H S07 örnek günü açıklayıcıydı; her due'nun görevi varsa aciliyet günü doldurur; kural değişmedi (18C),
+- mutation 27/27 yalnız sanal kullanıcı testleriyle, independent validator **148/148 PASS**, kendi mutation testi 30/30; 42/42 sweep PASS,
 - **T6 çalıştırılmadı** — planner uygulamada çağrılmıyor (16D).
 
-## Aktif adım — 12F Sanal kullanıcı testleri
+**AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-**12F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+## Aktif adım — 13A Haftalık sınav
+
+**13A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

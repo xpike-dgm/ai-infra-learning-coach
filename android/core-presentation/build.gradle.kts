@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":core-model"))
     implementation(project(":core-engines"))
     testImplementation(kotlin("test"))
+    testImplementation(testFixtures(project(":core-engines")))
 }
 
 tasks.withType<Test>().configureEach {

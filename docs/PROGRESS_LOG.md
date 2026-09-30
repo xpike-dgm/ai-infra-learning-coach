@@ -1075,3 +1075,15 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `12E ✅ / 12F active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12F — Sanal kullanıcı testleri`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-09-30 — 12F Sanal kullanıcı testleri tamamlandı — VUSX-v0 / D-097 — AŞAMA 12 kapandı
+
+- 12E (#37) main'e merge edildi (d41befb); fresh 12F PRE yapıldı ve beş kanonik kaynak `12E ✅ / 12F active-not-executed` gösterdi. Kullanıcı açık onay verdi ("devam et merge edildi").
+- 3H'nin sanal kullanıcıları durum olarak tanımlandı ve gerçek kapı, planner, replan, depo, Today ve açıklamadan geçirildi. 16 senaryodan 15'i koşuldu; S06 `VDW-v0` uygulanmadığı için koşulamıyor ve 13'e bağlandı.
+- **Bulgu:** dönen öğrencinin 78 due becerisi açıklamada 78 satırdı (`SRR-v0` §9.1); aynı kaydedilmiş nedenle gelmeyen ihtiyaçlar tek satır oldu, 12E spec'ine açık not düşüldü.
+- **Bulgu:** 3H S07 örnek günü açıklayıcı; her due'nun görevi varsa aciliyet günü doldurur; kural değişmedi, koruma 18C'nin eşikleri.
+- Mutation 27/27, yalnız sanal kullanıcı testleri koşarken (F01, F06 test boşluğuydu). Altı run PASS. Validator 148/148, kendi mutation testi 30/30 (W02 validator'ın çöktüğünü buldu), sweep 42/42.
+- **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+- **AŞAMA 12 tamamlandı.** D-050 POST living-memory accepted state'i `12F ✅ / 13A active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13A — Haftalık sınav`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
