@@ -157,12 +157,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **12C — Planner Engine v1** — `PLNX-v0 / D-094`
 - [x] **12D — Replan** — `RPLX-v0 / D-095`
 - [x] **12E — Explanation / reason codes** — `RSNX-v0 / D-096`
-- [ ] **12F — Sanal kullanıcı testleri** **AKTİF**
+- [x] **12F — Sanal kullanıcı testleri** — `VUSX-v0 / D-097`
 
 ---
 
 # AŞAMA 13 — Haftalık/Aylık Sınav, Retention ve Remediation’ı Geliştir
-- [ ] **13A — Haftalık sınav**
+- [ ] **13A — Haftalık sınav** **AKTİF**
 - [ ] **13B — Aylık sınav**
 - [ ] **13C — Spaced repetition**
 - [ ] **13D — Remediation Engine**
@@ -246,9 +246,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12E`  
-**Son tamamlanan:** **`12E — RSNX-v0 / D-096`**  
-**Aktif:** **`12F — Sanal kullanıcı testleri`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`  
+**Son tamamlanan:** **`12F — VUSX-v0 / D-097`**  
+**Aktif:** **`13A — Haftalık sınav`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -268,4 +268,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 12E `RSNX-v0` ile açıklama kuruldu: bir açıklama karar izinin projeksiyonudur: her cümle izin kaydettiği bir reason code'a ya da izin bir alanında tuttuğu bir olguya dayanır. Planner'ın kaydetmediği bir gerekçe kurulamaz, süreye sığmayan iş 'daha az önemli' diye anlatılmaz, bekleyen iş gerçek Skill blocker'ını adlandırır, `review_due` unutmak değildir ve yokluk borç değildir. Today artık planı okuyor ve iz ancak kendi satırlarını anlatıyorsa güveniliyor. T6 çalıştırılmadı.
 
-12F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+12F `VUSX-v0` ile 3H'nin sanal kullanıcıları gerçek kodla koşuldu; sanal kullanıcı durumdur, cevap değil: 3H'nin sanal kullanıcıları artık gerçek kapıdan, planner'dan, replan'dan, depodan, Today'den ve açıklamadan geçiyor. İhtiyaç durumdan, uygunluk kapıdan, seçim planner'dan, açıklama onun yazdığı izden geliyor; koşulamayan senaryo elle simüle edilmez, sahibiyle adlandırılır. S06 (tanısal atlama) koşulamıyor ve 13'e bağlandı. **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0. T6 çalıştırılmadı.
+
+13A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

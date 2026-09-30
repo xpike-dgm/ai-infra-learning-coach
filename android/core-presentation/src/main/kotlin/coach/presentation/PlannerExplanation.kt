@@ -96,9 +96,14 @@ data class TaskExplanation(
     val supporting: List<Statement>,
 )
 
-/** `PDT-v0` §21 `why_not_today`: which need, why it did not come today, and when it is looked at again. */
+/**
+ * `PDT-v0` §21 `why_not_today`: which needs, why they did not come today, and when they are looked at
+ * again. Needs that did not come for the same recorded reason are one entry (12F): a returning learner
+ * with eighty Skills due for review reads one sentence about them, not eighty rows — `SRR-v0` §9.1's
+ * `due state inventory != DailyPlan` holds for the explanation too.
+ */
 data class NotTodayExplanation(
-    val needKey: String,
+    val needKeys: List<String>,
     val skills: List<SkillMention>,
     val need: Statement,
     val whyNot: Statement,
@@ -182,13 +187,13 @@ object PlannerExplanationPresentation {
         val notToday = trace.needs.filter { it.disposition !in SERVED }.map { need ->
             val (whyNot, reconsider) = whyNot(trace, need, recorded, ::mention)
             NotTodayExplanation(
-                needKey = need.needKey,
+                needKeys = listOf(need.needKey),
                 skills = need.targetSkills.map(::mention),
                 need = needStatement(need, recorded, ::mention),
                 whyNot = whyNot,
                 reconsideration = reconsider,
             )
-        }
+        }.let { grouped(it, recorded) }
 
         val plan = buildList {
             trace.replan?.let { replan ->
@@ -203,6 +208,25 @@ object PlannerExplanationPresentation {
 
         return PlannerExplanationView(ExplanationState.EXPLAINED, plan, today, notToday)
     }
+
+    /**
+     * Needs that share the same trigger, the same recorded reason for not coming and the same
+     * reconsideration are one entry, in the order the planner ranked them. Nothing is dropped: every need
+     * key and every Skill stays in the entry, and a waiting need whose blockers differ stays apart,
+     * because its reason names different Skills.
+     */
+    private fun grouped(items: List<NotTodayExplanation>, recorded: Set<String>): List<NotTodayExplanation> =
+        items.groupBy { listOf(it.need.code, it.need.fact, it.whyNot.code, it.whyNot.fact, it.whyNot.skills, it.reconsideration) }
+            .values.map { group ->
+                if (group.size == 1) return@map group.single()
+                val skills = group.flatMap { it.skills }.distinct()
+                val first = group.first()
+                first.copy(
+                    needKeys = group.flatMap { it.needKeys },
+                    skills = skills,
+                    need = requireNotNull(Statement.ofCode(requireNotNull(first.need.code), recorded, skills)),
+                )
+            }
 
     /** Why the need exists at all — its trigger, which the trace records for every need. */
     private fun needStatement(need: NeedTrace, recorded: Set<String>, mention: (VersionedRef) -> SkillMention): Statement =

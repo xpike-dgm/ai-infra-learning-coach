@@ -1,0 +1,517 @@
+model: VUSX-v0
+stage_step: 12F
+decision: D-097
+result: PASS
+checks_total: 148
+checks_passed: 148
+checks_failed: 0
+checks:
+- check: E12F-00_exists_virtual_users.yaml
+  result: PASS
+  details: missing arch/12f_virtual_user_tests/virtual_users.yaml
+- check: E12F-00_exists_VIRTUAL_USER_TESTS_SPEC.md
+  result: PASS
+  details: missing docs/VIRTUAL_USER_TESTS_SPEC.md
+- check: E12F-00_exists_12f_virtual_user_tests_research.md
+  result: PASS
+  details: missing research/12f_virtual_user_tests_research.md
+- check: E12F-00_exists_VirtualUsers.kt
+  result: PASS
+  details: missing android/core-engines/src/testFixtures/kotlin/coach/engines/virtual/VirtualUsers.kt
+- check: E12F-00_exists_VirtualUserScenariosTest.kt
+  result: PASS
+  details: missing android/core-engines/src/test/kotlin/coach/engines/VirtualUserScenariosTest.kt
+- check: E12F-00_exists_VirtualUserJourneysTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/VirtualUserJourneysTest.kt
+- check: E12F-00_exists_VirtualUserExplanationsTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/VirtualUserExplanationsTest.kt
+- check: E12F-01_model
+  result: PASS
+  details: VUSX-v0
+- check: E12F-01_status
+  result: PASS
+  details: accepted_12f
+- check: E12F-01_decision
+  result: PASS
+  details: D-097
+- check: E12F-01_scope_scenarios_run_against_real_code
+  result: PASS
+  details: scenarios_run_against_real_code=True
+- check: E12F-01_scope_virtual_users_defined_once
+  result: PASS
+  details: virtual_users_defined_once=True
+- check: E12F-01_scope_explanation_grouping_changed
+  result: PASS
+  details: explanation_grouping_changed=True
+- check: E12F-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E12F-01_scope_gate_rule_changed
+  result: PASS
+  details: gate_rule_changed=False
+- check: E12F-01_scope_replan_rule_changed
+  result: PASS
+  details: replan_rule_changed=False
+- check: E12F-01_scope_diagnostic_waiver_implemented
+  result: PASS
+  details: diagnostic_waiver_implemented=False
+- check: E12F-01_scope_runtime_benchmark_run
+  result: PASS
+  details: runtime_benchmark_run=False
+- check: E12F-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12F-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12F-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E12F-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12F-01_no_hand_simulation
+  result: PASS
+  details: a scenario was simulated by hand
+- check: E12F-01_stage_12_closed
+  result: PASS
+  details: AŞAMA 12 is not closed
+- check: E12F-02_3h_read
+  result: PASS
+  details: 3h=['S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09', 'S10',
+    'S11', 'S12', 'S13', 'S14', 'S15', 'S16']
+- check: E12F-02_every_3h_scenario_in_contract
+  result: PASS
+  details: contract=['S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09',
+    'S10', 'S11', 'S12', 'S13', 'S14', 'S15', 'S16']
+- check: E12F-02_only_s06_not_runnable
+  result: PASS
+  details: not run=['S06']
+- check: E12F-02_S01_has_tests
+  result: PASS
+  details: 'S01: {''engine'': [''S01 a normal day takes new learning and the parallel
+    track and defers what does not fit'']}'
+- check: E12F-02_S01_engine_S01 a normal day takes new lea
+  result: PASS
+  details: 'S01: missing test in engine: S01 a normal day takes new learning and the
+    parallel track and defers what does not fit'
+- check: E12F-02_S02_has_tests
+  result: PASS
+  details: 'S02: {''engine'': [''S02 an open critical verification holds only the
+    branch that depends on it''], ''explanation'': ["S15 the S02 blocker comes only
+    from the trace''s Skill ref, and the waiting branch is not a failure"]}'
+- check: E12F-02_S02_engine_S02 an open critical verificat
+  result: PASS
+  details: 'S02: missing test in engine: S02 an open critical verification holds only
+    the branch that depends on it'
+- check: E12F-02_S02_explanation_S15 the S02 blocker comes only
+  result: PASS
+  details: 'S02: missing test in explanation: S15 the S02 blocker comes only from
+    the trace''s Skill ref, and the waiting branch is not a failure'
+- check: E12F-02_S03_has_tests
+  result: PASS
+  details: 'S03: {''engine'': [''S03 review due does not lock the dependent branch''],
+    ''explanation'': [''S15 the S03 review is due, not forgotten, and it did not lock
+    the dependent work'']}'
+- check: E12F-02_S03_engine_S03 review due does not lock t
+  result: PASS
+  details: 'S03: missing test in engine: S03 review due does not lock the dependent
+    branch'
+- check: E12F-02_S03_explanation_S15 the S03 review is due, not
+  result: PASS
+  details: 'S03: missing test in explanation: S15 the S03 review is due, not forgotten,
+    and it did not lock the dependent work'
+- check: E12F-02_S04_has_tests
+  result: PASS
+  details: 'S04: {''engine'': [''S04 a higher priority that does not fit is deferred
+    for time, never called lower priority''], ''explanation'': [''S15 the S04 repair
+    did not fit today, and nothing calls it less important'']}'
+- check: E12F-02_S04_engine_S04 a higher priority that doe
+  result: PASS
+  details: 'S04: missing test in engine: S04 a higher priority that does not fit is
+    deferred for time, never called lower priority'
+- check: E12F-02_S04_explanation_S15 the S04 repair did not fit
+  result: PASS
+  details: 'S04: missing test in explanation: S15 the S04 repair did not fit today,
+    and nothing calls it less important'
+- check: E12F-02_S05_has_tests
+  result: PASS
+  details: 'S05: {''engine'': [''S05 an 8-minute day fits a micro-task, teaches nothing
+    new and is not a failure'']}'
+- check: E12F-02_S05_engine_S05 an 8-minute day fits a mic
+  result: PASS
+  details: 'S05: missing test in engine: S05 an 8-minute day fits a micro-task, teaches
+    nothing new and is not a failure'
+- check: E12F-02_S06_owned
+  result: PASS
+  details: 'S06: {''run'': False, ''why'': "VDW-v0''s diagnostic waiver has no implementation
+    and no step in the plan owned one", ''owner'': 13}'
+- check: E12F-02_S07_has_tests
+  result: PASS
+  details: 'S07: {''engine'': [''S07 eighty due Skills are an inventory, not eighty
+    tasks, and the day stays within its budget'', ''S07 when every due review has
+    a task, urgency fills the rest of the day and new learning waits for time''],
+    ''journey'': [''S07 after thirty days, twenty-five stale tasks are not replayed
+    and today is planned from current state''], ''explanation'': [''S15 the S07 return
+    says absence is not failure or debt, and no sentence says how long'']}'
+- check: E12F-02_S07_engine_S07 eighty due Skills are an i
+  result: PASS
+  details: 'S07: missing test in engine: S07 eighty due Skills are an inventory, not
+    eighty tasks, and the day stays within its budget'
+- check: 'E12F-02_S07_engine_S07 when every due review has '
+  result: PASS
+  details: 'S07: missing test in engine: S07 when every due review has a task, urgency
+    fills the rest of the day and new learning waits for time'
+- check: E12F-02_S07_journey_S07 after thirty days, twenty-
+  result: PASS
+  details: 'S07: missing test in journey: S07 after thirty days, twenty-five stale
+    tasks are not replayed and today is planned from current state'
+- check: E12F-02_S07_explanation_S15 the S07 return says absenc
+  result: PASS
+  details: 'S07: missing test in explanation: S15 the S07 return says absence is not
+    failure or debt, and no sentence says how long'
+- check: E12F-02_S08_has_tests
+  result: PASS
+  details: 'S08: {''journey'': [''S08 a safe pause after a week is paused work, ranked
+    after the verification and never first by itself'']}'
+- check: 'E12F-02_S08_journey_S08 a safe pause after a week '
+  result: PASS
+  details: 'S08: missing test in journey: S08 a safe pause after a week is paused
+    work, ranked after the verification and never first by itself'
+- check: E12F-02_S09_has_tests
+  result: PASS
+  details: 'S09: {''journey'': [''S09 fifteen minutes left keeps the finished task
+    and solves only the rest within them'']}'
+- check: E12F-02_S09_journey_S09 fifteen minutes left keeps
+  result: PASS
+  details: 'S09: missing test in journey: S09 fifteen minutes left keeps the finished
+    task and solves only the rest within them'
+- check: E12F-02_S10_has_tests
+  result: PASS
+  details: 'S10: {''journey'': [''S10 a new remediation enters the rest of the day
+    without lengthening it'']}'
+- check: E12F-02_S10_journey_S10 a new remediation enters t
+  result: PASS
+  details: 'S10: missing test in journey: S10 a new remediation enters the rest of
+    the day without lengthening it'
+- check: E12F-02_S11_has_tests
+  result: PASS
+  details: 'S11: {''engine'': [''S11 priority cannot rescue an untrusted high-stakes
+    task'']}'
+- check: 'E12F-02_S11_engine_S11 priority cannot rescue an '
+  result: PASS
+  details: 'S11: missing test in engine: S11 priority cannot rescue an untrusted high-stakes
+    task'
+- check: E12F-02_S12_has_tests
+  result: PASS
+  details: 'S12: {''engine'': [''S12 one need gets one task and the other alternative
+    is superseded'']}'
+- check: E12F-02_S12_engine_S12 one need gets one task and
+  result: PASS
+  details: 'S12: missing test in engine: S12 one need gets one task and the other
+    alternative is superseded'
+- check: E12F-02_S13_has_tests
+  result: PASS
+  details: 'S13: {''engine'': [''S13 a critical label alone is not an integrity blocker'']}'
+- check: 'E12F-02_S13_engine_S13 a critical label alone is '
+  result: PASS
+  details: 'S13: missing test in engine: S13 a critical label alone is not an integrity
+    blocker'
+- check: E12F-02_S14_has_tests
+  result: PASS
+  details: 'S14: {''engine'': [''S14 the same virtual user planned twice gives the
+    same plan and the same trace''], ''journey'': [''S14 two identical learners get
+    byte-identical plans through the store'']}'
+- check: E12F-02_S14_engine_S14 the same virtual user plan
+  result: PASS
+  details: 'S14: missing test in engine: S14 the same virtual user planned twice gives
+    the same plan and the same trace'
+- check: E12F-02_S14_journey_S14 two identical learners get
+  result: PASS
+  details: 'S14: missing test in journey: S14 two identical learners get byte-identical
+    plans through the store'
+- check: E12F-02_S15_has_tests
+  result: PASS
+  details: 'S15: {''explanation'': ["S15 every explanation of a real plan says only
+    what that plan''s trace recorded"]}'
+- check: E12F-02_S15_explanation_S15 every explanation of a rea
+  result: PASS
+  details: 'S15: missing test in explanation: S15 every explanation of a real plan
+    says only what that plan''s trace recorded'
+- check: E12F-02_S16_has_tests
+  result: PASS
+  details: 'S16: {''journey'': [''S16 an interrupted high-stakes attempt is not continued,
+    not scored and not negative evidence'']}'
+- check: E12F-02_S16_journey_S16 an interrupted high-stakes
+  result: PASS
+  details: 'S16: missing test in journey: S16 an interrupted high-stakes attempt is
+    not continued, not scored and not negative evidence'
+- check: E12F-02_s06_is_vdw
+  result: PASS
+  details: S06 is not the diagnostic waiver scenario
+- check: E12F-03_3h_invariants_read
+  result: PASS
+  details: rows=20
+- check: E12F-03_invariant_01_covered
+  result: PASS
+  details: '1: [''S14'']'
+- check: E12F-03_invariant_02_covered
+  result: PASS
+  details: '2: [''S02'', ''S11'', ''cross_every_user_budget'']'
+- check: E12F-03_invariant_03_covered
+  result: PASS
+  details: '3: [''S05'', ''S07'', ''S10'', ''cross_every_user_budget'']'
+- check: E12F-03_invariant_04_covered
+  result: PASS
+  details: '4: [''S01'', ''cross_every_need_disposition'']'
+- check: E12F-03_invariant_05_covered
+  result: PASS
+  details: '5: [''cross_every_need_disposition'']'
+- check: E12F-03_invariant_06_covered
+  result: PASS
+  details: '6: [''S02'']'
+- check: E12F-03_invariant_07_covered
+  result: PASS
+  details: '7: [''S03'']'
+- check: E12F-03_invariant_08_covered
+  result: PASS
+  details: '8: [''S07'', ''S16'']'
+- check: E12F-03_invariant_09_covered
+  result: PASS
+  details: '9: [''S07'']'
+- check: E12F-03_invariant_10_covered
+  result: PASS
+  details: '10: [''S04'']'
+- check: E12F-03_invariant_11_covered
+  result: PASS
+  details: '11: [''S12'', ''S10'', ''cross_every_user_budget'']'
+- check: E12F-03_invariant_12_named
+  result: PASS
+  details: '{''not_runnable'': True, ''with'': ''S06'', ''owner'': 13}'
+- check: E12F-03_invariant_13_covered
+  result: PASS
+  details: '13: [''S02'']'
+- check: E12F-03_invariant_14_covered
+  result: PASS
+  details: '14: [''S09'', ''S10'']'
+- check: E12F-03_invariant_15_covered
+  result: PASS
+  details: '15: [''S15'']'
+- check: E12F-03_invariant_16_covered
+  result: PASS
+  details: '16: [''S15'']'
+- check: E12F-03_invariant_17_structural
+  result: PASS
+  details: '{''structural'': [''bounded_trace'', ''bounded_reads''], ''runtime_owner'':
+    ''18E''}'
+- check: E12F-03_invariant_18_covered
+  result: PASS
+  details: '18: [''S13'', ''S11'']'
+- check: E12F-03_invariant_19_covered
+  result: PASS
+  details: '19: [''S03'']'
+- check: E12F-03_invariant_20_covered
+  result: PASS
+  details: '20: [''S04'', ''cross_every_need_disposition'']'
+- check: E12F-03_cross_cross_every_user_budget
+  result: PASS
+  details: 'missing: {''suite'': ''engine'', ''test'': ''across every virtual user,
+    nothing blocked or invalid is selected and the hard budget holds''}'
+- check: E12F-03_cross_cross_every_need_disposition
+  result: PASS
+  details: 'missing: {''suite'': ''engine'', ''test'': ''across every virtual user,
+    every need has a disposition and every code is a contract code''}'
+- check: E12F-03_cross_bounded_trace
+  result: PASS
+  details: 'missing: {''suite'': ''engine'', ''test'': ''the trace stays bounded by
+    the current state, not by history''}'
+- check: E12F-03_cross_bounded_reads
+  result: PASS
+  details: 'missing: {''suite'': ''journey'', ''test'': ''planning reads the current
+    state once over, however much history there is''}'
+- check: E12F-04_decisions_from_the_gate
+  result: PASS
+  details: gate decisions do not come from the real gate
+- check: E12F-04_no_hand_made_decision
+  result: PASS
+  details: a gate decision is written by hand
+- check: E12F-04_needs_from_state
+  result: PASS
+  details: needs do not come from state
+- check: E12F-04_owner_needs_allowed_only
+  result: PASS
+  details: owner needs=['INTEGRATION_OPPORTUNITY', 'PARALLEL_TRACK_DUE', 'REINFORCEMENT_OPPORTUNITY']
+- check: E12F-04_plan_from_the_planner
+  result: PASS
+  details: the plan does not come from the planner
+- check: E12F-04_no_hand_made_trace_explained
+  result: PASS
+  details: an explained trace is written by hand
+- check: E12F-04_journeys_through_use_cases
+  result: PASS
+  details: journeys bypass the use cases
+- check: E12F-04_journeys_read_no_history
+  result: PASS
+  details: a journey store lets planning read evidence
+- check: E12F-04_no_learner_state_written
+  result: PASS
+  details: a journey store lets planning write learner state
+- check: E12F-05_fixtures_plugin
+  result: PASS
+  details: core-engines has no test fixtures
+- check: E12F-05_fixtures_used_by_core-application
+  result: PASS
+  details: core-application does not use the virtual users
+- check: E12F-05_edge_allowed_core-application
+  result: PASS
+  details: core-application may not depend on core-engines
+- check: E12F-05_fixtures_used_by_core-presentation
+  result: PASS
+  details: core-presentation does not use the virtual users
+- check: E12F-05_edge_allowed_core-presentation
+  result: PASS
+  details: core-presentation may not depend on core-engines
+- check: E12F-05_no_edge_added
+  result: PASS
+  details: '[]'
+- check: E12F-05_boundary_check_drops_only_self
+  result: PASS
+  details: the boundary check drops more than a module's reference to itself
+- check: E12F-05_boundary_refinement_recorded
+  result: PASS
+  details: '{''file'': ''android/build.gradle.kts'', ''change'': "a module''s dependency
+    on its own test fixtures is not read as an edge", ''filter'': ''it != sub.path'',
+    ''edges_to_other_modules_dropped'': False, ''real_cycle_still_fails'': True, ''negative_verification'':
+    ''core-model -> core-engines added, the build failed with the cycle, and the change
+    was reverted''}'
+- check: E12F-06_notToday_grouped
+  result: PASS
+  details: not-today needs are not grouped
+- check: E12F-06_group_key
+  result: PASS
+  details: the grouping key is not the recorded reason
+- check: E12F-06_nothing_dropped
+  result: PASS
+  details: grouping drops a need or a Skill
+- check: E12F-06_need_keys_list
+  result: PASS
+  details: an entry cannot hold several needs
+- check: E12F-06_screen_short_names
+  result: PASS
+  details: the screen lists every Skill
+- check: E12F-06_12e_amended_explicitly
+  result: PASS
+  details: 12E's spec changed silently
+- check: E12F-06_findings_recorded
+  result: PASS
+  details: '{''due_inventory_listed_row_by_row'', ''scenario_tests_weaker_than_they_looked'',
+    ''test_fixtures_read_as_a_self_cycle'', ''s07_example_day_is_illustrative'', ''diagnostic_waiver_unowned''}'
+- check: E12F-06_s07_both_days
+  result: PASS
+  details: S07 is tested one way only
+- check: E12F-07_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12F-07_schema_version_unchanged
+  result: PASS
+  details: the schema version moved
+- check: E12F-08_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12F-08_mutation_all_detected
+  result: PASS
+  details: '{''total'': 27, ''detected'': 27}'
+- check: E12F-08_mutation_suites_only
+  result: PASS
+  details: mutants were caught by other tests
+- check: E12F-08_mutation_ran_gradle
+  result: PASS
+  details: the harness was not verified
+- check: E12F-08_mutation_negative_control
+  result: PASS
+  details: no control
+- check: E12F-08_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (a hand-made decision, a hand-made trace, an answer as an owner need) inside a
+    Kotlin comment must not fail the validator'', ''negative_control_result'': ''no_false_positive'',
+    ''harness_defects_fixed'': [{''id'': ''W02'', ''why'': "with S06''s owner removed
+    the validator crashed on a missing key instead of failing a check, and the harness
+    read the silence as a miss; the validator now reads the owner safely, the harness
+    reports a crash as a crash, and the whole set was run again"}], ''crash_is_not_a_detection'':
+    True}'
+- check: E12F-08_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12F-08_re_pointed_diagnostic_waiver_and_s06
+  result: PASS
+  details: diagnostic_waiver_and_s06 is not re-pointed with a reason
+- check: E12F-08_re_pointed_starvation_and_track_balance_t
+  result: PASS
+  details: starvation_and_track_balance_thresholds is not re-pointed with a reason
+- check: E12F-08_re_pointed_runtime_performance_budgets
+  result: PASS
+  details: runtime_performance_budgets is not re-pointed with a reason
+- check: E12F-08_re_pointed_calling_the_planner_from_the_a
+  result: PASS
+  details: calling_the_planner_from_the_app is not re-pointed with a reason
+- check: E12F-09_forbidden_fixture_writes_the_answer
+  result: PASS
+  details: missing=fixture_writes_the_answer
+- check: E12F-09_forbidden_hand_made_gate_decision
+  result: PASS
+  details: missing=hand_made_gate_decision
+- check: E12F-09_forbidden_hand_made_explained_trace
+  result: PASS
+  details: missing=hand_made_explained_trace
+- check: E12F-09_forbidden_hand_simulated_scenario
+  result: PASS
+  details: missing=hand_simulated_scenario
+- check: E12F-09_forbidden_due_inventory_shown_as_a_list
+  result: PASS
+  details: missing=due_inventory_shown_as_a_list
+- check: E12F-09_forbidden_runtime_claim_without_device
+  result: PASS
+  details: missing=runtime_claim_without_device
+- check: E12F-09_forbidden_rule_changed_to_fit_an_illustrative_exam
+  result: PASS
+  details: missing=rule_changed_to_fit_an_illustrative_example
+- check: E12F-10_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 12F QA PASS'''
+- check: E12F-10_spec_**Decision:** `D-097`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-097`'''
+- check: E12F-10_spec_A virtual user is state, n
+  result: PASS
+  details: 'spec: ''A virtual user is state, never an answer'''
+- check: E12F-10_spec_S06
+  result: PASS
+  details: 'spec: ''S06'''
+- check: E12F-10_spec_T6
+  result: PASS
+  details: 'spec: ''T6'''
+- check: E12F-10_spec_MUTATION
+  result: PASS
+  details: 'spec: ''MUTATION'''
+- check: E12F-11_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12F-11_research_3H
+  result: PASS
+  details: missing='3H'
+- check: E12F-11_research_SRR-v0
+  result: PASS
+  details: missing='SRR-v0'
+- check: E12F-11_research_VDW-v0
+  result: PASS
+  details: missing='VDW-v0'
+- check: E12F-12_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E12F-12_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+failures: []

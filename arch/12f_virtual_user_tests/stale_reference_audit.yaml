@@ -1,0 +1,67 @@
+stage_step: 12F
+model: VUSX-v0
+decision: D-097
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_closed: true
+stage_10_closed: true
+stage_11_closed: true
+stage_12_closed: true
+repo_files_scanned: 681
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 12F active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_12e_post_step_stale.py
+  sample: 12F 🟡
+  classification: historical_non_blocking
+- file: tools\audit_12f_post_step_stale.py
+  sample: 12F ✅ Sanal kullanıcı testleri — VUSX-v0 / D-097", "13A 🟡
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-09-30-12e-reason-codes.md
+  sample: 12F — Sanal kullanıcı testleri is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-09-30-12f-virtual-user-tests.md
+  sample: 12F PRE yapıldı ve beş kanonik kaynak `12E ✅ / 12F active-not-executed
+  classification: historical_non_blocking
+- file: arch\12e_reason_codes\stale_reference_audit.yaml
+  sample: 12F 🟡
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  future/candidate language; current/living sources must agree on 12F complete (AŞAMA
+  12 closed) and 13A active-not-executed; no open loop may still point at 12F.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 13A completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

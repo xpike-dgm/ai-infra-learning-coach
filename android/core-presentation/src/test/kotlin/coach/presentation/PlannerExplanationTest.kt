@@ -134,7 +134,7 @@ class PlannerExplanationTest {
 
     @Test
     fun `a need deferred for time is deferred for time, never called less important`() {
-        val deferred = explain(day()).notToday.single { it.needKey == "review" }
+        val deferred = explain(day()).notToday.single { it.needKeys.single() == "review" }
         assertEquals("need.retention_review_due", deferred.need.code)
         assertEquals("capacity.deferred_not_enough_time", deferred.whyNot.code)
         assertEquals(Reconsideration.NEXT_PLAN, deferred.reconsideration)
@@ -143,19 +143,19 @@ class PlannerExplanationTest {
         val lower = day().let { t ->
             t.copy(needs = t.needs.map { if (it.needKey == "review") it.copy(finalReasonCodes = listOf("selection.not_selected_lower_priority")) else it })
         }
-        assertEquals("selection.not_selected_lower_priority", explain(lower).notToday.single { it.needKey == "review" }.whyNot.code)
+        assertEquals("selection.not_selected_lower_priority", explain(lower).notToday.single { it.needKeys.single() == "review" }.whyNot.code)
     }
 
     @Test
     fun `a waiting need names the real Skill it waits on`() {
-        val waiting = explain(day()).notToday.single { it.needKey == "lists" }
+        val waiting = explain(day()).notToday.single { it.needKeys.single() == "lists" }
         assertEquals("eligibility.blocked_hard_prerequisite", waiting.whyNot.code)
         assertEquals(listOf(SkillMention(pointer, "Pointer dereference"), SkillMention(address, "Adres operatörü")), waiting.whyNot.skills)
         assertEquals(Reconsideration.WHEN_PREREQUISITE_READY, waiting.reconsideration)
         val text = ExplanationCopy.text(waiting.whyNot)
         assertTrue("Pointer dereference" in text && "Adres operatörü" in text, text)
         // With no published name, the reference is shown rather than nothing.
-        val unnamed = explain(day(), emptyMap()).notToday.single { it.needKey == "lists" }
+        val unnamed = explain(day(), emptyMap()).notToday.single { it.needKeys.single() == "lists" }
         assertTrue(pointer.logicalId in ExplanationCopy.text(unnamed.whyNot))
         // The branch that waited did not stop the day, and the plan says so.
         assertTrue(explain(day()).plan.any { it.code == "independent_branch_available" })
@@ -163,7 +163,7 @@ class PlannerExplanationTest {
 
     @Test
     fun `a need nothing serves says so without inventing a code`() {
-        val nothing = explain(day()).notToday.single { it.needKey == "words" }
+        val nothing = explain(day()).notToday.single { it.needKeys.single() == "words" }
         assertNull(nothing.whyNot.code)
         assertEquals(TraceFact.NO_TASK_FOR_NEED, nothing.whyNot.fact)
         assertEquals(Reconsideration.WHEN_A_TASK_IS_AVAILABLE, nothing.reconsideration)
@@ -175,19 +175,37 @@ class PlannerExplanationTest {
                     CandidateDisposition.INVALID_CANDIDATE, listOf("candidate.untrusted_for_high_stakes_use")),
             )
         }
-        assertEquals("candidate.untrusted_for_high_stakes_use", explain(untrusted).notToday.single { it.needKey == "words" }.whyNot.code)
+        assertEquals("candidate.untrusted_for_high_stakes_use", explain(untrusted).notToday.single { it.needKeys.single() == "words" }.whyNot.code)
     }
 
     @Test
     fun `served needs are today's work and never appear as not today`() {
         val view = explain(day())
-        assertEquals(listOf("review", "lists", "words"), view.notToday.map { it.needKey })
+        assertEquals(listOf("review", "lists", "words"), view.notToday.map { it.needKeys.single() })
         assertEquals(listOf(0, 1), view.today.map { it.position })
     }
 
     @Test
+    fun `needs that did not come for the same recorded reason are one entry, and nothing is dropped`() {
+        val skills = (1..4).map { VersionedRef("skill.python.topic_$it", 1) }
+        val deferred = day().copy(needs = day().needs + skills.map {
+            need("due:$it", NeedTrigger.RETENTION_REVIEW_DUE, it, NeedDisposition.ELIGIBLE_NOT_SELECTED,
+                final = listOf("selection.not_selected_capacity", "capacity.deferred_not_enough_time"))
+        })
+        val view = explain(deferred)
+        val group = view.notToday.single { "due:${skills.first()}" in it.needKeys }
+        assertEquals(listOf("review") + skills.map { "due:$it" }, group.needKeys, "grouped in the planner's order")
+        assertEquals(listOf(review) + skills, group.skills.map { it.ref })
+        assertEquals(listOf(review) + skills, group.need.skills.map { it.ref })
+        // Different reasons, or a waiting need naming its own blockers, stay apart.
+        assertEquals(listOf(listOf("lists"), listOf("words")), view.notToday.filter { group !== it }.map { it.needKeys })
+        assertEquals("A, B, C ve 2 beceri daha", ExplanationCopy.shortNames(
+            listOf("A", "B", "C", "D", "E").map { SkillMention(VersionedRef("skill.x.${it.lowercase(java.util.Locale.ROOT)}", 1), it) }))
+    }
+
+    @Test
     fun `review due is never forgetting`() {
-        val text = ExplanationCopy.text(explain(day()).notToday.single { it.needKey == "review" }.need)
+        val text = ExplanationCopy.text(explain(day()).notToday.single { it.needKeys.single() == "review" }.need)
         assertTrue("unuttuğun anlamına gelmez" in text, text)
     }
 

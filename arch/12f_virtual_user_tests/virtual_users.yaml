@@ -1,0 +1,238 @@
+model: VUSX-v0
+stage_step: 12F
+status: accepted_12f
+decision: D-097
+scenario_source: 3H docs/PLANNER_SIMULATION_SUITE.md
+explainability_contract: PDT-v0
+engines_under_test: [PRQX-v0, PLNX-v0, RPLX-v0, RSNX-v0]
+test_strategy: TVSX-v0
+boundaries: MSBX-v0
+purpose: the_3h_virtual_users_run_against_real_code
+
+scope:
+  scenarios_run_against_real_code: true
+  virtual_users_defined_once: true
+  explanation_grouping_changed: true
+  planner_rule_changed: false
+  gate_rule_changed: false
+  replan_rule_changed: false
+  diagnostic_waiver_implemented: false
+  runtime_benchmark_run: false
+  schema_changed: false
+  migration_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  hand_simulated_scenario: null
+
+virtual_user_question: When the 3H virtual users go through the real gate, planner, replan, store and explanation, does the day the contracts describe come out?
+
+primary_invariant: >-
+  A virtual user is state, never an answer. Needs come from state the way the planner opens them,
+  eligibility from the real gate, bands and selection from the real planner, and the explanation from the
+  trace it wrote. A scenario that cannot be run against real code is named not runnable with its owner and
+  is never simulated by hand again.
+
+fixtures:
+  location: android/core-engines/src/testFixtures/kotlin/coach/engines/virtual/VirtualUsers.kt
+  mechanism: gradle_java_test_fixtures
+  used_by: [core-engines, core-application, core-presentation]
+  dependency_edges_added: []
+  decisions_from: PrerequisiteEngine.decide
+  needs_from: PlannerEngine.needsFromSkillStates
+  owner_supplied_needs_allowed: [parallel_track_due, integration_opportunity, reinforcement_opportunity]
+  explained_traces_from: [PlannerEngine.plan, ReplanEngine.composeReentry]
+  journey_store_reads_evidence: false
+
+suites:
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/VirtualUserScenariosTest.kt, class: coach.engines.VirtualUserScenariosTest}
+  journey: {file: android/core-application/src/test/kotlin/coach/application/VirtualUserJourneysTest.kt, class: coach.application.VirtualUserJourneysTest}
+  explanation: {file: android/core-presentation/src/test/kotlin/coach/presentation/VirtualUserExplanationsTest.kt, class: coach.presentation.VirtualUserExplanationsTest}
+
+scenarios:
+  S01: {run: true, tests: {engine: ["S01 a normal day takes new learning and the parallel track and defers what does not fit"]}}
+  S02:
+    run: true
+    tests:
+      engine: ["S02 an open critical verification holds only the branch that depends on it"]
+      explanation: ["S15 the S02 blocker comes only from the trace's Skill ref, and the waiting branch is not a failure"]
+  S03:
+    run: true
+    tests:
+      engine: ["S03 review due does not lock the dependent branch"]
+      explanation: ["S15 the S03 review is due, not forgotten, and it did not lock the dependent work"]
+  S04:
+    run: true
+    tests:
+      engine: ["S04 a higher priority that does not fit is deferred for time, never called lower priority"]
+      explanation: ["S15 the S04 repair did not fit today, and nothing calls it less important"]
+  S05: {run: true, tests: {engine: ["S05 an 8-minute day fits a micro-task, teaches nothing new and is not a failure"]}}
+  S06:
+    run: false
+    why: VDW-v0's diagnostic waiver has no implementation and no step in the plan owned one
+    owner: 13
+  S07:
+    run: true
+    tests:
+      engine:
+        - "S07 eighty due Skills are an inventory, not eighty tasks, and the day stays within its budget"
+        - "S07 when every due review has a task, urgency fills the rest of the day and new learning waits for time"
+      journey: ["S07 after thirty days, twenty-five stale tasks are not replayed and today is planned from current state"]
+      explanation: ["S15 the S07 return says absence is not failure or debt, and no sentence says how long"]
+  S08: {run: true, tests: {journey: ["S08 a safe pause after a week is paused work, ranked after the verification and never first by itself"]}}
+  S09: {run: true, tests: {journey: ["S09 fifteen minutes left keeps the finished task and solves only the rest within them"]}}
+  S10: {run: true, tests: {journey: ["S10 a new remediation enters the rest of the day without lengthening it"]}}
+  S11: {run: true, tests: {engine: ["S11 priority cannot rescue an untrusted high-stakes task"]}}
+  S12: {run: true, tests: {engine: ["S12 one need gets one task and the other alternative is superseded"]}}
+  S13: {run: true, tests: {engine: ["S13 a critical label alone is not an integrity blocker"]}}
+  S14:
+    run: true
+    tests:
+      engine: ["S14 the same virtual user planned twice gives the same plan and the same trace"]
+      journey: ["S14 two identical learners get byte-identical plans through the store"]
+  S15: {run: true, tests: {explanation: ["S15 every explanation of a real plan says only what that plan's trace recorded"]}}
+  S16: {run: true, tests: {journey: ["S16 an interrupted high-stakes attempt is not continued, not scored and not negative evidence"]}}
+
+invariants:
+  1: [S14]
+  2: [S02, S11, cross_every_user_budget]
+  3: [S05, S07, S10, cross_every_user_budget]
+  4: [S01, cross_every_need_disposition]
+  5: [cross_every_need_disposition]
+  6: [S02]
+  7: [S03]
+  8: [S07, S16]
+  9: [S07]
+  10: [S04]
+  11: [S12, S10, cross_every_user_budget]
+  12: {not_runnable: true, with: S06, owner: 13}
+  13: [S02]
+  14: [S09, S10]
+  15: [S15]
+  16: [S15]
+  17: {structural: [bounded_trace, bounded_reads], runtime_owner: 18E}
+  18: [S13, S11]
+  19: [S03]
+  20: [S04, cross_every_need_disposition]
+
+cross_checks:
+  cross_every_user_budget: {suite: engine, test: "across every virtual user, nothing blocked or invalid is selected and the hard budget holds"}
+  cross_every_need_disposition: {suite: engine, test: "across every virtual user, every need has a disposition and every code is a contract code"}
+  bounded_trace: {suite: engine, test: "the trace stays bounded by the current state, not by history"}
+  bounded_reads: {suite: journey, test: "planning reads the current state once over, however much history there is"}
+
+found_in_12f:
+  - id: due_inventory_listed_row_by_row
+    was: a returning learner's seventy-eight due Skills were seventy-eight not-today entries on planner_explanation (SRR-v0 §9.1)
+    resolved_here: needs that did not come for the same recorded reason are one entry that keeps every need and Skill; the screen names three Skills and counts the rest
+  - id: s07_example_day_is_illustrative
+    was: 3H's S07 example includes new learning; with authored reviews for every due Skill PBR-v0 urgency fills the day and new learning waits for time
+    resolved_here: both days are tested; no rule changed; the guard is starvation/track balance, thresholds 18C
+  - id: diagnostic_waiver_unowned
+    was: VDW-v0 has no implementation and no step owned it, so 3H S06 and PDT-v0 invariant 12 had no owner
+    resolved_here: named not runnable and re-pointed to 13
+  - id: test_fixtures_read_as_a_self_cycle
+    was: verifyModuleBoundaries (RUN-03) failed with ':core-engines -> :core-engines' — java-test-fixtures makes a module's own tests depend on its own fixtures, and the check read that as an edge
+    resolved_here: the check drops only a module's reference to itself; a real cycle (core-model -> core-engines -> core-model) was introduced, failed the build, and was reverted
+  - id: scenario_tests_weaker_than_they_looked
+    was: F01 and F06 survived the first mutation run
+    resolved_here: a critical verification holding nothing back is checked to stay P1; S05 gained a lesson short enough to fit, which is still not taught
+
+boundary_check_refined:
+  file: android/build.gradle.kts
+  change: a module's dependency on its own test fixtures is not read as an edge
+  filter: it != sub.path
+  edges_to_other_modules_dropped: false
+  real_cycle_still_fails: true
+  negative_verification: core-model -> core-engines added, the build failed with the cycle, and the change was reverted
+
+explanation_grouping:
+  surface: planner_explanation
+  group_key: [need_code, need_fact, why_not_code, why_not_fact, why_not_skills, reconsideration]
+  need_or_skill_dropped: false
+  waiting_needs_with_different_blockers_merged: false
+  screen_names_shown: 3
+  count_is_inventory_not_score: true
+  twelve_e_spec_amended_explicitly: true
+
+mutation_results:
+  total: 27
+  detected: 27
+  only_virtual_user_suites_run: true
+  harness_verified_to_run_gradle: true
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - id: F01
+      why: no scenario had a critical verification that held nothing back, so a label-only P0 went unseen
+    - id: F06
+      why: S05's lesson never fit 8 minutes, so the no-teaching rule below the minimum block was never exercised
+  final_run_is_a_single_clean_run: true
+  final_run_note: run in two chunks under the tool's time limit, against one unchanged source tree, after the last test was added
+  mutants:
+    - {id: F01, mutant: a_critical_label_alone_makes_p0}
+    - {id: F02, mutant: a_critical_review_is_not_maintenance}
+    - {id: F03, mutant: a_safe_pause_is_not_paused_work}
+    - {id: F04, mutant: short_tasks_first}
+    - {id: F05, mutant: no_planning_reserve}
+    - {id: F06, mutant: teaching_below_the_minimum_block}
+    - {id: F07, mutant: the_independent_branch_is_not_said}
+    - {id: F08, mutant: deferral_recorded_as_lower_priority}
+    - {id: F09, mutant: priority_rescues_a_blocked_candidate}
+    - {id: F10, mutant: an_untrusted_task_serves_a_high_stakes_need}
+    - {id: F11, mutant: a_second_alternative_is_also_selected}
+    - {id: F12, mutant: the_blocker_is_not_named}
+    - {id: F13, mutant: review_due_locks_the_dependent}
+    - {id: F14, mutant: a_critical_prerequisite_is_not_strict}
+    - {id: F15, mutant: another_day_is_a_replan}
+    - {id: F16, mutant: absence_is_not_said_to_be_no_debt}
+    - {id: F17, mutant: a_high_stakes_pause_is_continued}
+    - {id: F18, mutant: a_kept_need_is_served_twice}
+    - {id: F19, mutant: a_replan_lengthens_the_day}
+    - {id: F20, mutant: the_stale_plan_is_not_counted}
+    - {id: F21, mutant: kept_work_offered_again_on_Today}
+    - {id: F22, mutant: review_due_opens_no_need}
+    - {id: F23, mutant: the_due_inventory_is_listed_row_by_row}
+    - {id: F24, mutant: the_explanation_calls_a_deferral_lower_priority}
+    - {id: F25, mutant: the_explanation_shows_the_band}
+    - {id: F26, mutant: review_due_worded_as_forgetting}
+    - {id: F27, mutant: the_waiting_branch_names_no_blocker}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (a hand-made decision, a hand-made trace, an answer as an owner need) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  harness_defects_fixed:
+    - id: W02
+      why: with S06's owner removed the validator crashed on a missing key instead of failing a check, and the harness read the silence as a miss; the validator now reads the owner safely, the harness reports a crash as a crash, and the whole set was run again
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app calls the planner yet (16D); the virtual users have lived only in tests
+
+re_pointed:
+  diagnostic_waiver_and_s06: {to: 13, why: the waiver consumes GRE-compatible diagnostic evidence, which 13 implements; no step owned it}
+  starvation_and_track_balance_thresholds: {to: 18C, why: the guard against review-only return days needs calibrated thresholds}
+  runtime_performance_budgets: {to: 18E, why: invariant 17 is structural here; latency and memory need the device}
+  calling_the_planner_from_the_app: {to: 16D, why: the planner needs a stored capacity the learner chose}
+
+stage_12_closed: true
+
+forbidden_virtual_user_patterns:
+  - fixture_writes_the_answer
+  - hand_made_gate_decision
+  - hand_made_explained_trace
+  - hand_simulated_scenario
+  - due_inventory_shown_as_a_list
+  - runtime_claim_without_device
+  - rule_changed_to_fit_an_illustrative_example

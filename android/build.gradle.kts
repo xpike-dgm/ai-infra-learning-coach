@@ -25,6 +25,9 @@ tasks.register("verifyModuleBoundaries") {
             .flatMap { configuration -> configuration.dependencies }
             .filterIsInstance<ProjectDependency>()
             .map { it.path }
+            // A module's own tests depending on its own test fixtures (12F) is not an edge between
+            // modules. Only that exact self-reference is dropped; every edge to another module is kept.
+            .filter { it != sub.path }
             .distinct()
         sub.path to deps
     }

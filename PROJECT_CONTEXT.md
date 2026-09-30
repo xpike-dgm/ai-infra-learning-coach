@@ -221,12 +221,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **12C ✅ Planner Engine v1 — PLNX-v0 / D-094**
 - **12D ✅ Replan — RPLX-v0 / D-095**
 - **12E ✅ Explanation / reason codes — RSNX-v0 / D-096**
-- **12F 🟡 Sanal kullanıcı testleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13–20 ⬜
+- **12F ✅ Sanal kullanıcı testleri — VUSX-v0 / D-097**
+- **AŞAMA 12 ✅ TAMAMLANDI**
+- **13A 🟡 Haftalık sınav — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -459,3 +461,15 @@ Plan yalnız izi kendi satırlarını anlatıyorsa okunur (aynı gün, aynı kon
 Açıklama dört parça: neden bugün (önce ihtiyaç, sonra belirleyici öncelik nedeni, ilgili Skill'leriyle uygunluk ve sığdırma; bant asla neden olarak gösterilmez), neden bugün değil (süreye sığmayan iş daha az önemli değil; bekleyen ihtiyaç Skill'lerini adlandırır; görevi olmayan ihtiyaca kod uydurulmaz), plan neden değişti (tetikleyici kodu ya da yalnız değiştiği; yokluk başarısızlık ve borç değil) ve ne zaman yeniden bakılacağı (asla tarih değil). Şablonlar `DayCopy` gibi çekirdekte; her katalog kodunun cümlesi var ve hiçbiri unutmayı iddia etmiyor. Mutation 52/52, validator 219/219, kendi mutation testi 40/40. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
 
 Canonical: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md` / D-096.
+
+## 12.23 12F Sanal kullanıcı testleri — VUSX-v0 / D-097
+
+3H'nin sanal kullanıcıları artık gerçek koddan geçiyor. Ana invariant: **sanal kullanıcı durumdur, cevap değil: 3H'nin sanal kullanıcıları artık gerçek kapıdan, planner'dan, replan'dan, depodan, Today'den ve açıklamadan geçiyor. İhtiyaç durumdan, uygunluk kapıdan, seçim planner'dan, açıklama onun yazdığı izden geliyor; koşulamayan senaryo elle simüle edilmez, sahibiyle adlandırılır.**
+
+3H bu senaryoları kod yokken, politika seviyesinde ve akıl yürüterek geçirmişti ve PASS'inin 12F'nin yerine geçmediğini söylemişti. Sanal kullanıcılar bir kez, `core-engines` test fixture'ı olarak tanımlandı; motor seviyesi gerçek kapı ve planner'ı, yolculuklar `BuildDailyPlan` ile re-entry, duraklatma, replan ve Today'i, açıklama testleri aynı planların izlerini koşuyor. Hiçbir sanal kullanıcı planner'a kapı kararı, açıklamaya elle yazılmış iz ya da durumun açmayacağı bir ihtiyaç vermiyor; yolculuk deposu planlama sırasında kanıt geçmişi okunursa testi düşürüyor.
+
+16 senaryodan 15'i koşuldu. S06 koşulamıyor: `VDW-v0`'ın tanısal atlamasının uygulaması ve plan içinde sahibi yoktu; invariant 12 ile birlikte 13'e bağlandı. Invariant 17 yapısal olarak doğrulandı (ihtiyaç başına en çok beş aday, bugünün durumuyla sınırlı iz, geçmiş büyüdükçe artmayan okuma); gecikme ve bellek 18E'de, cihazda.
+
+Koşmak iki şey buldu. Otuz gün sonra dönen öğrencinin 78 due becerisi `planner_explanation`da 78 ayrı "bugün değil" satırıydı — `SRR-v0` §9.1'in yasakladığı backlog; aynı kaydedilmiş nedenle gelmeyen ihtiyaçlar artık hiçbir şeyi düşürmeyen tek satır ve 12E spec'ine açık not düşüldü. 3H'nin S07 örnek günü açıklayıcıymış: her due becerinin görevi varsa `PBR-v0` aciliyeti günü tekrarlarla doldurur ve yeni öğrenme süre için bekler; kural değiştirilmedi, koruma 18C'nin eşikleri. Mutation 27/27 yalnız sanal kullanıcı testleri koşarken; validator 148/148, kendi mutation testi 30/30. **T6 çalıştırılmadı.** **AŞAMA 12 tamamlandı.**
+
+Canonical: `docs/VIRTUAL_USER_TESTS_SPEC.md` / D-097.

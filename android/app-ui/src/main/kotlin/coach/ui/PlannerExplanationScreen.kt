@@ -90,7 +90,7 @@ private fun TaskWhy(task: TaskExplanation) {
 @Composable
 private fun NotTodayWhy(item: NotTodayExplanation) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(ExplanationCopy.names(item.skills), style = MaterialTheme.typography.bodyLarge)
+        Text(ExplanationCopy.shortNames(item.skills), style = MaterialTheme.typography.bodyLarge)
         Text(ExplanationCopy.text(item.need), style = MaterialTheme.typography.bodySmall)
         Text(ExplanationCopy.text(item.whyNot), style = MaterialTheme.typography.bodyMedium)
         item.reconsideration?.let {
