@@ -31,6 +31,7 @@ import coach.model.TaskCandidate
 import coach.model.TaskPurpose
 import coach.model.TemporalUrgency
 import coach.model.TrackBalance
+import coach.model.VersionedRef
 
 /**
  * The planner (12C): which of today's open needs are served, by which task, within the minutes the
@@ -47,8 +48,8 @@ import coach.model.TrackBalance
 object PlannerEngine {
 
     const val PLANNER_MODEL = "PLNX-v0"
-    /** The trace format this planner writes; `PlanTraceCodec.FORMAT` is the authority, and 12D moved it to `/2`. */
-    const val TRACE_SCHEMA = "planner_trace/2"
+    /** The trace format this planner writes; `PlanTraceCodec.FORMAT` is the authority. 12D moved it to `/2`, 12E to `/3`. */
+    const val TRACE_SCHEMA = "planner_trace/3"
 
     // D-033 §3 and §19: engineering defaults the learner can change, not ideal study times. They are
     // what a settings screen (16D) offers; the planner itself never substitutes one for a setting.
@@ -222,6 +223,8 @@ object PlannerEngine {
         val usable: Boolean,
         val disposition: CandidateDisposition?,
         val reasons: List<String>,
+        /** The Skills the eligibility reason is about (`PDT-v0` §7 `related_refs`, §11). */
+        val related: List<VersionedRef> = emptyList(),
     )
 
     /**
@@ -244,8 +247,9 @@ object PlannerEngine {
     ): PlanTrace {
         val openNeeds = needs.associateBy { it.needKey }
         val candidateTraces = mutableListOf<CandidateTrace>()
-        fun trace(a: TaskCandidate, eligibility: PrerequisiteEligibility?, disposition: CandidateDisposition, reasons: List<String>) {
-            candidateTraces += CandidateTrace(a.id, a.needKey, a.validationStatus, eligibility, a.costMinutes, disposition, reasons)
+        fun trace(a: TaskCandidate, eligibility: PrerequisiteEligibility?, disposition: CandidateDisposition, reasons: List<String>,
+                  related: List<VersionedRef> = emptyList()) {
+            candidateTraces += CandidateTrace(a.id, a.needKey, a.validationStatus, eligibility, a.costMinutes, disposition, reasons, related)
         }
 
         // Bounded candidate set per need, in a stable order: deprecated versions last (preference is
@@ -285,11 +289,13 @@ object PlannerEngine {
                             decision.hardBlockerSkills.isNotEmpty() -> "eligibility.blocked_hard_prerequisite"
                             decision.requiresStrictPrerequisiteConfidence -> "eligibility.blocked_strict_prerequisite_confidence"
                             else -> "eligibility.blocked_critical_verification"
-                        }))
-                else -> Assessed(candidate, decision.eligibility, true, null, listOf(eligibilityCode(decision)))
+                        }),
+                        related = relatedSkills(decision))
+                else -> Assessed(candidate, decision.eligibility, true, null, listOf(eligibilityCode(decision)),
+                    related = relatedSkills(decision))
             }
         }
-        assessed.filter { !it.usable }.forEach { trace(it.candidate, it.eligibility, it.disposition!!, it.reasons) }
+        assessed.filter { !it.usable }.forEach { trace(it.candidate, it.eligibility, it.disposition!!, it.reasons, it.related) }
 
         // Which Skills really hold dependent work back (`PBR-v0` §6.1). Work the learner is already in
         // is the current path; a new start is the next ready dependency.
@@ -381,12 +387,12 @@ object PlannerEngine {
             val offered = alternatives.filter(::offerable)
             alternatives.filterNot(::offerable).forEach {
                 trace(it.candidate, it.eligibility, CandidateDisposition.ELIGIBLE_CAPACITY_DEFERRED,
-                    it.reasons + "capacity.deferred_not_enough_time")
+                    it.reasons + "capacity.deferred_not_enough_time", it.related)
             }
             val choice = offered.firstOrNull()
             fun supersedeAllBut(kept: Assessed) = offered.filter { it !== kept }.forEach {
                 trace(it.candidate, it.eligibility, CandidateDisposition.SUPERSEDED_SAME_NEED_ALTERNATIVE,
-                    it.reasons + "selection.same_need_alternative_not_used")
+                    it.reasons + "selection.same_need_alternative_not_used", it.related)
             }
             fun take(a: Assessed, minutes: Int, split: Boolean) {
                 selected += PlannedEntry(
@@ -404,7 +410,7 @@ object PlannerEngine {
                 choice.candidate.costMinutes <= remaining -> {
                     take(choice, choice.candidate.costMinutes, split = false)
                     trace(choice.candidate, choice.eligibility, CandidateDisposition.SELECTED,
-                        choice.reasons + listOf("selection.selected", "capacity.selected_within_budget"))
+                        choice.reasons + listOf("selection.selected", "capacity.selected_within_budget"), choice.related)
                     supersedeAllBut(choice)
                     finish(NeedDisposition.SELECTED, choice.candidate.id, listOf("selection.selected", "capacity.selected_within_budget"))
                 }
@@ -412,7 +418,7 @@ object PlannerEngine {
                     // A split plans the safe part that fits; the rest resumes from its checkpoint later.
                     take(choice, remaining, split = true)
                     trace(choice.candidate, choice.eligibility, CandidateDisposition.SELECTED_SPLIT,
-                        choice.reasons + listOf("selection.selected_split", "capacity.split_to_fit"))
+                        choice.reasons + listOf("selection.selected_split", "capacity.split_to_fit"), choice.related)
                     supersedeAllBut(choice)
                     finish(NeedDisposition.PARTIALLY_SERVED, choice.candidate.id, listOf("selection.selected_split", "capacity.split_to_fit"))
                 }
@@ -421,7 +427,8 @@ object PlannerEngine {
                     if (smaller != null) {
                         take(smaller, smaller.candidate.costMinutes, split = false)
                         trace(smaller.candidate, smaller.eligibility, CandidateDisposition.SELECTED_SMALLER_ALTERNATIVE,
-                            smaller.reasons + listOf("selection.selected_smaller_alternative", "capacity.smaller_alternative_to_fit"))
+                            smaller.reasons + listOf("selection.selected_smaller_alternative", "capacity.smaller_alternative_to_fit"),
+                            smaller.related)
                         supersedeAllBut(smaller)
                         finish(NeedDisposition.SELECTED, smaller.candidate.id,
                             listOf("selection.selected_smaller_alternative", "capacity.smaller_alternative_to_fit"))
@@ -429,7 +436,7 @@ object PlannerEngine {
                         // The need stays open. It did not lose to anything less important; it did not fit.
                         offered.forEach {
                             trace(it.candidate, it.eligibility, CandidateDisposition.ELIGIBLE_CAPACITY_DEFERRED,
-                                it.reasons + "capacity.deferred_not_enough_time")
+                                it.reasons + "capacity.deferred_not_enough_time", it.related)
                         }
                         finish(NeedDisposition.ELIGIBLE_NOT_SELECTED, null,
                             listOf("selection.not_selected_capacity", "capacity.deferred_not_enough_time"))
@@ -471,6 +478,19 @@ object PlannerEngine {
             invariantChecks = invariants,
             skillsNotOnRoute = skillsNotOnRoute,
         )
+    }
+
+    /**
+     * `PDT-v0` §7 `related_refs` and §11: the Skills the gate's answer is about, in the gate's own order.
+     * A waiting candidate names its hard blockers, or — when none is missing outright — the prerequisites
+     * whose confidence it waits on; a candidate that went ahead names what it went ahead with.
+     */
+    private fun relatedSkills(decision: PrerequisiteDecision): List<VersionedRef> = when {
+        decision.eligibility == PrerequisiteEligibility.BLOCKED ->
+            decision.hardBlockerSkills.ifEmpty { decision.uncertainSkills }
+        decision.eligibility == PrerequisiteEligibility.CONDITIONAL_ELIGIBLE -> decision.uncertainSkills
+        decision.eligibility == PrerequisiteEligibility.ELIGIBLE_WITH_SUPPORT -> decision.softGapSkills
+        else -> decision.reviewDueSkills
     }
 
     private fun eligibilityCode(decision: PrerequisiteDecision): String = when {

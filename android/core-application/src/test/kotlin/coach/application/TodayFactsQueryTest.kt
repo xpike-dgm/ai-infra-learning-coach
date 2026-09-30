@@ -70,9 +70,11 @@ class TodayFactsQueryTest {
 
     @Test
     fun `no plan and no capacity are invented while the planner and settings do not exist`() {
+        // 12E: a plan and its capacity now come only from what the planner stored. With nothing stored,
+        // nothing appears — no plausible default, no capacity the learner never chose (16D).
         val facts = TodayFactsQuery(RecordingStore(published = true), clock).load()
-        assertNull(facts.plan, "a plan appeared before the planner that writes it (12)")
-        assertNull(facts.capacity, "a daily capacity appeared before the learner chose one (16D)")
+        assertNull(facts.plan, "a plan appeared that no planner stored")
+        assertNull(facts.capacity, "a daily capacity appeared that no stored plan recorded")
     }
 
     @Test

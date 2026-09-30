@@ -12,10 +12,15 @@ package coach.model
  * title can contain anything, and lists are comma-joined encoded items.
  */
 object PlanTraceCodec {
-    const val FORMAT = "planner_trace/2"
+    const val FORMAT = "planner_trace/3"
+
+    /** 12D wrote `/2`; `/3` (12E) adds each candidate's related Skills (`PDT-v0` §7 `related_refs`). */
+    const val FORMAT_V2 = "planner_trace/2"
 
     /** 12C wrote `/1`; `/2` (12D) adds preserved tasks, the replan record and the re-entry context. */
     const val FORMAT_V1 = "planner_trace/1"
+
+    private val KNOWN_FORMATS = setOf(FORMAT, FORMAT_V2, FORMAT_V1)
 
     fun encode(trace: PlanTrace): String = buildList {
         add(FORMAT)
@@ -52,7 +57,8 @@ object PlanTraceCodec {
         trace.candidates.forEach {
             add(line("candidate", "candidate_id" to it.candidateId, "need_key" to it.needKey,
                 "validation" to it.validationStatus.id, "eligibility" to it.eligibility?.id.orEmpty(),
-                "cost" to it.costMinutes.toString(), "disposition" to it.disposition.id, "reasons" to list(it.reasonCodes)))
+                "cost" to it.costMinutes.toString(), "disposition" to it.disposition.id, "reasons" to list(it.reasonCodes),
+                "related_skills" to list(it.relatedSkills.map(VersionedRef::toString))))
         }
         trace.replan?.let {
             add(line("replan", "trigger" to it.trigger.id, "previous_plan" to it.previousPlanVersionId.toString(),
@@ -79,8 +85,9 @@ object PlanTraceCodec {
     private fun decodeOrThrow(stored: String): PlanTrace {
         val lines = stored.split("\n")
         val version = lines.firstOrNull()
-        if (version != FORMAT && version != FORMAT_V1) throw Malformed()
-        val v2 = version == FORMAT
+        if (version !in KNOWN_FORMATS) throw Malformed()
+        val v2 = version != FORMAT_V1
+        val v3 = version == FORMAT
         var plan: Map<String, String>? = null
         var capacity: DailyCapacity? = null
         var planReasons: List<String>? = null
@@ -145,6 +152,9 @@ object PlanTraceCodec {
                     costMinutes = v("cost").toInt(),
                     disposition = CandidateDisposition.entries.single { it.id == v("disposition") },
                     reasonCodes = items(v("reasons")),
+                    // `/1` and `/2` had no related Skills: the field is absent there and required in `/3`.
+                    relatedSkills = if (v3) items(v("related_skills")).map(::ref)
+                    else if ("related_skills" in f) throw Malformed() else emptyList(),
                 )
                 "replan" -> {
                     if (!v2 || replan != null) throw Malformed()

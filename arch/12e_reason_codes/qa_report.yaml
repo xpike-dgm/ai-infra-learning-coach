@@ -1,0 +1,731 @@
+model: RSNX-v0
+stage_step: 12E
+decision: D-096
+result: PASS
+checks_total: 219
+checks_passed: 219
+checks_failed: 0
+checks:
+- check: E12E-00_exists_ReasonCodes.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/ReasonCodes.kt
+- check: E12E-00_exists_PlannerFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlannerFacts.kt
+- check: E12E-00_exists_TodayFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/TodayFacts.kt
+- check: E12E-00_exists_ExplanationFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/ExplanationFacts.kt
+- check: E12E-00_exists_PlanTraceCodec.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlanTraceCodec.kt
+- check: E12E-00_exists_PlannerEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/PlannerEngine.kt
+- check: E12E-00_exists_PlanReading.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/PlanReading.kt
+- check: E12E-00_exists_TodayFactsQuery.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/TodayFactsQuery.kt
+- check: E12E-00_exists_PlannerExplanationQuery.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/PlannerExplanationQuery.kt
+- check: E12E-00_exists_TodayPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/TodayPresentation.kt
+- check: E12E-00_exists_PlannerExplanation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/PlannerExplanation.kt
+- check: E12E-00_exists_ExplanationCopy.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/ExplanationCopy.kt
+- check: E12E-00_exists_PlannerExplanationScreen.kt
+  result: PASS
+  details: missing android/app-ui/src/main/kotlin/coach/ui/PlannerExplanationScreen.kt
+- check: E12E-00_exists_ReasonCodesTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/ReasonCodesTest.kt
+- check: E12E-00_exists_PlanReadingTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/PlanReadingTest.kt
+- check: E12E-00_exists_PlannerExplanationTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/PlannerExplanationTest.kt
+- check: E12E-00_exists_ExplanationCopyTest.kt
+  result: PASS
+  details: missing android/core-presentation/src/test/kotlin/coach/presentation/ExplanationCopyTest.kt
+- check: E12E-00_exists_PLANNER_EXPLANATION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/PLANNER_EXPLANATION_IMPL_SPEC.md
+- check: E12E-00_exists_12e_reason_codes_research.md
+  result: PASS
+  details: missing research/12e_reason_codes_research.md
+- check: E12E-01_model
+  result: PASS
+  details: RSNX-v0
+- check: E12E-01_status
+  result: PASS
+  details: accepted_12e
+- check: E12E-01_decision
+  result: PASS
+  details: D-096
+- check: E12E-01_scope_reason_catalogue_implemented
+  result: PASS
+  details: reason_catalogue_implemented=True
+- check: E12E-01_scope_related_refs_recorded
+  result: PASS
+  details: related_refs_recorded=True
+- check: E12E-01_scope_today_reads_the_plan
+  result: PASS
+  details: today_reads_the_plan=True
+- check: E12E-01_scope_planner_explanation_surface_implemented
+  result: PASS
+  details: planner_explanation_surface_implemented=True
+- check: E12E-01_scope_template_fallback_implemented
+  result: PASS
+  details: template_fallback_implemented=True
+- check: E12E-01_scope_llm_paraphrase_implemented
+  result: PASS
+  details: llm_paraphrase_implemented=False
+- check: E12E-01_scope_virtual_user_scenarios_run
+  result: PASS
+  details: virtual_user_scenarios_run=False
+- check: E12E-01_scope_planner_called_from_app
+  result: PASS
+  details: planner_called_from_app=False
+- check: E12E-01_scope_retention_and_weakness_codes_written
+  result: PASS
+  details: retention_and_weakness_codes_written=False
+- check: E12E-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12E-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12E-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E12E-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12E-01_no_free_text_reason
+  result: PASS
+  details: free_text_reason was claimed
+- check: E12E-01_no_score_claim
+  result: PASS
+  details: score_claim was claimed
+- check: E12E-02_pdt_read
+  result: PASS
+  details: sections=['8.1', '8.2', '8.3', '8.4', '8.5', '8.6', '8.7', '8.8', '8.9',
+    '8.10']
+- check: E12E-02_prg_read
+  result: PASS
+  details: prg=['blocked_missing_hard_prerequisite', 'blocked_critical_prerequisite_verification_due',
+    'blocked_prerequisite_remediation_required', 'eligible_prerequisite_review_due_not_blocking',
+    'eligible_with_soft_prerequisite_gap', 'conditional_prerequisite_uncertain', 'independent_branch_available',
+    'prerequisite_repaired_replan', 'invalid_due_to_prerequisite_contamination']
+- check: E12E-02_family_order
+  result: PASS
+  details: families=['LEARNING_NEED', 'VALIDATION_TRUST', 'PREREQUISITE', 'RETENTION',
+    'PRIORITY', 'CAPACITY', 'DIAGNOSTIC', 'REENTRY', 'SELECTION', 'REPLAN', 'PREREQUISITE_INPUT']
+- check: E12E-02_pdt_families_equal
+  result: PASS
+  details: differs at []
+- check: E12E-02_prg_inputs_equal
+  result: PASS
+  details: kotlin=[['blocked_missing_hard_prerequisite', 'blocked_critical_prerequisite_verification_due',
+    'blocked_prerequisite_remediation_required', 'eligible_prerequisite_review_due_not_blocking',
+    'eligible_with_soft_prerequisite_gap', 'conditional_prerequisite_uncertain', 'independent_branch_available',
+    'prerequisite_repaired_replan', 'invalid_due_to_prerequisite_contamination']]
+- check: E12E-02_counts_match_contract
+  result: PASS
+  details: counts=[10, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9]
+- check: E12E-02_family_ids_match_contract
+  result: PASS
+  details: ids=['learning_need', 'validation_trust', 'prerequisite', 'retention',
+    'priority', 'capacity', 'diagnostic', 'reentry', 'selection', 'replan', 'prerequisite_input']
+- check: E12E-02_written_codes_in_catalogue
+  result: PASS
+  details: 'outside: []'
+- check: E12E-02_independent_branch_is_prg
+  result: PASS
+  details: the un-namespaced code has no source
+- check: E12E-02_recorded_body_read
+  result: PASS
+  details: the recordedReasonCodes reader returned nothing
+- check: E12E-02_recorded_addAll(planReasonCodes)
+  result: PASS
+  details: missing addAll(planReasonCodes)
+- check: E12E-02_recorded_add(need.trigger.reasonCode)
+  result: PASS
+  details: missing add(need.trigger.reasonCode)
+- check: E12E-02_recorded_addAll(need.priorityReasonCodes)
+  result: PASS
+  details: missing addAll(need.priorityReasonCodes)
+- check: E12E-02_recorded_addAll(need.finalReasonCodes)
+  result: PASS
+  details: missing addAll(need.finalReasonCodes)
+- check: E12E-02_recorded_candidates.forEach { addAll(it.r
+  result: PASS
+  details: missing candidates.forEach { addAll(it.reasonCodes) }
+- check: E12E-02_recorded_replan?.trigger?.reasonCode?.let
+  result: PASS
+  details: missing replan?.trigger?.reasonCode?.let(::add)
+- check: E12E-03_format
+  result: PASS
+  details: the trace is not planner_trace/3 reading /2 and /1
+- check: E12E-03_related_refs_field
+  result: PASS
+  details: CandidateTrace has no related_refs
+- check: E12E-03_related_written
+  result: PASS
+  details: related Skills are not written
+- check: E12E-03_decode_body_read
+  result: PASS
+  details: the decode reader returned nothing
+- check: E12E-03_older_cannot_claim_related
+  result: PASS
+  details: an older format may claim related Skills, or /3 does not require them
+- check: E12E-03_known_formats_closed
+  result: PASS
+  details: a format nobody wrote may be read
+- check: E12E-03_related_body_read
+  result: PASS
+  details: the relatedSkills reader returned nothing
+- check: E12E-03_gate_answer_blocked
+  result: PASS
+  details: missing blocked
+- check: E12E-03_gate_answer_conditional_eligible
+  result: PASS
+  details: missing conditional_eligible
+- check: E12E-03_gate_answer_eligible_with_support
+  result: PASS
+  details: missing eligible_with_support
+- check: E12E-03_gate_answer_eligible
+  result: PASS
+  details: missing eligible
+- check: E12E-03_plan_body_read
+  result: PASS
+  details: the plan reader returned nothing
+- check: E12E-03_every_trace_carries_related
+  result: PASS
+  details: a candidate trace drops the gate's related Skills
+- check: E12E-03_unanswered_names_nothing
+  result: PASS
+  details: a candidate the gate never answered for names Skills it cannot know
+- check: E12E-03_no_gate_re_run
+  result: PASS
+  details: the explanation re-runs the gate
+- check: E12E-04_read_body_read
+  result: PASS
+  details: the read reader returned nothing
+- check: E12E-04_day_is_the_row_s
+  result: PASS
+  details: "missing val planDay = stored.recordedAt.studyDay\n        if (planDay"
+- check: E12E-04_trace_present
+  result: PASS
+  details: 'missing val text = stored.traceText ?: return Read.Unreadable('
+- check: E12E-04_trace_decodes
+  result: PASS
+  details: 'missing PlanTraceCodec.decode(text) ?: return Read.Unreadable('
+- check: E12E-04_same_study_day
+  result: PASS
+  details: missing if (trace.studyDay != planDay) return Read.Unreadable(
+- check: E12E-04_same_positions_and_skills
+  result: PASS
+  details: missing if (traced != rows) return Read.Unreadable(
+- check: E12E-04_no_position_twice
+  result: PASS
+  details: missing if (traced.map { it.first }.toSet().size != traced.size) ret
+- check: E12E-04_need_decision
+  result: PASS
+  details: 'missing ?: return Read.Unreadable("a selected task has no need decis'
+- check: E12E-04_chosen_by_its_need
+  result: PASS
+  details: missing if (need.selectedCandidateId != entry.candidateId ||
+- check: E12E-04_checks_equal_contract
+  result: PASS
+  details: '[''trace_present'', ''trace_decodes'', ''same_study_day'', ''same_positions_and_skills'',
+    ''no_position_twice'', ''selected_task_has_its_need_decision'']'
+- check: E12E-04_trusted_read_only_by_read
+  result: PASS
+  details: a trusted read can be constructed without the checks
+- check: E12E-04_snapshot_body_read
+  result: PASS
+  details: the snapshot reader returned nothing
+- check: E12E-04_row_points_at_stored_task
+  result: PASS
+  details: missing plannedTaskId = ids.getValue(entry.position),
+- check: E12E-04_planned_minutes
+  result: PASS
+  details: missing estimatedMinutes = entry.plannedMinutes,
+- check: E12E-04_kept_marked
+  result: PASS
+  details: missing kept = entry.preserved,
+- check: E12E-04_kept_not_justified
+  result: PASS
+  details: missing traceFacts = if (entry.preserved) emptyList() else reasonFamilies(
+- check: E12E-04_capacity_body_read
+  result: PASS
+  details: the capacity reader returned nothing
+- check: E12E-04_day_budget_carried
+  result: PASS
+  details: missing resolvedDailyMinutes = ReplanEngine.dayHardBudget(trace),
+- check: E12E-04_override_said
+  result: PASS
+  details: missing currentDayOverride = trace.capacity.source == CapacitySource.TODAY_OVERRIDE,
+- check: E12E-04_remaining_excludes_kept
+  result: PASS
+  details: missing estimatedRemainingPlannedMinutes = fresh.sumOf { it.plannedMinutes
+    },
+- check: E12E-04_recalculated_said
+  result: PASS
+  details: missing planRecalculated = trace.replan != null,
+- check: E12E-04_too_small_is_recorded
+  result: PASS
+  details: missing tooSmallForAnyCandidate = fresh.isEmpty() && trace.needs.any {
+- check: E12E-04_too_small_reads_disposition
+  result: PASS
+  details: '''nothing fits'' is derived rather than read from the planner''s record'
+- check: E12E-04_query_body_read
+  result: PASS
+  details: the Today query reader returned nothing
+- check: E12E-04_query_reads_through_reading
+  result: PASS
+  details: Today does not read the plan through PlanReading
+- check: E12E-04_unreadable_flag
+  result: PASS
+  details: an unreadable plan is not said to be unreadable
+- check: E12E-04_stale_passes_only_the_day
+  result: PASS
+  details: a plan from another day passes more than its day
+- check: E12E-04_query_reads_only
+  result: PASS
+  details: reading the plan writes
+- check: E12E-04_latest_body_read
+  result: PASS
+  details: the latestPlan reader returned nothing
+- check: E12E-04_rows_in_position_order
+  result: PASS
+  details: the plan's rows do not come back in position order with their ids
+- check: E12E-04_stored_plan_rows
+  result: PASS
+  details: StoredPlan carries no rows
+- check: E12E-04_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12E-04_schema_version_unchanged
+  result: PASS
+  details: the schema version moved
+- check: E12E-05_families_body_read
+  result: PASS
+  details: the reasonFamilies reader returned nothing
+- check: E12E-05_primary_by_trigger
+  result: PASS
+  details: 'kotlin={''remediation_required'': ''repair_confirmed_weakness'', ''verification_due'':
+    ''verify_uncertain_state'', ''weakness_detected'': ''verify_uncertain_state'',
+    ''retention_review_due'': ''review_due_knowledge'', ''diagnostic_opportunity'':
+    ''collect_missing_evidence'', ''continue_learning'': ''continue_current_learning'',
+    ''new_learning'': ''continue_current_learning'', ''reinforcement_opportunity'':
+    ''continue_current_learning'', ''integration_opportunity'': ''continue_current_learning''}'
+- check: E12E-05_parallel_track
+  result: PASS
+  details: the parallel track's cadence is not the only way English becomes the reason
+- check: E12E-05_paused_first
+  result: PASS
+  details: a continued safe pause is not the more specific fact
+- check: E12E-05_weakness_is_verified
+  result: PASS
+  details: an unconfirmed weakness is called confirmed
+- check: E12E-05_at_most_one_supporting
+  result: PASS
+  details: more than one supporting family can be shown
+- check: E12E-05_fit_is_recorded
+  result: PASS
+  details: the fit is not read from the trace
+- check: E12E-05_thux_families_unchanged
+  result: PASS
+  details: thux=['continue current learning', 'repair a confirmed weakness', 'verify
+    uncertain prerequisite/state', 'review due knowledge', 'collect missing evidence',
+    'parallel Technical English progress', 'fit the available capacity', 'resume valid
+    paused work'] kotlin=['continue_current_learning', 'repair_confirmed_weakness',
+    'verify_uncertain_state', 'review_due_knowledge', 'collect_missing_evidence',
+    'parallel_technical_english', 'fit_available_capacity', 'resume_valid_paused_work']
+- check: E12E-05_continuation_label_claims_no_start
+  result: PASS
+  details: label=Öğrenme yolunda ilerliyor
+- check: E12E-05_kept_not_startable
+  result: PASS
+  details: started work is offered to start again
+- check: E12E-05_unreadable_is_a_fault
+  result: PASS
+  details: an unreadable plan is rendered as something else
+- check: E12E-05_unreadable_after_health_and_resume
+  result: PASS
+  details: an unreadable plan outranks recovery or a revalidated session
+- check: E12E-05_attention_body_read
+  result: PASS
+  details: the traceAttention reader returned nothing
+- check: E12E-05_attention_from_trace
+  result: PASS
+  details: trace-backed attention is missing or does not link to the explanation
+- check: E12E-06_statement_private
+  result: PASS
+  details: a statement can be built freely
+- check: E12E-06_statement_checks_trace_and_catalogue
+  result: PASS
+  details: a statement can be built for a code the trace did not record or no contract
+    defines
+- check: E12E-06_statement_no_free_text
+  result: PASS
+  details: a statement carries free text
+- check: E12E-06_trace_facts
+  result: PASS
+  details: kotlin=['kept_from_earlier_version', 'no_task_for_need', 'not_taken_today',
+    'waiting', 'plan_replaced', 'day_over_budget_after_keeping']
+- check: E12E-06_reconsideration
+  result: PASS
+  details: kotlin=['next_plan', 'when_prerequisite_ready', 'when_a_task_is_available']
+- check: E12E-06_states
+  result: PASS
+  details: kotlin=['explained', 'no_plan_yet', 'plan_from_another_day', 'unreadable']
+- check: E12E-06_shown_priority_codes
+  result: PASS
+  details: kotlin=['priority.blocks_current_required_path', 'priority.blocks_next_ready_dependency',
+    'priority.continuation_value', 'priority.starvation_promoted', 'priority.decision_value',
+    'priority.track_balance_pressure']
+- check: E12E-06_shown_priority_codes_no_band
+  result: PASS
+  details: 'a band is shown: [''priority.blocks_current_required_path'', ''priority.blocks_next_ready_dependency'',
+    ''priority.continuation_value'', ''priority.starvation_promoted'', ''priority.decision_value'',
+    ''priority.track_balance_pressure'']'
+- check: E12E-06_shown_eligibility_codes
+  result: PASS
+  details: kotlin=['eligibility.conditional_uncertain', 'eligibility.soft_gap_support',
+    'eligibility.ready_due_allowed']
+- check: E12E-06_shown_eligibility_codes_no_band
+  result: PASS
+  details: 'a band is shown: [''eligibility.conditional_uncertain'', ''eligibility.soft_gap_support'',
+    ''eligibility.ready_due_allowed'']'
+- check: E12E-06_shown_fit_codes
+  result: PASS
+  details: kotlin=['capacity.split_to_fit', 'capacity.smaller_alternative_to_fit']
+- check: E12E-06_shown_fit_codes_no_band
+  result: PASS
+  details: 'a band is shown: [''capacity.split_to_fit'', ''capacity.smaller_alternative_to_fit'']'
+- check: E12E-06_explain_body_read
+  result: PASS
+  details: the explain reader returned nothing
+- check: E12E-06_kept_explained_as_kept
+  result: PASS
+  details: kept work is justified again
+- check: E12E-06_uncoded_replan_invents_nothing
+  result: PASS
+  details: an event with no code gets one
+- check: E12E-06_over_budget_said
+  result: PASS
+  details: kept work now over the day is not said
+- check: E12E-06_reentry_explained
+  result: PASS
+  details: re-entry is not explained
+- check: E12E-06_why_not_body_read
+  result: PASS
+  details: the whyNot reader returned nothing
+- check: E12E-06_capacity_before_lower_priority_only_if_recorded
+  result: PASS
+  details: deferral is called lower priority without a recorded code
+- check: E12E-06_waiting_names_skills
+  result: PASS
+  details: a waiting need does not name its blocker
+- check: E12E-06_no_task_invents_no_code
+  result: PASS
+  details: a need nothing serves gets an invented code
+- check: E12E-06_uxia_questions
+  result: PASS
+  details: UXIA-v0's planner_explanation questions were not read
+- check: E12E-07_every_code_has_a_template
+  result: PASS
+  details: missing=[] extra=[]
+- check: E12E-07_sentences_read
+  result: PASS
+  details: sentences=131
+- check: E12E-07_no_forbidden_claim
+  result: PASS
+  details: '[]'
+- check: E12E-07_forgetting_only_denied
+  result: PASS
+  details: '[''Bu beceriyi yeniden yoklama zamanı geldi. Bu, unuttuğun anlamına gelmez.'']'
+- check: E12E-07_review_due_is_pdt_12
+  result: PASS
+  details: review due is not said to be not forgetting
+- check: E12E-07_time_is_not_importance
+  result: PASS
+  details: deferral for time is worded as importance
+- check: E12E-07_deferred_not_debt
+  result: PASS
+  details: deferral is not said to be no debt
+- check: E12E-07_reentry.absence_not_failure
+  result: PASS
+  details: 'reentry.absence_not_failure: Ara vermek bir başarısızlık değildir.'
+- check: E12E-07_reentry.absence_not_task_debt
+  result: PASS
+  details: 'reentry.absence_not_task_debt: Eski günlük görevler borç olarak taşınmadı.'
+- check: E12E-07_reentry.stale_plan_not_replayed
+  result: PASS
+  details: 'reentry.stale_plan_not_replayed: Önceki günün planı yeniden oynatılmadı.'
+- check: E12E-07_no_date_promised
+  result: PASS
+  details: a date is promised
+- check: E12E-07_blockers_named
+  result: PASS
+  details: skill templates=['eligibility.ready_due_allowed', 'eligibility.conditional_uncertain',
+    'eligibility.soft_gap_support', 'eligibility.blocked_hard_prerequisite', 'eligibility.blocked_critical_verification',
+    'eligibility.blocked_strict_prerequisite_confidence']
+- check: E12E-07_copy_in_core
+  result: PASS
+  details: the copy is not plain core code
+- check: E12E-07_no_locale_naive_case
+  result: PASS
+  details: a locale-naive case transform
+- check: E12E-08_edge_accepted
+  result: PASS
+  details: the explanation opens outside the accepted edge
+- check: E12E-08_projected_in_core
+  result: PASS
+  details: the screen computes the explanation
+- check: E12E-08_off_main_thread
+  result: PASS
+  details: the explanation is read on the main thread
+- check: E12E-08_screen_renders_only
+  result: PASS
+  details: the screen reaches the store or decides wording
+- check: E12E-08_no_ranking_on_screen
+  result: PASS
+  details: the screen ranks or scores
+- check: E12E-09_ReasonCodesTest_the catalogue is PDT-v0's ten families a
+  result: PASS
+  details: 'missing test in ReasonCodesTest.kt: the catalogue is PDT-v0''s ten families
+    and PRG-v0''s inputs, in their order'
+- check: E12E-09_ReasonCodesTest_every code the planner's vocabulary name
+  result: PASS
+  details: 'missing test in ReasonCodesTest.kt: every code the planner''s vocabulary
+    names is in the catalogue'
+- check: E12E-09_ReasonCodesTest_a trace's recorded codes are exactly the
+  result: PASS
+  details: 'missing test in ReasonCodesTest.kt: a trace''s recorded codes are exactly
+    the codes it recorded'
+- check: E12E-09_PlannerFactsTest_a candidate's related Skills read back e
+  result: PASS
+  details: 'missing test in PlannerFactsTest.kt: a candidate''s related Skills read
+    back exactly'
+- check: E12E-09_PlannerFactsTest_a trace 12D wrote still reads, and canno
+  result: PASS
+  details: 'missing test in PlannerFactsTest.kt: a trace 12D wrote still reads, and
+    cannot claim related Skills its format never had'
+- check: E12E-09_PlannerEngineTest_a waiting candidate names the Skill it w
+  result: PASS
+  details: 'missing test in PlannerEngineTest.kt: a waiting candidate names the Skill
+    it waits on, and one that went ahead names what it went ahead with'
+- check: E12E-09_PlannerEngineTest_every code the planner writes is a contr
+  result: PASS
+  details: 'missing test in PlannerEngineTest.kt: every code the planner writes is
+    a contract code'
+- check: E12E-09_PlanReadingTest_Today reads today's plan from its trace,
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: Today reads today''s plan from its
+    trace, each row pointing at its own stored task'
+- check: 'E12E-09_PlanReadingTest_a plan from another study day is passed '
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: a plan from another study day is passed
+    on only with its own day'
+- check: E12E-09_PlanReadingTest_kept work is part of today's plan but is
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: kept work is part of today''s plan
+    but is not new work, and the replan is said'
+- check: E12E-09_PlanReadingTest_a trace that does not describe the store
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: a trace that does not describe the
+    stored rows is unreadable, and nothing is guessed'
+- check: 'E12E-09_PlanReadingTest_a split task shows the part planned for '
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: a split task shows the part planned
+    for today, and its fit is the supporting reason'
+- check: E12E-09_PlanReadingTest_an initial plan, a replan and a re-entry
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: an initial plan, a replan and a re-entry
+    record only contract codes'
+- check: E12E-09_PlanReadingTest_reading today's plan and its explanation
+  result: PASS
+  details: 'missing test in PlanReadingTest.kt: reading today''s plan and its explanation
+    writes nothing'
+- check: E12E-09_TodayPresentationTest_kept work is not offered as new work and
+  result: PASS
+  details: 'missing test in TodayPresentationTest.kt: kept work is not offered as
+    new work and never fills the queue'
+- check: E12E-09_TodayPresentationTest_an unreadable plan for today is a recove
+  result: PASS
+  details: 'missing test in TodayPresentationTest.kt: an unreadable plan for today
+    is a recoverable fault and renders nothing from it'
+- check: 'E12E-09_TodayPresentationTest_a replan and a waiting prerequisite the '
+  result: PASS
+  details: 'missing test in TodayPresentationTest.kt: a replan and a waiting prerequisite
+    the trace records become attention that links to the explanation'
+- check: E12E-09_PlannerExplanationTest_every statement comes from a code the tr
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: every statement comes from
+    a code the trace recorded or from a trace fact'
+- check: E12E-09_PlannerExplanationTest_why today is the need first, then what m
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: why today is the need first,
+    then what moved or fitted it, and the band is never the reason'
+- check: E12E-09_PlannerExplanationTest_a need deferred for time is deferred for
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: a need deferred for time is
+    deferred for time, never called less important'
+- check: E12E-09_PlannerExplanationTest_a waiting need names the real Skill it w
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: a waiting need names the real
+    Skill it waits on'
+- check: E12E-09_PlannerExplanationTest_a need nothing serves says so without in
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: a need nothing serves says
+    so without inventing a code'
+- check: E12E-09_PlannerExplanationTest_review due is never forgetting
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: review due is never forgetting'
+- check: 'E12E-09_PlannerExplanationTest_re-entry says absence is not failure or '
+  result: PASS
+  details: 'missing test in PlannerExplanationTest.kt: re-entry says absence is not
+    failure or debt, and replays nothing'
+- check: 'E12E-09_ExplanationCopyTest_every catalogue code has a sentence, in '
+  result: PASS
+  details: 'missing test in ExplanationCopyTest.kt: every catalogue code has a sentence,
+    in the catalogue''s order, and nothing else does'
+- check: E12E-09_ExplanationCopyTest_no sentence claims forgetting, debt, fal
+  result: PASS
+  details: 'missing test in ExplanationCopyTest.kt: no sentence claims forgetting,
+    debt, falling behind, a score or a percentage'
+- check: E12E-09_ExplanationCopyTest_work deferred for time is never worded a
+  result: PASS
+  details: 'missing test in ExplanationCopyTest.kt: work deferred for time is never
+    worded as less important'
+- check: E12E-09_PlanStorageTest_the newest plan's own tasks come back in
+  result: PASS
+  details: 'missing test in PlanStorageTest.kt: the newest plan''s own tasks come
+    back in position order, with their ids and Skills, and reading writes nothing'
+- check: E12E-10_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12E-10_mutation_all_detected
+  result: PASS
+  details: '{''total'': 52, ''detected'': 52}'
+- check: E12E-10_mutation_ran_gradle
+  result: PASS
+  details: the harness was not verified
+- check: E12E-10_mutation_negative_control
+  result: PASS
+  details: the harness was never shown able to report a survivor
+- check: E12E-10_validator_mutation
+  result: PASS
+  details: '{''total'': 40, ''detected'': 40, ''negative_control'': ''a forbidden
+    sentence and a forbidden fragment placed inside a Kotlin comment must not fail
+    the validator'', ''negative_control_result'': ''no_false_positive'', ''harness_defects_fixed'':
+    [{''id'': ''V24'', ''why'': ''the reader of the shown-code lists matched [a-z_.]
+    only, so every band code (priority.p0_ to p4_) was invisible to the check that
+    forbids showing one; digits were added and the whole set was run again''}], ''reader_guard'':
+    ''every body the validator reads is itself checked to be non-empty''}'
+- check: E12E-10_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12E-10_no_plan_in_app_claimed
+  result: PASS
+  details: a plan in the app is claimed
+- check: E12E-10_re_pointed_virtual_user_scenarios_with_ex
+  result: PASS
+  details: virtual_user_scenarios_with_explanations is not re-pointed with a reason
+- check: E12E-10_re_pointed_retention_and_weakness_codes
+  result: PASS
+  details: retention_and_weakness_codes is not re-pointed with a reason
+- check: E12E-10_re_pointed_final_microcopy_and_llm_paraph
+  result: PASS
+  details: final_microcopy_and_llm_paraphrase is not re-pointed with a reason
+- check: E12E-10_re_pointed_calling_the_planner_from_the_a
+  result: PASS
+  details: calling_the_planner_from_the_app is not re-pointed with a reason
+- check: E12E-10_narrowed_gates_recorded
+  result: PASS
+  details: '[''E11A-07_blocked_filtered'', ''E11A-11_no_invented_plan'', ''E11A-11_no_invented_capacity'',
+    ''E12C-07_unknown_format_refused'', ''E12D-08_format_v2'', ''E12D-08_only_known_versions'']'
+- check: E12E-11_forbidden_reason_not_in_the_trace
+  result: PASS
+  details: missing=reason_not_in_the_trace
+- check: E12E-11_forbidden_free_text_reason
+  result: PASS
+  details: missing=free_text_reason
+- check: E12E-11_forbidden_gate_re_run_to_explain
+  result: PASS
+  details: missing=gate_re_run_to_explain
+- check: E12E-11_forbidden_band_shown_as_the_reason
+  result: PASS
+  details: missing=band_shown_as_the_reason
+- check: E12E-11_forbidden_deferral_for_time_as_lower_priority
+  result: PASS
+  details: missing=deferral_for_time_as_lower_priority
+- check: E12E-11_forbidden_waiting_without_its_skill_blocker
+  result: PASS
+  details: missing=waiting_without_its_skill_blocker
+- check: E12E-11_forbidden_review_due_as_forgetting
+  result: PASS
+  details: missing=review_due_as_forgetting
+- check: E12E-11_forbidden_absence_as_failure_or_debt
+  result: PASS
+  details: missing=absence_as_failure_or_debt
+- check: E12E-11_forbidden_english_as_the_reason_a_task_exists
+  result: PASS
+  details: missing=english_as_the_reason_a_task_exists
+- check: E12E-11_forbidden_row_guessed_around_an_unreadable_trace
+  result: PASS
+  details: missing=row_guessed_around_an_unreadable_trace
+- check: E12E-11_forbidden_started_work_offered_again
+  result: PASS
+  details: missing=started_work_offered_again
+- check: E12E-12_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 12E QA PASS'''
+- check: E12E-12_spec_**Decision:** `D-096`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-096`'''
+- check: E12E-12_spec_An explanation is a projec
+  result: PASS
+  details: 'spec: ''An explanation is a projection of the decision trace'''
+- check: E12E-12_spec_planner_trace/3
+  result: PASS
+  details: 'spec: ''planner_trace/3'''
+- check: E12E-12_spec_T6
+  result: PASS
+  details: 'spec: ''T6'''
+- check: E12E-12_spec_MUTATION
+  result: PASS
+  details: 'spec: ''MUTATION'''
+- check: E12E-13_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12E-13_research_PDT-v0
+  result: PASS
+  details: missing='PDT-v0'
+- check: E12E-13_research_PRG-v0
+  result: PASS
+  details: missing='PRG-v0'
+- check: E12E-13_research_related_refs
+  result: PASS
+  details: missing='related_refs'
+- check: E12E-14_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E12E-14_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+failures: []

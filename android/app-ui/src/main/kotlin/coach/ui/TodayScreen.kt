@@ -79,7 +79,8 @@ private val purposeLabelsTr: Map<TaskPurpose, String> = mapOf(
 )
 
 private val reasonLabelsTr: Map<ReasonFamily, String> = mapOf(
-    ReasonFamily.CONTINUE_CURRENT_LEARNING to "Başlanan öğrenmeyi sürdürüyor",
+    // Planned progress on the route, new or continued (12E): the words must not claim it was started.
+    ReasonFamily.CONTINUE_CURRENT_LEARNING to "Öğrenme yolunda ilerliyor",
     ReasonFamily.REPAIR_CONFIRMED_WEAKNESS to "Doğrulanmış bir zayıflığı onarıyor",
     ReasonFamily.VERIFY_UNCERTAIN_STATE to "Belirsiz kalan bir durumu doğruluyor",
     ReasonFamily.REVIEW_DUE_KNOWLEDGE to "Tekrar zamanı gelen bilgiyi yokluyor",

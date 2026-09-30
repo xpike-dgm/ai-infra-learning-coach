@@ -173,4 +173,28 @@ class PlanStorageTest {
             assertEquals(watermark, db.truthWatermark())
         }
     }
+
+    @Test
+    fun `the newest plan's own tasks come back in position order, with their ids and Skills, and reading writes nothing`() {
+        withStore { db ->
+            val shell = VersionedRef("skill.linux.shell_basics", 2)
+            val yesterday = StudyTimestamp(1_788_900_000_000, "2026-09-27", 3 * 3600)
+            db.appendPlan(yesterday, tasks = 3, trace = "old")
+            // Appended out of position order, so the order must come from the position, not the row id.
+            val ids = db.inTransaction {
+                val plan = db.appendTruth(TruthRecord("plan_version", at, mapOf("policy_version" to "PLNX-v0")))
+                listOf(2 to linux, 0 to shell, 1 to linux).associate { (position, skill) ->
+                    position to db.appendTruth(TruthRecord("planned_task", at, mapOf("plan_version_id" to plan.toString(),
+                        "skill_logical_id" to skill.logicalId, "skill_version" to skill.version.toString(), "position" to position.toString())))
+                }
+            }
+            val watermark = db.truthWatermark()
+            val latest = db.latestPlan()!!
+            assertEquals(listOf(0, 1, 2), latest.plannedTasks.map { it.position })
+            assertEquals(listOf(ids.getValue(0), ids.getValue(1), ids.getValue(2)), latest.plannedTasks.map { it.plannedTaskId })
+            assertEquals(listOf(shell, linux, linux), latest.plannedTasks.map { it.skill })
+            assertEquals(latest.plannedTaskCount, latest.plannedTasks.size)
+            assertEquals(watermark, db.truthWatermark())
+        }
+    }
 }

@@ -780,8 +780,18 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 33/33, validator 157/157 ve kendi mutation testi 38/38,
 - **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (16D).
 
-### [ ] 12E — Reason codes — **AKTİF**
-### [ ] 12F — Sanal kullanıcı testleri
+### [x] 12E — Reason codes — RSNX-v0 / D-096
+
+**12E final coverage:**
+- açıklama karar izinin projeksiyonu; her cümle kaydedilmiş katalog kodu ya da iz olgusu,
+- katalog `PDT-v0` §8 + `PRG-v0` §20; dışındaki kod gösterilemez,
+- iz adayların ilgili Skill'lerini kaydeder (`planner_trace/3`); kapı açıklamak için yeniden koşulmaz,
+- plan yalnız izi kendi satırlarını anlatıyorsa okunur; Today planı okuyor, korunan iş yeniden başlatılmaz,
+- süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; `review_due` unutmak değil; yokluk borç değil,
+- mutation 52/52, validator 219/219 ve kendi mutation testi 40/40,
+- **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (16D).
+
+### [ ] 12F — Sanal kullanıcı testleri — **AKTİF**
 
 ---
 
@@ -890,8 +900,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12D`  
-**Son tamamlanan:** **`12D — RPLX-v0 / D-095`**  
-**Aktif:** **`12E — Explanation / reason codes`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12E`  
+**Son tamamlanan:** **`12E — RSNX-v0 / D-096`**  
+**Aktif:** **`12F — Sanal kullanıcı testleri`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12E fresh PRE-STEP → izden kullanıcı açıklaması ve Today'in planı okuması → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12F fresh PRE-STEP → 3H senaryolarının bugünkü kodla ve açıklamalarıyla koşulması → independent QA → D-050 POST sync + stale audit.**

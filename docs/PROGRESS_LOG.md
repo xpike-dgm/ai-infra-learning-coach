@@ -1060,3 +1060,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `12D ✅ / 12E active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12E — Explanation / reason codes`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-09-30 — 12E Explanation / reason codes tamamlandı — RSNX-v0 / D-096
+
+- Takeover ve fresh 12E PRE yapıldı; beş kanonik kaynak `12D ✅ / 12E active-not-executed` gösterdi. Kullanıcı açık onay verdi ("12E ile devam et"). 12E önce `claude/12d-replan` üzerine dallandı; 12D PR'ı (#36) main'e squash-merge edilmiş çıktı (3a2b619, ağaç 12D commit'iyle birebir aynı) ve 12E main'e rebase edildi.
+- **İz bir blocker'ı adlandıramıyordu**; kapının cevabı karar için kullanılıp atılıyordu. `CandidateTrace.relatedSkills` + `planner_trace/3`.
+- **Today planı okuyamıyordu**; artık iz kendi satırlarını anlatıyorsa okuyor, anlatmıyorsa `error_recoverable`.
+- Planner'ın yazdığı `independent_branch_available` `PRG-v0` §20'nin girdisi; katalog iki kaynağı da adlandırıyor.
+- 11A'nın devam etiketi yeni bir beceri için başlanmış demeyecekti; etiket 'öğrenme yolunda ilerliyor' oldu. Korunan iş yeniden başlatılmıyor.
+- Açıklama izin projeksiyonu; şablonlar çekirdekte, her katalog kodunun cümlesi var ve kurallara karşı okunuyor.
+- Altı yaşayan kapı (11A üç, 12C bir, 12D iki) garantisi zayıflamadan daraltıldı.
+- Mutation 52/52 (koşucu ilk turda Gradle'ı hiç çalıştırmadı ve hepsini reddetti; düzeltildi). Altı run PASS. Validator 219/219, kendi mutation testi 40/40, sweep 41/41.
+- **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+- D-050 POST living-memory accepted state'i `12E ✅ / 12F active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12F — Sanal kullanıcı testleri`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

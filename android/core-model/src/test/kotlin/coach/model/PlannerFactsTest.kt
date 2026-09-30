@@ -153,26 +153,65 @@ class PlannerFactsTest {
     fun `a replan and a re-entry read back exactly`() {
         listOf(replanned(), reentered()).forEach { original ->
             val stored = PlanTraceCodec.encode(original)
-            assertTrue(stored.startsWith("planner_trace/2\n"))
+            assertTrue(stored.startsWith(PlanTraceCodec.FORMAT + "\n"))
             assertEquals(original, PlanTraceCodec.decode(stored))
         }
+    }
+
+    /** The same trace as an older format wrote it: `/2` had no related Skills, `/1` no preserved flag either. */
+    private fun asWrittenBy(format: String, stored: String): String {
+        val withoutRelated = stored.replace(PlanTraceCodec.FORMAT, format).replace(Regex("\trelated_skills=[^\t\n]*"), "")
+        return if (format == PlanTraceCodec.FORMAT_V1) withoutRelated.replace(Regex("\tpreserved=(true|false)"), "") else withoutRelated
     }
 
     @Test
     fun `a trace 12C wrote still reads, and cannot claim what its format never had`() {
         // `/1` had no preserved flag and no replan or re-entry sections.
-        val v1 = PlanTraceCodec.encode(trace()).replace("planner_trace/2", "planner_trace/1").replace("\tpreserved=false", "")
+        val v1 = asWrittenBy(PlanTraceCodec.FORMAT_V1, PlanTraceCodec.encode(trace()))
         assertEquals(trace(), PlanTraceCodec.decode(v1))
         assertNull(PlanTraceCodec.decode(v1.replace("\tsplit=false", "\tsplit=false\tpreserved=true")))
-        val v1WithReplan = PlanTraceCodec.encode(replanned()).replace("planner_trace/2", "planner_trace/1")
-            .replace("\tpreserved=true", "")
+        val v1WithReplan = asWrittenBy(PlanTraceCodec.FORMAT_V1, PlanTraceCodec.encode(replanned()))
         assertNull(PlanTraceCodec.decode(v1WithReplan))
-        val v1WithReentry = PlanTraceCodec.encode(reentered()).replace("planner_trace/2", "planner_trace/1")
-            .replace("\tpreserved=false", "")
+        val v1WithReentry = asWrittenBy(PlanTraceCodec.FORMAT_V1, PlanTraceCodec.encode(reentered()))
         assertNull(PlanTraceCodec.decode(v1WithReentry))
         // A second replan section is not a replan anyone wrote.
         val doubled = PlanTraceCodec.encode(replanned()).let { it + "\n" + it.lines().single { l -> l.startsWith("replan\t") } }
         assertNull(PlanTraceCodec.decode(doubled))
+    }
+
+    private val blocker = VersionedRef("skill.c.address_of_operator", 2)
+
+    private fun waiting() = trace().copy(
+        candidates = trace().candidates + CandidateTrace("cand-3", "new_learning:$skill", LifecycleStatus.VALIDATED,
+            PrerequisiteEligibility.BLOCKED, 10, CandidateDisposition.BLOCKED_PREREQUISITE,
+            listOf("eligibility.blocked_hard_prerequisite"), listOf(blocker, VersionedRef("skill.c.pointer_declaration", 1))),
+    )
+
+    @Test
+    fun `a candidate's related Skills read back exactly`() {
+        val stored = PlanTraceCodec.encode(waiting())
+        assertTrue(stored.startsWith("planner_trace/3\n"))
+        val decoded = PlanTraceCodec.decode(stored)
+        assertEquals(waiting(), decoded)
+        assertEquals(listOf(blocker, VersionedRef("skill.c.pointer_declaration", 1)),
+            decoded!!.candidates.single { it.candidateId == "cand-3" }.relatedSkills)
+        // `/3` requires the field on every candidate, even an empty one.
+        assertNull(PlanTraceCodec.decode(stored.replace(Regex("\trelated_skills=[^\t\n]*"), "")))
+    }
+
+    @Test
+    fun `a trace 12D wrote still reads, and cannot claim related Skills its format never had`() {
+        val v2 = asWrittenBy(PlanTraceCodec.FORMAT_V2, PlanTraceCodec.encode(replanned()))
+        assertEquals(replanned(), PlanTraceCodec.decode(v2))
+        val v2WithRelated = PlanTraceCodec.encode(waiting()).replace(PlanTraceCodec.FORMAT, PlanTraceCodec.FORMAT_V2)
+        assertNull(PlanTraceCodec.decode(v2WithRelated))
+        val v1WithRelated = PlanTraceCodec.encode(waiting()).replace(PlanTraceCodec.FORMAT, PlanTraceCodec.FORMAT_V1)
+            .replace(Regex("\tpreserved=(true|false)"), "")
+        assertNull(PlanTraceCodec.decode(v1WithRelated))
+        // A version nobody wrote is refused even when every line under it would read as a known one.
+        listOf(PlanTraceCodec.FORMAT_V2 to v2, PlanTraceCodec.FORMAT to PlanTraceCodec.encode(waiting())).forEach { (known, text) ->
+            assertNull(PlanTraceCodec.decode(text.replace(known, "planner_trace/9")), "$known content under /9")
+        }
     }
 
     @Test

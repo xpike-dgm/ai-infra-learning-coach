@@ -291,12 +291,24 @@ check("E12D-07_undecodable_pause_ignored", "mapNotNull { row -> row.record.paylo
       "a pause that does not decode is treated as one")
 
 # ---------------------------------------------------------------- the trace
-check("E12D-08_format_v2", 'const val FORMAT = "planner_trace/2"' in codec and 'const val FORMAT_V1 = "planner_trace/1"' in codec
-      and 'const val TRACE_SCHEMA = "planner_trace/2"' in planner, "the trace format is not planner_trace/2 reading /1")
+# 12D owns /2 and what it carries; 12E moved the written format to /3 (candidates' related Skills). The
+# check was narrowed from "the format is /2" to what 12D decided: the written format is /2 or later, the
+# planner and the codec name the same one, and /2 and /1 both still read.
+written_format = re.search(r'const val FORMAT = "planner_trace/(\d+)"', codec)
+check("E12D-08_format_v2", written_format is not None and int(written_format.group(1)) >= 2
+      and 'const val FORMAT_V1 = "planner_trace/1"' in codec
+      and (written_format.group(1) == "2" or 'const val FORMAT_V2 = "planner_trace/2"' in codec)
+      and f'const val TRACE_SCHEMA = "planner_trace/{written_format.group(1)}"' in planner,
+      "the trace format is not planner_trace/2 or later reading /2 and /1")
 decode = body(codec, "private fun decodeOrThrow(")
 check("E12D-08_decode_body_read", len(decode) > 1500, "the decode reader returned nothing")
+known_formats = re.search(r"private val KNOWN_FORMATS = setOf\(([^)]*)\)", codec)
+check("E12D-08_only_known_versions",
+      "if (version != FORMAT && version != FORMAT_V1) throw Malformed()" in decode
+      or ("if (version !in KNOWN_FORMATS) throw Malformed()" in decode and known_formats is not None
+          and sorted(x.strip() for x in known_formats.group(1).split(",")) == ["FORMAT", "FORMAT_V1", "FORMAT_V2"]),
+      "a format nobody wrote is accepted")
 for label, fragment in (
-    ("only_known_versions", "if (version != FORMAT && version != FORMAT_V1) throw Malformed()"),
     ("v1_cannot_claim_kept", 'else if ("preserved" in f) throw Malformed() else false'),
     ("v1_cannot_claim_replan", "if (!v2 || replan != null) throw Malformed()"),
     ("v1_cannot_claim_reentry", "if (!v2 || reentry != null) throw Malformed()"),

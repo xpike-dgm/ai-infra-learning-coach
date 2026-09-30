@@ -47,10 +47,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12B Prerequisite Engine: PRQX-v0 / D-093 ile tamamlandı; readiness, eligibility matrisi, draft kenarların adlandırılması, contamination snapshot'ı ve `prerequisite_readiness` projeksiyonu.
 - [x] 12C Planner Engine v1: PLNX-v0 / D-094 ile tamamlandı; kapasite, eksenlerden ihtiyaç, güven + kapı + `PBR-v0` sırası, sığdırma ve `planner_trace/1` izli truth plan.
 - [x] 12D Replan: RPLX-v0 / D-095 ile tamamlandı; gerekçeli plan sürümleri, korunan iş, kalan bütçe, re-entry bağlamı ve duraklatılmış işin P2 devamı.
-- [ ] 12E Explanation / reason codes **AKTİF**: izden kullanıcı açıklaması ve Today'in planı okuması.
+- [x] 12E Explanation / reason codes: RSNX-v0 / D-096 ile tamamlandı; kapalı katalog, `planner_trace/3` ilgili Skill'ler, izden okunan Today planı ve `planner_explanation` yüzeyi.
+- [ ] 12F Sanal kullanıcı testleri **AKTİF**: 3H senaryoları bugünkü kodla ve açıklamalarıyla.
 - [ ] Deneme→planlı görev bağı `DDM-v0`de yok; replan'da başlanan işi bugün çağıran bildiriyor → 15 (veri modeliyle).
 - [ ] Planner'ı uygulamadan çağırmak ve odak tercihi (`user_focus_changed`) → 16D; kapasite ayarı olmadan çağrılamaz.
-- [ ] Today'in planı okuması ve izden gerekçe ailesi türetmesi → 12E; iz bugün `planner_trace/2` olarak saklanıyor.
+- [x] Today'in planı okuması ve izden gerekçe ailesi türetmesi 12E'de; iz `planner_trace/3`.
+- [ ] Nihai açıklama mikro metni ve olası LLM paraphrase'i → 14; şablon yedeği çekirdekte, kaynak kod asla değiştirilemez.
+- [ ] Retention/weakness ihtiyaçlarının yazacağı `retention.*` kodları → 13; katalogda ve şablonlu, bugün yazan yok.
 - [ ] Starvation ve track-balance eşiği yok; planner baskıyı girdi olarak alıyor, ürün hiçbirini vermiyor → 18C.
 - [ ] İhtiyaç başına aday sınırı `5` (mühendislik sınırı) → gerçek performansla 18E.
 - [ ] Retention due kovaları, `at_risk` ve weakness'ten doğan ihtiyaçlar → 13.
