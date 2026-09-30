@@ -70,6 +70,12 @@ data class PlannedTaskFact(
     val topicRef: VersionedRef? = null,
     val estimatedMinutes: Int? = null,
     val integrationMode: String? = null,
+    /**
+     * Carried unchanged from an earlier version of today's plan because the learner had already started
+     * or finished it (12D). It is part of the plan, but it is not new work to start: continuing a run is
+     * the resumable session's path, which revalidates first (11C).
+     */
+    val kept: Boolean = false,
 )
 
 /**
@@ -89,4 +95,13 @@ data class TodayFacts(
     val plan: PlanSnapshot? = null,
     val capacity: CapacityContext? = null,
     val curriculumLoaded: Boolean = false,
+    /**
+     * Today's plan exists but its trace cannot be trusted to describe it — it does not decode, or its
+     * positions and Skills are not the stored rows' own (12E). Nothing is guessed in its place.
+     */
+    val planUnreadable: Boolean = false,
+    /** Today's plan replaced an earlier version of the same day, and its trace records why (12D). */
+    val planReplaced: Boolean = false,
+    /** Some open need waited on a prerequisite in today's plan, and its trace names the blocker (12E). */
+    val prerequisiteWaiting: Boolean = false,
 )

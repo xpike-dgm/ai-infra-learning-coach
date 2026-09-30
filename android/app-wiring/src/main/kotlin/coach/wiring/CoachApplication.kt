@@ -7,9 +7,11 @@ import android.os.StrictMode
 import android.util.Log
 import coach.application.DayCloseFacts
 import coach.application.IngestCurriculum
+import coach.application.PlannerExplanationQuery
 import coach.application.StoreOpenOutcome
 import coach.application.StoreStartup
 import coach.application.TodayFactsQuery
+import coach.model.PlannerExplanationFacts
 import coach.model.TodayFacts
 import coach.curriculum.FileContentSource
 import coach.persistence.StoreOpener
@@ -73,6 +75,18 @@ class CoachApplication : Application() {
             // process kept open past midnight reports the new day rather than yesterday's (11E).
             val day = DayCloseFacts(opened.graph.persistence, opened.graph.clock).load()
             main.post { onLoaded(facts, day) }
+        }
+    }
+
+    /**
+     * Reads what the planner explanation may say, off the main thread (12E). It is disk work like
+     * Today's facts, and it reads the same stored plan the same way.
+     */
+    fun loadExplanation(onLoaded: (PlannerExplanationFacts) -> Unit) {
+        val opened = startup.store ?: return
+        storeThread.execute {
+            val facts = PlannerExplanationQuery(opened.graph.persistence, opened.graph.clock).load()
+            main.post { onLoaded(facts) }
         }
     }
 

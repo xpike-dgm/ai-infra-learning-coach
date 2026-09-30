@@ -224,8 +224,12 @@ check("E11A-07_upstream_no_replay",
       home["missed_day"]["replay_yesterday_plan_as_backlog"] is False
       and home["missed_day"]["absence_is_debt"] is False,
       "SRR-v0/THUX-v0 forbid replaying an old plan")
+# 12E moved the filter into one named rule that also keeps kept work (started earlier, 12D) from being
+# offered again; the guarantee — blocked work is neither actionable nor listed — is what is checked.
 check("E11A-07_blocked_filtered",
-      "filterNot { it.blocked }" in today
+      ("filterNot { it.blocked }" in today
+       or ("private fun startable(task: PlannedTaskFact): Boolean = !task.blocked" in today
+           and today.count("filter(::startable)") >= 2))
       and home["remaining_plan"]["blocked_dependent_work_actionable"] is False,
       "blocked work must not be actionable or listed")
 check("E11A-07_session_revalidated",
@@ -300,10 +304,18 @@ check("E11A-10_port_refinement_recorded",
 check("E11A-11_query_reads_only",
       "appendTruth" not in query and "writeProjection" not in query and "inTransaction" not in query,
       "the Today read path must not write")
-check("E11A-11_no_invented_plan", re.search(r"plan = null", query) is not None,
-      "no plan may be invented before the planner exists")
-check("E11A-11_no_invented_capacity", re.search(r"capacity = null", query) is not None,
-      "no capacity may be invented before the learner chooses one")
+# 11A held the plan and capacity at `null` because no planner wrote plans yet. 12E reads them, so the
+# gate was narrowed to its guarantee: neither is invented — both come only from the stored plan through
+# PlanReading, and with nothing stored there is neither.
+check("E11A-11_no_invented_plan",
+      re.search(r"plan = null", query) is not None
+      or ("persistence.latestPlan() ?: return TodayFacts(studyDay, curriculumLoaded = curriculumLoaded)" in query
+          and "plan = PlanReading.snapshot(read)" in query and "PlanReading.read(stored, studyDay)" in query),
+      "no plan may be invented; it comes only from what the planner stored")
+check("E11A-11_no_invented_capacity",
+      re.search(r"capacity = null", query) is not None
+      or (query.count("capacity =") == 1 and "capacity = PlanReading.capacity(read.trace)" in query),
+      "no capacity may be invented; it comes only from the planner's record of today's plan")
 check("E11A-11_study_day_from_clock", "clock.now().studyDay" in query,
       "the study day comes from ClockPort")
 check("E11A-11_off_main_thread",

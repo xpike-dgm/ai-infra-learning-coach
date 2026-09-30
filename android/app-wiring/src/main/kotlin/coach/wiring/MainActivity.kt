@@ -17,11 +17,15 @@ import androidx.compose.ui.unit.dp
 import coach.application.DayCloseFacts
 import coach.application.StoreStartup
 import coach.model.StoreStatus
+import coach.model.PlannerExplanationFacts
 import coach.model.TodayFacts
 import coach.presentation.AppHealth
 import coach.presentation.DaySummaryInput
 import coach.presentation.Destination
 import coach.presentation.HealthAction
+import coach.presentation.NavigationGraph
+import coach.presentation.PlannerExplanationPresentation
+import coach.presentation.PlannerExplanationView
 import coach.presentation.Revalidation
 import coach.presentation.RunnerFlow
 import coach.presentation.RunnerRevalidation
@@ -40,6 +44,7 @@ import coach.ui.AppShell
 import coach.ui.CoachTheme
 import coach.ui.HealthBlockingSurface
 import coach.ui.HealthContextLine
+import coach.ui.PlannerExplanationScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
 
@@ -85,7 +90,7 @@ class MainActivity : ComponentActivity() {
                         },
                     )
                 } else {
-                    Shell(health, current, facts, dayFacts.value)
+                    Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation)
                 }
             }
         }
@@ -107,7 +112,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts, day: DayCloseFacts.Loaded?) {
+private fun Shell(
+    health: AppHealth,
+    opened: OpenedApp,
+    facts: TodayFacts,
+    day: DayCloseFacts.Loaded?,
+    explain: ((PlannerExplanationFacts) -> Unit) -> Unit,
+) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
     var runnerEntry by remember { mutableStateOf<Revalidation?>(null) }
@@ -116,6 +127,8 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts, day: 
     // never starts at all.
     var session by remember { mutableStateOf<WorkingSession?>(null) }
     var sessionsStarted by remember { mutableStateOf(0L) }
+    // The shared planner explanation opened from Today (12E); its facts are read on the store thread.
+    var explanation by remember { mutableStateOf<PlannerExplanationView?>(null) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -125,13 +138,19 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts, day: 
     val state = ShellState(
         selected = selected,
         // A focused flow suspends the shell; NSHX-v0 derives that from the surface itself.
-        surface = if (runnerEntry != null) RunnerFlow.surface else Surface.rootOf(selected),
+        surface = when {
+            runnerEntry != null -> RunnerFlow.surface
+            explanation != null -> Surface.PlannerExplanation
+            else -> Surface.rootOf(selected)
+        },
         windowClass = windowClass,
     )
 
-    AppShell(state = state, onSelect = { selected = it }) {
+    AppShell(state = state, onSelect = { selected = it; explanation = null }) {
         val entry = runnerEntry
+        val shown = explanation
         when {
+            shown != null -> PlannerExplanationScreen(view = shown, onBack = { explanation = null })
             entry != null -> TaskRunnerScreen(
                 state = RunnerRevalidation.stateAtEntry(entry),
                 entry = entry,
@@ -170,7 +189,15 @@ private fun Shell(health: AppHealth, opened: OpenedApp, facts: TodayFacts, day: 
                         }
                     }
                 },
-                onOpen = {},
+                // Only the accepted contextual edges open anything; the explanation is the one with an
+                // interior so far, and what it says is projected in core from the stored trace.
+                onOpen = { surface ->
+                    if (surface == Surface.PlannerExplanation &&
+                        NavigationGraph.canOpen(Destination.TODAY.id, surface.id)
+                    ) {
+                        explain { facts -> explanation = PlannerExplanationPresentation.of(facts) }
+                    }
+                },
             )
             else -> Column(
                 modifier = Modifier.padding(16.dp),

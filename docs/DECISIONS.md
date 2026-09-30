@@ -1270,3 +1270,26 @@ Ayrıntı: `docs/PLANNER_ENGINE_IMPL_SPEC.md`.
 - Sonraki numbered step `12E — Explanation / reason codes`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/REPLAN_SPEC.md`.
+
+## D-096 — Explanation / reason codes = RSNX-v0
+**Durum:** Kabul edildi — 2026-09-30
+
+- 12E final modeli `RSNX-v0 — Reason Codes & Planner Explanation` oldu.
+- Canonical spec `docs/PLANNER_EXPLANATION_IMPL_SPEC.md`; machine-readable contract `arch/12e_reason_codes/reason_codes.yaml`; research/decision synthesis `research/12e_reason_codes_research.md`; kod `core-model` (`ReasonCodes.kt`, `ExplanationFacts.kt`, `PlanTraceCodec.kt`, `PlannerFacts.kt`), `core-engines` (`PlannerEngine.kt`), `core-application` (`PlanReading.kt`, `TodayFactsQuery.kt`, `PlannerExplanationQuery.kt`), `core-presentation` (`PlannerExplanation.kt`, `ExplanationCopy.kt`, `TodayPresentation.kt`), `app-ui` (`PlannerExplanationScreen.kt`), `data-persistence` (`latestPlan`).
+- Ana invariant: **açıklama karar izinin projeksiyonudur.** Her cümle izin kaydettiği bir reason code'a ya da izin bir alanındaki olguya dayanır; planner'ın kaydetmediği gerekçe kurulamaz, süreye sığmayan iş daha az önemli diye anlatılmaz, bekleyen iş gerçek Skill blocker'ını adlandırır, `review_due` unutmak değildir, yokluk borç değildir.
+- **Kod yazmadan önce bulunanlar:** (1) iz bir blocker'ı adlandıramıyordu (`PDT-v0` §7 `related_refs`, §11, 3H invariant 6). (2) Today planı okuyamıyordu ve `latestPlan()` satır id'si vermiyordu. (3) Planner `PDT-v0` §8'de olmayan `independent_branch_available`ı yazıyor — `PRG-v0` §20'nin girdisi. (4) 11A'nın devam etiketi yeni beceri için 'başlanmış' diyecekti. (5) Replan sonrası korunan iş yeniden başlatılacak iş gibi sunulacaktı.
+- **Katalog:** `PDT-v0` §8'in on ailesi + `PRG-v0` §20'nin dokuz girdisi, sırasıyla ve kapalı; dışındaki kod ifadeye dönüşemez.
+- **İz:** `planner_trace/3`; her aday izi kapının Skill'ler hakkındaki cevabını planlama anında kaydeder (bloklu: hard blocker'lar ya da güvenini beklediği prerequisite'ler; koşullu: belirsizler; destekli: soft boşluklar; uygun: bloklamayan review-due'lar; cevapsız: hiçbiri). `/2` ve `/1` katı okunur ve bunu iddia edemez. Kapı açıklamak için yeniden koşulmaz.
+- **Planı okumak:** plan günü satırın kendisidir; iz yalnız kendi satırlarını anlatıyorsa güvenilir (gün, konumlar, Skill'ler, tekrar yok, seçilen görevin ihtiyaç kararı); değilse okunamaz, Today `error_recoverable` gösterir ve tahmin yapılmaz. `latestPlan()` planın `planned_task` satırlarını konum sırasıyla döndürür — yeni port değil.
+- **Today:** her satır kendi `planned_task` id'sine; dakikalar bugünkü planlanan kısım; kapasite planner'ın kaydı; 'hiçbir şey sığmadı' planner'ın kaydedilmiş bulgusu; korunan iş başlatılabilir değil; replan ve bekleyen ihtiyaç açıklamaya bağlanan attention.
+- **Satır aileleri (`THUX-v0` §7.1, sözlük değişmedi):** birincil ihtiyacın tetikleyicisinden; devam ettirilen güvenli duraklatma daha özgül olgudur; doğrulanmamış zayıflık doğrulanır, onarılmaz; İngilizce yalnız paralel hattın kendi ritminde sebeptir; en çok bir destekleyici (sığdırma ya da hat). Devam etiketi 'Öğrenme yolunda ilerliyor'.
+- **Açıklama:** `Statement` özel kurucu; yalnız kaydedilmiş ve katalogda olan kod ya da altı iz olgusundan kurulur. Neden bugün: önce ihtiyaç, sonra belirleyici öncelik nedeni, uygunluk ve sığdırma; bant kodu asla neden değil; korunan iş korunan olarak anlatılır. Neden bugün değil: süre ertelemesi daha az önemli değil (yalnız kaydedilmiş düşük-öncelik kodu bunu söyleyebilir); bekleyen ihtiyaç Skill'lerini adlandırır; görevi olmayan ihtiyaca kod uydurulmaz. Kodsuz replan yalnız planın değiştiğini söyler. Yeniden değerlendirme asla tarih değildir.
+- **Metin:** `ExplanationCopy` `PDT-v0` §3'ün şablon yedeği; her katalog kodunun cümlesi var; `DayCopy` gibi çekirdekte; unutma yalnız inkâr edilirken geçer, yokluk başarısızlık ya da borç değildir, skor/yüzde/seri yok. Sözcükler 14'ün.
+- **Daraltılan yaşayan kapılar:** `E11A-07_blocked_filtered`, `E11A-11_no_invented_plan`, `E11A-11_no_invented_capacity`, `E12C-07_unknown_format_refused`, `E12D-08_format_v2`, `E12D-08_only_known_versions`; garanti zayıflamadı.
+- **Mutation 52/52.** Koşucu ilk turda `gradlew.bat`ı göreli adla çağırdı ve hiç Gradle çalıştırmadı; reddetme kuralı hepsini 'no verdict' saydı, sayılmadı. Yalnız yorumu değiştiren kontrol mutantı hayatta kaldı.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Planner uygulamada çağrılmıyor; cihazda açıklanacak bir plan yok.
+- Independent 12E QA: **219/219 PASS**; validator mutation 40/40 ve yorum-içi negatif kontrol false positive vermedi. Sweep 41/41.
+- Sonraki numbered step `12F — Sanal kullanıcı testleri`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md`.

@@ -275,14 +275,15 @@ PEM-v0:
 - 12B ✅ PRQX-v0 / D-093
 - 12C ✅ PLNX-v0 / D-094
 - 12D ✅ RPLX-v0 / D-095
-- 12E 🟡 active-not-executed
-- 12F–20 ⬜
+- 12E ✅ RSNX-v0 / D-096
+- 12F 🟡 active-not-executed
+- 13–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12D — RPLX-v0 / D-095`  
-**Aktif:** `12E — Explanation / reason codes`  
-**12E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12E — RSNX-v0 / D-096`  
+**Aktif:** `12F — Sanal kullanıcı testleri`  
+**12F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -984,6 +985,27 @@ RPLX-v0:
 - mutation 33/33, independent QA 157/157, validator mutation 38/38, sweep 40/40,
 - T6 was not run, and nothing in the app calls the planner yet (16D).
 
-## 48. 12E handoff
+## 48. D-096 / 12E final özeti
 
-12E — Explanation / reason codes. `PDT-v0`'nin reason code'larından kullanıcıya gösterilecek açıklama ve Today'in planı okuması: izden gerekçe ailesi türetmek (`THUX-v0` §7.1), plan satırlarını `planner_trace/2`'den kurmak, 'neden bu görev / neden diğeri gelmedi / neden bekliyor' açıklamaları. Açık loop'lar: sanal kullanıcı senaryoları 12F, `skill_state` birleştirmesi ve retention/weakness 13, recompute zinciri ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak ve kapasite ayarı 16D, starvation eşiği 18C, ters invalidation ve aday sınırı 18E, T6. 12E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md`.
+Contract/QA: `arch/12e_reason_codes/`.
+Synthesis: `research/12e_reason_codes_research.md`.
+Code: `android/core-model/.../ReasonCodes.kt`, `.../ExplanationFacts.kt`, `.../PlanTraceCodec.kt` (`planner_trace/3`), `.../PlannerFacts.kt` (`CandidateTrace.relatedSkills`, `StoredPlannedTask`), `android/core-engines/.../PlannerEngine.kt` (`relatedSkills`), `android/core-application/.../PlanReading.kt`, `.../TodayFactsQuery.kt`, `.../PlannerExplanationQuery.kt`, `android/core-presentation/.../PlannerExplanation.kt`, `.../ExplanationCopy.kt`, `.../TodayPresentation.kt`, `android/app-ui/.../PlannerExplanationScreen.kt`, `PersistencePort.latestPlan` + `SqlitePersistence`.
+
+RSNX-v0:
+- an explanation is a projection of the decision trace: every statement is a recorded catalogue code or a trace fact, through a private constructor,
+- the catalogue is `PDT-v0` §8's ten families and `PRG-v0` §20's nine inputs, in their order; `independent_branch_available` is §20's,
+- the trace records each candidate's related Skills at planning time (`PDT-v0` §7 `related_refs`, §11) as `planner_trace/3`; `/2` and `/1` read strictly and cannot claim them; the gate is never re-run to explain,
+- a stored plan is read only when its trace describes its own rows (day, positions, Skills, no duplicate, each chosen task's need decision); otherwise it is unreadable and Today shows `error_recoverable` with nothing guessed,
+- Today reads the plan: each row points at its stored `planned_task` id, minutes are today's planned part, capacity is the planner's record, kept work is not offered again, and a replan or a waiting need becomes attention linking to the explanation,
+- row families come from the need's trigger, a continued safe pause, the fit and the track; an unconfirmed weakness is verified, not repaired; English is the reason only for the parallel track's own cadence; the continuation label no longer claims a start,
+- why today puts the need first, then the decisive priority reason, the eligibility it went ahead with and the fit; a band is never shown as the reason; kept work is explained as kept,
+- why not today: deferral for time is never lower importance, a waiting need names its Skills, a need nothing serves invents no code; an uncoded replan says only that the plan changed; reconsideration is never a date,
+- `ExplanationCopy` is the template fallback with a sentence for every catalogue code, in core beside `DayCopy`; no sentence says forgetting except to deny it, or absence as failure or debt,
+- living gates narrowed with guarantees unchanged: `E11A-07`, `E11A-11` (two), `E12C-07`, `E12D-08` (two),
+- mutation 52/52, independent QA 219/219, validator mutation 40/40, sweep 41/41,
+- T6 was not run, and nothing in the app calls the planner yet (16D); the surface opens and says there is no decision to explain.
+
+## 49. 12F handoff
+
+12F — Sanal kullanıcı testleri. `PLANNER_SIMULATION_SUITE`in (3H) senaryolarını bugünkü kodla, açıklamalarıyla birlikte koşmak: aynı girdi aynı plan ve eşdeğer iz, bloklanmış/geçersiz aday seçilmez, sert bütçe aşılmaz, `review_due` unutma diye anlatılmaz, yokluk borç değildir, kapasiteye sığmayan yüksek öncelik gerçek nedeniyle açıklanır. Açık loop'lar: retention/weakness ihtiyaçları ve kodları 13, nihai mikro metin ve LLM paraphrase 14, authored görevler ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak ve kapasite ayarı 16D, starvation eşiği 18C, ters invalidation ve aday sınırı 18E, T6. 12F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

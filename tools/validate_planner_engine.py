@@ -376,8 +376,14 @@ check("E12C-07_trace_format", written is not None and 'const val FORMAT_V1 = "pl
       "the trace format is not a versioned planner_trace format that still reads /1")
 decode = body(codec, "private fun decodeOrThrow(")
 check("E12C-07_decode_body_read", len(decode) > 1000, "the decode reader returned nothing")
+# 12E moved the written format to /3 and keeps /2 and /1 readable; the guarantee is still that a version
+# nobody wrote is refused, so a closed set of known formats is accepted as well as the two earlier forms.
+known_formats = re.search(r"private val KNOWN_FORMATS = setOf\(([^)]*)\)", codec)
 check("E12C-07_unknown_format_refused", "if (lines.firstOrNull() != FORMAT) throw Malformed()" in decode
-      or "if (version != FORMAT && version != FORMAT_V1) throw Malformed()" in decode, "another format is accepted")
+      or "if (version != FORMAT && version != FORMAT_V1) throw Malformed()" in decode
+      or ("if (version !in KNOWN_FORMATS) throw Malformed()" in decode and known_formats is not None
+          and sorted(x.strip() for x in known_formats.group(1).split(",")) == ["FORMAT", "FORMAT_V1", "FORMAT_V2"]),
+      "another format is accepted")
 check("E12C-07_unknown_section_refused", "else -> throw Malformed()" in decode, "an unknown section is accepted")
 check("E12C-07_decode_never_guesses", "fun decode(stored: String): PlanTrace? = runCatching { decodeOrThrow(stored) }.getOrNull()" in codec,
       "decoding can return a partial trace")

@@ -220,12 +220,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **12B ✅ Prerequisite Engine — PRQX-v0 / D-093**
 - **12C ✅ Planner Engine v1 — PLNX-v0 / D-094**
 - **12D ✅ Replan — RPLX-v0 / D-095**
-- **12E 🟡 Explanation / reason codes — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12F–20 ⬜
+- **12E ✅ Explanation / reason codes — RSNX-v0 / D-096**
+- **12F 🟡 Sanal kullanıcı testleri — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -446,3 +447,15 @@ Re-entry `SRR-v0`: dünkü plan tekrar oynatılmaz ve hiçbir şeyi korunmaz, g�
 12D'ye devredilip bugün kurulamayanlar uydurulmadan yeniden bağlandı: `skill_state` birleştirmesi 13, deneme sonrası recompute zinciri ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak 16D, bağımlıların ters invalidation'ı 18E. Mutation 33/33, validator 157/157, kendi mutation testi 38/38. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
 
 Canonical: `docs/REPLAN_SPEC.md` / D-095.
+
+## 12.22 12E Explanation / reason codes — RSNX-v0 / D-096
+
+Planner'ın kararını öğrencinin okuduğu açıklamaya çeviren katman ve Today'in planı okuması kodda. Ana invariant: **bir açıklama karar izinin projeksiyonudur: her cümle izin kaydettiği bir reason code'a ya da izin bir alanında tuttuğu bir olguya dayanır. Planner'ın kaydetmediği bir gerekçe kurulamaz, süreye sığmayan iş 'daha az önemli' diye anlatılmaz, bekleyen iş gerçek Skill blocker'ını adlandırır, `review_due` unutmak değildir ve yokluk borç değildir.**
+
+Kod yazmadan önce bulunanlar: iz bir blocker'ı adlandıramıyordu — kapının cevabı karar ve sıralama için kullanılıp atılıyordu, açıklama anında kapıyı yeniden koşmak ise planner'ın vermediği bir kararla açıklamak olurdu; bu yüzden her aday izi ilgili Skill'leri planlama anında kaydediyor (`PDT-v0` §7 `related_refs`) ve iz `planner_trace/3` oldu, `/2` ve `/1` bunu iddia edemiyor. Today planı okuyamıyordu (`plan = null`) ve `latestPlan()` satır id'si vermiyordu; artık planın kendi `planned_task` satırları konum sırasıyla dönüyor (yeni port yok). Planner'ın yazdığı ad alansız `independent_branch_available` `PRG-v0` §20'nin açıklama girdisi; katalog `PDT-v0` §8'in on ailesini ve §20'yi sırasıyla tutuyor.
+
+Plan yalnız izi kendi satırlarını anlatıyorsa okunur (aynı gün, aynı konumlar ve Skill'ler, tekrar yok, seçilen her görevin ihtiyaç kararı); değilse okunamaz, Today `error_recoverable` gösterir ve hiçbir şey tahmin edilmez. Her satır kendi `planned_task` id'sine işaret eder, dakikalar bugün planlanan kısımdır, kapasite planner'ın kaydıdır; korunan iş planın parçasıdır ama yeniden başlatılacak iş olarak sunulmaz; replan ve bekleyen ihtiyaç açıklamaya bağlanan attention olur. Satır aileleri ihtiyacın tetikleyicisinden, devam ettirilen güvenli duraklatmadan, sığdırmadan ve hattan gelir; doğrulanmamış zayıflık 'onarılan' değil 'doğrulanan' durumdur; İngilizce yalnız paralel hattın kendi ritminde sebeptir; 11A'nın devam etiketi artık başlanmış demiyor.
+
+Açıklama dört parça: neden bugün (önce ihtiyaç, sonra belirleyici öncelik nedeni, ilgili Skill'leriyle uygunluk ve sığdırma; bant asla neden olarak gösterilmez), neden bugün değil (süreye sığmayan iş daha az önemli değil; bekleyen ihtiyaç Skill'lerini adlandırır; görevi olmayan ihtiyaca kod uydurulmaz), plan neden değişti (tetikleyici kodu ya da yalnız değiştiği; yokluk başarısızlık ve borç değil) ve ne zaman yeniden bakılacağı (asla tarih değil). Şablonlar `DayCopy` gibi çekirdekte; her katalog kodunun cümlesi var ve hiçbiri unutmayı iddia etmiyor. Mutation 52/52, validator 219/219, kendi mutation testi 40/40. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+
+Canonical: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md` / D-096.

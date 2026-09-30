@@ -285,6 +285,13 @@ data class CandidateTrace(
     val costMinutes: Int,
     val disposition: CandidateDisposition,
     val reasonCodes: List<String>,
+    /**
+     * `PDT-v0` §7 `related_refs`: the Skills the eligibility reason is about — the blocker a waiting
+     * candidate waits on, the uncertain or soft-gap prerequisite it went ahead with, the one due for
+     * review that did not block (12E). §11 requires a waiting task to name its real Skill blocker, and
+     * only the gate's answer at planning time can say which that was.
+     */
+    val relatedSkills: List<VersionedRef> = emptyList(),
 )
 
 /** `PDT-v0` §4, for an `initial` generation. Replan and re-entry traces are 12D's. */
@@ -405,4 +412,16 @@ data class StoredPlan(
     /** Counted from `planned_task` itself, so re-entry can report it even when the trace does not decode. */
     val plannedTaskCount: Int,
     val traceText: String?,
+    /**
+     * The plan's own `planned_task` rows, in position order (12E). Today's rows point at these ids, and
+     * the trace is only trusted to describe them when its positions and Skills are the rows' own.
+     */
+    val plannedTasks: List<StoredPlannedTask>,
+)
+
+/** One `planned_task` row as the store holds it: its id, its position and the Skill it serves. */
+data class StoredPlannedTask(
+    val plannedTaskId: Long,
+    val position: Int,
+    val skill: VersionedRef,
 )

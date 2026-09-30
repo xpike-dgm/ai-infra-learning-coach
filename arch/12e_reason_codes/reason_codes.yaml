@@ -1,0 +1,279 @@
+model: RSNX-v0
+stage_step: 12E
+status: accepted_12e
+decision: D-096
+explainability_contract: PDT-v0
+prerequisite_inputs_contract: PRG-v0 §20
+today_contract: THUX-v0
+today_interior: TDYX-v0
+surface_contract: UXIA-v0
+navigation: NSHX-v0
+planner_engine: PLNX-v0
+replan: RPLX-v0
+progress_vocabulary: SPWX-v0
+boundaries: MSBX-v0
+purpose: user_facing_explanation_projected_from_the_decision_trace
+
+scope:
+  reason_catalogue_implemented: true
+  related_refs_recorded: true
+  today_reads_the_plan: true
+  planner_explanation_surface_implemented: true
+  template_fallback_implemented: true
+  llm_paraphrase_implemented: false
+  virtual_user_scenarios_run: false
+  planner_called_from_app: false
+  retention_and_weakness_codes_written: false
+  schema_changed: false
+  migration_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  free_text_reason: null
+  score_claim: null
+
+explanation_question: Why this task today, why not that one, why is this waiting, and why did the plan change?
+
+primary_invariant: >-
+  An explanation is a projection of the decision trace. Every sentence stands for a reason code the trace
+  recorded or a fact the trace holds in a field; a reason the planner never recorded cannot be constructed,
+  deferred work is never called less important, a waiting task names its real Skill blocker, review_due is
+  never forgetting, and absence is never debt.
+
+found_before_12e:
+  - id: trace_could_not_name_a_blocker
+    was: PDT-v0 §11 and 3H invariant 6 require a waiting task to name its Skill blocker, but CandidateTrace had no related_refs
+    resolved_here: CandidateTrace.relatedSkills records the gate's answer at planning time; the trace format moved to planner_trace/3
+  - id: today_could_not_read_a_plan
+    was: TodayFactsQuery held plan = null, and latestPlan() returned no planned_task ids for a row to point at
+    resolved_here: PlanReading reads the stored plan and its trace; latestPlan() returns the plan's own rows in position order
+  - id: an_un_namespaced_code_in_plans
+    was: the planner writes independent_branch_available, which PDT-v0 §8 does not list
+    resolved_here: it is PRG-v0 §20's explainability input; the catalogue names both sources
+  - id: continuation_label_would_claim_a_start
+    was: 11A worded CONTINUE_CURRENT_LEARNING as learning already started, but new learning maps to the same THUX-v0 family
+    resolved_here: the label says progress on the route, true for new and continued learning
+  - id: kept_work_would_be_offered_again
+    was: after a replan the first tasks are ones already started, and Today would have offered them to start
+    resolved_here: kept work stays in the plan and is not startable; continuing is the resumable session's path
+
+catalogue:
+  source: [PDT-v0 §8, PRG-v0 §20]
+  families: [learning_need, validation_trust, prerequisite, retention, priority, capacity, diagnostic, reentry, selection, replan, prerequisite_input]
+  counts: [10, 7, 9, 7, 15, 13, 10, 8, 9, 13, 9]
+  closed: true
+  code_outside_catalogue_can_be_shown: false
+
+trace:
+  format: planner_trace/3
+  reads: [planner_trace/2, planner_trace/1]
+  added_field: related_skills
+  older_format_may_claim_related_skills: false
+  related_skills_by_gate_answer:
+    blocked: hard_blockers_or_else_the_uncertain_prerequisites_it_waits_on
+    conditional_eligible: uncertain_skills
+    eligible_with_support: soft_gap_skills
+    eligible: review_due_skills
+    never_answered: none
+  gate_re_run_to_explain: false
+
+plan_reading:
+  plan_day_is_the_row_s_own: true
+  trusted_only_when_trace_describes_rows: true
+  checks: [trace_present, trace_decodes, same_study_day, same_positions_and_skills, no_position_twice, selected_task_has_its_need_decision]
+  unreadable_is_guessed_around: false
+  row_points_at_stored_planned_task: true
+  minutes_shown: planned_minutes
+  capacity_source: the_planner_s_trace
+  too_small_is_the_planner_s_finding: true
+  unreadable_today_state: error_recoverable
+  kept_work_startable: false
+
+today_row_families:
+  source: THUX-v0 §7.1
+  families_unchanged: true
+  primary_from: need_trigger
+  primary_by_trigger:
+    remediation_required: repair_confirmed_weakness
+    verification_due: verify_uncertain_state
+    weakness_detected: verify_uncertain_state
+    retention_review_due: review_due_knowledge
+    diagnostic_opportunity: collect_missing_evidence
+    new_learning: continue_current_learning
+    continue_learning: continue_current_learning
+    reinforcement_opportunity: continue_current_learning
+    integration_opportunity: continue_current_learning
+    parallel_track_due: parallel_technical_english_on_the_english_track_else_continue_current_learning
+  paused_safe_checkpoint_primary: resume_valid_paused_work
+  supporting_from: [split_or_smaller_alternative_fit, english_track_context]
+  at_most_supporting: 1
+  english_primary_only_for_parallel_track_cadence: true
+  attention_from_trace: [plan_changed, prerequisite_blocker]
+
+explanation:
+  surface: planner_explanation
+  parts: [plan, today, not_today]
+  statement_sources: [recorded_catalogue_code, trace_fact]
+  statement_constructor_private: true
+  trace_facts: [kept_from_earlier_version, no_task_for_need, not_taken_today, waiting, plan_replaced, day_over_budget_after_keeping]
+  band_code_shown_as_reason: false
+  shown_priority_codes: [priority.blocks_current_required_path, priority.blocks_next_ready_dependency, priority.continuation_value, priority.starvation_promoted, priority.decision_value, priority.track_balance_pressure]
+  shown_eligibility_codes: [eligibility.conditional_uncertain, eligibility.soft_gap_support, eligibility.ready_due_allowed]
+  shown_fit_codes: [capacity.split_to_fit, capacity.smaller_alternative_to_fit]
+  deferred_for_time_called_lower_priority: false
+  waiting_need_names_related_skills: true
+  reconsideration: [next_plan, when_prerequisite_ready, when_a_task_is_available]
+  date_promised: false
+  states: [explained, no_plan_yet, plan_from_another_day, unreadable]
+
+copy:
+  owner_of_wording: 14
+  lives_in: core-presentation
+  every_catalogue_code_has_a_template: true
+  forgetting_named_only_to_deny_it: true
+  absence_as_failure_or_debt: false
+  deferral_as_lower_importance: false
+  date_promised: false
+  score_percentage_or_streak: false
+
+port_refinement:
+  method: PersistencePort.latestPlan
+  change: StoredPlan now carries the plan's own planned_task rows (id, position, Skill) in position order
+  new_port: false
+  port_count: 4
+
+living_gates_narrowed:
+  - check: E11A-07_blocked_filtered
+    why: the blocked filter became one named rule that also keeps kept work from being offered
+    guarantee_weakened: false
+  - check: E11A-11_no_invented_plan
+    why: Today now reads the plan; the gate checks it comes only from the stored plan through PlanReading
+    guarantee_weakened: false
+  - check: E11A-11_no_invented_capacity
+    why: capacity now comes only from the planner's record of today's plan
+    guarantee_weakened: false
+  - check: E12C-07_unknown_format_refused
+    why: the decoder refuses any version outside a closed set of three known formats
+    guarantee_weakened: false
+  - check: E12D-08_format_v2
+    why: the written format moved to /3; /2 and /1 still read
+    guarantee_weakened: false
+  - check: E12D-08_only_known_versions
+    why: same closed set of known formats
+    guarantee_weakened: false
+
+mutation_results:
+  total: 52
+  detected: 52
+  harness_verified_to_run_gradle: true
+  harness_defects_fixed:
+    - why: the first run invoked gradlew.bat by a relative name that cmd did not resolve; every mutant came back with no Gradle verdict and the harness refused all of them rather than counting them
+    - why: restoring a file with Python's text writer turned its line endings into CRLF on Windows; content was identical, and restores were made byte-exact before the final run
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - id: X46
+      why: a /9 header over /3 content was refused only because /3 lines carry related_skills, which masked the format check; a test now puts /2 content under /9, and the whole set was run again
+  final_run_is_a_single_clean_run: true
+  final_run_note: run in five chunks under the tool's time limit, against one unchanged source tree, after the last test was added
+  mutants:
+    - {id: X01, mutant: a_plan_from_another_day_is_read_as_today_s}
+    - {id: X02, mutant: a_trace_that_does_not_describe_the_rows_is_trusted}
+    - {id: X03, mutant: a_trace_naming_another_day_is_trusted}
+    - {id: X04, mutant: a_selected_task_without_its_need_decision_is_trusted}
+    - {id: X05, mutant: a_task_its_need_did_not_choose_is_trusted}
+    - {id: X06, mutant: a_duplicate_position_is_trusted}
+    - {id: X07, mutant: a_row_points_at_its_position_not_its_stored_task}
+    - {id: X08, mutant: kept_work_is_not_marked_kept}
+    - {id: X09, mutant: a_split_task_shows_the_whole_estimate}
+    - {id: X10, mutant: the_day_s_budget_forgets_kept_minutes}
+    - {id: X11, mutant: a_today_override_is_not_said}
+    - {id: X12, mutant: kept_minutes_count_as_remaining}
+    - {id: X13, mutant: nothing_fits_is_never_reported}
+    - {id: X14, mutant: a_replan_is_not_said}
+    - {id: X15, mutant: paused_work_is_plain_continuation}
+    - {id: X16, mutant: an_unconfirmed_weakness_is_called_confirmed}
+    - {id: X17, mutant: english_becomes_the_reason_a_task_exists}
+    - {id: X18, mutant: a_fit_the_planner_made_is_not_said}
+    - {id: X19, mutant: Today_never_says_the_plan_was_replaced}
+    - {id: X20, mutant: Today_never_says_work_waits_on_a_prerequisite}
+    - {id: X21, mutant: an_unreadable_plan_reaches_Today_as_no_plan}
+    - {id: X22, mutant: the_explanation_names_no_blocker}
+    - {id: X23, mutant: kept_work_is_offered_to_start_again}
+    - {id: X24, mutant: an_unreadable_plan_is_an_empty_day}
+    - {id: X25, mutant: trace_backed_attention_is_dropped}
+    - {id: X26, mutant: a_band_is_shown_as_the_reason}
+    - {id: X27, mutant: a_waiting_need_names_no_skill}
+    - {id: X28, mutant: a_statement_for_a_code_the_trace_never_recorded}
+    - {id: X29, mutant: a_statement_for_a_code_no_contract_defines}
+    - {id: X30, mutant: kept_work_is_justified_again}
+    - {id: X31, mutant: kept_work_over_the_day_is_not_said}
+    - {id: X32, mutant: re_entry_is_not_explained}
+    - {id: X33, mutant: the_branch_that_went_ahead_is_not_said}
+    - {id: X34, mutant: an_unserved_need_is_called_lower_priority}
+    - {id: X35, mutant: a_need_with_no_task_gets_an_invented_code}
+    - {id: X36, mutant: an_uncoded_replan_gets_a_code}
+    - {id: X37, mutant: review_due_is_called_forgetting}
+    - {id: X38, mutant: absence_is_called_debt}
+    - {id: X39, mutant: deferral_for_time_is_called_less_important}
+    - {id: X40, mutant: a_waiting_task_hides_its_blocker}
+    - {id: X41, mutant: a_catalogue_code_has_no_sentence}
+    - {id: X42, mutant: a_contract_code_is_missing_from_the_catalogue}
+    - {id: X43, mutant: recorded_codes_miss_a_need_s_trigger}
+    - {id: X44, mutant: related_skills_are_not_written}
+    - {id: X45, mutant: an_older_format_may_claim_related_skills}
+    - {id: X46, mutant: a_format_nobody_wrote_is_accepted}
+    - {id: X47, mutant: a_blocker_that_is_not_missing_outright_is_not_named}
+    - {id: X48, mutant: a_waiting_candidate_s_blocker_is_not_recorded}
+    - {id: X49, mutant: what_a_selected_task_went_ahead_with_is_not_recorded}
+    - {id: X50, mutant: a_soft_gap_is_not_named}
+    - {id: X51, mutant: planned_tasks_come_back_in_row_order}
+    - {id: X52, mutant: planned_tasks_come_back_with_the_wrong_id}
+
+validator_mutation:
+  total: 40
+  detected: 40
+  negative_control: a forbidden sentence and a forbidden fragment placed inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  harness_defects_fixed:
+    - id: V24
+      why: the reader of the shown-code lists matched [a-z_.] only, so every band code (priority.p0_ to p4_) was invisible to the check that forbids showing one; digits were added and the whole set was run again
+  reader_guard: every body the validator reads is itself checked to be non-empty
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app calls the planner yet (16D), so no plan exists on a device to read or explain
+
+wiring:
+  reachable_in_app_today: true
+  reachable_how: Today's planner_explanation entry opens the surface; with no stored plan it says there is no decision to explain
+  plan_exists_in_app_today: false
+
+re_pointed:
+  virtual_user_scenarios_with_explanations: {to: 12F, why: the 3H scenarios are 12F's, now with explanations to check}
+  retention_and_weakness_codes: {to: 13, why: only the retention and weakness engines can write those codes}
+  final_microcopy_and_llm_paraphrase: {to: 14, why: wording is 14's; a paraphrase may never replace its source code}
+  calling_the_planner_from_the_app: {to: 16D, why: the planner needs a stored capacity the learner chose}
+
+forbidden_explanation_patterns:
+  - reason_not_in_the_trace
+  - free_text_reason
+  - gate_re_run_to_explain
+  - band_shown_as_the_reason
+  - deferral_for_time_as_lower_priority
+  - deferral_as_debt_or_failure
+  - waiting_without_its_skill_blocker
+  - review_due_as_forgetting
+  - absence_as_failure_or_debt
+  - english_as_the_reason_a_task_exists
+  - row_guessed_around_an_unreadable_trace
+  - started_work_offered_again
+  - date_promised_for_a_deferred_need

@@ -156,6 +156,8 @@ data class TodayInput(
     val curriculumLoaded: Boolean = false,
     val replanInFlight: Boolean = false,
     val attention: List<AttentionItem> = emptyList(),
+    /** Today's plan exists but its trace does not describe it (12E); nothing may be rendered from it. */
+    val planUnreadable: Boolean = false,
 )
 
 /** What Today renders. `app-ui` draws this and decides nothing (`MSBX-v0`). */
@@ -214,8 +216,19 @@ fun todayInput(
     capacity = facts.capacity,
     curriculumLoaded = facts.curriculumLoaded,
     replanInFlight = replanInFlight,
-    attention = attention,
+    attention = attention + traceAttention(facts),
+    planUnreadable = facts.planUnreadable,
 )
+
+/**
+ * Attention the plan's own trace supports (12E, `THUX-v0` §4.4 and §7.3), each linking to the full
+ * explanation: a replan the trace records is `plan_changed`, and a need the trace records as waiting on
+ * a prerequisite is `prerequisite_blocker`. Attention explains; it never ranks or lists the waiting work.
+ */
+private fun traceAttention(facts: TodayFacts): List<AttentionItem> = buildList {
+    if (facts.planReplaced) add(AttentionItem(AttentionFamily.PLAN_CHANGED, Surface.PlannerExplanation))
+    if (facts.prerequisiteWaiting) add(AttentionItem(AttentionFamily.PREREQUISITE_BLOCKER, Surface.PlannerExplanation))
+}
 
 object TodayPresentation {
 
@@ -271,9 +284,24 @@ object TodayPresentation {
             )
         }
 
-        // 3. A plan for *this* study day, with something eligible in it.
+        // 3. A plan for *this* study day that can be read, with something to start in it. An unreadable
+        //    plan offers nothing: rows guessed around a trace that does not describe them would be
+        //    claims no engine made (12E), and that is a recoverable fault, not an empty day.
+        if (input.planUnreadable) {
+            return TodayView(
+                state = TodayState.ERROR_RECOVERABLE,
+                primaryActionKind = PrimaryActionKind.RECOVERABLE_ERROR,
+                primaryTask = null,
+                resumable = null,
+                capacity = null,
+                remainingPlan = emptyList(),
+                attention = emptyList(),
+                contexts = contexts,
+                supportingNavigation = supporting,
+            )
+        }
         val plan = input.plan?.takeIf { it.studyDay == input.studyDay }
-        val eligible = plan?.tasks?.filterNot { it.blocked }.orEmpty()
+        val eligible = plan?.tasks?.filter(::startable).orEmpty()
         if (plan != null && eligible.isNotEmpty() && !input.replanInFlight) {
             val current = eligible.first()
             return TodayView(
@@ -357,10 +385,17 @@ object TodayPresentation {
     private fun queueOf(input: TodayInput, current: PlannedTaskFact?): List<TodayTaskRow> {
         val plan = input.plan?.takeIf { it.studyDay == input.studyDay } ?: return emptyList()
         return plan.tasks
-            .filterNot { it.blocked }
+            .filter(::startable)
             .filterNot { it.plannedTaskId == current?.plannedTaskId }
             .map { row(it, TaskDisposition.UPCOMING) }
     }
+
+    /**
+     * Blocked work is never offered, and neither is work kept from an earlier version of today's plan:
+     * it was already started (12D), and continuing a run is the resumable session's path, which
+     * revalidates first (11C). Offering it again as new work would ask the learner to redo it.
+     */
+    private fun startable(task: PlannedTaskFact): Boolean = !task.blocked && !task.kept
 
     private fun row(task: PlannedTaskFact, disposition: TaskDisposition) = TodayTaskRow(
         plannedTaskRef = task.plannedTaskId,

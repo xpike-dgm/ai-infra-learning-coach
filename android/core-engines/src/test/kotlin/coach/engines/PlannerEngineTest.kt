@@ -417,4 +417,68 @@ class PlannerEngineTest {
         ))
         assertTrue(needs.isEmpty())
     }
+
+    // ------------------------------------------------------------------------------------ explanation (12E)
+
+    private fun gate(id: String, target: VersionedRef, eligibility: PrerequisiteEligibility,
+                     hard: List<VersionedRef> = emptyList(), uncertain: List<VersionedRef> = emptyList(),
+                     soft: List<VersionedRef> = emptyList(), reviewDue: List<VersionedRef> = emptyList()) =
+        PrerequisiteDecision(id, target, eligibility, hard, uncertain, soft, reviewDue, emptyList(), emptyList(),
+            false, "PRG-v0", emptyList(), emptyList())
+
+    @Test
+    fun `a waiting candidate names the Skill it waits on, and one that went ahead names what it went ahead with`() {
+        val insert = need(NeedTrigger.NEW_LEARNING, linkedList)
+        val arrays = need(NeedTrigger.NEW_LEARNING, cLesson)
+        val paths = need(NeedTrigger.NEW_LEARNING, linux)
+        val review = need(NeedTrigger.CONTINUE_LEARNING, shell)
+        val candidates = listOf(candidate("insert", insert, 10), candidate("arrays", arrays, 10),
+            candidate("paths", paths, 10), candidate("shortcuts", review, 10))
+        val trace = plan(capacity(60), listOf(insert, arrays, paths, review), candidates, decisions = mapOf(
+            "insert" to gate("insert", linkedList, PrerequisiteEligibility.BLOCKED, hard = listOf(pointer, addressValue)),
+            "arrays" to gate("arrays", cLesson, PrerequisiteEligibility.CONDITIONAL_ELIGIBLE, uncertain = listOf(pointer)),
+            "paths" to gate("paths", linux, PrerequisiteEligibility.ELIGIBLE_WITH_SUPPORT, soft = listOf(english)),
+            "shortcuts" to gate("shortcuts", shell, PrerequisiteEligibility.ELIGIBLE, reviewDue = listOf(linux)),
+        ))
+        fun related(id: String) = trace.candidates.single { it.candidateId == id }.relatedSkills
+        assertEquals(listOf(pointer, addressValue), related("insert"))
+        assertEquals(listOf(pointer), related("arrays"))
+        assertEquals(listOf(english), related("paths"))
+        assertEquals(listOf(linux), related("shortcuts"))
+        // A blocker that is not missing outright is the prerequisite whose confidence the work waits on.
+        val strict = plan(capacity(60), listOf(insert), listOf(candidate("insert", insert, 10)), decisions = mapOf(
+            "insert" to gate("insert", linkedList, PrerequisiteEligibility.BLOCKED, uncertain = listOf(pointer))))
+        assertEquals(listOf(pointer), strict.candidates.single().relatedSkills)
+        // A candidate the gate never answered for waits too, and names no Skill it cannot know.
+        val unanswered = plan(capacity(60), listOf(insert), listOf(candidate("insert", insert, 10)), decisions = emptyMap())
+        assertEquals(emptyList(), unanswered.candidates.single().relatedSkills)
+    }
+
+    @Test
+    fun `every code the planner writes is a contract code`() {
+        val repair = need(NeedTrigger.REMEDIATION_REQUIRED, pointer, criticality = Criticality.CRITICAL_PREREQUISITE,
+            severity = EvidenceSeverity.CONFIRMED_REPEATED_FAILURE)
+        val insert = need(NeedTrigger.NEW_LEARNING, linkedList)
+        val arrays = need(NeedTrigger.CONTINUE_LEARNING, cLesson, continuation = ContinuationValue.PAUSED_SAFE_CHECKPOINT)
+        val paths = need(NeedTrigger.NEW_LEARNING, linux)
+        val words = need(NeedTrigger.PARALLEL_TRACK_DUE, english)
+        val candidates = listOf(
+            candidate("repair", repair, 25, purpose = TaskPurpose.REMEDIATE),
+            candidate("insert", insert, 10),
+            candidate("arrays", arrays, 30, splittable = true, chunk = 10),
+            candidate("paths-long", paths, 40), candidate("paths-short", paths, 5),
+            candidate("words", words, 10, purpose = TaskPurpose.ASSESS, status = LifecycleStatus.DRAFT),
+        )
+        val trace = plan(capacity(45), listOf(repair, insert, arrays, paths, words), candidates, decisions = mapOf(
+            "repair" to gate("repair", pointer, PrerequisiteEligibility.ELIGIBLE),
+            "insert" to gate("insert", linkedList, PrerequisiteEligibility.BLOCKED, hard = listOf(pointer)),
+            "arrays" to gate("arrays", cLesson, PrerequisiteEligibility.ELIGIBLE),
+            "paths-long" to gate("paths-long", linux, PrerequisiteEligibility.ELIGIBLE),
+            "paths-short" to gate("paths-short", linux, PrerequisiteEligibility.ELIGIBLE),
+        ), starvation = mapOf(paths.needKey to StarvationBucket.PROMOTE))
+        val written = trace.planReasonCodes + trace.needs.flatMap { it.priorityReasonCodes + it.finalReasonCodes + it.trigger.reasonCode } +
+            trace.candidates.flatMap { it.reasonCodes }
+        assertTrue(written.size > 15, "the case should exercise many codes: $written")
+        written.forEach { assertTrue(coach.model.ReasonCatalog.isKnown(it), "$it is not a PDT-v0 or PRG-v0 code") }
+    }
 }

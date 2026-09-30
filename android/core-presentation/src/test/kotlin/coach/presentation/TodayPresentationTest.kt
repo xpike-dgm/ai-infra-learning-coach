@@ -378,4 +378,45 @@ class TodayPresentationTest {
         val fields = CapacityContext::class.java.declaredFields.filterNot { it.isSynthetic }.map { it.name }
         assertEquals(emptyList(), fields.filter { forbidden.containsMatchIn(it) }, "capacity fields: $fields")
     }
+
+    // ---------------------------------------------------------------- reading the plan (12E)
+
+    @Test
+    fun `kept work is not offered as new work and never fills the queue`() {
+        val kept = task(1).copy(kept = true, traceFacts = emptyList())
+        val view = TodayPresentation.of(input(plan = plan(kept, task(2))))
+        assertEquals(2L, view.primaryTask?.plannedTaskRef, "work already started was offered to start again")
+        assertTrue(view.remainingPlan.none { it.plannedTaskRef == 1L }, "kept work was listed as upcoming")
+        val onlyKept = TodayPresentation.of(input(plan = plan(kept)))
+        assertNull(onlyKept.primaryTask)
+        assertEquals(TodayState.EMPTY_NO_ELIGIBLE_TASK, onlyKept.state)
+    }
+
+    @Test
+    fun `an unreadable plan for today is a recoverable fault and renders nothing from it`() {
+        val view = TodayPresentation.of(input(plan = null, capacity = null).copy(planUnreadable = true))
+        assertEquals(TodayState.ERROR_RECOVERABLE, view.state)
+        assertEquals(PrimaryActionKind.RECOVERABLE_ERROR, view.primaryActionKind)
+        assertNull(view.primaryTask)
+        assertTrue(view.remainingPlan.isEmpty())
+        assertEquals(Tone.SYSTEM_FAULT, view.state.tone)
+        // Data recovery and a revalidated session still come first.
+        val recovery = AppHealth.of(StoreStatus.RecoveryRequired(RecoveryReason.INTEGRITY_CHECK_FAILED), EvaluatorAvailability.UNAVAILABLE)
+        assertEquals(TodayState.DATA_RECOVERY_REQUIRED,
+            TodayPresentation.of(input(health = recovery).copy(planUnreadable = true)).state)
+    }
+
+    @Test
+    fun `a replan and a waiting prerequisite the trace records become attention that links to the explanation`() {
+        val facts = coach.model.TodayFacts(studyDay = today, plan = plan(task(1)), capacity = CapacityContext(45),
+            curriculumLoaded = true, planReplaced = true, prerequisiteWaiting = true)
+        val view = TodayPresentation.of(todayInput(facts, healthy))
+        assertEquals(
+            listOf(AttentionFamily.PLAN_CHANGED to Surface.PlannerExplanation,
+                AttentionFamily.PREREQUISITE_BLOCKER to Surface.PlannerExplanation),
+            view.attention.map { it.family to it.link },
+        )
+        val quiet = TodayPresentation.of(todayInput(facts.copy(planReplaced = false, prerequisiteWaiting = false), healthy))
+        assertTrue(quiet.attention.isEmpty(), "attention appeared that the trace did not support")
+    }
 }

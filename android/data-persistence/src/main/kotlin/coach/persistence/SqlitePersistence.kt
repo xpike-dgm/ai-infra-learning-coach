@@ -18,6 +18,7 @@ import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
 import coach.model.StoredPlan
+import coach.model.StoredPlannedTask
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
@@ -380,7 +381,21 @@ class SqlitePersistence private constructor(
             statement.bindLong(1, id)
             if (statement.step()) statement.getText(0) else null
         }
-        return StoredPlan(id, row.recordedAt, tasks, trace)
+        // The rows themselves, so a reader can check that the trace describes this plan (12E).
+        val rows = mutableListOf<StoredPlannedTask>()
+        connection.prepare(
+            "SELECT id, position, skill_logical_id, skill_version FROM planned_task WHERE plan_version_id = ? ORDER BY position, id",
+        ).use { statement ->
+            statement.bindLong(1, id)
+            while (statement.step()) {
+                rows += StoredPlannedTask(
+                    plannedTaskId = statement.getLong(0),
+                    position = statement.getLong(1).toInt(),
+                    skill = VersionedRef(statement.getText(2), statement.getLong(3).toInt()),
+                )
+            }
+        }
+        return StoredPlan(id, row.recordedAt, tasks, trace, rows)
     }
 
     override fun resumeCheckpointRows(): List<StoredTruth> =

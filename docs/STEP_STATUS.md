@@ -60,8 +60,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12B — Prerequisite Engine** | ✅ | PRQX-v0 / D-093. Eksik prerequisite yalnız bağlı işi bekletir; review_due bloklamaz; soft eksik kilitlemez; priority kapıyı aşamaz; draft kenar adlandırılır; bekleyen aday üzerindeki iş contaminated; 184/184 QA PASS, mutation 44/44. |
 | **12C — Planner Engine v1** | ✅ | PLNX-v0 / D-094. Önce semantik öncelik, sonra sığma; priority kapıyı aşamaz; gün uzatılmaz; sığmayan ihtiyaç borç değil; starvation eşiği ve reason kodu uydurulmaz; plan izle truth; 226/226 QA PASS, mutation 55/55. |
 | **12D — Replan** | ✅ | RPLX-v0 / D-095. Plan düzenlenmez, gerekçeli yeni sürümle değişir; aynı gün olay yoksa yazılmaz; başlanan iş korunur, kalan yeniden çözülür; re-entry dünkü planı oynatmaz; yokluk borç değil; 157/157 QA PASS, mutation 33/33. |
-| **12E — Explanation / reason codes** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12F–20** | ⬜ Bekliyor | 12E sonrası canonical sırada. |
+| **12E — Explanation / reason codes** | ✅ | RSNX-v0 / D-096. Açıklama karar izinin projeksiyonu; izde olmayan gerekçe kurulamaz; süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; Today planı okuyor, iz kendi satırlarını anlatmıyorsa okunamaz; 219/219 QA PASS, mutation 52/52. |
+| **12F — Sanal kullanıcı testleri** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **AŞAMA 13–20** | ⬜ Bekliyor | 12F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -80,22 +81,21 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12D
+## Son tamamlanan numaralı adım — 12E
 
-**Final:** `RPLX-v0 — Replan` / D-095.
-**Ana çıktı:** `docs/REPLAN_SPEC.md` + `arch/12d_replan/` + `android/`.
+**Final:** `RSNX-v0 — Reason Codes & Planner Explanation` / D-096.
+**Ana çıktı:** `docs/PLANNER_EXPLANATION_IMPL_SPEC.md` + `arch/12e_reason_codes/` + `android/`.
 
-12D sonucu:
-- plan düzenlenmez, gerekçeli yeni sürümle değişir: initial / replan / reentry depodan okunur,
-- aynı gün olay yoksa mevcut plan döner, hiçbir şey yazılmaz (12C davranışı düzeltildi),
-- kalan bütçe D-033 §8; asla negatif değil, gün kendiliğinden büyümez,
-- başlanan iş çağıranca bildirilir ve önceki plana karşı doğrulanır; önde ve değişmeden korunur,
-- re-entry dünkü planı oynatmaz; yokluk borç, başarısızlık, çürüme ya da starvation değil,
-- güvenli duraklatma P2 ama otomatik değil; high-stakes duraklatma devam ettirilmez,
-- iz `planner_trace/2`; `/1` katı okunuyor,
-- mutation 33/33, independent validator **157/157 PASS**, kendi mutation testi 38/38; 40/40 sweep PASS,
+12E sonucu:
+- açıklama karar izinin projeksiyonu: her cümle kaydedilmiş bir katalog kodu ya da izin bir alanındaki olgu,
+- katalog `PDT-v0` §8 + `PRG-v0` §20, sırasıyla; dışındaki kod gösterilemez,
+- iz her adayın ilgili Skill'lerini planlama anında kaydeder (`planner_trace/3`); `/2` ve `/1` bunu iddia edemez,
+- plan yalnız izi kendi satırlarını anlatıyorsa okunur; değilse okunamaz ve tahmin edilmez,
+- Today planı okuyor: her satır kendi `planned_task` id'sine, kapasite planner'ın kaydı, korunan iş yeniden başlatılmaz,
+- süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; `review_due` unutmak değil; yokluk borç değil,
+- mutation 52/52, independent validator **219/219 PASS**, kendi mutation testi 40/40; 41/41 sweep PASS,
 - **T6 çalıştırılmadı** — planner uygulamada çağrılmıyor (16D).
 
-## Aktif adım — 12E Explanation / reason codes
+## Aktif adım — 12F Sanal kullanıcı testleri
 
-**12E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

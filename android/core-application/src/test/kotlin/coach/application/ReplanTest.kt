@@ -20,6 +20,7 @@ import coach.model.ResumeContext
 import coach.model.ResumeContextCodec
 import coach.model.SkillRow
 import coach.model.StoredPlan
+import coach.model.StoredPlannedTask
 import coach.model.StudyTimestamp
 import coach.model.TaskCandidate
 import coach.model.TaskPurpose
@@ -87,9 +88,13 @@ class ReplanTest {
         override fun publishedSkills(): List<SkillRow> = skills.sortedBy { it.ref.logicalId }
         override fun latestPlan(): StoredPlan? {
             val plan = appended("plan_version").lastOrNull() ?: return null
-            val tasks = appended("planned_task").count { it.record.payload["plan_version_id"] == plan.id.toString() }
+            val tasks = appended("planned_task").filter { it.record.payload["plan_version_id"] == plan.id.toString() }
             val trace = appended("planner_decision_trace").lastOrNull { it.record.payload["plan_version_id"] == plan.id.toString() }
-            return StoredPlan(plan.id, plan.record.recordedAt, tasks, trace?.record?.payload?.get("trace"))
+            return StoredPlan(plan.id, plan.record.recordedAt, tasks.size, trace?.record?.payload?.get("trace"),
+                tasks.map { row ->
+                    StoredPlannedTask(row.id, row.record.payload.getValue("position").toInt(),
+                        VersionedRef(row.record.payload.getValue("skill_logical_id"), row.record.payload.getValue("skill_version").toInt()))
+                }.sortedBy { it.position })
         }
         override fun resumeCheckpointRows(): List<StoredTruth> = appended("resume_checkpoint")
     }
