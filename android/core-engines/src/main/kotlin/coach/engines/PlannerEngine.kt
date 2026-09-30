@@ -47,7 +47,8 @@ import coach.model.TrackBalance
 object PlannerEngine {
 
     const val PLANNER_MODEL = "PLNX-v0"
-    const val TRACE_SCHEMA = "planner_trace/1"
+    /** The trace format this planner writes; `PlanTraceCodec.FORMAT` is the authority, and 12D moved it to `/2`. */
+    const val TRACE_SCHEMA = "planner_trace/2"
 
     // D-033 §3 and §19: engineering defaults the learner can change, not ideal study times. They are
     // what a settings screen (16D) offers; the planner itself never substitutes one for a setting.
@@ -114,6 +115,14 @@ object PlannerEngine {
             scheduled != null -> CapacitySource.SCHEDULED_DEFAULT to scheduled
             else -> CapacitySource.NORMAL_PROFILE to input.normalProfileMinutes
         }
+        return capacityOf(source, minutes)
+    }
+
+    /**
+     * D-033 §4 and §5 for a given number of minutes: the whole day's, or what remains of it after a
+     * replan (§8, 12D) — the same rule either way.
+     */
+    fun capacityOf(source: CapacitySource, minutes: Int): DailyCapacity {
         val below = minutes < MINIMUM_PLANNABLE_BLOCK_MINUTES_V0
         // A reserve taken from a few minutes would leave nothing to plan; §4 lets it relax so that one
         // genuine micro-task can still run, and the hard budget still holds.

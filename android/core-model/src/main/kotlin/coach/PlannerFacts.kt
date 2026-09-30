@@ -257,6 +257,11 @@ data class PlannedEntry(
     val estimatedMinutes: Int,
     val plannedMinutes: Int,
     val split: Boolean,
+    /**
+     * Carried over unchanged from the previous plan version because the learner had already started or
+     * finished it (`TRUX-v0` §10.1: an in-flight run is never destroyed by a replan). 12D.
+     */
+    val preserved: Boolean = false,
 )
 
 data class NeedTrace(
@@ -297,6 +302,10 @@ data class PlanTrace(
     val invariantChecks: Map<String, Boolean>,
     /** Published Skills no need could be opened for because their lifecycle keeps them off the route. */
     val skillsNotOnRoute: Int = 0,
+    /** Present when this version replaced an earlier plan of the same day (12D). */
+    val replan: ReplanRecord? = null,
+    /** Present when the previous plan belonged to another study day and was not replayed (12D). */
+    val reentry: ReentryContext? = null,
 )
 
 /**
@@ -311,4 +320,89 @@ data class SkillPlanningState(
     val retention: RetentionAxis,
     val weaknessAxis: String?,
     val snapshotRef: String? = null,
+)
+
+/** `PDT-v0` §4: why this plan version exists. */
+enum class GenerationKind(val id: String) {
+    INITIAL("initial"),
+    REPLAN("replan"),
+    REENTRY("reentry"),
+}
+
+/**
+ * What asked for a replan (12D): D-033 §16, `PBR-v0` §17 and `PRG-v0` §19, each with the `PDT-v0` §8.10
+ * code that describes it. An event with no such code carries none — no code is invented for it.
+ */
+enum class ReplanTrigger(val id: String, val reasonCode: String?) {
+    TODAY_CAPACITY_CHANGED("today_capacity_changed", "replan.capacity_changed"),
+    SESSION_REMAINING_TIME_CHANGED("session_remaining_time_changed", "replan.remaining_time_changed"),
+    USER_REQUESTED_EXTRA_TIME("user_requested_extra_time", "replan.user_requested_extra_time"),
+    USER_STOPPED_SESSION("user_stopped_session", "replan.user_stopped_session"),
+    TASK_FINISHED_EARLY("task_finished_early", "replan.task_finished_early"),
+    TASK_OVERRAN_ESTIMATE("task_overran_estimate", "replan.task_overran_estimate"),
+    TASK_COMPLETED("task_completed", null),
+    NEW_EVIDENCE_RECORDED("new_evidence_recorded", "replan.evidence_state_changed"),
+    RETENTION_STATE_CHANGED("retention_state_changed", "replan.evidence_state_changed"),
+    NEW_REMEDIATION_CREATED("new_remediation_created", "replan.new_remediation_created"),
+    NEW_VERIFICATION_DUE_CREATED("new_verification_due_created", "replan.new_verification_created"),
+    PREREQUISITE_STATE_CHANGED("prerequisite_state_changed", "replan.prerequisite_state_changed"),
+    PREREQUISITE_MASTERY_CHANGED("prerequisite_mastery_changed", "replan.prerequisite_state_changed"),
+    PREREQUISITE_RETENTION_STATE_CHANGED("prerequisite_retention_state_changed", "replan.prerequisite_state_changed"),
+    PREREQUISITE_VERIFICATION_DUE_CREATED("prerequisite_verification_due_created", "replan.prerequisite_state_changed"),
+    PREREQUISITE_VERIFICATION_RESOLVED("prerequisite_verification_resolved", "replan.prerequisite_state_changed"),
+    PREREQUISITE_REMEDIATION_OPENED("prerequisite_remediation_opened", "replan.prerequisite_state_changed"),
+    PREREQUISITE_REMEDIATION_RESOLVED("prerequisite_remediation_resolved", "replan.prerequisite_state_changed"),
+    DIAGNOSTIC_WAIVER_GRANTED("diagnostic_waiver_granted", "replan.prerequisite_state_changed"),
+    TASK_PREREQUISITE_METADATA_INVALID("task_prerequisite_metadata_invalid", "replan.prerequisite_state_changed"),
+    CURRICULUM_PREREQUISITE_EDGE_CHANGED("curriculum_prerequisite_edge_changed", "replan.curriculum_version_changed"),
+    ;
+
+    /** D-033 §8: these change the remaining budget itself; every other event keeps the day's budget. */
+    val setsRemainingTime: Boolean
+        get() = this == SESSION_REMAINING_TIME_CHANGED || this == USER_REQUESTED_EXTRA_TIME
+}
+
+/**
+ * `PDT-v0` §15, for a replan within one study day. Which earlier tasks were started or finished is
+ * **reported by the caller** — `DDM-v0` gives an attempt no link to a planned task, so the store cannot
+ * say — and every reported position is checked against the previous plan.
+ */
+data class ReplanRecord(
+    val trigger: ReplanTrigger,
+    val previousPlanVersionId: Long,
+    val previousStudyDay: String,
+    val preservedPositions: List<Int>,
+    val invalidatedPositions: List<Int>,
+    val preservedMinutes: Int,
+    val remainderHardMinutes: Int,
+)
+
+/**
+ * `SRR-v0` §17: what re-entry looked like. Informational only — no field here is a score, a penalty or
+ * a debt, and absence is measured in study days purely for the record.
+ */
+data class ReentryContext(
+    val previousPlanVersionId: Long,
+    val lastPlannedStudyDay: String,
+    val returnedStudyDay: String,
+    val absenceStudyDays: Int,
+    val stalePlannedTaskCount: Int,
+    val pausedCheckpointNeedKeys: List<String>,
+    val highStakesPausesNotResumed: Int,
+    val openNeedCountByTrigger: Map<String, Int>,
+    val dueSkillCountByRetention: Map<String, Int>,
+    val p0P1NeedCount: Int,
+    val resolvedDailyCapacityMinutes: Int,
+)
+
+/**
+ * The newest plan version in the store, as a replan reads it (12D). The trace comes back as stored text;
+ * interpreting it is core's job ([PlanTraceCodec]), not the adapter's.
+ */
+data class StoredPlan(
+    val planVersionId: Long,
+    val recordedAt: StudyTimestamp,
+    /** Counted from `planned_task` itself, so re-entry can report it even when the trace does not decode. */
+    val plannedTaskCount: Int,
+    val traceText: String?,
 )

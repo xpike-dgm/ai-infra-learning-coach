@@ -1246,3 +1246,27 @@ Ayrıntı: `docs/PREREQUISITE_ENGINE_IMPL_SPEC.md`.
 - Sonraki numbered step `12D — Replan`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/PLANNER_ENGINE_IMPL_SPEC.md`.
+
+## D-095 — Replan = RPLX-v0
+**Durum:** Kabul edildi — 2026-09-30
+
+- 12D final modeli `RPLX-v0 — Replan` oldu.
+- Canonical spec `docs/REPLAN_SPEC.md`; machine-readable contract `arch/12d_replan/replan.yaml`; research/decision synthesis `research/12d_replan_research.md`; kod `core-engines` (`ReplanEngine.kt`), `core-model` (`PlannerFacts.kt`, `PlanTraceCodec.kt`), `core-application` (`BuildDailyPlan.kt`), `core-ports` + `data-persistence` (`latestPlan`, `resumeCheckpointRows`).
+- Ana invariant: **bir plan düzenlenmez, gerekçesi olan yeni bir sürümle değiştirilir.** Başlanan iş korunur, yalnız başlanmamış kalan yeniden çözülür, gün kendiliğinden büyümez; geri dönüş hiçbir şeyi tekrar oynatmaz ve yokluk borç, başarısızlık ya da çürüme değildir.
+- **Kod yazmadan önce bulunanlar:** (1) `DDM-v0` `attempt`e `planned_task` bağı vermiyor; depo hangi planlı görevin başladığını söyleyemez. (2) 12C'nin `build()`u aynı gün ikinci kez çağrılınca gerekçesiz yeni bir initial sürüm yazıyordu (`PDT-v0` §15'e aykırı). (3) `planner_trace/1`de korunan görev, replan kaydı ve re-entry bağlamı için yer yoktu. (4) 12D'ye devredilen dört madde bugün kurulamıyordu. (5) `USER_FOCUS_CHANGED`in etki edeceği bir odak tercihi yok.
+- **Üretim türü (`PDT-v0` §4):** plan yoksa initial; en yeni plan başka bir çalışma gününe aitse re-entry (olay gelse bile); bugünün planı varsa ve olay geldiyse replan; aynı gün olay yoksa mevcut plan döner ve hiçbir şey yazılmaz.
+- **Olaylar:** D-033 §16, `PBR-v0` §17, `PRG-v0` §19; her biri `PDT-v0` §8.10 kodunu taşır; `task_completed`in kodu yok ve uydurulmaz; `user_focus_changed` kabul edilmez (16D).
+- **Kalan bütçe (D-033 §8):** bugün için yeni kapasite günü değiştirir; bildirilen kalan süre kalanın kendisidir; diğer her olay günü korur; korunan dakikalar üstten düşer; kalan asla negatif değildir ve günle aynı kurala uyar; replan günü kendiliğinden büyütmez.
+- **Korunan iş (`TRUX-v0` §10.1):** çağıran bildirir, her pozisyon önceki plana karşı doğrulanır, bilinmeyen pozisyon reddedilir ve reddedilen replan hiçbir şey yazmaz; korunan görevler önde, değişmeden, işaretli; ihtiyaçları iki kez karşılanmaz; okunamayan önceki plan tahminle değiştirilmez.
+- **Re-entry (`SRR-v0`):** dünkü plan oynatılmaz, hiçbir şeyi korunmaz, normal gün bütçesi geçerli, starvation beslenmez; iz §17 bağlamını ve `PDT-v0` §8.8 kodlarını taşır — skor, ceza ya da borç yok.
+- **Duraklatılmış iş (`SRR-v0` §5):** en son güvenli duraklatma açık devam ihtiyacını P2 yapar ama seçmez; high-stakes duraklatma bağımsız iş olarak devam ettirilmez; kapanmış ihtiyacın duraklatması hiçbir şey değiştirmez.
+- **İz:** `planner_trace/2`; `/1` katı biçimde okunmaya devam eder ve sahip olmadığı alanları iddia edemez.
+- **Yeniden bağlananlar:** `skill_state` birleştirmesi → 13; deneme sonrası recompute ve deneme→planlı görev bağı → 15; planner'ı uygulamadan çağırmak → 16D; bağımlıların ters invalidation'ı → 18E.
+- **Daraltılan yaşayan kapılar:** 12C'nin `E12C-02` kapasite ve `E12C-07` iz sürümü kontrolleri, kuralın `capacityOf`a taşınması ve izin `/2`ye yükselmesiyle sahip oldukları garantiye daraltıldı; garanti zayıflamadı.
+- **Mutation 33/33.** Yalnız yorumu değiştiren kontrol mutantı hayatta kaldı.
+- Çalıştırılan runlar: T1 PASS, T2 PASS, T3 PASS, T5 adaptör testleri PASS, adaptörlü ve adaptörsüz `assembleDebug` PASS.
+- **Çalıştırılmayan: T6.** Planner uygulamada çağrılmıyor ve hiçbir görev başlatılamadığı için hiçbir olay üretilmiyor.
+- Independent 12D QA: **157/157 PASS**; validator mutation 38/38 ve yorum-içi negatif kontrol false positive vermedi. Sweep 40/40.
+- Sonraki numbered step `12E — Explanation / reason codes`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/REPLAN_SPEC.md`.

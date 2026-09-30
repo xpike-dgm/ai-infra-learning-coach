@@ -125,4 +125,52 @@ class PlanStorageTest {
             assertTrue(db.count("plan_version") == 0L)
         }
     }
+
+    private fun SqlitePersistence.appendPlan(day: StudyTimestamp, tasks: Int, trace: String?): Long = inTransaction {
+        val plan = appendTruth(TruthRecord("plan_version", day, mapOf("policy_version" to "PLNX-v0")))
+        repeat(tasks) { position ->
+            appendTruth(TruthRecord("planned_task", day, mapOf("plan_version_id" to plan.toString(),
+                "skill_logical_id" to linux.logicalId, "skill_version" to "1", "position" to position.toString())))
+        }
+        trace?.let { appendTruth(TruthRecord("planner_decision_trace", day, mapOf("plan_version_id" to plan.toString(), "trace" to it))) }
+        plan
+    }
+
+    @Test
+    fun `the newest plan comes back with its own day, its task count and its trace`() {
+        withStore { db ->
+            assertEquals(null, db.latestPlan())
+            val yesterday = StudyTimestamp(1_788_900_000_000, "2026-09-27", 3 * 3600)
+            db.appendPlan(yesterday, tasks = 3, trace = "old")
+            val today = db.appendPlan(at, tasks = 2, trace = PlanTraceCodec.encode(trace()))
+            val latest = db.latestPlan()!!
+            assertEquals(today, latest.planVersionId)
+            assertEquals(at, latest.recordedAt)
+            assertEquals(2, latest.plannedTaskCount)
+            assertEquals(trace(), PlanTraceCodec.decode(latest.traceText!!))
+        }
+    }
+
+    @Test
+    fun `a plan whose trace is missing still reports its day and task count`() {
+        withStore { db ->
+            db.appendPlan(at, tasks = 1, trace = null)
+            val latest = db.latestPlan()!!
+            assertEquals(1, latest.plannedTaskCount)
+            assertEquals(null, latest.traceText)
+        }
+    }
+
+    @Test
+    fun `stored pauses come back oldest first, exactly as written, and reading them writes nothing`() {
+        withStore { db ->
+            val first = db.inTransaction { db.appendTruth(TruthRecord("resume_checkpoint", at, mapOf("context" to "one"))) }
+            val second = db.inTransaction { db.appendTruth(TruthRecord("resume_checkpoint", at, mapOf("context" to "two"))) }
+            val watermark = db.truthWatermark()
+            val rows = db.resumeCheckpointRows()
+            assertEquals(listOf(first, second), rows.map { it.id })
+            assertEquals(listOf("one", "two"), rows.map { it.record.payload.getValue("context") })
+            assertEquals(watermark, db.truthWatermark())
+        }
+    }
 }

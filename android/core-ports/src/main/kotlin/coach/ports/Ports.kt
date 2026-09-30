@@ -10,6 +10,7 @@ import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
+import coach.model.StoredPlan
 import coach.model.StudyTimestamp
 import coach.model.TaskCandidate
 import coach.model.ValidationRecord
@@ -131,7 +132,22 @@ interface PersistencePort {
      * than filtered, because which lifecycles are on the route is the planner's decision.
      */
     fun publishedSkills(): List<SkillRow>
+
+    /**
+     * The newest plan version, its planned-task count and its stored trace text (12D). A replan has to
+     * know what it replaces, and re-entry has to know which day that plan belonged to.
+     */
+    fun latestPlan(): StoredPlan?
+
+    /**
+     * Every stored pause, oldest first, as the rows were written (12D). Decoding the context is core's
+     * job; a row whose text does not decode is not a pause anyone can resume.
+     */
+    fun resumeCheckpointRows(): List<StoredTruth>
 }
+
+/** A truth row together with the id the store gave it. */
+data class StoredTruth(val id: Long, val record: TruthRecord)
 
 /** Curriculum content is addressed by logical id and version; no reference is version-free. */
 interface ContentPort {

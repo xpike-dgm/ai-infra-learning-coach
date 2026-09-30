@@ -129,11 +129,59 @@ class PlannerFactsTest {
     @Test
     fun `a trace in another format or with an unknown part is not guessed at`() {
         val stored = PlanTraceCodec.encode(trace())
-        assertNull(PlanTraceCodec.decode(stored.replace(PlanTraceCodec.FORMAT, "planner_trace/2")))
+        assertNull(PlanTraceCodec.decode(stored.replace(PlanTraceCodec.FORMAT, "planner_trace/9")))
         assertNull(PlanTraceCodec.decode(stored + "\nmystery\tkey=value"))
         assertNull(PlanTraceCodec.decode(stored.replace("band=repair_or_verify", "band=urgent")))
         assertNull(PlanTraceCodec.decode(stored.replace("planned=15", "planned=fifteen")))
         assertNull(PlanTraceCodec.decode(stored.lines().filterNot { it.startsWith("capacity") }.joinToString("\n")))
         assertNull(PlanTraceCodec.decode(""))
+    }
+
+    private fun replanned() = trace().copy(
+        generationKind = GenerationKind.REPLAN.id,
+        selected = trace().selected.map { it.copy(preserved = true) },
+        replan = ReplanRecord(ReplanTrigger.SESSION_REMAINING_TIME_CHANGED, 7, "2026-09-28", listOf(0), listOf(1, 2), 15, 20),
+    )
+
+    private fun reentered() = trace().copy(
+        generationKind = GenerationKind.REENTRY.id,
+        reentry = ReentryContext(7, "2026-09-01", "2026-09-28", 27, 4, listOf("continue_learning:$skill"), 1,
+            mapOf("new_learning" to 3, "verification_due" to 1), mapOf("review_due" to 2), 1, 20),
+    )
+
+    @Test
+    fun `a replan and a re-entry read back exactly`() {
+        listOf(replanned(), reentered()).forEach { original ->
+            val stored = PlanTraceCodec.encode(original)
+            assertTrue(stored.startsWith("planner_trace/2\n"))
+            assertEquals(original, PlanTraceCodec.decode(stored))
+        }
+    }
+
+    @Test
+    fun `a trace 12C wrote still reads, and cannot claim what its format never had`() {
+        // `/1` had no preserved flag and no replan or re-entry sections.
+        val v1 = PlanTraceCodec.encode(trace()).replace("planner_trace/2", "planner_trace/1").replace("\tpreserved=false", "")
+        assertEquals(trace(), PlanTraceCodec.decode(v1))
+        assertNull(PlanTraceCodec.decode(v1.replace("\tsplit=false", "\tsplit=false\tpreserved=true")))
+        val v1WithReplan = PlanTraceCodec.encode(replanned()).replace("planner_trace/2", "planner_trace/1")
+            .replace("\tpreserved=true", "")
+        assertNull(PlanTraceCodec.decode(v1WithReplan))
+        val v1WithReentry = PlanTraceCodec.encode(reentered()).replace("planner_trace/2", "planner_trace/1")
+            .replace("\tpreserved=false", "")
+        assertNull(PlanTraceCodec.decode(v1WithReentry))
+        // A second replan section is not a replan anyone wrote.
+        val doubled = PlanTraceCodec.encode(replanned()).let { it + "\n" + it.lines().single { l -> l.startsWith("replan\t") } }
+        assertNull(PlanTraceCodec.decode(doubled))
+    }
+
+    @Test
+    fun `re-entry records nothing that is a score, a penalty or a debt`() {
+        listOf(ReentryContext::class.java, ReplanRecord::class.java).forEach { type ->
+            val fields = type.declaredFields.map { it.name }
+            listOf("score", "penalty", "debt", "streak", "fail", "missed").forEach { word ->
+                assertTrue(fields.none { it.contains(word, ignoreCase = true) }, "${type.simpleName} carries '$word': $fields")
+            }
+        }
     }
 }

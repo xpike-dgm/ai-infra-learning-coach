@@ -1,0 +1,524 @@
+model: RPLX-v0
+stage_step: 12D
+decision: D-095
+result: PASS
+checks_total: 157
+checks_passed: 157
+checks_failed: 0
+checks:
+- check: E12D-00_exists_ReplanEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/ReplanEngine.kt
+- check: E12D-00_exists_PlannerFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlannerFacts.kt
+- check: E12D-00_exists_PlanTraceCodec.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/PlanTraceCodec.kt
+- check: E12D-00_exists_BuildDailyPlan.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/BuildDailyPlan.kt
+- check: E12D-00_exists_PlannerFactsTest.kt
+  result: PASS
+  details: missing android/core-model/src/test/kotlin/coach/model/PlannerFactsTest.kt
+- check: E12D-00_exists_ReplanEngineTest.kt
+  result: PASS
+  details: missing android/core-engines/src/test/kotlin/coach/engines/ReplanEngineTest.kt
+- check: E12D-00_exists_ReplanTest.kt
+  result: PASS
+  details: missing android/core-application/src/test/kotlin/coach/application/ReplanTest.kt
+- check: E12D-00_exists_PlanStorageTest.kt
+  result: PASS
+  details: missing android/data-persistence/src/test/kotlin/coach/persistence/PlanStorageTest.kt
+- check: E12D-00_exists_REPLAN_SPEC.md
+  result: PASS
+  details: missing docs/REPLAN_SPEC.md
+- check: E12D-00_exists_12d_replan_research.md
+  result: PASS
+  details: missing research/12d_replan_research.md
+- check: E12D-01_model
+  result: PASS
+  details: RPLX-v0
+- check: E12D-01_status
+  result: PASS
+  details: accepted_12d
+- check: E12D-01_decision
+  result: PASS
+  details: D-095
+- check: E12D-01_scope_replan_implemented
+  result: PASS
+  details: replan_implemented=True
+- check: E12D-01_scope_reentry_implemented
+  result: PASS
+  details: reentry_implemented=True
+- check: E12D-01_scope_paused_continuation_implemented
+  result: PASS
+  details: paused_continuation_implemented=True
+- check: E12D-01_scope_skill_state_assembled
+  result: PASS
+  details: skill_state_assembled=False
+- check: E12D-01_scope_recompute_after_attempt_implemented
+  result: PASS
+  details: recompute_after_attempt_implemented=False
+- check: E12D-01_scope_planner_called_from_app
+  result: PASS
+  details: planner_called_from_app=False
+- check: E12D-01_scope_reverse_invalidation_implemented
+  result: PASS
+  details: reverse_invalidation_implemented=False
+- check: E12D-01_scope_focus_preference_implemented
+  result: PASS
+  details: focus_preference_implemented=False
+- check: E12D-01_scope_reason_text_implemented
+  result: PASS
+  details: reason_text_implemented=False
+- check: E12D-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E12D-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E12D-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E12D-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E12D-01_no_absence_penalty_claim
+  result: PASS
+  details: absence_penalty_claim was claimed
+- check: E12D-01_no_backlog_claim
+  result: PASS
+  details: backlog_claim was claimed
+- check: E12D-01_model_constant
+  result: PASS
+  details: the replan does not name RPLX-v0
+- check: E12D-02_kinds_read_from_pdt
+  result: PASS
+  details: pdt=['initial', 'replan', 'reentry']
+- check: E12D-02_kinds_equal_pdt
+  result: PASS
+  details: kotlin=['initial', 'replan', 'reentry']
+- check: E12D-02_classify_body_read
+  result: PASS
+  details: the classify reader returned nothing
+- check: E12D-02_classification
+  result: PASS
+  details: positions=[88, 147, 207]
+- check: E12D-03_triggers_read
+  result: PASS
+  details: d033=8 pbr=11 prg=9
+- check: E12D-03_triggers_are_the_contracts
+  result: PASS
+  details: missing=[] extra=[]
+- check: E12D-03_focus_not_accepted
+  result: PASS
+  details: the focus event is accepted with nothing to act on
+- check: E12D-03_trigger_ids_are_snake_names
+  result: PASS
+  details: a trigger id is not its own name
+- check: E12D-03_codes_read_from_pdt
+  result: PASS
+  details: pdt=['replan.capacity_changed', 'replan.remaining_time_changed', 'replan.task_finished_early',
+    'replan.task_overran_estimate', 'replan.new_remediation_created', 'replan.new_verification_created',
+    'replan.evidence_state_changed', 'replan.prerequisite_state_changed', 'replan.topic_state_changed',
+    'replan.return_after_absence', 'replan.user_requested_extra_time', 'replan.user_stopped_session',
+    'replan.curriculum_version_changed']
+- check: E12D-03_every_code_is_pdt
+  result: PASS
+  details: 'not in PDT-v0: []'
+- check: E12D-03_uncoded_events_named
+  result: PASS
+  details: uncoded=['task_completed']
+- check: E12D-03_sets_remaining_time
+  result: PASS
+  details: this == SESSION_REMAINING_TIME_CHANGED || this == USER_REQUESTED_EXTRA_TIME
+- check: E12D-04_remainder_body_read
+  result: PASS
+  details: the remainder reader returned nothing
+- check: E12D-04_declared_remaining_is_the_remainder
+  result: PASS
+  details: missing trigger.setsRemainingTime -> requireNotNull(declaredRemainingMinutes)
+- check: E12D-04_capacity_change_replaces_the_day
+  result: PASS
+  details: missing trigger == ReplanTrigger.TODAY_CAPACITY_CHANGED ->
+- check: E12D-04_capacity_change_minus_kept
+  result: PASS
+  details: missing "a capacity change names the new capacity" } - preservedMinutes).coerceAtLeast(0)
+- check: E12D-04_other_events_keep_the_day
+  result: PASS
+  details: missing else -> (dayHardBudget(previous) - preservedMinutes).coerceAtLeast(0)
+- check: E12D-04_never_negative
+  result: PASS
+  details: missing require(it >= 0)
+- check: E12D-04_day_carried_across_replans
+  result: PASS
+  details: a chain of replans forgets the day's budget
+- check: E12D-04_same_rule_as_a_day
+  result: PASS
+  details: the remainder does not use the day's capacity rule
+- check: E12D-05_compose_body_read
+  result: PASS
+  details: the replan composer returned nothing
+- check: E12D-05_kept_first_and_marked
+  result: PASS
+  details: missing entry.copy(position = i, preserved = true)
+- check: E12D-05_rest_after_kept
+  result: PASS
+  details: missing it.copy(position = it.position + kept.size, preserved = false)
+- check: E12D-05_unstarted_invalidated
+  result: PASS
+  details: missing previous.selected.map { it.position }.filterNot { it in preservedPositions
+    }
+- check: E12D-05_trigger_code_recorded
+  result: PASS
+  details: missing planReasonCodes = listOfNotNull(trigger.reasonCode) + fresh.planReasonCodes,
+- check: E12D-05_day_budget_checked
+  result: PASS
+  details: missing "day_within_hard_budget" to (keptMinutes + fresh.selected.sumOf
+    { it.plannedMinutes } <= dayHardMinutes),
+- check: E12D-05_kept_need_not_served_twice
+  result: PASS
+  details: a need a kept task serves is served again
+- check: E12D-05_build_body_read
+  result: PASS
+  details: the build reader returned nothing
+- check: E12D-05_same_day_no_event_writes_nothing
+  result: PASS
+  details: missing if (replan == null) return Built.AlreadyPlanned(previous!!.planVersionId)
+- check: E12D-05_unreadable_previous_refused
+  result: PASS
+  details: missing if (previousTrace == null) return Built.Refused(
+- check: E12D-05_unknown_kept_refused
+  result: PASS
+  details: missing if (!known.containsAll(replan.keptPositions)) {
+- check: E12D-05_missing_remaining_refused
+  result: PASS
+  details: missing if (replan.trigger.setsRemainingTime && replan.remainingMinutes
+    == null) {
+- check: E12D-05_kept_only_on_a_replan
+  result: PASS
+  details: missing val kept = if (kind == GenerationKind.REPLAN) {
+- check: E12D-05_refusals_before_writing
+  result: PASS
+  details: positions=[502, 595]
+- check: E12D-05_one_transaction
+  result: PASS
+  details: a plan version is not written in one transaction
+- check: E12D-06_reentry_body_read
+  result: PASS
+  details: the re-entry composer returned nothing
+- check: E12D-06_codes_read_from_pdt
+  result: PASS
+  details: pdt=['reentry.return_after_absence', 'reentry.absence_not_failure', 'reentry.absence_not_task_debt',
+    'reentry.stale_plan_not_replayed', 'reentry.current_state_regenerated', 'reentry.paused_checkpoint_candidate',
+    'reentry.incomplete_high_stakes_attempt_not_scored', 'reentry.due_inventory_not_daily_plan']
+- check: E12D-06_codes_are_pdt
+  result: PASS
+  details: kotlin=['reentry.return_after_absence', 'reentry.absence_not_failure',
+    'reentry.absence_not_task_debt', 'reentry.stale_plan_not_replayed', 'reentry.current_state_regenerated',
+    'reentry.paused_checkpoint_candidate', 'reentry.incomplete_high_stakes_attempt_not_scored',
+    'reentry.due_inventory_not_daily_plan', 'replan.return_after_absence']
+- check: E12D-06_always_says_reentry_not_failure
+  result: PASS
+  details: REENTRY_NOT_FAILURE is not always recorded
+- check: E12D-06_always_says_reentry_not_debt
+  result: PASS
+  details: REENTRY_NOT_DEBT is not always recorded
+- check: E12D-06_always_says_reentry_stale_not_replayed
+  result: PASS
+  details: REENTRY_STALE_NOT_REPLAYED is not always recorded
+- check: E12D-06_always_says_reentry_regenerated
+  result: PASS
+  details: REENTRY_REGENERATED is not always recorded
+- check: E12D-06_context_read_from_srr
+  result: PASS
+  details: 'srr=[''ReentryContext'', ''- last_active_at'', ''- returned_at'', ''-
+    absence_duration_days   # informational'', ''- stale_planned_task_count'', ''-
+    preserved_checkpoint_ids[]'', ''- invalidated_incomplete_attempt_ids[]'', ''-
+    open_need_count_by_trigger'', ''- due_skill_count_by_retention_state'', ''- p0_p1_need_count'',
+    ''- resolved_daily_capacity_minutes'', ''- policy_version'']'
+- check: E12D-06_context_equals_contract
+  result: PASS
+  details: kotlin=['previousPlanVersionId', 'lastPlannedStudyDay', 'returnedStudyDay',
+    'absenceStudyDays', 'stalePlannedTaskCount', 'pausedCheckpointNeedKeys', 'highStakesPausesNotResumed',
+    'openNeedCountByTrigger', 'dueSkillCountByRetention', 'p0P1NeedCount', 'resolvedDailyCapacityMinutes']
+- check: E12D-06_srr_field_stale_planned_task_count
+  result: PASS
+  details: stale_planned_task_count is not carried
+- check: E12D-06_srr_field_open_need_count_by_trigger
+  result: PASS
+  details: open_need_count_by_trigger is not carried
+- check: E12D-06_srr_field_p0_p1_need_count
+  result: PASS
+  details: p0_p1_need_count is not carried
+- check: E12D-06_srr_field_resolved_daily_capacity_minutes
+  result: PASS
+  details: resolved_daily_capacity_minutes is not carried
+- check: E12D-06_no_verdict_field_ReentryContext
+  result: PASS
+  details: ReentryContext fields=['previousPlanVersionId', 'lastPlannedStudyDay',
+    'returnedStudyDay', 'absenceStudyDays', 'stalePlannedTaskCount', 'pausedCheckpointNeedKeys',
+    'highStakesPausesNotResumed', 'openNeedCountByTrigger', 'dueSkillCountByRetention',
+    'p0P1NeedCount', 'resolvedDailyCapacityMinutes']
+- check: E12D-06_no_verdict_field_ReplanRecord
+  result: PASS
+  details: ReplanRecord fields=['trigger', 'previousPlanVersionId', 'previousStudyDay',
+    'preservedPositions', 'invalidatedPositions', 'preservedMinutes', 'remainderHardMinutes']
+- check: E12D-06_absence_feeds_nothing
+  result: PASS
+  details: absence reaches starvation
+- check: E12D-06_absence_days_only_recorded
+  result: PASS
+  details: absence days are used for something
+- check: E12D-07_paused_body_read
+  result: PASS
+  details: the paused-work reader returned nothing
+- check: E12D-07_latest_pause_wins
+  result: PASS
+  details: missing .mapValues { it.value.last() }
+- check: E12D-07_high_stakes_not_continued
+  result: PASS
+  details: missing pause.kind == CheckpointKind.HIGH_STAKES_PAUSE -> { highStakes
+    += 1; need }
+- check: E12D-07_only_continuation_becomes_paused
+  result: PASS
+  details: missing need.trigger == NeedTrigger.CONTINUE_LEARNING ->
+- check: E12D-07_paused_is_a_signal
+  result: PASS
+  details: missing need.copy(continuation = ContinuationValue.PAUSED_SAFE_CHECKPOINT)
+- check: E12D-07_pause_never_opens_a_need
+  result: PASS
+  details: a pause adds a need of its own instead of marking an open one
+- check: E12D-07_undecodable_pause_ignored
+  result: PASS
+  details: a pause that does not decode is treated as one
+- check: E12D-08_format_v2
+  result: PASS
+  details: the trace format is not planner_trace/2 reading /1
+- check: E12D-08_decode_body_read
+  result: PASS
+  details: the decode reader returned nothing
+- check: E12D-08_only_known_versions
+  result: PASS
+  details: missing if (version != FORMAT && version != FORMAT_V1) throw Malformed()
+- check: E12D-08_v1_cannot_claim_kept
+  result: PASS
+  details: missing else if ("preserved" in f) throw Malformed() else false
+- check: E12D-08_v1_cannot_claim_replan
+  result: PASS
+  details: missing if (!v2 || replan != null) throw Malformed()
+- check: E12D-08_v1_cannot_claim_reentry
+  result: PASS
+  details: missing if (!v2 || reentry != null) throw Malformed()
+- check: E12D-08_kept_flag_written
+  result: PASS
+  details: the kept flag is not written
+- check: E12D-09_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E12D-09_latest_plan
+  result: PASS
+  details: latestPlan is missing
+- check: E12D-09_checkpoint_rows
+  result: PASS
+  details: resumeCheckpointRows is missing
+- check: E12D-09_raw_trace_returned
+  result: PASS
+  details: the adapter interprets the trace
+- check: E12D-09_latest_body_read
+  result: PASS
+  details: the latestPlan reader returned nothing
+- check: E12D-09_newest_by_sequence
+  result: PASS
+  details: the newest plan is not the newest
+- check: E12D-09_count_is_the_plans_own
+  result: PASS
+  details: the task count is not the plan's own
+- check: E12D-09_checkpoints_oldest_first
+  result: PASS
+  details: pauses do not come back oldest first
+- check: E12D-09_reads_only
+  result: PASS
+  details: reading the newest plan writes
+- check: E12D-09_schema_version_unchanged
+  result: PASS
+  details: the schema version moved
+- check: E12D-10_facts_test_a replan and a re-entry read back exactly
+  result: PASS
+  details: 'missing test: a replan and a re-entry read back exactly'
+- check: 'E12D-10_facts_test_a trace 12C wrote still reads, and cannot '
+  result: PASS
+  details: 'missing test: a trace 12C wrote still reads, and cannot claim what its
+    format never had'
+- check: 'E12D-10_facts_test_re-entry records nothing that is a score, '
+  result: PASS
+  details: 'missing test: re-entry records nothing that is a score, a penalty or a
+    debt'
+- check: E12D-10_engine_test_a plan from another study day is never tod
+  result: PASS
+  details: 'missing test: a plan from another study day is never today''s plan'
+- check: E12D-10_engine_test_only the remainder is solved again, and re
+  result: PASS
+  details: 'missing test: only the remainder is solved again, and replanning never
+    grows the day by itself'
+- check: E12D-10_engine_test_a safe pause makes continuation paused wor
+  result: PASS
+  details: 'missing test: a safe pause makes continuation paused work, and a high-stakes
+    pause is not resumed'
+- check: E12D-10_engine_test_a replan keeps started work first and solv
+  result: PASS
+  details: 'missing test: a replan keeps started work first and solves only the rest'
+- check: E12D-10_engine_test_an event PDT-v0 has no code for gets none
+  result: PASS
+  details: 'missing test: an event PDT-v0 has no code for gets none'
+- check: 'E12D-10_engine_test_re-entry does not replay the old plan and '
+  result: PASS
+  details: 'missing test: re-entry does not replay the old plan and records what the
+    return looked like'
+- check: E12D-10_engine_test_absence is only recorded, never turned int
+  result: PASS
+  details: 'missing test: absence is only recorded, never turned into pressure'
+- check: E12D-10_app_test_asked again on the same day with no event,
+  result: PASS
+  details: 'missing test: asked again on the same day with no event, the planner keeps
+    today''s plan'
+- check: E12D-10_app_test_a replan keeps what was started and solves
+  result: PASS
+  details: 'missing test: a replan keeps what was started and solves only the rest'
+- check: E12D-10_app_test_a smaller capacity today never undoes work
+  result: PASS
+  details: 'missing test: a smaller capacity today never undoes work already done'
+- check: E12D-10_app_test_a replan that cannot be made honestly is r
+  result: PASS
+  details: 'missing test: a replan that cannot be made honestly is refused and writes
+    nothing'
+- check: E12D-10_app_test_a new study day is re-entry, and yesterday
+  result: PASS
+  details: 'missing test: a new study day is re-entry, and yesterday''s plan is not
+    replayed'
+- check: E12D-10_app_test_a safe pause makes its need paused work, a
+  result: PASS
+  details: 'missing test: a safe pause makes its need paused work, and a high-stakes
+    pause is not resumed'
+- check: E12D-10_t2_test_the newest plan comes back with its own da
+  result: PASS
+  details: 'missing T2 test: the newest plan comes back with its own day, its task
+    count and its trace'
+- check: E12D-10_t2_test_stored pauses come back oldest first, exac
+  result: PASS
+  details: 'missing T2 test: stored pauses come back oldest first, exactly as written,
+    and reading them writes nothing'
+- check: E12D-11_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E12D-11_mutation_all_detected
+  result: PASS
+  details: '{''total'': 33, ''detected'': 33}'
+- check: E12D-11_mutation_ran_gradle
+  result: PASS
+  details: the harness was not verified
+- check: E12D-11_mutation_negative_control
+  result: PASS
+  details: the harness was never shown able to report a survivor
+- check: E12D-11_validator_mutation
+  result: PASS
+  details: '{''total'': 38, ''detected'': 38, ''negative_control'': ''forbidden words
+    written only inside comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''missed_at_first'': [{''id'': ''V31'', ''why'': ''the
+    newest-plan check looked for `ORDER BY sequence DESC LIMIT 1`, which the trace
+    query also contains, so reversing the plan query still passed; the check now names
+    the plan query itself''}], ''harness_defects_fixed'': [{''id'': ''V12'', ''why'':
+    ''the first form wrapped the capacity call instead of removing it, so it never
+    built the violation it named''}, {''id'': ''V31'', ''why'': ''its first anchor
+    occurred twice in the adapter, which the harness refuses''}], ''reader_guard'':
+    ''every body the validator reads is itself checked to be non-empty''}'
+- check: E12D-11_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E12D-11_not_reachable_in_app
+  result: PASS
+  details: the replan is claimed reachable
+- check: E12D-11_re_pointed_skill_state_assembly_under_one
+  result: PASS
+  details: skill_state_assembly_under_one_watermark is not re-pointed with a reason
+- check: E12D-11_re_pointed_recompute_chain_after_an_attem
+  result: PASS
+  details: recompute_chain_after_an_attempt is not re-pointed with a reason
+- check: E12D-11_re_pointed_calling_the_planner_from_the_a
+  result: PASS
+  details: calling_the_planner_from_the_app is not re-pointed with a reason
+- check: E12D-11_re_pointed_reverse_invalidation_of_depend
+  result: PASS
+  details: reverse_invalidation_of_dependents is not re-pointed with a reason
+- check: E12D-11_re_pointed_attempt_to_planned_task_link
+  result: PASS
+  details: attempt_to_planned_task_link is not re-pointed with a reason
+- check: E12D-11_narrowed_gates_recorded
+  result: PASS
+  details: '{''E12C-07_trace_format / E12C-07_unknown_format_refused'', ''E12C-02_planning_budget_exact
+    / E12C-02_relaxed_only_below_block''}'
+- check: E12D-12_forbidden_plan_edited_in_place
+  result: PASS
+  details: missing=plan_edited_in_place
+- check: E12D-12_forbidden_new_version_without_a_reason
+  result: PASS
+  details: missing=new_version_without_a_reason
+- check: E12D-12_forbidden_old_plan_replayed_after_absence
+  result: PASS
+  details: missing=old_plan_replayed_after_absence
+- check: E12D-12_forbidden_absence_as_debt_or_failure
+  result: PASS
+  details: missing=absence_as_debt_or_failure
+- check: E12D-12_forbidden_absence_feeding_starvation
+  result: PASS
+  details: missing=absence_feeding_starvation
+- check: E12D-12_forbidden_in_flight_work_destroyed_by_replan
+  result: PASS
+  details: missing=in_flight_work_destroyed_by_replan
+- check: E12D-12_forbidden_paused_work_selected_automatically
+  result: PASS
+  details: missing=paused_work_selected_automatically
+- check: E12D-12_forbidden_invented_reason_code_for_an_event
+  result: PASS
+  details: missing=invented_reason_code_for_an_event
+- check: E12D-12_forbidden_unreported_kept_work_guessed
+  result: PASS
+  details: missing=unreported_kept_work_guessed
+- check: E12D-13_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 12D QA PASS'''
+- check: E12D-13_spec_**Decision:** `D-095`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-095`'''
+- check: E12D-13_spec_A plan is replaced by a ne
+  result: PASS
+  details: 'spec: ''A plan is replaced by a new version with a reason, never edited'''
+- check: E12D-13_spec_T6
+  result: PASS
+  details: 'spec: ''T6'''
+- check: E12D-13_spec_planner_trace/2
+  result: PASS
+  details: 'spec: ''planner_trace/2'''
+- check: E12D-13_spec_MUTATION
+  result: PASS
+  details: 'spec: ''MUTATION'''
+- check: E12D-14_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E12D-14_research_SRR-v0
+  result: PASS
+  details: missing='SRR-v0'
+- check: E12D-14_research_reported
+  result: PASS
+  details: missing='reported'
+- check: E12D-14_research_re-pointed
+  result: PASS
+  details: missing='re-pointed'
+- check: E12D-15_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E12D-15_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+failures: []

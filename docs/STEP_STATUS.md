@@ -59,8 +59,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12A — Mastery Engine v1** | ✅ | MSTX-v0 / D-092. Mastery yardımsız yapılanı sorar; yardımlı/görülmüş/doğrulanmamış kanıt skora girmez; Skill non-compensatory; ilk çelişki doğrulama açar; projeksiyon kanıttan yeniden kurulur; 164/164 QA PASS, mutation 33/33. |
 | **12B — Prerequisite Engine** | ✅ | PRQX-v0 / D-093. Eksik prerequisite yalnız bağlı işi bekletir; review_due bloklamaz; soft eksik kilitlemez; priority kapıyı aşamaz; draft kenar adlandırılır; bekleyen aday üzerindeki iş contaminated; 184/184 QA PASS, mutation 44/44. |
 | **12C — Planner Engine v1** | ✅ | PLNX-v0 / D-094. Önce semantik öncelik, sonra sığma; priority kapıyı aşamaz; gün uzatılmaz; sığmayan ihtiyaç borç değil; starvation eşiği ve reason kodu uydurulmaz; plan izle truth; 226/226 QA PASS, mutation 55/55. |
-| **12D — Replan** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **12E–20** | ⬜ Bekliyor | 12D sonrası canonical sırada. |
+| **12D — Replan** | ✅ | RPLX-v0 / D-095. Plan düzenlenmez, gerekçeli yeni sürümle değişir; aynı gün olay yoksa yazılmaz; başlanan iş korunur, kalan yeniden çözülür; re-entry dünkü planı oynatmaz; yokluk borç değil; 157/157 QA PASS, mutation 33/33. |
+| **12E — Explanation / reason codes** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **12F–20** | ⬜ Bekliyor | 12E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -79,22 +80,22 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12C
+## Son tamamlanan numaralı adım — 12D
 
-**Final:** `PLNX-v0 — Planner Engine v1` / D-094.
-**Ana çıktı:** `docs/PLANNER_ENGINE_IMPL_SPEC.md` + `arch/12c_planner_engine/` + `android/`.
+**Final:** `RPLX-v0 — Replan` / D-095.
+**Ana çıktı:** `docs/REPLAN_SPEC.md` + `arch/12d_replan/` + `android/`.
 
-12C sonucu:
-- önce semantik öncelik, sonra fiziksel sığma; sıra `PDT-v0` §17'nin; priority bloklanmış/geçersiz/güvenilmeyen görevi kurtaramaz,
-- kapasite D-033 sırasıyla; sert bütçe aşılmaz, `%10` rezerv, `10` dakikanın altında yeni öğretim yok,
-- ihtiyaçlar her motorun kendi ekseninden; yazılmamış eksen ve rotada olmayan Skill hiçbir şey açmaz,
-- `PBR-v0` bantları ve on alanlı rank vektörü; toplanmaz, rastgele tie-break yok, kritik etiket tek başına P0 değil,
-- sığ → güvenli böl → küçük alternatif → ertele; atomik sınır bölünmez; bir ihtiyaca tek görev; sığmayan ihtiyaç borç değil,
-- starvation eşiği ve reason kodu uydurulmaz; ihtiyaç başına en çok `5` aday,
-- plan tek transaction'da truth; `planned_task`ın taşıyamadığı her şey `planner_trace/1` izinde,
-- mutation 55/55, independent validator **226/226 PASS**, kendi mutation testi 46/46; 39/39 sweep PASS,
-- **T6 çalıştırılmadı** — telefon bağlı değildi; planner uygulamada çağrılmıyor (12D).
+12D sonucu:
+- plan düzenlenmez, gerekçeli yeni sürümle değişir: initial / replan / reentry depodan okunur,
+- aynı gün olay yoksa mevcut plan döner, hiçbir şey yazılmaz (12C davranışı düzeltildi),
+- kalan bütçe D-033 §8; asla negatif değil, gün kendiliğinden büyümez,
+- başlanan iş çağıranca bildirilir ve önceki plana karşı doğrulanır; önde ve değişmeden korunur,
+- re-entry dünkü planı oynatmaz; yokluk borç, başarısızlık, çürüme ya da starvation değil,
+- güvenli duraklatma P2 ama otomatik değil; high-stakes duraklatma devam ettirilmez,
+- iz `planner_trace/2`; `/1` katı okunuyor,
+- mutation 33/33, independent validator **157/157 PASS**, kendi mutation testi 38/38; 40/40 sweep PASS,
+- **T6 çalıştırılmadı** — planner uygulamada çağrılmıyor (16D).
 
-## Aktif adım — 12D Replan
+## Aktif adım — 12E Explanation / reason codes
 
-**12D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**12E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

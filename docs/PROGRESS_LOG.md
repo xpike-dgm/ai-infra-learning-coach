@@ -1046,3 +1046,17 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `12C ✅ / 12D active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `12D — Replan`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-09-30 — 12D Replan tamamlandı — RPLX-v0 / D-095
+
+- 12C kullanıcının talimatıyla main'e merge edildi (#35, 1c8094d); fresh 12D PRE yapıldı ve beş kanonik kaynak `12C ✅ / 12D active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge et ve devam et"). Repo çalışma sırasında `Desktop\AI Projetcs\app`ten `Desktop\app`e taşındı; yarım iş yerel bir WIP commit'inde korunmuştu ve bu commit'le değiştirildi.
+- **Depo hangi planlı görevin başladığını söyleyemiyor**; çağıran bildiriyor ve her pozisyon doğrulanıyor.
+- **12C aynı gün gerekçesiz ikinci bir initial plan yazıyordu**; artık mevcut plan dönüyor.
+- **Replan `PDT-v0` §15 ve D-033 §8'in kendisi**, re-entry `SRR-v0`'ın kendisi: dünkü plan oynatılmaz, yokluk borç değil.
+- İz `planner_trace/2`; `/1` katı okunuyor. 12C'nin iki yaşayan kapısı daraltıldı, garanti zayıflamadı.
+- 12D'ye devredilip kurulamayan dört madde 13/15/16D/18E'ye gerekçesiyle bağlandı.
+- Mutation 33/33. Altı run PASS. Validator 157/157, kendi mutation testi 38/38, sweep 40/40.
+- **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+- D-050 POST living-memory accepted state'i `12D ✅ / 12E active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `12E — Explanation / reason codes`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

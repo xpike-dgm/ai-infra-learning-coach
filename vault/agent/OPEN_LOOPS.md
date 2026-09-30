@@ -46,23 +46,27 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12A Mastery Engine v1: MSTX-v0 / D-092 ile tamamlandı; evidence pipeline, GRE-v0 kapıları, non-compensatory Skill ve yeniden kurulabilir projeksiyon.
 - [x] 12B Prerequisite Engine: PRQX-v0 / D-093 ile tamamlandı; readiness, eligibility matrisi, draft kenarların adlandırılması, contamination snapshot'ı ve `prerequisite_readiness` projeksiyonu.
 - [x] 12C Planner Engine v1: PLNX-v0 / D-094 ile tamamlandı; kapasite, eksenlerden ihtiyaç, güven + kapı + `PBR-v0` sırası, sığdırma ve `planner_trace/1` izli truth plan.
-- [ ] 12D Replan **AKTİF**: `PDT-v0` §15 replan olayı, `SRR-v0` re-entry, duraklatılmış işin devamı ve planner'ı çağıran yol.
-- [ ] Today'in planı okuması ve izden gerekçe ailesi türetmesi → 12E; iz bugün `planner_trace/1` olarak saklanıyor.
+- [x] 12D Replan: RPLX-v0 / D-095 ile tamamlandı; gerekçeli plan sürümleri, korunan iş, kalan bütçe, re-entry bağlamı ve duraklatılmış işin P2 devamı.
+- [ ] 12E Explanation / reason codes **AKTİF**: izden kullanıcı açıklaması ve Today'in planı okuması.
+- [ ] Deneme→planlı görev bağı `DDM-v0`de yok; replan'da başlanan işi bugün çağıran bildiriyor → 15 (veri modeliyle).
+- [ ] Planner'ı uygulamadan çağırmak ve odak tercihi (`user_focus_changed`) → 16D; kapasite ayarı olmadan çağrılamaz.
+- [ ] Today'in planı okuması ve izden gerekçe ailesi türetmesi → 12E; iz bugün `planner_trace/2` olarak saklanıyor.
 - [ ] Starvation ve track-balance eşiği yok; planner baskıyı girdi olarak alıyor, ürün hiçbirini vermiyor → 18C.
 - [ ] İhtiyaç başına aday sınırı `5` (mühendislik sınırı) → gerçek performansla 18E.
 - [ ] Retention due kovaları, `at_risk` ve weakness'ten doğan ihtiyaçlar → 13.
 - [ ] Authored görevler ve paket biçimindeki görev bölümü; `taskCandidates` bugün boş dönüyor → 15.
 - [ ] Kapasite ayarının saklanması (normal/short/intensive, planlı varsayılan, bugünkü değişiklik) → 16D.
-- [ ] `skill_state`in dört ekseni ve primary presentation state tek watermark altında birleştirilecek; bugün 12A kendi eksenini yazıp diğerlerini taşıyor, 12B yalnız `prerequisite_readiness` yazıyor → 12D.
-- [ ] Prerequisite replan tetikleri (`PRG-v0` §19) ve bağımlıların ters invalidation'ı → 12D.
+- [ ] `skill_state`in dört ekseni ve primary presentation state tek watermark altında birleştirilecek; bugün 12A kendi eksenini yazıp diğerlerini taşıyor, 12B yalnız `prerequisite_readiness` yazıyor → 13 (ikinci yazan 13 olduğunda gerekir).
+- [x] Prerequisite replan tetikleri (`PRG-v0` §19) 12D'de `ReplanTrigger` sözlüğünde.
+- [ ] Bağımlıların ters invalidation'ı → 18E; replan zaten sınırlı güncel durumdan yeniden üretiyor, bu bir optimizasyon.
 - [ ] Authored 950 prerequisite kenarının hepsi `draft`; kapı bunları `edge_not_published` olarak adlandırıyor, yayımlama → 15.
 - [ ] `contamination_risk_if_missing` DDM'de kolon değil; strictness bugün critical bayrağı ve adayın isteğinden → 15.
 - [ ] Değerlendirme sırasında bulunan beyan edilmemiş prerequisite (`TASK_PREREQUISITE_METADATA_INVALID`) → 14.
 - [ ] Yayımlama sırasında döngüsel graph reddi (bugün kapı döngüyü çalışma anında adlandırıyor) → 15H.
-- [ ] Motoru tetikleyen yol: bir denemeden sonra kimin recompute ettiği ve ne ölçüleceği → 12D.
+- [ ] Motoru tetikleyen yol: bir denemeden sonra kimin recompute ettiği ve ne ölçüleceği → 15 (Objective gate profilleri authored içerik).
 - [ ] Objective gate profilleri authored içerikte; varsayılanlar `GRE-v0`ün → 15 yazar, 18C kalibre eder.
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
-- [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, gün özetine bağlayan yol → 12D.
+- [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, gün özetine bağlayan yol → 15 (recompute zinciriyle).
 - [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
 - [ ] Haftalık/aylık blueprint kompozisyonu (`WBA-v0`, `MCA-v0`) → 13; tek interior hazır, composition değil.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.

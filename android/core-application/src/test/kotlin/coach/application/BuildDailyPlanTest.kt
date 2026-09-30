@@ -30,6 +30,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import coach.model.StoredPlan
+import coach.ports.StoredTruth
 
 /** Planning from current state and appending the plan as truth. SQLite itself is proven in T2. */
 class BuildDailyPlanTest {
@@ -76,6 +78,8 @@ class BuildDailyPlanTest {
         override fun skill(ref: VersionedRef): SkillRow? = skills.firstOrNull { it.ref == ref }
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = edges.filter { it.target == target }
         override fun publishedSkills(): List<SkillRow> { calls += "skills"; return skills.sortedBy { it.ref.logicalId } }
+        override fun latestPlan(): StoredPlan? = null
+        override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
     }
 
     private class Content(val tasks: Map<String, List<TaskCandidate>> = emptyMap()) : ContentPort {

@@ -274,14 +274,15 @@ PEM-v0:
 - 12A ✅ MSTX-v0 / D-092
 - 12B ✅ PRQX-v0 / D-093
 - 12C ✅ PLNX-v0 / D-094
-- 12D 🟡 active-not-executed
-- 12E–20 ⬜
+- 12D ✅ RPLX-v0 / D-095
+- 12E 🟡 active-not-executed
+- 12F–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12C — PLNX-v0 / D-094`  
-**Aktif:** `12D — Replan`  
-**12D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `12D — RPLX-v0 / D-095`  
+**Aktif:** `12E — Explanation / reason codes`  
+**12E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -962,6 +963,27 @@ PLNX-v0:
 - mutation 55/55, independent QA 226/226, validator mutation 46/46, sweep 39/39,
 - T6 was not run, and nothing in the app calls the planner yet (12D).
 
-## 47. 12D handoff
+## 47. D-095 / 12D final özeti
 
-12D — Replan. `PDT-v0` §15'in replan olayı ve yeni plan sürümü; `SRR-v0` re-entry; duraklatılmış işin devamı; bir denemeden sonra kimin recompute ettiği ve planner'ı çağıran yol; `skill_state`in tek watermark altında birleştirilmesi; `PRG-v0` §19 prerequisite tetikleri ve bağımlıların ters invalidation'ı. Açık loop'lar: reason metni ve Today'in planı okuması 12E, sanal kullanıcı senaryoları 12F, retention/weakness ihtiyaçları 13, authored görevler 15, kapasite ayarı 16D, starvation eşiği 18C, aday sınırı 18E, T6. 12D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+Canonical: `docs/REPLAN_SPEC.md`.
+Contract/QA: `arch/12d_replan/`.
+Synthesis: `research/12d_replan_research.md`.
+Code: `android/core-engines/.../ReplanEngine.kt`, `android/core-model/.../PlannerFacts.kt` (`GenerationKind`, `ReplanTrigger`, `ReplanRecord`, `ReentryContext`, `StoredPlan`), `.../PlanTraceCodec.kt` (`planner_trace/2`), `android/core-application/.../BuildDailyPlan.kt` (`replan`), `PersistencePort.latestPlan/resumeCheckpointRows` + `SqlitePersistence`.
+
+RPLX-v0:
+- a plan is replaced by a new version with a reason, never edited: initial when no plan exists, re-entry when the newest plan belongs to another study day, replan when today's plan exists and an event arrived,
+- the same day with no event returns the plan already there and writes nothing — 12C's build() used to append an unexplained second initial plan,
+- triggers are D-033 §16, `PBR-v0` §17 and `PRG-v0` §19; each carries its `PDT-v0` §8.10 code, `task_completed` carries none, and `user_focus_changed` is not accepted,
+- D-033 §8: a new capacity replaces the day, a declared remaining time is the remainder, anything else keeps the day; kept minutes come off the top, the remainder is never negative and follows the day's rule,
+- the store cannot say which planned task was started (`attempt` has no `planned_task` link), so the caller that owns in-flight state reports kept positions; each is checked against the previous plan, and a refused replan writes nothing,
+- kept work comes first, unchanged and marked; a need a kept task serves is not served twice; an unreadable previous plan is not replaced by guesswork,
+- re-entry (`SRR-v0`) replays nothing and keeps nothing, applies the normal day budget, never feeds starvation, and records §17's context and `PDT-v0` §8.8's codes — no score, penalty or debt,
+- the latest safe pause makes an open continuation need P2 paused work without selecting it; a high-stakes pause is not continued; a closed need's pause changes nothing,
+- `planner_trace/2` records the kept flag, the replan record and the re-entry context; `/1` still decodes strictly,
+- re-pointed: `skill_state` assembly → 13; recompute after an attempt and an attempt → planned-task link → 15; calling the planner from the app → 16D; reverse invalidation → 18E,
+- mutation 33/33, independent QA 157/157, validator mutation 38/38, sweep 40/40,
+- T6 was not run, and nothing in the app calls the planner yet (16D).
+
+## 48. 12E handoff
+
+12E — Explanation / reason codes. `PDT-v0`'nin reason code'larından kullanıcıya gösterilecek açıklama ve Today'in planı okuması: izden gerekçe ailesi türetmek (`THUX-v0` §7.1), plan satırlarını `planner_trace/2`'den kurmak, 'neden bu görev / neden diğeri gelmedi / neden bekliyor' açıklamaları. Açık loop'lar: sanal kullanıcı senaryoları 12F, `skill_state` birleştirmesi ve retention/weakness 13, recompute zinciri ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak ve kapasite ayarı 16D, starvation eşiği 18C, ters invalidation ve aday sınırı 18E, T6. 12E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
