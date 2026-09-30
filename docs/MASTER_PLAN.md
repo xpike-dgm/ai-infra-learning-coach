@@ -768,8 +768,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 55/55, validator 226/226 ve kendi mutation testi 46/46,
 - **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (12D).
 
-### [ ] 12D — Replan — **AKTİF**
-### [ ] 12E — Reason codes
+### [x] 12D — Replan — RPLX-v0 / D-095
+
+**12D final coverage:**
+- plan düzenlenmez, gerekçeli yeni sürümle değişir; aynı gün olay yoksa yazılmaz,
+- kalan bütçe D-033 §8; negatif değil, gün kendiliğinden büyümez,
+- başlanan iş çağıranca bildirilir, doğrulanır ve korunur; kalan yeniden çözülür,
+- re-entry dünkü planı oynatmaz; yokluk borç, başarısızlık ya da çürüme değil,
+- güvenli duraklatma P2 ama otomatik değil; high-stakes devam ettirilmez,
+- iz `planner_trace/2`,
+- mutation 33/33, validator 157/157 ve kendi mutation testi 38/38,
+- **T6 çalıştırılmadı**; planner uygulamada çağrılmıyor (16D).
+
+### [ ] 12E — Reason codes — **AKTİF**
 ### [ ] 12F — Sanal kullanıcı testleri
 
 ---
@@ -879,8 +890,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12C`  
-**Son tamamlanan:** **`12C — PLNX-v0 / D-094`**  
-**Aktif:** **`12D — Replan`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12D`  
+**Son tamamlanan:** **`12D — RPLX-v0 / D-095`**  
+**Aktif:** **`12E — Explanation / reason codes`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **12D fresh PRE-STEP → replan olayı, re-entry ve planner'ı çağıran yol → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **12E fresh PRE-STEP → izden kullanıcı açıklaması ve Today'in planı okuması → independent QA → D-050 POST sync + stale audit.**

@@ -18,6 +18,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import coach.model.SkillRow
 import coach.model.PrerequisiteEdge
+import coach.model.StoredPlan
+import coach.ports.StoredTruth
 
 /** 11A: the read path reports what the store holds and never fills a gap with a plausible default. */
 class TodayFactsQueryTest {
@@ -45,6 +47,8 @@ class TodayFactsQueryTest {
         override fun skill(ref: VersionedRef): SkillRow? = null
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
         override fun publishedSkills(): List<SkillRow> = emptyList()
+        override fun latestPlan(): StoredPlan? = null
+        override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
     }
 
     private val clock = object : ClockPort {

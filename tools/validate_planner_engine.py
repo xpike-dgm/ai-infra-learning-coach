@@ -202,9 +202,14 @@ check("E12C-02_resolve_body_read", len(resolve) > 200, "the capacity reader retu
 order = [resolve.find(f) for f in ("CapacitySource.TODAY_OVERRIDE to", "CapacitySource.SELECTED_SHORT to",
                                    "CapacitySource.SCHEDULED_DEFAULT to", "CapacitySource.NORMAL_PROFILE to")]
 check("E12C-02_resolution_order", all(i >= 0 for i in order) and order == sorted(order), f"positions={order}")
-check("E12C-02_planning_budget_exact", "minutes * (100 - PLANNING_RESERVE_PERCENT_V0) / 100" in resolve,
+# 12D moved the D-033 §4/§5 rule into `capacityOf` so a replan's remainder uses the very same rule; the
+# check reads it where it now lives. The guarantee — floor(hard * 0.90), relaxed only below the block,
+# and resolveCapacity applying it — is unchanged.
+capacity_rule = body(engine, "fun capacityOf(")
+check("E12C-02_planning_budget_exact", "minutes * (100 - PLANNING_RESERVE_PERCENT_V0) / 100" in capacity_rule
+      and "return capacityOf(source, minutes)" in resolve,
       "the planning budget is not floor(hard * 0.90)")
-check("E12C-02_relaxed_only_below_block", "val planning = if (below) minutes else" in resolve,
+check("E12C-02_relaxed_only_below_block", "val planning = if (below) minutes else" in capacity_rule,
       "the reserve relaxes outside the minimum block")
 check("E12C-02_no_teaching_below_block",
       "!(capacity.belowMinimumBlock && a.candidate.purpose == TaskPurpose.TEACH)" in engine,
@@ -362,11 +367,17 @@ check("E12C-07_candidate_dispositions_equal_pdt", enum_ids(facts, "CandidateDisp
 pdt_codes = set(re.findall(r"^([a-z]+\.[a-z0-9_]+)$", pdt, re.M))
 used_codes = set(re.findall(r'"((?:need|candidate|eligibility|priority|capacity|selection|replan)\.[a-z0-9_]+)"', engine + facts))
 check("E12C-07_every_code_is_pdt", used_codes and used_codes <= pdt_codes, f"not in PDT-v0: {sorted(used_codes - pdt_codes)}")
-check("E12C-07_trace_format", 'const val FORMAT = "planner_trace/1"' in codec and 'const val TRACE_SCHEMA = "planner_trace/1"' in engine,
-      "the trace format is not planner_trace/1")
+# 12C owns planner_trace/1 and that it still decodes; 12D moved the written format to /2. The check was
+# narrowed from "the format is /1" to what 12C decided: a versioned planner_trace format whose /1 still
+# reads, with the planner and the codec naming the same version.
+written = re.search(r'const val FORMAT = "(planner_trace/\d+)"', codec)
+check("E12C-07_trace_format", written is not None and 'const val FORMAT_V1 = "planner_trace/1"' in codec
+      and f'const val TRACE_SCHEMA = "{written.group(1)}"' in engine,
+      "the trace format is not a versioned planner_trace format that still reads /1")
 decode = body(codec, "private fun decodeOrThrow(")
 check("E12C-07_decode_body_read", len(decode) > 1000, "the decode reader returned nothing")
-check("E12C-07_unknown_format_refused", "if (lines.firstOrNull() != FORMAT) throw Malformed()" in decode, "another format is accepted")
+check("E12C-07_unknown_format_refused", "if (lines.firstOrNull() != FORMAT) throw Malformed()" in decode
+      or "if (version != FORMAT && version != FORMAT_V1) throw Malformed()" in decode, "another format is accepted")
 check("E12C-07_unknown_section_refused", "else -> throw Malformed()" in decode, "an unknown section is accepted")
 check("E12C-07_decode_never_guesses", "fun decode(stored: String): PlanTrace? = runCatching { decodeOrThrow(stored) }.getOrNull()" in codec,
       "decoding can return a partial trace")

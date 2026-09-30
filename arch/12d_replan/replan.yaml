@@ -1,0 +1,341 @@
+model: RPLX-v0
+stage_step: 12D
+status: accepted_12d
+decision: D-095
+planner_engine: PLNX-v0
+explainability_contract: PDT-v0
+capacity_contract: D-033
+reentry_contract: SRR-v0
+priority_contract: PBR-v0
+prerequisite_contract: PRG-v0
+working_flow_contract: TRUX-v0
+session_state: SESX-v0
+data_model: DDM-v0
+persistence: LFPS-v0
+boundaries: MSBX-v0
+purpose: plan_versions_replaced_with_a_reason_and_reentry_without_debt
+
+scope:
+  replan_implemented: true
+  reentry_implemented: true
+  paused_continuation_implemented: true
+  skill_state_assembled: false
+  recompute_after_attempt_implemented: false
+  planner_called_from_app: false
+  reverse_invalidation_implemented: false
+  focus_preference_implemented: false
+  reason_text_implemented: false
+  schema_changed: false
+  migration_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  absence_penalty_claim: null
+  backlog_claim: null
+
+replan_question: When a plan is replaced, what is kept, what is solved again, and why?
+
+primary_invariant: >-
+  A plan is replaced by a new version with a reason, never edited. What the learner started is kept,
+  only the unstarted remainder is solved again, the day never grows by itself, and a return after
+  absence replays nothing — absence is not debt, failure or decay.
+
+found_before_12d:
+  - id: attempt_has_no_planned_task_link
+    was: DDM-v0 gives attempt no link to planned_task, so the store cannot say which planned task was started or finished
+    resolved_here: >-
+      the caller that owns in-flight state reports the positions it kept; each must exist in the plan being
+      replaced or the replan is refused; the trace records them as kept
+    owner: 15
+  - id: same_day_build_wrote_a_second_initial_plan
+    was: 12C's build() appended an unexplained new version when called again on the same day
+    resolved_here: same day with no event returns the plan already there and writes nothing
+  - id: trace_format_had_no_room_for_a_replan
+    was: planner_trace/1 has no kept flag, replan record or re-entry context
+    resolved_here: planner_trace/2 carries them; /1 still decodes strictly and cannot claim what it never had
+  - id: handoff_items_that_cannot_be_built_yet
+    was: skill_state assembly, recompute after an attempt, calling the planner from the app and reverse invalidation were handed to 12D
+    resolved_here: each is re-pointed to the step that can build it, with the reason
+  - id: focus_event_has_nothing_to_act_on
+    was: PBR-v0 §17 lists USER_FOCUS_CHANGED but the planner takes no focus preference
+    resolved_here: the event is not accepted; the preference is 16D's
+
+generation_kinds:
+  source: PDT-v0 §4
+  values: [initial, replan, reentry]
+  initial_when: no_plan_exists
+  reentry_when: newest_plan_belongs_to_another_study_day
+  replan_when: newest_plan_is_today_and_an_event_arrived
+  same_day_without_event: returns_existing_plan_and_writes_nothing
+  new_version_without_reason: false
+
+triggers:
+  source: [D-033 §16, PBR-v0 §17, PRG-v0 §19]
+  codes_from: PDT-v0 §8.10
+  code_invented_for_an_uncoded_event: false
+  uncoded_events: [task_completed]
+  not_accepted: [user_focus_changed]
+  sets_remaining_time: [session_remaining_time_changed, user_requested_extra_time]
+
+remaining_budget:
+  source: D-033 §8
+  capacity_change: new_day_budget_minus_kept
+  declared_remaining_time: is_the_remainder
+  any_other_event: day_budget_minus_kept
+  remainder_negative: false
+  replanning_grows_the_day: false
+  remainder_rule: same_as_a_whole_day
+  kept_work_undone_by_less_time: false
+
+kept_work:
+  source: TRUX-v0 §10.1
+  reported_by: caller_owning_in_flight_state
+  checked_against_previous_plan: true
+  unknown_position: refused
+  kept_first_and_unchanged: true
+  kept_need_served_twice: false
+  unstarted_recorded_as_invalidated: true
+
+reentry:
+  source: SRR-v0
+  old_plan_replayed: false
+  kept_on_a_new_day: false
+  absence_is_failure: false
+  absence_is_debt: false
+  absence_decays_mastery: false
+  absence_feeds_starvation: false
+  day_budget_applies: true
+  context_fields: [previous_plan_version_id, last_planned_study_day, returned_study_day, absence_study_days,
+                   stale_planned_task_count, paused_checkpoint_need_keys, high_stakes_pauses_not_resumed,
+                   open_need_count_by_trigger, due_skill_count_by_retention, p0_p1_need_count,
+                   resolved_daily_capacity_minutes]
+  codes: [replan.return_after_absence, reentry.return_after_absence, reentry.absence_not_failure,
+          reentry.absence_not_task_debt, reentry.stale_plan_not_replayed, reentry.current_state_regenerated,
+          reentry.paused_checkpoint_candidate, reentry.incomplete_high_stakes_attempt_not_scored,
+          reentry.due_inventory_not_daily_plan]
+
+paused_work:
+  source: SRR-v0 §5, PBR-v0 §7
+  safe_pause_band: P2
+  selected_automatically: false
+  high_stakes_pause_continued_as_independent: false
+  latest_pause_per_need: true
+  closed_need_reopened_by_a_pause: false
+  undecodable_pause_resumable: false
+
+trace:
+  format: planner_trace/2
+  previous_format_still_decodes: planner_trace/1
+  v1_may_claim_v2_fields: false
+  records: [kept_flag, replan_record, reentry_context]
+
+persistence:
+  tables: [plan_version, planned_task, planner_decision_trace]
+  region: truth
+  one_transaction: true
+  edited_in_place: false
+  refused_replan_writes: false
+
+port_refinements:
+  interfaces_added: 0
+  port_count: 4
+  refinements:
+    - name: latestPlan
+      port: PersistencePort
+      signature: latestPlan() -> StoredPlan?
+      reason: a replan must know what it replaces and re-entry which day that plan belonged to
+      returns_raw_trace_text: true
+      writes: false
+    - name: resumeCheckpointRows
+      port: PersistencePort
+      signature: resumeCheckpointRows() -> List<StoredTruth>
+      reason: a stored pause is a continuation signal for the need it names
+      writes: false
+
+re_pointed:
+  skill_state_assembly_under_one_watermark:
+    to: 13
+    why: only 12A writes skill_state today; the watermark problem appears when 13 becomes the second writer
+  recompute_chain_after_an_attempt:
+    to: 15
+    why: rebuilding mastery needs Objective gate profiles, which are authored content
+  calling_the_planner_from_the_app:
+    to: 16D
+    why: the planner needs a stored capacity and the app has none; a default would be a number the learner never chose
+  reverse_invalidation_of_dependents:
+    to: 18E
+    why: a replan already regenerates from bounded current state; invalidating only dependents is an optimisation
+  attempt_to_planned_task_link:
+    to: 15
+    why: DDM-v0 names no such column; until tasks can be started, the caller reports kept work
+
+living_gates_narrowed:
+  - check: E12C-02_planning_budget_exact / E12C-02_relaxed_only_below_block
+    validator: tools/validate_planner_engine.py
+    was: the D-033 rule read inside resolveCapacity
+    now: the same rule read in capacityOf, with resolveCapacity applying it
+    why: 12D shares the rule so a replan's remainder uses exactly the day's rule
+    guarantee_weakened: false
+  - check: E12C-07_trace_format / E12C-07_unknown_format_refused
+    validator: tools/validate_planner_engine.py
+    was: the format is planner_trace/1 and only it decodes
+    now: a versioned planner_trace format whose /1 still decodes, planner and codec naming the same version
+    why: 12D moved the written format to /2
+    guarantee_weakened: false
+
+wiring:
+  reachable_in_app_today: false
+  why_not: nothing calls the planner (16D) and no task can be started, so no event is ever raised
+  caller_owner: 16D
+
+tests:
+  t1:
+    - core-model PlannerFactsTest
+    - core-engines ReplanEngineTest
+    - core-application ReplanTest
+  t2:
+    - data-persistence PlanStorageTest
+
+verified_runs:
+  - id: RUN-01
+    command: ./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test
+    tier: T1
+    result: PASS
+  - id: RUN-02
+    command: ./gradlew :data-persistence:test
+    tier: T2
+    result: PASS
+  - id: RUN-03
+    command: ./gradlew verifyModuleBoundaries
+    tier: T3
+    result: PASS
+  - id: RUN-04
+    command: ./gradlew :data-curriculum:test :ai-adapter:test
+    tier: T5
+    result: PASS
+  - id: RUN-05
+    command: ./gradlew :app-wiring:assembleDebug
+    tier: T5
+    result: PASS
+  - id: RUN-06
+    command: ./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false
+    tier: T5
+    result: PASS
+
+mutation_results:
+  total: 33
+  detected: 33
+  harness_verified_to_run_gradle: true
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: R01, mutant: a_plan_from_another_day_is_treated_as_today_s}
+    - {id: R02, mutant: a_chain_of_replans_forgets_what_was_kept_earlier}
+    - {id: R03, mutant: a_declared_remaining_time_is_ignored}
+    - {id: R04, mutant: a_new_capacity_for_today_is_ignored}
+    - {id: R05, mutant: kept_work_is_not_taken_off_the_day}
+    - {id: R06, mutant: a_smaller_capacity_makes_a_negative_remainder}
+    - {id: R07, mutant: a_capacity_change_keeps_the_old_source}
+    - {id: R08, mutant: a_high_stakes_pause_is_resumed_as_continuation}
+    - {id: R09, mutant: a_safe_pause_is_ignored}
+    - {id: R10, mutant: the_oldest_pause_wins}
+    - {id: R11, mutant: a_need_a_kept_task_serves_is_served_twice}
+    - {id: R12, mutant: kept_tasks_are_not_marked_as_kept}
+    - {id: R13, mutant: kept_tasks_are_recorded_as_invalidated}
+    - {id: R14, mutant: the_replan_s_reason_is_dropped}
+    - {id: R15, mutant: the_day_s_budget_check_always_passes}
+    - {id: R16, mutant: re_entry_does_not_say_the_old_plan_was_not_replayed}
+    - {id: R17, mutant: absence_days_are_miscounted}
+    - {id: R18, mutant: the_stale_plan_s_size_is_lost}
+    - {id: R19, mutant: the_same_day_plans_again_without_a_reason}
+    - {id: R20, mutant: a_kept_task_that_was_never_planned_is_accepted}
+    - {id: R21, mutant: a_remaining_time_event_without_the_time_is_accepted}
+    - {id: R22, mutant: stored_pauses_are_ignored}
+    - {id: R23, mutant: a_new_day_keeps_yesterday_s_reported_tasks}
+    - {id: R24, mutant: the_day_s_budget_after_a_replan_forgets_kept_work}
+    - {id: R25, mutant: v2_does_not_write_the_kept_flag}
+    - {id: R26, mutant: a_1_trace_may_claim_a_kept_task}
+    - {id: R27, mutant: a_1_trace_may_carry_a_replan}
+    - {id: R28, mutant: a_1_trace_may_carry_a_re_entry}
+    - {id: R29, mutant: the_newest_plan_is_the_oldest}
+    - {id: R30, mutant: pauses_come_back_newest_first}
+    - {id: R31, mutant: the_task_count_is_not_the_plan_s_own}
+    - {id: R32, mutant: extra_time_is_not_a_declared_remainder}
+    - {id: R33, mutant: a_trigger_loses_its_pdt_v0_code}
+  survived_at_first: [R10, R23, R24, R28]
+  not_counted_at_first: [R19]
+  survivors_note: >-
+    every first-run survivor was a gap in the tests, not in the rules: no test let a later high-stakes pause
+    supersede an earlier safe one (R10), checked that yesterday's reported tasks do not shape a re-entry
+    (R23), kept enough work for the day's budget check to matter (R24), or gave a /1 trace a re-entry section
+    (R28). R19's first form did not compile, so it was not counted; it was rewritten as the real regression
+    (planning again on the same day with a made-up event). Each gained a test and the whole set was run
+    again from scratch.
+
+validator_mutation:
+  total: 38
+  detected: 38
+  negative_control: forbidden words written only inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  missed_at_first:
+    - id: V31
+      why: >-
+        the newest-plan check looked for `ORDER BY sequence DESC LIMIT 1`, which the trace query also contains, so
+        reversing the plan query still passed; the check now names the plan query itself
+  harness_defects_fixed:
+    - id: V12
+      why: the first form wrapped the capacity call instead of removing it, so it never built the violation it named
+    - id: V31
+      why: its first anchor occurred twice in the adapter, which the harness refuses
+  reader_guard: every body the validator reads is itself checked to be non-empty
+
+device_verification:
+  target_device: Poco M6 Pro
+  device_connected: false
+  t6_run: false
+  claimed: false
+
+not_verified:
+  - any replan in the real app; nothing calls the planner and no event is raised
+  - kept work from real task runs; today it can only be reported by a caller
+  - the 3H re-entry scenarios run end to end against this code (12F)
+
+forbidden_replan_patterns:
+  - plan_edited_in_place
+  - new_version_without_a_reason
+  - old_plan_replayed_after_absence
+  - absence_as_debt_or_failure
+  - absence_as_mastery_decay
+  - absence_feeding_starvation
+  - in_flight_work_destroyed_by_replan
+  - kept_work_undone_by_less_time
+  - day_grown_by_replanning
+  - paused_work_selected_automatically
+  - high_stakes_pause_continued_as_independent_evidence
+  - invented_reason_code_for_an_event
+  - unreported_kept_work_guessed
+
+future_stage_boundaries:
+  12E: user-facing reason text and Today reading the plan
+  12F: the 3H virtual-user scenarios against this code
+  13: skill_state assembly under one watermark, retention and weakness needs
+  15: the recompute chain after an attempt, and a stored attempt-to-planned-task link
+  16D: calling the planner from the app, the capacity setting and the focus preference
+  18C: starvation thresholds
+  18E: reverse invalidation of dependents and candidate caps
+  T6: device run
+
+acceptance:
+  - RPLX-v0 is the accepted replan
+  - initial, replan and re-entry are told apart by whether a plan exists and which study day it belongs to
+  - a new plan version always has a reason; the same day with no event writes nothing
+  - only the unstarted remainder is solved again; kept work is first, unchanged and never served twice
+  - kept work is reported by the caller and checked against the previous plan, or the replan is refused
+  - the remainder follows D-033; it is never negative and never grows the day by itself
+  - re-entry replays nothing, keeps nothing and records what the return looked like, with no score or debt
+  - a safe pause makes its need P2 paused work without selecting it; a high-stakes pause is not continued
+  - every trigger code is PDT-v0's, and no code is invented for an event that has none
+  - planner_trace/2 records the replan; /1 still decodes strictly
+  - the schema is unchanged, no migration was added and the port count stays four
+  - nothing is claimed that was not run; T6 was not run
+  - independent 12D QA passes and Stage 6-12C regressions pass

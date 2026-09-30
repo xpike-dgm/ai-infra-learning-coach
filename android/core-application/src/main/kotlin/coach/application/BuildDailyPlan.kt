@@ -1,11 +1,15 @@
 package coach.application
 
 import coach.engines.PlannerEngine
+import coach.engines.ReplanEngine
 import coach.model.DailyCapacityInput
+import coach.model.GenerationKind
 import coach.model.MasteryAxisState
 import coach.model.PlanTrace
 import coach.model.PlanTraceCodec
 import coach.model.PrerequisiteCandidate
+import coach.model.ReplanTrigger
+import coach.model.ResumeContextCodec
 import coach.model.RetentionAxis
 import coach.model.SkillPlanningState
 import coach.ports.ClockPort
@@ -14,11 +18,13 @@ import coach.ports.PersistencePort
 import coach.ports.TruthRecord
 
 /**
- * Producing today's plan (12C) — an `initial` generation in `PDT-v0`'s terms.
+ * Producing today's plan (12C), and replacing it (12D) — `PDT-v0`'s initial, replan and re-entry
+ * generations.
  *
  * The plan is **truth**: `plan_version`, its `planned_task` rows and its decision trace are appended in
- * one transaction and never edited, so a later plan is a new version and yesterday's plan still says
- * exactly what it said. Replanning after an event is 12D's; this only plans from current state.
+ * one transaction and never edited, so a later plan is a new version and an earlier one still says
+ * exactly what it said. A new version always has a reason: no plan yet, a new study day, or an event.
+ * Asked again on the same day with no event, the planner returns the plan it already has.
  *
  * `planned_task` carries only the Skill and the position. Everything else a reader needs — purpose,
  * title, activity, minutes, and why — is in the trace, keyed by position, because `DDM-v0` names no
@@ -29,19 +35,54 @@ class BuildDailyPlan(
     private val content: ContentPort,
     private val clock: ClockPort,
 ) {
+    /**
+     * What happened, for a replan within one study day (D-033 §16). [keptPositions] are the previous
+     * plan's tasks the learner has started or finished: `DDM-v0` gives an attempt no link to a planned
+     * task, so the caller that ran them reports them, and each is checked against the previous plan.
+     */
+    data class ReplanRequest(
+        val trigger: ReplanTrigger,
+        val capacity: DailyCapacityInput,
+        val keptPositions: Set<Int> = emptySet(),
+        val remainingMinutes: Int? = null,
+    )
+
     sealed interface Built {
         /** No curriculum is published, so there is nothing to plan against and nothing is written. */
         data object NothingPublished : Built
 
+        /** Today already has a plan and nothing asked for a new one; nothing is written. */
+        data class AlreadyPlanned(val planVersionId: Long) : Built
+
+        /** The replan could not be made honestly; nothing is written, and the reason says why. */
+        data class Refused(val reason: String) : Built
+
         data class Planned(val planVersionId: Long, val trace: PlanTrace) : Built
     }
 
-    fun build(capacity: DailyCapacityInput): Built {
+    fun replan(request: ReplanRequest): Built = build(request.capacity, request)
+
+    fun build(capacity: DailyCapacityInput, replan: ReplanRequest? = null): Built {
         // Read first, like every projection: the trace can then never claim to have seen more truth
         // than the state it was planned from.
         val watermark = persistence.truthWatermark()
         val curriculumVersion = persistence.latestCurriculumVersion() ?: return Built.NothingPublished
         val now = clock.now()
+
+        val previous = persistence.latestPlan()
+        val kind = ReplanEngine.classify(previous?.recordedAt?.studyDay, now.studyDay)
+        val previousTrace = previous?.traceText?.let(PlanTraceCodec::decode)
+        if (kind == GenerationKind.REPLAN) {
+            if (replan == null) return Built.AlreadyPlanned(previous!!.planVersionId)
+            if (previousTrace == null) return Built.Refused("the plan being replaced cannot be read")
+            val known = previousTrace.selected.map { it.position }.toSet()
+            if (!known.containsAll(replan.keptPositions)) {
+                return Built.Refused("kept tasks ${replan.keptPositions - known} are not in the plan being replaced")
+            }
+            if (replan.trigger.setsRemainingTime && replan.remainingMinutes == null) {
+                return Built.Refused("${replan.trigger.id} must say how much time remains")
+            }
+        }
 
         val skills = persistence.publishedSkills()
         val states = skills.map { skill ->
@@ -57,7 +98,17 @@ class BuildDailyPlan(
                 snapshotRef = row?.let { "${it.key}#watermark=${it.truthWatermark}" },
             )
         }
-        val needs = PlannerEngine.needsFromSkillStates(states)
+        // A stored pause is a continuation signal for the need it names; a row that does not decode is
+        // not a pause anyone can resume.
+        val pauses = persistence.resumeCheckpointRows()
+            .mapNotNull { row -> row.record.payload["context"]?.let(ResumeContextCodec::decode) }
+        val paused = ReplanEngine.withPausedWork(PlannerEngine.needsFromSkillStates(states), pauses)
+        val kept = if (kind == GenerationKind.REPLAN) {
+            previousTrace!!.selected.filter { it.position in replan!!.keptPositions }
+        } else {
+            emptyList()
+        }
+        val needs = ReplanEngine.unservedNeeds(paused.needs, kept)
         val candidates = needs.flatMap { content.taskCandidates(it) }
 
         // The prerequisite gate is asked about every candidate before priority is computed at all.
@@ -73,8 +124,22 @@ class BuildDailyPlan(
             )
         }
 
-        val trace = PlannerEngine.plan(
-            capacity = PlannerEngine.resolveCapacity(capacity),
+        val budget = if (kind == GenerationKind.REPLAN) {
+            val request = replan!!
+            val minutes = ReplanEngine.remainderMinutes(
+                trigger = request.trigger,
+                previous = previousTrace!!,
+                preservedMinutes = kept.sumOf { it.plannedMinutes },
+                newDayMinutes = PlannerEngine.resolveCapacity(request.capacity).hardBudgetMinutes,
+                declaredRemainingMinutes = request.remainingMinutes,
+            )
+            ReplanEngine.remainderCapacity(request.trigger, previousTrace, minutes)
+        } else {
+            PlannerEngine.resolveCapacity(capacity)
+        }
+
+        val fresh = PlannerEngine.plan(
+            capacity = budget,
             needs = needs,
             candidates = candidates,
             decisions = decisions,
@@ -83,6 +148,29 @@ class BuildDailyPlan(
             truthWatermark = watermark,
             skillsNotOnRoute = skills.count { !PlannerEngine.onRoute(it.lifecycleStatus) },
         )
+        val trace = when (kind) {
+            GenerationKind.INITIAL -> fresh
+            GenerationKind.REENTRY -> ReplanEngine.composeReentry(
+                fresh = fresh,
+                previousPlanVersionId = previous!!.planVersionId,
+                lastPlannedStudyDay = previous.recordedAt.studyDay,
+                stalePlannedTaskCount = previous.plannedTaskCount,
+                paused = paused,
+                states = states,
+            )
+            GenerationKind.REPLAN -> ReplanEngine.composeReplan(
+                fresh = fresh,
+                previous = previousTrace!!,
+                previousPlanVersionId = previous!!.planVersionId,
+                trigger = replan!!.trigger,
+                preservedPositions = replan.keptPositions.sorted(),
+                dayHardMinutes = if (replan.trigger == ReplanTrigger.TODAY_CAPACITY_CHANGED) {
+                    PlannerEngine.resolveCapacity(replan.capacity).hardBudgetMinutes
+                } else {
+                    kept.sumOf { it.plannedMinutes } + budget.hardBudgetMinutes
+                },
+            )
+        }
 
         val planVersionId = persistence.inTransaction {
             val planId = persistence.appendTruth(

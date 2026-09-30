@@ -219,12 +219,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **12A ✅ Mastery Engine v1 — MSTX-v0 / D-092**
 - **12B ✅ Prerequisite Engine — PRQX-v0 / D-093**
 - **12C ✅ Planner Engine v1 — PLNX-v0 / D-094**
-- **12D 🟡 Replan — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 12E–20 ⬜
+- **12D ✅ Replan — RPLX-v0 / D-095**
+- **12E 🟡 Explanation / reason codes — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 12F–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 12D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 12E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -431,3 +432,17 @@ Kod yazmadan önce bulunanlar: `planned_task` bir Today satırını taşıyamıy
 Plan truth'tur: `plan_version`, `planned_task` ve iz tek transaction'da eklenir ve asla düzenlenmez; watermark durumdan önce okunur. İki port incelmesi (`publishedSkills`, `taskCandidates`); yeni arayüz, şema değişikliği ya da migration yok. Mutation 55/55, validator 226/226, kendi mutation testi 46/46. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor: kapasite ayarı (16D), authored görev (15) ve Today'in izden gerekçe göstermesi (12E) yok.
 
 Canonical: `docs/PLANNER_ENGINE_IMPL_SPEC.md` / D-094.
+
+## 12.21 12D Replan — RPLX-v0 / D-095
+
+Planın nasıl değiştirildiği kodda. Ana invariant: **bir plan düzenlenmez, gerekçesi olan yeni bir sürümle değiştirilir.** Öğrencinin başladığı iş korunur, yalnız başlanmamış kalan yeniden çözülür, gün kendiliğinden büyümez ve yokluktan dönüş hiçbir şeyi tekrar oynatmaz — yokluk borç, başarısızlık ya da çürüme değildir.
+
+Üretim türü depodan okunur: plan yoksa `initial`, en yeni plan başka bir çalışma gününe aitse `reentry` (bir olay gelse bile), bugünün planı varsa ve olay geldiyse `replan`. **Aynı gün olay yoksa yeni sürüm yazılmaz** — 12C'nin `build()`u bu durumda gerekçesiz ikinci bir initial plan yazıyordu; sözleşme değil davranış düzeltildi. Olaylar D-033 §16, `PBR-v0` §17 ve `PRG-v0` §19'dan; her biri `PDT-v0` §8.10 kodunu taşır, kodu olmayana (`task_completed`) kod uydurulmaz; odak tercihi olmadığı için `user_focus_changed` kabul edilmez (16D).
+
+Kalan bütçe D-033 §8: bugün için yeni kapasite günü değiştirir, bildirilen kalan süre kalanın kendisidir, diğer her olay günü korur; korunan dakikalar üstten düşer, kalan asla negatif olmaz ve günle aynı kurala uyar. **Depo hangi planlı görevin başladığını söyleyemiyor** (`attempt`in `planned_task` bağı yok), bu yüzden devam eden işin sahibi olan çağıran bildirir; her pozisyon önceki plana karşı doğrulanır, bilinmeyen pozisyon replan'ı reddeder ve reddedilen replan hiçbir şey yazmaz. Korunan görevler önde, değişmeden ve işaretli; korunan görevin ihtiyacı iki kez karşılanmaz.
+
+Re-entry `SRR-v0`: dünkü plan tekrar oynatılmaz ve hiçbir şeyi korunmaz, günün normal bütçesi geçerlidir, yokluk starvation'ı beslemez; iz `SRR-v0` §17 bağlamını ve `PDT-v0` §8.8 kodlarını taşır — hiçbiri skor, ceza ya da borç değil. Güvenli duraklatma (11C) açık devam ihtiyacını P2 yapar ama otomatik seçmez; high-stakes duraklatma bağımsız iş olarak devam ettirilmez. İz `planner_trace/2`; `/1` katı biçimde okunmaya devam eder.
+
+12D'ye devredilip bugün kurulamayanlar uydurulmadan yeniden bağlandı: `skill_state` birleştirmesi 13, deneme sonrası recompute zinciri ve deneme→planlı görev bağı 15, planner'ı uygulamadan çağırmak 16D, bağımlıların ters invalidation'ı 18E. Mutation 33/33, validator 157/157, kendi mutation testi 38/38. **T6 çalıştırılmadı** ve planner uygulamada çağrılmıyor.
+
+Canonical: `docs/REPLAN_SPEC.md` / D-095.

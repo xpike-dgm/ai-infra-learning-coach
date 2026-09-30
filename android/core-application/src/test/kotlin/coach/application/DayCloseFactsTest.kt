@@ -18,6 +18,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import coach.model.SkillRow
 import coach.model.PrerequisiteEdge
+import coach.model.StoredPlan
+import coach.ports.StoredTruth
 
 /** Reading one day's inventory: it counts, and does nothing else (11E). */
 class DayCloseFactsTest {
@@ -56,6 +58,8 @@ class DayCloseFactsTest {
         override fun skill(ref: VersionedRef): SkillRow? = null
         override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> = emptyList()
         override fun publishedSkills(): List<SkillRow> = emptyList()
+        override fun latestPlan(): StoredPlan? = null
+        override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
     }
 
     private val clock = object : ClockPort {

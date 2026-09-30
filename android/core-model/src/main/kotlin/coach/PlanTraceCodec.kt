@@ -12,7 +12,10 @@ package coach.model
  * title can contain anything, and lists are comma-joined encoded items.
  */
 object PlanTraceCodec {
-    const val FORMAT = "planner_trace/1"
+    const val FORMAT = "planner_trace/2"
+
+    /** 12C wrote `/1`; `/2` (12D) adds preserved tasks, the replan record and the re-entry context. */
+    const val FORMAT_V1 = "planner_trace/1"
 
     fun encode(trace: PlanTrace): String = buildList {
         add(FORMAT)
@@ -32,7 +35,7 @@ object PlanTraceCodec {
                 "need_key" to it.needKey, "purpose" to it.purpose.id, "activity_kind" to it.activityKind,
                 "title" to it.title, "primary_skill" to it.primarySkill.toString(), "track" to it.track.orEmpty(),
                 "estimated" to it.estimatedMinutes.toString(), "planned" to it.plannedMinutes.toString(),
-                "split" to it.split.toString()))
+                "split" to it.split.toString(), "preserved" to it.preserved.toString()))
         }
         trace.needs.forEach {
             add(line("need", "need_key" to it.needKey, "trigger" to it.trigger.id,
@@ -51,6 +54,22 @@ object PlanTraceCodec {
                 "validation" to it.validationStatus.id, "eligibility" to it.eligibility?.id.orEmpty(),
                 "cost" to it.costMinutes.toString(), "disposition" to it.disposition.id, "reasons" to list(it.reasonCodes)))
         }
+        trace.replan?.let {
+            add(line("replan", "trigger" to it.trigger.id, "previous_plan" to it.previousPlanVersionId.toString(),
+                "previous_study_day" to it.previousStudyDay, "preserved" to list(it.preservedPositions.map(Int::toString)),
+                "invalidated" to list(it.invalidatedPositions.map(Int::toString)),
+                "preserved_minutes" to it.preservedMinutes.toString(), "remainder_hard" to it.remainderHardMinutes.toString()))
+        }
+        trace.reentry?.let {
+            add(line("reentry", "previous_plan" to it.previousPlanVersionId.toString(),
+                "last_planned_study_day" to it.lastPlannedStudyDay, "returned_study_day" to it.returnedStudyDay,
+                "absence_study_days" to it.absenceStudyDays.toString(), "stale_planned_tasks" to it.stalePlannedTaskCount.toString(),
+                "paused_checkpoint_needs" to list(it.pausedCheckpointNeedKeys),
+                "high_stakes_pauses_not_resumed" to it.highStakesPausesNotResumed.toString(),
+                "open_needs_by_trigger" to counts(it.openNeedCountByTrigger),
+                "due_skills_by_retention" to counts(it.dueSkillCountByRetention),
+                "p0_p1_needs" to it.p0P1NeedCount.toString(), "resolved_capacity" to it.resolvedDailyCapacityMinutes.toString()))
+        }
     }.joinToString("\n")
 
     fun decode(stored: String): PlanTrace? = runCatching { decodeOrThrow(stored) }.getOrNull()
@@ -59,10 +78,14 @@ object PlanTraceCodec {
 
     private fun decodeOrThrow(stored: String): PlanTrace {
         val lines = stored.split("\n")
-        if (lines.firstOrNull() != FORMAT) throw Malformed()
+        val version = lines.firstOrNull()
+        if (version != FORMAT && version != FORMAT_V1) throw Malformed()
+        val v2 = version == FORMAT
         var plan: Map<String, String>? = null
         var capacity: DailyCapacity? = null
         var planReasons: List<String>? = null
+        var replan: ReplanRecord? = null
+        var reentry: ReentryContext? = null
         val policies = linkedMapOf<String, String>()
         val invariants = linkedMapOf<String, Boolean>()
         val selected = mutableListOf<PlannedEntry>()
@@ -91,6 +114,8 @@ object PlanTraceCodec {
                     purpose = TaskPurpose.entries.single { it.id == v("purpose") }, activityKind = v("activity_kind"),
                     title = v("title"), primarySkill = ref(v("primary_skill")), track = v("track").ifEmpty { null },
                     estimatedMinutes = v("estimated").toInt(), plannedMinutes = v("planned").toInt(), split = bool(v("split")),
+                    // `/1` had no preserved tasks: the field is absent there and required in `/2`.
+                    preserved = if (v2) bool(v("preserved")) else if ("preserved" in f) throw Malformed() else false,
                 )
                 "need" -> needs += NeedTrace(
                     needKey = v("need_key"), trigger = NeedTrigger.entries.single { it.id == v("trigger") },
@@ -121,6 +146,29 @@ object PlanTraceCodec {
                     disposition = CandidateDisposition.entries.single { it.id == v("disposition") },
                     reasonCodes = items(v("reasons")),
                 )
+                "replan" -> {
+                    if (!v2 || replan != null) throw Malformed()
+                    replan = ReplanRecord(
+                        trigger = ReplanTrigger.entries.single { it.id == v("trigger") },
+                        previousPlanVersionId = v("previous_plan").toLong(), previousStudyDay = v("previous_study_day"),
+                        preservedPositions = items(v("preserved")).map(String::toInt),
+                        invalidatedPositions = items(v("invalidated")).map(String::toInt),
+                        preservedMinutes = v("preserved_minutes").toInt(), remainderHardMinutes = v("remainder_hard").toInt(),
+                    )
+                }
+                "reentry" -> {
+                    if (!v2 || reentry != null) throw Malformed()
+                    reentry = ReentryContext(
+                        previousPlanVersionId = v("previous_plan").toLong(), lastPlannedStudyDay = v("last_planned_study_day"),
+                        returnedStudyDay = v("returned_study_day"), absenceStudyDays = v("absence_study_days").toInt(),
+                        stalePlannedTaskCount = v("stale_planned_tasks").toInt(),
+                        pausedCheckpointNeedKeys = items(v("paused_checkpoint_needs")),
+                        highStakesPausesNotResumed = v("high_stakes_pauses_not_resumed").toInt(),
+                        openNeedCountByTrigger = countsOf(v("open_needs_by_trigger")),
+                        dueSkillCountByRetention = countsOf(v("due_skills_by_retention")),
+                        p0P1NeedCount = v("p0_p1_needs").toInt(), resolvedDailyCapacityMinutes = v("resolved_capacity").toInt(),
+                    )
+                }
                 else -> throw Malformed()
             }
         }
@@ -138,6 +186,8 @@ object PlanTraceCodec {
             planReasonCodes = planReasons ?: throw Malformed(),
             invariantChecks = invariants,
             skillsNotOnRoute = (p["skills_not_on_route"] ?: throw Malformed()).toInt(),
+            replan = replan,
+            reentry = reentry,
         )
     }
 
@@ -146,6 +196,15 @@ object PlanTraceCodec {
 
     /** A list is comma-joined items, each escaped first so an item can itself contain a comma. */
     private fun list(values: List<String>) = values.joinToString(",") { escape(it) }
+
+    /** A count map as `key:count` items, in the order given. */
+    private fun counts(values: Map<String, Int>) = list(values.map { (k, n) -> "$k:$n" })
+
+    private fun countsOf(value: String): Map<String, Int> = LinkedHashMap(items(value).associate { item ->
+        val at = item.lastIndexOf(':')
+        if (at <= 0) throw Malformed()
+        item.substring(0, at) to item.substring(at + 1).toInt()
+    })
 
     private fun items(value: String): List<String> =
         if (value.isEmpty()) emptyList() else value.split(",").map { unescape(it) ?: throw Malformed() }

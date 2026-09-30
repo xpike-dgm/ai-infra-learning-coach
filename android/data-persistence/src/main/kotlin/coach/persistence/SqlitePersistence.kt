@@ -17,11 +17,13 @@ import coach.model.PrerequisiteSnapshot
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
 import coach.model.SkillRow
+import coach.model.StoredPlan
 import coach.model.StudyTimestamp
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
 import coach.ports.PersistencePort
 import coach.ports.ProjectionRecord
+import coach.ports.StoredTruth
 import coach.ports.TruthRecord
 
 /**
@@ -361,6 +363,29 @@ class SqlitePersistence private constructor(
         curriculumStore.prerequisiteEdgesInto(target)
 
     override fun publishedSkills(): List<SkillRow> = curriculumStore.publishedSkills()
+
+    /** The newest plan by truth sequence, with its own row time, task count and trace text (12D). */
+    override fun latestPlan(): StoredPlan? {
+        val id = query("SELECT id FROM plan_version ORDER BY sequence DESC LIMIT 1") { it.getLong(0) }.singleOrNull()
+            ?: return null
+        val row = readTruth("plan_version", id) ?: return null
+        val tasks = connection.prepare("SELECT COUNT(*) FROM planned_task WHERE plan_version_id = ?").use { statement ->
+            statement.bindLong(1, id)
+            statement.step()
+            statement.getLong(0).toInt()
+        }
+        val trace = connection.prepare(
+            "SELECT trace FROM planner_decision_trace WHERE plan_version_id = ? ORDER BY sequence DESC LIMIT 1",
+        ).use { statement ->
+            statement.bindLong(1, id)
+            if (statement.step()) statement.getText(0) else null
+        }
+        return StoredPlan(id, row.recordedAt, tasks, trace)
+    }
+
+    override fun resumeCheckpointRows(): List<StoredTruth> =
+        query("SELECT id FROM resume_checkpoint ORDER BY sequence") { it.getLong(0) }
+            .mapNotNull { id -> readTruth("resume_checkpoint", id)?.let { StoredTruth(id, it) } }
 
     /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a
