@@ -1143,3 +1143,15 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13D ✅ / 13E active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13E — Program değişiklik raporu`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13E Program değişiklik raporu tamamlandı — PCRX-v0 / D-103
+
+- 13D (#42) main'e merge edildi (0efd6a0); fresh 13E PRE yapıldı ve beş kanonik kaynak `13D ✅ / 13E active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et").
+- Rapor iki okumanın farkı olarak koda döküldü: `CaptureProgramSnapshot` (önce watermark), `RecomputeSkillState` (mastery → retention → zayıflık → readiness, profiller yayımlanmış curriculum'dan), `ProgramChangeEngine` (eksen geçişleri ve plan farkı), `ReportProgramChanges` (yalnız durum değiştiyse planner'ın kendi replan'ı).
+- **Bulgu:** hiçbir port bir Skill'in Objective'lerini listeleyemiyordu; tek port inceltmesi `objectivesOf` eklendi (dört port, şema değişmedi).
+- Kimsenin yazmadığı durum 'önce' değildir; vadesi gelen tekrar değişiklik değildir; çelişki doğrulamadır; hipotez sorudur; ilk plan değişiklik değildir; hiçbir şey değişmediyse sonuç bunu söyler.
+- Mutation 42/42 (ilk turda kaçan yok; iki test mutant listesi yazılırken güçlendirildi). Altı run PASS, 712 JVM testi. Validator 162/162, kendi mutation testi 29/29, sweep 47/47.
+- **T6 çalıştırılmadı**; uygulama raporu henüz çağırmıyor (16D).
+- D-050 POST living-memory accepted state'i `13E ✅ / 13F active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13F — Tanısal atlama (VDW-v0)`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

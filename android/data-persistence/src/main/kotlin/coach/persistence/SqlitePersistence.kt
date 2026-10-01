@@ -15,6 +15,7 @@ import coach.model.EvidenceRow
 import coach.model.ExposureFact
 import coach.model.IndependenceClass
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
 import coach.model.PrerequisiteSnapshot
 import coach.model.PublishOutcome
@@ -373,6 +374,8 @@ class SqlitePersistence private constructor(
             .single()
 
     override fun skill(ref: VersionedRef): SkillRow? = curriculumStore.skill(ref)
+
+    override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = curriculumStore.objectivesOf(skill)
 
     override fun prerequisiteEdgesInto(target: VersionedRef): List<PrerequisiteEdge> =
         curriculumStore.prerequisiteEdgesInto(target)

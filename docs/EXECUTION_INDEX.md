@@ -167,8 +167,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **13B — Aylık sınav** — `MCAX-v0 / D-100`
 - [x] **13C — Spaced repetition** — `RVRX-v0 / D-101`
 - [x] **13D — Remediation Engine** — `WLRX-v0 / D-102`
-- [ ] **13E — Program değişiklik raporu** **AKTİF**
-- [ ] **13F — Tanısal atlama (VDW-v0)** — D-099 ile eklendi
+- [x] **13E — Program değişiklik raporu** — `PCRX-v0 / D-103`
+- [ ] **13F — Tanısal atlama (VDW-v0)** — D-099 ile eklendi **AKTİF**
 
 ---
 
@@ -248,9 +248,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13D`  
-**Son tamamlanan:** **`13D — WLRX-v0 / D-102`**  
-**Aktif:** **`13E — Program değişiklik raporu`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13E`  
+**Son tamamlanan:** **`13E — PCRX-v0 / D-103`**  
+**Aktif:** **`13F — Tanısal atlama (VDW-v0)`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -280,4 +280,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 13D `WLRX-v0` ile remediation motoru kodda: başarısız bir deneme başarısız bir Skill değildir: her kanıt satırı `WLRM-v0`'ın on iki atıf kuralıyla, öncelik sırasıyla kendi Objective'ine atfedilir; atfedilemeyen ya da ön koşulu bozuk deneme hedefi suçlamaz, yardım alınmış, provisional ya da kısmi hata en çok bir hipotezdir, mastery sonrası ilk temiz çelişki hiçbir şeyi silmeden doğrulama açar, remediation yalnız mastery motorunun kapıları düştüğünde doğrulanır ve yalnız taze, temiz kanıt kapıları yeniden geçirdiğinde kapanır — biten görev, yardım, aynı item ya da tek başarı kapatmaz. Skill zayıflık ekseni Objective'lerinden türetilir ve hiçbir yere yayılmaz; motor `weakness_detected` ihtiyacını planner'a ve composer'lara kendisi sağlar, bir endişe tek ihtiyaçtır. Düzeltmeler (`evidence_disposition`) satırın üzerine yazılmadan, en yenisi okunarak her motora ulaşır; geriye dönük kök neden contamination'ı yalnız gerçekten bağımlı slotları düzeltir. Şema v6 `weakness_state`'i tamamlar (dolu v5 fixture'a karşı); Topic durumu 16C'ye, yüksek riskli boşluk politikası 18D'ye bağlandı (kullanıcı kararı). T6 çalıştırılmadı.
 
-13E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+13E `PCRX-v0` ile program değişiklik raporu kodda: bir rapor iki okumanın farkıdır ve motorların yazdığından fazlasını iddia edemez: bir kanıttan sonra dokunulan Skill'ler kendi motorlarıyla sırayla yeniden hesaplanır (mastery → retention → zayıflık → readiness; profiller yayımlanmış curriculum'dan, bilinmeyen criticality reddedilir), değişiklik yalnız bir eksen gerçekten hareket ettiyse söylenir, kimsenin yazmadığı durum bir 'önce' değildir, vadesi gelen tekrar gündür ve değişiklik değildir, mastery sonrası çelişki bir doğrulamadır ve asla düşüş değildir, hipotez eksik değil sorudur; plan değişikliği iki kayıtlı plan sürümü arasındaki farktır ve ilk plan değişiklik değildir; yalnız kanonik durum değiştiyse planner'ın kendi replan'ı, değişikliğin adlandırdığı olayla çağrılır ve günün bütçesi korunur; hiçbir şey değişmediyse sonuç bunu açıkça söyler. `ASUX-v0` §13.1 aileleri dolduruldu; tek port inceltmesi `objectivesOf`, şema değişmedi. T6 çalıştırılmadı.
+
+13F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

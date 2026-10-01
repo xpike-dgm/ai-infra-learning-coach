@@ -6,6 +6,7 @@ import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
 import coach.model.LifecycleStatus
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -178,6 +179,30 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
             directEvidenceTypes = statement.getText(1).split(",").filter { it.isNotEmpty() },
             requiredDirectType = statement.textOrNull(2),
         )
+    }
+
+    /** The Objectives whose parent is this Skill version (13E), in a stable order. */
+    fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> {
+        val rows = mutableListOf<ObjectiveRow>()
+        connection.prepare(
+            "SELECT logical_id, version, required, criticality, acceptable_evidence_types, direct_evidence_types, required_direct_type " +
+                "FROM objective WHERE parent_skill_logical_id = ? AND parent_skill_version = ? ORDER BY logical_id, version",
+        ).use { statement ->
+            statement.bindText(1, skill.logicalId)
+            statement.bindLong(2, skill.version.toLong())
+            while (statement.step()) {
+                rows += ObjectiveRow(
+                    ref = VersionedRef(statement.getText(0), statement.getLong(1).toInt()),
+                    parentSkill = skill,
+                    required = statement.getLong(2) == 1L,
+                    criticality = statement.getText(3),
+                    acceptableEvidenceTypes = statement.getText(4).split(","),
+                    directEvidenceTypes = statement.getText(5).split(",").filter { it.isNotEmpty() },
+                    requiredDirectType = statement.textOrNull(6),
+                )
+            }
+        }
+        return rows
     }
 
     /** One published Skill version (12B), or `null` if this version was never published. */

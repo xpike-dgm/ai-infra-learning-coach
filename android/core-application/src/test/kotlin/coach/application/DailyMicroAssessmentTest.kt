@@ -145,6 +145,9 @@ class DailyMicroAssessmentTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
 
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
+
+
+        override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
     }
 
     private fun storeWithItem(

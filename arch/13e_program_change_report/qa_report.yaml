@@ -1,0 +1,520 @@
+model: PCRX-v0
+stage_step: 13E
+decision: D-103
+result: PASS
+checks_total: 162
+checks_passed: 162
+checks_failed: 0
+checks:
+- check: E13E-00_exists_program_change.yaml
+  result: PASS
+  details: missing arch/13e_program_change_report/program_change.yaml
+- check: E13E-00_exists_PROGRAM_CHANGE_REPORT_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md
+- check: E13E-00_exists_13e_program_change_report_research.md
+  result: PASS
+  details: missing research/13e_program_change_report_research.md
+- check: E13E-00_exists_ProgramChangeFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/ProgramChangeFacts.kt
+- check: E13E-00_exists_ProgramChangeEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/ProgramChangeEngine.kt
+- check: E13E-00_exists_ProgramChanges.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/ProgramChanges.kt
+- check: E13E-00_exists_ProgramChangePresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/ProgramChangePresentation.kt
+- check: E13E-01_model
+  result: PASS
+  details: PCRX-v0
+- check: E13E-01_status
+  result: PASS
+  details: accepted_13e
+- check: E13E-01_decision
+  result: PASS
+  details: D-103
+- check: E13E-01_semantics
+  result: PASS
+  details: ASUX-v0
+- check: E13E-01_scope_state_changes_reported
+  result: PASS
+  details: state_changes_reported=True
+- check: E13E-01_scope_plan_changes_reported
+  result: PASS
+  details: plan_changes_reported=True
+- check: E13E-01_scope_recompute_orchestrated
+  result: PASS
+  details: recompute_orchestrated=True
+- check: E13E-01_scope_replan_only_on_state_change
+  result: PASS
+  details: replan_only_on_state_change=True
+- check: E13E-01_scope_result_families_filled
+  result: PASS
+  details: result_families_filled=True
+- check: E13E-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E13E-01_scope_migration_added
+  result: PASS
+  details: migration_added=False
+- check: E13E-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E13E-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E13E-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E13E-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E13E-01_scope_retention_rule_changed
+  result: PASS
+  details: retention_rule_changed=False
+- check: E13E-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E13E-01_scope_gate_rule_changed
+  result: PASS
+  details: gate_rule_changed=False
+- check: E13E-01_scope_durable_assessment_report
+  result: PASS
+  details: durable_assessment_report=False
+- check: E13E-01_scope_app_calls_report
+  result: PASS
+  details: app_calls_report=False
+- check: E13E-01_asux_truthful
+  result: PASS
+  details: ASUX-v0 §13.4 moved
+- check: E13E-01_asux_no_demotion
+  result: PASS
+  details: ASUX-v0 §13.4 moved
+- check: E13E-01_v1_criterion
+  result: PASS
+  details: V1 release definition moved
+- check: E13E-02_asux_families
+  result: PASS
+  details: '[''confirmed_capabilities'', ''verification_needed'', ''persistent_targeted_gaps'',
+    ''retention_revalidated'', ''not_reliably_measured'', ''plan_changes'']'
+- check: E13E-02_result_family_enum
+  result: PASS
+  details: '[''confirmed_capabilities'', ''verification_needed'', ''persistent_targeted_gaps'',
+    ''retention_revalidated'', ''not_reliably_measured'', ''plan_changes'']'
+- check: E13E-02_kinds_equal_contract
+  result: PASS
+  details: '[''capability_confirmed'', ''verification_opened'', ''verification_resolved'',
+    ''mastery_no_longer_confirmed'', ''remediation_opened'', ''remediation_closed'',
+    ''weakness_question_opened'', ''weakness_supported'', ''weakness_resolved'', ''retention_revalidated'',
+    ''retention_at_risk'']'
+- check: E13E-02_every_kind_in_a_state_family
+  result: PASS
+  details: '[''confirmed_capabilities'', ''verification_needed'', ''confirmed_capabilities'',
+    ''persistent_targeted_gaps'', ''persistent_targeted_gaps'', ''confirmed_capabilities'',
+    ''verification_needed'', ''persistent_targeted_gaps'', ''confirmed_capabilities'',
+    ''retention_revalidated'', ''verification_needed'']'
+- check: E13E-02_reasons_are_the_planners
+  result: PASS
+  details: '[]'
+- check: E13E-02_hypothesis_is_a_question
+  result: PASS
+  details: a hypothesis is filed as a gap
+- check: E13E-02_contradiction_is_verification
+  result: PASS
+  details: a contradiction is not a verification
+- check: E13E-02_remediation_reason
+  result: PASS
+  details: remediation reason
+- check: E13E-02_plan_kinds
+  result: PASS
+  details: '[''need_opened'', ''need_closed'', ''task_added'', ''task_removed'']'
+- check: E13E-03_reads_forward
+  result: PASS
+  details: a report may read backwards
+- check: E13E-03_nothing_changed
+  result: PASS
+  details: nothingChanged ignores a section
+- check: E13E-03_no_score_field
+  result: PASS
+  details: a verdict field
+- check: E13E-03_no_numeric_state
+  result: PASS
+  details: a numeric state
+- check: E13E-04_unwritten_is_the_stores
+  result: PASS
+  details: unwritten drifted
+- check: E13E-04_unwritten_guard_m
+  result: PASS
+  details: axis m claims a change from a state nobody had written
+- check: E13E-04_unwritten_guard_r
+  result: PASS
+  details: axis r claims a change from a state nobody had written
+- check: E13E-04_unwritten_guard_w
+  result: PASS
+  details: axis w claims a change from a state nobody had written
+- check: E13E-04_one_name_per_change
+  result: PASS
+  details: a change named twice
+- check: E13E-04_capability_only_at_confirmation
+  result: PASS
+  details: development reported as a capability
+- check: E13E-04_contradiction_opens_verification
+  result: PASS
+  details: a contradiction is reported as lost mastery
+- check: E13E-04_contradiction_before_loss
+  result: PASS
+  details: loss checked before the contradiction
+- check: E13E-04_mastered_set
+  result: PASS
+  details: mastered set
+- check: E13E-04_review_due_is_the_day
+  result: PASS
+  details: a review coming due is reported
+- check: E13E-04_revalidated_from_checks
+  result: PASS
+  details: revalidated from a state with nothing to revalidate
+- check: E13E-04_downgrade_not_supported
+  result: PASS
+  details: a downgrade is a new weakness
+- check: E13E-04_question_only_from_closed
+  result: PASS
+  details: a downgrade is a new question
+- check: E13E-04_remediation_closes_to_closed
+  result: PASS
+  details: remediation closed by a downgrade
+- check: E13E-04_resolved_only_if_open
+  result: PASS
+  details: a weakness never open reported resolved
+- check: E13E-04_reads_no_answers
+  result: PASS
+  details: the report reads answers
+- check: E13E-04_pure
+  result: PASS
+  details: the engine reads a store
+- check: E13E-05_first_plan_marked
+  result: PASS
+  details: a first plan unmarked
+- check: E13E-05_same_version_no_diff
+  result: PASS
+  details: the same plan version is diffed, or a first plan is a change
+- check: E13E-05_replan_reasons_only
+  result: PASS
+  details: non-replan plan codes leak
+- check: E13E-05_reasons_need_a_new_plan
+  result: PASS
+  details: replan reasons claimed with no new plan
+- check: E13E-05_stable_order
+  result: PASS
+  details: unstable order
+- check: 'E13E-05_plan_diff_needs1.keys '
+  result: PASS
+  details: missing (needs1.keys - needs0.keys)
+- check: 'E13E-05_plan_diff_needs0.keys '
+  result: PASS
+  details: missing (needs0.keys - needs1.keys)
+- check: 'E13E-05_plan_diff_tasks1.keys '
+  result: PASS
+  details: missing (tasks1.keys - tasks0.keys)
+- check: 'E13E-05_plan_diff_tasks0.keys '
+  result: PASS
+  details: missing (tasks0.keys - tasks1.keys)
+- check: E13E-05_plan_keys
+  result: PASS
+  details: plan diff keys
+- check: E13E-06_recompute_order
+  result: PASS
+  details: '[185, 253, 323, 392]'
+- check: E13E-06_profiles_from_curriculum
+  result: PASS
+  details: profiles not from the curriculum
+- check: E13E-06_nothing_to_recompute
+  result: PASS
+  details: an unpublished Skill is recomputed
+- check: E13E-06_no_truth
+  result: PASS
+  details: the report writes state itself
+- check: E13E-06_watermark_first
+  result: PASS
+  details: the watermark is read after state
+- check: E13E-06_unwritten_axis
+  result: PASS
+  details: an empty axis reads as written
+- check: E13E-06_replan_only_on_change
+  result: PASS
+  details: a replan with nothing changed
+- check: E13E-06_planner_own_replan
+  result: PASS
+  details: the plan is changed outside the planner
+- check: E13E-06_report_after_plan
+  result: PASS
+  details: the report is read before the new plan
+- check: E13E-06_triggers
+  result: PASS
+  details: '[''NEW_REMEDIATION_CREATED'', ''NEW_VERIFICATION_DUE_CREATED'', ''NEW_EVIDENCE_RECORDED'']'
+- check: E13E-06_budget_kept
+  result: PASS
+  details: set()
+- check: E13E-07_kgc_criticality
+  result: PASS
+  details: KGC-v0 criticality set moved
+- check: E13E-07_authored_criticality
+  result: PASS
+  details: '[''critical'', ''standard'']'
+- check: E13E-07_profile_mapping
+  result: PASS
+  details: an unknown criticality is read as standard
+- check: E13E-07_profile_fields
+  result: PASS
+  details: a profile field not read from the curriculum
+- check: E13E-07_no_invented_gate
+  result: PASS
+  details: a gate parameter invented
+- check: E13E-08_family_from_kind
+  result: PASS
+  details: a change lands in the wrong family
+- check: E13E-08_plan_section
+  result: PASS
+  details: plan changes not their own section
+- check: E13E-08_summary_only_when_nothing
+  result: PASS
+  details: the nothing-changed sentence over real changes
+- check: E13E-08_copy_no_%
+  result: PASS
+  details: '''%'' in copy'
+- check: E13E-08_copy_no_puan
+  result: PASS
+  details: '''puan'' in copy'
+- check: E13E-08_copy_no_başarısız
+  result: PASS
+  details: '''başarısız'' in copy'
+- check: E13E-08_copy_no_geçti
+  result: PASS
+  details: '''geçti'' in copy'
+- check: E13E-08_copy_no_kaldın
+  result: PASS
+  details: '''kaldın'' in copy'
+- check: E13E-08_copy_no_borç
+  result: PASS
+  details: '''borç'' in copy'
+- check: E13E-08_copy_no_daha az önem
+  result: PASS
+  details: '''daha az önemli'' in copy'
+- check: E13E-08_copy_no_geride
+  result: PASS
+  details: '''geride'' in copy'
+- check: E13E-08_copy_no_unuttun
+  result: PASS
+  details: '''unuttun'' in copy'
+- check: E13E-08_copy_no_seri
+  result: PASS
+  details: '''seri'' in copy'
+- check: 'E13E-08_copy_no_not:'
+  result: PASS
+  details: '''not:'' in copy'
+- check: E13E-08_hypothesis_not_deficiency
+  result: PASS
+  details: a hypothesis worded as a deficiency
+- check: E13E-08_templates_cover_kinds
+  result: PASS
+  details: a change with no sentence
+- check: E13E-08_no_combining_dot
+  result: PASS
+  details: U+0307 in copy
+- check: E13E-09_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+- check: E13E-09_refinement_declared
+  result: PASS
+  details: '[{''port'': ''PersistencePort'', ''method'': ''objectivesOf''}]'
+- check: E13E-09_port_method
+  result: PASS
+  details: port method
+- check: E13E-09_store_pins_version
+  result: PASS
+  details: version not pinned or order unstable
+- check: E13E-09_store_reads_criticality
+  result: PASS
+  details: fields
+- check: E13E-09_adapter_delegates
+  result: PASS
+  details: adapter
+- check: E13E-09_schema_unchanged
+  result: PASS
+  details: schema changed
+- check: E13E-10_model_a gate profile is the curriculum's own r
+  result: PASS
+  details: 'missing test: a gate profile is the curriculum''s own required flag, criticality
+    and evidence types'
+- check: E13E-10_model_a criticality the curriculum does not de
+  result: PASS
+  details: 'missing test: a criticality the curriculum does not define is refused,
+    not read as standard'
+- check: E13E-10_model_every state change belongs to one of the
+  result: PASS
+  details: 'missing test: every state change belongs to one of the result''s families
+    and records a replan reason'
+- check: 'E13E-10_model_a report reads forward and says nothing '
+  result: PASS
+  details: 'missing test: a report reads forward and says nothing changed only when
+    nothing did'
+- check: E13E-10_engine_a contradiction opens a verification and
+  result: PASS
+  details: 'missing test: a contradiction opens a verification and does not take mastery
+    away'
+- check: E13E-10_engine_a review coming due is the day, not a ch
+  result: PASS
+  details: 'missing test: a review coming due is the day, not a change'
+- check: E13E-10_engine_a hypothesis is an open question, suppor
+  result: PASS
+  details: 'missing test: a hypothesis is an open question, support is not yet a deficiency'
+- check: E13E-10_engine_a state nobody had written is not a befo
+  result: PASS
+  details: 'missing test: a state nobody had written is not a before'
+- check: E13E-10_engine_the plan diff is needs opened and closed
+  result: PASS
+  details: 'missing test: the plan diff is needs opened and closed and tasks added
+    and removed'
+- check: E13E-10_engine_the same plan version is not a plan chan
+  result: PASS
+  details: 'missing test: the same plan version is not a plan change, and a first
+    plan is not one either'
+- check: E13E-10_application_a contradiction opens a verification and
+  result: PASS
+  details: 'missing test: a contradiction opens a verification and the next plan carries
+    it'
+- check: E13E-10_application_a failed re-check confirms a remediation
+  result: PASS
+  details: 'missing test: a failed re-check confirms a remediation and the next plan
+    repairs it'
+- check: E13E-10_application_evidence that changes no state changes n
+  result: PASS
+  details: 'missing test: evidence that changes no state changes no plan, and the
+    report says nothing changed'
+- check: E13E-10_application_the first reading of a Skill claims no c
+  result: PASS
+  details: 'missing test: the first reading of a Skill claims no change from a state
+    nobody had written'
+- check: E13E-10_application_recomputing writes every axis from the p
+  result: PASS
+  details: 'missing test: recomputing writes every axis from the published Objectives'
+- check: 'E13E-10_presentation_each change lands in its own family and '
+  result: PASS
+  details: 'missing test: each change lands in its own family and nowhere else'
+- check: E13E-10_presentation_a weakness question is never filed or wo
+  result: PASS
+  details: 'missing test: a weakness question is never filed or worded as a gap'
+- check: E13E-10_presentation_plan changes are their own section and a
+  result: PASS
+  details: 'missing test: plan changes are their own section and a first plan is not
+    a change'
+- check: E13E-10_presentation_no sentence scores, grades, blames or ca
+  result: PASS
+  details: 'missing test: no sentence scores, grades, blames or calls dropped work
+    less important'
+- check: E13E-10_storage_a Skill version's Objectives come back a
+  result: PASS
+  details: 'missing test: a Skill version''s Objectives come back as published, in
+    a stable order'
+- check: E13E-10_storage_a new Skill version reads only its own O
+  result: PASS
+  details: 'missing test: a new Skill version reads only its own Objectives'
+- check: E13E-11_mutation_all_detected
+  result: PASS
+  details: 42/42
+- check: E13E-11_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E13E-11_validator_mutation
+  result: PASS
+  details: '{''total'': 29, ''detected'': 29, ''negative_control'': ''forbidden fragments
+    (a score, an answer read, a review-due report, a store import, a numeric type)
+    inside a Kotlin comment must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E13E-11_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E13E-11_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E13E-11_open_durable_assessment_report
+  result: PASS
+  details: durable_assessment_report not owned
+- check: E13E-11_open_app_calls_report
+  result: PASS
+  details: app_calls_report not owned
+- check: E13E-11_open_transfer_artifact_gate_fields
+  result: PASS
+  details: transfer_artifact_gate_fields not owned
+- check: E13E-11_open_result_wording
+  result: PASS
+  details: result_wording not owned
+- check: E13E-12_forbidden_change_claimed_from_unwritten_state
+  result: PASS
+  details: missing=change_claimed_from_unwritten_state
+- check: E13E-12_forbidden_review_due_reported_as_change
+  result: PASS
+  details: missing=review_due_reported_as_change
+- check: E13E-12_forbidden_contradiction_reported_as_demotion
+  result: PASS
+  details: missing=contradiction_reported_as_demotion
+- check: E13E-12_forbidden_hypothesis_reported_as_gap
+  result: PASS
+  details: missing=hypothesis_reported_as_gap
+- check: E13E-12_forbidden_first_plan_reported_as_change
+  result: PASS
+  details: missing=first_plan_reported_as_change
+- check: E13E-12_forbidden_replan_without_state_change
+  result: PASS
+  details: missing=replan_without_state_change
+- check: E13E-12_forbidden_report_reads_answers
+  result: PASS
+  details: missing=report_reads_answers
+- check: E13E-12_forbidden_score_or_percentage_in_result
+  result: PASS
+  details: missing=score_or_percentage_in_result
+- check: E13E-12_forbidden_dropped_work_called_less_important
+  result: PASS
+  details: missing=dropped_work_called_less_important
+- check: E13E-13_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 13E QA PASS'''
+- check: E13E-13_spec_**Decision:** `D-103`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-103`'''
+- check: 'E13E-13_spec_A report is a diff of two '
+  result: PASS
+  details: 'spec: ''A report is a diff of two readings'''
+- check: 'E13E-13_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E13E-13_spec_Mutation 42/42
+  result: PASS
+  details: 'spec: ''Mutation 42/42'''
+- check: E13E-13_spec_13F — Tanısal atlama (VDW-
+  result: PASS
+  details: 'spec: ''13F — Tanısal atlama (VDW-v0)'''
+- check: E13E-13_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E13E-13_research_ASUX-v0
+  result: PASS
+  details: missing='ASUX-v0'
+- check: E13E-13_research_16C
+  result: PASS
+  details: missing='16C'
+- check: E13E-13_research_16D
+  result: PASS
+  details: missing='16D'
+- check: E13E-14_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E13E-14_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E13E-14_no_combining_dot
+  result: PASS
+  details: U+0307 in 13E text
+failures: []

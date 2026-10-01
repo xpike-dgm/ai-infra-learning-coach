@@ -1,0 +1,68 @@
+stage_step: 13E
+model: PCRX-v0
+decision: D-103
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_closed: true
+stage_10_closed: true
+stage_11_closed: true
+stage_12_closed: true
+step_13f_added: true
+repo_files_scanned: 764
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 13E active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_13d_post_step_stale.py
+  sample: 13E 🟡
+  classification: historical_non_blocking
+- file: tools\audit_13e_post_step_stale.py
+  sample: 13E ✅ Program değişiklik raporu — PCRX-v0 / D-103", "13F 🟡
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-10-01-13d-remediation-engine.md
+  sample: 13E — Program değişiklik raporu is active-not-executed
+  classification: historical_non_blocking
+- file: arch\13d_remediation_engine\stale_reference_audit.yaml
+  sample: 13E 🟡
+  classification: historical_non_blocking
+- file: arch\13e_program_change_report\stale_reference_audit.yaml
+  sample: 13E active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  future/candidate language; current/living sources must agree on 13E complete and
+  13F (added by D-099) active-not-executed; no open loop may still point at 13E.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 13F completes and must not be re-run afterwards; its
+  stored report is the durable evidence.
