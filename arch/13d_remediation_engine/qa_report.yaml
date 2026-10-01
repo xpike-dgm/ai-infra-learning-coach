@@ -1,0 +1,548 @@
+model: WLRX-v0
+stage_step: 13D
+decision: D-102
+result: PASS
+checks_total: 165
+checks_passed: 165
+checks_failed: 0
+checks:
+- check: E13D-00_exists_remediation.yaml
+  result: PASS
+  details: missing arch/13d_remediation_engine/remediation.yaml
+- check: E13D-00_exists_WEAKNESS_REMEDIATION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md
+- check: E13D-00_exists_13d_remediation_engine_research.md
+  result: PASS
+  details: missing research/13d_remediation_engine_research.md
+- check: E13D-00_exists_WeaknessFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/WeaknessFacts.kt
+- check: E13D-00_exists_WeaknessEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/WeaknessEngine.kt
+- check: E13D-00_exists_RebuildWeakness.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/RebuildWeakness.kt
+- check: E13D-00_exists_MasteryTimeline.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/MasteryTimeline.kt
+- check: E13D-01_model
+  result: PASS
+  details: WLRX-v0
+- check: E13D-01_status
+  result: PASS
+  details: accepted_13d
+- check: E13D-01_decision
+  result: PASS
+  details: D-102
+- check: E13D-01_semantics
+  result: PASS
+  details: WLRM-v0
+- check: E13D-01_scope_weakness_axis_written
+  result: PASS
+  details: weakness_axis_written=True
+- check: E13D-01_scope_objective_local_attribution
+  result: PASS
+  details: objective_local_attribution=True
+- check: E13D-01_scope_weakness_needs_supplied
+  result: PASS
+  details: weakness_needs_supplied=True
+- check: E13D-01_scope_dispositions_read
+  result: PASS
+  details: dispositions_read=True
+- check: E13D-01_scope_retroactive_contamination
+  result: PASS
+  details: retroactive_contamination=True
+- check: E13D-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=True
+- check: E13D-01_scope_migration_added
+  result: PASS
+  details: migration_added=True
+- check: E13D-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E13D-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E13D-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E13D-01_scope_gate_rule_changed
+  result: PASS
+  details: gate_rule_changed=False
+- check: E13D-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E13D-01_scope_topic_state_implemented
+  result: PASS
+  details: topic_state_implemented=False
+- check: E13D-01_scope_remediation_content_implemented
+  result: PASS
+  details: remediation_content_implemented=False
+- check: E13D-01_scope_misconception_memory_implemented
+  result: PASS
+  details: misconception_memory_implemented=False
+- check: E13D-01_scope_app_calls_rebuild
+  result: PASS
+  details: app_calls_rebuild=False
+- check: E13D-01_wlrm_localization
+  result: PASS
+  details: WLRM-v0 §3 moved
+- check: E13D-02_lifecycle_equals_dataset
+  result: PASS
+  details: '[''none'', ''hypothesis'', ''supported'', ''confirmed'', ''resolved'']'
+- check: E13D-02_outcomes_equal_dataset
+  result: PASS
+  details: '[''not_attributable'', ''content_or_environment_issue'', ''prerequisite_signal'',
+    ''objective_weakness_hypothesis'', ''objective_weakness_supported'', ''verification_due'',
+    ''remediation_required'', ''positive_recovery_evidence'']'
+- check: E13D-02_rules_equal_dataset
+  result: PASS
+  details: '[(''failure.invalid_or_ambiguous'', ''10''), (''failure.prerequisite_contamination'',
+    ''20''), (''failure.unattempted_or_deferred'', ''30''), (''failure.environment_outside_target'',
+    ''40''), (''failure.assisted_h1_h4'', ''50''), (''failure.provisional_or_partial'',
+    ''60''), (''failure.clean_premastery_h0_direct'', ''70''), (''failure.first_clean_postmastery_contradiction'',
+    ''80''), (''failure.fresh_recheck_fail'', ''90''), (''failure.integrated_global_outcome_guard'',
+    ''100''), (''failure.review_due_without_negative_evidence'', ''110''), (''failure.fresh_recovery_success'',
+    ''120'')]'
+- check: E13D-02_rules_contract
+  result: PASS
+  details: contract rules
+- check: E13D-02_axis_values
+  result: PASS
+  details: '[''none'', ''hypothesis'', ''supported'', ''remediation_required'', ''resolved'',
+    ''not_yet_evaluated'']'
+- check: E13D-02_remediation_value_shared
+  result: PASS
+  details: the axis value the planner reads drifted
+- check: E13D-02_invariant_assisted_or_provisional_failure_cannot_d
+  result: PASS
+  details: 'dataset invariant moved: assisted_or_provisional_failure_cannot_directly_confirm_remediation_required'
+- check: E13D-02_invariant_first_clean_post_mastery_contradiction_o
+  result: PASS
+  details: 'dataset invariant moved: first_clean_post_mastery_contradiction_opens_verification_due_before_mastery_erasure'
+- check: E13D-02_invariant_remediation_closure_requires_new_evidenc
+  result: PASS
+  details: 'dataset invariant moved: remediation_closure_requires_new_evidence_not_task_completion'
+- check: E13D-02_invariant_review_due_without_negative_evidence_is_
+  result: PASS
+  details: 'dataset invariant moved: review_due_without_negative_evidence_is_not_weakness'
+- check: E13D-02_invariant_ai_assistance_may_scaffold_remediation_b
+  result: PASS
+  details: 'dataset invariant moved: ai_assistance_may_scaffold_remediation_but_never_satisfies_independent_closure_evidence'
+- check: E13D-03_rules_in_priority_order
+  result: PASS
+  details: '[215, 284, 429, 571, 750, 818, 915, 1015]'
+- check: E13D-03_invalid_first
+  result: PASS
+  details: an unattributable row is attributed
+- check: E13D-03_contamination_spares_target
+  result: PASS
+  details: contamination blames the target
+- check: E13D-03_assisted_hypothesis
+  result: PASS
+  details: help taken is not a hypothesis
+- check: E13D-03_uncertain_hypothesis
+  result: PASS
+  details: uncertain evidence is more than a hypothesis
+- check: E13D-03_confirm_on_gates
+  result: PASS
+  details: confirmation without the gates
+- check: E13D-03_hypothesis_effect
+  result: PASS
+  details: help or uncertainty raises more than a hypothesis
+- check: E13D-03_postmastery_opens_verification
+  result: PASS
+  details: no verification opened
+- check: E13D-03_never_rows_inert
+  result: PASS
+  details: a never-a-row rule changes state
+- check: E13D-03_never_lowers
+  result: PASS
+  details: a failure lowers a signal
+- check: E13D-03_no_retention_read
+  result: PASS
+  details: weakness reads retention
+- check: E13D-03_clean_!contested
+  result: PASS
+  details: clean lacks !contested
+- check: E13D-03_clean_prerequisiteValid
+  result: PASS
+  details: clean lacks prerequisiteValid
+- check: E13D-03_clean_!solutionExposed
+  result: PASS
+  details: clean lacks !solutionExposed
+- check: E13D-03_clean_direct
+  result: PASS
+  details: clean lacks direct
+- check: E13D-03_clean_evaluatorStatus == Evalu
+  result: PASS
+  details: clean lacks evaluatorStatus == EvaluatorStatus.VERIFIED
+- check: E13D-03_clean_independence == Independ
+  result: PASS
+  details: clean lacks independence == IndependenceClass.INDEPENDENT
+- check: E13D-04_closes_open_signals
+  result: PASS
+  details: a fresh success does not close
+- check: E13D-04_confirmed_needs_gates
+  result: PASS
+  details: one success closes a remediation
+- check: E13D-04_recovery_clean_and_fresh
+  result: PASS
+  details: help or a repeat closes
+- check: E13D-04_fresh_item_and_family
+  result: PASS
+  details: freshness
+- check: E13D-04_resolution_needs_evidence
+  result: PASS
+  details: resolved without evidence
+- check: E13D-04_open_needs_evidence
+  result: PASS
+  details: a weakness without evidence
+- check: E13D-04_contract
+  result: PASS
+  details: '{''source'': ''WLRM-v0 §7'', ''requires_fresh_item_and_family'': True,
+    ''requires_clean'': True, ''hypothesis_closed_by_fresh_clean_success'': True,
+    ''supported_closed_by_fresh_clean_success'': True, ''confirmed_closed_only_when_gates_pass'':
+    True, ''task_completion_closes'': False, ''assisted_success_closes'': False, ''manual_mastery_override'':
+    False}'
+- check: E13D-04_wlrm_closure_text
+  result: PASS
+  details: §7 moved
+- check: E13D-05_axis_order
+  result: PASS
+  details: axis precedence
+- check: E13D-05_no_broadcast
+  result: PASS
+  details: weakness reaches beyond its Objective
+- check: E13D-05_guards_present
+  result: PASS
+  details: dataset guards moved
+- check: E13D-06_mappings_present
+  result: PASS
+  details: '[''need.map.confirmed_remediation'', ''need.map.prerequisite_gap'', ''need.map.retention_review_only'',
+    ''need.map.supported_premastery_weakness'', ''need.map.verification_due'', ''need.map.weakness_hypothesis'']'
+- check: E13D-06_trigger
+  result: PASS
+  details: the supplied trigger is not weakness_detected
+- check: E13D-06_supplied_values
+  result: PASS
+  details: the wrong axes supply a need
+- check: E13D-06_one_concern_one_need
+  result: PASS
+  details: a concern gets two needs
+- check: E13D-06_on_route_only
+  result: PASS
+  details: an off-route Skill gets a need
+- check: E13D-06_owner_supplied_per_12c
+  result: PASS
+  details: 12C lists weakness_detected as planner-generated
+- check: E13D-06_planner_rule_unchanged
+  result: PASS
+  details: the planner opens weakness itself
+- check: E13D-06_build_receives
+  result: PASS
+  details: the planner is not supplied
+- check: E13D-06_composer_receives
+  result: PASS
+  details: the composers are not supplied
+- check: E13D-07_contested
+  result: PASS
+  details: contested ignored
+- check: E13D-07_prereq_invalidation
+  result: PASS
+  details: prerequisite invalidation
+- check: E13D-07_other_invalidation
+  result: PASS
+  details: an invalidated evaluation stands
+- check: E13D-07_reinstated
+  result: PASS
+  details: reinstatement ignored
+- check: E13D-07_outcome_never_rewritten
+  result: PASS
+  details: the learner's outcome is rewritten
+- check: E13D-07_values_equal_schema
+  result: PASS
+  details: disposition vocabulary drifted
+- check: E13D-07_newest_decides
+  result: PASS
+  details: not the newest disposition
+- check: E13D-07_store_applies
+  result: PASS
+  details: the store does not read dispositions
+- check: E13D-07_no_update
+  result: PASS
+  details: a row is edited
+- check: E13D-07_mastery_untouched
+  result: PASS
+  details: the mastery engine was changed to read dispositions
+- check: E13D-07_record_validates
+  result: PASS
+  details: a disposition is not validated
+- check: E13D-08_dependents_only
+  result: PASS
+  details: independent branches touched
+- check: E13D-08_clean_failure_root
+  result: PASS
+  details: root not a clean failure
+- check: E13D-08_idempotent
+  result: PASS
+  details: corrected twice
+- check: E13D-08_disposition_values
+  result: PASS
+  details: disposition values
+- check: E13D-08_loop_owned_13a
+  result: PASS
+  details: arch/13a_weekly_assessment/weekly_assessment.yaml no longer names 13D
+- check: E13D-08_loop_owned_13b
+  result: PASS
+  details: arch/13b_monthly_assessment/monthly_assessment.yaml no longer names 13D
+- check: E13D-09_watermark_first
+  result: PASS
+  details: watermark after evidence
+- check: E13D-09_day_required
+  result: PASS
+  details: a row with no day
+- check: E13D-09_shared_timeline
+  result: PASS
+  details: two timelines
+- check: E13D-09_timeline_mirrors
+  result: PASS
+  details: the timeline differs from RebuildMastery
+- check: E13D-09_no_truth
+  result: PASS
+  details: a rebuild writes truth
+- check: E13D-09_min_watermark
+  result: PASS
+  details: skill_state claims newer truth
+- check: E13D-09_carries_mastery_axis_state
+  result: PASS
+  details: mastery_axis_state overwritten
+- check: E13D-09_carries_retention_axis_state
+  result: PASS
+  details: retention_axis_state overwritten
+- check: E13D-09_carries_prerequisite_axis_state
+  result: PASS
+  details: prerequisite_axis_state overwritten
+- check: E13D-10_schema_version_6
+  result: PASS
+  details: schema version
+- check: E13D-10_columns_equal_contract
+  result: PASS
+  details: '[''skill_logical_id'', ''skill_version'', ''last_attribution_outcome'',
+    ''last_failure_rule'', ''verification_open'', ''signal_evidence_ids'', ''first_seen_on_study_day'',
+    ''last_seen_on_study_day'', ''resolution_evidence_id'', ''as_of_study_day'']'
+- check: E13D-10_value_set
+  result: PASS
+  details: stored lifecycle drifted
+- check: E13D-10_triggers
+  result: PASS
+  details: lifecycle not enforced
+- check: E13D-10_index
+  result: PASS
+  details: index
+- check: E13D-10_migration_step
+  result: PASS
+  details: migration steps
+- check: E13D-10_migration_owned
+  result: PASS
+  details: '{''from'': 5, ''to'': 6, ''owner'': ''13D'', ''table'': ''weakness_state'',
+    ''columns'': [''skill_logical_id'', ''skill_version'', ''last_attribution_outcome'',
+    ''last_failure_rule'', ''verification_open'', ''signal_evidence_ids'', ''first_seen_on_study_day'',
+    ''last_seen_on_study_day'', ''resolution_evidence_id'', ''as_of_study_day''],
+    ''index'': ''weakness_by_skill'', ''triggers'': [''weakness_state_signal_insert'',
+    ''weakness_state_signal_update''], ''populated_fixture_tested'': True, ''earlier_rows_touched'':
+    False}'
+- check: E13D-11_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+- check: E13D-11_no_new_port_method
+  result: PASS
+  details: a weakness port method
+- check: 'E13D-12_model_the lifecycle, the attribution outcomes '
+  result: PASS
+  details: 'missing test: the lifecycle, the attribution outcomes and the twelve rules
+    are WLRM-v0''s, in order'
+- check: E13D-12_model_a disposition is read, never written ove
+  result: PASS
+  details: 'missing test: a disposition is read, never written over the row - the
+    newest decides and reinstated restores'
+- check: 'E13D-12_model_a closing check must be fresh - not the '
+  result: PASS
+  details: 'missing test: a closing check must be fresh - not the item or the family
+    that showed the weakness'
+- check: E13D-12_engine_an attempt nobody can attribute writes n
+  result: PASS
+  details: 'missing test: an attempt nobody can attribute writes nothing against its
+    target'
+- check: E13D-12_engine_assisted, provisional, partial or indire
+  result: PASS
+  details: 'missing test: assisted, provisional, partial or indirect failure is a
+    hypothesis at most'
+- check: E13D-12_engine_the first clean contradiction after mast
+  result: PASS
+  details: 'missing test: the first clean contradiction after mastery opens verification
+    and erases nothing'
+- check: E13D-12_engine_remediation is confirmed only when the m
+  result: PASS
+  details: 'missing test: remediation is confirmed only when the mastery engine''s
+    gates no longer pass'
+- check: E13D-12_engine_a confirmed remediation closes only when
+  result: PASS
+  details: 'missing test: a confirmed remediation closes only when the gates pass
+    again, not after one success'
+- check: 'E13D-12_engine_the engine supplies weakness needs only '
+  result: PASS
+  details: 'missing test: the engine supplies weakness needs only for an open, uncovered
+    concern'
+- check: E13D-12_application_a supported weakness reaches the planner
+  result: PASS
+  details: 'missing test: a supported weakness reaches the planner and the weekly
+    composer as the owner''s need'
+- check: 'E13D-12_application_lost mastery after a contradiction is a '
+  result: PASS
+  details: 'missing test: lost mastery after a contradiction is a confirmed remediation
+    the gate and the planner already read'
+- check: E13D-12_application_only new evidence closes a remediation -
+  result: PASS
+  details: 'missing test: only new evidence closes a remediation - assisted success
+    and a finished task do not'
+- check: E13D-12_application_a root shown missing later in the sessio
+  result: PASS
+  details: 'missing test: a root shown missing later in the session corrects the answers
+    that needed it, and only those'
+- check: 'E13D-12_storage_migrating a populated schema-5 database '
+  result: PASS
+  details: 'missing test: migrating a populated schema-5 database completes weakness_state
+    and preserves every truth row'
+- check: E13D-12_storage_weakness_state holds only the WLRM-v0 li
+  result: PASS
+  details: 'missing test: weakness_state holds only the WLRM-v0 lifecycle, on insert,
+    upsert and update'
+- check: E13D-12_storage_a disposition is read back by the store,
+  result: PASS
+  details: 'missing test: a disposition is read back by the store, the newest decides,
+    and the row itself never changes'
+- check: E13D-13_13c_gates_narrowed
+  result: PASS
+  details: 13C gates not narrowed
+- check: E13D-13_13c_test_narrowed
+  result: PASS
+  details: 13C test not narrowed
+- check: E13D-13_recorded
+  result: PASS
+  details: narrowing not recorded
+- check: E13D-13_user_decisions
+  result: PASS
+  details: '{''topic_state_machine'': {''owner'': ''16C'', ''why'': "writing two of
+    TSM-v0''s six states would misreport every other Topic"}, ''high_stakes_gap_policy'':
+    {''owner'': ''18D'', ''why'': ''the policy needs calibration evidence; until then
+    a high-stakes pause is not resumed''}}'
+- check: E13D-14_mutation_all_detected
+  result: PASS
+  details: 44/44
+- check: E13D-14_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E13D-14_validator_mutation
+  result: PASS
+  details: '{''total'': 28, ''detected'': 28, ''negative_control'': ''forbidden fragments
+    (a retention read, a broadcast, a disposition rule in mastery, a confirmed shortcut,
+    a rewritten outcome) inside a Kotlin comment must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E13D-14_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E13D-14_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E13D-14_open_topic_state_machine
+  result: PASS
+  details: topic_state_machine not owned
+- check: E13D-14_open_high_stakes_gap_policy
+  result: PASS
+  details: high_stakes_gap_policy not owned
+- check: E13D-14_open_remediation_content_from_route
+  result: PASS
+  details: remediation_content_from_routes not owned
+- check: E13D-14_open_misconception_memory
+  result: PASS
+  details: misconception_memory not owned
+- check: E13D-14_open_rebuild_and_retroactive_contam
+  result: PASS
+  details: rebuild_and_retroactive_contamination_from_app not owned
+- check: E13D-14_open_calibration
+  result: PASS
+  details: calibration not owned
+- check: E13D-15_forbidden_one_failure_fails_skill_topic_or_domain
+  result: PASS
+  details: missing=one_failure_fails_skill_topic_or_domain
+- check: E13D-15_forbidden_unattributable_attempt_blames_target
+  result: PASS
+  details: missing=unattributable_attempt_blames_target
+- check: E13D-15_forbidden_assisted_or_provisional_confirms_remedia
+  result: PASS
+  details: missing=assisted_or_provisional_confirms_remediation
+- check: E13D-15_forbidden_postmastery_contradiction_erases_mastery
+  result: PASS
+  details: missing=postmastery_contradiction_erases_mastery
+- check: E13D-15_forbidden_closure_by_task_completion
+  result: PASS
+  details: missing=closure_by_task_completion
+- check: E13D-15_forbidden_closure_by_help_same_item_or_one_success
+  result: PASS
+  details: missing=closure_by_help_same_item_or_one_success
+- check: E13D-15_forbidden_weakness_broadcast
+  result: PASS
+  details: missing=weakness_broadcast
+- check: E13D-15_forbidden_correction_written_over_row
+  result: PASS
+  details: missing=correction_written_over_row
+- check: E13D-15_forbidden_contaminated_answer_counted_against_targ
+  result: PASS
+  details: missing=contaminated_answer_counted_against_target
+- check: E13D-15_forbidden_review_due_as_weakness
+  result: PASS
+  details: missing=review_due_as_weakness
+- check: E13D-16_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 13D QA PASS'''
+- check: E13D-16_spec_**Decision:** `D-102`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-102`'''
+- check: 'E13D-16_spec_A failed attempt is not a '
+  result: PASS
+  details: 'spec: ''A failed attempt is not a failed Skill'''
+- check: 'E13D-16_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E13D-16_spec_Mutation 44/44
+  result: PASS
+  details: 'spec: ''Mutation 44/44'''
+- check: E13D-16_spec_13E — Program değişiklik r
+  result: PASS
+  details: 'spec: ''13E — Program değişiklik raporu'''
+- check: E13D-17_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E13D-17_research_WLRM-v0
+  result: PASS
+  details: missing='WLRM-v0'
+- check: E13D-17_research_16C
+  result: PASS
+  details: missing='16C'
+- check: E13D-17_research_18D
+  result: PASS
+  details: missing='18D'
+- check: E13D-18_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E13D-18_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E13D-18_no_combining_dot
+  result: PASS
+  details: U+0307 in 13D text
+failures: []

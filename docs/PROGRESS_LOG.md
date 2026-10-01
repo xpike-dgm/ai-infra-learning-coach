@@ -1130,3 +1130,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13C ✅ / 13D active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13D — Remediation Engine`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13D Remediation Engine tamamlandı — WLRX-v0 / D-102
+
+- 13C (#41) main'e merge edildi (4bf978b); fresh 13D PRE yapıldı ve beş kanonik kaynak `13C ✅ / 13D active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin").
+- **Kullanıcı kararları:** Topic durum makinesi (`TSM-v0`, `weakening` dahil) → 16C; 11C'nin yüksek riskli boşluk politikası → 18D.
+- `WLRM-v0` koda döküldü: 12 atıf kuralı Objective düzeyinde; yaşam döngüsü `none → hypothesis → supported → confirmed → resolved`; doğrulama ve kapanış mastery kapılarını izler; motor `weakness_detected` sağlar.
+- **Bulgu:** zayıflık eksenini hiçbir şey yazmıyordu; `weakness_detected`'ın sağlayıcısı yoktu; dispozisyonlar okunmuyordu. Şema v6, depoda dispozisyon okuma ve `ApplyRetroactiveContamination` eklendi (13A/13B'nin açık işi kapandı).
+- `MasteryTimeline` retention'dan çıkarıldı ve paylaşıldı; 13C kapıları garanti zayıflamadan daraltıldı.
+- Mutation 44/44 (ilk turda D02, D31 ve D37 kaçtı (eksen önceliği, varsayılan doğrudanlık, zaman çizgisinin önceki mastery'si — her biri sınanmayan bir durum); testler eklendi/güçlendirildi ve bütün set tek değişmemiş ağaçtan yeniden koşuldu.). Altı run PASS, 679 JVM testi. Validator 165/165, kendi mutation testi 28/28, sweep 46/46.
+- **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+- D-050 POST living-memory accepted state'i `13D ✅ / 13E active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13E — Program değişiklik raporu`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

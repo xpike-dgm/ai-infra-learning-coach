@@ -52,7 +52,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13A Haftalık sınav: WBAX-v0 / D-098 ile tamamlandı; blueprint kompozisyonu, planner köprüsü, şema v3.
 - [x] 13B Aylık sınav: MCAX-v0 / D-100 ile tamamlandı; ortak kontrat ve composer, aylık havuz, şema v4.
 - [x] 13C Spaced repetition: RVRX-v0 / D-101 ile tamamlandı; retention motoru, vade yenileme, şema v5.
-- [ ] 13D Remediation Engine **AKTİF**: `WLRM-v0` remediation, zayıflık ekseni, Topic `weakening`, geriye dönük contamination.
+- [x] 13D Remediation Engine: WLRX-v0 / D-102 ile tamamlandı; zayıflık motoru, dispozisyon okuma, geriye dönük contamination, şema v6.
+- [ ] 13E Program değişiklik raporu **AKTİF**.
+- [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
+- [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
+- [ ] Remediation strateji rotalarından içerik → 15; misconception hafızası → 14B; rehberliğin azalması → 14.
+- [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
 - [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak (mastery → retention → readiness) ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
 - [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
@@ -63,7 +68,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Boylamsal kanıtta farklı gün sayımı → 18D kalibrasyonu, gerekirse; uydurulmadı.
 - [ ] Aylık özet mikro metni (`MCA-v0` §30 bölümleri) → 14.
 - [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → **13F** (`D-099`, kullanıcı kararı).
-- [ ] Haftalık sonuçta geriye dönük contamination (kökünden önce gönderilen iş) → 13D; `evidence_disposition`'ı mastery motorunun okuması gerekir.
+- [x] Haftalık/aylık sonuçta geriye dönük contamination (kökünden önce gönderilen iş): 13D'de kapandı — depo dispozisyonları okuyor, `ApplyRetroactiveContamination` yalnız bağımlı slotları düzeltiyor.
 - [ ] Haftalık döngü başlangıç günü ayarı → 16D; varsayılan ISO hafta (kullanıcı onayladı).
 - [ ] Haftayı uygulamadan kurmak (composition çağrısı) → 16D, planner ile birlikte.
 - [ ] İçerik tazeliği (`QAB-v0` §26) item modelinde yok → 15/18D.

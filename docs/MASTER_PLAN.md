@@ -847,8 +847,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 47/47, validator 164/164 ve kendi mutation testi 27/27,
 - **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
 
-### [ ] 13D — Remediation Engine — **AKTİF**
-### [ ] 13E — Program değişiklik raporu
+### [x] 13D — Remediation Engine — WLRX-v0 / D-102
+
+**13D final coverage:**
+- başarısız bir deneme başarısız bir Skill değildir; atıf `WLRM-v0`'ın 12 kuralıyla Objective düzeyinde,
+- yardım, provisional, kısmi ya da dolaylı hata en çok hipotez; ön koşulu bozuk deneme hedefi suçlamaz,
+- mastery sonrası çelişki doğrulama açar; doğrulama ve kapanış mastery kapılarını izler; biten görev kapatmaz,
+- Skill ekseni türetilir, yayılım yok; motor `weakness_detected` sağlar (bir endişe tek ihtiyaç),
+- dispozisyonlar okunur, satır düzenlenmez; geriye dönük kök neden contamination'ı yalnız bağımlı slotlar,
+- retention ile paylaşılan tek mastery zaman çizgisi,
+- şema v6 `weakness_state` + indeks + yaşam döngüsü trigger'ları,
+- kullanıcı kararları: Topic durumu → 16C, yüksek riskli boşluk politikası → 18D,
+- mutation 44/44, validator 165/165 ve kendi mutation testi 28/28,
+- **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+
+### [ ] 13E — Program değişiklik raporu — **AKTİF**
 ### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi
 
 ---
@@ -949,8 +962,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13C`  
-**Son tamamlanan:** **`13C — RVRX-v0 / D-101`**  
-**Aktif:** **`13D — Remediation Engine`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13D`  
+**Son tamamlanan:** **`13D — WLRX-v0 / D-102`**  
+**Aktif:** **`13E — Program değişiklik raporu`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13D fresh PRE-STEP → `WLRM-v0` remediation, zayıflık ekseni, Topic `weakening` ve geriye dönük contamination (retention artık `verification_due`, `at_risk` ve `REMEDIATION_AFTER_RETENTION_FAILURE` veriyor) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13E fresh PRE-STEP → program değişiklik raporu (mastery, retention, readiness ve zayıflık artık kanıttan durum yazıyor; değişikliği motorların kendi izlerinden raporlamak) → independent QA → D-050 POST sync + stale audit.**

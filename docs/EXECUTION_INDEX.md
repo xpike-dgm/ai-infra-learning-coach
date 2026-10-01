@@ -166,8 +166,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **13A — Haftalık sınav** — `WBAX-v0 / D-098`
 - [x] **13B — Aylık sınav** — `MCAX-v0 / D-100`
 - [x] **13C — Spaced repetition** — `RVRX-v0 / D-101`
-- [ ] **13D — Remediation Engine** **AKTİF**
-- [ ] **13E — Program değişiklik raporu**
+- [x] **13D — Remediation Engine** — `WLRX-v0 / D-102`
+- [ ] **13E — Program değişiklik raporu** **AKTİF**
 - [ ] **13F — Tanısal atlama (VDW-v0)** — D-099 ile eklendi
 
 ---
@@ -248,9 +248,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13C`  
-**Son tamamlanan:** **`13C — RVRX-v0 / D-101`**  
-**Aktif:** **`13D — Remediation Engine`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13D`  
+**Son tamamlanan:** **`13D — WLRX-v0 / D-102`**  
+**Aktif:** **`13E — Program değişiklik raporu`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -278,4 +278,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 13C `RVRX-v0` ile spaced repetition kodda: zamanın geçmesi negatif kanıt değildir: gün yalnız planlanmış bir kontrolün geldiğini söyler — mastery azalmaz, vadesi gelen tekrar unutma değildir, hiçbir şey kilitlenmez ve bir Skill'i doğrulamaya, riske ya da kararlılığa yalnız temiz, bağımsız bir kontrol taşıyabilir. Retention kanıttan yeniden oynatılır ve her satırdan sonra mastery motorunun kararı `RebuildMastery`'nin vereceği gibi yeniden sorulur; ilk temiz çelişki doğrulama açar ve hiçbir şeyi silmez, taze yeniden kontrol aralığı büyütmez, yakın tekrar karmaşık ya da kritik bir tekrarı tek başına taşıyamaz. `review_due` yalnız günden türetilir; planner plan kurmadan önce vadesi gelenleri indeksli sorguyla yeniler ve mevcut ihtiyaçları açar, kuralı değişmez. V0 sayıları `RVR-v0` §20'nin kendisidir (heuristik, 18C). Şema v5 `retention_state`'i tamamlar (dolu v4 fixture'a karşı); `skill_state` en eski eksenin watermark'ını taşır. T6 çalıştırılmadı.
 
-13D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+13D `WLRX-v0` ile remediation motoru kodda: başarısız bir deneme başarısız bir Skill değildir: her kanıt satırı `WLRM-v0`'ın on iki atıf kuralıyla, öncelik sırasıyla kendi Objective'ine atfedilir; atfedilemeyen ya da ön koşulu bozuk deneme hedefi suçlamaz, yardım alınmış, provisional ya da kısmi hata en çok bir hipotezdir, mastery sonrası ilk temiz çelişki hiçbir şeyi silmeden doğrulama açar, remediation yalnız mastery motorunun kapıları düştüğünde doğrulanır ve yalnız taze, temiz kanıt kapıları yeniden geçirdiğinde kapanır — biten görev, yardım, aynı item ya da tek başarı kapatmaz. Skill zayıflık ekseni Objective'lerinden türetilir ve hiçbir yere yayılmaz; motor `weakness_detected` ihtiyacını planner'a ve composer'lara kendisi sağlar, bir endişe tek ihtiyaçtır. Düzeltmeler (`evidence_disposition`) satırın üzerine yazılmadan, en yenisi okunarak her motora ulaşır; geriye dönük kök neden contamination'ı yalnız gerçekten bağımlı slotları düzeltir. Şema v6 `weakness_state`'i tamamlar (dolu v5 fixture'a karşı); Topic durumu 16C'ye, yüksek riskli boşluk politikası 18D'ye bağlandı (kullanıcı kararı). T6 çalıştırılmadı.
+
+13E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

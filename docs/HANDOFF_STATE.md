@@ -65,6 +65,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-099:** AŞAMA 13'e `13F — Tanısal atlama (VDW-v0)` eklendi; kullanıcı kararı, yeniden numaralama yok.
 - **D-100:** MCAX-v0 Monthly Capability Assessment Implementation; 13B tamamlandı.
 - **D-101:** RVRX-v0 Retention Verification & Risk Implementation; 13C tamamlandı.
+- **D-102:** WLRX-v0 Weakness Localization & Remediation Implementation; 13D tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -285,14 +286,15 @@ PEM-v0:
 - 13A ✅ WBAX-v0 / D-098
 - 13B ✅ MCAX-v0 / D-100
 - 13C ✅ RVRX-v0 / D-101
-- 13D 🟡 active-not-executed
-- 13E–13F, 14–20 ⬜
+- 13D ✅ WLRX-v0 / D-102
+- 13E 🟡 active-not-executed
+- 13F, 14–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13C — RVRX-v0 / D-101`  
-**Aktif:** `13D — Remediation Engine`  
-**13D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13D — WLRX-v0 / D-102`  
+**Aktif:** `13E — Program değişiklik raporu`  
+**13E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1105,3 +1107,27 @@ RVRX-v0:
 ## 56. 13D handoff
 
 13D — Remediation Engine. `WLRM-v0` remediation, zayıflık ekseni, remediation kapanışı, Topic `weakening` (`RVR-v0` §15) ve geriye dönük contamination. Retention artık `verification_due`, `at_risk` ve `REMEDIATION_AFTER_RETENTION_FAILURE` sinyallerini veriyor. Açık loop'lar: motorları kanıttan sonra uygulamadan yeniden kurmak ve `RebuildMastery` watermark'ı (16D), transfer ve profesyonel kanıt üreticileri (15), tanısal atlama (13F), T6. 13D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 57. D-102 / 13D final özeti
+
+Canonical: `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md`.
+Contract/QA: `arch/13d_remediation_engine/`.
+Synthesis: `research/13d_remediation_engine_research.md`.
+Code: `android/core-model/.../WeaknessFacts.kt`, `android/core-engines/.../WeaknessEngine.kt`, `android/core-application/.../RebuildWeakness.kt`, `MasteryTimeline.kt`, `RebuildRetention.kt`, `BuildDailyPlan.kt`, `BlueprintAssessment.kt`, `data-persistence` schema v6 and disposition reading.
+
+WLRX-v0:
+- a failed attempt is not a failed Skill: every row is attributed to its own Objective by `WLRM-v0`'s twelve rules in priority order; nothing broadcasts,
+- unattributable or contaminated rows never blame the target; help, a provisional evaluation, a partial or an indirect failure is a hypothesis at most,
+- the first clean contradiction after mastery opens verification and erases nothing; a remediation is confirmed only when the mastery engine's gates fail,
+- closure needs a fresh clean check; a confirmed remediation closes only when the gates pass again; a finished task, help, the same item or one success never close,
+- the engine supplies `weakness_detected` to the planner and the composers; one concern is one need; no planner rule changed,
+- dispositions are read newest-first at the store and never written over a row; retroactive contamination corrects only dependent slots (closes 13A/13B's loop),
+- `MasteryTimeline` is the one per-row mastery replay shared with retention,
+- schema v6 completes `weakness_state`, tested against a populated v5 database; 13C's gates narrowed without weakening,
+- user decisions: Topic state → 16C, high-stakes gap policy → 18D,
+- mutation 44/44 (D02/D31/D37 survived the first run; tests added or strengthened; full set re-run), independent QA 165/165, validator mutation 28/28, sweep 46/46,
+- T6 was not run; nothing in the app rebuilds engines after evidence yet (16D).
+
+## 58. 13E handoff
+
+13E — Program değişiklik raporu. Mastery, retention, readiness ve zayıflık artık kanıttan durum yazıyor; program değişikliğini motorların kendi izlerinden raporlamak. Açık loop'lar: motorları ve geriye dönük contamination'ı uygulamadan çağırmak (16D), Topic durumu ve izlerde dispozisyon nedeni (16C), remediation içeriği (15), misconception hafızası (14B), yüksek riskli boşluk politikası (18D), tanısal atlama (13F), T6. 13E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

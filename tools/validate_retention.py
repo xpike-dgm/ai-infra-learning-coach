@@ -225,13 +225,19 @@ check("E13C-07_rvr_flashcard", "Kritik production Skill'i flashcard ile retentio
 
 # ---------------------------------------------------------------- application
 rebuild = body(app, "fun rebuild(")
-check("E13C-08_watermark_first", 0 <= rebuild.find("persistence.truthWatermark()") < rebuild.find("persistence.evidenceFor("), "watermark read after evidence")
+# Narrowed at 13D (WLRX-v0 / D-102): the Skill's rows and the per-row mastery replay moved to the shared
+# MasteryTimeline (retention and weakness must read the same timeline); the guarantees are read there.
+timeline = strip_comments(read(ANDROID / "core-application/src/main/kotlin/coach/application/MasteryTimeline.kt"))
+check("E13C-08_watermark_first", 0 <= rebuild.find("persistence.truthWatermark()") < rebuild.find("MasteryTimeline.rowsOf(")
+      and "persistence.evidenceFor(" in body(timeline, "fun rowsOf("), "watermark read after evidence")
 check("E13C-08_day_required", "require(rows.all { it.second.studyDay != null })" in rebuild, "a row with no day is placed")
 check("E13C-08_no_truth_written", "appendTruth" not in app, "retention writes truth")
 events = body(app, "private fun events(")
+replay = body(timeline, "fun of(")
+check("E13C-08_replay_shared", "MasteryTimeline.of(skill, profiles, rows)" in events, "retention does not read the shared timeline")
 for needle in ("previouslyMastered = previous in MASTERED,", "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,",
                "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,"):
-    check(f"E13C-08_replay_mirrors_{needle[:28]}", needle in events, f"replay differs: {needle}")
+    check(f"E13C-08_replay_mirrors_{needle[:28]}", needle in replay, f"replay differs: {needle}")
 check("E13C-08_mastery_rebuild_same_rule", "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT ||" in mastery_app
       and "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE" in mastery_app, "RebuildMastery's rule moved")
 check("E13C-08_near_repeat_computed", "row.resource != null && other.resource == row.resource" in events and "other.variantFamilyId == row.variantFamilyId" in events, "near repeat not computed")
@@ -258,7 +264,11 @@ check("E13C-09_review_due_not_blocking", "RetentionAxis.REVIEW_DUE -> Prerequisi
       strip_comments(read(ANDROID / "core-engines/src/main/kotlin/coach/engines/PrerequisiteEngine.kt")), "review_due blocks")
 
 # ---------------------------------------------------------------- storage
-check("E13C-10_schema_version_5", "const val VERSION = 5" in schema, "schema version")
+# Narrowed at 13D: version 5 is 13C's, and every later version must be owned by its step's contract.
+schema_version = int((re.search(r"const val VERSION = (\d+)", schema) or re.search(r"(0)", "0")).group(1))
+owned_versions = {m.get("to") for f in ROOT.glob("arch/*/*.yaml")
+                  for m in [(yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("schema_migration") or {}] if isinstance(m, dict)}
+check("E13C-10_schema_version_5", schema_version >= 5 and all(v in owned_versions for v in range(5, schema_version + 1)), "schema version")
 v5 = body(schema, "val v5")
 added = re.findall(r"ALTER TABLE retention_state ADD COLUMN (\w+)", v5)
 check("E13C-10_columns_equal_contract", added == contract.get("schema_migration", {}).get("columns"), str(added))
