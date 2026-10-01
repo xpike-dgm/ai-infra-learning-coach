@@ -9,6 +9,9 @@ import coach.model.CurriculumPackage
 import coach.model.EvaluatorRequirement
 import coach.model.EvaluatorStatusRequirement
 import coach.model.IndependenceMode
+import coach.model.AssistanceLevel
+import coach.model.ExplanationForm
+import coach.model.ExplanationVariant
 import coach.model.LifecycleStatus
 import coach.model.MisconceptionRow
 import coach.model.NamedEntity
@@ -41,6 +44,8 @@ object PackageFormat {
         val curriculum: CurriculumPackage,
         val items: Map<VersionedRef, AssessmentItem>,
         val documents: Map<VersionedRef, String>,
+        /** Written explanations (14C): content, served by the content port, never published into the store. */
+        val explanations: List<ExplanationVariant> = emptyList(),
     )
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
@@ -113,13 +118,17 @@ object PackageFormat {
             ref to section.values["prompt"].orEmpty()
         }
 
+        val explanations = sections.filter { it.name == "explanation" }.mapNotNull { section ->
+            runCatching { reader.explanation(section) }.getOrElse { reasons += "explanation: ${it.message}"; null }
+        }
+
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
-        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap())
+        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations)
     }
 
     private val KNOWN_SECTIONS = setOf(
         "domain", "module", "topic", "skill", "objective", "topic_skill",
-        "prerequisite_edge", "resource", "validation", "item", "misconception",
+        "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -146,6 +155,8 @@ object PackageFormat {
         "validation" to setOf("resource", "validated_at_instant", "status", "validator", "origin"),
         // 14B (`D-106`): one closed-catalog label, pinned to one Objective version.
         "misconception" to setOf("logical_id", "version", "objective", "name", "open_question"),
+        // 14C (`D-107`): one written explanation of one Objective version. `text` is one line; a backslash-n is a line break.
+        "explanation" to setOf("logical_id", "version", "objective", "form", "level", "misconception", "text"),
         "item" to setOf(
             "ref", "prompt", "target_objectives", "target_skills", "required_skills", "evidence_type",
             "expected_answer_or_rubric_ref", "evaluator_required_status", "evaluator_deterministic_required",
@@ -306,6 +317,18 @@ object PackageFormat {
             )
         }
 
+        fun explanation(section: Section): ExplanationVariant {
+            check(section)
+            return ExplanationVariant(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                objective = ref(section, "objective"),
+                form = enum(section, "form", ExplanationForm.entries.toTypedArray()) { it.id },
+                level = optional(section, "level")?.let { id -> AssessmentLevels.byId[id] ?: run { reasons += "[explanation] line ${section.line}: unknown level '$id'"; AssistanceLevel.H1 } },
+                text = text(section.values, "text", section.line).replace("\\n", "\n"),
+                misconception = if (section.values.containsKey("misconception")) ref(section, "misconception") else null,
+            )
+        }
+
         fun item(section: Section): AssessmentItem {
             check(section)
             return AssessmentItem(
@@ -355,4 +378,9 @@ object PackageFormat {
             )
         }
     }
+}
+
+/** The assistance levels by id, for the one section that declares one (14C). */
+private object AssessmentLevels {
+    val byId: Map<String, AssistanceLevel> = AssistanceLevel.entries.associateBy { it.id }
 }

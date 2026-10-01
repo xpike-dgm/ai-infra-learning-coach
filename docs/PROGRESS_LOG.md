@@ -1194,3 +1194,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14B tamamlandı; 14C aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14C — Alternatif anlatım`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 14C Alternatif anlatım tamamlandı — ALEX-v0 / D-107
+
+- 14B (#46) main'e merge edilmişti (54e31a8); fresh 14C PRE yapıldı ve beş kanonik kaynak `14B ✅ / 14C active-not-executed` gösterdi. Kullanıcı açık onay verdi ("14C ile devam et") ve iki ürün sorusunu önerilen seçeneklerle cevapladı.
+- **Kullanıcı kararları:** biçimi öğrenci menüden seçer; önce yazılmış anlatım, yoksa AI.
+- Sözleşme koda döküldü: anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz.
+- **Bulgu:** `explain_differently` bir biçim taşımıyordu; yazılı alternatiflerin yeri yoktu; AI alternatifi dersin anlatımına dayandırılamıyordu; misconception karşılaştırması öğrenci durumunu cihaz dışına çıkarmayı gerektirirdi.
+- `tutor_instructions/2`; şema değişmedi; port inceltmesi `ContentPort.explanationsFor`; 14A validator'ı tam olarak dört ek için daraltıldı.
+- Mutation 42/42 (X08 ilk turda yaşadı; menü testi dersin anlatımı yazılıyken de koşacak biçimde güçlendirildi). Altı run PASS, 883 JVM testi. Validator 123/123, kendi mutation testi 30/30, sweep 51/51.
+- **T6 çalıştırılmadı**; uygulama menüyü henüz sunmuyor (16D).
+- D-050 POST living-memory accepted state'i `14C tamamlandı; 14D aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14D — Kod değerlendirme`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

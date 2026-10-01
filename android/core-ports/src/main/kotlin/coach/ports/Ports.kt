@@ -5,6 +5,7 @@ import coach.model.AssessmentScope
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
+import coach.model.ExplanationVariant
 import coach.model.ExposureFact
 import coach.model.LearningNeed
 import coach.model.MisconceptionRow
@@ -233,6 +234,13 @@ interface ContentPort {
      * truthful answer when nothing authored does.
      */
     fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem>
+
+    /**
+     * The written explanations of one pinned Objective version (14C, `ALEX-v0`): the course's own and its authored
+     * alternatives, in a stable order. Content (15), so the content side answers; an empty list is the truthful
+     * "nothing written yet". A refinement of this port, not a new one.
+     */
+    fun explanationsFor(objective: VersionedRef): List<ExplanationVariant>
 }
 
 /**

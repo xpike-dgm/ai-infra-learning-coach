@@ -115,6 +115,7 @@ class ReplanTest {
         override fun curriculumPackage(): CurriculumPackage? = null
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = tasks[need.needKey].orEmpty()
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
+        override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
     }
 
     private class Clock(var day: String) : ClockPort {

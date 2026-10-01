@@ -245,7 +245,8 @@ checks:
   details: NotShown carries more than its reason
 - check: E14A-05_context_fields
   result: PASS
-  details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'']'
+  details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'',
+    ''canonicalExplanation'']'
 - check: E14A-05_no_state_field
   result: PASS
   details: leaked=[]
@@ -253,12 +254,12 @@ checks:
   result: PASS
   details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
     (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
-    (''reference'', ''request.context.referenceSolution'')]'
+    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation'')]'
 - check: E14A-05_message_from_request_only
   result: PASS
   details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
     (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
-    (''reference'', ''request.context.referenceSolution'')]'
+    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation'')]'
 - check: E14A-05_absent_omitted
   result: PASS
   details: absent material sent

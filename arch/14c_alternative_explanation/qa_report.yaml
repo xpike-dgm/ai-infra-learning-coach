@@ -1,0 +1,434 @@
+model: ALEX-v0
+stage_step: 14C
+decision: D-107
+result: PASS
+checks_total: 123
+checks_passed: 123
+checks_failed: 0
+checks:
+- check: E14C-00_exists_alternative_explanation.yaml
+  result: PASS
+  details: missing arch/14c_alternative_explanation/alternative_explanation.yaml
+- check: E14C-00_exists_ALTERNATIVE_EXPLANATION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md
+- check: E14C-00_exists_14c_alternative_explanation_research.md
+  result: PASS
+  details: missing research/14c_alternative_explanation_research.md
+- check: E14C-00_exists_AlternativeExplanationFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/AlternativeExplanationFacts.kt
+- check: E14C-00_exists_ExplainDifferently.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/ExplainDifferently.kt
+- check: E14C-00_exists_AlternativeExplanationPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/AlternativeExplanationPresentation.kt
+- check: E14C-01_model
+  result: PASS
+  details: ALEX-v0
+- check: E14C-01_status
+  result: PASS
+  details: accepted_14c
+- check: E14C-01_decision
+  result: PASS
+  details: D-107
+- check: E14C-01_scope_closed_form_vocabulary
+  result: PASS
+  details: closed_form_vocabulary=True
+- check: E14C-01_scope_written_explanations_read
+  result: PASS
+  details: written_explanations_read=True
+- check: E14C-01_scope_learner_chooses_form
+  result: PASS
+  details: learner_chooses_form=True
+- check: E14C-01_scope_written_first
+  result: PASS
+  details: written_first=True
+- check: E14C-01_scope_ai_grounded_in_canonical
+  result: PASS
+  details: ai_grounded_in_canonical=True
+- check: E14C-01_scope_instructions_version_raised
+  result: PASS
+  details: instructions_version_raised=True
+- check: E14C-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E14C-01_scope_state_family_added
+  result: PASS
+  details: state_family_added=False
+- check: E14C-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E14C-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E14C-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E14C-01_scope_form_chosen_automatically
+  result: PASS
+  details: form_chosen_automatically=False
+- check: E14C-01_scope_explanations_authored
+  result: PASS
+  details: explanations_authored=False
+- check: E14C-01_scope_learner_state_sent
+  result: PASS
+  details: learner_state_sent=False
+- check: E14C-01_scope_app_calls_menu
+  result: PASS
+  details: app_calls_menu=False
+- check: E14C-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-01'', ''form_choice'': ''learner_chooses_from_menu'',
+    ''source_order'': ''written_first_otherwise_ai''}'
+- check: E14C-01_lbr9_daha
+  result: PASS
+  details: 'LEARNING_BEHAVIOR_RULES §9 moved: daha sade anlatım'
+- check: E14C-01_lbr9_farklı
+  result: PASS
+  details: 'LEARNING_BEHAVIOR_RULES §9 moved: farklı örnek/analogy'
+- check: E14C-01_lbr9_worked
+  result: PASS
+  details: 'LEARNING_BEHAVIOR_RULES §9 moved: worked example'
+- check: E14C-01_lbr9_prerequisite'e
+  result: PASS
+  details: 'LEARNING_BEHAVIOR_RULES §9 moved: prerequisite''e kısa geri dönüş'
+- check: E14C-01_lbr9_AI
+  result: PASS
+  details: 'LEARNING_BEHAVIOR_RULES §9 moved: AI Tutor ile kişisel açıklama'
+- check: E14C-01_lbr12_alternative
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES §12 moved
+- check: E14C-01_lbr12_scope
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES §12 moved
+- check: E14C-01_aiax11
+  result: PASS
+  details: AIAX-v0 §11 moved
+- check: E14C-02_forms_match_contract
+  result: PASS
+  details: '[(''plain_reteach'', ''strategy.targeted_reteach'', True, True), (''different_example'',
+    None, True, True), (''worked_example'', ''strategy.worked_example'', True, True),
+    (''state_trace'', ''strategy.state_trace_reconstruction'', True, True), (''prerequisite_refresh'',
+    ''strategy.prerequisite_refresh'', True, True), (''misconception_contrast'', ''strategy.misconception_contrast'',
+    False, True), (''canonical'', None, False, False)] vs [(''plain_reteach'', ''strategy.targeted_reteach'',
+    True, True), (''different_example'', None, True, True), (''worked_example'', ''strategy.worked_example'',
+    True, True), (''state_trace'', ''strategy.state_trace_reconstruction'', True,
+    True), (''prerequisite_refresh'', ''strategy.prerequisite_refresh'', True, True),
+    (''misconception_contrast'', ''strategy.misconception_contrast'', False, True),
+    (''canonical'', None, False, False)]'
+- check: E14C-02_strategies_exist
+  result: PASS
+  details: '[]'
+- check: E14C-02_lbr_forms_present
+  result: PASS
+  details: ''
+- check: E14C-02_contrast_needs_learner_state
+  result: PASS
+  details: '[(''plain_reteach'', ''strategy.targeted_reteach'', True, True), (''different_example'',
+    None, True, True), (''worked_example'', ''strategy.worked_example'', True, True),
+    (''state_trace'', ''strategy.state_trace_reconstruction'', True, True), (''prerequisite_refresh'',
+    ''strategy.prerequisite_refresh'', True, True), (''misconception_contrast'', ''strategy.misconception_contrast'',
+    False, True), (''canonical'', None, False, False)]'
+- check: E14C-02_canonical_not_an_alternative
+  result: PASS
+  details: '[(''plain_reteach'', ''strategy.targeted_reteach'', True, True), (''different_example'',
+    None, True, True), (''worked_example'', ''strategy.worked_example'', True, True),
+    (''state_trace'', ''strategy.state_trace_reconstruction'', True, True), (''prerequisite_refresh'',
+    ''strategy.prerequisite_refresh'', True, True), (''misconception_contrast'', ''strategy.misconception_contrast'',
+    False, True), (''canonical'', None, False, False)]'
+- check: E14C-02_only_two_written_only
+  result: PASS
+  details: '[(''plain_reteach'', ''strategy.targeted_reteach'', True, True), (''different_example'',
+    None, True, True), (''worked_example'', ''strategy.worked_example'', True, True),
+    (''state_trace'', ''strategy.state_trace_reconstruction'', True, True), (''prerequisite_refresh'',
+    ''strategy.prerequisite_refresh'', True, True), (''misconception_contrast'', ''strategy.misconception_contrast'',
+    False, True), (''canonical'', None, False, False)]'
+- check: E14C-02_only_canonical_not_offered
+  result: PASS
+  details: '[(''plain_reteach'', ''strategy.targeted_reteach'', True, True), (''different_example'',
+    None, True, True), (''worked_example'', ''strategy.worked_example'', True, True),
+    (''state_trace'', ''strategy.state_trace_reconstruction'', True, True), (''prerequisite_refresh'',
+    ''strategy.prerequisite_refresh'', True, True), (''misconception_contrast'', ''strategy.misconception_contrast'',
+    False, True), (''canonical'', None, False, False)]'
+- check: E14C-03_id_pattern
+  result: PASS
+  details: id regex
+- check: E14C-03_canonical_has_no_level
+  result: PASS
+  details: ''
+- check: E14C-03_contrast_names_one
+  result: PASS
+  details: ''
+- check: E14C-03_text_required
+  result: PASS
+  details: ''
+- check: E14C-03_help_is_explain_differently
+  result: PASS
+  details: ''
+- check: E14C-04_vocabulary_order
+  result: PASS
+  details: "fun options(\n        variants: List<ExplanationVariant>,\n        openMisconceptions:\
+    \ Set<VersionedRef>,\n        seen: Set<ExplanationForm>,\n    ): List<ExplanationOption>\
+    \ = ExplanationForm.entries.fil"
+- check: E14C-04_no_ranking
+  result: PASS
+  details: options must not rank
+- check: E14C-04_written_before_ai
+  result: PASS
+  details: ''
+- check: E14C-04_nothing_offered_without_source
+  result: PASS
+  details: ''
+- check: E14C-04_contrast_needs_open_memory
+  result: PASS
+  details: ''
+- check: E14C-04_seen_marked
+  result: PASS
+  details: ''
+- check: E14C-04_least_revealing_first
+  result: PASS
+  details: "t.misconception in openMisconceptions) }\n            .minWithOrNull(compareBy<ExplanationVariant>\
+    \ { it.level?.ordinal ?: -1 }.thenBy { it.ref.logicalId })\n\n    "
+- check: E14C-04_canonical_found
+  result: PASS
+  details: ''
+- check: E14C-05_prepare_intent
+  result: PASS
+  details: ''
+- check: E14C-05_prepare_form_only_if_ai_allowed
+  result: PASS
+  details: ''
+- check: E14C-05_prepare_attaches_canonical
+  result: PASS
+  details: ''
+- check: E14C-05_written_first
+  result: PASS
+  details: 700 869
+- check: E14C-05_written_returns
+  result: PASS
+  details: ''
+- check: E14C-05_ai_only_for_ai_forms
+  result: PASS
+  details: ''
+- check: E14C-05_canonical_not_offered_as_alternative
+  result: PASS
+  details: ''
+- check: E14C-05_open_states
+  result: PASS
+  details: '{''CONFIRMED'', ''HYPOTHESIS'', ''SUPPORTED''}'
+- check: E14C-05_nothing_written
+  result: PASS
+  details: seen is session memory; nothing stored
+- check: E14C-05_menu_not_automatic
+  result: PASS
+  details: no automatic choice
+- check: E14C-06_context_fields
+  result: PASS
+  details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'',
+    ''canonicalExplanation'']'
+- check: E14C-06_no_learner_state_fields
+  result: PASS
+  details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'',
+    ''canonicalExplanation'', ''intent'', ''purpose'', ''timing'', ''ceiling'', ''scope'',
+    ''recordedLevel'', ''instructionMode'', ''context'', ''learnerQuestion'', ''form'']'
+- check: E14C-06_form_only_on_explanation
+  result: PASS
+  details: ''
+- check: E14C-06_form_only_if_ai_allowed
+  result: PASS
+  details: ''
+- check: E14C-06_form_carried
+  result: PASS
+  details: ''
+- check: E14C-06_authored_uses_fallback_rules
+  result: PASS
+  details: ''
+- check: E14C-06_written_within_ceiling
+  result: PASS
+  details: 14A's ceiling rule holds for written help
+- check: E14C-06_written_is_deterministic
+  result: PASS
+  details: ''
+- check: E14C-06_written_never_calls_tutor
+  result: PASS
+  details: "fun showWritten(request: TutorRequest, help: AuthoredHelp, item: Item?\
+    \ = null, attemptId: Long? = null): TutorOutcome.Shown? {\n        val outcome\
+    \ = TutorRules.authored(request, help) ?: return null\n "
+- check: E14C-06_written_solution_is_exposure
+  result: PASS
+  details: ''
+- check: E14C-06_ai_solution_still_exposure
+  result: PASS
+  details: ''
+- check: E14C-07_version_raised
+  result: PASS
+  details: ''
+- check: E14C-07_reply_schema_unchanged
+  result: PASS
+  details: ''
+- check: E14C-07_rule_grounding
+  result: PASS
+  details: ''
+- check: E14C-07_rule_forms_from_vocabulary
+  result: PASS
+  details: ''
+- check: E14C-07_form_rules_exactly_ai_forms
+  result: PASS
+  details: '[''DIFFERENT_EXAMPLE'', ''PLAIN_RETEACH'', ''PREREQUISITE_REFRESH'', ''STATE_TRACE'',
+    ''WORKED_EXAMPLE''] vs [''DIFFERENT_EXAMPLE'', ''PLAIN_RETEACH'', ''PREREQUISITE_REFRESH'',
+    ''STATE_TRACE'', ''WORKED_EXAMPLE'']'
+- check: E14C-07_never_the_task_item
+  result: PASS
+  details: '{''PLAIN_RETEACH'': ''say it again more simply, in shorter steps, with
+    fewer terms'', ''DIFFERENT_EXAMPLE'': "use a new example or analogy, never the
+    task''s own item", ''WORKED_EXAMPLE'': "work through a different small problem
+    of the same kind step by step, never the task''s own item", ''STATE_TRACE'': ''follow
+    the state (variables, memory, data) step by step and show how it changes'', ''PREREQUISITE_REFRESH'':
+    ''briefly recap what must be understood first, then connect it back to this concept''}'
+- check: E14C-07_canonical_is_material
+  result: PASS
+  details: ''
+- check: E14C-07_canonical_tag_neutralised
+  result: PASS
+  details: ''
+- check: E14C-07_form_line
+  result: PASS
+  details: ''
+- check: E14C-07_canonical_section
+  result: PASS
+  details: ''
+- check: E14C-07_tutx_rules_kept
+  result: PASS
+  details: ''
+- check: E14C-08_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
+- check: E14C-08_content_refinement
+  result: PASS
+  details: ''
+- check: E14C-08_source_pins_version
+  result: PASS
+  details: ''
+- check: E14C-09_section_known
+  result: PASS
+  details: ''
+- check: E14C-09_keys
+  result: PASS
+  details: '"logical_id", "version", "objective", "form", "level", "misconception",
+    "text"'
+- check: E14C-09_strict
+  result: PASS
+  details: ''
+- check: E14C-09_line_breaks
+  result: PASS
+  details: "ine ${section.line}: unknown level '$id'\"; AssistanceLevel.H1 } },\n\
+    \                text = text(section.values, \"text\", section.line).replace(\"\
+    \\\\n\", \"\\n\"),\n                misconception = if (section.values.containsKey(\"\
+    misconception\")) ref(section, \"misconception\") else null,\n            )\n\
+    \        }"
+- check: E14C-09_unknown_level_refused
+  result: PASS
+  details: ''
+- check: E14C-09_not_published
+  result: PASS
+  details: content, never published
+- check: E14C-10_schema_unchanged
+  result: PASS
+  details: ''
+- check: E14C-11_ai_label
+  result: PASS
+  details: ''
+- check: E14C-11_ai_label_by_source
+  result: PASS
+  details: ''
+- check: E14C-11_way_back_always
+  result: PASS
+  details: ''
+- check: E14C-11_line_source_and_seen
+  result: PASS
+  details: ''
+- check: E14C-11_contrast_not_accusing
+  result: PASS
+  details: ''
+- check: E14C-11_no_numbers
+  result: PASS
+  details: Daha sade anlat Başka bir örnekle anlat Çözümlü bir örnek göster Adım adım
+    izleyerek göster Önce gereken konuyu hatırlat Sık yapılan bir karışıklıkla karşılaştır
+    Asıl anlatıma dön Nasıl anlatılsın? İs
+- check: E14C-11_written_label_verified
+  result: PASS
+  details: ''
+- check: E14C-12_tutx_narrowed
+  result: PASS
+  details: ''
+- check: E14C-12_tutx_contract_listed
+  result: PASS
+  details: ''
+- check: E14C-12_tutx_contract_present
+  result: PASS
+  details: TUTX-v0
+- check: E14C-13_suite_model
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/AlternativeExplanationFactsTest.kt
+- check: E14C-13_suite_instructions
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/TutorInstructionsTest.kt
+- check: E14C-13_suite_application
+  result: PASS
+  details: android/core-application/src/test/kotlin/coach/application/ExplainDifferentlyTest.kt
+- check: E14C-13_suite_presentation
+  result: PASS
+  details: android/core-presentation/src/test/kotlin/coach/presentation/AlternativeExplanationPresentationTest.kt
+- check: E14C-13_suite_format
+  result: PASS
+  details: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt
+- check: E14C-13_mutation_all_detected
+  result: PASS
+  details: 42/42
+- check: E14C-13_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E14C-13_control
+  result: PASS
+  details: ''
+- check: E14C-13_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (an AI-allowed contrast, an offered canonical, an unlabelled AI alternative, a
+    ranking) inside Kotlin comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E14C-13_runs_pass
+  result: PASS
+  details: ''
+- check: E14C-13_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E14C-13_forbidden
+  result: PASS
+  details: '[''form_chosen_for_the_learner'', ''hidden_form_ranking'', ''ai_alternative_while_fitting_written_exists'',
+    ''ai_alternative_without_canonical_when_written'', ''ai_alternative_presented_as_verified'',
+    ''alternative_without_way_back'', ''misconception_memory_sent_to_provider'', ''written_explanation_above_ceiling'',
+    ''task_item_as_different_example'', ''rule_changed_without_instructions_version'']'
+- check: E14C-13_open_loops
+  result: PASS
+  details: '{''written_explanations_and_contrasts'': {''owner'': ''15''}, ''menu_rendering_and_app_call'':
+    {''owner'': ''16D''}, ''adapter_call_site'': {''owner'': ''14G''}, ''which_form_helps_calibration'':
+    {''owner'': ''18''}}'
+- check: E14C-14_spec_status
+  result: PASS
+  details: ''
+- check: E14C-14_spec_next
+  result: PASS
+  details: ''
+- check: E14C-14_spec_t6
+  result: PASS
+  details: ''
+- check: E14C-14_research
+  result: PASS
+  details: ''
+- check: E14C-14_decision
+  result: PASS
+  details: D-107 heading in DECISIONS

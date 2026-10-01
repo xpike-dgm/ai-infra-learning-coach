@@ -99,6 +99,7 @@ class BuildDailyPlanTest {
         override fun curriculumPackage(): CurriculumPackage? = null
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> { asked += need; return tasks[need.needKey].orEmpty() }
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
+        override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
     }
 
     private val clock = object : ClockPort {

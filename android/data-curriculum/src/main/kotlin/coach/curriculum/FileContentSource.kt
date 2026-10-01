@@ -2,6 +2,7 @@ package coach.curriculum
 
 import coach.model.AssessmentItem
 import coach.model.CurriculumPackage
+import coach.model.ExplanationVariant
 import coach.model.LearningNeed
 import coach.model.TaskCandidate
 import coach.model.VersionedRef
@@ -48,4 +49,8 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
     /** The authored items naming [skill] among their targets, in a stable order (13A). */
     override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> =
         parsed?.items?.values.orEmpty().filter { skill in it.targetSkills }.sortedBy { it.ref.toString() }
+
+    /** The written explanations of [objective], pinned by version, in a stable order (14C). */
+    override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> =
+        parsed?.explanations.orEmpty().filter { it.objective == objective }.sortedBy { it.ref.toString() }
 }
