@@ -1,0 +1,243 @@
+model: RVRX-v0
+stage_step: 13C
+status: accepted_13c
+decision: D-101
+retention_semantics: RVR-v0
+engines_read: [MSTX-v0]
+engines_fed: [PRQX-v0, PLNX-v0, WBAX-v0, MCAX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: retention_verification_runs_against_real_code
+
+scope:
+  retention_axis_written: true
+  rebuilt_from_evidence: true
+  day_driven_refresh: true
+  planner_refreshes_before_planning: true
+  schema_changed: true
+  migration_added: true
+  interfaces_added: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  gate_rule_changed: false
+  mastery_rule_changed: false
+  remediation_implemented: false
+  topic_weakening_implemented: false
+  app_calls_rebuild: false
+
+retention_question: When does a proven Skill need to be checked again, and what did that check show — without counting the passing of time as a deficiency?
+
+primary_invariant: >-
+  Time passing is not negative evidence. The day only says that a scheduled check has come: mastery does not
+  decay, a due review is not forgetting, nothing locks, and only a clean independent check can move a Skill
+  toward verification, risk or stability.
+
+axis:
+  source: RVR-v0 §2
+  values: [untracked, fresh, stable, review_due, verification_due, at_risk]
+  plus_unwritten: not_yet_evaluated
+  review_due_stored_by_replay: false
+  review_due_derived_from: next_review_on_study_day reached by the study day
+  time_changes_other_states: false
+  at_risk_from_time: false
+  mastery_decays: false
+  remediation_required_is_retention_state: false
+
+policy_v0:
+  source: RVR-v0 §20
+  status: engineering_heuristic_needs_calibration
+  calibration_owner: 18C
+  initial_review_days: {factual: 2, standard: 4, complex: 7}
+  critical_initial_cap_days: 3
+  growth_factor: {standard: 2.0, critical: 1.6}
+  max_interval_days: {standard: 180, critical: 90}
+  verification_separation_days: 1
+  rounding: down
+  rounding_why: a shorter interval asks for an earlier check, never a later one
+  separation_is_lock: false
+  probability_or_half_life: false
+  unknown_profile_schedules: false
+
+transitions:
+  mastery_source: per-row MasteryEngine decision, replayed exactly as RebuildMastery
+  mastered_means: [confirmed_current, confirmation_verification_due]
+  becomes_fresh: the row that makes the Skill mastered
+  first_clean_failure: verification_due
+  strong_check_on_or_after_due: stable_interval_grows
+  strong_check_before_due: natural_reuse_clock_unchanged
+  uncertain_due_check: at_risk
+  recheck_pass: stable_interval_not_grown
+  recheck_requires_fresh_item: true
+  second_failure_mastery_holds: verification_due
+  mastery_lost: untracked
+  re_mastery: fresh_initial_interval
+  cluster_refresh: false
+
+evidence_rules:
+  clean: [not_contested, prerequisite_valid, no_solution_exposure, direct_for_objective, verified, independent]
+  strong: clean_positive_not_near_repeat_for_complex_or_critical
+  near_repeat: item_or_variant_family_already_met_by_this_skill
+  uncertain: [verified_partial, provisional_evaluator]
+
+reason_codes:
+  source: RVR-v0 §17
+  codes: [FIRST_DELAYED_REVIEW, REVIEW_DUE, CRITICAL_REVIEW_DUE, NATURAL_REUSE_VERIFIED, RETENTION_FAILURE_FIRST, RETENTION_RECHECK_PASS, RETENTION_RECHECK_FAIL, RETENTION_AT_RISK, REMEDIATION_AFTER_RETENTION_FAILURE, OVERDUE_REPRESENTATIVE_CHECK, DEPENDENT_PREREQ_VERIFICATION_REQUIRED]
+  produced_elsewhere: {OVERDUE_REPRESENTATIVE_CHECK: planner_18B}
+  added_to_planner_catalog: false
+
+refresh:
+  query: PersistencePort.retentionDueBy
+  index: retention_due
+  moves: [fresh, stable]
+  keeps_watermark: true
+  unreadable_row: named_not_guessed
+  caller: BuildDailyPlan before reading Skill states
+
+skill_state:
+  writes: retention_axis_state
+  carries: [mastery_axis_state, prerequisite_axis_state, weakness_axis_state, primary_presentation_state]
+  watermark: min_of_existing_and_retention
+  policy_version: kept_from_mastery
+
+schema_migration:
+  from: 4
+  to: 5
+  owner: 13C
+  table: retention_state
+  columns: [retention_profile, critical_prerequisite, current_interval_days, next_review_on_study_day, last_strong_retention_on_study_day, last_retention_evidence_id, successful_delayed_review_count, unresolved_verification_evidence_id, verification_failure_on_study_day, at_risk_reason_codes, last_natural_reuse_on_study_day, reason_codes, as_of_study_day]
+  index: retention_due
+  triggers: [retention_state_axis_insert, retention_state_axis_update]
+  populated_fixture_tested: true
+  earlier_rows_touched: false
+
+port_refinements:
+  - {port: PersistencePort, method: retentionDueBy}
+model_refinements:
+  - {type: EvidenceRow, field: studyDay}
+port_count: 4
+
+living_gates_narrowed:
+  - {check: E13B-10_schema_version_4, to: version 4 or later with every later version owned by its contract}
+  - {test: MonthlySessionStorageTest, to: Schema.VERSION at least 4}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/RetentionFactsTest.kt, class: coach.model.RetentionFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/RetentionEngineTest.kt, class: coach.engines.RetentionEngineTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/RebuildRetentionTest.kt, class: coach.application.RebuildRetentionTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/RetentionStorageTest.kt, class: coach.persistence.RetentionStorageTest}
+
+mutation_results:
+  total: 47
+  detected: 47
+  only_retention_suites_run: true
+  harness_verified_to_run_gradle: true
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - id: R25
+      why: the engine test built its weak checks before the mastery row, so the replay ordered them before mastery and ignored them for that reason alone
+    - id: R26
+      why: same test, same ordering defect
+    - id: R45
+      why: SQLite runs the insert guard before an upsert's conflict resolves, so the upsert case never reached the update guard
+  tests_strengthened:
+    - test: "only clean independent verified direct work counts as a review"
+      how: each weak check is built after its mastery row, and the same check made clean is shown to count
+    - test: "retention_state holds only the RVR-v0 axis, on insert and on the upsert's update"
+      how: also issues a direct UPDATE, the one path the update guard alone protects
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: R01, mutant: factual_initial_interval_changed}
+    - {id: R02, mutant: standard_initial_interval_changed}
+    - {id: R03, mutant: complex_initial_interval_changed}
+    - {id: R04, mutant: critical_initial_cap_changed}
+    - {id: R05, mutant: standard_growth_changed}
+    - {id: R06, mutant: critical_growth_changed}
+    - {id: R07, mutant: standard_cap_changed}
+    - {id: R08, mutant: critical_cap_changed}
+    - {id: R09, mutant: growth_rounds_up_asking_for_a_later_check}
+    - {id: R10, mutant: verification_needs_no_separation}
+    - {id: R11, mutant: the_due_day_itself_is_not_due}
+    - {id: R12, mutant: time_turns_a_verification_into_a_mere_review}
+    - {id: R13, mutant: a_critical_review_is_not_said_to_be_critical}
+    - {id: R14, mutant: an_unknown_profile_is_guessed_as_standard}
+    - {id: R15, mutant: lost_mastery_keeps_the_schedule}
+    - {id: R16, mutant: a_critical_skill_s_first_review_is_not_capped}
+    - {id: R17, mutant: a_near_repeat_carries_any_review}
+    - {id: R18, mutant: a_near_repeat_carries_a_critical_review}
+    - {id: R19, mutant: a_first_clean_failure_is_only_a_risk}
+    - {id: R20, mutant: an_early_check_counts_as_a_delayed_review}
+    - {id: R21, mutant: early_reuse_moves_the_clock}
+    - {id: R22, mutant: an_uncertain_due_check_is_ignored}
+    - {id: R23, mutant: any_partial_result_raises_a_risk}
+    - {id: R24, mutant: indirect_evidence_is_clean}
+    - {id: R25, mutant: assisted_evidence_is_clean}
+    - {id: R26, mutant: contaminated_evidence_is_clean}
+    - {id: R27, mutant: a_same_day_recheck_resolves_a_failure}
+    - {id: R28, mutant: a_near_repeat_recheck_resolves_a_failure}
+    - {id: R29, mutant: a_passed_recheck_grows_the_interval}
+    - {id: R30, mutant: a_second_failure_is_not_said}
+    - {id: R31, mutant: a_failure_while_at_risk_stays_a_risk}
+    - {id: R32, mutant: successful_reviews_are_not_counted}
+    - {id: R33, mutant: an_unknown_profile_is_scheduled_as_standard}
+    - {id: R34, mutant: skill_state_claims_the_newest_watermark}
+    - {id: R35, mutant: the_mastery_axis_is_overwritten}
+    - {id: R36, mutant: the_refresh_claims_new_truth}
+    - {id: R37, mutant: an_unreadable_profile_is_guessed}
+    - {id: R38, mutant: the_replay_forgets_the_previous_mastery}
+    - {id: R39, mutant: near_repeats_are_never_recognised}
+    - {id: R40, mutant: every_row_is_direct}
+    - {id: R41, mutant: the_stored_reasons_omit_the_day_s}
+    - {id: R42, mutant: the_planner_plans_on_a_stale_schedule}
+    - {id: R43, mutant: a_stable_schedule_never_comes_due}
+    - {id: R44, mutant: the_due_day_is_excluded}
+    - {id: R45, mutant: an_update_may_write_any_state}
+    - {id: R46, mutant: version_5_is_never_migrated_to}
+    - {id: R47, mutant: evidence_comes_back_without_its_day}
+
+validator_mutation:
+  total: 27
+  detected: 27
+  negative_control: forbidden fragments (a clock read, decay, a probability, a truth write, a stored review_due, interval growth, a percentage) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 654
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app rebuilds engines after evidence or calls the planner yet (16D)
+
+open_loops:
+  rebuild_after_evidence_from_app: {owner: 16D}
+  topic_weakening_and_remediation: {owner: 13D}
+  mastery_rebuild_watermark_when_carrying: {owner: 16D, why: RebuildMastery stamps its own watermark on skill_state; fix with the orchestration that rebuilds engines together}
+  prerequisite_axis_on_skill_state: {owner: 16C, why: presentation only; the gate computes readiness live}
+  overdue_urgency_buckets_and_success_band: {owner: 18C}
+  representative_check_after_absence: {owner: 18B}
+  prior_exposure_in_evidence_rows: {owner: 14, why: covered today by the independence class and by item selection refusing seen items}
+  replay_runtime: {owner: 18E, why: the per-row mastery replay is quadratic in a Skill's rows, on rebuild only}
+
+forbidden_retention_patterns:
+  - mastery_time_decay
+  - review_due_as_forgetting
+  - lock_or_risk_from_time
+  - probability_or_half_life_presented_as_known
+  - schedule_for_unknown_profile
+  - near_repeat_as_strong_complex_or_critical_review
+  - seen_item_as_recheck
+  - one_failure_erases_mastery
+  - recheck_pass_grows_interval
+  - cluster_or_descendant_refresh
+  - review_backlog_as_debt
+  - skill_state_claims_newer_truth
+  - unreadable_schedule_guessed

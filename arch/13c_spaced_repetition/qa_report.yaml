@@ -1,0 +1,551 @@
+model: RVRX-v0
+stage_step: 13C
+decision: D-101
+result: PASS
+checks_total: 164
+checks_passed: 164
+checks_failed: 0
+checks:
+- check: E13C-00_exists_retention.yaml
+  result: PASS
+  details: missing arch/13c_spaced_repetition/retention.yaml
+- check: E13C-00_exists_RETENTION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/RETENTION_IMPL_SPEC.md
+- check: E13C-00_exists_13c_spaced_repetition_research.md
+  result: PASS
+  details: missing research/13c_spaced_repetition_research.md
+- check: E13C-00_exists_RetentionFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/RetentionFacts.kt
+- check: E13C-00_exists_RetentionEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/RetentionEngine.kt
+- check: E13C-00_exists_RebuildRetention.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/RebuildRetention.kt
+- check: E13C-01_model
+  result: PASS
+  details: RVRX-v0
+- check: E13C-01_status
+  result: PASS
+  details: accepted_13c
+- check: E13C-01_decision
+  result: PASS
+  details: D-101
+- check: E13C-01_semantics
+  result: PASS
+  details: RVR-v0
+- check: E13C-01_scope_retention_axis_written
+  result: PASS
+  details: retention_axis_written=True
+- check: E13C-01_scope_rebuilt_from_evidence
+  result: PASS
+  details: rebuilt_from_evidence=True
+- check: E13C-01_scope_day_driven_refresh
+  result: PASS
+  details: day_driven_refresh=True
+- check: E13C-01_scope_planner_refreshes_before_planning
+  result: PASS
+  details: planner_refreshes_before_planning=True
+- check: E13C-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=True
+- check: E13C-01_scope_migration_added
+  result: PASS
+  details: migration_added=True
+- check: E13C-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E13C-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E13C-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E13C-01_scope_gate_rule_changed
+  result: PASS
+  details: gate_rule_changed=False
+- check: E13C-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E13C-01_scope_remediation_implemented
+  result: PASS
+  details: remediation_implemented=False
+- check: E13C-01_scope_topic_weakening_implemented
+  result: PASS
+  details: topic_weakening_implemented=False
+- check: E13C-01_scope_app_calls_rebuild
+  result: PASS
+  details: app_calls_rebuild=False
+- check: E13C-01_rvr_principle
+  result: PASS
+  details: RVR-v0 principle moved
+- check: E13C-02_axis_from_rvr
+  result: PASS
+  details: '[''untracked'', ''fresh'', ''stable'', ''review_due'', ''verification_due'',
+    ''at_risk'']'
+- check: E13C-02_axis_equals_rvr
+  result: PASS
+  details: '[''untracked'', ''fresh'', ''stable'', ''review_due'', ''verification_due'',
+    ''at_risk'', ''not_yet_evaluated'']'
+- check: E13C-02_axis_contract
+  result: PASS
+  details: contract axis
+- check: E13C-02_schema_value_set
+  result: PASS
+  details: stored value set drifted
+- check: E13C-02_remediation_not_axis
+  result: PASS
+  details: remediation is a retention state
+- check: E13C-03_table_read
+  result: PASS
+  details: rows=['complex initial', 'critical growth', 'critical initial cap', 'critical
+    max', 'factual initial', 'standard growth', 'standard initial', 'standard max',
+    'verification separation']
+- check: E13C-03_factual_initial
+  result: PASS
+  details: 'factual initial: 2 vs 2 gün'
+- check: E13C-03_standard_initial
+  result: PASS
+  details: 'standard initial: 4 vs 4 gün'
+- check: E13C-03_complex_initial
+  result: PASS
+  details: 'complex initial: 7 vs 7 gün'
+- check: E13C-03_critical_initial_cap
+  result: PASS
+  details: 'critical initial cap: 3 vs 3 gün'
+- check: E13C-03_standard_growth
+  result: PASS
+  details: 'standard growth: 2.0 vs ×2.0'
+- check: E13C-03_critical_growth
+  result: PASS
+  details: 'critical growth: 1.6 vs ×1.6'
+- check: E13C-03_standard_max
+  result: PASS
+  details: 'standard max: 180 vs 180 gün'
+- check: E13C-03_critical_max
+  result: PASS
+  details: 'critical max: 90 vs 90 gün'
+- check: E13C-03_verification_separation
+  result: PASS
+  details: 'verification separation: 1 vs default 1 gün'
+- check: E13C-03_contract_numbers
+  result: PASS
+  details: '{''source'': ''RVR-v0 §20'', ''status'': ''engineering_heuristic_needs_calibration'',
+    ''calibration_owner'': ''18C'', ''initial_review_days'': {''factual'': 2, ''standard'':
+    4, ''complex'': 7}, ''critical_initial_cap_days'': 3, ''growth_factor'': {''standard'':
+    2.0, ''critical'': 1.6}, ''max_interval_days'': {''standard'': 180, ''critical'':
+    90}, ''verification_separation_days'': 1, ''rounding'': ''down'', ''rounding_why'':
+    ''a shorter interval asks for an earlier check, never a later one'', ''separation_is_lock'':
+    False, ''probability_or_half_life'': False, ''unknown_profile_schedules'': False}'
+- check: E13C-03_heuristic_labelled
+  result: PASS
+  details: V0 numbers not labelled
+- check: E13C-03_calibration_owner
+  result: PASS
+  details: '{''source'': ''RVR-v0 §20'', ''status'': ''engineering_heuristic_needs_calibration'',
+    ''calibration_owner'': ''18C'', ''initial_review_days'': {''factual'': 2, ''standard'':
+    4, ''complex'': 7}, ''critical_initial_cap_days'': 3, ''growth_factor'': {''standard'':
+    2.0, ''critical'': 1.6}, ''max_interval_days'': {''standard'': 180, ''critical'':
+    90}, ''verification_separation_days'': 1, ''rounding'': ''down'', ''rounding_why'':
+    ''a shorter interval asks for an earlier check, never a later one'', ''separation_is_lock'':
+    False, ''probability_or_half_life'': False, ''unknown_profile_schedules'': False}'
+- check: E13C-03_no_other_numbers
+  result: PASS
+  details: '[''3'', ''2.0'', ''1.6'', ''180'', ''90'', ''1'']'
+- check: E13C-03_rounds_down
+  result: PASS
+  details: rounding
+- check: E13C-03_critical_cap_applied
+  result: PASS
+  details: critical cap
+- check: E13C-03_no_probability
+  result: PASS
+  details: a probability or decay in retention code
+- check: E13C-04_codes_from_rvr
+  result: PASS
+  details: '[''FIRST_DELAYED_REVIEW'', ''REVIEW_DUE'', ''CRITICAL_REVIEW_DUE'', ''NATURAL_REUSE_VERIFIED'',
+    ''RETENTION_FAILURE_FIRST'', ''RETENTION_RECHECK_PASS'', ''RETENTION_RECHECK_FAIL'',
+    ''RETENTION_AT_RISK'', ''REMEDIATION_AFTER_RETENTION_FAILURE'', ''OVERDUE_REPRESENTATIVE_CHECK'',
+    ''DEPENDENT_PREREQ_VERIFICATION_REQUIRED'']'
+- check: E13C-04_codes_equal_rvr_in_order
+  result: PASS
+  details: '[''FIRST_DELAYED_REVIEW'', ''REVIEW_DUE'', ''CRITICAL_REVIEW_DUE'', ''NATURAL_REUSE_VERIFIED'',
+    ''RETENTION_FAILURE_FIRST'', ''RETENTION_RECHECK_PASS'', ''RETENTION_RECHECK_FAIL'',
+    ''RETENTION_AT_RISK'', ''REMEDIATION_AFTER_RETENTION_FAILURE'', ''OVERDUE_REPRESENTATIVE_CHECK'',
+    ''DEPENDENT_PREREQ_VERIFICATION_REQUIRED'']'
+- check: E13C-04_codes_contract
+  result: PASS
+  details: contract codes
+- check: E13C-04_not_in_planner_catalog
+  result: PASS
+  details: RVR codes leaked into the closed planner catalogue
+- check: E13C-05_only_schedule_moves
+  result: PASS
+  details: time moves more than the schedule
+- check: E13C-05_due_inclusive
+  result: PASS
+  details: due day exclusive
+- check: E13C-05_replay_never_stores_due
+  result: PASS
+  details: the replay stores review_due
+- check: E13C-05_engine_has_no_clock
+  result: PASS
+  details: the engine reads a clock
+- check: E13C-05_days_not_instants
+  result: PASS
+  details: days from instants
+- check: E13C-05_rvr_no_decay
+  result: PASS
+  details: §1 moved
+- check: E13C-06_mastery_from_events
+  result: PASS
+  details: mastery not read from events
+- check: E13C-06_lost_is_untracked
+  result: PASS
+  details: lost mastery keeps a schedule
+- check: E13C-06_fresh_initial
+  result: PASS
+  details: fresh not from the initial interval
+- check: E13C-06_unknown_profile
+  result: PASS
+  details: an unknown profile is scheduled
+- check: E13C-06_first_failure
+  result: PASS
+  details: a first failure is not verification
+- check: E13C-06_due_review_grows
+  result: PASS
+  details: a due review does not grow
+- check: E13C-06_reuse_keeps_clock
+  result: PASS
+  details: early reuse moves the clock
+- check: E13C-06_risk_only_on_due
+  result: PASS
+  details: risk off schedule
+- check: E13C-06_separation
+  result: PASS
+  details: no separation
+- check: E13C-06_recheck_fresh
+  result: PASS
+  details: a near repeat resolves a failure
+- check: E13C-06_recheck_no_growth
+  result: PASS
+  details: a recheck grows the interval
+- check: E13C-06_near_repeat_complex_critical
+  result: PASS
+  details: near repeat rule
+- check: E13C-07_clean_!contested
+  result: PASS
+  details: clean lacks !contested
+- check: E13C-07_clean_prerequisiteValid
+  result: PASS
+  details: clean lacks prerequisiteValid
+- check: E13C-07_clean_!solutionExposed
+  result: PASS
+  details: clean lacks !solutionExposed
+- check: E13C-07_clean_direct
+  result: PASS
+  details: clean lacks direct
+- check: E13C-07_clean_evaluatorStatus == Evalu
+  result: PASS
+  details: clean lacks evaluatorStatus == EvaluatorStatus.VERIFIED
+- check: E13C-07_clean_independence == Independ
+  result: PASS
+  details: clean lacks independence == IndependenceClass.INDEPENDENT
+- check: E13C-07_rvr_flashcard
+  result: PASS
+  details: §4/§12 moved
+- check: E13C-08_watermark_first
+  result: PASS
+  details: watermark read after evidence
+- check: E13C-08_day_required
+  result: PASS
+  details: a row with no day is placed
+- check: E13C-08_no_truth_written
+  result: PASS
+  details: retention writes truth
+- check: E13C-08_replay_mirrors_previouslyMastered = previou
+  result: PASS
+  details: 'replay differs: previouslyMastered = previous in MASTERED,'
+- check: E13C-08_replay_mirrors_unresolvedVerification = pre
+  result: PASS
+  details: 'replay differs: unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,'
+- check: E13C-08_replay_mirrors_previouslyMastered = previou
+  result: PASS
+  details: 'replay differs: previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,'
+- check: E13C-08_mastery_rebuild_same_rule
+  result: PASS
+  details: RebuildMastery's rule moved
+- check: E13C-08_near_repeat_computed
+  result: PASS
+  details: near repeat not computed
+- check: E13C-08_direct_computed
+  result: PASS
+  details: directness not computed
+- check: E13C-08_skill_state_min_watermark
+  result: PASS
+  details: skill_state claims newer truth
+- check: E13C-08_carries_mastery_axis_state
+  result: PASS
+  details: mastery_axis_state overwritten
+- check: E13C-08_carries_prerequisite_axis_state
+  result: PASS
+  details: prerequisite_axis_state overwritten
+- check: E13C-08_carries_weakness_axis_state
+  result: PASS
+  details: weakness_axis_state overwritten
+- check: E13C-08_retention_axis_written
+  result: PASS
+  details: axis not written
+- check: E13C-08_refresh_keeps_watermark
+  result: PASS
+  details: refresh claims new truth
+- check: E13C-08_refresh_indexed
+  result: PASS
+  details: refresh scans
+- check: E13C-08_unreadable_named
+  result: PASS
+  details: unreadable guessed
+- check: E13C-08_decode_strict
+  result: PASS
+  details: decode guesses
+- check: E13C-09_refresh_before_states
+  result: PASS
+  details: the planner plans on a stale schedule
+- check: E13C-09_watermark_still_first
+  result: PASS
+  details: watermark order
+- check: E13C-09_needs_unchanged
+  result: PASS
+  details: the retention need rule moved
+- check: E13C-09_review_due_not_blocking
+  result: PASS
+  details: review_due blocks
+- check: E13C-10_schema_version_5
+  result: PASS
+  details: schema version
+- check: E13C-10_columns_equal_contract
+  result: PASS
+  details: '[''retention_profile'', ''critical_prerequisite'', ''current_interval_days'',
+    ''next_review_on_study_day'', ''last_strong_retention_on_study_day'', ''last_retention_evidence_id'',
+    ''successful_delayed_review_count'', ''unresolved_verification_evidence_id'',
+    ''verification_failure_on_study_day'', ''at_risk_reason_codes'', ''last_natural_reuse_on_study_day'',
+    ''reason_codes'', ''as_of_study_day'']'
+- check: E13C-10_due_index
+  result: PASS
+  details: no due index
+- check: E13C-10_insert_trigger
+  result: PASS
+  details: value set not enforced
+- check: E13C-10_migration_step
+  result: PASS
+  details: migration steps
+- check: E13C-10_migration_owned
+  result: PASS
+  details: '{''from'': 4, ''to'': 5, ''owner'': ''13C'', ''table'': ''retention_state'',
+    ''columns'': [''retention_profile'', ''critical_prerequisite'', ''current_interval_days'',
+    ''next_review_on_study_day'', ''last_strong_retention_on_study_day'', ''last_retention_evidence_id'',
+    ''successful_delayed_review_count'', ''unresolved_verification_evidence_id'',
+    ''verification_failure_on_study_day'', ''at_risk_reason_codes'', ''last_natural_reuse_on_study_day'',
+    ''reason_codes'', ''as_of_study_day''], ''index'': ''retention_due'', ''triggers'':
+    [''retention_state_axis_insert'', ''retention_state_axis_update''], ''populated_fixture_tested'':
+    True, ''earlier_rows_touched'': False}'
+- check: E13C-10_due_sql
+  result: PASS
+  details: due query
+- check: E13C-10_evidence_day
+  result: PASS
+  details: evidence day not read
+- check: E13C-10_rvr_compact_state
+  result: PASS
+  details: §18 moved
+- check: E13C-11_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+- check: E13C-11_due_port
+  result: PASS
+  details: no due port
+- check: E13C-11_evidence_day_field
+  result: PASS
+  details: no evidence day
+- check: 'E13C-12_model_the V0 numbers are RVR-v0 section 20''s, '
+  result: PASS
+  details: 'missing test: the V0 numbers are RVR-v0 section 20''s, and nothing else'
+- check: 'E13C-12_model_time moves a schedule to review_due and '
+  result: PASS
+  details: 'missing test: time moves a schedule to review_due and nothing else'
+- check: E13C-12_model_an unknown profile is not guessed
+  result: PASS
+  details: 'missing test: an unknown profile is not guessed'
+- check: E13C-12_model_the reason codes are RVR-v0 section 17's
+  result: PASS
+  details: 'missing test: the reason codes are RVR-v0 section 17''s, in order'
+- check: E13C-12_engine_a year with no evidence makes a review d
+  result: PASS
+  details: 'missing test: a year with no evidence makes a review due and nothing worse'
+- check: E13C-12_engine_the first clean contradiction opens veri
+  result: PASS
+  details: 'missing test: the first clean contradiction opens verification and erases
+    nothing'
+- check: E13C-12_engine_a fresh recheck a day later passes, with
+  result: PASS
+  details: 'missing test: a fresh recheck a day later passes, without growing the
+    interval'
+- check: 'E13C-12_engine_a near repeat cannot carry a complex or '
+  result: PASS
+  details: 'missing test: a near repeat cannot carry a complex or critical review
+    alone'
+- check: E13C-12_engine_strong use before the due day is reuse a
+  result: PASS
+  details: 'missing test: strong use before the due day is reuse and does not move
+    the clock'
+- check: E13C-12_engine_only clean independent verified direct w
+  result: PASS
+  details: 'missing test: only clean independent verified direct work counts as a
+    review'
+- check: E13C-12_engine_uncertainty on a due check is a concern,
+  result: PASS
+  details: 'missing test: uncertainty on a due check is a concern, and a fresh success
+    clears it'
+- check: 'E13C-12_application_a mastered Skill gets a fresh schedule, '
+  result: PASS
+  details: 'missing test: a mastered Skill gets a fresh schedule, and skill_state
+    carries the retention axis'
+- check: E13C-12_application_the replayed mastery timeline agrees wit
+  result: PASS
+  details: 'missing test: the replayed mastery timeline agrees with the mastery engine
+    rebuilt after every row'
+- check: E13C-12_application_the day moves a fresh schedule to review
+  result: PASS
+  details: 'missing test: the day moves a fresh schedule to review_due, and nothing
+    else is touched'
+- check: 'E13C-12_application_the planner sees a review that came due '
+  result: PASS
+  details: 'missing test: the planner sees a review that came due overnight, and it
+    is not a failure'
+- check: E13C-12_application_a review repeating a family already met,
+  result: PASS
+  details: 'missing test: a review repeating a family already met, or not direct for
+    its Objective, is not a complex review'
+- check: 'E13C-12_storage_migrating a populated schema-4 database '
+  result: PASS
+  details: 'missing test: migrating a populated schema-4 database completes retention_state
+    and preserves every truth row'
+- check: E13C-12_storage_retention_state holds only the RVR-v0 ax
+  result: PASS
+  details: 'missing test: retention_state holds only the RVR-v0 axis, on insert and
+    on the upsert''s update'
+- check: E13C-12_storage_the due query returns only fresh and sta
+  result: PASS
+  details: 'missing test: the due query returns only fresh and stable schedules whose
+    study day has come'
+- check: E13C-13_13b_gate_narrowed
+  result: PASS
+  details: 13B gate not narrowed with ownership
+- check: E13C-13_13b_test_narrowed
+  result: PASS
+  details: 13B test not narrowed
+- check: E13C-13_recorded
+  result: PASS
+  details: narrowing not recorded
+- check: E13C-14_mutation_all_detected
+  result: PASS
+  details: 47/47
+- check: E13C-14_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E13C-14_validator_mutation
+  result: PASS
+  details: '{''total'': 27, ''detected'': 27, ''negative_control'': ''forbidden fragments
+    (a clock read, decay, a probability, a truth write, a stored review_due, interval
+    growth, a percentage) inside a Kotlin comment must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E13C-14_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E13C-14_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E13C-14_open_rebuild_after_evidence_from_ap
+  result: PASS
+  details: rebuild_after_evidence_from_app not owned
+- check: E13C-14_open_topic_weakening_and_remediatio
+  result: PASS
+  details: topic_weakening_and_remediation not owned
+- check: E13C-14_open_overdue_urgency_buckets_and_su
+  result: PASS
+  details: overdue_urgency_buckets_and_success_band not owned
+- check: E13C-14_open_replay_runtime
+  result: PASS
+  details: replay_runtime not owned
+- check: E13C-15_forbidden_mastery_time_decay
+  result: PASS
+  details: missing=mastery_time_decay
+- check: E13C-15_forbidden_review_due_as_forgetting
+  result: PASS
+  details: missing=review_due_as_forgetting
+- check: E13C-15_forbidden_lock_or_risk_from_time
+  result: PASS
+  details: missing=lock_or_risk_from_time
+- check: E13C-15_forbidden_probability_or_half_life_presented_as_kn
+  result: PASS
+  details: missing=probability_or_half_life_presented_as_known
+- check: E13C-15_forbidden_schedule_for_unknown_profile
+  result: PASS
+  details: missing=schedule_for_unknown_profile
+- check: E13C-15_forbidden_near_repeat_as_strong_complex_or_critica
+  result: PASS
+  details: missing=near_repeat_as_strong_complex_or_critical_review
+- check: E13C-15_forbidden_seen_item_as_recheck
+  result: PASS
+  details: missing=seen_item_as_recheck
+- check: E13C-15_forbidden_recheck_pass_grows_interval
+  result: PASS
+  details: missing=recheck_pass_grows_interval
+- check: E13C-15_forbidden_cluster_or_descendant_refresh
+  result: PASS
+  details: missing=cluster_or_descendant_refresh
+- check: E13C-15_forbidden_skill_state_claims_newer_truth
+  result: PASS
+  details: missing=skill_state_claims_newer_truth
+- check: E13C-16_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 13C QA PASS'''
+- check: E13C-16_spec_**Decision:** `D-101`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-101`'''
+- check: E13C-16_spec_Time passing is not negati
+  result: PASS
+  details: 'spec: ''Time passing is not negative evidence'''
+- check: 'E13C-16_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E13C-16_spec_Mutation 47/47
+  result: PASS
+  details: 'spec: ''Mutation 47/47'''
+- check: E13C-16_spec_13D — Remediation Engine
+  result: PASS
+  details: 'spec: ''13D — Remediation Engine'''
+- check: E13C-17_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E13C-17_research_RVR-v0
+  result: PASS
+  details: missing='RVR-v0'
+- check: E13C-17_research_18C
+  result: PASS
+  details: missing='18C'
+- check: E13C-17_research_replay
+  result: PASS
+  details: missing='replay'
+- check: E13C-18_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E13C-18_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E13C-18_no_combining_dot
+  result: PASS
+  details: U+0307 in 13C text
+failures: []

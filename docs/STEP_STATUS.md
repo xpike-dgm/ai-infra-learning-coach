@@ -64,8 +64,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12F — Sanal kullanıcı testleri** | ✅ | VUSX-v0 / D-097. 3H'nin 16 senaryosu gerçek kodla; sanal kullanıcı durumdur, cevap değil; 15 senaryo koşuldu, S06 (VDW-v0) sahibiyle 13'e bağlandı; açıklamada due envanteri tek satır; 148/148 QA PASS, mutation 27/27 (yalnız sanal kullanıcı testleriyle). **AŞAMA 12 kapandı.** |
 | **13A — Haftalık sınav** | ✅ | WBAX-v0 / D-098. Hafta bir kimlik, kota değil; havuz planner'ın ihtiyaçları, Skill tek kez; slot yalnız güvenilir ve taze item'la; slotlar planner'ın adayı, haftanın kendi dakikası yok; ISO hafta, kaçırılan hafta borç değil; puan yok; şema v3; 210/210 QA PASS, mutation 42/42. |
 | **13B — Aylık sınav** | ✅ | MCAX-v0 / D-100. Ay daha geniş pencere, daha ağır sınav değil; 13A kontratı ortak kontrata genelleştirildi, haftalık değer değişmedi; kritik Skill yalnız nedenle yeniden doğrulanır; aylık etiket ağırlık eklemez; takvim ayı, önceki oturum borç değil; transfer/kontrol noktası üreticisi uydurulmadı (15); şema v4; 259/259 QA PASS, mutation 48/48. |
-| **13C — Spaced repetition** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **13D–13F, 14–20** | ⬜ Bekliyor | 13C sonrası canonical sırada; 13F D-099 ile eklendi. |
+| **13C — Spaced repetition** | ✅ | RVRX-v0 / D-101. Zaman negatif kanıt değil; retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar, silmez; taze yeniden kontrol aralığı büyütmez; `review_due` yalnız günden; planner plan öncesi vadeyi yeniler; V0 sayıları RVR-v0 §20 (18C); şema v5; 164/164 QA PASS, mutation 47/47. |
+| **13D — Remediation Engine** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **13E–13F, 14–20** | ⬜ Bekliyor | 13D sonrası canonical sırada; 13F D-099 ile eklendi. |
 
 ## Manager transition — D-055
 
@@ -84,7 +85,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13B
+## Son tamamlanan numaralı adım — 13C
+
+**Final:** `RVRX-v0 — Retention Verification & Risk Implementation` / D-101.
+**Ana çıktı:** `docs/RETENTION_IMPL_SPEC.md` + `arch/13c_spaced_repetition/` + `android/`.
+
+13C sonucu:
+- zamanın geçmesi negatif kanıt değildir; gün yalnız planlanmış bir kontrolün geldiğini söyler; mastery azalmaz, hiçbir şey kilitlenmez,
+- retention kanıttan kayıt sırasıyla yeniden oynatılır; mastery motoru her satırdan sonra `RebuildMastery` gibi yeniden sorulur; truth yazılmaz,
+- ilk temiz hata `verification_due` (silmez); vadeli güçlü kontrol `stable` ve aralık büyür; vadeden önceki kullanım saati oynatmaz; taze yeniden kontrol aralığı büyütmez; belirsiz vadeli kontrol `at_risk`,
+- yakın tekrar karmaşık/kritik tekrarı tek başına taşıyamaz; yeniden kontrol her profilde taze olmalı,
+- `review_due` yalnız günden türetilir; `RefreshDueRetention` indeksli sorguyla yeniler, watermark'ı korur; planner plan öncesi çağırır, kuralı değişmedi,
+- V0 sayıları `RVR-v0` §20'nin (heuristik, 18C); büyüme aşağı yuvarlanır; ayrım kilit değil,
+- şema v5 `retention_state` (dolu v4 fixture'a karşı); `skill_state` en eski watermark; `retentionDueBy`; port sayısı dört,
+- mutation 47/47 (R25/R26/R45 ilk turda kaçtı — test sıralama hatası ve doğrudan UPDATE eksikliği düzeltildi, set yeniden koşuldu), independent validator **164/164 PASS**, kendi mutation testi 27/27; 45/45 sweep PASS,
+- **T6 çalıştırılmadı** — uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+
+## Önceki numaralı adım — 13B
 
 **Final:** `MCAX-v0 — Monthly Capability Assessment Implementation` / D-100.
 **Ana çıktı:** `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13b_monthly_assessment/` + `android/`.
@@ -101,7 +118,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 48/48 (M10 ilk turda kaçtı, test güçlendirildi, set yeniden koşuldu), independent validator **259/259 PASS**, kendi mutation testi 28/28; 44/44 sweep PASS,
 - **T6 çalıştırılmadı** — uygulamada ay kurulmuyor (16D), item'lar aylık rol beyan etmiyor (15).
 
-## Önceki numaralı adım — 13A
+## AŞAMA 13 önceki adım — 13A
 
 **Final:** `WBAX-v0 — Weekly Blueprint Assessment Implementation` / D-098.
 **Ana çıktı:** `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13a_weekly_assessment/` + `android/`.
@@ -134,6 +151,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13C Spaced repetition
+## Aktif adım — 13D Remediation Engine
 
-**13C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**13D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

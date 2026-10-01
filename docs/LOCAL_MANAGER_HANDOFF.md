@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13C active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13D active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1140,14 +1140,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - **AŞAMA 12 TAMAMLANDI**
 - AŞAMA 13A ✅ WBAX-v0 / D-098
 - AŞAMA 13B ✅ MCAX-v0 / D-100
-- AŞAMA 13C 🟡 active-not-executed
-- 13D–13F, 14–20 ⬜
+- AŞAMA 13C ✅ RVRX-v0 / D-101
+- AŞAMA 13D 🟡 active-not-executed
+- 13E–13F, 14–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `13B — Aylık sınav`  
-**Final:** `MCAX-v0 — Monthly Capability Assessment Implementation` / D-100  
-**Canonical:** `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13b_monthly_assessment/`
+**Son tamamlanan numaralı adım:** `13C — Spaced repetition`  
+**Final:** `RVRX-v0 — Retention Verification & Risk Implementation` / D-101  
+**Canonical:** `docs/RETENTION_IMPL_SPEC.md` + `arch/13c_spaced_repetition/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1186,17 +1187,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 12:** ✅ TAMAMLANDI  
 **AŞAMA 13A:** ✅ TAMAMLANDI  
 **AŞAMA 13B:** ✅ TAMAMLANDI  
-**Aktif adım:** `13C — Spaced repetition`  
+**AŞAMA 13C:** ✅ TAMAMLANDI  
+**Aktif adım:** `13D — Remediation Engine`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-13C için:
+13D için:
 
 ```text
-fresh 13C PRE-STEP GitHub refresh
+fresh 13D PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 13C execution
+→ 13D execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1766,8 +1768,9 @@ AŞAMA 11 ✅ TAMAMLANDI
 AŞAMA 12 ✅ TAMAMLANDI
 13A ✅ WBAX-v0 / D-098
 13B ✅ MCAX-v0 / D-100
-13C 🟡 active-not-executed
-13D–13F, 14–20 ⬜
+13C ✅ RVRX-v0 / D-101
+13D 🟡 active-not-executed
+13E–13F, 14–20 ⬜
 ```
 
 10D final:
@@ -1964,9 +1967,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `13C — Spaced repetition`.
+**Sıradaki gerçek numbered work:** `13D — Remediation Engine`.
 
-**13C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**13D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2016,8 +2019,8 @@ AŞAMA 12 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `13C — Spaced repetition`.  
-**13C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `13D — Remediation Engine`.  
+**13D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2188,4 +2191,13 @@ Ana invariant: bir hafta bir kimliktir, kota ya da son tarih değil. Döngü kay
 
 13B `MCAX-v0 — Monthly Capability Assessment Implementation` ile tamamlandı. Canonical: `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md`; contract/QA: `arch/13b_monthly_assessment/`; synthesis: `research/13b_monthly_assessment_research.md`.
 
-Ana invariant: bir ay daha geniş bir penceredir, daha ağır bir sınav değil. 13A'nın haftalık kontratı tek ortak kontrata ve tek `BlueprintComposer`'a genelleştirildi; hiçbir haftalık değer değişmedi. Döngü kaydedilmiş çalışma gününün takvim ayı; ay bir kez kurulur, önceki aylık oturumu adlandırır ama borç saymaz. Havuz planner'ın ihtiyaçları, bir Skill tek kez ve §7 sırasıyla; kritik Skill yalnız nedenle yeniden doğrulanır; transfer ve profesyonel kontrol noktasının üreticisi uydurulmadı (15). Slotlar planner'ın mevcut ihtiyaçlarının alternatif adayı; sonuçta puan yok; boylamsal listeler yalnız temiz kanıtla; aylık etiket ağırlık eklemez. Şema v4 biçim trigger'ı; port sayısı dört; 13A validator'ı daraltıldı. Mutation 48/48, 259/259 QA PASS, validator mutation 28/28, 44/44 sweep. T6 çalıştırılmadı. Current active numbered step 13C'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: bir ay daha geniş bir penceredir, daha ağır bir sınav değil. 13A'nın haftalık kontratı tek ortak kontrata ve tek `BlueprintComposer`'a genelleştirildi; hiçbir haftalık değer değişmedi. Döngü kaydedilmiş çalışma gününün takvim ayı; ay bir kez kurulur, önceki aylık oturumu adlandırır ama borç saymaz. Havuz planner'ın ihtiyaçları, bir Skill tek kez ve §7 sırasıyla; kritik Skill yalnız nedenle yeniden doğrulanır; transfer ve profesyonel kontrol noktasının üreticisi uydurulmadı (15). Slotlar planner'ın mevcut ihtiyaçlarının alternatif adayı; sonuçta puan yok; boylamsal listeler yalnız temiz kanıtla; aylık etiket ağırlık eklemez. Şema v4 biçim trigger'ı; port sayısı dört; 13A validator'ı daraltıldı. Mutation 48/48, 259/259 QA PASS, validator mutation 28/28, 44/44 sweep. T6 çalıştırılmadı. Bu addendum 13B kapanışında yazıldı; ardından 13C D-101 ile tamamlandı (aşağıdaki 13C addendum'u).
+
+
+---
+
+## 13C completion addendum — D-101
+
+13C `RVRX-v0 — Retention Verification & Risk Implementation` ile tamamlandı. Canonical: `docs/RETENTION_IMPL_SPEC.md`; contract/QA: `arch/13c_spaced_repetition/`; synthesis: `research/13c_spaced_repetition_research.md`.
+
+Ana invariant: zamanın geçmesi negatif kanıt değildir. Retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar ve silmez; vadeli güçlü kontrol aralığı büyütür, taze yeniden kontrol büyütmez; yakın tekrar karmaşık/kritik tekrarı taşıyamaz; `review_due` yalnız günden türetilir ve planner plan öncesi indeksli sorguyla yeniler. V0 sayıları `RVR-v0` §20'nin (heuristik, 18C). Şema v5 `retention_state`; `skill_state` en eski watermark; port sayısı dört; 13B kapısı daraltıldı. Mutation 47/47, 164/164 QA PASS, validator mutation 27/27, 45/45 sweep. T6 çalıştırılmadı. Current active numbered step 13D'dir; fresh PRE + kullanıcı açık onayı gerekir.

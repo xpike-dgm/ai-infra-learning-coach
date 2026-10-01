@@ -51,7 +51,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12F Sanal kullanıcı testleri: VUSX-v0 / D-097 ile tamamlandı; 15/16 senaryo gerçek kodla, açıklamada due envanteri tek satır. AŞAMA 12 kapandı.
 - [x] 13A Haftalık sınav: WBAX-v0 / D-098 ile tamamlandı; blueprint kompozisyonu, planner köprüsü, şema v3.
 - [x] 13B Aylık sınav: MCAX-v0 / D-100 ile tamamlandı; ortak kontrat ve composer, aylık havuz, şema v4.
-- [ ] 13C Spaced repetition **AKTİF**: `RVR-v0` retention zamanlaması ve ihtiyaçları.
+- [x] 13C Spaced repetition: RVRX-v0 / D-101 ile tamamlandı; retention motoru, vade yenileme, şema v5.
+- [ ] 13D Remediation Engine **AKTİF**: `WLRM-v0` remediation, zayıflık ekseni, Topic `weakening`, geriye dönük contamination.
+- [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak (mastery → retention → readiness) ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
+- [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.
+- [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
+- [ ] Önceki exposure kayıtlarının kanıt satırına katılması (bugün bağımsızlık sınıfı ve görülmüş item reddi kapsıyor) → 14.
+- [ ] Retention replay çalışma süresi (Skill satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [ ] Aylık `cross_topic_transfer` ve `professional_evidence_checkpoint` rollerinin üreticisi (transfer fırsatı ve profesyonel kanıt metadata'sı) → 15; o zamana kadar bu rollerle slot kurulmaz.
 - [ ] Aylık döngü ayarı → 16D; varsayılan takvim ayı.
 - [ ] Boylamsal kanıtta farklı gün sayımı → 18D kalibrasyonu, gerekirse; uydurulmadı.

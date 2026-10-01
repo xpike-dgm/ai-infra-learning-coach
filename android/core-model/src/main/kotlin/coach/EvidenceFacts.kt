@@ -67,6 +67,12 @@ data class EvidenceRow(
     val solutionExposed: Boolean = false,
     /** Whether the artifact's provenance says the learner produced the target behaviour. */
     val userAuthoredArtifact: Boolean = false,
+    /**
+     * The learner-local study day the row was recorded on (13C). Retention schedules in study days, and
+     * the day is the row's own column, never recomputed from an instant. `null` only where a caller built
+     * a row without one; the retention engine refuses such a row rather than guessing its day.
+     */
+    val studyDay: String? = null,
 ) {
     init {
         require(quality == null || quality in 0.0..1.0) { "a group result is in [0,1], not a score out of anything" }

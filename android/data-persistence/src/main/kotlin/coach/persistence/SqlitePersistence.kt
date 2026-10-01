@@ -320,7 +320,7 @@ class SqlitePersistence private constructor(
             SELECT e.id, e.sequence, e.skill_logical_id, e.skill_version, e.evidence_type, e.outcome,
                    e.evaluator_status, e.independence_class, e.contested, e.correctness_or_rubric_result,
                    e.difficulty, e.variant_family_id, e.resource_logical_id, e.resource_version,
-                   e.prerequisite_snapshot
+                   e.prerequisite_snapshot, e.occurred_on_study_day
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -350,6 +350,7 @@ class SqlitePersistence private constructor(
                     // An absent snapshot is not a claim that prerequisites were fine; it says the
                     // pipeline recorded none, and the engine treats what it was given.
                     prerequisiteValid = statement.isNull(14) || statement.getText(14) != CONTAMINATED,
+                    studyDay = statement.getText(15),
                 )
             }
             return rows
@@ -451,6 +452,23 @@ class SqlitePersistence private constructor(
     override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> {
         connection.prepare(
             "SELECT DISTINCT skill_logical_id, skill_version FROM evidence_event WHERE occurred_on_study_day >= ? " +
+                "ORDER BY skill_logical_id, skill_version",
+        ).use { statement ->
+            statement.bindText(1, studyDay)
+            val rows = mutableListOf<VersionedRef>()
+            while (statement.step()) rows += VersionedRef(statement.getText(0), statement.getLong(1).toInt())
+            return rows
+        }
+    }
+
+    /**
+     * `RVR-v0` §19's indexed due query (13C): only a `fresh` or `stable` schedule can become due, and the
+     * day is compared as the study day the row stored — never recomputed from an instant.
+     */
+    override fun retentionDueBy(studyDay: String): List<VersionedRef> {
+        connection.prepare(
+            "SELECT skill_logical_id, skill_version FROM retention_state " +
+                "WHERE next_review_on_study_day <> '' AND next_review_on_study_day <= ? AND state IN ('fresh', 'stable') " +
                 "ORDER BY skill_logical_id, skill_version",
         ).use { statement ->
             statement.bindText(1, studyDay)
