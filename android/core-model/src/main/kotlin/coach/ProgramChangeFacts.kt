@@ -39,8 +39,19 @@ data class SkillAxes(
 )
 
 /**
+ * One Objective's coverage waiver as `diagnostic_coverage` held it at a moment (13F): `active`, `none`, or
+ * `not_yet_evaluated` when no row had been written.
+ */
+data class ObjectiveCoverage(
+    val objective: VersionedRef,
+    val skill: VersionedRef,
+    val waiver: String,
+)
+
+/**
  * What canonical state and the plan said at one moment. [truthWatermark] is the truth the reading could have
  * seen; [plan] is the newest plan's decoded trace, `null` when there was none or it does not decode.
+ * [coverage] holds the Objectives of the active diagnostic (13F); a waiver can only be granted there.
  */
 data class ProgramSnapshot(
     val truthWatermark: Long,
@@ -48,6 +59,7 @@ data class ProgramSnapshot(
     val skills: Map<VersionedRef, SkillAxes>,
     val planVersionId: Long?,
     val plan: PlanTrace?,
+    val coverage: Map<VersionedRef, ObjectiveCoverage> = emptyMap(),
 )
 
 /**
@@ -68,11 +80,31 @@ enum class StateChangeKind(val id: String, val family: String, val reasonCode: S
     WEAKNESS_RESOLVED("weakness_resolved", "confirmed_capabilities", "replan.evidence_state_changed"),
     RETENTION_REVALIDATED("retention_revalidated", "retention_revalidated", "replan.evidence_state_changed"),
     RETENTION_AT_RISK("retention_at_risk", "verification_needed", "replan.evidence_state_changed"),
+
+    /**
+     * 13F: an Objective's starting lesson was waived because its gates first passed on diagnostic evidence
+     * (`VDW-v0` §9). The Objective was shown independently, so it is a confirmed capability at that grain — not
+     * the Skill's mastery. The code is the one 12D records for `diagnostic_waiver_granted`.
+     */
+    COVERAGE_WAIVED("coverage_waived", "confirmed_capabilities", "replan.prerequisite_state_changed"),
+
+    /**
+     * 13F: a waiver no longer stands because the evidence it named was corrected (a disposition). The answer was
+     * not reliably measured; the lesson simply comes back, and nothing is the learner's failure.
+     */
+    COVERAGE_WAIVER_WITHDRAWN("coverage_waiver_withdrawn", "not_reliably_measured", "replan.evidence_state_changed"),
 }
 
-data class StateChange(val skill: VersionedRef, val kind: StateChangeKind, val from: String, val to: String) {
+/** [objective] is set only for a coverage change (13F), which is about one Objective rather than the Skill. */
+data class StateChange(
+    val skill: VersionedRef,
+    val kind: StateChangeKind,
+    val from: String,
+    val to: String,
+    val objective: VersionedRef? = null,
+) {
     /** The reference an assessment result carries for it (`AssessmentBlueprintResult.stateChangeRefs`). */
-    val ref: String get() = "skill_state:$skill#${kind.id}"
+    val ref: String get() = if (objective != null) "diagnostic_coverage:$objective#${kind.id}" else "skill_state:$skill#${kind.id}"
 }
 
 /** How the plan differs between two versions. */

@@ -42,9 +42,15 @@ class RebuildWeakness(
         require(rows.all { it.second.studyDay != null }) { "an evidence row with no study day cannot be placed in time" }
         val byObjective = profiles.associateBy { it.ref }
         val steps = MasteryTimeline.of(skill, profiles, rows)
+        val sessions = DiagnosticSessions.Cache(persistence)
         val objectives = profiles.map { profile ->
+            // 13F: an Objective stops being a diagnostic baseline the moment ordinary learning reaches it.
+            var learnedHere = false
             val events = steps.filter { it.objective == profile.ref }.map { step ->
                 val row = step.row
+                val inDiagnostic = sessions.diagnosticOf(row, profile.ref) != null
+                val baseline = inDiagnostic && !learnedHere
+                if (!inDiagnostic) learnedHere = true
                 WeaknessEvent(
                     evidenceId = row.id, sequence = row.sequence, studyDay = row.studyDay!!, outcome = row.outcome,
                     evaluatorStatus = row.evaluatorStatus, independence = row.independenceClass, contested = row.contested,
@@ -52,6 +58,7 @@ class RebuildWeakness(
                     direct = byObjective[profile.ref]?.directEvidenceTypes?.contains(row.evidenceType) == true,
                     resource = row.resource, variantFamilyId = row.variantFamilyId,
                     masteredBefore = step.masteredBefore, masteredAfter = step.masteredAfter,
+                    diagnosticBaseline = baseline,
                 )
             }
             WeaknessEngine.replay(profile.ref, skill, events)

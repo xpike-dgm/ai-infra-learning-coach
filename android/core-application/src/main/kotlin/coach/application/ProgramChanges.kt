@@ -2,6 +2,7 @@ package coach.application
 
 import coach.engines.ProgramChangeEngine
 import coach.model.DailyCapacityInput
+import coach.model.ObjectiveCoverage
 import coach.model.ObjectiveGateProfiles
 import coach.model.PlanTraceCodec
 import coach.model.ProgramChangeReport
@@ -38,6 +39,15 @@ class CaptureProgramSnapshot(
                 weakness = axis("weakness_axis_state"),
             )
         }
+        // A waiver can only be granted inside the open diagnostic (13F), so its Objectives are the ones read.
+        val coverage = DiagnosticSessions.active(persistence)?.scope?.targets.orEmpty().associate { target ->
+            target.objective to ObjectiveCoverage(
+                objective = target.objective,
+                skill = target.skill,
+                waiver = persistence.readProjection(CoverageRows.key(target.objective))?.payload?.get("waiver")
+                    ?.ifEmpty { null } ?: ResolvePrerequisites.NOT_YET_EVALUATED,
+            )
+        }
         val plan = persistence.latestPlan()
         return ProgramSnapshot(
             truthWatermark = watermark,
@@ -45,15 +55,17 @@ class CaptureProgramSnapshot(
             skills = skills,
             planVersionId = plan?.planVersionId,
             plan = plan?.traceText?.let(PlanTraceCodec::decode),
+            coverage = coverage,
         )
     }
 }
 
 /**
  * Recomputing one Skill's state after new evidence (13E): mastery, then retention and weakness (which read
- * the mastery timeline), then readiness (which reads the axes they wrote). Each engine writes only its own
- * family; this only puts them in order, with the Objectives' gate profiles taken from the published
- * curriculum. A Skill with no published Objective has nothing to recompute and nothing is written.
+ * the mastery timeline), then the diagnostic coverage (13F, which asks the mastery engine's gates itself), then
+ * readiness (which reads the axes they wrote). Each engine writes only its own family; this only puts them in
+ * order, with the Objectives' gate profiles taken from the published curriculum. A Skill with no published
+ * Objective has nothing to recompute and nothing is written.
  */
 class RecomputeSkillState(
     private val persistence: PersistencePort,
@@ -65,6 +77,7 @@ class RecomputeSkillState(
         RebuildMastery(persistence, clock).rebuild(skill, profiles)
         RebuildRetention(persistence, clock).rebuild(skill, profiles)
         RebuildWeakness(persistence, clock).rebuild(skill, profiles)
+        RebuildDiagnosticCoverage(persistence, clock).rebuild(skill, profiles)
         RebuildReadiness(persistence, clock).rebuild(skill)
         return true
     }
@@ -110,6 +123,8 @@ class ReportProgramChanges(
                 kinds.isEmpty() -> null
                 StateChangeKind.REMEDIATION_OPENED in kinds -> ReplanTrigger.NEW_REMEDIATION_CREATED
                 StateChangeKind.VERIFICATION_OPENED in kinds -> ReplanTrigger.NEW_VERIFICATION_DUE_CREATED
+                // 13F: a waived lesson leaves the plan; 12D already names the event (`diagnostic_waiver_granted`).
+                StateChangeKind.COVERAGE_WAIVED in kinds -> ReplanTrigger.DIAGNOSTIC_WAIVER_GRANTED
                 else -> ReplanTrigger.NEW_EVIDENCE_RECORDED
             }
         }

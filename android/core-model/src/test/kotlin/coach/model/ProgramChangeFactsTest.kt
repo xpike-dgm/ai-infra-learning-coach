@@ -40,8 +40,11 @@ class ProgramChangeFactsTest {
     @Test
     fun `every state change belongs to one of the result's families and records a replan reason`() {
         val families = setOf("confirmed_capabilities", "verification_needed", "persistent_targeted_gaps", "retention_revalidated")
+        // Narrowed at 13F: a waiver withdrawn because its evidence was corrected away is `ASUX-v0` §13.3's
+        // `not_reliably_measured` — and it is the only change filed there; every axis change keeps the four.
         StateChangeKind.entries.forEach {
-            assertTrue(it.family in families, it.id)
+            if (it == StateChangeKind.COVERAGE_WAIVER_WITHDRAWN) assertEquals("not_reliably_measured", it.family)
+            else assertTrue(it.family in families, it.id)
             assertTrue(it.reasonCode.startsWith("replan."), it.id)
         }
         // A hypothesis is never filed as a gap (`SPWX-v0`).

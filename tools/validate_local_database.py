@@ -107,8 +107,21 @@ check("E10D-02_truth_extra_is_documented",
       and contract["store_regions"]["user_truth_store"]["extra_relational_table"] == "evidence_event_objective"
       and contract["store_regions"]["user_truth_store"]["extra_table_is_new_entity"] is False,
       f"undocumented extra truth tables: {sorted(extra_truth)}")
-check("E10D-02_projection_inventory", set(kotlin_projection) == set(ddm_projection),
-      f"missing={sorted(set(ddm_projection) - set(kotlin_projection))} extra={sorted(set(kotlin_projection) - set(ddm_projection))}")
+# Narrowed at 13F: DDM-v0's eight projections must all be there, and any further projection must be declared by the
+# accepted later contract that added it (`projection_extension` in its arch yaml, under its own decision) — so an
+# undeclared table still fails, and the accepted DDM-v0 contract itself is never edited.
+declared_projection = set()
+for _path in sorted(ROOT.glob("arch/*/*.yaml")):
+    try:
+        _doc = yaml.safe_load(_path.read_text(encoding="utf-8")) or {}
+    except Exception:
+        continue
+    _ext = _doc.get("projection_extension") if isinstance(_doc, dict) else None
+    if isinstance(_ext, dict) and _ext.get("table") and _ext.get("decision") and str(_doc.get("status", "")).startswith("accepted_"):
+        declared_projection.add(_ext["table"])
+check("E10D-02_projection_inventory", set(ddm_projection) <= set(kotlin_projection)
+      and set(kotlin_projection) - set(ddm_projection) <= declared_projection,
+      f"missing={sorted(set(ddm_projection) - set(kotlin_projection))} undeclared extra={sorted(set(kotlin_projection) - set(ddm_projection) - declared_projection)}")
 for table in ddm_curriculum + ddm_truth + ddm_projection:
     check(f"E10D-03_ddl_{table}", re.search(rf"CREATE TABLE IF NOT EXISTS {table} \(", schema) is not None,
           f"no CREATE TABLE for {table}")

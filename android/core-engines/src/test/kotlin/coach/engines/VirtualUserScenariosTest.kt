@@ -114,6 +114,31 @@ class VirtualUserScenariosTest {
     }
 
     @Test
+    fun `S06 a partial diagnostic waives only the validated Objectives and the Skill is not mastered`() {
+        val fast = VirtualUsers.FastPath
+        val plan = VirtualUsers.s06().plan()
+        // Only O1 and O2 were shown: their lessons are resolved by the waiver, and nothing else is.
+        listOf(fast.addressVsValue, fast.declaration).forEach { o ->
+            val lesson = plan.candidate(fast.lessonId(o))
+            assertEquals(CandidateDisposition.RESOLVED_BEFORE_SELECTION, lesson.disposition)
+            assertEquals(listOf("diagnostic.partial_coverage_waiver"), lesson.reasonCodes)
+        }
+        // O3 and O4 stay in normal learning: one is taught today, the other is the same need's alternative.
+        assertEquals(listOf(fast.lessonId(fast.dereference)), plan.selectedIds())
+        assertEquals(CandidateDisposition.SUPERSEDED_SAME_NEED_ALTERNATIVE, plan.candidate(fast.lessonId(fast.writeThrough)).disposition)
+        // The whole Topic is not mastered: its Skill still has learning open, and nothing claims a full waiver.
+        val need = plan.need(needKey(NeedTrigger.CONTINUE_LEARNING, fast.skill))
+        assertEquals(NeedDisposition.SELECTED, need.disposition)
+        assertTrue(plan.candidates.none { "diagnostic.full_coverage_waiver" in it.reasonCodes })
+
+        // While the diagnostic is still checking O4, its lesson waits for it rather than teaching it first.
+        val checking = VirtualUsers.s06(stillChecking = setOf(fast.writeThrough)).plan()
+        assertEquals(CandidateDisposition.CONDITIONAL_NOT_SELECTED, checking.candidate(fast.lessonId(fast.writeThrough)).disposition)
+        assertEquals(listOf("diagnostic.user_requested_fast_path"), checking.candidate(fast.lessonId(fast.writeThrough)).reasonCodes)
+        assertEquals(listOf(fast.lessonId(fast.dereference)), checking.selectedIds())
+    }
+
+    @Test
     fun `S07 eighty due Skills are an inventory, not eighty tasks, and the day stays within its budget`() {
         val plan = VirtualUsers.s07().plan()
         assertEquals(45, plan.capacity.planningBudgetMinutes)

@@ -1,0 +1,297 @@
+model: VDWX-v0
+stage_step: 13F
+status: accepted_13f
+decision: D-104
+policy: VDW-v0
+added_by: D-099
+answers: [3H S06, PDT-v0 §23 invariant 12, PDT-v0 §8.7]
+gates_asked: MSTX-v0
+engines_touched: [PLNX-v0, WLRX-v0, PCRX-v0, RSNX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: which_starting_lessons_the_learner_can_skip_because_the_objective_was_shown_independently_under_the_mastery_gates
+
+scope:
+  waiver_granted_from_diagnostic_evidence: true
+  diagnostic_recorded_as_truth: true
+  adaptive_routing: true
+  planner_coverage_holds: true
+  result_reported: true
+  s06_runs: true
+  schema_changed: true
+  projection_added: true
+  state_family_added: true
+  mastery_rule_changed: false
+  gate_threshold_changed: false
+  retention_rule_changed: false
+  planner_priority_rule_changed: false
+  weakness_rule_narrowed: true
+  topic_state_decided: false
+  app_calls_diagnostic: false
+  planner_initiated_diagnostic: false
+
+question: Which starting lessons can you skip, because you showed the Objective independently under mastery's own gates?
+
+primary_invariant: >-
+  A diagnostic is not an easier road to mastery; it gathers the same evidence sooner. A waiver is granted only where
+  an Objective's gates first pass on diagnostic evidence, it names that evidence, and it is coverage — never mastery,
+  never retention. Saying "I know this" is never evidence, one easy item never waives a Topic, help taken or a clean
+  miss ends the fast path without blame, and a lesson is skipped only for what was shown.
+
+user_decisions:
+  date: "2026-10-01"
+  diagnostic_baseline_miss_is_weakness: false
+  diagnostic_opened_by: learner_only
+  help_taken_in_diagnostic: ends_fast_path_for_that_objective
+
+diagnostic:
+  storage: assessment_session
+  scope_stored_as: daily
+  format: diagnostic_scope/1
+  sections: {request: [source, study_day, curriculum_version], target: [objective, skill, critical], withdrawal: [session, study_day]}
+  open_diagnostic: newest_diagnostic_row_if_it_is_a_request
+  new_request_replaces_open: true
+  withdrawal_ends_open: true
+  owed_after_replace_or_withdraw: nothing
+  scope_holds_topic: false
+  sources: [user_requested_fast_path, prior_experience_claim, resume_after_external_learning]
+  sources_not_representable: {planner_diagnostic_opportunity: 18B, curriculum_entry_placement: 16D}
+  source_reason_code: diagnostic.user_requested_fast_path
+  targets: required_or_critical_objectives_not_already_shown_or_waived
+  skill_lifecycle_required: published
+  attempts_through: [SubmitAttempt, RecordEvidence]
+
+waiver:
+  gates: MasteryEngine.decide
+  held_over_state: none
+  granted_when: gates_first_pass_on_a_diagnostic_row
+  learning_first_means: no_waiver
+  diagnostic_row_needs_scope_holding_objective: true
+  evidence_after_fast_path_ended_counts: false
+  names: [session, source_evidence_ids_of_passing_window, sequence, study_day]
+  reason: validated_prior_knowledge
+  stored_values: [none, active]
+  superseded: pinned_to_objective_version
+  invalidated: rebuild_no_longer_grants_reported_as_withdrawn
+  later_miss_takes_it_back: false
+  is_mastery: false
+
+fast_path_ends_on: [assistance_or_solution_seen, clean_independent_verified_direct_miss]
+fast_path_ends_not_on: [missing_prerequisite, invalid_or_unverified_evaluation, contested_item]
+
+objective_states: [probe_needed, confirm_needed, waived, already_demonstrated, not_demonstrated, assistance_ended_fast_path]
+open_states: [probe_needed, confirm_needed]
+stages: [probe, confirm, critical_confirm, transfer_confirm]
+
+outcome:
+  values: [full_validated_waiver, partial_validated_waiver, no_waiver]
+  full_requires: every_objective_waived_or_already_shown_at_least_one_waived_every_skill_mastered_by_mastery_engine
+  no_waiver_said_while_in_progress: false
+
+planner:
+  need: {trigger: diagnostic_opportunity, band: P3, decision_value: decisive, one_per_skill_with_open_objective: true}
+  candidate: {purpose: diagnose, atomic: true, declares_one_objective: true, minutes_from_item: true}
+  item_requirements: [targets_objective, daily_eligible, store_trusted, h0_required, mastery_eligible_at_criticality, declares_minutes, unseen, no_solution_exposed_family, not_used_for_another_objective]
+  confirm_asks_only_for: [new_dependency_group, new_variant_family, required_direct_type, non_basic, transfer]
+  coverage_holds:
+    applies_to: teach_with_declared_objectives
+    all_waived: {disposition: resolved_before_selection, code: diagnostic.partial_coverage_waiver, full_code_when_skill_fully_waived: diagnostic.full_coverage_waiver}
+    any_still_checked: {disposition: conditional_not_selected, code: diagnostic.user_requested_fast_path}
+    practice_held: false
+    undeclared_lesson_held: false
+  blocked_diagnostic_code: diagnostic.prerequisite_blocked
+  planning_reads_evidence: false
+  evaluator_unknown_means: false
+
+weakness_narrowing:
+  rule: WeaknessEngine.rule
+  condition: diagnosticBaseline_and_not_mastered_before
+  result: no_rule_speaks
+  baseline_means: in_a_diagnostic_and_no_earlier_ordinary_evidence_for_the_objective
+  twelve_rules_unchanged: true
+
+state_change_extension: [coverage_waived, coverage_waiver_withdrawn]
+state_change_families: {coverage_waived: confirmed_capabilities, coverage_waiver_withdrawn: not_reliably_measured}
+replan_trigger_for_waiver: diagnostic_waiver_granted
+
+projection_extension: {table: diagnostic_coverage, grain: per_objective, owner: VDW-v0, decision: D-104}
+engine_ownership_extension: {engine: VDW-v0, owns: diagnostic_coverage_state, decision: D-104}
+accepted_contracts_edited: false
+
+schema_migration:
+  from: 6
+  to: 7
+  owner: 13F
+  table: diagnostic_coverage
+  columns: [skill_logical_id, skill_version, waiver, waiver_session_id, waiver_source_evidence_ids, waiver_granted_at_sequence, waiver_granted_on_study_day, diagnostic_session_id, diagnostic_state, diagnostic_stage, failed_gates, window_variant_families, window_dependency_groups, reason_codes, as_of_study_day]
+  index: diagnostic_coverage_by_skill
+  checks: [waiver_values, active_names_evidence_and_session, diagnostic_state_values, diagnostic_stage_values]
+  triggers: [assessment_session_daily_format]
+  populated_fixture_tested: true
+  earlier_rows_touched: false
+
+port_refinements:
+  - {port: PersistencePort, method: latestAssessmentSessionIn}
+port_count: 4
+model_refinements: [EvidenceRow.assessmentSessionId, TaskCandidate.targetObjectives, WeaknessEvent.diagnosticBaseline, PlannerEngine.plan.coverage]
+
+s06:
+  run: true
+  levels: [engine, application, presentation]
+  invariant_12: covered
+  all_3h_scenarios_run: true
+
+narrowed_living_gates:
+  - {gate: E10D-02_projection_inventory, how: DDM-v0's eight must remain; any further projection must be declared by an accepted later contract (projection_extension)}
+  - {gate: E13E-02_kinds_equal_contract, how: 13E's eleven kinds first and unchanged; later kinds must be declared (state_change_extension)}
+  - {gate: E13E-02_every_kind_in_a_state_family, how: a declared later kind keeps its declared ASUX-v0 family}
+  - {gate: E13E-06_triggers, how: remediation, verification first and new evidence last; an event between must be declared and 12D's own}
+  - {gate: E13E-09_schema_unchanged, how: 13E changed no schema; a later version must be owned (schema_migration)}
+  - {gate: "ProgramChangeFactsTest: every state change belongs to one of the result's families", how: only coverage_waiver_withdrawn may be not_reliably_measured}
+  - {gate: "WeaknessStorageTest: schema-5 migration", how: VERSION >= 6 instead of == 6}
+  - {gate: E13D-10_schema_version_6, how: version 6 is 13D's and every later version must be owned (schema_migration)}
+  - {gate: E13A-07_trust_from_store, how: the store-trust read moved unchanged into the shared StoreTrust; the weekly composer must still go through it}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/DiagnosticFactsTest.kt, class: coach.model.DiagnosticFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/DiagnosticWaiverEngineTest.kt, class: coach.engines.DiagnosticWaiverEngineTest}
+  scenarios: {file: android/core-engines/src/test/kotlin/coach/engines/VirtualUserScenariosTest.kt, class: coach.engines.VirtualUserScenariosTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/DiagnosticsTest.kt, class: coach.application.DiagnosticsTest}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/DiagnosticPresentationTest.kt, class: coach.presentation.DiagnosticPresentationTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/DiagnosticStorageTest.kt, class: coach.persistence.DiagnosticStorageTest}
+
+mutation_results:
+  total: 69
+  detected: 69
+  only_diagnostic_suites_run: true
+  harness_verified_to_run_gradle: true
+  harness_defects_fixed:
+    - {id: H01, why: the first harness reached WSL bash from Python and ran nothing; it reported the run void instead of passing, and now calls gradlew.bat directly}
+    - {id: H02, why: a second --tests on the same task replaced the first; the harness now gives each module one test task with all its class filters and checks every result file is freshly written}
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - {id: V04, why: no test had an independent re-check still owed; test added (an owed re-check holds the waiver)}
+    - {id: V67, why: the extra-field test put the field on a target line, not the request line; test added for the request line}
+    - {id: V29, why: equivalent — the trust filter was redundant with the ceiling (an unvalidated item is practice at most); filter removed, mutant replaced by one on the ceiling check}
+    - {id: V56, why: equivalent — a guard whose result the transitions already gave; mutant replaced by one on naming the unknown before}
+  compile_errors_first_run:
+    - {id: V02, why: the mutant broke a null smart cast; rewritten to keep it}
+    - {id: V62, why: the mutant broke a null smart cast; rewritten to keep it}
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: V01, mutant: first_pass_outside_a_diagnostic_still_waits_for_a_later_one}
+    - {id: V02, mutant: an_ended_fast_path_still_waives}
+    - {id: V03, mutant: one_failing_gate_is_forgiven}
+    - {id: V04, mutant: an_unresolved_recheck_is_ignored}
+    - {id: V05, mutant: a_waiver_names_only_part_of_its_window}
+    - {id: V06, mutant: a_seen_solution_does_not_end_the_fast_path}
+    - {id: V07, mutant: a_missing_prerequisite_ends_the_fast_path}
+    - {id: V08, mutant: an_unverified_miss_ends_the_fast_path}
+    - {id: V09, mutant: an_indirect_miss_ends_the_fast_path}
+    - {id: V10, mutant: a_partial_answer_is_not_a_miss}
+    - {id: V11, mutant: a_contested_miss_ends_the_fast_path}
+    - {id: V12, mutant: a_waived_objective_is_not_called_waived}
+    - {id: V13, mutant: an_objective_already_shown_is_tested_again}
+    - {id: V14, mutant: a_critical_objective_is_confirmed_as_standard}
+    - {id: V15, mutant: an_unsettled_probe_is_probed_again}
+    - {id: V16, mutant: a_missing_transfer_is_not_named}
+    - {id: V17, mutant: full_without_mastery}
+    - {id: V18, mutant: full_with_a_miss}
+    - {id: V19, mutant: no_waiver_said_before_it_was_checked}
+    - {id: V20, mutant: a_closed_diagnostic_still_opens_a_need}
+    - {id: V21, mutant: a_skill_off_the_route_opens_a_need}
+    - {id: V22, mutant: the_learner_request_is_not_decisive}
+    - {id: V23, mutant: a_guided_item_can_waive}
+    - {id: V24, mutant: a_seen_item_is_fresh}
+    - {id: V25, mutant: a_family_whose_solution_was_shown_is_fresh}
+    - {id: V26, mutant: one_item_serves_two_objectives}
+    - {id: V27, mutant: the_same_family_confirms_diversity}
+    - {id: V28, mutant: a_critical_check_takes_a_standard_item}
+    - {id: V29, mutant: an_item_trusted_below_mastery_is_routed}
+    - {id: V30, mutant: an_item_without_minutes_is_routed}
+    - {id: V31, mutant: the_same_dependency_group_is_a_new_group}
+    - {id: V32, mutant: a_basic_item_confirms_a_critical_gate}
+    - {id: V33, mutant: a_check_declares_no_objective}
+    - {id: V34, mutant: waived_and_held_are_swapped}
+    - {id: V35, mutant: practice_is_held_by_coverage}
+    - {id: V36, mutant: a_lesson_that_also_teaches_the_unshown_is_skipped}
+    - {id: V37, mutant: a_full_waiver_is_reported_partial}
+    - {id: V38, mutant: a_waiting_diagnostic_does_not_say_so}
+    - {id: V39, mutant: a_fully_waived_need_is_not_resolved}
+    - {id: V40, mutant: a_lesson_still_checked_is_called_waived}
+    - {id: V41, mutant: a_request_retests_what_is_shown}
+    - {id: V42, mutant: a_request_checks_optional_objectives}
+    - {id: V43, mutant: a_deprecated_skill_takes_a_fast_path}
+    - {id: V44, mutant: a_request_leaves_the_planner_nothing_to_read}
+    - {id: V45, mutant: a_withdrawal_reopens_the_diagnostic}
+    - {id: V46, mutant: any_session_is_a_diagnostic}
+    - {id: V47, mutant: a_withdrawn_diagnostic_still_holds_lessons}
+    - {id: V48, mutant: a_whole_skill_waiver_is_partial}
+    - {id: V49, mutant: a_result_is_guessed_from_missing_coverage}
+    - {id: V50, mutant: a_waiver_is_not_named_as_the_replan_event}
+    - {id: V51, mutant: recomputing_skips_the_coverage}
+    - {id: V52, mutant: ordinary_learning_does_not_end_the_baseline}
+    - {id: V53, mutant: a_diagnostic_baseline_miss_is_a_weakness}
+    - {id: V54, mutant: a_post_mastery_diagnostic_miss_is_ignored}
+    - {id: V55, mutant: an_unchanged_waiver_is_reported}
+    - {id: V56, mutant: an_unwritten_before_is_not_named_unknown}
+    - {id: V57, mutant: a_missed_objective_is_said_skipped}
+    - {id: V58, mutant: an_open_diagnostic_says_nothing_was_shown}
+    - {id: V59, mutant: a_waiver_is_said_of_the_whole_skill}
+    - {id: V60, mutant: the_explanation_hides_what_was_skipped}
+    - {id: V61, mutant: a_waiting_need_is_explained_as_waived}
+    - {id: V62, mutant: a_waiting_need_is_explained_as_having_no_task}
+    - {id: V63, mutant: a_waiver_without_evidence_is_stored}
+    - {id: V64, mutant: a_daily_row_passes_itself_off_as_a_request}
+    - {id: V65, mutant: a_newer_daily_row_hides_the_diagnostic}
+    - {id: V66, mutant: evidence_forgets_its_session}
+    - {id: V67, mutant: a_request_decodes_unknown_fields}
+    - {id: V68, mutant: a_critical_target_is_stored_standard}
+    - {id: V69, mutant: a_waiver_names_no_evidence}
+
+validator_mutation:
+  total: 29
+  detected: 29
+  negative_control: forbidden fragments (a lowered threshold, an evidence read, a ports import, an invented code, a forgiven gate) inside Kotlin comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 783
+sweep: {passed: 48, total: 48}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app offers the fast path or calls the diagnostic use cases yet (16D)
+
+open_loops:
+  topic_state_from_waivers: {owner: 16C}
+  app_calls_diagnostic: {owner: 16D}
+  entry_placement: {owner: 16D}
+  planner_initiated_diagnostic: {owner: 18B}
+  waiver_across_curriculum_versions: {owner: "15"}
+  authored_items_and_lessons: {owner: "15"}
+  waiver_replay_cost: {owner: 18E}
+  wording: {owner: "14"}
+
+forbidden_patterns:
+  - self_report_as_evidence
+  - lower_bar_for_diagnostic
+  - single_item_topic_waiver
+  - waiver_after_fast_path_ended
+  - waiver_where_learning_passed_first
+  - waiver_as_mastery
+  - untaught_miss_as_weakness
+  - help_as_penalty
+  - teaching_while_diagnosing
+  - skipping_unshown_objective
+  - planning_reads_evidence

@@ -54,7 +54,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13C Spaced repetition: RVRX-v0 / D-101 ile tamamlandı; retention motoru, vade yenileme, şema v5.
 - [x] 13D Remediation Engine: WLRX-v0 / D-102 ile tamamlandı; zayıflık motoru, dispozisyon okuma, geriye dönük contamination, şema v6.
 - [x] 13E Program değişiklik raporu: PCRX-v0 / D-103 ile tamamlandı; snapshot farkı, yeniden hesaplama, yalnız durum değiştiyse replan, sonuç aileleri.
-- [ ] 13F Tanısal atlama (VDW-v0) **AKTİF** (12F S06 buna bağlı).
+- [x] 13F Tanısal atlama (VDW-v0): VDWX-v0 / D-104 ile tamamlandı; waiver, tanısal yol, planner kapsam tutması, şema v7, S06 koşuyor. **AŞAMA 13 kapandı.**
+- [ ] 14A Tutor davranış sözleşmesi **AKTİF**.
+- [ ] Topic `available → mastered` geçişi Objective waiver'larından → 16C.
+- [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16D; giriş yerleşimi tanısal kaynağı → 16D.
+- [ ] Planner kaynaklı tanı (kalibre edilmiş karar değeri) → 18B.
+- [ ] Waiver'ı curriculum sürümleri arasında taşımak (`KGC-v0` §26 göç kayıtları) ve Objective'lerini beyan eden authored dersler/tanı item'ları → 15.
+- [ ] Waiver replay maliyeti (bir Objective'in satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [ ] Raporu ve yeniden hesaplamayı gerçek oturumdan sonra uygulamadan çağırmak, `stateChangeRefs`'i doldurmak → 16D.
 - [ ] Kalıcı `assessment_report` ve boylamsal geçmiş → 16C.
 - [ ] Curriculum paketinde transfer/artifact kapı alanları (profiller şimdilik `GRE-v0` varsayılanında) → 15.
@@ -71,7 +77,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Aylık döngü ayarı → 16D; varsayılan takvim ayı.
 - [ ] Boylamsal kanıtta farklı gün sayımı → 18D kalibrasyonu, gerekirse; uydurulmadı.
 - [ ] Aylık özet mikro metni (`MCA-v0` §30 bölümleri) → 14.
-- [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → **13F** (`D-099`, kullanıcı kararı).
+- [x] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12: 13F'de kapandı (`D-104`).
 - [x] Haftalık/aylık sonuçta geriye dönük contamination (kökünden önce gönderilen iş): 13D'de kapandı — depo dispozisyonları okuyor, `ApplyRetroactiveContamination` yalnız bağımlı slotları düzeltiyor.
 - [ ] Haftalık döngü başlangıç günü ayarı → 16D; varsayılan ISO hafta (kullanıcı onayladı).
 - [ ] Haftayı uygulamadan kurmak (composition çağrısı) → 16D, planner ile birlikte.

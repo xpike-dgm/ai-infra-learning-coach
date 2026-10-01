@@ -873,12 +873,28 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 42/42, validator 162/162 ve kendi mutation testi 29/29,
 - **T6 çalıştırılmadı**; uygulama raporu henüz çağırmıyor (16D).
 
-### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi — **AKTİF**
+### [x] 13F — Tanısal atlama (VDW-v0) — VDWX-v0 / D-104
+
+**13F final coverage:**
+- tanısal yol mastery'ye giden daha kolay bir yol değildir; aynı `GRE-v0` kanıtını aynı pipeline'dan daha erken toplar,
+- tanısal yol `daily` bir `assessment_session` (`diagnostic_scope/1`); en yeni tanısal satır karar verir; yeni istek değiştirir, geri çekme bitirir, borç yok,
+- yalnız öğrenci açar; beyan yalnız kapsamdır (kullanıcı kararı); planner kaynaklı tanı 18B, giriş yerleşimi 16D,
+- waiver yalnız kapılar tanısal kanıtta ilk kez geçince, penceresinin kanıtını adlandırır, kapsamdır — mastery ya da retention değil,
+- yardım ya da temiz kaçırma o Objective'in hızlı yolunu suçsuz bitirir; öğretilmemiş şeyi bilmemek zayıflık değil (kullanıcı kararları, `WLRM-v0` dar biçimde daraltıldı),
+- planner: P3 `decisive` ihtiyaç, taze güvenilir H0 item, yalnız eksik kapı; tanı sürerken ders bekler, atlanan ders `resolved_before_selection`; planlama kanıt okumaz,
+- tam waiver yalnız her Skill mastery motorunca mastered ise; Topic durumu 16C,
+- 13E'ye iki değişiklik türü; waiver replan olayı `diagnostic_waiver_granted`,
+- şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi (D-104); tek port inceltmesi `latestAssessmentSessionIn`,
+- S06 ve `PDT-v0` invariant 12 gerçek kodla; 3H'nin 16 senaryosu koşuyor,
+- mutation 69/69, validator 220/220 ve kendi mutation testi 29/29,
+- **T6 çalıştırılmadı**; uygulama hızlı yolu henüz sunmuyor (16D).
+
+**AŞAMA 13 TAMAMLANDI** — WBAX-v0 → MCAX-v0 → RVRX-v0 → WLRX-v0 → PCRX-v0 → VDWX-v0.
 
 ---
 
 # AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme
-### [ ] 14A — Tutor davranış sözleşmesi
+### [ ] 14A — Tutor davranış sözleşmesi — **AKTİF**
 ### [ ] 14B — Yanlış analizi
 ### [ ] 14C — Alternatif anlatım
 ### [ ] 14D — Kod değerlendirme
@@ -973,8 +989,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13E`  
-**Son tamamlanan:** **`13E — PCRX-v0 / D-103`**  
-**Aktif:** **`13F — Tanısal atlama (VDW-v0)`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`  
+**Son tamamlanan:** **`13F — VDWX-v0 / D-104`**  
+**Aktif:** **`14A — Tutor davranış sözleşmesi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13F fresh PRE-STEP → `VDW-v0` tanısal atlama (12F'nin S06 senaryosu buna bağlı; kanıt ve kapı motorları artık durum yazıyor ve değişiklikler raporlanıyor) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14A fresh PRE-STEP → AI Tutor davranış sözleşmesi (AŞAMA 14'ün ilk adımı; `AIAX-v0` AI'ı yardımcı ve otorite olmayan olarak kilitledi, kanıt/mastery/planner motorları kodda) → independent QA → D-050 POST sync + stale audit.**

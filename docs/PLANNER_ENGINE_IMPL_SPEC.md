@@ -202,3 +202,7 @@ The proof is split as in 11B, 12A and 12B: the planner's choices are T1 checks, 
 If accepted, 12C becomes `PLNX-v0 / D-094`.
 
 Next numbered step: **12D — Replan**. It must receive a fresh PRE-STEP and explicit user approval before execution. Open loops carried: replan triggers, re-entry, paused continuation, calling the planner and one-watermark `skill_state` assembly (12D), reason text and Today reading the plan (12E), virtual-user scenarios (12F), retention and weakness needs (13), authored tasks (15), the capacity setting (16D), starvation thresholds (18C), the candidate cap (18E) and the T6 device run.
+
+---
+
+**13F note (2026-10-01, `D-104`):** `PlannerEngine.plan` takes `coverage` (`VDW-v0` §17): a lesson (`teach`) that declares its Objectives (`TaskCandidate.targetObjectives`) and has all of them waived is `resolved_before_selection`; one with any still under the learner's diagnostic is `conditional_not_selected`; practice and undeclared lessons are never held. A blocked `diagnose` candidate also records `diagnostic.prerequisite_blocked`. Priority, bands and capacity rules are unchanged.

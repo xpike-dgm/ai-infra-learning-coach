@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13F active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını ve aktif adımın `14A active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1143,14 +1143,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 13C ✅ RVRX-v0 / D-101
 - AŞAMA 13D ✅ WLRX-v0 / D-102
 - AŞAMA 13E ✅ PCRX-v0 / D-103
-- AŞAMA 13F 🟡 active-not-executed
-- 14–20 ⬜
+- AŞAMA 13F ✅ VDWX-v0 / D-104
+- **AŞAMA 13 TAMAMLANDI**
+- AŞAMA 14A 🟡 active-not-executed
+- 14B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `13E — Program değişiklik raporu`  
-**Final:** `PCRX-v0 — Program Change Report Implementation` / D-103  
-**Canonical:** `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` + `arch/13e_program_change_report/`
+**Son tamamlanan numaralı adım:** `13F — Tanısal atlama (VDW-v0)`  
+**Final:** `VDWX-v0 — Validated Diagnostic Waiver Implementation` / D-104  
+**Canonical:** `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` + `arch/13f_diagnostic_waiver/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1192,17 +1194,19 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 13C:** ✅ TAMAMLANDI  
 **AŞAMA 13D:** ✅ TAMAMLANDI  
 **AŞAMA 13E:** ✅ TAMAMLANDI  
-**Aktif adım:** `13F — Tanısal atlama (VDW-v0)`  
+**AŞAMA 13F:** ✅ TAMAMLANDI  
+**AŞAMA 13:** ✅ TAMAMLANDI  
+**Aktif adım:** `14A — Tutor davranış sözleşmesi`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-13F için:
+14A için:
 
 ```text
-fresh 13F PRE-STEP GitHub refresh
+fresh 14A PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 13F execution
+→ 14A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1775,8 +1779,10 @@ AŞAMA 12 ✅ TAMAMLANDI
 13C ✅ RVRX-v0 / D-101
 13D ✅ WLRX-v0 / D-102
 13E ✅ PCRX-v0 / D-103
-13F 🟡 active-not-executed
-14–20 ⬜
+13F ✅ VDWX-v0 / D-104
+AŞAMA 13 ✅ TAMAMLANDI
+14A 🟡 active-not-executed
+14B–20 ⬜
 ```
 
 10D final:
@@ -1973,9 +1979,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `13F — Tanısal atlama (VDW-v0)`.
+**Sıradaki gerçek numbered work:** `14A — Tutor davranış sözleşmesi`.
 
-**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**14A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2025,8 +2031,8 @@ AŞAMA 12 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `13F — Tanısal atlama (VDW-v0)`.  
-**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `14A — Tutor davranış sözleşmesi`.  
+**14A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2224,4 +2230,13 @@ Ana invariant: başarısız bir deneme başarısız bir Skill değildir. Her sat
 
 13E `PCRX-v0 — Program Change Report Implementation` ile tamamlandı. Canonical: `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md`; contract/QA: `arch/13e_program_change_report/`; synthesis: `research/13e_program_change_report_research.md`.
 
-Ana invariant: bir rapor iki okumanın farkıdır; motorların yazdığından fazlasını iddia edemez. Dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır (profiller `objectivesOf` ile yayımlanmış curriculum'dan); değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar raporlanmaz; çelişki doğrulamadır, düşüş değil; hipotez sorudur; plan farkı iki kayıtlı sürüm arasında ve ilk plan değişiklik değil; replan yalnız durum değiştiyse, planner'ın kendi replan'ıyla. Tek port inceltmesi, şema değişmedi. Mutation 42/42, 162/162 QA PASS, validator mutation 29/29, 47/47 sweep. T6 çalıştırılmadı. Current active numbered step 13F'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: bir rapor iki okumanın farkıdır; motorların yazdığından fazlasını iddia edemez. Dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır (profiller `objectivesOf` ile yayımlanmış curriculum'dan); değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar raporlanmaz; çelişki doğrulamadır, düşüş değil; hipotez sorudur; plan farkı iki kayıtlı sürüm arasında ve ilk plan değişiklik değil; replan yalnız durum değiştiyse, planner'ın kendi replan'ıyla. Tek port inceltmesi, şema değişmedi. Mutation 42/42, 162/162 QA PASS, validator mutation 29/29, 47/47 sweep. T6 çalıştırılmadı. Bu addendum 13E kapanışında yazıldı; ardından 13F D-104 ile tamamlandı (aşağıdaki 13F addendum'u).
+
+
+---
+
+## 13F completion addendum — D-104
+
+13F `VDWX-v0 — Validated Diagnostic Waiver Implementation` ile tamamlandı ve **AŞAMA 13 kapandı**. Canonical: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`; contract/QA: `arch/13f_diagnostic_waiver/`; synthesis: `research/13f_diagnostic_waiver_research.md`.
+
+Ana invariant: bir tanısal yol mastery'ye giden daha kolay bir yol değildir, aynı kanıtı daha erken toplar. Üç kullanıcı kararı: tanısal yolu yalnız öğrenci açar; öğretilmemiş şeyi bilmemek zayıflık değildir (`WLRM-v0` yalnız bu durum için daraltıldı); yardım alınırsa o Objective hızlı yoldan çıkar. Waiver yalnız `GRE-v0` kapıları tanısal kanıtta ilk kez geçince verilir, penceresinin kanıtını adlandırır, kapsamdır; hızlı yol bittikten sonraki kanıt saymaz (testler ilk uygulamadaki bu hatayı yakaladı). Tanı sürerken ders bekler, yalnız gösterilen atlanır, planlama kanıt okumaz. Şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi (D-104); tek port inceltmesi; 13E'ye iki değişiklik türü; 12E açıklaması atlananı ve bekleyeni söylüyor. S06 ve invariant 12 koşuyor. Mutation 69/69, 220/220 QA PASS, validator mutation 29/29, 48/48 sweep. T6 çalıştırılmadı. Current active numbered step 14A'dır; fresh PRE + kullanıcı açık onayı gerekir.

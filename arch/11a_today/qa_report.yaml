@@ -10,34 +10,34 @@ reason_families: 8
 checks:
 - check: E11A-00_exists_TodayFacts.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\TodayFacts.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-model\src\main\kotlin\coach\TodayFacts.kt
 - check: E11A-00_exists_TodayPresentation.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\TodayPresentation.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\TodayPresentation.kt
 - check: E11A-00_exists_TodayFactsQuery.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\TodayFactsQuery.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\main\kotlin\coach\application\TodayFactsQuery.kt
 - check: E11A-00_exists_TodayScreen.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\TodayScreen.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-ui\src\main\kotlin\coach\ui\TodayScreen.kt
 - check: E11A-00_exists_FileContentSource.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
 - check: E11A-00_exists_TodayPresentationTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\TodayPresentationTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\test\kotlin\coach\presentation\TodayPresentationTest.kt
 - check: E11A-00_exists_TodayFactsQueryTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\TodayFactsQueryTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\test\kotlin\coach\application\TodayFactsQueryTest.kt
 - check: E11A-00_exists_FileContentSourceTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-curriculum\src\test\kotlin\coach\curriculum\FileContentSourceTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\data-curriculum\src\test\kotlin\coach\curriculum\FileContentSourceTest.kt
 - check: E11A-00_exists_TODAY_INTERIOR_SPEC.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\TODAY_INTERIOR_SPEC.md
+  details: missing C:\Users\Xpike\Desktop\app\docs\TODAY_INTERIOR_SPEC.md
 - check: E11A-00_exists_11a_today_research.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\11a_today_research.md
+  details: missing C:\Users\Xpike\Desktop\app\research\11a_today_research.md
 - check: E11A-01_model
   result: PASS
   details: TDYX-v0
@@ -266,10 +266,11 @@ checks:
   details: the Today read path must not write
 - check: E11A-11_no_invented_plan
   result: PASS
-  details: no plan may be invented before the planner exists
+  details: no plan may be invented; it comes only from what the planner stored
 - check: E11A-11_no_invented_capacity
   result: PASS
-  details: no capacity may be invented before the learner chooses one
+  details: no capacity may be invented; it comes only from the planner's record of
+    today's plan
 - check: E11A-11_study_day_from_clock
   result: PASS
   details: the study day comes from ClockPort

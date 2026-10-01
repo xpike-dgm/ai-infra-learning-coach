@@ -67,8 +67,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **13C — Spaced repetition** | ✅ | RVRX-v0 / D-101. Zaman negatif kanıt değil; retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar, silmez; taze yeniden kontrol aralığı büyütmez; `review_due` yalnız günden; planner plan öncesi vadeyi yeniler; V0 sayıları RVR-v0 §20 (18C); şema v5; 164/164 QA PASS, mutation 47/47. |
 | **13D — Remediation Engine** | ✅ | WLRX-v0 / D-102. Başarısız deneme başarısız Skill değil; WLRM-v0'ın 12 atıf kuralı Objective düzeyinde; yardım/provisional en çok hipotez; doğrulama ve kapanış mastery kapılarını izler; biten görev kapatmaz; motor `weakness_detected` sağlar; dispozisyonlar okunur; geriye dönük contamination; Topic → 16C, gap policy → 18D; şema v6; 165/165 QA PASS, mutation 44/44. |
 | **13E — Program değişiklik raporu** | ✅ | PCRX-v0 / D-103. Rapor iki okumanın farkı; değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar değişiklik değil; çelişki doğrulama, düşüş değil; hipotez soru; plan farkı iki sürüm arasında, ilk plan değişiklik değil; replan yalnız durum değiştiyse; `objectivesOf`, şema değişmedi; 162/162 QA PASS, mutation 42/42. |
-| **13F — Tanısal atlama (VDW-v0)** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. 12F'nin S06 senaryosu buna bağlı. |
-| **14–20** | ⬜ Bekliyor | 13F sonrası canonical sırada. |
+| **13F — Tanısal atlama (VDW-v0)** | ✅ | VDWX-v0 / D-104. Tanısal yol daha kolay yol değil, aynı kanıtı daha erken toplar; istek kanıt değil; waiver yalnız `GRE-v0` kapıları tanısal kanıtta ilk kez geçince, kapsamdır, mastery değil; yardım ya da temiz kaçırma hızlı yolu suçsuz bitirir, öğretilmemiş şeyi bilmemek zayıflık değil (kullanıcı kararları); tanı sürerken ders bekler, yalnız gösterilen atlanır; planlama kanıt okumaz; şema v7 `diagnostic_coverage`; S06 ve invariant 12 koşuyor; 220/220 QA PASS, mutation 69/69. **AŞAMA 13 kapandı.** |
+| **14A — Tutor davranış sözleşmesi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **14B–20** | ⬜ Bekliyor | 14A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -87,7 +88,28 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13E
+## Son tamamlanan numaralı adım — 13F
+
+**Final:** `VDWX-v0 — Validated Diagnostic Waiver Implementation` / D-104.
+**Ana çıktı:** `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` + `arch/13f_diagnostic_waiver/` + `android/`.
+
+13F sonucu:
+- tanısal yol mastery'ye giden daha kolay bir yol değildir; aynı `GRE-v0` kanıtını aynı pipeline'dan daha erken toplar,
+- tanısal yol `daily` bir `assessment_session` satırıdır (`diagnostic_scope/1`); en yeni tanısal satır karar verir, yeni istek değiştirir, geri çekme bitirir, borç yok,
+- yalnız öğrenci açar (kullanıcı kararı); beyan kapsamı adlandırır, kanıt değildir; planner kaynaklı tanı 18B, giriş yerleşimi 16D,
+- waiver yalnız Objective'in kapıları tanısal kanıtta *ilk kez* geçince; öğrenme önce geçirdiyse waiver yok; penceresinin kanıtını adlandırır; düzeltme kanıtı kaldırırsa geri çekilir; sonraki bir kaçırma geri almaz (kapsam, mastery değil),
+- yardım ya da görülmüş çözüm o Objective'in hızlı yolunu bitirir; temiz kaçırma `not_demonstrated`'dır ve zayıflık açmaz (kullanıcı kararları; `WLRM-v0` yalnız bu durum için daraltıldı),
+- planner: Skill başına bir P3 `decisive` `diagnostic_opportunity`; taze, güvenilir, H0 item; yalnız eksik kapı istenir; tanı sürerken ders `conditional_not_selected`, atlanan ders `resolved_before_selection`; planlama kanıt okumaz,
+- sonuç tam/kısmi/waiver yok; tam yalnız her Skill mastery motorunca mastered ise; Topic durumu 16C,
+- 13E'ye `coverage_waived`/`coverage_waiver_withdrawn`; waiver replan olayı `diagnostic_waiver_granted`,
+- şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi (D-104); tek port inceltmesi `latestAssessmentSessionIn`, dört port,
+- S06 gerçek kodla üç seviyede; `PDT-v0` invariant 12 kapsandı; 3H'nin 16 senaryosunun hepsi koşuyor,
+- mutation 69/69, independent validator **220/220 PASS**, kendi mutation testi 29/29; 48/48 sweep PASS,
+- **T6 çalıştırılmadı** — uygulama hızlı yolu henüz sunmuyor (16D).
+
+**AŞAMA 13 TAMAMLANDI** — WBAX-v0 → MCAX-v0 → RVRX-v0 → WLRX-v0 → PCRX-v0 → VDWX-v0.
+
+## Önceki numaralı adım — 13E
 
 **Final:** `PCRX-v0 — Program Change Report Implementation` / D-103.
 **Ana çıktı:** `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` + `arch/13e_program_change_report/` + `android/`.
@@ -105,7 +127,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 42/42, independent validator **162/162 PASS**, kendi mutation testi 29/29; 47/47 sweep PASS,
 - **T6 çalıştırılmadı** — uygulama gerçek bir oturumdan sonra raporu henüz çağırmıyor (16D).
 
-## Önceki numaralı adım — 13D
+## AŞAMA 13 önceki adım — 13D
 
 **Final:** `WLRX-v0 — Weakness Localization & Remediation Implementation` / D-102.
 **Ana çıktı:** `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` + `arch/13d_remediation_engine/` + `android/`.
@@ -189,6 +211,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13F Tanısal atlama (VDW-v0)
+## Aktif adım — 14A Tutor davranış sözleşmesi
 
-**13F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**14A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

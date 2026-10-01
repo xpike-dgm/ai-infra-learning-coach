@@ -8,28 +8,28 @@ checks_failed: 0
 checks:
 - check: E11B-00_exists_TaskRunner.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\TaskRunner.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\TaskRunner.kt
 - check: E11B-00_exists_AttemptFacts.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\AttemptFacts.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-model\src\main\kotlin\coach\AttemptFacts.kt
 - check: E11B-00_exists_SubmitAttempt.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\SubmitAttempt.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\main\kotlin\coach\application\SubmitAttempt.kt
 - check: E11B-00_exists_TaskRunnerScreen.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-ui\src\main\kotlin\coach\ui\TaskRunnerScreen.kt
 - check: E11B-00_exists_TaskRunnerTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\TaskRunnerTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\test\kotlin\coach\presentation\TaskRunnerTest.kt
 - check: E11B-00_exists_SubmitAttemptTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\SubmitAttemptTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\test\kotlin\coach\application\SubmitAttemptTest.kt
 - check: E11B-00_exists_TASK_RUNNER_SPEC.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\TASK_RUNNER_SPEC.md
+  details: missing C:\Users\Xpike\Desktop\app\docs\TASK_RUNNER_SPEC.md
 - check: E11B-00_exists_11b_task_runner_research.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\11b_task_runner_research.md
+  details: missing C:\Users\Xpike\Desktop\app\research\11b_task_runner_research.md
 - check: E11B-01_model
   result: PASS
   details: RNRX-v0

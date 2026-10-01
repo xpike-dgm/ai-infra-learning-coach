@@ -261,7 +261,11 @@ for column in ("mastery_axis_state", "retention_axis_state", "prerequisite_axis_
     check(f"E13D-09_carries_{column}", f'"{column}" to carried("{column}")' in axis_write, f"{column} overwritten")
 
 # ---------------------------------------------------------------- storage
-check("E13D-10_schema_version_6", "const val VERSION = 6" in schema, "schema version")
+# Narrowed at 13F: version 6 is 13D's, and every later version must be owned by its step's contract.
+_schema_version = int((re.search(r"const val VERSION = (\d+)", schema) or re.search(r"(0)", "0")).group(1))
+_owned_versions = {m.get("to") for f in ROOT.glob("arch/*/*.yaml")
+                   for m in [(yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("schema_migration") or {}] if isinstance(m, dict)}
+check("E13D-10_schema_version_6", _schema_version >= 6 and all(v in _owned_versions for v in range(6, _schema_version + 1)), "schema version")
 v6 = body(schema, "val v6")
 added = re.findall(r"ALTER TABLE weakness_state ADD COLUMN (\w+)", v6)
 check("E13D-10_columns_equal_contract", added == contract.get("schema_migration", {}).get("columns"), str(added))

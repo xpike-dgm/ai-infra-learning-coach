@@ -188,3 +188,7 @@ No sentence says forgetting except to deny it, calls absence failure or debt, wo
 If accepted, 12E becomes `RSNX-v0 / D-096`.
 
 Next numbered step: **12F — Virtual-user tests**. It must receive a fresh PRE-STEP and explicit user approval before execution. Open loops carried: the 3H scenarios run against this code, including explanations (12F); retention and weakness needs and their codes (13); final microcopy and LLM paraphrase (14); authored tasks (15); calling the planner from the app and the capacity setting (16D); starvation thresholds (18C); reverse invalidation and candidate caps (18E); and the T6 device run.
+
+---
+
+**13F note (2026-10-01, `D-104`):** a served need's explanation also says what a diagnostic did to its lessons (`diagnostic.partial_coverage_waiver` / `full_coverage_waiver` / `user_requested_fast_path`, from the trace's own codes), and a need whose lessons all wait for the learner's diagnostic is explained by that code with `next_plan`, never as "no task" (`PDT-v0` invariant 12, S06).

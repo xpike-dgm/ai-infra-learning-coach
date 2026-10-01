@@ -287,7 +287,7 @@ checks:
   details: a score or utility appears in the planner
 - check: E12C-05_gate_order
   result: PASS
-  details: positions=[1174, 4978, 6620]
+  details: positions=[1244, 5719, 7361]
 - check: E12C-05_untrusted_high_stakes
   result: PASS
   details: an unvalidated candidate can serve a high-stakes purpose
@@ -321,7 +321,7 @@ checks:
 - check: E12C-05_no_priority_override_input
   result: PASS
   details: params=['capacity', 'needs', 'candidates', 'decisions', 'studyDay', 'curriculumVersion',
-    'truthWatermark', 'starvation', 'trackBalance', 'skillsNotOnRoute']
+    'truthWatermark', 'starvation', 'trackBalance', 'skillsNotOnRoute', 'coverage']
 - check: E12C-06_fits
   result: PASS
   details: missing choice.candidate.costMinutes <= remaining ->
@@ -354,7 +354,7 @@ checks:
   details: missing if (needKey !in openNeeds) {
 - check: E12C-06_fit_split_smaller_defer
   result: PASS
-  details: positions=[9343, 9886, 10511, 11644]
+  details: positions=[10630, 11189, 11830, 13020]
 - check: E12C-06_atomic_never_split
   result: PASS
   details: an atomic evidence boundary can be split
@@ -408,7 +408,8 @@ checks:
   details: 'not in PDT-v0: []'
 - check: E12C-07_trace_format
   result: PASS
-  details: the trace format is not planner_trace/1
+  details: the trace format is not a versioned planner_trace format that still reads
+    /1
 - check: E12C-07_decode_body_read
   result: PASS
   details: the decode reader returned nothing
@@ -457,7 +458,8 @@ checks:
 - check: E12C-07_no_verdict_field_PlannedEntry
   result: PASS
   details: PlannedEntry fields=['position', 'candidateId', 'needKey', 'purpose', 'activityKind',
-    'title', 'primarySkill', 'track', 'estimatedMinutes', 'plannedMinutes', 'split']
+    'title', 'primarySkill', 'track', 'estimatedMinutes', 'plannedMinutes', 'split',
+    'preserved']
 - check: E12C-07_no_verdict_field_NeedTrace
   result: PASS
   details: NeedTrace fields=['needKey', 'trigger', 'targetSkills', 'sourceStateRefs',
@@ -465,12 +467,12 @@ checks:
 - check: E12C-07_no_verdict_field_CandidateTrace
   result: PASS
   details: CandidateTrace fields=['candidateId', 'needKey', 'validationStatus', 'eligibility',
-    'costMinutes', 'disposition', 'reasonCodes']
+    'costMinutes', 'disposition', 'reasonCodes', 'relatedSkills']
 - check: E12C-07_no_verdict_field_PlanTrace
   result: PASS
   details: PlanTrace fields=['generationKind', 'studyDay', 'curriculumVersion', 'truthWatermark',
     'policyVersions', 'capacity', 'needs', 'candidates', 'selected', 'planReasonCodes',
-    'invariantChecks', 'skillsNotOnRoute']
+    'invariantChecks', 'skillsNotOnRoute', 'replan', 'reentry']
 - check: E12C-07_no_verdict_field_LearningNeed
   result: PASS
   details: LearningNeed fields=['needKey', 'trigger', 'targetSkills', 'criticality',
@@ -485,7 +487,7 @@ checks:
   details: TaskCandidate fields=['id', 'needKey', 'purpose', 'activityKind', 'title',
     'primarySkill', 'costMinutes', 'validationStatus', 'track', 'requiredSkills',
     'requiresStrictPrerequisiteConfidence', 'splittable', 'minimumSafeChunkMinutes',
-    'atomicEvidenceBoundary', 'generationVersion']
+    'atomicEvidenceBoundary', 'generationVersion', 'targetObjectives']
 - check: E12C-08_build_body_read
   result: PASS
   details: the build reader returned nothing
@@ -525,7 +527,7 @@ checks:
     'position']
 - check: E12C-08_schema_version_unchanged
   result: PASS
-  details: the schema version moved
+  details: the schema version moved without an owning contract
 - check: E12C-09_port_count
   result: PASS
   details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']

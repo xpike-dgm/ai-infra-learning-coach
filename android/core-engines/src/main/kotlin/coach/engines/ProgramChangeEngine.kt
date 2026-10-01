@@ -1,6 +1,7 @@
 package coach.engines
 
 import coach.model.MasteryAxisState
+import coach.model.ObjectiveCoverage
 import coach.model.PlanChange
 import coach.model.PlanChangeKind
 import coach.model.PlanTrace
@@ -35,6 +36,8 @@ object ProgramChangeEngine {
         val states = after.skills.values.sortedBy { it.skill.toString() }.flatMap { now ->
             val then = before.skills[now.skill]
             stateChanges(then, now, unknown)
+        } + after.coverage.values.sortedBy { it.objective.toString() }.mapNotNull { now ->
+            coverageChange(before.coverage[now.objective], now, unknown)
         }
         val firstPlan = before.plan == null && after.plan != null
         val plan0 = before.plan
@@ -110,6 +113,29 @@ object ProgramChangeEngine {
         }
         return out.values.toList()
     }
+
+    /**
+     * One Objective's coverage waiver (13F). A waiver granted is reported once; one whose evidence was corrected
+     * away is reported as withdrawn. As with every axis, a row nobody had written is not a before.
+     */
+    fun coverageChange(before: ObjectiveCoverage?, after: ObjectiveCoverage, unknown: MutableSet<VersionedRef> = mutableSetOf()): StateChange? {
+        val c0 = before?.waiver ?: UNWRITTEN
+        val c1 = after.waiver
+        if (c0 == UNWRITTEN) {
+            if (c1 != UNWRITTEN) unknown += after.skill
+            return null
+        }
+        return when {
+            c0 == WAIVER_NONE && c1 == WAIVER_ACTIVE ->
+                StateChange(after.skill, StateChangeKind.COVERAGE_WAIVED, c0, c1, objective = after.objective)
+            c0 == WAIVER_ACTIVE && c1 == WAIVER_NONE ->
+                StateChange(after.skill, StateChangeKind.COVERAGE_WAIVER_WITHDRAWN, c0, c1, objective = after.objective)
+            else -> null
+        }
+    }
+
+    private const val WAIVER_NONE = "none"
+    private const val WAIVER_ACTIVE = "active"
 
     /** A Skill's retention became `stable` from a check — a due review, an open verification or a concern. */
     private val REVALIDATED_FROM = setOf(RetentionAxis.FRESH.id, RetentionAxis.REVIEW_DUE.id,

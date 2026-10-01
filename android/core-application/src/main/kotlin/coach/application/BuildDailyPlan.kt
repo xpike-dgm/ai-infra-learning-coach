@@ -32,6 +32,11 @@ class BuildDailyPlan(
     private val persistence: PersistencePort,
     private val content: ContentPort,
     private val clock: ClockPort,
+    /**
+     * Whether an evaluator can run today (13F). It decides which diagnostic items can measure anything; unknown is
+     * `false`, so only deterministically checked items are routed — never one whose answer nothing could check.
+     */
+    private val evaluatorAvailable: Boolean = false,
 ) {
     /**
      * What happened, for a replan within one study day (D-033 §16). [keptPositions] are the previous
@@ -91,16 +96,23 @@ class BuildDailyPlan(
         // not a pause anyone can resume.
         val pauses = persistence.resumeCheckpointRows()
             .mapNotNull { row -> row.record.payload["context"]?.let(ResumeContextCodec::decode) }
-        // `weakness_detected` is supplied by its owner (12C's list; `WLRM-v0` §8, 13D), from the axis it wrote.
-        val paused = ReplanEngine.withPausedWork(PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states), pauses)
+        // `weakness_detected` is supplied by its owner (12C's list; `WLRM-v0` §8, 13D), from the axis it wrote, and
+        // `diagnostic_opportunity` by the learner's open diagnostic (13F, `VDW-v0` §3), from its projection.
+        val diagnostic = DiagnosticPlanning.read(persistence, states)
+        val paused = ReplanEngine.withPausedWork(
+            PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states) + diagnostic?.needs.orEmpty(), pauses)
         val kept = if (kind == GenerationKind.REPLAN) {
             previousTrace!!.selected.filter { it.position in replan!!.keptPositions }
         } else {
             emptyList()
         }
         val needs = ReplanEngine.unservedNeeds(paused.needs, kept)
-        // This week's assessment slots serve needs already open here (13A); they add no queue of their own.
-        val candidates = needs.flatMap { content.taskCandidates(it) } + BlueprintSlots.candidates(persistence, now.studyDay, needs)
+        // This week's assessment slots serve needs already open here (13A); they add no queue of their own. The
+        // diagnostic's next checks serve its own needs (13F).
+        val candidates = needs.flatMap { content.taskCandidates(it) } + BlueprintSlots.candidates(persistence, now.studyDay, needs) +
+            DiagnosticPlanning.candidates(persistence, content, diagnostic, needs, evaluatorAvailable)
+        // A lesson whose Objectives were waived is not taught again; one still under the fast path waits (`VDW-v0` §17).
+        val coverage = DiagnosticPlanning.holds(persistence, candidates, diagnostic)
 
         // The prerequisite gate is asked about every candidate before priority is computed at all.
         val gate = ResolvePrerequisites(persistence)
@@ -138,6 +150,7 @@ class BuildDailyPlan(
             curriculumVersion = curriculumVersion,
             truthWatermark = watermark,
             skillsNotOnRoute = skills.count { !PlannerEngine.onRoute(it.lifecycleStatus) },
+            coverage = coverage,
         )
         val trace = when (kind) {
             GenerationKind.INITIAL -> fresh

@@ -326,7 +326,8 @@ class SqlitePersistence private constructor(
                    (SELECT d.disposition FROM evidence_disposition d WHERE d.evidence_event_id = e.id
                     ORDER BY d.sequence DESC LIMIT 1),
                    (SELECT d.reason_code FROM evidence_disposition d WHERE d.evidence_event_id = e.id
-                    ORDER BY d.sequence DESC LIMIT 1)
+                    ORDER BY d.sequence DESC LIMIT 1),
+                   (SELECT a.assessment_session_id FROM attempt a WHERE a.id = e.source_attempt_id)
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -357,6 +358,8 @@ class SqlitePersistence private constructor(
                     // pipeline recorded none, and the engine treats what it was given.
                     prerequisiteValid = statement.isNull(14) || statement.getText(14) != CONTAMINATED,
                     studyDay = statement.getText(15),
+                    // The session the attempt was made in (13F): a diagnostic is one, and only its evidence waives.
+                    assessmentSessionId = if (statement.isNull(18)) null else statement.getLong(18),
                 )
                 // The row is never edited; its newest disposition is how every engine reads it (13D).
                 rows += EvidenceDispositions.effective(
@@ -425,6 +428,23 @@ class SqlitePersistence private constructor(
             "SELECT id FROM assessment_session WHERE scope = ? ORDER BY sequence DESC LIMIT 1",
         ).use { statement ->
             statement.bindText(1, scope.storedAs)
+            if (statement.step()) statement.getLong(0) else null
+        } ?: return null
+        return readTruth("assessment_session", id)?.let { StoredTruth(id, it) }
+    }
+
+    /**
+     * The newest session of one scope whose stored content begins with [format]'s name (13F). The version suffix
+     * is not matched here — which versions decode is core's decision — only the format's family.
+     */
+    override fun latestAssessmentSessionIn(scope: AssessmentScope, format: String): StoredTruth? {
+        val family = format.substringBefore("/") + "/"
+        val id = connection.prepare(
+            "SELECT id FROM assessment_session WHERE scope = ? AND substr(blueprint, 1, ?) = ? ORDER BY sequence DESC LIMIT 1",
+        ).use { statement ->
+            statement.bindText(1, scope.storedAs)
+            statement.bindLong(2, family.length.toLong())
+            statement.bindText(3, family)
             if (statement.step()) statement.getLong(0) else null
         } ?: return null
         return readTruth("assessment_session", id)?.let { StoredTruth(id, it) }
@@ -569,6 +589,7 @@ internal class ProjectionKey private constructor(
             "objective_state" to listOf("objective_logical_id", "objective_version"),
             "weakness_state" to listOf("objective_logical_id", "objective_version"),
             "topic_state" to listOf("topic_logical_id", "topic_version"),
+            "diagnostic_coverage" to listOf("objective_logical_id", "objective_version"),
         )
 
         fun keyColumnsOf(table: String): List<String> =

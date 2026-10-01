@@ -97,6 +97,7 @@ class ReplanTest {
                 }.sortedBy { it.position })
         }
         override fun resumeCheckpointRows(): List<StoredTruth> = appended("resume_checkpoint")
+        override fun latestAssessmentSessionIn(scope: coach.model.AssessmentScope, format: String): StoredTruth? = null
         override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()

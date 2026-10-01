@@ -109,13 +109,14 @@ checks:
   details: '[''capability_confirmed'', ''verification_opened'', ''verification_resolved'',
     ''mastery_no_longer_confirmed'', ''remediation_opened'', ''remediation_closed'',
     ''weakness_question_opened'', ''weakness_supported'', ''weakness_resolved'', ''retention_revalidated'',
-    ''retention_at_risk'']'
+    ''retention_at_risk'', ''coverage_waived'', ''coverage_waiver_withdrawn'']'
 - check: E13E-02_every_kind_in_a_state_family
   result: PASS
   details: '[''confirmed_capabilities'', ''verification_needed'', ''confirmed_capabilities'',
     ''persistent_targeted_gaps'', ''persistent_targeted_gaps'', ''confirmed_capabilities'',
     ''verification_needed'', ''persistent_targeted_gaps'', ''confirmed_capabilities'',
-    ''retention_revalidated'', ''verification_needed'']'
+    ''retention_revalidated'', ''verification_needed'', ''confirmed_capabilities'',
+    ''not_reliably_measured'']'
 - check: E13E-02_reasons_are_the_planners
   result: PASS
   details: '[]'
@@ -226,7 +227,7 @@ checks:
   details: plan diff keys
 - check: E13E-06_recompute_order
   result: PASS
-  details: '[185, 253, 323, 392]'
+  details: '[185, 253, 323, 471]'
 - check: E13E-06_profiles_from_curriculum
   result: PASS
   details: profiles not from the curriculum
@@ -253,7 +254,8 @@ checks:
   details: the report is read before the new plan
 - check: E13E-06_triggers
   result: PASS
-  details: '[''NEW_REMEDIATION_CREATED'', ''NEW_VERIFICATION_DUE_CREATED'', ''NEW_EVIDENCE_RECORDED'']'
+  details: '[''NEW_REMEDIATION_CREATED'', ''NEW_VERIFICATION_DUE_CREATED'', ''DIAGNOSTIC_WAIVER_GRANTED'',
+    ''NEW_EVIDENCE_RECORDED'']'
 - check: E13E-06_budget_kept
   result: PASS
   details: set()
@@ -343,7 +345,7 @@ checks:
   details: adapter
 - check: E13E-09_schema_unchanged
   result: PASS
-  details: schema changed
+  details: schema changed without an owning contract
 - check: E13E-10_model_a gate profile is the curriculum's own r
   result: PASS
   details: 'missing test: a gate profile is the curriculum''s own required flag, criticality

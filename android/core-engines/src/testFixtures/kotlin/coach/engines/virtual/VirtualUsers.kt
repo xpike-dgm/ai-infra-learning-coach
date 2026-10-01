@@ -4,7 +4,9 @@ import coach.engines.PlannerEngine
 import coach.engines.PrerequisiteEngine
 import coach.model.CapacitySource
 import coach.model.ContinuationValue
+import coach.model.CoverageHold
 import coach.model.Criticality
+import coach.model.DiagnosticCodes
 import coach.model.DailyCapacity
 import coach.model.LearningNeed
 import coach.model.LifecycleStatus
@@ -104,6 +106,8 @@ object VirtualUsers {
         val edges: List<PrerequisiteEdge>,
         val candidates: List<TaskCandidate>,
         val ownerNeeds: List<LearningNeed> = emptyList(),
+        /** The diagnostic waiver's answer for Objectives (13F); empty for every scenario before S06. */
+        val coverage: Map<VersionedRef, CoverageHold> = emptyMap(),
     ) {
         val needs: List<LearningNeed>
             get() = PlannerEngine.needsFromSkillStates(learners.map { it.planning }) + ownerNeeds
@@ -121,7 +125,7 @@ object VirtualUsers {
                 }
             }
 
-        fun plan(): PlanTrace = PlannerEngine.plan(capacity, needs, candidates, decisions, STUDY_DAY, 1, 1)
+        fun plan(): PlanTrace = PlannerEngine.plan(capacity, needs, candidates, decisions, STUDY_DAY, 1, 1, coverage = coverage)
     }
 
     private fun day(minutes: Int, source: CapacitySource = CapacitySource.NORMAL_PROFILE) = PlannerEngine.capacityOf(source, minutes)
@@ -208,6 +212,44 @@ object VirtualUsers {
     )
 
     /**
+     * S06's world (`PLANNER_SIMULATION_SUITE.md` S06, `VDW-v0`; runnable since 13F): the `Basic Pointers` Topic's four
+     * required Objectives, all of one Skill, and one lesson for each. The Topic is orchestration only; the Skill and
+     * its Objectives are what a diagnostic checks.
+     */
+    object FastPath {
+        val skill = skill("c.pointer_basics")
+        val addressVsValue = VersionedRef("objective.c.pointer_basics.address_vs_value", 1)
+        val declaration = VersionedRef("objective.c.pointer_basics.declaration", 1)
+        val dereference = VersionedRef("objective.c.pointer_basics.dereference", 1)
+        val writeThrough = VersionedRef("objective.c.pointer_basics.write_through_pointer", 1)
+        val objectives = listOf(addressVsValue, declaration, dereference, writeThrough)
+
+        fun lessonId(objective: VersionedRef) = "lesson-${objective.logicalId.substringAfterLast('.')}"
+
+        /** The lesson for one Objective, declaring the Objective it teaches (3B §15). */
+        fun lesson(objective: VersionedRef, needKey: String = needKey(NeedTrigger.CONTINUE_LEARNING, skill)) = TaskCandidate(
+            lessonId(objective), needKey, TaskPurpose.TEACH, "lesson", "Ders ${objective.logicalId}", skill, 10,
+            LifecycleStatus.VALIDATED, targetObjectives = listOf(objective))
+    }
+
+    /**
+     * S06 — U-FASTPATH, a partial diagnostic: valid H0 diagnostic evidence passed the gates of O1 and O2 only. They
+     * are waived; O3 and O4 are not. [stillChecking] are Objectives the open diagnostic is still checking. The
+     * waivers themselves come from evidence in the application journey; here the planner is given them.
+     */
+    fun s06(stillChecking: Set<VersionedRef> = emptySet()) = Scenario(
+        id = "S06", profile = "U-FASTPATH", capacity = day(60),
+        // Two of four Objectives pass: the Skill is developing, not mastered (`VDW-v0` §11).
+        learners = listOf(Learner(FastPath.skill, MasteryAxisState.DEVELOPING_INDEPENDENT)),
+        edges = emptyList(),
+        candidates = FastPath.objectives.map { FastPath.lesson(it) },
+        coverage = mapOf(
+            FastPath.addressVsValue to CoverageHold(waived = true, reasonCode = DiagnosticCodes.PARTIAL_COVERAGE_WAIVER),
+            FastPath.declaration to CoverageHold(waived = true, reasonCode = DiagnosticCodes.PARTIAL_COVERAGE_WAIVER),
+        ) + stillChecking.associateWith { CoverageHold(waived = false, reasonCode = DiagnosticCodes.USER_REQUESTED_FAST_PATH) },
+    )
+
+    /**
      * S07 — U-RETURNING, the day of return: a critical verification that holds dependent work, a critical
      * review, new C learning, English, and [otherDueReviews] more Skills due for review.
      * [reviewsHaveTasks] decides whether those reviews have authored tasks at all.
@@ -276,6 +318,6 @@ object VirtualUsers {
     )
 
     /** Every engine-level scenario, for checks that hold on all of them. */
-    fun all(): List<Scenario> = listOf(s01(), s02(), s03(), s04(), s05(), s05(shortLesson = true), s07(), s07(reviewsHaveTasks = true),
-        s11(true), s11(false), s12(), s13())
+    fun all(): List<Scenario> = listOf(s01(), s02(), s03(), s04(), s05(), s05(shortLesson = true), s06(),
+        s06(stillChecking = setOf(FastPath.writeThrough)), s07(), s07(reviewsHaveTasks = true), s11(true), s11(false), s12(), s13())
 }

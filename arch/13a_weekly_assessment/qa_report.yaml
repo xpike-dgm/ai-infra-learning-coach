@@ -2,8 +2,8 @@ model: WBAX-v0
 stage_step: 13A
 decision: D-098
 result: PASS
-checks_total: 210
-checks_passed: 210
+checks_total: 212
+checks_passed: 212
 checks_failed: 0
 checks:
 - check: E13A-00_exists_weekly_assessment.yaml
@@ -18,18 +18,24 @@ checks:
 - check: E13A-00_exists_WeeklyAssessmentFacts.kt
   result: PASS
   details: missing android/core-model/src/main/kotlin/coach/WeeklyAssessmentFacts.kt
-- check: E13A-00_exists_WeeklyBlueprintCodec.kt
+- check: E13A-00_exists_BlueprintCodec.kt
   result: PASS
-  details: missing android/core-model/src/main/kotlin/coach/WeeklyBlueprintCodec.kt
+  details: missing android/core-model/src/main/kotlin/coach/BlueprintCodec.kt
+- check: E13A-00_exists_AssessmentBlueprint.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/AssessmentBlueprint.kt
+- check: E13A-00_exists_BlueprintComposer.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/BlueprintComposer.kt
 - check: E13A-00_exists_WeeklyBlueprintEngine.kt
   result: PASS
   details: missing android/core-engines/src/main/kotlin/coach/engines/WeeklyBlueprintEngine.kt
-- check: E13A-00_exists_WeeklyAssessment.kt
+- check: E13A-00_exists_BlueprintAssessment.kt
   result: PASS
-  details: missing android/core-application/src/main/kotlin/coach/application/WeeklyAssessment.kt
-- check: E13A-00_exists_WeeklyAssessmentSession.kt
+  details: missing android/core-application/src/main/kotlin/coach/application/BlueprintAssessment.kt
+- check: E13A-00_exists_BlueprintAssessmentSession.kt
   result: PASS
-  details: missing android/core-presentation/src/main/kotlin/coach/presentation/WeeklyAssessmentSession.kt
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/BlueprintAssessmentSession.kt
 - check: E13A-01_model
   result: PASS
   details: WBAX-v0
@@ -148,19 +154,19 @@ checks:
 - check: E13A-04_no_overall_score_in_wba
   result: PASS
   details: §27 text moved
-- check: E13A-04_no_score_field_WeeklyAssessmentBlueprint
+- check: E13A-04_no_score_field_AssessmentBlueprint
   result: PASS
-  details: fields=['cycleId', 'studyDay', 'curriculumVersion']
+  details: fields=['scope', 'cycleId', 'studyDay']
 - check: E13A-04_no_score_field_AssessmentBlueprintSlot
   result: PASS
   details: fields=['slotId', 'role', 'needKey']
-- check: E13A-04_no_score_field_WeeklyAssessmentResult
+- check: E13A-04_no_score_field_AssessmentBlueprintResult
   result: PASS
   details: fields=['assessmentSessionId', 'cycleId', 'sessionStatus']
-- check: E13A-04_no_score_field_WeeklyEvidenceFact
+- check: E13A-04_no_score_field_BlueprintEvidenceFact
   result: PASS
   details: fields=['evidenceId', 'objective', 'outcome']
-- check: E13A-04_no_score_field_WeeklySlotOutcome
+- check: E13A-04_no_score_field_BlueprintSlotOutcome
   result: PASS
   details: fields=['slotId', 'submitted', 'attemptId']
 - check: E13A-04_skip_not_completed
@@ -240,7 +246,8 @@ checks:
 - check: E13A-06_exclusions_equal_contract
   result: PASS
   details: '[''remediation_open'', ''not_taught_yet'', ''not_active_since_last_cycle'',
-    ''measured_in_another_role'', ''not_a_weekly_measurement'']'
+    ''measured_in_another_role'', ''not_a_weekly_measurement'', ''not_a_monthly_measurement'',
+    ''not_required_capability'']'
 - check: E13A-06_holding_back_from_trace
   result: PASS
   details: holding back not read from the planner's trace

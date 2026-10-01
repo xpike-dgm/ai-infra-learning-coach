@@ -319,7 +319,7 @@ checks:
   details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
 - check: E12E-04_schema_version_unchanged
   result: PASS
-  details: the schema version moved
+  details: the schema version moved without an owning contract
 - check: E12E-05_families_body_read
   result: PASS
   details: the reasonFamilies reader returned nothing
@@ -451,7 +451,7 @@ checks:
   details: missing=[] extra=[]
 - check: E12E-07_sentences_read
   result: PASS
-  details: sentences=131
+  details: sentences=132
 - check: E12E-07_no_forbidden_claim
   result: PASS
   details: '[]'

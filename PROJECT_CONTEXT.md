@@ -228,12 +228,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **13C ✅ Spaced repetition — RVRX-v0 / D-101**
 - **13D ✅ Remediation Engine — WLRX-v0 / D-102**
 - **13E ✅ Program değişiklik raporu — PCRX-v0 / D-103**
-- **13F 🟡 Tanısal atlama (VDW-v0) — AKTİF, HENÜZ YÜRÜTÜLMEDİ** (D-099 ile eklendi)
-- 14–20 ⬜
+- **13F ✅ Tanısal atlama (VDW-v0) — VDWX-v0 / D-104** (D-099 ile eklendi)
+- **AŞAMA 13 ✅ TAMAMLANDI**
+- **14A 🟡 Tutor davranış sözleşmesi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 14B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -540,3 +542,13 @@ Kod yazmadan önce bulunanlar: bir Skill'i kanıttan sonra tek yerde yeniden hes
 Dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır (profiller `objectivesOf` ile yayımlanmış curriculum'dan). Rapor iki snapshot'ın farkıdır: on bir durum değişikliği türü `ASUX-v0` §13.1 ailelerinde ve planner'ın kaydettiği `replan.*` kodlarıyla; kimsenin yazmadığı eksen değişiklik iddia etmez; vadesi gelen tekrar raporlanmaz; çelişki `verification_opened`'dır; hipotez sorudur. Plan farkı iki kayıtlı sürüm arasındadır ve ilk plan değişiklik değildir. Yalnız durum değiştiyse planner'ın kendi replan'ı çağrılır; hiçbir şey değişmediyse sonuç bunu açıkça söyler. Mutation 42/42, validator 162/162, kendi mutation testi 29/29. **T6 çalıştırılmadı.**
 
 Canonical: `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` / D-103.
+
+## 12.29 13F Tanısal atlama — VDWX-v0 / D-104
+
+Tanısal atlama kodda ve **AŞAMA 13 kapandı**. Ana invariant: **bir tanısal yol mastery'ye giden daha kolay bir yol değildir; aynı kanıtı daha erken toplar.**
+
+Kod yazmadan önce bulunanlar: tanısal reason code'lar, ihtiyaç ve replan olayı vardı ama üreten/okuyan yoktu; `DDM-v0`'da waiver entity'si, `MSBX-v0`'da sahibi yoktu; kanıt satırı oturumunu taşımıyordu ve ders tamamlama hiçbir yerde kayıtlı değildi; görev hangi Objective'i öğrettiğini söyleyemiyordu; 13E kısmi bir waiver'dan sonra replan istemezdi; `VDW-v0` §12.1 ile `WLRM-v0` çelişiyordu. Kullanıcı kararları: öğretilmemiş bir şeyi bilmemek zayıflık değildir; tanısal yolu yalnız öğrenci açar; yardım alınırsa o Objective hızlı yoldan çıkar.
+
+Tanısal yol `daily` bir `assessment_session` satırıdır (`diagnostic_scope/1`); en yeni tanısal satır karar verir. Waiver yalnız `GRE-v0`'ın kendi kapıları tanısal kanıtta ilk kez geçtiğinde verilir, penceresinin kanıtını adlandırır ve kapsamdır; hızlı yol bittikten sonra toplanan kanıt saymaz (testler bu hatayı yakaladı). Tanı sürerken ders bekler, atlanan ders `resolved_before_selection`'dır, yalnız gösterilen atlanır; planner'a P3 `decisive` ihtiyaç ve taze, güvenilir, H0 item'lar gider, planlama kanıt okumaz. Şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi (D-104); 13E'ye iki değişiklik türü; 12E açıklaması atlananı ve bekleyeni izden söylüyor. S06 ve invariant 12 gerçek kodla koşuyor. Mutation 69/69, validator 220/220, kendi mutation testi 29/29. **T6 çalıştırılmadı.**
+
+Canonical: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` / D-104.

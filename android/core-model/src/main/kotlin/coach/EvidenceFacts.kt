@@ -73,6 +73,11 @@ data class EvidenceRow(
      * a row without one; the retention engine refuses such a row rather than guessing its day.
      */
     val studyDay: String? = null,
+    /**
+     * The assessment session the row's attempt was made in, when it was made in one (13F). A diagnostic is an
+     * assessment session, and only evidence gathered inside it can waive a starting lesson (`VDW-v0` §9).
+     */
+    val assessmentSessionId: Long? = null,
 ) {
     init {
         require(quality == null || quality in 0.0..1.0) { "a group result is in [0,1], not a score out of anything" }

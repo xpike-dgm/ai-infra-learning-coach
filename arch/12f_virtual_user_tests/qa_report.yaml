@@ -406,8 +406,8 @@ checks:
   details: 12E's spec changed silently
 - check: E12F-06_findings_recorded
   result: PASS
-  details: '{''due_inventory_listed_row_by_row'', ''scenario_tests_weaker_than_they_looked'',
-    ''test_fixtures_read_as_a_self_cycle'', ''s07_example_day_is_illustrative'', ''diagnostic_waiver_unowned''}'
+  details: '{''s07_example_day_is_illustrative'', ''diagnostic_waiver_unowned'', ''due_inventory_listed_row_by_row'',
+    ''test_fixtures_read_as_a_self_cycle'', ''scenario_tests_weaker_than_they_looked''}'
 - check: E12F-06_s07_both_days
   result: PASS
   details: S07 is tested one way only
@@ -416,7 +416,7 @@ checks:
   details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
 - check: E12F-07_schema_version_unchanged
   result: PASS
-  details: the schema version moved
+  details: the schema version moved without an owning contract
 - check: E12F-08_device_not_claimed
   result: PASS
   details: a device result is claimed
