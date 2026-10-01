@@ -30,6 +30,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-099: AŞAMA 13'ün sonuna `13F — Tanısal atlama (VDW-v0)` eklendi; mevcut adımlar yeniden numaralanmadı.
 - D-104: 13F final tanısal atlama `VDWX-v0`; şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi; AŞAMA 13 kapandı.
 - D-105: 14A final tutor davranış sözleşmesi `TUTX-v0`; ayrı `TutorPort` (beyanlı uzantı), kayıt izin verilenden az yardım iddia etmez, kaydedilen yardım kanıtın bağımsızlığını belirler; AŞAMA 14 başladı.
+- D-106: 14B final yanlış analizi `WAAX-v0`; kapalı misconception kataloğu (curriculum), `misconception_state` hafızası (`WLRM-v0` ailesi), şema v8; AI önerisi hipotezin üstüne çıkmaz.
 
 ---
 
@@ -176,8 +177,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme Katmanını Geliştir
 - [x] **14A — Tutor davranış sözleşmesi** — `TUTX-v0 / D-105`
-- [ ] **14B — Yanlış analizi** **AKTİF**
-- [ ] **14C — Alternatif anlatım**
+- [x] **14B — Yanlış analizi** — `WAAX-v0 / D-106`
+- [ ] **14C — Alternatif anlatım** **AKTİF**
 - [ ] **14D — Kod değerlendirme**
 - [ ] **14E — AI-generated code comprehension check**
 - [ ] **14F — Açık uçlu cevap değerlendirme**
@@ -250,9 +251,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A`  
-**Son tamamlanan:** **`14A — TUTX-v0 / D-105`**  
-**Aktif:** **`14B — Yanlış analizi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14B`  
+**Son tamamlanan:** **`14B — WAAX-v0 / D-106`**  
+**Aktif:** **`14C — Alternatif anlatım`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -288,4 +289,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 14A `TUTX-v0` ile tutor davranış sözleşmesi kodda ve **AŞAMA 14 başladı**: tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir. Beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`) ve yardım her zaman istenebilir: uymayan istek anına uyan isteğe yönlendirilir. Deneme açıkken cevabın en fazla ne kadar açabileceğini öğrenci seçer, H3/H4 önce ana göre açıklanır; kayıt asla izin verilenden az yardım iddia etmez (gönderilmiş cevaptan sonra `H4`) ve tutor'un kendi seviye beyanı yalnız reddetmek için kullanılır. Cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında bayt bayt doğrulanır. Yanıt şemaya bağlıdır (`tutor_reply/1`), hükme yer yoktur; reddetme, zaman aşımı ya da kullanılamazlık hiçbir şey kaydetmez ve öğrenciyi suçlamaz, yalnız yazılmış yardım yerine geçer. Kaydedilen yardım artık kanıtın bağımsızlığını belirliyor (`2D` §6) ve gösterilen çözüm o andan itibaren exposure, sonraki kanıt bunu okuyor. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi), serbest soru + seviyeyi öğrenci seçer, ilk gerçek sağlayıcı çağrısı 14G'de. T6 çalıştırılmadı.
 
-14B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+14B `WAAX-v0` ile yanlış analizi kodda: yanlış bir cevap bir bilgidir, öğrenci hakkında bir hüküm değil: misconception etiketi yalnız taşıdığı kanıt ve kaynağı kadar güçlüdür — zayıflık motorunun kendi kuralı Objective'i ne kadar taşıyorsa o kadar ilerler, AI'ın önerisi asla hipotezin üstüne çıkmaz, Objective için beyan edilmemiş etiket hiç saklanmaz ve hipotez öğrenciye yalnız soru olarak sorulur. Kapalı katalog curriculum'da (`misconception`, Objective sürümüne pinli, değişmez); etiketler yalnız yanlış giden satıra, kendi Objective'i için ve katalog beyan ediyorsa yazılır (`deterministic` ya da `ai_proposed`). Hafıza (`misconception_state`, `WLRM-v0` ailesi) zayıflık motorunun 12 kuralıyla yeniden oynatılır; geçersiz, itirazlı ya da ön koşulu bozuk iş hiçbir etiketi oynatmaz ve yalnız taze, temiz kanıt kapatır. Analiz saklanan atfı okur; hiçbir şey yazmaz. Kullanıcı kararları: kapalı katalog; hipotez yalnız yanlış cevaptan hemen sonra açık soru olarak. `review.6g.misconception_taxonomy_expansion` kapandı. T6 çalıştırılmadı.
+
+14C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

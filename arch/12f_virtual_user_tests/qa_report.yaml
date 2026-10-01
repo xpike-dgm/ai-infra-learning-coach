@@ -406,8 +406,8 @@ checks:
   details: 12E's spec changed silently
 - check: E12F-06_findings_recorded
   result: PASS
-  details: '{''scenario_tests_weaker_than_they_looked'', ''due_inventory_listed_row_by_row'',
-    ''diagnostic_waiver_unowned'', ''s07_example_day_is_illustrative'', ''test_fixtures_read_as_a_self_cycle''}'
+  details: '{''due_inventory_listed_row_by_row'', ''test_fixtures_read_as_a_self_cycle'',
+    ''s07_example_day_is_illustrative'', ''diagnostic_waiver_unowned'', ''scenario_tests_weaker_than_they_looked''}'
 - check: E12F-06_s07_both_days
   result: PASS
   details: S07 is tested one way only

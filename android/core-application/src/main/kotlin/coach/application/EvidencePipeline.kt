@@ -5,6 +5,10 @@ import coach.model.EvaluationResult
 import coach.model.EvaluatorStatus
 import coach.model.EvidenceOutcome
 import coach.model.IndependenceClass
+import coach.model.MisconceptionHypothesis
+import coach.model.MisconceptionSource
+import coach.model.MisconceptionTag
+import coach.model.MisconceptionTags
 import coach.model.OutcomeSignal
 import coach.model.VersionedRef
 import coach.ports.ClockPort
@@ -68,6 +72,21 @@ class RecordEvidence(
             is EvaluationResult.Provisional -> evaluation.evaluatorRef
             is EvaluationResult.EvaluationPending -> null
         }
+        // 14B: the evaluation's misconception proposals, kept only where the closed catalog declares the label for
+        // that Objective and only on a row that went wrong. A deterministic path proposes as `deterministic`; an
+        // uncalibrated evaluator only ever as `ai_proposed`. An undeclared label is not stored, whoever proposed it.
+        val (hypotheses, source) = when (evaluation) {
+            is EvaluationResult.Verified -> evaluation.misconceptionHypotheses to MisconceptionSource.DETERMINISTIC
+            is EvaluationResult.Provisional -> evaluation.misconceptionHypotheses to MisconceptionSource.AI_PROPOSED
+            is EvaluationResult.EvaluationPending -> emptyList<MisconceptionHypothesis>() to MisconceptionSource.AI_PROPOSED
+        }
+        val tags: Map<VersionedRef, List<MisconceptionTag>> = components
+            .filter { it.signal == OutcomeSignal.NOT_MET || it.signal == OutcomeSignal.PARTIALLY_MET }
+            .associate { component ->
+                val proposed = hypotheses.filter { it.objective == component.objectiveRef }.map { it.misconceptionId }.toSet()
+                val catalog = if (proposed.isEmpty()) emptyList() else persistence.misconceptionsOf(component.objectiveRef)
+                component.objectiveRef to catalog.filter { it.ref.logicalId in proposed }.map { MisconceptionTag(it.ref, source) }
+            }
 
         val at = clock.now()
         val ids = persistence.inTransaction {
@@ -95,6 +114,7 @@ class RecordEvidence(
                             evaluatorRef?.let {
                                 put("evaluator", "${it.provider}/${it.model}@${it.promptOrSchemaVersion}")
                             }
+                            MisconceptionTags.encode(tags[component.objectiveRef].orEmpty())?.let { put("misconception_tags", it) }
                         },
                     )
                 )

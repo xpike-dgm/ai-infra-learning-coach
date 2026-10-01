@@ -7,7 +7,7 @@ checks_passed: 163
 checks_failed: 0
 curriculum_tables: 11
 truth_tables: 13
-projection_tables: 9
+projection_tables: 10
 checks:
 - check: E10D-00_exists_Schema.kt
   result: PASS
@@ -266,7 +266,7 @@ checks:
   details: a correction is an appended disposition
 - check: E10D-07_composite_keys
   result: PASS
-  details: 'composite keys found: 6'
+  details: 'composite keys found: 7'
 - check: E10D-07_fk_carries_version
   result: PASS
   details: foreign keys must carry the version column

@@ -187,6 +187,30 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `a misconception label is read strictly and pinned to its Objective`() {
+        val label = """
+
+            [misconception]
+            logical_id=misconception.python.loops.off_by_one
+            version=1
+            objective=objective.python.loops.trace@v1
+            name=bir eksik ya da bir fazla tur
+            open_question=Döngünün son turunu sayarken bir tur kaçırmış olabilir misin?
+        """.trimIndent()
+        val parsed = PackageFormat.parse(authored + "\n" + label).curriculum.misconceptions.single()
+        assertEquals(VersionedRef("misconception.python.loops.off_by_one", 1), parsed.ref)
+        assertEquals(VersionedRef("objective.python.loops.trace", 1), parsed.objective)
+        for (bad in listOf(
+            label.replace("misconception.python.loops.off_by_one", "off_by_one"),
+            label.replace("?", "."),
+            label.replace("objective.python.loops.trace@v1", "objective.python.loops.trace"),
+            label + "\nseverity=high",
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n" + bad) }
+        }
+    }
+
+    @Test
     fun `comments and blank lines are ignored`() {
         val commented = authored.replace("[topic]", "# the first topic\n[topic]")
         assertEquals(1, PackageFormat.parse(commented).curriculum.topics.size)

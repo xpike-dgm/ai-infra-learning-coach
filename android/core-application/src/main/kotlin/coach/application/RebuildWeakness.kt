@@ -1,11 +1,13 @@
 package coach.application
 
 import coach.engines.BlueprintComposer
+import coach.engines.MisconceptionEngine
 import coach.engines.WeaknessEngine
 import coach.model.AssessmentBlueprint
 import coach.model.BlueprintSlotOutcome
 import coach.model.EvidenceDispositions
 import coach.model.ObjectiveGateProfile
+import coach.model.MisconceptionSignalState
 import coach.model.ObjectiveWeakness
 import coach.model.VersionedRef
 import coach.model.WeaknessAxis
@@ -33,20 +35,50 @@ class RebuildWeakness(
         val objectives: List<ObjectiveWeakness>,
         val axis: WeaknessAxis,
         val written: Boolean,
+        /** The misconception memory of every catalog label of these Objectives (14B), whether or not anything carried it. */
+        val misconceptions: List<MisconceptionSignalState> = emptyList(),
     )
 
     fun rebuild(skill: VersionedRef, profiles: List<ObjectiveGateProfile>): Rebuilt {
         val watermark = persistence.truthWatermark()
         val curriculumVersion = persistence.latestCurriculumVersion()
+        val events = WeaknessEvents.of(persistence, skill, profiles)
+        val objectives = profiles.map { profile -> WeaknessEngine.replay(profile.ref, skill, events.getValue(profile.ref)) }
+        // 14B: the misconception memory of each Objective's catalog labels, replayed over the same events.
+        val misconceptions = profiles.flatMap { profile ->
+            MisconceptionEngine.replay(profile.ref, skill, persistence.misconceptionsOf(profile.ref), events.getValue(profile.ref))
+        }
+        val axis = WeaknessAxis.of(objectives)
+        val version = curriculumVersion ?: return Rebuilt(skill, objectives, axis, written = false, misconceptions = misconceptions)
+        val builtAt = clock.now().instantEpochMillis
+        val today = clock.now().studyDay
+        persistence.inTransaction {
+            objectives.forEach { WeaknessRows.writeObjective(persistence, it, today, watermark, version, builtAt) }
+            misconceptions.forEach { MisconceptionRows.write(persistence, it, today, watermark, version, builtAt) }
+            WeaknessRows.writeAxis(persistence, skill, axis, watermark, version, builtAt)
+        }
+        return Rebuilt(skill, objectives, axis, written = true, misconceptions = misconceptions)
+    }
+}
+
+/**
+ * One Skill's evidence as the weakness engine reads it (13D), per Objective in recording order: the mastery
+ * engine's decision before and after each row ([MasteryTimeline]), the 13F diagnostic baseline, and the catalog
+ * labels each row carries (14B). Shared by [RebuildWeakness] and [AnalyzeWrongAnswer], so the analysis a learner
+ * reads is exactly the attribution the stored state was built from.
+ */
+internal object WeaknessEvents {
+
+    fun of(persistence: PersistencePort, skill: VersionedRef, profiles: List<ObjectiveGateProfile>): Map<VersionedRef, List<WeaknessEvent>> {
         val rows = MasteryTimeline.rowsOf(persistence, profiles)
         require(rows.all { it.second.studyDay != null }) { "an evidence row with no study day cannot be placed in time" }
         val byObjective = profiles.associateBy { it.ref }
         val steps = MasteryTimeline.of(skill, profiles, rows)
         val sessions = DiagnosticSessions.Cache(persistence)
-        val objectives = profiles.map { profile ->
+        return profiles.associate { profile ->
             // 13F: an Objective stops being a diagnostic baseline the moment ordinary learning reaches it.
             var learnedHere = false
-            val events = steps.filter { it.objective == profile.ref }.map { step ->
+            profile.ref to steps.filter { it.objective == profile.ref }.map { step ->
                 val row = step.row
                 val inDiagnostic = sessions.diagnosticOf(row, profile.ref) != null
                 val baseline = inDiagnostic && !learnedHere
@@ -59,19 +91,41 @@ class RebuildWeakness(
                     resource = row.resource, variantFamilyId = row.variantFamilyId,
                     masteredBefore = step.masteredBefore, masteredAfter = step.masteredAfter,
                     diagnosticBaseline = baseline,
+                    misconceptionTags = row.misconceptionTags,
                 )
             }
-            WeaknessEngine.replay(profile.ref, skill, events)
         }
-        val axis = WeaknessAxis.of(objectives)
-        val version = curriculumVersion ?: return Rebuilt(skill, objectives, axis, written = false)
-        val builtAt = clock.now().instantEpochMillis
-        val today = clock.now().studyDay
-        persistence.inTransaction {
-            objectives.forEach { WeaknessRows.writeObjective(persistence, it, today, watermark, version, builtAt) }
-            WeaknessRows.writeAxis(persistence, skill, axis, watermark, version, builtAt)
-        }
-        return Rebuilt(skill, objectives, axis, written = true)
+    }
+}
+
+/** `misconception_state`, as stored (14B). An empty column is "none"; a label nothing carried is written as none. */
+internal object MisconceptionRows {
+
+    fun key(misconception: VersionedRef) = "misconception_state:${misconception.logicalId}@v${misconception.version}"
+
+    fun write(persistence: PersistencePort, m: MisconceptionSignalState, today: String, watermark: Long, version: Int, builtAt: Long) {
+        persistence.writeProjection(
+            ProjectionRecord(
+                key = key(m.misconception),
+                policyVersion = MisconceptionEngine.POLICY_VERSION,
+                truthWatermark = watermark,
+                builtAtInstant = builtAt,
+                inputCurriculumVersion = version,
+                payload = mapOf(
+                    "objective_logical_id" to m.objective.logicalId,
+                    "objective_version" to m.objective.version.toString(),
+                    "skill_logical_id" to m.skill.logicalId,
+                    "skill_version" to m.skill.version.toString(),
+                    "state" to m.signal.id,
+                    "source" to m.source?.id.orEmpty(),
+                    "signal_evidence_ids" to m.signalEvidenceIds.joinToString(","),
+                    "first_seen_on_study_day" to m.firstSeenDay.orEmpty(),
+                    "last_seen_on_study_day" to m.lastSeenDay.orEmpty(),
+                    "resolution_evidence_id" to m.resolutionEvidenceId?.toString().orEmpty(),
+                    "as_of_study_day" to today,
+                ),
+            )
+        )
     }
 }
 

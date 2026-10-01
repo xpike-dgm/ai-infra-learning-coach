@@ -131,6 +131,7 @@ class VirtualUserJourneysTest {
 
 
         override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
 
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = null

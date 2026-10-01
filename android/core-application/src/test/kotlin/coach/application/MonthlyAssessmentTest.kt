@@ -123,6 +123,7 @@ class MonthlyAssessmentTest {
 
 
         override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
     }
 
     private class Content(val items: List<AssessmentItem>, val tasks: Map<String, List<TaskCandidate>> = emptyMap()) : ContentPort {

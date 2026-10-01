@@ -1,0 +1,216 @@
+model: WAAX-v0
+stage_step: 14B
+status: accepted_14b
+decision: D-106
+implements: [WLRM-v0, AIAX-v0, SPWX-v0]
+attribution_reused: WLRX-v0
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: what_a_wrong_answer_shows_and_how_sure_we_can_be
+
+scope:
+  closed_catalog: true
+  labels_written_on_evidence: true
+  misconception_memory: true
+  analysis_reported: true
+  schema_changed: true
+  projection_added: true
+  curriculum_table_added: true
+  state_family_added: false
+  weakness_rule_changed: false
+  mastery_rule_changed: false
+  planner_rule_changed: false
+  labels_authored: false
+  memory_used_for_selection: false
+  app_calls_analysis: false
+
+question: What does this wrong answer show — and how sure can we be?
+
+primary_invariant: >-
+  A wrong answer is information, not a verdict about the learner. A misconception label is only ever as strong as
+  the evidence it rides on and its source allows: it moves exactly as far as the weakness engine's own rule moves its
+  Objective, an AI's proposal never rises above a hypothesis, a label nobody declared for the Objective is never
+  stored, and a hypothesis is put to the learner only as a question.
+
+user_decisions:
+  date: "2026-10-01"
+  catalog: closed_curriculum_authored
+  undeclared_label_stored: false
+  hypothesis_shown: only_as_open_question_right_after_the_answer
+
+catalog:
+  table: misconception
+  id_pattern: misconception.<namespace>.<slug>
+  pinned_to: one_objective_version
+  fields: [logical_id, version, objective_logical_id, objective_version, name, open_question]
+  open_question_is_a_question: true
+  immutable: true
+  refused_if: [objective_unpublished, other_version]
+  package_section: misconception
+  read_by: PersistencePort.misconceptionsOf
+
+labels:
+  written_to: evidence_event.misconception_tags
+  format: misconception_tags/1
+  only_on: [not_met, partially_met]
+  only_for_component_objective: true
+  only_if_declared: true
+  source_from_verified: deterministic
+  source_from_provisional: ai_proposed
+  non_answer_writes: nothing
+
+memory:
+  table: misconception_state
+  owner: WLRM-v0
+  lifecycle: [none, hypothesis, supported, confirmed, resolved]
+  attribution: weakness_engine_rule_against_objective_state
+  reach:
+    - {rule: failure.assisted_h1_h4, to: hypothesis}
+    - {rule: failure.provisional_or_partial, to: hypothesis}
+    - {rule: failure.clean_premastery_h0_direct, to: supported}
+    - {rule: failure.first_clean_postmastery_contradiction, to: supported}
+    - {rule: failure.fresh_recheck_fail, to: confirmed_if_gates_fail_else_supported}
+  source_ceiling: {deterministic: confirmed, ai_proposed: hypothesis}
+  moves_no_label: [invalid_or_ambiguous, prerequisite_contamination, diagnostic_baseline]
+  lowered_by_weaker_row: false
+  resolved_by: fresh_clean_success_confirmed_only_when_gates_pass
+  resolved_by_time: false
+  undeclared_label_moves: false
+  written_for_every_catalog_label: true
+
+analysis:
+  reads_stored_attribution: true
+  shared_event_builder: WeaknessEvents
+  writes: nothing
+  calls_ai: false
+  labels_mentioned_only_after: [objective_weakness_hypothesis, objective_weakness_supported, verification_due, remediation_required]
+  hypothesis_shown_as: open_question
+  supported_or_confirmed_shown_as: named
+  resolved_shown: false
+
+review_resolved:
+  id: review.6g.misconception_taxonomy_expansion
+  resolution: runtime_contract_and_closed_catalog_here_labels_in_15_expansion_from_real_errors_in_18
+
+port_count: 5
+port_refinements: [{port: PersistencePort, method: misconceptionsOf}]
+projection_extension: {table: misconception_state, grain: per_catalog_label, owner: WLRM-v0, decision: D-106}
+curriculum_extension: {table: misconception, grain: per_label_per_objective_version, decision: D-106}
+schema_version: 8
+schema_migration: {from: 7, to: 8, owner: 14B, tables: [misconception, misconception_state], truth_altered: false, decision: D-106}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/MisconceptionFactsTest.kt}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/MisconceptionEngineTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/WrongAnswerAnalysisTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/WrongAnswerPresentationTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/MisconceptionStorageTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+
+mutation_results:
+  total: 51
+  detected: 51
+  only_14b_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (E05, the source ceiling removed) was re-run by hand and two named MisconceptionEngineTest tests were seen failing
+  negative_control: a comment-only change in TutorFacts.kt
+  negative_control_result: survived_as_expected
+  first_run: 50 of 51 detected; E03 survived — no test had a fresh recheck failing while the gates still pass; the test was added, E03 then detected
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: M01, mutant: a_one_segment_id_is_a_label, result: detected}
+    - {id: M02, mutant: a_label_is_stated_not_asked, result: detected}
+    - {id: M03, mutant: an_ai_label_may_be_supported, result: detected}
+    - {id: M04, mutant: another_format_decodes, result: detected}
+    - {id: M05, mutant: an_unknown_source_decodes_as_deterministic, result: detected}
+    - {id: M06, mutant: version_zero_decodes, result: detected}
+    - {id: M07, mutant: encoding_forgets_the_source, result: detected}
+    - {id: M08, mutant: resolved_by_time, result: detected}
+    - {id: M09, mutant: a_label_pinned_to_nothing_is_published, result: detected}
+    - {id: E01, mutant: assisted_work_supports_a_label, result: detected}
+    - {id: E02, mutant: a_clean_failure_is_only_a_hypothesis, result: detected}
+    - {id: E03, mutant: a_recheck_confirms_whatever_the_gates, result: detected}
+    - {id: E04, mutant: unattributable_work_moves_a_label, result: detected}
+    - {id: E05, mutant: the_source_ceiling_is_ignored, result: detected}
+    - {id: E06, mutant: an_undeclared_label_moves, result: detected}
+    - {id: E07, mutant: another_objectives_labels_are_remembered, result: detected}
+    - {id: E08, mutant: any_success_resolves, result: detected}
+    - {id: E09, mutant: a_confirmed_label_closes_without_the_gates, result: detected}
+    - {id: E10, mutant: a_weaker_row_lowers_a_label, result: detected}
+    - {id: E11, mutant: a_new_window_keeps_old_evidence, result: detected}
+    - {id: E12, mutant: the_weakest_source_is_kept, result: detected}
+    - {id: E13, mutant: a_row_no_rule_speaks_for_gets_an_outcome, result: detected}
+    - {id: E14, mutant: a_new_window_keeps_an_old_resolution, result: detected}
+    - {id: A01, mutant: a_right_answer_carries_labels, result: detected}
+    - {id: A02, mutant: an_undeclared_label_is_stored, result: detected}
+    - {id: A03, mutant: an_uncalibrated_label_is_deterministic, result: detected}
+    - {id: A04, mutant: another_objectives_proposal_is_attached, result: detected}
+    - {id: A05, mutant: tags_are_not_written, result: detected}
+    - {id: A06, mutant: the_memory_is_not_written, result: detected}
+    - {id: A07, mutant: the_rebuild_loses_the_tags, result: detected}
+    - {id: A08, mutant: the_stored_source_is_invented, result: detected}
+    - {id: A09, mutant: the_memory_claims_another_policy, result: detected}
+    - {id: A10, mutant: the_analysis_reads_other_attempts, result: detected}
+    - {id: P01, mutant: a_hypothesis_is_named, result: detected}
+    - {id: P02, mutant: a_supported_label_is_only_asked, result: detected}
+    - {id: P03, mutant: a_label_on_a_blameless_row_is_mentioned, result: detected}
+    - {id: P04, mutant: a_resolved_label_is_named, result: detected}
+    - {id: P05, mutant: unattributable_work_is_blamed, result: detected}
+    - {id: P06, mutant: a_missing_prerequisite_blames_the_target, result: detected}
+    - {id: P07, mutant: the_summary_counts, result: detected}
+    - {id: S01, mutant: tags_are_not_read, result: detected}
+    - {id: S02, mutant: the_catalog_is_not_stored, result: detected}
+    - {id: S03, mutant: the_catalog_ignores_the_objective_version, result: detected}
+    - {id: S04, mutant: a_label_of_another_version_is_published, result: detected}
+    - {id: S05, mutant: an_earlier_published_objective_does_not_resolve, result: detected}
+    - {id: S06, mutant: an_ai_label_may_be_stored_supported, result: detected}
+    - {id: S07, mutant: a_resolution_needs_no_evidence, result: detected}
+    - {id: S08, mutant: the_catalog_is_editable, result: detected}
+    - {id: S09, mutant: the_migration_is_not_registered, result: detected}
+    - {id: F01, mutant: the_catalog_section_is_ignored, result: detected}
+    - {id: F02, mutant: an_unknown_catalog_key_is_accepted, result: detected}
+
+validator_mutation:
+  total: 28
+  detected: 28
+  negative_control: forbidden fragments (a removed cap, an unfiltered tag loop, a blaming sentence, a percentage, analysis writes) inside Kotlin comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 864
+sweep: {passed: 50, total: 50}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app shows the analysis yet (16D) and no evaluator produces labels yet (14D/14F/15)
+
+open_loops:
+  authored_labels_and_deterministic_keys: {owner: "15"}
+  memory_for_item_choice_and_contrast_content: {owner: "15"}
+  progress_view_of_misconceptions: {owner: 16C}
+  app_calls_analysis: {owner: 16D}
+  catalog_expansion_and_escalation_calibration: {owner: "18"}
+  code_evaluation_labels: {owner: 14D}
+  llm_evaluator_proposals: {owner: 14F}
+
+forbidden_patterns:
+  - undeclared_label_stored
+  - ai_label_above_hypothesis
+  - label_faster_than_objective_attribution
+  - unattributable_work_moves_label
+  - misconception_on_right_answer
+  - label_resolved_by_time
+  - hypothesis_stated_as_finding
+  - label_after_blameless_row
+  - wrong_answer_as_verdict
+  - analysis_recomputes_attribution

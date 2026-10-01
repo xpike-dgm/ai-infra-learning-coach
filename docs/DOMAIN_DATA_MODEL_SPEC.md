@@ -360,3 +360,7 @@ Next numbered step:
 ---
 
 **13F note (2026-10-01, `D-104`):** the projection inventory is extended by one entry, `diagnostic_coverage` (per Objective, owned by `VDW-v0`): the coverage waiver and the open diagnostic's progress (schema v7). `VDW-v0` had no implementation step when this model was accepted; the eight entities above are unchanged. Details: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`.
+
+---
+
+**14B note (2026-10-01, `D-106`):** the curriculum inventory is extended by `misconception` (the closed catalog, one label per Objective version) and the projection inventory by `misconception_state` (owned by `WLRM-v0`); `evidence_event.misconception_tags` (§7.1) is written for the first time, as `misconception_tags/1`. This contract is not edited; the extensions are declared in `arch/14b_wrong_answer_analysis/wrong_answer_analysis.yaml`.

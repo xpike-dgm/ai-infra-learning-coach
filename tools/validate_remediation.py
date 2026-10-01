@@ -256,9 +256,14 @@ for owner in ("arch/13a_weekly_assessment/weekly_assessment.yaml", "arch/13b_mon
 
 # ---------------------------------------------------------------- shared timeline and rebuild
 rebuild = body(app, "fun rebuild(")
-check("E13D-09_watermark_first", 0 <= rebuild.find("persistence.truthWatermark()") < rebuild.find("MasteryTimeline.rowsOf("), "watermark after evidence")
-check("E13D-09_day_required", "require(rows.all { it.second.studyDay != null })" in rebuild, "a row with no day")
-check("E13D-09_shared_timeline", "MasteryTimeline.of(skill, profiles, rows)" in rebuild and "MasteryTimeline.of(skill, profiles, rows)" in retention_app,
+# Narrowed at 14B (`D-106`): building one Skill's weakness events moved into `WeaknessEvents.of`, shared with the
+# wrong-answer analysis. The rebuild must still read the watermark before it reads any evidence, and the shared builder
+# must still refuse a row with no day and use the one timeline retention uses.
+events_builder = body(app, "fun of(persistence: PersistencePort, skill: VersionedRef, profiles: List<ObjectiveGateProfile>)")
+reads_evidence = rebuild.find("WeaknessEvents.of(") if "WeaknessEvents.of(" in rebuild else rebuild.find("MasteryTimeline.rowsOf(")
+check("E13D-09_watermark_first", 0 <= rebuild.find("persistence.truthWatermark()") < reads_evidence, "watermark after evidence")
+check("E13D-09_day_required", "require(rows.all { it.second.studyDay != null })" in (rebuild + events_builder), "a row with no day")
+check("E13D-09_shared_timeline", "MasteryTimeline.of(skill, profiles, rows)" in (rebuild + events_builder) and "MasteryTimeline.of(skill, profiles, rows)" in retention_app,
       "two timelines")
 check("E13D-09_timeline_mirrors", all(n in body(timeline, "fun of(") for n in ("previouslyMastered = previous in MASTERED,",
       "unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,", "previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,")),

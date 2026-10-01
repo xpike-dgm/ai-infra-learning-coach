@@ -87,6 +87,7 @@ class RebuildRetentionTest {
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact> = emptyList()
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
         override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
         override fun retentionDueBy(studyDay: String): List<VersionedRef> =
             projections.filterKeys { it.startsWith("retention_state:") }.values.filter { row ->
                 val next = row.payload["next_review_on_study_day"].orEmpty()

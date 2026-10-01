@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 7
+    const val VERSION = 8
 
     // ---------------------------------------------------------------- table inventories
 
@@ -29,6 +29,13 @@ object Schema {
         "topic_skill_link", "skill_prerequisite_edge",
         "assessment_resource", "assessment_resource_version", "resource_validation_record",
     )
+
+    /**
+     * Curriculum tables added after `DDM-v0` by an accepted later contract, each guarded like the eleven above but
+     * created by its own migration: `misconception` (14B, `D-106`), the closed misconception catalog. Kept apart from
+     * [curriculumTables] because version 1 creates exactly `DDM-v0`'s eleven and their guards.
+     */
+    val curriculumExtensionTables = listOf("misconception")
 
     /**
      * Region 2 — user truth. Append-only. Matches `DDM-v0` §truth_entities exactly, plus
@@ -51,7 +58,7 @@ object Schema {
     val projectionTables = listOf(
         "skill_state", "objective_state", "retention_state", "prerequisite_readiness",
         "topic_state", "weakness_state", "english_profile", "planner_summary",
-        "diagnostic_coverage",
+        "diagnostic_coverage", "misconception_state",
     )
 
     /** `DDM-v0` §independent_axes — the allowed value sets, stated once. */
@@ -718,4 +725,72 @@ object Schema {
             BEGIN SELECT RAISE(ABORT, 'a daily session carries content only as diagnostic_scope'); END
             """,
         )
+
+    /**
+     * Version 8 adds wrong-answer analysis (14B, `D-106`).
+     *
+     * - `misconception` — the **closed catalog** (user decision, 2026-10-01): one curriculum row per label, pinned to
+     *   one Objective version, immutable like every curriculum table. A label nobody declared is not storable.
+     * - `misconception_state` — the learner's memory of one catalog label (`WLRM-v0` misconception contract), owned
+     *   by the `WLRM-v0` family. SQLite refuses a signal outside `WLRM-v0`'s lifecycle, a source outside the two the
+     *   contract names, an AI-proposed label above a hypothesis, and a resolution without its evidence.
+     *
+     * `evidence_event.misconception_tags` already existed (`DDM-v0` §7.1); nothing wrote it before 14B. Truth is untouched.
+     */
+    val v8: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS misconception (
+                logical_id           TEXT    NOT NULL,
+                version              INTEGER NOT NULL,
+                objective_logical_id TEXT    NOT NULL,
+                objective_version    INTEGER NOT NULL,
+                name                 TEXT    NOT NULL,
+                open_question        TEXT    NOT NULL,
+                PRIMARY KEY (logical_id, version),
+                FOREIGN KEY (objective_logical_id, objective_version) REFERENCES objective (logical_id, version),
+                CHECK (logical_id LIKE 'misconception.%'),
+                CHECK (trim(open_question) LIKE '%?')
+            )
+            """,
+            "CREATE INDEX IF NOT EXISTS misconception_by_objective ON misconception (objective_logical_id, objective_version)",
+        ) + curriculumExtensionTables.flatMap { table ->
+            listOf(
+                """
+                CREATE TRIGGER IF NOT EXISTS ${table}_no_update BEFORE UPDATE ON $table
+                BEGIN SELECT RAISE(ABORT, '$table is immutable: publish a new version instead'); END
+                """,
+                """
+                CREATE TRIGGER IF NOT EXISTS ${table}_no_delete BEFORE DELETE ON $table
+                BEGIN SELECT RAISE(ABORT, '$table is immutable: user references are pinned to it'); END
+                """,
+            )
+        } + listOf(
+            """
+            CREATE TABLE IF NOT EXISTS misconception_state (
+                misconception_logical_id TEXT    NOT NULL,
+                misconception_version    INTEGER NOT NULL,
+                objective_logical_id     TEXT    NOT NULL,
+                objective_version        INTEGER NOT NULL,
+                skill_logical_id         TEXT    NOT NULL,
+                skill_version            INTEGER NOT NULL,
+                state                    TEXT    NOT NULL,
+                source                   TEXT    NOT NULL,
+                signal_evidence_ids      TEXT,
+                first_seen_on_study_day  TEXT,
+                last_seen_on_study_day   TEXT,
+                resolution_evidence_id   INTEGER,
+                as_of_study_day          TEXT    NOT NULL,$PROJECTION_PROVENANCE,
+                PRIMARY KEY (misconception_logical_id, misconception_version),
+                CHECK (state IN ($WEAKNESS_SIGNALS)),
+                CHECK (source IN ($MISCONCEPTION_SOURCES)),
+                CHECK (source <> 'ai_proposed' OR state IN ('hypothesis', 'resolved')),
+                CHECK (state <> 'resolved' OR coalesce(resolution_evidence_id, '') <> '')
+            )
+            """,
+            "CREATE INDEX IF NOT EXISTS misconception_state_by_objective ON misconception_state (objective_logical_id, objective_version)",
+        )
+
+    /** `WLRM-v0`'s misconception sources, plus the empty value of a label nothing has carried yet. */
+    const val MISCONCEPTION_SOURCES = "'', 'deterministic', 'ai_proposed'"
 }

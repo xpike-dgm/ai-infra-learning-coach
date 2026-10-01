@@ -48,7 +48,8 @@ class DiagnosticStorageTest {
             Fixtures.truthContent(db)
         }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(7, Schema.VERSION)
+            // Narrowed at 14B: a later version (v8, the misconception catalog and memory) migrates through this one.
+            assertTrue(Schema.VERSION >= 7)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             Schema.truthTables.forEach { assertEquals(before[it], after[it], it) }

@@ -69,8 +69,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **13E — Program değişiklik raporu** | ✅ | PCRX-v0 / D-103. Rapor iki okumanın farkı; değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar değişiklik değil; çelişki doğrulama, düşüş değil; hipotez soru; plan farkı iki sürüm arasında, ilk plan değişiklik değil; replan yalnız durum değiştiyse; `objectivesOf`, şema değişmedi; 162/162 QA PASS, mutation 42/42. |
 | **13F — Tanısal atlama (VDW-v0)** | ✅ | VDWX-v0 / D-104. Tanısal yol daha kolay yol değil, aynı kanıtı daha erken toplar; istek kanıt değil; waiver yalnız `GRE-v0` kapıları tanısal kanıtta ilk kez geçince, kapsamdır, mastery değil; yardım ya da temiz kaçırma hızlı yolu suçsuz bitirir, öğretilmemiş şeyi bilmemek zayıflık değil (kullanıcı kararları); tanı sürerken ders bekler, yalnız gösterilen atlanır; planlama kanıt okumaz; şema v7 `diagnostic_coverage`; S06 ve invariant 12 koşuyor; 220/220 QA PASS, mutation 69/69. **AŞAMA 13 kapandı.** |
 | **14A — Tutor davranış sözleşmesi** | ✅ | TUTX-v0 / D-105. Tutor istek üzerine öğretir, asla karar vermez; beş kapalı istek, yardım hep istenebilir; seviyeyi öğrenci seçer, kayıt izin verilenden az yardım iddia etmez; cihazdan yalnız mevcut görev çıkar; `tutor_reply/1`; yanıtsızlık hiçbir şey kaydetmez; kaydedilen yardım kanıtın bağımsızlığını belirler; gösterilen çözüm exposure; ayrı `TutorPort` (D-105 uzantısı); 219/219 QA PASS, mutation 68/68. **AŞAMA 14 başladı.** |
-| **14B — Yanlış analizi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **14C–20** | ⬜ Bekliyor | 14B sonrası canonical sırada. |
+| **14B — Yanlış analizi** | ✅ | WAAX-v0 / D-106. Yanlış cevap bir bilgi, hüküm değil; kapalı misconception kataloğu (kullanıcı kararı); etiket yalnız yanlış satıra ve beyanlıysa; hafıza zayıflık motorunun kuralıyla, AI hipotezin üstüne çıkmaz; hipotez yalnız soru (kullanıcı kararı); şema v8; 154/154 QA PASS, mutation 51/51. |
+| **14C — Alternatif anlatım** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **14D–20** | ⬜ Bekliyor | 14C sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -89,7 +90,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 14A
+## Son tamamlanan numaralı adım — 14B
+
+**Final:** `WAAX-v0 — Wrong-Answer Analysis & Misconception Memory` / D-106.
+**Ana çıktı:** `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md` + `arch/14b_wrong_answer_analysis/` + `android/`.
+
+14B sonucu:
+- yanlış cevap bir bilgidir, öğrenci hakkında hüküm değil; etiket taşıdığı kanıttan ve kaynağından güçlü olamaz,
+- kullanıcı kararları: kapalı, curriculum'da yazılan katalog (beyan edilmemiş etiket saklanmaz); hipotez yalnız yanlış cevaptan hemen sonra açık soru,
+- **bulgu:** `misconception_tags` kolonu hiç yazılmıyordu; `EvaluationResult` `AIAX-v0`'ın `misconception_hypotheses`'ini düşürmüştü; hafıza ve katalog yoktu,
+- etiket yalnız yanlış giden satıra, kendi Objective'i için; `deterministic` / `ai_proposed`; yanıtsızlık hiçbir şey yazmaz,
+- hafıza zayıflık motorunun 12 kuralıyla ve kaynak tavanıyla; geçersiz, itirazlı, ön koşulu bozuk iş ve tanısal temel hata oynatmaz; taze temiz başarı kapatır, zaman kapatmaz,
+- analiz saklanan atfı okur ve hiçbir şey yazmaz; etiket yalnız hedef hakkında konuşan satırdan sonra anılır,
+- şema v8 (`misconception`, `misconception_state`), port inceltmesi `misconceptionsOf`, yeni aile yok; `review.6g.misconception_taxonomy_expansion` kapandı,
+- mutation 51/51, independent validator **154/154 PASS**, kendi mutation testi 28/28; 50/50 sweep PASS,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 14A
 
 **Final:** `TUTX-v0 — Tutor Behaviour Contract` / D-105.
 **Ana çıktı:** `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` + `arch/14a_tutor_contract/` + `android/`.
@@ -109,7 +126,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 14 başladı.**
 
-## Önceki numaralı adım — 13F
+## AŞAMA 13 son adımı — 13F
 
 **Final:** `VDWX-v0 — Validated Diagnostic Waiver Implementation` / D-104.
 **Ana çıktı:** `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` + `arch/13f_diagnostic_waiver/` + `android/`.
@@ -232,6 +249,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 14B Yanlış analizi
+## Aktif adım — 14C Alternatif anlatım
 
-**14B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**14C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

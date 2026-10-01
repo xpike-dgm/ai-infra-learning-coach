@@ -56,7 +56,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13E Program değişiklik raporu: PCRX-v0 / D-103 ile tamamlandı; snapshot farkı, yeniden hesaplama, yalnız durum değiştiyse replan, sonuç aileleri.
 - [x] 13F Tanısal atlama (VDW-v0): VDWX-v0 / D-104 ile tamamlandı; waiver, tanısal yol, planner kapsam tutması, şema v7, S06 koşuyor. **AŞAMA 13 kapandı.**
 - [x] 14A Tutor davranış sözleşmesi: TUTX-v0 / D-105 ile tamamlandı; beş kapalı istek, seviye tavanı, core'da kurulan mesaj, `tutor_reply/1`, `NullTutor`, ayrı `TutorPort` (D-105 uzantısı), yardımdan bağımsızlık, gösterilen çözüm exposure. **AŞAMA 14 başladı.**
-- [ ] 14B Yanlış analizi **AKTİF**.
+- [x] 14B Yanlış analizi: WAAX-v0 / D-106 ile tamamlandı; kapalı misconception kataloğu, etiketler kanıtta, `misconception_state` hafızası, suçlamasız analiz, şema v8; `review.6g.misconception_taxonomy_expansion` kapandı.
+- [ ] 14C Alternatif anlatım **AKTİF**.
+- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15.
+- [ ] Misconception hafızasının item seçiminde ve `misconception_contrast` içeriğinde kullanımı → 15.
+- [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
+- [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.
+- [ ] Katalogun gerçek öğrenci hatalarıyla genişletilmesi ve yükselme kalibrasyonu → 18.
 - [ ] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması → 14G (kullanıcı kararı).
 - [ ] Yazılmış ipucu basamakları ve her görevin instruction mode'u → 15.
 - [ ] Tutor panelini çizmek; `AskTutor` ve `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak → 16D.
@@ -72,7 +78,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Curriculum paketinde transfer/artifact kapı alanları (profiller şimdilik `GRE-v0` varsayılanında) → 15.
 - [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
-- [ ] Remediation strateji rotalarından içerik → 15; misconception hafızası → 14B. Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
+- [ ] Remediation strateji rotalarından içerik → 15. Misconception hafızası 14B'de kapandı (D-106). Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
 - [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
 - [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak — çekirdekte `RecomputeSkillState` (13E) sırayı tutuyor, uygulamadan çağırmak — ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
 - [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.

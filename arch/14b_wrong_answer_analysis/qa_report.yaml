@@ -1,0 +1,517 @@
+model: WAAX-v0
+stage_step: 14B
+decision: D-106
+result: PASS
+checks_total: 154
+checks_passed: 154
+checks_failed: 0
+checks:
+- check: E14B-00_exists_wrong_answer_analysis.yaml
+  result: PASS
+  details: missing arch/14b_wrong_answer_analysis/wrong_answer_analysis.yaml
+- check: E14B-00_exists_WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md
+- check: E14B-00_exists_14b_wrong_answer_analysis_research.md
+  result: PASS
+  details: missing research/14b_wrong_answer_analysis_research.md
+- check: E14B-00_exists_MisconceptionFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/MisconceptionFacts.kt
+- check: E14B-00_exists_MisconceptionEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/MisconceptionEngine.kt
+- check: E14B-00_exists_AnalyzeWrongAnswer.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/AnalyzeWrongAnswer.kt
+- check: E14B-00_exists_WrongAnswerPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/WrongAnswerPresentation.kt
+- check: E14B-01_model
+  result: PASS
+  details: WAAX-v0
+- check: E14B-01_status
+  result: PASS
+  details: accepted_14b
+- check: E14B-01_decision
+  result: PASS
+  details: D-106
+- check: E14B-01_scope_closed_catalog
+  result: PASS
+  details: closed_catalog=True
+- check: E14B-01_scope_labels_written_on_evidence
+  result: PASS
+  details: labels_written_on_evidence=True
+- check: E14B-01_scope_misconception_memory
+  result: PASS
+  details: misconception_memory=True
+- check: E14B-01_scope_analysis_reported
+  result: PASS
+  details: analysis_reported=True
+- check: E14B-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=True
+- check: E14B-01_scope_projection_added
+  result: PASS
+  details: projection_added=True
+- check: E14B-01_scope_curriculum_table_added
+  result: PASS
+  details: curriculum_table_added=True
+- check: E14B-01_scope_state_family_added
+  result: PASS
+  details: state_family_added=False
+- check: E14B-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E14B-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E14B-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E14B-01_scope_labels_authored
+  result: PASS
+  details: labels_authored=False
+- check: E14B-01_scope_memory_used_for_selection
+  result: PASS
+  details: memory_used_for_selection=False
+- check: E14B-01_scope_app_calls_analysis
+  result: PASS
+  details: app_calls_analysis=False
+- check: E14B-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-01'', ''catalog'': ''closed_curriculum_authored'',
+    ''undeclared_label_stored'': False, ''hypothesis_shown'': ''only_as_open_question_right_after_the_answer''}'
+- check: E14B-01_wlrm_llm_hypothesis_only
+  result: PASS
+  details: '[''LLM_may_propose_a_hypothesis_but_cannot_publish_confirmed_misconception_without_evidence_policy'',
+    ''misconception_memory_guides_remediation_and_item_selection_but_does_not_directly_set_mastery'',
+    ''a_label_may_be_merged_or_renamed_without_changing_canonical_Skill_identity'',
+    ''resolved_requires_subsequent_evidence_or_explicit_runtime_resolution_not_time_alone'']'
+- check: E14B-01_wlrm_no_mastery
+  result: PASS
+  details: ''
+- check: E14B-01_wlrm_not_by_time
+  result: PASS
+  details: ''
+- check: E14B-01_aiax_hypotheses
+  result: PASS
+  details: AIAX-v0 §5.1 moved
+- check: E14B-01_spwx_question
+  result: PASS
+  details: SPWX-v0 §10.1 moved
+- check: E14B-01_lbr_signal
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES §5 moved
+- check: E14B-01_review_owned_here
+  result: PASS
+  details: '{''review_id'': ''review.6g.misconception_taxonomy_expansion'', ''severity'':
+    ''non_blocking'', ''question'': ''Which domain-specific misconception labels should
+    be production-authored beyond the generic runtime misconception contract?'', ''decision_inputs_required'':
+    [''real learner errors'', ''AI tutor/error-analysis design''], ''resolution_owner_step'':
+    ''14B'', ''status'': ''resolved'', ''resolution'': ''14B (WAAX-v0 / D-106) fixed
+    the runtime contract and a closed, curriculum-authored catalog; an AI may choose
+    only from it and a label outside it is not stored. Which labels to author is content
+    (15); expanding the catalog from real learner errors is calibration (18).'', ''resolved_at'':
+    ''2026-10-01'', ''resolution_refs'': [''docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md'',
+    ''14B'']}'
+- check: E14B-02_lifecycle_from_wlrm
+  result: PASS
+  details: '[''hypothesis'', ''supported'', ''confirmed'', ''resolved''] vs [''none'',
+    ''hypothesis'', ''supported'', ''confirmed'', ''resolved'']'
+- check: E14B-02_sources_and_ceilings
+  result: PASS
+  details: '[(''deterministic'', ''CONFIRMED''), (''ai_proposed'', ''HYPOTHESIS'')]'
+- check: E14B-02_schema_sources
+  result: PASS
+  details: schema sources
+- check: E14B-02_contract_field_evidence_refs
+  result: PASS
+  details: evidence_refs not in WLRM-v0's contract
+- check: E14B-02_contract_field_first_seen_at
+  result: PASS
+  details: first_seen_at not in WLRM-v0's contract
+- check: E14B-02_contract_field_last_seen_at
+  result: PASS
+  details: last_seen_at not in WLRM-v0's contract
+- check: E14B-02_contract_field_resolution_evidence_refs
+  result: PASS
+  details: resolution_evidence_refs not in WLRM-v0's contract
+- check: E14B-03_catalog_row
+  result: PASS
+  details: '[''ref'', ''objective'', ''name'', ''openQuestion'']'
+- check: E14B-03_id_pattern
+  result: PASS
+  details: catalog id pattern
+- check: E14B-03_question
+  result: PASS
+  details: a label is stated
+- check: E14B-03_table
+  result: PASS
+  details: catalog table
+- check: E14B-03_immutable
+  result: PASS
+  details: catalog editable
+- check: E14B-03_unresolved_refused
+  result: PASS
+  details: a label pinned to nothing
+- check: E14B-03_version_refused
+  result: PASS
+  details: a label of another version
+- check: E14B-03_earlier_objective
+  result: PASS
+  details: an earlier published Objective
+- check: E14B-03_port_refinement
+  result: PASS
+  details: port refinement
+- check: E14B-03_package_section
+  result: PASS
+  details: package section
+- check: E14B-03_ddm_unedited
+  result: PASS
+  details: DDM-v0 edited
+- check: E14B-03_extensions_declared
+  result: PASS
+  details: '{''table'': ''misconception_state'', ''grain'': ''per_catalog_label'',
+    ''owner'': ''WLRM-v0'', ''decision'': ''D-106''}'
+- check: E14B-04_eval_field
+  result: PASS
+  details: AIAX-v0 §5.1 field
+- check: E14B-04_only_wrong
+  result: PASS
+  details: a right answer carries labels
+- check: E14B-04_only_declared
+  result: PASS
+  details: undeclared labels
+- check: E14B-04_own_objective
+  result: PASS
+  details: another Objective's proposal
+- check: E14B-04_sources
+  result: PASS
+  details: sources
+- check: E14B-04_written
+  result: PASS
+  details: tags not written
+- check: E14B-04_pending_writes_nothing
+  result: PASS
+  details: a non-answer writes
+- check: E14B-04_format
+  result: PASS
+  details: format
+- check: E14B-04_read
+  result: PASS
+  details: tags not read
+- check: E14B-05_reach_FailureRule.ASSISTED_H1_H4, Fa
+  result: PASS
+  details: missing 'FailureRule.ASSISTED_H1_H4, FailureRule.PROVISIONAL_OR_PARTIAL
+    -> WeaknessSignal.HYPOTHESIS'
+- check: E14B-05_reach_FailureRule.CLEAN_PREMASTERY_H
+  result: PASS
+  details: missing 'FailureRule.CLEAN_PREMASTERY_H0_DIRECT, FailureRule.FIRST_CLEAN_POSTMASTERY_CONTRADICTION
+    -> WeaknessSignal.SUPPORTED'
+- check: E14B-05_reach_FailureRule.FRESH_RECHECK_FAIL
+  result: PASS
+  details: missing 'FailureRule.FRESH_RECHECK_FAIL -> if (!event.masteredAfter) WeaknessSignal.CONFIRMED
+    else WeaknessSignal.SUPPORTED'
+- check: E14B-05_reach_else -> null
+  result: PASS
+  details: missing 'else -> null'
+- check: E14B-05_reach_rules_exist
+  result: PASS
+  details: '[''failure.assisted_h1_h4'', ''failure.provisional_or_partial'', ''failure.clean_premastery_h0_direct'',
+    ''failure.first_clean_postmastery_contradiction'', ''failure.fresh_recheck_fail'']
+    vs 12 rules'
+- check: E14B-05_engine_rule
+  result: PASS
+  details: the memory attributes by itself
+- check: E14B-05_cap
+  result: PASS
+  details: the source ceiling ignored
+- check: E14B-05_declared_only
+  result: PASS
+  details: undeclared label moves
+- check: E14B-05_resolution
+  result: PASS
+  details: resolution
+- check: E14B-05_never_lowered
+  result: PASS
+  details: a label lowered
+- check: E14B-05_not_by_time
+  result: PASS
+  details: resolution by time
+- check: E14B-05_ai_ceiling_in_store
+  result: PASS
+  details: store allows an AI label above a hypothesis
+- check: E14B-05_weakness_engine_unchanged
+  result: PASS
+  details: the weakness rules changed
+- check: E14B-05_owner
+  result: PASS
+  details: a new family or another policy
+- check: E14B-05_written_in_rebuild
+  result: PASS
+  details: rebuild
+- check: E14B-06_stored_attribution
+  result: PASS
+  details: the analysis recomputes
+- check: E14B-06_writes_nothing
+  result: PASS
+  details: the analysis writes or asks
+- check: E14B-06_only_after_blame
+  result: PASS
+  details: a label after a blameless row
+- check: E14B-06_speaks_set
+  result: PASS
+  details: '[''OBJECTIVE_WEAKNESS_HYPOTHESIS'', ''OBJECTIVE_WEAKNESS_SUPPORTED'',
+    ''VERIFICATION_DUE'', ''REMEDIATION_REQUIRED'']'
+- check: E14B-06_hypothesis_question
+  result: PASS
+  details: a hypothesis stated
+- check: E14B-06_named_only_supported
+  result: PASS
+  details: a hypothesis or resolved label named
+- check: E14B-06_every_outcome
+  result: PASS
+  details: an attribution without a sentence
+- check: E14B-06_copy_no_%
+  result: PASS
+  details: '''%'' in copy'
+- check: E14B-06_copy_no_puan
+  result: PASS
+  details: '''puan'' in copy'
+- check: E14B-06_copy_no_başarısız
+  result: PASS
+  details: '''başarısız'' in copy'
+- check: E14B-06_copy_no_zayıf
+  result: PASS
+  details: '''zayıf'' in copy'
+- check: E14B-06_copy_no_eksik
+  result: PASS
+  details: '''eksik'' in copy'
+- check: E14B-06_copy_no_öğrendin
+  result: PASS
+  details: '''öğrendin'' in copy'
+- check: E14B-06_copy_no_ustalaştın
+  result: PASS
+  details: '''ustalaştın'' in copy'
+- check: E14B-06_copy_no_geride
+  result: PASS
+  details: '''geride'' in copy'
+- check: E14B-06_copy_no_borç
+  result: PASS
+  details: '''borç'' in copy'
+- check: E14B-06_copy_no_tembel
+  result: PASS
+  details: '''tembel'' in copy'
+- check: E14B-06_copy_no_dikkatsiz
+  result: PASS
+  details: '''dikkatsiz'' in copy'
+- check: E14B-06_copy_no_number
+  result: PASS
+  details: a number in copy
+- check: E14B-06_no_combining_dot
+  result: PASS
+  details: U+0307 in copy
+- check: E14B-07_schema_version
+  result: PASS
+  details: schema version
+- check: E14B-07_projection
+  result: PASS
+  details: projection key
+- check: E14B-07_truth_untouched
+  result: PASS
+  details: truth altered
+- check: E14B-07_ports
+  result: PASS
+  details: '[''ClockPort'', ''ContentPort'', ''EvaluatorPort'', ''PersistencePort'',
+    ''TutorPort'']'
+- check: E14B-08_model_a catalog label has a dotted misconcepti
+  result: PASS
+  details: 'missing test: a catalog label has a dotted misconception id and is put
+    to the learner as a question'
+- check: 'E14B-08_model_stored tags decode completely or not at '
+  result: PASS
+  details: 'missing test: stored tags decode completely or not at all'
+- check: E14B-08_model_an AI-proposed label can never be held s
+  result: PASS
+  details: 'missing test: an AI-proposed label can never be held stronger than a hypothesis'
+- check: E14B-08_model_a label is resolved by evidence, never b
+  result: PASS
+  details: 'missing test: a label is resolved by evidence, never by time'
+- check: 'E14B-08_engine_an AI-proposed label stays a hypothesis '
+  result: PASS
+  details: 'missing test: an AI-proposed label stays a hypothesis however clean the
+    row'
+- check: E14B-08_engine_a deterministic label on a clean failure
+  result: PASS
+  details: 'missing test: a deterministic label on a clean failure before mastery
+    is supported'
+- check: 'E14B-08_engine_a deterministic label is confirmed only '
+  result: PASS
+  details: 'missing test: a deterministic label is confirmed only when a fresh recheck
+    fails and the gates no longer pass'
+- check: E14B-08_engine_invalid, contested or prerequisite-conta
+  result: PASS
+  details: 'missing test: invalid, contested or prerequisite-contaminated work moves
+    no label'
+- check: E14B-08_engine_a label the catalog does not declare for
+  result: PASS
+  details: 'missing test: a label the catalog does not declare for the Objective names
+    nothing'
+- check: E14B-08_engine_a fresh clean success resolves an open l
+  result: PASS
+  details: 'missing test: a fresh clean success resolves an open label, a confirmed
+    one only when the gates pass again'
+- check: E14B-08_application_only catalog labels on a row that went w
+  result: PASS
+  details: 'missing test: only catalog labels on a row that went wrong are recorded,
+    each with where it came from'
+- check: E14B-08_application_the rebuild remembers every catalog labe
+  result: PASS
+  details: 'missing test: the rebuild remembers every catalog label, carried or not'
+- check: E14B-08_application_the analysis a learner reads is the stor
+  result: PASS
+  details: 'missing test: the analysis a learner reads is the stored attribution,
+    not a second opinion'
+- check: E14B-08_presentation_a hypothesis is only ever put as its ope
+  result: PASS
+  details: 'missing test: a hypothesis is only ever put as its open question'
+- check: 'E14B-08_presentation_a label on a row that blamed nothing is '
+  result: PASS
+  details: 'missing test: a label on a row that blamed nothing is not mentioned'
+- check: 'E14B-08_storage_migrating a populated schema-7 database '
+  result: PASS
+  details: 'missing test: migrating a populated schema-7 database adds the catalog
+    and the memory and preserves every truth row'
+- check: E14B-08_storage_the store refuses an AI-proposed label a
+  result: PASS
+  details: 'missing test: the store refuses an AI-proposed label above a hypothesis,
+    a resolution without evidence and an unknown state'
+- check: E14B-08_format_a misconception label is read strictly a
+  result: PASS
+  details: 'missing test: a misconception label is read strictly and pinned to its
+    Objective'
+- check: E14B-09_mutation_all_detected
+  result: PASS
+  details: 51/51
+- check: E14B-09_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E14B-09_validator_mutation
+  result: PASS
+  details: '{''total'': 28, ''detected'': 28, ''negative_control'': ''forbidden fragments
+    (a removed cap, an unfiltered tag loop, a blaming sentence, a percentage, analysis
+    writes) inside Kotlin comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E14B-09_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E14B-09_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E14B-09_open_authored_labels_and_determinis
+  result: PASS
+  details: authored_labels_and_deterministic_keys not owned
+- check: E14B-09_open_memory_for_item_choice_and_con
+  result: PASS
+  details: memory_for_item_choice_and_contrast_content not owned
+- check: E14B-09_open_progress_view_of_misconception
+  result: PASS
+  details: progress_view_of_misconceptions not owned
+- check: E14B-09_open_app_calls_analysis
+  result: PASS
+  details: app_calls_analysis not owned
+- check: E14B-09_open_catalog_expansion_and_escalati
+  result: PASS
+  details: catalog_expansion_and_escalation_calibration not owned
+- check: E14B-09_open_code_evaluation_labels
+  result: PASS
+  details: code_evaluation_labels not owned
+- check: E14B-09_open_llm_evaluator_proposals
+  result: PASS
+  details: llm_evaluator_proposals not owned
+- check: E14B-10_forbidden_undeclared_label_stored
+  result: PASS
+  details: missing=undeclared_label_stored
+- check: E14B-10_forbidden_ai_label_above_hypothesis
+  result: PASS
+  details: missing=ai_label_above_hypothesis
+- check: E14B-10_forbidden_label_faster_than_objective_attribution
+  result: PASS
+  details: missing=label_faster_than_objective_attribution
+- check: E14B-10_forbidden_unattributable_work_moves_label
+  result: PASS
+  details: missing=unattributable_work_moves_label
+- check: E14B-10_forbidden_misconception_on_right_answer
+  result: PASS
+  details: missing=misconception_on_right_answer
+- check: E14B-10_forbidden_label_resolved_by_time
+  result: PASS
+  details: missing=label_resolved_by_time
+- check: E14B-10_forbidden_hypothesis_stated_as_finding
+  result: PASS
+  details: missing=hypothesis_stated_as_finding
+- check: E14B-10_forbidden_label_after_blameless_row
+  result: PASS
+  details: missing=label_after_blameless_row
+- check: E14B-10_forbidden_wrong_answer_as_verdict
+  result: PASS
+  details: missing=wrong_answer_as_verdict
+- check: E14B-10_forbidden_analysis_recomputes_attribution
+  result: PASS
+  details: missing=analysis_recomputes_attribution
+- check: E14B-10_review_resolved
+  result: PASS
+  details: '{''review_id'': ''review.6g.misconception_taxonomy_expansion'', ''severity'':
+    ''non_blocking'', ''question'': ''Which domain-specific misconception labels should
+    be production-authored beyond the generic runtime misconception contract?'', ''decision_inputs_required'':
+    [''real learner errors'', ''AI tutor/error-analysis design''], ''resolution_owner_step'':
+    ''14B'', ''status'': ''resolved'', ''resolution'': ''14B (WAAX-v0 / D-106) fixed
+    the runtime contract and a closed, curriculum-authored catalog; an AI may choose
+    only from it and a label outside it is not stored. Which labels to author is content
+    (15); expanding the catalog from real learner errors is calibration (18).'', ''resolved_at'':
+    ''2026-10-01'', ''resolution_refs'': [''docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md'',
+    ''14B'']}'
+- check: E14B-11_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 14B QA PASS'''
+- check: E14B-11_spec_**Decision:** `D-106`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-106`'''
+- check: E14B-11_spec_A wrong answer is informat
+  result: PASS
+  details: 'spec: ''A wrong answer is information, not a verdict about the learner'''
+- check: 'E14B-11_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E14B-11_spec_14C — Alternatif anlatım
+  result: PASS
+  details: 'spec: ''14C — Alternatif anlatım'''
+- check: E14B-11_spec_mutation_count
+  result: PASS
+  details: spec mutation count
+- check: E14B-11_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E14B-11_research_WLRM-v0
+  result: PASS
+  details: missing='WLRM-v0'
+- check: E14B-11_research_AIAX-v0
+  result: PASS
+  details: missing='AIAX-v0'
+- check: E14B-11_research_user decisions
+  result: PASS
+  details: missing='user decisions'
+- check: E14B-11_research_review.6g.misconception_
+  result: PASS
+  details: missing='review.6g.misconception_taxonomy_expansion'
+- check: E14B-12_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E14B-12_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E14B-12_no_combining_dot
+  result: PASS
+  details: U+0307 in 14B text
+failures: []

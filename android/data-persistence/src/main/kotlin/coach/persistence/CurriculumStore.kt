@@ -5,6 +5,7 @@ import androidx.sqlite.SQLiteStatement
 import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
 import coach.model.LifecycleStatus
+import coach.model.MisconceptionRow
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
@@ -118,6 +119,14 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
             )
             rows += 1
         }
+        curriculum.misconceptions.forEach {
+            execute(
+                "INSERT INTO misconception (logical_id, version, objective_logical_id, objective_version, name, open_question) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)",
+                it.ref.logicalId, it.ref.version, it.objective.logicalId, it.objective.version, it.name, it.openQuestion,
+            )
+            rows += 1
+        }
         curriculum.validationRecords.forEach {
             execute(
                 """
@@ -205,6 +214,30 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
         return rows
     }
 
+    /**
+     * The closed misconception catalog of one pinned Objective version (14B, `D-106`), in a stable order. A label
+     * is part of the curriculum, so it is versioned and pinned with it and never edited.
+     */
+    fun misconceptionsOf(objective: VersionedRef): List<MisconceptionRow> {
+        val rows = mutableListOf<MisconceptionRow>()
+        connection.prepare(
+            "SELECT logical_id, version, name, open_question FROM misconception " +
+                "WHERE objective_logical_id = ? AND objective_version = ? ORDER BY logical_id, version",
+        ).use { statement ->
+            statement.bindText(1, objective.logicalId)
+            statement.bindLong(2, objective.version.toLong())
+            while (statement.step()) {
+                rows += MisconceptionRow(
+                    ref = VersionedRef(statement.getText(0), statement.getLong(1).toInt()),
+                    objective = objective,
+                    name = statement.getText(2),
+                    openQuestion = statement.getText(3),
+                )
+            }
+        }
+        return rows
+    }
+
     /** One published Skill version (12B), or `null` if this version was never published. */
     fun skill(ref: VersionedRef): SkillRow? = queryOne(
         "SELECT canonical_name, capability_statement, lifecycle_status, capability_kind, retention_profile, " +
@@ -280,6 +313,7 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
             .forEach { add("entity ${it.logicalId} carries version ${it.version}, not $expected") }
         curriculum.skills.filter { it.ref.version != expected }.forEach { add("skill ${it.ref} is not version $expected") }
         curriculum.objectives.filter { it.ref.version != expected }.forEach { add("objective ${it.ref} is not version $expected") }
+        curriculum.misconceptions.filter { it.ref.version != expected }.forEach { add("misconception ${it.ref} is not version $expected") }
     }
 
     /** The stored list columns are comma-separated, so a token containing a comma is refused. */
@@ -300,6 +334,7 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
         val table = when (kind) {
             CurriculumPackage.SKILL, CurriculumPackage.TOPIC -> kind
             CurriculumPackage.RESOURCE -> "assessment_resource_version"
+            CurriculumPackage.OBJECTIVE -> "objective"
             else -> return false
         }
         return queryOne("SELECT 1 FROM $table WHERE logical_id = ? AND version = ?", ref.logicalId, ref.version) { true }

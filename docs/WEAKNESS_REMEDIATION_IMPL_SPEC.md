@@ -223,3 +223,7 @@ Next numbered step: **13E — Program değişiklik raporu**. It must receive a f
 ---
 
 **14A note (2026-10-01, `D-105`):** guidance fading is not the tutor's — the tutor never fades by withholding; scaffold decreases through what the planner selects and the instruction mode a task declares, driven by evidence (`TEIP-v0` §5.4). Misconception memory remains 14B's. Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` §13.
+
+---
+
+**14B note (2026-10-01, `D-106`):** misconception memory is now in code and stays in the `WLRM-v0` family: `MisconceptionEngine` replays each catalog label by `WeaknessEngine.rule` unchanged, capped by its source (an `ai_proposed` label never rises above a hypothesis). `WeaknessEvent` gained `misconceptionTags`; no attribution rule changed. One-Skill event building moved to `WeaknessEvents`, shared with the wrong-answer analysis. Details: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`.

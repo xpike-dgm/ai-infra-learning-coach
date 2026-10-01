@@ -149,6 +149,7 @@ class DailyMicroAssessmentTest {
 
 
         override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
     }
 
     private fun storeWithItem(
