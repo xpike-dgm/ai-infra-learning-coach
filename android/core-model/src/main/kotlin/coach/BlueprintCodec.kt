@@ -1,7 +1,7 @@
 package coach.model
 
 /**
- * How a weekly blueprint is stored in `assessment_session.blueprint` (13A).
+ * How a composed blueprint is stored in `assessment_session.blueprint` (13A, generalised at 13B).
  *
  * `DDM-v0` describes `assessment_session` as "one session, its blocks and boundaries" and 10D left the
  * content column to 13. The blueprint is **truth**: a session's slots are fixed when it is composed, a
@@ -9,20 +9,73 @@ package coach.model
  * planner's trace, it is a strict, versioned text: an unknown version, section, field or value decodes
  * to `null`, never to a guess.
  *
+ * Each scope has its own format because each scope has its own roles: `weekly_blueprint/1` (13A, unchanged)
+ * and `monthly_blueprint/1` (13B, which also records the prior month's session, `MCA-v0` §4). A role of one
+ * scope can never decode inside the other's blueprint.
+ *
  * Each line is a section name and tab-separated `key=value` fields, values percent-encoded and lists
  * comma-joined encoded items — the same layers `PlanTraceCodec` uses.
  */
 object WeeklyBlueprintCodec {
     const val FORMAT = "weekly_blueprint/1"
 
-    fun encode(blueprint: WeeklyAssessmentBlueprint): String = buildList {
-        add(FORMAT)
+    fun encode(blueprint: AssessmentBlueprint): String {
+        require(blueprint.scope == AssessmentScope.WEEKLY_BLUEPRINT) { "the weekly format stores a weekly blueprint" }
+        return BlueprintCodec.encode(FORMAT, blueprint, withPrior = false)
+    }
+
+    fun decode(stored: String): AssessmentBlueprint? =
+        BlueprintCodec.decode(stored, FORMAT, AssessmentScope.WEEKLY_BLUEPRINT, withPrior = false)
+}
+
+object MonthlyBlueprintCodec {
+    const val FORMAT = "monthly_blueprint/1"
+
+    fun encode(blueprint: AssessmentBlueprint): String {
+        require(blueprint.scope == AssessmentScope.MONTHLY_CAPABILITY) { "the monthly format stores a monthly blueprint" }
+        return BlueprintCodec.encode(FORMAT, blueprint, withPrior = true)
+    }
+
+    fun decode(stored: String): AssessmentBlueprint? =
+        BlueprintCodec.decode(stored, FORMAT, AssessmentScope.MONTHLY_CAPABILITY, withPrior = true)
+}
+
+/** The codec of a scope, so a reader never guesses which format a stored row is in. */
+object BlueprintCodecs {
+    fun format(scope: AssessmentScope): String = when (scope) {
+        AssessmentScope.WEEKLY_BLUEPRINT -> WeeklyBlueprintCodec.FORMAT
+        AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintCodec.FORMAT
+        AssessmentScope.DAILY_MICRO -> error("a daily measurement composes no blueprint")
+    }
+
+    fun encode(blueprint: AssessmentBlueprint): String = when (blueprint.scope) {
+        AssessmentScope.WEEKLY_BLUEPRINT -> WeeklyBlueprintCodec.encode(blueprint)
+        AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintCodec.encode(blueprint)
+        AssessmentScope.DAILY_MICRO -> error("a daily measurement composes no blueprint")
+    }
+
+    fun decode(scope: AssessmentScope, stored: String): AssessmentBlueprint? = when (scope) {
+        AssessmentScope.WEEKLY_BLUEPRINT -> WeeklyBlueprintCodec.decode(stored)
+        AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintCodec.decode(stored)
+        AssessmentScope.DAILY_MICRO -> null
+    }
+}
+
+internal object BlueprintCodec {
+
+    private val HEAD = listOf("cycle", "study_day", "curriculum_version", "truth_watermark", "policy",
+        "evaluator_available", "recent_since", "supersedes")
+
+    fun encode(format: String, blueprint: AssessmentBlueprint, withPrior: Boolean): String = buildList {
+        add(format)
         with(blueprint) {
-            add(CodecText.line("blueprint", "cycle" to cycleId, "study_day" to studyDay,
+            val head = mutableListOf("cycle" to cycleId, "study_day" to studyDay,
                 "curriculum_version" to curriculumVersion.toString(), "truth_watermark" to truthWatermark.toString(),
                 "policy" to policyVersion, "evaluator_available" to evaluatorAvailable.toString(),
-                "recent_since" to recentSince.orEmpty(), "supersedes" to supersedesSessionId?.toString().orEmpty(),
-                "reasons" to CodecText.list(reasonCodes)))
+                "recent_since" to recentSince.orEmpty(), "supersedes" to supersedesSessionId?.toString().orEmpty())
+            if (withPrior) head += "prior_session" to priorSessionId?.toString().orEmpty()
+            head += "reasons" to CodecText.list(reasonCodes)
+            add(CodecText.line("blueprint", *head.toTypedArray()))
         }
         blueprint.slots.forEach { s ->
             add(CodecText.line("slot", "slot_id" to s.slotId, "role" to s.role.id, "need_key" to s.needKey,
@@ -46,11 +99,13 @@ object WeeklyBlueprintCodec {
         }
     }.joinToString("\n")
 
-    fun decode(stored: String): WeeklyAssessmentBlueprint? = runCatching { decodeOrThrow(stored) }.getOrNull()
+    fun decode(stored: String, format: String, scope: AssessmentScope, withPrior: Boolean): AssessmentBlueprint? =
+        runCatching { decodeOrThrow(stored, format, scope, withPrior) }.getOrNull()
 
-    private fun decodeOrThrow(stored: String): WeeklyAssessmentBlueprint {
+    private fun decodeOrThrow(stored: String, format: String, scope: AssessmentScope, withPrior: Boolean): AssessmentBlueprint {
         val lines = stored.split("\n")
-        if (lines.firstOrNull() != FORMAT) throw CodecText.Malformed()
+        if (lines.firstOrNull() != format) throw CodecText.Malformed()
+        val roles = BlueprintScopes.roles(scope)
         var head: Map<String, String>? = null
         val slots = mutableListOf<Map<String, String>>()
         val rejections = mutableListOf<Map<String, String>>()
@@ -63,18 +118,20 @@ object WeeklyBlueprintCodec {
                 "slot" -> slots += f
                 "rejection" -> rejections += f
                 "exclusion" -> exclusions += PoolExclusion(v("need_key"), CodecText.ref(v("skill")),
-                    WeeklyExclusion.entries.single { it.id == v("reason") })
+                    BlueprintExclusion.entries.single { it.id == v("reason") })
                 else -> throw CodecText.Malformed()
             }
         }
         val h = head ?: throw CodecText.Malformed()
+        // The head has exactly the format's fields: a field one format does not have is not read past.
+        if (h.keys != (HEAD + "reasons" + if (withPrior) listOf("prior_session") else emptyList()).toSet()) throw CodecText.Malformed()
         fun hv(key: String) = h[key] ?: throw CodecText.Malformed()
         val bySlot = rejections.groupBy { it["slot_id"] ?: throw CodecText.Malformed() }
         val decodedSlots = slots.map { f ->
             fun v(key: String) = f[key] ?: throw CodecText.Malformed()
             AssessmentBlueprintSlot(
                 slotId = v("slot_id"),
-                role = BlueprintRole.entries.single { it.id == v("role") },
+                role = roles.single { it.id == v("role") },
                 needKey = v("need_key"),
                 trigger = NeedTrigger.entries.single { it.id == v("trigger") },
                 targetSkill = CodecText.ref(v("target_skill")),
@@ -95,14 +152,15 @@ object WeeklyBlueprintCodec {
                 requiredForSessionClosure = CodecText.bool(v("required_for_closure")),
                 reasonCodes = CodecText.items(v("reasons")),
                 rejections = bySlot[v("slot_id")].orEmpty().map { r ->
-                    WeeklyItemRejection(CodecText.ref(r["item"] ?: throw CodecText.Malformed()),
+                    SlotItemRejection(CodecText.ref(r["item"] ?: throw CodecText.Malformed()),
                         CodecText.items(r["reasons"] ?: throw CodecText.Malformed()))
                 },
             )
         }
         // A rejection that names no slot of this blueprint is not something to guess a home for.
         if (!decodedSlots.map { it.slotId }.containsAll(bySlot.keys)) throw CodecText.Malformed()
-        return WeeklyAssessmentBlueprint(
+        return AssessmentBlueprint(
+            scope = scope,
             cycleId = hv("cycle"),
             studyDay = hv("study_day"),
             curriculumVersion = hv("curriculum_version").toInt(),
@@ -114,6 +172,7 @@ object WeeklyBlueprintCodec {
             exclusions = exclusions,
             reasonCodes = CodecText.items(hv("reasons")),
             supersedesSessionId = hv("supersedes").ifEmpty { null }?.toLong(),
+            priorSessionId = if (withPrior) hv("prior_session").ifEmpty { null }?.toLong() else null,
         )
     }
 }

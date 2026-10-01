@@ -1,9 +1,12 @@
 package coach.presentation
 
+import coach.model.AssessmentBlueprint
+import coach.model.AssessmentBlueprintResult
 import coach.model.AssessmentBlueprintSlot
 import coach.model.AssessmentIntent
 import coach.model.AssessmentScope
 import coach.model.BlueprintRole
+import coach.model.BlueprintSessionStatus
 import coach.model.Criticality
 import coach.model.IndependenceMode
 import coach.model.LifecycleStatus
@@ -11,9 +14,6 @@ import coach.model.NeedTrigger
 import coach.model.PriorityBand
 import coach.model.SlotStatus
 import coach.model.VersionedRef
-import coach.model.WeeklyAssessmentBlueprint
-import coach.model.WeeklyAssessmentResult
-import coach.model.WeeklySessionStatus
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -31,7 +31,8 @@ class WeeklyAssessmentSessionTest {
         allowedTools = tools,
     )
 
-    private val blueprint = WeeklyAssessmentBlueprint(
+    private val blueprint = AssessmentBlueprint(
+        scope = AssessmentScope.WEEKLY_BLUEPRINT,
         cycleId = "2026-W40", studyDay = "2026-10-01", curriculumVersion = 1, truthWatermark = 1, policyVersion = "WBA-v0",
         evaluatorAvailable = false, recentSince = null,
         slots = listOf(
@@ -45,7 +46,7 @@ class WeeklyAssessmentSessionTest {
 
     @Test
     fun `the week runs in the one interior, blocks by role, each slot one boundary`() {
-        val view = WeeklySessionPresentation.view(blueprint)
+        val view = BlueprintSessionPresentation.view(blueprint)
         assertEquals(AssessmentScope.WEEKLY_BLUEPRINT, view.scope)
         assertEquals(IndependenceMode.H0_REQUIRED, view.independenceMode)
         assertEquals(listOf(listOf("slot-1"), listOf("slot-2", "slot-3")), view.blocks.map { b -> b.boundaries.map { it.id } })
@@ -57,16 +58,16 @@ class WeeklyAssessmentSessionTest {
 
     @Test
     fun `the session never discloses a tool one of its items forbids`() {
-        assertEquals(listOf("compiler"), WeeklySessionPresentation.view(blueprint).allowedTools.allowed)
+        assertEquals(listOf("compiler"), BlueprintSessionPresentation.view(blueprint).allowedTools.allowed)
     }
 
     @Test
     fun `the interior rules apply unchanged - a submitted boundary freezes and a skip is not incorrect`() {
-        val view = WeeklySessionPresentation.view(blueprint)
+        val view = BlueprintSessionPresentation.view(blueprint)
         val submitted = (SessionNavigation.submit(view, "slot-1") as BoundaryOutcome.Applied).session
         assertEquals(BoundaryOutcome.Refused(BoundaryRefusal.ALREADY_FROZEN), SessionNavigation.submit(submitted, "slot-1"))
         val skipped = (SessionNavigation.skip(submitted, "slot-2") as BoundaryOutcome.Applied).session
-        val result = WeeklySessionPresentation.result(emptyResult(), skipped)
+        val result = BlueprintSessionPresentation.result(emptyResult(), skipped)
         assertTrue(result.partial)
         assertEquals(listOf(NotReliablyMeasured.UNSUBMITTED_SLOT), result.notReliablyMeasured)
         assertTrue(result.families.isEmpty(), "no change is claimed that no engine reported")
@@ -74,8 +75,8 @@ class WeeklyAssessmentSessionTest {
 
     @Test
     fun `what could not be measured is first class`() {
-        val view = WeeklySessionPresentation.view(blueprint)
-        val result = WeeklySessionPresentation.result(emptyResult().copy(
+        val view = BlueprintSessionPresentation.view(blueprint)
+        val result = BlueprintSessionPresentation.result(emptyResult().copy(
             invalidOrUnusableEvidenceIds = listOf(3), provisionalEvidenceIds = listOf(4),
             assistanceRecheckObjectives = listOf(VersionedRef("objective.test.o1", 1)),
         ), view)
@@ -87,20 +88,20 @@ class WeeklyAssessmentSessionTest {
 
     @Test
     fun `a status is described, never judged`() {
-        WeeklySessionStatus.entries.forEach { status ->
-            val text = WeeklySessionPresentation.statusText(status)
+        BlueprintSessionStatus.entries.forEach { status ->
+            val text = BlueprintSessionPresentation.statusText(AssessmentScope.WEEKLY_BLUEPRINT, status)
             listOf("başarısız oldun", "kaldın", "geçtin", "puan", "%").forEach { word -> assertTrue(word !in text, "$status: $text") }
         }
-        assertTrue("borç" in WeeklySessionPresentation.statusText(WeeklySessionStatus.PARTIAL))
+        assertTrue("borç" in BlueprintSessionPresentation.statusText(AssessmentScope.WEEKLY_BLUEPRINT, BlueprintSessionStatus.PARTIAL))
     }
 
     @Test
     fun `an empty week shows nothing to start rather than an empty exam`() {
         val empty = blueprint.copy(slots = listOf(slot("slot-4", BlueprintRole.RECENT_REQUIRED_PROGRESS, 4, emptyList(), ready = false)))
-        assertEquals(SessionState.BLOCKED_NOT_STARTABLE, WeeklySessionPresentation.view(empty).state)
+        assertEquals(SessionState.BLOCKED_NOT_STARTABLE, BlueprintSessionPresentation.view(empty).state)
     }
 
-    private fun emptyResult() = WeeklyAssessmentResult(1, "2026-W40", WeeklySessionStatus.PARTIAL, emptyList(), emptyList(),
+    private fun emptyResult() = AssessmentBlueprintResult(1, "2026-W40", BlueprintSessionStatus.PARTIAL, emptyList(), emptyList(),
         emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), emptyList(),
         emptyList(), emptyList(), "WBA-v0")
 }

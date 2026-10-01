@@ -50,7 +50,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12E Explanation / reason codes: RSNX-v0 / D-096 ile tamamlandı; kapalı katalog, `planner_trace/3` ilgili Skill'ler, izden okunan Today planı ve `planner_explanation` yüzeyi.
 - [x] 12F Sanal kullanıcı testleri: VUSX-v0 / D-097 ile tamamlandı; 15/16 senaryo gerçek kodla, açıklamada due envanteri tek satır. AŞAMA 12 kapandı.
 - [x] 13A Haftalık sınav: WBAX-v0 / D-098 ile tamamlandı; blueprint kompozisyonu, planner köprüsü, şema v3.
-- [ ] 13B Aylık sınav **AKTİF**: `MCA-v0` aylık kompozisyonu (13A'nın composer'ı üzerine).
+- [x] 13B Aylık sınav: MCAX-v0 / D-100 ile tamamlandı; ortak kontrat ve composer, aylık havuz, şema v4.
+- [ ] 13C Spaced repetition **AKTİF**: `RVR-v0` retention zamanlaması ve ihtiyaçları.
+- [ ] Aylık `cross_topic_transfer` ve `professional_evidence_checkpoint` rollerinin üreticisi (transfer fırsatı ve profesyonel kanıt metadata'sı) → 15; o zamana kadar bu rollerle slot kurulmaz.
+- [ ] Aylık döngü ayarı → 16D; varsayılan takvim ayı.
+- [ ] Boylamsal kanıtta farklı gün sayımı → 18D kalibrasyonu, gerekirse; uydurulmadı.
+- [ ] Aylık özet mikro metni (`MCA-v0` §30 bölümleri) → 14.
 - [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → **13F** (`D-099`, kullanıcı kararı).
 - [ ] Haftalık sonuçta geriye dönük contamination (kökünden önce gönderilen iş) → 13D; `evidence_disposition`'ı mastery motorunun okuması gerekir.
 - [ ] Haftalık döngü başlangıç günü ayarı → 16D; varsayılan ISO hafta (kullanıcı onayladı).
@@ -81,7 +86,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
 - [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, gün özetine bağlayan yol → 15 (recompute zinciriyle).
 - [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
-- [x] Haftalık blueprint kompozisyonu (`WBA-v0`) 13A'da; aylık (`MCA-v0`) → 13B.
+- [x] Haftalık blueprint kompozisyonu (`WBA-v0`) 13A'da; aylık (`MCA-v0`) 13B'de.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.
 - [ ] `assessment_resource_version` değer kümeleri şemada CHECK değil; tek yazma yolunda core'da doğrulanıyor → şema sıkılaştırması LDBX sahipliğinde, 12/13.
 - [ ] Resume'da içerik uyumu, prerequisite ve açık ihtiyacı doğrulayan olgular; `resume_context_ref` ve `continue_learning` yeniden girişi → 12.

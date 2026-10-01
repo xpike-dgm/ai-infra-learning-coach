@@ -224,12 +224,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **12F ✅ Sanal kullanıcı testleri — VUSX-v0 / D-097**
 - **AŞAMA 12 ✅ TAMAMLANDI**
 - **13A ✅ Haftalık sınav — WBAX-v0 / D-098**
-- **13B 🟡 Aylık sınav — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13C–13F, 14–20 ⬜ (13F D-099 ile eklendi)
+- **13B ✅ Aylık sınav — MCAX-v0 / D-100**
+- **13C 🟡 Spaced repetition — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13D–13F, 14–20 ⬜ (13F D-099 ile eklendi)
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -490,3 +491,17 @@ Item seçimi `QAB-v0` §31–§33: indeksli yüzler önce, okuma 5 ile sınırl�
 Tek interior; araç beyanı kesişim; deneme oturumunu adlandırır. Sonuç `WBA-v0` §27: puan yok, boş bırakmak yanlış değil, değişiklik yalnız motorların bildirdiği; bu oturumda eksik görünen ön koşula dayanan iş `contaminated` yazılır (ileriye dönük; geriye dönük 13D). Şema v3 `assessment_session.blueprint` + CHECK, katı `weekly_blueprint/1`, yeniden kompozisyon ekler. Dört port incelmesi; port sayısı dört. Beş 12x yaşayan kapı daraltıldı. `D-099` ile `13F — Tanısal atlama (VDW-v0)` eklendi. Mutation 42/42, validator 210/210, kendi mutation testi 25/25. **T6 çalıştırılmadı.**
 
 Canonical: `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` / D-098.
+
+## 12.25 13B Aylık sınav — MCAX-v0 / D-100
+
+Aylık sınav kodda. Ana invariant: **bir ay daha geniş bir penceredir, daha ağır bir sınav değil.** Ölçmeye değer olan yine durumdan gelir, bir Skill tek kez ölçülür, kritik bir Skill yalnız bir nedenle yeniden doğrulanır, aylık etiket kanıta ağırlık eklemez, ay kendi dakikasını ve kuyruğunu eklemez ve sınavı yapılmadan geçen bir ay geride hiçbir şey bırakmaz.
+
+Kod yazmadan önce bulunanlar: `MCA-v0` §4 aylığı ortak kontratın uzantısı sayıyor ama 13A kontratı yalnız haftalık adlarla ve haftalık rollere sabit yazmıştı; v3 CHECK'i aylık satırı kapsamıyordu; item yalnız haftalık rol beyan edebiliyordu; iki aylık rolün (transfer, profesyonel kontrol noktası) üreticisi yok; `MCA-v0` ay sınırı tanımlamıyor.
+
+Kontrat genelleştirildi: `AssessmentBlueprint` kapsamını taşır, slot rolü `SlotRole`'dür, karışık blueprint temsil edilemez ve ortak kompozisyon tek `BlueprintComposer`'dır. Hiçbir haftalık değer değişmedi; 13A testleri yalnız tip adları güncellenerek geçiyor.
+
+Döngü kaydedilmiş çalışma gününün takvim ayıdır — haftalık kuralı izleyen ürün varsayılanı. Ay bir kez kurulur; yeni ay önceki aylık oturumu adlandırır, pencereyi ondan ölçer ve borç taşımaz. Havuz planner'ın ihtiyaçlarıdır: kritik Skill yalnız açık doğrulama/çelişki, vadesi gelmiş tekrar ya da bağımlı işi bekletmesi nedeniyle yeniden doğrulanır; kalıcı endişe motorun durumundan gelir; pencere içindeki required devam boylamsal örnektir; supporting/optional değildir; tekrar `retain` kalır. Transfer ve kontrol noktasının üreticisi uydurulmadı (15).
+
+Slotlar yalnız aylık kapsama uygun ve aylık role beyanlı item alır; planner'a mevcut ihtiyaçların alternatif adayı olarak gider ve ihtiyaç başına en çok bir görev seçilir. Sonuçta puan yok; dört boylamsal liste yalnız kendi rolünün temiz kanıtını taşır; temiz negatif yeniden doğrulama değildir. Şema v4 biçim trigger'ı; `monthly_blueprint/1`; port sayısı dört. 13A validator'ı daraltıldı. Mutation 48/48, validator 259/259, kendi mutation testi 28/28. **T6 çalıştırılmadı.**
+
+Canonical: `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` / D-100.

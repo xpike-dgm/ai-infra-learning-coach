@@ -3,7 +3,11 @@ package coach.engines
 import coach.model.AllowedToolsPolicy
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
+import coach.model.BlueprintEvidenceFact
+import coach.model.BlueprintExclusion
 import coach.model.BlueprintRole
+import coach.model.BlueprintSessionStatus
+import coach.model.BlueprintSlotOutcome
 import coach.model.ContentOrigin
 import coach.model.Criticality
 import coach.model.EvaluatorRequirement
@@ -23,16 +27,12 @@ import coach.model.PrerequisiteEligibility
 import coach.model.PriorityBand
 import coach.model.RetentionAxis
 import coach.model.SkillPlanningState
+import coach.model.SlotItemRefusal
 import coach.model.SlotStatus
 import coach.model.TaskPurpose
 import coach.model.UseCeiling
 import coach.model.VersionedRef
-import coach.model.WeeklyEvidenceFact
-import coach.model.WeeklyExclusion
-import coach.model.WeeklyItemRefusal
 import coach.model.WeeklyReasonCodes
-import coach.model.WeeklySessionStatus
-import coach.model.WeeklySlotOutcome
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -117,12 +117,12 @@ class WeeklyBlueprintEngineTest {
             pool.entries.map { it.skill to it.role },
         )
         val excluded = pool.exclusions.associate { it.skill to it.reason }
-        assertEquals(WeeklyExclusion.NOT_TAUGHT_YET, excluded[fresh])
-        assertEquals(WeeklyExclusion.NOT_ACTIVE_SINCE_LAST_CYCLE, excluded[stale])
+        assertEquals(BlueprintExclusion.NOT_TAUGHT_YET, excluded[fresh])
+        assertEquals(BlueprintExclusion.NOT_ACTIVE_SINCE_LAST_CYCLE, excluded[stale])
         // Open remediation is repaired first: the Skill is measured under no role this week, even though
         // it is also in progress and recent.
         val recentRepair = WeeklyBlueprintEngine.targetPool(states, emptyList(), setOf(progress, repair), emptySet())
-        assertEquals(listOf(WeeklyExclusion.REMEDIATION_OPEN, WeeklyExclusion.REMEDIATION_OPEN),
+        assertEquals(listOf(BlueprintExclusion.REMEDIATION_OPEN, BlueprintExclusion.REMEDIATION_OPEN),
             recentRepair.exclusions.filter { it.skill == repair }.map { it.reason })
         assertTrue(recentRepair.entries.none { it.skill == repair })
     }
@@ -135,7 +135,7 @@ class WeeklyBlueprintEngineTest {
             track = WeeklyBlueprintEngine.ENGLISH_TRACK)
         val pool = WeeklyBlueprintEngine.targetPool(both, listOf(owner), null, emptySet())
         assertEquals(BlueprintRole.WEAKNESS_OR_VERIFICATION, pool.entries.single { it.skill == verify }.role)
-        assertEquals(WeeklyExclusion.MEASURED_IN_ANOTHER_ROLE, pool.exclusions.single { it.skill == verify }.reason)
+        assertEquals(BlueprintExclusion.MEASURED_IN_ANOTHER_ROLE, pool.exclusions.single { it.skill == verify }.reason)
     }
 
     @Test
@@ -148,7 +148,7 @@ class WeeklyBlueprintEngineTest {
     fun `a critical Skill in progress is a confidence slot only when it really holds work back`() {
         val without = WeeklyBlueprintEngine.targetPool(states, emptyList(), setOf(progress), emptySet())
         assertTrue(without.entries.none { it.role == BlueprintRole.CRITICAL_PREREQUISITE_CONFIDENCE })
-        assertEquals(WeeklyExclusion.NOT_ACTIVE_SINCE_LAST_CYCLE, without.exclusions.single { it.skill == criticalBlocker }.reason)
+        assertEquals(BlueprintExclusion.NOT_ACTIVE_SINCE_LAST_CYCLE, without.exclusions.single { it.skill == criticalBlocker }.reason)
     }
 
     @Test
@@ -162,7 +162,7 @@ class WeeklyBlueprintEngineTest {
             LearningNeed("reinforcement_opportunity:$integration", NeedTrigger.REINFORCEMENT_OPPORTUNITY, listOf(integration), Criticality.REQUIRED),
         ), null, emptySet())
         assertEquals(listOf(BlueprintRole.INTEGRATION_OR_TRANSFER, BlueprintRole.PARALLEL_ENGLISH), pool.entries.map { it.role })
-        assertEquals(WeeklyExclusion.NOT_A_WEEKLY_MEASUREMENT, pool.exclusions.single().reason)
+        assertEquals(BlueprintExclusion.NOT_A_WEEKLY_MEASUREMENT, pool.exclusions.single().reason)
         // A week with nothing due holds nothing: no role is forced in.
         assertTrue(WeeklyBlueprintEngine.targetPool(emptyList(), emptyList(), null, emptySet()).entries.isEmpty())
     }
@@ -185,9 +185,9 @@ class WeeklyBlueprintEngineTest {
     @Test
     fun `every item refusal names a rule and leaves the slot open rather than weakened`() {
         val cases = mapOf(
-            WeeklyItemRefusal.ROLE_NOT_DECLARED to item("r1", verify, roles = setOf(BlueprintRole.RETENTION_DUE)),
-            WeeklyItemRefusal.NOT_USABLE_FOR_INTENT to item("r2", verify, lifecycle = LifecycleStatus.CANDIDATE),
-            WeeklyItemRefusal.EXPECTED_MINUTES_MISSING to item("r3", verify, minutes = null),
+            SlotItemRefusal.ROLE_NOT_DECLARED to item("r1", verify, roles = setOf(BlueprintRole.RETENTION_DUE)),
+            SlotItemRefusal.NOT_USABLE_FOR_INTENT to item("r2", verify, lifecycle = LifecycleStatus.CANDIDATE),
+            SlotItemRefusal.EXPECTED_MINUTES_MISSING to item("r3", verify, minutes = null),
         )
         cases.forEach { (refusal, candidate) ->
             val slot = compose(listOf(candidate)).slots.single { it.targetSkill == verify }
@@ -201,7 +201,7 @@ class WeeklyBlueprintEngineTest {
     fun `the gate fails closed and a waiting item never measures`() {
         val waiting = item("wait", verify)
         val blocked = compose(listOf(waiting), decisions = mapOf(waiting.ref to decision(waiting, PrerequisiteEligibility.BLOCKED)))
-        assertEquals(listOf(WeeklyItemRefusal.PREREQUISITE_WAITS.id), blocked.slots.first().rejections.single().reasons)
+        assertEquals(listOf(SlotItemRefusal.PREREQUISITE_WAITS.id), blocked.slots.first().rejections.single().reasons)
         val unanswered = compose(listOf(waiting), decisions = emptyMap())
         assertEquals(SlotStatus.NO_VALID_ITEM, unanswered.slots.first().status)
         val conditional = compose(listOf(waiting), decisions = mapOf(waiting.ref to decision(waiting, PrerequisiteEligibility.CONDITIONAL_ELIGIBLE)))
@@ -213,10 +213,10 @@ class WeeklyBlueprintEngineTest {
         val seen = item("seen", verify, family = "fam.shared")
         val other = item("other", verify, family = "fam.shared")
         val alreadySeen = compose(listOf(seen), exposures = listOf(ExposureFact(seen.ref, "fam.shared", ExposureFact.ITEM_VERSION_SEEN)))
-        assertEquals(listOf(WeeklyItemRefusal.ALREADY_SEEN.id), alreadySeen.slots.first().rejections.single().reasons)
+        assertEquals(listOf(SlotItemRefusal.ALREADY_SEEN.id), alreadySeen.slots.first().rejections.single().reasons)
         // A solution shown for one item contaminates its near variants too (QAB-v0 §24).
         val solved = compose(listOf(other), exposures = listOf(ExposureFact(seen.ref, "fam.shared", ExposureFact.SOLUTION_EXPOSURE)))
-        assertEquals(listOf(WeeklyItemRefusal.SOLUTION_EXPOSED.id), solved.slots.first().rejections.single().reasons)
+        assertEquals(listOf(SlotItemRefusal.SOLUTION_EXPOSED.id), solved.slots.first().rejections.single().reasons)
     }
 
     @Test
@@ -226,8 +226,8 @@ class WeeklyBlueprintEngineTest {
         val c = item("c", progress, family = "fam.c", group = "g")
         val blueprint = compose(listOf(a, b, c))
         assertEquals(SlotStatus.READY, blueprint.slots.single { it.targetSkill == verify }.status)
-        assertEquals(listOf(WeeklyItemRefusal.VARIANT_FAMILY_IN_USE.id), blueprint.slots.single { it.targetSkill == review }.rejections.single().reasons)
-        assertEquals(listOf(WeeklyItemRefusal.DEPENDENCY_GROUP_IN_USE.id), blueprint.slots.single { it.targetSkill == progress }.rejections.single().reasons)
+        assertEquals(listOf(SlotItemRefusal.VARIANT_FAMILY_IN_USE.id), blueprint.slots.single { it.targetSkill == review }.rejections.single().reasons)
+        assertEquals(listOf(SlotItemRefusal.DEPENDENCY_GROUP_IN_USE.id), blueprint.slots.single { it.targetSkill == progress }.rejections.single().reasons)
     }
 
     @Test
@@ -273,7 +273,7 @@ class WeeklyBlueprintEngineTest {
 
     private fun evidence(id: Long, obj: VersionedRef, outcome: EvidenceOutcome, status: EvaluatorStatus = EvaluatorStatus.VERIFIED,
                          independence: IndependenceClass = IndependenceClass.INDEPENDENT, contaminated: Boolean = false) =
-        WeeklyEvidenceFact(id, obj, outcome, status, independence, contaminated)
+        BlueprintEvidenceFact(id, obj, outcome, status, independence, contaminated)
 
     @Test
     fun `a root prerequisite shown missing in the session contaminates what depends on it and nothing else`() {
@@ -283,14 +283,14 @@ class WeeklyBlueprintEngineTest {
         val blueprint = compose(listOf(root, downstream, independent))
         val rootSlot = blueprint.slots.single { it.targetSkill == verify }
         val failed = WeeklyBlueprintEngine.cleanlyFailedSkills(blueprint, listOf(
-            WeeklySlotOutcome(rootSlot.slotId, true, 1, listOf(evidence(1, objective("verify"), EvidenceOutcome.NEGATIVE))),
+            BlueprintSlotOutcome(rootSlot.slotId, true, 1, listOf(evidence(1, objective("verify"), EvidenceOutcome.NEGATIVE))),
         ))
         assertEquals(setOf(verify), failed)
         assertTrue(WeeklyBlueprintEngine.contaminatedBy(blueprint.slots.single { it.targetSkill == progress }, failed))
         assertFalse(WeeklyBlueprintEngine.contaminatedBy(blueprint.slots.single { it.targetSkill == review }, failed))
         // An assisted or provisional failure is not a clean root failure.
         assertTrue(WeeklyBlueprintEngine.cleanlyFailedSkills(blueprint, listOf(
-            WeeklySlotOutcome(rootSlot.slotId, true, 1, listOf(
+            BlueprintSlotOutcome(rootSlot.slotId, true, 1, listOf(
                 evidence(1, objective("verify"), EvidenceOutcome.NEGATIVE, independence = IndependenceClass.ASSISTED),
                 evidence(2, objective("verify"), EvidenceOutcome.NEGATIVE, status = EvaluatorStatus.PROVISIONAL),
             ))),
@@ -302,11 +302,11 @@ class WeeklyBlueprintEngineTest {
         val blueprint = compose(listOf(item("verify", verify), item("review", review), item("progress", progress)))
         val (v, r, p) = listOf(verify, review, progress).map { s -> blueprint.slots.single { it.targetSkill == s }.slotId }
         val result = WeeklyBlueprintEngine.result(blueprint, 11, listOf(
-            WeeklySlotOutcome(v, true, 1, listOf(evidence(1, objective("verify"), EvidenceOutcome.POSITIVE))),
-            WeeklySlotOutcome(r, true, 2, listOf(evidence(2, objective("review"), EvidenceOutcome.NEGATIVE, independence = IndependenceClass.ASSISTED))),
-            WeeklySlotOutcome(p, false),
+            BlueprintSlotOutcome(v, true, 1, listOf(evidence(1, objective("verify"), EvidenceOutcome.POSITIVE))),
+            BlueprintSlotOutcome(r, true, 2, listOf(evidence(2, objective("review"), EvidenceOutcome.NEGATIVE, independence = IndependenceClass.ASSISTED))),
+            BlueprintSlotOutcome(p, false),
         ), stateChangeRefs = emptyList())
-        assertEquals(WeeklySessionStatus.PARTIAL, result.sessionStatus)
+        assertEquals(BlueprintSessionStatus.PARTIAL, result.sessionStatus)
         assertEquals(listOf(objective("verify")), result.verifiedPositiveObjectives)
         // Assisted work is neither a clean negative nor a failure; it asks for an independent recheck.
         assertTrue(result.verifiedNegativeObjectives.isEmpty())
@@ -320,13 +320,13 @@ class WeeklyBlueprintEngineTest {
     fun `session status follows what was submitted, never a mark`() {
         val blueprint = compose(listOf(item("verify", verify)))
         val slot = blueprint.readySlots.single().slotId
-        assertEquals(WeeklySessionStatus.DEFERRED, WeeklyBlueprintEngine.result(blueprint, 1, emptyList(), emptyList()).sessionStatus)
-        val complete = WeeklyBlueprintEngine.result(blueprint, 1, listOf(WeeklySlotOutcome(slot, true, 3, listOf(
+        assertEquals(BlueprintSessionStatus.DEFERRED, WeeklyBlueprintEngine.result(blueprint, 1, emptyList(), emptyList()).sessionStatus)
+        val complete = WeeklyBlueprintEngine.result(blueprint, 1, listOf(BlueprintSlotOutcome(slot, true, 3, listOf(
             evidence(3, objective("verify"), EvidenceOutcome.INVALID),
             evidence(4, objective("verify"), EvidenceOutcome.POSITIVE, contaminated = true),
             evidence(5, objective("verify"), EvidenceOutcome.POSITIVE, status = EvaluatorStatus.PROVISIONAL),
         ))), listOf("mastery:verification_opened"))
-        assertEquals(WeeklySessionStatus.COMPLETE, complete.sessionStatus)
+        assertEquals(BlueprintSessionStatus.COMPLETE, complete.sessionStatus)
         assertEquals(listOf(3L, 4L), complete.invalidOrUnusableEvidenceIds)
         assertEquals(listOf(5L), complete.provisionalEvidenceIds)
         assertTrue(complete.verifiedPositiveObjectives.isEmpty())

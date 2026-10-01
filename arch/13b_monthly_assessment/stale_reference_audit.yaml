@@ -1,0 +1,71 @@
+stage_step: 13B
+model: MCAX-v0
+decision: D-100
+audit: repo_wide_stale_reference_post_step
+result: PASS
+stage_9_closed: true
+stage_10_closed: true
+stage_11_closed: true
+stage_12_closed: true
+step_13f_added: true
+repo_files_scanned: 717
+checked_current_files:
+- file: AGENTS.md
+  stale_matches: 0
+  missing_markers: []
+- file: PROJECT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/START_HERE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/HANDOFF_STATE.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/STEP_STATUS.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/EXECUTION_INDEX.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/MASTER_PLAN.md
+  stale_matches: 0
+  missing_markers: []
+- file: docs/LOCAL_MANAGER_HANDOFF.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/CURRENT_CONTEXT.md
+  stale_matches: 0
+  missing_markers: []
+- file: vault/agent/OPEN_LOOPS.md
+  stale_matches: 0
+  missing_markers: []
+historical_non_blocking_hits:
+- file: docs\PROGRESS_LOG.md
+  sample: 13B active-not-executed
+  classification: historical_non_blocking
+- file: tools\audit_13a_post_step_stale.py
+  sample: 13B 🟡
+  classification: historical_non_blocking
+- file: tools\audit_13b_post_step_stale.py
+  sample: 13B ✅ Aylık sınav — MCAX-v0 / D-100", "13C 🟡
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-10-01-13a-weekly-assessment.md
+  sample: 13B — Aylık sınav is active-not-executed
+  classification: historical_non_blocking
+- file: vault\agent\session-logs\2026-10-01-13b-monthly-assessment.md
+  sample: 13B PRE yapıldı ve beş kanonik kaynak `13A ✅ / 13B active-not-executed
+  classification: historical_non_blocking
+- file: arch\13a_weekly_assessment\stale_reference_audit.yaml
+  sample: 13B 🟡
+  classification: historical_non_blocking
+- file: arch\13b_monthly_assessment\stale_reference_audit.yaml
+  sample: 13B active-not-executed
+  classification: historical_non_blocking
+blocking_findings: []
+historical_scope_policy: Historical specs/research/logs/tools may preserve at-the-time
+  future/candidate language; current/living sources must agree on 13B complete, 13C
+  active-not-executed and 13F added (D-099); no open loop may still point at 13B.
+closure_gate_note: This is a one-time closure gate per PROJECT_MEMORY_PROTOCOL 4.4.
+  It is expected to fail once 13C completes and must not be re-run afterwards; its
+  stored report is the durable evidence.

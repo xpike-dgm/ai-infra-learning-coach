@@ -31,14 +31,19 @@ ASUX_YAML = ROOT / "ux/8d_assessment_session/session.yaml"
 MSBX = ROOT / "arch/9d_service_boundaries/boundaries.yaml"
 
 FACTS_KT = ANDROID / "core-model/src/main/kotlin/coach/WeeklyAssessmentFacts.kt"
-CODEC_KT = ANDROID / "core-model/src/main/kotlin/coach/WeeklyBlueprintCodec.kt"
+# Narrowed at 13B (MCAX-v0 / D-100): the weekly blueprint became the common contract monthly extends
+# (`MCA-v0` §4). The codec, the use case and the presentation moved to scope-generic files, and the shared
+# composition moved to `BlueprintComposer`; every check below still reads the code that does the weekly work.
+CODEC_KT = ANDROID / "core-model/src/main/kotlin/coach/BlueprintCodec.kt"
+COMMON_KT = ANDROID / "core-model/src/main/kotlin/coach/AssessmentBlueprint.kt"
+COMPOSER_KT = ANDROID / "core-engines/src/main/kotlin/coach/engines/BlueprintComposer.kt"
 ITEM_KT = ANDROID / "core-model/src/main/kotlin/coach/AssessmentFacts.kt"
 ATTEMPT_KT = ANDROID / "core-model/src/main/kotlin/coach/AttemptFacts.kt"
 ENGINE_KT = ANDROID / "core-engines/src/main/kotlin/coach/engines/WeeklyBlueprintEngine.kt"
-APP_KT = ANDROID / "core-application/src/main/kotlin/coach/application/WeeklyAssessment.kt"
+APP_KT = ANDROID / "core-application/src/main/kotlin/coach/application/BlueprintAssessment.kt"
 BUILD_KT = ANDROID / "core-application/src/main/kotlin/coach/application/BuildDailyPlan.kt"
 SUBMIT_KT = ANDROID / "core-application/src/main/kotlin/coach/application/SubmitAttempt.kt"
-PRES_KT = ANDROID / "core-presentation/src/main/kotlin/coach/presentation/WeeklyAssessmentSession.kt"
+PRES_KT = ANDROID / "core-presentation/src/main/kotlin/coach/presentation/BlueprintAssessmentSession.kt"
 PORTS_KT = ANDROID / "core-ports/src/main/kotlin/coach/ports/Ports.kt"
 SCHEMA_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Schema.kt"
 MIGRATIONS_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Migrations.kt"
@@ -126,7 +131,7 @@ def code_block_lines(text: str) -> list[str]:
     return [line.strip() for line in blocks[0].splitlines() if line.strip()] if blocks else []
 
 
-for path in (CONTRACT, SPEC, RESEARCH, FACTS_KT, CODEC_KT, ENGINE_KT, APP_KT, PRES_KT):
+for path in (CONTRACT, SPEC, RESEARCH, FACTS_KT, CODEC_KT, COMMON_KT, COMPOSER_KT, ENGINE_KT, APP_KT, PRES_KT):
     check(f"E13A-00_exists_{path.name}", path.is_file(), f"missing {rel(path)}")
 
 contract = yaml.safe_load(read(CONTRACT)) or {}
@@ -136,6 +141,8 @@ engine, app, build = strip_comments(read(ENGINE_KT)), strip_comments(read(APP_KT
 submit, pres, ports = strip_comments(read(SUBMIT_KT)), strip_comments(read(PRES_KT)), strip_comments(read(PORTS_KT))
 schema, migrations, sql = strip_comments(read(SCHEMA_KT)), strip_comments(read(MIGRATIONS_KT)), strip_comments(read(SQL_KT))
 pkg, source = strip_comments(read(PKG_KT)), strip_comments(read(SOURCE_KT))
+common, composer, weekly_engine = strip_comments(read(COMMON_KT)), strip_comments(read(COMPOSER_KT)), engine
+engine = weekly_engine + "\n" + composer
 spec_text, research_text = read(SPEC), read(RESEARCH)
 
 # ---------------------------------------------------------------- contract head
@@ -190,22 +197,23 @@ check("E13A-03_not_in_planner_catalog", "assessment.weekly" not in reason_catalo
 # ---------------------------------------------------------------- statuses and the result contract (§27)
 status_line = re.search(r"session_status: ([a-z |]+)", section(wba, "# 27. Weekly result contract", "# 28."))
 wba_statuses = [s.strip() for s in status_line.group(1).split("|")] if status_line else []
-kotlin_statuses = re.findall(r'^\s+[A-Z]+\("([a-z]+)"\),', body(facts, "enum class WeeklySessionStatus"), re.M)
+kotlin_statuses = re.findall(r'^\s+[A-Z]+\("([a-z]+)"\),', body(common, "enum class BlueprintSessionStatus"), re.M)
 check("E13A-04_statuses_equal_wba", kotlin_statuses == wba_statuses == ["complete", "partial", "deferred", "invalidated"], f"{kotlin_statuses} vs {wba_statuses}")
 check("E13A-04_no_overall_score_in_wba", "`overall_mastery_score` zorunluluğu taşımaz" in wba, "§27 text moved")
-for type_name in ("data class WeeklyAssessmentBlueprint", "data class AssessmentBlueprintSlot", "data class WeeklyAssessmentResult",
-                  "data class WeeklyEvidenceFact", "data class WeeklySlotOutcome"):
-    fields = re.findall(r"val (\w+):", parens(facts, type_name))
+for type_name in ("data class AssessmentBlueprint(", "data class AssessmentBlueprintSlot(", "data class AssessmentBlueprintResult(",
+                  "data class BlueprintEvidenceFact(", "data class BlueprintSlotOutcome("):
+    fields = re.findall(r"val (\w+):", parens(common, type_name))
     bad = [f for f in fields if re.search(r"score|grade|percent|pass(?!ed)|threshold|questioncount|deadline|countdown", f, re.I)]
-    check(f"E13A-04_no_score_field_{type_name.split()[-1]}", not bad and len(fields) > 0, f"fields={bad or fields[:3]}")
-result_body = body(engine, "fun result(")
+    check(f"E13A-04_no_score_field_{type_name.split()[-1].rstrip('(')}", not bad and len(fields) > 0, f"fields={bad or fields[:3]}")
+result_body = body(composer, "fun result(")
 check("E13A-04_skip_not_completed", "submitted == true" in result_body, "a skip can count as completed")
-check("E13A-04_status_from_submission", "completed.isEmpty() -> WeeklySessionStatus.DEFERRED" in result_body
-      and "unresolved.isEmpty() -> WeeklySessionStatus.COMPLETE" in result_body, "status not from submission")
+check("E13A-04_status_from_submission", "completed.isEmpty() -> BlueprintSessionStatus.DEFERRED" in result_body
+      and "unresolved.isEmpty() -> BlueprintSessionStatus.COMPLETE" in result_body, "status not from submission")
 check("E13A-04_clean_needs_verified_independent", "e.evaluatorStatus == EvaluatorStatus.VERIFIED && e.independence == IndependenceClass.INDEPENDENT" in result_body,
       "positive/negative not restricted to verified independent evidence")
 check("E13A-04_contaminated_unusable", "!e.prerequisiteContaminated" in result_body, "contaminated evidence usable")
-check("E13A-04_incomplete_not_failure_code", "WeeklyReasonCodes.INCOMPLETE_NOT_FAILURE" in result_body, "incomplete not said")
+check("E13A-04_incomplete_not_failure_code", "codes.incompleteNotFailure" in result_body
+      and "override val incompleteNotFailure get() = INCOMPLETE_NOT_FAILURE" in facts, "incomplete not said")
 check("E13A-04_changes_only_reported", "stateChangeRefs = stateChangeRefs" in result_body, "state changes derived")
 
 # ---------------------------------------------------------------- cycle
@@ -223,9 +231,11 @@ check("E13A-05_wba_no_debt", "7 gün geçti -> kaçırılan sınav borcu oluştu
 pool = body(engine, "fun targetPool(")
 role_of = body(engine, "private fun roleOf(")
 check("E13A-06_needs_from_planner", "PlannerEngine.needsFromSkillStates(states) + ownerNeeds" in pool, "the composer opens needs of its own")
-check("E13A-06_one_skill_once", "kept.any { it.skill == entry.skill }" in pool and "MEASURED_IN_ANOTHER_ROLE" in pool, "a Skill measured twice")
+one_per_skill = body(composer, "fun onePerSkill(")
+check("E13A-06_one_skill_once", "kept.any { it.skill == entry.skill }" in one_per_skill and "MEASURED_IN_ANOTHER_ROLE" in one_per_skill
+      and "BlueprintComposer.onePerSkill(BlueprintRole.SELECTION_ORDER, candidates, exclusions)" in pool, "a Skill measured twice")
 check("E13A-06_remediation_skill_excluded", "underRepair" in pool and "REMEDIATION_OPEN" in pool, "a Skill under remediation is measured")
-check("E13A-06_new_learning_not_measured", "NeedTrigger.NEW_LEARNING -> Either.Excluded(WeeklyExclusion.NOT_TAUGHT_YET)" in role_of,
+check("E13A-06_new_learning_not_measured", "NeedTrigger.NEW_LEARNING -> Either.Excluded(BlueprintExclusion.NOT_TAUGHT_YET)" in role_of,
       "measured before teaching")
 check("E13A-06_dma_no_assessment_before_teaching", "Bir Objective henüz anlatılmadıysa normal mastery assessment yapılmaz" in read(ROOT / "docs/DAILY_MICRO_ASSESSMENT_SPEC.md"),
       "DMA-v0 §5 moved")
@@ -237,17 +247,20 @@ check("E13A-06_english_track_only", "need.track == ENGLISH_TRACK" in role_of and
 check("E13A-06_diagnostic_not_weekly", "NeedTrigger.DIAGNOSTIC_OPPORTUNITY, NeedTrigger.REINFORCEMENT_OPPORTUNITY" in role_of, "diagnostic measured weekly")
 check("E13A-06_band_is_planners", "PlannerEngine.band(need, scope, StarvationBucket.NONE)" in engine, "the week has its own band")
 check("E13A-06_no_randomness", not re.search(r"\bRandom\b|shuffle|UUID", engine + app), "randomness in composition")
-exclusions = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(facts, "enum class WeeklyExclusion"), re.M)
-check("E13A-06_exclusions_equal_contract", exclusions == contract.get("pool", {}).get("exclusions"), f"{exclusions}")
+exclusions = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(common, "enum class BlueprintExclusion"), re.M)
+weekly_exclusions = contract.get("pool", {}).get("exclusions") or []
+# 13B appended the monthly exclusions after the weekly five; the weekly ones are unchanged and first.
+check("E13A-06_exclusions_equal_contract", exclusions[:len(weekly_exclusions)] == weekly_exclusions and len(weekly_exclusions) == 5,
+      f"{exclusions}")
 holding = body(app, "private fun holdingBack(")
 check("E13A-06_holding_back_from_trace", "PlanTraceCodec::decode" in holding and "BLOCKED_PREREQUISITE" in holding and "relatedSkills" in holding,
       "holding back not read from the planner's trace")
 check("E13A-06_gate_not_rerun_for_pool", "resolve(" not in holding, "the gate is re-run to find blockers")
 
 # ---------------------------------------------------------------- item selection (QAB-v0 §31–§33)
-slot_for = body(engine, "private fun slotFor(")
+slot_for = body(composer, "private fun slotFor(")
 check("E13A-07_qab_order_text", "6. user exposure / solution exposure" in qab and "Selector önce narrow indexed candidate set üretir" in qab, "QAB-v0 §31/§33 moved")
-indexed_at = slot_for.find("AssessmentScope.WEEKLY_BLUEPRINT in it.scopeEligibility")
+indexed_at = slot_for.find("scope in it.scopeEligibility")
 bound_at = slot_for.find("take(MAX_ITEMS_PER_SLOT_V0)")
 exposure_at = slot_for.find("exposedFamilies")
 check("E13A-07_bound_after_index_before_learner", 0 <= indexed_at < bound_at and bound_at >= 0 and slot_for.find("SOLUTION_EXPOSED") > bound_at,
@@ -255,7 +268,8 @@ check("E13A-07_bound_after_index_before_learner", 0 <= indexed_at < bound_at and
 check("E13A-07_bound_value", re.search(r"const val MAX_ITEMS_PER_SLOT_V0 = 5\b", engine) is not None
       and contract.get("item_selection", {}).get("bound_owner") == "18E", "bound changed or unowned")
 check("E13A-07_role_declared", "role in it.blueprintRoles" in slot_for and "ROLE_NOT_DECLARED" in slot_for, "undeclared role filled")
-check("E13A-07_fit_weekly_intent", "ItemSelection.fit(item, role.intent, AssessmentScope.WEEKLY_BLUEPRINT, profiles, evaluatorAvailable)" in slot_for,
+check("E13A-07_fit_weekly_intent", "ItemSelection.fit(item, role.intent, scope, profiles, evaluatorAvailable)" in slot_for
+      and "AssessmentScope.WEEKLY_BLUEPRINT, POLICY_VERSION" in body(weekly_engine, "fun compose("),
       "fit not checked for the role's intent in weekly scope")
 check("E13A-07_gate_fails_closed", "decision == null || decision.eligibility.waits" in slot_for, "an unanswered gate lets the item through")
 check("E13A-07_solution_exposed_family", "item.variantFamilyId in exposedFamilies" in slot_for and "item.ref in exposedItems" in slot_for, "solved family fresh")
@@ -265,32 +279,32 @@ check("E13A-07_group_once", "it in usedGroups" in slot_for, "a testlet measures 
 check("E13A-07_minutes_not_invented", "item.expectedActiveMinutes == null" in slot_for and "EXPECTED_MINUTES_MISSING" in slot_for, "minutes invented")
 check("E13A-07_high_stakes_trust", "TRUSTED = setOf(LifecycleStatus.VALIDATED, LifecycleStatus.TRUSTED, LifecycleStatus.DEPRECATED)" in engine,
       "planned slot trust differs from the planner's")
-refusals = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(facts, "enum class WeeklyItemRefusal"), re.M)
+refusals = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\),', body(common, "enum class SlotItemRefusal"), re.M)
 check("E13A-07_refusals_equal_contract", refusals == contract.get("item_selection", {}).get("refusals"), str(refusals))
-order = parens(engine, "private val itemOrder: Comparator<AssessmentItem> = compareBy<AssessmentItem>(")
+order = parens(composer, "private val itemOrder: Comparator<AssessmentItem> = compareBy<AssessmentItem>(")
 check("E13A-07_not_shortest_first", "expectedActiveMinutes" not in order and "LifecycleStatus.TRUSTED" in order, "the shortest item first")
 check("E13A-07_closure_p0_p1", "requiredForSessionClosure = entry.band == PriorityBand.P0 || entry.band == PriorityBand.P1" in slot_for,
       "closure not limited to integrity/verification/repair")
-check("E13A-07_h0", "val independenceMode: IndependenceMode get() = IndependenceMode.H0_REQUIRED" in facts, "slots not h0_required")
+check("E13A-07_h0", "val independenceMode: IndependenceMode get() = IndependenceMode.H0_REQUIRED" in common, "slots not h0_required")
 check("E13A-07_wba_h0", "independence_mode = h0_required" in wba, "§19 moved")
 check("E13A-07_trust_from_store", "persistence.latestValidation(item.ref)?.status ?: LifecycleStatus.CANDIDATE" in app
       and "persistence.resourceVersion(item.ref) ?: return null" in app, "trust from the item's own claim")
-blueprint_init = body(facts, "data class WeeklyAssessmentBlueprint")
-check("E13A-07_structural_once", "one Skill is measured once per blueprint" in read(FACTS_KT) and "variant family measures one slot" in read(FACTS_KT),
+check("E13A-07_structural_once", "one Skill is measured once per blueprint" in read(COMMON_KT) and "variant family measures one slot" in read(COMMON_KT),
       "the blueprint type allows repeats")
 
 # ---------------------------------------------------------------- planning
-cand = member(engine, "fun slotCandidates(")
+cand = member(composer, "fun slotCandidates(")
 check("E13A-08_same_need", "needKey = slot.needKey" in cand, "a slot has a need of its own")
 check("E13A-08_purpose_from_role", "purpose = slot.role.purpose" in cand, "purpose not from the role")
 check("E13A-08_atomic", "atomicEvidenceBoundary = true" in cand and "splittable = true" not in cand, "a slot can be cut")
 check("E13A-08_minutes_from_item", "costMinutes = slot.expectedActiveMinutes!!" in cand, "minutes invented for a slot")
 check("E13A-08_trust_from_item", "validationStatus = slot.itemLifecycle!!" in cand, "trust invented for a slot")
 check("E13A-08_served_not_again", "filterNot { it.item in servedItems }" in cand, "a served slot is offered again")
-weekly_slots = body(app, "fun candidates(persistence: PersistencePort")
-check("E13A-08_only_this_week", "blueprint.cycleId != WeeklyCycle.of(studyDay)" in weekly_slots, "an earlier week is offered")
+weekly_slots = body(app, "private fun candidates(persistence: PersistencePort, scope")
+check("E13A-08_only_this_week", "blueprint.cycleId != BlueprintScopes.cycleOf(scope, studyDay)" in weekly_slots
+      and "AssessmentScope.WEEKLY_BLUEPRINT -> WeeklyCycle.of(studyDay)" in common, "an earlier week is offered")
 check("E13A-08_only_open_needs", "it.needKey in open" in weekly_slots, "slots offered for needs that are not open")
-check("E13A-08_build_daily_plan", "WeeklySlots.candidates(persistence, now.studyDay, needs)" in build, "the planner is not offered the slots")
+check("E13A-08_build_daily_plan", "BlueprintSlots.candidates(persistence, now.studyDay, needs)" in build, "the planner is not offered the slots")
 check("E13A-08_no_own_budget", not re.search(r"weekly\w*(Budget|Minutes)\s*=", build), "a weekly budget beside the planner's")
 check("E13A-08_wba_no_extra_time", "daily hard budget'ın dışında ek süre yaratmaz" in wba, "§15 moved")
 planning = contract.get("planning", {})
@@ -305,17 +319,18 @@ append_at = compose.find("append(blueprint)")
 check("E13A-09_watermark_first", 0 <= compose.find("truthWatermark()") < compose.find("publishedSkills()"), "watermark read after state")
 check("E13A-09_same_week_writes_nothing", 0 <= already_at < append_at, "the same week is composed twice")
 check("E13A-09_nothing_to_measure_writes_nothing", 0 <= nothing_at < append_at and "readySlots.isEmpty()" in compose, "an empty blueprint is written")
-check("E13A-09_unreadable_refused", "Composed.Refused(\"the last weekly blueprint cannot be read\")" in compose, "an unreadable blueprint is guessed around")
-check("E13A-09_no_debt_code", "WeeklyReasonCodes.NO_EXAM_DEBT" in body(engine, "fun compose(") and "previousCycleId != cycleId" in body(engine, "fun compose("),
-      "a missed week is not said to leave no debt")
+check("E13A-09_unreadable_refused", "Composed.Refused(\"the last ${scope.storedAs} blueprint cannot be read\")" in compose, "an unreadable blueprint is guessed around")
+check("E13A-09_no_debt_code", "codes.noExamDebt" in body(composer, "fun compose(") and "previousCycleId != cycleId" in body(composer, "fun compose(")
+      and "override val noExamDebt get() = NO_EXAM_DEBT" in facts, "a missed week is not said to leave no debt")
 append = body(app, "private fun append(")
 check("E13A-09_one_transaction", "persistence.inTransaction" in append and append.count("appendTruth") == 1, "a blueprint is not one row in one transaction")
-check("E13A-09_scope_stored", '"scope" to AssessmentScope.WEEKLY_BLUEPRINT.storedAs' in append and '"blueprint" to WeeklyBlueprintCodec.encode(blueprint)' in append,
+check("E13A-09_scope_stored", '"scope" to scope.storedAs' in append and '"blueprint" to BlueprintCodecs.encode(blueprint)' in append,
       "the session row does not carry its scope and blueprint")
 recompose = body(app, "fun recompose(")
-check("E13A-09_recompose_this_week_only", "a past week is not recomposed" in recompose, "a past week is recomposed")
+check("E13A-09_recompose_this_week_only", "a past cycle is not recomposed" in recompose
+      and "blueprint.cycleId != BlueprintScopes.cycleOf(scope, now.studyDay)" in recompose, "a past week is recomposed")
 check("E13A-09_recompose_appends", "append(recomposed)" in recompose and "UPDATE" not in recompose, "a recomposition edits")
-engine_recompose = body(engine, "fun recompose(")
+engine_recompose = body(composer, "fun recompose(")
 check("E13A-09_recompose_keeps_others", "if (slot.slotId !in slotIds) return@map slot" in engine_recompose, "a kept slot changes")
 check("E13A-09_recompose_new_family", "replaced.mapNotNull { it.variantFamilyId }" in engine_recompose and "filterNot { it.ref in retired }" in engine_recompose,
       "a replaced item or family is reused")
@@ -323,8 +338,8 @@ check("E13A-09_asux_five_conditions", len(re.findall(r'^\s+[A-Z_]+\("[a-z_]+"\),
       "enum class RecompositionCondition"), re.M)) == 5, "the interior's five conditions moved")
 
 # ---------------------------------------------------------------- contamination (§25)
-contam = body(engine, "fun contaminatedBy(")
-failed = body(engine, "fun cleanlyFailedSkills(")
+contam = body(composer, "fun contaminatedBy(")
+failed = body(composer, "fun cleanlyFailedSkills(")
 check("E13A-10_requires_failed_skill", "slot.itemRequiredSkills.any { it in cleanlyFailedSkills }" in contam, "contamination not from required Skills")
 check("E13A-10_clean_failure_only", "EvaluatorStatus.VERIFIED" in failed and "IndependenceClass.INDEPENDENT" in failed and "!it.prerequisiteContaminated" in failed,
       "an assisted or provisional failure is a root failure")
@@ -336,7 +351,11 @@ check("E13A-10_forward_only_disclosed", contract.get("result", {}).get("contamin
       and contract.get("result", {}).get("retroactive_contamination_owner") == "13D", "retroactive limitation not disclosed")
 
 # ---------------------------------------------------------------- storage
-check("E13A-11_schema_version_3", "const val VERSION = 3" in schema, "schema version")
+# Narrowed at 13B: version 3 is 13A's, and a later version must be owned by its own step's contract.
+schema_version = int((re.search(r"const val VERSION = (\d+)", schema) or re.search(r"(0)", "0")).group(1))
+owned = {m.get("to") for f in ROOT.glob("arch/*/*.yaml") for m in [(yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("schema_migration") or {}]
+         if isinstance(m, dict)}
+check("E13A-11_schema_version_3", schema_version >= 3 and all(v in owned for v in range(3, schema_version + 1)), "schema version")
 v3 = body(schema, "val v3")
 check("E13A-11_blueprint_column_check", "ADD COLUMN blueprint TEXT CHECK (scope <> 'weekly' OR blueprint IS NOT NULL)" in v3, "weekly row without blueprint allowed")
 check("E13A-11_migration_step", "2 to Schema.v3" in migrations and "1 to Schema.v2" in migrations and "0 to Schema.v1" in migrations, "migration steps")
@@ -349,8 +368,9 @@ check("E13A-11_scope_values", re.search(r"CHECK \(scope IN \('daily', 'weekly', 
 mig = contract.get("schema_migration", {})
 check("E13A-11_migration_owned", mig.get("from") == 2 and mig.get("to") == 3 and mig.get("owner") == "13A" and mig.get("populated_fixture_tested") is True, str(mig))
 check("E13A-11_codec_format", 'const val FORMAT = "weekly_blueprint/1"' in codec, "codec format")
-check("E13A-11_codec_strict", "runCatching { decodeOrThrow(stored) }.getOrNull()" in codec and "if (key in seen) throw Malformed()" in codec
-      and "if (lines.firstOrNull() != FORMAT) throw CodecText.Malformed()" in codec, "the codec guesses")
+check("E13A-11_codec_strict", "runCatching { decodeOrThrow(stored, format, scope, withPrior) }.getOrNull()" in codec
+      and "if (key in seen) throw Malformed()" in codec and "if (lines.firstOrNull() != format) throw CodecText.Malformed()" in codec
+      and "BlueprintCodec.decode(stored, FORMAT, AssessmentScope.WEEKLY_BLUEPRINT, withPrior = false)" in codec, "the codec guesses")
 latest = body(sql, "override fun latestAssessmentSession(")
 check("E13A-11_latest_by_sequence", "ORDER BY sequence DESC LIMIT 1" in latest and "scope.storedAs" in latest, "latest session not by sequence")
 exposure = body(sql, "override fun exposuresFor(")
@@ -368,8 +388,9 @@ for signature in ("fun latestAssessmentSession(scope: AssessmentScope): StoredTr
                   "fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem>"):
     check(f"E13A-12_port_{signature[4:30]}", signature in ports, f"missing {signature}")
 check("E13A-12_no_platform_types", not re.search(r"\bandroid\.|java\.io|java\.sql|SQLite", ports), "a platform type in a port")
-engine_imports = re.findall(r"^import ([\w.]+)", read(ENGINE_KT), re.M)
-check("E13A-12_engine_core_only", all(i.startswith("coach.model.") for i in engine_imports), f"imports={[i for i in engine_imports if not i.startswith('coach.model.')]}")
+engine_imports = re.findall(r"^import ([\w.]+)", read(ENGINE_KT) + read(COMPOSER_KT), re.M)
+check("E13A-12_engine_core_only", all(i.startswith(("coach.model.", "coach.engines.")) for i in engine_imports),
+      f"imports={[i for i in engine_imports if not i.startswith(('coach.model.', 'coach.engines.'))]}")
 check("E13A-12_attempt_names_session", 'put("assessment_session_id", it.toString())' in submit and "val assessmentSessionId: Long? = null" in attempt_kt,
       "an attempt cannot name its session")
 
@@ -380,7 +401,7 @@ item_reader = body(pkg, "fun item(section: Section)")
 check("E13A-13_keys_optional", 'optional(section, "expected_active_minutes")' in item_reader and 'text(section.values, "expected_active_minutes"' not in item_reader,
       "minutes made required")
 check("E13A-13_bad_minutes_refused", "is not a positive number" in item_reader and "unknown blueprint role" in item_reader, "bad values accepted")
-check("E13A-13_item_fields", "val expectedActiveMinutes: Int? = null" in item_kt and "val blueprintRoles: Set<BlueprintRole> = emptySet()" in item_kt,
+check("E13A-13_item_fields", "val expectedActiveMinutes: Int? = null" in item_kt and "val blueprintRoles: Set<SlotRole> = emptySet()" in item_kt,
       "item fields default to invented values")
 check("E13A-13_qab_fields", "expected_active_minutes" in section(qab, "# 8. Canonical AssessmentResource contract", "# 9.")
       and "blueprint_role_eligibility" in qab, "QAB-v0 fields moved")
@@ -388,7 +409,7 @@ check("E13A-13_content_source", "override fun assessmentItemsFor(skill: Versione
 
 # ---------------------------------------------------------------- the one interior
 view = body(pres, "fun view(")
-check("E13A-14_one_interior", "AssessmentSessionView(" in view and "AssessmentScope.WEEKLY_BLUEPRINT" in view, "a separate weekly interior")
+check("E13A-14_one_interior", "AssessmentSessionView(" in view and "scope = blueprint.scope" in view, "a separate weekly interior")
 check("E13A-14_tools_intersection", "a intersect b" in view, "the session discloses a tool an item forbids")
 check("E13A-14_h0", "IndependenceMode.H0_REQUIRED" in view, "independence not disclosed")
 check("E13A-14_results_via_interior", "SessionResults.of(" in body(pres, "fun result("), "results bypass the interior")

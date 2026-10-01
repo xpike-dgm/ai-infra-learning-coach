@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 3
+    const val VERSION = 4
 
     // ---------------------------------------------------------------- table inventories
 
@@ -558,5 +558,25 @@ object Schema {
             "ALTER TABLE assessment_session ADD COLUMN blueprint TEXT CHECK (scope <> 'weekly' OR blueprint IS NOT NULL)",
             "CREATE INDEX IF NOT EXISTS assessment_sessions_by_scope ON assessment_session (scope, sequence)",
             "CREATE INDEX IF NOT EXISTS evidence_by_study_day ON evidence_event (occurred_on_study_day)",
+        )
+
+    /**
+     * Version 4 completes the monthly row (13B). A monthly session's blocks and boundaries are its blueprint
+     * too, stored as strict `monthly_blueprint/1` text in the same column. Version 3's column CHECK covered
+     * weekly only, and SQLite cannot alter a column's CHECK, so the rule is a trigger: a weekly or monthly row
+     * must carry a blueprint **in its own scope's format**. A monthly row without one, or with a weekly one,
+     * is a half-record nobody can read.
+     *
+     * Rows written before this version are untouched: a trigger guards inserts only, and nothing before 13B
+     * wrote a monthly row.
+     */
+    val v4: List<String>
+        get() = listOf(
+            """
+            CREATE TRIGGER IF NOT EXISTS assessment_session_blueprint_format BEFORE INSERT ON assessment_session
+            WHEN (NEW.scope = 'weekly' AND (NEW.blueprint IS NULL OR substr(NEW.blueprint, 1, 17) <> 'weekly_blueprint/'))
+              OR (NEW.scope = 'monthly' AND (NEW.blueprint IS NULL OR substr(NEW.blueprint, 1, 18) <> 'monthly_blueprint/'))
+            BEGIN SELECT RAISE(ABORT, 'a weekly or monthly session carries its blueprint in its own scope''s format'); END
+            """,
         )
 }

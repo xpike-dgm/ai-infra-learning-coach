@@ -819,8 +819,22 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 42/42, validator 210/210 ve kendi mutation testi 25/25,
 - **T6 çalıştırılmadı**; uygulamada hafta kurulmuyor (16D).
 
-### [ ] 13B — Aylık sınav — **AKTİF**
-### [ ] 13C — Spaced repetition
+### [x] 13B — Aylık sınav — MCAX-v0 / D-100
+
+**13B final coverage:**
+- bir ay daha geniş bir penceredir, daha ağır bir sınav değil; döngü kaydedilmiş çalışma gününün takvim ayı,
+- ay bir kez kurulur; aynı ay hiçbir şey yazmaz; önceki aylık oturum adlandırılır, borç değildir; hafta ve ay bağımsız döngüler,
+- 13A kontratı tek ortak kontrata ve tek `BlueprintComposer`'a genelleştirildi; haftalık değer değişmedi,
+- havuz planner'ın ihtiyaçlarından; bir Skill tek kez, §7 sırasıyla; kritik Skill yalnız nedenle yeniden doğrulanır; roller kota ya da yüzde değil,
+- transfer ve profesyonel kontrol noktası üreticisi uydurulmadı (15),
+- yalnız aylık kapsama uygun ve aylık role beyanlı item; slotlar planner'ın mevcut ihtiyaçlarının alternatif adayı; ayın kuyruğu, bandı ve dakikası yok,
+- sonuçta puan yok; dört boylamsal liste yalnız temiz kanıtla; aylık etiket ağırlık eklemez,
+- şema v4 biçim trigger'ı; katı `monthly_blueprint/1`,
+- 13A validator'ı garanti zayıflamadan daraltıldı,
+- mutation 48/48, validator 259/259 ve kendi mutation testi 28/28,
+- **T6 çalıştırılmadı**; uygulamada ay kurulmuyor (16D).
+
+### [ ] 13C — Spaced repetition — **AKTİF**
 ### [ ] 13D — Remediation Engine
 ### [ ] 13E — Program değişiklik raporu
 ### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi
@@ -923,8 +937,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A`  
-**Son tamamlanan:** **`13A — WBAX-v0 / D-098`**  
-**Aktif:** **`13B — Aylık sınav`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13B`  
+**Son tamamlanan:** **`13B — MCAX-v0 / D-100`**  
+**Aktif:** **`13C — Spaced repetition`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13B fresh PRE-STEP → `MCA-v0` aylık kompozisyon (13A'nın composer, codec, planner köprüsü ve interior görünümü üzerine) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13C fresh PRE-STEP → `RVR-v0` retention zamanlaması ve ihtiyaçları (aylık `delayed_retention_sampling` ve kritik yeniden doğrulama zaten planner'ın `retention_review_due`'sunu okuyor) → independent QA → D-050 POST sync + stale audit.**

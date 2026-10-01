@@ -63,6 +63,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-088:** RNRX-v0 Task Runner; 11B tamamlandı.
 - **D-098:** WBAX-v0 Weekly Blueprint Assessment Implementation; 13A tamamlandı.
 - **D-099:** AŞAMA 13'e `13F — Tanısal atlama (VDW-v0)` eklendi; kullanıcı kararı, yeniden numaralama yok.
+- **D-100:** MCAX-v0 Monthly Capability Assessment Implementation; 13B tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -281,14 +282,15 @@ PEM-v0:
 - 12F ✅ VUSX-v0 / D-097
 - **AŞAMA 12 TAMAMLANDI**
 - 13A ✅ WBAX-v0 / D-098
-- 13B 🟡 active-not-executed
-- 13C–13F, 14–20 ⬜
+- 13B ✅ MCAX-v0 / D-100
+- 13C 🟡 active-not-executed
+- 13D–13F, 14–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13A — WBAX-v0 / D-098`  
-**Aktif:** `13B — Aylık sınav`  
-**13B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13B — MCAX-v0 / D-100`  
+**Aktif:** `13C — Spaced repetition`  
+**13C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1055,3 +1057,26 @@ WBAX-v0:
 ## 52. 13B handoff
 
 13B — Aylık sınav. `MCA-v0` aylık kompozisyonu; `WBA-v0` §28'in ortak blueprint/slot/result kontratını kullanır ve 13A'nın composer, codec, planner köprüsü ve interior görünümü başlangıç noktasıdır. Açık loop'lar: geriye dönük contamination (13D), retention ve weakness ihtiyaçları (13C/13D), tanısal atlama (13F), içerik tazeliği (15/18D), haftayı uygulamadan kurmak (16D), T6. 13B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 53. D-100 / 13B final özeti
+
+Canonical: `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md`.
+Contract/QA: `arch/13b_monthly_assessment/`.
+Synthesis: `research/13b_monthly_assessment_research.md`.
+Code: `android/core-model/.../AssessmentBlueprint.kt`, `.../MonthlyAssessmentFacts.kt`, `.../BlueprintCodec.kt`, `android/core-engines/.../BlueprintComposer.kt`, `.../MonthlyBlueprintEngine.kt`, `android/core-application/.../BlueprintAssessment.kt`, `BuildDailyPlan.kt`, `android/core-presentation/.../BlueprintAssessmentSession.kt`, `data-persistence` schema v4, `data-curriculum` role parsing.
+
+MCAX-v0:
+- a month is a wider window, not a heavier exam: what is worth measuring still comes from state, one Skill is measured once, a critical Skill is revalidated only for a reason, a monthly label adds no evidence weight, the month adds no minutes or queue, and a missed month leaves nothing behind,
+- 13A's weekly contract became the one common contract (`AssessmentBlueprint` with a scope, `SlotRole`, one scope-parametric `BlueprintComposer`); a mixed blueprint is unrepresentable; no weekly value changed and every 13A test passes,
+- the cycle is the calendar month of the recorded study day — a product default following the user-confirmed weekly rule; composed once; the prior monthly session is named, never owed; week and month are independent cycles,
+- the pool is the planner's own needs: critical revalidation only for open verification/contradiction, a due review or holding work back; persistent concerns from engine state; longitudinal samples only required Skills inside the window; retention stays `retain`; integration and English; transfer and professional checkpoint have no invented producer (15),
+- items must be monthly-eligible and declared for the monthly role; slots are alternatives for needs the planner already opened, and it picks at most one task per need,
+- the result has no score; four longitudinal lists hold only clean independent verified evidence of their own role; a clean negative revalidates nothing; the evidence row never learns its scope,
+- schema v4 adds a trigger refusing a weekly or monthly row without a blueprint in its own format, tested against a populated v3 database; `monthly_blueprint/1` adds `prior_session`; port count four,
+- 13A's validator narrowed to follow the moved code without weakening a guarantee,
+- mutation 48/48 (M10 survived the first run; test strengthened; full set re-run), independent QA 259/259, validator mutation 28/28, sweep 44/44,
+- T6 was not run; nothing in the app composes a month yet (16D).
+
+## 54. 13C handoff
+
+13C — Spaced repetition. `RVR-v0` retention zamanlaması ve `retention_review_due` ihtiyaçları; aylık `delayed_retention_sampling` ve kritik yeniden doğrulama rolleri ile haftalık `retention_due` rolü bu ihtiyacı planner'ın açtığı gibi okuyor. Açık loop'lar: transfer ve profesyonel kanıt üreticileri (15), geriye dönük contamination (13D), tanısal atlama (13F), ayı/haftayı uygulamadan kurmak (16D), T6. 13C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

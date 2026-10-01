@@ -35,7 +35,8 @@ class WeeklySessionStorageTest {
             Fixtures.truthContent(db)
         }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(3, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
+            // Narrowed at 13B: the store migrates to the current version, which is no longer 3.
+            assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             // Every earlier row is still there, unchanged; the session row only gained an empty column.
             (Schema.truthTables - "assessment_session").forEach { assertEquals(before[it], after[it], it) }
@@ -48,7 +49,8 @@ class WeeklySessionStorageTest {
     fun `a weekly session without its blueprint is refused by the engine`() {
         SqlitePersistence.open(SqlitePersistence.IN_MEMORY).use { db ->
             val refusal = assertFailsWith<Exception> { db.appendTruth(weekly(blueprint = null)) }
-            assertTrue("CHECK constraint" in refusal.message.orEmpty(), refusal.message)
+            // Narrowed at 13B: since version 4 the format trigger refuses the row before the column CHECK runs.
+            assertTrue(listOf("CHECK constraint", "its own scope's format").any { it in refusal.message.orEmpty() }, refusal.message)
             assertEquals(0, db.count("assessment_session"))
             db.appendTruth(weekly())
             // A daily session never had a blueprint and still needs none.

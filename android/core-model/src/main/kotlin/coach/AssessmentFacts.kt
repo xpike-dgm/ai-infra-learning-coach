@@ -150,8 +150,9 @@ data class AssessmentItem(
     /**
      * `QAB-v0` §14: the blueprint roles the item is declared eligible for. The declaration is not a
      * priority — current state produces the role — but an item nobody declared for a role does not fill it.
+     * Weekly (13A) and monthly (13B) role ids never collide, so one declaration list serves both scopes.
      */
-    val blueprintRoles: Set<BlueprintRole> = emptySet(),
+    val blueprintRoles: Set<SlotRole> = emptySet(),
 ) {
     init {
         require(expectedActiveMinutes == null || expectedActiveMinutes > 0) { "an item takes some time, if it says" }
