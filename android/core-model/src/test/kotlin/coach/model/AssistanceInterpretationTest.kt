@@ -72,9 +72,16 @@ class AssistanceInterpretationTest {
     }
 
     @Test
-    fun `work the learner says was generated or copied is practice, and an unknown origin accuses no one`() {
-        assertEquals(IndependenceClass.PRACTICE_ONLY, independence(provenance = ProvenanceOrigin.GENERATED_OR_COPIED))
-        assertEquals(IndependenceClass.PRACTICE_ONLY, independence(help(AssistanceLevel.H1), provenance = ProvenanceOrigin.GENERATED_OR_COPIED))
+    fun `work the learner says was generated or copied opens a fresh independent check, and an unknown origin accuses no one`() {
+        // Narrowed at 14E (`D-109`, user decision; `2D` §8 scenario A): code the learner did not write is a solution they
+        // were shown, not practice that measures nothing — the target needs a fresh, independent check. In a teaching task,
+        // which never measured independence, it stays practice.
+        assertEquals(IndependenceClass.REQUIRES_INDEPENDENT_RECHECK, independence(provenance = ProvenanceOrigin.GENERATED_OR_COPIED))
+        assertEquals(IndependenceClass.REQUIRES_INDEPENDENT_RECHECK, independence(help(AssistanceLevel.H1), provenance = ProvenanceOrigin.GENERATED_OR_COPIED))
+        for (purpose in TaskPurpose.entries.filter { it != TaskPurpose.TEACH }) {
+            assertEquals(IndependenceClass.REQUIRES_INDEPENDENT_RECHECK, independence(provenance = ProvenanceOrigin.GENERATED_OR_COPIED, purpose = purpose), purpose.id)
+        }
+        assertEquals(IndependenceClass.PRACTICE_ONLY, independence(provenance = ProvenanceOrigin.GENERATED_OR_COPIED, purpose = TaskPurpose.TEACH))
         assertEquals(IndependenceClass.INDEPENDENT, independence(provenance = ProvenanceOrigin.UNKNOWN_PROVENANCE))
         assertEquals(IndependenceClass.ASSISTED, independence(help(AssistanceLevel.H2), provenance = ProvenanceOrigin.UNKNOWN_PROVENANCE))
     }

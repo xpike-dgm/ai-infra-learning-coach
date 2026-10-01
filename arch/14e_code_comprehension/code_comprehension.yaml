@@ -1,0 +1,209 @@
+model: ACCX-v0
+stage_step: 14E
+status: accepted_14e
+decision: D-109
+implements: [2D, V1_SUCCESS_CRITERIA, AIV-v0, TRUX-v0]
+builds_on: [TUTX-v0, CDEX-v0, GRE-v0]
+boundaries: MSBX-v0
+purpose: understanding_code_the_learner_did_not_write_alone
+
+scope:
+  written_checks_as_content: true
+  offered_after_submission: true
+  tutor_practice_intent: true
+  generated_code_opens_recheck: true
+  schema_changed: false
+  state_family_added: false
+  mastery_rule_changed: false
+  weakness_rule_changed: false
+  planner_rule_changed: false
+  comprehension_counts_as_production: false
+  check_mandatory: false
+  checks_authored: false
+  app_calls_check: false
+
+question: AI'ın yazdığı bir kodu öğrenci anlıyor mu — ve bu neyi kanıtlar?
+
+primary_invariant: >-
+  Running code someone else wrote proves nothing about the learner; explaining it proves understanding, not
+  production. When the learner submits code an AI or another source wrote, or that a shown solution largely gave them,
+  a comprehension check is offered right after and may be skipped. Written checks come first and are judged by their
+  answer key; only where none is written does the tutor ask about the learner's own code, and that is practice, never
+  evidence. A correct answer is evidence of the kind its author declared — never of the item's own production — and
+  code the learner did not write opens a fresh independent check of the production Objective.
+
+user_decisions:
+  date: "2026-10-02"
+  question_source: written_first_otherwise_tutor_practice
+  timing: right_after_submission_optional
+  generated_code: opens_independent_recheck
+
+offered_when:
+  - provenance_generated_or_copied
+  - provenance_mixed_authorship
+  - h3_or_h4_with_target_before_answer_froze
+not_offered_when: [user_authored, user_authored_with_assistance, unknown_provenance, help_after_answer_froze, non_target_support]
+
+kinds:
+  source: "2D §9"
+  ids: [line_purpose, removal_effect, state_effect, find_the_bug]
+  excluded: {apply_same_logic_again: production_not_comprehension}
+
+written_check:
+  id_pattern: comprehension.<namespace>.<slug>
+  pinned_to: one_item_version
+  speaks_for: one_objective_the_item_targets
+  answer: one_of_two_to_four_choices
+  evidence_type: authored_and_never_the_items_own
+  judged_by: answer_key
+  evaluator: deterministic/comprehension_key@<check>@v<N>
+  skipped_writes: nothing
+  package_section: comprehension_check
+  read_by: ContentPort.comprehensionChecksFor
+  published_into_store: false
+
+tutor_extension:
+  intents: [check_understanding]
+  message_sections: [check_question, learner_answer]
+  instructions_version: tutor_instructions/3
+  reply_schema: tutor_reply/2
+  added_rule: 16_check_understanding
+  only_after_answer_froze: true
+  offered_only_without_written_check: true
+  evidence: never
+  recorded_as_help: true
+
+independence_narrowing:
+  why: "2D §8 scenario A — AI wrote the whole code: target objective needs an independent recheck; user decision 2026-10-02"
+  before:
+    - {when: h3_or_h4_with_target_before_answer_froze, class: requires_independent_recheck}
+    - {when: provenance_generated_or_copied, class: practice_only}
+    - {when: teach_task, class: practice_only}
+    - {when: h1_or_h2_with_target_before_answer_froze, class: assisted}
+    - {when: provenance_user_authored_with_assistance_or_mixed, class: assisted}
+    - {when: otherwise, class: independent}
+  after:
+    - {when: h3_or_h4_with_target_before_answer_froze, class: requires_independent_recheck}
+    - {when: teach_task, class: practice_only}
+    - {when: provenance_generated_or_copied, class: requires_independent_recheck}
+    - {when: h1_or_h2_with_target_before_answer_froze, class: assisted}
+    - {when: provenance_user_authored_with_assistance_or_mixed, class: assisted}
+    - {when: otherwise, class: independent}
+  recheck_owner: mastery_engine_unresolved_recheck_then_planner
+
+presentation:
+  offer: "Bu kodu tek başına yazmadın. İstersen birkaç soruyla ne kadarını anladığına bakalım; geçmek yanlış sayılmaz."
+  not_production: "Bu bir anlama kontrolü: kodu açıklayabildiğini gösterir, kendin yazabildiğini değil."
+  tutor_practice: "AI tarafından yazılmış bir soru: pratik içindir, kanıt sayılmaz."
+  recheck: "Kod yazma hedefin için ileride yeni bir görevle bağımsız bir kontrol planlanacak. Bu bir ceza değil."
+  numbers_or_scores: false
+
+port_count: 5
+port_refinements: [{port: ContentPort, method: comprehensionChecksFor}]
+schema_version: 8
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/ComprehensionFactsTest.kt}
+  interpretation: {file: android/core-model/src/test/kotlin/coach/model/AssistanceInterpretationTest.kt}
+  instructions: {file: android/core-model/src/test/kotlin/coach/model/TutorInstructionsTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/CheckUnderstandingTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/ComprehensionPresentationTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_tutor_contract.py, checks: [E14A-02_intents, E14A-05_message_sections, E14A-06_version, E14A-07_interpretation_order]}
+  - {file: tools/validate_alternative_explanation.py, checks: [E14C-07_version_raised, E14C-07_reply_schema_unchanged, E14C-07_canonical_is_material]}
+
+mutation_results:
+  total: 43
+  detected: 43
+  only_14e_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (E18, AI-written code back to practice_only) was re-run by hand and the named AssistanceInterpretationTest test was seen failing
+  negative_control: a comment-only change in CheckUnderstanding.kt
+  negative_control_result: survived_as_expected
+  first_run: all detected on the first run; before it, one gap was closed by reading the code (no test covered the practice label on the tutor's question)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: E01, mutant: offered_for_own_work, result: detected}
+    - {id: E02, mutant: co_written_not_offered, result: detected}
+    - {id: E03, mutant: a_shown_solution_not_offered, result: detected}
+    - {id: E04, mutant: help_after_freeze_offers, result: detected}
+    - {id: E05, mutant: support_offers, result: detected}
+    - {id: E06, mutant: the_tutor_before_writing, result: detected}
+    - {id: E07, mutant: comprehension_as_production, result: detected}
+    - {id: E08, mutant: an_untargeted_objective, result: detected}
+    - {id: E09, mutant: another_item_version, result: detected}
+    - {id: E10, mutant: a_skip_is_wrong, result: detected}
+    - {id: E11, mutant: any_choice_is_right, result: detected}
+    - {id: E12, mutant: an_unoffered_choice_is_judged, result: detected}
+    - {id: E13, mutant: one_choice_is_a_check, result: detected}
+    - {id: E14, mutant: the_answer_is_not_a_choice, result: detected}
+    - {id: E15, mutant: any_check_id, result: detected}
+    - {id: E16, mutant: the_evaluator_names_no_check, result: detected}
+    - {id: E17, mutant: applying_again_is_comprehension, result: detected}
+    - {id: E18, mutant: generated_code_is_practice, result: detected}
+    - {id: E19, mutant: a_teaching_task_rechecks, result: detected}
+    - {id: E20, mutant: checked_before_the_answer_froze, result: detected}
+    - {id: E21, mutant: checked_without_code, result: detected}
+    - {id: E22, mutant: any_intent_carries_a_check, result: detected}
+    - {id: E23, mutant: an_answer_without_its_question, result: detected}
+    - {id: E24, mutant: the_answer_is_dropped, result: detected}
+    - {id: E25, mutant: rules_change_without_a_version, result: detected}
+    - {id: E26, mutant: the_schema_changes_without_a_version, result: detected}
+    - {id: E27, mutant: the_answer_is_not_sent, result: detected}
+    - {id: E28, mutant: the_answer_can_close_its_section, result: detected}
+    - {id: E29, mutant: the_answer_may_be_graded, result: detected}
+    - {id: E30, mutant: the_tutor_despite_writing, result: detected}
+    - {id: E31, mutant: practice_under_any_intent, result: detected}
+    - {id: E32, mutant: a_foreign_check_is_answered, result: detected}
+    - {id: E33, mutant: another_items_submission, result: detected}
+    - {id: E34, mutant: offered_on_own_work, result: detected}
+    - {id: E35, mutant: explaining_presented_as_writing, result: detected}
+    - {id: E36, mutant: the_right_choice_is_hidden, result: detected}
+    - {id: E37, mutant: the_tutor_is_unlabelled, result: detected}
+    - {id: E38, mutant: a_recheck_is_announced_always, result: detected}
+    - {id: E39, mutant: a_skip_is_said_wrong, result: detected}
+    - {id: E40, mutant: checks_are_ignored, result: detected}
+    - {id: E41, mutant: an_unknown_check_key, result: detected}
+    - {id: E42, mutant: line_breaks_not_decoded, result: detected}
+    - {id: E43, mutant: checks_ignore_the_item_version, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (practice_only for generated code, a production evidence type, an accusing word, a score) inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 922
+sweep: {passed: 53, total: 53}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app offers the check yet (16D) and no checks are written yet (15)
+
+open_loops:
+  written_checks_for_real_tasks: {owner: "15"}
+  check_rendering_and_app_call: {owner: 16D}
+  adapter_prompt_for_check: {owner: 14G}
+  free_text_answers: {owner: 14F}
+  trusting_tutor_questions: {owner: "18"}
+
+forbidden_patterns:
+  - running_someone_elses_code_counted_as_production
+  - comprehension_answer_counted_as_production
+  - check_offered_on_own_work_or_suspicion
+  - skipped_check_counted_wrong
+  - tutor_question_recorded_as_evidence_or_offered_over_written
+  - ai_written_code_left_as_practice_without_recheck
+  - recheck_presented_as_penalty

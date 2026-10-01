@@ -174,3 +174,7 @@ One sentence per Objective, from the result alone ("Bu hedefin kontrolleri geçt
 If accepted, 14D becomes `CDEX-v0 / D-108`.
 
 Next numbered step: **14E — AI-generated code comprehension check**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14E note (2026-10-02, `D-109`):** passing tests on code the learner did not write is still not their production: such a submission is `requires_independent_recheck` and is followed by an optional comprehension check (`ACCX-v0`). Details: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`.

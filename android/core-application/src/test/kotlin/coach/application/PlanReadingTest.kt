@@ -138,6 +138,7 @@ class PlanReadingTest {
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
         override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
+        override fun comprehensionChecksFor(item: VersionedRef): List<coach.model.ComprehensionCheck> = emptyList()
     }
 
     private class Clock(var day: String) : ClockPort {

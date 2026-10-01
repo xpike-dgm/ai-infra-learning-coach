@@ -110,6 +110,7 @@ object TutorCopy {
         TutorIntent.QUESTION -> "Soru sor"
         TutorIntent.EXPLAIN_MISTAKE -> "Cevabımı açıkla"
         TutorIntent.GLOSS -> "Bu ifade ne demek?"
+        TutorIntent.CHECK_UNDERSTANDING -> "Bu kodu anladığımı kontrol et"
     }
 
     /** The levels in the learner's words, least revealing first. */

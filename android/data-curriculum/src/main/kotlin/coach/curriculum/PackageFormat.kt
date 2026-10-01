@@ -12,6 +12,8 @@ import coach.model.IndependenceMode
 import coach.model.AssistanceLevel
 import coach.model.CodeTest
 import coach.model.CodeTestSuite
+import coach.model.ComprehensionCheck
+import coach.model.ComprehensionKind
 import coach.model.ExplanationForm
 import coach.model.ExplanationVariant
 import coach.model.LifecycleStatus
@@ -50,6 +52,8 @@ object PackageFormat {
         val explanations: List<ExplanationVariant> = emptyList(),
         /** The course's code tests (14D): content, served by the content port, never published into the store. */
         val codeTests: List<CodeTestSuite> = emptyList(),
+        /** Written comprehension checks (14E): content, served by the content port, never published into the store. */
+        val comprehensionChecks: List<ComprehensionCheck> = emptyList(),
     )
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
@@ -127,9 +131,12 @@ object PackageFormat {
         }
 
         val codeTests = codeTests(sections, reader, reasons)
+        val comprehensionChecks = sections.filter { it.name == "comprehension_check" }.mapNotNull { section ->
+            runCatching { reader.comprehensionCheck(section) }.getOrElse { reasons += "comprehension_check: ${it.message}"; null }
+        }
 
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
-        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests)
+        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks)
     }
 
     /**
@@ -157,7 +164,7 @@ object PackageFormat {
     private val KNOWN_SECTIONS = setOf(
         "domain", "module", "topic", "skill", "objective", "topic_skill",
         "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
-        "code_test_suite", "code_test",
+        "code_test_suite", "code_test", "comprehension_check",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -189,6 +196,10 @@ object PackageFormat {
         // 14D (`D-108`): a suite pinned to one item version, and one section per test naming the Objective it speaks for.
         "code_test_suite" to setOf("logical_id", "version", "item", "build_objective"),
         "code_test" to setOf("suite", "id", "objective", "misconception"),
+        // 14E (`D-109`): one written comprehension check after an item version, judged by its answer key.
+        "comprehension_check" to setOf(
+            "logical_id", "version", "item", "objective", "kind", "evidence_type", "prompt", "choice_a", "choice_b", "choice_c", "choice_d", "answer",
+        ),
         "item" to setOf(
             "ref", "prompt", "target_objectives", "target_skills", "required_skills", "evidence_type",
             "expected_answer_or_rubric_ref", "evaluator_required_status", "evaluator_deterministic_required",
@@ -368,6 +379,20 @@ object PackageFormat {
                 ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
                 item = ref(section, "item"),
                 buildObjective = if (section.values.containsKey("build_objective")) ref(section, "build_objective") else null,
+            )
+        }
+
+        fun comprehensionCheck(section: Section): ComprehensionCheck {
+            check(section)
+            return ComprehensionCheck(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                item = ref(section, "item"),
+                objective = ref(section, "objective"),
+                kind = enum(section, "kind", ComprehensionKind.entries.toTypedArray()) { it.id },
+                evidenceType = text(section.values, "evidence_type", section.line),
+                prompt = text(section.values, "prompt", section.line).replace("\\n", "\n"),
+                choices = ComprehensionCheck.CHOICE_KEYS.mapNotNull { key -> optional(section, "choice_$key")?.let { key to it.replace("\\n", "\n") } }.toMap(),
+                answer = text(section.values, "answer", section.line),
             )
         }
 

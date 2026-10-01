@@ -59,7 +59,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 14B Yanlış analizi: WAAX-v0 / D-106 ile tamamlandı; kapalı misconception kataloğu, etiketler kanıtta, `misconception_state` hafızası, suçlamasız analiz, şema v8; `review.6g.misconception_taxonomy_expansion` kapandı.
 - [x] 14C Alternatif anlatım: ALEX-v0 / D-107 ile tamamlandı; yedi kapalı biçim, öğrenci seçer, önce yazılmış yoksa AI, AI alternatifi dersin anlatımına dayanır, `tutor_instructions/2`.
 - [x] 14D Kod değerlendirme: CDEX-v0 / D-108 ile tamamlandı; testler PC'de koşar ve rapor içe aktarılır, test yalnız kendi Objective'i için, test yoksa AI yalnız provisional, referans koşucu `tools/code_test_runner.py`.
-- [ ] 14E AI-generated code comprehension check **AKTİF**.
+- [x] 14E AI-generated code comprehension check: ACCX-v0 / D-109 ile tamamlandı; önce yazılmış kontrol, yoksa tutor pratiği, hemen sonra ve isteğe bağlı, `generated_or_copied` yeniden kontrol açar.
+- [ ] 14F Açık uçlu cevap değerlendirme **AKTİF**.
+- [ ] Gerçek görevler için yazılı anlama kontrolleri → 15.
+- [ ] Anlama kontrolünü çizmek ve `CheckUnderstanding`'i uygulamadan çağırmak → 16D.
+- [ ] `check_understanding` için adaptör istemi ve çağrı noktası → 14G.
+- [ ] Serbest metin anlama cevaplarının değerlendirilmesi → 14F.
+- [ ] Tutor'un yazdığı soruların güvenilir sayılabilmesi için kalibrasyon → 18.
 - [ ] Gerçek kod görevlerinin test suite'leri ve koşucu dosyaları → 15.
 - [ ] Yapıştırılan raporu artifact olarak saklamak, `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek → 16D.
 - [ ] AI kod değerlendiricisinin istemi ve çağrı noktası → 14G.

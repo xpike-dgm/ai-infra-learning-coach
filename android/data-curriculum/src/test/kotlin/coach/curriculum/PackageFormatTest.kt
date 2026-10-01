@@ -313,6 +313,40 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `a written comprehension check is read strictly and served for the item version it follows`() {
+        val checks = """
+
+            [comprehension_check]
+            logical_id=comprehension.python.loops.count_line
+            version=1
+            item=item.python.loops.q1@v1
+            objective=objective.python.loops.trace@v1
+            kind=line_purpose
+            evidence_type=explanation
+            prompt=i += 1 satırı neden gerekli?\nSilinirse ne olur?
+            choice_a=Döngü sonsuz olur
+            choice_b=Çıktı değişmez
+            answer=a
+        """.trimIndent()
+        val source = FileContentSource { authored + "\n" + checks }
+        val served = source.comprehensionChecksFor(VersionedRef("item.python.loops.q1", 1)).single()
+        assertEquals("i += 1 satırı neden gerekli?\nSilinirse ne olur?", served.prompt)
+        assertEquals(mapOf("a" to "Döngü sonsuz olur", "b" to "Çıktı değişmez"), served.choices)
+        assertTrue(source.comprehensionChecksFor(VersionedRef("item.python.loops.q1", 2)).isEmpty(), "another item version's checks do not follow it")
+        assertTrue(FileContentSource { authored }.comprehensionChecksFor(VersionedRef("item.python.loops.q1", 1)).isEmpty())
+        for (bad in listOf(
+            checks.replace("kind=line_purpose", "kind=apply_again"),
+            checks.replace("answer=a", "answer=c"),
+            checks.replace("choice_b=Çıktı değişmez\n", ""),
+            checks.replace("logical_id=comprehension.python.loops.count_line", "logical_id=quiz.python.loops.count_line"),
+            checks.replace("evidence_type=explanation\n", ""),
+            checks + "\nweight=2",
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n" + bad) }
+        }
+    }
+
+    @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }
         assertEquals("Bu döngü kaç kez çalışır?", assertNotNull(source.resource(itemRef)).body)

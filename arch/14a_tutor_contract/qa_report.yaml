@@ -146,7 +146,7 @@ checks:
 - check: E14A-02_intents
   result: PASS
   details: '[''hint'', ''explain_differently'', ''question'', ''explain_mistake'',
-    ''gloss'']'
+    ''gloss'', ''check_understanding'']'
 - check: E14A-02_instruction_modes_from_teip
   result: PASS
   details: '[''turkish_primary'', ''bilingual_parallel'', ''english_with_targeted_gloss'',
@@ -199,7 +199,8 @@ checks:
   details: '[(''EXPLAIN_DIFFERENTLY'', ''NO_ITEM_IS_BEING_WORKED''), (''EXPLAIN_MISTAKE'',
     ''ANSWER_ALREADY_FROZEN''), (''EXPLAIN_DIFFERENTLY'', ''NO_ITEM_IS_BEING_WORKED''),
     (''HINT'', ''NO_ANSWER_IS_FROZEN_YET''), (''EXPLAIN_DIFFERENTLY'', ''SEGMENT_IS_THE_TARGET''),
-    (''HINT'', ''SEGMENT_IS_THE_TARGET'')]'
+    (''HINT'', ''SEGMENT_IS_THE_TARGET''), (''EXPLAIN_DIFFERENTLY'', ''NO_ITEM_IS_BEING_WORKED''),
+    (''HINT'', ''NO_ANSWER_IS_FROZEN_YET'')]'
 - check: E14A-04_conforms_same_intent
   result: PASS
   details: missing 'if (content.intent != request.intent) return false'
@@ -254,12 +255,14 @@ checks:
   result: PASS
   details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
     (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
-    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation'')]'
+    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation''),
+    (''check_question'', ''request.checkQuestion''), (''learner_answer'', ''request.learnerAnswer'')]'
 - check: E14A-05_message_from_request_only
   result: PASS
   details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
     (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
-    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation'')]'
+    (''reference'', ''request.context.referenceSolution''), (''canonical'', ''request.context.canonicalExplanation''),
+    (''check_question'', ''request.checkQuestion''), (''learner_answer'', ''request.learnerAnswer'')]'
 - check: E14A-05_absent_omitted
   result: PASS
   details: absent material sent
@@ -331,7 +334,7 @@ checks:
   details: schema fields
 - check: E14A-07_interpretation_order
   result: PASS
-  details: '[''REQUIRES_INDEPENDENT_RECHECK'', ''PRACTICE_ONLY'', ''PRACTICE_ONLY'',
+  details: '[''REQUIRES_INDEPENDENT_RECHECK'', ''PRACTICE_ONLY'', ''REQUIRES_INDEPENDENT_RECHECK'',
     ''ASSISTED'', ''ASSISTED'', ''INDEPENDENT'']'
 - check: E14A-07_before_answer_froze
   result: PASS

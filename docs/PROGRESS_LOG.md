@@ -1221,3 +1221,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14D tamamlandı; 14E aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14E — AI-generated code comprehension check`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 14E — AI-generated code comprehension check tamamlandı — ACCX-v0 / D-109
+
+- 14D (#48) main'e merge edilmişti (250e12d); fresh 14E PRE yapıldı ve beş kanonik kaynak `14D ✅ / 14E active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin") ve üç ürün sorusunu cevapladı.
+- **Kullanıcı kararları:** önce yazılmış kontroller, yoksa tutor'un sorusu pratik olarak (kanıt değil); kontrol hemen sonra ve isteğe bağlı; 'AI yazdı' beyanı üretim Objective'i için bağımsız yeniden kontrol açar.
+- Sözleşme koda döküldü: başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar.
+- **Bulgu:** `generated_or_copied` `practice_only` oluyordu ve hiçbir yeniden kontrol açmıyordu; hiçbir anlama kontrolü yoktu; anlama cevabını üretim kanıtından ayıran bir şey yoktu.
+- Tutor'a altıncı istek (`check_understanding`); `tutor_instructions/3`, `tutor_reply/2`; 14A'nın dört ve 14C'nin üç kapısı, uzantıyı 14E kontratından okuyacak biçimde daraltıldı. Şema değişmedi; port inceltmesi `comprehensionChecksFor`.
+- Mutation 43/43 (ilk ve tek temiz koşuda). Altı run PASS, 922 JVM testi. Validator 112/112, kendi mutation testi 30/30, sweep 53/53.
+- **T6 çalıştırılmadı**; uygulama kontrolü henüz sunmuyor (16D).
+- D-050 POST living-memory accepted state'i `14E tamamlandı; 14F aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14F — Açık uçlu cevap değerlendirme`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

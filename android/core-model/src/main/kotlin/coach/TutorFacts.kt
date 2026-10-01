@@ -31,6 +31,13 @@ enum class TutorIntent(val id: String) {
 
     /** What a non-target language segment means (`TEIP-v0` §5.1). Support, not help with the target. */
     GLOSS("gloss"),
+
+    /**
+     * A question about code the learner submitted but did not write alone, then a response to their answer (14E,
+     * `ACCX-v0`). Only after the answer is frozen. Practice: what the tutor asks is not trusted assessment content,
+     * so nothing it says about the answer is evidence (`2D` §9, `AIV-v0`).
+     */
+    CHECK_UNDERSTANDING("check_understanding"),
 }
 
 /**
@@ -92,6 +99,10 @@ data class TutorAsk(
     val learnerQuestion: String? = null,
     /** How the concept should be explained again (14C): the learner's choice, only for `explain_differently`. */
     val form: ExplanationForm? = null,
+    /** The tutor's own earlier question about the code (14E), sent back with the learner's answer to it. */
+    val checkQuestion: String? = null,
+    /** The learner's answer to [checkQuestion] (14E). */
+    val learnerAnswer: String? = null,
 )
 
 /**
@@ -112,6 +123,8 @@ class TutorRequest internal constructor(
     val context: TutorContext,
     val learnerQuestion: String?,
     val form: ExplanationForm? = null,
+    val checkQuestion: String? = null,
+    val learnerAnswer: String? = null,
 ) {
     /** An attempt is open — the learner has not yet frozen an answer to the item being worked. */
     val attemptOpen: Boolean get() = timing == AssistanceTiming.BEFORE_ATTEMPT || timing == AssistanceTiming.DURING_ATTEMPT
@@ -276,6 +289,12 @@ object TutorRules {
             TutorIntent.QUESTION ->
                 if (ask.learnerQuestion.isNullOrBlank()) return TutorPreparation.Incomplete(TutorMissing.QUESTION_TEXT)
             TutorIntent.EXPLAIN_DIFFERENTLY -> Unit
+            // 14E: a question about code that was submitted — so only once there is a frozen answer to ask about.
+            TutorIntent.CHECK_UNDERSTANDING -> {
+                if (ask.timing == null) return TutorPreparation.Redirect(TutorIntent.EXPLAIN_DIFFERENTLY, TutorRedirectReason.NO_ITEM_IS_BEING_WORKED)
+                if (!answerFrozen) return TutorPreparation.Redirect(TutorIntent.HINT, TutorRedirectReason.NO_ANSWER_IS_FROZEN_YET)
+                if (ask.context.learnerWork.isNullOrBlank()) return TutorPreparation.Incomplete(TutorMissing.FROZEN_ANSWER)
+            }
         }
 
         val scope = if (ask.intent == TutorIntent.GLOSS) AssistanceScope.NON_TARGET_SUPPORT else AssistanceScope.TARGET_OBJECTIVE
@@ -305,6 +324,10 @@ object TutorRules {
         require(ask.form == null || ask.intent == TutorIntent.EXPLAIN_DIFFERENTLY) { "only an explanation carries a form" }
         // A form the tutor may not write (a misconception contrast, the course's own explanation) never reaches it (14C).
         require(ask.form == null || ask.form.aiAllowed) { "the tutor is never asked for a form only written content may give" }
+        require((ask.checkQuestion == null && ask.learnerAnswer == null) || ask.intent == TutorIntent.CHECK_UNDERSTANDING) {
+            "only a comprehension check carries a check question or an answer to it"
+        }
+        require(ask.learnerAnswer == null || !ask.checkQuestion.isNullOrBlank()) { "an answer is sent with the question it answers" }
 
         return TutorPreparation.Ready(
             TutorRequest(
@@ -318,6 +341,8 @@ object TutorRules {
                 context = ask.context,
                 learnerQuestion = ask.learnerQuestion,
                 form = ask.form,
+                checkQuestion = ask.checkQuestion,
+                learnerAnswer = ask.learnerAnswer,
             )
         )
     }

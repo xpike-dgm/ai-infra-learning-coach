@@ -944,8 +944,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 49/49, validator 122/122 ve kendi mutation testi 30/30,
 - **T6 ve C derlemesi çalıştırılmadı**; uygulama kodu henüz değerlendirmiyor (16D), testler henüz yazılmadı (15).
 
-### [ ] 14E — AI-generated code comprehension check — **AKTİF**
-### [ ] 14F — Açık uçlu cevap değerlendirme
+### [x] 14E — AI-generated code comprehension check — ACCX-v0 / D-109
+
+**14E final coverage:**
+- başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; açıklayabilmek anlamayı kanıtlar, üretimi değil (`2D` §4, §8, §9),
+- yalnız öğrenci kodu tek başına yazmadıysa sunulur (beyanı ya da cevap donmadan gösterilen H3/H4); hemen sonra ve isteğe bağlı, geçmek yanlış değil (kullanıcı kararı),
+- önce yazılmış, cevap anahtarlı kontroller (`[comprehension_check]`, `comprehensionChecksFor`); yoksa tutor'un `check_understanding` sorusu — pratik, kanıt değil (kullanıcı kararı),
+- dört tür `2D` §9'dan; kontrolün kanıt türü item'ın kendi türü olamaz, mastery motorunun profili neyi saydığına karar verir,
+- `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik); yeniden kontrolü mastery motoru ve planner yürütür (kullanıcı kararı),
+- tutor sözleşmesi: altıncı istek, `tutor_instructions/3`, `tutor_reply/2`; 14A ve 14C kapıları beyanlı olarak daraltıldı; şema değişmedi,
+- mutation 43/43, validator 112/112 ve kendi mutation testi 30/30,
+- **T6 çalıştırılmadı**; uygulama kontrolü henüz sunmuyor (16D), kontroller henüz yazılmadı (15).
+
+### [ ] 14F — Açık uçlu cevap değerlendirme — **AKTİF**
 ### [ ] 14G — Provider abstraction/fallback
 
 ---
@@ -1035,8 +1046,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14D`  
-**Son tamamlanan:** **`14D — CDEX-v0 / D-108`**  
-**Aktif:** **`14E — AI-generated code comprehension check`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14E`  
+**Son tamamlanan:** **`14E — ACCX-v0 / D-109`**  
+**Aktif:** **`14F — Açık uçlu cevap değerlendirme`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14E fresh PRE-STEP → AI-generated code comprehension check (`CDEX-v0` kod değerlendirme, `TUTX-v0` tutor sözleşmesi ve `2D` provenance kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14F fresh PRE-STEP → açık uçlu cevap değerlendirme (`AIAX-v0` değerlendirici sözleşmesi, `CDEX-v0` ve `ACCX-v0` kodda) → independent QA → D-050 POST sync + stale audit.**

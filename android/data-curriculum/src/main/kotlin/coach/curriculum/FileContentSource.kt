@@ -2,6 +2,7 @@ package coach.curriculum
 
 import coach.model.AssessmentItem
 import coach.model.CodeTestSuite
+import coach.model.ComprehensionCheck
 import coach.model.CurriculumPackage
 import coach.model.ExplanationVariant
 import coach.model.LearningNeed
@@ -57,4 +58,8 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
 
     /** The tests for exactly this item version (14D); another version's tests do not test it. */
     override fun codeTestsFor(item: VersionedRef): CodeTestSuite? = parsed?.codeTests.orEmpty().singleOrNull { it.item == item }
+
+    /** The checks written for exactly this item version (14E), in a stable order. */
+    override fun comprehensionChecksFor(item: VersionedRef): List<ComprehensionCheck> =
+        parsed?.comprehensionChecks.orEmpty().filter { it.item == item }.sortedBy { it.ref.toString() }
 }
