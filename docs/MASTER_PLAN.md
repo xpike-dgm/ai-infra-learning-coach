@@ -908,8 +908,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 68/68, validator 219/219 ve kendi mutation testi 30/30,
 - **T6 çalıştırılmadı**; uygulama tutor'u henüz çağırmıyor (16D), gerçek sağlayıcı 14G.
 
-### [ ] 14B — Yanlış analizi — **AKTİF**
-### [ ] 14C — Alternatif anlatım
+### [x] 14B — Yanlış analizi — WAAX-v0 / D-106
+
+**14B final coverage:**
+- yanlış cevap bir bilgidir, hüküm değil; etiket yalnız taşıdığı kanıt ve kaynağı kadar güçlü,
+- kapalı katalog curriculum'da (`misconception`, Objective sürümüne pinli, değişmez, paket bölümü katı); beyan edilmemiş etiket saklanmaz (kullanıcı kararı),
+- `EvaluationResult` `misconceptionHypotheses`'i geri kazandı (`AIAX-v0` §5.1); etiket yalnız yanlış giden satıra, kendi Objective'i için; `Verified` → `deterministic`, `Provisional` → `ai_proposed`,
+- hafıza (`misconception_state`, `WLRM-v0` ailesi) zayıflık motorunun kendi kuralıyla, kaynak tavanıyla; AI hipotezin üstüne çıkmaz; geçersiz/ön koşulu bozuk iş oynatmaz; zamanla değil taze temiz kanıtla kapanır,
+- analiz saklanan atfı okur (`WeaknessEvents` ortak); hipotez yalnız açık soru (kullanıcı kararı), destekli/doğrulanmış adlandırılır,
+- şema v8, tek port inceltmesi `misconceptionsOf`; `review.6g.misconception_taxonomy_expansion` kapandı,
+- mutation 51/51, validator 154/154 ve kendi mutation testi 28/28,
+- **T6 çalıştırılmadı**; uygulama analizi henüz göstermiyor (16D), etiket üreten değerlendirici yok (14D/14F/15).
+
+### [ ] 14C — Alternatif anlatım — **AKTİF**
 ### [ ] 14D — Kod değerlendirme
 ### [ ] 14E — AI-generated code comprehension check
 ### [ ] 14F — Açık uçlu cevap değerlendirme
@@ -1002,8 +1013,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A`  
-**Son tamamlanan:** **`14A — TUTX-v0 / D-105`**  
-**Aktif:** **`14B — Yanlış analizi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14B`  
+**Son tamamlanan:** **`14B — WAAX-v0 / D-106`**  
+**Aktif:** **`14C — Alternatif anlatım`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14B fresh PRE-STEP → yanlış analizi (`TUTX-v0` tutor sözleşmesi ve `WLRX-v0` atıf kuralları kodda; misconception hafızası 14B'nin) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14C fresh PRE-STEP → alternatif anlatım (`TUTX-v0` `explain_differently` isteği ve `WAAX-v0` misconception hafızası kodda) → independent QA → D-050 POST sync + stale audit.**

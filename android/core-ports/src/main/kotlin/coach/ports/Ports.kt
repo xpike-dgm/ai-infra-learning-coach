@@ -7,6 +7,7 @@ import coach.model.EvaluationResult
 import coach.model.EvidenceRow
 import coach.model.ExposureFact
 import coach.model.LearningNeed
+import coach.model.MisconceptionRow
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
@@ -193,6 +194,12 @@ interface PersistencePort {
      * unpublished Skill has none.
      */
     fun objectivesOf(skill: VersionedRef): List<ObjectiveRow>
+
+    /**
+     * The closed misconception catalog of one pinned Objective version (14B, `D-106`). A label nobody declared for
+     * the Objective names nothing, whoever proposed it. A refinement of this port, not a new one.
+     */
+    fun misconceptionsOf(objective: VersionedRef): List<MisconceptionRow>
 }
 
 /** A truth row together with the id the store gave it. */

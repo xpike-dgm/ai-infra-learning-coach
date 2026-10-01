@@ -11,6 +11,12 @@ sealed interface EvaluationResult {
     data class Verified(
         val componentResults: List<ComponentResult>,
         val evaluatorRef: EvaluatorRef,
+        /**
+         * `AIAX-v0` §5.1 `misconception_hypotheses[]` (14B). From a deterministic path — an answer key mapping a
+         * chosen option to a catalog label, a failing test that names one — they may grow as the Objective's own
+         * evidence allows; they are still only proposals until the catalog and the evidence policy say otherwise.
+         */
+        val misconceptionHypotheses: List<MisconceptionHypothesis> = emptyList(),
     ) : EvaluationResult
 
     /**
@@ -20,6 +26,8 @@ sealed interface EvaluationResult {
     data class Provisional(
         val componentResults: List<ComponentResult>,
         val evaluatorRef: EvaluatorRef,
+        /** An uncalibrated evaluator's proposals (14B): recorded as `ai_proposed`, never more than a hypothesis. */
+        val misconceptionHypotheses: List<MisconceptionHypothesis> = emptyList(),
     ) : EvaluationResult
 
     /**

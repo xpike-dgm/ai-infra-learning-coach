@@ -14,6 +14,8 @@ import coach.model.EvidenceOutcome
 import coach.model.EvidenceRow
 import coach.model.ExposureFact
 import coach.model.IndependenceClass
+import coach.model.MisconceptionRow
+import coach.model.MisconceptionTags
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
@@ -332,7 +334,8 @@ class SqlitePersistence private constructor(
                            WHERE x.exposure_kind = 'solution_exposure'
                              AND ((e.resource_logical_id IS NOT NULL AND x.resource_logical_id = e.resource_logical_id)
                                   OR (e.variant_family_id IS NOT NULL AND x.variant_family_id = e.variant_family_id))
-                             AND x.sequence < coalesce((SELECT a.sequence FROM attempt a WHERE a.id = e.source_attempt_id), e.sequence))
+                             AND x.sequence < coalesce((SELECT a.sequence FROM attempt a WHERE a.id = e.source_attempt_id), e.sequence)),
+                   e.misconception_tags
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -369,6 +372,9 @@ class SqlitePersistence private constructor(
                     // `TUTX-v0` §16). Exposure recorded after the attempt — an explanation of a frozen answer —
                     // does not reach back into it (`2D` §5.3); it only keeps the item from being fresh again.
                     solutionExposed = statement.getLong(19) == 1L,
+                    // The catalog labels the row carries (14B). Only core writes this column, in its own strict format;
+                    // text that does not decode names nothing rather than something guessed.
+                    misconceptionTags = MisconceptionTags.decode(if (statement.isNull(20)) null else statement.getText(20)).orEmpty(),
                 )
                 // The row is never edited; its newest disposition is how every engine reads it (13D).
                 rows += EvidenceDispositions.effective(
@@ -386,6 +392,8 @@ class SqlitePersistence private constructor(
             .single()
 
     override fun skill(ref: VersionedRef): SkillRow? = curriculumStore.skill(ref)
+
+    override fun misconceptionsOf(objective: VersionedRef): List<MisconceptionRow> = curriculumStore.misconceptionsOf(objective)
 
     override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = curriculumStore.objectivesOf(skill)
 
@@ -599,6 +607,7 @@ internal class ProjectionKey private constructor(
             "weakness_state" to listOf("objective_logical_id", "objective_version"),
             "topic_state" to listOf("topic_logical_id", "topic_version"),
             "diagnostic_coverage" to listOf("objective_logical_id", "objective_version"),
+            "misconception_state" to listOf("misconception_logical_id", "misconception_version"),
         )
 
         fun keyColumnsOf(table: String): List<String> =

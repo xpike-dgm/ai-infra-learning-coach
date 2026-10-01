@@ -107,6 +107,7 @@ class ProgramChangesTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
         override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = objectives.filter { it.parentSkill == skill }
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
     }
 
     /** Every need has one validated task, so a need opened or closed shows in the selected tasks too. */

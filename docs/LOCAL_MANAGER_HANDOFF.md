@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14B active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14C active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1146,14 +1146,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 13F ✅ VDWX-v0 / D-104
 - **AŞAMA 13 TAMAMLANDI**
 - AŞAMA 14A ✅ TUTX-v0 / D-105
-- AŞAMA 14B 🟡 active-not-executed
-- 14C–20 ⬜
+- AŞAMA 14B ✅ WAAX-v0 / D-106
+- AŞAMA 14C 🟡 active-not-executed
+- 14D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `14A — Tutor davranış sözleşmesi`  
-**Final:** `TUTX-v0 — Tutor Behaviour Contract` / D-105  
-**Canonical:** `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` + `arch/14a_tutor_contract/`
+**Son tamamlanan numaralı adım:** `14B — Yanlış analizi`  
+**Final:** `WAAX-v0 — Wrong-Answer Analysis & Misconception Memory` / D-106  
+**Canonical:** `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md` + `arch/14b_wrong_answer_analysis/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1198,17 +1199,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 13F:** ✅ TAMAMLANDI  
 **AŞAMA 13:** ✅ TAMAMLANDI  
 **AŞAMA 14A:** ✅ TAMAMLANDI  
-**Aktif adım:** `14B — Yanlış analizi`  
+**AŞAMA 14B:** ✅ TAMAMLANDI  
+**Aktif adım:** `14C — Alternatif anlatım`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-14B için:
+14C için:
 
 ```text
-fresh 14B PRE-STEP GitHub refresh
+fresh 14C PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 14B execution
+→ 14C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1784,8 +1786,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 13F ✅ VDWX-v0 / D-104
 AŞAMA 13 ✅ TAMAMLANDI
 14A ✅ TUTX-v0 / D-105
-14B 🟡 active-not-executed
-14C–20 ⬜
+14B ✅ WAAX-v0 / D-106
+14C 🟡 active-not-executed
+14D–20 ⬜
 ```
 
 10D final:
@@ -1982,9 +1985,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `14B — Yanlış analizi`.
+**Sıradaki gerçek numbered work:** `14C — Alternatif anlatım`.
 
-**14B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**14C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2034,8 +2037,8 @@ AŞAMA 13 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `14B — Yanlış analizi`.  
-**14B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `14C — Alternatif anlatım`.  
+**14C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2251,4 +2254,13 @@ Ana invariant: bir tanısal yol mastery'ye giden daha kolay bir yol değildir, a
 
 14A `TUTX-v0 — Tutor Behaviour Contract` ile tamamlandı ve **AŞAMA 14 başladı**. Canonical: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`; contract/QA: `arch/14a_tutor_contract/`; synthesis: `research/14a_tutor_contract_research.md`.
 
-Ana invariant: tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir. Beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`) ve yardım her zaman istenebilir: uymayan istek anına uyan isteğe yönlendirilir. Deneme açıkken cevabın en fazla ne kadar açabileceğini öğrenci seçer, H3/H4 önce ana göre açıklanır; kayıt asla izin verilenden az yardım iddia etmez (gönderilmiş cevaptan sonra `H4`) ve tutor'un kendi seviye beyanı yalnız reddetmek için kullanılır. Cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında bayt bayt doğrulanır. Yanıt şemaya bağlıdır (`tutor_reply/1`), hükme yer yoktur; reddetme, zaman aşımı ya da kullanılamazlık hiçbir şey kaydetmez ve öğrenciyi suçlamaz, yalnız yazılmış yardım yerine geçer. Kaydedilen yardım artık kanıtın bağımsızlığını belirliyor (`2D` §6) ve gösterilen çözüm o andan itibaren exposure, sonraki kanıt bunu okuyor. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi), serbest soru + seviyeyi öğrenci seçer, ilk gerçek sağlayıcı çağrısı 14G'de. Port sayısını dörde sabitleyen on sekiz yaşayan kapı garanti zayıflamadan daraltıldı. Mutation 68/68, 219/219 QA PASS, validator mutation 30/30, 49/49 sweep. T6 çalıştırılmadı. Current active numbered step 14B'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir. Beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`) ve yardım her zaman istenebilir: uymayan istek anına uyan isteğe yönlendirilir. Deneme açıkken cevabın en fazla ne kadar açabileceğini öğrenci seçer, H3/H4 önce ana göre açıklanır; kayıt asla izin verilenden az yardım iddia etmez (gönderilmiş cevaptan sonra `H4`) ve tutor'un kendi seviye beyanı yalnız reddetmek için kullanılır. Cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında bayt bayt doğrulanır. Yanıt şemaya bağlıdır (`tutor_reply/1`), hükme yer yoktur; reddetme, zaman aşımı ya da kullanılamazlık hiçbir şey kaydetmez ve öğrenciyi suçlamaz, yalnız yazılmış yardım yerine geçer. Kaydedilen yardım artık kanıtın bağımsızlığını belirliyor (`2D` §6) ve gösterilen çözüm o andan itibaren exposure, sonraki kanıt bunu okuyor. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi), serbest soru + seviyeyi öğrenci seçer, ilk gerçek sağlayıcı çağrısı 14G'de. Port sayısını dörde sabitleyen on sekiz yaşayan kapı garanti zayıflamadan daraltıldı. Mutation 68/68, 219/219 QA PASS, validator mutation 30/30, 49/49 sweep. T6 çalıştırılmadı. Bu addendum 14A kapanışında yazıldı; ardından 14B D-106 ile tamamlandı (aşağıdaki 14B addendum'u).
+
+
+---
+
+## 14B completion addendum — D-106
+
+14B `WAAX-v0 — Wrong-Answer Analysis & Misconception Memory` ile tamamlandı. Canonical: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`; contract/QA: `arch/14b_wrong_answer_analysis/`; synthesis: `research/14b_wrong_answer_analysis_research.md`.
+
+Ana invariant: yanlış bir cevap bir bilgidir, öğrenci hakkında bir hüküm değil: misconception etiketi yalnız taşıdığı kanıt ve kaynağı kadar güçlüdür — zayıflık motorunun kendi kuralı Objective'i ne kadar taşıyorsa o kadar ilerler, AI'ın önerisi asla hipotezin üstüne çıkmaz, Objective için beyan edilmemiş etiket hiç saklanmaz ve hipotez öğrenciye yalnız soru olarak sorulur. Kapalı katalog curriculum'da (`misconception`, Objective sürümüne pinli, değişmez); etiketler yalnız yanlış giden satıra, kendi Objective'i için ve katalog beyan ediyorsa yazılır (`deterministic` ya da `ai_proposed`). Hafıza (`misconception_state`, `WLRM-v0` ailesi) zayıflık motorunun 12 kuralıyla yeniden oynatılır; geçersiz, itirazlı ya da ön koşulu bozuk iş hiçbir etiketi oynatmaz ve yalnız taze, temiz kanıt kapatır. Analiz saklanan atfı okur; hiçbir şey yazmaz. Kullanıcı kararları: kapalı katalog; hipotez yalnız yanlış cevaptan hemen sonra açık soru olarak. `review.6g.misconception_taxonomy_expansion` kapandı. Mutation 51/51, 154/154 QA PASS, validator mutation 28/28, 50/50 sweep. T6 çalıştırılmadı. Current active numbered step 14C'dir; fresh PRE + kullanıcı açık onayı gerekir.

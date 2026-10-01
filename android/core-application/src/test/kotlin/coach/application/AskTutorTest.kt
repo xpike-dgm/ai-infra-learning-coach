@@ -86,6 +86,7 @@ class AskTutorTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
         override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = emptyList()
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
     }
 
     private class ScriptedTutor(private val answer: (TutorRequest) -> TutorReply) : TutorPort {

@@ -25,6 +25,8 @@ data class CurriculumPackage(
     val prerequisiteEdges: List<PrerequisiteEdge> = emptyList(),
     val resources: List<ResourceVersion> = emptyList(),
     val validationRecords: List<ValidationRecord> = emptyList(),
+    /** The closed misconception catalog (14B, `D-106`): each label pinned to one Objective version. */
+    val misconceptions: List<MisconceptionRow> = emptyList(),
 ) {
     init {
         require(version >= 1) { "a curriculum version is 1 or greater" }
@@ -67,6 +69,10 @@ data class CurriculumPackage(
             }
             validationRecords.filterNot { resolves(RESOURCE, it.resource, resourceKeys) }
                 .forEach { add("validation_record -> resource ${it.resource}") }
+            // A label belongs to one Objective version; a label pointing at no Objective would name nothing.
+            val objectiveKeys = objectives.map { it.ref }.toSet()
+            misconceptions.filterNot { resolves(OBJECTIVE, it.objective, objectiveKeys) }
+                .forEach { add("misconception ${it.ref} -> objective ${it.objective}") }
         }
     }
 
@@ -74,6 +80,7 @@ data class CurriculumPackage(
         const val SKILL = "skill"
         const val TOPIC = "topic"
         const val RESOURCE = "assessment_resource_version"
+        const val OBJECTIVE = "objective"
     }
 }
 

@@ -303,7 +303,9 @@ check("E13F-10_session_on_evidence", "val assessmentSessionId: Long? = null," in
 
 v7 = schema[schema.find("val v7: List<String>"):]
 mig = contract.get("schema_migration", {})
-check("E13F-11_version", "const val VERSION = 7" in schema and "6 to Schema.v7," in migrations and mig.get("from") == 6 and mig.get("to") == 7, str(mig))
+# Narrowed at 14B: a later, owned migration (v8, `D-106`) runs after this one; 13F still owns exactly 6 -> 7.
+_v = re.search(r"const val VERSION = (\d+)", schema)
+check("E13F-11_version", _v is not None and int(_v.group(1)) >= 7 and "6 to Schema.v7," in migrations and mig.get("from") == 6 and mig.get("to") == 7, str(mig))
 check("E13F-11_projection_listed", '"diagnostic_coverage",' in body(schema, "val projectionTables = listOf(")
       and '"diagnostic_coverage" to listOf("objective_logical_id", "objective_version"),' in sql, "projection not registered")
 check("E13F-11_waiver_values", "const val COVERAGE_WAIVERS = \"'none', 'active'\"" in schema and "CHECK (waiver IN ($COVERAGE_WAIVERS))" in v7, "waiver values")

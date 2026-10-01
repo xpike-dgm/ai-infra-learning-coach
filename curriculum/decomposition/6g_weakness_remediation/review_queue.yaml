@@ -21,7 +21,14 @@
   - real learner errors
   - AI tutor/error-analysis design
   resolution_owner_step: 14B
-  status: open
+  status: resolved
+  resolution: 14B (WAAX-v0 / D-106) fixed the runtime contract and a closed, curriculum-authored catalog; an AI may
+    choose only from it and a label outside it is not stored. Which labels to author is content (15); expanding the
+    catalog from real learner errors is calibration (18).
+  resolved_at: '2026-10-01'
+  resolution_refs:
+  - docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md
+  - 14B
 - review_id: review.6g.calibration
   severity: non_blocking
   question: Which supported-vs-confirmed escalation heuristics and remediation burden require pilot calibration?

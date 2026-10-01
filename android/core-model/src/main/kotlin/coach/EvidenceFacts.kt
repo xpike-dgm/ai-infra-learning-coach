@@ -78,6 +78,8 @@ data class EvidenceRow(
      * assessment session, and only evidence gathered inside it can waive a starting lesson (`VDW-v0` §9).
      */
     val assessmentSessionId: Long? = null,
+    /** The catalog misconception labels recorded on this row (14B), each with where it came from. */
+    val misconceptionTags: List<MisconceptionTag> = emptyList(),
 ) {
     init {
         require(quality == null || quality in 0.0..1.0) { "a group result is in [0,1], not a score out of anything" }

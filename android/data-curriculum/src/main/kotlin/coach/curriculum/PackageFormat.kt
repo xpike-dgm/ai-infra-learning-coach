@@ -10,6 +10,7 @@ import coach.model.EvaluatorRequirement
 import coach.model.EvaluatorStatusRequirement
 import coach.model.IndependenceMode
 import coach.model.LifecycleStatus
+import coach.model.MisconceptionRow
 import coach.model.NamedEntity
 import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
@@ -97,6 +98,7 @@ object PackageFormat {
                 prerequisiteEdges = sections.filter { it.name == "prerequisite_edge" }.map { reader.edge(it) },
                 resources = sections.filter { it.name == "resource" }.map { reader.resource(it) },
                 validationRecords = sections.filter { it.name == "validation" }.map { reader.validation(it) },
+                misconceptions = sections.filter { it.name == "misconception" }.map { reader.misconception(it) },
             )
         }.getOrElse { failure ->
             reasons += "package: ${failure.message}"
@@ -117,7 +119,7 @@ object PackageFormat {
 
     private val KNOWN_SECTIONS = setOf(
         "domain", "module", "topic", "skill", "objective", "topic_skill",
-        "prerequisite_edge", "resource", "validation", "item",
+        "prerequisite_edge", "resource", "validation", "item", "misconception",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -142,6 +144,8 @@ object PackageFormat {
             "allowed_tools_policy", "variant_family_id", "dependency_group_id", "content_origin",
         ),
         "validation" to setOf("resource", "validated_at_instant", "status", "validator", "origin"),
+        // 14B (`D-106`): one closed-catalog label, pinned to one Objective version.
+        "misconception" to setOf("logical_id", "version", "objective", "name", "open_question"),
         "item" to setOf(
             "ref", "prompt", "target_objectives", "target_skills", "required_skills", "evidence_type",
             "expected_answer_or_rubric_ref", "evaluator_required_status", "evaluator_deterministic_required",
@@ -289,6 +293,16 @@ object PackageFormat {
                 status = enum(section, "status", LifecycleStatus.entries.toTypedArray()) { it.id },
                 validator = text(section.values, "validator", section.line),
                 origin = enum(section, "origin", ContentOrigin.entries.toTypedArray()) { it.id },
+            )
+        }
+
+        fun misconception(section: Section): MisconceptionRow {
+            check(section)
+            return MisconceptionRow(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                objective = ref(section, "objective"),
+                name = text(section.values, "name", section.line),
+                openQuestion = text(section.values, "open_question", section.line),
             )
         }
 

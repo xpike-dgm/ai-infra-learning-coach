@@ -98,3 +98,7 @@ Confirmed prerequisite weakness yalnız gerçekten dependent hard-prerequisite b
 - `review.6g.content_realization` → 15/20
 
 6H external Research QA WLRM-v0 dahil AŞAMA 6 full-route coverage/prerequisite/current-industry validation için zorunludur. 6G internal QA, 6H'nin yerine geçmez; learner publication hâlâ pending'dir.
+
+---
+
+**14B note (2026-10-01, `D-106`):** `review.6g.misconception_taxonomy_expansion` is resolved — the runtime contract and a closed, curriculum-authored catalog are in code; labels are authored in 15 and expanded from real learner errors in 18.

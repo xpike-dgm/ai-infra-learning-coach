@@ -1181,3 +1181,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14A tamamlandı; 14B aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14B — Yanlış analizi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 14B Yanlış analizi tamamlandı — WAAX-v0 / D-106
+
+- 14A (#45) main'e merge edildi (0b4f276); fresh 14B PRE yapıldı ve beş kanonik kaynak `14A ✅ / 14B active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin") ve iki ürün sorusunu önerilen seçeneklerle cevapladı.
+- **Kullanıcı kararları:** kapalı, curriculum'da yazılan misconception kataloğu (beyan edilmemiş etiket saklanmaz); hipotez yalnız yanlış cevaptan hemen sonra açık soru olarak.
+- Sözleşme koda döküldü: yanlış bir cevap bir bilgidir, öğrenci hakkında bir hüküm değil: misconception etiketi yalnız taşıdığı kanıt ve kaynağı kadar güçlüdür — zayıflık motorunun kendi kuralı Objective'i ne kadar taşıyorsa o kadar ilerler, AI'ın önerisi asla hipotezin üstüne çıkmaz, Objective için beyan edilmemiş etiket hiç saklanmaz ve hipotez öğrenciye yalnız soru olarak sorulur.
+- **Bulgu:** `misconception_tags` kolonu hiç yazılmıyordu; `EvaluationResult` `AIAX-v0`'ın `misconception_hypotheses`'ini düşürmüştü; hafıza ve katalog yoktu.
+- Şema v8 (`misconception` curriculum tablosu, `misconception_state` projeksiyonu), port inceltmesi `misconceptionsOf`, yeni aile yok; `review.6g.misconception_taxonomy_expansion` kapandı.
+- Mutation 51/51. Altı run PASS, 864 JVM testi. Validator 154/154, kendi mutation testi 28/28, sweep 50/50.
+- **T6 çalıştırılmadı**; uygulama analizi henüz göstermiyor (16D).
+- D-050 POST living-memory accepted state'i `14B tamamlandı; 14C aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14C — Alternatif anlatım`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

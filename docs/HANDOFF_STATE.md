@@ -293,14 +293,15 @@ PEM-v0:
 - 13F ✅ VDWX-v0 / D-104
 - **AŞAMA 13 TAMAMLANDI**
 - 14A ✅ TUTX-v0 / D-105
-- 14B 🟡 active-not-executed
-- 14C–20 ⬜
+- 14B ✅ WAAX-v0 / D-106
+- 14C 🟡 active-not-executed
+- 14D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14A — TUTX-v0 / D-105`  
-**Aktif:** `14B — Yanlış analizi`  
-**14B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14B — WAAX-v0 / D-106`  
+**Aktif:** `14C — Alternatif anlatım`  
+**14C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1207,3 +1208,25 @@ TUTX-v0:
 ## 64. 14B handoff
 
 14B — Yanlış analizi. `TUTX-v0` tutor'un nasıl davrandığını kilitledi (istekler, seviye tavanı, cihazdan çıkan mesaj, yanıt şeması, yanıtsızlık, yardımın kanıt anlamı); `WLRX-v0` atıf kuralları ve misconception hipotez sınırı kodda. Açık loop'lar: misconception hafızası (14B), alternatif anlatım (14C), kod değerlendirme (14D), AI kodunun anlaşılma kontrolü (14E), açık uçlu değerlendirme (14F), adaptör çağrı noktası ve model güncelliği (14G), yazılmış ipucu basamakları (15), paneli çizmek ve uygulamadan çağırmak (16D), konuşma geçmişi (16B), T6. 14B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 65. D-106 / 14B final özeti
+
+Canonical: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`.
+Contract/QA: `arch/14b_wrong_answer_analysis/`.
+Synthesis: `research/14b_wrong_answer_analysis_research.md`.
+Code: `core-model` `MisconceptionFacts.kt` (+ `EvaluationResult.misconceptionHypotheses`); `core-engines` `MisconceptionEngine.kt`; `core-application` `AnalyzeWrongAnswer.kt`, `RebuildWeakness` (`WeaknessEvents`, `MisconceptionRows`), `RecordEvidence` tags; `core-presentation` `WrongAnswerPresentation.kt`; `data-persistence` schema v8, `misconceptionsOf`; `data-curriculum` `[misconception]` section.
+
+WAAX-v0:
+- a wrong answer is information, not a verdict; a label is never stronger than its evidence and its source,
+- user decisions: a closed, curriculum-authored catalog (undeclared labels are never stored); a hypothesis is shown only as an open question right after the answer,
+- found: `misconception_tags` never written; `EvaluationResult` had dropped `AIAX-v0`'s `misconception_hypotheses`; no memory, no catalog,
+- labels only on rows that went wrong, for their own Objective, if declared; `deterministic` from `Verified`, `ai_proposed` from `Provisional`,
+- memory replayed by the weakness engine's own rule, capped by source; unattributable work and diagnostic baselines move nothing; fresh clean success resolves, time never does,
+- the analysis reads the stored attribution through one shared event builder and writes nothing,
+- schema v8, one port refinement, no new engine family; `review.6g.misconception_taxonomy_expansion` resolved (labels 15, expansion 18),
+- mutation 51/51, independent QA 154/154, validator mutation 28/28, sweep 50/50,
+- T6 was not run.
+
+## 66. 14C handoff
+
+14C — Alternatif anlatım. `TUTX-v0` `explain_differently` isteğini ve yanıt sözleşmesini, `WAAX-v0` misconception hafızasını kurdu. Açık loop'lar: authored etiketler ve deterministik anahtarlar (15), hafızanın item seçiminde kullanımı (15), Progress görünümü (16C), analizi uygulamadan çağırmak (16D), kod değerlendirme (14D), açık uçlu değerlendirme (14F), adaptör (14G), T6. 14C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

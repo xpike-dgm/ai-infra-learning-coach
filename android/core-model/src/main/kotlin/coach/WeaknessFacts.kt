@@ -107,6 +107,8 @@ data class WeaknessEvent(
      * Not knowing something never taught is not a weakness.
      */
     val diagnosticBaseline: Boolean = false,
+    /** The catalog labels this row carries (14B), each with its source. They never change how the row is attributed. */
+    val misconceptionTags: List<MisconceptionTag> = emptyList(),
 ) {
     val failure: Boolean get() = outcome == EvidenceOutcome.NEGATIVE || outcome == EvidenceOutcome.PARTIAL
 

@@ -133,6 +133,7 @@ class DiagnosticsTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
         override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = objectives.filter { it.parentSkill == skill }
+        override fun misconceptionsOf(objective: VersionedRef): List<coach.model.MisconceptionRow> = emptyList()
 
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = items.firstOrNull { it.ref == ref }

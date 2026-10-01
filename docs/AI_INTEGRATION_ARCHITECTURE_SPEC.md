@@ -355,3 +355,7 @@ Next numbered step:
 ---
 
 **14A note (2026-10-01, `D-105`):** the tutor behind its own `TutorPort` follows this contract unchanged — non-answers record nothing, a refusal is never the learner's fault, the reply is schema-constrained (`tutor_reply/1`) and only the current task leaves the device (the message is built in core). The concrete call site, the router and the re-verification of model identifiers (§8.2) are 14G's (user decision). Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.
+
+---
+
+**14B note (2026-10-01, `D-106`):** `EvaluationResult` now carries §5.1's `misconception_hypotheses[]` (`misconceptionHypotheses`). They remain proposals: only catalog labels are stored, and a proposal from an uncalibrated evaluator is recorded as `ai_proposed` and never rises above a hypothesis. Details: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`.

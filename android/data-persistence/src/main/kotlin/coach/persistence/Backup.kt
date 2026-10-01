@@ -140,7 +140,7 @@ object Backup {
             val tables = connection.prepare("SELECT name FROM sqlite_master WHERE type = 'table'").use { s ->
                 buildSet { while (s.step()) add(s.getText(0)) }
             }
-            val expected = Schema.curriculumTables + Schema.truthTables + Schema.projectionTables
+            val expected = Schema.curriculumTables + Schema.curriculumExtensionTables + Schema.truthTables + Schema.projectionTables
             if (!tables.containsAll(expected)) return Refusal.NOT_A_PROFILE_ARCHIVE
             return null
         } finally {
