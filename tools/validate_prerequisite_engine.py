@@ -17,6 +17,27 @@ import re
 import sys
 import yaml
 
+def schema_versions_owned(schema_text: str) -> bool:
+    """Narrowed at 13A: this step added no migration. Any schema version beyond 2 must be declared by the
+    accepted later contract that added it (`schema_migration` in its arch yaml), so an unowned move still fails."""
+    import glob as _glob
+    import yaml as _yaml
+    match = re.search(r"const val VERSION = (\d+)", schema_text)
+    if not match:
+        return False
+    version = int(match.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        try:
+            doc = _yaml.safe_load(open(path, encoding="utf-8"))
+        except Exception:
+            continue
+        migration = doc.get("schema_migration") if isinstance(doc, dict) else None
+        if isinstance(migration, dict) and migration.get("from") is not None and migration.get("to") is not None:
+            owned.add((int(migration["from"]), int(migration["to"])))
+    return all((v - 1, v) in owned for v in range(3, version + 1))
+
+
 ROOT = Path(__file__).resolve().parents[1]
 ANDROID = ROOT / "android"
 
@@ -435,7 +456,7 @@ check("E12B-12_critical_flag_read", "criticalPrerequisite = statement.getLong(5)
       "the critical flag is misread")
 check("E12B-12_adapter_delegates", "override fun skill(ref: VersionedRef): SkillRow? = curriculumStore.skill(ref)" in adapter
       and "curriculumStore.prerequisiteEdgesInto(target)" in adapter, "the adapter does not delegate to the store")
-check("E12B-12_schema_version_unchanged", "const val VERSION = 2" in schema, "the schema version moved")
+check("E12B-12_schema_version_unchanged", schema_versions_owned(schema), "the schema version moved without an owning contract")
 check("E12B-12_no_index_on_edges", "ON skill_prerequisite_edge" not in schema, "an index was added")
 check("E12B-12_no_score_column", not re.search(r"readiness_(score|percent)", schema), "a readiness number was stored")
 

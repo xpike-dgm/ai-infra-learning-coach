@@ -1,9 +1,11 @@
 package coach.ports
 
 import coach.model.AssessmentItem
+import coach.model.AssessmentScope
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
+import coach.model.ExposureFact
 import coach.model.LearningNeed
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.PrerequisiteEdge
@@ -144,6 +146,27 @@ interface PersistencePort {
      * job; a row whose text does not decode is not a pause anyone can resume.
      */
     fun resumeCheckpointRows(): List<StoredTruth>
+
+    /**
+     * The newest assessment session row of one scope, as it was written (13A). A weekly blueprint is
+     * composed once per cycle and a later composition has to know what the last one was; decoding the
+     * blueprint is core's job, not the adapter's.
+     */
+    fun latestAssessmentSession(scope: AssessmentScope): StoredTruth?
+
+    /**
+     * Every exposure the learner has had to these item versions or variant families (13A). A weekly slot
+     * asks for a fresh measurement, and "has this learner seen it, or been shown its solution?" is the
+     * selection-time lookup `DDM-v0` indexes exposure for. Only read; exposure is never removed.
+     */
+    fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact>
+
+    /**
+     * The Skills that received any evidence on or after [studyDay], by the rows' own study day (13A).
+     * `WBA-v0` §8 measures recent progress "since the last cycle"; this answers that without reading
+     * any evidence history into core.
+     */
+    fun skillsEvidencedSince(studyDay: String): List<VersionedRef>
 }
 
 /** A truth row together with the id the store gave it. */
@@ -170,6 +193,13 @@ interface ContentPort {
      * invents a task. An empty list is a truthful answer: nothing authored serves this need yet.
      */
     fun taskCandidates(need: LearningNeed): List<TaskCandidate>
+
+    /**
+     * The authored assessment items that target one pinned Skill (13A). A weekly slot exists before any
+     * item is chosen, so the composer has to ask which items could measure it; an empty list is the
+     * truthful answer when nothing authored does.
+     */
+    fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem>
 }
 
 /**

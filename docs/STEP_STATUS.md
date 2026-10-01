@@ -62,8 +62,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12D — Replan** | ✅ | RPLX-v0 / D-095. Plan düzenlenmez, gerekçeli yeni sürümle değişir; aynı gün olay yoksa yazılmaz; başlanan iş korunur, kalan yeniden çözülür; re-entry dünkü planı oynatmaz; yokluk borç değil; 157/157 QA PASS, mutation 33/33. |
 | **12E — Explanation / reason codes** | ✅ | RSNX-v0 / D-096. Açıklama karar izinin projeksiyonu; izde olmayan gerekçe kurulamaz; süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; Today planı okuyor, iz kendi satırlarını anlatmıyorsa okunamaz; 219/219 QA PASS, mutation 52/52. |
 | **12F — Sanal kullanıcı testleri** | ✅ | VUSX-v0 / D-097. 3H'nin 16 senaryosu gerçek kodla; sanal kullanıcı durumdur, cevap değil; 15 senaryo koşuldu, S06 (VDW-v0) sahibiyle 13'e bağlandı; açıklamada due envanteri tek satır; 148/148 QA PASS, mutation 27/27 (yalnız sanal kullanıcı testleriyle). **AŞAMA 12 kapandı.** |
-| **13A — Haftalık sınav** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **13B–20** | ⬜ Bekliyor | 13A sonrası canonical sırada. |
+| **13A — Haftalık sınav** | ✅ | WBAX-v0 / D-098. Hafta bir kimlik, kota değil; havuz planner'ın ihtiyaçları, Skill tek kez; slot yalnız güvenilir ve taze item'la; slotlar planner'ın adayı, haftanın kendi dakikası yok; ISO hafta, kaçırılan hafta borç değil; puan yok; şema v3; 210/210 QA PASS, mutation 42/42. |
+| **13B — Aylık sınav** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **13C–13F, 14–20** | ⬜ Bekliyor | 13B sonrası canonical sırada; 13F D-099 ile eklendi. |
 
 ## Manager transition — D-055
 
@@ -82,7 +83,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 12F
+## Son tamamlanan numaralı adım — 13A
+
+**Final:** `WBAX-v0 — Weekly Blueprint Assessment Implementation` / D-098.
+**Ana çıktı:** `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13a_weekly_assessment/` + `android/`.
+
+13A sonucu:
+- hafta bir kimliktir, kota ya da son tarih değil; döngü kaydedilmiş çalışma gününün ISO haftası (kullanıcı onayladı), bir kez kurulur ve kaçırılan hafta borç bırakmaz,
+- havuz planner'ın açtığı ihtiyaçlar; bir Skill tek kez, `WBA-v0` §9 sırasıyla; açık remediation, yeni öğrenme ve tanı ölçülmez; roller kota değil,
+- slot yalnız mağazanın güvendiği, kapının izin verdiği, görülmemiş item ile dolar; aile/testlet tekrarlanmaz; süre uydurulmaz,
+- slotlar planner'a mevcut ihtiyaçların adayı olarak gider; haftanın kuyruğu, bandı ve dakikası yok,
+- sonuçta puan yok; boş bırakmak yanlış değil; oturumda eksik görünen ön koşula dayanan iş `contaminated`,
+- şema v3 `assessment_session.blueprint` (CHECK ile), dolu fixture'a karşı; dört port incelmesi, port sayısı dört,
+- beş 12x yaşayan kapı garantisi zayıflamadan daraltıldı,
+- mutation 42/42, independent validator **210/210 PASS**, kendi mutation testi 25/25; 43/43 sweep PASS,
+- **T6 çalıştırılmadı** — uygulamada hafta kurulmuyor (16D), item'lar süre/rol beyan etmiyor (15),
+- `D-099`: `13F — Tanısal atlama (VDW-v0)` eklendi (kullanıcı kararı).
+
+## Önceki numaralı adım — 12F
 
 **Final:** `VUSX-v0 — Virtual User Scenarios` / D-097.
 **Ana çıktı:** `docs/VIRTUAL_USER_TESTS_SPEC.md` + `arch/12f_virtual_user_tests/` + `android/`.
@@ -98,6 +116,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13A Haftalık sınav
+## Aktif adım — 13B Aylık sınav
 
-**13A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**13B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

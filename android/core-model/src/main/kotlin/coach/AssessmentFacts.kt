@@ -11,10 +11,13 @@ package coach.model
  */
 
 /** `ASUX-v0` §4: three scopes, one interior. The scope is displayed context, never a rule set. */
-enum class AssessmentScope(val id: String) {
-    DAILY_MICRO("daily_micro"),
-    WEEKLY_BLUEPRINT("weekly_blueprint"),
-    MONTHLY_CAPABILITY("monthly_capability"),
+enum class AssessmentScope(val id: String, val storedAs: String) {
+    DAILY_MICRO("daily_micro", "daily"),
+    WEEKLY_BLUEPRINT("weekly_blueprint", "weekly"),
+    MONTHLY_CAPABILITY("monthly_capability", "monthly"),
+    ;
+
+    // [storedAs] is the value `assessment_session.scope` holds (10D's CHECK); the interior shows [id].
 }
 
 /** `DMA-v0` §3: why a measurement runs. */
@@ -138,8 +141,20 @@ data class AssessmentItem(
     val dependencyGroupId: String? = null,
     val forbiddenNotYetConcepts: List<String> = emptyList(),
     val deterministicVerification: Boolean = false,
+    /**
+     * `QAB-v0` §8 / §22: the item's expected active cost. 11D did not need it; a weekly slot does,
+     * because a blueprint is fitted into real capacity and an item that says nothing about its duration
+     * cannot be planned against a time budget (13A). `null` is "not declared", never a guessed default.
+     */
+    val expectedActiveMinutes: Int? = null,
+    /**
+     * `QAB-v0` §14: the blueprint roles the item is declared eligible for. The declaration is not a
+     * priority — current state produces the role — but an item nobody declared for a role does not fill it.
+     */
+    val blueprintRoles: Set<BlueprintRole> = emptySet(),
 ) {
     init {
+        require(expectedActiveMinutes == null || expectedActiveMinutes > 0) { "an item takes some time, if it says" }
         require(targetObjectives.isNotEmpty()) { "an item with no target Objective attributes to nothing" }
         require(evidenceType.isNotBlank()) { "an item declares the evidence type it produces" }
         require(expectedAnswerOrRubricRef.isNotBlank()) { "an item carries its answer key or rubric reference" }

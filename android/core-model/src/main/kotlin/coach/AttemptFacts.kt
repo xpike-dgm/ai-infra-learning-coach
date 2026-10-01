@@ -75,6 +75,11 @@ data class AttemptSubmission(
     val artifactContentRef: String,
     val provenance: ProvenanceOrigin,
     val assistance: List<AssistanceEvent> = emptyList(),
+    /**
+     * The assessment session this attempt was made in, when it was (13A). `DDM-v0` gives `attempt` an
+     * `assessment_session_id`; a weekly result is read from the session's own attempts, never guessed.
+     */
+    val assessmentSessionId: Long? = null,
 ) {
     init {
         require(artifactContentRef.isNotBlank()) { "an attempt must reference the artifact it froze" }

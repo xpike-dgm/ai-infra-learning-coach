@@ -16,6 +16,27 @@ import re
 import sys
 import yaml
 
+def schema_versions_owned(schema_text: str) -> bool:
+    """Narrowed at 13A: this step added no migration. Any schema version beyond 2 must be declared by the
+    accepted later contract that added it (`schema_migration` in its arch yaml), so an unowned move still fails."""
+    import glob as _glob
+    import yaml as _yaml
+    match = re.search(r"const val VERSION = (\d+)", schema_text)
+    if not match:
+        return False
+    version = int(match.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        try:
+            doc = _yaml.safe_load(open(path, encoding="utf-8"))
+        except Exception:
+            continue
+        migration = doc.get("schema_migration") if isinstance(doc, dict) else None
+        if isinstance(migration, dict) and migration.get("from") is not None and migration.get("to") is not None:
+            owned.add((int(migration["from"]), int(migration["to"])))
+    return all((v - 1, v) in owned for v in range(3, version + 1))
+
+
 ROOT = Path(__file__).resolve().parents[1]
 ANDROID = ROOT / "android"
 
@@ -403,7 +424,10 @@ build = body(app, "fun build(")
 check("E12C-08_build_body_read", len(build) > 1500, "the build reader returned nothing")
 check("E12C-08_one_transaction", build.count("inTransaction") == 1, "the plan is not written in one transaction")
 watermark_at = build.find("persistence.truthWatermark()")
-check("E12C-08_watermark_first", 0 <= watermark_at < build.find("persistence.publishedSkills()") < build.find("readProjection("),
+# Narrowed at 13A: the state is now read through `PlanningStates.read(`, shared with the weekly composer;
+# the guarantee is unchanged — the watermark is read before any state.
+state_at = max(build.find("readProjection("), build.find("PlanningStates.read("))
+check("E12C-08_watermark_first", 0 <= watermark_at < build.find("persistence.publishedSkills()") < state_at,
       "the watermark is not read before the state")
 check("E12C-08_nothing_published_writes_nothing", "?: return Built.NothingPublished" in build
       and build.find("?: return Built.NothingPublished") < build.find("inTransaction"), "a plan is written with nothing published")
@@ -421,7 +445,7 @@ planned_task_ddl = re.search(r"CREATE TABLE IF NOT EXISTS planned_task \((.*?)\n
 columns = re.findall(r"^\s*(\w+)\s+(?:INTEGER|TEXT)", planned_task_ddl.group(1), re.M) if planned_task_ddl else []
 check("E12C-08_planned_task_columns_unchanged",
       columns == ["id", "plan_version_id", "skill_logical_id", "skill_version", "position"], f"columns={columns}")
-check("E12C-08_schema_version_unchanged", "const val VERSION = 2" in schema, "the schema version moved")
+check("E12C-08_schema_version_unchanged", schema_versions_owned(schema), "the schema version moved without an owning contract")
 
 # ---------------------------------------------------------------- ports and adapters
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)

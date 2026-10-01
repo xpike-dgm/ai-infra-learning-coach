@@ -95,6 +95,7 @@ class DailyMicroAssessmentTest {
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = item?.takeIf { it.ref == ref }
         override fun curriculumPackage(): CurriculumPackage? = curriculum
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
+        override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
     }
 
     private class FakeStore(
@@ -139,6 +140,9 @@ class DailyMicroAssessmentTest {
         override fun publishedSkills(): List<SkillRow> = emptyList()
         override fun latestPlan(): StoredPlan? = null
         override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
+        override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
+        override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
+        override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private fun storeWithItem(

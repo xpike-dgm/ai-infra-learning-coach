@@ -61,6 +61,8 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-086:** APHX-v0 App Health; 10E tamamlandı ve AŞAMA 10 kapandı.
 - **D-087:** TDYX-v0 Today Interior; 11A tamamlandı ve AŞAMA 11 başladı.
 - **D-088:** RNRX-v0 Task Runner; 11B tamamlandı.
+- **D-098:** WBAX-v0 Weekly Blueprint Assessment Implementation; 13A tamamlandı.
+- **D-099:** AŞAMA 13'e `13F — Tanısal atlama (VDW-v0)` eklendi; kullanıcı kararı, yeniden numaralama yok.
 
 ## 4. D-049 / 5A final özeti
 
@@ -278,14 +280,15 @@ PEM-v0:
 - 12E ✅ RSNX-v0 / D-096
 - 12F ✅ VUSX-v0 / D-097
 - **AŞAMA 12 TAMAMLANDI**
-- 13A 🟡 active-not-executed
-- 13B–20 ⬜
+- 13A ✅ WBAX-v0 / D-098
+- 13B 🟡 active-not-executed
+- 13C–13F, 14–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `12F — VUSX-v0 / D-097`  
-**Aktif:** `13A — Haftalık sınav`  
-**13A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13A — WBAX-v0 / D-098`  
+**Aktif:** `13B — Aylık sınav`  
+**13B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1029,3 +1032,26 @@ VUSX-v0:
 ## 50. 13A handoff
 
 13A — Haftalık sınav. `WBA-v0` blueprint kompozisyonu: öğeden önce duruma dayalı plan, rol aileleri kota değil, puan/süre/kategori yüzdesi yok, oturum bölünebilir ve yarım sınav borç değil; 11D'nin tek assessment interior'u hazır. Açık loop'lar: `VDW-v0` tanısal atlaması ve 3H S06 (13), retention/weakness ihtiyaçları ve kodları (13), nihai mikro metin (14), authored içerik (15), planner'ı uygulamadan çağırmak (16D), starvation eşiği (18C), runtime bütçeleri (18E), T6. 13A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 51. D-098 / 13A final özeti
+
+Canonical: `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md`.
+Contract/QA: `arch/13a_weekly_assessment/`.
+Synthesis: `research/13a_weekly_assessment_research.md`.
+Code: `android/core-model/.../WeeklyAssessmentFacts.kt`, `.../WeeklyBlueprintCodec.kt`, `android/core-engines/.../WeeklyBlueprintEngine.kt`, `android/core-application/.../WeeklyAssessment.kt`, `BuildDailyPlan.kt`, `SubmitAttempt.kt`, `android/core-presentation/.../WeeklyAssessmentSession.kt`, `PersistencePort`/`ContentPort` refinements, `data-persistence` schema v3, `data-curriculum` item keys.
+
+WBAX-v0:
+- a week is an identity, not a quota and not a deadline: what is worth measuring comes from state, one Skill is measured once, a slot without a trusted fresh item is not coverage, the week adds no minutes or queue, and a missed week leaves nothing behind,
+- the cycle is the ISO week of the recorded study day — a product default the user confirmed; composed once; nothing written when nothing is worth measuring; two missed weeks cannot stack,
+- the pool is the planner's own needs (plus owner-supplied parallel track and integration); verification, critical prerequisite confidence (from the planner's trace, gate not re-run), recent progress, retention (`retain`), parallel English; new learning, diagnostics and open remediation are not measured; one role per Skill in §9 order; bands are the planner's,
+- items follow `QAB-v0` §31–§33: indexed facets first, a five-item read bound (18E), store trust, a gate that fails closed, no seen item, solved family, repeated family or testlet, no invented duration; every refusal names a rule,
+- ready slots become planner candidates for needs it already opened; `BuildDailyPlan` adds this week's unserved slots; no weekly queue, band or minutes,
+- one interior; tools disclosed as what every item allows; attempts name their session; the result has no score, a skip is not incorrect, contaminated/invalid/provisional/assisted evidence is first class, and changes are only what engines reported; forward-only root-cause contamination,
+- schema v3 completes `assessment_session` with a CHECKed blueprint column, tested against a populated schema-2 database; recomposition appends; four port refinements, port count four,
+- five 12x living gates narrowed without weakening; `D-099` appends `13F — Tanısal atlama (VDW-v0)`,
+- mutation 42/42 (three first-run mutants replaced), independent QA 210/210, validator mutation 25/25, sweep 43/43,
+- T6 was not run; nothing in the app composes a week yet (16D).
+
+## 52. 13B handoff
+
+13B — Aylık sınav. `MCA-v0` aylık kompozisyonu; `WBA-v0` §28'in ortak blueprint/slot/result kontratını kullanır ve 13A'nın composer, codec, planner köprüsü ve interior görünümü başlangıç noktasıdır. Açık loop'lar: geriye dönük contamination (13D), retention ve weakness ihtiyaçları (13C/13D), tanısal atlama (13F), içerik tazeliği (15/18D), haftayı uygulamadan kurmak (16D), T6. 13B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

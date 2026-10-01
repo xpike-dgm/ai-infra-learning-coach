@@ -49,8 +49,14 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 12D Replan: RPLX-v0 / D-095 ile tamamlandı; gerekçeli plan sürümleri, korunan iş, kalan bütçe, re-entry bağlamı ve duraklatılmış işin P2 devamı.
 - [x] 12E Explanation / reason codes: RSNX-v0 / D-096 ile tamamlandı; kapalı katalog, `planner_trace/3` ilgili Skill'ler, izden okunan Today planı ve `planner_explanation` yüzeyi.
 - [x] 12F Sanal kullanıcı testleri: VUSX-v0 / D-097 ile tamamlandı; 15/16 senaryo gerçek kodla, açıklamada due envanteri tek satır. AŞAMA 12 kapandı.
-- [ ] 13A Haftalık sınav **AKTİF**: `WBA-v0` blueprint kompozisyonu.
-- [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → 13; uygulaması ve sahibi yoktu.
+- [x] 13A Haftalık sınav: WBAX-v0 / D-098 ile tamamlandı; blueprint kompozisyonu, planner köprüsü, şema v3.
+- [ ] 13B Aylık sınav **AKTİF**: `MCA-v0` aylık kompozisyonu (13A'nın composer'ı üzerine).
+- [ ] `VDW-v0` tanısal atlaması ve 3H S06 / `PDT-v0` invariant 12 → **13F** (`D-099`, kullanıcı kararı).
+- [ ] Haftalık sonuçta geriye dönük contamination (kökünden önce gönderilen iş) → 13D; `evidence_disposition`'ı mastery motorunun okuması gerekir.
+- [ ] Haftalık döngü başlangıç günü ayarı → 16D; varsayılan ISO hafta (kullanıcı onayladı).
+- [ ] Haftayı uygulamadan kurmak (composition çağrısı) → 16D, planner ile birlikte.
+- [ ] İçerik tazeliği (`QAB-v0` §26) item modelinde yok → 15/18D.
+- [ ] Oturum içinde item başına araç beyanı (bugün kesişim) → 14.
 - [ ] Dönüş gününün tekrarlarla dolmasına karşı koruma (starvation/track balance) eşikleri → 18C; S07 iki biçimde test ediliyor.
 - [ ] Invariant 17'nin runtime (gecikme/bellek) ölçümü → 18E; 12F'de yalnız yapısal.
 - [ ] Deneme→planlı görev bağı `DDM-v0`de yok; replan'da başlanan işi bugün çağıran bildiriyor → 15 (veri modeliyle).
@@ -75,7 +81,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Testlet grup rubric'i (`q_g`) → 14; şimdilik grup satırlarının ortalaması stand-in.
 - [ ] Gün özetine bildirilecek gerçek değişiklikler: 12A karar veriyor, gün özetine bağlayan yol → 15 (recompute zinciriyle).
 - [ ] Günler arası kalıcı öğrenme geçmişi ve `assessment_report` → 16B.
-- [ ] Haftalık/aylık blueprint kompozisyonu (`WBA-v0`, `MCA-v0`) → 13; tek interior hazır, composition değil.
+- [x] Haftalık blueprint kompozisyonu (`WBA-v0`) 13A'da; aylık (`MCA-v0`) → 13B.
 - [ ] 4096 karakterden büyük artifact gövdeleri için gerçek blob store → 14/15.
 - [ ] `assessment_resource_version` değer kümeleri şemada CHECK değil; tek yazma yolunda core'da doğrulanıyor → şema sıkılaştırması LDBX sahipliğinde, 12/13.
 - [ ] Resume'da içerik uyumu, prerequisite ve açık ihtiyacı doğrulayan olgular; `resume_context_ref` ve `continue_learning` yeniden girişi → 12.
@@ -90,7 +96,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Export/restore Profile kontrolleri (dosya seçimi, değiştirme onayı, ret metni, değiştirilen profilin saklanıp saklanmayacağı) → 16D.
 - [ ] Tüm profil kaybını tespit: sıfır uzunluklu veya eksik veritabanı ilk açılıştan ayırt edilemiyor; veritabanı dışında bir işaret gerekiyor → 19B.
 - [ ] Açılış ve bütünlük kontrolü süre bütçeleri → 18E.
-- [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11C'de dolduruldu: `resume_context/1`), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
+- [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13A'da blueprint ile tamamlandı), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11C'de dolduruldu: `resume_context/1`), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
 - [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
 - [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.

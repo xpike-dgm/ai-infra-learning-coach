@@ -97,6 +97,9 @@ class ReplanTest {
                 }.sortedBy { it.position })
         }
         override fun resumeCheckpointRows(): List<StoredTruth> = appended("resume_checkpoint")
+        override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
+        override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
+        override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private class Content(val tasks: Map<String, List<TaskCandidate>>) : ContentPort {
@@ -104,6 +107,7 @@ class ReplanTest {
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = null
         override fun curriculumPackage(): CurriculumPackage? = null
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = tasks[need.needKey].orEmpty()
+        override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
     }
 
     private class Clock(var day: String) : ClockPort {

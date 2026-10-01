@@ -80,6 +80,9 @@ class BuildDailyPlanTest {
         override fun publishedSkills(): List<SkillRow> { calls += "skills"; return skills.sortedBy { it.ref.logicalId } }
         override fun latestPlan(): StoredPlan? = null
         override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
+        override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
+        override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
+        override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private class Content(val tasks: Map<String, List<TaskCandidate>> = emptyMap()) : ContentPort {
@@ -88,6 +91,7 @@ class BuildDailyPlanTest {
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = null
         override fun curriculumPackage(): CurriculumPackage? = null
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> { asked += need; return tasks[need.needKey].orEmpty() }
+        override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
     }
 
     private val clock = object : ClockPort {

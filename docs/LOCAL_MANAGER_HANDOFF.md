@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını ve aktif adımın `13A active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13B active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1138,14 +1138,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 12E ✅ RSNX-v0 / D-096
 - AŞAMA 12F ✅ VUSX-v0 / D-097
 - **AŞAMA 12 TAMAMLANDI**
-- AŞAMA 13A 🟡 active-not-executed
-- 13B–20 ⬜
+- AŞAMA 13A ✅ WBAX-v0 / D-098
+- AŞAMA 13B 🟡 active-not-executed
+- 13C–13F, 14–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `12F — Sanal kullanıcı testleri`  
-**Final:** `VUSX-v0 — Virtual User Scenarios` / D-097  
-**Canonical:** `docs/VIRTUAL_USER_TESTS_SPEC.md` + `arch/12f_virtual_user_tests/`
+**Son tamamlanan numaralı adım:** `13A — Haftalık sınav`  
+**Final:** `WBAX-v0 — Weekly Blueprint Assessment Implementation` / D-098  
+**Canonical:** `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13a_weekly_assessment/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1182,17 +1183,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 12E:** ✅ TAMAMLANDI  
 **AŞAMA 12F:** ✅ TAMAMLANDI  
 **AŞAMA 12:** ✅ TAMAMLANDI  
-**Aktif adım:** `13A — Haftalık sınav`  
+**AŞAMA 13A:** ✅ TAMAMLANDI  
+**Aktif adım:** `13B — Aylık sınav`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-13A için:
+13B için:
 
 ```text
-fresh 13A PRE-STEP GitHub refresh
+fresh 13B PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 13A execution
+→ 13B execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1461,6 +1463,7 @@ Research output automatic decision değildir; manager değerlendirip canonical m
 - 13C Spaced repetition
 - 13D Remediation Engine
 - 13E Program-change report
+- 13F Diagnostic waiver (VDW-v0) — D-099
 
 ## AŞAMA 14 — AI Tutor / intelligent evaluation
 - 14A Tutor behavior contract
@@ -1759,8 +1762,9 @@ AŞAMA 11 ✅ TAMAMLANDI
 12E ✅ RSNX-v0 / D-096
 12F ✅ VUSX-v0 / D-097
 AŞAMA 12 ✅ TAMAMLANDI
-13A 🟡 active-not-executed
-13B–20 ⬜
+13A ✅ WBAX-v0 / D-098
+13B 🟡 active-not-executed
+13C–13F, 14–20 ⬜
 ```
 
 10D final:
@@ -1957,9 +1961,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `13A — Haftalık sınav`.
+**Sıradaki gerçek numbered work:** `13B — Aylık sınav`.
 
-**13A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**13B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2009,8 +2013,8 @@ AŞAMA 12 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `13A — Haftalık sınav`.  
-**13A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `13B — Aylık sınav`.  
+**13B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2164,3 +2168,12 @@ Ana invariant: bir açıklama karar izinin projeksiyonudur: her cümle izin kayd
 12F `VUSX-v0 — Virtual User Scenarios` ile tamamlandı ve **AŞAMA 12 kapandı**. Canonical: `docs/VIRTUAL_USER_TESTS_SPEC.md`; contract/QA: `arch/12f_virtual_user_tests/`; synthesis: `research/12f_virtual_user_tests_research.md`.
 
 Ana invariant: sanal kullanıcı durumdur, cevap değil: 3H'nin sanal kullanıcıları artık gerçek kapıdan, planner'dan, replan'dan, depodan, Today'den ve açıklamadan geçiyor. İhtiyaç durumdan, uygunluk kapıdan, seçim planner'dan, açıklama onun yazdığı izden geliyor; koşulamayan senaryo elle simüle edilmez, sahibiyle adlandırılır. Sanal kullanıcılar `core-engines` test fixture'ı olarak bir kez tanımlandı ve üç suite'te kullanılıyor. 16 senaryodan 15'i koşuldu; S06 (`VDW-v0`) sahibi olmadığı için 13'e bağlandı. Dönen öğrencinin due envanteri açıklamada artık tek satır (12E spec'ine açık not); S07 örnek günü açıklayıcı, kural değişmedi (18C). Mutation 27/27 yalnız sanal kullanıcı testleriyle, 148/148 QA PASS, validator mutation 30/30, 42/42 sweep. T6 çalıştırılmadı. Current active numbered step 13A'dır; fresh PRE + kullanıcı açık onayı gerekir.
+
+
+---
+
+## 13A completion addendum — D-098
+
+13A `WBAX-v0 — Weekly Blueprint Assessment Implementation` ile tamamlandı. Canonical: `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md`; contract/QA: `arch/13a_weekly_assessment/`; synthesis: `research/13a_weekly_assessment_research.md`.
+
+Ana invariant: bir hafta bir kimliktir, kota ya da son tarih değil. Döngü kaydedilmiş çalışma gününün ISO haftası (kullanıcı onayladı); hafta bir kez kurulur, ölçülecek bir şey yoksa hiçbir şey yazılmaz, kaçırılan hafta borç bırakmaz. Havuz planner'ın açtığı ihtiyaçlar, bir Skill tek kez ve §9 sırasıyla; slot yalnız mağazanın güvendiği, kapının izin verdiği ve görülmemiş item ile dolar; slotlar planner'ın mevcut ihtiyaçlarının adayı, haftanın kuyruğu/bandı/dakikası yok. Sonuçta puan yok; oturumda eksik görünen ön koşula dayanan iş `contaminated`. Şema v3 `assessment_session.blueprint`; dört port incelmesi; beş 12x yaşayan kapı daraltıldı. `D-099` ile `13F — Tanısal atlama (VDW-v0)` eklendi. Mutation 42/42, 210/210 QA PASS, validator mutation 25/25, 43/43 sweep. T6 çalıştırılmadı. Current active numbered step 13B'dir; fresh PRE + kullanıcı açık onayı gerekir.
