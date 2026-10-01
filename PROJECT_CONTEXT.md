@@ -226,12 +226,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **13A ✅ Haftalık sınav — WBAX-v0 / D-098**
 - **13B ✅ Aylık sınav — MCAX-v0 / D-100**
 - **13C ✅ Spaced repetition — RVRX-v0 / D-101**
-- **13D 🟡 Remediation Engine — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13E–13F, 14–20 ⬜ (13F D-099 ile eklendi)
+- **13D ✅ Remediation Engine — WLRX-v0 / D-102**
+- **13E 🟡 Program değişiklik raporu — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13F, 14–20 ⬜ (13F D-099 ile eklendi)
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -518,3 +519,13 @@ Retention kanıttan kayıt sırasıyla oynatılır ve mastery motoru her satırd
 V0 sayıları `RVR-v0` §20'nin kendisidir (2/4/7 gün, kritik tavan 3, ×2.0/×1.6, 180/90, 1 gün ayrım), heuristik, kalibrasyon 18C. Planner plan kurmadan önce `RefreshDueRetention` ile vadesi gelenleri indeksli sorguyla yeniler; kuralı değişmedi. Şema v5 `retention_state`'i `RVR-v0` §18'in alanlarıyla tamamlar; `skill_state` iki watermark'ın eskisini taşır. Mutation 47/47, validator 164/164, kendi mutation testi 27/27. **T6 çalıştırılmadı.**
 
 Canonical: `docs/RETENTION_IMPL_SPEC.md` / D-101.
+
+## 12.27 13D Remediation Engine — WLRX-v0 / D-102
+
+Remediation motoru kodda. Ana invariant: **başarısız bir deneme başarısız bir Skill değildir.** Atfedilemeyen deneme öğrencinin değildir, yardım alınmış iş en çok bir hipotezdir, mastery sonrası çelişki hiçbir şey silinmeden doğrulama açar, remediation yalnız mastery motorunun kapıları düştüğünde doğrulanır ve yalnız taze bağımsız kanıt onları yeniden geçirdiğinde kapanır.
+
+Kod yazmadan önce bulunanlar: zayıflık eksenini hiçbir şey yazmıyordu; `weakness_state` tek kolonluydu; `weakness_detected` sahibinin sağladığı ihtiyaçtı ama sağlayan yoktu; dispozisyonlar okunmuyordu; Topic durumu ve yüksek riskli boşluk politikası sahipsiz "13"e bağlıydı (kullanıcı: Topic → 16C, boşluk politikası → 18D).
+
+Her satır `WLRM-v0`'ın 12 atıf kuralıyla öncelik sırasıyla kendi Objective'ine atfedilir. Objective sinyali `none → hypothesis → supported → confirmed → resolved`; açık sinyal kendi kanıtını, çözüm kendi kanıtını adlandırmak zorundadır. Skill ekseni en güçlü açık sinyaldir ve hiçbir yere yayılmaz. Motor `weakness_detected` ihtiyacını planner'a ve composer'lara sağlar; bir endişe tek ihtiyaçtır. Depo her satırı en yeni dispozisyonu uygulanmış olarak okur; `ApplyRetroactiveContamination` yalnız bağımlı slotları düzeltir. `MasteryTimeline` retention ile paylaşılır. Şema v6 `weakness_state`. Mutation 44/44, validator 165/165, kendi mutation testi 28/28. **T6 çalıştırılmadı.**
+
+Canonical: `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` / D-102.

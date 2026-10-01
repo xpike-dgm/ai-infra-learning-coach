@@ -2,6 +2,7 @@ package coach.application
 
 import coach.engines.BlueprintComposer
 import coach.engines.MonthlyBlueprintEngine
+import coach.engines.WeaknessEngine
 import coach.engines.WeeklyBlueprintEngine
 import coach.model.AssessmentBlueprint
 import coach.model.AssessmentItem
@@ -97,9 +98,11 @@ class ComposeAssessmentBlueprint(
         // inside the window.
         val recentSince = previousBlueprint?.studyDay
         val recent = recentSince?.let { persistence.skillsEvidencedSince(it).toSet() }
+        // The weakness owner's `weakness_detected` needs reach the pool like any other owner's (13D).
+        val owners = (ownerNeeds + WeaknessEngine.needs(states)).distinctBy { it.needKey }
         val pool = when (scope) {
-            AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintEngine.targetPool(states, ownerNeeds, recent, holdingBack())
-            else -> WeeklyBlueprintEngine.targetPool(states, ownerNeeds, recent, holdingBack())
+            AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprintEngine.targetPool(states, owners, recent, holdingBack())
+            else -> WeeklyBlueprintEngine.targetPool(states, owners, recent, holdingBack())
         }
         val inputs = gather(pool.entries.map { it.skill })
 

@@ -9,6 +9,7 @@ import coach.model.AssessmentScope
 import coach.model.CurriculumPackage
 import coach.model.DifficultyClass
 import coach.model.EvaluatorStatus
+import coach.model.EvidenceDispositions
 import coach.model.EvidenceOutcome
 import coach.model.EvidenceRow
 import coach.model.ExposureFact
@@ -320,7 +321,11 @@ class SqlitePersistence private constructor(
             SELECT e.id, e.sequence, e.skill_logical_id, e.skill_version, e.evidence_type, e.outcome,
                    e.evaluator_status, e.independence_class, e.contested, e.correctness_or_rubric_result,
                    e.difficulty, e.variant_family_id, e.resource_logical_id, e.resource_version,
-                   e.prerequisite_snapshot, e.occurred_on_study_day
+                   e.prerequisite_snapshot, e.occurred_on_study_day,
+                   (SELECT d.disposition FROM evidence_disposition d WHERE d.evidence_event_id = e.id
+                    ORDER BY d.sequence DESC LIMIT 1),
+                   (SELECT d.reason_code FROM evidence_disposition d WHERE d.evidence_event_id = e.id
+                    ORDER BY d.sequence DESC LIMIT 1)
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -331,7 +336,7 @@ class SqlitePersistence private constructor(
             statement.bindLong(2, objective.version.toLong())
             val rows = mutableListOf<EvidenceRow>()
             while (statement.step()) {
-                rows += EvidenceRow(
+                val recorded = EvidenceRow(
                     id = statement.getLong(0),
                     sequence = statement.getLong(1),
                     objective = objective,
@@ -351,6 +356,12 @@ class SqlitePersistence private constructor(
                     // pipeline recorded none, and the engine treats what it was given.
                     prerequisiteValid = statement.isNull(14) || statement.getText(14) != CONTAMINATED,
                     studyDay = statement.getText(15),
+                )
+                // The row is never edited; its newest disposition is how every engine reads it (13D).
+                rows += EvidenceDispositions.effective(
+                    recorded,
+                    disposition = if (statement.isNull(16)) null else statement.getText(16),
+                    reason = if (statement.isNull(17)) null else statement.getText(17),
                 )
             }
             return rows

@@ -1,9 +1,7 @@
 package coach.application
 
-import coach.engines.MasteryEngine
 import coach.engines.RetentionEngine
 import coach.model.EvidenceRow
-import coach.model.MasteryAxisState
 import coach.model.ObjectiveGateProfile
 import coach.model.RetentionAxis
 import coach.model.RetentionEvent
@@ -48,9 +46,7 @@ class RebuildRetention(
         val profile = RetentionProfile.of(row?.retentionProfile)
         val critical = row?.criticalPrerequisite == true
 
-        val rows = profiles.flatMap { p -> persistence.evidenceFor(p.ref).map { p.ref to it } }
-            .distinctBy { it.second.id }
-            .sortedBy { it.second.sequence }
+        val rows = MasteryTimeline.rowsOf(persistence, profiles)
         require(rows.all { it.second.studyDay != null }) { "an evidence row with no study day cannot be placed in time" }
 
         val snapshot = RetentionEngine.replay(skill, profile, critical, events(skill, profiles, rows))
@@ -64,32 +60,13 @@ class RebuildRetention(
     }
 
     /**
-     * Each row as a retention event, with the mastery decision before and after it. The replay mirrors
-     * [RebuildMastery] exactly: the previous axis feeds the next decision the same way the stored axis
-     * feeds a rebuild, so the timeline is the one a rebuild after every row would have written.
+     * Each row as a retention event, with the mastery decision before and after it from [MasteryTimeline]
+     * — the one a rebuild after every row would have written (shared with weakness since 13D).
      */
     private fun events(skill: VersionedRef, profiles: List<ObjectiveGateProfile>, rows: List<Pair<VersionedRef, EvidenceRow>>): List<RetentionEvent> {
         val byObjective = profiles.associateBy { it.ref }
-        var previous: MasteryAxisState? = null
-        return rows.mapIndexed { index, (objective, row) ->
-            val prefix = rows.take(index + 1)
-            val decisions = profiles.map { profile ->
-                MasteryEngine.decide(
-                    profile = profile,
-                    rows = prefix.filter { it.first == profile.ref }.map { it.second },
-                    previouslyMastered = previous in MASTERED,
-                    unresolvedVerification = previous == MasteryAxisState.CONFIRMATION_VERIFICATION_DUE,
-                )
-            }
-            val decision = MasteryEngine.decideSkill(
-                skill = skill,
-                decisions = decisions,
-                profiles = byObjective,
-                previouslyMastered = previous == MasteryAxisState.CONFIRMED_CURRENT,
-                allRows = prefix.map { it.second },
-            )
-            val before = previous in MASTERED
-            previous = decision.axisState
+        return MasteryTimeline.of(skill, profiles, rows).mapIndexed { index, step ->
+            val row = step.row
             val earlier = rows.take(index).map { it.second }
             RetentionEvent(
                 evidenceId = row.id,
@@ -101,22 +78,17 @@ class RebuildRetention(
                 contested = row.contested,
                 prerequisiteValid = row.prerequisiteValid,
                 solutionExposed = row.solutionExposed,
-                direct = byObjective[objective]?.directEvidenceTypes?.contains(row.evidenceType) == true,
+                direct = byObjective[step.objective]?.directEvidenceTypes?.contains(row.evidenceType) == true,
                 // `RVR-v0` §13: an item or variant family this Skill already met is a near repeat.
                 nearRepeat = earlier.any { other ->
                     (row.resource != null && other.resource == row.resource) ||
                         (row.variantFamilyId != null && other.variantFamilyId == row.variantFamilyId)
                 },
                 resource = row.resource,
-                masteredBefore = before,
-                masteredAfter = decision.axisState in MASTERED,
+                masteredBefore = step.masteredBefore,
+                masteredAfter = step.masteredAfter,
             )
         }
-    }
-
-    private companion object {
-        /** Historical mastery is kept while a contradiction is being verified (`GRE-v0`, `RVR-v0` §9). */
-        val MASTERED = setOf(MasteryAxisState.CONFIRMED_CURRENT, MasteryAxisState.CONFIRMATION_VERIFICATION_DUE)
     }
 }
 

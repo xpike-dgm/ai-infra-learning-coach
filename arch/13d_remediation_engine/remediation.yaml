@@ -1,0 +1,256 @@
+model: WLRX-v0
+stage_step: 13D
+status: accepted_13d
+decision: D-102
+weakness_semantics: WLRM-v0
+dataset: curriculum/decomposition/6g_weakness_remediation
+engines_read: [MSTX-v0, RVRX-v0]
+engines_fed: [PRQX-v0, PLNX-v0, WBAX-v0, MCAX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: weakness_localization_and_remediation_run_against_real_code
+
+scope:
+  weakness_axis_written: true
+  objective_local_attribution: true
+  weakness_needs_supplied: true
+  dispositions_read: true
+  retroactive_contamination: true
+  schema_changed: true
+  migration_added: true
+  interfaces_added: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  gate_rule_changed: false
+  mastery_rule_changed: false
+  topic_state_implemented: false
+  remediation_content_implemented: false
+  misconception_memory_implemented: false
+  app_calls_rebuild: false
+
+weakness_question: What does this evidence really say about which Objective, how sure is it, and when is a weakness truly closed?
+
+primary_invariant: >-
+  A failed attempt is not a failed Skill. An attempt nobody can attribute is not the learner's, help taken is a
+  hypothesis at most, a contradiction after mastery opens verification before anything is erased, a remediation
+  is confirmed only when the mastery engine's gates stop passing, and it is closed only when fresh independent
+  evidence makes them pass again.
+
+lifecycle:
+  source: WLRM-v0 §5
+  signals: [none, hypothesis, supported, confirmed, resolved]
+  open_signal_names_evidence: true
+  resolution_names_evidence: true
+  failure_lowers_signal: false
+
+attribution:
+  source: failure_attribution_rules.yaml
+  outcomes: [not_attributable, content_or_environment_issue, prerequisite_signal, objective_weakness_hypothesis, objective_weakness_supported, verification_due, remediation_required, positive_recovery_evidence]
+  rules: [failure.invalid_or_ambiguous, failure.prerequisite_contamination, failure.unattempted_or_deferred, failure.environment_outside_target, failure.assisted_h1_h4, failure.provisional_or_partial, failure.clean_premastery_h0_direct, failure.first_clean_postmastery_contradiction, failure.fresh_recheck_fail, failure.integrated_global_outcome_guard, failure.review_due_without_negative_evidence, failure.fresh_recovery_success]
+  first_match_by_priority: true
+  never_a_stored_row: [failure.unattempted_or_deferred, failure.environment_outside_target, failure.integrated_global_outcome_guard, failure.review_due_without_negative_evidence]
+  clean: [h0, direct_for_objective, verified, prerequisite_valid, uncontested, no_solution_exposure]
+  clean_but_indirect_failure: hypothesis
+  confirmation: mastery_gates_fail_after_clean_failure
+  assisted_can_confirm: false
+
+closure:
+  source: WLRM-v0 §7
+  requires_fresh_item_and_family: true
+  requires_clean: true
+  hypothesis_closed_by_fresh_clean_success: true
+  supported_closed_by_fresh_clean_success: true
+  confirmed_closed_only_when_gates_pass: true
+  task_completion_closes: false
+  assisted_success_closes: false
+  manual_mastery_override: false
+
+axis:
+  values: [none, hypothesis, supported, remediation_required, resolved]
+  plus_unwritten: not_yet_evaluated
+  confirmed_reads_as: remediation_required
+  derived_from: strongest_open_objective_signal
+  broadcast: false
+
+needs:
+  source: learning_need_mappings.yaml
+  supplied: weakness_detected
+  supplied_for: [hypothesis, supported]
+  severity: {hypothesis: partial_or_uncertain_concern, supported: clean_contradiction_or_verification_due}
+  not_supplied_when: [remediation_required_axis, mastery_confirmation_verification_due, off_route]
+  one_concern_one_need: true
+  receivers: [BuildDailyPlan, ComposeAssessmentBlueprint]
+
+dispositions:
+  read_by: store_evidenceFor
+  newest_decides: true
+  mapping:
+    contested: contested
+    invalidated_prerequisite_contaminated: prerequisite_contaminated
+    invalidated_other: evaluator_invalid
+    superseded: evaluator_invalid
+    reinstated: as_recorded
+  row_edited: false
+  outcome_rewritten: false
+
+retroactive_contamination:
+  closes_open_loop_of: [13A, 13B]
+  touches: slots_whose_item_requires_a_cleanly_failed_skill
+  independent_branches_touched: false
+  disposition: {disposition: invalidated, reason_code: prerequisite_contaminated, decided_by: deterministic_rule}
+  idempotent: true
+
+shared_mastery_timeline:
+  file: android/core-application/src/main/kotlin/coach/application/MasteryTimeline.kt
+  readers: [RebuildRetention, RebuildWeakness]
+  mirrors: RebuildMastery
+
+skill_state:
+  writes: weakness_axis_state
+  carries: [mastery_axis_state, retention_axis_state, prerequisite_axis_state, primary_presentation_state]
+  watermark: min_of_existing_and_weakness
+  policy_version: kept_from_mastery
+
+schema_migration:
+  from: 5
+  to: 6
+  owner: 13D
+  table: weakness_state
+  columns: [skill_logical_id, skill_version, last_attribution_outcome, last_failure_rule, verification_open, signal_evidence_ids, first_seen_on_study_day, last_seen_on_study_day, resolution_evidence_id, as_of_study_day]
+  index: weakness_by_skill
+  triggers: [weakness_state_signal_insert, weakness_state_signal_update]
+  populated_fixture_tested: true
+  earlier_rows_touched: false
+
+port_refinements: []
+port_count: 4
+
+user_decisions:
+  topic_state_machine: {owner: 16C, why: writing two of TSM-v0's six states would misreport every other Topic}
+  high_stakes_gap_policy: {owner: 18D, why: the policy needs calibration evidence; until then a high-stakes pause is not resumed}
+
+living_gates_narrowed:
+  - {check: E13C-08_watermark_first, to: rows read through MasteryTimeline.rowsOf after the watermark}
+  - {check: E13C-08_replay_mirrors, to: the shared MasteryTimeline replay, plus a check that retention reads it}
+  - {check: E13C-10_schema_version_5, to: version 5 or later with every later version owned by its contract}
+  - {test: RetentionStorageTest, to: Schema.VERSION at least 5}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/WeaknessFactsTest.kt, class: coach.model.WeaknessFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/WeaknessEngineTest.kt, class: coach.engines.WeaknessEngineTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/RebuildWeaknessTest.kt, class: coach.application.RebuildWeaknessTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/WeaknessStorageTest.kt, class: coach.persistence.WeaknessStorageTest}
+
+mutation_results:
+  total: 44
+  detected: 44
+  only_weakness_suites_run: true
+  harness_verified_to_run_gradle: true
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - id: D02
+      why: the axis test never paired a hypothesis with a supported weakness, so a precedence swap went unseen
+    - id: D31
+      why: every application row was direct for its Objective, so assuming directness changed nothing
+    - id: D37
+      why: no weakness test held a contradiction after mastery, so a timeline that forgot the previous mastery went unseen
+  tests_strengthened:
+    - test: "a Skill's weakness is the strongest open signal of its Objectives, and confirmed reads as remediation"
+      how: pairs a hypothesis and a supported weakness in both orders
+    - test: "a failure not direct for its Objective is only a hypothesis"
+      how: new — a clean failure of a non-direct evidence type is a hypothesis through the rebuild
+    - test: "one contradiction after mastery keeps it and opens verification, exactly as the mastery engine decides"
+      how: new — replays mastery after every row and checks the shared timeline keeps mastery through the first contradiction
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: D01, mutant: a_confirmed_objective_is_not_remediation_on_the_skill}
+    - {id: D02, mutant: a_hypothesis_outranks_a_supported_weakness}
+    - {id: D03, mutant: a_closing_check_from_the_failing_family_is_fresh}
+    - {id: D04, mutant: a_closing_check_from_the_failing_item_is_fresh}
+    - {id: D05, mutant: assisted_work_is_clean}
+    - {id: D06, mutant: a_contested_disposition_is_ignored}
+    - {id: D07, mutant: a_prerequisite_invalidation_reads_as_an_evaluator_invalidation}
+    - {id: D08, mutant: an_invalidated_evaluation_still_stands}
+    - {id: D09, mutant: a_superseded_row_still_counts}
+    - {id: D10, mutant: a_reinstatement_is_not_honoured}
+    - {id: D11, mutant: a_contested_row_is_attributed}
+    - {id: D12, mutant: a_contaminated_failure_blames_the_target}
+    - {id: D13, mutant: an_assisted_failure_is_supported}
+    - {id: D14, mutant: a_partial_result_is_supported}
+    - {id: D15, mutant: indirect_evidence_supports_a_weakness}
+    - {id: D16, mutant: a_post_mastery_contradiction_is_treated_as_pre_mastery}
+    - {id: D17, mutant: lost_gates_do_not_confirm}
+    - {id: D18, mutant: a_failed_recheck_is_confirmed_while_mastery_holds}
+    - {id: D19, mutant: the_first_contradiction_opens_no_verification}
+    - {id: D20, mutant: a_weaker_failure_lowers_the_signal}
+    - {id: D21, mutant: a_new_signal_keeps_the_old_first_seen_day}
+    - {id: D22, mutant: one_success_closes_a_confirmed_remediation}
+    - {id: D23, mutant: a_success_does_not_close_a_hypothesis}
+    - {id: D24, mutant: assisted_success_closes_a_weakness}
+    - {id: D25, mutant: a_remediation_need_is_also_supplied_as_a_weakness}
+    - {id: D26, mutant: a_verification_is_also_supplied_as_a_weakness}
+    - {id: D27, mutant: an_off_route_skill_gets_a_weakness_need}
+    - {id: D28, mutant: a_hypothesis_is_as_severe_as_a_supported_weakness}
+    - {id: D29, mutant: skill_state_claims_newer_truth}
+    - {id: D30, mutant: the_mastery_axis_is_overwritten}
+    - {id: D31, mutant: directness_is_assumed}
+    - {id: D32, mutant: a_disposition_with_no_reason_is_accepted}
+    - {id: D33, mutant: a_disposition_for_missing_evidence_is_accepted}
+    - {id: D34, mutant: retroactive_contamination_reaches_independent_branches}
+    - {id: D35, mutant: retroactive_contamination_corrects_twice}
+    - {id: D36, mutant: the_correction_is_not_a_prerequisite_contamination}
+    - {id: D37, mutant: the_timeline_forgets_the_previous_mastery}
+    - {id: D38, mutant: the_planner_never_hears_of_a_weakness}
+    - {id: D39, mutant: the_composers_never_hear_of_a_weakness}
+    - {id: D40, mutant: an_update_may_write_any_signal}
+    - {id: D41, mutant: an_insert_may_write_any_signal}
+    - {id: D42, mutant: version_6_is_never_migrated_to}
+    - {id: D43, mutant: the_oldest_disposition_decides}
+    - {id: D44, mutant: the_store_ignores_dispositions}
+
+validator_mutation:
+  total: 28
+  detected: 28
+  negative_control: forbidden fragments (a retention read, a broadcast, a disposition rule in mastery, a confirmed shortcut, a rewritten outcome) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 679
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app rebuilds engines after evidence or calls the planner yet (16D)
+
+open_loops:
+  topic_state_machine: {owner: 16C}
+  high_stakes_gap_policy: {owner: 18D}
+  remediation_content_from_routes: {owner: 15}
+  misconception_memory: {owner: 14B}
+  guidance_fading: {owner: 14}
+  rebuild_and_retroactive_contamination_from_app: {owner: 16D}
+  disposition_reason_in_traces: {owner: 16C}
+  calibration: {owner: 18C}
+
+forbidden_weakness_patterns:
+  - one_failure_fails_skill_topic_or_domain
+  - unattributable_attempt_blames_target
+  - assisted_or_provisional_confirms_remediation
+  - postmastery_contradiction_erases_mastery
+  - confirmation_without_mastery_gates
+  - closure_by_task_completion
+  - closure_by_help_same_item_or_one_success
+  - manual_mastery_override
+  - weakness_broadcast
+  - correction_written_over_row
+  - contaminated_answer_counted_against_target
+  - review_due_as_weakness

@@ -2,6 +2,7 @@ package coach.application
 
 import coach.engines.PlannerEngine
 import coach.engines.ReplanEngine
+import coach.engines.WeaknessEngine
 import coach.model.DailyCapacityInput
 import coach.model.GenerationKind
 import coach.model.PlanTrace
@@ -90,7 +91,8 @@ class BuildDailyPlan(
         // not a pause anyone can resume.
         val pauses = persistence.resumeCheckpointRows()
             .mapNotNull { row -> row.record.payload["context"]?.let(ResumeContextCodec::decode) }
-        val paused = ReplanEngine.withPausedWork(PlannerEngine.needsFromSkillStates(states), pauses)
+        // `weakness_detected` is supplied by its owner (12C's list; `WLRM-v0` §8, 13D), from the axis it wrote.
+        val paused = ReplanEngine.withPausedWork(PlannerEngine.needsFromSkillStates(states) + WeaknessEngine.needs(states), pauses)
         val kept = if (kind == GenerationKind.REPLAN) {
             previousTrace!!.selected.filter { it.position in replan!!.keptPositions }
         } else {

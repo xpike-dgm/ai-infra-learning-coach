@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 5
+    const val VERSION = 6
 
     // ---------------------------------------------------------------- table inventories
 
@@ -617,6 +617,44 @@ object Schema {
             CREATE TRIGGER IF NOT EXISTS retention_state_axis_update BEFORE UPDATE ON retention_state
             WHEN NEW.state NOT IN ($RETENTION_STATES)
             BEGIN SELECT RAISE(ABORT, 'retention_state holds only the RVR-v0 retention axis'); END
+            """,
+        )
+
+    /** `WLRM-v0` §5's weakness signal lifecycle, the only values `weakness_state.state` may hold. */
+    const val WEAKNESS_SIGNALS = "'none', 'hypothesis', 'supported', 'confirmed', 'resolved'"
+
+    /**
+     * Version 6 completes `weakness_state` (13D). `DDM-v0` names the projection "per Objective" and 10D gave it
+     * only `state`; `WLRM-v0` §5 and its misconception contract name what a localized signal needs — its Skill,
+     * how the last row was attributed and by which rule, whether verification is open, the evidence that
+     * showed it, when it was first and last seen, and the evidence that resolved it.
+     *
+     * A signal outside `WLRM-v0`'s lifecycle is refused by SQLite itself, on insert (which also stops an
+     * upsert) and on any update. `weakness_by_skill` reads a Skill's Objectives together. Rows written before
+     * this version gain empty columns; nothing had written one.
+     */
+    val v6: List<String>
+        get() = listOf(
+            "ALTER TABLE weakness_state ADD COLUMN skill_logical_id TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN skill_version INTEGER",
+            "ALTER TABLE weakness_state ADD COLUMN last_attribution_outcome TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN last_failure_rule TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN verification_open INTEGER",
+            "ALTER TABLE weakness_state ADD COLUMN signal_evidence_ids TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN first_seen_on_study_day TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN last_seen_on_study_day TEXT",
+            "ALTER TABLE weakness_state ADD COLUMN resolution_evidence_id INTEGER",
+            "ALTER TABLE weakness_state ADD COLUMN as_of_study_day TEXT",
+            "CREATE INDEX IF NOT EXISTS weakness_by_skill ON weakness_state (skill_logical_id, skill_version)",
+            """
+            CREATE TRIGGER IF NOT EXISTS weakness_state_signal_insert BEFORE INSERT ON weakness_state
+            WHEN NEW.state NOT IN ($WEAKNESS_SIGNALS)
+            BEGIN SELECT RAISE(ABORT, 'weakness_state holds only the WLRM-v0 signal lifecycle'); END
+            """,
+            """
+            CREATE TRIGGER IF NOT EXISTS weakness_state_signal_update BEFORE UPDATE ON weakness_state
+            WHEN NEW.state NOT IN ($WEAKNESS_SIGNALS)
+            BEGIN SELECT RAISE(ABORT, 'weakness_state holds only the WLRM-v0 signal lifecycle'); END
             """,
         )
 }

@@ -65,8 +65,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **13A — Haftalık sınav** | ✅ | WBAX-v0 / D-098. Hafta bir kimlik, kota değil; havuz planner'ın ihtiyaçları, Skill tek kez; slot yalnız güvenilir ve taze item'la; slotlar planner'ın adayı, haftanın kendi dakikası yok; ISO hafta, kaçırılan hafta borç değil; puan yok; şema v3; 210/210 QA PASS, mutation 42/42. |
 | **13B — Aylık sınav** | ✅ | MCAX-v0 / D-100. Ay daha geniş pencere, daha ağır sınav değil; 13A kontratı ortak kontrata genelleştirildi, haftalık değer değişmedi; kritik Skill yalnız nedenle yeniden doğrulanır; aylık etiket ağırlık eklemez; takvim ayı, önceki oturum borç değil; transfer/kontrol noktası üreticisi uydurulmadı (15); şema v4; 259/259 QA PASS, mutation 48/48. |
 | **13C — Spaced repetition** | ✅ | RVRX-v0 / D-101. Zaman negatif kanıt değil; retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar, silmez; taze yeniden kontrol aralığı büyütmez; `review_due` yalnız günden; planner plan öncesi vadeyi yeniler; V0 sayıları RVR-v0 §20 (18C); şema v5; 164/164 QA PASS, mutation 47/47. |
-| **13D — Remediation Engine** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **13E–13F, 14–20** | ⬜ Bekliyor | 13D sonrası canonical sırada; 13F D-099 ile eklendi. |
+| **13D — Remediation Engine** | ✅ | WLRX-v0 / D-102. Başarısız deneme başarısız Skill değil; WLRM-v0'ın 12 atıf kuralı Objective düzeyinde; yardım/provisional en çok hipotez; doğrulama ve kapanış mastery kapılarını izler; biten görev kapatmaz; motor `weakness_detected` sağlar; dispozisyonlar okunur; geriye dönük contamination; Topic → 16C, gap policy → 18D; şema v6; 165/165 QA PASS, mutation 44/44. |
+| **13E — Program değişiklik raporu** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **13F, 14–20** | ⬜ Bekliyor | 13E sonrası canonical sırada; 13F D-099 ile eklendi. |
 
 ## Manager transition — D-055
 
@@ -85,7 +86,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13C
+## Son tamamlanan numaralı adım — 13D
+
+**Final:** `WLRX-v0 — Weakness Localization & Remediation Implementation` / D-102.
+**Ana çıktı:** `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` + `arch/13d_remediation_engine/` + `android/`.
+
+13D sonucu:
+- başarısız bir deneme başarısız bir Skill değildir; her satır `WLRM-v0`'ın 12 atıf kuralıyla kendi Objective'ine atfedilir,
+- atfedilemeyen ya da ön koşulu bozuk deneme hedefi suçlamaz; yardım, provisional, kısmi ya da dolaylı hata en çok hipotezdir,
+- mastery sonrası ilk temiz çelişki doğrulama açar ve silmez; remediation yalnız mastery kapıları düştüğünde doğrulanır,
+- kapanış taze ve temiz kanıt ister; doğrulanmış remediation yalnız kapılar yeniden geçince kapanır; görev, yardım, aynı item ve tek başarı kapatmaz,
+- Skill ekseni türetilir, yayılım yok; motor `weakness_detected` sağlar, bir endişe tek ihtiyaç,
+- dispozisyonlar depoda en yenisiyle okunur, satır düzenlenmez; geriye dönük contamination yalnız bağımlı slotlar,
+- `MasteryTimeline` retention ile paylaşılan tek replay,
+- şema v6 `weakness_state` (dolu v5 fixture'a karşı); port sayısı dört; 13C kapıları garanti zayıflamadan daraltıldı,
+- kullanıcı kararları: Topic durumu → 16C, yüksek riskli boşluk politikası → 18D,
+- mutation 44/44 (ilk turda D02, D31 ve D37 kaçtı (eksen önceliği, varsayılan doğrudanlık, zaman çizgisinin önceki mastery'si — her biri sınanmayan bir durum); testler eklendi/güçlendirildi ve bütün set tek değişmemiş ağaçtan yeniden koşuldu.), independent validator **165/165 PASS**, kendi mutation testi 28/28; 46/46 sweep PASS,
+- **T6 çalıştırılmadı** — uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+
+## Önceki numaralı adım — 13C
 
 **Final:** `RVRX-v0 — Retention Verification & Risk Implementation` / D-101.
 **Ana çıktı:** `docs/RETENTION_IMPL_SPEC.md` + `arch/13c_spaced_repetition/` + `android/`.
@@ -101,7 +120,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 47/47 (R25/R26/R45 ilk turda kaçtı — test sıralama hatası ve doğrudan UPDATE eksikliği düzeltildi, set yeniden koşuldu), independent validator **164/164 PASS**, kendi mutation testi 27/27; 45/45 sweep PASS,
 - **T6 çalıştırılmadı** — uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
 
-## Önceki numaralı adım — 13B
+## AŞAMA 13 önceki adım — 13B
 
 **Final:** `MCAX-v0 — Monthly Capability Assessment Implementation` / D-100.
 **Ana çıktı:** `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13b_monthly_assessment/` + `android/`.
@@ -151,6 +170,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13D Remediation Engine
+## Aktif adım — 13E Program değişiklik raporu
 
-**13D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**13E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
