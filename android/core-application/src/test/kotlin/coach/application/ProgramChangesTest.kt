@@ -120,6 +120,7 @@ class ProgramChangesTest {
         override fun assessmentItemsFor(skill: VersionedRef) = emptyList<coach.model.AssessmentItem>()
         override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
+        override fun comprehensionChecksFor(item: VersionedRef): List<coach.model.ComprehensionCheck> = emptyList()
     }
 
     private fun world(): Triple<Store, Clock, RecomputeSkillState> {

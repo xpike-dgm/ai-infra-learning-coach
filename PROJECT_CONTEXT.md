@@ -234,12 +234,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14B ✅ Yanlış analizi — WAAX-v0 / D-106**
 - **14C ✅ Alternatif anlatım — ALEX-v0 / D-107**
 - **14D ✅ Kod değerlendirme — CDEX-v0 / D-108**
-- **14E 🟡 AI-generated code comprehension check — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 14F–20 ⬜
+- **14E ✅ AI-generated code comprehension check — ACCX-v0 / D-109**
+- **14F 🟡 Açık uçlu cevap değerlendirme — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 14G–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -596,3 +597,13 @@ Kod yazmadan önce bulunanlar: hiçbir üretim kodu bir değerlendirme üretmiyo
 Kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür: bir kod görevi yalnız dersin kendi testleriyle doğrulanır — öğrencinin bilgisayarında koşulur ve raporu katı okunur — ve bir test yalnız yazıldığı Objective için konuşur; çalışmayan test hiçbir şey ölçmemiştir ve öğrenciye karşı sayılmaz; test yoksa AI kodu yalnız görev provisional sonuca izin veriyorsa ve en çok provisional olarak değerlendirir, doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; testlerin geçmesi kodun istenen şekilde çalıştığını gösterir, öğrencinin nedenini açıklayabildiğini değil. Testler içeriktir (`[code_test_suite]`/`[code_test]`, item sürümüne pinli, `ContentPort.codeTestsFor`); PC tarafı koşucu `tools/code_test_runner.py` (yalnız standart kütüphane, kabuksuz, süre sınırı yazılır) `code_test_report/1` üretir. Başarısız derleme yalnız yazılmış derleme Objective'ini suçlar; zaman aşımı başarısızlıktır; ortam hatası, başka item ya da suite sürümü için rapor hiçbir şey ölçmez; eksik ya da bozuk rapor asla AI'a düşmez; değerlendirici portu asla `verified` döndüremez. Kullanıcı kararları: testler PC'de koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional. Mutation 49/49, validator 122/122, kendi mutation testi 30/30. **T6 ve C derlemesi çalıştırılmadı.**
 
 Canonical: `docs/CODE_EVALUATION_IMPL_SPEC.md` / D-108.
+
+## 12.34 14E AI yazımı kod anlama kontrolü — ACCX-v0 / D-109
+
+AI yazımı kod anlama kontrolü kodda. Ana invariant: **başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil.**
+
+Kod yazmadan önce bulunanlar: öğrencinin 'AI yazdı' beyanı `practice_only` oluyordu ve hiçbir yeniden kontrol açmıyordu (`2D` §8 senaryo A); SC-012'nin istediği anlama kontrolü yoktu; bir anlama cevabını üretim kanıtından ayıran bir şey yoktu. Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar.
+
+Başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar. Dört kapalı tür `2D` §9'dan (`line_purpose`, `removal_effect`, `state_effect`, `find_the_bug`); yazılı kontroller içeriktir (`[comprehension_check]`, item sürümüne pinli, `ContentPort.comprehensionChecksFor`); tutor'a altıncı istek `check_understanding` (yalnız cevap donduktan sonra, `tutor_instructions/3`, `tutor_reply/2`); `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik kalır). Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar. Mutation 43/43, validator 112/112, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
+
+Canonical: `docs/CODE_COMPREHENSION_IMPL_SPEC.md` / D-109.

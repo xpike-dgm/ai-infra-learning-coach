@@ -72,8 +72,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **14B — Yanlış analizi** | ✅ | WAAX-v0 / D-106. Yanlış cevap bir bilgi, hüküm değil; kapalı misconception kataloğu (kullanıcı kararı); etiket yalnız yanlış satıra ve beyanlıysa; hafıza zayıflık motorunun kuralıyla, AI hipotezin üstüne çıkmaz; hipotez yalnız soru (kullanıcı kararı); şema v8; 154/154 QA PASS, mutation 51/51. |
 | **14C — Alternatif anlatım** | ✅ | ALEX-v0 / D-107. Anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez; biçimi öğrenci seçer, önce yazılmış yoksa AI (kullanıcı kararları); AI alternatifi dersin anlatımına dayanır ve doğrulanmamış etiketlenir; `tutor_instructions/2`; şema değişmedi; 123/123 QA PASS, mutation 42/42. |
 | **14D — Kod değerlendirme** | ✅ | CDEX-v0 / D-108. Kod çalıştırılarak değerlendirilir, yoksa yalnız görüştür; testler PC'de koşar ve rapor içe aktarılır, test yoksa AI yalnız provisional (kullanıcı kararları); test yalnız kendi Objective'i için konuşur, çalışmayan test hiçbir şey ölçmez; şema değişmedi; 122/122 QA PASS, mutation 49/49. |
-| **14E — AI-generated code comprehension check** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **14F–20** | ⬜ Bekliyor | 14E sonrası canonical sırada. |
+| **14E — AI-generated code comprehension check** | ✅ | ACCX-v0 / D-109. Başkasının yazdığı kodun çalışması öğrenci hakkında bir şey kanıtlamaz; açıklamak anlamayı kanıtlar, üretimi değil; önce yazılmış kontrol, yoksa tutor pratiği; hemen sonra, isteğe bağlı; AI yazımı kod yeniden kontrol açar (kullanıcı kararları); şema değişmedi; 112/112 QA PASS, mutation 43/43. |
+| **14F — Açık uçlu cevap değerlendirme** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **14G–20** | ⬜ Bekliyor | 14F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -92,7 +93,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 14D
+## Son tamamlanan numaralı adım — 14E
+
+**Final:** `ACCX-v0 — AI-Generated Code Comprehension` / D-109.
+**Ana çıktı:** `docs/CODE_COMPREHENSION_IMPL_SPEC.md` + `arch/14e_code_comprehension/` + `android/`.
+
+14E sonucu:
+- başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; açıklamak anlamayı kanıtlar, üretimi değil,
+- kullanıcı kararları: önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil); hemen sonra ve isteğe bağlı; AI yazımı kod bağımsız yeniden kontrol açar,
+- **bulgu:** `generated_or_copied` `practice_only` oluyordu ve hiçbir yeniden kontrol açmıyordu (`2D` §8 senaryo A'ya aykırı); hiçbir anlama kontrolü yoktu (SC-012); bir anlama cevabını üretim kanıtından ayıran bir şey yoktu,
+- yalnız öğrenci kodu tek başına yazmadıysa sunulur; şüpheyle ya da kodun görünüşünden çıkarım yok,
+- yazılı kontrol cevap anahtarıyla, kendi Objective'i için, item'ın kendi kanıt türü asla değil; geçmek hiçbir şey yazmaz,
+- tutor'a altıncı istek `check_understanding`; `tutor_instructions/3`, `tutor_reply/2`; 14A ve 14C kapıları beyanlı daraltıldı,
+- şema değişmedi; port inceltmesi `comprehensionChecksFor`,
+- mutation 43/43, independent validator **112/112 PASS**, kendi mutation testi 30/30; 53/53 sweep PASS,
+- **T6 çalıştırılmadı**.
+
+## Önceki numaralı adım — 14D
 
 **Final:** `CDEX-v0 — Code Evaluation` / D-108.
 **Ana çıktı:** `docs/CODE_EVALUATION_IMPL_SPEC.md` + `arch/14d_code_evaluation/` + `android/` + `tools/code_test_runner.py`.
@@ -108,7 +125,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 49/49 (D10, D11 başta yaşadı, testler güçlendirildi), independent validator **122/122 PASS**, kendi mutation testi 30/30; 52/52 sweep PASS,
 - **T6 ve C derlemesi çalıştırılmadı**.
 
-## Önceki numaralı adım — 14C
+## 14C adımı
 
 **Final:** `ALEX-v0 — Alternative Explanation` / D-107.
 **Ana çıktı:** `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md` + `arch/14c_alternative_explanation/` + `android/`.
@@ -283,6 +300,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 14E AI-generated code comprehension check
+## Aktif adım — 14F Açık uçlu cevap değerlendirme
 
-**14E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**14F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

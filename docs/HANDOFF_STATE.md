@@ -296,14 +296,15 @@ PEM-v0:
 - 14B ✅ WAAX-v0 / D-106
 - 14C ✅ ALEX-v0 / D-107
 - 14D ✅ CDEX-v0 / D-108
-- 14E 🟡 active-not-executed
-- 14F–20 ⬜
+- 14E ✅ ACCX-v0 / D-109
+- 14F 🟡 active-not-executed
+- 14G–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14D — CDEX-v0 / D-108`  
-**Aktif:** `14E — AI-generated code comprehension check`  
-**14E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14E — ACCX-v0 / D-109`  
+**Aktif:** `14F — Açık uçlu cevap değerlendirme`  
+**14F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1274,3 +1275,25 @@ CDEX-v0:
 ## 70. 14E handoff
 
 14E — AI-generated code comprehension check. `CDEX-v0` kodun ne yaptığını testlerle ölçüyor; testlerin geçmesi anlamak değildir. `2D` provenance (`generated_or_copied`), `TUTX-v0` tutor sözleşmesi ve `ALEX-v0` kodda. Açık loop'lar: gerçek görevlerin testleri (15), raporu artifact olarak saklamak ve uygulamadan çağırmak (16D), kod için adaptör istemi (14G), açık uçlu değerlendirme (14F), AI kod değerlendiricisinin kalibrasyonu (18), T6, C derlemesi. 14E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 71. D-109 / 14E final özeti
+
+Canonical: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`.
+Contract/QA: `arch/14e_code_comprehension/`.
+Synthesis: `research/14e_code_comprehension_research.md`.
+Code: `core-model` `ComprehensionFacts.kt`, `AssistanceInterpretation` (generated → recheck), `TutorFacts`/`TutorInstructions` (`check_understanding`); `core-application` `CheckUnderstanding.kt`; `core-presentation` `ComprehensionPresentation.kt`; `core-ports` `ContentPort.comprehensionChecksFor`; `data-curriculum` `[comprehension_check]` section.
+
+ACCX-v0:
+- running code someone else wrote proves nothing about the learner; explaining it proves understanding, not production,
+- user decisions: written checks first, otherwise the tutor's practice (never evidence); right after the submission and skippable; AI-written code opens an independent recheck,
+- found: `generated_or_copied` was `practice_only` and opened no recheck (`2D` §8 scenario A); no comprehension check existed (SC-012); nothing kept a comprehension answer apart from production,
+- offered only when the learner did not write the code alone, by their account or by help shown before the answer froze; never on suspicion,
+- a written check is judged by its key, speaks for one targeted Objective, and its evidence type is never the item's own; a skip writes nothing,
+- the tutor's sixth intent `check_understanding` (only after the answer froze); `tutor_instructions/3`, `tutor_reply/2`; 14A and 14C gates narrowed for exactly this extension,
+- schema unchanged; one content-port refinement,
+- mutation 43/43, independent QA 112/112, validator mutation 30/30, sweep 53/53,
+- T6 was not run.
+
+## 72. 14F handoff
+
+14F — Açık uçlu cevap değerlendirme. `AIAX-v0` değerlendirici sözleşmesi ve yanıtsızlık taksonomisi, `CDEX-v0` (AI'dan `verified` geçersizdir, provisional rota), `ACCX-v0` (serbest metin anlama cevapları 14F'ye bırakıldı) ve `TUTX-v0` kodda. Açık loop'lar: yazılı kontroller (15), kontrolü çizmek ve uygulamadan çağırmak (16D), adaptör istemi (14G), tutor sorularına güven kalibrasyonu (18), T6. 14F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

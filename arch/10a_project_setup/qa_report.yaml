@@ -6,7 +6,7 @@ checks_total: 127
 checks_passed: 127
 checks_failed: 0
 modules_verified: 10
-kotlin_sources: 213
+kotlin_sources: 219
 checks:
 - check: E10A-01_model
   result: PASS
@@ -216,7 +216,7 @@ checks:
   details: AMTS-v0 must actually have deferred this list to 10A
 - check: E10A-09_sources_exist
   result: PASS
-  details: kotlin files=213
+  details: kotlin files=219
 - check: E10A-09_no_dynamic_colour
   result: PASS
   details: dynamic colour used in []

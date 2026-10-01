@@ -232,7 +232,8 @@ checks:
   result: PASS
   details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'',
     ''canonicalExplanation'', ''intent'', ''purpose'', ''timing'', ''ceiling'', ''scope'',
-    ''recordedLevel'', ''instructionMode'', ''context'', ''learnerQuestion'', ''form'']'
+    ''recordedLevel'', ''instructionMode'', ''context'', ''learnerQuestion'', ''form'',
+    ''checkQuestion'', ''learnerAnswer'']'
 - check: E14C-06_form_only_on_explanation
   result: PASS
   details: ''

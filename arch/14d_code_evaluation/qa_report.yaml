@@ -245,7 +245,7 @@ checks:
   details: ''
 - check: E14D-06_runner_stdlib
   result: PASS
-  details: '{''pathlib'', ''subprocess'', ''sys'', ''json'', ''__future__''}'
+  details: '[''__future__'', ''json'', ''pathlib'', ''subprocess'', ''sys'']'
 - check: E14D-06_runner_timeout_authored
   result: PASS
   details: ''

@@ -201,7 +201,7 @@ check("E14D-05_pipeline_pending_writes_nothing", "is EvaluationResult.Evaluation
 
 # ---------------------------------------------------------------- the runner, executed
 check("E14D-06_runner_no_shell", "shell=True" not in runner and "os.system" not in runner, "")
-check("E14D-06_runner_stdlib", set(re.findall(r"^(?:from|import) (\w+)", runner, re.M)) <= {"__future__", "json", "subprocess", "sys", "pathlib"}, str(set(re.findall(r"^(?:from|import) (\w+)", runner, re.M))))
+check("E14D-06_runner_stdlib", set(re.findall(r"^(?:from|import) (\w+)", runner, re.M)) <= {"__future__", "json", "subprocess", "sys", "pathlib"}, str(sorted(set(re.findall(r"^(?:from|import) (\w+)", runner, re.M)))))
 check("E14D-06_runner_timeout_authored", "'timeout_seconds' must be authored and positive" in runner, "")
 check("E14D-06_runner_bytes", "sys.stdout.buffer.write(" in runner, "")
 check("E14D-06_runner_env_error", 'return "environment_error"' in runner and 'return "error"' in runner and 'return "timed_out"' in runner, "")

@@ -3,6 +3,7 @@ package coach.ports
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
 import coach.model.CodeTestSuite
+import coach.model.ComprehensionCheck
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
@@ -248,6 +249,12 @@ interface ContentPort {
      * side answers; `null` is the truthful "no tests written". A refinement of this port, not a new one.
      */
     fun codeTestsFor(item: VersionedRef): CodeTestSuite?
+
+    /**
+     * The written comprehension checks that follow one pinned item version (14E, `ACCX-v0`), in a stable order. Content
+     * (15); an empty list is the truthful "nothing written", and then only the tutor's practice is offered.
+     */
+    fun comprehensionChecksFor(item: VersionedRef): List<ComprehensionCheck>
 }
 
 /**

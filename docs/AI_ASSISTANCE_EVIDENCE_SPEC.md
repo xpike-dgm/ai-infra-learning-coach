@@ -544,3 +544,7 @@ Aşağıdakiler sonraki adımlara bırakılır:
 - false-positive / false-negative dengesi
 
 araştırılacak, ardından deterministik Mastery Formula v0 yazılacaktır.
+
+---
+
+**14E note (2026-10-02, `D-109`):** §8 scenario A is now in code: work the learner says was generated or copied is `requires_independent_recheck` on a task that measures them (practice in a teaching task), so the mastery engine opens the recheck. §9's comprehension questions are offered right after such a submission and are skippable; a written check is judged by its answer key and is evidence of its own declared type, never of the item's production (scenario E); a tutor-written question is practice and never evidence. Details: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`.

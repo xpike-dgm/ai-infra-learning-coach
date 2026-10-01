@@ -88,7 +88,7 @@ class TutorInstructionsTest {
     @Test
     fun `the reply schema is built from the vocabularies and has no room for a verdict`() {
         val schema = TutorInstructions.REPLY_SCHEMA
-        assertTrue("\"\$id\":\"tutor_reply/1\"" in schema)
+        assertTrue("\"\$id\":\"tutor_reply/2\"" in schema)
         assertTrue("\"additionalProperties\":false" in schema)
         assertTrue("\"required\":[\"intent\",\"text\",\"revealed_level\",\"instruction_mode\"]" in schema)
         assertTrue(TutorIntent.entries.joinToString(",") { "\"${it.id}\"" } in schema)
@@ -128,8 +128,9 @@ class TutorInstructionsTest {
 
     @Test
     fun `every rule of the contract is in the instructions, under one version`() {
-        // Raised at 14C (`D-107`): rules 14 and 15 (grounding and forms) were added; a rule changes only with the version.
-        assertEquals("tutor_instructions/2", TutorInstructions.VERSION)
+        // Raised at 14C (`D-107`): rules 14 and 15 (grounding and forms); at 14E (`D-109`): rule 16 (check_understanding).
+        // A rule changes only with the version.
+        assertEquals("tutor_instructions/3", TutorInstructions.VERSION)
         val text = TutorInstructions.TEXT
         for (rule in listOf(
             "You never decide anything about the learner.",
@@ -143,7 +144,7 @@ class TutorInstructionsTest {
             "declining is never held against the learner",
             "Keep code, identifiers, commands, parameter names, negation and warnings exactly as written.",
             "turkish_primary - write in Turkish",
-            "Reply only with one JSON object matching tutor_reply/1",
+            "Reply only with one JSON object matching tutor_reply/2",
         )) assertTrue(rule in text, rule)
         for (intent in TutorIntent.entries) assertTrue(intent.id in text, intent.id)
         for (mode in InstructionMode.entries) assertTrue(mode.id in text, mode.id)

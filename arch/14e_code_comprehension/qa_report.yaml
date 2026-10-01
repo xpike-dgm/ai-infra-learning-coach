@@ -1,0 +1,371 @@
+model: ACCX-v0
+stage_step: 14E
+decision: D-109
+result: PASS
+checks_total: 112
+checks_passed: 112
+checks_failed: 0
+checks:
+- check: E14E-00_exists_code_comprehension.yaml
+  result: PASS
+  details: missing arch/14e_code_comprehension/code_comprehension.yaml
+- check: E14E-00_exists_CODE_COMPREHENSION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/CODE_COMPREHENSION_IMPL_SPEC.md
+- check: E14E-00_exists_14e_code_comprehension_research.md
+  result: PASS
+  details: missing research/14e_code_comprehension_research.md
+- check: E14E-00_exists_ComprehensionFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/ComprehensionFacts.kt
+- check: E14E-00_exists_CheckUnderstanding.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/CheckUnderstanding.kt
+- check: E14E-00_exists_ComprehensionPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/ComprehensionPresentation.kt
+- check: E14E-01_model
+  result: PASS
+  details: ACCX-v0
+- check: E14E-01_status
+  result: PASS
+  details: accepted_14e
+- check: E14E-01_decision
+  result: PASS
+  details: D-109
+- check: E14E-01_scope_written_checks_as_content
+  result: PASS
+  details: written_checks_as_content=True
+- check: E14E-01_scope_offered_after_submission
+  result: PASS
+  details: offered_after_submission=True
+- check: E14E-01_scope_tutor_practice_intent
+  result: PASS
+  details: tutor_practice_intent=True
+- check: E14E-01_scope_generated_code_opens_recheck
+  result: PASS
+  details: generated_code_opens_recheck=True
+- check: E14E-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E14E-01_scope_state_family_added
+  result: PASS
+  details: state_family_added=False
+- check: E14E-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E14E-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E14E-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E14E-01_scope_comprehension_counts_as_production
+  result: PASS
+  details: comprehension_counts_as_production=False
+- check: E14E-01_scope_check_mandatory
+  result: PASS
+  details: check_mandatory=False
+- check: E14E-01_scope_checks_authored
+  result: PASS
+  details: checks_authored=False
+- check: E14E-01_scope_app_calls_check
+  result: PASS
+  details: app_calls_check=False
+- check: E14E-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-02'', ''question_source'': ''written_first_otherwise_tutor_practice'',
+    ''timing'': ''right_after_submission_optional'', ''generated_code'': ''opens_independent_recheck''}'
+- check: E14E-01_source_2d_4
+  result: PASS
+  details: '2D moved: artifact''ın çalışması, kullanıcının coding/product'
+- check: E14E-01_source_2d_8a
+  result: PASS
+  details: '2D moved: target objective gerekiyorsa independent recheck a'
+- check: E14E-01_source_2d_8e
+  result: PASS
+  details: '2D moved: fakat bu tek başına `coding/production` evidence''a'
+- check: E14E-01_source_2d_9
+  result: PASS
+  details: '2D moved: Recheck türü hedef Learning Objective''in davranışı'
+- check: E14E-01_source_2d_17_3
+  result: PASS
+  details: '2D moved: Kullanıcı yalnız AI kodunu açıklayabildi → coding '
+- check: E14E-01_sc011
+  result: PASS
+  details: SC-011 moved
+- check: E14E-01_sc012
+  result: PASS
+  details: SC-012 moved
+- check: E14E-01_asked_not_inferred
+  result: PASS
+  details: TRUX-v0 §9 moved
+- check: E14E-02_kinds
+  result: PASS
+  details: '[''line_purpose'', ''removal_effect'', ''state_effect'', ''find_the_bug'']'
+- check: E14E-02_kind_sources_in_2d
+  result: PASS
+  details: 2D §9 questions moved
+- check: E14E-02_no_production_kind
+  result: PASS
+  details: '[''line_purpose'', ''removal_effect'', ''state_effect'', ''find_the_bug'']'
+- check: E14E-03_generated_offered
+  result: PASS
+  details: ''
+- check: E14E-03_mixed_offered
+  result: PASS
+  details: ''
+- check: E14E-03_shown_solution_offered
+  result: PASS
+  details: ''
+- check: E14E-03_before_freeze_only
+  result: PASS
+  details: ''
+- check: E14E-03_not_on_suspicion
+  result: PASS
+  details: "fun isOffered(submission: AttemptSubmission): Boolean =\n        submission.provenance\
+    \ == ProvenanceOrigin.GENERATED_OR_COPIED ||\n            submission.provenance\
+    \ == ProvenanceOrigin.MIXED_AUTHORSHIP "
+- check: E14E-03_written_first
+  result: PASS
+  details: "fun offer(submission: AttemptSubmission, written: List<ComprehensionCheck>):\
+    \ ComprehensionOffer = when {\n        !isOffered(submission) -> ComprehensionOffer.NotOffered\n\
+    \        written.isNotEmpty() ->"
+- check: E14E-04_id
+  result: PASS
+  details: ''
+- check: E14E-04_choices
+  result: PASS
+  details: ''
+- check: E14E-04_answer_a_choice
+  result: PASS
+  details: ''
+- check: E14E-04_never_production
+  result: PASS
+  details: 2D §8 scenario E
+- check: E14E-04_targets_only
+  result: PASS
+  details: ''
+- check: E14E-04_skip_writes_nothing
+  result: PASS
+  details: ''
+- check: E14E-04_key
+  result: PASS
+  details: ''
+- check: E14E-04_one_component
+  result: PASS
+  details: ''
+- check: E14E-04_evaluator
+  result: PASS
+  details: ''
+- check: E14E-04_no_numbers
+  result: PASS
+  details: ''
+- check: E14E-04_mastery_reads_direct_types
+  result: PASS
+  details: the engine's own profile decides what counts
+- check: E14E-05_rules_after
+  result: PASS
+  details: '[''REQUIRES_INDEPENDENT_RECHECK'', ''PRACTICE_ONLY'', ''REQUIRES_INDEPENDENT_RECHECK'',
+    ''ASSISTED'', ''ASSISTED'', ''INDEPENDENT''] vs [''requires_independent_recheck'',
+    ''practice_only'', ''requires_independent_recheck'', ''assisted'', ''assisted'',
+    ''independent'']'
+- check: E14E-05_generated_rechecks
+  result: PASS
+  details: 2D §8 scenario A
+- check: E14E-05_teach_before_provenance
+  result: PASS
+  details: ''
+- check: E14E-05_unknown_accuses_no_one
+  result: PASS
+  details: ''
+- check: E14E-05_before_is_14a
+  result: PASS
+  details: the declared 'before' is 14A's list
+- check: E14E-05_recheck_opens_in_engine
+  result: PASS
+  details: MasteryEngine unresolved recheck
+- check: E14E-06_intent_appended
+  result: PASS
+  details: '[''hint'', ''explain_differently'', ''question'', ''explain_mistake'',
+    ''gloss'', ''check_understanding'']'
+- check: E14E-06_only_after_freeze
+  result: PASS
+  details: "TutorIntent.CHECK_UNDERSTANDING -> {\n                if (ask.timing ==\
+    \ null) return TutorPreparation.Redirect(TutorIntent.EXPLAIN_DIFFERENTLY, TutorRedirectReason.NO_ITEM_IS_BEING_WORKED)\n\
+    \            "
+- check: E14E-06_needs_code
+  result: PASS
+  details: ''
+- check: E14E-06_fields_only_for_check
+  result: PASS
+  details: ''
+- check: E14E-06_answer_with_question
+  result: PASS
+  details: ''
+- check: E14E-06_request_fields
+  result: PASS
+  details: '[''intent'', ''purpose'', ''timing'', ''ceiling'', ''scope'', ''recordedLevel'',
+    ''instructionMode'', ''context'', ''learnerQuestion'', ''form'', ''checkQuestion'',
+    ''learnerAnswer'']'
+- check: E14E-06_versions
+  result: PASS
+  details: ''
+- check: E14E-06_rule_16
+  result: PASS
+  details: ''
+- check: E14E-06_sections
+  result: PASS
+  details: ''
+- check: E14E-06_neutralised
+  result: PASS
+  details: ''
+- check: E14E-06_written_first
+  result: PASS
+  details: "fun practice(item: AssessmentItem, request: TutorRequest, itemRef: AskTutor.Item?\
+    \ = null, attemptId: Long? = null): TutorOutcome? {\n        require(request.intent\
+    \ == TutorIntent.CHECK_UNDERSTANDING) {"
+- check: E14E-06_intent_required
+  result: PASS
+  details: ''
+- check: E14E-06_never_evidence
+  result: PASS
+  details: ''
+- check: E14E-06_use_records_nothing
+  result: PASS
+  details: the use case decides; the caller records
+- check: E14E-06_answer_only_written
+  result: PASS
+  details: ''
+- check: E14E-07_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
+- check: E14E-07_content_refinement
+  result: PASS
+  details: ''
+- check: E14E-07_source_pins_version
+  result: PASS
+  details: ''
+- check: E14E-07_section
+  result: PASS
+  details: ''
+- check: E14E-07_keys
+  result: PASS
+  details: "\n            \"logical_id\", \"version\", \"item\", \"objective\", \"\
+    kind\", \"evidence_type\", \"prompt\", \"choice_a\", \"choice_b\", \"choice_c\"\
+    , \"choice_d\", \"answer\",\n        "
+- check: E14E-07_strict
+  result: PASS
+  details: ''
+- check: E14E-07_not_published
+  result: PASS
+  details: content, never published
+- check: E14E-07_schema_unchanged
+  result: PASS
+  details: ''
+- check: E14E-08_copy_offer
+  result: PASS
+  details: offer
+- check: E14E-08_copy_not_production
+  result: PASS
+  details: not_production
+- check: E14E-08_copy_tutor_practice
+  result: PASS
+  details: tutor_practice
+- check: E14E-08_copy_recheck
+  result: PASS
+  details: recheck
+- check: E14E-08_not_offered_silent
+  result: PASS
+  details: ''
+- check: E14E-08_result_says_not_production
+  result: PASS
+  details: ''
+- check: E14E-08_practice_labelled
+  result: PASS
+  details: ''
+- check: E14E-08_recheck_only_when_opened
+  result: PASS
+  details: ''
+- check: E14E-08_no_numbers
+  result: PASS
+  details: Bu kodu tek başına yazmadın. İstersen birkaç soruyla ne kadarını anladığına
+    bakalım; geçmek yanlış sayılmaz. Bu görev için hazırlanmış soru yok. İstersen
+    AI kodun hakkında bir soru sorsun; bu yalnız p
+- check: E14E-08_no_accusation
+  result: PASS
+  details: ''
+- check: E14E-08_skip_not_wrong
+  result: PASS
+  details: ''
+- check: E14E-09_14a_narrowed
+  result: PASS
+  details: ''
+- check: E14E-09_14c_narrowed
+  result: PASS
+  details: ''
+- check: E14E-10_suite_model
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/ComprehensionFactsTest.kt
+- check: E14E-10_suite_interpretation
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/AssistanceInterpretationTest.kt
+- check: E14E-10_suite_instructions
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/TutorInstructionsTest.kt
+- check: E14E-10_suite_application
+  result: PASS
+  details: android/core-application/src/test/kotlin/coach/application/CheckUnderstandingTest.kt
+- check: E14E-10_suite_presentation
+  result: PASS
+  details: android/core-presentation/src/test/kotlin/coach/presentation/ComprehensionPresentationTest.kt
+- check: E14E-10_suite_format
+  result: PASS
+  details: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt
+- check: E14E-10_mutation_all_detected
+  result: PASS
+  details: 43/43
+- check: E14E-10_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E14E-10_control
+  result: PASS
+  details: ''
+- check: E14E-10_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (practice_only for generated code, a production evidence type, an accusing word,
+    a score) inside comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E14E-10_runs_pass
+  result: PASS
+  details: ''
+- check: E14E-10_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E14E-10_forbidden
+  result: PASS
+  details: '[''running_someone_elses_code_counted_as_production'', ''comprehension_answer_counted_as_production'',
+    ''check_offered_on_own_work_or_suspicion'', ''skipped_check_counted_wrong'', ''tutor_question_recorded_as_evidence_or_offered_over_written'',
+    ''ai_written_code_left_as_practice_without_recheck'', ''recheck_presented_as_penalty'']'
+- check: E14E-10_open_loops
+  result: PASS
+  details: '{''written_checks_for_real_tasks'': {''owner'': ''15''}, ''check_rendering_and_app_call'':
+    {''owner'': ''16D''}, ''adapter_prompt_for_check'': {''owner'': ''14G''}, ''free_text_answers'':
+    {''owner'': ''14F''}, ''trusting_tutor_questions'': {''owner'': ''18''}}'
+- check: E14E-11_spec_status
+  result: PASS
+  details: ''
+- check: E14E-11_spec_next
+  result: PASS
+  details: ''
+- check: E14E-11_spec_t6
+  result: PASS
+  details: ''
+- check: E14E-11_research
+  result: PASS
+  details: ''
+- check: E14E-11_decision
+  result: PASS
+  details: D-109 heading in DECISIONS

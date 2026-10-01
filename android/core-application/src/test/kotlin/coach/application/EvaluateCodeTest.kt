@@ -107,6 +107,7 @@ class EvaluateCodeTest {
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
         override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): CodeTestSuite? = suite?.takeIf { it.item == item }
+        override fun comprehensionChecksFor(item: VersionedRef): List<coach.model.ComprehensionCheck> = emptyList()
     }
 
     private class Evaluator(val answer: (EvaluationRequest) -> EvaluationResult) : EvaluatorPort {
