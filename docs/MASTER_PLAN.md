@@ -920,8 +920,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 51/51, validator 154/154 ve kendi mutation testi 28/28,
 - **T6 çalıştırılmadı**; uygulama analizi henüz göstermiyor (16D), etiket üreten değerlendirici yok (14D/14F/15).
 
-### [ ] 14C — Alternatif anlatım — **AKTİF**
-### [ ] 14D — Kod değerlendirme
+### [x] 14C — Alternatif anlatım — ALEX-v0 / D-107
+
+**14C final coverage:**
+- anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez (`LEARNING_BEHAVIOR_RULES` §9, §12),
+- yedi kapalı biçim, her biri kabul edilmiş bir kaynaktan; misconception karşılaştırması yalnız yazılı (öğrencinin hafızası cihazdan çıkmaz), dersin kendi anlatımı alternatif değil,
+- biçimi öğrenci seçer, menü sıralamaz, görüleni işaretler ve saklamaz (kullanıcı kararı),
+- önce yazılmış, yoksa AI (kullanıcı kararı): en az açan yazılı anlatım tavana sığarsa tutor çağrılmaz; yazılı çözüm de exposure'dır,
+- AI alternatifi dersin kendi anlatımına dayanır (`<canonical>`), onunla çelişmemesi söylenir, doğrulanmamış diye etiketlenir ve asıl anlatıma dönüş hep sunulur; `tutor_instructions/2`,
+- yazılı anlatımlar içerik: `[explanation]` bölümü, `ContentPort.explanationsFor`; şema değişmedi,
+- mutation 42/42, validator 123/123 ve kendi mutation testi 30/30,
+- **T6 çalıştırılmadı**; uygulama menüyü henüz sunmuyor (16D), anlatımlar henüz yazılmadı (15).
+
+### [ ] 14D — Kod değerlendirme — **AKTİF**
 ### [ ] 14E — AI-generated code comprehension check
 ### [ ] 14F — Açık uçlu cevap değerlendirme
 ### [ ] 14G — Provider abstraction/fallback
@@ -1013,8 +1024,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14B`  
-**Son tamamlanan:** **`14B — WAAX-v0 / D-106`**  
-**Aktif:** **`14C — Alternatif anlatım`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14C`  
+**Son tamamlanan:** **`14C — ALEX-v0 / D-107`**  
+**Aktif:** **`14D — Kod değerlendirme`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14C fresh PRE-STEP → alternatif anlatım (`TUTX-v0` `explain_differently` isteği ve `WAAX-v0` misconception hafızası kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14D fresh PRE-STEP → kod değerlendirme (`AIAX-v0` değerlendirici portu, `TUTX-v0` tutor sözleşmesi ve `WAAX-v0` misconception etiketleri kodda) → independent QA → D-050 POST sync + stale audit.**

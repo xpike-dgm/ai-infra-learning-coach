@@ -65,6 +65,12 @@ data class TutorContext(
     val learnerWork: String? = null,
     val segment: GlossSegment? = null,
     val referenceSolution: String? = null,
+    /**
+     * The course's own explanation of the Objective (14C, `ALEX-v0`): curriculum text, not the answer to any item and
+     * not learner data, so it may travel whenever the learner asks for the concept again. It is what an AI
+     * alternative is grounded in and must not contradict.
+     */
+    val canonicalExplanation: String? = null,
 )
 
 /**
@@ -84,6 +90,8 @@ data class TutorAsk(
     val instructionMode: InstructionMode,
     val context: TutorContext,
     val learnerQuestion: String? = null,
+    /** How the concept should be explained again (14C): the learner's choice, only for `explain_differently`. */
+    val form: ExplanationForm? = null,
 )
 
 /**
@@ -103,6 +111,7 @@ class TutorRequest internal constructor(
     val instructionMode: InstructionMode,
     val context: TutorContext,
     val learnerQuestion: String?,
+    val form: ExplanationForm? = null,
 ) {
     /** An attempt is open — the learner has not yet frozen an answer to the item being worked. */
     val attemptOpen: Boolean get() = timing == AssistanceTiming.BEFORE_ATTEMPT || timing == AssistanceTiming.DURING_ATTEMPT
@@ -293,6 +302,9 @@ object TutorRules {
         }
         require(ask.context.segment == null || ask.intent == TutorIntent.GLOSS) { "only a gloss carries a segment" }
         require(ask.learnerQuestion == null || ask.intent == TutorIntent.QUESTION) { "only a question carries question text" }
+        require(ask.form == null || ask.intent == TutorIntent.EXPLAIN_DIFFERENTLY) { "only an explanation carries a form" }
+        // A form the tutor may not write (a misconception contrast, the course's own explanation) never reaches it (14C).
+        require(ask.form == null || ask.form.aiAllowed) { "the tutor is never asked for a form only written content may give" }
 
         return TutorPreparation.Ready(
             TutorRequest(
@@ -305,9 +317,18 @@ object TutorRules {
                 instructionMode = ask.instructionMode,
                 context = ask.context,
                 learnerQuestion = ask.learnerQuestion,
+                form = ask.form,
             )
         )
     }
+
+    /**
+     * Written help shown without asking the tutor (14C: "önce yazılmış", user decision): the same fit and the same
+     * record as written help shown after a non-answer — its own intent, at or below the learner's ceiling, recorded at
+     * its own known level. `null` when it does not fit, so the caller asks the tutor instead.
+     */
+    fun authored(request: TutorRequest, help: AuthoredHelp): TutorOutcome.Shown? =
+        fallbackOr(request, help, PendingReason.UNAVAILABLE) as? TutorOutcome.Shown
 
     /**
      * Checks a reply against the request and decides what the learner sees.

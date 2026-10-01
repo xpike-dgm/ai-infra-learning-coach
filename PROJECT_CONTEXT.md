@@ -232,12 +232,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 13 ✅ TAMAMLANDI**
 - **14A ✅ Tutor davranış sözleşmesi — TUTX-v0 / D-105**
 - **14B ✅ Yanlış analizi — WAAX-v0 / D-106**
-- **14C 🟡 Alternatif anlatım — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 14D–20 ⬜
+- **14C ✅ Alternatif anlatım — ALEX-v0 / D-107**
+- **14D 🟡 Kod değerlendirme — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 14E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -574,3 +575,13 @@ Kod yazmadan önce bulunanlar: `evidence_event.misconception_tags` kolonu 10D'de
 Yanlış bir cevap bir bilgidir, öğrenci hakkında bir hüküm değil: misconception etiketi yalnız taşıdığı kanıt ve kaynağı kadar güçlüdür — zayıflık motorunun kendi kuralı Objective'i ne kadar taşıyorsa o kadar ilerler, AI'ın önerisi asla hipotezin üstüne çıkmaz, Objective için beyan edilmemiş etiket hiç saklanmaz ve hipotez öğrenciye yalnız soru olarak sorulur. Kapalı katalog curriculum'da (`misconception`, Objective sürümüne pinli, değişmez); etiketler yalnız yanlış giden satıra, kendi Objective'i için ve katalog beyan ediyorsa yazılır (`deterministic` ya da `ai_proposed`). Hafıza (`misconception_state`, `WLRM-v0` ailesi) zayıflık motorunun 12 kuralıyla yeniden oynatılır; geçersiz, itirazlı ya da ön koşulu bozuk iş hiçbir etiketi oynatmaz ve yalnız taze, temiz kanıt kapatır. Analiz saklanan atfı okur; hiçbir şey yazmaz. Kullanıcı kararları: kapalı katalog; hipotez yalnız yanlış cevaptan hemen sonra açık soru olarak. `review.6g.misconception_taxonomy_expansion` kapandı. Mutation 51/51, validator 154/154, kendi mutation testi 28/28. **T6 çalıştırılmadı.**
 
 Canonical: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md` / D-106.
+
+## 12.32 14C Alternatif anlatım — ALEX-v0 / D-107
+
+Alternatif anlatım kodda. Ana invariant: **anlatım tutmadığında yöntem değişir; kapsam ve doğruluk değişmez.**
+
+Kod yazmadan önce bulunanlar: `explain_differently` isteği bir biçim taşımıyordu; `LEARNING_BEHAVIOR_RULES` §12'nin istediği yazılı alternatif anlatımların içerikte yeri yoktu; bir AI alternatifi dersin kendi anlatımına dayandırılamıyordu; öğrencinin misconception'ıyla karşılaştırma öğrenci durumunu cihaz dışına çıkarmayı gerektirirdi. Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI.
+
+Anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz. Yedi kapalı biçim (`LEARNING_BEHAVIOR_RULES` §9 ve `WLRM-v0` stratejileri): beşini tutor yazabilir; misconception karşılaştırması yalnız yazılıdır (öğrencinin hafızası cihazdan çıkmaz) ve dersin kendi anlatımı bir alternatif değildir. Yazılı anlatımlar içeriktir (`[explanation]` bölümü, Objective sürümüne pinli, `ContentPort.explanationsFor`), mağazaya yayımlanmaz; menü sıralamaz, görüleni işaretler ve hiçbir şey saklamaz; en az açan yazılı anlatım öğrencinin tavanına sığarsa tutor çağrılmaz. Tutor talimatları `tutor_instructions/2` (kural 14 dayanak, kural 15 biçimler). Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI. Mutation 42/42, validator 123/123, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
+
+Canonical: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md` / D-107.

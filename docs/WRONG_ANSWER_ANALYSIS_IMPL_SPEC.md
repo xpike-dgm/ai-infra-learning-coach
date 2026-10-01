@@ -190,3 +190,7 @@ The 6G question was which domain-specific labels should be production-authored. 
 If accepted, 14B becomes `WAAX-v0 / D-106`.
 
 Next numbered step: **14C — Alternatif anlatım**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14C note (2026-10-01, `D-107`):** the misconception memory now decides, on the device, which written `misconception_contrast` explanations may be offered (a label held open: hypothesis, supported or confirmed); it is offered as a common mix-up and never sent to a provider. Writing the contrasts stays with 15. Details: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md`.

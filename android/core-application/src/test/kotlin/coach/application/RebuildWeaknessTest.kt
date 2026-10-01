@@ -116,6 +116,7 @@ class RebuildWeaknessTest {
         override fun curriculumPackage(): CurriculumPackage? = null
         override fun taskCandidates(need: coach.model.LearningNeed) = emptyList<coach.model.TaskCandidate>()
         override fun assessmentItemsFor(skill: VersionedRef) = emptyList<coach.model.AssessmentItem>()
+        override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
     }
 
     private fun skillRow(ref: VersionedRef = skill) = SkillRow(ref, ref.logicalId, "capability", "published", "concept", "standard", false, "src", "authored")

@@ -118,6 +118,7 @@ class ProgramChangesTest {
         override fun taskCandidates(need: LearningNeed) = listOf(TaskCandidate("t-${need.needKey}", need.needKey, TaskPurpose.PRACTICE,
             "coding", "Task", need.targetSkills.first(), 15, LifecycleStatus.VALIDATED))
         override fun assessmentItemsFor(skill: VersionedRef) = emptyList<coach.model.AssessmentItem>()
+        override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
     }
 
     private fun world(): Triple<Store, Clock, RecomputeSkillState> {

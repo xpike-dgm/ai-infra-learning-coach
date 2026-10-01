@@ -1,0 +1,206 @@
+model: ALEX-v0
+stage_step: 14C
+status: accepted_14c
+decision: D-107
+implements: [LEARNING_BEHAVIOR_RULES, WLRM-v0, TUTX-v0, AIAX-v0]
+builds_on: [TUTX-v0, WAAX-v0]
+boundaries: MSBX-v0
+purpose: how_a_concept_is_explained_again_and_what_that_explanation_rests_on
+
+scope:
+  closed_form_vocabulary: true
+  written_explanations_read: true
+  learner_chooses_form: true
+  written_first: true
+  ai_grounded_in_canonical: true
+  instructions_version_raised: true
+  schema_changed: false
+  state_family_added: false
+  weakness_rule_changed: false
+  mastery_rule_changed: false
+  planner_rule_changed: false
+  form_chosen_automatically: false
+  explanations_authored: false
+  learner_state_sent: false
+  app_calls_menu: false
+
+question: Anlatım tutmadığında başka nasıl anlatılır — ve bu anlatım neye dayanır?
+
+primary_invariant: >-
+  When an explanation does not land, the method changes — the scope and the truth do not. The learner chooses the
+  form; a verified, written explanation is shown first; only where none exists does the tutor write one — grounded in
+  the course's own explanation, told never to contradict it, labelled as unverified, and never the last word: the
+  course's explanation is always one action away. A form that would need the learner's own state is never written by
+  the AI.
+
+user_decisions:
+  date: "2026-10-01"
+  form_choice: learner_chooses_from_menu
+  source_order: written_first_otherwise_ai
+
+forms:
+  - {id: plain_reteach, source: "LEARNING_BEHAVIOR_RULES §9 daha sade anlatım", strategy: strategy.targeted_reteach, ai_allowed: true, offered: true}
+  - {id: different_example, source: "LEARNING_BEHAVIOR_RULES §9 farklı örnek/analogy", strategy: null, ai_allowed: true, offered: true}
+  - {id: worked_example, source: "LEARNING_BEHAVIOR_RULES §9 worked example", strategy: strategy.worked_example, ai_allowed: true, offered: true}
+  - {id: state_trace, source: WLRM-v0 remediation strategy, strategy: strategy.state_trace_reconstruction, ai_allowed: true, offered: true}
+  - {id: prerequisite_refresh, source: "LEARNING_BEHAVIOR_RULES §9 prerequisite'e kısa geri dönüş", strategy: strategy.prerequisite_refresh, ai_allowed: true, offered: true}
+  - {id: misconception_contrast, source: WLRM-v0 remediation strategy, strategy: strategy.misconception_contrast, ai_allowed: false, offered: true}
+  - {id: canonical, source: "LEARNING_BEHAVIOR_RULES §12 verified core", strategy: null, ai_allowed: false, offered: false}
+
+written_explanations:
+  id_pattern: explanation.<namespace>.<slug>
+  pinned_to: one_objective_version
+  fields: [logical_id, version, objective, form, level, misconception, text]
+  level_declared_by_author: true
+  canonical_has_no_level: true
+  contrast_names_one_catalog_misconception: true
+  package_section: explanation
+  line_break_encoding: backslash_n
+  unknown_key_refused: true
+  unknown_level_refused: true
+  read_by: ContentPort.explanationsFor
+  published_into_store: false
+
+menu:
+  order: vocabulary_order
+  ranked: false
+  written_source_when: a_written_variant_exists
+  ai_source_when: no_written_variant_and_ai_allowed
+  contrast_offered_when: written_contrast_for_an_open_label
+  open_label_states: [hypothesis, supported, confirmed]
+  contrast_worded_as: common_mix_up_never_the_learners_mistake
+  seen_marked: true
+  seen_stored: false
+
+showing:
+  written_choice: least_revealing_that_fits_the_ceiling
+  written_calls_tutor: false
+  ai_only_if: [no_fitting_written, form_ai_allowed, request_names_that_form]
+  canonical_attached_when_written: true
+  nothing_to_show_is_said: true
+  written_solution_is_exposure: true
+  tutx_rules_unchanged: [ceiling, disclosure_h3_h4, nothing_recorded_outside_an_attempt]
+
+instructions:
+  version: tutor_instructions/2
+  reply_schema: tutor_reply/1
+  added_rules: [14_canonical_grounding, 15_forms]
+  canonical_section_neutralised: true
+  form_line_only_for_ai_allowed_forms: true
+  messages_without_form_or_canonical_unchanged: true
+
+presentation:
+  ai_label: "AI tarafından üretildi: dersin doğrulanmış içeriği değildir"
+  way_back_always_offered: true
+  numbers_or_scores: false
+
+tutx_validator_narrowed:
+  file: tools/validate_tutor_contract.py
+  checks: [E14A-05_context_fields, E14A-05_leaked_fields, E14A-05_message_sections, E14A-06_version]
+  why: the sixth context field (canonicalExplanation), the sixth section (canonical), the instructions version, and field names read word by word
+
+port_count: 5
+port_refinements: [{port: ContentPort, method: explanationsFor}]
+schema_version: 8
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/AlternativeExplanationFactsTest.kt}
+  instructions: {file: android/core-model/src/test/kotlin/coach/model/TutorInstructionsTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/ExplainDifferentlyTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/AlternativeExplanationPresentationTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+
+mutation_results:
+  total: 42
+  detected: 42
+  only_14c_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (X28, the grounding not attached) was re-run by hand and the named ExplainDifferentlyTest test was seen failing
+  negative_control: a comment-only change in AlternativeExplanationFacts.kt
+  negative_control_result: survived_as_expected
+  first_run: 41 of 42 detected; X08 survived — no test had the course's own explanation written while checking the menu; the test was strengthened, X08 then detected
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: X01, mutant: the_tutor_may_write_a_contrast, result: detected}
+    - {id: X02, mutant: the_course_explanation_is_an_alternative, result: detected}
+    - {id: X03, mutant: any_id_is_an_explanation, result: detected}
+    - {id: X04, mutant: any_form_may_skip_its_level, result: detected}
+    - {id: X05, mutant: a_contrast_names_nothing, result: detected}
+    - {id: X06, mutant: a_contrast_is_offered_without_memory, result: detected}
+    - {id: X07, mutant: the_tutor_is_offered_for_any_form, result: detected}
+    - {id: X08, mutant: the_menu_offers_the_course_explanation, result: detected}
+    - {id: X09, mutant: seen_forms_are_not_marked, result: detected}
+    - {id: X10, mutant: the_most_revealing_is_shown, result: detected}
+    - {id: X11, mutant: a_written_contrast_ignores_memory, result: detected}
+    - {id: X12, mutant: no_grounding_is_found, result: detected}
+    - {id: X13, mutant: written_help_is_another_intent, result: detected}
+    - {id: X14, mutant: any_intent_carries_a_form, result: detected}
+    - {id: X15, mutant: the_tutor_is_asked_for_a_written_only_form, result: detected}
+    - {id: X16, mutant: the_form_is_dropped, result: detected}
+    - {id: X17, mutant: written_help_ignores_the_ceiling, result: detected}
+    - {id: X18, mutant: the_rules_change_without_a_version, result: detected}
+    - {id: X19, mutant: the_grounding_is_not_sent, result: detected}
+    - {id: X20, mutant: the_form_is_not_named, result: detected}
+    - {id: X21, mutant: the_grounding_rule_is_dropped, result: detected}
+    - {id: X22, mutant: the_tutor_is_told_about_written_only_forms, result: detected}
+    - {id: X23, mutant: pasted_text_can_close_the_grounding, result: detected}
+    - {id: X24, mutant: a_written_solution_leaves_the_item_fresh, result: detected}
+    - {id: X25, mutant: any_written_help_is_an_exposure, result: detected}
+    - {id: X26, mutant: the_tutor_is_asked_although_writing_exists, result: detected}
+    - {id: X27, mutant: the_tutor_is_asked_for_any_form, result: detected}
+    - {id: X28, mutant: the_grounding_is_not_attached, result: detected}
+    - {id: X29, mutant: a_contrast_is_sent_as_a_form, result: detected}
+    - {id: X30, mutant: every_label_counts_as_open, result: detected}
+    - {id: X31, mutant: a_resolved_label_counts_as_open, result: detected}
+    - {id: X32, mutant: the_ai_label_claims_verification, result: detected}
+    - {id: X33, mutant: there_is_no_way_back, result: detected}
+    - {id: X34, mutant: written_help_is_labelled_ai, result: detected}
+    - {id: X35, mutant: a_contrast_accuses, result: detected}
+    - {id: X36, mutant: seen_is_not_said, result: detected}
+    - {id: X37, mutant: the_tutor_source_is_not_said, result: detected}
+    - {id: X38, mutant: explanations_are_ignored, result: detected}
+    - {id: X39, mutant: an_unknown_explanation_key_is_accepted, result: detected}
+    - {id: X40, mutant: line_breaks_are_not_decoded, result: detected}
+    - {id: X41, mutant: an_unknown_level_becomes_h1, result: detected}
+    - {id: X42, mutant: explanations_ignore_the_version, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (an AI-allowed contrast, an offered canonical, an unlabelled AI alternative, a ranking) inside Kotlin comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 883
+sweep: {passed: 51, total: 51}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app offers the menu yet (16D) and no explanations are written yet (15)
+
+open_loops:
+  written_explanations_and_contrasts: {owner: "15"}
+  menu_rendering_and_app_call: {owner: 16D}
+  adapter_call_site: {owner: 14G}
+  which_form_helps_calibration: {owner: "18"}
+
+forbidden_patterns:
+  - form_chosen_for_the_learner
+  - hidden_form_ranking
+  - ai_alternative_while_fitting_written_exists
+  - ai_alternative_without_canonical_when_written
+  - ai_alternative_presented_as_verified
+  - alternative_without_way_back
+  - misconception_memory_sent_to_provider
+  - written_explanation_above_ceiling
+  - task_item_as_different_example
+  - rule_changed_without_instructions_version

@@ -145,6 +145,7 @@ class DiagnosticsTest {
             else -> emptyList()
         }
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = items.filter { skill in it.targetSkills }
+        override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
     }
 
     private fun item(objective: VersionedRef, family: String) = AssessmentItem(

@@ -234,6 +234,41 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `a written explanation is read strictly and served by its Objective version`() {
+        val explanations = """
+
+            [explanation]
+            logical_id=explanation.python.loops.trace
+            version=1
+            objective=objective.python.loops.trace@v1
+            form=canonical
+            text=Bir döngü koşul doğru olduğu sürece tekrar eder.\nHer tur sayacı bir artırır.
+
+            [explanation]
+            logical_id=explanation.python.loops.trace_worked
+            version=1
+            objective=objective.python.loops.trace@v1
+            form=worked_example
+            level=H2
+            text=for i in range(3) üç tur döner: 0, 1, 2.
+        """.trimIndent()
+        val source = FileContentSource { authored + "\n" + explanations }
+        val served = source.explanationsFor(VersionedRef("objective.python.loops.trace", 1))
+        assertEquals(listOf("explanation.python.loops.trace", "explanation.python.loops.trace_worked"), served.map { it.ref.logicalId })
+        assertEquals("Bir döngü koşul doğru olduğu sürece tekrar eder.\nHer tur sayacı bir artırır.", served.first().text)
+        assertTrue(source.explanationsFor(VersionedRef("objective.python.loops.trace", 2)).isEmpty())
+        for (bad in listOf(
+            explanations.replace("form=worked_example", "form=story"),
+            explanations.replace("level=H2", "level=H5"),
+            explanations.replace("form=canonical", "form=canonical\nlevel=H1"),
+            explanations.replace("explanation.python.loops.trace_worked", "trace_worked"),
+            explanations + "\nreviewer=me",
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n" + bad) }
+        }
+    }
+
+    @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }
         assertEquals("Bu döngü kaç kez çalışır?", assertNotNull(source.resource(itemRef)).body)

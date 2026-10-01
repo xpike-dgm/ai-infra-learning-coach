@@ -57,9 +57,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13F Tanısal atlama (VDW-v0): VDWX-v0 / D-104 ile tamamlandı; waiver, tanısal yol, planner kapsam tutması, şema v7, S06 koşuyor. **AŞAMA 13 kapandı.**
 - [x] 14A Tutor davranış sözleşmesi: TUTX-v0 / D-105 ile tamamlandı; beş kapalı istek, seviye tavanı, core'da kurulan mesaj, `tutor_reply/1`, `NullTutor`, ayrı `TutorPort` (D-105 uzantısı), yardımdan bağımsızlık, gösterilen çözüm exposure. **AŞAMA 14 başladı.**
 - [x] 14B Yanlış analizi: WAAX-v0 / D-106 ile tamamlandı; kapalı misconception kataloğu, etiketler kanıtta, `misconception_state` hafızası, suçlamasız analiz, şema v8; `review.6g.misconception_taxonomy_expansion` kapandı.
-- [ ] 14C Alternatif anlatım **AKTİF**.
+- [x] 14C Alternatif anlatım: ALEX-v0 / D-107 ile tamamlandı; yedi kapalı biçim, öğrenci seçer, önce yazılmış yoksa AI, AI alternatifi dersin anlatımına dayanır, `tutor_instructions/2`.
+- [ ] 14D Kod değerlendirme **AKTİF**.
+- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15.
+- [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
+- [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
 - [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15.
-- [ ] Misconception hafızasının item seçiminde ve `misconception_contrast` içeriğinde kullanımı → 15.
+- [ ] Misconception hafızasının item seçiminde kullanımı ve `misconception_contrast` içeriğinin yazılması → 15 (menüde hafızaya göre sunulması 14C'de, D-107).
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.
 - [ ] Katalogun gerçek öğrenci hatalarıyla genişletilmesi ve yükselme kalibrasyonu → 18.

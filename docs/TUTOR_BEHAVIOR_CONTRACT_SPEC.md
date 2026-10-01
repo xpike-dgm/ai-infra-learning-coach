@@ -253,3 +253,7 @@ Contextual help inside a focused flow, never a destination (`UXIA-v0` §6.3). St
 If accepted, 14A becomes `TUTX-v0 / D-105`.
 
 Next numbered step: **14B — Yanlış analizi**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14C note (2026-10-01, `D-107`):** `explain_differently` now carries the learner's chosen form (`TutorAsk.form`, only for this intent and only for a form the tutor may write), and the request may carry the course's own explanation (`TutorContext.canonicalExplanation`, curriculum text, never learner data) as grounding. The instructions are `tutor_instructions/2`: rule 14 (never contradict `<canonical>`, never add scope) and rule 15 (forms). Without a form or grounding a message is unchanged byte for byte. Written help can be shown without asking the tutor (`TutorRules.authored`, `AskTutor.showWritten`) under the same fit and record rules as a fallback. Details: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md`.

@@ -294,14 +294,15 @@ PEM-v0:
 - **AŞAMA 13 TAMAMLANDI**
 - 14A ✅ TUTX-v0 / D-105
 - 14B ✅ WAAX-v0 / D-106
-- 14C 🟡 active-not-executed
-- 14D–20 ⬜
+- 14C ✅ ALEX-v0 / D-107
+- 14D 🟡 active-not-executed
+- 14E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14B — WAAX-v0 / D-106`  
-**Aktif:** `14C — Alternatif anlatım`  
-**14C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14C — ALEX-v0 / D-107`  
+**Aktif:** `14D — Kod değerlendirme`  
+**14D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1230,3 +1231,24 @@ WAAX-v0:
 ## 66. 14C handoff
 
 14C — Alternatif anlatım. `TUTX-v0` `explain_differently` isteğini ve yanıt sözleşmesini, `WAAX-v0` misconception hafızasını kurdu. Açık loop'lar: authored etiketler ve deterministik anahtarlar (15), hafızanın item seçiminde kullanımı (15), Progress görünümü (16C), analizi uygulamadan çağırmak (16D), kod değerlendirme (14D), açık uçlu değerlendirme (14F), adaptör (14G), T6. 14C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 67. D-107 / 14C final özeti
+
+Canonical: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md`.
+Contract/QA: `arch/14c_alternative_explanation/`.
+Synthesis: `research/14c_alternative_explanation_research.md`.
+Code: `core-model` `AlternativeExplanationFacts.kt` (+ `TutorAsk.form`, `TutorRequest.form`, `TutorContext.canonicalExplanation`, `TutorRules.authored`, `tutor_instructions/2`); `core-application` `ExplainDifferently.kt`, `AskTutor.showWritten`; `core-presentation` `AlternativeExplanationPresentation.kt`; `core-ports` `ContentPort.explanationsFor`; `data-curriculum` `[explanation]` section.
+
+ALEX-v0:
+- when an explanation does not land, the method changes — the scope and the truth do not,
+- user decisions: the learner chooses the form from a menu; written explanations first, the tutor only where none fits,
+- found: `explain_differently` carried no form; written alternatives had no place; an AI alternative could not be grounded; a misconception contrast would have needed learner state to leave the device,
+- seven closed forms; the tutor may write five; a misconception contrast is written-only and offered only for a label the learner's memory holds open; the course's own explanation is not an alternative,
+- the least revealing written explanation that fits the ceiling is shown without the tutor; an AI alternative is asked with `<canonical>`, labelled unverified, and the way back is always offered,
+- `tutor_instructions/2` (rules 14-15); 14A's validator narrowed for exactly the four additions; schema unchanged; one content-port refinement,
+- mutation 42/42, independent QA 123/123, validator mutation 30/30, sweep 51/51,
+- T6 was not run.
+
+## 68. 14D handoff
+
+14D — Kod değerlendirme. `AIAX-v0` değerlendirici portu ve yanıtsızlık taksonomisi, `TUTX-v0` tutor sözleşmesi, `WAAX-v0` kapalı misconception kataloğu ve kanıttaki etiketler, `ALEX-v0` alternatif anlatım kodda. Açık loop'lar: yazılı anlatımlar ve karşılaştırmalar (15), menüyü çizmek ve uygulamadan çağırmak (16D), adaptör (14G), biçim kalibrasyonu (18), T6. 14D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
