@@ -66,6 +66,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-100:** MCAX-v0 Monthly Capability Assessment Implementation; 13B tamamlandı.
 - **D-101:** RVRX-v0 Retention Verification & Risk Implementation; 13C tamamlandı.
 - **D-102:** WLRX-v0 Weakness Localization & Remediation Implementation; 13D tamamlandı.
+- **D-103:** PCRX-v0 Program Change Report Implementation; 13E tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -287,14 +288,15 @@ PEM-v0:
 - 13B ✅ MCAX-v0 / D-100
 - 13C ✅ RVRX-v0 / D-101
 - 13D ✅ WLRX-v0 / D-102
-- 13E 🟡 active-not-executed
-- 13F, 14–20 ⬜
+- 13E ✅ PCRX-v0 / D-103
+- 13F 🟡 active-not-executed
+- 14–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13D — WLRX-v0 / D-102`  
-**Aktif:** `13E — Program değişiklik raporu`  
-**13E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13E — PCRX-v0 / D-103`  
+**Aktif:** `13F — Tanısal atlama (VDW-v0)`  
+**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1128,6 +1130,29 @@ WLRX-v0:
 - mutation 44/44 (D02/D31/D37 survived the first run; tests added or strengthened; full set re-run), independent QA 165/165, validator mutation 28/28, sweep 46/46,
 - T6 was not run; nothing in the app rebuilds engines after evidence yet (16D).
 
-## 58. 13E handoff
+## 58. 13E handoff (13E kapanışında karşılandı — §59)
 
 13E — Program değişiklik raporu. Mastery, retention, readiness ve zayıflık artık kanıttan durum yazıyor; program değişikliğini motorların kendi izlerinden raporlamak. Açık loop'lar: motorları ve geriye dönük contamination'ı uygulamadan çağırmak (16D), Topic durumu ve izlerde dispozisyon nedeni (16C), remediation içeriği (15), misconception hafızası (14B), yüksek riskli boşluk politikası (18D), tanısal atlama (13F), T6. 13E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 59. D-103 / 13E final özeti
+
+Canonical: `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md`.
+Contract/QA: `arch/13e_program_change_report/`.
+Synthesis: `research/13e_program_change_report_research.md`.
+Code: `android/core-model/.../ProgramChangeFacts.kt`, `android/core-engines/.../ProgramChangeEngine.kt`, `android/core-application/.../ProgramChanges.kt`, `android/core-presentation/.../ProgramChangePresentation.kt`, `PersistencePort.objectivesOf` (`CurriculumStore`, `SqlitePersistence`).
+
+PCRX-v0:
+- a report is a diff of two readings; it can never claim more than the engines wrote,
+- a touched Skill is recomputed by its own engines in order (mastery → retention → weakness → readiness), with gate profiles from the published curriculum; an unknown criticality is refused,
+- a change is stated only where an axis actually moved; an axis nobody had written is not a before (`unknownBefore`); time alone reports nothing,
+- a contradiction after mastery is `verification_opened`, never a demotion, and one verification is named once; a hypothesis is a question, not a gap; correction downgrades report nothing,
+- plan changes are needs opened/closed and tasks added/removed between two different plan versions; a first plan is not a change,
+- a replan is asked for only when state changed, through the planner's own replan with the event the change names, keeping the day's budget; when nothing changed the result says so plainly,
+- `ASUX-v0` §13.1 families are filled from recorded changes only; no score, percentage, blame or "less important",
+- one port refinement (`objectivesOf`); four ports; schema unchanged (v6),
+- mutation 42/42 (nothing survived the first run), independent QA 162/162, validator mutation 29/29, sweep 47/47,
+- T6 was not run; nothing in the app calls the report after a real session yet (16D).
+
+## 60. 13F handoff
+
+13F — Tanısal atlama (VDW-v0), D-099 ile eklendi. 12F'nin S06 senaryosu (tanısal atlama) buna bağlı ve koşulamıyordu. Kanıt, kapı, planner, retention, zayıflık motorları artık durum yazıyor ve değişiklikler raporlanıyor. Açık loop'lar: raporu ve yeniden hesaplamayı uygulamadan çağırmak, `stateChangeRefs`'i doldurmak (16D), kalıcı `assessment_report` ve Topic durumu (16C), transfer/artifact kapı alanları ve remediation içeriği (15), misconception hafızası (14B), yüksek riskli boşluk politikası (18D), T6. 13F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

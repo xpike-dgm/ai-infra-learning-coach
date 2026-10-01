@@ -8,6 +8,7 @@ import coach.model.EvidenceRow
 import coach.model.ExposureFact
 import coach.model.LearningNeed
 import coach.model.ObjectiveEvidenceProfile
+import coach.model.ObjectiveRow
 import coach.model.PrerequisiteEdge
 import coach.model.PublishOutcome
 import coach.model.ResourceVersion
@@ -174,6 +175,13 @@ interface PersistencePort {
      * never scans retention history; the store answers from the projection's own review day.
      */
     fun retentionDueBy(studyDay: String): List<VersionedRef>
+
+    /**
+     * The published Objectives of one Skill version (13E). Recomputing a Skill's state after evidence needs
+     * its Objectives' gate profiles, and only the curriculum knows which Objectives a Skill has; an
+     * unpublished Skill has none.
+     */
+    fun objectivesOf(skill: VersionedRef): List<ObjectiveRow>
 }
 
 /** A truth row together with the id the store gave it. */

@@ -123,6 +123,9 @@ class PlanReadingTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
 
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
+
+
+        override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
     }
 
     private class Content(val tasks: Map<String, List<TaskCandidate>>) : ContentPort {

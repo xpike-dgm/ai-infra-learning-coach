@@ -66,8 +66,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **13B — Aylık sınav** | ✅ | MCAX-v0 / D-100. Ay daha geniş pencere, daha ağır sınav değil; 13A kontratı ortak kontrata genelleştirildi, haftalık değer değişmedi; kritik Skill yalnız nedenle yeniden doğrulanır; aylık etiket ağırlık eklemez; takvim ayı, önceki oturum borç değil; transfer/kontrol noktası üreticisi uydurulmadı (15); şema v4; 259/259 QA PASS, mutation 48/48. |
 | **13C — Spaced repetition** | ✅ | RVRX-v0 / D-101. Zaman negatif kanıt değil; retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar, silmez; taze yeniden kontrol aralığı büyütmez; `review_due` yalnız günden; planner plan öncesi vadeyi yeniler; V0 sayıları RVR-v0 §20 (18C); şema v5; 164/164 QA PASS, mutation 47/47. |
 | **13D — Remediation Engine** | ✅ | WLRX-v0 / D-102. Başarısız deneme başarısız Skill değil; WLRM-v0'ın 12 atıf kuralı Objective düzeyinde; yardım/provisional en çok hipotez; doğrulama ve kapanış mastery kapılarını izler; biten görev kapatmaz; motor `weakness_detected` sağlar; dispozisyonlar okunur; geriye dönük contamination; Topic → 16C, gap policy → 18D; şema v6; 165/165 QA PASS, mutation 44/44. |
-| **13E — Program değişiklik raporu** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **13F, 14–20** | ⬜ Bekliyor | 13E sonrası canonical sırada; 13F D-099 ile eklendi. |
+| **13E — Program değişiklik raporu** | ✅ | PCRX-v0 / D-103. Rapor iki okumanın farkı; değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar değişiklik değil; çelişki doğrulama, düşüş değil; hipotez soru; plan farkı iki sürüm arasında, ilk plan değişiklik değil; replan yalnız durum değiştiyse; `objectivesOf`, şema değişmedi; 162/162 QA PASS, mutation 42/42. |
+| **13F — Tanısal atlama (VDW-v0)** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. 12F'nin S06 senaryosu buna bağlı. |
+| **14–20** | ⬜ Bekliyor | 13F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -86,7 +87,25 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13D
+## Son tamamlanan numaralı adım — 13E
+
+**Final:** `PCRX-v0 — Program Change Report Implementation` / D-103.
+**Ana çıktı:** `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` + `arch/13e_program_change_report/` + `android/`.
+
+13E sonucu:
+- bir rapor iki okumanın farkıdır; motorların yazdığından fazlasını iddia edemez,
+- dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır; profiller yayımlanmış curriculum'dan (`objectivesOf`), bilinmeyen criticality reddedilir,
+- değişiklik yalnız bir eksen gerçekten hareket ettiyse; kimsenin yazmadığı durum 'önce' değildir (`unknownBefore`),
+- zamanın tek başına yaptığı geçiş raporlanmaz; mastery sonrası çelişki `verification_opened`'dır, düşüş değil; doğrulama bir kez adlandırılır,
+- hipotez `verification_needed`, eksik değil; düzeltme sonucu düşüşler yeni bulgu değil,
+- plan farkı iki farklı sürüm arasında ihtiyaç/görev farkı; ilk plan değişiklik değil; nedenler yalnız yeni plan varsa,
+- replan yalnız durum değiştiyse, planner'ın kendi replan'ıyla ve bütçe korunarak; hiçbir şey değişmediyse sonuç bunu açıkça söyler,
+- `ASUX-v0` §13.1 aileleri dolduruluyor; puan/yüzde/suçlama yok,
+- tek port inceltmesi `objectivesOf`, dört port, şema değişmedi,
+- mutation 42/42, independent validator **162/162 PASS**, kendi mutation testi 29/29; 47/47 sweep PASS,
+- **T6 çalıştırılmadı** — uygulama gerçek bir oturumdan sonra raporu henüz çağırmıyor (16D).
+
+## Önceki numaralı adım — 13D
 
 **Final:** `WLRX-v0 — Weakness Localization & Remediation Implementation` / D-102.
 **Ana çıktı:** `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` + `arch/13d_remediation_engine/` + `android/`.
@@ -104,7 +123,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 44/44 (ilk turda D02, D31 ve D37 kaçtı (eksen önceliği, varsayılan doğrudanlık, zaman çizgisinin önceki mastery'si — her biri sınanmayan bir durum); testler eklendi/güçlendirildi ve bütün set tek değişmemiş ağaçtan yeniden koşuldu.), independent validator **165/165 PASS**, kendi mutation testi 28/28; 46/46 sweep PASS,
 - **T6 çalıştırılmadı** — uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
 
-## Önceki numaralı adım — 13C
+## AŞAMA 13 önceki adım — 13C
 
 **Final:** `RVRX-v0 — Retention Verification & Risk Implementation` / D-101.
 **Ana çıktı:** `docs/RETENTION_IMPL_SPEC.md` + `arch/13c_spaced_repetition/` + `android/`.
@@ -170,6 +189,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13E Program değişiklik raporu
+## Aktif adım — 13F Tanısal atlama (VDW-v0)
 
-**13E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**13F henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

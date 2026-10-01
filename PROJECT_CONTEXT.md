@@ -227,12 +227,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **13B ✅ Aylık sınav — MCAX-v0 / D-100**
 - **13C ✅ Spaced repetition — RVRX-v0 / D-101**
 - **13D ✅ Remediation Engine — WLRX-v0 / D-102**
-- **13E 🟡 Program değişiklik raporu — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13F, 14–20 ⬜ (13F D-099 ile eklendi)
+- **13E ✅ Program değişiklik raporu — PCRX-v0 / D-103**
+- **13F 🟡 Tanısal atlama (VDW-v0) — AKTİF, HENÜZ YÜRÜTÜLMEDİ** (D-099 ile eklendi)
+- 14–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -529,3 +530,13 @@ Kod yazmadan önce bulunanlar: zayıflık eksenini hiçbir şey yazmıyordu; `we
 Her satır `WLRM-v0`'ın 12 atıf kuralıyla öncelik sırasıyla kendi Objective'ine atfedilir. Objective sinyali `none → hypothesis → supported → confirmed → resolved`; açık sinyal kendi kanıtını, çözüm kendi kanıtını adlandırmak zorundadır. Skill ekseni en güçlü açık sinyaldir ve hiçbir yere yayılmaz. Motor `weakness_detected` ihtiyacını planner'a ve composer'lara sağlar; bir endişe tek ihtiyaçtır. Depo her satırı en yeni dispozisyonu uygulanmış olarak okur; `ApplyRetroactiveContamination` yalnız bağımlı slotları düzeltir. `MasteryTimeline` retention ile paylaşılır. Şema v6 `weakness_state`. Mutation 44/44, validator 165/165, kendi mutation testi 28/28. **T6 çalıştırılmadı.**
 
 Canonical: `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` / D-102.
+
+## 12.28 13E Program değişiklik raporu — PCRX-v0 / D-103
+
+Program değişiklik raporu kodda. Ana invariant: **bir rapor iki okumanın farkıdır; motorların yazdığından fazlasını iddia edemez.**
+
+Kod yazmadan önce bulunanlar: bir Skill'i kanıttan sonra tek yerde yeniden hesaplayan bir şey yoktu ve hiçbir port bir Skill'in Objective'lerini listeleyemiyordu; sonuç aileleri ve `stateChangeRefs` tasarım gereği boştu; replan vardı ama olayını bir sınavın ne yaptığından seçen yoktu; ilk okumanın 'önce'si yoktur.
+
+Dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır (profiller `objectivesOf` ile yayımlanmış curriculum'dan). Rapor iki snapshot'ın farkıdır: on bir durum değişikliği türü `ASUX-v0` §13.1 ailelerinde ve planner'ın kaydettiği `replan.*` kodlarıyla; kimsenin yazmadığı eksen değişiklik iddia etmez; vadesi gelen tekrar raporlanmaz; çelişki `verification_opened`'dır; hipotez sorudur. Plan farkı iki kayıtlı sürüm arasındadır ve ilk plan değişiklik değildir. Yalnız durum değiştiyse planner'ın kendi replan'ı çağrılır; hiçbir şey değişmediyse sonuç bunu açıkça söyler. Mutation 42/42, validator 162/162, kendi mutation testi 29/29. **T6 çalıştırılmadı.**
+
+Canonical: `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` / D-103.

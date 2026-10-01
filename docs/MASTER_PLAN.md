@@ -861,8 +861,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 44/44, validator 165/165 ve kendi mutation testi 28/28,
 - **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
 
-### [ ] 13E — Program değişiklik raporu — **AKTİF**
-### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi
+### [x] 13E — Program değişiklik raporu — PCRX-v0 / D-103
+
+**13E final coverage:**
+- rapor iki okumanın farkıdır; motorların yazdığından fazlası iddia edilemez,
+- dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır; profiller yayımlanmış curriculum'dan,
+- yazılmamış durum 'önce' değil; zamanın tek başına yaptığı geçiş raporlanmaz; çelişki doğrulama, düşüş değil; hipotez soru,
+- plan farkı iki kayıtlı sürüm arasında; ilk plan değişiklik değil,
+- replan yalnız kanonik durum değiştiyse, planner'ın kendi replan'ıyla; hiçbir şey değişmediyse açıkça söylenir,
+- tek port inceltmesi `objectivesOf`; şema değişmedi,
+- mutation 42/42, validator 162/162 ve kendi mutation testi 29/29,
+- **T6 çalıştırılmadı**; uygulama raporu henüz çağırmıyor (16D).
+
+### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi — **AKTİF**
 
 ---
 
@@ -962,8 +973,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13D`  
-**Son tamamlanan:** **`13D — WLRX-v0 / D-102`**  
-**Aktif:** **`13E — Program değişiklik raporu`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13E`  
+**Son tamamlanan:** **`13E — PCRX-v0 / D-103`**  
+**Aktif:** **`13F — Tanısal atlama (VDW-v0)`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13E fresh PRE-STEP → program değişiklik raporu (mastery, retention, readiness ve zayıflık artık kanıttan durum yazıyor; değişikliği motorların kendi izlerinden raporlamak) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13F fresh PRE-STEP → `VDW-v0` tanısal atlama (12F'nin S06 senaryosu buna bağlı; kanıt ve kapı motorları artık durum yazıyor ve değişiklikler raporlanıyor) → independent QA → D-050 POST sync + stale audit.**

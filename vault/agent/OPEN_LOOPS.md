@@ -53,12 +53,16 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13B Aylık sınav: MCAX-v0 / D-100 ile tamamlandı; ortak kontrat ve composer, aylık havuz, şema v4.
 - [x] 13C Spaced repetition: RVRX-v0 / D-101 ile tamamlandı; retention motoru, vade yenileme, şema v5.
 - [x] 13D Remediation Engine: WLRX-v0 / D-102 ile tamamlandı; zayıflık motoru, dispozisyon okuma, geriye dönük contamination, şema v6.
-- [ ] 13E Program değişiklik raporu **AKTİF**.
+- [x] 13E Program değişiklik raporu: PCRX-v0 / D-103 ile tamamlandı; snapshot farkı, yeniden hesaplama, yalnız durum değiştiyse replan, sonuç aileleri.
+- [ ] 13F Tanısal atlama (VDW-v0) **AKTİF** (12F S06 buna bağlı).
+- [ ] Raporu ve yeniden hesaplamayı gerçek oturumdan sonra uygulamadan çağırmak, `stateChangeRefs`'i doldurmak → 16D.
+- [ ] Kalıcı `assessment_report` ve boylamsal geçmiş → 16C.
+- [ ] Curriculum paketinde transfer/artifact kapı alanları (profiller şimdilik `GRE-v0` varsayılanında) → 15.
 - [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
 - [ ] Remediation strateji rotalarından içerik → 15; misconception hafızası → 14B; rehberliğin azalması → 14.
 - [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
-- [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak (mastery → retention → readiness) ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
+- [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak — çekirdekte `RecomputeSkillState` (13E) sırayı tutuyor, uygulamadan çağırmak — ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
 - [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
 - [ ] Önceki exposure kayıtlarının kanıt satırına katılması (bugün bağımsızlık sınıfı ve görülmüş item reddi kapsıyor) → 14.

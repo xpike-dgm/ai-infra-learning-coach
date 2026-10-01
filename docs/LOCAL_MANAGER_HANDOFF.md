@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13E active-not-executed` olduğunu living-memory setiyle doğrula.
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11 ve AŞAMA 12'nin kapandığını, D-099 ile 13F'nin eklendiğini ve aktif adımın `13F active-not-executed` olduğunu living-memory setiyle doğrula.
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1142,14 +1142,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 13B ✅ MCAX-v0 / D-100
 - AŞAMA 13C ✅ RVRX-v0 / D-101
 - AŞAMA 13D ✅ WLRX-v0 / D-102
-- AŞAMA 13E 🟡 active-not-executed
-- 13F, 14–20 ⬜
+- AŞAMA 13E ✅ PCRX-v0 / D-103
+- AŞAMA 13F 🟡 active-not-executed
+- 14–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `13D — Remediation Engine`  
-**Final:** `WLRX-v0 — Weakness Localization & Remediation Implementation` / D-102  
-**Canonical:** `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md` + `arch/13d_remediation_engine/`
+**Son tamamlanan numaralı adım:** `13E — Program değişiklik raporu`  
+**Final:** `PCRX-v0 — Program Change Report Implementation` / D-103  
+**Canonical:** `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` + `arch/13e_program_change_report/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1190,17 +1191,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 13B:** ✅ TAMAMLANDI  
 **AŞAMA 13C:** ✅ TAMAMLANDI  
 **AŞAMA 13D:** ✅ TAMAMLANDI  
-**Aktif adım:** `13E — Program değişiklik raporu`  
+**AŞAMA 13E:** ✅ TAMAMLANDI  
+**Aktif adım:** `13F — Tanısal atlama (VDW-v0)`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-13E için:
+13F için:
 
 ```text
-fresh 13E PRE-STEP GitHub refresh
+fresh 13F PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 13E execution
+→ 13F execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1772,8 +1774,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 13B ✅ MCAX-v0 / D-100
 13C ✅ RVRX-v0 / D-101
 13D ✅ WLRX-v0 / D-102
-13E 🟡 active-not-executed
-13F, 14–20 ⬜
+13E ✅ PCRX-v0 / D-103
+13F 🟡 active-not-executed
+14–20 ⬜
 ```
 
 10D final:
@@ -1970,9 +1973,9 @@ AŞAMA 12 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `13E — Program değişiklik raporu`.
+**Sıradaki gerçek numbered work:** `13F — Tanısal atlama (VDW-v0)`.
 
-**13E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2022,8 +2025,8 @@ AŞAMA 12 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `13E — Program değişiklik raporu`.  
-**13E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `13F — Tanısal atlama (VDW-v0)`.  
+**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2212,4 +2215,13 @@ Ana invariant: zamanın geçmesi negatif kanıt değildir. Retention kanıttan, 
 
 13D `WLRX-v0 — Weakness Localization & Remediation Implementation` ile tamamlandı. Canonical: `docs/WEAKNESS_REMEDIATION_IMPL_SPEC.md`; contract/QA: `arch/13d_remediation_engine/`; synthesis: `research/13d_remediation_engine_research.md`.
 
-Ana invariant: başarısız bir deneme başarısız bir Skill değildir. Her satır `WLRM-v0`'ın 12 atıf kuralıyla kendi Objective'ine atfedilir; yardım en çok hipotez; mastery sonrası çelişki doğrulama açar; remediation yalnız mastery kapıları düşünce doğrulanır ve yalnız taze kanıt onları yeniden geçirince kapanır. Motor `weakness_detected` sağlar; dispozisyonlar depoda okunur; geriye dönük contamination yalnız bağımlı slotları düzeltir; `MasteryTimeline` paylaşılır. Şema v6 `weakness_state`; port sayısı dört; 13C kapıları daraltıldı. Kullanıcı kararları: Topic → 16C, yüksek riskli boşluk politikası → 18D. Mutation 44/44, 165/165 QA PASS, validator mutation 28/28, 46/46 sweep. T6 çalıştırılmadı. Current active numbered step 13E'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: başarısız bir deneme başarısız bir Skill değildir. Her satır `WLRM-v0`'ın 12 atıf kuralıyla kendi Objective'ine atfedilir; yardım en çok hipotez; mastery sonrası çelişki doğrulama açar; remediation yalnız mastery kapıları düşünce doğrulanır ve yalnız taze kanıt onları yeniden geçirince kapanır. Motor `weakness_detected` sağlar; dispozisyonlar depoda okunur; geriye dönük contamination yalnız bağımlı slotları düzeltir; `MasteryTimeline` paylaşılır. Şema v6 `weakness_state`; port sayısı dört; 13C kapıları daraltıldı. Kullanıcı kararları: Topic → 16C, yüksek riskli boşluk politikası → 18D. Mutation 44/44, 165/165 QA PASS, validator mutation 28/28, 46/46 sweep. T6 çalıştırılmadı. Bu addendum 13D kapanışında yazıldı; ardından 13E D-103 ile tamamlandı (aşağıdaki 13E addendum'u).
+
+
+---
+
+## 13E completion addendum — D-103
+
+13E `PCRX-v0 — Program Change Report Implementation` ile tamamlandı. Canonical: `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md`; contract/QA: `arch/13e_program_change_report/`; synthesis: `research/13e_program_change_report_research.md`.
+
+Ana invariant: bir rapor iki okumanın farkıdır; motorların yazdığından fazlasını iddia edemez. Dokunulan Skill kendi motorlarıyla sırayla yeniden hesaplanır (profiller `objectivesOf` ile yayımlanmış curriculum'dan); değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar raporlanmaz; çelişki doğrulamadır, düşüş değil; hipotez sorudur; plan farkı iki kayıtlı sürüm arasında ve ilk plan değişiklik değil; replan yalnız durum değiştiyse, planner'ın kendi replan'ıyla. Tek port inceltmesi, şema değişmedi. Mutation 42/42, 162/162 QA PASS, validator mutation 29/29, 47/47 sweep. T6 çalıştırılmadı. Current active numbered step 13F'dir; fresh PRE + kullanıcı açık onayı gerekir.

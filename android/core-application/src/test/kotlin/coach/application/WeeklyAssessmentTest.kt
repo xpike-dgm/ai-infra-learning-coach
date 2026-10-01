@@ -116,6 +116,9 @@ class WeeklyAssessmentTest {
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = evidencedSince[studyDay].orEmpty()
 
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
+
+
+        override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
     }
 
     private class Content(val items: List<AssessmentItem>, val tasks: Map<String, List<TaskCandidate>> = emptyMap()) : ContentPort {

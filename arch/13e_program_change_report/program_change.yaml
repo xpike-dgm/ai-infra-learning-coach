@@ -1,0 +1,194 @@
+model: PCRX-v0
+stage_step: 13E
+status: accepted_13e
+decision: D-103
+result_semantics: ASUX-v0
+also_answers: [WBA-v0 §30, MCA-v0 §30, V1_SCOPE release definition 3, PDT-v0 §8.10]
+engines_read: [MSTX-v0, RVRX-v0, WLRX-v0, PRQX-v0]
+planner: [PLNX-v0, RPLX-v0, RSNX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: what_canonical_state_and_the_plan_actually_changed_after_evidence_and_why
+
+scope:
+  state_changes_reported: true
+  plan_changes_reported: true
+  recompute_orchestrated: true
+  replan_only_on_state_change: true
+  result_families_filled: true
+  schema_changed: false
+  migration_added: false
+  interfaces_added: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  mastery_rule_changed: false
+  retention_rule_changed: false
+  weakness_rule_changed: false
+  gate_rule_changed: false
+  durable_assessment_report: false
+  app_calls_report: false
+
+report_question: After this session, what actually changed in canonical state and in the plan — and why?
+
+primary_invariant: >-
+  A report is a diff of two readings; it can never claim more than the engines wrote. A change is stated only
+  where an axis actually moved, a state nobody had written is not a before, a review coming due is the day and
+  not a change, a plan change is the difference between two recorded plan versions, and when nothing changed
+  the result says so plainly.
+
+snapshot:
+  watermark_read_first: true
+  axes: [mastery_axis_state, retention_axis_state, weakness_axis_state]
+  unwritten_reads_as: not_yet_evaluated
+  plan: newest_plan_version_decoded_trace
+
+state_changes:
+  kinds: [capability_confirmed, verification_opened, verification_resolved, mastery_no_longer_confirmed, remediation_opened, remediation_closed, weakness_question_opened, weakness_supported, weakness_resolved, retention_revalidated, retention_at_risk]
+  family_source: ASUX-v0 §13.1
+  reason_source: ReplanTrigger (PDT-v0 §8.10)
+  unwritten_before_claims_nothing: true
+  unknown_before_listed: true
+  time_only_transitions_reported: false
+  contradiction_reported_as: verification_opened
+  one_name_per_change_per_skill: true
+  correction_downgrades_reported: false
+  hypothesis_family: verification_needed
+  readiness_diffed: false
+  readiness_why: readiness is a function of the reported axes; its effect on dependents appears as plan changes
+
+plan_changes:
+  kinds: [need_opened, need_closed, task_added, task_removed]
+  keys: {need: needKey, task: candidateId}
+  same_plan_version_is_change: false
+  first_plan_is_change: false
+  reasons: state_change_codes_plus_new_plans_own_replan_codes
+
+recompute:
+  order: [RebuildMastery, RebuildRetention, RebuildWeakness, RebuildReadiness]
+  profiles_from: PersistencePort.objectivesOf
+  criticality: {critical: true, standard: false, other: refused}
+  other_gate_parameters: GRE-v0 defaults
+  unpublished_skill: nothing_written
+  writes_truth: false
+
+replan:
+  only_when_state_changed: true
+  through: BuildDailyPlan.replan
+  trigger: {remediation_opened: new_remediation_created, verification_opened: new_verification_due_created, otherwise: new_evidence_recorded}
+  trigger_sets_remaining_time: false
+  report_read_after_new_plan: true
+
+presentation:
+  families_into: SessionResults.of(canonicalChanges)
+  nothing_changed_sentence: true
+  first_plan_sentence: true
+  state_change_ref: "skill_state:<skill>#<change>"
+  owner_of_wording: 14
+
+port_refinements:
+  - {port: PersistencePort, method: objectivesOf}
+port_count: 4
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/ProgramChangeFactsTest.kt, class: coach.model.ProgramChangeFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/ProgramChangeEngineTest.kt, class: coach.engines.ProgramChangeEngineTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/ProgramChangesTest.kt, class: coach.application.ProgramChangesTest}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/ProgramChangePresentationTest.kt, class: coach.presentation.ProgramChangePresentationTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/ProgramChangeStorageTest.kt, class: coach.persistence.ProgramChangeStorageTest}
+
+mutation_results:
+  total: 42
+  detected: 42
+  only_program_change_suites_run: true
+  harness_verified_to_run_gradle: true
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run: []
+  tests_strengthened_before_first_run:
+    - test: "a hypothesis is an open question, support is not yet a deficiency"
+      how: support corrected down to a hypothesis reports nothing (written while listing E18, before any run)
+    - test: "recomputing writes every axis from the published Objectives"
+      how: the retention axis and row must be the retention engine's own (written while listing E27, before any run)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: E01, mutant: an_unknown_criticality_is_read_as_standard}
+    - {id: E02, mutant: a_critical_objective_is_read_as_standard}
+    - {id: E03, mutant: the_required_flag_is_ignored}
+    - {id: E04, mutant: a_report_may_read_backwards_in_truth}
+    - {id: E05, mutant: a_plan_change_alone_is_nothing_changed}
+    - {id: E06, mutant: a_weakness_question_is_filed_as_a_gap}
+    - {id: E07, mutant: a_mastery_nobody_had_written_is_a_before}
+    - {id: E08, mutant: a_weakness_nobody_had_written_is_a_before}
+    - {id: E09, mutant: a_review_coming_due_is_reported}
+    - {id: E10, mutant: an_untracked_skill_becoming_stable_is_revalidated}
+    - {id: E11, mutant: a_resolved_verification_is_a_new_capability}
+    - {id: E12, mutant: development_is_reported_as_a_confirmed_capability}
+    - {id: E13, mutant: a_contradiction_is_reported_as_lost_mastery}
+    - {id: E14, mutant: a_retention_verification_is_reported_as_a_risk}
+    - {id: E15, mutant: a_downgraded_remediation_is_a_newly_supported_weakness}
+    - {id: E16, mutant: any_move_off_remediation_closes_it}
+    - {id: E17, mutant: a_weakness_never_open_is_reported_resolved}
+    - {id: E18, mutant: a_downgraded_support_is_a_new_question}
+    - {id: E19, mutant: the_same_plan_version_is_diffed}
+    - {id: E20, mutant: a_first_plan_is_not_marked}
+    - {id: E21, mutant: replan_reasons_are_claimed_with_no_new_plan}
+    - {id: E22, mutant: non_replan_plan_codes_leak_into_the_report}
+    - {id: E23, mutant: closed_needs_are_not_reported}
+    - {id: E24, mutant: removed_tasks_are_not_reported}
+    - {id: E25, mutant: skills_are_reported_in_reverse_order}
+    - {id: E26, mutant: recomputing_skips_weakness}
+    - {id: E27, mutant: recomputing_skips_retention}
+    - {id: E28, mutant: recomputing_skips_readiness}
+    - {id: E29, mutant: profiles_do_not_come_from_the_curriculum}
+    - {id: E30, mutant: nothing_changed_still_replans}
+    - {id: E31, mutant: a_remediation_is_not_named_as_the_replan_event}
+    - {id: E32, mutant: the_report_is_read_before_the_new_plan_exists}
+    - {id: E33, mutant: a_snapshot_reads_no_plan}
+    - {id: E34, mutant: an_empty_axis_is_read_as_written}
+    - {id: E35, mutant: a_hypothesis_is_worded_as_a_deficiency}
+    - {id: E36, mutant: every_change_lands_in_one_family}
+    - {id: E37, mutant: a_first_plan_is_described_as_nothing_changed}
+    - {id: E38, mutant: the_nothing_changed_sentence_shows_over_real_changes}
+    - {id: E39, mutant: a_dropped_need_is_called_less_important}
+    - {id: E40, mutant: a_skill_reads_another_version_s_objectives}
+    - {id: E41, mutant: objectives_come_back_in_no_stable_order}
+    - {id: E42, mutant: an_objective_s_criticality_is_not_read}
+
+validator_mutation:
+  total: 29
+  detected: 29
+  negative_control: forbidden fragments (a score, an answer read, a review-due report, a store import, a numeric type) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 712
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app calls recompute or the report after a real session yet (16D)
+
+open_loops:
+  durable_assessment_report: {owner: 16C}
+  app_calls_report: {owner: 16D}
+  transfer_artifact_gate_fields: {owner: 15}
+  result_wording: {owner: 14}
+
+forbidden_report_patterns:
+  - change_claimed_from_unwritten_state
+  - review_due_reported_as_change
+  - contradiction_reported_as_demotion
+  - hypothesis_reported_as_gap
+  - first_plan_reported_as_change
+  - replan_without_state_change
+  - report_reads_answers
+  - score_or_percentage_in_result
+  - dropped_work_called_less_important

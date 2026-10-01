@@ -128,6 +128,9 @@ class VirtualUserJourneysTest {
 
         override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
 
+
+        override fun objectivesOf(skill: VersionedRef): List<coach.model.ObjectiveRow> = emptyList()
+
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = null
         override fun curriculumPackage(): CurriculumPackage? = null
