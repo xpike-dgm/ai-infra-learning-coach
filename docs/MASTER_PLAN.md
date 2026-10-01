@@ -805,11 +805,25 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 13 — Assessment + Retention + Remediation Implementasyonu
-### [ ] 13A — Haftalık sınav — **AKTİF**
-### [ ] 13B — Aylık sınav
+### [x] 13A — Haftalık sınav — WBAX-v0 / D-098
+
+**13A final coverage:**
+- hafta bir kimliktir, kota ya da son tarih değil; döngü kaydedilmiş çalışma gününün ISO haftası (kullanıcı onayladı),
+- hafta bir kez kurulur; aynı hafta hiçbir şey yazmaz; ölçülecek bir şey yoksa yazılmaz; kaçırılan hafta borç bırakmaz,
+- havuz planner'ın açtığı ihtiyaçlardan; bir Skill tek kez, §9 sırasıyla; bant ve rank planner'ınki; roller kota değil,
+- item seçimi `QAB-v0` §31–§33: indeksli yüzler, 5'lik okuma sınırı (18E), mağaza güveni, kapalı kalan kapı, görülmüş/çözülmüş/aile/testlet/süre retleri,
+- slotlar planner'ın mevcut ihtiyaçlarının adayı; haftanın kuyruğu, bandı ve dakikası yok,
+- tek interior; deneme oturumunu adlandırır; sonuçta puan yok; contaminated/geçersiz/provisional/yardımlı birinci sınıf,
+- şema v3 `assessment_session.blueprint` + CHECK; katı `weekly_blueprint/1`; yeniden kompozisyon ekler,
+- beş 12x yaşayan kapı garantisi zayıflamadan daraltıldı,
+- mutation 42/42, validator 210/210 ve kendi mutation testi 25/25,
+- **T6 çalıştırılmadı**; uygulamada hafta kurulmuyor (16D).
+
+### [ ] 13B — Aylık sınav — **AKTİF**
 ### [ ] 13C — Spaced repetition
 ### [ ] 13D — Remediation Engine
 ### [ ] 13E — Program değişiklik raporu
+### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi
 
 ---
 
@@ -909,8 +923,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`  
-**Son tamamlanan:** **`12F — VUSX-v0 / D-097`**  
-**Aktif:** **`13A — Haftalık sınav`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A`  
+**Son tamamlanan:** **`13A — WBAX-v0 / D-098`**  
+**Aktif:** **`13B — Aylık sınav`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13A fresh PRE-STEP → `WBA-v0` haftalık blueprint kompozisyonu → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13B fresh PRE-STEP → `MCA-v0` aylık kompozisyon (13A'nın composer, codec, planner köprüsü ve interior görünümü üzerine) → independent QA → D-050 POST sync + stale audit.**

@@ -1,0 +1,289 @@
+model: WBAX-v0
+stage_step: 13A
+status: accepted_13a
+decision: D-098
+weekly_semantics: WBA-v0
+interior: [ASUX-v0, DMAX-v0]
+item_bank: [QAB-v0, AIV-v0]
+engines_fed: [MSTX-v0, PRQX-v0, PLNX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: weekly_blueprint_composition_runs_against_real_code
+
+scope:
+  blueprint_composed_from_state: true
+  items_chosen_after_slots: true
+  slots_offered_to_planner: true
+  weekly_interior_view: true
+  root_cause_contamination_guard: true
+  recomposition_appends: true
+  schema_changed: true
+  migration_added: true
+  interfaces_added: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  gate_rule_changed: false
+  mastery_rule_changed: false
+  monthly_composition: false
+  diagnostic_waiver_implemented: false
+  app_calls_composition: false
+
+weekly_question: What is worth measuring this week, and how is it measured with a trusted fresh item, inside the day's real time, without turning a missed week into debt?
+
+primary_invariant: >-
+  A week is an identity, not a quota and not a deadline. What is worth measuring comes from state, one Skill
+  is measured once, a slot without a trusted fresh item is not coverage, the week adds no minutes and no queue
+  of its own, and a week that passed without its assessment leaves nothing behind.
+
+cycle:
+  definition: iso_8601_week_of_recorded_study_day
+  format: "YYYY-Www"
+  source_column: occurred_on_study_day
+  week_start: monday
+  product_default: true
+  scientific_value: false
+  setting_owner: 16D
+  user_confirmation: confirmed_by_user
+  composed_once_per_cycle: true
+  same_cycle_writes_nothing: true
+  nothing_to_measure_writes_nothing: true
+  earlier_cycle_offered: false
+  stacking_possible: false
+
+roles:
+  source: WBA-v0 §7
+  order: [recent_required_progress, weakness_or_verification, critical_prerequisite_confidence, retention_due, integration_or_transfer, parallel_english]
+  selection_order: [weakness_or_verification, critical_prerequisite_confidence, recent_required_progress, retention_due, integration_or_transfer, parallel_english]
+  quota: false
+  intent:
+    recent_required_progress: mastery_evidence
+    weakness_or_verification: verification
+    critical_prerequisite_confidence: verification
+    retention_due: verification
+    integration_or_transfer: integration_check
+    parallel_english: mastery_evidence
+  purpose:
+    recent_required_progress: assess
+    weakness_or_verification: assess
+    critical_prerequisite_confidence: assess
+    retention_due: retain
+    integration_or_transfer: assess
+    parallel_english: assess
+
+pool:
+  needs_from: PlannerEngine.needsFromSkillStates
+  owner_supplied_needs_allowed: [parallel_track_due, integration_opportunity]
+  one_skill_once: true
+  priority_from: PBR-v0
+  holding_back_from: planner_trace/3 blocked candidates' related Skills
+  gate_rerun_for_pool: false
+  recent_since: previous blueprint study day
+  exclusions: [remediation_open, not_taught_yet, not_active_since_last_cycle, measured_in_another_role, not_a_weekly_measurement]
+  remediation_skill_measured: false
+  new_learning_measured: false
+
+item_selection:
+  source: QAB-v0 §31-§33
+  indexed_facets_before_bound: [targets_skill, weekly_scope, selectable_lifecycle, role_declared]
+  max_items_per_slot: 5
+  bound_kind: engineering
+  bound_owner: 18E
+  order: [trusted_first, deterministic_first, stable_id]
+  shortest_first: false
+  refusals: [role_not_declared, not_usable_for_intent, prerequisite_waits, solution_exposed, already_seen, variant_family_in_use, dependency_group_in_use, expected_minutes_missing]
+  trust_from: store_validation_record
+  gate_fails_closed: true
+  independence_mode: h0_required
+  required_for_closure_bands: [P0, P1]
+  no_valid_item_is_coverage: false
+
+planning:
+  slot_need_is_existing_need: true
+  own_queue: false
+  own_band: false
+  own_minutes: false
+  activity: assessment_session
+  atomic_evidence_boundary: true
+  served_slot_offered_again: false
+  daily_budget_extended: false
+
+session:
+  interior: one_assessment_interior
+  scope_shown: weekly_blueprint
+  tools_disclosed: intersection_of_items
+  attempt_names_session: true
+
+result:
+  source: WBA-v0 §27
+  statuses: [complete, partial, deferred, invalidated]
+  invalidated_producer: none_yet
+  overall_score: false
+  skip_is_incorrect: false
+  incomplete_is_failure: false
+  state_changes_from: canonical_engines_only
+  contamination: forward_only
+  retroactive_contamination_owner: 13D
+
+reason_codes:
+  source: WBA-v0 §29
+  count: 19
+  codes: [assessment.weekly.due, assessment.weekly.blueprint_generated, assessment.weekly.slot_recent_progress, assessment.weekly.slot_weakness_or_verification, assessment.weekly.slot_critical_prerequisite, assessment.weekly.slot_retention_due, assessment.weekly.slot_integration_transfer, assessment.weekly.slot_parallel_english, assessment.weekly.no_eligible_target, assessment.weekly.no_valid_item, assessment.weekly.capacity_split, assessment.weekly.partial_session, assessment.weekly.incomplete_not_failure, assessment.weekly.assistance_recheck_required, assessment.weekly.invalid_item_replaced, assessment.weekly.prerequisite_contaminated, assessment.weekly.evidence_bundle_recorded, assessment.weekly.replan_after_result, assessment.weekly.no_exam_debt]
+  added_to_planner_catalog: false
+
+schema_migration:
+  from: 2
+  to: 3
+  owner: 13A
+  table: assessment_session
+  column: blueprint
+  check: "scope <> 'weekly' OR blueprint IS NOT NULL"
+  indexes: [assessment_sessions_by_scope, evidence_by_study_day]
+  format: weekly_blueprint/1
+  populated_fixture_tested: true
+  ten_d_disclosure: assessment_session.scope -> 13
+
+codec:
+  format: weekly_blueprint/1
+  strict: true
+  unknown_version_decodes_to: null
+  repeated_field_decodes_to: null
+
+port_refinements:
+  - {port: PersistencePort, method: latestAssessmentSession}
+  - {port: PersistencePort, method: exposuresFor}
+  - {port: PersistencePort, method: skillsEvidencedSince}
+  - {port: ContentPort, method: assessmentItemsFor}
+port_count: 4
+
+authored_item_keys_added: [expected_active_minutes, blueprint_roles]
+authored_item_keys_required: false
+
+living_gates_narrowed:
+  - {check: E12B-12_schema_version_unchanged, to: every_version_beyond_2_owned_by_an_accepted_contract}
+  - {check: E12C-08_schema_version_unchanged, to: every_version_beyond_2_owned_by_an_accepted_contract}
+  - {check: E12D-09_schema_version_unchanged, to: every_version_beyond_2_owned_by_an_accepted_contract}
+  - {check: E12E-04_schema_version_unchanged, to: every_version_beyond_2_owned_by_an_accepted_contract}
+  - {check: E12F-07_schema_version_unchanged, to: every_version_beyond_2_owned_by_an_accepted_contract}
+  - {check: E12C-08_watermark_first, to: watermark_before_readProjection_or_PlanningStates_read}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/WeeklyAssessmentFactsTest.kt, class: coach.model.WeeklyAssessmentFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/WeeklyBlueprintEngineTest.kt, class: coach.engines.WeeklyBlueprintEngineTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/WeeklyAssessmentTest.kt, class: coach.application.WeeklyAssessmentTest}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/WeeklyAssessmentSessionTest.kt, class: coach.presentation.WeeklyAssessmentSessionTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/WeeklySessionStorageTest.kt, class: coach.persistence.WeeklySessionStorageTest}
+  content: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt, class: coach.curriculum.PackageFormatTest}
+
+mutation_results:
+  total: 42
+  detected: 42
+  only_weekly_suites_run: true
+  harness_verified_to_run_gradle: true
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  replaced_first_run:
+    - id: W26
+      why: equivalent — the replaced item's variant family already blocks it; replaced by dropping the replaced families from the in-use set, which the recomposition test catches
+    - id: W27
+      why: did not compile; rewritten as a same-cycle check that never matches
+    - id: W40
+      why: equivalent — the item model's own init refuses a non-positive duration; replaced by silently dropping an unknown blueprint role
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: W01, mutant: cycle_uses_calendar_year}
+    - {id: W02, mutant: selection_order_puts_critical_confidence_first}
+    - {id: W03, mutant: skill_under_remediation_measured}
+    - {id: W04, mutant: new_learning_measured_before_teaching}
+    - {id: W05, mutant: recency_ignored}
+    - {id: W06, mutant: critical_confidence_without_holding_back}
+    - {id: W07, mutant: skill_measured_under_every_role}
+    - {id: W08, mutant: undeclared_role_filled}
+    - {id: W09, mutant: unanswered_gate_lets_item_through}
+    - {id: W10, mutant: solved_family_fresh_again}
+    - {id: W11, mutant: seen_item_fresh_again}
+    - {id: W12, mutant: variant_family_measures_two_slots}
+    - {id: W13, mutant: dependency_group_measures_two_slots}
+    - {id: W14, mutant: undeclared_minutes_planned}
+    - {id: W15, mutant: per_slot_read_unbounded}
+    - {id: W16, mutant: trusted_not_first}
+    - {id: W17, mutant: every_slot_required_for_closure}
+    - {id: W18, mutant: no_debt_said_always}
+    - {id: W19, mutant: served_slot_offered_again}
+    - {id: W20, mutant: retention_slot_planned_as_assess}
+    - {id: W21, mutant: slot_not_atomic}
+    - {id: W22, mutant: root_failure_contaminates_nothing}
+    - {id: W23, mutant: assisted_failure_is_root_failure}
+    - {id: W24, mutant: skipped_slot_counted_completed}
+    - {id: W25, mutant: contaminated_evidence_usable}
+    - {id: W26, mutant: recomposition_reuses_replaced_family}
+    - {id: W27, mutant: week_composed_again_same_week}
+    - {id: W28, mutant: empty_blueprint_written}
+    - {id: W29, mutant: item_trust_claim_believed}
+    - {id: W30, mutant: last_weeks_slots_offered}
+    - {id: W31, mutant: attempt_forgets_session}
+    - {id: W32, mutant: session_contamination_not_recorded}
+    - {id: W33, mutant: weekly_row_without_blueprint_accepted}
+    - {id: W34, mutant: recency_boundary_day_dropped}
+    - {id: W35, mutant: exposure_ignores_version}
+    - {id: W36, mutant: oldest_session_returned_as_latest}
+    - {id: W37, mutant: unknown_blueprint_version_read}
+    - {id: W38, mutant: repeated_field_read}
+    - {id: W39, mutant: session_discloses_union_of_tools}
+    - {id: W40, mutant: unknown_blueprint_role_dropped}
+    - {id: W41, mutant: one_digit_week_number}
+    - {id: W42, mutant: no_eligible_target_not_said}
+
+validator_mutation:
+  total: 25
+  detected: 25
+  negative_control: forbidden fragments (randomness, a cut slot, a session UPDATE, a score field, minute ordering) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  reader_defects_fixed:
+    - why: the first validator read a list, a constructor-only data class and an expression-bodied function by looking for braces, so eight checks read the wrong text; the readers now balance parentheses and member boundaries
+    - id: V11
+      why: survived the first run — the item-order check read only the comparator's first lambda for the same reason; it now reads the whole comparator, and the whole set was run again
+  survived_first_run: [V11]
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app composes a week or calls the planner yet (16D), and no authored item declares minutes or roles (15)
+
+open_loops:
+  diagnostic_waiver_and_s06: {owner: 13F, why: no step in 13A-13E covered VDW-v0; the user chose a new step appended to AŞAMA 13 (D-099)}
+  retroactive_contamination: {owner: 13D, why: correcting an earlier answer needs evidence_disposition read by the mastery engine}
+  skill_state_assembly: {owner: 13C, why: 13A writes no axis; the first second writer is retention}
+  retention_and_weakness_needs: {owner: 13C/13D}
+  content_freshness: {owner: 15/18D, why: QAB-v0 §26 content freshness is not in the item model}
+  per_item_tool_disclosure: {owner: 14}
+  calling_composition_from_the_app: {owner: 16D}
+  monthly_composition: {owner: 13B}
+
+forbidden_weekly_patterns:
+  - role_as_quota
+  - fixed_question_count_or_duration
+  - skill_measured_under_several_roles
+  - measured_before_teaching
+  - skill_under_remediation_measured
+  - item_promotes_itself
+  - seen_or_solved_item_as_fresh
+  - near_variant_or_shared_testlet_as_independent
+  - invented_item_duration
+  - weekly_queue_band_or_budget
+  - missed_week_as_debt
+  - earlier_week_slots_offered
+  - skip_as_incorrect
+  - overall_score_or_pass_mark
+  - state_change_without_engine
+  - downstream_blamed_for_root_gap
+  - stored_blueprint_edited

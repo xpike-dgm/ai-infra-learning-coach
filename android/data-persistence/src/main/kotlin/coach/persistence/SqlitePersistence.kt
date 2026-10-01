@@ -5,11 +5,13 @@ import androidx.sqlite.SQLiteDriver
 import androidx.sqlite.SQLiteStatement
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
+import coach.model.AssessmentScope
 import coach.model.CurriculumPackage
 import coach.model.DifficultyClass
 import coach.model.EvaluatorStatus
 import coach.model.EvidenceOutcome
 import coach.model.EvidenceRow
+import coach.model.ExposureFact
 import coach.model.IndependenceClass
 import coach.model.ObjectiveEvidenceProfile
 import coach.model.PrerequisiteEdge
@@ -401,6 +403,62 @@ class SqlitePersistence private constructor(
     override fun resumeCheckpointRows(): List<StoredTruth> =
         query("SELECT id FROM resume_checkpoint ORDER BY sequence") { it.getLong(0) }
             .mapNotNull { id -> readTruth("resume_checkpoint", id)?.let { StoredTruth(id, it) } }
+
+    /** The newest session of one scope by truth sequence, read back exactly as written (13A). */
+    override fun latestAssessmentSession(scope: AssessmentScope): StoredTruth? {
+        val id = connection.prepare(
+            "SELECT id FROM assessment_session WHERE scope = ? ORDER BY sequence DESC LIMIT 1",
+        ).use { statement ->
+            statement.bindText(1, scope.storedAs)
+            if (statement.step()) statement.getLong(0) else null
+        } ?: return null
+        return readTruth("assessment_session", id)?.let { StoredTruth(id, it) }
+    }
+
+    /**
+     * Every exposure row for these item versions or variant families, oldest first (13A). Read through
+     * the `DDM-v0` exposure indexes; nothing here removes or ages out an exposure.
+     */
+    override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact> {
+        if (resources.isEmpty() && variantFamilies.isEmpty()) return emptyList()
+        val byResource = resources.map { "(resource_logical_id = ? AND resource_version = ?)" }
+        val byFamily = variantFamilies.map { "variant_family_id = ?" }
+        val sql = "SELECT resource_logical_id, resource_version, variant_family_id, exposure_kind FROM exposure_record " +
+            "WHERE ${(byResource + byFamily).joinToString(" OR ")} ORDER BY sequence"
+        connection.prepare(sql).use { statement ->
+            var index = 1
+            resources.forEach {
+                statement.bindText(index++, it.logicalId)
+                statement.bindLong(index++, it.version.toLong())
+            }
+            variantFamilies.forEach { statement.bindText(index++, it) }
+            val rows = mutableListOf<ExposureFact>()
+            while (statement.step()) {
+                rows += ExposureFact(
+                    resource = VersionedRef(statement.getText(0), statement.getLong(1).toInt()),
+                    variantFamilyId = if (statement.isNull(2)) null else statement.getText(2),
+                    kind = statement.getText(3),
+                )
+            }
+            return rows
+        }
+    }
+
+    /**
+     * Distinct Skills with evidence recorded on or after [studyDay], by each row's own study day — never
+     * an instant range, for the same reason [countTruth] never uses one (13A).
+     */
+    override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> {
+        connection.prepare(
+            "SELECT DISTINCT skill_logical_id, skill_version FROM evidence_event WHERE occurred_on_study_day >= ? " +
+                "ORDER BY skill_logical_id, skill_version",
+        ).use { statement ->
+            statement.bindText(1, studyDay)
+            val rows = mutableListOf<VersionedRef>()
+            while (statement.step()) rows += VersionedRef(statement.getText(0), statement.getLong(1).toInt())
+            return rows
+        }
+    }
 
     /**
      * The global truth sequence: every truth row of every kind advances it. It is the watermark a

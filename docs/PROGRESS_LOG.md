@@ -1087,3 +1087,17 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - **AŞAMA 12 tamamlandı.** D-050 POST living-memory accepted state'i `12F ✅ / 13A active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13A — Haftalık sınav`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13A Haftalık sınav tamamlandı — WBAX-v0 / D-098
+
+- 12F (#38) main'e merge edildi (82aa24a); fresh 13A PRE yapıldı ve beş kanonik kaynak `12F ✅ / 13A active-not-executed` gösterdi. Kullanıcı açık onay verdi ("13A ile devam edebilirsin").
+- `WBA-v0` koda döküldü: blueprint öğeden önce durumdan; havuz planner'ın ihtiyaçları, bir Skill tek kez, roller kota değil; slot yalnız mağazanın güvendiği, kapının izin verdiği, görülmemiş item ile; slotlar planner'ın mevcut ihtiyaçlarının adayı; sonuçta puan yok.
+- **Bulgu:** hiçbir ürün kodu `assessment_session` yazmamıştı; şema v3 blueprint'i (CHECK ile) ekledi, dolu şema-2 veritabanına karşı test edildi.
+- **Bulgu:** item modelinde `expected_active_minutes` ve rol uygunluğu yoktu; isteğe bağlı authored anahtarlar eklendi, varsayılan uydurulmadı.
+- **Kullanıcı kararları:** döngü ISO hafta (Pazartesi) onaylandı; `D-099` ile `13F — Tanısal atlama (VDW-v0)` AŞAMA 13'e eklendi, yeniden numaralama yok.
+- Beş 12x yaşayan kapı (`schema_version_unchanged`) ve `E12C-08_watermark_first` garanti zayıflamadan daraltıldı.
+- Mutation 42/42 (W26/W40 eşdeğer, W27 derlenmez — değiştirildi, set yeniden koşuldu). Altı run PASS. Validator 210/210, kendi mutation testi 25/25 (V11 okuyucu hatası düzeltildi), sweep 43/43.
+- **T6 çalıştırılmadı**; uygulamada hafta kurulmuyor (16D).
+- D-050 POST living-memory accepted state'i `13A ✅ / 13B active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13B — Aylık sınav`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

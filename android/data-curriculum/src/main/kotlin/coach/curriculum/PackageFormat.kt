@@ -3,6 +3,7 @@ package coach.curriculum
 import coach.model.AllowedToolsPolicy
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
+import coach.model.BlueprintRole
 import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
 import coach.model.EvaluatorRequirement
@@ -147,6 +148,9 @@ object PackageFormat {
             "evaluator_policy_version", "deterministic_verification", "allowed_tools", "prohibited_solution_sources",
             "independence_mode", "difficulty_class", "lifecycle_status", "content_origin", "declared_use_ceiling",
             "scope_eligibility", "variant_family_id", "dependency_group_id", "forbidden_not_yet_concepts",
+            // `QAB-v0` §8/§14/§22, needed by a weekly slot (13A). Both are optional: an item that does not
+            // declare them simply cannot fill a weekly slot, and no default is invented for either.
+            "expected_active_minutes", "blueprint_roles",
         ),
     )
 
@@ -319,6 +323,14 @@ object PackageFormat {
                 dependencyGroupId = optional(section, "dependency_group_id"),
                 forbiddenNotYetConcepts = list(section, "forbidden_not_yet_concepts"),
                 deterministicVerification = boolean(section, "deterministic_verification", default = false),
+                expectedActiveMinutes = optional(section, "expected_active_minutes")?.let { raw ->
+                    raw.toIntOrNull()?.takeIf { it > 0 }
+                        ?: run { reasons += "[item] line ${section.line}: 'expected_active_minutes' is not a positive number"; null }
+                },
+                blueprintRoles = list(section, "blueprint_roles").mapNotNull { raw ->
+                    BlueprintRole.entries.firstOrNull { it.id == raw }
+                        ?: run { reasons += "[item] line ${section.line}: unknown blueprint role '$raw'"; null }
+                }.toSet(),
             )
         }
     }

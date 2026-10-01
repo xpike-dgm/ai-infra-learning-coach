@@ -44,4 +44,8 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
      * the truthful answer — the planner then records the need as having no valid candidate.
      */
     override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
+
+    /** The authored items naming [skill] among their targets, in a stable order (13A). */
+    override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> =
+        parsed?.items?.values.orEmpty().filter { skill in it.targetSkills }.sortedBy { it.ref.toString() }
 }

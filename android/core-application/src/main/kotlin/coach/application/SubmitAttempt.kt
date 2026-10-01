@@ -29,10 +29,12 @@ class SubmitAttempt(
             val attemptId = persistence.appendTruth(
                 TruthRecord(
                     "attempt", at,
-                    mapOf(
-                        "resource_logical_id" to submission.resource.logicalId,
-                        "resource_version" to submission.resource.version.toString(),
-                    ),
+                    buildMap {
+                        put("resource_logical_id", submission.resource.logicalId)
+                        put("resource_version", submission.resource.version.toString())
+                        // An attempt made inside an assessment session names it (13A); others name none.
+                        submission.assessmentSessionId?.let { put("assessment_session_id", it.toString()) }
+                    },
                 )
             )
             val artifactId = persistence.appendTruth(

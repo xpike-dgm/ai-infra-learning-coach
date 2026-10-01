@@ -83,11 +83,13 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - 12E: ✅ `RSNX-v0 / D-096` tamamlandı — bir açıklama karar izinin projeksiyonudur: her cümle izin kaydettiği bir reason code'a ya da izin bir alanında tuttuğu bir olguya dayanır. Planner'ın kaydetmediği bir gerekçe kurulamaz, süreye sığmayan iş 'daha az önemli' diye anlatılmaz, bekleyen iş gerçek Skill blocker'ını adlandırır, `review_due` unutmak değildir ve yokluk borç değildir. Katalog `PDT-v0` §8 + `PRG-v0` §20 ve kapalı; iz adayların ilgili Skill'lerini planlama anında kaydeder (`planner_trace/3`) ve kapı açıklamak için yeniden koşulmaz. Today planı okuyor; iz kendi satırlarını anlatmıyorsa plan okunamaz ve tahmin edilmez; korunan iş yeniden başlatılmaz. Mutation 52/52, 219/219 QA PASS. T6 çalıştırılmadı ve planner uygulamada henüz çağrılmıyor.
 - 12F: ✅ `VUSX-v0 / D-097` tamamlandı — sanal kullanıcı durumdur, cevap değil: 3H'nin sanal kullanıcıları artık gerçek kapıdan, planner'dan, replan'dan, depodan, Today'den ve açıklamadan geçiyor. İhtiyaç durumdan, uygunluk kapıdan, seçim planner'dan, açıklama onun yazdığı izden geliyor; koşulamayan senaryo elle simüle edilmez, sahibiyle adlandırılır. 16 senaryodan 15'i koşuldu; S06 (`VDW-v0` tanısal atlaması) uygulanmadığı için koşulamıyor ve 13'e bağlandı. Dönen öğrencinin due envanteri açıklamada satır satır listeleniyordu; aynı kaydedilmiş nedenle gelmeyenler artık tek satır. Mutation 27/27 yalnız sanal kullanıcı testleriyle, 148/148 QA PASS. T6 çalıştırılmadı.
 - **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
-- **Aktif adım: 13A — Haftalık sınav.**
-- **13A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 13B–20 bekliyor.
+- 13A: ✅ `WBAX-v0 / D-098` tamamlandı — bir hafta bir kimliktir, kota ya da son tarih değil: haftanın ölçümü öğe seçilmeden önce durumdan kurulur, her Skill tek kez ve `WBA-v0` §9 sırasıyla ölçülür, rol aileleri kota değildir; bir slot yalnız mağazanın güvendiği, kapının izin verdiği ve öğrencinin henüz görmediği bir item ile dolar — görülmüş item, çözümü gösterilmiş varyant ailesi, yakın varyant ya da paylaşılan testlet taze ölçüm değildir ve beyan edilmemiş süre uydurulmaz. Slotlar planner'a, zaten açtığı ihtiyaçların adayları olarak gider: haftanın kendi kuyruğu, bandı ya da dakikası yoktur. Döngü kaydedilmiş çalışma gününün ISO haftasıdır (kullanıcı onayladı); hafta bir kez kurulur, ölçülecek bir şey yoksa hiçbir şey yazılmaz ve kaçırılan hafta borç bırakmaz. Sonuçta puan yoktur, boş bırakmak yanlış değildir, bu oturumda eksik görünen ön koşula dayanan iş `contaminated` yazılır. `assessment_session` şema v3 ile blueprint'ini taşır (dolu fixture'a karşı). Mutation 42/42, 210/210 QA PASS. T6 çalıştırılmadı.
+- `D-099`: AŞAMA 13'ün sonuna `13F — Tanısal atlama (VDW-v0)` eklendi (kullanıcı kararı; yeniden numaralama yok).
+- **Aktif adım: 13B — Aylık sınav.**
+- **13B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 13C–13F ve 14–20 bekliyor.
 
-**13A'yı bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 13A için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**13B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 13B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

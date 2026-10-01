@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 2
+    const val VERSION = 3
 
     // ---------------------------------------------------------------- table inventories
 
@@ -542,4 +542,21 @@ object Schema {
      */
     val v2: List<String>
         get() = indexes
+
+    /**
+     * Version 3 completes `assessment_session` (13A). `DDM-v0` describes it as "one session, its blocks
+     * and boundaries", and 10D fixed only its scope, disclosing that 13 owns the rest. A weekly session's
+     * blocks and boundaries are its blueprint, stored as strict `weekly_blueprint/1` text in one column —
+     * no column is invented per slot.
+     *
+     * A weekly row without its blueprint is refused: a session whose measurement nobody can read is a
+     * half-record. Rows written before this version are untouched (a column added to an append-only
+     * table fills them with nothing, and nothing had ever written a session).
+     */
+    val v3: List<String>
+        get() = listOf(
+            "ALTER TABLE assessment_session ADD COLUMN blueprint TEXT CHECK (scope <> 'weekly' OR blueprint IS NOT NULL)",
+            "CREATE INDEX IF NOT EXISTS assessment_sessions_by_scope ON assessment_session (scope, sequence)",
+            "CREATE INDEX IF NOT EXISTS evidence_by_study_day ON evidence_event (occurred_on_study_day)",
+        )
 }

@@ -4,14 +4,11 @@ import coach.engines.PlannerEngine
 import coach.engines.ReplanEngine
 import coach.model.DailyCapacityInput
 import coach.model.GenerationKind
-import coach.model.MasteryAxisState
 import coach.model.PlanTrace
 import coach.model.PlanTraceCodec
 import coach.model.PrerequisiteCandidate
 import coach.model.ReplanTrigger
 import coach.model.ResumeContextCodec
-import coach.model.RetentionAxis
-import coach.model.SkillPlanningState
 import coach.ports.ClockPort
 import coach.ports.ContentPort
 import coach.ports.PersistencePort
@@ -85,19 +82,7 @@ class BuildDailyPlan(
         }
 
         val skills = persistence.publishedSkills()
-        val states = skills.map { skill ->
-            val row = persistence.readProjection(ResolvePrerequisites.skillStateKey(skill.ref))
-            val axes = row?.payload.orEmpty()
-            SkillPlanningState(
-                skill = skill.ref,
-                lifecycleStatus = skill.lifecycleStatus,
-                critical = skill.criticalPrerequisite,
-                mastery = MasteryAxisState.entries.firstOrNull { it.id == axes["mastery_axis_state"] },
-                retention = RetentionAxis.of(axes["retention_axis_state"]),
-                weaknessAxis = axes["weakness_axis_state"]?.takeUnless { it.isEmpty() || it == ResolvePrerequisites.NOT_YET_EVALUATED },
-                snapshotRef = row?.let { "${it.key}#watermark=${it.truthWatermark}" },
-            )
-        }
+        val states = PlanningStates.read(persistence, skills)
         // A stored pause is a continuation signal for the need it names; a row that does not decode is
         // not a pause anyone can resume.
         val pauses = persistence.resumeCheckpointRows()
@@ -109,7 +94,8 @@ class BuildDailyPlan(
             emptyList()
         }
         val needs = ReplanEngine.unservedNeeds(paused.needs, kept)
-        val candidates = needs.flatMap { content.taskCandidates(it) }
+        // This week's assessment slots serve needs already open here (13A); they add no queue of their own.
+        val candidates = needs.flatMap { content.taskCandidates(it) } + WeeklySlots.candidates(persistence, now.studyDay, needs)
 
         // The prerequisite gate is asked about every candidate before priority is computed at all.
         val gate = ResolvePrerequisites(persistence)

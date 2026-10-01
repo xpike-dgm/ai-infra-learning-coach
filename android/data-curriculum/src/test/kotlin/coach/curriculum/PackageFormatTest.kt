@@ -1,6 +1,7 @@
 package coach.curriculum
 
 import coach.model.AssessmentScope
+import coach.model.BlueprintRole
 import coach.model.ContentOrigin
 import coach.model.IndependenceMode
 import coach.model.LifecycleStatus
@@ -146,6 +147,27 @@ class PackageFormatTest {
     fun `a missing required field refuses rather than defaulting`() {
         val withoutAnswerKey = authored.replace("expected_answer_or_rubric_ref=key://item.python.loops.q1@v1\n", "")
         assertFailsWith<PackageFormat.ParseFailure> { PackageFormat.parse(withoutAnswerKey) }
+    }
+
+    @Test
+    fun `an item may declare its minutes and blueprint roles, and nothing is defaulted when it does not`() {
+        val undeclared = assertNotNull(PackageFormat.parse(authored).items[itemRef])
+        assertNull(undeclared.expectedActiveMinutes)
+        assertTrue(undeclared.blueprintRoles.isEmpty())
+
+        val weekly = authored.replace("forbidden_not_yet_concepts=",
+            "forbidden_not_yet_concepts=\nexpected_active_minutes=8\nblueprint_roles=retention_due,weakness_or_verification")
+            .replace("scope_eligibility=daily_micro", "scope_eligibility=daily_micro,weekly_blueprint")
+        val item = assertNotNull(PackageFormat.parse(weekly).items[itemRef])
+        assertEquals(8, item.expectedActiveMinutes)
+        assertEquals(setOf(BlueprintRole.RETENTION_DUE, BlueprintRole.WEAKNESS_OR_VERIFICATION), item.blueprintRoles)
+        assertEquals(listOf(itemRef), FileContentSource { weekly }.assessmentItemsFor(VersionedRef("skill.python.loops", 1)).map { it.ref })
+        assertTrue(FileContentSource { weekly }.assessmentItemsFor(VersionedRef("skill.python.loops", 2)).isEmpty())
+
+        listOf("expected_active_minutes=0", "expected_active_minutes=soon", "blueprint_roles=final_exam").forEach { bad ->
+            val text = authored.replace("forbidden_not_yet_concepts=", "forbidden_not_yet_concepts=\n$bad")
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(text) }
+        }
     }
 
     @Test

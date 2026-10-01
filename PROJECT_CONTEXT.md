@@ -223,12 +223,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **12E ✅ Explanation / reason codes — RSNX-v0 / D-096**
 - **12F ✅ Sanal kullanıcı testleri — VUSX-v0 / D-097**
 - **AŞAMA 12 ✅ TAMAMLANDI**
-- **13A 🟡 Haftalık sınav — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13B–20 ⬜
+- **13A ✅ Haftalık sınav — WBAX-v0 / D-098**
+- **13B 🟡 Aylık sınav — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13C–13F, 14–20 ⬜ (13F D-099 ile eklendi)
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -473,3 +474,19 @@ Canonical: `docs/PLANNER_EXPLANATION_IMPL_SPEC.md` / D-096.
 Koşmak iki şey buldu. Otuz gün sonra dönen öğrencinin 78 due becerisi `planner_explanation`da 78 ayrı "bugün değil" satırıydı — `SRR-v0` §9.1'in yasakladığı backlog; aynı kaydedilmiş nedenle gelmeyen ihtiyaçlar artık hiçbir şeyi düşürmeyen tek satır ve 12E spec'ine açık not düşüldü. 3H'nin S07 örnek günü açıklayıcıymış: her due becerinin görevi varsa `PBR-v0` aciliyeti günü tekrarlarla doldurur ve yeni öğrenme süre için bekler; kural değiştirilmedi, koruma 18C'nin eşikleri. Mutation 27/27 yalnız sanal kullanıcı testleri koşarken; validator 148/148, kendi mutation testi 30/30. **T6 çalıştırılmadı.** **AŞAMA 12 tamamlandı.**
 
 Canonical: `docs/VIRTUAL_USER_TESTS_SPEC.md` / D-097.
+
+## 12.24 13A Haftalık sınav — WBAX-v0 / D-098
+
+Haftalık sınav kodda. Ana invariant: **bir hafta bir kimliktir, kota ya da son tarih değil.** Ölçmeye değer olan durumdan gelir, bir Skill tek kez ölçülür, güvenilir ve taze bir item'ı olmayan slot kapsama değildir, hafta kendi dakikasını ve kuyruğunu eklemez ve sınavı yapılmadan geçen bir hafta geride hiçbir şey bırakmaz.
+
+Kod yazmadan önce bulunanlar: hiçbir ürün kodu `assessment_session` yazmamıştı ve blueprint için yeri yoktu (10D bunu 13'e bırakmıştı); item modelinde `QAB-v0`ın süresi ve rol uygunluğu yoktu; deneme oturumunu adlandıramıyordu; exposure okunamıyordu; `WBA-v0` döngü sınırı tanımlamıyordu; `VDW-v0` 13'ün hiçbir alt adımında değildi.
+
+Döngü kaydedilmiş çalışma gününün ISO haftasıdır — ürün varsayılanı, bilimsel değer değil, kullanıcı onayladı. Hafta bir kez kurulur; aynı hafta hiçbir şey yazmaz; ölçülecek bir şey yoksa hiçbir şey yazılmaz; yeni hafta güncel durumdan taze kurulur ve iki kaçırılan hafta yapısal olarak yığılamaz.
+
+Havuz planner'ın eksenlerden açtığı ihtiyaçlardır (artı sahiplerinin verdiği paralel hat ve entegrasyon); composer kendi ihtiyacını açmaz. Doğrulama, bağımlı işi gerçekten bekleten kritik Skill (planner izinden), son blueprint'ten beri kanıt alan devam, retention (`retain` kalır), İngilizce paralel hat; yeni öğrenme, tanı ve açık remediation ölçülmez. Bir Skill tek kez, §9 sırasında; bant ve rank planner'ınki.
+
+Item seçimi `QAB-v0` §31–§33: indeksli yüzler önce, okuma 5 ile sınırlı (18E), en kısa asla önce değil; her ret bir kural adlandırır (mağaza güveni, kapalı kalan kapı, çözülmüş aile, görülmüş item, aile/testlet tekrarı, beyan edilmemiş süre). Slotlar planner'a mevcut ihtiyaçların adayı olarak gider; `BuildDailyPlan` bu haftanın sunulmamış slotlarını ekler; gün uzatılmaz.
+
+Tek interior; araç beyanı kesişim; deneme oturumunu adlandırır. Sonuç `WBA-v0` §27: puan yok, boş bırakmak yanlış değil, değişiklik yalnız motorların bildirdiği; bu oturumda eksik görünen ön koşula dayanan iş `contaminated` yazılır (ileriye dönük; geriye dönük 13D). Şema v3 `assessment_session.blueprint` + CHECK, katı `weekly_blueprint/1`, yeniden kompozisyon ekler. Dört port incelmesi; port sayısı dört. Beş 12x yaşayan kapı daraltıldı. `D-099` ile `13F — Tanısal atlama (VDW-v0)` eklendi. Mutation 42/42, validator 210/210, kendi mutation testi 25/25. **T6 çalıştırılmadı.**
+
+Canonical: `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` / D-098.

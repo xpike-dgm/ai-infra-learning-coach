@@ -30,6 +30,7 @@ object Migrations {
     private fun steps(): Map<Int, List<String>> = mapOf(
         0 to Schema.v1,
         1 to Schema.v2,
+        2 to Schema.v3,
     )
 
     fun currentVersion(connection: SQLiteConnection): Int {

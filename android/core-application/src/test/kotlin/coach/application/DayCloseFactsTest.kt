@@ -60,6 +60,9 @@ class DayCloseFactsTest {
         override fun publishedSkills(): List<SkillRow> = emptyList()
         override fun latestPlan(): StoredPlan? = null
         override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
+        override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
+        override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
+        override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private val clock = object : ClockPort {

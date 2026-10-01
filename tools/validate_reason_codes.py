@@ -16,6 +16,27 @@ import re
 import sys
 import yaml
 
+def schema_versions_owned(schema_text: str) -> bool:
+    """Narrowed at 13A: this step added no migration. Any schema version beyond 2 must be declared by the
+    accepted later contract that added it (`schema_migration` in its arch yaml), so an unowned move still fails."""
+    import glob as _glob
+    import yaml as _yaml
+    match = re.search(r"const val VERSION = (\d+)", schema_text)
+    if not match:
+        return False
+    version = int(match.group(1))
+    owned = set()
+    for path in _glob.glob(str(ROOT / "arch" / "*" / "*.yaml")):
+        try:
+            doc = _yaml.safe_load(open(path, encoding="utf-8"))
+        except Exception:
+            continue
+        migration = doc.get("schema_migration") if isinstance(doc, dict) else None
+        if isinstance(migration, dict) and migration.get("from") is not None and migration.get("to") is not None:
+            owned.add((int(migration["from"]), int(migration["to"])))
+    return all((v - 1, v) in owned for v in range(3, version + 1))
+
+
 ROOT = Path(__file__).resolve().parents[1]
 ANDROID = ROOT / "android"
 
@@ -309,7 +330,7 @@ check("E12E-04_rows_in_position_order",
 check("E12E-04_stored_plan_rows", "val plannedTasks: List<StoredPlannedTask>," in facts, "StoredPlan carries no rows")
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 check("E12E-04_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
-check("E12E-04_schema_version_unchanged", "const val VERSION = 2" in schema, "the schema version moved")
+check("E12E-04_schema_version_unchanged", schema_versions_owned(schema), "the schema version moved without an owning contract")
 
 # ---------------------------------------------------------------- Today's families, from trace facts
 families = body(reading, "fun reasonFamilies(")
