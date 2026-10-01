@@ -47,6 +47,15 @@ CKPT_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/Resume
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/TransactionAndMigrationTest.kt"
 T2_DIR = ANDROID / "data-persistence/src/test/kotlin"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -292,7 +301,7 @@ check("E11C-09_not_persisted", "appendTruth" not in state and "working_session" 
 # ---------------------------------------------------------------- port refinement
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
-check("E11C-10_port_count_four", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces} msbx={msbx_ports}")
+check("E11C-10_port_count_four", sorted(interfaces) == sorted(list(msbx_ports) + declared_port_extensions(ROOT)), f"interfaces={interfaces} msbx={msbx_ports}")
 persistence_methods = re.findall(r"fun (?:<T> )?(\w+)\(", body(ports, "interface PersistencePort"))
 # 11C owns `readTruth` and the fact that reading truth added no mutation path. It does not own the
 # rest of the port: later steps refine the same interface (11D publishes curriculum), so this check

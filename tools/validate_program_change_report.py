@@ -41,6 +41,15 @@ STORE_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Curricu
 SQL_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/SqlitePersistence.kt"
 SCHEMA_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Schema.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -259,7 +268,7 @@ check("E13E-08_no_combining_dot", chr(0x0307) not in pres_raw, "U+0307 in copy")
 # ---------------------------------------------------------------- port and storage
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx = yaml.safe_load(read(MSBX)) or {}
-check("E13E-09_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]) and contract.get("port_count") == 4, str(interfaces))
+check("E13E-09_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)) and contract.get("port_count") == 4, str(interfaces))
 check("E13E-09_refinement_declared", contract.get("port_refinements") == [{"port": "PersistencePort", "method": "objectivesOf"}], str(contract.get("port_refinements")))
 check("E13E-09_port_method", "fun objectivesOf(skill: VersionedRef): List<ObjectiveRow>" in ports, "port method")
 objectives_of = body(store, "fun objectivesOf(")

@@ -44,6 +44,15 @@ RUNNER_TEST = ANDROID / "core-presentation/src/test/kotlin/coach/presentation/Ta
 SUBMIT_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/SubmitAttemptTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/TransactionAndMigrationTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -246,8 +255,8 @@ check("E11B-07_upstream_no_evidence_without_attempt",
       "TRUX-v0: the runner is not the evidence evaluator")
 
 # ---------------------------------------------------------------- port refinement
-check("E11B-08_ports_unchanged", len(re.findall(r"^interface \w+Port\b", ports, re.M)) == 4
-      and len(msbx["ports"]["set"]) == 4, "no fifth port")
+check("E11B-08_ports_unchanged", sorted(re.findall(r"^interface (\w+Port)\b", ports, re.M)) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT))
+      and len(msbx["ports"]["set"]) == 4, "no undeclared port")
 check("E11B-08_append_returns_id", "fun appendTruth(record: TruthRecord): Long" in ports
       and "last_insert_rowid()" in adapter, "appendTruth returns the row id")
 

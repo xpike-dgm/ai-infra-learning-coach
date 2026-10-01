@@ -374,7 +374,8 @@ checks:
   details: may_read=['mastery', 'retention', 'curriculum']
 - check: E12B-12_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E12B-12_refinement_skill
   result: PASS
   details: missing skill

@@ -580,7 +580,8 @@ checks:
   details: a scope decoded with another codec
 - check: E13B-12_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E13B-12_no_monthly_port
   result: PASS
   details: a monthly port method

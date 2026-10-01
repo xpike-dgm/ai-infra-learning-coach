@@ -52,6 +52,15 @@ QUERY_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/Today
 CONTENT_TEST = ANDROID / "data-curriculum/src/test/kotlin/coach/curriculum/FileContentSourceTest.kt"
 T2_TESTS = ANDROID / "data-persistence/src/test/kotlin/coach/persistence"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -294,8 +303,8 @@ check("E11A-10_ui_renders_only",
       "TodayPresentation.of(" not in screen_code and "coach.persistence" not in screen,
       "app-ui must not compute the projection or reach persistence")
 check("E11A-10_ports_unchanged",
-      len(re.findall(r"^interface \w+Port\b", ports, re.M)) == 4 and len(msbx["ports"]["set"]) == 4,
-      "no fifth port may be added")
+      sorted(re.findall(r"^interface (\w+Port)\b", ports, re.M)) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)) and len(msbx["ports"]["set"]) == 4,
+      "no undeclared port may be added")
 check("E11A-10_port_refinement_recorded",
       contract["port_refinement"]["new_port"] is False and "curriculumPublished" in ports,
       "the port refinement must be recorded")

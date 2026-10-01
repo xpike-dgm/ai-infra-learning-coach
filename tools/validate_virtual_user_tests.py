@@ -55,6 +55,15 @@ PORTS_KT = ANDROID / "core-ports/src/main/kotlin/coach/ports/Ports.kt"
 SCHEMA_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Schema.kt"
 BUILD = {m: ANDROID / m / "build.gradle.kts" for m in ("core-engines", "core-application", "core-presentation")}
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -214,7 +223,7 @@ check("E12F-06_s07_both_days", sum(1 for n in contract["scenarios"]["S07"]["test
 # ---------------------------------------------------------------- ports and storage unchanged
 ports = strip_comments(read(PORTS_KT))
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
-check("E12F-07_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
+check("E12F-07_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 check("E12F-07_schema_version_unchanged", schema_versions_owned(read(SCHEMA_KT)), "the schema version moved without an owning contract")
 
 # ---------------------------------------------------------------- honesty

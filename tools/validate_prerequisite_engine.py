@@ -66,6 +66,15 @@ ENGINE_TEST = ANDROID / "core-engines/src/test/kotlin/coach/engines/Prerequisite
 APP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/ResolvePrerequisitesTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/PrerequisiteStorageTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -436,7 +445,7 @@ check("E12B-11_msbx_reads", set(msbx_prg.get("may_read", [])) == {"mastery", "re
 # ---------------------------------------------------------------- ports and storage
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
-check("E12B-12_port_count", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces}")
+check("E12B-12_port_count", sorted(interfaces) == sorted(list(msbx_ports) + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 for method in ("skill", "prerequisiteEdgesInto"):
     check(f"E12B-12_refinement_{method}", f"fun {method}(" in ports, f"missing {method}")
 edges_read = body(store, "fun prerequisiteEdgesInto(")

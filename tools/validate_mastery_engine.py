@@ -44,6 +44,15 @@ PIPELINE_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/Ev
 REBUILD_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/RebuildMasteryTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/EvidenceStorageTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -310,7 +319,7 @@ check("E12A-10_engine_owns_mastery",
 # ---------------------------------------------------------------- ports and schema
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
-check("E12A-11_port_count", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces}")
+check("E12A-11_port_count", sorted(interfaces) == sorted(list(msbx_ports) + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 for method in ("evidenceFor", "truthWatermark", "latestCurriculumVersion"):
     check(f"E12A-11_refinement_{method}", f"fun {method}(" in ports, f"missing {method}")
 evidence_read = body(adapter, "override fun evidenceFor(")

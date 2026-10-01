@@ -316,7 +316,8 @@ checks:
   details: StoredPlan carries no rows
 - check: E12E-04_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E12E-04_schema_version_unchanged
   result: PASS
   details: the schema version moved without an owning contract

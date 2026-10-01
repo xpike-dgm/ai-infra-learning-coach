@@ -267,7 +267,7 @@ checks:
   details: 'TRUX-v0: the runner is not the evidence evaluator'
 - check: E11B-08_ports_unchanged
   result: PASS
-  details: no fifth port
+  details: no undeclared port
 - check: E11B-08_append_returns_id
   result: PASS
   details: appendTruth returns the row id

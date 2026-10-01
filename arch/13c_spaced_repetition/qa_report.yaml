@@ -365,7 +365,8 @@ checks:
   details: §18 moved
 - check: E13C-11_port_count
   result: PASS
-  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
 - check: E13C-11_due_port
   result: PASS
   details: no due port

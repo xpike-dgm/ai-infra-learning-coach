@@ -68,8 +68,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **13D — Remediation Engine** | ✅ | WLRX-v0 / D-102. Başarısız deneme başarısız Skill değil; WLRM-v0'ın 12 atıf kuralı Objective düzeyinde; yardım/provisional en çok hipotez; doğrulama ve kapanış mastery kapılarını izler; biten görev kapatmaz; motor `weakness_detected` sağlar; dispozisyonlar okunur; geriye dönük contamination; Topic → 16C, gap policy → 18D; şema v6; 165/165 QA PASS, mutation 44/44. |
 | **13E — Program değişiklik raporu** | ✅ | PCRX-v0 / D-103. Rapor iki okumanın farkı; değişiklik yalnız eksen gerçekten hareket ettiyse; yazılmamış durum 'önce' değil; vadesi gelen tekrar değişiklik değil; çelişki doğrulama, düşüş değil; hipotez soru; plan farkı iki sürüm arasında, ilk plan değişiklik değil; replan yalnız durum değiştiyse; `objectivesOf`, şema değişmedi; 162/162 QA PASS, mutation 42/42. |
 | **13F — Tanısal atlama (VDW-v0)** | ✅ | VDWX-v0 / D-104. Tanısal yol daha kolay yol değil, aynı kanıtı daha erken toplar; istek kanıt değil; waiver yalnız `GRE-v0` kapıları tanısal kanıtta ilk kez geçince, kapsamdır, mastery değil; yardım ya da temiz kaçırma hızlı yolu suçsuz bitirir, öğretilmemiş şeyi bilmemek zayıflık değil (kullanıcı kararları); tanı sürerken ders bekler, yalnız gösterilen atlanır; planlama kanıt okumaz; şema v7 `diagnostic_coverage`; S06 ve invariant 12 koşuyor; 220/220 QA PASS, mutation 69/69. **AŞAMA 13 kapandı.** |
-| **14A — Tutor davranış sözleşmesi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **14B–20** | ⬜ Bekliyor | 14A sonrası canonical sırada. |
+| **14A — Tutor davranış sözleşmesi** | ✅ | TUTX-v0 / D-105. Tutor istek üzerine öğretir, asla karar vermez; beş kapalı istek, yardım hep istenebilir; seviyeyi öğrenci seçer, kayıt izin verilenden az yardım iddia etmez; cihazdan yalnız mevcut görev çıkar; `tutor_reply/1`; yanıtsızlık hiçbir şey kaydetmez; kaydedilen yardım kanıtın bağımsızlığını belirler; gösterilen çözüm exposure; ayrı `TutorPort` (D-105 uzantısı); 219/219 QA PASS, mutation 68/68. **AŞAMA 14 başladı.** |
+| **14B — Yanlış analizi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **14C–20** | ⬜ Bekliyor | 14B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -88,7 +89,27 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13F
+## Son tamamlanan numaralı adım — 14A
+
+**Final:** `TUTX-v0 — Tutor Behaviour Contract` / D-105.
+**Ana çıktı:** `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` + `arch/14a_tutor_contract/` + `android/`.
+
+14A sonucu:
+- tutor istek üzerine öğretir ve asla karar vermez; gösterdiği her yardım olduğu gibi kaydedilir; göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir,
+- kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı `port_extension`, 9D düzenlenmedi); serbest soru, deneme açıkken seviyeyi öğrenci seçer; ilk gerçek çağrı 14G,
+- beş kapalı istek; `TutorRules.prepare`'in yardım-yok sonucu yok; uymayan istek anına uyan isteğe yönlendirilir; hedef segmentin gloss'u ipucudur,
+- kayıt: deneme yokken hiçbir şey, gloss `H1` hedef dışı, deneme açıkken tavan, gönderilmiş cevaptan sonra `H4`; tutor beyanı yalnız reddeder; H3/H4 açıklaması ana göre,
+- cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur (`TutorInstructions.userMessage`); referans çözüm yalnız artık açığa vuramayacağında gider,
+- `tutor_reply/1` (`additionalProperties: false`); gösterilemeyen yanıt `invalid_response`; yanıtsızlık kaydedilmez, suçlamaz, sessiz yeniden deneme yok; yalnız yazılmış yardım yerine geçer,
+- **bulgu:** kaydedilen yardım kanıta ulaşmıyordu → `AssistanceInterpretation` (`2D` §6); `evidenceFor` gösterilmiş çözümü hiç döndürmüyordu → denemenin sırasına göre okunuyor (şema değişmedi),
+- ölçen amaçlarda gösterilen çözüm item'ı öğrenmeye çevirir ve söylenir; tanısal yolda hedefe yardım hızlı yolu bitirir,
+- port sayısını dörde sabitleyen on sekiz yaşayan kapı garanti zayıflamadan daraltıldı,
+- mutation 68/68, independent validator **219/219 PASS**, kendi mutation testi 30/30; 49/49 sweep PASS,
+- **T6 çalıştırılmadı** — uygulama tutor'u henüz çağırmıyor (16D), gerçek sağlayıcı 14G.
+
+**AŞAMA 14 başladı.**
+
+## Önceki numaralı adım — 13F
 
 **Final:** `VDWX-v0 — Validated Diagnostic Waiver Implementation` / D-104.
 **Ana çıktı:** `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` + `arch/13f_diagnostic_waiver/` + `android/`.
@@ -109,7 +130,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 13 TAMAMLANDI** — WBAX-v0 → MCAX-v0 → RVRX-v0 → WLRX-v0 → PCRX-v0 → VDWX-v0.
 
-## Önceki numaralı adım — 13E
+## AŞAMA 13 önceki adım — 13E
 
 **Final:** `PCRX-v0 — Program Change Report Implementation` / D-103.
 **Ana çıktı:** `docs/PROGRAM_CHANGE_REPORT_IMPL_SPEC.md` + `arch/13e_program_change_report/` + `android/`.
@@ -211,6 +232,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 14A Tutor davranış sözleşmesi
+## Aktif adım — 14B Yanlış analizi
 
-**14A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**14B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

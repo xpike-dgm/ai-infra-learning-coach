@@ -1,0 +1,286 @@
+model: TUTX-v0
+stage_step: 14A
+status: accepted_14a
+decision: D-105
+implements: [AIAX-v0, 2D, TRUX-v0, ASUX-v0, TEIP-v0, VDWX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: how_the_tutor_behaves_what_it_may_reveal_what_leaves_the_device_and_what_its_help_means_for_evidence
+
+scope:
+  intents_closed: true
+  level_ceiling_enforced: true
+  disclosure_before_h3_h4: true
+  message_built_in_core: true
+  reply_schema_constrained: true
+  nothing_unshown_recorded: true
+  independence_derived_from_recorded_help: true
+  solution_exposure_recorded_and_read: true
+  null_tutor_ships: true
+  port_added: true
+  schema_changed: false
+  network_call: false
+  mastery_rule_changed: false
+  retention_rule_changed: false
+  planner_rule_changed: false
+  weakness_rule_changed: false
+  app_calls_tutor: false
+
+question: When, with what and how much does the tutor help — and what does the help it shows change?
+
+primary_invariant: >-
+  The tutor teaches on request and never decides. It answers only what was asked, never reveals more than the
+  learner chose, never claims what the learner can do, and every piece of help it actually shows is recorded for
+  what it is. Help it did not show is recorded nowhere, and nothing it says is evidence.
+
+user_decisions:
+  date: "2026-10-01"
+  tutor_port: separate_port_declared_extension
+  free_questions: allowed_learner_chooses_level_while_answer_open
+  level_asked_outside_attempt: false
+  first_live_call: 14G
+
+intents:
+  - {id: hint, fits: answer_open, level: learner_choice, scope: target_objective}
+  - {id: explain_differently, fits: any_time, level: learner_choice_while_answer_open, scope: target_objective}
+  - {id: question, fits: any_time, level: learner_choice_while_answer_open, scope: target_objective}
+  - {id: explain_mistake, fits: answer_frozen, level: not_asked_recorded_h4, scope: target_objective}
+  - {id: gloss, fits: any_time_non_target_segment_only, level: recorded_h1, scope: non_target_support}
+
+preparation:
+  outcomes: [ready, level_needed, disclosure_needed, redirect, incomplete]
+  refusal_outcome_exists: false
+  redirects:
+    hint_outside_attempt: explain_differently
+    hint_after_answer_frozen: explain_mistake
+    explain_mistake_before_answer: hint
+    explain_mistake_outside_attempt: explain_differently
+    gloss_of_target_segment: hint_or_explain_differently
+  one_redirect_reaches_help: true
+  incomplete: [question_text, frozen_answer, segment]
+
+recording:
+  no_attempt: nothing
+  gloss: {level: H1, scope: non_target_support}
+  answer_open: learner_ceiling
+  answer_frozen: H4
+  tutor_declaration_lowers_record: false
+  tutor_declaration_used_to_refuse: true
+  disclosure_wording_depends_on_timing: true
+  request_constructor: internal
+
+privacy:
+  built_in_core: true
+  fields: [target_objectives, task_text, learner_work, segment, learner_question, instruction_mode, ceiling]
+  never_sent: [evidence_history, mastery_state, plan, profile, exposure_records, provenance, planner_traces, other_attempts]
+  reference_solution_travels_only: [answer_frozen, h4_chosen, outside_attempt]
+  material_neutralised: own_tags_only
+  with_ai_absent_nothing_leaves_device: true
+
+reply:
+  schema_id: tutor_reply/1
+  fields: [intent, text, revealed_level, instruction_mode]
+  additional_properties: false
+  shown_only_if: [same_intent, non_blank_text, same_instruction_mode, revealed_level_within_ceiling]
+  text_parsed_for_verdict: false
+  unshowable_reply: invalid_response
+
+non_answers:
+  reasons: [refused, timed_out, transport_error, invalid_response, unavailable]
+  recorded: false
+  blamed_on_learner: false
+  silent_retry: false
+  fallback: authored_help_same_intent_within_ceiling_recorded_at_its_own_level
+  fabricated_reply: false
+
+independence:
+  rules:
+    - {when: h3_or_h4_with_target_before_answer_froze, class: requires_independent_recheck}
+    - {when: provenance_generated_or_copied, class: practice_only}
+    - {when: teach_task, class: practice_only}
+    - {when: h1_or_h2_with_target_before_answer_froze, class: assisted}
+    - {when: provenance_user_authored_with_assistance_or_mixed, class: assisted}
+    - {when: otherwise, class: independent}
+  after_answer_froze_reaches_back: false
+  non_target_support_counts: false
+  unknown_provenance_accuses: false
+
+measuring:
+  purposes: [assess, retain, diagnose]
+  help_blocked: false
+  shown_solution_on_open_item_converts_to_learning: true
+  frozen_answer_converted_after_the_fact: false
+  diagnostic_target_help_ends_fast_path: true
+
+exposure:
+  shown_solution_is_exposure_from_that_moment: true
+  kind: solution_exposure
+  keyed_by: [resource, variant_family]
+  read_on_later_evidence_by: attempt_sequence
+  seen_item_is_shown_solution: false
+  tutor_text_stored: false
+
+instructions:
+  version: tutor_instructions/1
+  language: english_addressed_to_model
+  reply_language: task_instruction_mode
+  guidance_fading_owner: planner_and_task_instruction_mode
+  tutor_withholds_to_fade: false
+
+presentation:
+  states: [level_needed, disclosure_needed, redirected, incomplete, waiting, shown, not_shown]
+  fault_tone_state: null
+  pending_state: waiting
+  ai_label_says_not_a_judgement: true
+
+port_count: 5
+port_extension: {port: TutorPort, provides: help_on_request, implemented_by: ai-adapter_or_null_tutor, decision: D-105}
+port_refinements: []
+msbx_contract_edited: false
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/TutorFactsTest.kt}
+  instructions: {file: android/core-model/src/test/kotlin/coach/model/TutorInstructionsTest.kt}
+  interpretation: {file: android/core-model/src/test/kotlin/coach/model/AssistanceInterpretationTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/AskTutorTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/TutorPresentationTest.kt}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/SolutionExposureStorageTest.kt}
+  adapter: {file: android/ai-adapter/src/test/kotlin/coach/ai/AiTutorTest.kt}
+
+mutation_results:
+  total: 68
+  detected: 68
+  only_14a_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (U20) was re-run by hand and TutorFactsTest's named test was seen failing
+  negative_control: a comment-only change in TutorFacts.kt
+  negative_control_result: survived_as_expected
+  first_run: 67 of 68 detected; T02 did not compile (a compile failure is not a detection) and was rewritten
+  final_run_is_a_single_clean_run: true
+  rerun_after_test_edit: two tests were changed after the final run to lowercase Turkish copy as Turkish (AMTS-v0; 10C's gate caught the default-locale call); the fourteen mutants those tests guard (P01-P07, I01-I07) were re-run, 14/14 detected
+  mutants:
+    - {id: U01, mutant: a_hint_outside_an_attempt_is_not_redirected, result: detected}
+    - {id: U02, mutant: a_hint_after_the_answer_froze_is_not_redirected, result: detected}
+    - {id: U03, mutant: a_mistake_is_explained_before_any_answer, result: detected}
+    - {id: U04, mutant: a_mistake_is_explained_without_the_frozen_answer, result: detected}
+    - {id: U05, mutant: the_target_segment_is_glossed, result: detected}
+    - {id: U06, mutant: a_target_gloss_outside_an_attempt_becomes_a_hint, result: detected}
+    - {id: U07, mutant: a_question_without_text_is_sent, result: detected}
+    - {id: U08, mutant: a_gloss_is_recorded_as_help_with_the_target, result: detected}
+    - {id: U09, mutant: help_outside_an_attempt_is_recorded, result: detected}
+    - {id: U10, mutant: a_level_is_assumed_instead_of_asked, result: detected}
+    - {id: U11, mutant: help_after_the_answer_froze_is_recorded_below_a_solution, result: detected}
+    - {id: U12, mutant: a_partial_scaffold_skips_the_disclosure, result: detected}
+    - {id: U13, mutant: the_disclosure_is_never_required, result: detected}
+    - {id: U14, mutant: the_answer_leaves_the_device_while_the_attempt_is_open, result: detected}
+    - {id: U15, mutant: a_ceiling_binds_support_and_frozen_answers, result: detected}
+    - {id: U16, mutant: a_reply_for_another_intent_is_shown, result: detected}
+    - {id: U17, mutant: an_empty_reply_is_shown, result: detected}
+    - {id: U18, mutant: a_reply_in_another_language_mode_is_shown, result: detected}
+    - {id: U19, mutant: a_reply_that_hides_its_level_is_shown, result: detected}
+    - {id: U20, mutant: a_reply_past_the_ceiling_is_shown, result: detected}
+    - {id: U21, mutant: the_tutor_declares_how_much_help_is_recorded, result: detected}
+    - {id: U22, mutant: authored_help_above_the_ceiling_is_shown, result: detected}
+    - {id: U23, mutant: authored_help_for_another_intent_is_shown, result: detected}
+    - {id: U24, mutant: authored_help_is_recorded_at_the_ceiling, result: detected}
+    - {id: U25, mutant: a_non_answer_is_misreported, result: detected}
+    - {id: U26, mutant: a_practice_item_is_converted, result: detected}
+    - {id: U27, mutant: a_frozen_answer_is_converted_after_the_fact, result: detected}
+    - {id: U28, mutant: a_retention_check_is_not_measuring, result: detected}
+    - {id: U29, mutant: help_after_a_diagnostic_answer_ends_the_fast_path, result: detected}
+    - {id: U30, mutant: a_gloss_ends_the_fast_path, result: detected}
+    - {id: U31, mutant: authored_help_is_recorded_as_ai, result: detected}
+    - {id: U32, mutant: help_is_recorded_as_unrequested, result: detected}
+    - {id: U33, mutant: a_concept_hint_counts_as_a_shown_solution, result: detected}
+    - {id: A01, mutant: help_after_submission_reaches_back, result: detected}
+    - {id: A02, mutant: support_around_the_target_counts, result: detected}
+    - {id: A03, mutant: a_full_solution_is_merely_assisted, result: detected}
+    - {id: A04, mutant: copied_work_is_independent, result: detected}
+    - {id: A05, mutant: a_teaching_task_measures_independence, result: detected}
+    - {id: A06, mutant: work_written_with_help_is_independent, result: detected}
+    - {id: A07, mutant: an_unknown_origin_is_held_against_the_learner, result: detected}
+    - {id: A08, mutant: copied_outranks_a_shown_solution, result: detected}
+    - {id: I01, mutant: the_mastery_rule_is_dropped, result: detected}
+    - {id: I02, mutant: the_schema_admits_extra_fields, result: detected}
+    - {id: I03, mutant: pasted_text_can_close_a_section, result: detected}
+    - {id: I04, mutant: absent_material_is_sent_empty, result: detected}
+    - {id: I05, mutant: the_learner_work_is_not_sent, result: detected}
+    - {id: I06, mutant: the_reply_level_cannot_be_null, result: detected}
+    - {id: I07, mutant: the_injection_rule_is_dropped, result: detected}
+    - {id: T01, mutant: a_hint_writes_an_exposure, result: detected}
+    - {id: T02, mutant: a_shown_solution_writes_no_exposure, result: detected}
+    - {id: T03, mutant: an_explanation_forgets_its_attempt, result: detected}
+    - {id: T04, mutant: the_exposure_understates_its_level, result: detected}
+    - {id: T05, mutant: the_tutor_is_asked_twice, result: detected}
+    - {id: N01, mutant: the_null_tutor_refuses, result: detected}
+    - {id: N02, mutant: the_ai_adapter_refuses, result: detected}
+    - {id: P01, mutant: an_unavailable_tutor_is_a_fault, result: detected}
+    - {id: P02, mutant: the_after_answer_disclosure_claims_the_attempt_changed, result: detected}
+    - {id: P03, mutant: authored_help_is_labelled_ai, result: detected}
+    - {id: P04, mutant: a_conversion_is_silent, result: detected}
+    - {id: P05, mutant: a_refusal_does_not_say_nothing_was_recorded, result: detected}
+    - {id: P06, mutant: the_copy_counts, result: detected}
+    - {id: P07, mutant: an_ended_fast_path_is_silent, result: detected}
+    - {id: S01, mutant: an_exposure_after_the_attempt_reaches_back, result: detected}
+    - {id: S02, mutant: a_seen_item_is_a_shown_solution, result: detected}
+    - {id: S03, mutant: a_variant_family_is_not_joined, result: detected}
+    - {id: S04, mutant: the_evidence_row_order_is_used_instead_of_the_attempt, result: detected}
+    - {id: S05, mutant: solution_exposure_is_never_read, result: detected}
+    - {id: S06, mutant: the_same_item_is_not_joined, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (an assumed level, a public request constructor, a require(true), a plan read, an evidence read, the fault tone, a percentage) inside Kotlin comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+
+jvm_tests: 835
+sweep: {passed: 49, total: 49}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app calls the tutor yet (16D) and no real provider is wired (14G)
+
+open_loops:
+  wrong_answer_analysis_and_misconception_memory: {owner: 14B}
+  alternative_explanation_content: {owner: 14C}
+  code_evaluation: {owner: 14D}
+  ai_written_code_comprehension_check: {owner: 14E}
+  open_ended_evaluation: {owner: 14F}
+  adapter_call_site_router_model_currency: {owner: 14G}
+  authored_hint_ladders_and_task_instruction_mode: {owner: "15"}
+  app_renders_panel_and_calls_ask_tutor_and_independence: {owner: 16D}
+  tutor_conversation_history: {owner: 16B}
+  reply_level_calibration: {owner: 18D}
+
+forbidden_patterns:
+  - ask_without_rule
+  - no_help_outcome
+  - target_help_before_level_chosen
+  - h3_h4_without_disclosure
+  - disclosure_misstating_frozen_answer
+  - answer_leaves_device_early
+  - state_or_history_in_request
+  - reply_past_ceiling_shown
+  - tutor_declaration_lowers_record
+  - verdict_from_reply
+  - non_answer_recorded_or_blamed
+  - silent_retry
+  - fabricated_reply
+  - recorded_help_ignored_by_evidence
+  - help_after_submission_reaches_back
+  - shown_solution_leaves_item_fresh
+  - fading_by_withholding
+  - unavailable_tutor_as_fault

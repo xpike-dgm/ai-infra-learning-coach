@@ -450,7 +450,8 @@ checks:
   details: recency by instant
 - check: E13A-12_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E13A-12_port_latestAssessmentSession(sc
   result: PASS
   details: 'missing fun latestAssessmentSession(scope: AssessmentScope): StoredTruth?'

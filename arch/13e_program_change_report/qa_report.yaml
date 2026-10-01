@@ -327,7 +327,8 @@ checks:
   details: U+0307 in copy
 - check: E13E-09_port_count
   result: PASS
-  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
 - check: E13E-09_refinement_declared
   result: PASS
   details: '[{''port'': ''PersistencePort'', ''method'': ''objectivesOf''}]'

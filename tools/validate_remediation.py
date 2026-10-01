@@ -43,6 +43,15 @@ SCHEMA_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Schema
 MIGRATIONS_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/Migrations.kt"
 SQL_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/SqlitePersistence.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -282,7 +291,7 @@ check("E13D-10_migration_owned", mig.get("from") == 5 and mig.get("to") == 6 and
 # ---------------------------------------------------------------- ports
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx = yaml.safe_load(read(MSBX)) or {}
-check("E13D-11_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]) and contract.get("port_count") == 4, str(interfaces))
+check("E13D-11_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)) and contract.get("port_count") == 4, str(interfaces))
 check("E13D-11_no_new_port_method", "weakness" not in ports.lower() and contract.get("port_refinements") == [], "a weakness port method")
 
 # ---------------------------------------------------------------- tests named

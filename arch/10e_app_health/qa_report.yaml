@@ -180,7 +180,8 @@ checks:
   details: an opener defect must become a status, not a crash
 - check: E10E-07_ports_unchanged
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E10E-07_ui_no_persistence
   result: PASS
   details: app-ui must not reach persistence or the startup

@@ -271,3 +271,7 @@ Next numbered step:
 ---
 
 **13F note (2026-10-01, `D-104`):** the engine-ownership map is extended by one family, `VDW-v0` → `diagnostic_coverage_state` (`EngineStateFamily.DIAGNOSTIC`); a waiver is not mastery, so it is not folded into another engine's state. The port count stays four (`PersistencePort.latestAssessmentSessionIn` is a refinement). Details: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`.
+
+---
+
+**14A note (2026-10-01, `D-105`, user decision):** the port set is extended by one declared port, `TutorPort` (help on request, implemented by `ai-adapter` or the shipped `NullTutor`), because help and judgement have different provenance (`2D` §16). The four ports above are unchanged and this contract is not edited; the extension lives in `arch/14a_tutor_contract/tutor_contract.yaml` (`port_extension`). Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.

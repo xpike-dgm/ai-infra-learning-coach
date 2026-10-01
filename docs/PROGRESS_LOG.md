@@ -1168,3 +1168,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13F ✅ / AŞAMA 13 ✅ / 14A active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `14A — Tutor davranış sözleşmesi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 14A Tutor davranış sözleşmesi tamamlandı — TUTX-v0 / D-105 — AŞAMA 14 başladı
+
+- 13F (#44) main'e merge edildi (e332c9a); takeover okuması ve fresh 14A PRE yapıldı, beş kanonik kaynak `13F ✅ / 14A active-not-executed` gösterdi. Kullanıcı açık onay verdi ("14A ile devam et") ve üç ürün sorusunu önerilen seçeneklerle cevapladı.
+- **Kullanıcı kararları:** ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi); serbest soru, deneme açıkken seviyeyi öğrenci seçer; ilk gerçek sağlayıcı çağrısı 14G.
+- Sözleşme koda döküldü: tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir.
+- **Bulgu:** tutor yoktu; kaydedilen yardım kanıta ulaşmıyordu (`AssistanceInterpretation` eklendi); `evidenceFor` gösterilmiş çözümü hiç döndürmüyordu (denemenin sırasına göre okunuyor, şema değişmedi); runner'ın H3/H4 açıklaması gönderimden sonra yanlıştı (ana göre metin).
+- Port sayısını dörde sabitleyen on sekiz yaşayan kapı daraltıldı (MSBX'in dördü + beyanlı uzantı); sweep iki yeni testteki varsayılan-locale `.lowercase()`'i de yakaladı (10C, düzeltildi, ilgili 14 mutant yeniden koşuldu).
+- Mutation 68/68 (ilk turda T02 derlenmedi; yeniden yazıldı, set tek değişmemiş ağaçtan yeniden koşuldu; bir mutant elle doğrulandı). Altı run PASS, 835 JVM testi. Validator 219/219, kendi mutation testi 30/30, sweep 49/49.
+- **T6 çalıştırılmadı**; uygulama tutor'u henüz çağırmıyor (16D), gerçek sağlayıcı 14G.
+- D-050 POST living-memory accepted state'i `14A tamamlandı; 14B aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14B — Yanlış analizi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

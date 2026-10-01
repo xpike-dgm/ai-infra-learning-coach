@@ -51,6 +51,15 @@ SQL_KT = ANDROID / "data-persistence/src/main/kotlin/coach/persistence/SqlitePer
 PKG_KT = ANDROID / "data-curriculum/src/main/kotlin/coach/curriculum/PackageFormat.kt"
 SOURCE_KT = ANDROID / "data-curriculum/src/main/kotlin/coach/curriculum/FileContentSource.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -385,7 +394,7 @@ check("E13A-11_recency_by_study_day", "occurred_on_study_day >= ?" in since and 
 # ---------------------------------------------------------------- ports and boundaries
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx = yaml.safe_load(read(MSBX)) or {}
-check("E13A-12_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
+check("E13A-12_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 for signature in ("fun latestAssessmentSession(scope: AssessmentScope): StoredTruth?",
                   "fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact>",
                   "fun skillsEvidencedSince(studyDay: String): List<VersionedRef>",

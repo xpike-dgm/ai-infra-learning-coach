@@ -1,0 +1,713 @@
+model: TUTX-v0
+stage_step: 14A
+decision: D-105
+result: PASS
+checks_total: 219
+checks_passed: 219
+checks_failed: 0
+checks:
+- check: E14A-00_exists_tutor_contract.yaml
+  result: PASS
+  details: missing arch/14a_tutor_contract/tutor_contract.yaml
+- check: E14A-00_exists_TUTOR_BEHAVIOR_CONTRACT_SPEC.md
+  result: PASS
+  details: missing docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md
+- check: E14A-00_exists_14a_tutor_contract_research.md
+  result: PASS
+  details: missing research/14a_tutor_contract_research.md
+- check: E14A-00_exists_TutorFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/TutorFacts.kt
+- check: E14A-00_exists_AssistanceInterpretation.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/AssistanceInterpretation.kt
+- check: E14A-00_exists_TutorInstructions.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/TutorInstructions.kt
+- check: E14A-00_exists_AskTutor.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/AskTutor.kt
+- check: E14A-00_exists_NullTutor.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/NullTutor.kt
+- check: E14A-00_exists_TutorPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/TutorPresentation.kt
+- check: E14A-00_exists_AiTutor.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/AiTutor.kt
+- check: E14A-00_exists_TutorProvider.kt
+  result: PASS
+  details: missing android/app-wiring/src/withAi/kotlin/coach/wiring/TutorProvider.kt
+- check: E14A-00_exists_TutorProvider.kt
+  result: PASS
+  details: missing android/app-wiring/src/withoutAi/kotlin/coach/wiring/TutorProvider.kt
+- check: E14A-01_model
+  result: PASS
+  details: TUTX-v0
+- check: E14A-01_status
+  result: PASS
+  details: accepted_14a
+- check: E14A-01_decision
+  result: PASS
+  details: D-105
+- check: E14A-01_scope_intents_closed
+  result: PASS
+  details: intents_closed=True
+- check: E14A-01_scope_level_ceiling_enforced
+  result: PASS
+  details: level_ceiling_enforced=True
+- check: E14A-01_scope_disclosure_before_h3_h4
+  result: PASS
+  details: disclosure_before_h3_h4=True
+- check: E14A-01_scope_message_built_in_core
+  result: PASS
+  details: message_built_in_core=True
+- check: E14A-01_scope_reply_schema_constrained
+  result: PASS
+  details: reply_schema_constrained=True
+- check: E14A-01_scope_nothing_unshown_recorded
+  result: PASS
+  details: nothing_unshown_recorded=True
+- check: E14A-01_scope_independence_derived_from_recorded_help
+  result: PASS
+  details: independence_derived_from_recorded_help=True
+- check: E14A-01_scope_solution_exposure_recorded_and_read
+  result: PASS
+  details: solution_exposure_recorded_and_read=True
+- check: E14A-01_scope_null_tutor_ships
+  result: PASS
+  details: null_tutor_ships=True
+- check: E14A-01_scope_port_added
+  result: PASS
+  details: port_added=True
+- check: E14A-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E14A-01_scope_network_call
+  result: PASS
+  details: network_call=False
+- check: E14A-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E14A-01_scope_retention_rule_changed
+  result: PASS
+  details: retention_rule_changed=False
+- check: E14A-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E14A-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E14A-01_scope_app_calls_tutor
+  result: PASS
+  details: app_calls_tutor=False
+- check: E14A-01_aiax_authority
+  result: PASS
+  details: AIAX-v0 authority moved
+- check: E14A-01_aiax_hint_allowed
+  result: PASS
+  details: AIAX-v0 no longer lets AI hint
+- check: E14A-01_2d_after_submit
+  result: PASS
+  details: 2D §5.3 moved
+- check: E14A-01_2d_help_not_negative
+  result: PASS
+  details: 2D §12 moved
+- check: E14A-01_trux_never_withhold
+  result: PASS
+  details: TRUX-v0 §8.1 moved
+- check: E14A-01_trux_no_jump
+  result: PASS
+  details: TRUX-v0 §8.2 moved
+- check: E14A-01_trux_disclosure
+  result: PASS
+  details: TRUX-v0 §8.3 moved
+- check: E14A-01_trux_non_target
+  result: PASS
+  details: TRUX-v0 §8.5 moved
+- check: E14A-01_asux
+  result: PASS
+  details: ASUX-v0 §8 moved
+- check: E14A-01_teip_target
+  result: PASS
+  details: TEIP-v0 §5.3 moved
+- check: E14A-01_teip_fading
+  result: PASS
+  details: TEIP-v0 §5.4 moved
+- check: E14A-01_uxia_contextual
+  result: PASS
+  details: UXIA-v0 §6.3 moved
+- check: E14A-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-01'', ''tutor_port'': ''separate_port_declared_extension'',
+    ''free_questions'': ''allowed_learner_chooses_level_while_answer_open'', ''level_asked_outside_attempt'':
+    False, ''first_live_call'': ''14G''}'
+- check: E14A-02_intents
+  result: PASS
+  details: '[''hint'', ''explain_differently'', ''question'', ''explain_mistake'',
+    ''gloss'']'
+- check: E14A-02_instruction_modes_from_teip
+  result: PASS
+  details: '[''turkish_primary'', ''bilingual_parallel'', ''english_with_targeted_gloss'',
+    ''english_primary_with_non_target_support'', ''english_unscaffolded''] vs [''turkish_primary'',
+    ''bilingual_parallel'', ''english_with_targeted_gloss'', ''english_primary_with_non_target_support'',
+    ''english_unscaffolded'']'
+- check: E14A-02_non_answers_from_aiax
+  result: PASS
+  details: '[''refused'', ''timed_out'', ''transport_error'', ''invalid_response'',
+    ''unavailable''] vs [''refused'', ''timed_out'', ''transport_error'', ''invalid_response'',
+    ''unavailable'']'
+- check: E14A-02_levels
+  result: PASS
+  details: '[''H1'', ''H2'', ''H3'', ''H4'']'
+- check: E14A-02_measuring_purposes
+  result: PASS
+  details: measuring purposes
+- check: E14A-03_no_refusal_outcome
+  result: PASS
+  details: '[''Ready'', ''LevelNeeded'', ''DisclosureNeeded'', ''Redirect'', ''Incomplete'']'
+- check: E14A-03_request_only_by_rules
+  result: PASS
+  details: a request can be built around the rules
+- check: E14A-03_level_needed
+  result: PASS
+  details: a level assumed instead of asked
+- check: E14A-03_nothing_outside_attempt
+  result: PASS
+  details: help outside an attempt recorded
+- check: E14A-03_frozen_is_h4
+  result: PASS
+  details: help after the answer froze recorded below a solution
+- check: E14A-03_gloss_non_target
+  result: PASS
+  details: gloss scope
+- check: E14A-03_target_segment_redirected
+  result: PASS
+  details: a target segment is glossed
+- check: E14A-03_disclosure
+  result: PASS
+  details: H3/H4 without disclosure
+- check: E14A-03_reference_late
+  result: PASS
+  details: the answer leaves the device early
+- check: E14A-03_ceiling_binds_target_only
+  result: PASS
+  details: ceiling scope
+- check: E14A-03_redirects_go_elsewhere
+  result: PASS
+  details: '[(''EXPLAIN_DIFFERENTLY'', ''NO_ITEM_IS_BEING_WORKED''), (''EXPLAIN_MISTAKE'',
+    ''ANSWER_ALREADY_FROZEN''), (''EXPLAIN_DIFFERENTLY'', ''NO_ITEM_IS_BEING_WORKED''),
+    (''HINT'', ''NO_ANSWER_IS_FROZEN_YET''), (''EXPLAIN_DIFFERENTLY'', ''SEGMENT_IS_THE_TARGET''),
+    (''HINT'', ''SEGMENT_IS_THE_TARGET'')]'
+- check: E14A-04_conforms_same_intent
+  result: PASS
+  details: missing 'if (content.intent != request.intent) return false'
+- check: E14A-04_conforms_non_blank
+  result: PASS
+  details: missing 'if (content.text.isBlank()) return false'
+- check: E14A-04_conforms_same_mode
+  result: PASS
+  details: missing 'if (content.instructionMode != request.instructionMode) return
+    false'
+- check: E14A-04_conforms_level_declared
+  result: PASS
+  details: 'missing ''val revealed = content.revealedLevel ?: return false'''
+- check: E14A-04_conforms_within_ceiling
+  result: PASS
+  details: missing 'return revealed.ordinal <= ceiling.ordinal'
+- check: E14A-04_record_is_the_ceiling
+  result: PASS
+  details: the tutor's declaration lowers the record
+- check: E14A-04_unshowable_is_invalid
+  result: PASS
+  details: an unshowable reply is not invalid_response
+- check: E14A-04_no_verdict_field
+  result: PASS
+  details: '[''intent'', ''text'', ''revealedLevel'', ''instructionMode'']'
+- check: E14A-04_fallback_fits
+  result: PASS
+  details: authored help outside its fit
+- check: E14A-04_fallback_own_level
+  result: PASS
+  details: authored help level
+- check: E14A-04_requested_by_user
+  result: PASS
+  details: event provenance
+- check: E14A-04_conversion
+  result: PASS
+  details: conversion
+- check: E14A-04_fast_path
+  result: PASS
+  details: fast path
+- check: E14A-04_not_shown_records_nothing
+  result: PASS
+  details: NotShown carries more than its reason
+- check: E14A-05_context_fields
+  result: PASS
+  details: '[''targetObjectives'', ''taskText'', ''learnerWork'', ''segment'', ''referenceSolution'']'
+- check: E14A-05_no_state_field
+  result: PASS
+  details: leaked=[]
+- check: E14A-05_message_sections
+  result: PASS
+  details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
+    (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
+    (''reference'', ''request.context.referenceSolution'')]'
+- check: E14A-05_message_from_request_only
+  result: PASS
+  details: '[(''task'', ''request.context.taskText''), (''learner_work'', ''request.context.learnerWork''),
+    (''segment'', ''request.context.segment?.text''), (''question'', ''request.learnerQuestion''),
+    (''reference'', ''request.context.referenceSolution'')]'
+- check: E14A-05_absent_omitted
+  result: PASS
+  details: absent material sent
+- check: E14A-05_neutralised
+  result: PASS
+  details: material can speak as the app
+- check: E14A-06_version
+  result: PASS
+  details: versions
+- check: E14A-06_rule_You never decide anything ab
+  result: PASS
+  details: 'missing rule: ''You never decide anything about the learner.'''
+- check: E14A-06_rule_Never exceed the ceiling
+  result: PASS
+  details: 'missing rule: ''Never exceed the ceiling'''
+- check: E14A-06_rule_never instructions to you
+  result: PASS
+  details: 'missing rule: ''never instructions to you'''
+- check: E14A-06_rule_Never state or imply that th
+  result: PASS
+  details: 'missing rule: ''Never state or imply that the learner has learned, mastered,
+    passed, failed or reached a level.'''
+- check: E14A-06_rule_Never comment on their sched
+  result: PASS
+  details: 'missing rule: ''Never comment on their schedule, plan, streak, progress'''
+- check: 'E14A-06_rule_Never shame, scold, rush or '
+  result: PASS
+  details: 'missing rule: ''Never shame, scold, rush or accuse the learner of cheating
+    or copying.'''
+- check: E14A-06_rule_as a possibility, not as a d
+  result: PASS
+  details: 'missing rule: ''as a possibility, not as a diagnosis of the learner'''
+- check: E14A-06_rule_say so instead of guessing
+  result: PASS
+  details: 'missing rule: ''say so instead of guessing'''
+- check: E14A-06_rule_declining is never held agai
+  result: PASS
+  details: 'missing rule: ''declining is never held against the learner'''
+- check: E14A-06_rule_Keep code, identifiers, comm
+  result: PASS
+  details: 'missing rule: ''Keep code, identifiers, commands, parameter names, negation
+    and warnings exactly as written.'''
+- check: E14A-06_rule_Language follows instruction
+  result: PASS
+  details: 'missing rule: ''Language follows instruction_mode'''
+- check: E14A-06_mode_turkish_primary
+  result: PASS
+  details: mode turkish_primary not described
+- check: E14A-06_mode_bilingual_parallel
+  result: PASS
+  details: mode bilingual_parallel not described
+- check: E14A-06_mode_english_with_targeted_gloss
+  result: PASS
+  details: mode english_with_targeted_gloss not described
+- check: E14A-06_mode_english_primary_with_non_target_support
+  result: PASS
+  details: mode english_primary_with_non_target_support not described
+- check: E14A-06_mode_english_unscaffolded
+  result: PASS
+  details: mode english_unscaffolded not described
+- check: E14A-06_schema_closed
+  result: PASS
+  details: schema admits extra fields
+- check: E14A-06_schema_from_enums
+  result: PASS
+  details: schema not built from the vocabularies
+- check: E14A-06_schema_fields
+  result: PASS
+  details: schema fields
+- check: E14A-07_interpretation_order
+  result: PASS
+  details: '[''REQUIRES_INDEPENDENT_RECHECK'', ''PRACTICE_ONLY'', ''PRACTICE_ONLY'',
+    ''ASSISTED'', ''ASSISTED'', ''INDEPENDENT'']'
+- check: E14A-07_before_answer_froze
+  result: PASS
+  details: help after submission reaches back
+- check: E14A-07_target_only
+  result: PASS
+  details: support counts
+- check: E14A-07_unknown_accuses_no_one
+  result: PASS
+  details: unknown provenance held against the learner
+- check: E14A-07_on_submission
+  result: PASS
+  details: submission reader
+- check: E14A-07_classes_from_ddm
+  result: PASS
+  details: '[''independent'', ''assisted'', ''practice_only'', ''requires_independent_recheck'']'
+- check: E14A-08_exposure_only_for_solution
+  result: PASS
+  details: exposure condition
+- check: E14A-08_one_write_kind
+  result: PASS
+  details: the use case writes something else
+- check: E14A-08_solution_exposure
+  result: PASS
+  details: exposure fields
+- check: E14A-08_reads_no_state
+  result: PASS
+  details: the tutor reads learner state
+- check: E14A-08_asked_once
+  result: PASS
+  details: the tutor is asked twice
+- check: E14A-08_null_tutor
+  result: PASS
+  details: null tutor
+- check: E14A-08_adapter_unavailable
+  result: PASS
+  details: the adapter calls out
+- check: E14A-08_wiring
+  result: PASS
+  details: wiring
+- check: E14A-09_msbx_unedited
+  result: PASS
+  details: '[''ClockPort'', ''ContentPort'', ''EvaluatorPort'', ''PersistencePort'']'
+- check: E14A-09_port_extension
+  result: PASS
+  details: '[''ClockPort'', ''ContentPort'', ''EvaluatorPort'', ''PersistencePort'',
+    ''TutorPort'']'
+- check: E14A-09_port_signature
+  result: PASS
+  details: TutorPort signature
+- check: E14A-09_adapter_owns_tutor
+  result: PASS
+  details: '{''id'': ''ai-adapter'', ''layer'': ''ai'', ''responsibility'': ''evaluator_and_tutor_port_implementation'',
+    ''optional'': True, ''depends_on'': [''core-model'', ''core-ports'']}'
+- check: E14A-10_join_kind
+  result: PASS
+  details: a seen item counts as a shown solution
+- check: E14A-10_join_keys
+  result: PASS
+  details: join keys
+- check: E14A-10_join_order
+  result: PASS
+  details: an exposure after the attempt reaches back
+- check: E14A-10_read
+  result: PASS
+  details: solution exposure not read
+- check: E14A-10_schema_unchanged
+  result: PASS
+  details: schema changed
+- check: E14A-11_no_fault_tone
+  result: PASS
+  details: an unavailable tutor is a fault
+- check: E14A-11_states
+  result: PASS
+  details: '[''level_needed'', ''disclosure_needed'', ''redirected'', ''incomplete'',
+    ''waiting'', ''shown'', ''not_shown'']'
+- check: E14A-11_disclosure_by_timing
+  result: PASS
+  details: disclosure wording
+- check: E14A-11_runner_copy_unchanged
+  result: PASS
+  details: 11B's disclosure moved
+- check: E14A-11_copy_no_%
+  result: PASS
+  details: '''%'' in copy'
+- check: E14A-11_copy_no_puan
+  result: PASS
+  details: '''puan'' in copy'
+- check: E14A-11_copy_no_başarısız
+  result: PASS
+  details: '''başarısız'' in copy'
+- check: E14A-11_copy_no_öğrendin
+  result: PASS
+  details: '''öğrendin'' in copy'
+- check: E14A-11_copy_no_ustalaştın
+  result: PASS
+  details: '''ustalaştın'' in copy'
+- check: E14A-11_copy_no_geride kaldı
+  result: PASS
+  details: '''geride kaldın'' in copy'
+- check: E14A-11_copy_no_borç
+  result: PASS
+  details: '''borç'' in copy'
+- check: E14A-11_copy_no_seri
+  result: PASS
+  details: '''seri'' in copy'
+- check: E14A-11_copy_no_hile
+  result: PASS
+  details: '''hile'' in copy'
+- check: E14A-11_copy_no_kopya
+  result: PASS
+  details: '''kopya'' in copy'
+- check: E14A-11_copy_no_tembel
+  result: PASS
+  details: '''tembel'' in copy'
+- check: E14A-11_copy_no_number
+  result: PASS
+  details: a number in copy
+- check: E14A-11_nothing_recorded_unavailable
+  result: PASS
+  details: UNAVAILABLE does not say nothing was recorded
+- check: E14A-11_nothing_recorded_refused
+  result: PASS
+  details: REFUSED does not say nothing was recorded
+- check: E14A-11_nothing_recorded_timed_out
+  result: PASS
+  details: TIMED_OUT does not say nothing was recorded
+- check: E14A-11_nothing_recorded_transport_error
+  result: PASS
+  details: TRANSPORT_ERROR does not say nothing was recorded
+- check: E14A-11_nothing_recorded_invalid_response
+  result: PASS
+  details: INVALID_RESPONSE does not say nothing was recorded
+- check: E14A-11_refusal_not_fault
+  result: PASS
+  details: a refusal blamed
+- check: E14A-11_ai_label
+  result: PASS
+  details: AI help labelled as judgement
+- check: E14A-11_said_not_silent
+  result: PASS
+  details: a conversion is silent
+- check: E14A-11_no_combining_dot
+  result: PASS
+  details: U+0307 in copy
+- check: E14A-12_model_help is always requestable, so every ask
+  result: PASS
+  details: 'missing test: help is always requestable, so every ask is either ready
+    or says what to do next'
+- check: E14A-12_model_while an answer is open the learner choo
+  result: PASS
+  details: 'missing test: while an answer is open the learner chooses how much the
+    reply may reveal'
+- check: E14A-12_model_full or partial solutions are not sent b
+  result: PASS
+  details: 'missing test: full or partial solutions are not sent before the learner
+    is told what they change'
+- check: E14A-12_model_after an answer is frozen no level is as
+  result: PASS
+  details: 'missing test: after an answer is frozen no level is asked and the record
+    assumes the solution may have been shown'
+- check: 'E14A-12_model_outside an attempt nothing is measured, '
+  result: PASS
+  details: 'missing test: outside an attempt nothing is measured, so nothing is recorded'
+- check: E14A-12_model_a ceiling binds only help with the targe
+  result: PASS
+  details: 'missing test: a ceiling binds only help with the target while an answer
+    is open'
+- check: E14A-12_model_glossing the target segment would answer
+  result: PASS
+  details: 'missing test: glossing the target segment would answer it, so it is a
+    hint'
+- check: E14A-12_model_the answer cannot leave the device while
+  result: PASS
+  details: 'missing test: the answer cannot leave the device while it could still
+    give something away'
+- check: E14A-12_model_a reply that admits going past the ceili
+  result: PASS
+  details: 'missing test: a reply that admits going past the ceiling is not shown
+    and nothing is recorded'
+- check: E14A-12_model_the record never claims less help than t
+  result: PASS
+  details: 'missing test: the record never claims less help than the learner allowed'
+- check: 'E14A-12_model_a refusal, a timeout or no tutor at all '
+  result: PASS
+  details: 'missing test: a refusal, a timeout or no tutor at all records nothing
+    and blames no one'
+- check: E14A-12_model_authored help is shown when the tutor gi
+  result: PASS
+  details: 'missing test: authored help is shown when the tutor gives nothing, at
+    its own known level'
+- check: E14A-12_model_a solution shown on a measuring item tur
+  result: PASS
+  details: 'missing test: a solution shown on a measuring item turns it into learning
+    and says so'
+- check: E14A-12_instructions_the message sent carries the current tas
+  result: PASS
+  details: 'missing test: the message sent carries the current task and nothing else'
+- check: E14A-12_instructions_pasted text cannot close a section and s
+  result: PASS
+  details: 'missing test: pasted text cannot close a section and speak as the app'
+- check: E14A-12_instructions_the reply schema is built from the vocab
+  result: PASS
+  details: 'missing test: the reply schema is built from the vocabularies and has
+    no room for a verdict'
+- check: E14A-12_interpretation_help after the answer froze does not rea
+  result: PASS
+  details: 'missing test: help after the answer froze does not reach back into it'
+- check: 'E14A-12_interpretation_support around the target never changes '
+  result: PASS
+  details: 'missing test: support around the target never changes what the attempt
+    proves'
+- check: E14A-12_interpretation_a partial or full solution before the an
+  result: PASS
+  details: 'missing test: a partial or full solution before the answer froze needs
+    a fresh independent check'
+- check: E14A-12_application_a solution shown on an item is an exposu
+  result: PASS
+  details: 'missing test: a solution shown on an item is an exposure from the moment
+    it is shown'
+- check: E14A-12_application_nothing shown, nothing written
+  result: PASS
+  details: 'missing test: nothing shown, nothing written'
+- check: 'E14A-12_application_the shipped null tutor answers nothing, '
+  result: PASS
+  details: 'missing test: the shipped null tutor answers nothing, and the learner
+    still gets authored help'
+- check: E14A-12_presentation_no tutor state wears the fault tone
+  result: PASS
+  details: 'missing test: no tutor state wears the fault tone'
+- check: E14A-12_presentation_the disclosure after an answer is frozen
+  result: PASS
+  details: 'missing test: the disclosure after an answer is frozen does not claim
+    the attempt changed'
+- check: E14A-12_storage_an attempt made after a solution was sho
+  result: PASS
+  details: 'missing test: an attempt made after a solution was shown for its variant
+    family reads as solution-exposed'
+- check: E14A-12_storage_an explanation of a frozen answer does n
+  result: PASS
+  details: 'missing test: an explanation of a frozen answer does not reach back into
+    that answer'
+- check: E14A-12_adapter_an adapter without a call site is unavai
+  result: PASS
+  details: 'missing test: an adapter without a call site is unavailable, never a crash
+    and never a reply'
+- check: E14A-13_mutation_all_detected
+  result: PASS
+  details: 68/68
+- check: E14A-13_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E14A-13_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (an assumed level, a public request constructor, a require(true), a plan read,
+    an evidence read, the fault tone, a percentage) inside Kotlin comments must not
+    fail the validator'', ''negative_control_result'': ''no_false_positive'', ''crash_is_not_a_detection'':
+    True}'
+- check: E14A-13_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E14A-13_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E14A-13_open_wrong_answer_analysis_and_misc
+  result: PASS
+  details: wrong_answer_analysis_and_misconception_memory not owned
+- check: E14A-13_open_alternative_explanation_conten
+  result: PASS
+  details: alternative_explanation_content not owned
+- check: E14A-13_open_code_evaluation
+  result: PASS
+  details: code_evaluation not owned
+- check: E14A-13_open_ai_written_code_comprehension_
+  result: PASS
+  details: ai_written_code_comprehension_check not owned
+- check: E14A-13_open_open_ended_evaluation
+  result: PASS
+  details: open_ended_evaluation not owned
+- check: E14A-13_open_adapter_call_site_router_model
+  result: PASS
+  details: adapter_call_site_router_model_currency not owned
+- check: E14A-13_open_authored_hint_ladders_and_task
+  result: PASS
+  details: authored_hint_ladders_and_task_instruction_mode not owned
+- check: E14A-13_open_app_renders_panel_and_calls_as
+  result: PASS
+  details: app_renders_panel_and_calls_ask_tutor_and_independence not owned
+- check: E14A-13_open_tutor_conversation_history
+  result: PASS
+  details: tutor_conversation_history not owned
+- check: E14A-13_open_reply_level_calibration
+  result: PASS
+  details: reply_level_calibration not owned
+- check: E14A-14_forbidden_no_help_outcome
+  result: PASS
+  details: missing=no_help_outcome
+- check: E14A-14_forbidden_target_help_before_level_chosen
+  result: PASS
+  details: missing=target_help_before_level_chosen
+- check: E14A-14_forbidden_h3_h4_without_disclosure
+  result: PASS
+  details: missing=h3_h4_without_disclosure
+- check: E14A-14_forbidden_answer_leaves_device_early
+  result: PASS
+  details: missing=answer_leaves_device_early
+- check: E14A-14_forbidden_state_or_history_in_request
+  result: PASS
+  details: missing=state_or_history_in_request
+- check: E14A-14_forbidden_reply_past_ceiling_shown
+  result: PASS
+  details: missing=reply_past_ceiling_shown
+- check: E14A-14_forbidden_tutor_declaration_lowers_record
+  result: PASS
+  details: missing=tutor_declaration_lowers_record
+- check: E14A-14_forbidden_verdict_from_reply
+  result: PASS
+  details: missing=verdict_from_reply
+- check: E14A-14_forbidden_non_answer_recorded_or_blamed
+  result: PASS
+  details: missing=non_answer_recorded_or_blamed
+- check: E14A-14_forbidden_recorded_help_ignored_by_evidence
+  result: PASS
+  details: missing=recorded_help_ignored_by_evidence
+- check: E14A-14_forbidden_shown_solution_leaves_item_fresh
+  result: PASS
+  details: missing=shown_solution_leaves_item_fresh
+- check: E14A-14_forbidden_fading_by_withholding
+  result: PASS
+  details: missing=fading_by_withholding
+- check: E14A-14_forbidden_unavailable_tutor_as_fault
+  result: PASS
+  details: missing=unavailable_tutor_as_fault
+- check: E14A-15_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 14A QA PASS'''
+- check: E14A-15_spec_**Decision:** `D-105`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-105`'''
+- check: E14A-15_spec_The tutor teaches on reque
+  result: PASS
+  details: 'spec: ''The tutor teaches on request and never decides'''
+- check: 'E14A-15_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E14A-15_spec_14B — Yanlış analizi
+  result: PASS
+  details: 'spec: ''14B — Yanlış analizi'''
+- check: E14A-15_spec_Guidance fading is not the
+  result: PASS
+  details: 'spec: "Guidance fading is not the tutor''s"'
+- check: E14A-15_spec_mutation_count
+  result: PASS
+  details: spec mutation count
+- check: E14A-15_research_10.1073/pnas.2422633122
+  result: PASS
+  details: missing='10.1073/pnas.2422633122'
+- check: E14A-15_research_AIAX-v0
+  result: PASS
+  details: missing='AIAX-v0'
+- check: E14A-15_research_2D
+  result: PASS
+  details: missing='2D'
+- check: E14A-15_research_14G
+  result: PASS
+  details: missing='14G'
+- check: E14A-15_research_user decisions
+  result: PASS
+  details: missing='user decisions'
+- check: E14A-16_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E14A-16_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E14A-16_no_combining_dot
+  result: PASS
+  details: U+0307 in 14A text
+failures: []

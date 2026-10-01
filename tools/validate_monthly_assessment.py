@@ -50,6 +50,15 @@ OLD_FILES = [ANDROID / "core-model/src/main/kotlin/coach/WeeklyBlueprintCodec.kt
              ANDROID / "core-application/src/main/kotlin/coach/application/WeeklyAssessment.kt",
              ANDROID / "core-presentation/src/main/kotlin/coach/presentation/WeeklyAssessmentSession.kt"]
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -418,7 +427,7 @@ check("E13B-11_dispatch", "AssessmentScope.MONTHLY_CAPABILITY -> MonthlyBlueprin
 # ---------------------------------------------------------------- ports and boundaries
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx = yaml.safe_load(read(MSBX)) or {}
-check("E13B-12_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]) and contract.get("port_count") == 4, f"interfaces={interfaces}")
+check("E13B-12_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)) and contract.get("port_count") == 4, f"interfaces={interfaces}")
 check("E13B-12_no_monthly_port", "monthly" not in ports.lower() and contract.get("port_refinements") == [], "a monthly port method")
 
 # ---------------------------------------------------------------- authored content

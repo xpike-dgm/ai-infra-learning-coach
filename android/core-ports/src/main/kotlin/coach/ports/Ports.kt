@@ -16,12 +16,15 @@ import coach.model.SkillRow
 import coach.model.StoredPlan
 import coach.model.StudyTimestamp
 import coach.model.TaskCandidate
+import coach.model.TutorReply
+import coach.model.TutorRequest
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
 
 /**
- * The four ports core owns (MSBX-v0 §ports). They are expressed in core types only:
- * no platform type, no storage type and no AI type may appear in a signature here.
+ * The ports core owns: the four `MSBX-v0` §ports named, and [TutorPort], added by `D-105` as a declared
+ * extension (14A) without editing that contract. They are expressed in core types only: no platform type,
+ * no storage type and no AI type may appear in a signature here.
  */
 
 /**
@@ -231,6 +234,19 @@ interface ContentPort {
  */
 interface EvaluatorPort {
     fun evaluate(request: EvaluationRequest): EvaluationResult
+}
+
+/**
+ * Help on request (`TUTX-v0 / D-105`). It is a port of its own, not a method of [EvaluatorPort], because
+ * help and judgement are different things with different provenance (`2D` §16): what the learner was given
+ * while working is never what judged the work. A null implementation ships with the product, so the app
+ * builds, runs and teaches from authored content with no adapter present.
+ *
+ * The request can only come from `TutorRules.prepare`, and a reply is only ever *proposed* here: core checks
+ * it, decides what the learner sees and records only what was shown.
+ */
+interface TutorPort {
+    fun assist(request: TutorRequest): TutorReply
 }
 
 data class TruthRecord(

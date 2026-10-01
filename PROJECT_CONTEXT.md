@@ -230,12 +230,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **13E ✅ Program değişiklik raporu — PCRX-v0 / D-103**
 - **13F ✅ Tanısal atlama (VDW-v0) — VDWX-v0 / D-104** (D-099 ile eklendi)
 - **AŞAMA 13 ✅ TAMAMLANDI**
-- **14A 🟡 Tutor davranış sözleşmesi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 14B–20 ⬜
+- **14A ✅ Tutor davranış sözleşmesi — TUTX-v0 / D-105**
+- **14B 🟡 Yanlış analizi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 14C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -552,3 +553,13 @@ Kod yazmadan önce bulunanlar: tanısal reason code'lar, ihtiyaç ve replan olay
 Tanısal yol `daily` bir `assessment_session` satırıdır (`diagnostic_scope/1`); en yeni tanısal satır karar verir. Waiver yalnız `GRE-v0`'ın kendi kapıları tanısal kanıtta ilk kez geçtiğinde verilir, penceresinin kanıtını adlandırır ve kapsamdır; hızlı yol bittikten sonra toplanan kanıt saymaz (testler bu hatayı yakaladı). Tanı sürerken ders bekler, atlanan ders `resolved_before_selection`'dır, yalnız gösterilen atlanır; planner'a P3 `decisive` ihtiyaç ve taze, güvenilir, H0 item'lar gider, planlama kanıt okumaz. Şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi (D-104); 13E'ye iki değişiklik türü; 12E açıklaması atlananı ve bekleyeni izden söylüyor. S06 ve invariant 12 gerçek kodla koşuyor. Mutation 69/69, validator 220/220, kendi mutation testi 29/29. **T6 çalıştırılmadı.**
 
 Canonical: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md` / D-104.
+
+## 12.30 14A Tutor davranış sözleşmesi — TUTX-v0 / D-105
+
+Tutor davranış sözleşmesi kodda ve **AŞAMA 14 başladı**. Ana invariant: **tutor istek üzerine öğretir ve asla karar vermez.**
+
+Kod yazmadan önce bulunanlar: tutor yoktu (port, istek, yanıt, null uygulama, adaptör); kaydedilen yardım kanıta ulaşmıyordu — bağımsızlık sınıfını her çağıran kendisi veriyordu; `evidenceFor` gösterilmiş çözümü hiç döndürmüyordu; runner'ın H3/H4 açıklaması cevap gönderildikten sonra yanlıştı. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı); serbest soru, deneme açıkken seviyeyi öğrenci seçer; ilk gerçek sağlayıcı çağrısı 14G.
+
+Tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir. Beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`) ve yardım her zaman istenebilir: uymayan istek anına uyan isteğe yönlendirilir. Deneme açıkken cevabın en fazla ne kadar açabileceğini öğrenci seçer, H3/H4 önce ana göre açıklanır; kayıt asla izin verilenden az yardım iddia etmez (gönderilmiş cevaptan sonra `H4`) ve tutor'un kendi seviye beyanı yalnız reddetmek için kullanılır. Cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında bayt bayt doğrulanır. Yanıt şemaya bağlıdır (`tutor_reply/1`), hükme yer yoktur; reddetme, zaman aşımı ya da kullanılamazlık hiçbir şey kaydetmez ve öğrenciyi suçlamaz, yalnız yazılmış yardım yerine geçer. Kaydedilen yardım artık kanıtın bağımsızlığını belirliyor (`2D` §6) ve gösterilen çözüm o andan itibaren exposure, sonraki kanıt bunu okuyor. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi), serbest soru + seviyeyi öğrenci seçer, ilk gerçek sağlayıcı çağrısı 14G'de. Mutation 68/68, validator 219/219, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
+
+Canonical: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` / D-105.

@@ -530,7 +530,8 @@ checks:
   details: the schema version moved without an owning contract
 - check: E12C-09_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E12C-09_published_skills
   result: PASS
   details: publishedSkills is missing

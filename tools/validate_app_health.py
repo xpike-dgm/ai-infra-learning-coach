@@ -57,6 +57,15 @@ STARTUP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/Sto
 HEALTH_TEST = ANDROID / "core-presentation/src/test/kotlin/coach/presentation/AppHealthTest.kt"
 AI_TEST = ANDROID / "ai-adapter/src/test/kotlin/coach/ai/AiEvaluatorTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -226,7 +235,7 @@ check("E10E-06_opener_defect_contained", re.search(r"catch \(defect: Throwable\)
       "an opener defect must become a status, not a crash")
 
 # ------------------------------------------------------ boundaries (MSBX-v0)
-check("E10E-07_ports_unchanged", len(re.findall(r"^interface \w+Port\b", ports, re.M)) == 4
+check("E10E-07_ports_unchanged", sorted(re.findall(r"^interface (\w+Port)\b", ports, re.M)) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT))
       and len(msbx["ports"]["set"]) == 4,
       f"interfaces={re.findall(r'^interface (\w+Port)', ports, re.M)}")
 check("E10E-07_ui_no_persistence", "coach.persistence" not in health_ui and "coach.application.StoreStartup" not in health_ui,

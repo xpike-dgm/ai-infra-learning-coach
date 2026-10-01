@@ -214,3 +214,7 @@ JVM tests: 654, all passing.
 If accepted, 13C becomes `RVRX-v0 / D-101`.
 
 Next numbered step: **13D — Remediation Engine**. It must receive a fresh PRE-STEP and explicit user approval before execution. 13D owns the weakness axis, remediation closure, Topic `weakening` and retroactive contamination; retention now hands it `verification_due`, `at_risk` and the `REMEDIATION_AFTER_RETENTION_FAILURE` signal.
+
+---
+
+**14A note (2026-10-01, `D-105`):** the open loop on solution exposure is closed — `evidenceFor` now returns `solutionExposed = true` for a row whose item or variant family had a solution shown before its attempt was made (the attempt's own sequence). The retention rule is unchanged; it now receives the flag it already honoured. Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` §16.
