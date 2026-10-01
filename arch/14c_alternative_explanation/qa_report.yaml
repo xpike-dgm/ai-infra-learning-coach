@@ -217,7 +217,7 @@ checks:
   details: ''
 - check: E14C-05_open_states
   result: PASS
-  details: '{''CONFIRMED'', ''HYPOTHESIS'', ''SUPPORTED''}'
+  details: '[''CONFIRMED'', ''HYPOTHESIS'', ''SUPPORTED'']'
 - check: E14C-05_nothing_written
   result: PASS
   details: seen is session memory; nothing stored

@@ -105,6 +105,7 @@ class RebuildRetentionTest {
         override fun taskCandidates(need: coach.model.LearningNeed) = emptyList<coach.model.TaskCandidate>()
         override fun assessmentItemsFor(skill: VersionedRef) = emptyList<coach.model.AssessmentItem>()
         override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
+        override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
     }
 
     private fun row(profile: String = "standard", critical: Boolean = false) =

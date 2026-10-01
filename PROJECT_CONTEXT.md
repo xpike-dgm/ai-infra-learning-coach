@@ -233,12 +233,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14A ✅ Tutor davranış sözleşmesi — TUTX-v0 / D-105**
 - **14B ✅ Yanlış analizi — WAAX-v0 / D-106**
 - **14C ✅ Alternatif anlatım — ALEX-v0 / D-107**
-- **14D 🟡 Kod değerlendirme — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 14E–20 ⬜
+- **14D ✅ Kod değerlendirme — CDEX-v0 / D-108**
+- **14E 🟡 AI-generated code comprehension check — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 14F–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -585,3 +586,13 @@ Kod yazmadan önce bulunanlar: `explain_differently` isteği bir biçim taşım�
 Anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz. Yedi kapalı biçim (`LEARNING_BEHAVIOR_RULES` §9 ve `WLRM-v0` stratejileri): beşini tutor yazabilir; misconception karşılaştırması yalnız yazılıdır (öğrencinin hafızası cihazdan çıkmaz) ve dersin kendi anlatımı bir alternatif değildir. Yazılı anlatımlar içeriktir (`[explanation]` bölümü, Objective sürümüne pinli, `ContentPort.explanationsFor`), mağazaya yayımlanmaz; menü sıralamaz, görüleni işaretler ve hiçbir şey saklamaz; en az açan yazılı anlatım öğrencinin tavanına sığarsa tutor çağrılmaz. Tutor talimatları `tutor_instructions/2` (kural 14 dayanak, kural 15 biçimler). Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI. Mutation 42/42, validator 123/123, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
 
 Canonical: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md` / D-107.
+
+## 12.33 14D Kod değerlendirme — CDEX-v0 / D-108
+
+Kod değerlendirme kodda. Ana invariant: **kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür.**
+
+Kod yazmadan önce bulunanlar: hiçbir üretim kodu bir değerlendirme üretmiyordu (kanıt hattı kaydedebiliyordu ama kaydedecek bir şey yoktu); `AIAX-v0`'ın kod için kabul ettiği deterministik yol (derleyici + Objective'e özgü testler) öğrencinin kodunun bulunduğu bilgisayarda koşamıyordu; bir testi Objective'ine bağlayan bir şey yoktu; değerlendirici portu `verified` döndürebilirdi. Kullanıcı kararları: testler PC'de koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional.
+
+Kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür: bir kod görevi yalnız dersin kendi testleriyle doğrulanır — öğrencinin bilgisayarında koşulur ve raporu katı okunur — ve bir test yalnız yazıldığı Objective için konuşur; çalışmayan test hiçbir şey ölçmemiştir ve öğrenciye karşı sayılmaz; test yoksa AI kodu yalnız görev provisional sonuca izin veriyorsa ve en çok provisional olarak değerlendirir, doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; testlerin geçmesi kodun istenen şekilde çalıştığını gösterir, öğrencinin nedenini açıklayabildiğini değil. Testler içeriktir (`[code_test_suite]`/`[code_test]`, item sürümüne pinli, `ContentPort.codeTestsFor`); PC tarafı koşucu `tools/code_test_runner.py` (yalnız standart kütüphane, kabuksuz, süre sınırı yazılır) `code_test_report/1` üretir. Başarısız derleme yalnız yazılmış derleme Objective'ini suçlar; zaman aşımı başarısızlıktır; ortam hatası, başka item ya da suite sürümü için rapor hiçbir şey ölçmez; eksik ya da bozuk rapor asla AI'a düşmez; değerlendirici portu asla `verified` döndüremez. Kullanıcı kararları: testler PC'de koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional. Mutation 49/49, validator 122/122, kendi mutation testi 30/30. **T6 ve C derlemesi çalıştırılmadı.**
+
+Canonical: `docs/CODE_EVALUATION_IMPL_SPEC.md` / D-108.

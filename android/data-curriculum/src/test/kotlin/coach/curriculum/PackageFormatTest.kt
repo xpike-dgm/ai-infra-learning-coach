@@ -269,6 +269,50 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `code tests are read strictly, attached to their suite and served only for the item version they test`() {
+        val tests = """
+
+            [code_test_suite]
+            logical_id=codetest.python.loops.count
+            version=1
+            item=item.python.loops.q1@v1
+            build_objective=objective.python.loops.trace@v1
+
+            [code_test]
+            suite=codetest.python.loops.count@v1
+            id=counts_three
+            objective=objective.python.loops.explain@v1
+            misconception=misconception.python.loops.off_by_one
+
+            [code_test]
+            suite=codetest.python.loops.count@v1
+            id=counts_zero
+            objective=objective.python.loops.explain@v1
+        """.trimIndent()
+        val source = FileContentSource { authored + "\n" + tests }
+        val suite = assertNotNull(source.codeTestsFor(VersionedRef("item.python.loops.q1", 1)))
+        assertEquals(listOf("counts_three", "counts_zero"), suite.tests.map { it.id })
+        assertEquals(VersionedRef("objective.python.loops.trace", 1), suite.buildObjective)
+        assertEquals("misconception.python.loops.off_by_one", suite.tests.first().misconceptionOnFailure)
+        assertNull(source.codeTestsFor(VersionedRef("item.python.loops.q1", 2)), "another item version's tests do not test it")
+        assertNull(FileContentSource { authored }.codeTestsFor(VersionedRef("item.python.loops.q1", 1)), "no tests written is the truthful answer")
+        val again = "\n\n[code_test_suite]\nlogical_id=codetest.python.loops.again\nversion=1\nitem=item.python.loops.q1@v1\n\n" +
+            "[code_test]\nsuite=codetest.python.loops.again@v1\nid=again\nobjective=objective.python.loops.explain@v1"
+        for (bad in listOf(
+            tests.replace("suite=codetest.python.loops.count@v1\nid=counts_zero", "suite=codetest.python.loops.other@v1\nid=counts_zero"),
+            tests.replace("id=counts_zero", "id=counts_three"),
+            tests.replace("id=counts_zero", "id=Counts Zero"),
+            tests.replace("logical_id=codetest.python.loops.count", "logical_id=tests.python.loops.count"),
+            tests.replace("item=item.python.loops.q1@v1", "item=item.python.loops.q1"),
+            tests + "\nexpected_stdout=3",
+            tests.substringBefore("\n\n[code_test]\n"),
+            tests + again,
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n" + bad) }
+        }
+    }
+
+    @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }
         assertEquals("Bu döngü kaç kez çalışır?", assertNotNull(source.resource(itemRef)).body)

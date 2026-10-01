@@ -58,7 +58,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 14A Tutor davranış sözleşmesi: TUTX-v0 / D-105 ile tamamlandı; beş kapalı istek, seviye tavanı, core'da kurulan mesaj, `tutor_reply/1`, `NullTutor`, ayrı `TutorPort` (D-105 uzantısı), yardımdan bağımsızlık, gösterilen çözüm exposure. **AŞAMA 14 başladı.**
 - [x] 14B Yanlış analizi: WAAX-v0 / D-106 ile tamamlandı; kapalı misconception kataloğu, etiketler kanıtta, `misconception_state` hafızası, suçlamasız analiz, şema v8; `review.6g.misconception_taxonomy_expansion` kapandı.
 - [x] 14C Alternatif anlatım: ALEX-v0 / D-107 ile tamamlandı; yedi kapalı biçim, öğrenci seçer, önce yazılmış yoksa AI, AI alternatifi dersin anlatımına dayanır, `tutor_instructions/2`.
-- [ ] 14D Kod değerlendirme **AKTİF**.
+- [x] 14D Kod değerlendirme: CDEX-v0 / D-108 ile tamamlandı; testler PC'de koşar ve rapor içe aktarılır, test yalnız kendi Objective'i için, test yoksa AI yalnız provisional, referans koşucu `tools/code_test_runner.py`.
+- [ ] 14E AI-generated code comprehension check **AKTİF**.
+- [ ] Gerçek kod görevlerinin test suite'leri ve koşucu dosyaları → 15.
+- [ ] Yapıştırılan raporu artifact olarak saklamak, `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek → 16D.
+- [ ] AI kod değerlendiricisinin istemi ve çağrı noktası → 14G.
+- [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
+- [ ] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15.
 - [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15.
 - [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.

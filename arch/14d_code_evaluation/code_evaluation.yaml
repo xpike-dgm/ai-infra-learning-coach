@@ -1,0 +1,214 @@
+model: CDEX-v0
+stage_step: 14D
+status: accepted_14d
+decision: D-108
+implements: [AIAX-v0, MSS-v0, 2D, QAB-v0, LEARNING_BEHAVIOR_RULES]
+builds_on: [GRE-v0, TUTX-v0, WAAX-v0]
+boundaries: MSBX-v0
+purpose: who_may_judge_code_and_what_the_judgement_proves
+
+scope:
+  tests_as_content: true
+  report_format: true
+  reference_runner: true
+  per_objective_attribution: true
+  provisional_ai_route: true
+  schema_changed: false
+  state_family_added: false
+  mastery_rule_changed: false
+  weakness_rule_changed: false
+  planner_rule_changed: false
+  code_runs_on_device: false
+  tests_authored: false
+  adapter_prompt_written: false
+  app_calls_evaluation: false
+
+question: Bir kodun doğru olduğunu ne kanıtlar — ve kim söyleyebilir?
+
+primary_invariant: >-
+  Code is judged by running it, or it is only an opinion. A code task is verified only by the course's own tests,
+  run on the learner's computer and read back strictly, and a test speaks only for the Objective it was written for.
+  A test that did not run measured nothing, and nothing is held against the learner for it. Without tests, an AI may
+  judge the code only where the task allows a provisional result, and never as more than provisional; a task that
+  needs a verified result is never put to an AI. Passing tests show that the code does what was asked — not that the
+  learner can explain why.
+
+user_decisions:
+  date: "2026-10-01"
+  tests_run: on_learners_computer_report_imported
+  ai_without_tests: provisional_only_where_task_allows
+
+suite:
+  id_pattern: codetest.<namespace>.<slug>
+  pinned_to: one_item_version
+  test_id_pattern: lower_snake_case
+  test_speaks_for: one_objective_the_item_targets
+  build_objective: optional_and_never_shared_with_a_test
+  failure_may_name: catalog_misconception
+  package_sections: [code_test_suite, code_test]
+  read_by: ContentPort.codeTestsFor
+  published_into_store: false
+
+report:
+  format: code_test_report/1
+  build_statuses: [ok, failed, not_required, environment_error]
+  test_statuses: [passed, failed, timed_out, not_run, error]
+  ran: [passed, failed, timed_out]
+  read: completely_or_not_at_all
+  signed: false
+  why_not_signed: personal_use_D-080
+
+runner:
+  file: tools/code_test_runner.py
+  suite_format: code_test_suite/1
+  stdlib_only: true
+  shell: false
+  timeout: authored_per_suite
+  compare: [exact, trim_trailing_whitespace]
+  output: bytes_identical_on_every_os
+  fixtures: tools/fixtures/code_test_14d
+
+attribution:
+  build: only_the_build_objective
+  failed_build_tests: not_reliably_measured
+  objective_met: every_test_ran_and_passed
+  objective_not_met: every_test_that_ran_failed
+  objective_partially_met: mixed
+  passes_with_unrun_test: not_reliably_measured
+  timeout: failed
+  environment_error: nothing_measured
+  report_for_other_item_or_suite_version: nothing_measured
+
+routes:
+  tests_exist: tests_decide_no_ai
+  no_tests_verified_required: nothing_measured_no_ai
+  no_tests_provisional_allowed: ai_provisional
+  missing_or_malformed_report: nothing_measured_no_ai_fallback
+  ai_verified_claim: invalid_response
+  ai_sent: [target_objectives, task_text, learner_code]
+
+not_measured_reasons: [report_missing, report_malformed, report_for_another_item, report_for_another_suite, report_does_not_match_suite, environment_error, no_suite_for_report, tests_required, nothing_submitted, task_text_missing, evaluator_did_not_answer]
+
+presentation:
+  ai_label: "AI değerlendirmesi: doğrulanmamıştır. Bilgi verir ama tek başına bir beceriyi geçirmez."
+  tests_note: "Testlerin geçmesi kodun istenen şekilde çalıştığını gösterir; neden çalıştığını açıklayabilmek ayrıca ölçülür."
+  numbers_or_scores: false
+
+port_count: 5
+port_refinements: [{port: ContentPort, method: codeTestsFor}]
+schema_version: 8
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/CodeEvaluationFactsTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/EvaluateCodeTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/CodeEvaluationPresentationTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+  runner_reports: {file: android/core-model/src/test/resources/code_test_14d/report_wrong.txt}
+
+mutation_results:
+  total: 49
+  detected: 49
+  only_14d_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (D20, a failed build blaming every Objective) was re-run by hand and the named CodeEvaluationFactsTest test was seen failing
+  negative_control: a comment-only change in EvaluateCode.kt
+  negative_control_result: survived_as_expected
+  equivalent_mutant_excluded: "D26 (dropping `built &&` from the misconception filter) is equivalent: a failed build leaves every test not_run, so no test can name a misconception either way"
+  first_run: 47 of 49 detected; D10 (one unknown test status among known ones) and D11 (an @v0 reference) survived — the report tests only replaced every status at once and used an unversioned id; both cases were added, then the whole set was re-run once from the unmutated tree
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: D01, mutant: a_timeout_did_not_run, result: detected}
+    - {id: D02, mutant: a_runner_error_counts_as_run, result: detected}
+    - {id: D03, mutant: any_suite_id, result: detected}
+    - {id: D04, mutant: an_empty_suite_is_allowed, result: detected}
+    - {id: D05, mutant: duplicate_test_ids_are_allowed, result: detected}
+    - {id: D06, mutant: the_build_and_a_test_share_an_objective, result: detected}
+    - {id: D07, mutant: any_report_format, result: detected}
+    - {id: D08, mutant: a_report_without_end, result: detected}
+    - {id: D09, mutant: a_test_reported_twice, result: detected}
+    - {id: D10, mutant: an_unknown_status_is_skipped, result: detected}
+    - {id: D11, mutant: version_zero_is_a_reference, result: detected}
+    - {id: D12, mutant: tests_are_skipped_for_a_provisional_task, result: detected}
+    - {id: D13, mutant: a_verified_task_goes_to_the_ai, result: detected}
+    - {id: D14, mutant: the_deterministic_flag_is_ignored, result: detected}
+    - {id: D15, mutant: a_report_for_another_item_is_used, result: detected}
+    - {id: D16, mutant: another_suite_version_is_used, result: detected}
+    - {id: D17, mutant: the_test_set_is_not_matched, result: detected}
+    - {id: D18, mutant: a_skipped_build_is_accepted, result: detected}
+    - {id: D19, mutant: an_environment_error_is_measured, result: detected}
+    - {id: D20, mutant: a_failed_build_blames_every_objective, result: detected}
+    - {id: D21, mutant: a_failed_build_blames_nothing, result: detected}
+    - {id: D22, mutant: unrun_passes_are_met, result: detected}
+    - {id: D23, mutant: one_failure_is_total, result: detected}
+    - {id: D24, mutant: partial_is_not_met, result: detected}
+    - {id: D25, mutant: a_passing_test_names_a_misconception, result: detected}
+    - {id: D27, mutant: the_evaluator_names_no_suite, result: detected}
+    - {id: D28, mutant: an_ai_may_verify, result: detected}
+    - {id: D29, mutant: an_ai_judges_what_is_not_targeted, result: detected}
+    - {id: D30, mutant: an_ai_judges_one_objective_twice, result: detected}
+    - {id: D31, mutant: an_empty_ai_answer_is_accepted, result: detected}
+    - {id: D32, mutant: a_test_speaks_for_an_untargeted_objective, result: detected}
+    - {id: D33, mutant: a_missing_report_asks_the_ai, result: detected}
+    - {id: D34, mutant: a_malformed_report_asks_the_ai, result: detected}
+    - {id: D35, mutant: an_uncheckable_report_goes_to_the_ai, result: detected}
+    - {id: D36, mutant: an_empty_submission_is_sent, result: detected}
+    - {id: D37, mutant: the_ai_answer_is_unchecked, result: detected}
+    - {id: D38, mutant: the_answer_key_leaves_the_device, result: detected}
+    - {id: D39, mutant: the_pending_reason_is_lost, result: detected}
+    - {id: D40, mutant: a_report_without_tests_is_called_missing_tests, result: detected}
+    - {id: D41, mutant: the_ai_is_unlabelled, result: detected}
+    - {id: D42, mutant: the_ai_is_worded_as_fact, result: detected}
+    - {id: D43, mutant: unmeasured_is_said_failed, result: detected}
+    - {id: D44, mutant: an_environment_error_blames, result: detected}
+    - {id: D45, mutant: a_score_is_shown, result: detected}
+    - {id: D46, mutant: code_tests_are_ignored, result: detected}
+    - {id: D47, mutant: an_unknown_test_key_is_accepted, result: detected}
+    - {id: D48, mutant: a_test_of_an_undeclared_suite_is_dropped, result: detected}
+    - {id: D49, mutant: two_suites_for_one_item, result: detected}
+    - {id: D50, mutant: tests_ignore_the_item_version, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (an AI verifying, a failed build blaming every Objective, a score, shell=True) inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+  - {id: RUN-07, command: "python tools/code_test_runner.py tools/fixtures/code_test_14d/suite.json --dir <fixture>", tier: T5, result: PASS}
+jvm_tests: 905
+sweep: {passed: 52, total: 52}
+c_build_run: false
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app evaluates code yet (16D) and no suites are written yet (15)
+
+open_loops:
+  suites_for_real_tasks: {owner: "15"}
+  report_artifact_and_app_call: {owner: 16D}
+  adapter_prompt_for_code: {owner: 14G}
+  ai_code_comprehension: {owner: 14E}
+  open_ended_evaluation: {owner: 14F}
+  ai_code_evaluator_calibration: {owner: "18"}
+
+forbidden_patterns:
+  - ai_asked_about_tested_task
+  - ai_judgement_recorded_verified
+  - verified_task_put_to_ai
+  - broken_report_replaced_by_ai
+  - one_failure_counted_against_every_objective
+  - failed_build_blames_unrelated_objectives
+  - unrun_test_counted_as_failure
+  - environment_error_as_wrong_answer
+  - report_for_other_item_or_version_accepted
+  - passing_tests_presented_as_understanding
+  - answer_key_or_history_sent_to_provider

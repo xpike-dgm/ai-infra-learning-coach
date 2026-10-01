@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14D active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14E active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1148,14 +1148,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 14A ✅ TUTX-v0 / D-105
 - AŞAMA 14B ✅ WAAX-v0 / D-106
 - AŞAMA 14C ✅ ALEX-v0 / D-107
-- AŞAMA 14D 🟡 active-not-executed
-- 14E–20 ⬜
+- AŞAMA 14D ✅ CDEX-v0 / D-108
+- AŞAMA 14E 🟡 active-not-executed
+- 14F–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `14C — Alternatif anlatım`  
-**Final:** `ALEX-v0 — Alternative Explanation` / D-107  
-**Canonical:** `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md` + `arch/14c_alternative_explanation/`
+**Son tamamlanan numaralı adım:** `14D — Kod değerlendirme`  
+**Final:** `CDEX-v0 — Code Evaluation` / D-108  
+**Canonical:** `docs/CODE_EVALUATION_IMPL_SPEC.md` + `arch/14d_code_evaluation/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1202,17 +1203,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 14A:** ✅ TAMAMLANDI  
 **AŞAMA 14B:** ✅ TAMAMLANDI  
 **AŞAMA 14C:** ✅ TAMAMLANDI  
-**Aktif adım:** `14D — Kod değerlendirme`  
+**AŞAMA 14D:** ✅ TAMAMLANDI  
+**Aktif adım:** `14E — AI-generated code comprehension check`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-14D için:
+14E için:
 
 ```text
-fresh 14D PRE-STEP GitHub refresh
+fresh 14E PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 14D execution
+→ 14E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1790,8 +1792,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 14A ✅ TUTX-v0 / D-105
 14B ✅ WAAX-v0 / D-106
 14C ✅ ALEX-v0 / D-107
-14D 🟡 active-not-executed
-14E–20 ⬜
+14D ✅ CDEX-v0 / D-108
+14E 🟡 active-not-executed
+14F–20 ⬜
 ```
 
 10D final:
@@ -1988,9 +1991,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `14D — Kod değerlendirme`.
+**Sıradaki gerçek numbered work:** `14E — AI-generated code comprehension check`.
 
-**14D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**14E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2040,8 +2043,8 @@ AŞAMA 13 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `14D — Kod değerlendirme`.  
-**14D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `14E — AI-generated code comprehension check`.  
+**14E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2275,4 +2278,13 @@ Ana invariant: yanlış bir cevap bir bilgidir, öğrenci hakkında bir hüküm 
 
 14C `ALEX-v0 — Alternative Explanation` ile tamamlandı. Canonical: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md`; contract/QA: `arch/14c_alternative_explanation/`; synthesis: `research/14c_alternative_explanation_research.md`.
 
-Ana invariant: anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz. Yedi kapalı biçim (`LEARNING_BEHAVIOR_RULES` §9 ve `WLRM-v0` stratejileri): beşini tutor yazabilir; misconception karşılaştırması yalnız yazılıdır (öğrencinin hafızası cihazdan çıkmaz) ve dersin kendi anlatımı bir alternatif değildir. Yazılı anlatımlar içeriktir (`[explanation]` bölümü, Objective sürümüne pinli, `ContentPort.explanationsFor`), mağazaya yayımlanmaz; menü sıralamaz, görüleni işaretler ve hiçbir şey saklamaz; en az açan yazılı anlatım öğrencinin tavanına sığarsa tutor çağrılmaz. Tutor talimatları `tutor_instructions/2` (kural 14 dayanak, kural 15 biçimler). Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI. Mutation 42/42, 123/123 QA PASS, validator mutation 30/30, 51/51 sweep. T6 çalıştırılmadı. Current active numbered step 14D'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz. Yedi kapalı biçim (`LEARNING_BEHAVIOR_RULES` §9 ve `WLRM-v0` stratejileri): beşini tutor yazabilir; misconception karşılaştırması yalnız yazılıdır (öğrencinin hafızası cihazdan çıkmaz) ve dersin kendi anlatımı bir alternatif değildir. Yazılı anlatımlar içeriktir (`[explanation]` bölümü, Objective sürümüne pinli, `ContentPort.explanationsFor`), mağazaya yayımlanmaz; menü sıralamaz, görüleni işaretler ve hiçbir şey saklamaz; en az açan yazılı anlatım öğrencinin tavanına sığarsa tutor çağrılmaz. Tutor talimatları `tutor_instructions/2` (kural 14 dayanak, kural 15 biçimler). Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI. Mutation 42/42, 123/123 QA PASS, validator mutation 30/30, 51/51 sweep. T6 çalıştırılmadı. Bu addendum 14C kapanışında yazıldı; ardından 14D D-108 ile tamamlandı (aşağıdaki 14D addendum'u).
+
+
+---
+
+## 14D completion addendum — D-108
+
+14D `CDEX-v0 — Code Evaluation` ile tamamlandı. Canonical: `docs/CODE_EVALUATION_IMPL_SPEC.md`; contract/QA: `arch/14d_code_evaluation/`; synthesis: `research/14d_code_evaluation_research.md`; PC tarafı koşucu: `tools/code_test_runner.py`.
+
+Ana invariant: kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür: bir kod görevi yalnız dersin kendi testleriyle doğrulanır — öğrencinin bilgisayarında koşulur ve raporu katı okunur — ve bir test yalnız yazıldığı Objective için konuşur; çalışmayan test hiçbir şey ölçmemiştir ve öğrenciye karşı sayılmaz; test yoksa AI kodu yalnız görev provisional sonuca izin veriyorsa ve en çok provisional olarak değerlendirir, doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; testlerin geçmesi kodun istenen şekilde çalıştığını gösterir, öğrencinin nedenini açıklayabildiğini değil. Testler içeriktir (`[code_test_suite]`/`[code_test]`, item sürümüne pinli, `ContentPort.codeTestsFor`); PC tarafı koşucu `tools/code_test_runner.py` (yalnız standart kütüphane, kabuksuz, süre sınırı yazılır) `code_test_report/1` üretir. Başarısız derleme yalnız yazılmış derleme Objective'ini suçlar; zaman aşımı başarısızlıktır; ortam hatası, başka item ya da suite sürümü için rapor hiçbir şey ölçmez; eksik ya da bozuk rapor asla AI'a düşmez; değerlendirici portu asla `verified` döndüremez. Kullanıcı kararları: testler PC'de koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional. Mutation 49/49, 122/122 QA PASS, validator mutation 30/30, 52/52 sweep. T6 ve C derlemesi çalıştırılmadı. Current active numbered step 14E'dir; fresh PRE + kullanıcı açık onayı gerekir.

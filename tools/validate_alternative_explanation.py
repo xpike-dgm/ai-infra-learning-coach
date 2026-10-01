@@ -197,7 +197,7 @@ guard = "if (!form.aiAllowed || request.form != form) return null"
 check("E14C-05_ai_only_for_ai_forms", 0 <= explain_fn.find(guard) < ask_at, "")
 check("E14C-05_canonical_not_offered_as_alternative", "require(form.offered)" in explain_fn, "")
 states = set(re.findall(r"WeaknessSignal\.([A-Z]+)\.id", open_fn))
-check("E14C-05_open_states", states == {"HYPOTHESIS", "SUPPORTED", "CONFIRMED"} and states == {s.upper() for s in contract.get("menu", {}).get("open_label_states", [])}, str(states))
+check("E14C-05_open_states", states == {"HYPOTHESIS", "SUPPORTED", "CONFIRMED"} and states == {s.upper() for s in contract.get("menu", {}).get("open_label_states", [])}, str(sorted(states)))
 check("E14C-05_nothing_written", not re.search(r"appendTruth|writeProjection|inTransaction", explain), "seen is session memory; nothing stored")
 check("E14C-05_menu_not_automatic", not re.search(r"fun (choose|pick|recommend|best)", explain + facts), "no automatic choice")
 

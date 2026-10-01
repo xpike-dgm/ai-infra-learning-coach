@@ -359,3 +359,7 @@ Next numbered step:
 ---
 
 **14B note (2026-10-01, `D-106`):** `EvaluationResult` now carries §5.1's `misconception_hypotheses[]` (`misconceptionHypotheses`). They remain proposals: only catalog labels are stored, and a proposal from an uncalibrated evaluator is recorded as `ai_proposed` and never rises above a hypothesis. Details: `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md`.
+
+---
+
+**14D note (2026-10-01, `D-108`):** code is the first thing evaluated in code. §5.2's deterministic path for code is the course's tests, run on the learner's computer by `tools/code_test_runner.py` and read back as `code_test_report/1`; a test speaks only for its own Objective. Core accepts at most `Provisional` from an evaluator port about code (`CodeEvaluation.acceptAi`): a port that returns `Verified`, or judges an Objective the task does not target, has given an invalid response. An evaluator is asked about code only when the course has no tests for the task and the task allows a provisional result. Details: `docs/CODE_EVALUATION_IMPL_SPEC.md`.

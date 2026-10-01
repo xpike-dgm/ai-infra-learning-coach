@@ -1,6 +1,7 @@
 package coach.curriculum
 
 import coach.model.AssessmentItem
+import coach.model.CodeTestSuite
 import coach.model.CurriculumPackage
 import coach.model.ExplanationVariant
 import coach.model.LearningNeed
@@ -53,4 +54,7 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
     /** The written explanations of [objective], pinned by version, in a stable order (14C). */
     override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> =
         parsed?.explanations.orEmpty().filter { it.objective == objective }.sortedBy { it.ref.toString() }
+
+    /** The tests for exactly this item version (14D); another version's tests do not test it. */
+    override fun codeTestsFor(item: VersionedRef): CodeTestSuite? = parsed?.codeTests.orEmpty().singleOrNull { it.item == item }
 }

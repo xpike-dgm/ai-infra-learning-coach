@@ -416,7 +416,7 @@ checks:
 - check: E11D-13_content_methods
   result: PASS
   details: methods=['resource', 'assessmentItem', 'curriculumPackage', 'taskCandidates',
-    'assessmentItemsFor', 'explanationsFor']
+    'assessmentItemsFor', 'explanationsFor', 'codeTestsFor']
 - check: E11D-13_ingestion_on_store_thread
   result: PASS
   details: ingestion does not run where the store is opened

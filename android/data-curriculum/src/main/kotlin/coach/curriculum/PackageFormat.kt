@@ -10,6 +10,8 @@ import coach.model.EvaluatorRequirement
 import coach.model.EvaluatorStatusRequirement
 import coach.model.IndependenceMode
 import coach.model.AssistanceLevel
+import coach.model.CodeTest
+import coach.model.CodeTestSuite
 import coach.model.ExplanationForm
 import coach.model.ExplanationVariant
 import coach.model.LifecycleStatus
@@ -46,6 +48,8 @@ object PackageFormat {
         val documents: Map<VersionedRef, String>,
         /** Written explanations (14C): content, served by the content port, never published into the store. */
         val explanations: List<ExplanationVariant> = emptyList(),
+        /** The course's code tests (14D): content, served by the content port, never published into the store. */
+        val codeTests: List<CodeTestSuite> = emptyList(),
     )
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
@@ -122,13 +126,38 @@ object PackageFormat {
             runCatching { reader.explanation(section) }.getOrElse { reasons += "explanation: ${it.message}"; null }
         }
 
+        val codeTests = codeTests(sections, reader, reasons)
+
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
-        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations)
+        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests)
+    }
+
+    /**
+     * 14C's pattern for 14D: a `[code_test_suite]` names the item version it tests; each `[code_test]` names its suite
+     * and the one Objective it speaks for. A test of an undeclared suite, a suite with no test, or two suites for one
+     * item version make the package unreadable — the app never guesses which tests apply.
+     */
+    private fun codeTests(sections: List<Section>, reader: Reader, reasons: MutableList<String>): List<CodeTestSuite> {
+        val heads = sections.filter { it.name == "code_test_suite" }.mapNotNull { section ->
+            runCatching { reader.codeTestSuite(section) }.getOrElse { reasons += "code_test_suite: ${it.message}"; null }
+        }
+        val tests = sections.filter { it.name == "code_test" }.mapNotNull { section ->
+            runCatching { reader.codeTest(section) }.getOrElse { reasons += "code_test: ${it.message}"; null }
+        }
+        tests.map { it.first }.filter { suite -> heads.none { it.ref == suite } }.distinct()
+            .forEach { reasons += "code_test: suite ${it.logicalId}@v${it.version} is not declared" }
+        heads.groupBy { it.item }.filterValues { it.size > 1 }.keys
+            .forEach { reasons += "code_test_suite: item ${it.logicalId}@v${it.version} has more than one suite" }
+        return heads.mapNotNull { head ->
+            runCatching { CodeTestSuite(head.ref, head.item, tests.filter { it.first == head.ref }.map { it.second }, head.buildObjective) }
+                .getOrElse { reasons += "code_test_suite ${head.ref.logicalId}: ${it.message}"; null }
+        }
     }
 
     private val KNOWN_SECTIONS = setOf(
         "domain", "module", "topic", "skill", "objective", "topic_skill",
         "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
+        "code_test_suite", "code_test",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -157,6 +186,9 @@ object PackageFormat {
         "misconception" to setOf("logical_id", "version", "objective", "name", "open_question"),
         // 14C (`D-107`): one written explanation of one Objective version. `text` is one line; a backslash-n is a line break.
         "explanation" to setOf("logical_id", "version", "objective", "form", "level", "misconception", "text"),
+        // 14D (`D-108`): a suite pinned to one item version, and one section per test naming the Objective it speaks for.
+        "code_test_suite" to setOf("logical_id", "version", "item", "build_objective"),
+        "code_test" to setOf("suite", "id", "objective", "misconception"),
         "item" to setOf(
             "ref", "prompt", "target_objectives", "target_skills", "required_skills", "evidence_type",
             "expected_answer_or_rubric_ref", "evaluator_required_status", "evaluator_deterministic_required",
@@ -329,6 +361,25 @@ object PackageFormat {
             )
         }
 
+        /** The suite's head; its tests are attached once every `[code_test]` is read. */
+        fun codeTestSuite(section: Section): SuiteHead {
+            check(section)
+            return SuiteHead(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                item = ref(section, "item"),
+                buildObjective = if (section.values.containsKey("build_objective")) ref(section, "build_objective") else null,
+            )
+        }
+
+        fun codeTest(section: Section): Pair<VersionedRef, CodeTest> {
+            check(section)
+            return ref(section, "suite") to CodeTest(
+                id = text(section.values, "id", section.line),
+                objective = ref(section, "objective"),
+                misconceptionOnFailure = optional(section, "misconception"),
+            )
+        }
+
         fun item(section: Section): AssessmentItem {
             check(section)
             return AssessmentItem(
@@ -384,3 +435,6 @@ object PackageFormat {
 private object AssessmentLevels {
     val byId: Map<String, AssistanceLevel> = AssistanceLevel.entries.associateBy { it.id }
 }
+
+/** A suite's head before its tests are attached (14D). */
+private data class SuiteHead(val ref: VersionedRef, val item: VersionedRef, val buildObjective: VersionedRef?)
