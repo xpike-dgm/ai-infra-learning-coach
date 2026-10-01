@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 4
+    const val VERSION = 5
 
     // ---------------------------------------------------------------- table inventories
 
@@ -577,6 +577,46 @@ object Schema {
             WHEN (NEW.scope = 'weekly' AND (NEW.blueprint IS NULL OR substr(NEW.blueprint, 1, 17) <> 'weekly_blueprint/'))
               OR (NEW.scope = 'monthly' AND (NEW.blueprint IS NULL OR substr(NEW.blueprint, 1, 18) <> 'monthly_blueprint/'))
             BEGIN SELECT RAISE(ABORT, 'a weekly or monthly session carries its blueprint in its own scope''s format'); END
+            """,
+        )
+
+    /** `RVR-v0` §2's retention axis plus "not evaluated", the only values `retention_state.state` may hold. */
+    const val RETENTION_STATES = "'untracked', 'fresh', 'stable', 'review_due', 'verification_due', 'at_risk', 'not_yet_evaluated'"
+
+    /**
+     * Version 5 completes `retention_state` (13C). `DDM-v0` names the projection "per Skill" and 10D gave
+     * it only `state`; `RVR-v0` §18 names the compact state a schedule needs, so the columns are §18's
+     * fields, nothing more. Days are learner-local study days, like every other day the store keeps.
+     *
+     * A projection is rebuildable, so its rows are not truth; still, a state outside the axis is refused
+     * by SQLite itself, on insert and on the upsert's update. `retention_due` is the indexed due query
+     * `RVR-v0` §19 asks for. Rows written before this version gain empty columns; nothing had written one.
+     */
+    val v5: List<String>
+        get() = listOf(
+            "ALTER TABLE retention_state ADD COLUMN retention_profile TEXT",
+            "ALTER TABLE retention_state ADD COLUMN critical_prerequisite INTEGER",
+            "ALTER TABLE retention_state ADD COLUMN current_interval_days INTEGER",
+            "ALTER TABLE retention_state ADD COLUMN next_review_on_study_day TEXT",
+            "ALTER TABLE retention_state ADD COLUMN last_strong_retention_on_study_day TEXT",
+            "ALTER TABLE retention_state ADD COLUMN last_retention_evidence_id INTEGER",
+            "ALTER TABLE retention_state ADD COLUMN successful_delayed_review_count INTEGER",
+            "ALTER TABLE retention_state ADD COLUMN unresolved_verification_evidence_id INTEGER",
+            "ALTER TABLE retention_state ADD COLUMN verification_failure_on_study_day TEXT",
+            "ALTER TABLE retention_state ADD COLUMN at_risk_reason_codes TEXT",
+            "ALTER TABLE retention_state ADD COLUMN last_natural_reuse_on_study_day TEXT",
+            "ALTER TABLE retention_state ADD COLUMN reason_codes TEXT",
+            "ALTER TABLE retention_state ADD COLUMN as_of_study_day TEXT",
+            "CREATE INDEX IF NOT EXISTS retention_due ON retention_state (next_review_on_study_day)",
+            """
+            CREATE TRIGGER IF NOT EXISTS retention_state_axis_insert BEFORE INSERT ON retention_state
+            WHEN NEW.state NOT IN ($RETENTION_STATES)
+            BEGIN SELECT RAISE(ABORT, 'retention_state holds only the RVR-v0 retention axis'); END
+            """,
+            """
+            CREATE TRIGGER IF NOT EXISTS retention_state_axis_update BEFORE UPDATE ON retention_state
+            WHEN NEW.state NOT IN ($RETENTION_STATES)
+            BEGIN SELECT RAISE(ABORT, 'retention_state holds only the RVR-v0 retention axis'); END
             """,
         )
 }

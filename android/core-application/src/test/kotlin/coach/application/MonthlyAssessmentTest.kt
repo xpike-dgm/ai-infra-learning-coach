@@ -117,6 +117,8 @@ class MonthlyAssessmentTest {
                     p["variant_family_id"], p.getValue("exposure_kind"))
             }.filter { it.resource in resources || it.variantFamilyId in variantFamilies }
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = evidencedSince[studyDay].orEmpty()
+
+        override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private class Content(val items: List<AssessmentItem>, val tasks: Map<String, List<TaskCandidate>> = emptyMap()) : ContentPort {

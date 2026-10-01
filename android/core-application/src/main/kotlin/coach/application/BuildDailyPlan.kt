@@ -81,6 +81,9 @@ class BuildDailyPlan(
             }
         }
 
+        // The day is the only thing that moves a retention schedule (`RVR-v0` §7, 13C): a review whose day
+        // has come is `review_due` before the needs are read. It writes no truth and changes no competence.
+        RefreshDueRetention(persistence, clock).refresh()
         val skills = persistence.publishedSkills()
         val states = PlanningStates.read(persistence, skills)
         // A stored pause is a continuation signal for the need it names; a row that does not decode is

@@ -37,7 +37,8 @@ class MonthlySessionStorageTest {
             Fixtures.truthContent(db)
         }
         SqlitePersistence.open(file.absolutePath).use { db ->
-            assertEquals(4, Schema.VERSION)
+            // Narrowed at 13C: version 4 is 13B's; later versions belong to their own steps.
+            assertTrue(Schema.VERSION >= 4)
             assertEquals(Schema.VERSION, db.query("SELECT schema_version FROM schema_metadata") { it.getLong(0).toInt() }.single())
             val after = Fixtures.truthContent(db)
             // Nothing earlier is touched: a trigger guards inserts only.

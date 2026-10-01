@@ -377,7 +377,11 @@ check("E13B-09_planner_one_per_need", '"one_task_per_need" to (selected.map { it
       read(ANDROID / "core-engines/src/main/kotlin/coach/engines/PlannerEngine.kt"), "the planner may pick two tasks for one need")
 
 # ---------------------------------------------------------------- storage
-check("E13B-10_schema_version_4", "const val VERSION = 4" in schema, "schema version")
+# Narrowed at 13C (RVRX-v0 / D-101): version 4 is 13B's, and every later version must be owned by its step's contract.
+schema_version = int((re.search(r"const val VERSION = (\d+)", schema) or re.search(r"(0)", "0")).group(1))
+owned_versions = {m.get("to") for f in ROOT.glob("arch/*/*.yaml")
+                  for m in [(yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("schema_migration") or {}] if isinstance(m, dict)}
+check("E13B-10_schema_version_4", schema_version >= 4 and all(v in owned_versions for v in range(4, schema_version + 1)), "schema version")
 v4 = body(schema, "val v4")
 check("E13B-10_trigger_weekly", "(NEW.scope = 'weekly' AND (NEW.blueprint IS NULL OR substr(NEW.blueprint, 1, 17) <> 'weekly_blueprint/'))" in v4,
       "a weekly row without its own blueprint allowed")

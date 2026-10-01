@@ -167,6 +167,13 @@ interface PersistencePort {
      * any evidence history into core.
      */
     fun skillsEvidencedSince(studyDay: String): List<VersionedRef>
+
+    /**
+     * The Skills whose stored retention schedule has reached its review day on [studyDay] while still
+     * `fresh` or `stable` (13C). `RVR-v0` §19 asks for an indexed due query so the normal planning path
+     * never scans retention history; the store answers from the projection's own review day.
+     */
+    fun retentionDueBy(studyDay: String): List<VersionedRef>
 }
 
 /** A truth row together with the id the store gave it. */

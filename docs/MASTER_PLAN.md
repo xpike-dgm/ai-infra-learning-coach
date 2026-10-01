@@ -834,8 +834,20 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 48/48, validator 259/259 ve kendi mutation testi 28/28,
 - **T6 çalıştırılmadı**; uygulamada ay kurulmuyor (16D).
 
-### [ ] 13C — Spaced repetition — **AKTİF**
-### [ ] 13D — Remediation Engine
+### [x] 13C — Spaced repetition — RVRX-v0 / D-101
+
+**13C final coverage:**
+- zamanın geçmesi negatif kanıt değildir; mastery azalmaz, vadesi gelen tekrar unutma değildir, hiçbir şey kilitlenmez,
+- retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; projeksiyon yeniden kurulabilir ve truth yazmaz,
+- `RVR-v0` §2–§10 geçişleri: fresh, ilk temiz hatada doğrulama, vadeli güçlü kontrolde büyüme, erken kullanımda sabit saat, taze yeniden kontrolde büyümeyen aralık, belirsiz vadeli kontrolde risk, kaybedilen mastery'de takip sonu,
+- yakın tekrar karmaşık/kritik tekrarı taşıyamaz; yeniden kontrol taze olmalı,
+- `review_due` günden türetilir; planner plan öncesi indeksli vade sorgusuyla yeniler,
+- V0 sayıları `RVR-v0` §20'nin, heuristik (18C),
+- şema v5 `retention_state` + vade indeksi + değer kümesi trigger'ları; `skill_state` en eski watermark,
+- mutation 47/47, validator 164/164 ve kendi mutation testi 27/27,
+- **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+
+### [ ] 13D — Remediation Engine — **AKTİF**
 ### [ ] 13E — Program değişiklik raporu
 ### [ ] 13F — Tanısal atlama (VDW-v0) — D-099 ile eklendi
 
@@ -937,8 +949,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13B`  
-**Son tamamlanan:** **`13B — MCAX-v0 / D-100`**  
-**Aktif:** **`13C — Spaced repetition`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13C`  
+**Son tamamlanan:** **`13C — RVRX-v0 / D-101`**  
+**Aktif:** **`13D — Remediation Engine`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **13C fresh PRE-STEP → `RVR-v0` retention zamanlaması ve ihtiyaçları (aylık `delayed_retention_sampling` ve kritik yeniden doğrulama zaten planner'ın `retention_review_due`'sunu okuyor) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **13D fresh PRE-STEP → `WLRM-v0` remediation, zayıflık ekseni, Topic `weakening` ve geriye dönük contamination (retention artık `verification_due`, `at_risk` ve `REMEDIATION_AFTER_RETENTION_FAILURE` veriyor) → independent QA → D-050 POST sync + stale audit.**

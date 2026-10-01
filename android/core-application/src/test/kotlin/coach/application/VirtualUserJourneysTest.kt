@@ -126,6 +126,8 @@ class VirtualUserJourneysTest {
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
 
+        override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
+
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = null
         override fun curriculumPackage(): CurriculumPackage? = null

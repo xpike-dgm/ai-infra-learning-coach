@@ -74,6 +74,8 @@ class EvidencePipelineTest {
         override fun latestAssessmentSession(scope: coach.model.AssessmentScope): StoredTruth? = null
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<coach.model.ExposureFact> = emptyList()
         override fun skillsEvidencedSince(studyDay: String): List<VersionedRef> = emptyList()
+
+        override fun retentionDueBy(studyDay: String): List<VersionedRef> = emptyList()
     }
 
     private val clock = object : ClockPort {

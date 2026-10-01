@@ -1116,3 +1116,17 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13B ✅ / 13C active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13C — Spaced repetition`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13C Spaced repetition tamamlandı — RVRX-v0 / D-101
+
+- 13B (#40) main'e merge edildi (3788521); fresh 13C PRE yapıldı ve beş kanonik kaynak `13B ✅ / 13C active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin").
+- `RVR-v0` koda döküldü: retention kanıttan, her satırdaki mastery kararıyla yeniden oynatılır; ilk temiz hata doğrulama açar; vadeli güçlü kontrol aralığı büyütür; taze yeniden kontrol büyütmez; `review_due` yalnız günden; planner plan öncesi vadeyi yeniler.
+- **Bulgu:** retention eksenini hiçbir şey yazmıyordu; `retention_state` tek kolonluydu; `EvidenceRow` çalışma gününü düşürüyordu; vade sorgusu yoktu. Şema v5, `retentionDueBy` ve `EvidenceRow.studyDay` eklendi; dolu şema-4 veritabanına karşı test edildi.
+- **Bulgu:** mastery yol bağımlıdır; retention, mastery motorunu her satırdan sonra yeniden sorarak oynatılıyor ve bu zaman çizgisi `RebuildMastery` ile karşılaştırılarak test edildi.
+- V0 sayıları `RVR-v0` §20'den (heuristik, 18C); büyüme aşağı yuvarlanır, ayrım kilit değil — beyan edildi.
+- 13B'nin `E13B-10_schema_version_4` kapısı ve depo testi garanti zayıflamadan daraltıldı.
+- Mutation 47/47 (R25/R26/R45 ilk turda kaçtı — motor testinde sıralama hatası, depo testinde doğrudan UPDATE eksikliği; düzeltildi, set yeniden koşuldu). Altı run PASS, 654 JVM testi. Validator 164/164, kendi mutation testi 27/27, sweep 45/45.
+- **T6 çalıştırılmadı**; uygulamada motorlar kanıttan sonra yeniden kurulmuyor (16D).
+- D-050 POST living-memory accepted state'i `13C ✅ / 13D active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13D — Remediation Engine`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -225,12 +225,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 12 ✅ TAMAMLANDI**
 - **13A ✅ Haftalık sınav — WBAX-v0 / D-098**
 - **13B ✅ Aylık sınav — MCAX-v0 / D-100**
-- **13C 🟡 Spaced repetition — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 13D–13F, 14–20 ⬜ (13F D-099 ile eklendi)
+- **13C ✅ Spaced repetition — RVRX-v0 / D-101**
+- **13D 🟡 Remediation Engine — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 13E–13F, 14–20 ⬜ (13F D-099 ile eklendi)
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 13C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 13D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -505,3 +506,15 @@ Döngü kaydedilmiş çalışma gününün takvim ayıdır — haftalık kuralı
 Slotlar yalnız aylık kapsama uygun ve aylık role beyanlı item alır; planner'a mevcut ihtiyaçların alternatif adayı olarak gider ve ihtiyaç başına en çok bir görev seçilir. Sonuçta puan yok; dört boylamsal liste yalnız kendi rolünün temiz kanıtını taşır; temiz negatif yeniden doğrulama değildir. Şema v4 biçim trigger'ı; `monthly_blueprint/1`; port sayısı dört. 13A validator'ı daraltıldı. Mutation 48/48, validator 259/259, kendi mutation testi 28/28. **T6 çalıştırılmadı.**
 
 Canonical: `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` / D-100.
+
+## 12.26 13C Spaced repetition — RVRX-v0 / D-101
+
+Spaced repetition kodda. Ana invariant: **zamanın geçmesi negatif kanıt değildir.** Gün yalnız planlanmış bir kontrolün geldiğini söyler: mastery azalmaz, vadesi gelen tekrar unutma değildir, hiçbir şey kilitlenmez ve bir Skill'i doğrulamaya, riske ya da kararlılığa yalnız temiz, bağımsız bir kontrol taşıyabilir.
+
+Kod yazmadan önce bulunanlar: retention eksenini hiçbir şey yazmıyordu; `retention_state` tek kolonluydu; `EvidenceRow` çalışma gününü düşürüyordu; `RVR-v0` §19'un vade sorgusu yoktu; mastery yol bağımlı olduğu için yeniden kurulabilir bir takvim her satırdan sonraki mastery kararını istiyordu.
+
+Retention kanıttan kayıt sırasıyla oynatılır ve mastery motoru her satırdan sonra `RebuildMastery`'nin vereceği gibi yeniden sorulur. Mastery'yi sağlayan satır `fresh` başlatır; ilk temiz hata `verification_due` açar ve hiçbir şeyi silmez; vadesinde güçlü kontrol `stable` yapar ve aralığı büyütür; vadeden önceki güçlü kullanım saati oynatmaz; taze yeniden kontrol `stable` yapar ama aralığı büyütmez; vadeli kontrole belirsiz sonuç `at_risk`; mastery'nin kapıları geçmez olursa takip biter. Yakın tekrar karmaşık ya da kritik tekrarı tek başına taşıyamaz. `review_due` replay tarafından hiç saklanmaz, günden türetilir.
+
+V0 sayıları `RVR-v0` §20'nin kendisidir (2/4/7 gün, kritik tavan 3, ×2.0/×1.6, 180/90, 1 gün ayrım), heuristik, kalibrasyon 18C. Planner plan kurmadan önce `RefreshDueRetention` ile vadesi gelenleri indeksli sorguyla yeniler; kuralı değişmedi. Şema v5 `retention_state`'i `RVR-v0` §18'in alanlarıyla tamamlar; `skill_state` iki watermark'ın eskisini taşır. Mutation 47/47, validator 164/164, kendi mutation testi 27/27. **T6 çalıştırılmadı.**
+
+Canonical: `docs/RETENTION_IMPL_SPEC.md` / D-101.

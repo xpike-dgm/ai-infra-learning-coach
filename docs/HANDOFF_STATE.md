@@ -64,6 +64,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-098:** WBAX-v0 Weekly Blueprint Assessment Implementation; 13A tamamlandı.
 - **D-099:** AŞAMA 13'e `13F — Tanısal atlama (VDW-v0)` eklendi; kullanıcı kararı, yeniden numaralama yok.
 - **D-100:** MCAX-v0 Monthly Capability Assessment Implementation; 13B tamamlandı.
+- **D-101:** RVRX-v0 Retention Verification & Risk Implementation; 13C tamamlandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -283,14 +284,15 @@ PEM-v0:
 - **AŞAMA 12 TAMAMLANDI**
 - 13A ✅ WBAX-v0 / D-098
 - 13B ✅ MCAX-v0 / D-100
-- 13C 🟡 active-not-executed
-- 13D–13F, 14–20 ⬜
+- 13C ✅ RVRX-v0 / D-101
+- 13D 🟡 active-not-executed
+- 13E–13F, 14–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13B — MCAX-v0 / D-100`  
-**Aktif:** `13C — Spaced repetition`  
-**13C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13C — RVRX-v0 / D-101`  
+**Aktif:** `13D — Remediation Engine`  
+**13D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1080,3 +1082,26 @@ MCAX-v0:
 ## 54. 13C handoff
 
 13C — Spaced repetition. `RVR-v0` retention zamanlaması ve `retention_review_due` ihtiyaçları; aylık `delayed_retention_sampling` ve kritik yeniden doğrulama rolleri ile haftalık `retention_due` rolü bu ihtiyacı planner'ın açtığı gibi okuyor. Açık loop'lar: transfer ve profesyonel kanıt üreticileri (15), geriye dönük contamination (13D), tanısal atlama (13F), ayı/haftayı uygulamadan kurmak (16D), T6. 13C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 55. D-101 / 13C final özeti
+
+Canonical: `docs/RETENTION_IMPL_SPEC.md`.
+Contract/QA: `arch/13c_spaced_repetition/`.
+Synthesis: `research/13c_spaced_repetition_research.md`.
+Code: `android/core-model/.../RetentionFacts.kt`, `EvidenceFacts.kt` (`studyDay`), `android/core-engines/.../RetentionEngine.kt`, `android/core-application/.../RebuildRetention.kt`, `BuildDailyPlan.kt`, `PersistencePort.retentionDueBy`, `data-persistence` schema v5.
+
+RVRX-v0:
+- time passing is not negative evidence: the day only says a scheduled check has come; mastery does not decay, a due review is not forgetting, nothing locks,
+- retention is replayed from evidence in recording order, with the mastery engine re-asked after every row exactly as `RebuildMastery` would; the rebuild writes no truth,
+- transitions: fresh on mastery; first clean failure → `verification_due` (erases nothing); strong check on/after due → `stable`, interval grows; strong use before due → reuse, clock unchanged; uncertain due check → `at_risk`; fresh recheck ≥ 1 study day later → `stable`, interval not grown; lost mastery → `untracked`,
+- a near repeat cannot carry a complex or critical review; a recheck must be fresh for every profile; `at_risk` never comes from time,
+- `review_due` is derived from the day; `RefreshDueRetention` moves due `fresh`/`stable` schedules by the indexed query and keeps their watermark; `BuildDailyPlan` calls it before reading states; no planner rule changed,
+- V0 numbers are `RVR-v0` §20's (heuristic, 18C); growth rounds down; the separation is a rule about credit, not a lock,
+- schema v5 completes `retention_state` with §18's fields, the due index and value-set triggers, tested against a populated v4 database; `skill_state` carries the older watermark,
+- 13B's schema gate and storage test narrowed without weakening,
+- mutation 47/47 (R25/R26/R45 survived the first run; test ordering and a direct UPDATE added; full set re-run), independent QA 164/164, validator mutation 27/27, sweep 45/45,
+- T6 was not run; nothing in the app rebuilds engines after evidence yet (16D).
+
+## 56. 13D handoff
+
+13D — Remediation Engine. `WLRM-v0` remediation, zayıflık ekseni, remediation kapanışı, Topic `weakening` (`RVR-v0` §15) ve geriye dönük contamination. Retention artık `verification_due`, `at_risk` ve `REMEDIATION_AFTER_RETENTION_FAILURE` sinyallerini veriyor. Açık loop'lar: motorları kanıttan sonra uygulamadan yeniden kurmak ve `RebuildMastery` watermark'ı (16D), transfer ve profesyonel kanıt üreticileri (15), tanısal atlama (13F), T6. 13D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
