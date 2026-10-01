@@ -179,3 +179,7 @@ Between two **different** plan versions: needs opened and closed (by `needKey`),
 If accepted, 13E becomes `PCRX-v0 / D-103`.
 
 Next numbered step: **13F — Tanısal atlama (VDW-v0)** (added by `D-099`). It must receive a fresh PRE-STEP and explicit user approval before execution. It is also the owner of 12F's S06 scenario, which could not run without a diagnostic waiver.
+
+---
+
+**13F note (2026-10-01, `D-104`):** two state-change kinds join the eleven above — `coverage_waived` (`confirmed_capabilities`, `replan.prerequisite_state_changed`) and `coverage_waiver_withdrawn` (`not_reliably_measured`, `replan.evidence_state_changed`), each naming its Objective; a snapshot reads the open diagnostic's coverage; `RecomputeSkillState` rebuilds the diagnostic coverage after weakness and before readiness; a waiver makes the replan event `diagnostic_waiver_granted` after remediation and verification. Nothing above changed meaning; the schema moved to v7 for 13F.

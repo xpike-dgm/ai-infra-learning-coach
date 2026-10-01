@@ -356,3 +356,7 @@ Next numbered step:
 **9D — Servis sınırları**
 
 9D will define module and service boundaries over this model: where the pure-Kotlin core ends, how persistence, assessment, planner, AI and UI layers are separated, and which direction every dependency points. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**13F note (2026-10-01, `D-104`):** the projection inventory is extended by one entry, `diagnostic_coverage` (per Objective, owned by `VDW-v0`): the coverage waiver and the open diagnostic's progress (schema v7). `VDW-v0` had no implementation step when this model was accepted; the eight entities above are unchanged. Details: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`.

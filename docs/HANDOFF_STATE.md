@@ -67,6 +67,7 @@ Bu sıra roadmap summary'dir; runtime linear takvim değildir.
 - **D-101:** RVRX-v0 Retention Verification & Risk Implementation; 13C tamamlandı.
 - **D-102:** WLRX-v0 Weakness Localization & Remediation Implementation; 13D tamamlandı.
 - **D-103:** PCRX-v0 Program Change Report Implementation; 13E tamamlandı.
+- **D-104:** VDWX-v0 Validated Diagnostic Waiver Implementation; 13F tamamlandı ve AŞAMA 13 kapandı.
 
 ## 4. D-049 / 5A final özeti
 
@@ -289,14 +290,16 @@ PEM-v0:
 - 13C ✅ RVRX-v0 / D-101
 - 13D ✅ WLRX-v0 / D-102
 - 13E ✅ PCRX-v0 / D-103
-- 13F 🟡 active-not-executed
-- 14–20 ⬜
+- 13F ✅ VDWX-v0 / D-104
+- **AŞAMA 13 TAMAMLANDI**
+- 14A 🟡 active-not-executed
+- 14B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13E — PCRX-v0 / D-103`  
-**Aktif:** `13F — Tanısal atlama (VDW-v0)`  
-**13F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `13F — VDWX-v0 / D-104`  
+**Aktif:** `14A — Tutor davranış sözleşmesi`  
+**14A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1153,6 +1156,30 @@ PCRX-v0:
 - mutation 42/42 (nothing survived the first run), independent QA 162/162, validator mutation 29/29, sweep 47/47,
 - T6 was not run; nothing in the app calls the report after a real session yet (16D).
 
-## 60. 13F handoff
+## 60. 13F handoff (13F kapanışında karşılandı — §61)
 
 13F — Tanısal atlama (VDW-v0), D-099 ile eklendi. 12F'nin S06 senaryosu (tanısal atlama) buna bağlı ve koşulamıyordu. Kanıt, kapı, planner, retention, zayıflık motorları artık durum yazıyor ve değişiklikler raporlanıyor. Açık loop'lar: raporu ve yeniden hesaplamayı uygulamadan çağırmak, `stateChangeRefs`'i doldurmak (16D), kalıcı `assessment_report` ve Topic durumu (16C), transfer/artifact kapı alanları ve remediation içeriği (15), misconception hafızası (14B), yüksek riskli boşluk politikası (18D), T6. 13F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 61. D-104 / 13F final özeti
+
+Canonical: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`.
+Contract/QA: `arch/13f_diagnostic_waiver/`.
+Synthesis: `research/13f_diagnostic_waiver_research.md`.
+Code: `android/core-model/.../DiagnosticFacts.kt`, `android/core-engines/.../DiagnosticWaiverEngine.kt` (plus `PlannerEngine.plan(coverage)`, `WeaknessEngine` narrowing, `ProgramChangeEngine.coverageChange`), `android/core-application/.../Diagnostics.kt`, `android/core-presentation/.../DiagnosticPresentation.kt` (plus `PlannerExplanation`), `data-persistence` schema v7 and `latestAssessmentSessionIn`.
+
+VDWX-v0:
+- a diagnostic is not an easier road to mastery; it gathers the same `GRE-v0` evidence through the same pipeline, sooner,
+- only the learner opens one (user decision); the claim names the scope and is never evidence; planner-initiated diagnostics → 18B, entry placement → 16D,
+- a diagnostic is a `daily` assessment session holding `diagnostic_scope/1`; the newest diagnostic row decides; a new request replaces, a withdrawal ends, nothing is owed,
+- a waiver is granted only where the Objective's gates **first** pass on diagnostic evidence, names the window's evidence, and is coverage — never mastery or retention; learning that got there first means no waiver; a correction that removes its evidence withdraws it,
+- help or a seen solution, or a clean miss, ends the fast path for that Objective without blame; an untaught miss opens no weakness (user decisions; `WLRM-v0` narrowed for exactly that case); evidence after the fast path ended cannot waive (a bug the tests caught),
+- the planner gets one P3 `decisive` `diagnostic_opportunity` per Skill and fresh, trusted, H0 items asking only for missing gates; a lesson still being checked waits, a waived lesson is resolved, only what was shown is skipped; planning reads no evidence,
+- full only when every Skill is mastered by the mastery engine; Topic state is 16C's,
+- schema v7 adds the `diagnostic_coverage` projection and the `VDW-v0` state family (D-104; 9C/9D contracts unedited); one port refinement; two 13E change kinds; the 12E explanation says what was skipped or is waiting,
+- S06 and `PDT-v0` invariant 12 run against real code; all sixteen 3H scenarios run,
+- mutation 69/69, independent QA 220/220, validator mutation 29/29, sweep 48/48,
+- T6 was not run; nothing in the app offers the fast path yet (16D).
+
+## 62. 14A handoff
+
+14A — Tutor davranış sözleşmesi. AŞAMA 13 kapandı: kanıt, kapı, planner, replan, açıklama, retention, zayıflık, rapor ve tanısal atlama motorları kodda; `AIAX-v0` AI'ı port arkasında yardımcı ve otorite olmayan olarak kilitledi. Açık loop'lar: motorları ve tanıyı uygulamadan çağırmak (16D), Topic durumu ve kalıcı `assessment_report` (16C), authored içerik ve curriculum sürümleri arası waiver (15), misconception hafızası (14B), nihai metin (14), planner kaynaklı tanı (18B), T6. 14A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

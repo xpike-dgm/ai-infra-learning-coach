@@ -287,8 +287,12 @@ check("E13A-07_closure_p0_p1", "requiredForSessionClosure = entry.band == Priori
       "closure not limited to integrity/verification/repair")
 check("E13A-07_h0", "val independenceMode: IndependenceMode get() = IndependenceMode.H0_REQUIRED" in common, "slots not h0_required")
 check("E13A-07_wba_h0", "independence_mode = h0_required" in wba, "§19 moved")
-check("E13A-07_trust_from_store", "persistence.latestValidation(item.ref)?.status ?: LifecycleStatus.CANDIDATE" in app
-      and "persistence.resourceVersion(item.ref) ?: return null" in app, "trust from the item's own claim")
+# Narrowed at 13F: the store-trust read moved, unchanged, into one shared `StoreTrust` (the diagnostic uses it too);
+# the weekly composer must still go through it.
+_store_trust = app + (ANDROID / "core-application/src/main/kotlin/coach/application/Diagnostics.kt").read_text(encoding="utf-8")
+check("E13A-07_trust_from_store", "persistence.latestValidation(item.ref)?.status ?: LifecycleStatus.CANDIDATE" in _store_trust
+      and "persistence.resourceVersion(item.ref) ?: return null" in _store_trust
+      and ("StoreTrust.apply(persistence, item)" in app or "persistence.latestValidation(item.ref)" in app), "trust from the item's own claim")
 check("E13A-07_structural_once", "one Skill is measured once per blueprint" in read(COMMON_KT) and "variant family measures one slot" in read(COMMON_KT),
       "the blueprint type allows repeats")
 

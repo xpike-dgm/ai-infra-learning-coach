@@ -1,6 +1,7 @@
 package coach.presentation
 
 import coach.model.CandidateDisposition
+import coach.model.DiagnosticCodes
 import coach.model.NeedDisposition
 import coach.model.NeedTrace
 import coach.model.PlanTrace
@@ -153,6 +154,14 @@ object PlannerExplanationPresentation {
 
     private val SERVED = setOf(NeedDisposition.SELECTED, NeedDisposition.PARTIALLY_SERVED)
 
+    /**
+     * `PDT-v0` invariant 12 (13F): what a learner's diagnostic did to a need's lessons — waived, or held while it is
+     * still checking. Only the codes the trace recorded for this need's own lessons are said.
+     */
+    private val COVERAGE = listOf(DiagnosticCodes.FULL_COVERAGE_WAIVER, DiagnosticCodes.PARTIAL_COVERAGE_WAIVER,
+        DiagnosticCodes.USER_REQUESTED_FAST_PATH)
+    private val COVERED = setOf(CandidateDisposition.RESOLVED_BEFORE_SELECTION, CandidateDisposition.CONDITIONAL_NOT_SELECTED)
+
     fun of(facts: PlannerExplanationFacts): PlannerExplanationView = when (facts) {
         PlannerExplanationFacts.NoPlan -> empty(ExplanationState.NO_PLAN_YET)
         is PlannerExplanationFacts.PlanFromAnotherDay -> empty(ExplanationState.PLAN_FROM_ANOTHER_DAY)
@@ -179,6 +188,10 @@ object PlannerExplanationPresentation {
                 SHOWN_PRIORITY.filter { it in need.priorityReasonCodes }.mapNotNullTo(this) { code(it) }
                 chosen?.reasonCodes?.filter { it in SHOWN_ELIGIBILITY }?.mapNotNullTo(this) { code(it, chosen.relatedSkills) }
                 SHOWN_FIT.filter { it in need.finalReasonCodes }.mapNotNullTo(this) { code(it) }
+                // 13F: the parts a diagnostic waived are said to be skipped — and only those, for this need's Skill.
+                trace.candidates.filter { it.needKey == need.needKey && it.disposition in COVERED }
+                    .flatMap { c -> c.reasonCodes.filter { it in COVERAGE } }.distinct()
+                    .mapNotNullTo(this) { code(it, need.targetSkills) }
             }
             TaskExplanation(entry.position, entry.title, mention(entry.primarySkill), kept = false,
                 why = needStatement(need, recorded, ::mention), supporting = supporting)
@@ -247,6 +260,18 @@ object PlannerExplanationPresentation {
     ): Pair<Statement, Reconsideration?> {
         fun code(code: String, skills: List<VersionedRef> = emptyList()) = Statement.ofCode(code, recorded, skills.map(mention))
         val candidates = trace.candidates.filter { it.needKey == need.needKey }.sortedBy { it.candidateId }
+        // 13F: every lesson it had was waived, or is waiting for the learner's open diagnostic — that is not
+        // "nothing authored serves it", and a held one is looked at again with the next plan.
+        // A need with nothing to offer today waits for the diagnostic if any of its lessons does; a resolved one was waived.
+        val coverage = if (need.disposition == NeedDisposition.NO_VALID_CANDIDATE && DiagnosticCodes.USER_REQUESTED_FAST_PATH in need.finalReasonCodes) {
+            DiagnosticCodes.USER_REQUESTED_FAST_PATH
+        } else {
+            need.finalReasonCodes.firstOrNull { it in COVERAGE }
+        }
+        if (coverage != null && (need.disposition == NeedDisposition.NO_VALID_CANDIDATE || need.disposition == NeedDisposition.RESOLVED_BEFORE_SELECTION)) {
+            return (code(coverage, need.targetSkills) ?: Statement.ofFact(TraceFact.NOT_TAKEN_TODAY)) to
+                (if (need.disposition == NeedDisposition.NO_VALID_CANDIDATE) Reconsideration.NEXT_PLAN else null)
+        }
         return when (need.disposition) {
             NeedDisposition.ELIGIBLE_NOT_SELECTED -> {
                 val said = listOf(LOWER_PRIORITY, CAPACITY_DEFERRED, NOT_SELECTED_CAPACITY)

@@ -295,13 +295,13 @@ checks:
   details: a pause that does not decode is treated as one
 - check: E12D-08_format_v2
   result: PASS
-  details: the trace format is not planner_trace/2 reading /1
+  details: the trace format is not planner_trace/2 or later reading /2 and /1
 - check: E12D-08_decode_body_read
   result: PASS
   details: the decode reader returned nothing
 - check: E12D-08_only_known_versions
   result: PASS
-  details: missing if (version != FORMAT && version != FORMAT_V1) throw Malformed()
+  details: a format nobody wrote is accepted
 - check: E12D-08_v1_cannot_claim_kept
   result: PASS
   details: missing else if ("preserved" in f) throw Malformed() else false
@@ -343,7 +343,7 @@ checks:
   details: reading the newest plan writes
 - check: E12D-09_schema_version_unchanged
   result: PASS
-  details: the schema version moved
+  details: the schema version moved without an owning contract
 - check: E12D-10_facts_test_a replan and a re-entry read back exactly
   result: PASS
   details: 'missing test: a replan and a re-entry read back exactly'

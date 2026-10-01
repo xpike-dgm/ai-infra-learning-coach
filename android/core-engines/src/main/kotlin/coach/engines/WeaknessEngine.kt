@@ -43,6 +43,10 @@ object WeaknessEngine {
         !event.prerequisiteValid -> FailureRule.PREREQUISITE_CONTAMINATION
         event.outcome == EvidenceOutcome.POSITIVE ->
             if (event.clean && state.isFresh(event)) FailureRule.FRESH_RECOVERY_SUCCESS else null
+        // Narrowed at 13F (`VDW-v0` §12.1, user decision): a failure on a diagnostic for an Objective never learned
+        // here answers "did you already know it?", not "is something weak?". It is kept as evidence and the
+        // Objective returns to normal learning; no weakness signal opens and nothing is blamed.
+        event.diagnosticBaseline && !event.masteredBefore -> null
         // A failure with help taken or a solution seen says something only about dependence on help.
         event.independence != IndependenceClass.INDEPENDENT || event.solutionExposed -> FailureRule.ASSISTED_H1_H4
         // Uncertain: a partial result, an evaluator that is not verified, or evidence that is not direct for

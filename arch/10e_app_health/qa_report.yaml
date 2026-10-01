@@ -10,52 +10,52 @@ health_actions: 1
 checks:
 - check: E10E-00_exists_StoreHealth.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-model\src\main\kotlin\coach\StoreHealth.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-model\src\main\kotlin\coach\StoreHealth.kt
 - check: E10E-00_exists_StoreStartup.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\main\kotlin\coach\application\StoreStartup.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\main\kotlin\coach\application\StoreStartup.kt
 - check: E10E-00_exists_AppHealth.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\main\kotlin\coach\presentation\AppHealth.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\main\kotlin\coach\presentation\AppHealth.kt
 - check: E10E-00_exists_StoreOpener.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\StoreOpener.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\StoreOpener.kt
 - check: E10E-00_exists_Backup.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\Backup.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\Backup.kt
 - check: E10E-00_exists_Migrations.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\data-persistence\src\main\kotlin\coach\persistence\Migrations.kt
 - check: E10E-00_exists_AiEvaluator.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\ai-adapter\src\main\kotlin\coach\ai\AiEvaluator.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\ai-adapter\src\main\kotlin\coach\ai\AiEvaluator.kt
 - check: E10E-00_exists_HealthSurface.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-ui\src\main\kotlin\coach\ui\HealthSurface.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-ui\src\main\kotlin\coach\ui\HealthSurface.kt
 - check: E10E-00_exists_MainActivity.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-wiring\src\main\kotlin\coach\wiring\MainActivity.kt
 - check: E10E-00_exists_CoachApplication.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
 - check: E10E-00_exists_AppGraph.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\app-wiring\src\main\kotlin\coach\wiring\AppGraph.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\app-wiring\src\main\kotlin\coach\wiring\AppGraph.kt
 - check: E10E-00_exists_StoreStartupTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-application\src\test\kotlin\coach\application\StoreStartupTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-application\src\test\kotlin\coach\application\StoreStartupTest.kt
 - check: E10E-00_exists_AppHealthTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\core-presentation\src\test\kotlin\coach\presentation\AppHealthTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\core-presentation\src\test\kotlin\coach\presentation\AppHealthTest.kt
 - check: E10E-00_exists_AiEvaluatorTest.kt
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\android\ai-adapter\src\test\kotlin\coach\ai\AiEvaluatorTest.kt
+  details: missing C:\Users\Xpike\Desktop\app\android\ai-adapter\src\test\kotlin\coach\ai\AiEvaluatorTest.kt
 - check: E10E-00_exists_APP_HEALTH_SPEC.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\docs\APP_HEALTH_SPEC.md
+  details: missing C:\Users\Xpike\Desktop\app\docs\APP_HEALTH_SPEC.md
 - check: E10E-00_exists_10e_app_health_research.md
   result: PASS
-  details: missing C:\Users\Xpike\Desktop\app\.claude\worktrees\ddm-schema-validator-migration-597578\research\10e_app_health_research.md
+  details: missing C:\Users\Xpike\Desktop\app\research\10e_app_health_research.md
 - check: E10E-01_model
   result: PASS
   details: APHX-v0

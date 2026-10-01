@@ -6,10 +6,12 @@ import coach.model.CandidateTrace
 import coach.model.CapacityProfile
 import coach.model.CapacitySource
 import coach.model.ContinuationValue
+import coach.model.CoverageHold
 import coach.model.Criticality
 import coach.model.DailyCapacity
 import coach.model.DailyCapacityInput
 import coach.model.DecisionValue
+import coach.model.DiagnosticCodes
 import coach.model.DurationFit
 import coach.model.EvidenceSeverity
 import coach.model.LearningNeed
@@ -232,6 +234,10 @@ object PlannerEngine {
      * candidate id; a candidate with no answer is treated as blocked, because the gate fails closed.
      * [starvation] and [trackBalance] are the pressures history has built up; with no calibrated
      * threshold (18C) the product supplies none, and nothing here invents one.
+     *
+     * [coverage] is the diagnostic waiver's answer for Objectives (13F, `VDW-v0` §17): a lesson whose declared
+     * Objectives are all waived is not taught again, and one whose Objectives the learner's fast path is still
+     * checking waits for it. Only teaching is held — a lesson that declares no Objective is never treated as covered.
      */
     fun plan(
         capacity: DailyCapacity,
@@ -244,6 +250,7 @@ object PlannerEngine {
         starvation: Map<String, StarvationBucket> = emptyMap(),
         trackBalance: Set<String> = emptySet(),
         skillsNotOnRoute: Int = 0,
+        coverage: Map<VersionedRef, CoverageHold> = emptyMap(),
     ): PlanTrace {
         val openNeeds = needs.associateBy { it.needKey }
         val candidateTraces = mutableListOf<CandidateTrace>()
@@ -268,10 +275,16 @@ object PlannerEngine {
             }
         }
 
-        // Trust, then the prerequisite gate. Priority is not consulted for either.
+        // Coverage, then trust, then the prerequisite gate. Priority is not consulted for any of them.
         val assessed = bounded.map { candidate ->
             val decision = decisions[candidate.id]
+            val hold = coverageHold(candidate, coverage)
             when {
+                // A waived lesson is resolved before selection; one still under the learner's fast path waits.
+                hold != null ->
+                    Assessed(candidate, null, false,
+                        if (hold.waived) CandidateDisposition.RESOLVED_BEFORE_SELECTION else CandidateDisposition.CONDITIONAL_NOT_SELECTED,
+                        listOf(hold.reasonCode), related = listOf(candidate.primarySkill))
                 !candidate.validationStatus.selectable ->
                     Assessed(candidate, null, false, CandidateDisposition.INVALID_CANDIDATE, listOf("candidate.invalid_content"))
                 candidate.purpose in HIGH_STAKES && candidate.validationStatus !in TRUSTED_FOR_HIGH_STAKES ->
@@ -285,11 +298,13 @@ object PlannerEngine {
                         listOf("candidate.invalid_prerequisite_metadata", "eligibility.invalid_prerequisite_metadata"))
                 decision.eligibility == PrerequisiteEligibility.BLOCKED ->
                     Assessed(candidate, decision.eligibility, false, CandidateDisposition.BLOCKED_PREREQUISITE,
-                        listOf(when {
+                        listOfNotNull(when {
                             decision.hardBlockerSkills.isNotEmpty() -> "eligibility.blocked_hard_prerequisite"
                             decision.requiresStrictPrerequisiteConfidence -> "eligibility.blocked_strict_prerequisite_confidence"
                             else -> "eligibility.blocked_critical_verification"
-                        }),
+                        },
+                            // `VDW-v0` §13: a diagnostic that waits on a prerequisite says so (`PDT-v0` §8.7).
+                            DiagnosticCodes.PREREQUISITE_BLOCKED.takeIf { candidate.purpose == TaskPurpose.DIAGNOSE }),
                         related = relatedSkills(decision))
                 else -> Assessed(candidate, decision.eligibility, true, null, listOf(eligibilityCode(decision)),
                     related = relatedSkills(decision))
@@ -373,10 +388,19 @@ object PlannerEngine {
                     r.reasons, chosen, disposition, reasons)
             }
             if (alternatives.isEmpty()) {
-                val blockedHere = assessed.any { it.candidate.needKey == need.needKey && it.disposition == CandidateDisposition.BLOCKED_PREREQUISITE }
-                val anyCandidate = assessed.any { it.candidate.needKey == need.needKey }
+                val here = assessed.filter { it.candidate.needKey == need.needKey }
+                val blockedHere = here.any { it.disposition == CandidateDisposition.BLOCKED_PREREQUISITE }
+                val anyCandidate = here.isNotEmpty()
+                val covered = here.filter { coverageHold(it.candidate, coverage) != null }
                 when {
                     blockedHere -> finish(NeedDisposition.BLOCKED, null, listOf("selection.blocked_prerequisite"))
+                    // Every task it had was a lesson the learner's diagnostic waived or is still checking (13F). A
+                    // fully waived need is resolved; one still being checked has nothing else to offer today.
+                    anyCandidate && covered.size == here.size -> finish(
+                        if (covered.all { it.disposition == CandidateDisposition.RESOLVED_BEFORE_SELECTION }) NeedDisposition.RESOLVED_BEFORE_SELECTION
+                        else NeedDisposition.NO_VALID_CANDIDATE,
+                        null, covered.flatMap { it.reasons }.distinct(),
+                    )
                     anyCandidate -> finish(NeedDisposition.NO_VALID_CANDIDATE, null, listOf("selection.invalid_candidate"))
                     // No task exists for it at all. PDT-v0 has no reason code for that and none is
                     // invented: the disposition is the whole fact.
@@ -478,6 +502,19 @@ object PlannerEngine {
             invariantChecks = invariants,
             skillsNotOnRoute = skillsNotOnRoute,
         )
+    }
+
+    /**
+     * `VDW-v0` §17: how [coverage] treats one candidate. Only a lesson is held, only when it declares its
+     * Objectives and every one of them is covered; waived when all are waived (full only when every one is fully
+     * covered), otherwise held for the learner's fast path.
+     */
+    private fun coverageHold(candidate: TaskCandidate, coverage: Map<VersionedRef, CoverageHold>): CoverageHold? {
+        if (candidate.purpose != TaskPurpose.TEACH || candidate.targetObjectives.isEmpty()) return null
+        val holds = candidate.targetObjectives.map { coverage[it] ?: return null }
+        if (!holds.all { it.waived }) return CoverageHold(waived = false, reasonCode = DiagnosticCodes.USER_REQUESTED_FAST_PATH)
+        val full = holds.all { it.reasonCode == DiagnosticCodes.FULL_COVERAGE_WAIVER }
+        return CoverageHold(waived = true, reasonCode = if (full) DiagnosticCodes.FULL_COVERAGE_WAIVER else DiagnosticCodes.PARTIAL_COVERAGE_WAIVER)
     }
 
     /**

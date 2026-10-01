@@ -19,7 +19,7 @@ package coach.persistence
  */
 object Schema {
 
-    const val VERSION = 6
+    const val VERSION = 7
 
     // ---------------------------------------------------------------- table inventories
 
@@ -43,10 +43,15 @@ object Schema {
         "evidence_disposition",
     )
 
-    /** Region 3 — projections. Droppable and rebuildable without touching truth. */
+    /**
+     * Region 3 — projections. Droppable and rebuildable without touching truth. `DDM-v0`'s eight, plus
+     * `diagnostic_coverage` (13F, `D-104`): `VDW-v0` had no implementation owner when the data model was accepted,
+     * and its waiver is a state of its own — a waiver is not mastery — so it is not folded into another table.
+     */
     val projectionTables = listOf(
         "skill_state", "objective_state", "retention_state", "prerequisite_readiness",
         "topic_state", "weakness_state", "english_profile", "planner_summary",
+        "diagnostic_coverage",
     )
 
     /** `DDM-v0` §independent_axes — the allowed value sets, stated once. */
@@ -655,6 +660,62 @@ object Schema {
             CREATE TRIGGER IF NOT EXISTS weakness_state_signal_update BEFORE UPDATE ON weakness_state
             WHEN NEW.state NOT IN ($WEAKNESS_SIGNALS)
             BEGIN SELECT RAISE(ABORT, 'weakness_state holds only the WLRM-v0 signal lifecycle'); END
+            """,
+        )
+
+    /** `VDW-v0` §9: a waiver is active or there is none; nothing in between is stored. */
+    const val COVERAGE_WAIVERS = "'none', 'active'"
+
+    /** Where an Objective of the active diagnostic stands; empty when it is not in one. */
+    const val DIAGNOSTIC_STATES =
+        "'', 'probe_needed', 'confirm_needed', 'waived', 'already_demonstrated', 'not_demonstrated', 'assistance_ended_fast_path'"
+
+    /** `VDW-v0` §5's stages; empty when nothing is open. */
+    const val DIAGNOSTIC_STAGES = "'', 'probe', 'confirm', 'critical_confirm', 'transfer_confirm'"
+
+    /**
+     * Version 7 adds `diagnostic_coverage` (13F) — the coverage waiver and the active diagnostic's progress, per
+     * Objective, owned by `VDW-v0` (`D-104`). It is a projection: rebuilt from evidence and the diagnostic's own
+     * session row, never truth. SQLite refuses a waiver value outside `VDW-v0` §9, an active waiver that does not
+     * name its evidence and session, and a diagnostic state or stage outside the contract.
+     *
+     * A diagnostic is a `daily` assessment session whose content is `diagnostic_scope/1`; a daily row that carries
+     * content in any other format is refused, so nothing can pass itself off as the learner's request. Rows written
+     * before this version are untouched: nothing wrote a daily session before 13F.
+     */
+    val v7: List<String>
+        get() = listOf(
+            """
+            CREATE TABLE IF NOT EXISTS diagnostic_coverage (
+                objective_logical_id       TEXT    NOT NULL,
+                objective_version          INTEGER NOT NULL,
+                skill_logical_id           TEXT    NOT NULL,
+                skill_version              INTEGER NOT NULL,
+                waiver                     TEXT    NOT NULL,
+                waiver_session_id          INTEGER,
+                waiver_source_evidence_ids TEXT,
+                waiver_granted_at_sequence INTEGER,
+                waiver_granted_on_study_day TEXT,
+                diagnostic_session_id      INTEGER,
+                diagnostic_state           TEXT    NOT NULL,
+                diagnostic_stage           TEXT    NOT NULL,
+                failed_gates               TEXT,
+                window_variant_families    TEXT,
+                window_dependency_groups   TEXT,
+                reason_codes               TEXT,
+                as_of_study_day            TEXT    NOT NULL,$PROJECTION_PROVENANCE,
+                PRIMARY KEY (objective_logical_id, objective_version),
+                CHECK (waiver IN ($COVERAGE_WAIVERS)),
+                CHECK (waiver <> 'active' OR (coalesce(waiver_session_id, '') <> '' AND coalesce(waiver_source_evidence_ids, '') <> '')),
+                CHECK (diagnostic_state IN ($DIAGNOSTIC_STATES)),
+                CHECK (diagnostic_stage IN ($DIAGNOSTIC_STAGES))
+            )
+            """,
+            "CREATE INDEX IF NOT EXISTS diagnostic_coverage_by_skill ON diagnostic_coverage (skill_logical_id, skill_version)",
+            """
+            CREATE TRIGGER IF NOT EXISTS assessment_session_daily_format BEFORE INSERT ON assessment_session
+            WHEN NEW.scope = 'daily' AND NEW.blueprint IS NOT NULL AND substr(NEW.blueprint, 1, 17) <> 'diagnostic_scope/'
+            BEGIN SELECT RAISE(ABORT, 'a daily session carries content only as diagnostic_scope'); END
             """,
         )
 }

@@ -7,7 +7,7 @@ checks_passed: 163
 checks_failed: 0
 curriculum_tables: 11
 truth_tables: 13
-projection_tables: 8
+projection_tables: 9
 checks:
 - check: E10D-00_exists_Schema.kt
   result: PASS
@@ -68,7 +68,7 @@ checks:
   details: 'undocumented extra truth tables: [''evidence_event_objective'']'
 - check: E10D-02_projection_inventory
   result: PASS
-  details: missing=[] extra=[]
+  details: missing=[] undeclared extra=[]
 - check: E10D-03_ddl_curriculum_version
   result: PASS
   details: no CREATE TABLE for curriculum_version

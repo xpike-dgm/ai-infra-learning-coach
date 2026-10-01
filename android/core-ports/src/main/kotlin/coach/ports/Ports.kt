@@ -156,6 +156,14 @@ interface PersistencePort {
     fun latestAssessmentSession(scope: AssessmentScope): StoredTruth?
 
     /**
+     * The newest session of one scope whose content is in [format] — a stored format's name, such as
+     * `diagnostic_scope/1` (13F). A diagnostic is a `daily` session, and another kind of daily row written later
+     * must not hide the learner's open diagnostic; the newest **diagnostic** row decides. Reading it never scans
+     * the session history into core.
+     */
+    fun latestAssessmentSessionIn(scope: AssessmentScope, format: String): StoredTruth?
+
+    /**
      * Every exposure the learner has had to these item versions or variant families (13A). A weekly slot
      * asks for a fresh measurement, and "has this learner seen it, or been shown its solution?" is the
      * selection-time lookup `DDM-v0` indexes exposure for. Only read; exposure is never removed.

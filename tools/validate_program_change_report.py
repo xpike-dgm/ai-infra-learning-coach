@@ -117,9 +117,24 @@ check("E13E-02_asux_families", asux_families == ["confirmed_capabilities", "veri
 result_family_ids = re.findall(r'^\s+[A-Z_]+\("([a-z_]+)"\)', body(session, "enum class ResultFamily"), re.M)
 check("E13E-02_result_family_enum", result_family_ids == asux_families, str(result_family_ids))
 kinds = re.findall(r'^\s+([A-Z_]+)\("([a-z_]+)", "([a-z_]+)", "([a-z_.]+)"\)', body(facts, "enum class StateChangeKind"), re.M)
-check("E13E-02_kinds_equal_contract", [k[1] for k in kinds] == contract.get("state_changes", {}).get("kinds"), str([k[1] for k in kinds]))
+# Narrowed at 13F: 13E's eleven kinds come first and unchanged; any kind after them must be declared, with its family,
+# by the accepted later contract that added it (`state_change_extension` / `state_change_families`), and its family
+# must still be one of ASUX-v0 §13.1's.
+extension, extension_families = [], {}
+for _path in sorted(ROOT.glob("arch/*/*.yaml")):
+    try:
+        _doc = yaml.safe_load(_path.read_text(encoding="utf-8")) or {}
+    except Exception:
+        continue
+    if isinstance(_doc, dict) and str(_doc.get("status", "")).startswith("accepted_") and _doc.get("state_change_extension"):
+        extension += list(_doc["state_change_extension"])
+        extension_families.update(_doc.get("state_change_families") or {})
+own_kinds = contract.get("state_changes", {}).get("kinds") or []
+check("E13E-02_kinds_equal_contract", [k[1] for k in kinds] == own_kinds + extension, str([k[1] for k in kinds]))
 state_families = set(asux_families) - {"not_reliably_measured", "plan_changes"}
-check("E13E-02_every_kind_in_a_state_family", bool(kinds) and all(k[2] in state_families for k in kinds), str([k[2] for k in kinds]))
+check("E13E-02_every_kind_in_a_state_family", bool(kinds) and all(
+    (k[2] in state_families) if k[1] in own_kinds else (k[2] == extension_families.get(k[1]) and k[2] in asux_families) for k in kinds),
+    str([k[2] for k in kinds]))
 replan_codes = set(re.findall(r'^\s+[A-Z_]+\("[a-z_]+", "(replan\.[a-z_]+)"\)', body(planner_facts, "enum class ReplanTrigger"), re.M))
 check("E13E-02_reasons_are_the_planners", bool(kinds) and all(k[3] in replan_codes for k in kinds), f"{sorted({k[3] for k in kinds} - replan_codes)}")
 by_id = {k[1]: k for k in kinds}
@@ -197,7 +212,18 @@ check("E13E-06_report_after_plan", "return Reported(ProgramChangeEngine.report(b
 triggers = re.findall(r"-> ReplanTrigger\.([A-Z_]+)", body(app, "fun triggerFor("))
 getter = re.search(r"val setsRemainingTime: Boolean\s+get\(\) = ([^\n]+)", planner_facts)
 setters = set(re.findall(r"this == ([A-Z_]+)", getter.group(1))) if getter else set()
-check("E13E-06_triggers", triggers == ["NEW_REMEDIATION_CREATED", "NEW_VERIFICATION_DUE_CREATED", "NEW_EVIDENCE_RECORDED"], str(triggers))
+# Narrowed at 13F: 13E's order holds — remediation, then verification, and new evidence last; an event between them must
+# be one a later accepted contract declares (`replan_trigger_for_waiver`) and one 12D's `ReplanTrigger` already has.
+declared_triggers = set()
+for _path in sorted(ROOT.glob("arch/*/*.yaml")):
+    try:
+        _doc = yaml.safe_load(_path.read_text(encoding="utf-8")) or {}
+    except Exception:
+        continue
+    if isinstance(_doc, dict) and str(_doc.get("status", "")).startswith("accepted_") and _doc.get("replan_trigger_for_waiver"):
+        declared_triggers.add(str(_doc["replan_trigger_for_waiver"]).upper())
+check("E13E-06_triggers", triggers[:2] == ["NEW_REMEDIATION_CREATED", "NEW_VERIFICATION_DUE_CREATED"] and triggers[-1:] == ["NEW_EVIDENCE_RECORDED"]
+      and set(triggers[2:-1]) <= declared_triggers, str(triggers))
 check("E13E-06_budget_kept", bool(setters) and not (set(triggers) & setters), f"{set(triggers) & setters}")
 
 # ---------------------------------------------------------------- gate profiles from the published curriculum
@@ -240,7 +266,13 @@ objectives_of = body(store, "fun objectivesOf(")
 check("E13E-09_store_pins_version", "WHERE parent_skill_logical_id = ? AND parent_skill_version = ? ORDER BY logical_id, version" in objectives_of, "version not pinned or order unstable")
 check("E13E-09_store_reads_criticality", "criticality = statement.getText(3)," in objectives_of and "required = statement.getLong(2) == 1L," in objectives_of, "fields")
 check("E13E-09_adapter_delegates", "override fun objectivesOf(skill: VersionedRef): List<ObjectiveRow> = curriculumStore.objectivesOf(skill)" in sql, "adapter")
-check("E13E-09_schema_unchanged", "const val VERSION = 6" in schema and "schema_migration" not in contract, "schema changed")
+# Narrowed at 13F: 13E itself changed no schema; a later version must be owned by the accepted contract that added it.
+_owned = {(int(m["from"]), int(m["to"])) for f in ROOT.glob("arch/*/*.yaml")
+          for m in [(yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("schema_migration") or {}]
+          if isinstance(m, dict) and m.get("from") is not None and m.get("to") is not None}
+_version = int((re.search(r"const val VERSION = (\d+)", schema) or re.search(r"(0)", "0")).group(1))
+check("E13E-09_schema_unchanged", _version >= 6 and all((v - 1, v) in _owned for v in range(7, _version + 1)) and "schema_migration" not in contract,
+      "schema changed without an owning contract")
 
 # ---------------------------------------------------------------- tests named
 suites = contract.get("suites", {})

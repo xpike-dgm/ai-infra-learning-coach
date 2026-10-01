@@ -267,3 +267,7 @@ Next numbered step:
 **9E — AI entegrasyon mimarisi**
 
 9E will define how the AI adapter behaves behind `EvaluatorPort` and any tutor port: what AI may and may not decide, how provisional evaluation is bounded, how failures degrade, and how the validation requirements of `AIV-v0` are met — without ever giving AI authority over mastery, prerequisite or planner truth. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**13F note (2026-10-01, `D-104`):** the engine-ownership map is extended by one family, `VDW-v0` → `diagnostic_coverage_state` (`EngineStateFamily.DIAGNOSTIC`); a waiver is not mastery, so it is not folded into another engine's state. The port count stays four (`PersistencePort.latestAssessmentSessionIn` is a refinement). Details: `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`.

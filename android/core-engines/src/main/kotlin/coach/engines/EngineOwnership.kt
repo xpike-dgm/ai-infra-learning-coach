@@ -18,4 +18,11 @@ enum class EngineStateFamily(val engine: String, val owns: String) {
     PRIORITY("PBR-v0", "candidate_priority_and_rank"),
     PLAN("PDT-v0", "plan_versions_planned_tasks_and_decision_traces"),
     ENGLISH("TEPM-v0", "technical_english_profile"),
+
+    /**
+     * Added at 13F (`D-104`). `VDW-v0` had no implementation owner when this map was accepted (`D-099` added
+     * 13F later); its coverage waiver and diagnostic progress are a state of their own — a waiver is not
+     * mastery — so they get their own family rather than living inside another engine's.
+     */
+    DIAGNOSTIC("VDW-v0", "diagnostic_coverage_state"),
 }

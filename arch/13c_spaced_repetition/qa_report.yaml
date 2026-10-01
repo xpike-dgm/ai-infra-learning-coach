@@ -2,8 +2,8 @@ model: RVRX-v0
 stage_step: 13C
 decision: D-101
 result: PASS
-checks_total: 164
-checks_passed: 164
+checks_total: 165
+checks_passed: 165
 checks_failed: 0
 checks:
 - check: E13C-00_exists_retention.yaml
@@ -265,6 +265,9 @@ checks:
 - check: E13C-08_no_truth_written
   result: PASS
   details: retention writes truth
+- check: E13C-08_replay_shared
+  result: PASS
+  details: retention does not read the shared timeline
 - check: E13C-08_replay_mirrors_previouslyMastered = previou
   result: PASS
   details: 'replay differs: previouslyMastered = previous in MASTERED,'

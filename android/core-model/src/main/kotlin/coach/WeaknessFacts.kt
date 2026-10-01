@@ -101,6 +101,12 @@ data class WeaknessEvent(
     val variantFamilyId: String?,
     val masteredBefore: Boolean,
     val masteredAfter: Boolean,
+    /**
+     * 13F (`VDW-v0` §12.1, user decision): the row answers "did you already know it?" — it was gathered inside a
+     * diagnostic, the Objective had no evidence from ordinary learning before it, and the Skill was not mastered.
+     * Not knowing something never taught is not a weakness.
+     */
+    val diagnosticBaseline: Boolean = false,
 ) {
     val failure: Boolean get() = outcome == EvidenceOutcome.NEGATIVE || outcome == EvidenceOutcome.PARTIAL
 

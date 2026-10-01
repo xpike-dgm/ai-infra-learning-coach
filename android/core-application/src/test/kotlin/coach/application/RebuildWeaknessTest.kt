@@ -99,6 +99,7 @@ class RebuildWeaknessTest {
         override fun publishedSkills(): List<SkillRow> = skills
         override fun latestPlan(): StoredPlan? = null
         override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
+        override fun latestAssessmentSessionIn(scope: coach.model.AssessmentScope, format: String): StoredTruth? = null
         override fun latestAssessmentSession(scope: AssessmentScope): StoredTruth? =
             truth.lastOrNull { it.record.kind == "assessment_session" && it.record.payload["scope"] == scope.storedAs }
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact> = emptyList()

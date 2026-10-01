@@ -1,0 +1,717 @@
+model: VDWX-v0
+stage_step: 13F
+decision: D-104
+result: PASS
+checks_total: 220
+checks_passed: 220
+checks_failed: 0
+checks:
+- check: E13F-00_exists_diagnostic_waiver.yaml
+  result: PASS
+  details: missing arch/13f_diagnostic_waiver/diagnostic_waiver.yaml
+- check: E13F-00_exists_DIAGNOSTIC_WAIVER_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md
+- check: E13F-00_exists_13f_diagnostic_waiver_research.md
+  result: PASS
+  details: missing research/13f_diagnostic_waiver_research.md
+- check: E13F-00_exists_DiagnosticFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/DiagnosticFacts.kt
+- check: E13F-00_exists_DiagnosticWaiverEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/DiagnosticWaiverEngine.kt
+- check: E13F-00_exists_Diagnostics.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/Diagnostics.kt
+- check: E13F-00_exists_DiagnosticPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/DiagnosticPresentation.kt
+- check: E13F-01_model
+  result: PASS
+  details: VDWX-v0
+- check: E13F-01_status
+  result: PASS
+  details: accepted_13f
+- check: E13F-01_decision
+  result: PASS
+  details: D-104
+- check: E13F-01_policy
+  result: PASS
+  details: VDW-v0
+- check: E13F-01_scope_waiver_granted_from_diagnostic_evidence
+  result: PASS
+  details: waiver_granted_from_diagnostic_evidence=True
+- check: E13F-01_scope_diagnostic_recorded_as_truth
+  result: PASS
+  details: diagnostic_recorded_as_truth=True
+- check: E13F-01_scope_adaptive_routing
+  result: PASS
+  details: adaptive_routing=True
+- check: E13F-01_scope_planner_coverage_holds
+  result: PASS
+  details: planner_coverage_holds=True
+- check: E13F-01_scope_result_reported
+  result: PASS
+  details: result_reported=True
+- check: E13F-01_scope_s06_runs
+  result: PASS
+  details: s06_runs=True
+- check: E13F-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=True
+- check: E13F-01_scope_projection_added
+  result: PASS
+  details: projection_added=True
+- check: E13F-01_scope_state_family_added
+  result: PASS
+  details: state_family_added=True
+- check: E13F-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E13F-01_scope_gate_threshold_changed
+  result: PASS
+  details: gate_threshold_changed=False
+- check: E13F-01_scope_retention_rule_changed
+  result: PASS
+  details: retention_rule_changed=False
+- check: E13F-01_scope_planner_priority_rule_changed
+  result: PASS
+  details: planner_priority_rule_changed=False
+- check: E13F-01_scope_weakness_rule_narrowed
+  result: PASS
+  details: weakness_rule_narrowed=True
+- check: E13F-01_scope_topic_state_decided
+  result: PASS
+  details: topic_state_decided=False
+- check: E13F-01_scope_app_calls_diagnostic
+  result: PASS
+  details: app_calls_diagnostic=False
+- check: E13F-01_scope_planner_initiated_diagnostic
+  result: PASS
+  details: planner_initiated_diagnostic=False
+- check: E13F-01_vdw_principle
+  result: PASS
+  details: VDW-v0 principle moved
+- check: E13F-01_vdw_no_easier
+  result: PASS
+  details: VDW-v0 §2 moved
+- check: E13F-01_s06
+  result: PASS
+  details: 3H S06 moved
+- check: E13F-01_invariant_12
+  result: PASS
+  details: PDT-v0 invariant 12 moved
+- check: E13F-02_pdt_family
+  result: PASS
+  details: '[''diagnostic.user_requested_fast_path'', ''diagnostic.probe_selected'',
+    ''diagnostic.confirm_needed'', ''diagnostic.critical_confirm_needed'', ''diagnostic.partial_coverage_waiver'',
+    ''diagnostic.full_coverage_waiver'', ''diagnostic.no_waiver'', ''diagnostic.h0_required_for_waiver'',
+    ''diagnostic.prerequisite_blocked'', ''diagnostic.component_not_separately_attributable'']'
+- check: E13F-02_catalog_is_pdt
+  result: PASS
+  details: '[''diagnostic.user_requested_fast_path'', ''diagnostic.probe_selected'',
+    ''diagnostic.confirm_needed'', ''diagnostic.critical_confirm_needed'', ''diagnostic.partial_coverage_waiver'',
+    ''diagnostic.full_coverage_waiver'', ''diagnostic.no_waiver'', ''diagnostic.h0_required_for_waiver'',
+    ''diagnostic.prerequisite_blocked'', ''diagnostic.component_not_separately_attributable'']'
+- check: E13F-02_codes_in_family
+  result: PASS
+  details: '[]'
+- check: E13F-02_no_invented_code
+  result: PASS
+  details: '[]'
+- check: E13F-02_sources_from_vdw
+  result: PASS
+  details: '[''user_requested_fast_path'', ''prior_experience_claim'', ''resume_after_external_learning'']
+    vs [''user_requested_fast_path'', ''planner_diagnostic_opportunity'', ''prior_experience_claim'',
+    ''curriculum_entry_placement'', ''resume_after_external_learning'']'
+- check: E13F-02_only_the_learner
+  result: PASS
+  details: a source other than the learner
+- check: E13F-02_one_source_reason
+  result: PASS
+  details: a source invents a reason
+- check: E13F-02_stages_from_vdw
+  result: PASS
+  details: '[''probe'', ''confirm'', ''critical_confirm'', ''transfer_confirm''] vs
+    [''probe'', ''confirm'', ''critical_confirm'', ''transfer_confirm'']'
+- check: E13F-02_outcomes_from_vdw
+  result: PASS
+  details: '[''full_validated_waiver'', ''partial_validated_waiver'', ''no_waiver'']
+    vs [''full_validated_waiver'', ''partial_validated_waiver'', ''no_waiver'']'
+- check: E13F-02_states_equal_contract
+  result: PASS
+  details: '[(''probe_needed'', ''true''), (''confirm_needed'', ''true''), (''waived'',
+    ''false''), (''already_demonstrated'', ''false''), (''not_demonstrated'', ''false''),
+    (''assistance_ended_fast_path'', ''false'')]'
+- check: E13F-02_only_two_open
+  result: PASS
+  details: '[(''probe_needed'', ''true''), (''confirm_needed'', ''true''), (''waived'',
+    ''false''), (''already_demonstrated'', ''false''), (''not_demonstrated'', ''false''),
+    (''assistance_ended_fast_path'', ''false'')]'
+- check: E13F-02_waiver_reason
+  result: PASS
+  details: waiver reason
+- check: E13F-02_waiver_names_evidence
+  result: PASS
+  details: a waiver without evidence
+- check: E13F-02_waived_names_waiver
+  result: PASS
+  details: a waived state without its waiver
+- check: E13F-02_no_topic_in_scope
+  result: PASS
+  details: the scope holds a Topic
+- check: E13F-03_codec_format
+  result: PASS
+  details: format
+- check: E13F-03_codec_strict
+  result: PASS
+  details: the codec guesses
+- check: E13F-04_gates_are_masterys
+  result: PASS
+  details: the waiver has gates of its own
+- check: E13F-04_no_held_over_state
+  result: PASS
+  details: hysteresis in the waiver
+- check: E13F-04_no_threshold_here
+  result: PASS
+  details: a number in the waiver
+- check: E13F-04_mastery_threshold_unchanged
+  result: PASS
+  details: GRE-v0 constants moved
+- check: E13F-04_first_pass_only
+  result: PASS
+  details: a later diagnostic pass waives what learning covered
+- check: E13F-04_ended_fast_path
+  result: PASS
+  details: evidence after the fast path ended waives
+- check: E13F-04_sources_are_window
+  result: PASS
+  details: sources not the window
+- check: E13F-04_window_is_masterys
+  result: PASS
+  details: a window of the waiver's own
+- check: E13F-04_engine_pure
+  result: PASS
+  details: the engine reads a store
+- check: E13F-05_prerequisite_first
+  result: PASS
+  details: a missing prerequisite ends the fast path
+- check: E13F-05_assistance_ends
+  result: PASS
+  details: help does not end the fast path
+- check: E13F-05_unmeasurable_ends_nothing
+  result: PASS
+  details: an unmeasurable answer ends the fast path
+- check: E13F-05_clean_miss
+  result: PASS
+  details: what a clean miss is
+- check: E13F-05_diagnose_order
+  result: PASS
+  details: '[1063, 1244, 1596]'
+- check: E13F-05_stage_rules
+  result: PASS
+  details: stage rules
+- check: E13F-06_full_needs_mastery
+  result: PASS
+  details: full without the mastery engine
+- check: E13F-06_covered
+  result: PASS
+  details: covered
+- check: E13F-06_none_when_none
+  result: PASS
+  details: none
+- check: E13F-06_no_waiver_not_early
+  result: PASS
+  details: no waiver said before checking
+- check: E13F-07_need_trigger
+  result: PASS
+  details: need
+- check: E13F-07_need_only_open
+  result: PASS
+  details: a closed diagnostic opens a need
+- check: E13F-07_need_on_route
+  result: PASS
+  details: off-route need
+- check: E13F-07_p3
+  result: PASS
+  details: a diagnostic is not planned progress
+- check: E13F-07_route_h0
+  result: PASS
+  details: routing lost h0
+- check: E13F-07_route_fresh
+  result: PASS
+  details: routing lost fresh
+- check: E13F-07_route_minutes
+  result: PASS
+  details: routing lost minutes
+- check: E13F-07_route_daily
+  result: PASS
+  details: routing lost daily
+- check: E13F-07_route_fit
+  result: PASS
+  details: routing lost fit
+- check: E13F-07_route_ceiling
+  result: PASS
+  details: routing lost ceiling
+- check: E13F-07_route_critical
+  result: PASS
+  details: routing lost critical
+- check: E13F-07_route_diversity
+  result: PASS
+  details: routing lost diversity
+- check: E13F-07_route_group
+  result: PASS
+  details: routing lost group
+- check: E13F-07_route_direct
+  result: PASS
+  details: routing lost direct
+- check: E13F-07_route_non_basic
+  result: PASS
+  details: routing lost non_basic
+- check: E13F-07_route_transfer
+  result: PASS
+  details: routing lost transfer
+- check: E13F-07_trust_is_the_ceiling
+  result: PASS
+  details: an unvalidated item can carry waiver evidence
+- check: E13F-07_candidate
+  result: PASS
+  details: candidate shape
+- check: E13F-08_lessons_only
+  result: PASS
+  details: practice held
+- check: E13F-08_every_objective
+  result: PASS
+  details: a lesson with an unshown Objective skipped
+- check: E13F-08_checking_holds
+  result: PASS
+  details: still-checked lesson called waived
+- check: E13F-08_hold_before_trust
+  result: PASS
+  details: trust before coverage
+- check: E13F-08_dispositions
+  result: PASS
+  details: dispositions
+- check: E13F-08_blocked_says_so
+  result: PASS
+  details: a waiting diagnostic is silent
+- check: E13F-08_held_not_selected
+  result: PASS
+  details: a held lesson can be selected
+- check: E13F-08_task_declares_objectives
+  result: PASS
+  details: TaskCandidate target Objectives
+- check: E13F-09_wired
+  result: PASS
+  details: planner not wired
+- check: E13F-09_evaluator_unknown_is_false
+  result: PASS
+  details: an unknown evaluator assumed
+- check: E13F-09_planning_reads_no_evidence
+  result: PASS
+  details: planning reads evidence
+- check: E13F-09_holds_read_projection
+  result: PASS
+  details: holds
+- check: E13F-10_newest_diagnostic
+  result: PASS
+  details: which diagnostic is open
+- check: E13F-10_only_daily_diagnostics
+  result: PASS
+  details: another session counts as a diagnostic
+- check: E13F-10_request_required_only
+  result: PASS
+  details: optional Objectives checked
+- check: E13F-10_request_not_retested
+  result: PASS
+  details: shown work retested
+- check: E13F-10_request_published
+  result: PASS
+  details: deprecated fast path
+- check: E13F-10_request_is_scope_only
+  result: PASS
+  details: a request writes evidence
+- check: E13F-10_withdrawal
+  result: PASS
+  details: withdrawal
+- check: E13F-10_unreadable_not_guessed
+  result: PASS
+  details: a guessed result
+- check: E13F-10_rebuild_writes_own_family
+  result: PASS
+  details: the rebuild writes truth or another policy
+- check: E13F-10_recompute_order
+  result: PASS
+  details: recompute order
+- check: E13F-10_session_on_evidence
+  result: PASS
+  details: evidence forgets its session
+- check: E13F-11_version
+  result: PASS
+  details: '{''from'': 6, ''to'': 7, ''owner'': ''13F'', ''table'': ''diagnostic_coverage'',
+    ''columns'': [''skill_logical_id'', ''skill_version'', ''waiver'', ''waiver_session_id'',
+    ''waiver_source_evidence_ids'', ''waiver_granted_at_sequence'', ''waiver_granted_on_study_day'',
+    ''diagnostic_session_id'', ''diagnostic_state'', ''diagnostic_stage'', ''failed_gates'',
+    ''window_variant_families'', ''window_dependency_groups'', ''reason_codes'', ''as_of_study_day''],
+    ''index'': ''diagnostic_coverage_by_skill'', ''checks'': [''waiver_values'', ''active_names_evidence_and_session'',
+    ''diagnostic_state_values'', ''diagnostic_stage_values''], ''triggers'': [''assessment_session_daily_format''],
+    ''populated_fixture_tested'': True, ''earlier_rows_touched'': False}'
+- check: E13F-11_projection_listed
+  result: PASS
+  details: projection not registered
+- check: E13F-11_waiver_values
+  result: PASS
+  details: waiver values
+- check: E13F-11_active_names_evidence
+  result: PASS
+  details: an active waiver without evidence
+- check: E13F-11_state_values
+  result: PASS
+  details: state values
+- check: E13F-11_states_match_model
+  result: PASS
+  details: '['''', ''probe_needed'', ''confirm_needed'', ''waived'', ''already_demonstrated'',
+    ''not_demonstrated'', ''assistance_ended_fast_path'']'
+- check: E13F-11_stages_match_model
+  result: PASS
+  details: '['''', ''probe'', ''confirm'', ''critical_confirm'', ''transfer_confirm'']'
+- check: E13F-11_daily_format
+  result: PASS
+  details: daily format
+- check: E13F-11_provenance
+  result: PASS
+  details: projection without provenance
+- check: E13F-11_truth_untouched
+  result: PASS
+  details: truth altered
+- check: E13F-11_ddm_unedited
+  result: PASS
+  details: '[''skill_state'', ''objective_state'', ''retention_state'', ''prerequisite_readiness'',
+    ''topic_state'', ''weakness_state'', ''english_profile'', ''planner_summary'']'
+- check: E13F-11_extension_declared
+  result: PASS
+  details: '{''table'': ''diagnostic_coverage'', ''grain'': ''per_objective'', ''owner'':
+    ''VDW-v0'', ''decision'': ''D-104''}'
+- check: E13F-11_msbx_unedited
+  result: PASS
+  details: MSBX-v0 edited
+- check: E13F-11_family_declared
+  result: PASS
+  details: '{''engine'': ''VDW-v0'', ''owns'': ''diagnostic_coverage_state'', ''decision'':
+    ''D-104''}'
+- check: E13F-11_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+- check: E13F-11_refinement
+  result: PASS
+  details: '[{''port'': ''PersistencePort'', ''method'': ''latestAssessmentSessionIn''}]'
+- check: E13F-12_baseline_rule
+  result: PASS
+  details: a baseline miss is a weakness
+- check: E13F-12_baseline_after_validity
+  result: PASS
+  details: the baseline rule outranks validity
+- check: E13F-12_rule_set_unchanged
+  result: PASS
+  details: WLRM-v0's twelve rules changed
+- check: E13F-12_baseline_field
+  result: PASS
+  details: baseline field
+- check: E13F-12_learning_ends_baseline
+  result: PASS
+  details: the baseline outlives ordinary learning
+- check: E13F-12_user_decision
+  result: PASS
+  details: decision not recorded
+- check: E13F-13_waived_kind
+  result: PASS
+  details: ('COVERAGE_WAIVED', 'coverage_waived', 'confirmed_capabilities', 'replan.prerequisite_state_changed')
+- check: E13F-13_withdrawn_kind
+  result: PASS
+  details: ('COVERAGE_WAIVER_WITHDRAWN', 'coverage_waiver_withdrawn', 'not_reliably_measured',
+    'replan.evidence_state_changed')
+- check: E13F-13_kinds_declared
+  result: PASS
+  details: '[''coverage_waived'', ''coverage_waiver_withdrawn'']'
+- check: E13F-13_unwritten_not_before
+  result: PASS
+  details: an unwritten waiver is a before
+- check: E13F-13_granted_only_from_none
+  result: PASS
+  details: transitions
+- check: E13F-13_trigger
+  result: PASS
+  details: '[(''REMEDIATION_OPENED'', ''NEW_REMEDIATION_CREATED''), (''VERIFICATION_OPENED'',
+    ''NEW_VERIFICATION_DUE_CREATED''), (''COVERAGE_WAIVED'', ''DIAGNOSTIC_WAIVER_GRANTED'')]'
+- check: E13F-13_event_is_12d
+  result: PASS
+  details: 12D's event moved
+- check: E13F-14_copy_no_%
+  result: PASS
+  details: '''%'' in copy'
+- check: E13F-14_copy_no_puan
+  result: PASS
+  details: '''puan'' in copy'
+- check: E13F-14_copy_no_başarısız
+  result: PASS
+  details: '''başarısız'' in copy'
+- check: E13F-14_copy_no_geçti
+  result: PASS
+  details: '''geçti'' in copy'
+- check: E13F-14_copy_no_kaldın
+  result: PASS
+  details: '''kaldın'' in copy'
+- check: E13F-14_copy_no_eksik
+  result: PASS
+  details: '''eksik'' in copy'
+- check: E13F-14_copy_no_zayıf
+  result: PASS
+  details: '''zayıf'' in copy'
+- check: E13F-14_copy_no_öğrendin
+  result: PASS
+  details: '''öğrendin'' in copy'
+- check: E13F-14_copy_no_ustalaştın
+  result: PASS
+  details: '''ustalaştın'' in copy'
+- check: 'E13F-14_copy_no_not:'
+  result: PASS
+  details: '''not:'' in copy'
+- check: E13F-14_copy_no_borç
+  result: PASS
+  details: '''borç'' in copy'
+- check: E13F-14_only_waived_skipped
+  result: PASS
+  details: '[(''WAIVED'', ''bağımsız olarak gösterildi; başlangıç anlatımı atlanıyor.'')]'
+- check: E13F-14_help_not_penalty
+  result: PASS
+  details: help worded as a penalty
+- check: E13F-14_no_number
+  result: PASS
+  details: a number in copy
+- check: E13F-14_change_names_objective
+  result: PASS
+  details: a waiver said of the whole Skill
+- check: E13F-14_change_templates
+  result: PASS
+  details: templates
+- check: E13F-14_explanation_skipped
+  result: PASS
+  details: the explanation hides what was skipped
+- check: E13F-14_explanation_waiting
+  result: PASS
+  details: a waiting need explained as having no task
+- check: E13F-14_no_combining_dot
+  result: PASS
+  details: U+0307 in copy
+- check: E13F-15_s06_runs
+  result: PASS
+  details: '{''run'': True, ''levels'': [''engine'', ''application'', ''presentation''],
+    ''invariant_12'': ''covered'', ''all_3h_scenarios_run'': True}'
+- check: E13F-15_12f_pointed_here
+  result: PASS
+  details: '{''run'': False, ''why'': "VDW-v0''s diagnostic waiver has no implementation
+    and no step in the plan owned one", ''owner'': 13}'
+- check: 'E13F-16_model_only the learner can open a diagnostic, '
+  result: PASS
+  details: 'missing test: only the learner can open a diagnostic, and every way of
+    asking is the same reason'
+- check: E13F-16_model_a waiver names the evidence that validat
+  result: PASS
+  details: 'missing test: a waiver names the evidence that validated it, and only
+    a waived Objective names one'
+- check: E13F-16_model_a stored request decodes strictly or not
+  result: PASS
+  details: 'missing test: a stored request decodes strictly or not at all'
+- check: E13F-16_engine_gates that first pass on diagnostic evid
+  result: PASS
+  details: 'missing test: gates that first pass on diagnostic evidence waive the starting
+    lesson and name the evidence'
+- check: E13F-16_engine_gates that first pass on ordinary learni
+  result: PASS
+  details: 'missing test: gates that first pass on ordinary learning waive nothing,
+    whatever a diagnostic shows later'
+- check: E13F-16_engine_one item, or the same family twice, neve
+  result: PASS
+  details: 'missing test: one item, or the same family twice, never waives anything'
+- check: E13F-16_engine_help, a seen solution, an unverified eva
+  result: PASS
+  details: 'missing test: help, a seen solution, an unverified evaluation, a missing
+    prerequisite or a contested item never count'
+- check: E13F-16_engine_nothing gathered after the fast path end
+  result: PASS
+  details: 'missing test: nothing gathered after the fast path ended can waive the
+    lesson'
+- check: E13F-16_engine_a clean miss in this diagnostic ends the
+  result: PASS
+  details: 'missing test: a clean miss in this diagnostic ends the fast path, it is
+    no remediation'
+- check: E13F-16_engine_not knowing something never taught is no
+  result: PASS
+  details: 'missing test: not knowing something never taught is not a weakness'
+- check: E13F-16_engine_a lesson whose Objectives were all waive
+  result: PASS
+  details: 'missing test: a lesson whose Objectives were all waived is not taught
+    again'
+- check: E13F-16_engine_a lesson the learner's fast path is stil
+  result: PASS
+  details: 'missing test: a lesson the learner''s fast path is still checking waits
+    for it'
+- check: E13F-16_scenarios_S06 a partial diagnostic waives only the
+  result: PASS
+  details: 'missing test: S06 a partial diagnostic waives only the validated Objectives
+    and the Skill is not mastered'
+- check: E13F-16_application_saying I know this opens a diagnostic an
+  result: PASS
+  details: 'missing test: saying I know this opens a diagnostic and waives nothing'
+- check: E13F-16_application_the planner offers the diagnostic's chec
+  result: PASS
+  details: 'missing test: the planner offers the diagnostic''s checks, holds the lessons
+    it is checking, and reads no evidence'
+- check: E13F-16_application_S06 a partial diagnostic waives only the
+  result: PASS
+  details: 'missing test: S06 a partial diagnostic waives only the validated Objectives
+    and the plan and the result say exactly that'
+- check: E13F-16_application_help taken ends the fast path for that O
+  result: PASS
+  details: 'missing test: help taken ends the fast path for that Objective, and a
+    later success does not waive it'
+- check: E13F-16_application_a waiver whose evidence is corrected awa
+  result: PASS
+  details: 'missing test: a waiver whose evidence is corrected away is withdrawn and
+    its lesson comes back'
+- check: E13F-16_presentation_S06 the result says only the validated p
+  result: PASS
+  details: 'missing test: S06 the result says only the validated parts are skipped'
+- check: E13F-16_presentation_S06 the plan's explanation says only the
+  result: PASS
+  details: 'missing test: S06 the plan''s explanation says only the validated parts
+    are skipped, from the trace alone'
+- check: 'E13F-16_storage_migrating a populated schema-6 database '
+  result: PASS
+  details: 'missing test: migrating a populated schema-6 database adds diagnostic_coverage
+    and preserves every truth row'
+- check: 'E13F-16_storage_a daily session carries content only as '
+  result: PASS
+  details: 'missing test: a daily session carries content only as the learner''s diagnostic'
+- check: E13F-17_mutation_all_detected
+  result: PASS
+  details: 69/69
+- check: E13F-17_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E13F-17_validator_mutation
+  result: PASS
+  details: '{''total'': 29, ''detected'': 29, ''negative_control'': ''forbidden fragments
+    (a lowered threshold, an evidence read, a ports import, an invented code, a forgiven
+    gate) inside Kotlin comments must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E13F-17_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E13F-17_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E13F-17_open_topic_state_from_waivers
+  result: PASS
+  details: topic_state_from_waivers not owned
+- check: E13F-17_open_app_calls_diagnostic
+  result: PASS
+  details: app_calls_diagnostic not owned
+- check: E13F-17_open_entry_placement
+  result: PASS
+  details: entry_placement not owned
+- check: E13F-17_open_planner_initiated_diagnostic
+  result: PASS
+  details: planner_initiated_diagnostic not owned
+- check: E13F-17_open_waiver_across_curriculum_versi
+  result: PASS
+  details: waiver_across_curriculum_versions not owned
+- check: E13F-17_open_authored_items_and_lessons
+  result: PASS
+  details: authored_items_and_lessons not owned
+- check: E13F-17_open_waiver_replay_cost
+  result: PASS
+  details: waiver_replay_cost not owned
+- check: E13F-17_open_wording
+  result: PASS
+  details: wording not owned
+- check: E13F-18_forbidden_self_report_as_evidence
+  result: PASS
+  details: missing=self_report_as_evidence
+- check: E13F-18_forbidden_lower_bar_for_diagnostic
+  result: PASS
+  details: missing=lower_bar_for_diagnostic
+- check: E13F-18_forbidden_single_item_topic_waiver
+  result: PASS
+  details: missing=single_item_topic_waiver
+- check: E13F-18_forbidden_waiver_after_fast_path_ended
+  result: PASS
+  details: missing=waiver_after_fast_path_ended
+- check: E13F-18_forbidden_waiver_where_learning_passed_first
+  result: PASS
+  details: missing=waiver_where_learning_passed_first
+- check: E13F-18_forbidden_waiver_as_mastery
+  result: PASS
+  details: missing=waiver_as_mastery
+- check: E13F-18_forbidden_untaught_miss_as_weakness
+  result: PASS
+  details: missing=untaught_miss_as_weakness
+- check: E13F-18_forbidden_help_as_penalty
+  result: PASS
+  details: missing=help_as_penalty
+- check: E13F-18_forbidden_teaching_while_diagnosing
+  result: PASS
+  details: missing=teaching_while_diagnosing
+- check: E13F-18_forbidden_skipping_unshown_objective
+  result: PASS
+  details: missing=skipping_unshown_objective
+- check: E13F-18_forbidden_planning_reads_evidence
+  result: PASS
+  details: missing=planning_reads_evidence
+- check: E13F-19_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 13F QA PASS'''
+- check: E13F-19_spec_**Decision:** `D-104`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-104`'''
+- check: E13F-19_spec_A diagnostic is not an eas
+  result: PASS
+  details: 'spec: ''A diagnostic is not an easier road to mastery'''
+- check: 'E13F-19_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E13F-19_spec_14A — Tutor davranış sözle
+  result: PASS
+  details: 'spec: ''14A — Tutor davranış sözleşmesi'''
+- check: E13F-19_spec_AŞAMA 13 is complete
+  result: PASS
+  details: 'spec: ''AŞAMA 13 is complete'''
+- check: E13F-19_spec_mutation_count
+  result: PASS
+  details: spec mutation count
+- check: E13F-19_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E13F-19_research_VDW-v0
+  result: PASS
+  details: missing='VDW-v0'
+- check: E13F-19_research_16C
+  result: PASS
+  details: missing='16C'
+- check: E13F-19_research_16D
+  result: PASS
+  details: missing='16D'
+- check: E13F-19_research_user decisions
+  result: PASS
+  details: missing='user decisions'
+- check: E13F-20_no_repeated_context_heading
+  result: PASS
+  details: repeated context heading
+- check: E13F-20_no_repeated_master_plan_step
+  result: PASS
+  details: repeated master plan step
+- check: E13F-20_no_combining_dot
+  result: PASS
+  details: U+0307 in 13F text
+failures: []

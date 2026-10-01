@@ -134,7 +134,7 @@ checks:
   details: 'dataset invariant moved: ai_assistance_may_scaffold_remediation_but_never_satisfies_independent_closure_evidence'
 - check: E13D-03_rules_in_priority_order
   result: PASS
-  details: '[215, 284, 429, 571, 750, 818, 915, 1015]'
+  details: '[215, 284, 429, 664, 843, 911, 1008, 1108]'
 - check: E13D-03_invalid_first
   result: PASS
   details: an unattributable row is attributed

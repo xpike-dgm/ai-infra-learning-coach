@@ -27,7 +27,9 @@ object ProgramChangeResults {
         val families = linkedMapOf<ResultFamily, MutableList<String>>()
         report.stateChanges.forEach { change ->
             val family = ResultFamily.entries.single { it.id == change.kind.family }
-            families.getOrPut(family) { mutableListOf() } += "${label(change.skill)}: ${ProgramChangeCopy.stateTemplates.getValue(change.kind)}"
+            // A coverage change is about one Objective (13F), so the Objective is what is named.
+            families.getOrPut(family) { mutableListOf() } +=
+                "${label(change.objective ?: change.skill)}: ${ProgramChangeCopy.stateTemplates.getValue(change.kind)}"
         }
         val plan = planStatements(report, label)
         if (plan.isNotEmpty()) families[ResultFamily.PLAN_CHANGES] = plan.toMutableList()
@@ -73,6 +75,9 @@ object ProgramChangeCopy {
         StateChangeKind.WEAKNESS_RESOLVED to "Netleştirilen soru kapandı; bağımsız bir kontrol bunu gösterdi.",
         StateChangeKind.RETENTION_REVALIDATED to "Gecikmeli bir kontrolle hâlâ yapabildiğin doğrulandı.",
         StateChangeKind.RETENTION_AT_RISK to "Birden fazla sinyal bu beceriyi yeniden kontrol etmeyi değerli kılıyor.",
+        // 13F: a waiver is coverage, not mastery — it says why a lesson is skipped, never that the Skill is learned.
+        StateChangeKind.COVERAGE_WAIVED to "Bu bölümü bağımsız olarak gösterdin; başlangıç anlatımı atlanacak.",
+        StateChangeKind.COVERAGE_WAIVER_WITHDRAWN to "Bu bölümü atlatan sonuç güvenilir biçimde ölçülemedi; başlangıç anlatımı yeniden planda.",
     )
 
     fun planTemplate(change: PlanChange): String = when (change.kind) {

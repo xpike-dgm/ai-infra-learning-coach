@@ -149,3 +149,7 @@ All twenty `PDT-v0` §23 invariants are covered by at least one test except inva
 If accepted, 12F becomes `VUSX-v0 / D-097` and **AŞAMA 12 closes**.
 
 Next numbered step: **13A — Haftalık sınav**. It must receive a fresh PRE-STEP and explicit user approval before execution. Open loops carried: the diagnostic waiver and S06 (13); retention and weakness needs (13); starvation thresholds (18C); runtime budgets (18E); calling the planner from the app (16D); and the T6 device run.
+
+---
+
+**13F note (2026-10-01, `D-104`):** S06 now runs against real code — at engine level (`VirtualUserScenariosTest`), end to end through the use cases (`DiagnosticsTest`) and in the explanation (`DiagnosticPresentationTest`) — and `PDT-v0` invariant 12 is covered. The text above records 12F as accepted, when S06 had no owner; all sixteen 3H scenarios now run. The virtual-user fixture gained `FastPath` and `s06()`, and `Scenario.plan()` passes the coverage holds the planner takes since 13F.

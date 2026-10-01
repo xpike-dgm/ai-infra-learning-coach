@@ -407,7 +407,7 @@ checks:
   details: the adapter does not delegate to the store
 - check: E12B-12_schema_version_unchanged
   result: PASS
-  details: the schema version moved
+  details: the schema version moved without an owning contract
 - check: E12B-12_no_index_on_edges
   result: PASS
   details: an index was added

@@ -1155,3 +1155,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13E ✅ / 13F active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13F — Tanısal atlama (VDW-v0)`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13F Tanısal atlama tamamlandı — VDWX-v0 / D-104 — AŞAMA 13 kapandı
+
+- 13E (#43) main'e merge edildi (e4a0dc4); takeover okuması ve fresh 13F PRE yapıldı, beş kanonik kaynak `13E ✅ / 13F active-not-executed` gösterdi. Kullanıcı açık onay verdi ("13F ile devam et").
+- **Kullanıcı kararları:** öğretilmemiş bir Objective'de tanısal temel hata zayıflık değildir (`WLRM-v0` yalnız bu durum için daraltıldı); tanısal yolu yalnız öğrenci açar (planner kaynaklı → 18B, giriş yerleşimi → 16D); tanısal denemede yardım alınırsa o Objective hızlı yoldan çıkar.
+- `VDW-v0` koda döküldü: tanısal yol `daily` bir `assessment_session` (`diagnostic_scope/1`); waiver yalnız `GRE-v0`'ın kendi kapıları tanısal kanıtta ilk kez geçince, penceresinin kanıtını adlandırır ve kapsamdır; Objective durumu ve yönlendirme (probe/confirm/critical/transfer); planner'a P3 `decisive` ihtiyaç ve taze H0 item'lar; tanı sürerken ders bekler, atlanan ders `resolved_before_selection`.
+- **Bulgu:** waiver'ın yeri ve sahibi yoktu (şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi, D-104); kanıt oturumunu taşımıyordu; görev Objective'ini söyleyemiyordu; 13E kısmi waiver'dan sonra replan istemezdi (iki değişiklik türü eklendi); testler ilk uygulamada yardım sonrası waiver verildiğini yakaladı; 12E açıklaması atlananı söyleyemiyordu.
+- S06 ve `PDT-v0` invariant 12 gerçek kodla; 3H'nin 16 senaryosunun hepsi koşuyor.
+- Mutation 69/69 (ilk turda iki test boşluğu ve iki eşdeğer mutant; kapatıldı, set tek değişmemiş ağaçtan yeniden koşuldu). Altı run PASS, 783 JVM testi. Validator 220/220, kendi mutation testi 29/29, sweep 48/48.
+- **T6 çalıştırılmadı**; uygulama hızlı yolu henüz sunmuyor (16D).
+- D-050 POST living-memory accepted state'i `13F ✅ / AŞAMA 13 ✅ / 14A active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `14A — Tutor davranış sözleşmesi`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

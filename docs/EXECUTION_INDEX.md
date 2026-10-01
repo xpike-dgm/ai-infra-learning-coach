@@ -28,6 +28,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-058: 6D final Systems detailed map `SDM-v0`; D06–D13 package + 6C registry cross-package reuse + combined hard-graph QA.
 - D-059: 6E final GPU / ML / Inference detailed map `GIM-v0`; D14–D22 package + 6C/6D reuse + hard/soft Pass-B + combined hard-graph QA.
 - D-099: AŞAMA 13'ün sonuna `13F — Tanısal atlama (VDW-v0)` eklendi; mevcut adımlar yeniden numaralanmadı.
+- D-104: 13F final tanısal atlama `VDWX-v0`; şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi; AŞAMA 13 kapandı.
 
 ---
 
@@ -168,12 +169,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **13C — Spaced repetition** — `RVRX-v0 / D-101`
 - [x] **13D — Remediation Engine** — `WLRX-v0 / D-102`
 - [x] **13E — Program değişiklik raporu** — `PCRX-v0 / D-103`
-- [ ] **13F — Tanısal atlama (VDW-v0)** — D-099 ile eklendi **AKTİF**
+- [x] **13F — Tanısal atlama (VDW-v0)** — `VDWX-v0 / D-104`
 
 ---
 
 # AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme Katmanını Geliştir
-- [ ] **14A — Tutor davranış sözleşmesi**
+- [ ] **14A — Tutor davranış sözleşmesi** **AKTİF**
 - [ ] **14B — Yanlış analizi**
 - [ ] **14C — Alternatif anlatım**
 - [ ] **14D — Kod değerlendirme**
@@ -248,9 +249,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13E`  
-**Son tamamlanan:** **`13E — PCRX-v0 / D-103`**  
-**Aktif:** **`13F — Tanısal atlama (VDW-v0)`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`  
+**Son tamamlanan:** **`13F — VDWX-v0 / D-104`**  
+**Aktif:** **`14A — Tutor davranış sözleşmesi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -282,4 +283,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 13E `PCRX-v0` ile program değişiklik raporu kodda: bir rapor iki okumanın farkıdır ve motorların yazdığından fazlasını iddia edemez: bir kanıttan sonra dokunulan Skill'ler kendi motorlarıyla sırayla yeniden hesaplanır (mastery → retention → zayıflık → readiness; profiller yayımlanmış curriculum'dan, bilinmeyen criticality reddedilir), değişiklik yalnız bir eksen gerçekten hareket ettiyse söylenir, kimsenin yazmadığı durum bir 'önce' değildir, vadesi gelen tekrar gündür ve değişiklik değildir, mastery sonrası çelişki bir doğrulamadır ve asla düşüş değildir, hipotez eksik değil sorudur; plan değişikliği iki kayıtlı plan sürümü arasındaki farktır ve ilk plan değişiklik değildir; yalnız kanonik durum değiştiyse planner'ın kendi replan'ı, değişikliğin adlandırdığı olayla çağrılır ve günün bütçesi korunur; hiçbir şey değişmediyse sonuç bunu açıkça söyler. `ASUX-v0` §13.1 aileleri dolduruldu; tek port inceltmesi `objectivesOf`, şema değişmedi. T6 çalıştırılmadı.
 
-13F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+13F `VDWX-v0` ile tanısal atlama kodda: bir tanısal yol mastery'ye giden daha kolay bir yol değildir, aynı kanıtı daha erken toplar: öğrencinin isteği yalnız kapsamı adlandırır ve kanıt değildir; bir Objective'in başlangıç anlatımı yalnız `GRE-v0`'ın kendi kapıları tanısal kanıtta ilk kez geçtiğinde atlanır, waiver o kanıtı adlandırır ve kapsamdır — mastery ya da retention değildir; tek kolay soru bir Topic'i atlatmaz; yardım ya da temiz bir kaçırma o Objective'in hızlı yolunu suçlamadan bitirir ve öğretilmemiş bir şeyi bilmemek zayıflık sayılmaz (kullanıcı kararları); tanı sürerken o Objective'in dersi bekler, yalnız gösterilen kısmın dersi atlanır; planlama kanıt okumaz. Şema v7 `diagnostic_coverage` projeksiyonunu ve `VDW-v0` durum ailesini ekler (D-104); 12F'nin S06'sı ve `PDT-v0` invariant 12 gerçek kodla koşuyor. **AŞAMA 13 TAMAMLANDI** — WBAX-v0 → MCAX-v0 → RVRX-v0 → WLRX-v0 → PCRX-v0 → VDWX-v0. T6 çalıştırılmadı.
+
+14A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

@@ -215,3 +215,7 @@ JVM tests: 679, all passing.
 If accepted, 13D becomes `WLRX-v0 / D-102`.
 
 Next numbered step: **13E — Program değişiklik raporu**. It must receive a fresh PRE-STEP and explicit user approval before execution. Mastery, retention, readiness and weakness now all write state from evidence; 13E reports what changed in the program and why, from the engines' own traces.
+
+---
+
+**13F note (2026-10-01, `D-104`, user decision):** a clean miss inside a diagnostic, on an Objective with no evidence from ordinary learning before it and a Skill not mastered (`WeaknessEvent.diagnosticBaseline`), opens no weakness signal — `VDW-v0` §12.1: not knowing something never taught is not a weakness. `WeaknessEngine.rule` returns no rule for that case only; the twelve rules and every other attribution are unchanged.

@@ -160,6 +160,11 @@ data class TaskCandidate(
     val minimumSafeChunkMinutes: Int? = null,
     val atomicEvidenceBoundary: Boolean = false,
     val generationVersion: String = "authored",
+    /**
+     * 3B §15 `target_objective_ids` (13F). A lesson whose Objectives were all waived is not taught again
+     * (`VDW-v0` §17); a task that declares none is never treated as covered, because nothing says what it teaches.
+     */
+    val targetObjectives: List<VersionedRef> = emptyList(),
 ) {
     init {
         require(costMinutes > 0) { "a candidate takes some time" }

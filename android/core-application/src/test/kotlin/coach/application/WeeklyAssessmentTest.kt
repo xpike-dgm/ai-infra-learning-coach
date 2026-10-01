@@ -105,6 +105,7 @@ class WeeklyAssessmentTest {
         override fun publishedSkills(): List<SkillRow> = skills.sortedBy { it.ref.logicalId }
         override fun latestPlan(): StoredPlan? = null
         override fun resumeCheckpointRows(): List<StoredTruth> = emptyList()
+        override fun latestAssessmentSessionIn(scope: coach.model.AssessmentScope, format: String): StoredTruth? = null
         override fun latestAssessmentSession(scope: AssessmentScope): StoredTruth? =
             appended("assessment_session").lastOrNull { it.record.payload["scope"] == scope.storedAs }
         override fun exposuresFor(resources: List<VersionedRef>, variantFamilies: List<String>): List<ExposureFact> =

@@ -601,3 +601,7 @@ Attempt öğrenme için kullanılabilir fakat:
 `3F — Kaçırılan günler`
 
 3F uzun ara sonrası current-state recovery, backlog dump yasağı, overdue retention/remediation yoğunluğu ve planner'ın yeniden giriş davranışını kesinleştirecektir.
+
+---
+
+**Implementation note (2026-10-01):** this policy runs as `VDWX-v0 / D-104` (13F) — `docs/DIAGNOSTIC_WAIVER_IMPL_SPEC.md`. Three user decisions settled what this spec left open: only the learner opens a diagnostic; a baseline miss is not a weakness; help taken ends the fast path for that Objective.

@@ -213,14 +213,7 @@ class ComposeAssessmentBlueprint(
      * An item as the store knows it: published or not there at all, and trusted as far as its latest
      * validation record says — exactly as a daily item is served (11D).
      */
-    private fun withStoreTrust(item: AssessmentItem): AssessmentItem? {
-        val published = persistence.resourceVersion(item.ref) ?: return null
-        return item.copy(
-            lifecycleStatus = persistence.latestValidation(item.ref)?.status ?: LifecycleStatus.CANDIDATE,
-            contentOrigin = published.contentOrigin,
-            evidenceType = published.evidenceType,
-        )
-    }
+    private fun withStoreTrust(item: AssessmentItem): AssessmentItem? = StoreTrust.apply(persistence, item)
 
     private fun decode(row: StoredTruth): AssessmentBlueprint? =
         row.record.payload["blueprint"]?.let { BlueprintCodecs.decode(scope, it) }
