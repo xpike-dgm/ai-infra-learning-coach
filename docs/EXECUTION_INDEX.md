@@ -164,8 +164,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # AŞAMA 13 — Haftalık/Aylık Sınav, Retention ve Remediation’ı Geliştir
 - [x] **13A — Haftalık sınav** — `WBAX-v0 / D-098`
-- [ ] **13B — Aylık sınav** **AKTİF**
-- [ ] **13C — Spaced repetition**
+- [x] **13B — Aylık sınav** — `MCAX-v0 / D-100`
+- [ ] **13C — Spaced repetition** **AKTİF**
 - [ ] **13D — Remediation Engine**
 - [ ] **13E — Program değişiklik raporu**
 - [ ] **13F — Tanısal atlama (VDW-v0)** — D-099 ile eklendi
@@ -248,9 +248,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A`  
-**Son tamamlanan:** **`13A — WBAX-v0 / D-098`**  
-**Aktif:** **`13B — Aylık sınav`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13B`  
+**Son tamamlanan:** **`13B — MCAX-v0 / D-100`**  
+**Aktif:** **`13C — Spaced repetition`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -274,4 +274,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 13A `WBAX-v0` ile haftalık sınav kodda: bir hafta bir kimliktir, kota ya da son tarih değil: haftanın ölçümü öğe seçilmeden önce durumdan kurulur, her Skill tek kez ve `WBA-v0` §9 sırasıyla ölçülür, rol aileleri kota değildir; bir slot yalnız mağazanın güvendiği, kapının izin verdiği ve öğrencinin henüz görmediği bir item ile dolar — görülmüş item, çözümü gösterilmiş varyant ailesi, yakın varyant ya da paylaşılan testlet taze ölçüm değildir ve beyan edilmemiş süre uydurulmaz. Slotlar planner'a, zaten açtığı ihtiyaçların adayları olarak gider: haftanın kendi kuyruğu, bandı ya da dakikası yoktur. Döngü kaydedilmiş çalışma gününün ISO haftasıdır (kullanıcı onayladı); hafta bir kez kurulur, ölçülecek bir şey yoksa hiçbir şey yazılmaz ve kaçırılan hafta borç bırakmaz. Sonuçta puan yoktur, boş bırakmak yanlış değildir, bu oturumda eksik görünen ön koşula dayanan iş `contaminated` yazılır. `assessment_session` şema v3 ile blueprint'ini taşır (dolu fixture'a karşı). `D-099` ile 13F (tanısal atlama) eklendi. T6 çalıştırılmadı.
 
-13B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+13B `MCAX-v0` ile aylık sınav kodda: bir ay daha geniş bir penceredir, daha ağır bir sınav değil: aylık ölçüm de öğe seçilmeden önce durumdan kurulur, her Skill tek kez ve `MCA-v0` §7 sırasıyla ölçülür, roller kota ya da yüzde değildir; kritik bir Skill yalnız bir nedenle (açık doğrulama ya da çelişki, vadesi gelmiş tekrar, bağımlı işi bekletmesi) yeniden doğrulanır, kritik olduğu için değil. 13A'nın haftalık kontratı tek ortak kontrata genelleştirildi ve hiçbir haftalık değer değişmedi: aylık etiket kanıta ağırlık eklemez, slotlar planner'ın zaten açtığı ihtiyaçların alternatifleri olarak gider ve ihtiyaç başına en çok bir görev seçilir. Döngü kaydedilmiş çalışma gününün takvim ayıdır; ay bir kez kurulur, önceki aylık oturumu adlandırır ama borç saymaz. Sonucun boylamsal listeleri yalnız kendi rolünün temiz bağımsız kanıtını taşır; temiz negatif hiçbir şeyi yeniden doğrulamaz. Transfer ve profesyonel kontrol noktasının üreticisi uydurulmadı (15). Şema v4 bir haftalık ya da aylık satırın kendi biçiminde blueprint taşımasını trigger ile zorlar (dolu v3 fixture'a karşı). T6 çalıştırılmadı.
+
+13C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

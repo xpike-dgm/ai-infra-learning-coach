@@ -3,7 +3,7 @@ package coach.curriculum
 import coach.model.AllowedToolsPolicy
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
-import coach.model.BlueprintRole
+import coach.model.BlueprintScopes
 import coach.model.ContentOrigin
 import coach.model.CurriculumPackage
 import coach.model.EvaluatorRequirement
@@ -328,8 +328,15 @@ object PackageFormat {
                         ?: run { reasons += "[item] line ${section.line}: 'expected_active_minutes' is not a positive number"; null }
                 },
                 blueprintRoles = list(section, "blueprint_roles").mapNotNull { raw ->
-                    BlueprintRole.entries.firstOrNull { it.id == raw }
-                        ?: run { reasons += "[item] line ${section.line}: unknown blueprint role '$raw'"; null }
+                    // A role belongs to one scope; declaring it on an item that scope cannot use is a
+                    // contradiction in the package, not a role to quietly ignore (13B).
+                    val scope = BlueprintScopes.COMPOSED.firstOrNull { scope -> BlueprintScopes.roles(scope).any { it.id == raw } }
+                    when {
+                        scope == null -> run { reasons += "[item] line ${section.line}: unknown blueprint role '$raw'"; null }
+                        scope.id !in list(section, "scope_eligibility") ->
+                            run { reasons += "[item] line ${section.line}: blueprint role '$raw' needs scope '${scope.id}'"; null }
+                        else -> BlueprintScopes.roles(scope).single { it.id == raw }
+                    }
                 }.toSet(),
             )
         }

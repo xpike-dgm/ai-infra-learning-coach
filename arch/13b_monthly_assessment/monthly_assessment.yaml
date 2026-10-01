@@ -1,0 +1,363 @@
+model: MCAX-v0
+stage_step: 13B
+status: accepted_13b
+decision: D-100
+monthly_semantics: MCA-v0
+extends: WBAX-v0
+common_contract: WBA-v0 §28
+interior: [ASUX-v0, DMAX-v0]
+item_bank: [QAB-v0, AIV-v0]
+engines_fed: [MSTX-v0, PRQX-v0, PLNX-v0]
+persistence: [LFPS-v0, DDM-v0, LDBX-v0]
+boundaries: MSBX-v0
+purpose: monthly_capability_composition_runs_against_real_code
+
+scope:
+  common_contract_generalised: true
+  weekly_values_changed: false
+  weekly_tests_still_pass: true
+  blueprint_composed_from_state: true
+  items_chosen_after_slots: true
+  slots_offered_to_planner: true
+  monthly_interior_view: true
+  schema_changed: true
+  migration_added: true
+  interfaces_added: false
+  boundaries_changed: false
+  planner_rule_changed: false
+  gate_rule_changed: false
+  mastery_rule_changed: false
+  transfer_producer_invented: false
+  professional_checkpoint_producer_invented: false
+  diagnostic_waiver_implemented: false
+  app_calls_composition: false
+
+monthly_question: What, beyond what the week can see, is worth measuring again this month, and how is it measured without the monthly label adding weight, extending a day or turning a missed month into debt?
+
+primary_invariant: >-
+  A month is a wider window, not a heavier exam. What is worth measuring still comes from state, one Skill is
+  measured once, a critical Skill is revalidated only for a reason, a monthly label adds no evidence weight, the
+  month adds no minutes and no queue of its own, and a month that passed without its assessment leaves nothing
+  behind.
+
+common_contract:
+  file: android/core-model/src/main/kotlin/coach/AssessmentBlueprint.kt
+  types: [SlotRole, RoleEvidenceKind, BlueprintScopes, ScopeReasonCodes, SlotStatus, BlueprintExclusion, SlotItemRefusal, SlotItemRejection, PoolExclusion, ExposureFact, AssessmentBlueprintSlot, BlueprintBlock, AssessmentBlueprint, BlueprintSessionStatus, BlueprintEvidenceFact, BlueprintSlotOutcome, AssessmentBlueprintResult]
+  composed_scopes: [weekly_blueprint, monthly_capability]
+  mixed_blueprint_representable: false
+  prior_session_only_monthly: true
+  shared_composer: android/core-engines/src/main/kotlin/coach/engines/BlueprintComposer.kt
+  scope_decides: [eligible_items, reason_code_namespace, cycle, target_pool, stored_format]
+  scope_never_decides: [refusal_meaning, freshness, trust_ceiling, result_meaning, evidence_weight]
+  renamed_from_13a:
+    WeeklyAssessmentBlueprint: AssessmentBlueprint
+    WeeklyBlock: BlueprintBlock
+    WeeklySessionStatus: BlueprintSessionStatus
+    WeeklyEvidenceFact: BlueprintEvidenceFact
+    WeeklySlotOutcome: BlueprintSlotOutcome
+    WeeklyAssessmentResult: AssessmentBlueprintResult
+    WeeklyExclusion: BlueprintExclusion
+    WeeklyItemRefusal: SlotItemRefusal
+    WeeklyItemRejection: SlotItemRejection
+    ComposeWeeklyAssessment: ComposeAssessmentBlueprint
+    WeeklySlots: BlueprintSlots
+    RecordWeeklySlotEvidence: RecordSlotEvidence
+    WeeklySessionPresentation: BlueprintSessionPresentation
+  files_moved_from_13a:
+    android/core-model/src/main/kotlin/coach/WeeklyBlueprintCodec.kt: android/core-model/src/main/kotlin/coach/BlueprintCodec.kt
+    android/core-application/src/main/kotlin/coach/application/WeeklyAssessment.kt: android/core-application/src/main/kotlin/coach/application/BlueprintAssessment.kt
+    android/core-presentation/src/main/kotlin/coach/presentation/WeeklyAssessmentSession.kt: android/core-presentation/src/main/kotlin/coach/presentation/BlueprintAssessmentSession.kt
+
+cycle:
+  definition: calendar_month_of_recorded_study_day
+  format: "YYYY-MM"
+  source_column: occurred_on_study_day
+  product_default: true
+  scientific_value: false
+  setting_owner: 16D
+  user_confirmation: follows_user_confirmed_weekly_rule
+  composed_once_per_cycle: true
+  same_cycle_writes_nothing: true
+  nothing_to_measure_writes_nothing: true
+  earlier_cycle_offered: false
+  stacking_possible: false
+  prior_session_named: true
+  prior_session_is_debt: false
+  independent_of_weekly_cycle: true
+
+roles:
+  source: MCA-v0 §5
+  order: [longitudinal_required_capability, persistent_weakness_or_verification, critical_capability_revalidation, delayed_retention_sampling, cross_topic_transfer, integrated_application, parallel_technical_english, professional_evidence_checkpoint]
+  selection_order: [persistent_weakness_or_verification, critical_capability_revalidation, longitudinal_required_capability, delayed_retention_sampling, cross_topic_transfer, integrated_application, parallel_technical_english, professional_evidence_checkpoint]
+  selection_source: MCA-v0 §7
+  quota: false
+  percentage_split: false
+  intent:
+    longitudinal_required_capability: mastery_evidence
+    persistent_weakness_or_verification: verification
+    critical_capability_revalidation: verification
+    delayed_retention_sampling: verification
+    cross_topic_transfer: mastery_evidence
+    integrated_application: integration_check
+    parallel_technical_english: mastery_evidence
+    professional_evidence_checkpoint: integration_check
+  purpose:
+    longitudinal_required_capability: assess
+    persistent_weakness_or_verification: assess
+    critical_capability_revalidation: assess
+    delayed_retention_sampling: retain
+    cross_topic_transfer: assess
+    integrated_application: assess
+    parallel_technical_english: assess
+    professional_evidence_checkpoint: assess
+  evidence_kind:
+    critical_capability_revalidation: critical_revalidation
+    delayed_retention_sampling: retention_revalidation
+    cross_topic_transfer: transfer
+    integrated_application: integration
+    professional_evidence_checkpoint: integration
+  role_ids_collide_with_weekly: false
+  without_producer:
+    cross_topic_transfer: {owner: 15, why: no need trigger or transfer-opportunity metadata exists}
+    professional_evidence_checkpoint: {owner: 15, why: no professional evidence profile exists (MCA-v0 §6.8, Aşama 6/15/20 metadata)}
+  professional_checkpoint_is_gate: false
+
+pool:
+  needs_from: PlannerEngine.needsFromSkillStates
+  owner_supplied_needs_allowed: [parallel_track_due, integration_opportunity]
+  mapping:
+    verification_due_or_weakness_detected_critical: critical_capability_revalidation
+    verification_due_or_weakness_detected: persistent_weakness_or_verification
+    continue_learning_critical_holding_back: critical_capability_revalidation
+    continue_learning_required_inside_window: longitudinal_required_capability
+    retention_review_due_critical: critical_capability_revalidation
+    retention_review_due: delayed_retention_sampling
+    integration_opportunity: integrated_application
+    parallel_track_due_technical_english: parallel_technical_english
+  critical_tested_for_being_critical: false
+  persistent_from_one_item: false
+  one_skill_once: true
+  priority_from: PBR-v0
+  holding_back_from: planner_trace/3 blocked candidates' related Skills
+  longitudinal_window: evidence since the previous monthly blueprint's study day
+  distinct_day_count: false
+  distinct_day_owner: 18D
+  exclusions_added: [not_a_monthly_measurement, not_required_capability]
+  exclusions: [remediation_open, not_taught_yet, not_active_since_last_cycle, measured_in_another_role, not_a_weekly_measurement, not_a_monthly_measurement, not_required_capability]
+  remediation_skill_measured: false
+  new_learning_measured: false
+
+item_selection:
+  shared_with_weekly: true
+  scope_facet: monthly_capability
+  weekly_only_item_fills_monthly_slot: false
+  role_declared_required: true
+  max_items_per_slot: 5
+  bound_owner: 18E
+  trust_from: store_validation_record
+  gate_fails_closed: true
+  independence_mode: h0_required
+
+planning:
+  slot_need_is_existing_need: true
+  candidate_id: "monthly:<cycle>:<slot>"
+  generation_version: "monthly_blueprint/1:<cycle>"
+  own_queue: false
+  own_band: false
+  own_minutes: false
+  daily_budget_extended: false
+  week_and_month_same_need: alternatives_of_one_need
+  tasks_per_need: at_most_one
+
+session:
+  interior: one_assessment_interior
+  scope_shown: monthly_capability
+  blocks_in: MCA-v0 §7 selection order
+  tools_disclosed: intersection_of_items
+  overall_monthly_percentage_shown: false
+
+result:
+  source: MCA-v0 §27
+  statuses: [complete, partial, deferred, invalidated]
+  overall_score: false
+  readiness_verdict: false
+  domain_pass_fail: false
+  added_lists: [revalidated_critical_skills, revalidated_retention_skills, transfer_evidence_objectives, integrated_evidence_objectives]
+  revalidation_requires: clean_independent_verified_positive
+  clean_negative_revalidates: false
+  assisted_or_provisional_revalidates: false
+  state_changes_from: canonical_engines_only
+  monthly_evidence_weight: none_extra
+  contamination: forward_only
+  retroactive_contamination_owner: 13D
+
+reason_codes:
+  source: MCA-v0 §29
+  count: 21
+  codes: [assessment.monthly.due, assessment.monthly.blueprint_generated, assessment.monthly.slot_longitudinal_required, assessment.monthly.slot_persistent_weakness, assessment.monthly.slot_critical_revalidation, assessment.monthly.slot_delayed_retention, assessment.monthly.slot_cross_topic_transfer, assessment.monthly.slot_integrated_application, assessment.monthly.slot_parallel_english, assessment.monthly.slot_professional_checkpoint, assessment.monthly.no_eligible_target, assessment.monthly.no_valid_item, assessment.monthly.capacity_split, assessment.monthly.partial_session, assessment.monthly.incomplete_not_failure, assessment.monthly.no_exam_debt, assessment.monthly.prerequisite_contaminated, assessment.monthly.assistance_recheck_required, assessment.monthly.invalid_item_replaced, assessment.monthly.capability_evidence_recorded, assessment.monthly.replan_after_result]
+  added_to_planner_catalog: false
+  weekly_codes_written_for_monthly: false
+
+schema_migration:
+  from: 3
+  to: 4
+  owner: 13B
+  table: assessment_session
+  trigger: assessment_session_blueprint_format
+  rule: a weekly or monthly row carries a blueprint in its own scope's format
+  why_trigger: SQLite cannot alter a column CHECK; v3's CHECK covered weekly only
+  earlier_rows_touched: false
+  populated_fixture_tested: true
+
+codec:
+  formats: [weekly_blueprint/1, monthly_blueprint/1]
+  weekly_format_changed: false
+  monthly_head_adds: [prior_session]
+  head_fields_exact: true
+  other_scope_text_decodes_to: null
+  strict: true
+
+port_refinements: []
+port_count: 4
+
+authored_content:
+  blueprint_roles_type: SlotRole
+  monthly_role_ids_accepted: true
+  role_of_ineligible_scope: refused
+
+living_gates_narrowed:
+  - {check: E13A-00_exists, to: reads BlueprintCodec.kt, BlueprintAssessment.kt, BlueprintAssessmentSession.kt, AssessmentBlueprint.kt and BlueprintComposer.kt}
+  - {check: E13A-04_statuses_and_result, to: common BlueprintSessionStatus, common data classes and the composer's result, with codes bound to the weekly constants}
+  - {check: E13A-06_pool, to: onePerSkill in the composer called with the weekly selection order; BlueprintExclusion names}
+  - {check: E13A-06_exclusions_equal_contract, to: the five weekly exclusions still first and unchanged}
+  - {check: E13A-07_item_selection, to: the composer's scope-parametric slotFor, plus the weekly engine passing WEEKLY_BLUEPRINT}
+  - {check: E13A-08_planning, to: the composer's slotCandidates and BlueprintSlots, plus weekly cycle bound to WeeklyCycle.of}
+  - {check: E13A-09_composition, to: ComposeAssessmentBlueprint's scope-generic text, plus codes bound to the weekly constants}
+  - {check: E13A-11_schema_version_3, to: version 3 still 13A's and every later version owned by its contract}
+  - {check: E13A-11_codec_strict, to: the shared strict reader, plus the weekly codec calling it with its own format}
+  - {check: E13A-12_engine_core_only, to: core.model or the same module's composer}
+  - {check: E13A-13_item_fields, to: Set<SlotRole>}
+  - {check: E13A-14_one_interior, to: the view taking the blueprint's own scope}
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/MonthlyAssessmentFactsTest.kt, class: coach.model.MonthlyAssessmentFactsTest}
+  engine: {file: android/core-engines/src/test/kotlin/coach/engines/MonthlyBlueprintEngineTest.kt, class: coach.engines.MonthlyBlueprintEngineTest}
+  application: {file: android/core-application/src/test/kotlin/coach/application/MonthlyAssessmentTest.kt, class: coach.application.MonthlyAssessmentTest}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/MonthlyAssessmentSessionTest.kt, class: coach.presentation.MonthlyAssessmentSessionTest}
+  storage: {file: android/data-persistence/src/test/kotlin/coach/persistence/MonthlySessionStorageTest.kt, class: coach.persistence.MonthlySessionStorageTest}
+  content: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt, class: coach.curriculum.PackageFormatTest, filter: "a monthly role*"}
+
+mutation_results:
+  total: 48
+  detected: 48
+  only_monthly_suites_run: true
+  harness_verified_to_run_gradle: true
+  compile_failure_is_detection: false
+  negative_control: a mutant that changes only a comment must survive, proving the harness can report a survivor
+  negative_control_result: survived_as_expected
+  survived_first_run:
+    - id: M10
+      why: the model test's blocks paired two roles whose listing order and section 7 order agree, so blocks in listing order still passed
+  tests_strengthened:
+    - test: "a blueprint holds only its own scope's roles, and only a month names a prior session"
+      how: adds longitudinal and persistent slots, whose listing order (longitudinal first) and section 7 order (persistent first) disagree
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: M01, mutant: a_month_keeps_a_one_digit_number}
+    - {id: M02, mutant: monthly_selection_puts_critical_revalidation_before_persistent_concerns}
+    - {id: M03, mutant: delayed_retention_is_planned_as_assess_not_retain}
+    - {id: M04, mutant: critical_revalidation_feeds_no_longitudinal_list}
+    - {id: M05, mutant: a_section_29_code_is_missing_from_the_catalogue}
+    - {id: M06, mutant: monthly_evidence_is_said_with_the_weekly_code}
+    - {id: M07, mutant: a_blueprint_accepts_another_scope_s_roles}
+    - {id: M08, mutant: a_weekly_blueprint_may_name_a_prior_session}
+    - {id: M09, mutant: the_monthly_scope_knows_the_weekly_roles}
+    - {id: M10, mutant: monthly_blocks_follow_the_listing_order_not_section_7}
+    - {id: M11, mutant: the_monthly_codec_drops_the_prior_session}
+    - {id: M12, mutant: a_head_field_another_format_has_is_read_past}
+    - {id: M13, mutant: a_monthly_row_is_decoded_with_the_weekly_codec}
+    - {id: M14, mutant: a_critical_verification_is_a_persistent_concern}
+    - {id: M15, mutant: a_critical_skill_is_revalidated_just_for_being_critical}
+    - {id: M16, mutant: a_supporting_skill_is_sampled_as_required}
+    - {id: M17, mutant: the_longitudinal_window_is_ignored}
+    - {id: M18, mutant: a_critical_review_is_only_a_retention_sample}
+    - {id: M19, mutant: integration_is_not_a_monthly_measurement}
+    - {id: M20, mutant: any_parallel_track_is_english}
+    - {id: M21, mutant: new_learning_is_measured_before_teaching}
+    - {id: M22, mutant: a_skill_under_open_remediation_is_measured}
+    - {id: M23, mutant: one_skill_per_month_is_chosen_in_listing_order}
+    - {id: M24, mutant: a_diagnostic_is_a_monthly_measurement}
+    - {id: M25, mutant: the_indexed_read_uses_the_weekly_scope}
+    - {id: M26, mutant: fit_is_checked_for_the_weekly_scope}
+    - {id: M27, mutant: a_monthly_blueprint_is_said_with_weekly_codes}
+    - {id: M28, mutant: a_monthly_result_is_said_with_weekly_codes}
+    - {id: M29, mutant: a_monthly_replacement_is_said_with_a_weekly_code}
+    - {id: M30, mutant: a_monthly_slot_is_offered_under_a_weekly_id}
+    - {id: M31, mutant: a_monthly_slot_names_the_weekly_format}
+    - {id: M32, mutant: a_clean_negative_revalidates_a_critical_skill}
+    - {id: M33, mutant: assisted_retrieval_revalidates_retention}
+    - {id: M34, mutant: integration_lists_transfer_evidence}
+    - {id: M35, mutant: a_recomposition_forgets_the_prior_month}
+    - {id: M36, mutant: the_monthly_composer_is_not_told_the_prior_session}
+    - {id: M37, mutant: the_month_reads_the_weekly_pool}
+    - {id: M38, mutant: the_planner_is_offered_only_weekly_slots}
+    - {id: M39, mutant: the_month_reads_the_latest_weekly_row_as_its_own}
+    - {id: M40, mutant: a_monthly_row_is_stored_as_weekly}
+    - {id: M41, mutant: a_past_month_is_recomposed}
+    - {id: M42, mutant: the_store_accepts_a_monthly_row_without_its_own_blueprint}
+    - {id: M43, mutant: the_store_accepts_a_weekly_row_carrying_another_format}
+    - {id: M44, mutant: version_4_is_never_migrated_to}
+    - {id: M45, mutant: the_monthly_view_claims_the_weekly_scope}
+    - {id: M46, mutant: a_deferred_month_is_described_as_a_deferred_week}
+    - {id: M47, mutant: a_role_of_a_scope_the_item_cannot_use_is_accepted}
+    - {id: M48, mutant: monthly_roles_are_unknown_to_the_package}
+
+validator_mutation:
+  total: 28
+  detected: 28
+  negative_control: forbidden fragments (randomness, a percentage, a weight, a transfer producer, a score field, weekly codes) inside a Kotlin comment must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 622
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app composes a month or calls the planner yet (16D), and no authored item declares monthly roles (15)
+
+open_loops:
+  transfer_and_checkpoint_producers: {owner: 15, why: no transfer-opportunity or professional-evidence metadata exists}
+  monthly_cycle_setting: {owner: 16D}
+  distinct_day_longitudinal_evidence: {owner: 18D}
+  retention_needs: {owner: 13C}
+  retroactive_contamination: {owner: 13D}
+  diagnostic_waiver_and_s06: {owner: 13F}
+  monthly_summary_microcopy: {owner: 14}
+  calling_composition_from_the_app: {owner: 16D}
+
+forbidden_monthly_patterns:
+  - monthly_label_adds_weight
+  - overall_monthly_score_or_pass_mark
+  - readiness_or_domain_verdict
+  - cumulative_everything_exam
+  - fixed_question_count_duration_or_role_percentage
+  - critical_tested_for_being_critical
+  - persistent_concern_from_one_item
+  - checkpoint_as_readiness_gate
+  - skill_measured_under_several_roles
+  - weekly_only_item_in_monthly_slot
+  - monthly_queue_band_or_budget
+  - missed_month_as_debt
+  - earlier_month_slots_offered
+  - negative_or_assisted_called_revalidation
+  - second_assessment_architecture
+  - weekly_value_changed_for_monthly
+  - stored_blueprint_edited

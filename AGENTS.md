@@ -85,11 +85,12 @@ Hiçbir numaralı adım PRE olmadan başlamaz ve POST olmadan tamamlanmış say�
 - **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 - 13A: ✅ `WBAX-v0 / D-098` tamamlandı — bir hafta bir kimliktir, kota ya da son tarih değil: haftanın ölçümü öğe seçilmeden önce durumdan kurulur, her Skill tek kez ve `WBA-v0` §9 sırasıyla ölçülür, rol aileleri kota değildir; bir slot yalnız mağazanın güvendiği, kapının izin verdiği ve öğrencinin henüz görmediği bir item ile dolar — görülmüş item, çözümü gösterilmiş varyant ailesi, yakın varyant ya da paylaşılan testlet taze ölçüm değildir ve beyan edilmemiş süre uydurulmaz. Slotlar planner'a, zaten açtığı ihtiyaçların adayları olarak gider: haftanın kendi kuyruğu, bandı ya da dakikası yoktur. Döngü kaydedilmiş çalışma gününün ISO haftasıdır (kullanıcı onayladı); hafta bir kez kurulur, ölçülecek bir şey yoksa hiçbir şey yazılmaz ve kaçırılan hafta borç bırakmaz. Sonuçta puan yoktur, boş bırakmak yanlış değildir, bu oturumda eksik görünen ön koşula dayanan iş `contaminated` yazılır. `assessment_session` şema v3 ile blueprint'ini taşır (dolu fixture'a karşı). Mutation 42/42, 210/210 QA PASS. T6 çalıştırılmadı.
 - `D-099`: AŞAMA 13'ün sonuna `13F — Tanısal atlama (VDW-v0)` eklendi (kullanıcı kararı; yeniden numaralama yok).
-- **Aktif adım: 13B — Aylık sınav.**
-- **13B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
-- AŞAMA 13C–13F ve 14–20 bekliyor.
+- 13B: ✅ `MCAX-v0 / D-100` tamamlandı — bir ay daha geniş bir penceredir, daha ağır bir sınav değil: aylık ölçüm de öğe seçilmeden önce durumdan kurulur, her Skill tek kez ve `MCA-v0` §7 sırasıyla ölçülür, roller kota ya da yüzde değildir; kritik bir Skill yalnız bir nedenle (açık doğrulama ya da çelişki, vadesi gelmiş tekrar, bağımlı işi bekletmesi) yeniden doğrulanır, kritik olduğu için değil. 13A'nın haftalık kontratı tek ortak kontrata genelleştirildi ve hiçbir haftalık değer değişmedi: aylık etiket kanıta ağırlık eklemez, slotlar planner'ın zaten açtığı ihtiyaçların alternatifleri olarak gider ve ihtiyaç başına en çok bir görev seçilir. Döngü kaydedilmiş çalışma gününün takvim ayıdır; ay bir kez kurulur, önceki aylık oturumu adlandırır ama borç saymaz. Sonucun boylamsal listeleri yalnız kendi rolünün temiz bağımsız kanıtını taşır; temiz negatif hiçbir şeyi yeniden doğrulamaz. Transfer ve profesyonel kontrol noktasının üreticisi uydurulmadı (15). Şema v4 bir haftalık ya da aylık satırın kendi biçiminde blueprint taşımasını trigger ile zorlar (dolu v3 fixture'a karşı). Mutation 48/48, 259/259 QA PASS. T6 çalıştırılmadı.
+- **Aktif adım: 13C — Spaced repetition.**
+- **13C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+- AŞAMA 13D–13F ve 14–20 bekliyor.
 
-**13B'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 13B için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
+**13C'yi bu dosyayı okuyarak doğrudan başlatma.** Önce takeover/current-state okumasını tamamla, sonra 13C için ayrıca fresh PRE-STEP refresh yap ve kullanıcı açık onayını doğrula.
 
 ## Ana ürün ilkesi
 

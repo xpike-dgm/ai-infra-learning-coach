@@ -39,7 +39,9 @@ import coach.model.TaskCandidate
 import coach.model.UseCeiling
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
-import coach.model.WeeklyBlueprintCodec
+import coach.model.MonthlyBlueprintCodec
+import coach.model.MonthlyReasonCodes
+import coach.model.MonthlyRole
 import coach.model.WeeklyReasonCodes
 import coach.ports.ClockPort
 import coach.ports.ContentDocument
@@ -55,10 +57,11 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * The weekly assessment's use cases (13A) against a store that keeps what it is given, so each test sees
- * the sessions earlier calls really appended.
+ * The monthly assessment's use cases (13B) against a store that keeps what it is given, so each test sees
+ * the sessions earlier calls really appended. The month shares the week's use case; these tests pin what
+ * the scope changes — cycle, pool, format, prior session — and that nothing else is different.
  */
-class WeeklyAssessmentTest {
+class MonthlyAssessmentTest {
 
     private val verify = VersionedRef("skill.c.pointer_dereference", 1)
     private val review = VersionedRef("skill.linux.filesystem_navigation", 1)
@@ -152,9 +155,9 @@ class WeeklyAssessmentTest {
             evaluatorRequirement = EvaluatorRequirement(EvaluatorStatusRequirement.VERIFIED, false, "eval/1"),
             allowedTools = AllowedToolsPolicy(listOf("compiler")), independenceMode = IndependenceMode.H0_REQUIRED,
             difficultyClass = "standard_application", lifecycleStatus = claims, contentOrigin = ContentOrigin.HUMAN_AUTHORED,
-            declaredUseCeiling = UseCeiling.STANDARD_MASTERY_ELIGIBLE, scopeEligibility = setOf(AssessmentScope.WEEKLY_BLUEPRINT),
+            declaredUseCeiling = UseCeiling.STANDARD_MASTERY_ELIGIBLE, scopeEligibility = setOf(AssessmentScope.WEEKLY_BLUEPRINT, AssessmentScope.MONTHLY_CAPABILITY),
             variantFamilyId = "fam.$name", deterministicVerification = true, expectedActiveMinutes = 12,
-            blueprintRoles = BlueprintRole.entries.toSet(),
+            blueprintRoles = BlueprintRole.entries.toSet() + MonthlyRole.entries,
         )
     }
 
@@ -166,129 +169,127 @@ class WeeklyAssessmentTest {
         return Triple(store, Content(items), Clock(day))
     }
 
-    @Test
-    fun `a week is composed once, and asking again writes nothing`() {
-        val (store, content, clock) = world()
-        val use = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock)
-        val first = assertIs<ComposeAssessmentBlueprint.Composed.Written>(use.compose(evaluatorAvailable = false))
-        assertEquals("2026-W40", first.blueprint.cycleId)
-        assertEquals(2, first.blueprint.readySlots.size)
-        val stored = store.appended("assessment_session").single().record.payload
-        assertEquals("weekly", stored["scope"])
-        assertEquals(first.blueprint, WeeklyBlueprintCodec.decode(stored.getValue("blueprint")))
+    private fun monthly(store: Store, content: Content, clock: Clock) =
+        ComposeAssessmentBlueprint(AssessmentScope.MONTHLY_CAPABILITY, store, content, clock)
 
-        clock.day = "2026-10-04" // Sunday: still the same ISO week
+    private fun weekly(store: Store, content: Content, clock: Clock) =
+        ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock)
+
+    @Test
+    fun `a month is composed once, stored in its own format, and asking again writes nothing`() {
+        val (store, content, clock) = world()
+        val use = monthly(store, content, clock)
+        val first = assertIs<ComposeAssessmentBlueprint.Composed.Written>(use.compose(evaluatorAvailable = false))
+        assertEquals("2026-10", first.blueprint.cycleId)
+        assertEquals(AssessmentScope.MONTHLY_CAPABILITY, first.blueprint.scope)
+        assertEquals(listOf(MonthlyRole.PERSISTENT_WEAKNESS_OR_VERIFICATION, MonthlyRole.DELAYED_RETENTION_SAMPLING),
+            first.blueprint.readySlots.map { it.role })
+        assertNull(first.blueprint.priorSessionId)
+        val stored = store.appended("assessment_session").single().record.payload
+        assertEquals("monthly", stored["scope"])
+        assertEquals(first.blueprint, MonthlyBlueprintCodec.decode(stored.getValue("blueprint")))
+
+        clock.day = "2026-10-31"
         val again = assertIs<ComposeAssessmentBlueprint.Composed.AlreadyComposed>(use.compose(evaluatorAvailable = false))
         assertEquals(first.sessionId, again.sessionId)
         assertEquals(1, store.appended("assessment_session").size)
     }
 
     @Test
-    fun `a new week composes fresh from current state and carries nothing over`() {
+    fun `a new month composes fresh, names the prior session and carries no debt`() {
         val (store, content, clock) = world()
-        val use = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock)
-        use.compose(evaluatorAvailable = false)
-        clock.day = "2026-10-19" // two weeks later; the week in between simply never happened
+        val use = monthly(store, content, clock)
+        val first = assertIs<ComposeAssessmentBlueprint.Composed.Written>(use.compose(evaluatorAvailable = false))
+        clock.day = "2026-12-03" // November simply never happened
         val next = assertIs<ComposeAssessmentBlueprint.Composed.Written>(use.compose(evaluatorAvailable = false))
-        assertEquals("2026-W43", next.blueprint.cycleId)
-        assertTrue(WeeklyReasonCodes.NO_EXAM_DEBT in next.blueprint.reasonCodes)
+        assertEquals("2026-12", next.blueprint.cycleId)
+        assertEquals(first.sessionId, next.blueprint.priorSessionId)
         assertEquals("2026-10-01", next.blueprint.recentSince)
+        assertTrue(MonthlyReasonCodes.NO_EXAM_DEBT in next.blueprint.reasonCodes)
+        assertTrue(next.blueprint.reasonCodes.none { it.startsWith("assessment.weekly.") })
         assertEquals(2, store.appended("assessment_session").size)
     }
 
     @Test
-    fun `nothing worth measuring writes nothing, and nothing published composes nothing`() {
-        val store = Store().apply { publish(basics, MasteryAxisState.CONFIRMED_CURRENT, retention = "stable") }
-        val result = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(emptyList()), Clock("2026-10-01")).compose(evaluatorAvailable = false)
-        assertTrue(WeeklyReasonCodes.NO_ELIGIBLE_TARGET in assertIs<ComposeAssessmentBlueprint.Composed.NothingToMeasure>(result).blueprint.reasonCodes)
-        assertTrue(store.rows.isEmpty())
-        store.published = null
-        assertIs<ComposeAssessmentBlueprint.Composed.NothingPublished>(
-            ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(emptyList()), Clock("2026-10-01")).compose(evaluatorAvailable = false))
+    fun `the week and the month are composed independently and read back by their own scope`() {
+        val (store, content, clock) = world()
+        val week = assertIs<ComposeAssessmentBlueprint.Composed.Written>(weekly(store, content, clock).compose(false))
+        val month = assertIs<ComposeAssessmentBlueprint.Composed.Written>(monthly(store, content, clock).compose(false))
+        assertEquals(2, store.appended("assessment_session").size)
+        assertIs<ComposeAssessmentBlueprint.Composed.AlreadyComposed>(weekly(store, content, clock).compose(false))
+        assertIs<ComposeAssessmentBlueprint.Composed.AlreadyComposed>(monthly(store, content, clock).compose(false))
+        assertEquals(week.sessionId, store.latestAssessmentSession(AssessmentScope.WEEKLY_BLUEPRINT)!!.id)
+        assertEquals(month.sessionId, store.latestAssessmentSession(AssessmentScope.MONTHLY_CAPABILITY)!!.id)
+        // The same items may serve both: a monthly label adds no evidence weight, so nothing is reserved.
+        assertEquals(week.blueprint.readySlots.map { it.item }, month.blueprint.readySlots.map { it.item })
     }
 
     @Test
-    fun `trust is the store's validation record, not what the item claims`() {
-        val store = Store()
-        store.publish(verify, MasteryAxisState.CONFIRMATION_VERIFICATION_DUE)
-        // The document claims trusted; the store only ever validated it as a candidate.
-        val item = store.item("claims", verify, storeTrust = LifecycleStatus.CANDIDATE, claims = LifecycleStatus.TRUSTED)
-        val result = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(listOf(item)), Clock("2026-10-01")).compose(evaluatorAvailable = false)
-        val slot = assertIs<ComposeAssessmentBlueprint.Composed.NothingToMeasure>(result).blueprint.slots.single()
-        assertTrue("not_usable_for_intent" in slot.rejections.single().reasons)
-        // An item the store never published is not an item at all.
-        val unpublished = item.copy(ref = VersionedRef("item.test.ghost", 1))
-        val ghost = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(listOf(unpublished)), Clock("2026-10-01")).compose(evaluatorAvailable = false)
-        assertTrue(assertIs<ComposeAssessmentBlueprint.Composed.NothingToMeasure>(ghost).blueprint.slots.single().rejections.isEmpty())
-    }
-
-    @Test
-    fun `an unreadable stored blueprint is not guessed around`() {
+    fun `a stored blueprint of the other scope is never read as this one`() {
         val (store, content, clock) = world()
         store.inTransaction {
-            store.appendTruth(TruthRecord("assessment_session", clock.now(), mapOf("scope" to "weekly", "blueprint" to "weekly_blueprint/9")))
+            store.appendTruth(TruthRecord("assessment_session", clock.now(), mapOf("scope" to "monthly", "blueprint" to "weekly_blueprint/1")))
         }
-        assertIs<ComposeAssessmentBlueprint.Composed.Refused>(ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock).compose(false))
+        assertIs<ComposeAssessmentBlueprint.Composed.Refused>(monthly(store, content, clock).compose(false))
         assertEquals(1, store.appended("assessment_session").size)
     }
 
     @Test
-    fun `the planner is offered this week's unserved slots for needs it already opened`() {
+    fun `an item only weekly can use never fills a monthly slot`() {
+        val store = Store()
+        store.publish(verify, MasteryAxisState.CONFIRMATION_VERIFICATION_DUE)
+        val weeklyOnly = store.item("weekly_only", verify).copy(scopeEligibility = setOf(AssessmentScope.WEEKLY_BLUEPRINT))
+        val result = monthly(store, Content(listOf(weeklyOnly)), Clock("2026-10-01")).compose(false)
+        val nothing = assertIs<ComposeAssessmentBlueprint.Composed.NothingToMeasure>(result)
+        assertTrue(MonthlyReasonCodes.NO_VALID_ITEM in nothing.blueprint.reasonCodes)
+        assertTrue(store.rows.isEmpty())
+    }
+
+    @Test
+    fun `week and month slots for one need are alternatives, and the planner takes at most one`() {
         val (store, content, clock) = world()
-        ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock).compose(evaluatorAvailable = false)
+        weekly(store, content, clock).compose(false)
+        monthly(store, content, clock).compose(false)
+        val needs = PlannerEngineNeeds.of(store)
+        val offered = BlueprintSlots.candidates(store, clock.now().studyDay, needs)
+        assertEquals(listOf("weekly:2026-W40:slot-1", "weekly:2026-W40:slot-2", "monthly:2026-10:slot-1", "monthly:2026-10:slot-2"),
+            offered.map { it.id })
+        assertEquals(2, offered.map { it.needKey }.toSet().size)
         val plan = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, content, clock)
             .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90)))
-        assertEquals(listOf("weekly:2026-W40:slot-1", "weekly:2026-W40:slot-2"), plan.trace.selected.map { it.candidateId })
-        assertEquals(listOf(WeeklyBlueprintEngine.ACTIVITY), plan.trace.selected.map { it.activityKind }.distinct())
+        assertEquals(2, plan.trace.selected.size)
+        assertEquals(plan.trace.selected.map { it.needKey }.toSet().size, plan.trace.selected.size)
+        // Next month offers nothing from this one.
+        assertTrue(BlueprintSlots.candidates(store, "2026-11-02", needs).none { it.id.startsWith("monthly:") })
     }
 
     @Test
-    fun `a served slot and last week's slots are not offered again`() {
+    fun `a month recomposes only itself, never a past month`() {
         val (store, content, clock) = world()
-        ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock).compose(evaluatorAvailable = false)
-        store.inTransaction {
-            store.appendTruth(TruthRecord("exposure_record", clock.now(), mapOf("resource_logical_id" to "item.test.verify",
-                "resource_version" to "1", "variant_family_id" to "fam.verify", "exposure_kind" to ExposureFact.ITEM_VERSION_SEEN)))
-        }
-        val needs = PlannerEngineNeeds.of(store)
-        assertEquals(listOf("weekly:2026-W40:slot-2"), BlueprintSlots.candidates(store, clock.now().studyDay, needs).map { it.id })
-        assertTrue(BlueprintSlots.candidates(store, "2026-10-12", needs).isEmpty())
-    }
-
-    @Test
-    fun `recomposition appends a new row that names the one it supersedes`() {
-        val (store, content, clock) = world()
-        val first = assertIs<ComposeAssessmentBlueprint.Composed.Written>(ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, content, clock).compose(false))
+        val first = assertIs<ComposeAssessmentBlueprint.Composed.Written>(monthly(store, content, clock).compose(false))
         val alternative = store.item("verify_alt", verify)
-        val use = ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(content.items + alternative), clock)
+        val use = monthly(store, Content(content.items + alternative), clock)
         val recomposed = assertIs<ComposeAssessmentBlueprint.Composed.Written>(use.recompose(setOf("slot-1"), evaluatorAvailable = false))
         assertEquals(first.sessionId, recomposed.blueprint.supersedesSessionId)
+        assertEquals(AssessmentScope.MONTHLY_CAPABILITY, recomposed.blueprint.scope)
         assertEquals(alternative.ref, recomposed.blueprint.slots.single { it.slotId == "slot-1" }.item)
-        assertEquals(2, store.appended("assessment_session").size)
-        assertIs<ComposeAssessmentBlueprint.Composed.Refused>(use.recompose(setOf("slot-9"), evaluatorAvailable = false))
-        clock.day = "2026-10-12"
+        assertTrue(MonthlyReasonCodes.INVALID_ITEM_REPLACED in recomposed.blueprint.slots.single { it.slotId == "slot-1" }.reasonCodes)
+        assertEquals("monthly", store.appended("assessment_session").last().record.payload["scope"])
+        clock.day = "2026-11-01"
         assertIs<ComposeAssessmentBlueprint.Composed.Refused>(use.recompose(setOf("slot-1"), evaluatorAvailable = false))
+        // A weekly use case never recomposes the month.
+        assertIs<ComposeAssessmentBlueprint.Composed.Refused>(
+            weekly(store, content, Clock("2026-10-01")).recompose(setOf("slot-1"), evaluatorAvailable = false))
     }
 
     @Test
-    fun `an attempt made in a weekly session names the session`() {
-        val (store, _, clock) = world()
-        val recorded = SubmitAttempt(store, clock).submit(AttemptSubmission(VersionedRef("item.test.verify", 1), "data:,x",
-            ProvenanceOrigin.USER_AUTHORED, assessmentSessionId = 42))
-        assertEquals("42", store.readTruth("attempt", recorded.attemptId)!!.payload["assessment_session_id"])
-        val plain = SubmitAttempt(store, clock).submit(AttemptSubmission(VersionedRef("item.test.verify", 1), "data:,x", ProvenanceOrigin.USER_AUTHORED))
-        assertNull(store.readTruth("attempt", plain.attemptId)!!.payload["assessment_session_id"])
-    }
-
-    @Test
-    fun `work resting on a prerequisite this session just showed missing is recorded as contaminated`() {
+    fun `monthly slot evidence is recorded exactly like any other, contamination included`() {
         val store = Store()
         store.publish(basics, MasteryAxisState.CONFIRMATION_VERIFICATION_DUE)
         store.publish(verify, MasteryAxisState.CONFIRMATION_VERIFICATION_DUE)
         val clock = Clock("2026-10-01")
         val items = listOf(store.item("basics", basics), store.item("verify", verify, required = listOf(basics)))
-        val blueprint = assertIs<ComposeAssessmentBlueprint.Composed.Written>(
-            ComposeAssessmentBlueprint(AssessmentScope.WEEKLY_BLUEPRINT, store, Content(items), clock).compose(false)).blueprint
+        val blueprint = assertIs<ComposeAssessmentBlueprint.Composed.Written>(monthly(store, Content(items), clock).compose(false)).blueprint
         val root = blueprint.slots.single { it.targetSkill == basics }
         val down = blueprint.slots.single { it.targetSkill == verify }
         val evaluation = EvaluationResult.Verified(listOf(ComponentResult(down.targetObjectives.single(), OutcomeSignal.MET)),
@@ -296,10 +297,10 @@ class WeeklyAssessmentTest {
         val sessionSoFar = listOf(BlueprintSlotOutcome(root.slotId, true, 1, listOf(BlueprintEvidenceFact(1, root.targetObjectives.single(),
             EvidenceOutcome.NEGATIVE, EvaluatorStatus.VERIFIED, IndependenceClass.INDEPENDENT, false))))
         val written = RecordSlotEvidence(store, clock).record(blueprint, down.slotId, 7, evaluation, IndependenceClass.INDEPENDENT, sessionSoFar)
-        assertEquals(PrerequisiteSnapshot.CONTAMINATED,
-            store.readTruth("evidence_event", written.evidenceIds.single())!!.payload["prerequisite_snapshot"])
-        val clean = RecordSlotEvidence(store, clock).record(blueprint, down.slotId, 8, evaluation, IndependenceClass.INDEPENDENT, emptyList())
-        assertNull(store.readTruth("evidence_event", clean.evidenceIds.single())!!.payload["prerequisite_snapshot"])
+        val row = store.readTruth("evidence_event", written.evidenceIds.single())!!.payload
+        assertEquals(PrerequisiteSnapshot.CONTAMINATED, row["prerequisite_snapshot"])
+        // Nothing in the evidence row says monthly: the scope adds no weight (`MCA-v0` §2).
+        assertTrue(row.values.none { "monthly" in it })
     }
 
     /** The needs the planner opens from the store's state, read the same way `BuildDailyPlan` reads them. */

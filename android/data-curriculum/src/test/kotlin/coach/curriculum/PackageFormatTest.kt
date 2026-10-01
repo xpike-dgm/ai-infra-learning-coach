@@ -2,6 +2,8 @@ package coach.curriculum
 
 import coach.model.AssessmentScope
 import coach.model.BlueprintRole
+import coach.model.MonthlyRole
+import coach.model.SlotRole
 import coach.model.ContentOrigin
 import coach.model.IndependenceMode
 import coach.model.LifecycleStatus
@@ -168,6 +170,20 @@ class PackageFormatTest {
             val text = authored.replace("forbidden_not_yet_concepts=", "forbidden_not_yet_concepts=\n$bad")
             assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(text) }
         }
+    }
+
+    @Test
+    fun `a monthly role is declared on an item the monthly scope can use, never on one it cannot`() {
+        val both = authored.replace("forbidden_not_yet_concepts=",
+            "forbidden_not_yet_concepts=\nexpected_active_minutes=30\nblueprint_roles=retention_due,delayed_retention_sampling")
+            .replace("scope_eligibility=daily_micro", "scope_eligibility=weekly_blueprint,monthly_capability")
+        val item = assertNotNull(PackageFormat.parse(both).items[itemRef])
+        assertEquals(setOf<SlotRole>(BlueprintRole.RETENTION_DUE, MonthlyRole.DELAYED_RETENTION_SAMPLING), item.blueprintRoles)
+
+        // A role of a scope the item is not eligible for is a contradiction in the package, refused.
+        val weeklyOnly = both.replace("scope_eligibility=weekly_blueprint,monthly_capability", "scope_eligibility=weekly_blueprint")
+        val failure = assertFailsWith<PackageFormat.ParseFailure> { PackageFormat.parse(weeklyOnly) }
+        assertTrue(failure.reasons.any { "needs scope 'monthly_capability'" in it }, failure.reasons.toString())
     }
 
     @Test

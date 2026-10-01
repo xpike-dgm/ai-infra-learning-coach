@@ -95,7 +95,7 @@ class BuildDailyPlan(
         }
         val needs = ReplanEngine.unservedNeeds(paused.needs, kept)
         // This week's assessment slots serve needs already open here (13A); they add no queue of their own.
-        val candidates = needs.flatMap { content.taskCandidates(it) } + WeeklySlots.candidates(persistence, now.studyDay, needs)
+        val candidates = needs.flatMap { content.taskCandidates(it) } + BlueprintSlots.candidates(persistence, now.studyDay, needs)
 
         // The prerequisite gate is asked about every candidate before priority is computed at all.
         val gate = ResolvePrerequisites(persistence)

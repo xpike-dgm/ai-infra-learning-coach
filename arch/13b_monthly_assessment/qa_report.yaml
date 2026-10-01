@@ -1,0 +1,866 @@
+model: MCAX-v0
+stage_step: 13B
+decision: D-100
+result: PASS
+checks_total: 259
+checks_passed: 259
+checks_failed: 0
+checks:
+- check: E13B-00_exists_monthly_assessment.yaml
+  result: PASS
+  details: missing arch/13b_monthly_assessment/monthly_assessment.yaml
+- check: E13B-00_exists_MONTHLY_ASSESSMENT_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md
+- check: E13B-00_exists_13b_monthly_assessment_research.md
+  result: PASS
+  details: missing research/13b_monthly_assessment_research.md
+- check: E13B-00_exists_MonthlyAssessmentFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/MonthlyAssessmentFacts.kt
+- check: E13B-00_exists_AssessmentBlueprint.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/AssessmentBlueprint.kt
+- check: E13B-00_exists_BlueprintCodec.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/BlueprintCodec.kt
+- check: E13B-00_exists_MonthlyBlueprintEngine.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/MonthlyBlueprintEngine.kt
+- check: E13B-00_exists_BlueprintComposer.kt
+  result: PASS
+  details: missing android/core-engines/src/main/kotlin/coach/engines/BlueprintComposer.kt
+- check: E13B-00_exists_BlueprintAssessment.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/BlueprintAssessment.kt
+- check: E13B-00_exists_BlueprintAssessmentSession.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/BlueprintAssessmentSession.kt
+- check: E13B-00_moved_WeeklyBlueprintCodec.kt
+  result: PASS
+  details: android/core-model/src/main/kotlin/coach/WeeklyBlueprintCodec.kt still
+    exists beside its generic replacement
+- check: E13B-00_moved_WeeklyAssessment.kt
+  result: PASS
+  details: android/core-application/src/main/kotlin/coach/application/WeeklyAssessment.kt
+    still exists beside its generic replacement
+- check: E13B-00_moved_WeeklyAssessmentSession.kt
+  result: PASS
+  details: android/core-presentation/src/main/kotlin/coach/presentation/WeeklyAssessmentSession.kt
+    still exists beside its generic replacement
+- check: E13B-01_model
+  result: PASS
+  details: MCAX-v0
+- check: E13B-01_status
+  result: PASS
+  details: accepted_13b
+- check: E13B-01_decision
+  result: PASS
+  details: D-100
+- check: E13B-01_semantics
+  result: PASS
+  details: semantics
+- check: E13B-01_scope_common_contract_generalised
+  result: PASS
+  details: common_contract_generalised=True
+- check: E13B-01_scope_weekly_values_changed
+  result: PASS
+  details: weekly_values_changed=False
+- check: E13B-01_scope_weekly_tests_still_pass
+  result: PASS
+  details: weekly_tests_still_pass=True
+- check: E13B-01_scope_blueprint_composed_from_state
+  result: PASS
+  details: blueprint_composed_from_state=True
+- check: E13B-01_scope_items_chosen_after_slots
+  result: PASS
+  details: items_chosen_after_slots=True
+- check: E13B-01_scope_slots_offered_to_planner
+  result: PASS
+  details: slots_offered_to_planner=True
+- check: E13B-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=True
+- check: E13B-01_scope_migration_added
+  result: PASS
+  details: migration_added=True
+- check: E13B-01_scope_interfaces_added
+  result: PASS
+  details: interfaces_added=False
+- check: E13B-01_scope_boundaries_changed
+  result: PASS
+  details: boundaries_changed=False
+- check: E13B-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E13B-01_scope_gate_rule_changed
+  result: PASS
+  details: gate_rule_changed=False
+- check: E13B-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E13B-01_scope_transfer_producer_invented
+  result: PASS
+  details: transfer_producer_invented=False
+- check: E13B-01_scope_professional_checkpoint_producer_invented
+  result: PASS
+  details: professional_checkpoint_producer_invented=False
+- check: E13B-01_scope_diagnostic_waiver_implemented
+  result: PASS
+  details: diagnostic_waiver_implemented=False
+- check: E13B-01_scope_app_calls_composition
+  result: PASS
+  details: app_calls_composition=False
+- check: E13B-01_mca_one_architecture
+  result: PASS
+  details: MCA-v0 §2/§4 moved
+- check: E13B-02_roles_from_mca
+  result: PASS
+  details: mca=['longitudinal_required_capability', 'persistent_weakness_or_verification',
+    'critical_capability_revalidation', 'delayed_retention_sampling', 'cross_topic_transfer',
+    'integrated_application', 'parallel_technical_english', 'professional_evidence_checkpoint']
+- check: E13B-02_roles_equal_mca_in_order
+  result: PASS
+  details: kotlin=['longitudinal_required_capability', 'persistent_weakness_or_verification',
+    'critical_capability_revalidation', 'delayed_retention_sampling', 'cross_topic_transfer',
+    'integrated_application', 'parallel_technical_english', 'professional_evidence_checkpoint']
+- check: E13B-02_roles_equal_contract
+  result: PASS
+  details: contract order
+- check: E13B-02_roles_not_quota
+  result: PASS
+  details: roles are quotas
+- check: E13B-02_selection_order
+  result: PASS
+  details: selection=['PERSISTENT_WEAKNESS_OR_VERIFICATION', 'CRITICAL_CAPABILITY_REVALIDATION',
+    'LONGITUDINAL_REQUIRED_CAPABILITY', 'DELAYED_RETENTION_SAMPLING', 'CROSS_TOPIC_TRANSFER',
+    'INTEGRATED_APPLICATION', 'PARALLEL_TECHNICAL_ENGLISH', 'PROFESSIONAL_EVIDENCE_CHECKPOINT']
+- check: E13B-02_selection_starts_with_integrity
+  result: PASS
+  details: §7 does not start with integrity/verification
+- check: E13B-02_no_percentage_split
+  result: PASS
+  details: a percentage or weight in monthly code
+- check: E13B-02_role_rows_complete
+  result: PASS
+  details: rows=8
+- check: E13B-02_intents
+  result: PASS
+  details: '{''longitudinal_required_capability'': ''MASTERY_EVIDENCE'', ''persistent_weakness_or_verification'':
+    ''VERIFICATION'', ''critical_capability_revalidation'': ''VERIFICATION'', ''delayed_retention_sampling'':
+    ''VERIFICATION'', ''cross_topic_transfer'': ''MASTERY_EVIDENCE'', ''integrated_application'':
+    ''INTEGRATION_CHECK'', ''parallel_technical_english'': ''MASTERY_EVIDENCE'', ''professional_evidence_checkpoint'':
+    ''INTEGRATION_CHECK''}'
+- check: E13B-02_purposes
+  result: PASS
+  details: '{''longitudinal_required_capability'': ''ASSESS'', ''persistent_weakness_or_verification'':
+    ''ASSESS'', ''critical_capability_revalidation'': ''ASSESS'', ''delayed_retention_sampling'':
+    ''RETAIN'', ''cross_topic_transfer'': ''ASSESS'', ''integrated_application'':
+    ''ASSESS'', ''parallel_technical_english'': ''ASSESS'', ''professional_evidence_checkpoint'':
+    ''ASSESS''}'
+- check: E13B-02_retention_stays_retain
+  result: PASS
+  details: retention planned as assess
+- check: E13B-02_evidence_kinds
+  result: PASS
+  details: '{''critical_capability_revalidation'': ''critical_revalidation'', ''delayed_retention_sampling'':
+    ''retention_revalidation'', ''cross_topic_transfer'': ''transfer'', ''integrated_application'':
+    ''integration'', ''professional_evidence_checkpoint'': ''integration''}'
+- check: E13B-02_weekly_feeds_no_list
+  result: PASS
+  details: weekly roles feed longitudinal lists
+- check: E13B-02_no_role_id_collision
+  result: PASS
+  details: a role id means two things
+- check: E13B-02_checkpoint_not_gate
+  result: PASS
+  details: checkpoint is a gate
+- check: E13B-03_codes_from_mca
+  result: PASS
+  details: mca=21
+- check: E13B-03_catalog_equals_mca_in_order
+  result: PASS
+  details: kotlin=['assessment.monthly.due', 'assessment.monthly.blueprint_generated',
+    'assessment.monthly.slot_longitudinal_required', 'assessment.monthly.slot_persistent_weakness',
+    'assessment.monthly.slot_critical_revalidation', 'assessment.monthly.slot_delayed_retention',
+    'assessment.monthly.slot_cross_topic_transfer', 'assessment.monthly.slot_integrated_application',
+    'assessment.monthly.slot_parallel_english', 'assessment.monthly.slot_professional_checkpoint',
+    'assessment.monthly.no_eligible_target', 'assessment.monthly.no_valid_item', 'assessment.monthly.capacity_split',
+    'assessment.monthly.partial_session', 'assessment.monthly.incomplete_not_failure',
+    'assessment.monthly.no_exam_debt', 'assessment.monthly.prerequisite_contaminated',
+    'assessment.monthly.assistance_recheck_required', 'assessment.monthly.invalid_item_replaced',
+    'assessment.monthly.capability_evidence_recorded', 'assessment.monthly.replan_after_result']
+- check: E13B-03_catalog_equals_contract
+  result: PASS
+  details: contract codes
+- check: E13B-03_role_codes_in_catalog
+  result: PASS
+  details: '[''assessment.monthly.slot_longitudinal_required'', ''assessment.monthly.slot_persistent_weakness'',
+    ''assessment.monthly.slot_critical_revalidation'', ''assessment.monthly.slot_delayed_retention'',
+    ''assessment.monthly.slot_cross_topic_transfer'', ''assessment.monthly.slot_integrated_application'',
+    ''assessment.monthly.slot_parallel_english'', ''assessment.monthly.slot_professional_checkpoint'',
+    ''assessment.monthly.slot_longitudinal_required'', ''assessment.monthly.slot_persistent_weakness'',
+    ''assessment.monthly.slot_critical_revalidation'', ''assessment.monthly.slot_delayed_retention'',
+    ''assessment.monthly.slot_cross_topic_transfer'', ''assessment.monthly.slot_integrated_application'',
+    ''assessment.monthly.slot_parallel_english'', ''assessment.monthly.slot_professional_checkpoint'']'
+- check: E13B-03_not_in_planner_catalog
+  result: PASS
+  details: monthly codes leaked into the closed planner catalogue
+- check: E13B-03_every_scope_code_overridden
+  result: PASS
+  details: overrides=['assistanceRecheckRequired', 'blueprintGenerated', 'catalog',
+    'due', 'evidenceRecorded', 'incompleteNotFailure', 'invalidItemReplaced', 'noEligibleTarget',
+    'noExamDebt', 'noValidItem', 'partialSession', 'prerequisiteContaminated', 'replanAfterResult']
+- check: E13B-03_overrides_are_monthly
+  result: PASS
+  details: '{}'
+- check: E13B-03_composer_writes_no_weekly_code
+  result: PASS
+  details: the shared composer names a scope's codes directly
+- check: E13B-03_scope_codes_bound
+  result: PASS
+  details: scope codes not bound
+- check: E13B-04_blueprint_has_scope
+  result: PASS
+  details: the blueprint does not know its scope
+- check: E13B-04_prior_session
+  result: PASS
+  details: no prior_monthly_result_ref
+- check: E13B-04_mixed_unrepresentable
+  result: PASS
+  details: a blueprint can hold another scope's roles
+- check: E13B-04_only_composed_scopes
+  result: PASS
+  details: a daily blueprint
+- check: E13B-04_prior_only_monthly
+  result: PASS
+  details: weekly names a prior session
+- check: E13B-04_one_skill_once_structural
+  result: PASS
+  details: the type allows repeats
+- check: E13B-04_no_score_field_AssessmentBlueprint
+  result: PASS
+  details: fields=['scope', 'cycleId', 'studyDay']
+- check: E13B-04_no_score_field_AssessmentBlueprintSlot
+  result: PASS
+  details: fields=['slotId', 'role', 'needKey']
+- check: E13B-04_no_score_field_AssessmentBlueprintResult
+  result: PASS
+  details: fields=['assessmentSessionId', 'cycleId', 'sessionStatus']
+- check: E13B-04_no_score_field_BlueprintEvidenceFact
+  result: PASS
+  details: fields=['evidenceId', 'objective', 'outcome']
+- check: E13B-04_no_score_field_BlueprintSlotOutcome
+  result: PASS
+  details: fields=['slotId', 'submitted', 'attemptId']
+- check: E13B-04_result_revalidatedCriticalSkills
+  result: PASS
+  details: missing revalidatedCriticalSkills
+- check: E13B-04_result_revalidatedRetentionSkills
+  result: PASS
+  details: missing revalidatedRetentionSkills
+- check: E13B-04_result_transferEvidenceObjectives
+  result: PASS
+  details: missing transferEvidenceObjectives
+- check: E13B-04_result_integratedEvidenceObjectives
+  result: PASS
+  details: missing integratedEvidenceObjectives
+- check: E13B-04_statuses_equal_mca
+  result: PASS
+  details: '[''complete'', ''partial'', ''deferred'', ''invalidated'']'
+- check: E13B-04_mca_no_overall
+  result: PASS
+  details: §27 text moved
+- check: E13B-04_scopes_MONTHLY_CAPABILITY -> MonthlyRole.SELECTION_
+  result: PASS
+  details: missing AssessmentScope.MONTHLY_CAPABILITY -> MonthlyRole.SELECTION_ORDER
+- check: E13B-04_scopes_MONTHLY_CAPABILITY -> MonthlyRole.entries
+  result: PASS
+  details: missing AssessmentScope.MONTHLY_CAPABILITY -> MonthlyRole.entries
+- check: E13B-04_scopes_MONTHLY_CAPABILITY -> MonthlyCycle.of(studyD
+  result: PASS
+  details: missing AssessmentScope.MONTHLY_CAPABILITY -> MonthlyCycle.of(studyDay)
+- check: E13B-04_scopes_WEEKLY_BLUEPRINT -> BlueprintRole.SELECTION_
+  result: PASS
+  details: missing AssessmentScope.WEEKLY_BLUEPRINT -> BlueprintRole.SELECTION_ORDER
+- check: E13B-04_scopes_WEEKLY_BLUEPRINT -> BlueprintRole.entries
+  result: PASS
+  details: missing AssessmentScope.WEEKLY_BLUEPRINT -> BlueprintRole.entries
+- check: E13B-04_scopes_WEEKLY_BLUEPRINT -> WeeklyCycle.of(studyDay)
+  result: PASS
+  details: missing AssessmentScope.WEEKLY_BLUEPRINT -> WeeklyCycle.of(studyDay)
+- check: E13B-04_blocks_in_selection_order
+  result: PASS
+  details: blocks not in the scope's order
+- check: E13B-05_cycle_from_study_day
+  result: PASS
+  details: cycle not from the study day
+- check: E13B-05_cycle_calendar_month
+  result: PASS
+  details: not a calendar month
+- check: E13B-05_cycle_no_default_locale
+  result: PASS
+  details: locale-sensitive formatting
+- check: E13B-05_cycle_contract
+  result: PASS
+  details: '{''definition'': ''calendar_month_of_recorded_study_day'', ''format'':
+    ''YYYY-MM'', ''source_column'': ''occurred_on_study_day'', ''product_default'':
+    True, ''scientific_value'': False, ''setting_owner'': ''16D'', ''user_confirmation'':
+    ''follows_user_confirmed_weekly_rule'', ''composed_once_per_cycle'': True, ''same_cycle_writes_nothing'':
+    True, ''nothing_to_measure_writes_nothing'': True, ''earlier_cycle_offered'':
+    False, ''stacking_possible'': False, ''prior_session_named'': True, ''prior_session_is_debt'':
+    False, ''independent_of_weekly_cycle'': True}'
+- check: E13B-05_mca_no_debt
+  result: PASS
+  details: §3 text moved
+- check: E13B-06_needs_from_planner
+  result: PASS
+  details: the composer opens needs of its own
+- check: E13B-06_one_skill_once
+  result: PASS
+  details: a Skill measured twice
+- check: E13B-06_remediation_skill_excluded
+  result: PASS
+  details: a Skill under remediation is measured
+- check: E13B-06_new_learning_not_measured
+  result: PASS
+  details: measured before teaching
+- check: E13B-06_diagnostic_not_monthly
+  result: PASS
+  details: diagnostic measured monthly
+- check: E13B-06_critical_continue_needs_holding_back
+  result: PASS
+  details: a critical Skill revalidated without a reason
+- check: E13B-06_critical_is_prerequisite
+  result: PASS
+  details: critical means something else
+- check: E13B-06_critical_only_for_reasons
+  result: PASS
+  details: critical revalidation produced 3 ways
+- check: E13B-06_mca_not_every_month
+  result: PASS
+  details: §11 moved
+- check: E13B-06_persistent_from_state
+  result: PASS
+  details: a persistent concern from something other than engine state
+- check: E13B-06_longitudinal_required
+  result: PASS
+  details: longitudinal samples non-required Skills
+- check: E13B-06_window
+  result: PASS
+  details: window not applied
+- check: E13B-06_retention
+  result: PASS
+  details: retention mapping
+- check: E13B-06_english_track_only
+  result: PASS
+  details: parallel role not English-only
+- check: E13B-06_integration
+  result: PASS
+  details: integration mapping
+- check: E13B-06_no_invented_producer
+  result: PASS
+  details: a producer invented or unowned
+- check: E13B-06_trigger_set_unchanged
+  result: PASS
+  details: a transfer trigger invented
+- check: E13B-06_band_is_planners
+  result: PASS
+  details: the month has its own band
+- check: E13B-06_no_randomness
+  result: PASS
+  details: randomness in composition
+- check: E13B-06_exclusions_equal_contract
+  result: PASS
+  details: '[''remediation_open'', ''not_taught_yet'', ''not_active_since_last_cycle'',
+    ''measured_in_another_role'', ''not_a_weekly_measurement'', ''not_a_monthly_measurement'',
+    ''not_required_capability'']'
+- check: E13B-06_weekly_exclusions_first
+  result: PASS
+  details: a weekly exclusion moved
+- check: E13B-07_indexed_by_scope
+  result: PASS
+  details: items indexed by a fixed scope
+- check: E13B-07_fit_by_scope
+  result: PASS
+  details: fit by a fixed scope
+- check: E13B-07_role_declared
+  result: PASS
+  details: undeclared role filled
+- check: E13B-07_gate_fails_closed
+  result: PASS
+  details: an unanswered gate lets the item through
+- check: E13B-07_fresh
+  result: PASS
+  details: a seen or solved item is fresh
+- check: E13B-07_trust
+  result: PASS
+  details: trust differs from the planner's
+- check: E13B-07_bound
+  result: PASS
+  details: two bounds
+- check: E13B-07_monthly_scope_passed
+  result: PASS
+  details: the monthly engine composes another scope
+- check: E13B-07_weekly_scope_passed
+  result: PASS
+  details: the weekly engine composes another scope
+- check: E13B-07_codes_of_scope_compose
+  result: PASS
+  details: fun compose( does not speak its scope's codes
+- check: E13B-07_codes_of_scope_recompose
+  result: PASS
+  details: fun recompose( does not speak its scope's codes
+- check: E13B-07_codes_of_scope_result
+  result: PASS
+  details: fun result( does not speak its scope's codes
+- check: E13B-07_codes_of_scope_ate fun slot
+  result: PASS
+  details: private fun slotFor( does not speak its scope's codes
+- check: E13B-07_candidate_same_need
+  result: PASS
+  details: a slot has a need, minutes or a cut of its own
+- check: E13B-07_candidate_format
+  result: PASS
+  details: generation names a fixed format
+- check: E13B-07_candidate_id
+  result: PASS
+  details: candidate ids
+- check: E13B-07_served_not_again
+  result: PASS
+  details: a served slot is offered again
+- check: E13B-07_engine_core_only
+  result: PASS
+  details: an engine imports outside core
+- check: E13B-08_clean_is_verified_independent
+  result: PASS
+  details: clean not verified independent
+- check: E13B-08_lists_from_clean
+  result: PASS
+  details: longitudinal lists from unclean evidence
+- check: E13B-08_revalidation_positive_only
+  result: PASS
+  details: a negative revalidates
+- check: E13B-08_lists_by_own_kind
+  result: PASS
+  details: a list fed by another role
+- check: E13B-08_kind_from_role
+  result: PASS
+  details: kind not from the slot's role
+- check: E13B-08_changes_only_reported
+  result: PASS
+  details: state changes derived
+- check: E13B-08_skip_not_completed
+  result: PASS
+  details: a skip can count as completed
+- check: E13B-08_policy_from_blueprint
+  result: PASS
+  details: policy not the blueprint's
+- check: E13B-08_no_monthly_weight
+  result: PASS
+  details: the evidence row learns its scope
+- check: E13B-08_mca_hysteresis
+  result: PASS
+  details: §24 moved
+- check: E13B-09_one_use_case
+  result: PASS
+  details: no scope-generic use case
+- check: E13B-09_no_monthly_copy
+  result: PASS
+  details: a second use case
+- check: E13B-09_reads_own_scope
+  result: PASS
+  details: composition reads another scope's row or cycle
+- check: E13B-09_monthly_pool
+  result: PASS
+  details: the month reads another pool
+- check: E13B-09_prior_session
+  result: PASS
+  details: the prior month is not named
+- check: E13B-09_same_cycle_writes_nothing
+  result: PASS
+  details: the same month composed twice
+- check: E13B-09_nothing_writes_nothing
+  result: PASS
+  details: an empty blueprint is written
+- check: E13B-09_watermark_first
+  result: PASS
+  details: watermark read after state
+- check: E13B-09_append
+  result: PASS
+  details: the row does not carry its own scope and format
+- check: E13B-09_recompose_own_cycle
+  result: PASS
+  details: a past or foreign cycle recomposed
+- check: E13B-09_slots_both_scopes
+  result: PASS
+  details: only one scope's slots offered
+- check: E13B-09_slots_this_cycle
+  result: PASS
+  details: an earlier month or a closed need offered
+- check: E13B-09_slots_monthly_engine
+  result: PASS
+  details: monthly slots built by another engine
+- check: E13B-09_build_daily_plan
+  result: PASS
+  details: the planner is not offered the slots
+- check: E13B-09_no_own_budget
+  result: PASS
+  details: a monthly budget beside the planner's
+- check: E13B-09_mca_capacity
+  result: PASS
+  details: §15 moved
+- check: E13B-09_contract_planning
+  result: PASS
+  details: '{''slot_need_is_existing_need'': True, ''candidate_id'': ''monthly:<cycle>:<slot>'',
+    ''generation_version'': ''monthly_blueprint/1:<cycle>'', ''own_queue'': False,
+    ''own_band'': False, ''own_minutes'': False, ''daily_budget_extended'': False,
+    ''week_and_month_same_need'': ''alternatives_of_one_need'', ''tasks_per_need'':
+    ''at_most_one''}'
+- check: E13B-09_planner_one_per_need
+  result: PASS
+  details: the planner may pick two tasks for one need
+- check: E13B-10_schema_version_4
+  result: PASS
+  details: schema version
+- check: E13B-10_trigger_weekly
+  result: PASS
+  details: a weekly row without its own blueprint allowed
+- check: E13B-10_trigger_monthly
+  result: PASS
+  details: a monthly row without its own blueprint allowed
+- check: E13B-10_prefix_lengths
+  result: PASS
+  details: prefix length
+- check: E13B-10_trigger_aborts
+  result: PASS
+  details: the trigger does not refuse
+- check: E13B-10_v3_unchanged
+  result: PASS
+  details: v3 changed
+- check: E13B-10_migration_step
+  result: PASS
+  details: migration steps
+- check: E13B-10_no_update_path
+  result: PASS
+  details: an UPDATE path to sessions
+- check: E13B-10_migration_owned
+  result: PASS
+  details: '{''from'': 3, ''to'': 4, ''owner'': ''13B'', ''table'': ''assessment_session'',
+    ''trigger'': ''assessment_session_blueprint_format'', ''rule'': "a weekly or monthly
+    row carries a blueprint in its own scope''s format", ''why_trigger'': "SQLite
+    cannot alter a column CHECK; v3''s CHECK covered weekly only", ''earlier_rows_touched'':
+    False, ''populated_fixture_tested'': True}'
+- check: E13B-11_monthly_format
+  result: PASS
+  details: monthly format
+- check: E13B-11_weekly_format_unchanged
+  result: PASS
+  details: weekly format changed
+- check: E13B-11_monthly_with_prior
+  result: PASS
+  details: the monthly codec drops the prior session
+- check: E13B-11_weekly_without_prior
+  result: PASS
+  details: the weekly head changed
+- check: E13B-11_encode_requires_scope
+  result: PASS
+  details: a codec writes another scope
+- check: E13B-11_head_exact
+  result: PASS
+  details: a head field of another format is read past
+- check: E13B-11_roles_of_scope
+  result: PASS
+  details: roles of any scope decoded
+- check: E13B-11_strict
+  result: PASS
+  details: the codec guesses
+- check: E13B-11_dispatch
+  result: PASS
+  details: a scope decoded with another codec
+- check: E13B-12_port_count
+  result: PASS
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+- check: E13B-12_no_monthly_port
+  result: PASS
+  details: a monthly port method
+- check: E13B-13_roles_type
+  result: PASS
+  details: an item declares only one scope's roles
+- check: E13B-13_roles_any_scope
+  result: PASS
+  details: monthly roles unknown to the package
+- check: E13B-13_role_scope_consistent
+  result: PASS
+  details: a role of an ineligible scope accepted
+- check: E13B-13_unknown_refused
+  result: PASS
+  details: an unknown role accepted
+- check: E13B-14_one_interior
+  result: PASS
+  details: a separate monthly interior
+- check: E13B-14_status_by_scope
+  result: PASS
+  details: a month described as a week
+- check: E13B-14_copy_not_verdict
+  result: PASS
+  details: the monthly copy judges
+- check: E13B-14_checkpoint_copy
+  result: PASS
+  details: the checkpoint copy is a verdict
+- check: E13B-14_results_via_interior
+  result: PASS
+  details: results bypass the interior
+- check: E13B-14_asux_scope
+  result: PASS
+  details: ASUX-v0 monthly scope moved
+- check: E13B-15_weekly_codes_unchanged
+  result: PASS
+  details: a weekly code changed
+- check: E13B-15_weekly_roles_unchanged
+  result: PASS
+  details: a weekly role changed
+- check: E13B-15_weekly_refusals_unchanged
+  result: PASS
+  details: '[''role_not_declared'', ''not_usable_for_intent'', ''prerequisite_waits'',
+    ''solution_exposed'', ''already_seen'', ''variant_family_in_use'', ''dependency_group_in_use'',
+    ''expected_minutes_missing'']'
+- check: E13B-15_weekly_overrides
+  result: PASS
+  details: weekly codes rebound
+- check: E13B-15_13a_gate_bound_Narrowed at 13B
+  result: PASS
+  details: '13A gate lost its weekly binding: ''Narrowed at 13B'''
+- check: E13B-15_13a_gate_bound_AssessmentScope.WEEKLY_BLUEP
+  result: PASS
+  details: '13A gate lost its weekly binding: ''AssessmentScope.WEEKLY_BLUEPRINT,
+    POLICY_VERSION'''
+- check: E13B-15_13a_gate_bound_override val incompleteNotFa
+  result: PASS
+  details: '13A gate lost its weekly binding: ''override val incompleteNotFailure
+    get() = INCOMPLETE_NOT_FAILURE'''
+- check: E13B-15_13a_gate_bound_AssessmentScope.WEEKLY_BLUEP
+  result: PASS
+  details: '13A gate lost its weekly binding: ''AssessmentScope.WEEKLY_BLUEPRINT ->
+    WeeklyCycle.of(studyDay)'''
+- check: E13B-15_13a_gate_bound_override val noExamDebt get(
+  result: PASS
+  details: '13A gate lost its weekly binding: ''override val noExamDebt get() = NO_EXAM_DEBT'''
+- check: E13B-15_13a_gate_bound_BlueprintCodec.decode(stored
+  result: PASS
+  details: '13A gate lost its weekly binding: ''BlueprintCodec.decode(stored, FORMAT,
+    AssessmentScope.WEEKLY_BLUEPRINT, withPrior = false)'''
+- check: E13B-15_13a_gate_ids_kept
+  result: PASS
+  details: 13A checks removed
+- check: E13B-15_narrowing_recorded
+  result: PASS
+  details: narrowing not recorded
+- check: E13B-16_model_the cycle is the calendar month of the r
+  result: PASS
+  details: 'missing test: the cycle is the calendar month of the recorded study day'
+- check: E13B-16_model_the eight roles are MCA-v0's, in its ord
+  result: PASS
+  details: 'missing test: the eight roles are MCA-v0''s, in its order, and selection
+    follows section 7'
+- check: E13B-16_model_the monthly reason codes are MCA-v0 sect
+  result: PASS
+  details: 'missing test: the monthly reason codes are MCA-v0 section 29, twenty-one
+    and in order'
+- check: E13B-16_model_a blueprint holds only its own scope's r
+  result: PASS
+  details: 'missing test: a blueprint holds only its own scope''s roles, and only
+    a month names a prior session'
+- check: E13B-16_model_a format never reads the other scope's t
+  result: PASS
+  details: 'missing test: a format never reads the other scope''s text'
+- check: 'E13B-16_engine_the pool comes from state, one role per '
+  result: PASS
+  details: 'missing test: the pool comes from state, one role per Skill, in section
+    7 order'
+- check: E13B-16_engine_a critical Skill is revalidated only for
+  result: PASS
+  details: 'missing test: a critical Skill is revalidated only for a reason, never
+    because it is critical'
+- check: E13B-16_engine_owner needs bring integration and the pa
+  result: PASS
+  details: 'missing test: owner needs bring integration and the parallel track, transfer
+    and the checkpoint have no producer'
+- check: E13B-16_engine_slots take only items eligible for the m
+  result: PASS
+  details: 'missing test: slots take only items eligible for the monthly scope and
+    declared for the monthly role'
+- check: E13B-16_engine_revalidation lists name only clean indep
+  result: PASS
+  details: 'missing test: revalidation lists name only clean independent positives
+    of their own role'
+- check: E13B-16_engine_a clean negative on a critical Skill rev
+  result: PASS
+  details: 'missing test: a clean negative on a critical Skill revalidates nothing
+    and is not a verdict'
+- check: 'E13B-16_application_a month is composed once, stored in its '
+  result: PASS
+  details: 'missing test: a month is composed once, stored in its own format, and
+    asking again writes nothing'
+- check: E13B-16_application_a new month composes fresh, names the pr
+  result: PASS
+  details: 'missing test: a new month composes fresh, names the prior session and
+    carries no debt'
+- check: E13B-16_application_the week and the month are composed inde
+  result: PASS
+  details: 'missing test: the week and the month are composed independently and read
+    back by their own scope'
+- check: E13B-16_application_week and month slots for one need are al
+  result: PASS
+  details: 'missing test: week and month slots for one need are alternatives, and
+    the planner takes at most one'
+- check: E13B-16_application_monthly slot evidence is recorded exactl
+  result: PASS
+  details: 'missing test: monthly slot evidence is recorded exactly like any other,
+    contamination included'
+- check: 'E13B-16_storage_migrating a populated schema-3 database '
+  result: PASS
+  details: 'missing test: migrating a populated schema-3 database installs the format
+    rule and preserves every truth row'
+- check: E13B-16_storage_a monthly session without a monthly blue
+  result: PASS
+  details: 'missing test: a monthly session without a monthly blueprint is refused
+    by the engine'
+- check: E13B-16_presentation_the month runs in the same interior, blo
+  result: PASS
+  details: 'missing test: the month runs in the same interior, blocked in its own
+    selection order'
+- check: E13B-16_presentation_a month's status is described in its own
+  result: PASS
+  details: 'missing test: a month''s status is described in its own words, never judged'
+- check: E13B-16_content_a monthly role is declared on an item th
+  result: PASS
+  details: 'missing test: a monthly role is declared on an item the monthly scope
+    can use, never on one it cannot'
+- check: E13B-17_mutation_all_detected
+  result: PASS
+  details: 48/48
+- check: E13B-17_mutation_control
+  result: PASS
+  details: harness honesty
+- check: E13B-17_validator_mutation
+  result: PASS
+  details: '{''total'': 28, ''detected'': 28, ''negative_control'': ''forbidden fragments
+    (randomness, a percentage, a weight, a transfer producer, a score field, weekly
+    codes) inside a Kotlin comment must not fail the validator'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True}'
+- check: E13B-17_runs_pass
+  result: PASS
+  details: '[''RUN-01'', ''RUN-02'', ''RUN-03'', ''RUN-04'', ''RUN-05'', ''RUN-06'']'
+- check: E13B-17_device_not_claimed
+  result: PASS
+  details: a device result is claimed
+- check: E13B-17_open_transfer_and_checkpoint_produc
+  result: PASS
+  details: transfer_and_checkpoint_producers not owned
+- check: E13B-17_open_monthly_cycle_setting
+  result: PASS
+  details: monthly_cycle_setting not owned
+- check: E13B-17_open_distinct_day_longitudinal_evid
+  result: PASS
+  details: distinct_day_longitudinal_evidence not owned
+- check: E13B-17_open_retroactive_contamination
+  result: PASS
+  details: retroactive_contamination not owned
+- check: E13B-17_open_diagnostic_waiver_and_s06
+  result: PASS
+  details: diagnostic_waiver_and_s06 not owned
+- check: E13B-17_open_calling_composition_from_the_a
+  result: PASS
+  details: calling_composition_from_the_app not owned
+- check: E13B-18_forbidden_monthly_label_adds_weight
+  result: PASS
+  details: missing=monthly_label_adds_weight
+- check: E13B-18_forbidden_overall_monthly_score_or_pass_mark
+  result: PASS
+  details: missing=overall_monthly_score_or_pass_mark
+- check: E13B-18_forbidden_readiness_or_domain_verdict
+  result: PASS
+  details: missing=readiness_or_domain_verdict
+- check: E13B-18_forbidden_cumulative_everything_exam
+  result: PASS
+  details: missing=cumulative_everything_exam
+- check: E13B-18_forbidden_fixed_question_count_duration_or_role_pe
+  result: PASS
+  details: missing=fixed_question_count_duration_or_role_percentage
+- check: E13B-18_forbidden_critical_tested_for_being_critical
+  result: PASS
+  details: missing=critical_tested_for_being_critical
+- check: E13B-18_forbidden_persistent_concern_from_one_item
+  result: PASS
+  details: missing=persistent_concern_from_one_item
+- check: E13B-18_forbidden_checkpoint_as_readiness_gate
+  result: PASS
+  details: missing=checkpoint_as_readiness_gate
+- check: E13B-18_forbidden_weekly_only_item_in_monthly_slot
+  result: PASS
+  details: missing=weekly_only_item_in_monthly_slot
+- check: E13B-18_forbidden_monthly_queue_band_or_budget
+  result: PASS
+  details: missing=monthly_queue_band_or_budget
+- check: E13B-18_forbidden_missed_month_as_debt
+  result: PASS
+  details: missing=missed_month_as_debt
+- check: E13B-18_forbidden_negative_or_assisted_called_revalidation
+  result: PASS
+  details: missing=negative_or_assisted_called_revalidation
+- check: E13B-18_forbidden_second_assessment_architecture
+  result: PASS
+  details: missing=second_assessment_architecture
+- check: E13B-18_forbidden_weekly_value_changed_for_monthly
+  result: PASS
+  details: missing=weekly_value_changed_for_monthly
+- check: E13B-18_forbidden_stored_blueprint_edited
+  result: PASS
+  details: missing=stored_blueprint_edited
+- check: E13B-19_spec_**Status:** ACCEPTED — ind
+  result: PASS
+  details: 'spec: ''**Status:** ACCEPTED — independent 13B QA PASS'''
+- check: E13B-19_spec_**Decision:** `D-100`
+  result: PASS
+  details: 'spec: ''**Decision:** `D-100`'''
+- check: E13B-19_spec_A month is a wider window,
+  result: PASS
+  details: 'spec: ''A month is a wider window, not a heavier exam'''
+- check: E13B-19_spec_No weekly value changed
+  result: PASS
+  details: 'spec: ''No weekly value changed'''
+- check: 'E13B-19_spec_Not run: T6'
+  result: PASS
+  details: 'spec: ''Not run: T6'''
+- check: E13B-19_spec_Mutation 48/48
+  result: PASS
+  details: 'spec: ''Mutation 48/48'''
+- check: E13B-19_spec_13C — Spaced repetition
+  result: PASS
+  details: 'spec: ''13C — Spaced repetition'''
+- check: E13B-20_research_No web research pass was
+  result: PASS
+  details: missing='No web research pass was needed'
+- check: E13B-20_research_MCA-v0
+  result: PASS
+  details: missing='MCA-v0'
+- check: E13B-20_research_WBA-v0
+  result: PASS
+  details: missing='WBA-v0'
+- check: E13B-20_research_QAB-v0
+  result: PASS
+  details: missing='QAB-v0'
+- check: E13B-20_research_calendar month
+  result: PASS
+  details: missing='calendar month'
+- check: E13B-21_no_repeated_context_heading
+  result: PASS
+  details: repeated=[]
+- check: E13B-21_no_repeated_master_plan_step
+  result: PASS
+  details: repeated=[]
+- check: E13B-21_no_combining_dot
+  result: PASS
+  details: U+0307 in 13B text
+failures: []

@@ -27,10 +27,11 @@ class WeeklyAssessmentFactsTest {
             allowedTools = listOf("compiler", "terminal"),
         )
 
-    private fun blueprint(vararg slots: AssessmentBlueprintSlot) = WeeklyAssessmentBlueprint(
+    private fun blueprint(vararg slots: AssessmentBlueprintSlot) = AssessmentBlueprint(
+        scope = AssessmentScope.WEEKLY_BLUEPRINT,
         cycleId = "2026-W40", studyDay = "2026-10-01", curriculumVersion = 3, truthWatermark = 91,
         policyVersion = "WBA-v0", evaluatorAvailable = false, recentSince = null, slots = slots.toList(),
-        exclusions = listOf(PoolExclusion("new_learning:$skillB", skillB, WeeklyExclusion.NOT_TAUGHT_YET)),
+        exclusions = listOf(PoolExclusion("new_learning:$skillB", skillB, BlueprintExclusion.NOT_TAUGHT_YET)),
         reasonCodes = listOf(WeeklyReasonCodes.DUE, WeeklyReasonCodes.BLUEPRINT_GENERATED),
     )
 
@@ -99,13 +100,13 @@ class WeeklyAssessmentFactsTest {
         }
         val ok = blueprint(slot("slot-1", skillA, itemA, family = "f1"), slot("slot-2", skillB, null))
         assertEquals(12, ok.expectedActiveMinutes)
-        assertEquals(listOf(WeeklyBlock("block-retention_due", BlueprintRole.RETENTION_DUE, listOf("slot-1"))), ok.blocks)
+        assertEquals(listOf(BlueprintBlock("block-retention_due", BlueprintRole.RETENTION_DUE, listOf("slot-1"))), ok.blocks)
     }
 
     @Test
     fun `nothing in the blueprint or the result can hold a score`() {
         val forbidden = listOf("score", "grade", "percent", "pass", "threshold", "questionCount", "duration")
-        listOf(WeeklyAssessmentBlueprint::class, AssessmentBlueprintSlot::class, WeeklyAssessmentResult::class).forEach { type ->
+        listOf(AssessmentBlueprint::class, AssessmentBlueprintSlot::class, AssessmentBlueprintResult::class).forEach { type ->
             type.java.declaredFields.map { it.name }.forEach { field ->
                 forbidden.forEach { word -> assertTrue(!field.contains(word, ignoreCase = true), "${type.simpleName}.$field") }
             }
@@ -117,7 +118,7 @@ class WeeklyAssessmentFactsTest {
         val stored = blueprint(
             slot("slot-1", skillA, itemA, family = "fam/one", group = "g, 1").copy(
                 reasonCodes = listOf("assessment.weekly.slot_retention_due"),
-                rejections = listOf(WeeklyItemRejection(itemB, listOf("already_seen", "variant_family_in_use"))),
+                rejections = listOf(SlotItemRejection(itemB, listOf("already_seen", "variant_family_in_use"))),
                 itemRequiredSkills = listOf(skillB), requiredForSessionClosure = true,
             ),
             slot("slot-2", skillB, null),
@@ -143,7 +144,7 @@ class WeeklyAssessmentFactsTest {
 
     @Test
     fun `an unsubmitted slot has no attempt and no evidence`() {
-        assertFailsWith<IllegalArgumentException> { WeeklySlotOutcome("slot-1", submitted = false, attemptId = 4) }
+        assertFailsWith<IllegalArgumentException> { BlueprintSlotOutcome("slot-1", submitted = false, attemptId = 4) }
     }
 
     @Test

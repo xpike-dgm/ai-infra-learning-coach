@@ -63,8 +63,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **12E — Explanation / reason codes** | ✅ | RSNX-v0 / D-096. Açıklama karar izinin projeksiyonu; izde olmayan gerekçe kurulamaz; süreye sığmayan iş daha az önemli değil; bekleyen iş blocker'ını adlandırır; Today planı okuyor, iz kendi satırlarını anlatmıyorsa okunamaz; 219/219 QA PASS, mutation 52/52. |
 | **12F — Sanal kullanıcı testleri** | ✅ | VUSX-v0 / D-097. 3H'nin 16 senaryosu gerçek kodla; sanal kullanıcı durumdur, cevap değil; 15 senaryo koşuldu, S06 (VDW-v0) sahibiyle 13'e bağlandı; açıklamada due envanteri tek satır; 148/148 QA PASS, mutation 27/27 (yalnız sanal kullanıcı testleriyle). **AŞAMA 12 kapandı.** |
 | **13A — Haftalık sınav** | ✅ | WBAX-v0 / D-098. Hafta bir kimlik, kota değil; havuz planner'ın ihtiyaçları, Skill tek kez; slot yalnız güvenilir ve taze item'la; slotlar planner'ın adayı, haftanın kendi dakikası yok; ISO hafta, kaçırılan hafta borç değil; puan yok; şema v3; 210/210 QA PASS, mutation 42/42. |
-| **13B — Aylık sınav** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **13C–13F, 14–20** | ⬜ Bekliyor | 13B sonrası canonical sırada; 13F D-099 ile eklendi. |
+| **13B — Aylık sınav** | ✅ | MCAX-v0 / D-100. Ay daha geniş pencere, daha ağır sınav değil; 13A kontratı ortak kontrata genelleştirildi, haftalık değer değişmedi; kritik Skill yalnız nedenle yeniden doğrulanır; aylık etiket ağırlık eklemez; takvim ayı, önceki oturum borç değil; transfer/kontrol noktası üreticisi uydurulmadı (15); şema v4; 259/259 QA PASS, mutation 48/48. |
+| **13C — Spaced repetition** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **13D–13F, 14–20** | ⬜ Bekliyor | 13C sonrası canonical sırada; 13F D-099 ile eklendi. |
 
 ## Manager transition — D-055
 
@@ -83,7 +84,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 13A
+## Son tamamlanan numaralı adım — 13B
+
+**Final:** `MCAX-v0 — Monthly Capability Assessment Implementation` / D-100.
+**Ana çıktı:** `docs/MONTHLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13b_monthly_assessment/` + `android/`.
+
+13B sonucu:
+- bir ay daha geniş bir penceredir, daha ağır bir sınav değil; döngü kaydedilmiş çalışma gününün takvim ayı, bir kez kurulur, önceki aylık oturumu adlandırır ama borç saymaz,
+- 13A'nın haftalık kontratı tek ortak kontrata (`AssessmentBlueprint` + `SlotRole`) ve tek kapsam-parametreli `BlueprintComposer`'a genelleştirildi; hiçbir haftalık değer değişmedi ve bütün 13A testleri geçiyor,
+- havuz planner'ın ihtiyaçları; bir Skill tek kez, `MCA-v0` §7 sırasıyla; kritik Skill yalnız nedenle yeniden doğrulanır; supporting/optional boylamsal örnek değil; roller kota ya da yüzde değil,
+- transfer ve profesyonel kontrol noktası beyanlı ama üreticisi uydurulmadı (15); kontrol noktası hazır olma kapısı değil,
+- yalnız haftalık item aylık slota giremez; hafta ve ay aynı ihtiyaç için alternatif adaydır, planner ihtiyaç başına en çok bir görev seçer,
+- sonuçta puan yok; dört boylamsal liste yalnız kendi rolünün temiz kanıtıyla; temiz negatif yeniden doğrulama değil; kanıt satırı "aylık" bilmez,
+- şema v4 trigger'ı (dolu v3 fixture'a karşı); `monthly_blueprint/1`; port sayısı dört,
+- 13A validator'ı garanti zayıflamadan taşınan koda göre daraltıldı,
+- mutation 48/48 (M10 ilk turda kaçtı, test güçlendirildi, set yeniden koşuldu), independent validator **259/259 PASS**, kendi mutation testi 28/28; 44/44 sweep PASS,
+- **T6 çalıştırılmadı** — uygulamada ay kurulmuyor (16D), item'lar aylık rol beyan etmiyor (15).
+
+## Önceki numaralı adım — 13A
 
 **Final:** `WBAX-v0 — Weekly Blueprint Assessment Implementation` / D-098.
 **Ana çıktı:** `docs/WEEKLY_ASSESSMENT_IMPL_SPEC.md` + `arch/13a_weekly_assessment/` + `android/`.
@@ -100,7 +118,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - **T6 çalıştırılmadı** — uygulamada hafta kurulmuyor (16D), item'lar süre/rol beyan etmiyor (15),
 - `D-099`: `13F — Tanısal atlama (VDW-v0)` eklendi (kullanıcı kararı).
 
-## Önceki numaralı adım — 12F
+## AŞAMA 12 kapanış adımı — 12F
 
 **Final:** `VUSX-v0 — Virtual User Scenarios` / D-097.
 **Ana çıktı:** `docs/VIRTUAL_USER_TESTS_SPEC.md` + `arch/12f_virtual_user_tests/` + `android/`.
@@ -116,6 +134,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 13B Aylık sınav
+## Aktif adım — 13C Spaced repetition
 
-**13B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**13C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

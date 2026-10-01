@@ -1101,3 +1101,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `13A ✅ / 13B active-not-executed` konumuna taşır.
 
 **Sonraki kesin adım:** `13B — Aylık sınav`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 13B Aylık sınav tamamlandı — MCAX-v0 / D-100
+
+- 13A (#39) main'e merge edildi (2d6ea44); fresh 13B PRE yapıldı ve beş kanonik kaynak `13A ✅ / 13B active-not-executed` gösterdi. Kullanıcı açık onay verdi ("sıradki başla").
+- `MCA-v0` koda döküldü: aylık blueprint öğeden önce durumdan; havuz planner'ın ihtiyaçları, bir Skill tek kez, §7 sırası, kritik Skill yalnız nedenle; slotlar planner'ın mevcut ihtiyaçlarının alternatif adayı; sonuçta puan yok, boylamsal listeler yalnız temiz kanıtla.
+- **Bulgu:** ortak kontrat yalnız haftalık adlarla vardı; `MCA-v0` §4'ün istediği gibi tek ortak kontrata ve tek composer'a genelleştirildi, hiçbir haftalık değer değişmedi ve bütün 13A testleri geçiyor.
+- **Bulgu:** v3 CHECK'i aylık satırı kapsamıyordu; şema v4 biçim trigger'ı eklendi, dolu şema-3 veritabanına karşı test edildi.
+- **Bulgu:** transfer ve profesyonel kontrol noktası rollerinin üreticisi yok; uydurulmadı, sahibi 15.
+- **Varsayılan:** döngü takvim ayı — kullanıcının onayladığı haftalık kuralı izleyen ürün varsayılanı; ayar 16D.
+- 13A validator'ı taşınan koda göre garanti zayıflamadan daraltıldı; 12x kapıları değişmedi (v4 sahibi 13B kontratı).
+- Mutation 48/48 (M10 ilk turda kaçtı; blok testi güçlendirildi, set yeniden koşuldu). Altı run PASS, 622 JVM testi. Validator 259/259, kendi mutation testi 28/28, sweep 44/44.
+- **T6 çalıştırılmadı**; uygulamada ay kurulmuyor (16D).
+- D-050 POST living-memory accepted state'i `13B ✅ / 13C active-not-executed` konumuna taşır.
+
+**Sonraki kesin adım:** `13C — Spaced repetition`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
