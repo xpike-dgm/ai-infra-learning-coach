@@ -29,6 +29,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-059: 6E final GPU / ML / Inference detailed map `GIM-v0`; D14–D22 package + 6C/6D reuse + hard/soft Pass-B + combined hard-graph QA.
 - D-099: AŞAMA 13'ün sonuna `13F — Tanısal atlama (VDW-v0)` eklendi; mevcut adımlar yeniden numaralanmadı.
 - D-104: 13F final tanısal atlama `VDWX-v0`; şema v7 `diagnostic_coverage` + `VDW-v0` durum ailesi; AŞAMA 13 kapandı.
+- D-105: 14A final tutor davranış sözleşmesi `TUTX-v0`; ayrı `TutorPort` (beyanlı uzantı), kayıt izin verilenden az yardım iddia etmez, kaydedilen yardım kanıtın bağımsızlığını belirler; AŞAMA 14 başladı.
 
 ---
 
@@ -174,8 +175,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme Katmanını Geliştir
-- [ ] **14A — Tutor davranış sözleşmesi** **AKTİF**
-- [ ] **14B — Yanlış analizi**
+- [x] **14A — Tutor davranış sözleşmesi** — `TUTX-v0 / D-105`
+- [ ] **14B — Yanlış analizi** **AKTİF**
 - [ ] **14C — Alternatif anlatım**
 - [ ] **14D — Kod değerlendirme**
 - [ ] **14E — AI-generated code comprehension check**
@@ -249,9 +250,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`  
-**Son tamamlanan:** **`13F — VDWX-v0 / D-104`**  
-**Aktif:** **`14A — Tutor davranış sözleşmesi`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A`  
+**Son tamamlanan:** **`14A — TUTX-v0 / D-105`**  
+**Aktif:** **`14B — Yanlış analizi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -285,4 +286,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 13F `VDWX-v0` ile tanısal atlama kodda: bir tanısal yol mastery'ye giden daha kolay bir yol değildir, aynı kanıtı daha erken toplar: öğrencinin isteği yalnız kapsamı adlandırır ve kanıt değildir; bir Objective'in başlangıç anlatımı yalnız `GRE-v0`'ın kendi kapıları tanısal kanıtta ilk kez geçtiğinde atlanır, waiver o kanıtı adlandırır ve kapsamdır — mastery ya da retention değildir; tek kolay soru bir Topic'i atlatmaz; yardım ya da temiz bir kaçırma o Objective'in hızlı yolunu suçlamadan bitirir ve öğretilmemiş bir şeyi bilmemek zayıflık sayılmaz (kullanıcı kararları); tanı sürerken o Objective'in dersi bekler, yalnız gösterilen kısmın dersi atlanır; planlama kanıt okumaz. Şema v7 `diagnostic_coverage` projeksiyonunu ve `VDW-v0` durum ailesini ekler (D-104); 12F'nin S06'sı ve `PDT-v0` invariant 12 gerçek kodla koşuyor. **AŞAMA 13 TAMAMLANDI** — WBAX-v0 → MCAX-v0 → RVRX-v0 → WLRX-v0 → PCRX-v0 → VDWX-v0. T6 çalıştırılmadı.
 
-14A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+14A `TUTX-v0` ile tutor davranış sözleşmesi kodda ve **AŞAMA 14 başladı**: tutor istek üzerine öğretir ve asla karar vermez: yalnız sorulana cevap verir, öğrencinin seçtiğinden fazlasını açmaz, öğrencinin ne yapabildiğini iddia etmez ve gerçekten gösterdiği her yardım olduğu gibi kaydedilir — göstermediği hiçbir şey kaydedilmez ve söylediği hiçbir şey kanıt değildir. Beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`) ve yardım her zaman istenebilir: uymayan istek anına uyan isteğe yönlendirilir. Deneme açıkken cevabın en fazla ne kadar açabileceğini öğrenci seçer, H3/H4 önce ana göre açıklanır; kayıt asla izin verilenden az yardım iddia etmez (gönderilmiş cevaptan sonra `H4`) ve tutor'un kendi seviye beyanı yalnız reddetmek için kullanılır. Cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında bayt bayt doğrulanır. Yanıt şemaya bağlıdır (`tutor_reply/1`), hükme yer yoktur; reddetme, zaman aşımı ya da kullanılamazlık hiçbir şey kaydetmez ve öğrenciyi suçlamaz, yalnız yazılmış yardım yerine geçer. Kaydedilen yardım artık kanıtın bağımsızlığını belirliyor (`2D` §6) ve gösterilen çözüm o andan itibaren exposure, sonraki kanıt bunu okuyor. Kullanıcı kararları: ayrı `TutorPort` (D-105 beyanlı uzantı, 9D düzenlenmedi), serbest soru + seviyeyi öğrenci seçer, ilk gerçek sağlayıcı çağrısı 14G'de. T6 çalıştırılmadı.
+
+14B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

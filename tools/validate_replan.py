@@ -66,6 +66,15 @@ ENGINE_TEST = ANDROID / "core-engines/src/test/kotlin/coach/engines/ReplanEngine
 APP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/ReplanTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/PlanStorageTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -339,7 +348,7 @@ check("E12D-08_kept_flag_written", '"preserved" to it.preserved.toString()' in c
 
 # ---------------------------------------------------------------- ports and storage
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
-check("E12D-09_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
+check("E12D-09_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 check("E12D-09_latest_plan", "fun latestPlan(): StoredPlan?" in ports, "latestPlan is missing")
 check("E12D-09_checkpoint_rows", "fun resumeCheckpointRows(): List<StoredTruth>" in ports, "resumeCheckpointRows is missing")
 check("E12D-09_raw_trace_returned", "val traceText: String?" in facts and "PlanTraceCodec" not in adapter,

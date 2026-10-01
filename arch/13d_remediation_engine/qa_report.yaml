@@ -357,7 +357,8 @@ checks:
     False}'
 - check: E13D-11_port_count
   result: PASS
-  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
 - check: E13D-11_no_new_port_method
   result: PASS
   details: a weakness port method

@@ -190,3 +190,7 @@ Eighteen deliberate mutations, **all eighteen caught on the first run.** One is 
 If accepted, 11B becomes `RNRX-v0 / D-088`.
 
 Next numbered step: **11C — Session state**. It owns the resume checkpoint's content and persistence, the emergent session and its ended reasons, and what a checkpoint pause actually saves. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14A note (2026-10-01, `D-105`):** `RunnerCopy.CONSEQUENCE_DISCLOSURE` is unchanged and remains the wording while an answer is open. After an answer is frozen the attempt is untouched (`2D` §5.3), so tutor help there is disclosed with `TutorCopy.DISCLOSURE_AFTER_ANSWER`. Help from the tutor is recorded as an `AssistanceEvent` only when it was actually shown. Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.

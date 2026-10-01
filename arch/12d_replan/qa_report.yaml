@@ -316,7 +316,8 @@ checks:
   details: the kept flag is not written
 - check: E12D-09_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E12D-09_latest_plan
   result: PASS
   details: latestPlan is missing

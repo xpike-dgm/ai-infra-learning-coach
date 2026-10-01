@@ -81,6 +81,15 @@ EXPLAIN_TEST = ANDROID / "core-presentation/src/test/kotlin/coach/presentation/P
 COPY_TEST = ANDROID / "core-presentation/src/test/kotlin/coach/presentation/ExplanationCopyTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/PlanStorageTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -329,7 +338,7 @@ check("E12E-04_rows_in_position_order",
       "the plan's rows do not come back in position order with their ids")
 check("E12E-04_stored_plan_rows", "val plannedTasks: List<StoredPlannedTask>," in facts, "StoredPlan carries no rows")
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
-check("E12E-04_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
+check("E12E-04_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 check("E12E-04_schema_version_unchanged", schema_versions_owned(schema), "the schema version moved without an owning contract")
 
 # ---------------------------------------------------------------- Today's families, from trace facts

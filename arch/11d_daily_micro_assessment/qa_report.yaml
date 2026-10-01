@@ -399,8 +399,8 @@ checks:
   details: a table was invented for artifact bodies
 - check: E11D-13_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
-    msbx=['PersistencePort', 'ContentPort', 'ClockPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort'] msbx=['PersistencePort', 'ContentPort', 'ClockPort', 'EvaluatorPort']
 - check: E11D-13_refinement_publishCurriculum
   result: PASS
   details: missing publishCurriculum

@@ -6,6 +6,7 @@ import coach.ports.ClockPort
 import coach.ports.ContentPort
 import coach.ports.EvaluatorPort
 import coach.ports.PersistencePort
+import coach.ports.TutorPort
 import java.time.Instant
 import java.time.ZoneId
 
@@ -26,6 +27,7 @@ class AppGraph(
     val clock: ClockPort = SystemClock(),
     val content: ContentPort = FileContentSource(),
     val evaluator: EvaluatorPort = provideEvaluator(),
+    val tutor: TutorPort = provideTutor(),
 ) {
     companion object {
         /** The single on-device database file. Its location is the platform's concern, not core's. */

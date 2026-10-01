@@ -402,7 +402,8 @@ checks:
     ''D-104''}'
 - check: E13F-11_port_count
   result: PASS
-  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'']'
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
 - check: E13F-11_refinement
   result: PASS
   details: '[{''port'': ''PersistencePort'', ''method'': ''latestAssessmentSessionIn''}]'

@@ -327,7 +327,12 @@ class SqlitePersistence private constructor(
                     ORDER BY d.sequence DESC LIMIT 1),
                    (SELECT d.reason_code FROM evidence_disposition d WHERE d.evidence_event_id = e.id
                     ORDER BY d.sequence DESC LIMIT 1),
-                   (SELECT a.assessment_session_id FROM attempt a WHERE a.id = e.source_attempt_id)
+                   (SELECT a.assessment_session_id FROM attempt a WHERE a.id = e.source_attempt_id),
+                   EXISTS (SELECT 1 FROM exposure_record x
+                           WHERE x.exposure_kind = 'solution_exposure'
+                             AND ((e.resource_logical_id IS NOT NULL AND x.resource_logical_id = e.resource_logical_id)
+                                  OR (e.variant_family_id IS NOT NULL AND x.variant_family_id = e.variant_family_id))
+                             AND x.sequence < coalesce((SELECT a.sequence FROM attempt a WHERE a.id = e.source_attempt_id), e.sequence))
             FROM evidence_event e
             JOIN evidence_event_objective o ON o.evidence_event_id = e.id
             WHERE o.objective_logical_id = ? AND o.objective_version = ?
@@ -360,6 +365,10 @@ class SqlitePersistence private constructor(
                     studyDay = statement.getText(15),
                     // The session the attempt was made in (13F): a diagnostic is one, and only its evidence waives.
                     assessmentSessionId = if (statement.isNull(18)) null else statement.getLong(18),
+                    // A solution shown for this item or its variant family **before the attempt was made** (14A,
+                    // `TUTX-v0` §16). Exposure recorded after the attempt — an explanation of a frozen answer —
+                    // does not reach back into it (`2D` §5.3); it only keeps the item from being fresh again.
+                    solutionExposed = statement.getLong(19) == 1L,
                 )
                 // The row is never edited; its newest disposition is how every engine reads it (13D).
                 rows += EvidenceDispositions.effective(

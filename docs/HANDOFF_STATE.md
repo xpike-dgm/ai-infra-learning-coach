@@ -292,14 +292,15 @@ PEM-v0:
 - 13E ✅ PCRX-v0 / D-103
 - 13F ✅ VDWX-v0 / D-104
 - **AŞAMA 13 TAMAMLANDI**
-- 14A 🟡 active-not-executed
-- 14B–20 ⬜
+- 14A ✅ TUTX-v0 / D-105
+- 14B 🟡 active-not-executed
+- 14C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `13F — VDWX-v0 / D-104`  
-**Aktif:** `14A — Tutor davranış sözleşmesi`  
-**14A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14A — TUTX-v0 / D-105`  
+**Aktif:** `14B — Yanlış analizi`  
+**14B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1183,3 +1184,26 @@ VDWX-v0:
 ## 62. 14A handoff
 
 14A — Tutor davranış sözleşmesi. AŞAMA 13 kapandı: kanıt, kapı, planner, replan, açıklama, retention, zayıflık, rapor ve tanısal atlama motorları kodda; `AIAX-v0` AI'ı port arkasında yardımcı ve otorite olmayan olarak kilitledi. Açık loop'lar: motorları ve tanıyı uygulamadan çağırmak (16D), Topic durumu ve kalıcı `assessment_report` (16C), authored içerik ve curriculum sürümleri arası waiver (15), misconception hafızası (14B), nihai metin (14), planner kaynaklı tanı (18B), T6. 14A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 63. D-105 / 14A final özeti
+
+Canonical: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.
+Contract/QA: `arch/14a_tutor_contract/`.
+Synthesis: `research/14a_tutor_contract_research.md`.
+Code: `android/core-model/.../TutorFacts.kt`, `TutorInstructions.kt`, `AssistanceInterpretation.kt`; `core-ports` `TutorPort`; `core-application` `AskTutor.kt`, `NullTutor.kt`; `core-presentation` `TutorPresentation.kt`; `ai-adapter` `AiTutor.kt`; `app-wiring` `TutorProvider`; `data-persistence` `evidenceFor` (solution exposure).
+
+TUTX-v0:
+- the tutor teaches on request and never decides; every piece of help it shows is recorded for what it is; help not shown is recorded nowhere; nothing it says is evidence,
+- user decisions: a separate `TutorPort` (declared `port_extension` under D-105, the 9D contract unedited); free questions, the learner choosing the level while an answer is open; the first live call is 14G's,
+- five closed intents; help is always requestable; a mismatched ask is redirected, never refused; glossing the target segment is a hint,
+- recorded: nothing outside an attempt; a gloss H1 non-target; the ceiling while an answer is open; H4 after it froze; the tutor's own level only refuses, never lowers the record; the H3/H4 disclosure is worded for the moment,
+- only the current task leaves the device; the message is built in core and checked off the device; material cannot speak as the app; the reference solution travels only once it gives nothing away,
+- `tutor_reply/1` with no room for a verdict; an unshowable reply is `invalid_response`; non-answers record nothing and blame no one; only authored help replaces them,
+- found: recorded help never reached evidence (now `AssistanceInterpretation`, `2D` §6); solution exposure never reached the engines (now read by attempt order, schema unchanged),
+- eighteen living port-count gates narrowed to MSBX's four plus the declared extension; no guarantee weakened,
+- mutation 68/68, independent QA 219/219, validator mutation 30/30, sweep 49/49,
+- T6 was not run; nothing in the app calls the tutor yet (16D) and no provider is wired (14G).
+
+## 64. 14B handoff
+
+14B — Yanlış analizi. `TUTX-v0` tutor'un nasıl davrandığını kilitledi (istekler, seviye tavanı, cihazdan çıkan mesaj, yanıt şeması, yanıtsızlık, yardımın kanıt anlamı); `WLRX-v0` atıf kuralları ve misconception hipotez sınırı kodda. Açık loop'lar: misconception hafızası (14B), alternatif anlatım (14C), kod değerlendirme (14D), AI kodunun anlaşılma kontrolü (14E), açık uçlu değerlendirme (14F), adaptör çağrı noktası ve model güncelliği (14G), yazılmış ipucu basamakları (15), paneli çizmek ve uygulamadan çağırmak (16D), konuşma geçmişi (16B), T6. 14B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

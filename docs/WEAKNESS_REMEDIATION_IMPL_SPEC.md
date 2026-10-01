@@ -219,3 +219,7 @@ Next numbered step: **13E — Program değişiklik raporu**. It must receive a f
 ---
 
 **13F note (2026-10-01, `D-104`, user decision):** a clean miss inside a diagnostic, on an Objective with no evidence from ordinary learning before it and a Skill not mastered (`WeaknessEvent.diagnosticBaseline`), opens no weakness signal — `VDW-v0` §12.1: not knowing something never taught is not a weakness. `WeaknessEngine.rule` returns no rule for that case only; the twelve rules and every other attribution are unchanged.
+
+---
+
+**14A note (2026-10-01, `D-105`):** guidance fading is not the tutor's — the tutor never fades by withholding; scaffold decreases through what the planner selects and the instruction mode a task declares, driven by evidence (`TEIP-v0` §5.4). Misconception memory remains 14B's. Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md` §13.

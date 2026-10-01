@@ -45,6 +45,15 @@ EOD_TEST = ANDROID / "core-presentation/src/test/kotlin/coach/presentation/EndOf
 APP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/DayCloseFactsTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/DayCountingTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -251,7 +260,7 @@ check("E11E-08_no_change_invented", "DayChange(" not in app, "the day summary in
 # ---------------------------------------------------------------- port and adapter
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
-check("E11E-09_port_count", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces}")
+check("E11E-09_port_count", sorted(interfaces) == sorted(list(msbx_ports) + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 check("E11E-09_count_truth_declared", "fun countTruth(kind: String, studyDay: String): Int" in ports,
       "countTruth is not a port refinement")
 count_impl = body(adapter, "override fun countTruth(")

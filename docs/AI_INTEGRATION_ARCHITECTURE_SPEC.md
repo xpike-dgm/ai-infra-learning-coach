@@ -351,3 +351,7 @@ Next numbered step:
 **9F — Test stratejisi**
 
 9F will define how these guarantees are actually verified: how the dependency rule is enforced, how append-only and the null-evaluator path are tested, how planner determinism is exercised, how migrations are tested against populated data, and what must pass before a build is considered releasable. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14A note (2026-10-01, `D-105`):** the tutor behind its own `TutorPort` follows this contract unchanged — non-answers record nothing, a refusal is never the learner's fault, the reply is schema-constrained (`tutor_reply/1`) and only the current task leaves the device (the message is built in core). The concrete call site, the router and the re-verification of model identifiers (§8.2) are 14G's (user decision). Details: `docs/TUTOR_BEHAVIOR_CONTRACT_SPEC.md`.

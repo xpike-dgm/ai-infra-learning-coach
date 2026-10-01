@@ -894,8 +894,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 14 — AI Tutor ve Akıllı Değerlendirme
-### [ ] 14A — Tutor davranış sözleşmesi — **AKTİF**
-### [ ] 14B — Yanlış analizi
+### [x] 14A — Tutor davranış sözleşmesi — TUTX-v0 / D-105
+
+**14A final coverage:**
+- tutor istek üzerine öğretir ve asla karar vermez; gösterdiği her yardım olduğu gibi kaydedilir, göstermediği hiçbir şey kaydedilmez,
+- beş kapalı istek (`hint`, `explain_differently`, `question`, `explain_mistake`, `gloss`); yardım her zaman istenebilir, uymayan istek yönlendirilir,
+- deneme açıkken seviyeyi öğrenci seçer (kullanıcı kararı); H3/H4 ana göre açıklanır; kayıt izin verilenden az yardım iddia etmez; tutor beyanı yalnız reddetmek için,
+- cihazdan yalnız mevcut görev çıkar; mesaj core'da kurulur ve cihaz dışında doğrulanır; malzeme uygulama gibi konuşamaz,
+- `tutor_reply/1` şemaya bağlı, hükme yer yok; yanıtsızlık hiçbir şey kaydetmez, suçlamaz; yalnız yazılmış yardım yerine geçer,
+- kaydedilen yardım kanıtın bağımsızlığını belirliyor (`AssistanceInterpretation`, `2D` §6); gösterilen çözüm exposure ve sonraki kanıt onu okuyor,
+- ayrı `TutorPort` D-105 beyanlı uzantı (9D düzenlenmedi), `NullTutor` ürünle sevk ediliyor, `AiTutor` 14G'ye kadar kullanılamaz; iki build de geçiyor,
+- talimat metni `tutor_instructions/1`; rehberliğin azalması tutor'un değil (`TEIP-v0` §5.4),
+- mutation 68/68, validator 219/219 ve kendi mutation testi 30/30,
+- **T6 çalıştırılmadı**; uygulama tutor'u henüz çağırmıyor (16D), gerçek sağlayıcı 14G.
+
+### [ ] 14B — Yanlış analizi — **AKTİF**
 ### [ ] 14C — Alternatif anlatım
 ### [ ] 14D — Kod değerlendirme
 ### [ ] 14E — AI-generated code comprehension check
@@ -989,8 +1002,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`  
-**Son tamamlanan:** **`13F — VDWX-v0 / D-104`**  
-**Aktif:** **`14A — Tutor davranış sözleşmesi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A`  
+**Son tamamlanan:** **`14A — TUTX-v0 / D-105`**  
+**Aktif:** **`14B — Yanlış analizi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14A fresh PRE-STEP → AI Tutor davranış sözleşmesi (AŞAMA 14'ün ilk adımı; `AIAX-v0` AI'ı yardımcı ve otorite olmayan olarak kilitledi, kanıt/mastery/planner motorları kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14B fresh PRE-STEP → yanlış analizi (`TUTX-v0` tutor sözleşmesi ve `WLRX-v0` atıf kuralları kodda; misconception hafızası 14B'nin) → independent QA → D-050 POST sync + stale audit.**

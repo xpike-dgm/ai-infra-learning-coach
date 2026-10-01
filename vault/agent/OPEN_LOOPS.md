@@ -1,7 +1,7 @@
 ---
 type: open-loops
 status: active
-last_reviewed: 2026-08-29
+last_reviewed: 2026-10-01
 ---
 
 # Open Loops
@@ -55,7 +55,13 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 13D Remediation Engine: WLRX-v0 / D-102 ile tamamlandı; zayıflık motoru, dispozisyon okuma, geriye dönük contamination, şema v6.
 - [x] 13E Program değişiklik raporu: PCRX-v0 / D-103 ile tamamlandı; snapshot farkı, yeniden hesaplama, yalnız durum değiştiyse replan, sonuç aileleri.
 - [x] 13F Tanısal atlama (VDW-v0): VDWX-v0 / D-104 ile tamamlandı; waiver, tanısal yol, planner kapsam tutması, şema v7, S06 koşuyor. **AŞAMA 13 kapandı.**
-- [ ] 14A Tutor davranış sözleşmesi **AKTİF**.
+- [x] 14A Tutor davranış sözleşmesi: TUTX-v0 / D-105 ile tamamlandı; beş kapalı istek, seviye tavanı, core'da kurulan mesaj, `tutor_reply/1`, `NullTutor`, ayrı `TutorPort` (D-105 uzantısı), yardımdan bağımsızlık, gösterilen çözüm exposure. **AŞAMA 14 başladı.**
+- [ ] 14B Yanlış analizi **AKTİF**.
+- [ ] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması → 14G (kullanıcı kararı).
+- [ ] Yazılmış ipucu basamakları ve her görevin instruction mode'u → 15.
+- [ ] Tutor panelini çizmek; `AskTutor` ve `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak → 16D.
+- [ ] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B.
+- [ ] Tutor yanıtlarının beyan ettikleri seviyeye karşı kalibrasyonu → 18D.
 - [ ] Topic `available → mastered` geçişi Objective waiver'larından → 16C.
 - [ ] Hızlı yol girişini (Learn) sunmak, istek/geri çekme/sonucu ve oturum sonrası yeniden hesaplamayı uygulamadan çağırmak → 16D; giriş yerleşimi tanısal kaynağı → 16D.
 - [ ] Planner kaynaklı tanı (kalibre edilmiş karar değeri) → 18B.
@@ -66,12 +72,12 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Curriculum paketinde transfer/artifact kapı alanları (profiller şimdilik `GRE-v0` varsayılanında) → 15.
 - [ ] Topic durum makinesi (`TSM-v0` altı durum, `RVR-v0` §15 `weakening` dahil) → **16C** (kullanıcı kararı, D-102).
 - [ ] 11C yüksek riskli duraklatma boşluk politikası → **18D** (kullanıcı kararı, D-102); o zamana kadar devam ettirilmez.
-- [ ] Remediation strateji rotalarından içerik → 15; misconception hafızası → 14B; rehberliğin azalması → 14.
+- [ ] Remediation strateji rotalarından içerik → 15; misconception hafızası → 14B. Rehberliğin azalması 14A'da kapandı: tutor esirgeyerek azaltmaz, scaffold planner seçimi ve görev instruction mode'uyla kanıtla azalır (`TEIP-v0` §5.4).
 - [ ] Geriye dönük contamination'ı oturum kapanınca uygulamadan çağırmak → 16D; izlerde dispozisyon nedeni → 16C.
 - [ ] Motorları kanıttan sonra uygulamadan yeniden kurmak — çekirdekte `RecomputeSkillState` (13E) sırayı tutuyor, uygulamadan çağırmak — ve `RebuildMastery`'nin `skill_state`'e kendi watermark'ını yazması → 16D.
 - [ ] `skill_state.prerequisite_axis_state` (yalnız sunum; kapı canlı hesaplıyor) → 16C.
 - [ ] Geciken tekrar aciliyet kovaları ve başarı bandı → 18C; uzun yokluk sonrası temsili kontrol → 18B.
-- [ ] Önceki exposure kayıtlarının kanıt satırına katılması (bugün bağımsızlık sınıfı ve görülmüş item reddi kapsıyor) → 14.
+- [x] Önceki exposure kayıtlarının kanıt satırına katılması: 14A'da kapandı — `evidenceFor` gösterilmiş çözümü denemenin sırasına göre okuyor (D-105).
 - [ ] Retention replay çalışma süresi (Skill satırlarında karesel, yalnız yeniden kurmada) → 18E.
 - [ ] Aylık `cross_topic_transfer` ve `professional_evidence_checkpoint` rollerinin üreticisi (transfer fırsatı ve profesyonel kanıt metadata'sı) → 15; o zamana kadar bu rollerle slot kurulmaz.
 - [ ] Aylık döngü ayarı → 16D; varsayılan takvim ayı.
@@ -82,7 +88,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Haftalık döngü başlangıç günü ayarı → 16D; varsayılan ISO hafta (kullanıcı onayladı).
 - [ ] Haftayı uygulamadan kurmak (composition çağrısı) → 16D, planner ile birlikte.
 - [ ] İçerik tazeliği (`QAB-v0` §26) item modelinde yok → 15/18D.
-- [ ] Oturum içinde item başına araç beyanı (bugün kesişim) → 14.
+- [ ] Oturum içinde item başına araç beyanı (bugün kesişim) → 14 (metin; 14B–14F).
 - [ ] Dönüş gününün tekrarlarla dolmasına karşı koruma (starvation/track balance) eşikleri → 18C; S07 iki biçimde test ediliyor.
 - [ ] Invariant 17'nin runtime (gecikme/bellek) ölçümü → 18E; 12F'de yalnız yapısal.
 - [ ] Deneme→planlı görev bağı `DDM-v0`de yok; replan'da başlanan işi bugün çağıran bildiriyor → 15 (veri modeliyle).
@@ -124,8 +130,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Açılış ve bütünlük kontrolü süre bütçeleri → 18E.
 - [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13A'da blueprint ile tamamlandı), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11C'de dolduruldu: `resume_context/1`), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
-- [ ] `AIAX-v0` model varsayılanlarının güncelliği 10A/14'te yeniden doğrulanacak; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
-- [ ] Prompt metni ve rubric ifadesi (14), AI Tutor konuşma UX'i (14), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (10A/14) hâlâ açık.
+- [ ] `AIAX-v0` model varsayılanlarının güncelliği gerçek çağrı noktasıyla birlikte **14G**'de yeniden doğrulanacak (14A kullanıcı kararı); somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
+- [ ] Evaluator prompt metni ve rubric ifadesi (14B–14F), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (14G) hâlâ açık. Tutor talimat metni (`tutor_instructions/1`) ve tutor konuşma sözleşmesi 14A'da kapandı (D-105); paneli çizmek 16D.
 - [x] AMTS-v0 §9 bounded verification list: altı maddenin tamamı 10A'da güncel kaynaklarla kapandı; `minSdk` 26'da compatibility library gerekmiyor.
 - [x] Hedef Android cihaz kaydedildi: **Poco M6 Pro**, `2312FPCA6G`, Android 16 / API 36, HyperOS 3.0.304.0.WNFMIXM.C10, Helio G99-Ultra, 12+6 GB. `D-080` gereği tek hedef cihaz; `TVSX-v0` T6 bu telefonda elle koşar.
 - [ ] T6 device smoke henüz hiç koşulmadı; 10E'de de telefon bağlı değildi. Cihazda doğrulanacaklar: temiz kurulumdan `Ready`, recovery ekranı ve TalkBack duyurusu, main thread'de StrictMode disk ihlali olmaması, cihaz dosya sisteminde atomik rename.

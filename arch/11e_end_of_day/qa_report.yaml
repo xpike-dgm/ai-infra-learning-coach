@@ -230,7 +230,8 @@ checks:
   details: the day summary invents a change
 - check: E11E-09_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E11E-09_count_truth_declared
   result: PASS
   details: countTruth is not a port refinement

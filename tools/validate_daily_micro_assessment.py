@@ -50,6 +50,15 @@ APP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/DailyMi
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/CurriculumPublishingTest.kt"
 FORMAT_TEST = ANDROID / "data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -375,7 +384,7 @@ check("E11D-12_no_new_table", "artifact_body" not in schema, "a table was invent
 # ---------------------------------------------------------------- ports and boundaries
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
 msbx_ports = [p["id"] for p in msbx["ports"]["set"]]
-check("E11D-13_port_count", sorted(interfaces) == sorted(msbx_ports), f"interfaces={interfaces} msbx={msbx_ports}")
+check("E11D-13_port_count", sorted(interfaces) == sorted(list(msbx_ports) + declared_port_extensions(ROOT)), f"interfaces={interfaces} msbx={msbx_ports}")
 persistence_methods = re.findall(r"fun (?:<T> )?(\w+)\(", body(ports, "interface PersistencePort"))
 for method in ("publishCurriculum", "resourceVersion", "latestValidation", "objectiveProfile"):
     check(f"E11D-13_refinement_{method}", method in persistence_methods, f"missing {method}")

@@ -257,7 +257,7 @@ checks:
   details: app-ui must not compute the projection or reach persistence
 - check: E11A-10_ports_unchanged
   result: PASS
-  details: no fifth port may be added
+  details: no undeclared port may be added
 - check: E11A-10_port_refinement_recorded
   result: PASS
   details: the port refinement must be recorded

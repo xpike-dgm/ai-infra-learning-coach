@@ -334,7 +334,8 @@ checks:
   details: the ownership map no longer says GRE-v0 owns mastery
 - check: E12A-11_port_count
   result: PASS
-  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort']
+  details: interfaces=['ClockPort', 'PersistencePort', 'ContentPort', 'EvaluatorPort',
+    'TutorPort']
 - check: E12A-11_refinement_evidenceFor
   result: PASS
   details: missing evidenceFor

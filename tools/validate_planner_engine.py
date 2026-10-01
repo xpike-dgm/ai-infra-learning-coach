@@ -67,6 +67,15 @@ ENGINE_TEST = ANDROID / "core-engines/src/test/kotlin/coach/engines/PlannerEngin
 APP_TEST = ANDROID / "core-application/src/test/kotlin/coach/application/BuildDailyPlanTest.kt"
 T2_TEST = ANDROID / "data-persistence/src/test/kotlin/coach/persistence/PlanStorageTest.kt"
 
+def declared_port_extensions(root):
+    """Ports added after MSBX-v0 by an accepted later contract (14A, D-105), never by an unrecorded edit."""
+    import yaml as _yaml
+    path = root / "arch/14a_tutor_contract/tutor_contract.yaml"
+    tutor = (_yaml.safe_load(path.read_text(encoding="utf-8")) or {}) if path.is_file() else {}
+    ext = tutor.get("port_extension") or {}
+    return [ext["port"]] if tutor.get("status") == "accepted_14a" and ext.get("decision") == "D-105" else []
+
+
 results: list[dict] = []
 failures: list[str] = []
 
@@ -449,7 +458,7 @@ check("E12C-08_schema_version_unchanged", schema_versions_owned(schema), "the sc
 
 # ---------------------------------------------------------------- ports and adapters
 interfaces = re.findall(r"^interface (\w+)", ports, re.M)
-check("E12C-09_port_count", sorted(interfaces) == sorted(p["id"] for p in msbx["ports"]["set"]), f"interfaces={interfaces}")
+check("E12C-09_port_count", sorted(interfaces) == sorted([p["id"] for p in msbx["ports"]["set"]] + declared_port_extensions(ROOT)), f"interfaces={interfaces}")
 check("E12C-09_published_skills", "fun publishedSkills(): List<SkillRow>" in ports, "publishedSkills is missing")
 check("E12C-09_task_candidates", "fun taskCandidates(need: LearningNeed): List<TaskCandidate>" in ports, "taskCandidates is missing")
 skills_read = body(store, "fun publishedSkills(")
