@@ -1139,3 +1139,7 @@ QAB-v0 böylece assessment sisteminin `hangi soruyu/görevi güvenle kullanabili
 ---
 
 **14D note (2026-10-01, `D-108`):** a `coding_task`'s §21 `test_output_required` is met by a `code_test_report/1` from the course's runner; its tests are content (`[code_test_suite]` / `[code_test]`, pinned to the item version) and each names the one Objective it speaks for. Details: `docs/CODE_EVALUATION_IMPL_SPEC.md`.
+
+---
+
+**14F note (2026-10-02, `D-110`):** §19's `normalized_answer_key` / `multiple_valid_answers_ref` are in code as authored accepted-answer lists (`[answer_key]` / `[accepted_answer]`; only the ends are trimmed, only ASCII letters case-folded); `rubric_ref` as `[rubric]` / `[rubric_criterion]`, each criterion speaking for one targeted Objective. Details: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.

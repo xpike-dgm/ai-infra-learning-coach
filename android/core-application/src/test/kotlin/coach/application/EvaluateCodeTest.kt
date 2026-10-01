@@ -108,6 +108,8 @@ class EvaluateCodeTest {
         override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): CodeTestSuite? = suite?.takeIf { it.item == item }
         override fun comprehensionChecksFor(item: VersionedRef): List<coach.model.ComprehensionCheck> = emptyList()
+        override fun answerKeyFor(item: VersionedRef): coach.model.AcceptedAnswers? = null
+        override fun rubricFor(item: VersionedRef): coach.model.Rubric? = null
     }
 
     private class Evaluator(val answer: (EvaluationRequest) -> EvaluationResult) : EvaluatorPort {

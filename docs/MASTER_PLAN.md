@@ -956,8 +956,18 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 43/43, validator 112/112 ve kendi mutation testi 30/30,
 - **T6 çalıştırılmadı**; uygulama kontrolü henüz sunmuyor (16D), kontroller henüz yazılmadı (15).
 
-### [ ] 14F — Açık uçlu cevap değerlendirme — **AKTİF**
-### [ ] 14G — Provider abstraction/fallback
+### [x] 14F — Açık uçlu cevap değerlendirme — OREX-v0 / D-110
+
+**14F final coverage:**
+- serbest metin cevap dersin doğru cevabın içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil (`QAB-v0` §19, `MSS-v0` §5.6),
+- kısa cevap: yazılmış kabul edilen cevap listesi, yalnız uçlar kırpılır, büyük-küçük harf yalnız ASCII'de katlanır; eşleşme `verified`, eşleşmeyen AI'a düşmez (kullanıcı kararı),
+- uzun cevap: rubric (`[rubric]`/`[rubric_criterion]`); AI yalnız kriter başına `met`/`not_met`/`unclear` önerir (`rubric_findings[]` geri kazanıldı), Objective sinyaline core karar verir, en çok provisional,
+- doğrulanmış isteyen görev AI'a gitmez; `verified` iddiası ya da eksik/bilinmeyen/tekrarlı kriter geçersiz yanıttır; değerlendirici talimatları core'da (`open_response_instructions/1`, `open_response_evaluation/1`),
+- AI yoksa cevap bekler ve hiçbir şey yazılmaz; rubric öz-kontrolü pratik ve kayıtlı bir exposure'dır; yalnız öğrenci isterse yeniden (kullanıcı kararı); şema değişmedi,
+- mutation 49/49, validator 117/117 ve kendi mutation testi 30/30,
+- **T6 çalıştırılmadı**; uygulama açık uçlu cevabı henüz değerlendirmiyor (16D), anahtarlar/rubric'ler henüz yazılmadı (15).
+
+### [ ] 14G — Provider abstraction/fallback — **AKTİF**
 
 ---
 
@@ -1046,8 +1056,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14E`  
-**Son tamamlanan:** **`14E — ACCX-v0 / D-109`**  
-**Aktif:** **`14F — Açık uçlu cevap değerlendirme`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14F`  
+**Son tamamlanan:** **`14F — OREX-v0 / D-110`**  
+**Aktif:** **`14G — Provider abstraction/fallback`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14F fresh PRE-STEP → açık uçlu cevap değerlendirme (`AIAX-v0` değerlendirici sözleşmesi, `CDEX-v0` ve `ACCX-v0` kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14G fresh PRE-STEP → sağlayıcı soyutlaması / yedek (`AIAX-v0` adaptör kuralları; `TUTX-v0`, `CDEX-v0`, `ACCX-v0` ve `OREX-v0` sözleşmeleri, talimatları ve şemaları kodda) → independent QA → D-050 POST sync + stale audit.**

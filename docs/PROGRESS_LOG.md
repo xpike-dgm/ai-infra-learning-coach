@@ -1234,3 +1234,16 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14E tamamlandı; 14F aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14F — Açık uçlu cevap değerlendirme`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 14F — Açık uçlu cevap değerlendirme tamamlandı — OREX-v0 / D-110
+
+- 14E (#49) main'e merge edilmişti (82656f7); fresh 14F PRE yapıldı ve beş kanonik kaynak `14E ✅ / 14F active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et") ve iki ürün sorusunu önerilen seçeneklerle cevapladı.
+- **Kullanıcı kararları:** kısa cevaplar kabul edilen cevap listesiyle (verified); AI yoksa cevap bekler, rubric'le öz-kontrol (kanıt değil), yalnız öğrenci isterse yeniden.
+- Sözleşme koda döküldü: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir.
+- **Bulgu:** değerlendirme isteği rubric taşımıyordu; `EvaluationResult` `rubric_findings[]`'i düşürmüştü; kısa cevapların deterministik yolu yoktu. Yazarken paket testi gerçek bir hata yakaladı: yeni bölümler ayrıştırıcının kararından sonra okunuyor, hataları yok sayılıyordu.
+- Şema değişmedi; iki port inceltmesi (`answerKeyFor`, `rubricFor`); `EvaluationRequest`'e beyanlı uzantı; 14D'nin istek kapısı daraltıldı.
+- Mutation 49/49 (F22, F47 ilk turda yaşadı — hedef dışı kriter ve tamamlanmış rubric'e yetim kriter test edilmiyordu; F32 mutantının derleme hatası düzeltildi; set yeniden koşuldu). Altı run PASS, 941 JVM testi. Validator 117/117, kendi mutation testi 30/30, sweep 54/54.
+- **T6 çalıştırılmadı**; uygulama açık uçlu cevabı henüz değerlendirmiyor (16D).
+- D-050 POST living-memory accepted state'i `14F tamamlandı; 14G aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14G — Provider abstraction/fallback`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

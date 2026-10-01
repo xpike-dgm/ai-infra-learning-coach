@@ -34,6 +34,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-107: 14C final alternatif anlatım `ALEX-v0`; yedi kapalı biçim, önce yazılı anlatım (kullanıcı kararı), AI alternatifi dersin kendi anlatımına dayanır ve doğrulanmamış diye etiketlenir; `tutor_instructions/2`; şema değişmedi.
 - D-108: 14D final kod değerlendirme `CDEX-v0`; testler PC'de koşar ve rapor içe aktarılır (kullanıcı kararı), test yalnız kendi Objective'i için konuşur, test yoksa AI yalnız provisional (kullanıcı kararı); şema değişmedi.
 - D-109: 14E final AI yazımı kod anlama kontrolü `ACCX-v0`; önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil), hemen sonra ve isteğe bağlı, `generated_or_copied` bağımsız yeniden kontrol açar (kullanıcı kararları); şema değişmedi.
+- D-110: 14F final açık uçlu cevap değerlendirme `OREX-v0`; kısa cevap kabul edilen cevap listesiyle doğrulanır, uzun cevap rubric'le kriter kriter (AI yalnız kriter bulgusu önerir, core karar verir, en çok provisional), AI yoksa bekler + rubric öz-kontrolü, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi.
 
 ---
 
@@ -184,8 +185,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **14C — Alternatif anlatım** — `ALEX-v0 / D-107`
 - [x] **14D — Kod değerlendirme** — `CDEX-v0 / D-108`
 - [x] **14E — AI-generated code comprehension check** — `ACCX-v0 / D-109`
-- [ ] **14F — Açık uçlu cevap değerlendirme** **AKTİF**
-- [ ] **14G — Provider abstraction / fallback**
+- [x] **14F — Açık uçlu cevap değerlendirme** — `OREX-v0 / D-110`
+- [ ] **14G — Provider abstraction / fallback** **AKTİF**
 
 ---
 
@@ -254,9 +255,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14E`  
-**Son tamamlanan:** **`14E — ACCX-v0 / D-109`**  
-**Aktif:** **`14F — Açık uçlu cevap değerlendirme`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14F`  
+**Son tamamlanan:** **`14F — OREX-v0 / D-110`**  
+**Aktif:** **`14G — Provider abstraction/fallback`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -300,4 +301,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 14E `ACCX-v0` ile AI yazımı kod anlama kontrolü kodda: başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar. Dört kapalı tür `2D` §9'dan (`line_purpose`, `removal_effect`, `state_effect`, `find_the_bug`); yazılı kontroller içeriktir (`[comprehension_check]`, item sürümüne pinli, `ContentPort.comprehensionChecksFor`); tutor'a altıncı istek `check_understanding` (yalnız cevap donduktan sonra, `tutor_instructions/3`, `tutor_reply/2`); `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik kalır). Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar. T6 çalıştırılmadı.
 
-14F başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+14F `OREX-v0` ile açık uçlu cevap değerlendirme kodda: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. T6 çalıştırılmadı.
+
+14G başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

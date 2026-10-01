@@ -3,6 +3,8 @@ package coach.curriculum
 import coach.model.AssessmentItem
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
+import coach.model.AcceptedAnswers
+import coach.model.Rubric
 import coach.model.CurriculumPackage
 import coach.model.ExplanationVariant
 import coach.model.LearningNeed
@@ -62,4 +64,10 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
     /** The checks written for exactly this item version (14E), in a stable order. */
     override fun comprehensionChecksFor(item: VersionedRef): List<ComprehensionCheck> =
         parsed?.comprehensionChecks.orEmpty().filter { it.item == item }.sortedBy { it.ref.toString() }
+
+    /** The accepted answers for exactly this item version (14F). */
+    override fun answerKeyFor(item: VersionedRef): AcceptedAnswers? = parsed?.answerKeys.orEmpty().singleOrNull { it.item == item }
+
+    /** The rubric for exactly this item version (14F). */
+    override fun rubricFor(item: VersionedRef): Rubric? = parsed?.rubrics.orEmpty().singleOrNull { it.item == item }
 }

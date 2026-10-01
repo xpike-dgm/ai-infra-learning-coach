@@ -135,6 +135,8 @@ class MonthlyAssessmentTest {
         override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
         override fun comprehensionChecksFor(item: VersionedRef): List<coach.model.ComprehensionCheck> = emptyList()
+        override fun answerKeyFor(item: VersionedRef): coach.model.AcceptedAnswers? = null
+        override fun rubricFor(item: VersionedRef): coach.model.Rubric? = null
     }
 
     private class Clock(var day: String) : ClockPort {

@@ -109,6 +109,8 @@ class CheckUnderstandingTest {
         override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> = emptyList()
         override fun codeTestsFor(item: VersionedRef): CodeTestSuite? = null
         override fun comprehensionChecksFor(item: VersionedRef): List<ComprehensionCheck> = checks.filter { it.item == item }
+        override fun answerKeyFor(item: VersionedRef): coach.model.AcceptedAnswers? = null
+        override fun rubricFor(item: VersionedRef): coach.model.Rubric? = null
     }
 
     private class Tutor : TutorPort {

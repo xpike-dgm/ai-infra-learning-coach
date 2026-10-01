@@ -232,8 +232,7 @@ checks:
   details: the use case decides, the caller records
 - check: E14D-05_request_unchanged
   result: PASS
-  details: "\n    val objectiveRefs: List<VersionedRef>,\n    val promptText: String,\n\
-    \    val learnerResponse: String,\n"
+  details: '[''objectiveRefs'', ''promptText'', ''learnerResponse'', ''rubric'', ''misconceptionCatalog'']'
 - check: E14D-05_measured_not_pending
   result: PASS
   details: ''

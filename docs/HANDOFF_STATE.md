@@ -297,14 +297,15 @@ PEM-v0:
 - 14C ✅ ALEX-v0 / D-107
 - 14D ✅ CDEX-v0 / D-108
 - 14E ✅ ACCX-v0 / D-109
-- 14F 🟡 active-not-executed
-- 14G–20 ⬜
+- 14F ✅ OREX-v0 / D-110
+- 14G 🟡 active-not-executed
+- 15–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14E — ACCX-v0 / D-109`  
-**Aktif:** `14F — Açık uçlu cevap değerlendirme`  
-**14F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14F — OREX-v0 / D-110`  
+**Aktif:** `14G — Provider abstraction/fallback`  
+**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1297,3 +1298,25 @@ ACCX-v0:
 ## 72. 14F handoff
 
 14F — Açık uçlu cevap değerlendirme. `AIAX-v0` değerlendirici sözleşmesi ve yanıtsızlık taksonomisi, `CDEX-v0` (AI'dan `verified` geçersizdir, provisional rota), `ACCX-v0` (serbest metin anlama cevapları 14F'ye bırakıldı) ve `TUTX-v0` kodda. Açık loop'lar: yazılı kontroller (15), kontrolü çizmek ve uygulamadan çağırmak (16D), adaptör istemi (14G), tutor sorularına güven kalibrasyonu (18), T6. 14F fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 73. D-110 / 14F final özeti
+
+Canonical: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.
+Contract/QA: `arch/14f_open_response_evaluation/`.
+Synthesis: `research/14f_open_response_evaluation_research.md`.
+Code: `core-model` `OpenResponseFacts.kt` (+ `EvaluationResult.Provisional.rubricFindings`); `core-application` `EvaluateOpenResponse.kt`; `core-presentation` `OpenResponsePresentation.kt`; `core-ports` `ContentPort.answerKeyFor`/`rubricFor`, `EvaluationRequest.rubric`/`misconceptionCatalog`; `data-curriculum` four sections.
+
+OREX-v0:
+- a free-text answer is judged against what the course said a correct answer contains, never against how it sounds,
+- user decisions: short answers by an accepted-answer list (verified); evaluator unavailable → the response waits, rubric self-check as practice, re-evaluated only on request,
+- found: the request carried no rubric; `rubric_findings[]` had been dropped; short answers had no deterministic path; the package test caught new sections read after the parser's verdict,
+- matching trims the ends only and folds ASCII letters only; a mismatch never falls to an AI,
+- the AI proposes one finding per criterion; core derives each Objective's signal and ignores the evaluator's own verdict; never more than provisional; a verified-only task is never put to an AI,
+- the self-check is practice and a recorded exposure; nothing retries in the background,
+- schema unchanged; two content-port refinements; a declared request extension; 14D's request gate narrowed,
+- mutation 49/49, independent QA 117/117, validator mutation 30/30, sweep 54/54,
+- T6 was not run.
+
+## 74. 14G handoff
+
+14G — Provider abstraction/fallback. AIAX-v0'ın adaptör kuralları (uçtan uca zaman bütçesi, router, konfigürasyonda model adı, stop reason önce, şema doğrulama, APK'da key yok) ve dört core sözleşmesi kodda: tutor (`tutor_instructions/3`, `tutor_reply/2`), kod (`CDEX-v0`), anlama (`ACCX-v0`) ve açık uçlu değerlendirme (`open_response_instructions/1`, `open_response_evaluation/1`). `AiTutor` ve `AiEvaluator` hâlâ kullanılamaz. Kullanıcı kararı (14A): ilk gerçek sağlayıcı çağrısı 14G'de. Açık loop'lar: anahtarlar ve rubric'ler (15), uygulama çağrıları (16D), kalibrasyon (18), T6. 14G fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

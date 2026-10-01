@@ -14,6 +14,9 @@ import coach.model.CodeTest
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
 import coach.model.ComprehensionKind
+import coach.model.AcceptedAnswers
+import coach.model.Rubric
+import coach.model.RubricCriterion
 import coach.model.ExplanationForm
 import coach.model.ExplanationVariant
 import coach.model.LifecycleStatus
@@ -54,6 +57,10 @@ object PackageFormat {
         val codeTests: List<CodeTestSuite> = emptyList(),
         /** Written comprehension checks (14E): content, served by the content port, never published into the store. */
         val comprehensionChecks: List<ComprehensionCheck> = emptyList(),
+        /** Accepted answers to short-answer items (14F): content, never published into the store. */
+        val answerKeys: List<AcceptedAnswers> = emptyList(),
+        /** Rubrics of open-response items (14F): content, never published into the store. */
+        val rubrics: List<Rubric> = emptyList(),
     )
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
@@ -135,8 +142,11 @@ object PackageFormat {
             runCatching { reader.comprehensionCheck(section) }.getOrElse { reasons += "comprehension_check: ${it.message}"; null }
         }
 
+        val answerKeys = answerKeys(sections, reader, reasons)
+        val rubrics = rubrics(sections, reader, reasons)
+
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
-        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks)
+        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks, answerKeys, rubrics)
     }
 
     /**
@@ -161,10 +171,44 @@ object PackageFormat {
         }
     }
 
+    /** 14F: an answer key's accepted answers are attached once every `[accepted_answer]` is read; an orphan is refused. */
+    private fun answerKeys(sections: List<Section>, reader: Reader, reasons: MutableList<String>): List<AcceptedAnswers> {
+        val heads = sections.filter { it.name == "answer_key" }.mapNotNull { section ->
+            runCatching { reader.answerKeyHead(section) }.getOrElse { reasons += "answer_key: ${it.message}"; null }
+        }
+        val answers = sections.filter { it.name == "accepted_answer" }.map { reader.acceptedAnswer(it) }
+        answers.map { it.first }.filter { key -> heads.none { it.ref == key } }.distinct()
+            .forEach { reasons += "accepted_answer: key ${it.logicalId}@v${it.version} is not declared" }
+        heads.groupBy { it.item }.filterValues { it.size > 1 }.keys
+            .forEach { reasons += "answer_key: item ${it.logicalId}@v${it.version} has more than one key" }
+        return heads.mapNotNull { head ->
+            runCatching { AcceptedAnswers(head.ref, head.item, head.objective, answers.filter { it.first == head.ref }.map { it.second }, head.caseSensitive) }
+                .getOrElse { reasons += "answer_key ${head.ref.logicalId}: ${it.message}"; null }
+        }
+    }
+
+    /** 14F: a rubric's criteria are attached the same way; a criterion of an undeclared rubric is refused. */
+    private fun rubrics(sections: List<Section>, reader: Reader, reasons: MutableList<String>): List<Rubric> {
+        val heads = sections.filter { it.name == "rubric" }.mapNotNull { section ->
+            runCatching { reader.rubricHead(section) }.getOrElse { reasons += "rubric: ${it.message}"; null }
+        }
+        val criteria = sections.filter { it.name == "rubric_criterion" }.mapNotNull { section ->
+            runCatching { reader.rubricCriterion(section) }.getOrElse { reasons += "rubric_criterion: ${it.message}"; null }
+        }
+        criteria.map { it.first }.filter { rubric -> heads.none { it.ref == rubric } }.distinct()
+            .forEach { reasons += "rubric_criterion: rubric ${it.logicalId}@v${it.version} is not declared" }
+        heads.groupBy { it.item }.filterValues { it.size > 1 }.keys
+            .forEach { reasons += "rubric: item ${it.logicalId}@v${it.version} has more than one rubric" }
+        return heads.mapNotNull { head ->
+            runCatching { Rubric(head.ref, head.item, criteria.filter { it.first == head.ref }.map { it.second }) }
+                .getOrElse { reasons += "rubric ${head.ref.logicalId}: ${it.message}"; null }
+        }
+    }
+
     private val KNOWN_SECTIONS = setOf(
         "domain", "module", "topic", "skill", "objective", "topic_skill",
         "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
-        "code_test_suite", "code_test", "comprehension_check",
+        "code_test_suite", "code_test", "comprehension_check", "answer_key", "accepted_answer", "rubric", "rubric_criterion",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -196,6 +240,11 @@ object PackageFormat {
         // 14D (`D-108`): a suite pinned to one item version, and one section per test naming the Objective it speaks for.
         "code_test_suite" to setOf("logical_id", "version", "item", "build_objective"),
         "code_test" to setOf("suite", "id", "objective", "misconception"),
+        // 14F (`D-110`): accepted answers to a short-answer item version, and the rubric of an open-response one.
+        "answer_key" to setOf("logical_id", "version", "item", "objective", "case_sensitive"),
+        "accepted_answer" to setOf("key", "text"),
+        "rubric" to setOf("logical_id", "version", "item"),
+        "rubric_criterion" to setOf("rubric", "id", "objective", "statement"),
         // 14E (`D-109`): one written comprehension check after an item version, judged by its answer key.
         "comprehension_check" to setOf(
             "logical_id", "version", "item", "objective", "kind", "evidence_type", "prompt", "choice_a", "choice_b", "choice_c", "choice_d", "answer",
@@ -382,6 +431,38 @@ object PackageFormat {
             )
         }
 
+        fun answerKeyHead(section: Section): AnswerKeyHead {
+            check(section)
+            return AnswerKeyHead(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                item = ref(section, "item"),
+                objective = ref(section, "objective"),
+                caseSensitive = boolean(section, "case_sensitive"),
+            )
+        }
+
+        fun acceptedAnswer(section: Section): Pair<VersionedRef, String> {
+            check(section)
+            return ref(section, "key") to text(section.values, "text", section.line)
+        }
+
+        fun rubricHead(section: Section): RubricHead {
+            check(section)
+            return RubricHead(
+                VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                ref(section, "item"),
+            )
+        }
+
+        fun rubricCriterion(section: Section): Pair<VersionedRef, RubricCriterion> {
+            check(section)
+            return ref(section, "rubric") to RubricCriterion(
+                id = text(section.values, "id", section.line),
+                objective = ref(section, "objective"),
+                statement = text(section.values, "statement", section.line),
+            )
+        }
+
         fun comprehensionCheck(section: Section): ComprehensionCheck {
             check(section)
             return ComprehensionCheck(
@@ -463,3 +544,9 @@ private object AssessmentLevels {
 
 /** A suite's head before its tests are attached (14D). */
 private data class SuiteHead(val ref: VersionedRef, val item: VersionedRef, val buildObjective: VersionedRef?)
+
+/** An answer key's head before its accepted answers are attached (14F). */
+private data class AnswerKeyHead(val ref: VersionedRef, val item: VersionedRef, val objective: VersionedRef, val caseSensitive: Boolean)
+
+/** A rubric's head before its criteria are attached (14F). */
+private data class RubricHead(val ref: VersionedRef, val item: VersionedRef)
