@@ -295,14 +295,15 @@ PEM-v0:
 - 14A ✅ TUTX-v0 / D-105
 - 14B ✅ WAAX-v0 / D-106
 - 14C ✅ ALEX-v0 / D-107
-- 14D 🟡 active-not-executed
-- 14E–20 ⬜
+- 14D ✅ CDEX-v0 / D-108
+- 14E 🟡 active-not-executed
+- 14F–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14C — ALEX-v0 / D-107`  
-**Aktif:** `14D — Kod değerlendirme`  
-**14D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14D — CDEX-v0 / D-108`  
+**Aktif:** `14E — AI-generated code comprehension check`  
+**14E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1252,3 +1253,24 @@ ALEX-v0:
 ## 68. 14D handoff
 
 14D — Kod değerlendirme. `AIAX-v0` değerlendirici portu ve yanıtsızlık taksonomisi, `TUTX-v0` tutor sözleşmesi, `WAAX-v0` kapalı misconception kataloğu ve kanıttaki etiketler, `ALEX-v0` alternatif anlatım kodda. Açık loop'lar: yazılı anlatımlar ve karşılaştırmalar (15), menüyü çizmek ve uygulamadan çağırmak (16D), adaptör (14G), biçim kalibrasyonu (18), T6. 14D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 69. D-108 / 14D final özeti
+
+Canonical: `docs/CODE_EVALUATION_IMPL_SPEC.md`.
+Contract/QA: `arch/14d_code_evaluation/`.
+Synthesis: `research/14d_code_evaluation_research.md`.
+Code: `core-model` `CodeEvaluationFacts.kt`; `core-application` `EvaluateCode.kt`; `core-presentation` `CodeEvaluationPresentation.kt`; `core-ports` `ContentPort.codeTestsFor`; `data-curriculum` `[code_test_suite]`/`[code_test]` sections; `tools/code_test_runner.py` + `tools/fixtures/code_test_14d/`.
+
+CDEX-v0:
+- code is judged by running it, or it is only an opinion,
+- user decisions: tests run on the learner's computer and the report is imported; without tests, an AI's evaluation is provisional evidence only where the task allows it,
+- found: no production code produced an evaluation; the deterministic path for code had nowhere to run; nothing kept a test to its Objective; an evaluator port could return `verified`,
+- a test speaks only for its Objective; a failed build only for an authored build Objective; what did not run measured nothing; a timeout is a failure,
+- a tested task is never put to an AI; a missing or broken report never falls back to an AI; a verified-only task waits for tests; an AI's `verified` is an invalid response,
+- schema unchanged; one content-port refinement; results recorded by the existing pipeline,
+- mutation 49/49, independent QA 122/122, validator mutation 30/30, sweep 52/52,
+- T6 and a C build were not run.
+
+## 70. 14E handoff
+
+14E — AI-generated code comprehension check. `CDEX-v0` kodun ne yaptığını testlerle ölçüyor; testlerin geçmesi anlamak değildir. `2D` provenance (`generated_or_copied`), `TUTX-v0` tutor sözleşmesi ve `ALEX-v0` kodda. Açık loop'lar: gerçek görevlerin testleri (15), raporu artifact olarak saklamak ve uygulamadan çağırmak (16D), kod için adaptör istemi (14G), açık uçlu değerlendirme (14F), AI kod değerlendiricisinin kalibrasyonu (18), T6, C derlemesi. 14E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

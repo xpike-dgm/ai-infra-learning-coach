@@ -32,6 +32,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-105: 14A final tutor davranış sözleşmesi `TUTX-v0`; ayrı `TutorPort` (beyanlı uzantı), kayıt izin verilenden az yardım iddia etmez, kaydedilen yardım kanıtın bağımsızlığını belirler; AŞAMA 14 başladı.
 - D-106: 14B final yanlış analizi `WAAX-v0`; kapalı misconception kataloğu (curriculum), `misconception_state` hafızası (`WLRM-v0` ailesi), şema v8; AI önerisi hipotezin üstüne çıkmaz.
 - D-107: 14C final alternatif anlatım `ALEX-v0`; yedi kapalı biçim, önce yazılı anlatım (kullanıcı kararı), AI alternatifi dersin kendi anlatımına dayanır ve doğrulanmamış diye etiketlenir; `tutor_instructions/2`; şema değişmedi.
+- D-108: 14D final kod değerlendirme `CDEX-v0`; testler PC'de koşar ve rapor içe aktarılır (kullanıcı kararı), test yalnız kendi Objective'i için konuşur, test yoksa AI yalnız provisional (kullanıcı kararı); şema değişmedi.
 
 ---
 
@@ -180,8 +181,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **14A — Tutor davranış sözleşmesi** — `TUTX-v0 / D-105`
 - [x] **14B — Yanlış analizi** — `WAAX-v0 / D-106`
 - [x] **14C — Alternatif anlatım** — `ALEX-v0 / D-107`
-- [ ] **14D — Kod değerlendirme** **AKTİF**
-- [ ] **14E — AI-generated code comprehension check**
+- [x] **14D — Kod değerlendirme** — `CDEX-v0 / D-108`
+- [ ] **14E — AI-generated code comprehension check** **AKTİF**
 - [ ] **14F — Açık uçlu cevap değerlendirme**
 - [ ] **14G — Provider abstraction / fallback**
 
@@ -252,9 +253,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14C`  
-**Son tamamlanan:** **`14C — ALEX-v0 / D-107`**  
-**Aktif:** **`14D — Kod değerlendirme`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14D`  
+**Son tamamlanan:** **`14D — CDEX-v0 / D-108`**  
+**Aktif:** **`14E — AI-generated code comprehension check`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -294,4 +295,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 14C `ALEX-v0` ile alternatif anlatım kodda: anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez: biçimi öğrenci seçer, önce doğrulanmış yazılı anlatım gösterilir ve yalnız yazılmış olan yoksa tutor yazar — dersin kendi anlatımına dayanarak, onunla çelişmemesi söylenerek, doğrulanmamış diye etiketlenerek ve asıl anlatıma dönüş her zaman bir adım uzakta; öğrencinin kendi durumunu gerektiren bir biçimi AI asla yazmaz. Yedi kapalı biçim (`LEARNING_BEHAVIOR_RULES` §9 ve `WLRM-v0` stratejileri): beşini tutor yazabilir; misconception karşılaştırması yalnız yazılıdır (öğrencinin hafızası cihazdan çıkmaz) ve dersin kendi anlatımı bir alternatif değildir. Yazılı anlatımlar içeriktir (`[explanation]` bölümü, Objective sürümüne pinli, `ContentPort.explanationsFor`), mağazaya yayımlanmaz; menü sıralamaz, görüleni işaretler ve hiçbir şey saklamaz; en az açan yazılı anlatım öğrencinin tavanına sığarsa tutor çağrılmaz. Tutor talimatları `tutor_instructions/2` (kural 14 dayanak, kural 15 biçimler). Kullanıcı kararları: biçimi öğrenci seçer; önce yazılmış, yoksa AI. T6 çalıştırılmadı.
 
-14D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+14D `CDEX-v0` ile kod değerlendirme kodda: kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür: bir kod görevi yalnız dersin kendi testleriyle doğrulanır — öğrencinin bilgisayarında koşulur ve raporu katı okunur — ve bir test yalnız yazıldığı Objective için konuşur; çalışmayan test hiçbir şey ölçmemiştir ve öğrenciye karşı sayılmaz; test yoksa AI kodu yalnız görev provisional sonuca izin veriyorsa ve en çok provisional olarak değerlendirir, doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; testlerin geçmesi kodun istenen şekilde çalıştığını gösterir, öğrencinin nedenini açıklayabildiğini değil. Testler içeriktir (`[code_test_suite]`/`[code_test]`, item sürümüne pinli, `ContentPort.codeTestsFor`); PC tarafı koşucu `tools/code_test_runner.py` (yalnız standart kütüphane, kabuksuz, süre sınırı yazılır) `code_test_report/1` üretir. Başarısız derleme yalnız yazılmış derleme Objective'ini suçlar; zaman aşımı başarısızlıktır; ortam hatası, başka item ya da suite sürümü için rapor hiçbir şey ölçmez; eksik ya da bozuk rapor asla AI'a düşmez; değerlendirici portu asla `verified` döndüremez. Kullanıcı kararları: testler PC'de koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional. T6 ve C derlemesi çalıştırılmadı.
+
+14E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

@@ -932,8 +932,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 42/42, validator 123/123 ve kendi mutation testi 30/30,
 - **T6 çalıştırılmadı**; uygulama menüyü henüz sunmuyor (16D), anlatımlar henüz yazılmadı (15).
 
-### [ ] 14D — Kod değerlendirme — **AKTİF**
-### [ ] 14E — AI-generated code comprehension check
+### [x] 14D — Kod değerlendirme — CDEX-v0 / D-108
+
+**14D final coverage:**
+- kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür (`AIAX-v0` §5.2: derleyici + Objective'e özgü testler `verified`),
+- testler öğrencinin bilgisayarında koşar ve rapor içe aktarılır (kullanıcı kararı); telefon IDE değildir (`LEARNING_BEHAVIOR_RULES` §1),
+- testler içerik: `[code_test_suite]`/`[code_test]`, item sürümüne pinli, `ContentPort.codeTestsFor`; referans koşucu `tools/code_test_runner.py`, rapor `code_test_report/1`,
+- bir test yalnız kendi Objective'i için konuşur; başarısız derleme yalnız yazılmış derleme Objective'ini suçlar; çalışmayan test hiçbir şey ölçmez; zaman aşımı başarısızlıktır,
+- test yoksa AI yalnız provisional ve yalnız görev izin veriyorsa (kullanıcı kararı); doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; eksik/bozuk rapor AI'a düşmez; port `verified` döndüremez,
+- testlerin geçmesi anlamak değildir (`MSS-v0` §5.4); şema değişmedi,
+- mutation 49/49, validator 122/122 ve kendi mutation testi 30/30,
+- **T6 ve C derlemesi çalıştırılmadı**; uygulama kodu henüz değerlendirmiyor (16D), testler henüz yazılmadı (15).
+
+### [ ] 14E — AI-generated code comprehension check — **AKTİF**
 ### [ ] 14F — Açık uçlu cevap değerlendirme
 ### [ ] 14G — Provider abstraction/fallback
 
@@ -1024,8 +1035,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14C`  
-**Son tamamlanan:** **`14C — ALEX-v0 / D-107`**  
-**Aktif:** **`14D — Kod değerlendirme`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14D`  
+**Son tamamlanan:** **`14D — CDEX-v0 / D-108`**  
+**Aktif:** **`14E — AI-generated code comprehension check`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14D fresh PRE-STEP → kod değerlendirme (`AIAX-v0` değerlendirici portu, `TUTX-v0` tutor sözleşmesi ve `WAAX-v0` misconception etiketleri kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **14E fresh PRE-STEP → AI-generated code comprehension check (`CDEX-v0` kod değerlendirme, `TUTX-v0` tutor sözleşmesi ve `2D` provenance kodda) → independent QA → D-050 POST sync + stale audit.**

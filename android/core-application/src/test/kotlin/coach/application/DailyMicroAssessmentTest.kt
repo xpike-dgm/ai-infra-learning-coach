@@ -97,6 +97,7 @@ class DailyMicroAssessmentTest {
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
         override fun explanationsFor(objective: VersionedRef): List<coach.model.ExplanationVariant> = emptyList()
+        override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
     }
 
     private class FakeStore(

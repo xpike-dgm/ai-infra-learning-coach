@@ -1,0 +1,483 @@
+model: CDEX-v0
+stage_step: 14D
+decision: D-108
+result: PASS
+checks_total: 122
+checks_passed: 122
+checks_failed: 0
+checks:
+- check: E14D-00_exists_code_evaluation.yaml
+  result: PASS
+  details: missing arch/14d_code_evaluation/code_evaluation.yaml
+- check: E14D-00_exists_CODE_EVALUATION_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/CODE_EVALUATION_IMPL_SPEC.md
+- check: E14D-00_exists_14d_code_evaluation_research.md
+  result: PASS
+  details: missing research/14d_code_evaluation_research.md
+- check: E14D-00_exists_CodeEvaluationFacts.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/CodeEvaluationFacts.kt
+- check: E14D-00_exists_EvaluateCode.kt
+  result: PASS
+  details: missing android/core-application/src/main/kotlin/coach/application/EvaluateCode.kt
+- check: E14D-00_exists_CodeEvaluationPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/CodeEvaluationPresentation.kt
+- check: E14D-00_exists_code_test_runner.py
+  result: PASS
+  details: missing tools/code_test_runner.py
+- check: E14D-01_model
+  result: PASS
+  details: CDEX-v0
+- check: E14D-01_status
+  result: PASS
+  details: accepted_14d
+- check: E14D-01_decision
+  result: PASS
+  details: D-108
+- check: E14D-01_scope_tests_as_content
+  result: PASS
+  details: tests_as_content=True
+- check: E14D-01_scope_report_format
+  result: PASS
+  details: report_format=True
+- check: E14D-01_scope_reference_runner
+  result: PASS
+  details: reference_runner=True
+- check: E14D-01_scope_per_objective_attribution
+  result: PASS
+  details: per_objective_attribution=True
+- check: E14D-01_scope_provisional_ai_route
+  result: PASS
+  details: provisional_ai_route=True
+- check: E14D-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E14D-01_scope_state_family_added
+  result: PASS
+  details: state_family_added=False
+- check: E14D-01_scope_mastery_rule_changed
+  result: PASS
+  details: mastery_rule_changed=False
+- check: E14D-01_scope_weakness_rule_changed
+  result: PASS
+  details: weakness_rule_changed=False
+- check: E14D-01_scope_planner_rule_changed
+  result: PASS
+  details: planner_rule_changed=False
+- check: E14D-01_scope_code_runs_on_device
+  result: PASS
+  details: code_runs_on_device=False
+- check: E14D-01_scope_tests_authored
+  result: PASS
+  details: tests_authored=False
+- check: E14D-01_scope_adapter_prompt_written
+  result: PASS
+  details: adapter_prompt_written=False
+- check: E14D-01_scope_app_calls_evaluation
+  result: PASS
+  details: app_calls_evaluation=False
+- check: E14D-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-01'', ''tests_run'': ''on_learners_computer_report_imported'',
+    ''ai_without_tests'': ''provisional_only_where_task_allows''}'
+- check: E14D-01_aiax_verified_path
+  result: PASS
+  details: AIAX-v0 §5.2 moved
+- check: E14D-01_aiax_uncalibrated
+  result: PASS
+  details: AIAX-v0 §5.2 moved
+- check: E14D-01_aiax_refusal
+  result: PASS
+  details: AIAX-v0 §6 moved
+- check: E14D-01_aiax_minimum
+  result: PASS
+  details: AIAX-v0 §11 moved
+- check: E14D-01_mss_tests_not_understanding
+  result: PASS
+  details: MSS-v0 §5.4 moved
+- check: E14D-01_2d_test_runner
+  result: PASS
+  details: 2D Test runner moved
+- check: E14D-01_qab_test_output
+  result: PASS
+  details: QAB-v0 §2/§21 moved
+- check: E14D-01_lbr_not_ide
+  result: PASS
+  details: LEARNING_BEHAVIOR_RULES §1 moved
+- check: E14D-02_build_statuses
+  result: PASS
+  details: '[''ok'', ''failed'', ''not_required'', ''environment_error'']'
+- check: E14D-02_test_statuses
+  result: PASS
+  details: '[(''passed'', ''true''), (''failed'', ''true''), (''timed_out'', ''true''),
+    (''not_run'', ''false''), (''error'', ''false'')]'
+- check: E14D-02_ran
+  result: PASS
+  details: '[(''passed'', ''true''), (''failed'', ''true''), (''timed_out'', ''true''),
+    (''not_run'', ''false''), (''error'', ''false'')]'
+- check: E14D-02_format
+  result: PASS
+  details: ''
+- check: E14D-02_strict_first_line
+  result: PASS
+  details: if (lines.first() != FORMAT) reasons +=
+- check: E14D-02_strict_end
+  result: PASS
+  details: if (lines.last() != "end") reasons +=
+- check: E14D-02_strict_duplicate
+  result: PASS
+  details: is reported twice
+- check: E14D-02_strict_unknown_status
+  result: PASS
+  details: unknown test status
+- check: E14D-02_strict_unknown_build
+  result: PASS
+  details: unknown build status
+- check: E14D-02_strict_empty
+  result: PASS
+  details: no test is reported
+- check: E14D-02_strict_crlf
+  result: PASS
+  details: replace("\r\n", "\n")
+- check: E14D-02_version_positive
+  result: PASS
+  details: ''
+- check: E14D-03_suite_id
+  result: PASS
+  details: ''
+- check: E14D-03_suite_nonempty
+  result: PASS
+  details: ''
+- check: E14D-03_suite_unique
+  result: PASS
+  details: ''
+- check: E14D-03_build_apart
+  result: PASS
+  details: ''
+- check: E14D-03_test_id
+  result: PASS
+  details: ''
+- check: E14D-04_targets_only
+  result: PASS
+  details: ''
+- check: E14D-04_refusals_before_result
+  result: PASS
+  details: '[538, 649, 792, 1105, 2049]'
+- check: E14D-04_exact_suite_version
+  result: PASS
+  details: ''
+- check: E14D-04_test_set
+  result: PASS
+  details: ''
+- check: E14D-04_build_only_build_objective
+  result: PASS
+  details: ''
+- check: E14D-04_failed_build_unmeasured
+  result: PASS
+  details: ''
+- check: E14D-04_per_objective
+  result: PASS
+  details: ''
+- check: E14D-04_signal_rules
+  result: PASS
+  details: "fun signalOf(statuses: List<CodeTestStatus>): OutcomeSignal {\n      \
+    \  val ran = statuses.filter { it.ran }\n        val failed = ran.count { it !=\
+    \ CodeTestStatus.PASSED }\n        return when {\n            failed == 0 && ran.size\
+    \ == statuses.size -> OutcomeSignal.MET\n            failed == 0 -> Outcome"
+- check: E14D-04_misconception_only_on_failure
+  result: PASS
+  details: ''
+- check: E14D-04_evaluator_named
+  result: PASS
+  details: ''
+- check: E14D-04_no_threshold
+  result: PASS
+  details: no invented numbers
+- check: E14D-05_tests_first
+  result: PASS
+  details: "fun route(item: AssessmentItem, suite: CodeTestSuite?): CodeEvaluationRoute\
+    \ = when {\n        suite != null -> CodeEvaluationRoute.TESTS\n        item.evaluatorRequirement.requiredStatus\
+    \ == EvaluatorSta"
+- check: E14D-05_verified_never_ai
+  result: PASS
+  details: ''
+- check: E14D-05_ai_never_verifies
+  result: PASS
+  details: ''
+- check: E14D-05_ai_contract
+  result: PASS
+  details: ''
+- check: E14D-05_pending_passes_through
+  result: PASS
+  details: ''
+- check: E14D-05_no_ai_fallback
+  result: PASS
+  details: ''
+- check: E14D-05_ai_only_on_ai_route
+  result: PASS
+  details: ''
+- check: E14D-05_minimum_content
+  result: PASS
+  details: only task text and code
+- check: E14D-05_ai_checked
+  result: PASS
+  details: ''
+- check: E14D-05_skip_sends_nothing
+  result: PASS
+  details: ''
+- check: E14D-05_writes_nothing
+  result: PASS
+  details: the use case decides, the caller records
+- check: E14D-05_request_unchanged
+  result: PASS
+  details: "\n    val objectiveRefs: List<VersionedRef>,\n    val promptText: String,\n\
+    \    val learnerResponse: String,\n"
+- check: E14D-05_measured_not_pending
+  result: PASS
+  details: ''
+- check: E14D-05_pipeline_pending_writes_nothing
+  result: PASS
+  details: 12A
+- check: E14D-06_runner_no_shell
+  result: PASS
+  details: ''
+- check: E14D-06_runner_stdlib
+  result: PASS
+  details: '{''pathlib'', ''subprocess'', ''sys'', ''json'', ''__future__''}'
+- check: E14D-06_runner_timeout_authored
+  result: PASS
+  details: ''
+- check: E14D-06_runner_bytes
+  result: PASS
+  details: ''
+- check: E14D-06_runner_env_error
+  result: PASS
+  details: ''
+- check: E14D-06_runner_correct_matches_kotlin_resource
+  result: PASS
+  details: 'code_test_report/1
+
+    item: item.py.sum_two@v1
+
+    suite: codetest.py.sum_two@v1
+
+    build: ok
+
+    test: reads_two_ints passed
+
+    test: adds_small passed
+
+    test: adds_negative passed
+
+    end
+
+    '
+- check: E14D-06_runner_wrong_matches_kotlin_resource
+  result: PASS
+  details: 'code_test_report/1
+
+    item: item.py.sum_two@v1
+
+    suite: codetest.py.sum_two@v1
+
+    build: ok
+
+    test: reads_two_ints passed
+
+    test: adds_small failed
+
+    test: adds_negative failed
+
+    end
+
+    '
+- check: E14D-06_runner_broken_matches_kotlin_resource
+  result: PASS
+  details: 'code_test_report/1
+
+    item: item.py.sum_two@v1
+
+    suite: codetest.py.sum_two@v1
+
+    build: failed
+
+    test: reads_two_ints not_run
+
+    test: adds_small not_run
+
+    test: adds_negative not_run
+
+    end
+
+    '
+- check: E14D-06_runner_loop_matches_kotlin_resource
+  result: PASS
+  details: 'code_test_report/1
+
+    item: item.py.sum_two@v1
+
+    suite: codetest.py.sum_two@v1
+
+    build: ok
+
+    test: reads_two_ints timed_out
+
+    test: adds_small timed_out
+
+    test: adds_negative timed_out
+
+    end
+
+    '
+- check: E14D-06_runner_environment_error_matches_kotlin_resource
+  result: PASS
+  details: 'code_test_report/1
+
+    item: item.py.sum_two@v1
+
+    suite: codetest.py.sum_two@v1
+
+    build: environment_error
+
+    test: reads_two_ints not_run
+
+    test: adds_small not_run
+
+    test: adds_negative not_run
+
+    end
+
+    '
+- check: E14D-07_port_count
+  result: PASS
+  details: '[''ClockPort'', ''PersistencePort'', ''ContentPort'', ''EvaluatorPort'',
+    ''TutorPort'']'
+- check: E14D-07_content_refinement
+  result: PASS
+  details: ''
+- check: E14D-07_source_pins_version
+  result: PASS
+  details: ''
+- check: E14D-07_sections
+  result: PASS
+  details: ''
+- check: E14D-07_suite_keys
+  result: PASS
+  details: ''
+- check: E14D-07_test_keys
+  result: PASS
+  details: ''
+- check: E14D-07_undeclared_suite_refused
+  result: PASS
+  details: ''
+- check: E14D-07_not_published
+  result: PASS
+  details: content, never published
+- check: E14D-07_schema_unchanged
+  result: PASS
+  details: ''
+- check: E14D-08_ai_label
+  result: PASS
+  details: ''
+- check: E14D-08_tests_not_understanding
+  result: PASS
+  details: ''
+- check: E14D-08_notes_by_source
+  result: PASS
+  details: "fun notes(verdict: CodeVerdict.Measured): List<String> =\n        if (verdict.result\
+    \ is EvaluationResult.Provisional) listOf(CodeEvaluationCopy.AI_LABEL) else listOf(CodeEvaluationCopy.TESTS_ARE_NOT_UN"
+- check: E14D-08_ai_worded_as_view
+  result: PASS
+  details: ''
+- check: E14D-08_no_numbers
+  result: PASS
+  details: 'Bu hedefin kontrolleri geçti. Bu hedefin kontrollerinden bazıları geçmedi.
+    Bu hedefin kontrolleri geçmedi. Bu hedef ölçülemedi: kontrolleri çalışmadı. Bu
+    bir yanlış sayılmadı. AI''a göre bu hedef karşı'
+- check: E14D-08_no_blame
+  result: PASS
+  details: ''
+- check: E14D-08_not_measured_not_wrong
+  result: PASS
+  details: '[''REPORT_MISSING'', ''NO_SUITE_FOR_REPORT'', ''NOTHING_SUBMITTED'']'
+- check: E14D-08_every_reason_said
+  result: PASS
+  details: '[''report_missing'', ''report_malformed'', ''report_for_another_item'',
+    ''report_for_another_suite'', ''report_does_not_match_suite'', ''environment_error'',
+    ''no_suite_for_report'', ''tests_required'', ''nothing_submitted'', ''task_text_missing'',
+    ''evaluator_did_not_answer'']'
+- check: E14D-08_reasons_match_contract
+  result: PASS
+  details: '[''report_missing'', ''report_malformed'', ''report_for_another_item'',
+    ''report_for_another_suite'', ''report_does_not_match_suite'', ''environment_error'',
+    ''no_suite_for_report'', ''tests_required'', ''nothing_submitted'', ''task_text_missing'',
+    ''evaluator_did_not_answer'']'
+- check: E14D-09_suite_model
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/CodeEvaluationFactsTest.kt
+- check: E14D-09_suite_application
+  result: PASS
+  details: android/core-application/src/test/kotlin/coach/application/EvaluateCodeTest.kt
+- check: E14D-09_suite_presentation
+  result: PASS
+  details: android/core-presentation/src/test/kotlin/coach/presentation/CodeEvaluationPresentationTest.kt
+- check: E14D-09_suite_format
+  result: PASS
+  details: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt
+- check: E14D-09_suite_runner_reports
+  result: PASS
+  details: android/core-model/src/test/resources/code_test_14d/report_wrong.txt
+- check: E14D-09_mutation_all_detected
+  result: PASS
+  details: 49/49
+- check: E14D-09_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E14D-09_control
+  result: PASS
+  details: ''
+- check: E14D-09_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (an AI verifying, a failed build blaming every Objective, a score, shell=True)
+    inside comments must not fail the validator'', ''negative_control_result'': ''no_false_positive'',
+    ''crash_is_not_a_detection'': True}'
+- check: E14D-09_runs_pass
+  result: PASS
+  details: ''
+- check: E14D-09_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E14D-09_c_build_not_claimed
+  result: PASS
+  details: ''
+- check: E14D-09_forbidden
+  result: PASS
+  details: '[''ai_asked_about_tested_task'', ''ai_judgement_recorded_verified'', ''verified_task_put_to_ai'',
+    ''broken_report_replaced_by_ai'', ''one_failure_counted_against_every_objective'',
+    ''failed_build_blames_unrelated_objectives'', ''unrun_test_counted_as_failure'',
+    ''environment_error_as_wrong_answer'', ''report_for_other_item_or_version_accepted'',
+    ''passing_tests_presented_as_understanding'', ''answer_key_or_history_sent_to_provider'']'
+- check: E14D-09_open_loops
+  result: PASS
+  details: '{''suites_for_real_tasks'': {''owner'': ''15''}, ''report_artifact_and_app_call'':
+    {''owner'': ''16D''}, ''adapter_prompt_for_code'': {''owner'': ''14G''}, ''ai_code_comprehension'':
+    {''owner'': ''14E''}, ''open_ended_evaluation'': {''owner'': ''14F''}, ''ai_code_evaluator_calibration'':
+    {''owner'': ''18''}}'
+- check: E14D-10_spec_status
+  result: PASS
+  details: ''
+- check: E14D-10_spec_next
+  result: PASS
+  details: ''
+- check: E14D-10_spec_not_run
+  result: PASS
+  details: ''
+- check: E14D-10_research
+  result: PASS
+  details: ''
+- check: E14D-10_decision
+  result: PASS
+  details: D-108 heading in DECISIONS

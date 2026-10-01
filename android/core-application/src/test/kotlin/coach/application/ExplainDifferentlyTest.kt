@@ -76,6 +76,7 @@ class ExplainDifferentlyTest {
         override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
         override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> = emptyList()
         override fun explanationsFor(objective: VersionedRef): List<ExplanationVariant> = variants.filter { it.objective == objective }
+        override fun codeTestsFor(item: VersionedRef): coach.model.CodeTestSuite? = null
     }
 
     private class Store(val catalog: List<MisconceptionRow>, val memory: Map<String, String>) : PersistencePort {

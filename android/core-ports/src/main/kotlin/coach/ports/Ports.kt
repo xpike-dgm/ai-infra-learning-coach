@@ -2,6 +2,7 @@ package coach.ports
 
 import coach.model.AssessmentItem
 import coach.model.AssessmentScope
+import coach.model.CodeTestSuite
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
@@ -241,6 +242,12 @@ interface ContentPort {
      * "nothing written yet". A refinement of this port, not a new one.
      */
     fun explanationsFor(objective: VersionedRef): List<ExplanationVariant>
+
+    /**
+     * The course's tests for one pinned item version (14D, `CDEX-v0`), if it has any. Content (15), so the content
+     * side answers; `null` is the truthful "no tests written". A refinement of this port, not a new one.
+     */
+    fun codeTestsFor(item: VersionedRef): CodeTestSuite?
 }
 
 /**

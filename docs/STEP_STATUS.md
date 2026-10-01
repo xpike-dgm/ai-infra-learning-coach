@@ -71,8 +71,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **14A — Tutor davranış sözleşmesi** | ✅ | TUTX-v0 / D-105. Tutor istek üzerine öğretir, asla karar vermez; beş kapalı istek, yardım hep istenebilir; seviyeyi öğrenci seçer, kayıt izin verilenden az yardım iddia etmez; cihazdan yalnız mevcut görev çıkar; `tutor_reply/1`; yanıtsızlık hiçbir şey kaydetmez; kaydedilen yardım kanıtın bağımsızlığını belirler; gösterilen çözüm exposure; ayrı `TutorPort` (D-105 uzantısı); 219/219 QA PASS, mutation 68/68. **AŞAMA 14 başladı.** |
 | **14B — Yanlış analizi** | ✅ | WAAX-v0 / D-106. Yanlış cevap bir bilgi, hüküm değil; kapalı misconception kataloğu (kullanıcı kararı); etiket yalnız yanlış satıra ve beyanlıysa; hafıza zayıflık motorunun kuralıyla, AI hipotezin üstüne çıkmaz; hipotez yalnız soru (kullanıcı kararı); şema v8; 154/154 QA PASS, mutation 51/51. |
 | **14C — Alternatif anlatım** | ✅ | ALEX-v0 / D-107. Anlatım tutmadığında yöntem değişir, kapsam ve doğruluk değişmez; biçimi öğrenci seçer, önce yazılmış yoksa AI (kullanıcı kararları); AI alternatifi dersin anlatımına dayanır ve doğrulanmamış etiketlenir; `tutor_instructions/2`; şema değişmedi; 123/123 QA PASS, mutation 42/42. |
-| **14D — Kod değerlendirme** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **14E–20** | ⬜ Bekliyor | 14D sonrası canonical sırada. |
+| **14D — Kod değerlendirme** | ✅ | CDEX-v0 / D-108. Kod çalıştırılarak değerlendirilir, yoksa yalnız görüştür; testler PC'de koşar ve rapor içe aktarılır, test yoksa AI yalnız provisional (kullanıcı kararları); test yalnız kendi Objective'i için konuşur, çalışmayan test hiçbir şey ölçmez; şema değişmedi; 122/122 QA PASS, mutation 49/49. |
+| **14E — AI-generated code comprehension check** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **14F–20** | ⬜ Bekliyor | 14E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -91,7 +92,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 14C
+## Son tamamlanan numaralı adım — 14D
+
+**Final:** `CDEX-v0 — Code Evaluation` / D-108.
+**Ana çıktı:** `docs/CODE_EVALUATION_IMPL_SPEC.md` + `arch/14d_code_evaluation/` + `android/` + `tools/code_test_runner.py`.
+
+14D sonucu:
+- kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür,
+- kullanıcı kararları: testler öğrencinin bilgisayarında koşar ve rapor içe aktarılır; test yoksa AI yalnız provisional ve yalnız görev izin veriyorsa,
+- **bulgu:** hiçbir üretim kodu değerlendirme üretmiyordu; kabul edilmiş deterministik yol (derleyici + testler) öğrencinin kodunun olduğu yerde koşamıyordu; bir testi Objective'ine bağlayan bir şey yoktu; değerlendirici portu `verified` döndürebilirdi,
+- testler içerik (`codeTestsFor`), referans koşucu ve `code_test_report/1`; rapor tamamen ya da hiç okunmaz,
+- test yalnız kendi Objective'i için; başarısız derleme yalnız derleme Objective'ini suçlar; çalışmayan test ölçmez; zaman aşımı başarısızlık; ortam hatası hiçbir şey ölçmez,
+- testli görevde AI'a sorulmaz; eksik/bozuk rapor AI'a düşmez; doğrulanmış isteyen görev AI'a gitmez; AI'dan `verified` geçersiz yanıttır,
+- şema değişmedi; port inceltmesi `codeTestsFor`,
+- mutation 49/49 (D10, D11 başta yaşadı, testler güçlendirildi), independent validator **122/122 PASS**, kendi mutation testi 30/30; 52/52 sweep PASS,
+- **T6 ve C derlemesi çalıştırılmadı**.
+
+## Önceki numaralı adım — 14C
 
 **Final:** `ALEX-v0 — Alternative Explanation` / D-107.
 **Ana çıktı:** `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md` + `arch/14c_alternative_explanation/` + `android/`.
@@ -107,7 +124,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 42/42 (X08 başta yaşadı, test güçlendirildi), independent validator **123/123 PASS**, kendi mutation testi 30/30; 51/51 sweep PASS,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 14B
+## 14B adımı
 
 **Final:** `WAAX-v0 — Wrong-Answer Analysis & Misconception Memory` / D-106.
 **Ana çıktı:** `docs/WRONG_ANSWER_ANALYSIS_IMPL_SPEC.md` + `arch/14b_wrong_answer_analysis/` + `android/`.
@@ -266,6 +283,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 14D Kod değerlendirme
+## Aktif adım — 14E AI-generated code comprehension check
 
-**14D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**14E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

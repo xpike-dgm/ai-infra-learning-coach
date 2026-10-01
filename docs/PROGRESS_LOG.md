@@ -1207,3 +1207,17 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14C tamamlandı; 14D aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14D — Kod değerlendirme`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-01 — 14D Kod değerlendirme tamamlandı — CDEX-v0 / D-108
+
+- 14C (#47) main'e merge edilmişti (fbb8097); fresh 14D PRE yapıldı ve beş kanonik kaynak `14C ✅ / 14D active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam edebilirsin") ve iki ürün sorusunu önerilen seçeneklerle cevapladı.
+- **Kullanıcı kararları:** testler öğrencinin bilgisayarında koşar ve rapor içe aktarılır; test yoksa AI değerlendirmesi yalnız görev izin veriyorsa provisional kanıt olur.
+- Sözleşme koda döküldü: kod çalıştırılarak değerlendirilir, yoksa yalnız bir görüştür: bir kod görevi yalnız dersin kendi testleriyle doğrulanır — öğrencinin bilgisayarında koşulur ve raporu katı okunur — ve bir test yalnız yazıldığı Objective için konuşur; çalışmayan test hiçbir şey ölçmemiştir ve öğrenciye karşı sayılmaz; test yoksa AI kodu yalnız görev provisional sonuca izin veriyorsa ve en çok provisional olarak değerlendirir, doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; testlerin geçmesi kodun istenen şekilde çalıştığını gösterir, öğrencinin nedenini açıklayabildiğini değil.
+- **Bulgu:** hiçbir üretim kodu değerlendirme üretmiyordu; kod için kabul edilmiş deterministik yolun koşacağı bir yer yoktu; bir testi Objective'ine bağlayan bir şey yoktu; değerlendirici portu `verified` döndürebilirdi.
+- Referans koşucu (`tools/code_test_runner.py`) beş fixture programında çalıştırıldı; çıktıları Kotlin testlerinin girdisi ve validator bayt bayt karşılaştırıyor. C derleyicisi bu makinede yok; derleme adımı Python `py_compile` ile sınandı.
+- Şema değişmedi; port inceltmesi `ContentPort.codeTestsFor`.
+- Mutation 49/49 (D10 ve D11 ilk turda yaşadı: tek bilinmeyen durum ve `@v0` referansı test edilmiyordu; testler güçlendirildi, set yeniden koşuldu). Yedi run PASS, 905 JVM testi. Validator 122/122, kendi mutation testi 30/30, sweep 52/52.
+- **T6 ve C derlemesi çalıştırılmadı**; uygulama kodu henüz değerlendirmiyor (16D).
+- D-050 POST living-memory accepted state'i `14D tamamlandı; 14E aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `14E — AI-generated code comprehension check`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
