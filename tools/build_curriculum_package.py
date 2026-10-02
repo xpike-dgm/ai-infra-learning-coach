@@ -48,6 +48,65 @@ CODE_FILE = "cozum.py"
 CODE_BUILD = ["{python}", "-m", "py_compile", CODE_FILE]
 CODE_RUN = ["{python}", CODE_FILE]
 CODE_TIMEOUT_SECONDS = 5
+PYTHON_CODE = {"file": CODE_FILE, "build": CODE_BUILD, "run": CODE_RUN, "environment": "host"}
+# 15C (`D-114`, user decision): C is written, built and run on Linux (WSL Ubuntu + gcc). The build checks every key and
+# suite there, through the same runner the learner uses, so what is verified is what the learner will see.
+GCC = ["gcc", "-std=c11", "-Wall", "-Wextra"]
+
+
+def c_harness_build(harness: str) -> list[str]:
+    """15C: the build of an item that asks for a function. The course's test program (its own main) is written beside
+    the learner's file; the learner's main, if any, is renamed so that only the course's runs; the two are linked. A
+    missing or misnamed function is an undefined reference: the build fails and no test passes."""
+    script = ("cat > ders_test.c <<'DERS_TEST_EOF'\n" + harness.strip("\n") + "\nDERS_TEST_EOF\n"
+              + " ".join(GCC) + " -Dmain=ogrenci_main -c cozum.c -o cozum.o && "
+              + " ".join(GCC) + " -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum")
+    return ["bash", "-c", script]
+
+
+def wsl_path(path: Path | str) -> str:
+    """C:\\x\\y -> /mnt/c/x/y (the WSL view of a Windows path)."""
+    text = str(Path(path).resolve()).replace("\\", "/")
+    return f"/mnt/{text[0].lower()}{text[2:]}" if len(text) > 1 and text[1] == ":" else text
+
+
+# Starting WSL and gcc can take seconds on a loaded machine; no C key or lesson claim is about time (none loops on
+# purpose), so the limit only has to stop a stuck call. A shorter one made a lesson check fail under load (15C).
+LINUX_TIMEOUT_SECONDS = 60
+
+
+def in_linux(argv: list[str], cwd: Path | str, stdin: str = "", timeout: float = LINUX_TIMEOUT_SECONDS) -> tuple[str, int, str, str]:
+    """Runs [argv] in Linux: through WSL on Windows, directly elsewhere. Returns (status, exit code, stdout, stderr)."""
+    full = (["wsl.exe", "--cd", wsl_path(cwd), "-e"] + argv) if os.name == "nt" else argv
+    try:
+        done = subprocess.run(full, cwd=None if os.name == "nt" else cwd, capture_output=True, input=stdin.encode("utf-8"),
+                              timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return "timeout", -1, "", ""
+    out, err = done.stdout.decode("utf-8", "replace"), done.stderr.decode("utf-8", "replace")
+    return ("ok" if done.returncode == 0 else "error"), done.returncode, out, err
+
+
+def c_stages(code: str, stdin: str = "") -> tuple[str, str]:
+    """Builds and runs a C program the way the lessons do. Returns (stage, stdout): the first stage that fails —
+    compile, link, run — or "ok", and what the program printed."""
+    with tempfile.TemporaryDirectory() as d:
+        (Path(d) / "program.c").write_text(code, encoding="utf-8", newline="\n")
+        status, _, _, _ = in_linux(GCC + ["-c", "program.c", "-o", "program.o"], d)
+        if status != "ok":
+            return "compile", ""
+        status, _, _, _ = in_linux(["gcc", "program.o", "-o", "program"], d)
+        if status != "ok":
+            return "link", ""
+        status, _, out, _ = in_linux(["./program"], d, stdin=stdin)
+        return ("ok" if status == "ok" else "run"), out
+
+
+def run_shell(script: str) -> tuple[str, str]:
+    """Runs a shell script in an empty directory in Linux. Returns (status, stdout)."""
+    with tempfile.TemporaryDirectory() as d:
+        status, _, out, _ = in_linux(["bash", "-c", script], d)
+    return status, out
 
 
 class BuildError(Exception):
@@ -282,6 +341,37 @@ def verify_item(item: dict) -> tuple[bool, str]:
             return False, f"the traceback gives {actual!r} for {v['ask']}, key is {key!r}"
         return True, f"executed; the traceback is real and its {v['ask']} is the key"
 
+    if mode == "c_stdout":
+        # 15C: the program is built with gcc and run in Linux; what it prints (for the given input) is the key.
+        stage, out = c_stages(item["code"], v.get("stdin", ""))
+        if stage != v.get("expect_stage", "ok"):
+            return False, f"the program stops at {stage!r}, the item says {v.get('expect_stage', 'ok')!r}"
+        if options:
+            return keyed_option_matches(out)
+        if norm(out) != norm(key):
+            return False, f"program prints {norm(out)!r}, key is {key!r}"
+        return True, "built with gcc and run in Linux; the key is exactly what the program prints"
+
+    if mode == "c_stage":
+        # 15C: which stage the program first fails at — compile, link, run — or ok. Only the keyed option names it.
+        stage, _ = c_stages(item["code"], v.get("stdin", ""))
+        if options:
+            return keyed_option_matches(stage)
+        return (norm(stage) == norm(key)), f"built with gcc and run in Linux; the program stops at {stage!r}"
+
+    if mode == "shell":
+        # 15C: the commands are run in an empty directory in Linux (bash); what they print is the key.
+        status, out = run_shell(v["script"])
+        if status != "ok":
+            return False, f"the shell script failed: {norm(out)!r}"
+        if v.get("last_line"):
+            out = (out.strip().splitlines() or [""])[-1]
+        if options:
+            return keyed_option_matches(out)
+        if norm(out) != norm(key):
+            return False, f"the commands print {norm(out)!r}, key is {key!r}"
+        return True, "run in bash in an empty directory in Linux; the key is exactly what the commands print"
+
     if mode == "reference":
         if not v.get("reference") or not v.get("claim"):
             return False, "a reference item names its source and the claim it checks"
@@ -293,13 +383,19 @@ def verify_item(item: dict) -> tuple[bool, str]:
     return False, f"unknown verify mode {mode!r}"
 
 
-def run_suite(suite: dict, solution: str) -> dict[str, str]:
-    """Runs the course's real runner (14D) against [solution] in an empty directory; returns each test's status."""
+def run_suite(suite: dict, solution: str, code: dict = PYTHON_CODE) -> dict[str, str]:
+    """Runs the course's real runner (14D) against [solution] in an empty directory; returns each test's status.
+    A Linux package (15C) runs the runner itself in Linux, with Linux's python3, as the learner does."""
     with tempfile.TemporaryDirectory() as d:
         (Path(d) / "suite.json").write_text(json.dumps(suite, ensure_ascii=False), encoding="utf-8")
-        (Path(d) / CODE_FILE).write_text(solution, encoding="utf-8")
-        done = subprocess.run([PYTHON, str(RUNNER), str(Path(d) / "suite.json"), "--dir", d], capture_output=True, timeout=300)
-    lines = done.stdout.decode("utf-8").splitlines()
+        (Path(d) / code["file"]).write_text(solution, encoding="utf-8", newline="\n")
+        if code.get("environment") == "linux":
+            _, _, stdout, _ = in_linux(["python3", wsl_path(RUNNER) if os.name == "nt" else str(RUNNER), "suite.json", "--dir", "."],
+                                       d, timeout=300)
+        else:
+            done = subprocess.run([PYTHON, str(RUNNER), str(Path(d) / "suite.json"), "--dir", d], capture_output=True, timeout=300)
+            stdout = done.stdout.decode("utf-8")
+    lines = stdout.splitlines()
     statuses = {}
     for line in lines:
         if line.startswith("build: "):
@@ -310,14 +406,14 @@ def run_suite(suite: dict, solution: str) -> dict[str, str]:
     return statuses
 
 
-def verify_suite(suite: dict, item: dict) -> tuple[bool, str]:
+def verify_suite(suite: dict, item: dict, code: dict = PYTHON_CODE) -> tuple[bool, str]:
     """The reference passes every test; every plausible wrong solution fails at least one (the tests can tell)."""
     ids = [t["id"] for t in suite["tests"]]
-    ref = run_suite(suite, item["reference"])
+    ref = run_suite(suite, item["reference"], code)
     if ref.get("__build__") != "ok" or any(ref.get(i) != "passed" for i in ids):
         return False, f"the reference solution does not pass its own suite: {ref}"
     for n, wrong in enumerate(item.get("wrong", []), 1):
-        got = run_suite(suite, wrong)
+        got = run_suite(suite, wrong, code)
         if all(got.get(i) == "passed" for i in ids) and got.get("__build__") == "ok":
             return False, f"wrong solution {n} passes every test: the suite cannot tell it from a correct one"
     if len(item.get("wrong", [])) < 2:
@@ -330,6 +426,9 @@ def verify_suite(suite: dict, item: dict) -> tuple[bool, str]:
 def constructs_used(code: str, notation: dict) -> set[str]:
     # What is inside a string literal is text, not code: print("bool('False')") uses no boolean logic (15B).
     code = re.sub(r'"[^"\n]*"', '""', code)
+    # 15C: a notation may name more text that is not code to read (an #include line, a character literal).
+    for pattern in notation.get("strip", []):
+        code = re.sub(pattern, "", code, flags=re.M)
     used = set()
     for construct, spec in notation["constructs"].items():
         if re.search(spec["pattern"], code, re.M):
@@ -339,9 +438,18 @@ def constructs_used(code: str, notation: dict) -> set[str]:
 
 # ------------------------------------------------------------------------------------------------ package text
 
-def esc(text: str) -> str:
+# 15C (`D-114`): a package whose content shows C code doubles every backslash in a multi-line value, so a literal
+# backslash-n survives (PackageFormat.unescape reads it back). Earlier packages keep the rule they were built with.
+ESCAPE_BACKSLASH = False
+
+
+def esc(text: str, multiline: bool = False) -> str:
     """One package line per value: a line break becomes a backslash-n (PackageFormat reads it back)."""
     text = text.strip("\n")
+    if ESCAPE_BACKSLASH:
+        if not multiline and "\\" in text:
+            raise BuildError(f"a single-line value is not unescaped by the app and may not contain a backslash: {text[:60]!r}")
+        return text.replace("\r", "").replace("\\", "\\\\").replace("\n", "\\n")
     if "\\n" in text:
         raise BuildError(f"content contains a literal backslash-n, which the format reads as a line break: {text[:60]!r}")
     return text.replace("\r", "").replace("\n", "\\n")
@@ -401,6 +509,9 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
     earlier_topics = {skills6c[s]["primary_teaching_topic_id"] for s in earlier_skills}
     known = set(skill_ids) | earlier_skills
     validated_at = pkg.get("validated_at_instant", VALIDATED_AT)
+    code_cfg = {**PYTHON_CODE, **pkg.get("code", {})}
+    global ESCAPE_BACKSLASH
+    ESCAPE_BACKSLASH = bool(pkg.get("escape_backslash", False))
     step = pkg.get("step", "15a")
 
     hard_prereqs: dict[str, set[str]] = {s: set() for s in known}
@@ -513,7 +624,7 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 values = [("logical_id", eid), ("version", 1), ("objective", pin(oid)), ("form", form)]
                 if form != "canonical":
                     values.append(("level", spec["level"]))
-                values.append(("text", esc(spec["text"])))
+                values.append(("text", esc(spec["text"], multiline=True)))
                 explanations_out.append(section("explanation", values))
                 refs.append(eid)
                 report["explanations"] += 1
@@ -526,14 +637,21 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 eid = f"explanation.{base}.contrast_{m['slug']}"
                 explanations_out.append(section("explanation", [
                     ("logical_id", eid), ("version", 1), ("objective", pin(oid)), ("form", "misconception_contrast"),
-                    ("level", m["contrast"]["level"]), ("misconception", pin(mid)), ("text", esc(m["contrast"]["text"])),
+                    ("level", m["contrast"]["level"]), ("misconception", pin(mid)), ("text", esc(m["contrast"]["text"], multiline=True)),
                 ]))
                 refs.append(eid)
                 report["explanations"] += 1
             explanation_refs[oid] = refs
             # Every code claim a lesson makes is executed too: teaching a wrong output is worse than asking about one.
             for n, check in enumerate(o.get("checks", []), 1):
-                status, printed, err = run_python(check["code"])
+                lang = check.get("lang", pkg.get("lesson_checks", "python"))
+                if lang == "c":
+                    stage, printed = c_stages(check["code"], check.get("stdin", ""))
+                    status = "ok" if stage == check.get("stage", "ok") else stage
+                elif lang == "shell":
+                    status, printed = run_shell(check["code"])
+                else:
+                    status, printed, err = run_python(check["code"])
                 ok_check = status == "ok" and norm(printed) == norm(str(check["prints"]))
                 report.setdefault("explanation_checks", []).append(
                     {"objective": oid, "check": n, "result": "PASS" if ok_check else "FAIL", "printed": norm(printed)})
@@ -548,6 +666,9 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 code = it.get("code")
                 rubric = it.get("rubric")
                 is_code = "suite" in it
+                # 15C: a hands-on item (building a program, navigating a terminal) is done at the computer; its answer
+                # is checked by a key, but the terminal and documentation are part of the work, as for code.
+                at_computer = is_code or bool(it.get("hands_on"))
                 # Code may stand in the code block or in the options (a choice between definitions); both are read. For a
                 # code item the reference solution is read too: it is what the learner has to be able to write.
                 used = constructs_used((code or "") + "\n" + "\n".join(str(t) for t in (it.get("options") or {}).values() if it.get("scan_options", True))
@@ -558,15 +679,15 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 if is_code:
                     suite = {
                         "format": "code_test_suite/1", "suite": f"codetest.{base}.{it['slug']}@v1", "item": f"{iid}@v1",
-                        "build": {"command": CODE_BUILD},
+                        "build": {"command": c_harness_build(it["c_harness"]) if it.get("c_harness") else code_cfg["build"]},
                         # A function is checked by the course's own small harness, which imports the learner's file.
-                        "run": {"command": ["{python}", "-c", it["harness"].strip()] if it.get("harness") else CODE_RUN},
+                        "run": {"command": ["{python}", "-c", it["harness"].strip()] if it.get("harness") else code_cfg["run"]},
                         "timeout_seconds": CODE_TIMEOUT_SECONDS, "compare": "trim_trailing_whitespace",
                         "tests": [{k: t[k] for k in ("id", "stdin", "args", "expected_stdout", "expected_exit_code") if k in t}
                                   for t in it["suite"]],
                     }
                     suite_files[iid] = json.dumps(suite, ensure_ascii=False, indent=2) + "\n"
-                    ok, how = verify_suite(suite, it)
+                    ok, how = verify_suite(suite, it, code_cfg)
                 else:
                     ok, how = verify_item(it)
                 reviewed = reviewed_items.get(iid, {}).get("verdict") == "pass"
@@ -602,7 +723,7 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 resources.append(section("resource", [
                     ("logical_id", iid), ("version", 1), ("content_ref", f"item://{iid}@v1"),
                     ("rubric_ref", f"rubric.{base}.{it['slug']}@v1" if is_rubric else None),
-                    ("evidence_type", evidence_type), ("allowed_tools_policy", "terminal_documentation" if is_code else "none"),
+                    ("evidence_type", evidence_type), ("allowed_tools_policy", "terminal_documentation" if at_computer else "none"),
                     ("variant_family_id", family), ("content_origin", "ai_generated"),
                 ]))
                 validations.append(section("validation", [
@@ -617,7 +738,7 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     roles += notation["roles"]["critical"]
                 independence = "h0_required" if it.get("independence", "h0") == "h0" else "guided_allowed"
                 items_out.append(section("item", [
-                    ("ref", f"{iid}@v1"), ("prompt", esc(prompt)),
+                    ("ref", f"{iid}@v1"), ("prompt", esc(prompt, multiline=True)),
                     ("target_objectives", pin(oid)), ("target_skills", pin(sid)),
                     ("required_skills", [pin(r) for r in sorted(declared)]),
                     ("evidence_type", evidence_type),
@@ -629,14 +750,14 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     ("deterministic_verification", not is_rubric),
                     # Reading code is done by reading; writing code is done at the learner's computer, where running
                     # it and reading documentation are part of the work (QAB-v0 §21). An AI never writes it for them.
-                    ("allowed_tools", ["terminal", "documentation"] if is_code else []),
-                    ("prohibited_solution_sources", ["external_ai"] if is_code else ["terminal", "compiler", "debugger", "external_ai"]),
+                    ("allowed_tools", ["terminal", "documentation"] if at_computer else []),
+                    ("prohibited_solution_sources", ["external_ai"] if at_computer else ["terminal", "compiler", "debugger", "external_ai"]),
                     ("independence_mode", independence), ("difficulty_class", difficulty),
                     ("lifecycle_status", status), ("content_origin", "ai_generated"),
                     ("declared_use_ceiling", "low_stakes_assessment" if is_rubric else "standard_mastery_eligible"),
                     ("scope_eligibility", ["daily_micro", "weekly_blueprint", "monthly_capability"]),
                     ("variant_family_id", family), ("forbidden_not_yet_concepts", sorted(set(introduced) - reachable)),
-                    ("expected_active_minutes", it.get("minutes", notation["minutes_code" if is_code else "minutes"][difficulty])),
+                    ("expected_active_minutes", it.get("minutes", notation["minutes_code" if at_computer else "minutes"][difficulty])),
                     ("blueprint_roles", sorted(set(roles))),
                 ]))
                 if is_rubric:

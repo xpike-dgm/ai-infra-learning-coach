@@ -1,0 +1,36 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.f04@v1",
+  "item": "item.c.functions_basic.write_and_call_function.f04@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nvoid satir_ciz(int n, char c);\n\nint main(void) {\n    int n = 0;\n    char c = '?';\n    while (scanf(\"%d %c\", &n, &c) == 2) {\n        satir_ciz(n, c);\n    }\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_calls",
+      "stdin": "3 *\n5 -\n",
+      "expected_stdout": "***\n-----\n"
+    },
+    {
+      "id": "zero",
+      "stdin": "0 #\n2 #\n",
+      "expected_stdout": "\n##\n"
+    },
+    {
+      "id": "one",
+      "stdin": "1 x\n",
+      "expected_stdout": "x\n"
+    }
+  ]
+}

@@ -1294,3 +1294,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15B tamamlandı; 15C aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15C — C Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 15C — C Foundations tamamlandı — CFNX-v0 / D-114
+
+- 15B (#53) main'e merge edilmişti (f9b42c6); fresh 15C PRE yapıldı ve beş kanonik kaynak `15B ✅ / 15C active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et") ve üç karar verdi; WSL Ubuntu, gcc ve build-essential'ı kendisi kurdu.
+- **Kullanıcı kararları:** Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc; standard_io_basic eklendi.
+- **Bulgu:** ilk C Skill'i 15E'ye ait bir Linux Skill'ini bekliyor; girdi olmadan C denenemiyor; yazar makinesinde C derleyicisi yoktu (`gcc` paketi başlıkları getirmedi); paket ters bölü-n gösteremiyordu; fonksiyon item'ı fonksiyonsuz bir programla geçiliyordu; terminal Skill'i üçüncü giriş noktası.
+- İçerik: 9 Skill / 10 Objective / 15 kenar `published`; 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; her şey Linux'ta gcc ile doğrulandı.
+- **Araştırma:** GCC 14 taşıma notları, cppreference (scanf, aritmetik işleçler), Microsoft Learn (WSL dosya sistemleri).
+- **Bağımsız inceleme:** Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+- Üç paket gerçek SQLite şemasına JVM'de yayımlanıyor; terminal Skill'i üçüncü giriş noktası.
+- 15A ve 14C'nin birer satır sonu kapısı yeni okuyucuya daraltıldı; şema, portlar ve mağaza değişmedi.
+- Mutation 8/8. Validator 155/155, sweep 58/58, 1001 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- D-050 POST living-memory accepted state'i `15C tamamlandı; 15D aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15D — Memory Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

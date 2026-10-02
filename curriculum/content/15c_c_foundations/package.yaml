@@ -1,0 +1,42 @@
+# 15C — C Foundations (CFNX-v0 / D-114)
+#
+# The third authored package. It builds on 15A's and 15B's packages (curriculum versions 1 and 2) and publishes
+# curriculum version 3: FBB-v0 §6.3's C seeds as 6C decomposed them — compile_link_run_basic, declarations/types and
+# expressions, conditionals and the two loops, functions — plus, by user decision (2026-10-02), the two Skills they need
+# that are not C seeds: the Linux Skill compile_link_run_basic depends on (terminal_filesystem_navigation, which has no
+# prerequisite of its own; 15E adds the rest of Linux/Git/Shell) and standard_io_basic (reading input with scanf, so a
+# program can be tried on several inputs). Nine Skills, ten Objectives. Pointers and memory are 15D's.
+#
+# C is written, built and run on Linux — WSL Ubuntu with gcc (user decision 2026-10-02). Every key, lesson claim and
+# suite is checked there, through the same runner the learner uses. Identity is never changed.
+version: 3
+step: 15c
+builds_on: [curriculum/content/15a_computing_fundamentals, curriculum/content/15b_python_foundations]
+source_refs: curriculum/decomposition/6c_foundations;curriculum/content/15c_c_foundations
+provenance: authored_15c_cfnx_v0
+content_source_ref: source.repo.content_15c_cfnx_v0
+# Noon UTC of the day the independent review of 15C content is recorded (the 15A convention): 2026-10-02T12:00:00Z.
+validated_at_instant: 1790942400000
+
+# The learner writes cozum.c; the course's suite builds it with gcc (C11, warnings shown) and runs ./cozum on Linux.
+code:
+  file: cozum.c
+  build: [gcc, -std=c11, -Wall, -Wextra, -o, cozum, cozum.c]
+  run: [./cozum]
+  environment: linux
+# A lesson's code claims are C programs, built and run the same way (a check may say `lang: shell`).
+lesson_checks: c
+# C code shows backslash escapes (printf("%d\n")): every backslash in a prompt or lesson is doubled in the package and
+# read back by PackageFormat.unescape (D-114).
+escape_backslash: true
+
+skills:
+  - id: skill.linux.terminal_filesystem_navigation
+  - id: skill.c.compile_link_run_basic
+  - id: skill.c.declaration_type_model
+  - id: skill.c.expression_evaluation
+  - id: skill.c.standard_io_basic
+  - id: skill.c.conditionals
+  - id: skill.c.for_iteration
+  - id: skill.c.while_iteration
+  - id: skill.c.functions_basic

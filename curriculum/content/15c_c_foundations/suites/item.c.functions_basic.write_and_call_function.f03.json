@@ -1,0 +1,46 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.functions_basic.write_and_call_function.f03@v1",
+  "item": "item.c.functions_basic.write_and_call_function.f03@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint en_buyuk(int a, int b, int c);\n\nint main(void) {\n    int a = 0, b = 0, c = 0;\n    scanf(\"%d %d %d\", &a, &b, &c);\n    printf(\"%d\\n\", en_buyuk(a, b, c));\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "first",
+      "stdin": "9 2 5\n",
+      "expected_stdout": "9\n"
+    },
+    {
+      "id": "middle",
+      "stdin": "1 8 3\n",
+      "expected_stdout": "8\n"
+    },
+    {
+      "id": "last",
+      "stdin": "1 2 3\n",
+      "expected_stdout": "3\n"
+    },
+    {
+      "id": "negatives",
+      "stdin": "-7 -3 -9\n",
+      "expected_stdout": "-3\n"
+    },
+    {
+      "id": "ties",
+      "stdin": "4 4 1\n",
+      "expected_stdout": "4\n"
+    }
+  ]
+}

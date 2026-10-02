@@ -190,3 +190,7 @@ Next numbered step: **14E — AI-generated code comprehension check**. It must r
 ---
 
 **15B note (2026-10-02, `D-113`):** `tools/code_test_runner.py` now starts `{python}` as `python -X utf8`. On Windows the learner's program otherwise wrote its output in the console code page, so a correct program printing Turkish letters failed its test. 14D's suites still pass. The first production suites ship in 15B (`curriculum/content/15b_python_foundations/suites/`). Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
+
+---
+
+**15C note (2026-10-03, `D-114`):** the first C suites ship (`curriculum/content/15c_c_foundations/suites/`). The runner is unchanged — its commands were already arbitrary — and runs inside Linux (WSL Ubuntu, gcc). An item that asks for a function builds the course's own `main` beside the learner's file through `bash -c`. Details: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.

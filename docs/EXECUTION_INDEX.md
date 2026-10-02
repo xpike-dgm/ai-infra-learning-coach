@@ -36,6 +36,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-109: 14E final AI yazımı kod anlama kontrolü `ACCX-v0`; önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil), hemen sonra ve isteğe bağlı, `generated_or_copied` bağımsız yeniden kontrol açar (kullanıcı kararları); şema değişmedi.
 - D-110: 14F final açık uçlu cevap değerlendirme `OREX-v0`; kısa cevap kabul edilen cevap listesiyle doğrulanır, uzun cevap rubric'le kriter kriter (AI yalnız kriter bulgusu önerir, core karar verir, en çok provisional), AI yoksa bekler + rubric öz-kontrolü, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi.
 - D-111: 14G final sağlayıcı adaptörü `PRVX-v0`; OpenAI Responses API (güncel kaynak 2026-10-02), `store: false`, katı şema, uçtan uca bütçe, anahtar Android Keystore'da ve Profile'dan girilir, AI'sız build'de ağ izni yok (kullanıcı kararları); AŞAMA 14 kapandı.
+- D-114: 15C final içerik `CFNX-v0`; dört C tohumu + standard_io_basic + Linux terminal Skill'i, WSL Ubuntu + gcc ile Linux'ta doğrulama (kullanıcı kararları), `PackageFormat.unescape` (çift ters bölü tek ters bölüdür).
 - D-113: 15B final içerik `PYFX-v0`; on yedi tohum + üç ön koşul (20 Skill), kod item'ları öğrencinin koşucusuyla ve en az iki yanlış çözümle doğrulanır, artımlı ikinci paket ve "yayımlanmış sürümün üzerine yazılmaz" (kullanıcı kararları), koşucu UTF-8.
 - D-112: 15A final içerik `CPFX-v0`; FBB-v0 §6.1'in 6C alt-grafı `published` (kimlik değişmedi, Objective metadata'sı netleştirilip kaydedildi), her anahtar çalıştırılarak ya da kaynakla ve bağımsız incelemeyle doğrulandı, `[task]` bölümü, ilk sevk edilen paket (kullanıcı kararları); AŞAMA 15 başladı.
 
@@ -196,8 +197,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 # AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriğini Üret ve QA Et
 - [x] **15A — Computer / Programming Fundamentals** — `CPFX-v0 / D-112`
 - [x] **15B — Python Foundations** — `PYFX-v0 / D-113`
-- [ ] **15C — C Foundations** **AKTİF**
-- [ ] **15D — Memory Foundations**
+- [x] **15C — C Foundations** — `CFNX-v0 / D-114`
+- [ ] **15D — Memory Foundations** **AKTİF**
 - [ ] **15E — Linux / Git / Shell Foundations**
 - [ ] **15F — English A0→A1/A2 başlangıç paketi**
 - [ ] **15G — Assessment content**
@@ -258,9 +259,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15B`  
-**Son tamamlanan:** **`15B — PYFX-v0 / D-113`**  
-**Aktif:** **`15C — C Foundations`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15C`  
+**Son tamamlanan:** **`15C — CFNX-v0 / D-114`**  
+**Aktif:** **`15D — Memory Foundations`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -312,4 +313,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 15B `PYFX-v0` ile ikinci paket sevk ediliyor ve öğrenci ilk kez kod yazıyor: bir program ne yaptığına göre, öğrencinin kendi bilgisayarında, doğru çözümü makul bir yanlış çözümden ayırabilen testlerle değerlendirilir; sonraki bir paket yalnız ekler — yayımlanmış hiçbir şey yeniden taşınmaz ya da üzerine yazılmaz. 20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; paketler birlikte okunur ya da hiç sunulmaz ve en eskiden yayımlanır; koşucu UTF-8 kipinde, dosya ve yol testleri platformdan bağımsız. Bağımsız inceleme üç geçişte 109/109, 116/116. Kullanıcı kararları: 20 Skill; artımlı paket, varlık v1. T6 çalıştırılmadı.
 
-15C başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+15C `CFNX-v0` ile üçüncü paket sevk ediliyor ve öğrenci C yazıyor: bir C programı öğrencinin onu derleyip çalıştırdığı yerde değerlendirilir — Linux'ta gcc ile, öğrencinin kendi koşucusundan — ve paket C kodunu yazıldığı gibi gösterir, hiçbir önceki paketin okunuşunu değiştirmeden. 9 Skill / 10 Objective / 15 kenar `published`; 51 item, 56 anlatım, 21 misconception, 45 görev; her şey WSL Ubuntu'da gcc ile ve öğrencinin koşucusuyla doğrulandı; paket artık bir ters bölü-n'i gösterebiliyor. Kullanıcı kararları: Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc; standard_io_basic. T6 çalıştırılmadı.
+
+15D başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

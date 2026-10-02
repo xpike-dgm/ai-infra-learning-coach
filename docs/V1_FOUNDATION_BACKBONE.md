@@ -1113,3 +1113,7 @@ FBB-v0 authoring seed olduğu için bu QA patch published learner semantic state
 ---
 
 **15B note (2026-10-02, `D-113`):** the second production package ratified §6.2's twelve Python seeds as 6C decomposed them (seventeen Skills), plus the three hard prerequisites outside them (`scope_name_resolution`, `exception_handling`, `string_text_operations`; user decision): 20 Skills, 21 Objectives, 31 edges, from `draft` to `published`, identities unchanged. Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
+
+---
+
+**15C note (2026-10-03, `D-114`):** the third production package ratified §6.3's four C seeds as 6C decomposed them (seven Skills), plus `standard_io_basic` and the §6.4 Linux seed `terminal_filesystem_navigation` that the first C Skill depends on (user decisions): 9 Skills, 10 Objectives, 15 edges, `draft` → `published`, identities unchanged. Pointers and memory remain 15D's. Details: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.

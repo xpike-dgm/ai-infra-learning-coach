@@ -1,0 +1,388 @@
+skill: skill.c.functions_basic
+activity: coding_production
+tasks:
+  teach: {title: "C'de fonksiyon: bildirim, tanım, çağrı ve dönüş", minutes: 18}
+  practice: {title: "C fonksiyon alıştırması", minutes: 15}
+  check: {title: "C fonksiyon kontrolü", minutes: 15}
+  review: {title: "C fonksiyon tekrarı", minutes: 12}
+  repair: {title: "Fonksiyonu yeniden kurmak: tür, prototip ve değerle geçirme", minutes: 18}
+
+objectives:
+  - id: objective.c.functions_basic.write_and_call_function
+    statement: >-
+      C'de dönüş türü ve parametre türleriyle bir fonksiyon tanımlayıp çağırabilmek: main'den önce tanımlamak ya da
+      prototiple bildirmek, return ile değer döndürmek, değer döndürmeyen iş için void kullanmak ve argümanların değerle
+      geçirildiğini — fonksiyonun parametresini değiştirmesinin çağıranın değişkenini değiştirmediğini — bilmek.
+    observable_behavior: >-
+      İstenen ad ve imzayla doğru sonucu döndüren fonksiyonlar yazar; dersin kendi test programı bu fonksiyonları
+      çağırdığında doğru sonuç alır.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi (write_and_call_function) korundu ve özgülleştirildi; direct type authored_code. 15A'nın
+      function_decomposition'ı bir fonksiyonun girdi/çıktı sorumluluğunu okutmuştu; bu Skill C'de yazdırır. Item'lar
+      fonksiyonu dersin kendi test programıyla (main'i olan ayrı bir dosya, öğrencinin main'i yeniden adlandırılarak)
+      çağırır; fonksiyon yazılmadan sonucu main'de hesaplayan bir program bağlamada düşer.
+    checks:
+      - prints: "25"
+        code: |
+          #include <stdio.h>
+
+          int kare(int x) {
+              return x * x;
+          }
+
+          int main(void) {
+              printf("%d\n", kare(5));
+              return 0;
+          }
+      - prints: "7 70"
+        code: |
+          #include <stdio.h>
+
+          int degistir(int x) {
+              x = x * 10;
+              return x;
+          }
+
+          int main(void) {
+              int a = 7;
+              int b = degistir(a);
+              printf("%d %d\n", a, b);
+              return 0;
+          }
+      - prints: "--- ---"
+        code: |
+          #include <stdio.h>
+
+          void cizgi(void);
+
+          int main(void) {
+              cizgi();
+              printf(" ");
+              cizgi();
+              printf("\n");
+              return 0;
+          }
+
+          void cizgi(void) {
+              printf("---");
+          }
+    explanations:
+      canonical: |
+        C'de bir fonksiyonun dönüş türü, adı ve parametre türleri yazılır:
+
+        int kare(int x) {
+            return x * x;
+        }
+
+        - int (baştaki): kare'nin döndürdüğü değerin türü.
+        - (int x): bir int parametre. Çağrıda verilen değer x'e kopyalanır.
+        - return: değeri çağırana geri verir ve fonksiyonu bitirir.
+
+        Değer döndürmeyen fonksiyon void'dir; return; ile erken çıkılabilir:
+        void cizgi(void) {
+            printf("---");
+        }
+
+        Önce bildir, sonra kullan: C dosyayı yukarıdan aşağı okur. main'den sonra tanımladığın bir fonksiyonu main içinde kullanmak için main'den önce prototipini yazarsın:
+        void cizgi(void);           (prototip: gövde yok, noktalı virgül var)
+        Prototip yoksa gcc "implicit declaration" hatası verir.
+
+        Değerle geçirme: parametre, argümanın bir kopyasıdır.
+        int degistir(int x) { x = x * 10; return x; }
+        int a = 7; int b = degistir(a);   → a hâlâ 7, b 70.
+        Fonksiyonun içinde x'i değiştirmek a'yı değiştirmez. (Çağıranın değişkenini değiştirmenin yolu işaretçilerdir — 15D.)
+
+        Türler önemlidir: double oran(int pay, int payda) { return (double) pay / payda; } bir double döndürür; return pay / payda; yazsaydın önce int bölmesi yapılır, sonra double'a çevrilirdi.
+
+        Dersin testleri: fonksiyonunu dersin kendi test programı çağırır. cozum.c'de istenen adla ve imzayla fonksiyonu yaz; kendin denemek için bir main de yazabilirsin — testler senin main'ini çalıştırmaz.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (fonksiyon ayrıştırma ve C türleri): 15A'da bir fonksiyonu girdisi, çıktısı ve sorumluluğuyla tanımladın; C'de girdi parametre türleri, çıktı dönüş türüdür.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: iki tam sayının mutlak farkını döndüren int fark(int a, int b) fonksiyonu.
+
+          #include <stdio.h>
+
+          int fark(int a, int b) {
+              if (a > b) {
+                  return a - b;
+              }
+              return b - a;
+          }
+
+          int main(void) {
+              printf("%d %d\n", fark(3, 10), fark(10, 3));
+              return 0;
+          }
+
+          - İlk return çalışırsa fonksiyon orada biter; ikinci return'e gelinmez.
+          - Çıktı: 7 7
+    misconceptions:
+      - slug: parameter_changes_argument
+        name: Fonksiyon parametresini değiştirmek çağıranın değişkenini değiştirir
+        open_question: Bir fonksiyon içinde parametreye yeni değer atayınca main'deki değişkenin de değişeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Değişkeni fonksiyona verdim, fonksiyon onu değiştirdi."
+
+            C'de argümanlar değerle geçirilir: parametre bir kopyadır. Fonksiyonun içinde değiştirmek yalnız kopyayı değiştirir; main'deki değişken aynı kalır. Bir sonuç almak için onu return ile döndürürsün.
+      - slug: print_is_return
+        name: Fonksiyonun içinde printf ile yazmak, değeri döndürmekle aynıdır
+        open_question: Bir fonksiyonun sonucu printf ile yazdırmasının, onu return etmekle aynı olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Ekranda sonuç göründü, fonksiyon döndürdü."
+
+            printf yalnız ekrana yazar; çağıran kod o değeri kullanamaz. int döndüren bir fonksiyon değerini return ile verir; return'süz biten int fonksiyonunun sonucu tanımsızdır (-Wall uyarır).
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c dosyasına int kup(int x) fonksiyonunu yaz: x'in küpünü döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır; kendi main'ini yazabilirsin ama testler onu çalıştırmaz.
+        c_harness: |
+          #include <stdio.h>
+
+          int kup(int x);
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              printf("%d\n", kup(n));
+              return 0;
+          }
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "27\n"}
+          - {id: negative, stdin: "-2\n", expected_stdout: "-8\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          int kup(int x) {
+              return x * x * x;
+          }
+        wrong:
+          - |
+            int kup(int x) {
+                return x * x;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                printf("%d\n", n * n * n);
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c dosyasına double ortalama(int a, int b) fonksiyonunu yaz: iki tam sayının ortalamasını ondalıklı olarak döndürsün. Örnek: ortalama(3, 4) → 3.5. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          double ortalama(int a, int b);
+
+          int main(void) {
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              printf("%.2f\n", ortalama(a, b));
+              return 0;
+          }
+        suite:
+          - {id: half, stdin: "3 4\n", expected_stdout: "3.50\n"}
+          - {id: whole, stdin: "10 20\n", expected_stdout: "15.00\n"}
+          - {id: negative, stdin: "-5 2\n", expected_stdout: "-1.50\n"}
+        reference: |
+          double ortalama(int a, int b) {
+              return (a + b) / 2.0;
+          }
+        wrong:
+          - |
+            double ortalama(int a, int b) {
+                return (a + b) / 2;
+            }
+          - |
+            int ortalama(int a, int b) {
+                return (a + b) / 2;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int en_buyuk(int a, int b, int c) fonksiyonunu yaz: üç sayının en büyüğünü döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int en_buyuk(int a, int b, int c);
+
+          int main(void) {
+              int a = 0, b = 0, c = 0;
+              scanf("%d %d %d", &a, &b, &c);
+              printf("%d\n", en_buyuk(a, b, c));
+              return 0;
+          }
+        suite:
+          - {id: first, stdin: "9 2 5\n", expected_stdout: "9\n"}
+          - {id: middle, stdin: "1 8 3\n", expected_stdout: "8\n"}
+          - {id: last, stdin: "1 2 3\n", expected_stdout: "3\n"}
+          - {id: negatives, stdin: "-7 -3 -9\n", expected_stdout: "-3\n"}
+          - {id: ties, stdin: "4 4 1\n", expected_stdout: "4\n"}
+        reference: |
+          int en_buyuk(int a, int b, int c) {
+              int m = a;
+              if (b > m) {
+                  m = b;
+              }
+              if (c > m) {
+                  m = c;
+              }
+              return m;
+          }
+        wrong:
+          - |
+            int en_buyuk(int a, int b, int c) {
+                if (a > b && a > c) {
+                    return a;
+                }
+                if (b > a && b > c) {
+                    return b;
+                }
+                return c;
+            }
+          - |
+            int en_buyuk(int a, int b, int c) {
+                int m = 0;
+                if (a > m) {
+                    m = a;
+                }
+                if (b > m) {
+                    m = b;
+                }
+                if (c > m) {
+                    m = c;
+                }
+                return m;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void satir_ciz(int n, char c) fonksiyonunu yaz: c karakterinden n tane yan yana yazsın ve ardından satır sonu yazsın. n 0 ise yalnız satır sonu yazsın. Dersin testleri bu fonksiyonu kendi main'iyle birkaç kez çağırır.
+        required_skills: [skill.c.for_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          void satir_ciz(int n, char c);
+
+          int main(void) {
+              int n = 0;
+              char c = '?';
+              while (scanf("%d %c", &n, &c) == 2) {
+                  satir_ciz(n, c);
+              }
+              return 0;
+          }
+        suite:
+          - {id: two_calls, stdin: "3 *\n5 -\n", expected_stdout: "***\n-----\n"}
+          - {id: zero, stdin: "0 #\n2 #\n", expected_stdout: "\n##\n"}
+          - {id: one, stdin: "1 x\n", expected_stdout: "x\n"}
+        reference: |
+          #include <stdio.h>
+
+          void satir_ciz(int n, char c) {
+              for (int i = 0; i < n; i++) {
+                  printf("%c", c);
+              }
+              printf("\n");
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            void satir_ciz(int n, char c) {
+                for (int i = 0; i <= n; i++) {
+                    printf("%c", c);
+                }
+                printf("\n");
+            }
+          - |
+            #include <stdio.h>
+
+            void satir_ciz(int n, char c) {
+                for (int i = 0; i < n; i++) {
+                    printf("%c\n", c);
+                }
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int asal_mi(int n) fonksiyonunu yaz: n asal sayıysa 1, değilse 0 döndürsün (1 ve daha küçük sayılar asal değildir). Dersin testleri bu fonksiyonu kendi main'iyle çağırır: 2'den okunan sayıya kadar kaç asal sayı olduğunu senin fonksiyonunla sayar.
+        required_skills: [skill.c.for_iteration, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int asal_mi(int n);
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int sayi = 0;
+              for (int i = -2; i <= n; i++) {
+                  if (asal_mi(i)) {
+                      sayi++;
+                  }
+              }
+              printf("%d %d\n", sayi, asal_mi(n));
+              return 0;
+          }
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "4 0\n"}
+          - {id: thirteen, stdin: "13\n", expected_stdout: "6 1\n"}
+          - {id: two, stdin: "2\n", expected_stdout: "1 1\n"}
+          - {id: square_of_prime, stdin: "49\n", expected_stdout: "15 0\n"}
+        reference: |
+          int asal_mi(int n) {
+              if (n < 2) {
+                  return 0;
+              }
+              for (int d = 2; d * d <= n; d++) {
+                  if (n % d == 0) {
+                      return 0;
+                  }
+              }
+              return 1;
+          }
+        wrong:
+          - |
+            int asal_mi(int n) {
+                for (int d = 2; d * d <= n; d++) {
+                    if (n % d == 0) {
+                        return 0;
+                    }
+                }
+                return 1;
+            }
+          - |
+            int asal_mi(int n) {
+                if (n < 2) {
+                    return 0;
+                }
+                for (int d = 2; d * d < n; d++) {
+                    if (n % d == 0) {
+                        return 0;
+                    }
+                }
+                return 1;
+            }

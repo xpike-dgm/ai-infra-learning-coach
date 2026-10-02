@@ -1,0 +1,330 @@
+skill: skill.c.standard_io_basic
+activity: coding_production
+tasks:
+  teach: {title: "Girdi okumak: scanf, dönüş değeri ve %lf", minutes: 18}
+  practice: {title: "scanf alıştırması", minutes: 15}
+  check: {title: "scanf kontrolü", minutes: 15}
+  review: {title: "scanf tekrarı", minutes: 12}
+  repair: {title: "Girdiyi yeniden kurmak: belirteç, & ve dönüş değeri", minutes: 18}
+
+objectives:
+  - id: objective.c.standard_io_basic.demonstrate_capability
+    statement: >-
+      scanf ile standart girdiden türe uygun belirteçle (%d, %lf, " %c") değer okuyup printf ile biçimli yazabilmek;
+      scanf'in okuduğu değer sayısını döndürdüğünü bilerek okumanın başarılı olup olmadığını kontrol edebilmek ve okunan
+      değerin beklenen aralıkta olup olmadığına bakabilmek.
+    observable_behavior: >-
+      Girdiden değer okuyan, scanf'in dönüş değerini kontrol eden, double için %lf ve karakter için " %c" kullanan ve
+      sonucu istenen biçimde yazan programlar yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Bu Skill FBB-v0 §6.3'ün tohumu değildir; programları farklı girdilerle denemek için kullanıcı kararıyla
+      (2026-10-02) 15C'ye eklendi. 6C'nin "bounds farkındalığı" ifadesi bu adımda okunan sayının aralık kontrolü olarak
+      ölçülür; dizi ve yazı sınırları dizilerle birlikte 15D'dedir. scanf'teki & (değişkenin yeri) burada yalnız "scanf
+      değeri buraya yazsın" olarak öğretilir; adres kavramı 15D'nindir.
+    checks:
+      - stdin: "6 7\n"
+        prints: "42"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              printf("%d\n", a * b);
+              return 0;
+          }
+      - stdin: "abc\n"
+        prints: "0"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              int okunan = scanf("%d", &n);
+              printf("%d\n", okunan);
+              return 0;
+          }
+      - stdin: "2.5\n"
+        prints: "5.00"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              double x = 0;
+              scanf("%lf", &x);
+              printf("%.2f\n", x * 2);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        printf yazar; scanf okur. scanf de bir biçim yazısı alır ve okuduğunu verdiğin değişkenlere koyar:
+
+        int a = 0, b = 0;
+        scanf("%d %d", &a, &b);      (girdi: 6 7 → a 6, b 7)
+
+        & işareti: scanf'e değişkenin kendisini değil, değerin yazılacağı yeri veriyoruz. Şimdilik kural: scanf'e verdiğin her değişkenin önüne & koyarsın. (Bunun ne demek olduğunu 15D'de, bellek ve adreslerle göreceksin.) & unutulursa program derlenir ama çalışırken çöker; -Wall bunun için uyarır.
+
+        Belirteçler — printf ile scanf'te farklı olanlara dikkat:
+        - int: printf %d, scanf %d
+        - double: printf %f (ya da %.2f), scanf %lf  ← scanf'te %f double için yanlıştır!
+        - char: printf %c, scanf " %c" (öndeki boşluk, girdideki boşlukları ve satır sonlarını atlar)
+
+        %d ve %lf girdideki boşlukları ve satır sonlarını kendileri atlar; %c atlamaz.
+
+        Dönüş değeri: scanf başarıyla okuduğu değer sayısını döndürür. Girdi "abc" iken scanf("%d", &n) 0 döndürür ve n'ye dokunmaz; girdi bittiyse EOF (-1) döner. Okumanın başarılı olduğundan emin olmak için:
+
+        if (scanf("%d", &n) != 1) {
+            printf("Gecersiz giris\n");
+            return 1;
+        }
+
+        Aralık kontrolü: okunan değer doğru türde ama anlamsız olabilir (yaş -5 gibi). Kullanmadan önce beklenen aralıkta olup olmadığına bak.
+
+        Dersin testleri programına girdiyi standart girdiden verir; sen de terminalde yazarak ya da echo "6 7" | ./cozum ile deneyebilirsin.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (bildirim ve türler): int ve double farklı türlerdir; printf'te %d int, %f double içindir. Bir değişkene kullanmadan önce ilk değer verirsin.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: bir sıcaklığı (double, Celsius) oku; okunamazsa "Hata" yaz; okunursa Fahrenheit'ı bir ondalıkla yaz.
+
+          #include <stdio.h>
+
+          int main(void) {
+              double c = 0;
+              if (scanf("%lf", &c) != 1) {
+                  printf("Hata\n");
+                  return 1;
+              }
+              printf("%.1f\n", c * 9 / 5 + 32);
+              return 0;
+          }
+
+          - %lf: double okumak için.
+          - Girdi 20 → 68.0; girdi "sicak" → Hata.
+    misconceptions:
+      - slug: percent_f_reads_double
+        name: scanf'te double okumak için %f yeterlidir
+        open_question: double bir değişkeni scanf("%f", &x) ile okuyabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "printf'te %f double için, scanf'te de öyledir."
+
+            scanf'te %f float içindir; double için %lf gerekir. %f ile bir double okumak değeri yanlış yerleştirir ve anlamsız bir sayı görürsün (-Wall bunu uyarır). printf'te ise %f double için doğrudur.
+      - slug: scanf_always_succeeds
+        name: scanf her zaman bir değer okur
+        open_question: Kullanıcı sayı yerine harf yazarsa scanf'in yine de değişkene bir şey koyduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "scanf çağrıldıysa değişken artık girdiyi tutar."
+
+            scanf okuyamadığı değişkene dokunmaz ve kaç değeri başarıyla okuduğunu döndürür. Dönüş değerine bakmazsan değişkenin eski (belki rastgele) değeriyle devam edersin.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir tam sayı okusun ve karesini yazsın. Örnek: girdi 9 → çıktı 81.
+        suite:
+          - {id: nine, stdin: "9\n", expected_stdout: "81\n"}
+          - {id: negative, stdin: "-4\n", expected_stdout: "16\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              printf("%d\n", n * n);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                printf("%d\n", n * 2);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 9;
+                printf("%d\n", n * n);
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir program yaz: girdiden kilometre cinsinden ondalıklı bir mesafe okusun (double) ve mil karşılığını (km × 0.621371) iki ondalık basamakla yazsın. Örnek: girdi 10 → çıktı 6.21.
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "6.21\n"}
+          - {id: fraction, stdin: "42.195\n", expected_stdout: "26.22\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0.62\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              double km = 0;
+              scanf("%lf", &km);
+              printf("%.2f\n", km * 0.621371);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double km = 0;
+                scanf("%f", &km);
+                printf("%.2f\n", km * 0.621371);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int km = 0;
+                scanf("%d", &km);
+                printf("%.2f\n", km * 0.621371);
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden iki tam sayı okumayı denesin. İkisi birden okunamazsa (biri eksikse ya da sayı değilse) "Eksik giris" yazsın ve 2 ile çıksın; ikisi de okunursa birinciden ikincinin farkını (birinci - ikinci) yazsın.
+        required_skills: [skill.c.conditionals]
+        suite:
+          - {id: both, stdin: "9 4\n", expected_stdout: "5\n", expected_exit_code: 0}
+          - {id: only_one, stdin: "9\n", expected_stdout: "Eksik giris\n", expected_exit_code: 2}
+          - {id: second_not_a_number, stdin: "9 dort\n", expected_stdout: "Eksik giris\n", expected_exit_code: 2}
+          - {id: empty, stdin: "", expected_stdout: "Eksik giris\n", expected_exit_code: 2}
+          - {id: negative_result, stdin: "3 10\n", expected_stdout: "-7\n", expected_exit_code: 0}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0;
+              if (scanf("%d %d", &a, &b) != 2) {
+                  printf("Eksik giris\n");
+                  return 2;
+              }
+              printf("%d\n", a - b);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                if (scanf("%d %d", &a, &b) == 0) {
+                    printf("Eksik giris\n");
+                    return 2;
+                }
+                printf("%d\n", a - b);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                if (scanf("%d %d", &a, &b) != 2) {
+                    printf("Eksik giris\n");
+                    return 1;
+                }
+                printf("%d\n", a - b);
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden üç tam sayı (sınav notları) okusun ve ortalamalarını iki ondalık basamakla yazsın. Örnek: girdi 70 85 90 → çıktı 81.67.
+        required_skills: [skill.c.expression_evaluation]
+        suite:
+          - {id: example, stdin: "70 85 90\n", expected_stdout: "81.67\n"}
+          - {id: exact, stdin: "60 60 60\n", expected_stdout: "60.00\n"}
+          - {id: on_lines, stdin: "1\n2\n4\n", expected_stdout: "2.33\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0, c = 0;
+              scanf("%d %d %d", &a, &b, &c);
+              printf("%.2f\n", (a + b + c) / 3.0);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                scanf("%d %d %d", &a, &b, &c);
+                printf("%.2f\n", (double) ((a + b + c) / 3));
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                scanf("%d %d %d", &a, &b, &c);
+                printf("%.2f\n", a + b + c / 3.0);
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir harf notu (tek karakter) ve bir puan (tam sayı) okusun ve "Harf: B, Puan: 85" biçiminde yazsın. Girdinin başında boşluk ya da boş satır olabilir; harften önceki boşluklar atlanmalı. Örnek: girdi "B 85" → çıktı Harf: B, Puan: 85
+        suite:
+          - {id: plain, stdin: "B 85\n", expected_stdout: "Harf: B, Puan: 85\n"}
+          - {id: leading_space, stdin: "  A 97\n", expected_stdout: "Harf: A, Puan: 97\n"}
+          - {id: leading_newline, stdin: "\nC\n70\n", expected_stdout: "Harf: C, Puan: 70\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char harf = '?';
+              int puan = 0;
+              scanf(" %c %d", &harf, &puan);
+              printf("Harf: %c, Puan: %d\n", harf, puan);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char harf = '?';
+                int puan = 0;
+                scanf("%c %d", &harf, &puan);
+                printf("Harf: %c, Puan: %d\n", harf, puan);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char harf = '?';
+                int puan = 0;
+                scanf(" %c %d", &harf, &puan);
+                printf("Harf: %d, Puan: %d\n", harf, puan);
+                return 0;
+            }

@@ -1,0 +1,455 @@
+skill: skill.c.conditionals
+activity: coding_production
+tasks:
+  teach: {title: "C'de dallanma: if, else if, else ve switch", minutes: 18}
+  practice: {title: "C koşul alıştırması", minutes: 15}
+  check: {title: "C koşul kontrolü", minutes: 15}
+  review: {title: "C koşul tekrarı", minutes: 12}
+  repair: {title: "Dallanmayı yeniden kurmak: koşul sırası, == ve break", minutes: 18}
+
+objectives:
+  - id: objective.c.conditionals.write_control_flow
+    statement: >-
+      C'de if / else if / else ve switch ile doğru dallanmayı yazabilmek: koşulları doğru sırada kurmak, karşılaştırmada
+      == ile atama = arasındaki farkı gözetmek, sıfırdan farklı değerin doğru sayıldığını bilmek ve switch'te her case'i
+      break ile bitirip default ile beklenmeyen değeri karşılamak.
+    observable_behavior: >-
+      Girdiye göre doğru dalı seçen ve sınır değerlerde de doğru çalışan programlar yazar; switch'te düşüşü (fall-through)
+      yalnız bilerek kullanır.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. 15A'nın branching_reasoning'i
+      dallanmayı okumayı öğretti; bu Skill onu C'de yazdırır. Item'lar girdiyi scanf ile okuduğu için standard_io_basic'i
+      beyan eder; testler her dalı ve sınır değerleri ayrı girdilerle dener.
+    checks:
+      - stdin: "-3\n"
+        prints: "negatif"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              scanf("%d", &x);
+              if (x > 0) {
+                  printf("pozitif\n");
+              } else if (x < 0) {
+                  printf("negatif\n");
+              } else {
+                  printf("sifir\n");
+              }
+              return 0;
+          }
+      - stdin: "2\n"
+        prints: "iki\nuc"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int k = 0;
+              scanf("%d", &k);
+              switch (k) {
+                  case 1:
+                      printf("bir\n");
+                      break;
+                  case 2:
+                      printf("iki\n");
+                  case 3:
+                      printf("uc\n");
+                      break;
+                  default:
+                      printf("baska\n");
+              }
+              return 0;
+          }
+      - prints: "evet"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 5;
+              if (a = 0) {
+                  printf("hayir\n");
+              } else {
+                  printf("evet\n");
+              }
+              return 0;
+          }
+    explanations:
+      canonical: |
+        C'de if Python'daki gibi çalışır; yazımı farklıdır: koşul parantez içinde, gövde süslü parantez içinde.
+
+        if (x > 0) {
+            printf("pozitif\n");
+        } else if (x < 0) {
+            printf("negatif\n");
+        } else {
+            printf("sifir\n");
+        }
+
+        - Koşullar yukarıdan aşağı denenir; ilk doğru olan dal çalışır, gerisi atlanır. Bu yüzden daha dar koşulu önce yazarsın.
+        - C'de "doğru" sıfırdan farklı her değerdir. if (n) "n sıfır değilse" demektir.
+        - Tek satırlık gövdede süslü parantez zorunlu değildir ama her zaman yaz: sonradan eklenen ikinci satır parantezsiz if'in dışında kalır.
+
+        = ile == karışıklığı: if (a = 0) bir karşılaştırma değil, bir atamadır! a'ya 0 atar ve ifadenin değeri 0 olduğu için dal hiç çalışmaz. -Wall bunun için uyarır ("suggest parentheses"). Karşılaştırma her zaman ==.
+
+        switch: bir tam sayının (ya da char'ın) belirli değerlerine göre dallanır.
+
+        switch (gun) {
+            case 6:
+            case 7:
+                printf("hafta sonu\n");
+                break;
+            case 1:
+                printf("pazartesi\n");
+                break;
+            default:
+                printf("hafta ici\n");
+        }
+
+        - Eşleşen case'den başlayarak break'e kadar her satır çalışır. break unutulursa sonraki case'in satırları da çalışır (fall-through). Yukarıdaki case 6: case 7: bunu bilerek kullanır.
+        - default, hiçbir case eşleşmezse çalışır.
+        - switch aralık karşılaştıramaz (case > 5 yazılamaz); aralıklar için if kullanılır.
+
+        Koşullu ifade (üçlü): max = (a > b) ? a : b; — kısa iki seçenekli değerler için.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (dallanma ve C ifadeleri): 15A'da bir koşulun hangi dalı seçtiğini okudun; C'de karşılaştırmalar 1 ya da 0 verir ve && || ! mantık işleçleridir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: bir sıcaklık okunsun; 30'dan büyükse "sicak", 15 ile 30 arası (15 ve 30 dahil) "ilik", 15'ten küçükse "soguk" yazılsın.
+
+          #include <stdio.h>
+
+          int main(void) {
+              int t = 0;
+              scanf("%d", &t);
+              if (t > 30) {
+                  printf("sicak\n");
+              } else if (t >= 15) {
+                  printf("ilik\n");
+              } else {
+                  printf("soguk\n");
+              }
+              return 0;
+          }
+
+          - ikinci koşula gelindiyse t zaten 30'dan büyük değildir; yalnız alt sınır yazılır.
+          - Sınırlar: 30 → ilik, 31 → sicak, 15 → ilik, 14 → soguk.
+    misconceptions:
+      - slug: assign_in_condition
+        name: if (x = 5) x'in 5 olup olmadığını sorar
+        open_question: if (x = 5) yazınca x'in 5'e eşit olup olmadığının kontrol edildiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "= eşitliktir."
+
+            C'de = atamadır: if (x = 5) x'e 5 atar ve ifade 5 (sıfır değil) olduğu için dal her zaman çalışır. Eşitlik için == yazılır. -Wall bu satır için uyarı verir; uyarıyı oku.
+      - slug: switch_stops_at_next_case
+        name: switch'te bir case bitince sonraki case'e geçilmez
+        open_question: switch'te break yazmasan da eşleşen case'in satırlarından sonra durulacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "case'ler ayrı bloklardır."
+
+            case etiketleri yalnız giriş noktalarıdır. Eşleşen case'den başlanır ve break'e (ya da switch'in sonuna) kadar alttaki bütün satırlar çalışır. Her case'i break ile bitir; düşüşü yalnız bilerek kullan.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir tam sayı okusun; sayı çiftse "cift", tekse "tek" yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: even, stdin: "8\n", expected_stdout: "cift\n"}
+          - {id: odd, stdin: "7\n", expected_stdout: "tek\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "cift\n"}
+          - {id: negative_odd, stdin: "-3\n", expected_stdout: "tek\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              if (n % 2 == 0) {
+                  printf("cift\n");
+              } else {
+                  printf("tek\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n % 2 == 1) {
+                    printf("tek\n");
+                } else {
+                    printf("cift\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n / 2 == 0) {
+                    printf("cift\n");
+                } else {
+                    printf("tek\n");
+                }
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir program yaz: girdiden iki tam sayı okusun ve büyük olanı yazsın (eşitse o sayıyı yazsın).
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: first_bigger, stdin: "9 4\n", expected_stdout: "9\n"}
+          - {id: second_bigger, stdin: "-2 5\n", expected_stdout: "5\n"}
+          - {id: equal, stdin: "3 3\n", expected_stdout: "3\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              if (a > b) {
+                  printf("%d\n", a);
+              } else {
+                  printf("%d\n", b);
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                if (a < b) {
+                    printf("%d\n", a);
+                } else {
+                    printf("%d\n", b);
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                printf("%d\n", a);
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 0–100 arası bir puan okusun ve harf notunu yazsın: 90 ve üstü A, 80–89 B, 70–79 C, 60–69 D, 60'ın altı F. Puan 0'dan küçük ya da 100'den büyükse "Gecersiz" yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: top, stdin: "95\n", expected_stdout: "A\n"}
+          - {id: boundary_90, stdin: "90\n", expected_stdout: "A\n"}
+          - {id: boundary_89, stdin: "89\n", expected_stdout: "B\n"}
+          - {id: boundary_60, stdin: "60\n", expected_stdout: "D\n"}
+          - {id: fail, stdin: "59\n", expected_stdout: "F\n"}
+          - {id: too_high, stdin: "101\n", expected_stdout: "Gecersiz\n"}
+          - {id: negative, stdin: "-1\n", expected_stdout: "Gecersiz\n"}
+          - {id: boundary_80, stdin: "80\n", expected_stdout: "B\n"}
+          - {id: boundary_79, stdin: "79\n", expected_stdout: "C\n"}
+          - {id: boundary_70, stdin: "70\n", expected_stdout: "C\n"}
+          - {id: boundary_69, stdin: "69\n", expected_stdout: "D\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int p = 0;
+              scanf("%d", &p);
+              if (p < 0 || p > 100) {
+                  printf("Gecersiz\n");
+              } else if (p >= 90) {
+                  printf("A\n");
+              } else if (p >= 80) {
+                  printf("B\n");
+              } else if (p >= 70) {
+                  printf("C\n");
+              } else if (p >= 60) {
+                  printf("D\n");
+              } else {
+                  printf("F\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int p = 0;
+                scanf("%d", &p);
+                if (p < 0 || p > 100) {
+                    printf("Gecersiz\n");
+                } else if (p > 90) {
+                    printf("A\n");
+                } else if (p > 80) {
+                    printf("B\n");
+                } else if (p > 70) {
+                    printf("C\n");
+                } else if (p > 60) {
+                    printf("D\n");
+                } else {
+                    printf("F\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int p = 0;
+                scanf("%d", &p);
+                if (p >= 60) {
+                    printf("D\n");
+                } else if (p >= 70) {
+                    printf("C\n");
+                } else if (p >= 80) {
+                    printf("B\n");
+                } else if (p >= 90) {
+                    printf("A\n");
+                } else {
+                    printf("F\n");
+                }
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 1–7 arası bir gün numarası okusun ve switch ile gün adını yazsın (1 Pazartesi, 2 Sali, 3 Carsamba, 4 Persembe, 5 Cuma, 6 Cumartesi, 7 Pazar). Başka bir sayıysa "Gecersiz gun" yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: monday, stdin: "1\n", expected_stdout: "Pazartesi\n"}
+          - {id: friday, stdin: "5\n", expected_stdout: "Cuma\n"}
+          - {id: sunday, stdin: "7\n", expected_stdout: "Pazar\n"}
+          - {id: invalid, stdin: "8\n", expected_stdout: "Gecersiz gun\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "Gecersiz gun\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int g = 0;
+              scanf("%d", &g);
+              switch (g) {
+                  case 1: printf("Pazartesi\n"); break;
+                  case 2: printf("Sali\n"); break;
+                  case 3: printf("Carsamba\n"); break;
+                  case 4: printf("Persembe\n"); break;
+                  case 5: printf("Cuma\n"); break;
+                  case 6: printf("Cumartesi\n"); break;
+                  case 7: printf("Pazar\n"); break;
+                  default: printf("Gecersiz gun\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int g = 0;
+                scanf("%d", &g);
+                switch (g) {
+                    case 1: printf("Pazartesi\n");
+                    case 2: printf("Sali\n"); break;
+                    case 3: printf("Carsamba\n"); break;
+                    case 4: printf("Persembe\n"); break;
+                    case 5: printf("Cuma\n"); break;
+                    case 6: printf("Cumartesi\n"); break;
+                    case 7: printf("Pazar\n"); break;
+                    default: printf("Gecersiz gun\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int g = 0;
+                scanf("%d", &g);
+                switch (g) {
+                    case 1: printf("Pazartesi\n"); break;
+                    case 2: printf("Sali\n"); break;
+                    case 3: printf("Carsamba\n"); break;
+                    case 4: printf("Persembe\n"); break;
+                    case 5: printf("Cuma\n"); break;
+                    case 6: printf("Cumartesi\n"); break;
+                    case 7: printf("Pazar\n"); break;
+                }
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir yıl okusun ve artık yıl olup olmadığını yazsın ("artik" ya da "degil"). Kural: 4'e bölünen yıllar artık yıldır; ama 100'e bölünenler artık yıl değildir; ama 400'e bölünenler yine artık yıldır.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: div_by_4, stdin: "2024\n", expected_stdout: "artik\n"}
+          - {id: not_div_by_4, stdin: "2023\n", expected_stdout: "degil\n"}
+          - {id: century, stdin: "1900\n", expected_stdout: "degil\n"}
+          - {id: four_hundred, stdin: "2000\n", expected_stdout: "artik\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int y = 0;
+              scanf("%d", &y);
+              if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) {
+                  printf("artik\n");
+              } else {
+                  printf("degil\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int y = 0;
+                scanf("%d", &y);
+                if (y % 4 == 0) {
+                    printf("artik\n");
+                } else {
+                    printf("degil\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int y = 0;
+                scanf("%d", &y);
+                if (y % 4 == 0 && y % 100 != 0) {
+                    printf("artik\n");
+                } else {
+                    printf("degil\n");
+                }
+                return 0;
+            }

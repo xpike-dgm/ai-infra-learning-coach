@@ -428,6 +428,43 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `a doubled backslash is one backslash, so C code can show a backslash-n, and every other backslash is itself`() {
+        // As the package stores it: printf("%d\\n", x); then a line break, then a Windows path.
+        val stored = "printf(\"%d\\\\n\", x);\\nC:\\Users\\ad"
+        assertEquals("printf(\"%d\\n\", x);\nC:\\Users\\ad", PackageFormat.unescape(stored))
+        assertEquals("a\nb", PackageFormat.unescape("a\\nb"), "a backslash-n is still a line break (15A)")
+        assertEquals("\\", PackageFormat.unescape("\\"), "a backslash at the end is itself")
+        val shown = authored.replace("prompt=Bu döngü kaç kez çalışır?", "prompt=printf(\"bitti\\\\n\");\\nreturn 0;")
+        assertEquals("printf(\"bitti\\n\");\nreturn 0;", PackageFormat.parse(shown).documents[itemRef])
+        // The same rule reads a lesson and a comprehension check's prompt and choices.
+        val lesson = """
+
+            [explanation]
+            logical_id=explanation.python.loops.trace.canonical
+            version=1
+            objective=objective.python.loops.trace@v1
+            form=canonical
+            text=printf("%d\\n", i);\nbiter.
+            [comprehension_check]
+            logical_id=comprehension.python.loops.newline
+            version=1
+            item=item.python.loops.q1@v1
+            objective=objective.python.loops.trace@v1
+            kind=line_purpose
+            evidence_type=explanation
+            prompt=printf("a\\n");\nNe yazar?
+            choice_a=a ve \\n
+            choice_b=a ve satır sonu
+            answer=b
+        """.trimIndent()
+        val source = FileContentSource { authored + "\n" + lesson }
+        assertEquals("printf(\"%d\\n\", i);\nbiter.", source.explanationsFor(VersionedRef("objective.python.loops.trace", 1)).single().text)
+        val check = source.comprehensionChecksFor(itemRef).single()
+        assertEquals("printf(\"a\\n\");\nNe yazar?", check.prompt)
+        assertEquals("a ve \\n", check.choices["a"])
+    }
+
+    @Test
     fun `an authored task is read strictly and served only for the needs it declares about its own Skill`() {
         val parsed = PackageFormat.parse(authored + "\n\n" + task)
         val read = parsed.tasks.single()

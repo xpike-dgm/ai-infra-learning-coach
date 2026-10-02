@@ -1,0 +1,991 @@
+package_version: 3
+items:
+- item: item.linux.terminal_filesystem_navigation.navigate_relative_absolute.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.terminal_filesystem_navigation.navigate_relative_absolute.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.terminal_filesystem_navigation.navigate_relative_absolute.f03
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.terminal_filesystem_navigation.navigate_relative_absolute.f04
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'error b\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.terminal_filesystem_navigation.navigate_relative_absolute.f05
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.compile_and_run_small_program.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f01
+  status: validated
+  verify_mode: c_stage
+  verification: executed; true value 'compile' is option A and no other
+  constructs:
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f02
+  status: validated
+  verify_mode: c_stage
+  verification: executed; true value 'link' is option B and no other
+  constructs:
+  - function_definition
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f03
+  status: validated
+  verify_mode: c_stage
+  verification: executed; true value 'run' is option C and no other
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f04
+  status: validated
+  verify_mode: c_stage
+  verification: executed; true value 'compile' is option A and no other
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.compile_link_run_basic.classify_compile_vs_runtime_failure.f05
+  status: validated
+  verify_mode: c_stage
+  verification: executed; true value 'link' is option B and no other
+  constructs:
+  - arithmetic
+  - function_definition
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - const_qualifier
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.declaration_type_model.write_basic_declarations.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f01
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f02
+  status: validated
+  verify_mode: c_stdout
+  verification: executed; true value '-3 -2\n' is option A and no other
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f03
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - division_remainder
+  - main_function
+  - printf_call
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f04
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - increment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f05
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - comparison
+  - division_remainder
+  - logical
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.expression_evaluation.demonstrate_capability.f06
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - compound_assignment
+  - division_remainder
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.standard_io_basic.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.standard_io_basic.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.standard_io_basic.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - comparison
+  - if_else
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.standard_io_basic.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - division_remainder
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.standard_io_basic.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.conditionals.write_control_flow.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - division_remainder
+  - if_else
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.conditionals.write_control_flow.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - if_else
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.conditionals.write_control_flow.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 11 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - if_else
+  - logical
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.conditionals.write_control_flow.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - break_statement
+  - main_function
+  - printf_call
+  - scanf_call
+  - switch_case
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.conditionals.write_control_flow.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - division_remainder
+  - if_else
+  - logical
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.for_iteration.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - for_loop
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.for_iteration.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - comparison
+  - compound_assignment
+  - for_loop
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.for_iteration.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - compound_assignment
+  - for_loop
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.for_iteration.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - division_remainder
+  - for_loop
+  - if_else
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.for_iteration.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - for_loop
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.while_iteration.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - compound_assignment
+  - do_while
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.while_iteration.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - compound_assignment
+  - increment
+  - logical
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.while_iteration.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - comparison
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.while_iteration.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - assignment
+  - comparison
+  - compound_assignment
+  - division_remainder
+  - if_else
+  - increment
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.while_iteration.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - address_for_scanf
+  - assignment
+  - comparison
+  - do_while
+  - if_else
+  - increment
+  - logical
+  - main_function
+  - printf_call
+  - scanf_call
+  - variable_declaration
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.functions_basic.write_and_call_function.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_definition
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.functions_basic.write_and_call_function.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - division_remainder
+  - function_definition
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.functions_basic.write_and_call_function.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - comparison
+  - function_definition
+  - if_else
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.functions_basic.write_and_call_function.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - comparison
+  - for_loop
+  - function_definition
+  - increment
+  - printf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.functions_basic.write_and_call_function.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - division_remainder
+  - for_loop
+  - function_definition
+  - if_else
+  - increment
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 56
+tasks:
+- task: task.linux.terminal_filesystem_navigation.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.linux.terminal_filesystem_navigation.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.linux.terminal_filesystem_navigation.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.linux.terminal_filesystem_navigation.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.linux.terminal_filesystem_navigation.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.c.compile_link_run_basic.teach
+  status: validated
+  items: 2
+  explanations: 4
+- task: task.c.compile_link_run_basic.practice
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.c.compile_link_run_basic.check
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.c.compile_link_run_basic.review
+  status: validated
+  items: 8
+  explanations: 0
+- task: task.c.compile_link_run_basic.repair
+  status: validated
+  items: 8
+  explanations: 6
+- task: task.c.declaration_type_model.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.declaration_type_model.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.declaration_type_model.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.declaration_type_model.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.declaration_type_model.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.c.expression_evaluation.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.expression_evaluation.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.expression_evaluation.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.expression_evaluation.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.c.expression_evaluation.repair
+  status: validated
+  items: 5
+  explanations: 5
+- task: task.c.standard_io_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.standard_io_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.standard_io_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.standard_io_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.standard_io_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.c.conditionals.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.conditionals.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.conditionals.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.conditionals.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.conditionals.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.c.for_iteration.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.for_iteration.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.for_iteration.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.for_iteration.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.for_iteration.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.c.while_iteration.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.while_iteration.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.while_iteration.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.while_iteration.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.while_iteration.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.c.functions_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.functions_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.functions_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.functions_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.functions_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+failures: []
+explanation_checks:
+- objective: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  check: 1
+  result: PASS
+  printed: src
+- objective: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  check: 2
+  result: PASS
+  printed: proje
+- objective: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+  check: 3
+  result: PASS
+  printed: notlar
+- objective: objective.c.compile_link_run_basic.compile_and_run_small_program
+  check: 1
+  result: PASS
+  printed: Merhaba, C!
+- objective: objective.c.compile_link_run_basic.compile_and_run_small_program
+  check: 2
+  result: PASS
+  printed: 'bir
+
+    iki'
+- objective: objective.c.compile_link_run_basic.compile_and_run_small_program
+  check: 3
+  result: PASS
+  printed: ayni satirda devam
+- objective: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  check: 1
+  result: PASS
+  printed: derlendi
+- objective: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  check: 2
+  result: PASS
+  printed: ''
+- objective: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+  check: 3
+  result: PASS
+  printed: ''
+- objective: objective.c.declaration_type_model.write_basic_declarations
+  check: 1
+  result: PASS
+  printed: 7 2.50 A
+- objective: objective.c.declaration_type_model.write_basic_declarations
+  check: 2
+  result: PASS
+  printed: '3'
+- objective: objective.c.declaration_type_model.write_basic_declarations
+  check: 3
+  result: PASS
+  printed: 66 C
+- objective: objective.c.expression_evaluation.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 3 1 3.500000
+- objective: objective.c.expression_evaluation.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: -3 -1
+- objective: objective.c.expression_evaluation.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 5 6 7 7
+- objective: objective.c.expression_evaluation.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: 1 0 1
+- objective: objective.c.expression_evaluation.demonstrate_capability
+  check: 5
+  result: PASS
+  printed: '4294967295'
+- objective: objective.c.standard_io_basic.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: '42'
+- objective: objective.c.standard_io_basic.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '0'
+- objective: objective.c.standard_io_basic.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: '5.00'
+- objective: objective.c.conditionals.write_control_flow
+  check: 1
+  result: PASS
+  printed: negatif
+- objective: objective.c.conditionals.write_control_flow
+  check: 2
+  result: PASS
+  printed: 'iki
+
+    uc'
+- objective: objective.c.conditionals.write_control_flow
+  check: 3
+  result: PASS
+  printed: evet
+- objective: objective.c.for_iteration.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: '15'
+- objective: objective.c.for_iteration.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: 10 8 6 4 2
+- objective: objective.c.for_iteration.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: '**
+
+    **
+
+    **'
+- objective: objective.c.while_iteration.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: '19'
+- objective: objective.c.while_iteration.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '15'
+- objective: objective.c.while_iteration.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: bir kez
+- objective: objective.c.functions_basic.write_and_call_function
+  check: 1
+  result: PASS
+  printed: '25'
+- objective: objective.c.functions_basic.write_and_call_function
+  check: 2
+  result: PASS
+  printed: 7 70
+- objective: objective.c.functions_basic.write_and_call_function
+  check: 3
+  result: PASS
+  printed: '--- ---'
+summary:
+  skills: 9
+  objectives: 10
+  topics: 5
+  items: 51
+  validated_items: 51
+  explanations: 56
+  misconceptions: 21
+  tasks: 45
+  failures: 0

@@ -1667,3 +1667,33 @@ Ayrıntı: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.
 - Sonraki numbered step `15C — C Foundations`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
+
+## D-114 — C Foundations içeriği = CFNX-v0
+**Durum:** Kabul edildi — 2026-10-02
+
+- 15C final modeli `CFNX-v0 — C Foundations content` oldu; uygulama üçüncü içerik paketini sevk ediyor ve öğrenci C yazıyor.
+- Canonical spec `docs/C_FOUNDATIONS_CONTENT_SPEC.md`; machine-readable contract `arch/15c_c_foundations/c_foundations.yaml`; doğrulama raporu `arch/15c_c_foundations/content_verification.yaml`; research `research/15c_c_foundations_research.md`; içerik kaynağı `curriculum/content/15c_c_foundations/` (9 Skill dosyası, C yazma gösterimi, bağımsız inceleme, 35 test suite'i); sevk edilen paket `android/app-wiring/src/main/assets/curriculum_package_v3.txt`; kod `data-curriculum` (`PackageFormat.unescape`), `tools/build_curriculum_package.py` (Linux'ta doğrulama).
+- Ana invariant: **bir C programı öğrencinin onu derleyip çalıştırdığı yerde değerlendirilir: Linux'ta gcc ile, öğrencinin kendi koşucusundan.** Her anahtar gcc'nin ve programın gerçekte yaptığıdır, her suite doğru çözümü makul bir yanlış çözümden ayırır, fonksiyon isteyen item'ı yalnız fonksiyon geçer ve paket C kodunu yazıldığı gibi gösterir — ters bölü-n ters bölü-n kalır — hiçbir önceki paketin okunuşunu değiştirmeden.
+- **Kullanıcı kararları (2026-10-02):** (1) **Linux ön koşulu:** `terminal_filesystem_navigation` 15C'de yayımlanır (6C'de ilk C Skill'i ona hard bağlı; kendi ön koşulu yok; 15E kalanını ekler); (2) **ortam:** WSL Ubuntu + gcc, kullanıcı kurdu (`build-essential` gerekti); öğrenci ve doğrulama aynı gcc'yi kullanır; (3) **girdi:** `standard_io_basic` eklendi (programlar scanf ile okur ve birden çok girdiyle denenir).
+- **İçerik yazmadan önce bulunanlar:** ilk C Skill'i bir Linux Skill'ini bekliyor; girdi olmadan C programları denenemiyor; yazar makinesinde C derleyicisi yok (VS içinde eski MSVC; dağıtımsız WSL); `gcc` paketi C kütüphane başlıklarını getirmedi; paket bir ters bölü-n'i gösteremiyordu (C kodu yazılamıyordu); fonksiyon item'ı fonksiyonsuz bir programla geçiliyordu; terminal Skill'i üçüncü bir giriş noktası.
+- **Alt-graf:** FBB-v0 §6.3'ün dört C tohumu (6C'de yedi Skill) + `standard_io_basic` + `terminal_filesystem_navigation` — 9 Skill, 10 Objective, 15 kenar (7'si 15A'dan) — `published`, kimlik değişmedi; işaretçi, dizi ve bellek 15D'nin ve her 15C item'ında yasak. `compile_link_run_basic`'in iki Objective'i 6C'de aynı şablon cümleyi taşıyordu; eylem adlarına göre ayrıldı.
+- **İçerik:** 51 item (35 kod suite'iyle — 5'i dersin kendi main'iyle fonksiyon çağırır —, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev, 32 ders iddiası Linux'ta çalıştırıldı.
+- **Doğrulama Linux'ta:** `c_stdout` (gcc ile derlenip çalıştırılan programın çıktısı), `c_stage` (derleme, bağlama, çalışma ayrı ayrı; ilk başarısız aşama), `shell` (boş dizinde bash); kod item'ları öğrencinin koşucusuyla WSL içinde; fonksiyon item'ları dersin main'iyle bağlanır (`-Dmain=ogrenci_main`). 15A ve 15B bayt bayt aynı yeniden kuruluyor.
+- **Biçim inceltmesi:** `PackageFormat.unescape` — çok satırlı bir değerde ters bölü-n satır sonu, çift ters bölü tek ters bölüdür; başka her ters bölü kendisidir. Önceki iki paket çift ters bölü içermediği için aynı okunur. Üretici yalnız `escape_backslash: true` beyan eden pakette kaçırır.
+- **Bağımsız inceleme:** Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+- **Daraltılan yaşayan kapılar (kontratta beyanlı):** 15A `E15A-09_prompt_line_breaks` ve 14C `E14C-09_line_breaks` (ikisi de eski `.replace` çağrısını arıyordu; şimdi `unescape`).
+- **Sevk edilen kurs:** üç paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenci yalnız giriş Skill'lerini başlatabiliyor — artık terminal de bunlardan biri — ve her C Skill'i bekliyor (`ShippedCourseTest`).
+- **Mutation 8/8** (yalnız `PackageFormat.unescape` ve dört çağrı noktası; 15C başka Kotlin değiştirmedi), ilk ve tek temiz koşuda; kontrol mutantı hayatta kaldı. Validator mutation **34/34**: önceki koşular iki çökme ve bir kaçış gösterdi — kaçışı engelleyen bir derleme hatası artık FAIL'dir ve önceki paketlerin yeniden kurulumunda doğrulama hatası da aranır; son koşu yük altında 5 sn'lik bir Linux zaman aşımını gösterdi, sınır 60 sn yapıldı (öğrencinin test sınırı değişmedi). Çalıştırılan runlar: T1, T2, T3, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS, üç paketin APK içindeki SHA-256'sı kaynakla aynı; 1001 JVM testi. Independent 15C QA: **155/155 PASS**; sweep 58/58 (14C'nin bir kapısı da daraltıldı).
+- Çalıştırılmayan: **T6 ve cihazda ilk ingestion**; SQLite yayımı yalnız JVM'de koştu.
+- Açık loop'lar: item başına beyan edilen gereksinimler, sabit çıktılı item'lar, gösterim kapsamı ve `requires_transfer` (15H); runner'ın havuzu ve cozum.c/raporun telefon–bilgisayar taşınması (C Linux ister) (16D); dakika kalibrasyonu (18B); T6 (19).
+- Sonraki numbered step `15D — Memory Foundations`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+Ayrıntı: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.
+
+## D-115 — Kaynak repo herkese açık (D-080'in "repo private" maddesi kapandı)
+**Durum:** Kabul edildi — 2026-10-03 (kullanıcı kararı; numaralı adım değildir)
+
+- `xpike-dgm/ai-infra-learning-coach` **herkese açıktır** (kullanıcı, 2026-10-03). Sebep: hesabın GitHub Actions işleri bir fatura/harcama limiti engeliyle hiç başlamıyordu (15C PR #54); açık repolarda standart runner'lar ücretsizdir. Bu reponun kendi kullanımı Pro'nun aylık kotasının çok altındaydı (ekim ~165 iş-dakikası).
+- **Değişmeyen:** D-080'in ürün kararı aynen geçerlidir — uygulama tek kullanıcı içindir; hiçbir uygulama merkezine yüklenmez, APK paylaşılmaz, store/dağıtım işleri kapsam dışıdır. Yalnız D-080'in "Repo private'dır" cümlesi bu kararla kapandı; kanıt ve AI yetki kuralları değişmez.
+- **Açmadan önce yapılan tarama:** 667 commit'in bütün geçmişi API anahtarı, token, özel anahtar, `.env`/keystore dosyası ve şifre ataması için tarandı; hiçbiri yok. Kullanıcının e-posta adresi yalnız 50 commit'in yazar/committer bilgisinde vardır, dosya içeriğinde yoktur; kullanıcı geçmişin yeniden yazılmamasına ve adresin görünür kalmasına karar verdi.
+- Repo bir kez açıldığı için içeriği (kaynak, araştırma, `vault/` notları) başkalarınca kopyalanmış olabilir; sonradan yeniden gizlemek bu kopyaları kaldırmaz.

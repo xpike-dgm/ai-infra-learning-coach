@@ -202,3 +202,7 @@ A task serves a need only if it declares the need's trigger **and** the need is 
 ---
 
 **Next step:** **15B — Python Foundations** (fresh PRE + explicit user approval).
+
+---
+
+**15C note (2026-10-03, `D-114`):** a prompt, an explanation and a comprehension check are now read by `PackageFormat.unescape`: a backslash-n is still a line break and a doubled backslash is one backslash, so C code can show its own backslash-n. This package holds no doubled backslash and reads byte-for-byte as before. `E15A-09_prompt_line_breaks` was narrowed to the new reader. Details: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.

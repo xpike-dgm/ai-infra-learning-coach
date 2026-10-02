@@ -1,0 +1,232 @@
+skill: skill.linux.terminal_filesystem_navigation
+activity: hands_on_system_task
+tasks:
+  teach: {title: "Terminalde dolaşmak: çalışma dizini, göreli ve mutlak yol", minutes: 15}
+  practice: {title: "Terminal navigasyonu alıştırması", minutes: 12}
+  check: {title: "Terminal navigasyonu kontrolü", minutes: 12}
+  review: {title: "Terminal navigasyonu tekrarı", minutes: 10}
+  repair: {title: "Terminalde yeniden yön bulmak: nerede olduğunu bilmek", minutes: 15}
+
+objectives:
+  - id: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+    statement: >-
+      Bir Linux terminalinde çalışma dizinini (pwd) bilerek dolaşabilmek: mkdir ile klasör oluşturmak, cd ile göreli
+      (..  ve .) ve mutlak (/ ile başlayan) yollarla klasör değiştirmek, ~ ile ev dizinine dönmek, ls ile bir klasörün
+      içeriğini görmek ve bir komutun hangi dizinde çalıştığına göre farklı sonuç verdiğini öngörebilmek.
+    observable_behavior: >-
+      Verilen komut dizisini terminalde çalıştırıp sonunda hangi dizinde olunduğunu ya da ls'in ne listelediğini doğru
+      söyler; göreli bir yolun nereyi gösterdiğini çalışma dizininden çözer.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type hands_on_system_task. Bu Skill FBB-v0 §6.4'ün
+      Linux tohumudur; 6C'de C rotasının ilk Skill'i (compile_link_run_basic) ona hard bağlı olduğu için kullanıcı kararıyla
+      (2026-10-02) 15C'de yayımlanır; kalan Linux/Git/Shell Skill'leri 15E'nindir. Item'lar uygulamalıdır: öğrenci komutları
+      kendi terminalinde çalıştırır ve sonucu yazar; anahtarlar komutlar boş bir dizinde bash ile gerçekten çalıştırılarak
+      doğrulanır. Kullanıcıya özgü yollar (ev dizininin tam yolu) sorulmaz; yalnız klasör adları ve listeler sorulur.
+    checks:
+      - lang: shell
+        prints: "src"
+        code: |
+          mkdir -p proje/src
+          cd proje/src
+          basename "$PWD"
+      - lang: shell
+        prints: "proje"
+        code: |
+          mkdir -p proje/src
+          cd proje/src
+          cd ..
+          basename "$PWD"
+      - lang: shell
+        prints: "notlar"
+        code: |
+          mkdir -p a/b notlar
+          cd a/b
+          cd ../../notlar
+          basename "$PWD"
+    explanations:
+      canonical: |
+        Terminal her an bir klasörün "içinde" çalışır; buna çalışma dizini denir. pwd (print working directory) onu yazar:
+
+        $ pwd
+        /home/xpike
+
+        Klasör oluşturmak ve içeriğe bakmak:
+        $ mkdir proje          (proje adında bir klasör oluşturur)
+        $ mkdir -p proje/src   (-p: aradaki klasörler yoksa onları da oluşturur, varsa hata vermez)
+        $ ls                   (çalışma dizinindeki dosya ve klasörleri listeler)
+
+        Klasör değiştirmek: cd
+        - cd proje/src  → göreli yol: çalışma dizininden başlar.
+        - cd ..         → bir üst klasör (.. "bir yukarı" demektir).
+        - cd .          → olduğun yerde kalırsın (. "burası" demektir).
+        - cd /tmp       → mutlak yol: / ile başlar, nerede olursan ol aynı yeri gösterir.
+        - cd ~ ya da yalnız cd → ev dizinine döner.
+
+        Göreli yolu çözmek: göreli bir yol her zaman o anki çalışma dizinine eklenir. /home/xpike/proje/src içindeyken ../docs yolu /home/xpike/proje/docs demektir.
+
+        Neden önemli? gcc cozum.c, ./cozum, python3 code_test_runner.py ... gibi komutlar dosyaları çalışma dizininde arar. "No such file or directory" hatası çoğu zaman yanlış klasörde olduğun anlamına gelir: önce pwd ve ls ile nerede olduğuna bak.
+
+        Windows'tan WSL'e: Windows'taki C:\Users\ad klasörü WSL içinde /mnt/c/Users/ad olarak görünür. Ders dosyalarını Linux tarafındaki ev dizininde (~) tutman en sorunsuzudur.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (programın çalışması): bir program bir dosyadan okunur ve çalıştırılır; hangi dosyanın kastedildiğini, çalıştırıldığı yer ve verilen yol belirler.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde. Boş bir klasörde:
+
+          $ mkdir -p okul/mat okul/fiz
+          $ cd okul/mat        → çalışma dizini: .../okul/mat
+          $ cd ../fiz          → .. ile okul'a çıkılır, oradan fiz'e girilir: .../okul/fiz
+          $ cd ..              → .../okul
+          $ ls                 → fiz  mat
+
+          Her cd'den sonra çalışma dizinini bir kâğıda yazarsan göreli yolların nereyi gösterdiğini hep bilirsin.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: boş bir klasörde şu komutlardan sonra hangi klasördesin?
+          $ mkdir -p muzik/rock muzik/caz
+          $ cd muzik/rock
+          $ cd ../caz
+          $ cd .
+
+          - mkdir -p iki alt klasörü birlikte oluşturdu.
+          - cd muzik/rock → .../muzik/rock
+          - cd ../caz → bir yukarı (muzik), sonra caz → .../muzik/caz
+          - cd . → yerinde kalır.
+          Cevap: caz klasöründesin (pwd'nin son parçası caz).
+    misconceptions:
+      - slug: relative_from_home
+        name: Göreli bir yol her zaman ev dizininden başlar
+        open_question: cd proje komutunun, nerede olursan ol, ev dizinindeki proje klasörüne gideceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "proje klasörü ev dizinimde, cd proje her yerden oraya gider."
+
+            Göreli bir yol o anki çalışma dizininden başlar. Başka bir klasördeyken cd proje orada bir proje klasörü arar; yoksa "No such file or directory" der. Her yerden aynı yere gitmek için mutlak yol (/... ya da ~/proje) kullanılır.
+      - slug: dotdot_goes_home
+        name: cd .. başlangıç klasörüne geri döndürür
+        open_question: cd .. komutunun seni terminali açtığın klasöre geri götüreceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "cd .. geri tuşu gibidir."
+
+            .. her zaman bir üst klasördür, nereden geldiğin değil. a/b/c içindeyken cd .. seni a/b'ye götürür; daha önce hangi klasörde olduğunun bir önemi yoktur.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Terminalinde boş bir klasöre geç (örneğin mkdir deneme && cd deneme) ve şu komutları sırayla çalıştır:
+
+          mkdir -p kitap/roman
+          cd kitap/roman
+          cd ..
+
+          Şimdi hangi klasördesin? pwd çıktısının yalnız son parçasını (klasör adını) yaz.
+        answer: "kitap"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p kitap/roman
+            cd kitap/roman
+            cd ..
+            basename "$PWD"
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p web/css web/js
+          cd web
+          ls
+
+          ls ne listeler? Çıktıyı göründüğü gibi, aralarında bir boşlukla yaz.
+        answer: "css js"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p web/css web/js
+            cd web
+            echo $(ls)
+      - slug: f03
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p depo/2025 depo/2026/ocak
+          cd depo/2026/ocak
+          cd ../../2025
+
+          Şimdi hangi klasördesin? Klasör adını yaz.
+        answer: "2025"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p depo/2025 depo/2026/ocak
+            cd depo/2026/ocak
+            cd ../../2025
+            basename "$PWD"
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p a/b
+          cd a
+          cd b
+          cd b
+
+          Son komut ne olur?
+        options:
+          A: "Hata verir: b içinde bir b klasörü yok, çalışma dizini a/b olarak kalır"
+          B: "a/b/b klasörü oluşturulur ve içine girilir"
+          C: "Hiçbir şey olmaz, çünkü zaten b'nin içindesin"
+          D: "a klasörüne geri dönülür"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "error b", B: "ok b", C: "ok b same", D: "ok a"}
+          script: |
+            mkdir -p a/b
+            cd a
+            cd b
+            if cd b 2>/dev/null; then echo "ok $(basename "$PWD")"; else echo "error $(basename "$PWD")"; fi
+      - slug: f05
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır:
+
+          mkdir -p proje/src proje/test
+          cd proje/src
+          mkdir ../belge
+          cd ../test
+          ls ..
+
+          Son ls ne listeler? Çıktıyı göründüğü gibi, aralarında birer boşlukla yaz.
+        answer: "belge src test"
+        verify:
+          mode: shell
+          script: |
+            mkdir -p proje/src proje/test
+            cd proje/src
+            mkdir ../belge
+            cd ../test
+            echo $(ls ..)

@@ -253,7 +253,10 @@ keys = re.search(r'"explanation" to setOf\(([^)]*)\)', fmt)
 check("E14C-09_keys", keys is not None and re.findall(r'"(\w+)"', keys.group(1)) == contract.get("written_explanations", {}).get("fields"), keys.group(1) if keys else "")
 reader = body(fmt, "fun explanation(section: Section)")
 check("E14C-09_strict", "check(section)" in reader, "")
-check("E14C-09_line_breaks", '.replace("\\\\n", "\\n")' in reader, reader[-300:])
+# Narrowed at 15C (`CFNX-v0` / `D-114`): an explanation's text is read by PackageFormat.unescape, which still turns a
+# backslash-n into a line break and now also reads a doubled backslash as one, so a lesson can show C's own backslash-n.
+check("E14C-09_line_breaks", 'text = unescape(text(section.values, "text", section.line))' in reader
+      and "append(if (next == 'n') '\\n' else '\\\\')" in fmt, reader[-300:])
 check("E14C-09_unknown_level_refused", "reasons += " in reader and "unknown level" in reader, "")
 check("E14C-09_not_published", "explanation" not in pkg.lower() and "explanation" not in schema.lower(), "content, never published")
 check("E14C-10_schema_unchanged", "const val VERSION = 8" in schema and contract.get("schema_version") == 8, "")

@@ -1,0 +1,254 @@
+skill: skill.c.expression_evaluation
+activity: code_reading_trace
+tasks:
+  teach: {title: "C ifadeleri: tam sayı bölmesi, öncelik, ++ ve karşılaştırma", minutes: 16}
+  practice: {title: "C ifade değerlendirme alıştırması", minutes: 10}
+  check: {title: "C ifade değerlendirme kontrolü", minutes: 8}
+  review: {title: "C ifade değerlendirme tekrarı", minutes: 6}
+  repair: {title: "C ifadelerini yeniden değerlendirmek: tür, kesme ve yan etki", minutes: 14}
+
+objectives:
+  - id: objective.c.expression_evaluation.demonstrate_capability
+    statement: >-
+      Bir C ifadesinin değerini ve türünü adım adım hesaplayabilmek: iki int'in bölümünün sıfıra doğru kesildiğini ve
+      kalanın işaretinin bölünenin işaretini izlediğini, int ile double karışınca sonucun double olduğunu, işleç
+      önceliğini, karşılaştırma ve mantık işleçlerinin 1 ya da 0 verdiğini, && ve ||'nin kısa devresini ve ++/--'nın
+      önek ve sonek biçimlerinin farkını kodu okuyarak söyleyebilmek.
+    observable_behavior: >-
+      Kısa C programlarının yazdırdığını doğru verir; özellikle negatif tam sayı bölmesini, karışık türleri ve ++'nın
+      yan etkisini doğru uygular.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. 6C'nin "integer conversion ve side-effect sınırını güvenli değerle" ifadesi: tanımlı davranışlar
+      öğretilir ve ölçülür (kesme, karışık tür, işaretsiz sarma); işaretli taşma ve aynı ifadede bir değişkeni iki kez
+      değiştirmek tanımsız davranış olarak adlandırılır ama değeri sorulmaz. Anahtarlar program gcc ile Linux'ta derlenip
+      çalıştırılarak doğrulanır.
+    checks:
+      - prints: "3 1 3.500000"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d %f\n", 7 / 2, 7 % 2, 7 / 2.0);
+              return 0;
+          }
+      - prints: "-3 -1"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d\n", -7 / 2, -7 % 2);
+              return 0;
+          }
+      - prints: "5 6 7 7"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int i = 5;
+              int a = i++;
+              int b = i;
+              int c = ++i;
+              printf("%d %d %d %d\n", a, b, c, i);
+              return 0;
+          }
+      - prints: "1 0 1"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d %d\n", 3 < 5, 3 == 5, 2 && 7);
+              return 0;
+          }
+      - prints: "4294967295"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              unsigned int u = 0;
+              u = u - 1;
+              printf("%u\n", u);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        15A'da ifadeleri Python ile okudun. C'de aynı işaretler bazı yerlerde farklı davranır.
+
+        1. İki int'in bölümü int'tir ve sıfıra doğru kesilir.
+        7 / 2 → 3 (3.5 değil). Negatifte de sıfıra doğru: -7 / 2 → -3 (Python'daki -7 // 2 ise -4 verirdi!).
+        Kalan % bölünenin işaretini izler: 7 % 2 → 1, -7 % 2 → -1. Her zaman (a / b) * b + a % b == a.
+
+        2. Bir taraf double ise işlem double'dır: 7 / 2.0 → 3.5. Bu yüzden ortalama hesaplarken (double) toplam / adet yazarsın; toplam / adet ise önce kesip sonra dönüştürür.
+
+        3. Öncelik (yukarıdan aşağı): parantez; tekli - ! ++ --; * / %; + -; < <= > >=; == !=; &&; ||; atama (= += -= ...). Aynı seviyedekiler soldan sağa hesaplanır (atama sağdan sola).
+
+        4. Karşılaştırma ve mantık işleçleri 1 (doğru) ya da 0 (yanlış) verir: 3 < 5 → 1. Sıfırdan farklı her değer "doğru" sayılır: 2 && 7 → 1.
+        Kısa devre: a && b'de a 0 ise b hiç hesaplanmaz; a || b'de a doğruysa b hesaplanmaz.
+
+        5. ++ ve -- bir değişkeni 1 artırır/azaltır ve bir değer de verir:
+        - i++ (sonek): önce eski değeri verir, sonra artırır.
+        - ++i (önek): önce artırır, sonra yeni değeri verir.
+        int i = 5; int a = i++; → a 5, i 6.  int c = ++i; → i 7, c 7.
+
+        6. Bileşik atama: x += 3 → x = x + 3; x *= 2; x %= 4 ...
+
+        Tanımsız davranış (değerini sorma, yazma): işaretli bir int'in taşması (INT_MAX + 1) ve aynı ifadede bir değişkeni iki kez değiştirmek (i = i++ + 1). Derleyici her şeyi yapabilir. İşaretsiz (unsigned) türlerde ise taşma tanımlıdır ve sarar: unsigned int için 0 - 1 → 4294967295.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (koşul değerlendirme ve C türleri): 15A'da and/or/not ve karşılaştırmaları okudun; C'de bunlar && || ! ve 1/0 değerleridir. Türler (int, double) bir işlemin sonucunu belirler.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım değerlendirme — başka bir örnek üzerinde.
+
+          int x = 9;
+          double y = x / 4 + x % 4 * 0.5;
+
+          1. x / 4 → int / int → 2 (2.25 kesilir)
+          2. x % 4 → 1; 1 * 0.5 → 0.5 (double)
+          3. 2 + 0.5 → 2.5 (double)
+          y → 2.5
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          int a = 10, b = 4;
+          printf("%d %.2f %d\n", a / b, (double) a / b, a % b == 2);
+
+          - a / b: int / int → 2.
+          - (double) a / b: önce a double olur (10.0), sonra 10.0 / 4 → 2.5 → %.2f ile 2.50.
+          - a % b → 2; 2 == 2 → 1.
+          Ekranda: 2 2.50 1
+    misconceptions:
+      - slug: int_division_floors
+        name: C'de negatif tam sayı bölmesi aşağı yuvarlar
+        open_question: -9 / 4 ifadesinin C'de -3 sonucunu verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Python'da -9 // 4 → -3, C de öyle yapar."
+
+            C'de int bölmesi sıfıra doğru keser: -9 / 4 → -2 ve -9 % 4 → -1. Python'un // işleci ise aşağıya (eksi sonsuza) yuvarlar. İki dil arasında geçerken negatif bölmelere dikkat et.
+      - slug: postfix_same_as_prefix
+        name: i++ ve ++i aynı değeri verir
+        open_question: int a = i++; ile int a = ++i; satırlarından sonra a'nın aynı olacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de i'yi bir artırıyor, o halde aynı."
+
+            İkisi de i'yi artırır, ama verdikleri değer farklıdır: i++ artırmadan önceki değeri, ++i artırdıktan sonraki değeri verir. Yalnız başına bir satırda (i++; ya da ++i;) fark görünmez; bir ifadenin içinde görünür.
+      - slug: average_with_ints
+        name: (double) (a / b) ile (double) a / b aynıdır
+        open_question: (double) (7 / 2) ifadesinin 3.5 vereceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Sonucu double'a çevirdim, ondalık geri gelir."
+
+            Parantez içi önce hesaplanır: 7 / 2 → 3 (int), sonra 3 double olur → 3.0. Ondalığı korumak için bölmeden önce dönüştürürsün: (double) 7 / 2 → 3.5.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d\n", 17 / 5, 17 % 5);
+              return 0;
+          }
+        answer: "3 2"
+        verify: {mode: c_stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d\n", -11 / 3, -11 % 3);
+              return 0;
+          }
+        options:
+          A: "-3 -2"
+          B: "-4 1"
+          C: "-3 2"
+          D: "-4 -2"
+        scan_options: false
+        answer: A
+        verify: {mode: c_stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int toplam = 23;
+              int adet = 4;
+              printf("%.2f %.2f\n", (double) (toplam / adet), (double) toplam / adet);
+              return 0;
+          }
+        answer: "5.00 5.75"
+        verify: {mode: c_stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 3;
+              int x = n++ * 2;
+              int y = ++n * 2;
+              printf("%d %d %d\n", x, y, n);
+              return 0;
+          }
+        answer: "6 10 5"
+        verify: {mode: c_stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0;
+              int b = 4;
+              int sonuc = a != 0 && b / a > 1;
+              printf("%d %d\n", sonuc, 2 + 3 * 4 > 13);
+              return 0;
+          }
+        answer: "0 1"
+        verify: {mode: c_stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int k = 20;
+              k -= 6;
+              k /= 4;
+              k *= -3;
+              printf("%d %d\n", k, k % 4);
+              return 0;
+          }
+        answer: "-9 -1"
+        verify: {mode: c_stdout}

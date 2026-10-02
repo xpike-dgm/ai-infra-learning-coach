@@ -1,0 +1,409 @@
+skill: skill.c.for_iteration
+activity: coding_production
+tasks:
+  teach: {title: "C'de for döngüsü: başlangıç, koşul ve güncelleme", minutes: 18}
+  practice: {title: "C for döngüsü alıştırması", minutes: 15}
+  check: {title: "C for döngüsü kontrolü", minutes: 15}
+  review: {title: "C for döngüsü tekrarı", minutes: 12}
+  repair: {title: "for döngüsünü yeniden kurmak: sınır, adım ve biriktirme", minutes: 18}
+
+objectives:
+  - id: objective.c.for_iteration.demonstrate_capability
+    statement: >-
+      C'de for döngüsünü başlangıç, koşul ve güncelleme parçalarıyla doğru kurabilmek: kaç kez döneceğini sınırdan (< ile
+      <=) doğru belirlemek, döngüden önce ilk değeri verilmiş bir değişkende sonuç biriktirmek, adımı ve yönü (artan,
+      azalan, 2'şer) seçmek ve iç içe döngüyle satır satır desen üretmek.
+    observable_behavior: >-
+      Girdiye bağlı sayıda dönen ve doğru toplam, sayım ya da desen üreten for döngüleri yazar; bir eksik / bir fazla
+      dönme hatası yapmaz.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. 15A'nın iteration_reasoning'i döngüyü okumayı öğretti; bu Skill C'de for yazdırır. Item'lar girdiyi
+      scanf ile okuduğu için standard_io_basic'i, döngü içinde if kullananlar conditionals'ı beyan eder.
+    checks:
+      - stdin: "5\n"
+        prints: "15"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int toplam = 0;
+              for (int i = 1; i <= n; i++) {
+                  toplam += i;
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+      - prints: "10 8 6 4 2"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              for (int i = 10; i > 0; i -= 2) {
+                  printf("%d ", i);
+              }
+              printf("\n");
+              return 0;
+          }
+      - prints: "**\n**\n**"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              for (int satir = 0; satir < 3; satir++) {
+                  for (int sutun = 0; sutun < 2; sutun++) {
+                      printf("*");
+                  }
+                  printf("\n");
+              }
+              return 0;
+          }
+    explanations:
+      canonical: |
+        for döngüsünün üç parçası vardır:
+
+        for (int i = 1; i <= n; i++) {
+            ...
+        }
+
+        1. Başlangıç (int i = 1): bir kez, döngüden önce çalışır. Burada bildirilen i yalnız döngünün içinde vardır.
+        2. Koşul (i <= n): her turdan önce denetlenir; 0 (yanlış) olunca döngü biter.
+        3. Güncelleme (i++): her turun sonunda çalışır.
+
+        Kaç kez döner? for (int i = 0; i < n; i++) ve for (int i = 1; i <= n; i++) ikisi de n kez döner. Sınırı < ile <= arasında karıştırmak, en sık görülen "bir fazla / bir eksik" hatasıdır. Emin olmak için ilk ve son turda i'nin değerini yaz.
+
+        Biriktirme: sonucu tutan değişken döngüden önce bildirilir ve ilk değer alır:
+        int toplam = 0;
+        for (int i = 1; i <= n; i++) {
+            toplam += i;
+        }
+        Döngünün içinde int toplam = 0; yazarsan her tur sıfırlanır.
+
+        Adım ve yön: i -= 2 ile ikişer azalır; i *= 2 ile katlanır. Koşulun bir gün yanlış olacağından emin ol: for (int i = 10; i > 0; i++) i'yi bitişten uzaklaştırır; i int'in sınırını aşınca davranış tanımsızdır — pratikte ya çok uzun sürer ya hiç bitmez. Her iki durumda da yanlıştır.
+
+        İç içe döngü: dış döngü satırları, iç döngü bir satırdaki öğeleri sayar; iç döngü her dış turda baştan başlar. Satır sonunu (printf("\n")) iç döngüden sonra, dış döngünün içinde yazarsın.
+
+        break döngüden hemen çıkar; continue o turun geri kalanını atlayıp güncellemeye geçer.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (yineleme ve C ifadeleri): 15A'da bir döngünün her turunda durumun nasıl değiştiğini izledin; C'de i++, i += 2 ve karşılaştırmalar 1/0 değerleriyle çalışır.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          int carpim = 1;
+          for (int i = 2; i <= 4; i++) {
+              carpim *= i;
+          }
+
+          | tur | i (başında) | koşul | carpim (sonunda) |
+          | 1   | 2           | 1     | 2                |
+          | 2   | 3           | 1     | 6                |
+          | 3   | 4           | 1     | 24               |
+          | -   | 5           | 0     | (döngü biter)    |
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: n okunsun; 1'den n'e kadar 3'e bölünen sayıların kaç tane olduğu yazılsın.
+
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int sayi = 0;
+              for (int i = 1; i <= n; i++) {
+                  if (i % 3 == 0) {
+                      sayi++;
+                  }
+              }
+              printf("%d\n", sayi);
+              return 0;
+          }
+
+          - n = 10 için 3, 6, 9 → 3.
+          - Sayaç (sayi) döngüden önce 0 ile başladı.
+    misconceptions:
+      - slug: off_by_one_bound
+        name: for (i = 0; i <= n; i++) n kez döner
+        open_question: for (int i = 0; i <= n; i++) döngüsünün n kez döndüğünü mü düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "0'dan n'e kadar, n tur."
+
+            0'dan başlayıp <= n ile biten döngü i = 0, 1, ..., n değerlerini alır: n + 1 tur. n tur için ya 0'dan başla ve < n kullan, ya da 1'den başla ve <= n kullan.
+      - slug: accumulator_inside_loop
+        name: Biriktiren değişken döngünün içinde bildirilebilir
+        open_question: int toplam = 0; satırını döngünün içine yazınca toplamın turlar boyunca biriktiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Değişken nerede bildirilirse bildirilsin toplar."
+
+            Döngünün içindeki int toplam = 0; her turda yeniden çalışır ve toplamı sıfırlar; ayrıca o değişken döngünün dışında görünmez. Biriktiren değişkeni döngüden önce bildir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve 1'den n'e kadar sayıları aralarında bir boşlukla tek satırda yazsın (son sayıdan sonra boşluk olabilir). n 0 ise boş bir satır yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: five, stdin: "5\n", expected_stdout: "1 2 3 4 5\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  printf("%d ", i);
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i < n; i++) {
+                    printf("%d ", i);
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 0; i <= n; i++) {
+                    printf("%d ", i);
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve 1'den n'e kadar sayıların karelerinin toplamını yazsın. Örnek: n = 3 → 1 + 4 + 9 = 14.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "14\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: ten, stdin: "10\n", expected_stdout: "385\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int toplam = 0;
+              for (int i = 1; i <= n; i++) {
+                  toplam += i * i;
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int toplam = 0;
+                for (int i = 1; i <= n; i++) {
+                    toplam = i * i;
+                }
+                printf("%d\n", toplam);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int toplam = 0;
+                for (int i = 1; i <= n; i++) {
+                    toplam += i;
+                }
+                printf("%d\n", toplam * toplam);
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n (n >= 0) okusun ve n! (faktöriyel) değerini yazsın; 0! = 1 kabul edilir. Sonuç büyüyebileceği için long long kullan ve %lld ile yazdır. Örnek: n = 5 → 120.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: five, stdin: "5\n", expected_stdout: "120\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "1\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: twenty, stdin: "20\n", expected_stdout: "2432902008176640000\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              long long sonuc = 1;
+              for (int i = 2; i <= n; i++) {
+                  sonuc *= i;
+              }
+              printf("%lld\n", sonuc);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                long long sonuc = 0;
+                for (int i = 1; i <= n; i++) {
+                    sonuc *= i;
+                }
+                printf("%lld\n", sonuc);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int sonuc = 1;
+                for (int i = 2; i <= n; i++) {
+                    sonuc *= i;
+                }
+                printf("%d\n", sonuc);
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve n'den 1'e kadar geri sayarken yalnız tek sayıları aralarında bir boşlukla yazsın, sonra yeni satıra geçsin. Örnek: n = 8 → 7 5 3 1
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: even_start, stdin: "8\n", expected_stdout: "7 5 3 1\n"}
+          - {id: odd_start, stdin: "5\n", expected_stdout: "5 3 1\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = n; i >= 1; i--) {
+                  if (i % 2 == 1) {
+                      printf("%d ", i);
+                  }
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = n; i >= 1; i -= 2) {
+                    printf("%d ", i);
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    if (i % 2 == 1) {
+                        printf("%d ", i);
+                    }
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve n satırlık bir sayı üçgeni yazsın: i. satırda 1'den i'ye kadar sayılar aralarında bir boşlukla yazılsın. Örnek, n = 3:
+          1
+          1 2
+          1 2 3
+          (Satır sonlarındaki fazladan boşluk önemli değil.)
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "1\n1 2\n1 2 3\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: four, stdin: "4\n", expected_stdout: "1\n1 2\n1 2 3\n1 2 3 4\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  for (int j = 1; j <= i; j++) {
+                      printf("%d ", j);
+                  }
+                  printf("\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 1; j <= n; j++) {
+                        printf("%d ", j);
+                    }
+                    printf("\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 1; j <= i; j++) {
+                        printf("%d ", i);
+                    }
+                    printf("\n");
+                }
+                return 0;
+            }
