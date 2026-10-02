@@ -1,0 +1,213 @@
+model: OREX-v0
+stage_step: 14F
+status: accepted_14f
+decision: D-110
+implements: [AIAX-v0, QAB-v0, AIV-v0, MSS-v0, 2D]
+builds_on: [CDEX-v0, WAAX-v0, TUTX-v0, GRE-v0]
+boundaries: MSBX-v0
+purpose: judging_a_free_text_answer_against_what_the_course_said_it_contains
+
+scope:
+  answer_keys_as_content: true
+  rubrics_as_content: true
+  ai_judges_criteria_only: true
+  core_derives_objective_signal: true
+  self_check_while_waiting: true
+  schema_changed: false
+  state_family_added: false
+  mastery_rule_changed: false
+  weakness_rule_changed: false
+  planner_rule_changed: false
+  ai_result_verified: false
+  background_retry: false
+  keys_or_rubrics_authored: false
+  adapter_prompt_wired: false
+  app_calls_evaluation: false
+
+question: Serbest metin bir cevap neye göre değerlendirilir — ve kim karar verir?
+
+primary_invariant: >-
+  A free-text answer is judged against what the course said a correct answer contains, never against how it sounds.
+  A short answer is verified by the course's accepted answers; a longer one is judged by its rubric, one criterion at a
+  time. An AI may only say whether each criterion is met — the course decides what that means for each Objective — and
+  its judgement is never more than provisional. A task that needs a verified result is never put to an AI. When nothing
+  answers, the response waits: nothing is written, the learner may check their own answer against the rubric as
+  practice, and it is evaluated again only when they ask.
+
+user_decisions:
+  date: "2026-10-02"
+  short_answers: accepted_answer_list_verified
+  evaluator_unavailable: waits_self_check_rubric_reevaluate_on_request
+
+answer_key:
+  id_pattern: answerkey.<namespace>.<slug>
+  pinned_to: one_item_version
+  speaks_for: one_objective_the_item_targets
+  normalisation: trim_ends_and_crlf_only
+  case_fold: authored_ascii_letters_only
+  mismatch: not_met_verified
+  mismatch_goes_to_ai: false
+  package_sections: [answer_key, accepted_answer]
+  read_by: ContentPort.answerKeyFor
+
+rubric:
+  id_pattern: rubric.<namespace>.<slug>
+  pinned_to: one_item_version
+  criterion_speaks_for: one_objective_the_item_targets
+  verdicts: [met, not_met, unclear]
+  package_sections: [rubric, rubric_criterion]
+  read_by: ContentPort.rubricFor
+
+aggregation:
+  objective_met: every_criterion_met
+  objective_not_met: every_judged_criterion_not_met
+  objective_partially_met: mixed
+  met_with_unclear: not_reliably_measured
+  evaluator_component_results_used: false
+
+routes:
+  answer_key_exists: key_decides_no_ai
+  rubric_verified_required: nothing_measured_no_ai
+  rubric_provisional_allowed: ai_judges_criteria
+  neither: nothing_to_judge_by
+  ai_verified_claim: invalid_response
+  ai_missing_unknown_or_repeated_criterion: invalid_response
+  ai_sent: [target_objectives, task_text, rubric_criteria, learner_answer, catalog_labels]
+
+request_extension:
+  fields: [rubric, misconceptionCatalog]
+  why: the rubric and the closed catalog's labels are curriculum text, never learner data (AIAX-v0 §11)
+
+instructions:
+  version: open_response_instructions/1
+  reply_schema: open_response_evaluation/1
+  result_field_restored: rubricFindings
+
+waiting:
+  evidence_written: false
+  self_check: rubric_shown_after_submission_as_practice
+  self_check_is_exposure: true
+  reevaluation: only_when_the_learner_asks
+  background_retry: false
+
+not_measured_reasons: [nothing_submitted, nothing_to_judge_by, verified_evaluator_required, task_text_missing, evaluator_did_not_answer]
+
+presentation:
+  ai_label: "AI değerlendirmesi: doğrulanmamıştır. Bilgi verir ama tek başına bir beceriyi geçirmez."
+  not_style: "Yalnız hedef kavramların doğruluğuna bakıldı; cevabın uzunluğu ya da üslubu değerlendirilmedi."
+  self_check_label: "Öz-kontrol: kanıt sayılmaz."
+  numbers_or_scores: false
+
+port_count: 5
+port_refinements: [{port: ContentPort, method: answerKeyFor}, {port: ContentPort, method: rubricFor}]
+schema_version: 8
+
+suites:
+  model: {file: android/core-model/src/test/kotlin/coach/model/OpenResponseFactsTest.kt}
+  application: {file: android/core-application/src/test/kotlin/coach/application/EvaluateOpenResponseTest.kt}
+  presentation: {file: android/core-presentation/src/test/kotlin/coach/presentation/OpenResponsePresentationTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_code_evaluation.py, checks: [E14D-05_request_unchanged]}
+
+mutation_results:
+  total: 49
+  detected: 49
+  only_14f_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (F16, the evaluator's own verdict used instead of the findings) was re-run by hand and the named OpenResponseFactsTest test was seen failing
+  negative_control: a comment-only change in EvaluateOpenResponse.kt
+  negative_control_result: survived_as_expected
+  first_run: 46 of 49 detected; F22 (a criterion for an untargeted Objective) and F47 (an orphan criterion beside a complete rubric) survived because no test covered them, and F32 did not compile (the mutant was rewritten, not counted); both tests were added and the whole set re-run once from the unmutated tree
+  numbering_gaps: F29 and F30 were drafted and never part of the set (a schema-string mutant and a key-route mutant that could not be written as one exact fragment)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: F01, mutant: the_answer_is_not_trimmed, result: detected}
+    - {id: F02, mutant: spaces_inside_are_ignored, result: detected}
+    - {id: F03, mutant: every_letter_is_case_folded, result: detected}
+    - {id: F04, mutant: case_is_always_ignored, result: detected}
+    - {id: F05, mutant: an_empty_key, result: detected}
+    - {id: F06, mutant: any_key_id, result: detected}
+    - {id: F07, mutant: a_key_for_an_untargeted_objective, result: detected}
+    - {id: F08, mutant: a_blank_short_answer_is_wrong, result: detected}
+    - {id: F09, mutant: every_short_answer_matches, result: detected}
+    - {id: F10, mutant: the_key_is_not_first, result: detected}
+    - {id: F11, mutant: a_verified_task_goes_to_the_ai, result: detected}
+    - {id: F12, mutant: the_deterministic_flag_is_ignored, result: detected}
+    - {id: F13, mutant: an_ai_may_verify, result: detected}
+    - {id: F14, mutant: a_missing_criterion_is_accepted, result: detected}
+    - {id: F15, mutant: a_repeated_criterion_is_accepted, result: detected}
+    - {id: F16, mutant: the_evaluators_verdict_is_used, result: detected}
+    - {id: F17, mutant: unclear_is_judged, result: detected}
+    - {id: F18, mutant: unclear_passes, result: detected}
+    - {id: F19, mutant: partial_is_not_met, result: detected}
+    - {id: F20, mutant: foreign_hypotheses_are_kept, result: detected}
+    - {id: F21, mutant: the_findings_are_dropped, result: detected}
+    - {id: F22, mutant: a_criterion_for_an_untargeted_objective, result: detected}
+    - {id: F23, mutant: duplicate_criteria, result: detected}
+    - {id: F24, mutant: an_empty_rubric, result: detected}
+    - {id: F25, mutant: style_may_count, result: detected}
+    - {id: F26, mutant: a_grade_is_allowed, result: detected}
+    - {id: F27, mutant: the_answer_can_close_its_section, result: detected}
+    - {id: F28, mutant: an_empty_catalog_is_sent, result: detected}
+    - {id: F31, mutant: an_empty_answer_is_sent, result: detected}
+    - {id: F32, mutant: the_rubric_is_not_sent, result: detected}
+    - {id: F33, mutant: the_answer_key_leaves_the_device, result: detected}
+    - {id: F34, mutant: the_catalog_is_not_sent, result: detected}
+    - {id: F35, mutant: the_ai_answer_is_unchecked, result: detected}
+    - {id: F36, mutant: a_non_answer_is_retried, result: detected}
+    - {id: F37, mutant: the_pending_reason_is_lost, result: detected}
+    - {id: F38, mutant: the_self_check_is_not_an_exposure, result: detected}
+    - {id: F39, mutant: the_self_check_names_another_family, result: detected}
+    - {id: F40, mutant: the_ai_is_unlabelled, result: detected}
+    - {id: F41, mutant: style_is_not_said, result: detected}
+    - {id: F42, mutant: no_self_check_offer, result: detected}
+    - {id: F43, mutant: the_ai_is_worded_as_fact, result: detected}
+    - {id: F44, mutant: waiting_is_called_wrong, result: detected}
+    - {id: F45, mutant: asking_again_is_not_said, result: detected}
+    - {id: F46, mutant: answer_keys_are_ignored, result: detected}
+    - {id: F47, mutant: an_orphan_criterion_is_accepted, result: detected}
+    - {id: F48, mutant: an_unknown_criterion_key, result: detected}
+    - {id: F49, mutant: an_orphan_answer_is_accepted, result: detected}
+    - {id: F50, mutant: rubrics_ignore_the_item_version, result: detected}
+    - {id: F51, mutant: keys_ignore_the_item_version, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (a verified AI result, the evaluator's own verdict, ignoreCase, a retry loop, a score) inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+jvm_tests: 941
+sweep: {passed: 54, total: 54}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  why: nothing in the app evaluates an open response yet (16D) and no keys or rubrics are written yet (15)
+
+open_loops:
+  keys_and_rubrics_for_real_items: {owner: "15"}
+  adapter_call_site: {owner: 14G}
+  app_call_and_self_check_screen: {owner: 16D}
+  evaluator_calibration: {owner: "18"}
+
+forbidden_patterns:
+  - ai_judgement_recorded_verified
+  - evaluators_own_verdict_used
+  - non_matching_short_answer_handed_to_ai
+  - verified_only_task_put_to_ai
+  - length_or_style_counted
+  - evaluator_failure_as_wrong_answer_or_background_retry
+  - self_check_as_evidence_or_without_exposure
+  - silent_case_fold_merging_turkish_letters

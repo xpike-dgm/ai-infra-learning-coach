@@ -363,3 +363,7 @@ Next numbered step:
 ---
 
 **14D note (2026-10-01, `D-108`):** code is the first thing evaluated in code. §5.2's deterministic path for code is the course's tests, run on the learner's computer by `tools/code_test_runner.py` and read back as `code_test_report/1`; a test speaks only for its own Objective. Core accepts at most `Provisional` from an evaluator port about code (`CodeEvaluation.acceptAi`): a port that returns `Verified`, or judges an Objective the task does not target, has given an invalid response. An evaluator is asked about code only when the course has no tests for the task and the task allows a provisional result. Details: `docs/CODE_EVALUATION_IMPL_SPEC.md`.
+
+---
+
+**14F note (2026-10-02, `D-110`):** §5.1's `rubric_findings[]` is restored (`EvaluationResult.Provisional.rubricFindings`). For an open response the evaluator proposes one finding per rubric criterion and nothing else is taken from it: core derives each Objective's signal (`OpenResponse.acceptAi`). `EvaluationRequest` gained the rubric and the catalog's labels — curriculum text, never learner data. The evaluator's instructions and schema (`open_response_instructions/1`, `open_response_evaluation/1`) live in core; the adapter (14G) adds transport only. Details: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.

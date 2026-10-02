@@ -347,6 +347,60 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `answer keys and rubrics are read strictly and served for the item version they belong to`() {
+        val written = """
+
+            [answer_key]
+            logical_id=answerkey.python.loops.count_word
+            version=1
+            item=item.python.loops.q1@v1
+            objective=objective.python.loops.trace@v1
+            case_sensitive=false
+
+            [accepted_answer]
+            key=answerkey.python.loops.count_word@v1
+            text=three
+
+            [accepted_answer]
+            key=answerkey.python.loops.count_word@v1
+            text=3
+
+            [rubric]
+            logical_id=rubric.python.loops.explain_count
+            version=1
+            item=item.python.loops.q1@v1
+
+            [rubric_criterion]
+            rubric=rubric.python.loops.explain_count@v1
+            id=names_condition
+            objective=objective.python.loops.explain@v1
+            statement=Döngü koşulu yanlış olunca biter.
+        """.trimIndent()
+        val source = FileContentSource { authored + "\n" + written }
+        val key = assertNotNull(source.answerKeyFor(VersionedRef("item.python.loops.q1", 1)))
+        assertEquals(listOf("three", "3"), key.answers)
+        assertTrue(key.accepts("Three"))
+        val rubric = assertNotNull(source.rubricFor(VersionedRef("item.python.loops.q1", 1)))
+        assertEquals(listOf("names_condition"), rubric.criteria.map { it.id })
+        assertNull(source.answerKeyFor(VersionedRef("item.python.loops.q1", 2)))
+        assertNull(source.rubricFor(VersionedRef("item.python.loops.q1", 2)))
+        assertNull(FileContentSource { authored }.rubricFor(VersionedRef("item.python.loops.q1", 1)))
+        for (bad in listOf(
+            written.replace("key=answerkey.python.loops.count_word@v1\ntext=3", "key=answerkey.python.loops.other@v1\ntext=3"),
+            written.replace("case_sensitive=false", "case_sensitive=maybe"),
+            written.replace("rubric=rubric.python.loops.explain_count@v1", "rubric=rubric.python.loops.other@v1"),
+            written.replace("id=names_condition", "id=Names Condition"),
+            written.replace("logical_id=rubric.python.loops.explain_count", "logical_id=scheme.python.loops.explain_count"),
+            written + "\nweight=2",
+            written.substringBefore("\n\n[rubric_criterion]"),
+            // A criterion of an undeclared rubric is refused even when every declared rubric is complete.
+            written + "\n\n[rubric_criterion]\nrubric=rubric.python.loops.other@v1\nid=stray\nobjective=objective.python.loops.explain@v1\nstatement=x",
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n" + bad) }
+        }
+    }
+
+    @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }
         assertEquals("Bu döngü kaç kez çalışır?", assertNotNull(source.resource(itemRef)).body)

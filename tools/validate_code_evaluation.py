@@ -193,8 +193,20 @@ check("E14D-05_minimum_content", "EvaluationRequest(item.targetObjectives, task,
 check("E14D-05_ai_checked", "CodeEvaluation.acceptAi(item, evaluator.evaluate(" in prov, "")
 check("E14D-05_skip_sends_nothing", prov.find("code.isBlank()") >= 0 and prov.find("code.isBlank()") < prov.find("evaluator.evaluate("), "")
 check("E14D-05_writes_nothing", not re.search(r"appendTruth|writeProjection|inTransaction|RecordEvidence", evaluate), "the use case decides, the caller records")
-ereq = re.search(r"data class EvaluationRequest\(([^)]*)\)", ports)
-check("E14D-05_request_unchanged", ereq is not None and re.findall(r"val (\w+):", ereq.group(1)) == ["objectiveRefs", "promptText", "learnerResponse"], ereq.group(1) if ereq else "")
+# Narrowed at 14F (`D-110`): the request's first three fields are unchanged and anything after them must be exactly
+# the extension 14F's contract declares (the rubric and the catalog's labels — curriculum text, never learner data).
+# A code evaluation still sends only these three: `EvaluateCode` leaves the extension empty.
+req_at = ports.find("data class EvaluationRequest(")
+req_body, depth = "", 0
+for index in range(ports.find("(", req_at), len(ports)) if req_at >= 0 else []:
+    depth += {"(": 1, ")": -1}.get(ports[index], 0)
+    if depth == 0:
+        req_body = ports[req_at:index + 1]
+        break
+req_fields = re.findall(r"val (\w+):", req_body)
+f14 = load(ROOT / "arch/14f_open_response_evaluation/open_response_evaluation.yaml").get("request_extension", {}).get("fields", ["?"])
+check("E14D-05_request_unchanged", req_fields[:3] == ["objectiveRefs", "promptText", "learnerResponse"] and req_fields[3:] == f14
+      and "EvaluationRequest(item.targetObjectives, task, code)" in evaluate, str(req_fields))
 measured = body(facts, "data class Measured")
 check("E14D-05_measured_not_pending", "require(result !is EvaluationResult.EvaluationPending)" in measured, "")
 check("E14D-05_pipeline_pending_writes_nothing", "is EvaluationResult.EvaluationPending -> return Recorded(emptyList())" in pipe, "12A")

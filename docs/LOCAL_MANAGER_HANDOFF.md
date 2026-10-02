@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14F active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14G active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1150,14 +1150,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 14C ✅ ALEX-v0 / D-107
 - AŞAMA 14D ✅ CDEX-v0 / D-108
 - AŞAMA 14E ✅ ACCX-v0 / D-109
-- AŞAMA 14F 🟡 active-not-executed
-- 14G–20 ⬜
+- AŞAMA 14F ✅ OREX-v0 / D-110
+- AŞAMA 14G 🟡 active-not-executed
+- 15–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `14E — AI-generated code comprehension check`  
-**Final:** `ACCX-v0 — AI-Generated Code Comprehension` / D-109  
-**Canonical:** `docs/CODE_COMPREHENSION_IMPL_SPEC.md` + `arch/14e_code_comprehension/`
+**Son tamamlanan numaralı adım:** `14F — Açık uçlu cevap değerlendirme`  
+**Final:** `OREX-v0 — Open-Response Evaluation` / D-110  
+**Canonical:** `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md` + `arch/14f_open_response_evaluation/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1206,17 +1207,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 14C:** ✅ TAMAMLANDI  
 **AŞAMA 14D:** ✅ TAMAMLANDI  
 **AŞAMA 14E:** ✅ TAMAMLANDI  
-**Aktif adım:** `14F — Açık uçlu cevap değerlendirme`  
+**AŞAMA 14F:** ✅ TAMAMLANDI  
+**Aktif adım:** `14G — Provider abstraction/fallback`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-14F için:
+14G için:
 
 ```text
-fresh 14F PRE-STEP GitHub refresh
+fresh 14G PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 14F execution
+→ 14G execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1796,8 +1798,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 14C ✅ ALEX-v0 / D-107
 14D ✅ CDEX-v0 / D-108
 14E ✅ ACCX-v0 / D-109
-14F 🟡 active-not-executed
-14G–20 ⬜
+14F ✅ OREX-v0 / D-110
+14G 🟡 active-not-executed
+15–20 ⬜
 ```
 
 10D final:
@@ -1994,9 +1997,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `14F — Açık uçlu cevap değerlendirme`.
+**Sıradaki gerçek numbered work:** `14G — Provider abstraction/fallback`.
 
-**14F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2046,8 +2049,8 @@ AŞAMA 13 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `14F — Açık uçlu cevap değerlendirme`.  
-**14F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `14G — Provider abstraction/fallback`.  
+**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2299,4 +2302,13 @@ Ana invariant: kod çalıştırılarak değerlendirilir, yoksa yalnız bir gör�
 
 14E `ACCX-v0 — AI-Generated Code Comprehension` ile tamamlandı. Canonical: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`; contract/QA: `arch/14e_code_comprehension/`; synthesis: `research/14e_code_comprehension_research.md`.
 
-Ana invariant: başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar. Dört kapalı tür `2D` §9'dan (`line_purpose`, `removal_effect`, `state_effect`, `find_the_bug`); yazılı kontroller içeriktir (`[comprehension_check]`, item sürümüne pinli, `ContentPort.comprehensionChecksFor`); tutor'a altıncı istek `check_understanding` (yalnız cevap donduktan sonra, `tutor_instructions/3`, `tutor_reply/2`); `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik kalır). Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar. Mutation 43/43, 112/112 QA PASS, validator mutation 30/30, 53/53 sweep. T6 çalıştırılmadı. Current active numbered step 14F'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar. Dört kapalı tür `2D` §9'dan (`line_purpose`, `removal_effect`, `state_effect`, `find_the_bug`); yazılı kontroller içeriktir (`[comprehension_check]`, item sürümüne pinli, `ContentPort.comprehensionChecksFor`); tutor'a altıncı istek `check_understanding` (yalnız cevap donduktan sonra, `tutor_instructions/3`, `tutor_reply/2`); `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik kalır). Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar. Mutation 43/43, 112/112 QA PASS, validator mutation 30/30, 53/53 sweep. T6 çalıştırılmadı. Bu addendum 14E kapanışında yazıldı; ardından 14F D-110 ile tamamlandı (aşağıdaki 14F addendum'u).
+
+
+---
+
+## 14F completion addendum — D-110
+
+14F `OREX-v0 — Open-Response Evaluation` ile tamamlandı. Canonical: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`; contract/QA: `arch/14f_open_response_evaluation/`; synthesis: `research/14f_open_response_evaluation_research.md`.
+
+Ana invariant: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. Mutation 49/49, 117/117 QA PASS, validator mutation 30/30, 54/54 sweep. T6 çalıştırılmadı. Current active numbered step 14G'dir; fresh PRE + kullanıcı açık onayı gerekir.

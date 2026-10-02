@@ -235,12 +235,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14C ✅ Alternatif anlatım — ALEX-v0 / D-107**
 - **14D ✅ Kod değerlendirme — CDEX-v0 / D-108**
 - **14E ✅ AI-generated code comprehension check — ACCX-v0 / D-109**
-- **14F 🟡 Açık uçlu cevap değerlendirme — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 14G–20 ⬜
+- **14F ✅ Açık uçlu cevap değerlendirme — OREX-v0 / D-110**
+- **14G 🟡 Provider abstraction/fallback — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 14G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -607,3 +608,13 @@ Kod yazmadan önce bulunanlar: öğrencinin 'AI yazdı' beyanı `practice_only` 
 Başkasının yazdığı kodun çalışması öğrenci hakkında hiçbir şey kanıtlamaz; onu açıklayabilmek anlamayı kanıtlar, üretimi değil: öğrenci AI'ın ya da başka bir kaynağın yazdığı ya da büyük ölçüde gösterilmiş bir çözümün verdiği kodu gönderdiğinde hemen ardından bir anlama kontrolü sunulur ve geçilebilir; önce yazılmış kontroller gelir ve cevap anahtarıyla değerlendirilir, yalnız yazılmış kontrol yoksa tutor öğrencinin kendi kodu hakkında soru sorar ve bu pratiktir, kanıt değildir; doğru cevap yazarının beyan ettiği türde kanıttır, item'ın kendi üretimi asla değildir, ve öğrencinin yazmadığı kod üretim Objective'i için bağımsız yeniden kontrol açar. Dört kapalı tür `2D` §9'dan (`line_purpose`, `removal_effect`, `state_effect`, `find_the_bug`); yazılı kontroller içeriktir (`[comprehension_check]`, item sürümüne pinli, `ContentPort.comprehensionChecksFor`); tutor'a altıncı istek `check_understanding` (yalnız cevap donduktan sonra, `tutor_instructions/3`, `tutor_reply/2`); `generated_or_copied` artık `requires_independent_recheck` (öğretim görevinde pratik kalır). Kullanıcı kararları: önce yazılmış, yoksa tutor pratiği; hemen sonra ve isteğe bağlı; AI yazımı kod yeniden kontrol açar. Mutation 43/43, validator 112/112, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
 
 Canonical: `docs/CODE_COMPREHENSION_IMPL_SPEC.md` / D-109.
+
+## 12.35 14F Açık uçlu cevap değerlendirme — OREX-v0 / D-110
+
+Açık uçlu cevap değerlendirme kodda. Ana invariant: **serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil.**
+
+Kod yazmadan önce bulunanlar: değerlendirme isteği rubric taşımıyordu (AI kendi iyi cevap fikrine göre karar verirdi); `EvaluationResult` `AIAX-v0` §5.1'in `rubric_findings[]`'ini düşürmüştü; kısa cevapların deterministik yolu yoktu. Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden.
+
+Serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. Mutation 49/49, validator 117/117, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
+
+Canonical: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md` / D-110.

@@ -28,6 +28,11 @@ sealed interface EvaluationResult {
         val evaluatorRef: EvaluatorRef,
         /** An uncalibrated evaluator's proposals (14B): recorded as `ai_proposed`, never more than a hypothesis. */
         val misconceptionHypotheses: List<MisconceptionHypothesis> = emptyList(),
+        /**
+         * `AIAX-v0` §5.1 `rubric_findings[]` (14F): one finding per rubric criterion. For an open response these are the
+         * evaluator's whole proposal; core derives the component results from them (`OpenResponse.acceptAi`).
+         */
+        val rubricFindings: List<RubricFinding> = emptyList(),
     ) : EvaluationResult
 
     /**

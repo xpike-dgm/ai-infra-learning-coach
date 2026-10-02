@@ -4,6 +4,9 @@ import coach.model.AssessmentItem
 import coach.model.AssessmentScope
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
+import coach.model.AcceptedAnswers
+import coach.model.Rubric
+import coach.model.RubricCriterion
 import coach.model.CurriculumPackage
 import coach.model.EvaluationResult
 import coach.model.EvidenceRow
@@ -255,6 +258,12 @@ interface ContentPort {
      * (15); an empty list is the truthful "nothing written", and then only the tutor's practice is offered.
      */
     fun comprehensionChecksFor(item: VersionedRef): List<ComprehensionCheck>
+
+    /** The accepted answers of one pinned short-answer item version (14F), if written. Content (15). */
+    fun answerKeyFor(item: VersionedRef): AcceptedAnswers?
+
+    /** The rubric of one pinned open-response item version (14F), if written. Content (15). */
+    fun rubricFor(item: VersionedRef): Rubric?
 }
 
 /**
@@ -313,4 +322,11 @@ data class EvaluationRequest(
     val objectiveRefs: List<VersionedRef>,
     val promptText: String,
     val learnerResponse: String,
+    /**
+     * The course's rubric for an open response (14F, `OREX-v0`): curriculum text, never learner data, and what the
+     * evaluator judges against, one criterion at a time. Empty for any other evaluation.
+     */
+    val rubric: List<RubricCriterion> = emptyList(),
+    /** The closed catalog's labels for the targeted Objectives (`WAAX-v0`): the only misconceptions it may name. */
+    val misconceptionCatalog: List<String> = emptyList(),
 )

@@ -60,11 +60,16 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 14C Alternatif anlatım: ALEX-v0 / D-107 ile tamamlandı; yedi kapalı biçim, öğrenci seçer, önce yazılmış yoksa AI, AI alternatifi dersin anlatımına dayanır, `tutor_instructions/2`.
 - [x] 14D Kod değerlendirme: CDEX-v0 / D-108 ile tamamlandı; testler PC'de koşar ve rapor içe aktarılır, test yalnız kendi Objective'i için, test yoksa AI yalnız provisional, referans koşucu `tools/code_test_runner.py`.
 - [x] 14E AI-generated code comprehension check: ACCX-v0 / D-109 ile tamamlandı; önce yazılmış kontrol, yoksa tutor pratiği, hemen sonra ve isteğe bağlı, `generated_or_copied` yeniden kontrol açar.
-- [ ] 14F Açık uçlu cevap değerlendirme **AKTİF**.
+- [x] 14F Açık uçlu cevap değerlendirme: OREX-v0 / D-110 ile tamamlandı; kısa cevap kabul edilen listeyle, uzun cevap rubric'le (AI yalnız kriter bulgusu), AI yoksa bekler + öz-kontrol.
+- [ ] 14G Provider abstraction/fallback **AKTİF**.
+- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15.
+- [ ] `open_response_evaluation/1` için adaptör çağrı noktası → 14G.
+- [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16D.
+- [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
 - [ ] Gerçek görevler için yazılı anlama kontrolleri → 15.
 - [ ] Anlama kontrolünü çizmek ve `CheckUnderstanding`'i uygulamadan çağırmak → 16D.
 - [ ] `check_understanding` için adaptör istemi ve çağrı noktası → 14G.
-- [ ] Serbest metin anlama cevaplarının değerlendirilmesi → 14F.
+- [x] Serbest metin anlama cevaplarının değerlendirilmesi: 14F'nin genel yolu (rubric'li açık uçlu item) kuruldu (D-110); gerçek kontrollerin yazılması 15.
 - [ ] Tutor'un yazdığı soruların güvenilir sayılabilmesi için kalibrasyon → 18.
 - [ ] Gerçek kod görevlerinin test suite'leri ve koşucu dosyaları → 15.
 - [ ] Yapıştırılan raporu artifact olarak saklamak, `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek → 16D.

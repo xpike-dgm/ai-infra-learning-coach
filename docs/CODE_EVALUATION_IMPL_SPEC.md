@@ -178,3 +178,7 @@ Next numbered step: **14E — AI-generated code comprehension check**. It must r
 ---
 
 **14E note (2026-10-02, `D-109`):** passing tests on code the learner did not write is still not their production: such a submission is `requires_independent_recheck` and is followed by an optional comprehension check (`ACCX-v0`). Details: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`.
+
+---
+
+**14F note (2026-10-02, `D-110`):** `EvaluationRequest` gained `rubric` and `misconceptionCatalog` for open responses; a code evaluation still sends only its three original fields (`E14D-05_request_unchanged` narrowed accordingly). Details: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.
