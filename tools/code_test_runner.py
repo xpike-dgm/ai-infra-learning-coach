@@ -78,7 +78,12 @@ def load_suite(path: Path) -> dict:
 
 
 def command(parts: list, extra: list | None = None) -> list:
-    return [sys.executable if part == "{python}" else str(part) for part in parts] + [str(a) for a in (extra or [])]
+    # 15B: `{python}` starts Python in UTF-8 mode. Without it, Python on Windows writes the console code page (cp1254 on
+    # a Turkish system) to a pipe, and a correct program printing "İki" failed a test that expected UTF-8.
+    out: list = []
+    for part in parts:
+        out += [sys.executable, "-X", "utf8"] if part == "{python}" else [str(part)]
+    return out + [str(a) for a in (extra or [])]
 
 
 def normalise(text: str, compare: str) -> str:

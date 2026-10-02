@@ -301,14 +301,15 @@ PEM-v0:
 - 14G ✅ PRVX-v0 / D-111
 - **AŞAMA 14 TAMAMLANDI**
 - 15A ✅ CPFX-v0 / D-112
-- 15B 🟡 active-not-executed
-- 15C–20 ⬜
+- 15B ✅ PYFX-v0 / D-113
+- 15C 🟡 active-not-executed
+- 15D–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15A — CPFX-v0 / D-112`  
-**Aktif:** `15B — Python Foundations`  
-**15B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15B — PYFX-v0 / D-113`  
+**Aktif:** `15C — C Foundations`  
+**15C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1369,3 +1370,26 @@ CPFX-v0:
 ## 78. 15B handoff
 
 15B — Python Foundations. 15A's pipeline is in place: the content source format, the reading-notation ladder, the generator that executes every key and lesson claim, the independent review file, the `[task]` section and the first-plan test. 15B decides how a second package ships (one asset today; the store requires every entity of a package to carry the package's own version). Open loops carried: `requires_transfer` not stored and the `iteration_reasoning` ← `expression_boolean_reasoning` edge (15H), the runner presenting a task's pool (16D), minute calibration (18B), T6 and on-device ingestion. 15B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 79. D-113 / 15B final özeti
+
+Canonical: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
+Contract/QA: `arch/15b_python_foundations/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15b_python_foundations_research.md`.
+Content: `curriculum/content/15b_python_foundations/` (package, writing notation, twenty Skill files, independent review, 85 test suites) → `tools/build_curriculum_package.py` → `android/app-wiring/src/main/assets/curriculum_package_v2.txt` (generated).
+Code: `core-ports` `ContentPort.curriculumPackages` (default); `core-application` `IngestCurriculum.ingestAll`; `data-persistence` `CurriculumStore.republishedEntities`; `data-curriculum` `FileContentSource` (several packages, all or none); `app-wiring` later assets + `ShippedCourseTest`; `tools/code_test_runner.py` UTF-8 mode.
+
+PYFX-v0:
+- a program is judged by what it does, on the learner's own computer, against tests that can tell a right solution from a plausible wrong one; a later package only adds,
+- user decisions: the seventeen decomposed seeds plus their three outside hard prerequisites (20 Skills); incremental packages, an entity's version is its semantic revision (11D's version-equality rule narrowed to "a published version is never overwritten"),
+- found: a second package could not ship; the runner failed correct Turkish output on Windows; three seed Skills could never become ready; writing functions is needed but not a prerequisite; text-mode files and tracebacks differ by platform and version,
+- 20 Skills / 21 Objectives / 31 edges (7 from 15A) published, identities unchanged; 109 items (85 suite, 17 stdout, 7 traceback), 116 explanations, 44 misconceptions, 100 tasks, 59 lesson claims executed,
+- the independent review failed 11 items (6 leakage, 4 whose tests a plausible wrong solution passed, 1 under-specified prompt) and 3 explanation sentences in its first pass; three passes, final 109/109 and 116/116,
+- both shipped packages are published into the real SQLite schema on the JVM; a learner with no history is still offered only the two 15A entry lessons,
+- 11D (two), 11A and 14B gates narrowed for exactly this step; schema unchanged,
+- Mutation 27/27, independent QA 254/254,
+- T6 and on-device ingestion were not run.
+
+## 80. 15C handoff
+
+15C — C Foundations. 15B's pipeline is in place: incremental packages (`curriculum_package_v<N>.txt`, read all-or-none, published oldest first, never overwritten), code items judged by the course's runner with at least two wrong solutions each, the `traceback` check, platform-independent file and path tests. 15C needs a C toolchain on the learner's computer and on the authoring machine (15A had none; its C claims were reference-grounded). Open loops carried: graph requirements declared per item, fixed-output items, notation coverage, `path_handling`'s action name and `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

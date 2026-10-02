@@ -354,9 +354,13 @@ check("E11A-12_empty_is_not_mastery",
 # 11A owns the guarantee, not the implementation: asking for content that is not there answers
 # "no such resource" instead of crashing. 11D gave the adapter a real package to serve, so pinning
 # the literal `= null` body had become a stale gate; the guarantee is what is checked.
+# Narrowed at 15B (`PYFX-v0` / `D-113`): reading several packages refuses a bad sequence by throwing inside the
+# lazy read, which `runCatching` turns into "nothing is served" — no lookup can throw.
+_sequence = content[content.find("private fun checkSequence("):content.find("private fun merge(")]
 check("E11A-13_content_port_returns_null",
       "override fun resource(ref: VersionedRef): ContentDocument?" in content
-      and "TODO(" not in content and "throw" not in content,
+      and "TODO(" not in content and "throw" not in content.replace(_sequence, "")
+      and "runCatching { (listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence) }" in content,
       "asking for unpublished content is a missing resource, not a crash")
 
 # ---------------------------------------------------------------- the screen says things in words

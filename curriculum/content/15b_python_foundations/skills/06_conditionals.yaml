@@ -1,0 +1,302 @@
+skill: skill.python.conditionals
+activity: coding_production
+tasks:
+  teach: {title: "Koşullu yazmak: if, elif, else", minutes: 15}
+  practice: {title: "Koşullu program alıştırması", minutes: 15}
+  check: {title: "Koşullu program kontrolü", minutes: 15}
+  review: {title: "Koşullu program tekrarı", minutes: 12}
+  repair: {title: "Koşulları yeniden kurmak: sınırlar ve sıra", minutes: 15}
+
+objectives:
+  - id: objective.python.conditionals.write_branch_logic
+    statement: >-
+      if / elif / else ile, her girdi için doğru kolu çalıştıran bir program yazabilmek: koşulları doğru sırayla
+      dizebilmek, sınır değerleri (>= ile >) doğru kurabilmek ve birden çok koşulu and / or ile birleştirebilmek.
+    observable_behavior: >-
+      Sınır değerleri dahil bütün test girdilerinde doğru kolu çalıştıran ve istenen çıktıyı üreten programı yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. Testler programı farklı girdilerle
+      çalıştırdığı için item'lar girdi okumayı (input_output_basic) gerektirir; 6C bunu bu Skill'in ön koşulu yapmadığından
+      item'lar `required_skills` ile beyan eder (3B §10).
+    checks:
+      - prints: "tek\nçift"
+        code: |
+          for n in (7, 10):
+              if n % 2 == 0:
+                  print("çift")
+              else:
+                  print("tek")
+      - prints: "orta"
+        code: |
+          puan = 65
+          if puan >= 80:
+              print("yüksek")
+          elif puan >= 50:
+              print("orta")
+          else:
+              print("düşük")
+    explanations:
+      canonical: |
+        15A'da if / elif / else okuyup hangi kolun çalışacağını buldun. Şimdi onları yazıyorsun.
+
+        sayi = int(input())
+        if sayi % 2 == 0:
+            print("çift")
+        else:
+            print("tek")
+
+        Yazım kuralları:
+        - Koşul satırı iki nokta (:) ile biter.
+        - Kola ait satırlar içeri itilir (girinti). Python'da girinti anlamlıdır; standart 4 boşluktur. Girintisi bozuk kod IndentationError verir.
+        - elif ve else, if ile aynı girintide durur.
+
+        Birden çok seçenek:
+        puan = int(input())
+        if puan >= 80:
+            print("yüksek")
+        elif puan >= 50:
+            print("orta")
+        else:
+            print("düşük")
+
+        Yazarken iki şeye dikkat et:
+
+        1. Sıra: Koşullar yukarıdan aşağıya sınanır ve ilk True olan kazanır. Yukarıdaki örnekte puan >= 50 koşulunu önce yazsaydın, 90 alan da "orta" olurdu. Daha dar (daha zor sağlanan) koşulu önce yaz.
+
+        2. Sınırlar: "80 ve üstü" >= 80 demektir; > 80 yazarsan tam 80 alan "yüksek" olmaz. Programını her sınırın kendisiyle ve bir altıyla dene: 80, 79, 50, 49.
+
+        Koşulları birleştirmek: and ikisinin de, or en az birinin doğru olmasını ister (15A). Parantez okunabilirliği artırır:
+        if (saat >= 9 and saat < 12) or saat == 14:
+            print("açık")
+
+        Testler her kolu ayrı girdilerle dener; her kolun en az bir testi vardır. Bir kolu hiç çalıştırmayan bir deneme, o kolun yanlış olduğunu fark etmeni engeller.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (dal tahmini, 15A): bir if/elif/else zincirinde koşullar sırayla sınanır, ilk True olan kolun satırları çalışır ve gerisi atlanır; zincirde en fazla bir kol çalışır.
+      state_trace:
+        level: H2
+        text: |
+          Yazdığın koşulları sınır değerleriyle denemek — başka bir örnek üzerinde.
+
+          İstenen: hız 50'den fazlaysa "hızlı", 30 ile 50 arasında (ikisi dahil) "normal", 30'un altındaysa "yavaş".
+
+          if hiz > 50: hızlı
+          elif hiz >= 30: normal
+          else: yavaş
+
+          Deneme: 51 → hızlı; 50 → normal (50 > 50 False, 50 >= 30 True); 30 → normal; 29 → yavaş.
+          Dört sınır denemesi de istenene uyuyor; her kol en az bir kez çalıştı.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: bir sınav notu oku; 90 ve üstü "pekiyi", 70–89 "iyi", 50–69 "geçti", 50'nin altı "kaldı".
+
+          puan = int(input())
+          if puan >= 90:
+              print("pekiyi")
+          elif puan >= 70:
+              print("iyi")
+          elif puan >= 50:
+              print("geçti")
+          else:
+              print("kaldı")
+
+          - En dar koşul (>= 90) en üstte.
+          - elif puan >= 70 satırına gelindiyse puan zaten 90'dan küçüktür; "70–89" için ayrıca < 90 yazmaya gerek yok.
+          - Sınır denemesi: 90, 89, 70, 69, 50, 49.
+    misconceptions:
+      - slug: order_does_not_matter
+        name: if/elif koşullarının sırası önemsizdir
+        open_question: Bir if/elif zincirinde koşulları hangi sırayla yazdığının sonucu değiştirmeyeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hepsi yazılı olduktan sonra doğru olan çalışır."
+
+            İlk True olan kol çalışır ve gerisi hiç sınanmaz. puan >= 50 kontrolünü puan >= 80'den önce yazarsan 90 alan da ilk kola düşer. Daha dar koşulu önce yazmalısın.
+      - slug: strict_boundary
+        name: '"ve üstü" > ile yazılır'
+        open_question: '"80 ve üstü" koşulunu puan > 80 diye yazmanın doğru olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "80'den büyük, yani > 80."
+
+            "80 ve üstü" 80'in kendisini de içerir: puan >= 80. > 80 yazarsan tam 80 alan dışarıda kalır. Her sınırı, sınırın kendisiyle ve bir altıyla dene.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py adında bir program yaz: bir tam sayı okusun; sayı sıfırdan büyükse pozitif, küçükse negatif, sıfırsa sıfır yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: positive, stdin: "5\n", expected_stdout: "pozitif\n"}
+          - {id: negative, stdin: "-3\n", expected_stdout: "negatif\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "sıfır\n"}
+        reference: |
+          sayi = int(input())
+          if sayi > 0:
+              print("pozitif")
+          elif sayi < 0:
+              print("negatif")
+          else:
+              print("sıfır")
+        wrong:
+          - |
+            sayi = int(input())
+            if sayi > 0:
+                print("pozitif")
+            else:
+                print("negatif")
+          - |
+            sayi = int(input())
+            if sayi >= 0:
+                print("pozitif")
+            elif sayi < 0:
+                print("negatif")
+            else:
+                print("sıfır")
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py adında bir program yaz: bir yaş (tam sayı) okusun; 18 ve üstüyse reşit, değilse reşit değil yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: exactly_eighteen, stdin: "18\n", expected_stdout: "reşit\n"}
+          - {id: seventeen, stdin: "17\n", expected_stdout: "reşit değil\n"}
+          - {id: adult, stdin: "30\n", expected_stdout: "reşit\n"}
+        reference: |
+          yas = int(input())
+          if yas >= 18:
+              print("reşit")
+          else:
+              print("reşit değil")
+        wrong:
+          - |
+            yas = int(input())
+            if yas > 18:
+                print("reşit")
+            else:
+                print("reşit değil")
+          - |
+            yas = int(input())
+            if yas >= 18:
+                print("reşit")
+            print("reşit değil")
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: 0 ile 100 arasında bir puan (tam sayı) okusun ve harf notunu yazsın: 85 ve üstü A, 70–84 B, 50–69 C, 50'nin altı F.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: top_boundary, stdin: "85\n", expected_stdout: "A\n"}
+          - {id: just_below_a, stdin: "84\n", expected_stdout: "B\n"}
+          - {id: b_boundary, stdin: "70\n", expected_stdout: "B\n"}
+          - {id: c_boundary, stdin: "50\n", expected_stdout: "C\n"}
+          - {id: fail, stdin: "49\n", expected_stdout: "F\n"}
+          - {id: perfect, stdin: "100\n", expected_stdout: "A\n"}
+        reference: |
+          puan = int(input())
+          if puan >= 85:
+              print("A")
+          elif puan >= 70:
+              print("B")
+          elif puan >= 50:
+              print("C")
+          else:
+              print("F")
+        wrong:
+          - |
+            puan = int(input())
+            if puan >= 50:
+                print("C")
+            elif puan >= 70:
+                print("B")
+            elif puan >= 85:
+                print("A")
+            else:
+                print("F")
+          - |
+            puan = int(input())
+            if puan > 85:
+                print("A")
+            elif puan > 70:
+                print("B")
+            elif puan > 50:
+                print("C")
+            else:
+                print("F")
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir yıl (tam sayı) okusun ve artık yıl ise artık, değilse değil yazsın. Kural: 4'e bölünen yıllar artık yıldır; ama 100'e bölünenler artık yıl değildir; 400'e bölünenler ise yine artık yıldır.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: ordinary_leap, stdin: "2024\n", expected_stdout: "artık\n"}
+          - {id: century_not_leap, stdin: "1900\n", expected_stdout: "değil\n"}
+          - {id: four_hundred, stdin: "2000\n", expected_stdout: "artık\n"}
+          - {id: ordinary, stdin: "2023\n", expected_stdout: "değil\n"}
+        reference: |
+          yil = int(input())
+          if (yil % 4 == 0 and yil % 100 != 0) or yil % 400 == 0:
+              print("artık")
+          else:
+              print("değil")
+        wrong:
+          - |
+            yil = int(input())
+            if yil % 4 == 0:
+                print("artık")
+            else:
+                print("değil")
+          - |
+            yil = int(input())
+            if yil % 4 == 0 and yil % 100 != 0:
+                print("artık")
+            else:
+                print("değil")
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda iki tam sayı okusun; büyük olanı yazsın; ikisi eşitse eşit yazsın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: second_larger, stdin: "3\n7\n", expected_stdout: "7\n"}
+          - {id: first_larger, stdin: "9\n2\n", expected_stdout: "9\n"}
+          - {id: equal, stdin: "5\n5\n", expected_stdout: "eşit\n"}
+          - {id: negatives, stdin: "-4\n-9\n", expected_stdout: "-4\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          if a == b:
+              print("eşit")
+          elif a > b:
+              print(a)
+          else:
+              print(b)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            if a > b:
+                print(a)
+            else:
+                print(b)
+          - |
+            a = input()
+            b = input()
+            if a == b:
+                print("eşit")
+            elif a > b:
+                print(a)
+            else:
+                print(b)

@@ -1,0 +1,221 @@
+model: PYFX-v0
+stage_step: 15B
+status: accepted_15b
+decision: D-113
+implements: [FBB-v0, KGC-v0, LFPS-v0, QAB-v0, AIV-v0, CDEX-v0, GRE-v0, TASK_TAXONOMY_SPEC]
+builds_on: [CPFX-v0, DMAX-v0, PLNX-v0, PRQX-v0, ALEX-v0, WAAX-v0, OREX-v0, CDEX-v0]
+boundaries: MSBX-v0
+purpose: python_foundations_content_and_the_second_package
+
+question: Bir öğrencinin yazdığı kod neye dayanarak doğru sayılır — ve ikinci bir içerik paketi, birincinin yayımladığı hiçbir şeye dokunmadan nasıl gelir?
+
+primary_invariant: >-
+  A program is judged by what it does, on the learner's own computer, against tests that can tell a right solution from
+  a plausible wrong one. Every code item's reference solution passes the course's own tests through the runner the
+  learner uses, and at least two plausible wrong solutions each fail one; a test that a correct solution could fail for
+  reasons the prompt does not state is a defect of the test. A later package only adds: what is published is never
+  carried again or overwritten, and a Skill is published only with everything it needs to become ready.
+
+user_decisions:
+  date: "2026-10-02"
+  scope: seventeen_seeds_plus_three_prerequisites
+  shipping: incremental_packages_entity_semantic_version
+
+seed_skills: [skill.python.assignment_binding, skill.python.conditionals, skill.python.exceptions_read_basic,
+              skill.python.expression_evaluation, skill.python.files_paths_basic, skill.python.for_iteration,
+              skill.python.functions_parameters_return, skill.python.input_output_basic, skill.python.list_operations,
+              skill.python.mapping_collections_basic, skill.python.modules_imports_basic, skill.python.path_handling,
+              skill.python.run_repl_script, skill.python.set_operations, skill.python.tuple_immutable_sequence,
+              skill.python.value_type_behavior, skill.python.while_termination]
+added_prerequisite_skills: [skill.python.exception_handling, skill.python.scope_name_resolution, skill.python.string_text_operations]
+python_entry_skills: [skill.python.run_repl_script]
+
+scope:
+  skills: 20
+  objectives: 21
+  edges: 31
+  edges_from_15a: 7
+  new_topics: 3
+  lifecycle_ratified: draft_to_published
+  identity_changed: false
+  schema_changed: false
+  store_rule_narrowed: true
+  port_refinements: [{port: ContentPort, method: curriculumPackages, default: listOfNotNull(curriculumPackage())}]
+
+required_direct_types:
+  objective.python.run_repl_script.execute_and_classify_result: authored_code
+  objective.python.value_type_behavior.demonstrate_capability: code_reading
+  objective.python.assignment_binding.write_state_change: authored_code
+  objective.python.expression_evaluation.demonstrate_capability: code_reading
+  objective.python.input_output_basic.build_small_io_flow: authored_code
+  objective.python.conditionals.write_branch_logic: authored_code
+  objective.python.for_iteration.iterate_sequence: authored_code
+  objective.python.while_termination.debug_infinite_loop: authored_code
+  objective.python.while_termination.write_terminating_loop: authored_code
+  objective.python.functions_parameters_return.write_small_function: authored_code
+  objective.python.list_operations.select_and_use_sequence: authored_code
+  objective.python.tuple_immutable_sequence.demonstrate_capability: authored_code
+  objective.python.set_operations.demonstrate_capability: authored_code
+  objective.python.mapping_collections_basic.select_and_use_mapping: authored_code
+  objective.python.exceptions_read_basic.extract_error_type_location: code_reading
+  objective.python.scope_name_resolution.demonstrate_capability: code_reading
+  objective.python.modules_imports_basic.import_and_use_module_member: authored_code
+  objective.python.exception_handling.demonstrate_capability: authored_code
+  objective.python.string_text_operations.demonstrate_capability: authored_code
+  objective.python.path_handling.read_write_small_text_file: authored_code
+  objective.python.files_paths_basic.demonstrate_capability: authored_code
+
+item_counts:
+  total: 109
+  code: 85
+  reading: 24
+  stdout: 17
+  traceback: 7
+
+lesson_checks_min: 59
+
+never_introduced: [classes, comprehensions, generators, lambda_expression]
+
+code_suites:
+  format: code_test_suite/1
+  build: ["{python}", "-m", "py_compile", "cozum.py"]
+  run_program: ["{python}", "cozum.py"]
+  run_function: ["{python}", "-c", "<course harness importing cozum>"]
+  timeout_seconds: 5
+  compare: trim_trailing_whitespace
+  wrong_solutions_min: 2
+  allowed_tools: [terminal, documentation]
+  prohibited_solution_sources: [external_ai]
+
+learners_computer:
+  runner_utf8_mode: true
+  file_tests_read_text_mode: true
+  path_results_platform_independent: true
+  missing_encoding_detectable: false
+
+task_minutes:
+  source: authoring_estimate
+  calibrated: false
+  owner_of_calibration: 18B
+
+validation:
+  validator_record: ["15b/executed_key+independent_review", "15b/executed_suite+independent_review"]
+  validated_at: "2026-10-02T12:00:00Z"
+  origin: ai_generated
+  highest_status: validated
+  effective_ceiling: standard_mastery_eligible
+
+shipping:
+  first_asset: curriculum_package.txt
+  later_assets: curriculum_package_v<N>.txt
+  read_together_or_not_at_all: true
+  versions_rise_strictly: true
+  authored_once: [item, explanation, task, code_test_suite, comprehension_check, answer_key, rubric]
+  ingest_order: oldest_first
+  stop_at_first_refusal: true
+  republished_entity_refused: [domain, module, topic, skill, objective, misconception, assessment_resource_version]
+
+found:
+  - second_package_could_not_ship
+  - runner_failed_correct_turkish_output_on_windows
+  - three_seed_skills_could_never_become_ready
+  - function_writing_needed_but_not_a_prerequisite
+  - text_mode_files_differ_by_platform
+  - tracebacks_differ_by_python_version
+  - path_objective_action_name_mismatch
+
+suites:
+  publishing: {file: android/data-persistence/src/test/kotlin/coach/persistence/CurriculumPublishingTest.kt}
+  labels: {file: android/data-persistence/src/test/kotlin/coach/persistence/MisconceptionStorageTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+  ingest: {file: android/core-application/src/test/kotlin/coach/application/DailyMicroAssessmentTest.kt}
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedPythonPackageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_daily_micro_assessment.py, checks: [E11D-07_version_mismatch_refused, E11D-09_failed_parse_serves_nothing]}
+  - {file: tools/validate_today_interior.py, checks: [E11A-13_content_port_returns_null]}
+  - {file: tools/validate_wrong_answer_analysis.py, checks: [E14B-03_version_refused]}
+expected_narrowed_gates:
+  tools/validate_daily_micro_assessment.py: [E11D-07_version_mismatch_refused, E11D-09_failed_parse_serves_nothing]
+  tools/validate_today_interior.py: [E11A-13_content_port_returns_null]
+  tools/validate_wrong_answer_analysis.py: [E14B-03_version_refused]
+
+mutation_results:
+  total: 27
+  detected: 27
+  only_15b_suites_run: true
+  suites_run: [CurriculumPublishingTest, MisconceptionStorageTest, PackageFormatTest, ShippedPythonPackageTest, ShippedPackageTest, DailyMicroAssessmentTest, ShippedCourseTest, FirstPlanTest]
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with 8 JUnit reports on disk (65 tests) before any mutant runs; files are read and written as bytes so a mutant never changes line endings
+  negative_control: a comment-only change in FileContentSource.kt
+  negative_control_result: survived_as_expected
+  first_run: 19 of 27 detected; R03 and R05 (an Objective or a resource carried again) survived because the only refusal test carried a Skill and a topic too, so a test carrying each kind alone was added; S04-S07 (an explanation, task, suite or answer key authored twice) survived because only a repeated item was tested, so a test repeating each kind alone was added; S10 (the merge serving only the first package's items) survived because the shipped test read items from its own parse, so it now asks the adapter; P01 (the port's default) survived because every fake overrode it, so a single-package adapter using the default was added
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: R01, mutant: republished_not_refused, result: detected}
+    - {id: R02, mutant: republished_skill_allowed, result: detected}
+    - {id: R03, mutant: republished_objective_allowed, result: detected}
+    - {id: R04, mutant: republished_label_allowed, result: detected}
+    - {id: R05, mutant: republished_resource_allowed, result: detected}
+    - {id: R06, mutant: republished_topic_allowed, result: detected}
+    - {id: S01, mutant: versions_not_checked, result: detected}
+    - {id: S02, mutant: equal_version_allowed, result: detected}
+    - {id: S03, mutant: item_twice_allowed, result: detected}
+    - {id: S04, mutant: explanation_twice_allowed, result: detected}
+    - {id: S05, mutant: task_twice_allowed, result: detected}
+    - {id: S06, mutant: suite_twice_allowed, result: detected}
+    - {id: S07, mutant: answer_key_twice_allowed, result: detected}
+    - {id: S08, mutant: later_packages_ignored, result: detected}
+    - {id: S09, mutant: unreadable_later_skipped, result: detected}
+    - {id: S10, mutant: merge_drops_later_items, result: detected}
+    - {id: S11, mutant: merge_drops_later_documents, result: detected}
+    - {id: S12, mutant: merge_drops_later_explanations, result: detected}
+    - {id: S13, mutant: merge_drops_later_suites, result: detected}
+    - {id: S14, mutant: merge_drops_later_keys, result: detected}
+    - {id: S15, mutant: merge_drops_later_tasks, result: detected}
+    - {id: S16, mutant: packages_only_first, result: detected}
+    - {id: S17, mutant: first_package_is_last, result: detected}
+    - {id: I01, mutant: newest_first, result: detected}
+    - {id: I02, mutant: refusal_does_not_stop, result: detected}
+    - {id: I03, mutant: ingest_only_first, result: detected}
+    - {id: P01, mutant: port_default_empty, result: detected}
+
+validator_mutation:
+  total: 35
+  detected: 35
+  negative_control: a YAML comment in a Skill file and a Kotlin comment in FileContentSource, each naming forbidden fragments (versionMismatches, read_bytes().decode, human_authored, mapNotNull { runCatching)
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is E15B-12_validator_mutation, which reads this very result; a mutant counts as detected only by a failure that is not in the baseline
+  first_run: the harness did not start (an indentation error in the harness itself); nothing was mutated and no result was taken from it
+  final_run_is_a_single_clean_run: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test :data-curriculum:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew :ai-adapter:test :app-wiring:testDebugUnitTest", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-07, command: "read assets/curriculum_package.txt and assets/curriculum_package_v2.txt from the built APK and compare their SHA-256 with the source assets", tier: T5, result: PASS}
+jvm_tests: 992
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_on_jvm_run: true
+  sqlite_publish_on_device_run: false
+  why: no check runs on the device; ShippedCourseTest publishes both shipped packages into the real schema on the JVM, the first on-device ingestion is the learner's
+
+open_loops:
+  graph_requirements_declared_per_item: {owner: 15H, note: "requirements the graph does not state are declared per item (3B §10): functions_parameters_return and list_operations on items written as functions or with brackets (set, tuple, mapping), conditionals for for_iteration items with conditions, input_output_basic on conditionals items, modules_imports_basic on every path_handling item (path_handling and files_paths_basic have no edge from it)"}
+  fixed_output_items: {owner: 15H, note: "run_repl_script and most assignment_binding items have one fixed output that printing the expected text directly passes; assignment_binding f02 shows a harness can read the module's variables instead"}
+  notation_coverage: {owner: 15H, note: "notation.yaml does not cover in / not in, is, pass, break and as, nor True/False as introduced by value_type_behavior, and lesson checks are not scanned (some use try/except, imports or loops their Skill cannot reach; they verify the author's claims and are not shown as items)"}
+  path_objective_action_name: {owner: 15H, note: "objective.python.path_handling.read_write_small_text_file states path operations; identity kept"}
+  unicode_normal_forms: {owner: 20A, note: "6C's normalization-aware is measured as Turkish case mapping; NFC/NFD are not taught"}
+  requires_transfer_not_stored: {owner: 15H, note: "unchanged from 15A"}
+  runner_presents_tasks: {owner: 16D, note: "the runner presenting a pool, and moving cozum.py and the report between phone and computer"}
+  estimate_calibration: {owner: 18B, note: "task and item minutes are authoring estimates"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first on-device ingestion"}

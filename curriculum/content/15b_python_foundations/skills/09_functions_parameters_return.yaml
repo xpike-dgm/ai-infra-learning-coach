@@ -1,0 +1,266 @@
+skill: skill.python.functions_parameters_return
+activity: coding_production
+tasks:
+  teach: {title: "Fonksiyon yazmak: parametre, argüman ve return", minutes: 15}
+  practice: {title: "Fonksiyon yazma alıştırması", minutes: 15}
+  check: {title: "Fonksiyon yazma kontrolü", minutes: 15}
+  review: {title: "Fonksiyon yazma tekrarı", minutes: 12}
+  repair: {title: "Fonksiyonu yeniden kurmak: girdi, çıktı ve return", minutes: 15}
+
+objectives:
+  - id: objective.python.functions_parameters_return.write_small_function
+    statement: >-
+      İstenen girdileri parametre olarak alan, hesabını yapıp sonucu return ile geri veren (ekrana yazmayan) küçük bir
+      fonksiyon yazabilmek; varsayılan değerli parametre tanımlayabilmek ve bir fonksiyonu başka bir fonksiyonun içinde
+      kullanarak işi parçalara bölebilmek.
+    observable_behavior: >-
+      Dersin testleri fonksiyonu farklı argümanlarla çağırdığında her seferinde doğru değeri döndüren, ekrana bir şey
+      yazmayan fonksiyonu yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. Bu Skill'in testleri programın
+      çıktısına değil fonksiyonun döndürdüğü değere bakar: dersin küçük test düzeneği öğrencinin dosyasını içe aktarır,
+      fonksiyonu argümanlarla çağırır ve dönen değeri yazdırır.
+    checks:
+      - prints: "135"
+        code: |
+          def dakika(saat):
+              return saat * 60
+
+          def toplam_dakika(saat, dk):
+              return dakika(saat) + dk
+
+          print(toplam_dakika(2, 15))
+      - prints: "12 cm 3 m"
+        code: |
+          def olcu(sayi, birim="cm"):
+              return str(sayi) + " " + birim
+
+          print(olcu(12), olcu(3, "m"))
+      - prints: "12.0 300"
+        code: |
+          def ucgen_alan(taban, yukseklik):
+              return taban * yukseklik / 2
+
+          def kdv_dahil(fiyat, oran):
+              return fiyat + fiyat * oran // 100
+
+          print(ucgen_alan(6, 4), kdv_dahil(250, 20))
+    explanations:
+      canonical: |
+        15A'da fonksiyonları okuyup girdi-çıktılarını buldun. Şimdi yazıyorsun.
+
+        def ucgen_alan(taban, yukseklik):
+            return taban * yukseklik / 2
+
+        - def, fonksiyonun adı, parantez içinde parametreler ve iki nokta.
+        - Gövde içeri itilir.
+        - return değeri çağırana geri verir ve fonksiyonu bitirir.
+
+        Fonksiyonu tanımlamak onu çalıştırmaz; çağırınca çalışır: ucgen_alan(6, 4) → 12.0.
+
+        Bu Skill'in görevlerinde yalnız fonksiyonu yazarsın. Dersin testleri cozum.py dosyanı içe aktarır, fonksiyonunu farklı argümanlarla çağırır ve döndürdüğü değeri kontrol eder. Bu yüzden:
+        - cozum.py'de fonksiyon tanımı dışında çalışan bir print ya da input satırı olmasın; içe aktarılırken çalışır ve testin çıktısına karışır.
+        - Fonksiyon sonucu print ile değil return ile vermeli. print eden bir fonksiyon çağırana None döndürür.
+
+        Kendi denemen için dosyanın altına geçici olarak print(ucgen_alan(6, 4)) yazıp python cozum.py ile çalıştırabilirsin; teslim etmeden önce o satırı sil.
+
+        Varsayılan değerli parametre: bir argüman verilmezse kullanılacak değer.
+        def olcu(sayi, birim="cm"):
+            return str(sayi) + " " + birim
+        olcu(12) → "12 cm"; olcu(3, "m") → "3 m". Varsayılan değerli parametreler sona yazılır.
+
+        Fonksiyonların birbirini kullanması:
+        def dakika(saat):
+            return saat * 60
+        def toplam_dakika(saat, dk):
+            return dakika(saat) + dk
+        toplam_dakika(2, 15) → 135. Her fonksiyon tek bir iş yapar; büyük iş küçüklerin birleşimidir (15A).
+
+        Argümanlar parametrelere sırayla atanır: toplam_dakika(2, 15)'te saat=2, dk=15.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (fonksiyona bölme, 15A): bir fonksiyonun girdileri parametreleri, çıktısı return ettiği değerdir; print ekrana yazar ama çağırana bir şey vermez.
+      state_trace:
+        level: H2
+        text: |
+          Bir çağrıyı izlemek — başka bir örnek üzerinde.
+
+          def kdv_dahil(fiyat, oran):
+              return fiyat + fiyat * oran // 100
+
+          kdv_dahil(250, 20)
+          - Parametreler: fiyat = 250, oran = 20.
+          - fiyat * oran → 5000; // 100 → 50; 250 + 50 → 300.
+          - return 300; çağıran 300'ü alır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: dikdörtgenin çevresini döndüren cevre(en, boy) fonksiyonu.
+
+          def cevre(en, boy):
+              return 2 * (en + boy)
+
+          - Parametreler en ve boy; ikisi de testin verdiği değerlerle dolacak.
+          - Sonuç return ile dönüyor; ekrana hiçbir şey yazılmıyor.
+          - Dosyada başka çalışan satır yok.
+
+          Test cevre(3, 5) çağırdığında 16 döner ve test bunu kontrol eder.
+    misconceptions:
+      - slug: print_instead_of_return
+        name: Sonucu ekrana yazan fonksiyon sonucu geri vermiş olur
+        open_question: Bir fonksiyonun sonucu print ile yazmasının, onu return ile geri vermekle aynı olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fonksiyon sonucu yazıyor, demek ki sonucu veriyor."
+
+            print yalnız ekrana yazar; fonksiyon yine None döndürür. Testler fonksiyonun döndürdüğü değere baktığı için print eden bir fonksiyon testten kalır. Sonucu return ile ver.
+      - slug: default_must_be_first
+        name: Varsayılan değerli parametre başa yazılabilir
+        open_question: def olcu(birim="cm", sayi) gibi, varsayılan değerli bir parametreyi varsayılansız birinden önce yazabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Parametrelerin sırası önemli değil."
+
+            Varsayılan değerli parametreler, varsayılansız olanlardan sonra gelmelidir; aksi hâlde Python SyntaxError verir. Ayrıca argümanlar parametrelere sırayla atandığı için, varsayılansız parametreler önce gelir ki her çağrıda doldurulsunlar.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına kare(x) adında bir fonksiyon yaz: x'in karesini döndürsün (return). Dosyada fonksiyonun dışında çalışan hiçbir satır olmasın; testler fonksiyonu kendisi çağırır.
+        harness: |
+          import sys, cozum
+          print(cozum.kare(int(sys.argv[1])))
+        suite:
+          - {id: three, args: ["3"], expected_stdout: "9\n"}
+          - {id: negative, args: ["-4"], expected_stdout: "16\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+        reference: |
+          def kare(x):
+              return x * x
+        wrong:
+          - |
+            def kare(x):
+                print(x * x)
+          - |
+            def kare(x):
+                return x * 2
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına ortalama(a, b) adında bir fonksiyon yaz: iki sayının ortalamasını ondalıklı (float) olarak döndürsün. Örnek: ortalama(3, 4) → 3.5. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.ortalama(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: whole, args: ["4", "6"], expected_stdout: "5.0\n"}
+          - {id: half, args: ["3", "4"], expected_stdout: "3.5\n"}
+          - {id: negative, args: ["-2", "1"], expected_stdout: "-0.5\n"}
+        reference: |
+          def ortalama(a, b):
+              return (a + b) / 2
+        wrong:
+          - |
+            def ortalama(a, b):
+                return (a + b) // 2
+          - |
+            def ortalama(a, b):
+                return a + b / 2
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına indirimli(fiyat, oran) adında bir fonksiyon yaz: fiyattan yüzde oran kadar indirim yapılmış tutarı tam sayı olarak döndürsün; indirim miktarı fiyat * oran // 100 ile hesaplanır. Örnek: indirimli(200, 10) → 180. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        harness: |
+          import sys, cozum
+          print(cozum.indirimli(int(sys.argv[1]), int(sys.argv[2])))
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: ten_percent, args: ["200", "10"], expected_stdout: "180\n"}
+          - {id: no_discount, args: ["99", "0"], expected_stdout: "99\n"}
+          - {id: half, args: ["50", "50"], expected_stdout: "25\n"}
+          - {id: rounding_down, args: ["99", "10"], expected_stdout: "90\n"}
+        reference: |
+          def indirimli(fiyat, oran):
+              return fiyat - fiyat * oran // 100
+        wrong:
+          - |
+            def indirimli(oran, fiyat):
+                return fiyat - fiyat * oran // 100
+          - |
+            def indirimli(fiyat, oran):
+                return fiyat * oran // 100
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına selam(ad, unvan) adında bir fonksiyon yaz: unvan, bir boşluk ve ad'dan oluşan yazıyı döndürsün. unvan verilmezse "Sayın" kullanılsın. Örnek: selam("Ayşe") → "Sayın Ayşe", selam("Can", "Dr.") → "Dr. Can". Dosyada fonksiyonun dışında çalışan satır olmasın.
+        harness: |
+          import sys, cozum
+          print(cozum.selam(*sys.argv[1:]))
+        suite:
+          - {id: default_title, args: ["Ayşe"], expected_stdout: "Sayın Ayşe\n"}
+          - {id: given_title, args: ["Can", "Dr."], expected_stdout: "Dr. Can\n"}
+          - {id: another_title, args: ["Ece", "Prof."], expected_stdout: "Prof. Ece\n"}
+        reference: |
+          def selam(ad, unvan="Sayın"):
+              return unvan + " " + ad
+        wrong:
+          - |
+            def selam(ad, unvan):
+                return unvan + " " + ad
+          - |
+            def selam(ad, unvan="Sayın"):
+                return ad + " " + unvan
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: alan(en, boy) bir dikdörtgenin alanını döndürsün; boya_maliyeti(en, boy, birim) ise alan fonksiyonunu kullanarak alanı metrekare fiyatı birim ile çarpıp döndürsün. Örnek: boya_maliyeti(3, 4, 5) → 60. Testler iki fonksiyonu da çağırır ve boya_maliyeti'nin alanı gerçekten alan fonksiyonuyla hesapladığını da kontrol eder. Dosyada fonksiyonların dışında çalışan satır olmasın.
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          asil = cozum.alan
+          cagrilar = []
+          def izle(en, boy):
+              cagrilar.append((en, boy))
+              return asil(en, boy)
+          cozum.alan = izle
+          print(asil(a[0], a[1]), cozum.boya_maliyeti(a[0], a[1], a[2]), "alan kullanıldı" if cagrilar else "alan kullanılmadı")
+        suite:
+          - {id: small_wall, args: ["3", "4", "5"], expected_stdout: "12 60 alan kullanıldı\n"}
+          - {id: square, args: ["2", "2", "10"], expected_stdout: "4 40 alan kullanıldı\n"}
+          - {id: zero_price, args: ["7", "3", "0"], expected_stdout: "21 0 alan kullanıldı\n"}
+        reference: |
+          def alan(en, boy):
+              return en * boy
+
+          def boya_maliyeti(en, boy, birim):
+              return alan(en, boy) * birim
+        wrong:
+          - |
+            def alan(en, boy):
+                return en * boy
+
+            def boya_maliyeti(en, boy, birim):
+                return alan(en, en) * birim
+          - |
+            def alan(en, boy):
+                return en * boy
+
+            def boya_maliyeti(en, boy, birim):
+                return en * boy * birim
+          - |
+            def alan(en, boy):
+                return 2 * (en + boy)
+
+            def boya_maliyeti(en, boy, birim):
+                return alan(en, boy) * birim

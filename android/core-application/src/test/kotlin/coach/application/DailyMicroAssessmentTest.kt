@@ -90,7 +90,9 @@ class DailyMicroAssessmentTest {
     private class FakeContent(
         val item: AssessmentItem?,
         val curriculum: CurriculumPackage? = null,
+        val packages: List<CurriculumPackage>? = null,
     ) : ContentPort {
+        override fun curriculumPackages(): List<CurriculumPackage> = packages ?: listOfNotNull(curriculum)
         override fun resource(ref: VersionedRef): ContentDocument? = null
         override fun assessmentItem(ref: VersionedRef): AssessmentItem? = item?.takeIf { it.ref == ref }
         override fun curriculumPackage(): CurriculumPackage? = curriculum
@@ -177,6 +179,41 @@ class DailyMicroAssessmentTest {
         assertEquals(PublishOutcome.Published(1, 1), ingest.ingest())
         assertEquals(PublishOutcome.AlreadyPublished(1), ingest.ingest())
         assertEquals(1, store.publishedPackages)
+    }
+
+    @Test
+    fun `every package is published once, oldest first, and a refusal stops the ones built on it`() {
+        val store = FakeStore()
+        val v2 = curriculum.copy(version = 2)
+        val v3 = curriculum.copy(version = 3)
+        // Supplied out of order: publishing follows the versions, because a later package builds on the earlier ones.
+        val ingest = IngestCurriculum(store, FakeContent(null, packages = listOf(v2, curriculum)), clock)
+        assertEquals(listOf(PublishOutcome.Published(1, 1), PublishOutcome.Published(2, 1)), ingest.ingestAll())
+        assertEquals(listOf(PublishOutcome.AlreadyPublished(1), PublishOutcome.AlreadyPublished(2)), ingest.ingestAll())
+
+        val refusing = object : PersistencePort by store {
+            override fun publishCurriculum(curriculum: CurriculumPackage, publishedAtInstant: Long): PublishOutcome =
+                if (curriculum.version == 3) PublishOutcome.Refused(listOf("unresolved reference")) else store.publishCurriculum(curriculum, publishedAtInstant)
+        }
+        val v4 = curriculum.copy(version = 4)
+        val outcomes = IngestCurriculum(refusing, FakeContent(null, packages = listOf(curriculum, v2, v3, v4)), clock).ingestAll()
+        assertEquals(PublishOutcome.Refused(listOf("unresolved reference")), outcomes.last())
+        assertEquals(3, outcomes.size, "nothing built on a refused package is attempted")
+        assertTrue(4 !in store.published)
+    }
+
+    @Test
+    fun `an adapter that ships a single package publishes exactly that one through the port's default`() {
+        val store = FakeStore()
+        // An adapter written before 15B answers only curriculumPackage(); the port's default makes it the whole list.
+        val single = object : ContentPort by FakeContent(null, curriculum) {
+            override fun curriculumPackages(): List<CurriculumPackage> = super<ContentPort>.curriculumPackages()
+        }
+        assertEquals(listOf(PublishOutcome.Published(1, 1)), IngestCurriculum(store, single, clock).ingestAll())
+        val none = object : ContentPort by FakeContent(null, null) {
+            override fun curriculumPackages(): List<CurriculumPackage> = super<ContentPort>.curriculumPackages()
+        }
+        assertEquals(emptyList(), IngestCurriculum(store, none, clock).ingestAll())
     }
 
     @Test

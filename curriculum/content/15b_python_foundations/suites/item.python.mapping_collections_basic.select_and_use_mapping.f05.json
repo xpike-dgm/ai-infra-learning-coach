@@ -1,0 +1,51 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.mapping_collections_basic.select_and_use_mapping.f05@v1",
+  "item": "item.python.mapping_collections_basic.select_and_use_mapping.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\na = sys.argv[1:]\nsozluk = {a[i]: int(a[i + 1]) for i in range(0, len(a), 2)}\nprint(sorted(cozum.ters_cevir(sozluk).items()))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two",
+      "args": [
+        "bir",
+        "1",
+        "iki",
+        "2"
+      ],
+      "expected_stdout": "[(1, 'bir'), (2, 'iki')]\n"
+    },
+    {
+      "id": "empty",
+      "args": [],
+      "expected_stdout": "[]\n"
+    },
+    {
+      "id": "three",
+      "args": [
+        "c",
+        "30",
+        "a",
+        "10",
+        "b",
+        "20"
+      ],
+      "expected_stdout": "[(10, 'a'), (20, 'b'), (30, 'c')]\n"
+    }
+  ]
+}

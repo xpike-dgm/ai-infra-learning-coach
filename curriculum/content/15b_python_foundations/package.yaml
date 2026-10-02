@@ -1,0 +1,38 @@
+# 15B — Python Foundations (PYFX-v0 / D-113)
+#
+# The second authored package. It builds on 15A's package (curriculum version 1) and publishes curriculum version 2:
+# FBB-v0 §6.2's twelve Python seeds as 6C decomposed them (seventeen Skills), plus the three Skills 6C makes hard
+# prerequisites of three of them (user decision 2026-10-02) — twenty Skills, twenty-one Objectives. Every entity keeps
+# its own version 1 (user decision 2026-10-02: incremental packages, an entity's version is its semantic revision).
+#
+# Identity is never changed: every Skill and Objective keeps its 6C logical id.
+version: 2
+step: 15b
+builds_on: [curriculum/content/15a_computing_fundamentals]
+source_refs: curriculum/decomposition/6c_foundations;curriculum/content/15b_python_foundations
+provenance: authored_15b_pyfx_v0
+content_source_ref: source.repo.content_15b_pyfx_v0
+# Noon UTC of the day the independent review of 15B content is recorded (the 15A convention): 2026-10-02T12:00:00Z.
+validated_at_instant: 1790942400000
+
+skills:
+  - id: skill.python.run_repl_script
+  - id: skill.python.value_type_behavior
+  - id: skill.python.assignment_binding
+  - id: skill.python.expression_evaluation
+  - id: skill.python.input_output_basic
+  - id: skill.python.conditionals
+  - id: skill.python.for_iteration
+  - id: skill.python.while_termination
+  - id: skill.python.functions_parameters_return
+  - id: skill.python.list_operations
+  - id: skill.python.tuple_immutable_sequence
+  - id: skill.python.set_operations
+  - id: skill.python.mapping_collections_basic
+  - id: skill.python.exceptions_read_basic
+  - id: skill.python.scope_name_resolution
+  - id: skill.python.modules_imports_basic
+  - id: skill.python.exception_handling
+  - id: skill.python.string_text_operations
+  - id: skill.python.path_handling
+  - id: skill.python.files_paths_basic

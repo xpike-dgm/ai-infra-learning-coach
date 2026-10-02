@@ -157,7 +157,10 @@ check("E14B-03_table", "CREATE TABLE IF NOT EXISTS misconception (" in v8 and
 check("E14B-03_immutable", 'val curriculumExtensionTables = listOf("misconception")' in schema and "curriculumExtensionTables.flatMap" in v8
       and "is immutable: publish a new version instead" in v8, "catalog editable")
 check("E14B-03_unresolved_refused", 'misconceptions.filterNot { resolves(OBJECTIVE, it.objective, objectiveKeys) }' in pkg, "a label pinned to nothing")
-check("E14B-03_version_refused", 'curriculum.misconceptions.filter { it.ref.version != expected }' in store, "a label of another version")
+# Narrowed at 15B (`PYFX-v0` / `D-113`, user decision): a label's version is its own, not the package's; what is refused
+# is carrying a label that is already published, so a published label is never overwritten.
+check("E14B-03_version_refused", 'curriculum.misconceptions.forEach { check("misconception", it.ref) }' in store,
+      "a published label can be carried again")
 check("E14B-03_earlier_objective", 'CurriculumPackage.OBJECTIVE -> "objective"' in store, "an earlier published Objective")
 check("E14B-03_port_refinement", "fun misconceptionsOf(objective: VersionedRef): List<MisconceptionRow>" in ports
       and "WHERE objective_logical_id = ? AND objective_version = ?" in store

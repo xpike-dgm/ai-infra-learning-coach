@@ -24,6 +24,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import subprocess
@@ -41,6 +42,12 @@ NONTERMINATION_SECONDS = 2
 # 2026-10-02T12:00:00Z — the day the independent review of 15A content was recorded.
 VALIDATED_AT = 1_790_942_400_000
 CHOICE_KEYS = ["A", "B", "C", "D", "E"]
+RUNNER = ROOT / "tools/code_test_runner.py"
+# A code item's suite (15B): the learner's file, how it is checked for syntax and run, and how output is compared.
+CODE_FILE = "cozum.py"
+CODE_BUILD = ["{python}", "-m", "py_compile", CODE_FILE]
+CODE_RUN = ["{python}", CODE_FILE]
+CODE_TIMEOUT_SECONDS = 5
 
 
 class BuildError(Exception):
@@ -240,6 +247,41 @@ def verify_item(item: dict) -> tuple[bool, str]:
             return False, f"starting values that print {v['target']!r}: {hits}; key {key}"
         return True, f"executed for every option; only option {key} prints {v['target']!r}"
 
+    if mode == "traceback":
+        # The program is run as program.py and must fail. A traceback shown in the prompt must be the one Python
+        # really prints (the caret lines, which differ between Python versions, are left out); the key is checked
+        # against the part of the real traceback the item asks for (15B).
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "program.py").write_text(item["code"], encoding="utf-8")
+            try:
+                done = subprocess.run([PYTHON, "-I", "-X", "utf8", "program.py"], capture_output=True, text=True, cwd=d,
+                                      timeout=TIMEOUT_SECONDS, encoding="utf-8",
+                                      env={"PYTHONIOENCODING": "utf-8", "SYSTEMROOT": os.environ.get("SYSTEMROOT", "")})
+            except subprocess.TimeoutExpired:
+                return False, "the program did not end"
+            err = done.stderr.replace(str(Path(d) / "program.py"), "program.py")
+        if done.returncode == 0 or "Traceback (most recent call last):" not in err:
+            return False, "the program is meant to fail with a traceback, but it did not"
+        tb = err[err.index("Traceback (most recent call last):"):]
+        tb = "\n".join(line.rstrip() for line in tb.strip().splitlines() if not re.fullmatch(r"\s*[~^]+\s*", line))
+        if v.get("shown", True) and tb not in norm(item["prompt"]):
+            return False, f"the prompt does not show the real traceback:\n{tb}"
+        frames = re.findall(r'File "program\.py", line (\d+), in (\S+)', tb)
+        last = tb.splitlines()[-1]
+        error_type, _, message = last.partition(": ")
+        actual = {
+            "type": error_type,
+            "line": frames[-1][0],
+            "function_line": f"{frames[-1][1]} {frames[-1][0]}",
+            "module_line": frames[0][0],
+            "message": message,
+        }[v["ask"]]
+        if options:
+            return keyed_option_matches(actual)
+        if norm(actual) != norm(key):
+            return False, f"the traceback gives {actual!r} for {v['ask']}, key is {key!r}"
+        return True, f"executed; the traceback is real and its {v['ask']} is the key"
+
     if mode == "reference":
         if not v.get("reference") or not v.get("claim"):
             return False, "a reference item names its source and the claim it checks"
@@ -251,9 +293,43 @@ def verify_item(item: dict) -> tuple[bool, str]:
     return False, f"unknown verify mode {mode!r}"
 
 
+def run_suite(suite: dict, solution: str) -> dict[str, str]:
+    """Runs the course's real runner (14D) against [solution] in an empty directory; returns each test's status."""
+    with tempfile.TemporaryDirectory() as d:
+        (Path(d) / "suite.json").write_text(json.dumps(suite, ensure_ascii=False), encoding="utf-8")
+        (Path(d) / CODE_FILE).write_text(solution, encoding="utf-8")
+        done = subprocess.run([PYTHON, str(RUNNER), str(Path(d) / "suite.json"), "--dir", d], capture_output=True, timeout=300)
+    lines = done.stdout.decode("utf-8").splitlines()
+    statuses = {}
+    for line in lines:
+        if line.startswith("build: "):
+            statuses["__build__"] = line.split(": ", 1)[1]
+        if line.startswith("test: "):
+            test_id, status = line[len("test: "):].rsplit(" ", 1)
+            statuses[test_id] = status
+    return statuses
+
+
+def verify_suite(suite: dict, item: dict) -> tuple[bool, str]:
+    """The reference passes every test; every plausible wrong solution fails at least one (the tests can tell)."""
+    ids = [t["id"] for t in suite["tests"]]
+    ref = run_suite(suite, item["reference"])
+    if ref.get("__build__") != "ok" or any(ref.get(i) != "passed" for i in ids):
+        return False, f"the reference solution does not pass its own suite: {ref}"
+    for n, wrong in enumerate(item.get("wrong", []), 1):
+        got = run_suite(suite, wrong)
+        if all(got.get(i) == "passed" for i in ids) and got.get("__build__") == "ok":
+            return False, f"wrong solution {n} passes every test: the suite cannot tell it from a correct one"
+    if len(item.get("wrong", [])) < 2:
+        return False, "a code item names at least two plausible wrong solutions the suite must catch"
+    return True, f"executed with the course runner; the reference passes {len(ids)} tests and each of {len(item['wrong'])} wrong solutions fails at least one"
+
+
 # ------------------------------------------------------------------------------------------------ notation
 
 def constructs_used(code: str, notation: dict) -> set[str]:
+    # What is inside a string literal is text, not code: print("bool('False')") uses no boolean logic (15B).
+    code = re.sub(r'"[^"\n]*"', '""', code)
     used = set()
     for construct, spec in notation["constructs"].items():
         if re.search(spec["pattern"], code, re.M):
@@ -317,9 +393,19 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
         pkg["skills"] = [s for s in pkg["skills"] if s["id"] in skill_files]
         skill_ids = [s["id"] for s in pkg["skills"]]
 
-    hard_prereqs: dict[str, set[str]] = {s: set() for s in skill_ids}
+    # 15B (`D-113`): a later package builds on the packages before it. Their Skills are already published, so edges from
+    # them are carried here, their topics are referenced and never declared again, and their lessons count as taught.
+    earlier_skills: set[str] = set()
+    for rel in pkg.get("builds_on", []):
+        earlier_skills |= {s["id"] for s in load(ROOT / rel / "package.yaml")["skills"]}
+    earlier_topics = {skills6c[s]["primary_teaching_topic_id"] for s in earlier_skills}
+    known = set(skill_ids) | earlier_skills
+    validated_at = pkg.get("validated_at_instant", VALIDATED_AT)
+    step = pkg.get("step", "15a")
+
+    hard_prereqs: dict[str, set[str]] = {s: set() for s in known}
     for e in edges6c:
-        if e["target_skill_id"] in skill_ids and e["prerequisite_skill_id"] in skill_ids and e["edge_kind"] == "hard":
+        if e["target_skill_id"] in known and e["prerequisite_skill_id"] in known and e["edge_kind"] == "hard":
             hard_prereqs[e["target_skill_id"]].add(e["prerequisite_skill_id"])
 
     def closure(skill: str) -> set[str]:
@@ -349,7 +435,7 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
     report: dict = {"package_version": pkg["version"], "items": [], "explanations": 0, "tasks": [], "failures": []}
 
     # -------------------------------------------------------------- graph: topics, skills, objectives, links, edges
-    topics = sorted({s6["primary_teaching_topic_id"] for s6 in (skills6c[s] for s in skill_ids)})
+    topics = sorted({s6["primary_teaching_topic_id"] for s6 in (skills6c[s] for s in skill_ids)} - earlier_topics)
     for t in topics:
         out.append(section("topic", [("logical_id", t), ("version", 1), ("name", org6c[t]["display_name"])]))
 
@@ -390,11 +476,11 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
             raise BuildError(f"{s['id']}: Objectives differ from 6C {sixc_objectives}")
 
     for link in links6c:
-        if link["skill_id"] in skill_ids and link["topic_id"] in topics:
+        if link["skill_id"] in skill_ids and (link["topic_id"] in topics or link["topic_id"] in earlier_topics):
             out.append(section("topic_skill", [("topic", pin(link["topic_id"])), ("skill", pin(link["skill_id"]))]))
 
     for e in edges6c:
-        if e["target_skill_id"] in skill_ids and e["prerequisite_skill_id"] in skill_ids:
+        if e["target_skill_id"] in skill_ids and e["prerequisite_skill_id"] in known:
             out.append(section("prerequisite_edge", [
                 ("prerequisite", pin(e["prerequisite_skill_id"])), ("target", pin(e["target_skill_id"])),
                 ("edge_version", 1), ("edge_kind", e["edge_kind"]), ("reason_kind", e["reason_kind"]),
@@ -404,6 +490,8 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
 
     # -------------------------------------------------------------- per Skill content
     resources, validations, items_out, keys_out, rubrics_out, explanations_out, misconceptions_out, tasks_out = ([] for _ in range(8))
+    suites_out: list[str] = []
+    suite_files: dict[str, str] = {}
     item_status: dict[str, str] = {}
 
     for s in pkg["skills"]:
@@ -459,12 +547,28 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 family = f"family.{base}.{it['slug']}"
                 code = it.get("code")
                 rubric = it.get("rubric")
-                # Code may stand in the code block or in the options (a choice between definitions); both are read.
-                used = constructs_used((code or "") + "\n" + "\n".join(str(t) for t in (it.get("options") or {}).values()), notation)
+                is_code = "suite" in it
+                # Code may stand in the code block or in the options (a choice between definitions); both are read. For a
+                # code item the reference solution is read too: it is what the learner has to be able to write.
+                used = constructs_used((code or "") + "\n" + "\n".join(str(t) for t in (it.get("options") or {}).values() if it.get("scan_options", True))
+                                       + "\n" + (it.get("reference") or ""), notation)
                 declared = set(it.get("required_skills", []))
                 reachable = teachable(sid, declared)
                 hidden = sorted(used - reachable)
-                ok, how = verify_item(it)
+                if is_code:
+                    suite = {
+                        "format": "code_test_suite/1", "suite": f"codetest.{base}.{it['slug']}@v1", "item": f"{iid}@v1",
+                        "build": {"command": CODE_BUILD},
+                        # A function is checked by the course's own small harness, which imports the learner's file.
+                        "run": {"command": ["{python}", "-c", it["harness"].strip()] if it.get("harness") else CODE_RUN},
+                        "timeout_seconds": CODE_TIMEOUT_SECONDS, "compare": "trim_trailing_whitespace",
+                        "tests": [{k: t[k] for k in ("id", "stdin", "args", "expected_stdout", "expected_exit_code") if k in t}
+                                  for t in it["suite"]],
+                    }
+                    suite_files[iid] = json.dumps(suite, ensure_ascii=False, indent=2) + "\n"
+                    ok, how = verify_suite(suite, it)
+                else:
+                    ok, how = verify_item(it)
                 reviewed = reviewed_items.get(iid, {}).get("verdict") == "pass"
                 problems = []
                 if not ok:
@@ -475,7 +579,7 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     problems.append("no pass verdict from the independent review")
                 status = "validated" if not problems else "candidate"
                 item_status[iid] = status
-                mode = (it.get("verify") or {}).get("mode")
+                mode = "suite" if is_code else (it.get("verify") or {}).get("mode")
                 report["items"].append({"item": iid, "status": status, "verify_mode": mode, "verification": how,
                                         "constructs": sorted(used), "hidden_prerequisites": hidden, "reviewed": reviewed})
                 if problems:
@@ -490,18 +594,19 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 evidence_type = it.get("evidence_type") or o["required_direct_type"] or o["direct_evidence_types"][0]
                 is_rubric = rubric is not None
                 validator = {
-                    "reference": "15a/reference_grounded+independent_review",
-                    "rubric": "15a/rubric_reviewed+independent_review",
-                }.get(mode, "15a/executed_key+independent_review")
+                    "reference": f"{step}/reference_grounded+independent_review",
+                    "rubric": f"{step}/rubric_reviewed+independent_review",
+                    "suite": f"{step}/executed_suite+independent_review",
+                }.get(mode, f"{step}/executed_key+independent_review")
 
                 resources.append(section("resource", [
                     ("logical_id", iid), ("version", 1), ("content_ref", f"item://{iid}@v1"),
                     ("rubric_ref", f"rubric.{base}.{it['slug']}@v1" if is_rubric else None),
-                    ("evidence_type", evidence_type), ("allowed_tools_policy", "none"),
+                    ("evidence_type", evidence_type), ("allowed_tools_policy", "terminal_documentation" if is_code else "none"),
                     ("variant_family_id", family), ("content_origin", "ai_generated"),
                 ]))
                 validations.append(section("validation", [
-                    ("resource", f"{iid}@v1"), ("validated_at_instant", VALIDATED_AT), ("status", status),
+                    ("resource", f"{iid}@v1"), ("validated_at_instant", validated_at), ("status", status),
                     ("validator", validator), ("origin", "ai_generated"),
                 ]))
                 difficulty = it["difficulty"]
@@ -516,18 +621,22 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     ("target_objectives", pin(oid)), ("target_skills", pin(sid)),
                     ("required_skills", [pin(r) for r in sorted(declared)]),
                     ("evidence_type", evidence_type),
-                    ("expected_answer_or_rubric_ref", f"rubric.{base}.{it['slug']}@v1" if is_rubric else f"answerkey.{base}.{it['slug']}@v1"),
+                    ("expected_answer_or_rubric_ref", f"rubric.{base}.{it['slug']}@v1" if is_rubric
+                     else f"codetest.{base}.{it['slug']}@v1" if is_code else f"answerkey.{base}.{it['slug']}@v1"),
                     ("evaluator_required_status", "provisional_allowed" if is_rubric else "verified"),
                     ("evaluator_deterministic_required", not is_rubric),
-                    ("evaluator_policy_version", "OREX-v0/rubric" if is_rubric else "OREX-v0/answer_key"),
+                    ("evaluator_policy_version", "OREX-v0/rubric" if is_rubric else "CDEX-v0/code_tests" if is_code else "OREX-v0/answer_key"),
                     ("deterministic_verification", not is_rubric),
-                    ("allowed_tools", []), ("prohibited_solution_sources", ["terminal", "compiler", "debugger", "external_ai"]),
+                    # Reading code is done by reading; writing code is done at the learner's computer, where running
+                    # it and reading documentation are part of the work (QAB-v0 §21). An AI never writes it for them.
+                    ("allowed_tools", ["terminal", "documentation"] if is_code else []),
+                    ("prohibited_solution_sources", ["external_ai"] if is_code else ["terminal", "compiler", "debugger", "external_ai"]),
                     ("independence_mode", independence), ("difficulty_class", difficulty),
                     ("lifecycle_status", status), ("content_origin", "ai_generated"),
                     ("declared_use_ceiling", "low_stakes_assessment" if is_rubric else "standard_mastery_eligible"),
                     ("scope_eligibility", ["daily_micro", "weekly_blueprint", "monthly_capability"]),
                     ("variant_family_id", family), ("forbidden_not_yet_concepts", sorted(set(introduced) - reachable)),
-                    ("expected_active_minutes", it.get("minutes", notation["minutes"][difficulty])),
+                    ("expected_active_minutes", it.get("minutes", notation["minutes_code" if is_code else "minutes"][difficulty])),
                     ("blueprint_roles", sorted(set(roles))),
                 ]))
                 if is_rubric:
@@ -536,6 +645,12 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                         rubrics_out.append(section("rubric_criterion", [
                             ("rubric", f"rubric.{base}.{it['slug']}@v1"), ("id", c["id"]), ("objective", pin(oid)), ("statement", esc(c["statement"])),
                         ]))
+                elif is_code:
+                    suites_out.append(section("code_test_suite", [("logical_id", f"codetest.{base}.{it['slug']}"), ("version", 1),
+                                                                  ("item", f"{iid}@v1")]))
+                    for t in it["suite"]:
+                        suites_out.append(section("code_test", [("suite", f"codetest.{base}.{it['slug']}@v1"), ("id", t["id"]),
+                                                                ("objective", pin(oid))]))
                 else:
                     keys_out.append(section("answer_key", [
                         ("logical_id", f"answerkey.{base}.{it['slug']}"), ("version", 1), ("item", f"{iid}@v1"),
@@ -593,10 +708,11 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
             ]))
             report["tasks"].append({"task": tid, "status": status, "items": len(plan["items"]), "explanations": len(plan["explanations"])})
 
-    for block in (misconceptions_out, resources, validations, explanations_out, items_out, keys_out, rubrics_out, tasks_out):
+    for block in (misconceptions_out, resources, validations, explanations_out, items_out, keys_out, rubrics_out, suites_out, tasks_out):
         out.extend(block)
 
     text = "\n\n".join(out) + "\n"
+    report["suite_files"] = suite_files
     report["summary"] = {
         "skills": len(skill_ids), "objectives": len(objective_parent), "topics": len(topics),
         "items": len(report["items"]), "validated_items": sum(1 for i in report["items"] if i["status"] == "validated"),
@@ -618,10 +734,17 @@ def main() -> int:
         raise SystemExit("a partial build is never written as the shipped package")
     content_dir = (ROOT / args.content_dir).resolve()
     text, report = build(content_dir, partial=args.partial)
+    suite_files = report.pop("suite_files", {})
     if args.out:
         Path(ROOT / args.out).parent.mkdir(parents=True, exist_ok=True)
         with open(ROOT / args.out, "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
+        # The suites a learner runs on their own computer (14D) are written beside the content that declares them.
+        for iid, body in sorted(suite_files.items()):
+            target = content_dir / "suites" / f"{iid}.json"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with open(target, "w", encoding="utf-8", newline="\n") as f:
+                f.write(body)
     if args.report:
         Path(ROOT / args.report).parent.mkdir(parents=True, exist_ok=True)
         with open(ROOT / args.report, "w", encoding="utf-8", newline="\n") as f:

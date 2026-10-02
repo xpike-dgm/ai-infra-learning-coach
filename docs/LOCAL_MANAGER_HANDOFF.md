@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13 ve AŞAMA 14'ün kapandığını, aktif adımın `15B active-not-executed` olduğunu ve önceki adımın `CPFX-v0 / D-112` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13 ve AŞAMA 14'ün kapandığını, aktif adımın `15C active-not-executed` olduğunu ve önceki adımın `PYFX-v0 / D-113` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1154,14 +1154,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 14G ✅ PRVX-v0 / D-111
 - **AŞAMA 14 TAMAMLANDI**
 - AŞAMA 15A ✅ CPFX-v0 / D-112
-- AŞAMA 15B 🟡 active-not-executed
-- 15C–20 ⬜
+- AŞAMA 15B ✅ PYFX-v0 / D-113
+- AŞAMA 15C 🟡 active-not-executed
+- 15D–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `15A — Computer / Programming Fundamentals`  
-**Final:** `CPFX-v0 — Computer / Programming Fundamentals content` / D-112  
-**Canonical:** `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md` + `arch/15a_computing_fundamentals/`
+**Son tamamlanan numaralı adım:** `15B — Python Foundations`  
+**Final:** `PYFX-v0 — Python Foundations content` / D-113  
+**Canonical:** `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15b_python_foundations/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1214,17 +1215,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 14G:** ✅ TAMAMLANDI  
 **AŞAMA 14:** ✅ TAMAMLANDI  
 **AŞAMA 15A:** ✅ TAMAMLANDI  
-**Aktif adım:** `15B — Python Foundations`  
+**AŞAMA 15B:** ✅ TAMAMLANDI  
+**Aktif adım:** `15C — C Foundations`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-15B için:
+15C için:
 
 ```text
-fresh 15B PRE-STEP GitHub refresh
+fresh 15C PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 15B execution
+→ 15C execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1808,8 +1810,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 14G ✅ PRVX-v0 / D-111
 AŞAMA 14 ✅ TAMAMLANDI
 15A ✅ CPFX-v0 / D-112
-15B 🟡 active-not-executed
-15C–20 ⬜
+15B ✅ PYFX-v0 / D-113
+15C 🟡 active-not-executed
+15D–20 ⬜
 ```
 
 10D final:
@@ -2006,9 +2009,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `15B — Python Foundations`.
+**Sıradaki gerçek numbered work:** `15C — C Foundations`.
 
-**15B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**15C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2058,8 +2061,8 @@ AŞAMA 14 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `15B — Python Foundations`.  
-**15B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `15C — C Foundations`.  
+**15C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2342,4 +2345,17 @@ Kullanıcı kararları: çalıştırma + bağımsız QA; okunur Python alt küme
 
 **AŞAMA 15A ✅ CPFX-v0 / D-112.**
 
-**Aktif adım:** `15B — Python Foundations` — henüz yürütülmedi; fresh PRE + kullanıcı açık onayı zorunlu.
+**Sonraki durum için aşağıdaki D-113 ekine bakın.**
+
+---
+## 15B completion addendum — D-113
+
+15B `PYFX-v0 — Python Foundations content` ile tamamlandı; ikinci içerik paketi sevk ediliyor ve öğrenci ilk kez kod yazıyor. Canonical: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`; contract/QA: `arch/15b_python_foundations/`; içerik kaynağı `curriculum/content/15b_python_foundations/` (20 Skill dosyası, bağımsız inceleme, 85 test suite'i); sevk edilen paket `android/app-wiring/src/main/assets/curriculum_package_v2.txt`; synthesis `research/15b_python_foundations_research.md`.
+
+Ana invariant: bir program ne yaptığına göre, öğrencinin kendi bilgisayarında, doğru çözümü makul bir yanlış çözümden ayırabilen testlerle değerlendirilir; doğru bir çözümü prompt'un söylemediği bir nedenle düşüren test testin kusurudur. Sonraki bir paket yalnız ekler: yayımlanmış hiçbir şey yeniden taşınmaz ya da üzerine yazılmaz ve bir Skill yalnız hazır olabilmesi için gereken her şeyle yayımlanır.
+
+Kullanıcı kararları: on yedi tohum + üç ön koşul (20 Skill); artımlı paket, varlık sürümü anlamsal revizyondur (11D'nin kuralı daraltıldı). 109 item (85 kod suite'iyle, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; koşucu UTF-8 kipinde; bağımsız inceleme üç geçişte 109/109, 116/116; iki paket gerçek SQLite şemasına JVM'de yayımlanıyor. Mutation 27/27, 254/254 QA PASS. T6 ve cihazda ingestion çalıştırılmadı.
+
+**AŞAMA 15B ✅ PYFX-v0 / D-113.**
+
+**Aktif adım:** `15C — C Foundations` — henüz yürütülmedi; fresh PRE + kullanıcı açık onayı zorunlu.

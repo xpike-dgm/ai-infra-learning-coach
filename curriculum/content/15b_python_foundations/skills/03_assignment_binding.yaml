@@ -1,0 +1,247 @@
+skill: skill.python.assignment_binding
+activity: coding_production
+tasks:
+  teach: {title: "Atama ve isim bağlama: durumu kodla değiştirmek", minutes: 15}
+  practice: {title: "Atama yazma alıştırması", minutes: 15}
+  check: {title: "Atama yazma kontrolü", minutes: 15}
+  review: {title: "Atama yazma tekrarı", minutes: 12}
+  repair: {title: "Atamayı yeniden kurmak: her adımda durum", minutes: 15}
+
+objectives:
+  - id: objective.python.assignment_binding.write_state_change
+    statement: >-
+      Değişkenlere değer atayan, yeniden atayan (=, +=, -=, *=) ve bir değeri başka bir isme kopyalayan küçük bir Python
+      programı yazarak istenen durum değişimini kurabilmek ve sonucu istenen biçimde yazdırabilmek.
+    observable_behavior: >-
+      İstenen sırayla değişkenleri güncelleyen, gerektiğinde geçici bir değişkenle takas yapan ve çıktıyı birebir
+      üreten programı yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. Bu Skill girdi okumayı (input) öğreten
+      Skill'den önce gelir (6C'de input_output_basic bu Skill'e bağlıdır), bu yüzden testleri tek ve sabit bir çıktıyı
+      kontrol eder: sabit çıktıyı doğrudan yazdıran bir program da geçer. Bu sınır spec'te kayıtlı.
+    checks:
+      - prints: "40\n55"
+        code: |
+          fiyat = 40
+          print(fiyat)
+          fiyat += 15
+          print(fiyat)
+      - prints: "9 5"
+        code: |
+          x = 5
+          y = x
+          x = 9
+          print(x, y)
+    explanations:
+      canonical: |
+        15A'da atamayı okumayı öğrendin; şimdi yazıyorsun. Kurallar aynı: = sağ tarafı o anki değerlerle hesaplar ve sonucu soldaki isme bağlar.
+
+        fiyat = 40
+        print(fiyat)
+        fiyat += 15
+        print(fiyat)
+
+        Bu program önce 40, sonra 55 yazar. fiyat += 15, fiyat = fiyat + 15'in kısaltmasıdır. Aynı şekilde -=, *= de vardır.
+
+        İsimlendirme: Değişken adları harf ya da _ ile başlar; harf, rakam ve _ içerebilir; boşluk içeremez. Python büyük-küçük harfe duyarlıdır: fiyat ile Fiyat farklı isimlerdir. Anlamlı isimler seç: t yerine toplam.
+
+        Bir değeri başka bir isme kopyalamak:
+        x = 5
+        y = x
+        x = 9
+        print(x, y)
+        Ekranda 9 5 görünür. y = x satırı y'ye o anki değeri (5) bağladı; x'in sonradan 9 olması y'yi değiştirmez.
+
+        print birden çok değeri aralarına boşluk koyarak yazar: print("Toplam", 50) ekrana Toplam 50 yazar.
+
+        Takas: iki değişkenin değerlerini değiştirmek için geçici bir değişken kullan:
+        gecici = a
+        a = b
+        b = gecici
+
+        Programı yazarken her satırdan sonra hangi değişkenin hangi değeri tuttuğunu düşün; 15A'daki durum tablosu yazarken de en güvenilir araçtır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: kasa 200 lirayla başlasın; 45 lira harcansın; 80 lira eklensin; her adımdan sonra kasa yazdırılsın.
+
+          kasa = 200
+          print(kasa)
+          kasa -= 45
+          print(kasa)
+          kasa += 80
+          print(kasa)
+
+          Çıktı: 200, 155, 235 (alt alta). Her güncelleme aynı ismi yeniden bağlar; eski değer, yenisi hesaplanırken kullanılır ve sonra unutulur.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum, 15A): atama önce sağ tarafı hesaplar, sonra yalnız soldaki ismi günceller. Yazmadan önce, programın sonunda hangi değişkenin hangi değeri tutması gerektiğini bir durum tablosunda planla.
+      state_trace:
+        level: H2
+        text: |
+          Yazmadan önce planlamak — başka bir örnek üzerinde.
+
+          İstenen: puan 10'dan başlasın, iki katına çıksın, sonra 3 azalsın; son değer yazdırılsın.
+
+          plan:
+          puan = 10   → 10
+          puan *= 2   → 20
+          puan -= 3   → 17
+          print(puan) → 17
+
+          Plan tablosu doğruysa programı satır satır ondan kopyalarsın.
+    misconceptions:
+      - slug: copy_follows_original
+        name: Bir kopya, asıl değişken değişince onu izler
+        open_question: y = x satırından sonra x değişirse y'nin de değişeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "y, x'in kopyası; x büyüyünce y de büyür."
+
+            y = x çalıştığı anda y'ye x'in o anki değeri bağlanır. Sayılar ve yazılar için, sonra x'e yeni bir değer atamak y'yi değiştirmez.
+      - slug: swap_without_temp
+        name: İki satırla (a = b; b = a) takas yapılır
+        open_question: a = b ve ardından b = a satırlarının iki değeri takas ettiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "a = b, sonra b = a; değerler yer değiştirdi."
+
+            a = b satırı a'nın eski değerini kaybettirir; sonraki b = a artık yalnızca b'nin kendi değerini geri kopyalar ve ikisi aynı olur. Takas için önce eski değeri geçici bir değişkende sakla.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py adında bir program yaz: fiyat adında bir değişkene 40 ata, sonra += kullanarak 15 artır ve fiyatın son değerini yazdır. Ekranda yalnız 55 görünmeli.
+        suite:
+          - {id: increased_value, stdin: "", expected_stdout: "55\n"}
+        reference: |
+          fiyat = 40
+          fiyat += 15
+          print(fiyat)
+        wrong:
+          - |
+            fiyat = 40
+            fiyat + 15
+            print(fiyat)
+          - |
+            fiyat = 40
+            print(fiyat)
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py adında bir program yaz: a değişkeni 3, b değişkeni 8 ile başlasın. Geçici bir değişken kullanarak a ile b'nin değerlerini takas et ve sonra print(a, b) ile ikisini yazdır. Ekranda 8 3 görünmeli. Testler programın sonunda a ve b değişkenlerinin değerlerine de bakar.
+        harness: |
+          import io, contextlib
+          with contextlib.redirect_stdout(io.StringIO()) as cikti:
+              import cozum
+          print(cikti.getvalue().strip(), "|", cozum.a, cozum.b)
+        suite:
+          - {id: swapped, args: [], expected_stdout: "8 3 | 8 3\n"}
+        reference: |
+          a = 3
+          b = 8
+          gecici = a
+          a = b
+          b = gecici
+          print(a, b)
+        wrong:
+          - |
+            a = 3
+            b = 8
+            a = b
+            b = a
+            print(a, b)
+          - |
+            a = 3
+            b = 8
+            print(b, a)
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bakiye 100 ile başlasın. Önce 30 harcansın (-=) ve bakiye yazdırılsın; sonra 50 yatırılsın (+=) ve bakiye yeniden yazdırılsın. Ekranda alt alta 70 ve 120 görünmeli.
+        suite:
+          - {id: balance_after_each_step, stdin: "", expected_stdout: "70\n120\n"}
+        reference: |
+          bakiye = 100
+          bakiye -= 30
+          print(bakiye)
+          bakiye += 50
+          print(bakiye)
+        wrong:
+          - |
+            bakiye = 100
+            bakiye -= 30
+            bakiye += 50
+            print(bakiye)
+          - |
+            bakiye = 100
+            print(bakiye - 30)
+            print(bakiye + 50)
+      - slug: f04
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: ilk adında bir değişken 7 ile başlasın, kopya adında bir değişkene ilk'in değeri kopyalansın, sonra ilk'e 2 atansın. Son olarak print(ilk, kopya) ile ikisini yazdır: kopyanın, kopyalandığı andaki değeri koruduğu görünmeli (ekranda 2 7).
+        suite:
+          - {id: copy_keeps_value, stdin: "", expected_stdout: "2 7\n"}
+        reference: |
+          ilk = 7
+          kopya = ilk
+          ilk = 2
+          print(ilk, kopya)
+        wrong:
+          - |
+            ilk = 7
+            ilk = 2
+            kopya = ilk
+            print(ilk, kopya)
+          - |
+            ilk = 7
+            kopya = ilk
+            ilk = 2
+            print(kopya, ilk)
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç ürünün fiyatları 12, 30 ve 8. toplam adında bir değişken 0'dan, adet adında bir değişken 0'dan başlasın; her ürün için toplama fiyatı += ile ekle ve adedi 1 artır. Sonunda print("Toplam", toplam, "Adet", adet) ile yazdır. Ekranda Toplam 50 Adet 3 görünmeli.
+        suite:
+          - {id: running_totals, stdin: "", expected_stdout: "Toplam 50 Adet 3\n"}
+        reference: |
+          toplam = 0
+          adet = 0
+          toplam += 12
+          adet += 1
+          toplam += 30
+          adet += 1
+          toplam += 8
+          adet += 1
+          print("Toplam", toplam, "Adet", adet)
+        wrong:
+          - |
+            toplam = 0
+            adet = 0
+            toplam = 12
+            adet += 1
+            toplam = 30
+            adet += 1
+            toplam = 8
+            adet += 1
+            print("Toplam", toplam, "Adet", adet)
+          - |
+            toplam = 0
+            adet = 0
+            toplam += 12
+            toplam += 30
+            toplam += 8
+            adet += 1
+            print("Toplam", toplam, "Adet", adet)

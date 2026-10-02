@@ -186,3 +186,7 @@ Next numbered step: **14E — AI-generated code comprehension check**. It must r
 ---
 
 **14G note (2026-10-02, `D-111`):** the AI path's instructions and schema now exist in core (`code_evaluation_instructions/1`, `code_evaluation/1`) and the adapter's call site in 14G; an objective the request did not name is no answer. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.
+
+---
+
+**15B note (2026-10-02, `D-113`):** `tools/code_test_runner.py` now starts `{python}` as `python -X utf8`. On Windows the learner's program otherwise wrote its output in the console code page, so a correct program printing Turkish letters failed its test. 14D's suites still pass. The first production suites ship in 15B (`curriculum/content/15b_python_foundations/suites/`). Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.

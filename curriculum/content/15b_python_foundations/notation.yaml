@@ -1,0 +1,133 @@
+# The Python notation of 15B. 15A taught a small subset for reading; 15B teaches Python for writing, Skill by Skill.
+#
+# Each construct is introduced by the lesson(s) of the Skill(s) named here. An item may use a construct — in the code it
+# shows, in its options, and in the reference solution the learner has to be able to write — only if its own Skill, a
+# hard prerequisite of it (including 15A's Skills, which are already published), or a Skill the item declares in
+# `required_skills` introduces it. Otherwise the construct is a hidden prerequisite and the build refuses to validate the
+# item. A construct nobody introduces here is forbidden in every 15B item.
+#
+# Patterns are matched against code only, never against prose. The test harness a code item's suite runs is the
+# course's, not the learner's, and is not scanned.
+constructs:
+  # ---- taught in 15A (for reading) and written from 15B on
+  print_call:
+    pattern: '\bprint\('
+    introduced_by: [skill.computing.program_execution_model, skill.programming.state_assignment_model, skill.python.run_repl_script]
+  string_literal:
+    pattern: '"[^"\n]*"'
+    introduced_by: [skill.computing.program_execution_model, skill.programming.state_assignment_model, skill.python.run_repl_script]
+  comment:
+    pattern: '#'
+    introduced_by: [skill.programming.state_assignment_model]
+  assignment:
+    pattern: '^\s*[A-Za-z_]\w*\s*=(?!=)'
+    introduced_by: [skill.programming.state_assignment_model, skill.python.assignment_binding]
+  augmented_assignment:
+    pattern: '[+\-*]='
+    introduced_by: [skill.programming.state_assignment_model, skill.python.assignment_binding]
+  arithmetic:
+    pattern: '[\w)\]]\s*[+\-*]\s*[\w(\["]'
+    introduced_by: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
+  floor_division_remainder:
+    pattern: '//|%'
+    introduced_by: [skill.programming.expression_boolean_reasoning, skill.python.expression_evaluation]
+  comparison:
+    pattern: '==|!=|<=|>=|<|>'
+    introduced_by: [skill.programming.expression_boolean_reasoning, skill.python.expression_evaluation]
+  boolean_logic:
+    pattern: '\b(and|or|not|True|False)\b'
+    introduced_by: [skill.programming.expression_boolean_reasoning, skill.python.expression_evaluation]
+  if_branch:
+    pattern: '^\s*(if|elif|else)\b'
+    introduced_by: [skill.programming.branching_reasoning, skill.python.conditionals]
+  while_loop:
+    pattern: '^\s*while\b'
+    introduced_by: [skill.programming.iteration_reasoning, skill.python.while_termination]
+  for_loop:
+    pattern: '^\s*for\b'
+    introduced_by: [skill.programming.iteration_reasoning, skill.python.for_iteration]
+  function_def:
+    pattern: '^\s*def\b|\breturn\b'
+    introduced_by: [skill.programming.function_decomposition, skill.python.functions_parameters_return]
+  # ---- introduced in 15B
+  true_division:
+    pattern: '(?<![/])/(?![/])'
+    introduced_by: [skill.python.expression_evaluation]
+  exponent:
+    pattern: '\*\*'
+    introduced_by: [skill.python.expression_evaluation]
+  type_conversion:
+    pattern: '\b(int|float|str|bool|type)\('
+    introduced_by: [skill.python.value_type_behavior]
+  none_literal:
+    pattern: '\bNone\b'
+    introduced_by: [skill.python.value_type_behavior, skill.python.functions_parameters_return]
+  input_call:
+    pattern: '\binput\('
+    introduced_by: [skill.python.input_output_basic]
+  length:
+    pattern: '\blen\('
+    introduced_by: [skill.python.list_operations, skill.python.tuple_immutable_sequence, skill.python.set_operations,
+                   skill.python.mapping_collections_basic, skill.python.string_text_operations]
+  aggregate_builtins:
+    pattern: '\b(sum|min|max|sorted|abs|round)\('
+    introduced_by: [skill.python.list_operations, skill.python.expression_evaluation]
+  brackets:
+    pattern: '[\[\]]'
+    introduced_by: [skill.python.list_operations, skill.python.tuple_immutable_sequence, skill.python.string_text_operations]
+  braces:
+    pattern: '[{}]'
+    introduced_by: [skill.python.mapping_collections_basic, skill.python.set_operations]
+  methods:
+    pattern: '\.[A-Za-z_]\w*\('
+    introduced_by: [skill.python.list_operations, skill.python.set_operations, skill.python.mapping_collections_basic,
+                   skill.python.string_text_operations, skill.python.files_paths_basic, skill.python.path_handling,
+                   skill.python.modules_imports_basic]
+  f_string:
+    pattern: '\bf"'
+    introduced_by: [skill.python.string_text_operations]
+  imports:
+    pattern: '^\s*(import|from)\b'
+    introduced_by: [skill.python.modules_imports_basic]
+  main_guard:
+    pattern: '__name__'
+    introduced_by: [skill.python.modules_imports_basic]
+  exceptions:
+    pattern: '^\s*(try|except|finally)\b|\braise\b'
+    introduced_by: [skill.python.exception_handling]
+  file_io:
+    pattern: '\bopen\(|^\s*with\b'
+    introduced_by: [skill.python.files_paths_basic]
+  global_scope:
+    pattern: '^\s*(global|nonlocal)\b'
+    introduced_by: [skill.python.scope_name_resolution]
+  # ---- never introduced in 15B: each belongs to a later Python step (20A) or is not foundations
+  comprehensions:
+    pattern: '[\[{(][^\]})]*\bfor\b'
+    introduced_by: []
+  lambda_expression:
+    pattern: '\blambda\b'
+    introduced_by: []
+  classes:
+    pattern: '^\s*class\b'
+    introduced_by: []
+  generators:
+    pattern: '\byield\b'
+    introduced_by: []
+
+roles:
+  all: [recent_required_progress, weakness_or_verification, retention_due,
+        longitudinal_required_capability, persistent_weakness_or_verification, delayed_retention_sampling]
+  transfer: [integration_or_transfer, cross_topic_transfer]
+  critical: [critical_prerequisite_confidence, critical_capability_revalidation]
+
+# Authoring estimates of active minutes (QAB-v0 §22). Uncalibrated: 18B observes and corrects them.
+minutes:
+  basic: 2
+  authentic_application: 3
+  transfer_integration: 4
+# Writing and running a small program at the computer takes longer than reading one.
+minutes_code:
+  basic: 5
+  authentic_application: 8
+  transfer_integration: 10

@@ -1109,3 +1109,7 @@ FBB-v0 authoring seed olduğu için bu QA patch published learner semantic state
 ---
 
 **15A note (2026-10-02, `D-112`):** the first production package ratified §6.1's shared computing/programming subgraph as 6C decomposed it (12 Skills, 13 Objectives, 11 internal edges) from `draft` to `published`, with identities unchanged and each Objective's refined metadata recorded with its reason; §16's authoring roles are met for every Objective. Details: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.
+
+---
+
+**15B note (2026-10-02, `D-113`):** the second production package ratified §6.2's twelve Python seeds as 6C decomposed them (seventeen Skills), plus the three hard prerequisites outside them (`scope_name_resolution`, `exception_handling`, `string_text_operations`; user decision): 20 Skills, 21 Objectives, 31 edges, from `draft` to `published`, identities unchanged. Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.

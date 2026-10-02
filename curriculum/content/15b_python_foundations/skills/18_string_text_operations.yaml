@@ -1,0 +1,254 @@
+skill: skill.python.string_text_operations
+activity: coding_production
+tasks:
+  teach: {title: "Metinle çalışmak: dilimleme, arama, biçimlendirme ve Türkçe harfler", minutes: 18}
+  practice: {title: "Metin işlemleri alıştırması", minutes: 15}
+  check: {title: "Metin işlemleri kontrolü", minutes: 15}
+  review: {title: "Metin işlemleri tekrarı", minutes: 12}
+  repair: {title: "Metin işlemlerini yeniden kurmak: yazılar değişmez", minutes: 18}
+
+objectives:
+  - id: objective.python.string_text_operations.demonstrate_capability
+    statement: >-
+      Unicode yazılar üzerinde temel işlemleri doğru yapabilmek: indeks ve dilimleme ile parça almak, split, join,
+      strip, replace, find, count, startswith gibi yöntemlerle aramak ve dönüştürmek, f-string ile biçimlendirmek;
+      yazıların değiştirilemez olduğunu ve Python'un lower() / upper() yöntemlerinin Türkçe I/ı ve İ/i harflerini
+      Türkçe kurallarına göre dönüştürmediğini bilerek davranmak.
+    observable_behavior: >-
+      Yazıları bölen, birleştiren, arayan, biçimlendiren ve Türkçe harflerde doğru büyük/küçük harf dönüşümü yapan
+      fonksiyonlar yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. 6C'nin "normalization-aware" ifadesi bu adımda Türkçe büyük/küçük harf dönüşümü olarak ölçülür
+      (Python'un dil bağımsız lower/upper davranışı); Unicode normal biçimleri (NFC/NFD) 15B'de öğretilmez. Item'lar
+      fonksiyon yazdırdığı için functions_parameters_return'ü beyan eder.
+    checks:
+      - prints: "Pyt on 6"
+        code: |
+          s = "Python"
+          print(s[:3], s[-2:], len(s))
+      - prints: "elma-armut-kiraz"
+        code: |
+          print("-".join("elma armut kiraz".split()))
+      - prints: "Toplam: 12.50 TL"
+        code: |
+          tutar = 12.5
+          print(f"Toplam: {tutar:.2f} TL")
+      - prints: "ışık"
+        code: |
+          s = "IŞIK"
+          print(s.replace("I", "ı").lower())
+      - prints: "False"
+        code: |
+          print("İ".lower() == "i")
+    explanations:
+      canonical: |
+        Bir yazı (str), karakterlerden oluşan değiştirilemez bir dizidir.
+
+        İndeks ve dilimleme (listelerdeki gibi):
+        s = "Python"
+        s[0] → "P", s[-1] → "n", s[:3] → "Pyt", s[2:] → "thon", s[::-1] → "nohtyP"
+        len(s) → 6
+
+        Yazılar değiştirilemez: s[0] = "J" hata verir. Yöntemler her zaman yeni bir yazı döndürür; sonucu bir isme atamazsan kaybolur:
+        s.upper()          (s değişmez)
+        s = s.upper()      (s artık büyük harfli)
+
+        Sık kullanılan yöntemler:
+        - "a b  c".split() → ["a", "b", "c"]  (boşluklara göre böler; split(",") virgüle göre)
+        - "-".join(["a", "b"]) → "a-b"
+        - "  merhaba  ".strip() → "merhaba"
+        - "kedi".replace("e", "a") → "kadi"
+        - "banana".find("na") → 2  (yoksa -1); "banana".count("a") → 3
+        - "rapor.txt".startswith("rap") → True; endswith(".txt") → True
+        - "a" in "kalem" → True
+
+        f-string ile biçimlendirme:
+        ad = "Ece"; puan = 7.456
+        f"{ad}: {puan:.1f}" → "Ece: 7.5"   (:.1f bir ondalık basamak)
+
+        Türkçe harfler — önemli:
+        Python'un lower() ve upper() yöntemleri dil bilmez. Türkçede I'nın küçüğü ı, İ'nin küçüğü i'dir; Python ise
+        - "I".lower() → "i" verir (Türkçede ı olmalı),
+        - "İ".lower() → "i" ile üstüne bir nokta işareti (iki karakter!) verir; ekranda "i" gibi görünse de "i" ile eşit değildir,
+        - "i".upper() → "I" verir (Türkçede İ olmalı).
+        Türkçe bir metni doğru dönüştürmek için bu harfleri önce kendin değiştirirsin:
+        s.replace("I", "ı").replace("İ", "i").lower()
+        Sıra önemlidir: önce özel harfleri değiştir, sonra lower() çağır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (ifadeler): + iki yazıyı birleştirir, * bir yazıyı tekrarlar ("ab" * 2 → "abab"); bir yazı ile bir sayı + ile birleştirilemez, önce str() ile çevrilir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: kisalt(metin, n) — metin n karakterden uzunsa ilk n karakterini ve sonuna "..." eklenmiş halini, değilse metnin kendisini döndür.
+
+          def kisalt(metin, n):
+              if len(metin) > n:
+                  return metin[:n] + "..."
+              return metin
+
+          - metin[:n] ilk n karakteri verir; metin değişmez.
+          - kisalt("Merhaba dünya", 7) → "Merhaba..."; kisalt("Selam", 10) → "Selam".
+    misconceptions:
+      - slug: string_methods_mutate
+        name: Bir yazı yöntemi yazının kendisini değiştirir
+        open_question: s.upper() çağırdıktan sonra s'nin büyük harfli olacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Listelerde append listeyi değiştiriyor; upper da yazıyı değiştirir."
+
+            Yazılar değiştirilemez. upper, replace, strip gibi yöntemler yeni bir yazı döndürür; s aynı kalır. Sonucu kullanmak için atamalısın: s = s.upper().
+      - slug: lower_is_turkish_aware
+        name: lower() Türkçe harfleri doğru küçültür
+        open_question: '"IŞIK".lower() sonucunun "ışık" olacağını mı düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "lower() her dilde doğru küçük harfi bilir."
+
+            Python'un lower() yöntemi dil bilmez: "IŞIK".lower() → "işik" verir, "İ".lower() ise "i" ile bir nokta işareti olmak üzere iki karakter verir. Türkçe metinde önce I → ı ve İ → i değiştirilir, sonra lower() çağrılır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına bas_harfler(ad_soyad) adında bir fonksiyon yaz: boşluklarla ayrılmış adların her birinin ilk harfini, arkasına nokta koyarak birleştirsin. Örnek: bas_harfler("Ada Nur Yılmaz") → "A.N.Y.".
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration]
+        harness: |
+          import sys, cozum
+          print(cozum.bas_harfler(sys.argv[1]))
+        suite:
+          - {id: three_names, args: ["Ada Nur Yılmaz"], expected_stdout: "A.N.Y.\n"}
+          - {id: two_names, args: ["Can Öztürk"], expected_stdout: "C.Ö.\n"}
+          - {id: extra_spaces, args: ["  Elif   Şahin "], expected_stdout: "E.Ş.\n"}
+        reference: |
+          def bas_harfler(ad_soyad):
+              sonuc = ""
+              for ad in ad_soyad.split():
+                  sonuc += ad[0] + "."
+              return sonuc
+        wrong:
+          - |
+            def bas_harfler(ad_soyad):
+                sonuc = ""
+                for ad in ad_soyad.split(" "):
+                    sonuc += ad[0] + "."
+                return sonuc
+          - |
+            def bas_harfler(ad_soyad):
+                sonuc = ""
+                for ad in ad_soyad.split():
+                    sonuc += ad[0]
+                return sonuc
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına yuzde(ad, oran) adında bir fonksiyon yaz: 0 ile 1 arasındaki oranı yüzdeye çevirip bir f-string ile "AD: %YÜZDE" biçiminde döndürsün; yüzde bir ondalık basamakla yazılsın. Örnek: yuzde("Deniz", 0.456) → "Deniz: %45.6".
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.yuzde(sys.argv[1], float(sys.argv[2])))
+        suite:
+          - {id: example, args: ["Deniz", "0.456"], expected_stdout: "Deniz: %45.6\n"}
+          - {id: whole, args: ["Can", "1"], expected_stdout: "Can: %100.0\n"}
+          - {id: float_noise, args: ["Ada", "0.07"], expected_stdout: "Ada: %7.0\n"}
+        reference: |
+          def yuzde(ad, oran):
+              return f"{ad}: %{oran * 100:.1f}"
+        wrong:
+          - |
+            def yuzde(ad, oran):
+                return f"{ad}: %{oran:.1f}"
+          - |
+            def yuzde(ad, oran):
+                return f"{ad}: %{oran * 100}"
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına uzanti_say(dosyalar, uzanti) adında bir fonksiyon yaz: dosya adlarından oluşan listede verilen uzantıyla (örneğin ".txt") biten kaç dosya olduğunu döndürsün. Büyük/küçük harf farkı önemsiz olsun (dosya ve uzantı adları yalnız İngilizce harflerden oluşur). Örnek: uzanti_say(["a.txt", "B.TXT", "c.txt.bak"], ".txt") → 2.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.uzanti_say(sys.argv[2:], sys.argv[1]))
+        suite:
+          - {id: mixed_case, args: [".txt", "a.txt", "B.TXT", "c.txt.bak"], expected_stdout: "2\n"}
+          - {id: none, args: [".py", "notlar.md", "resim.png"], expected_stdout: "0\n"}
+          - {id: upper_extension, args: [".PNG", "x.png", "y.Png", "png.txt"], expected_stdout: "2\n"}
+        reference: |
+          def uzanti_say(dosyalar, uzanti):
+              sayi = 0
+              for d in dosyalar:
+                  if d.lower().endswith(uzanti.lower()):
+                      sayi += 1
+              return sayi
+        wrong:
+          - |
+            def uzanti_say(dosyalar, uzanti):
+                sayi = 0
+                for d in dosyalar:
+                    if uzanti.lower() in d.lower():
+                        sayi += 1
+                return sayi
+          - |
+            def uzanti_say(dosyalar, uzanti):
+                sayi = 0
+                for d in dosyalar:
+                    if d.endswith(uzanti):
+                        sayi += 1
+                return sayi
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına ters_kelimeler(cumle) adında bir fonksiyon yaz: cümledeki kelimelerin sırasını tersine çevirip aralarında tek boşlukla birleştirsin; kelimelerin kendisi değişmesin. Örnek: ters_kelimeler("bugün hava çok güzel") → "güzel çok hava bugün".
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.ters_kelimeler(sys.argv[1]))
+        suite:
+          - {id: four_words, args: ["bugün hava çok güzel"], expected_stdout: "güzel çok hava bugün\n"}
+          - {id: one_word, args: ["merhaba"], expected_stdout: "merhaba\n"}
+          - {id: extra_spaces, args: [" bir  iki üç "], expected_stdout: "üç iki bir\n"}
+        reference: |
+          def ters_kelimeler(cumle):
+              return " ".join(cumle.split()[::-1])
+        wrong:
+          - |
+            def ters_kelimeler(cumle):
+                return cumle[::-1]
+          - |
+            def ters_kelimeler(cumle):
+                return " ".join(cumle.split(" ")[::-1])
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına tr_buyuk(metin) adında bir fonksiyon yaz: metni Türkçe kurallarına göre büyük harfe çevirsin — i harfi İ, ı harfi I olsun; diğer harfler upper() ile büyüsün. Örnek: tr_buyuk("ışık izmir") → "IŞIK İZMİR".
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          sonuc = cozum.tr_buyuk(sys.argv[1])
+          print(sonuc, len(sonuc))
+        suite:
+          - {id: dotless_and_dotted, args: ["ışık izmir"], expected_stdout: "IŞIK İZMİR 10\n"}
+          - {id: dotted_only, args: ["inci"], expected_stdout: "İNCİ 4\n"}
+          - {id: plain, args: ["Ankara"], expected_stdout: "ANKARA 6\n"}
+          - {id: already_upper, args: ["KIŞ"], expected_stdout: "KIŞ 3\n"}
+        reference: |
+          def tr_buyuk(metin):
+              return metin.replace("i", "İ").upper()
+        wrong:
+          - |
+            def tr_buyuk(metin):
+                return metin.upper()
+          - |
+            def tr_buyuk(metin):
+                return metin.upper().replace("I", "İ")

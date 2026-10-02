@@ -68,6 +68,13 @@ dependencies {
     // 15A: the first JVM test in this module (the shipped package planned by the real planner). An Android module does
     // not infer the JUnit 5 flavour of kotlin-test the way the JVM modules do, so it is named.
     testImplementation(kotlin("test-junit5"))
+    // 15B: the shipped course is published into the real SQLite store by a JVM test. The Android flavour of the bundled
+    // driver carries only device libraries, so the unit tests run the JVM flavour (the one `data-persistence` tests use).
+    testRuntimeOnly("androidx.sqlite:sqlite-bundled-jvm:${libs.versions.sqlite.get()}")
+}
+
+configurations.matching { it.name.endsWith("UnitTestRuntimeClasspath") }.configureEach {
+    exclude(group = "androidx.sqlite", module = "sqlite-bundled-android")
 }
 
 tasks.withType<Test>().configureEach {

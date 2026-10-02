@@ -1,0 +1,260 @@
+skill: skill.python.exceptions_read_basic
+activity: code_reading_trace
+tasks:
+  teach: {title: "Hata mesajını okumak: tür, satır ve çağrı zinciri", minutes: 14}
+  practice: {title: "Hata mesajı okuma alıştırması", minutes: 10}
+  check: {title: "Hata mesajı okuma kontrolü", minutes: 8}
+  review: {title: "Hata mesajı okuma tekrarı", minutes: 6}
+  repair: {title: "Hata mesajını yeniden okumak: aşağıdan yukarıya", minutes: 12}
+
+objectives:
+  - id: objective.python.exceptions_read_basic.extract_error_type_location
+    statement: >-
+      Python'un bir programı durdururken yazdığı hata mesajından (traceback) hatanın türünü, mesajını ve nerede
+      çıktığını okuyabilmek: son satırdaki tür ve mesajı, en alttaki kaydın dosya, satır ve fonksiyon adını ve en üstteki
+      kayıttan programın kendi kodunda hatayı başlatan satırı bulabilmek.
+    observable_behavior: >-
+      Gösterilen bir traceback'ten hatanın türünü, hatanın çıktığı satırı ve fonksiyonu, hatayı başlatan çağrıyı ve
+      mesajın söylediği değeri doğru verir; bir hatanın türünü kodu okuyarak tahmin eder.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type code_reading. Traceback'ler build sırasında
+      program gerçekten program.py olarak çalıştırılarak üretilir ve item'da gösterilen metin gerçeğiyle karşılaştırılır;
+      Python sürümüne göre değişen işaret (^ ve ~) satırları gösterilmez. İşlem gereken kodu okumak için item'lar
+      kullandıkları Skill'leri (atama, ifade, liste, fonksiyon, sözlük) beyan eder.
+    checks:
+      - prints: "ValueError"
+        code: |
+          try:
+              int("on")
+          except Exception as e:
+              print(type(e).__name__)
+      - prints: "ZeroDivisionError"
+        code: |
+          try:
+              print(5 // 0)
+          except Exception as e:
+              print(type(e).__name__)
+    explanations:
+      canonical: |
+        Bir Python programı bir hatayla durduğunda ekrana bir hata mesajı yazar. Buna traceback denir ve bir düzeni vardır.
+
+        Örnek program (program.py):
+        1  def kare_kok(n):
+        2      return int(n) ** 0.5
+        3
+        4  print(kare_kok("16"))
+        5  print(kare_kok("on"))
+
+        Ekranda önce 4.0 görünür, sonra:
+
+        Traceback (most recent call last):
+          File "program.py", line 5, in <module>
+            print(kare_kok("on"))
+          File "program.py", line 2, in kare_kok
+            return int(n) ** 0.5
+        ValueError: invalid literal for int() with base 10: 'on'
+
+        Aşağıdan yukarıya okunur:
+        1. Son satır: hatanın türü (ValueError) ve mesajı. Mesaj çoğu zaman sorunlu değeri de söyler ('on').
+        2. Hemen üstündeki kayıt: hatanın gerçekten çıktığı yer — program.py, 2. satır, kare_kok fonksiyonunun içi. Altında o satırın kendisi yazılıdır.
+        3. Yukarıya doğru her kayıt, bir öncekini çağıran yerdir. En üstteki kayıt (in <module>) programın ana kodunda zinciri başlatan satırdır: 5. satır.
+
+        "most recent call last" bu yüzden yazılır: en son yapılan çağrı en alttadır.
+
+        Sık görülen türler:
+        - ZeroDivisionError: sıfıra bölme
+        - TypeError: işlem bu türlerle yapılamaz ("Yaş: " + 17 gibi)
+        - ValueError: tür doğru ama değer uygun değil (int("on"))
+        - NameError: tanımlanmamış bir isim
+        - IndexError: listede olmayan bir sıra numarası
+        - KeyError: sözlükte olmayan bir anahtar
+        - SyntaxError: program hiç çalışmadan önce, yazım hatası
+
+        Hatanın çıktığı satır her zaman hatanın sebebinin yazıldığı satır değildir: yanlış değer başka bir yerden gelmiş olabilir. Traceback nereye bakmaya başlayacağını söyler.
+
+        Python yeni sürümlerde hatalı ifadenin altına ^ ve ~ işaretleri de çizer; bu derste gösterilmezler.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (bir programı çalıştırmak): python program.py komutu programı satır satır çalıştırır; bir satır hata verirse program orada durur ve ondan sonraki satırlar çalışmaz. Hatadan önce yazdırılanlar ekranda kalır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek. Bu traceback'i okuyalım:
+
+          Traceback (most recent call last):
+            File "program.py", line 8, in <module>
+              goster(veriler)
+            File "program.py", line 5, in goster
+              print(ilk(liste))
+            File "program.py", line 2, in ilk
+              return liste[0]
+          IndexError: list index out of range
+
+          - Tür: IndexError — listede olmayan bir sıra numarası.
+          - Hatanın çıktığı yer: 2. satır, ilk fonksiyonu (en alttaki kayıt).
+          - Zinciri başlatan: 8. satır, ana kod (en üstteki kayıt); goster, ilk'i çağırmış.
+          - liste[0] bile olmadığına göre liste boştur: sebebi aramaya veriler'in nasıl oluşturulduğundan başlarız.
+    misconceptions:
+      - slug: read_traceback_top_down
+        name: Hatanın yeri traceback'in en üstündeki satırdır
+        open_question: Traceback'te en üstte yazan satırın hatanın çıktığı yer olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İlk gördüğüm satır numarası hatanın yeridir."
+
+            Traceback'te en son çağrı en alttadır. Hatanın çıktığı yer, son satırdaki türün hemen üstündeki kayıttır; en üstteki kayıt yalnız programın ana kodunda zinciri başlatan satırı gösterir.
+      - slug: error_line_is_cause
+        name: Hatanın çıktığı satır her zaman düzeltilecek satırdır
+        open_question: Traceback'in gösterdiği satırın her zaman yanlış yazılmış satır olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Python 3. satır dediyse yanlış 3. satırdadır."
+
+            Traceback hatanın nerede ortaya çıktığını söyler. Sorunlu değer (sıfır bir adet, boş bir liste, yanlış bir anahtar) çoğu zaman başka bir yerden, örneğin çağıran koddan gelir. Okumaya oradan başlarsın, düzeltme başka satırda olabilir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Hatanın türü nedir? Yalnız türün adını yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 3, in <module>
+              pay = fiyat / kisi
+          ZeroDivisionError: division by zero
+        code: |
+          fiyat = 120
+          kisi = 0
+          pay = fiyat / kisi
+          print(pay)
+        required_skills: [skill.python.expression_evaluation]
+        answer: "ZeroDivisionError"
+        verify: {mode: traceback, ask: type}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          program.py çalıştırılınca önce 70 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hata programın kaçıncı satırında çıktı? Yalnız sayıyı yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 3, in <module>
+              print(notlar[3])
+          IndexError: list index out of range
+        code: |
+          notlar = [70, 85, 90]
+          print(notlar[0])
+          print(notlar[3])
+        required_skills: [skill.python.list_operations]
+        answer: "3"
+        verify: {mode: traceback, ask: line}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          program.py çalıştırılınca önce 5.0 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hata gerçekte nerede çıktı?
+
+          Traceback (most recent call last):
+            File "program.py", line 6, in <module>
+              print(ortalama([]))
+            File "program.py", line 3, in ortalama
+              return toplam / len(sayilar)
+          ZeroDivisionError: division by zero
+        code: |
+          def ortalama(sayilar):
+              toplam = sum(sayilar)
+              return toplam / len(sayilar)
+
+          print(ortalama([4, 6]))
+          print(ortalama([]))
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        options:
+          A: "3. satırda, ortalama fonksiyonunun içinde"
+          B: "6. satırda, programın ana kodunda"
+          C: "2. satırda, ortalama fonksiyonunun içinde"
+          D: "5. satırda, programın ana kodunda"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: function_line
+          outcomes: {A: "ortalama 3", B: "<module> 6", C: "ortalama 2", D: "<module> 5"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program (program.py) çalıştırılınca hangi türde bir hatayla durur? Çalıştırmadan, kodu okuyarak karar ver.
+        code: |
+          toplam = 90
+          kisi = "3"
+          print(toplam / kisi)
+        required_skills: [skill.python.value_type_behavior, skill.python.assignment_binding, skill.python.expression_evaluation]
+        options:
+          A: "TypeError"
+          B: "ValueError"
+          C: "ZeroDivisionError"
+          D: "NameError"
+        scan_options: false
+        answer: A
+        verify: {mode: traceback, ask: type, shown: false}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          program.py çalıştırılınca önce 2 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hangi renk bulunamadığı için program durdu?
+
+          Traceback (most recent call last):
+            File "program.py", line 7, in <module>
+              print(kod(r))
+            File "program.py", line 4, in kod
+              return renk_kodu[renk]
+          KeyError: 'mor'
+        code: |
+          renk_kodu = {"kırmızı": 1, "mavi": 2}
+
+          def kod(renk):
+              return renk_kodu[renk]
+
+          for r in ["mavi", "mor", "kırmızı"]:
+              print(kod(r))
+        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations, skill.python.functions_parameters_return, skill.python.for_iteration]
+        options:
+          A: "mor"
+          B: "mavi"
+          C: "kırmızı"
+          D: "renk"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: message
+          outcomes: {A: "'mor'", B: "'mavi'", C: "'kırmızı'", D: "'renk'"}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          program.py çalıştırılınca önce 25.0 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Programın ana kodunda bu hata zincirini başlatan satır kaçıncı satırdır? Yalnız sayıyı yaz.
+
+          Traceback (most recent call last):
+            File "program.py", line 9, in <module>
+              rapor(satislar)
+            File "program.py", line 6, in rapor
+              print(birim_fiyat(toplam, adet))
+            File "program.py", line 2, in birim_fiyat
+              return toplam / adet
+          ZeroDivisionError: division by zero
+        code: |
+          def birim_fiyat(toplam, adet):
+              return toplam / adet
+
+          def rapor(satirlar):
+              for toplam, adet in satirlar:
+                  print(birim_fiyat(toplam, adet))
+
+          satislar = [(100, 4), (90, 0)]
+          rapor(satislar)
+        required_skills: [skill.python.functions_parameters_return, skill.python.tuple_immutable_sequence, skill.python.for_iteration, skill.python.expression_evaluation]
+        answer: "9"
+        verify: {mode: traceback, ask: module_line}

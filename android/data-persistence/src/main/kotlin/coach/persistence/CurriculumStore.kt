@@ -36,7 +36,7 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
         if (versionExists(curriculum.version)) return PublishOutcome.AlreadyPublished(curriculum.version)
         val refusals = buildList {
             addAll(curriculum.unresolvedReferences(::isPublished).map { "unresolved reference: $it" })
-            addAll(versionMismatches(curriculum))
+            addAll(republishedEntities(curriculum))
             addAll(listSeparatorViolations(curriculum))
         }
         return if (refusals.isEmpty()) null else PublishOutcome.Refused(refusals)
@@ -303,17 +303,23 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
     // ---------------------------------------------------------------- refusals
 
     /**
-     * Every row of a package belongs to the version being published. A row carrying another version
-     * would pin user evidence to a version this publish never wrote.
+     * 15B (`D-113`, user decision): a later package may bring new entities at their own version — an entity's version is
+     * its semantic revision (`KGC-v0` §25), not the package that happened to carry it — but it may never carry an entity
+     * that is already published. A published version is never overwritten (`LFPS-v0`); the refusal names each one before
+     * anything is written. (Until 15B every entity had to carry the package's own version, which tied a Skill first
+     * published in curriculum version 2 to a version 2 it never had a version 1 of.)
      */
-    private fun versionMismatches(curriculum: CurriculumPackage): List<String> = buildList {
-        val expected = curriculum.version
-        (curriculum.domains + curriculum.modules + curriculum.topics)
-            .filter { it.version != expected }
-            .forEach { add("entity ${it.logicalId} carries version ${it.version}, not $expected") }
-        curriculum.skills.filter { it.ref.version != expected }.forEach { add("skill ${it.ref} is not version $expected") }
-        curriculum.objectives.filter { it.ref.version != expected }.forEach { add("objective ${it.ref} is not version $expected") }
-        curriculum.misconceptions.filter { it.ref.version != expected }.forEach { add("misconception ${it.ref} is not version $expected") }
+    private fun republishedEntities(curriculum: CurriculumPackage): List<String> = buildList {
+        fun check(table: String, ref: VersionedRef) {
+            if (exists(table, ref)) add("$table $ref is already published and is never overwritten")
+        }
+        curriculum.domains.forEach { check("domain", VersionedRef(it.logicalId, it.version)) }
+        curriculum.modules.forEach { check("module", VersionedRef(it.logicalId, it.version)) }
+        curriculum.topics.forEach { check("topic", VersionedRef(it.logicalId, it.version)) }
+        curriculum.skills.forEach { check("skill", it.ref) }
+        curriculum.objectives.forEach { check("objective", it.ref) }
+        curriculum.misconceptions.forEach { check("misconception", it.ref) }
+        curriculum.resources.forEach { check("assessment_resource_version", it.ref) }
     }
 
     /** The stored list columns are comma-separated, so a token containing a comma is refused. */
@@ -337,9 +343,11 @@ internal class CurriculumStore(private val connection: SQLiteConnection) {
             CurriculumPackage.OBJECTIVE -> "objective"
             else -> return false
         }
-        return queryOne("SELECT 1 FROM $table WHERE logical_id = ? AND version = ?", ref.logicalId, ref.version) { true }
-            ?: false
+        return exists(table, ref)
     }
+
+    private fun exists(table: String, ref: VersionedRef): Boolean =
+        queryOne("SELECT 1 FROM $table WHERE logical_id = ? AND version = ?", ref.logicalId, ref.version) { true } ?: false
 
     private fun versionExists(version: Int): Boolean =
         queryOne("SELECT 1 FROM curriculum_version WHERE version = ?", version) { true } ?: false

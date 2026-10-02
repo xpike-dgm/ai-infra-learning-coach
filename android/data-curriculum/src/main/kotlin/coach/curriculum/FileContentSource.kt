@@ -24,13 +24,25 @@ import coach.ports.ContentPort
  *
  * A package that does not parse is not half-loaded: the failure is kept and every lookup answers
  * `null`, so the app behaves exactly as it does with no content rather than serving fragments.
+ *
+ * 15B (`D-113`): each step of Stage 15 ships its own package — [source] is the first, [later] the rest in order. They are
+ * read together and served as one body of content; versions must rise strictly and no item, explanation, task, test
+ * suite, key or rubric may appear in two packages. If any one of them does not read, none is served: a later package
+ * builds on the earlier ones, and half of a course is not a course.
  */
-class FileContentSource(private val source: () -> String? = { null }) : ContentPort {
+class FileContentSource(
+    private val later: () -> List<String> = { emptyList() },
+    // Last, so `FileContentSource { text }` still means "this one package".
+    private val source: () -> String? = { null },
+) : ContentPort {
 
-    private val parsed: PackageFormat.Parsed? by lazy {
-        val text = source() ?: return@lazy null
-        runCatching { PackageFormat.parse(text) }.onFailure { failure = it }.getOrNull()
+    private val loaded: List<PackageFormat.Parsed>? by lazy {
+        val first = source() ?: return@lazy null
+        runCatching { (listOf(first) + later()).map(PackageFormat::parse).also(::checkSequence) }
+            .onFailure { failure = it }.getOrNull()
     }
+
+    private val parsed: PackageFormat.Parsed? by lazy { loaded?.let(::merge) }
 
     /** Why the authored package could not be read, if it could not. Never a guess about its content. */
     var failure: Throwable? = null
@@ -41,7 +53,10 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
 
     override fun assessmentItem(ref: VersionedRef): AssessmentItem? = parsed?.items?.get(ref)
 
-    override fun curriculumPackage(): CurriculumPackage? = parsed?.curriculum
+    /** The first package (11D); [curriculumPackages] is every one, oldest first. */
+    override fun curriculumPackage(): CurriculumPackage? = loaded?.first()?.curriculum
+
+    override fun curriculumPackages(): List<CurriculumPackage> = loaded.orEmpty().map { it.curriculum }
 
     /**
      * The authored tasks that serve [need] (15A): those declaring its trigger and working on its Skill, in a stable
@@ -71,4 +86,33 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
 
     /** The rubric for exactly this item version (14F). */
     override fun rubricFor(item: VersionedRef): Rubric? = parsed?.rubrics.orEmpty().singleOrNull { it.item == item }
+
+    private fun checkSequence(packages: List<PackageFormat.Parsed>) {
+        val reasons = buildList {
+            packages.zipWithNext().filter { (a, b) -> b.curriculum.version <= a.curriculum.version }
+                .forEach { (a, b) -> add("package version ${b.curriculum.version} does not follow ${a.curriculum.version}") }
+            fun <T> once(kind: String, refs: List<T>) =
+                refs.groupBy { it }.filterValues { it.size > 1 }.keys.forEach { add("$kind $it is authored in more than one package") }
+            once("item", packages.flatMap { it.items.keys })
+            once("explanation", packages.flatMap { p -> p.explanations.map { it.ref } })
+            once("task", packages.flatMap { p -> p.tasks.map { it.ref } })
+            once("code test suite", packages.flatMap { p -> p.codeTests.map { it.ref } })
+            once("comprehension check", packages.flatMap { p -> p.comprehensionChecks.map { it.ref } })
+            once("answer key", packages.flatMap { p -> p.answerKeys.map { it.ref } })
+            once("rubric", packages.flatMap { p -> p.rubrics.map { it.ref } })
+        }
+        if (reasons.isNotEmpty()) throw PackageFormat.ParseFailure(reasons)
+    }
+
+    private fun merge(packages: List<PackageFormat.Parsed>): PackageFormat.Parsed = PackageFormat.Parsed(
+        curriculum = packages.first().curriculum,
+        items = packages.fold(emptyMap()) { all, p -> all + p.items },
+        documents = packages.fold(emptyMap()) { all, p -> all + p.documents },
+        explanations = packages.flatMap { it.explanations },
+        codeTests = packages.flatMap { it.codeTests },
+        comprehensionChecks = packages.flatMap { it.comprehensionChecks },
+        answerKeys = packages.flatMap { it.answerKeys },
+        rubrics = packages.flatMap { it.rubrics },
+        tasks = packages.flatMap { it.tasks },
+    )
 }

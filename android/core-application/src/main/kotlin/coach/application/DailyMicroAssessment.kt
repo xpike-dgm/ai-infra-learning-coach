@@ -37,6 +37,20 @@ class IngestCurriculum(
         val authored = content.curriculumPackage() ?: return null
         return persistence.publishCurriculum(authored, clock.now().instantEpochMillis)
     }
+
+    /**
+     * Publishes every authored package in order (15B, `D-113`). One already published answers `AlreadyPublished` and
+     * nothing is written for it; the first refusal stops the run, because every later package builds on the earlier
+     * ones and would only be refused for references that do not exist. The outcomes say exactly what happened.
+     */
+    fun ingestAll(): List<PublishOutcome> = buildList {
+        val now = clock.now().instantEpochMillis
+        for (authored in content.curriculumPackages().sortedBy { it.version }) {
+            val outcome = persistence.publishCurriculum(authored, now)
+            add(outcome)
+            if (outcome is PublishOutcome.Refused) break
+        }
+    }
 }
 
 /** Why the item cannot be served, or the item and what it may be used for. */

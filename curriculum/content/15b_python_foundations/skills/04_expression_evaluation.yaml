@@ -1,0 +1,190 @@
+skill: skill.python.expression_evaluation
+activity: code_reading_trace
+tasks:
+  teach: {title: "Python'da ifadeler: işleçler, öncelik ve sonuç türü", minutes: 14}
+  practice: {title: "İfade değerlendirme alıştırması", minutes: 10}
+  check: {title: "İfade değerlendirme kontrolü", minutes: 8}
+  review: {title: "İfade değerlendirme tekrarı", minutes: 6}
+  repair: {title: "İfadeleri yeniden değerlendirmek: öncelik ve tür", minutes: 12}
+
+objectives:
+  - id: objective.python.expression_evaluation.demonstrate_capability
+    statement: >-
+      Python'un aritmetik işleçlerini (+, -, *, /, //, %, **) ve önceliklerini uygulayarak bir ifadenin değerini ve
+      türünü (int ya da float) adım adım hesaplayabilmek; / işlecinin her zaman float verdiğini, // ve % işlecinin negatif
+      sayılarda nasıl davrandığını ve ** işlecinin önceliğini doğru kullanabilmek.
+    observable_behavior: >-
+      Karışık işleçli ifadelerin yazdırdığı değeri ve türü doğru verir; negatif sayılarda // ve % sonucunu ve ** ile
+      eksi işaretinin önceliğini doğru uygular.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. 15A'nın expression_boolean_reasoning'i karşılaştırma ve mantığı öğretti; bu Skill Python'un aritmetik
+      işleçlerini, sonuç türünü ve önceliği öğretir.
+    checks:
+      - prints: "4.5 4 1"
+        code: |
+          print(9 / 2, 9 // 2, 9 % 2)
+      - prints: "-5 1"
+        code: |
+          print(-9 // 2, -9 % 2)
+      - prints: "-9 9 81"
+        code: |
+          print(-3 ** 2, (-3) ** 2, 3 ** 2 ** 2)
+      - prints: "3.0 <class 'float'>"
+        code: |
+          print(12 / 4, type(12 / 4))
+      - prints: "7 3.14"
+        code: |
+          print(abs(-7), round(3.14159, 2))
+    explanations:
+      canonical: |
+        15A'da +, -, *, // ve % ile tamsayı ifadelerini okudun. Python'da bir ifadeyi tam doğru hesaplamak için üç şeyi daha bilmen gerekir.
+
+        1. Bölme / her zaman float verir.
+        9 / 2 → 4.5, 12 / 4 → 3.0. Sonuç tam bölünse bile türü float'tır. Tam sayı bölümü istiyorsan // kullanırsın: 9 // 2 → 4.
+
+        2. Üs alma: **
+        3 ** 2 → 9. ** işlecinin önceliği en yüksektir ve sağdan sola birleşir: 3 ** 2 ** 2, 3 ** (2 ** 2) yani 3 ** 4 → 81'dir. Önündeki eksi işaretinden de önce uygulanır: -3 ** 2 → -(3 ** 2) → -9. Eksi bir sayının karesini istiyorsan parantez kullan: (-3) ** 2 → 9.
+
+        3. Negatif sayılarda // ve %
+        // sonucu her zaman aşağıya, eksi sonsuza doğru yuvarlar: -9 // 2 → -5 (sıfıra doğru değil!). % ise bu bölümden kalanı verir ve işareti bölenin işaretini izler: -9 % 2 → 1. Kontrol: -5 * 2 + 1 = -9.
+
+        Öncelik — yukarıdan aşağıya:
+        1. Parantez
+        2. **
+        3. Tek başına eksi (-x)
+        4. *, /, //, %
+        5. +, -
+        6. Karşılaştırmalar
+        7. not, and, or (15A)
+
+        Aynı öncelikteki *, /, //, % ve +, - soldan sağa hesaplanır: 20 / 4 * 2 → 5.0 * 2 → 10.0.
+
+        Tür kuralı: int ile int toplanınca, çıkarılınca, çarpılınca int çıkar; işin içinde bir float ya da / varsa sonuç float olur: 2 + 3.0 → 5.0.
+
+        Yardımcı fonksiyonlar: abs(-7) → 7, round(3.14159, 2) → 3.14.
+
+        Yöntem: ifadeyi önceliğe göre parantezle (zihninde ya da kâğıtta), en içten başla, her adımda değeri ve türünü yaz.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (koşul değerlendirme ve türler): aritmetik, karşılaştırmalardan önce hesaplanır; bir sayının türü (int ya da float) ve bir yazının (str) türü, işlecin ne yaptığını belirler.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım değerlendirme — başka bir örnek üzerinde.
+
+          print(1 + 8 / 4 * 3 - 2 ** 2)
+
+          1. ** önce: 2 ** 2 → 4
+          2. / ve * soldan sağa: 8 / 4 → 2.0; 2.0 * 3 → 6.0
+          3. + ve - soldan sağa: 1 + 6.0 → 7.0; 7.0 - 4 → 3.0
+
+          Ekranda 3.0 görünür; işin içinde / olduğu için sonuç float'tır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          print(-11 // 4, -11 % 4)
+
+          - -11 / 4 = -2.75. // aşağıya yuvarlar: -3.
+          - Kalan: -11 - (-3 * 4) = -11 + 12 = 1.
+
+          Ekranda -3 1 görünür. Kontrol: bölüm × bölen + kalan = -3 × 4 + 1 = -11.
+    misconceptions:
+      - slug: slash_gives_int
+        name: / iki tam sayının bölümünü tam sayı olarak verir
+        open_question: 8 / 2 ifadesinin sonucunun 4 (tam sayı) olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Tam bölünüyorsa sonuç tam sayıdır."
+
+            Python'da / her zaman float verir: 8 / 2 → 4.0. Ekranda 4.0 görünür ve türü float'tır. Tam sayı bölümü için // kullanılır: 8 // 2 → 4.
+      - slug: floor_toward_zero
+        name: // negatif sayılarda sıfıra doğru yuvarlar
+        open_question: -9 // 2 ifadesinin -4 sonucunu verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "// ondalığı atar, -4.5 → -4."
+
+            // aşağıya, eksi sonsuza doğru yuvarlar: -9 // 2 → -5. Bu yüzden -9 % 2 de -1 değil 1'dir: -5 × 2 + 1 = -9. (int(-4.5) ise ondalığı atar ve -4 verir; ikisi farklı işlemlerdir.)
+      - slug: minus_before_power
+        name: -3 ** 2 ifadesinde önce eksi uygulanır
+        open_question: -3 ** 2 ifadesinin 9 sonucunu verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "-3'ün karesi 9'dur."
+
+            ** işleci tek başına eksiden önce gelir: -3 ** 2, -(3 ** 2) demektir ve -9 verir. Eksi bir sayının karesi için parantez gerekir: (-3) ** 2 → 9.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(7 / 2, 7 // 2)
+        answer: "3.5 3"
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(2 + 3 * 4 ** 2)
+        answer: "50"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(-2 ** 4, (-2) ** 4)
+        scan_options: false
+        options:
+          A: "-16 16"
+          B: "16 16"
+          C: "-16 -16"
+          D: "16 -16"
+        answer: A
+        verify: {mode: stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(10 / 5, type(10 / 5))
+        scan_options: false
+        options:
+          A: "2.0 <class 'float'>"
+          B: "2 <class 'int'>"
+          C: "2.0 <class 'int'>"
+          D: "2 <class 'float'>"
+        answer: A
+        verify: {mode: stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(-7 // 2, -7 % 2)
+        answer: "-4 1"
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 10
+          print(x / 4 * 2 == 5.0, 2 ** 3 ** 2)
+        answer: "True 512"
+        verify: {mode: stdout}

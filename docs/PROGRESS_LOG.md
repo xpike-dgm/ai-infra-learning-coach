@@ -1278,3 +1278,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15A tamamlandı; 15B aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15B — Python Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 15B — Python Foundations tamamlandı — PYFX-v0 / D-113
+
+- 15A (#52) main'e merge edilmişti (6e889e6); fresh 15B PRE yapıldı ve beş kanonik kaynak `15A ✅ / 15B active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et") ve iki karar verdi.
+- **Kullanıcı kararları:** on yedi tohum + üç ön koşul (20 Skill); artımlı paket, varlık sürümü anlamsal revizyondur.
+- **Bulgu:** ikinci paket sevk edilemiyordu; 14D koşucusu Windows'ta doğru Türkçe çıktıyı düşürüyordu; üç tohum Skill hiç hazır olamazdı; fonksiyon yazmak graph'ta ön koşul değil; metin kipindeki dosyalar ve traceback'ler platforma/sürüme göre farklı.
+- İçerik: 20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle — referans dersin koşucusundan geçer, en az iki makul yanlış çözüm düşer —, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; 59 ders iddiası çalıştırıldı.
+- **Araştırma:** Python belgeleri (str.lower/split, open newline/encoding, UTF-8 Mode, pathlib, UnboundLocalError FAQ, hata/finally öğreticisi) ders iddiaları için okundu.
+- **Bağımsız inceleme:** ilk geçişte 109 item'ın 98'i, 116 anlatımın 113'ü geçti — her anahtar, traceback ve ders iddiası doğruydu; düşenler 6 ders içi sızıntı, testini makul bir yanlış çözümün geçtiği 4 item, testin istediğini söylemeyen 1 prompt ve 3 anlatım cümlesiydi. Üç geçişte 109/109, 116/116.
+- İki paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenciye yine iki giriş dersi.
+- 11D (iki), 11A ve 14B kapıları daraltıldı; şema değişmedi; bir port inceltmesi.
+- Mutation 27/27. Validator 254/254, sweep 57/57, 992 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı** — ilk ingestion öğrencinin, telefonda.
+- D-050 POST living-memory accepted state'i `15B tamamlandı; 15C aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15C — C Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -1,0 +1,312 @@
+skill: skill.python.files_paths_basic
+activity: coding_production
+tasks:
+  teach: {title: "Metin dosyaları: açmak, okumak, yazmak ve kapatmak", minutes: 18}
+  practice: {title: "Dosya alıştırması", minutes: 15}
+  check: {title: "Dosya kontrolü", minutes: 15}
+  review: {title: "Dosya tekrarı", minutes: 12}
+  repair: {title: "Dosya akışını yeniden kurmak: with, kip ve satır sonu", minutes: 18}
+
+objectives:
+  - id: objective.python.files_paths_basic.demonstrate_capability
+    statement: >-
+      Bir metin dosyasını with open(...) ile açıp UTF-8 kodlamasıyla okuyabilmek ve yazabilmek: okuma ("r"), baştan
+      yazma ("w") ve sona ekleme ("a") kiplerini doğru seçmek, satır sonlarını doğru yönetmek, dosyanın her durumda
+      kapanmasını with ile güvenceye almak ve olmayan bir dosyanın FileNotFoundError'ını beklenen yerde yakalamak.
+    observable_behavior: >-
+      Dosyayı okuyan, yazan, sona ekleyen ve olmayan dosyada beklenen sonucu veren fonksiyonlar yazar; yazdığı dosya
+      testin beklediği içeriği satır sonu satır sonuna taşır.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Direct type authored_code. Test düzeneği her testi geçici bir klasörde, kendi oluşturduğu dosyalarla
+      koşar ve sonra siler; öğrencinin dosyalarına dokunmaz. Kodlamanın unutulması testle ölçülemez (koşucu Python'u
+      UTF-8 kipinde çalıştırır), bu yüzden ders ve anlatımlar encoding="utf-8" yazmayı öğretir ama testler bunu
+      yakalayamaz; bu sınır kaydedilmiştir.
+    checks:
+      - prints: "2 ['birinci satır', 'ikinci satır']"
+        code: |
+          import tempfile
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "deneme.txt"
+              with open(yol, "w", encoding="utf-8") as f:
+                  f.write("birinci satır\n")
+                  f.write("ikinci satır\n")
+              with open(yol, encoding="utf-8") as f:
+                  satirlar = f.read().splitlines()
+              print(len(satirlar), satirlar)
+      - prints: "True"
+        code: |
+          import tempfile
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              with open(Path(d) / "x.txt", "w", encoding="utf-8") as f:
+                  pass
+              print(f.closed)
+    explanations:
+      canonical: |
+        Bir metin dosyasıyla çalışmanın güvenli kalıbı with open(...) kalıbıdır:
+
+        with open("notlar.txt", "r", encoding="utf-8") as f:
+            icerik = f.read()
+
+        with bloğu bittiğinde — bir hata çıksa bile — dosya kapanır. Kapatmayı unutmak, yazılanın diske gitmemesine ya da dosyanın kilitli kalmasına yol açabilir.
+
+        Kipler:
+        - "r" (varsayılan): okuma. Dosya yoksa FileNotFoundError.
+        - "w": yazma. Dosya yoksa oluşturur; varsa İÇİNİ SİLER ve baştan yazar.
+        - "a": sona ekleme. Dosya yoksa oluşturur; varsa eskisini korur, yenisini sona yazar.
+
+        Kodlama: Türkçe karakterler için her zaman encoding="utf-8" yaz. Yazmazsan Python işletim sisteminin varsayılanını kullanır (Windows'ta çoğu zaman başka bir kodlama) ve ş, ğ, ı gibi harfler bozulabilir.
+
+        Okumak:
+        - f.read() → bütün dosya tek bir yazı
+        - f.read().splitlines() → satırların listesi, satır sonları olmadan
+        - for satir in f: → satır satır; her satırın sonunda satır sonu karakteri vardır, satir.strip() ile atılır
+
+        Yazmak: f.write(yazi) satır sonu EKLEMEZ. Her satırı ayrı satıra yazmak için satır sonu karakterini kendin eklersin: kodda tırnak içinde ters bölü ve n harfiyle yazılır ve yazının sonuna + ile eklenir. print(yazi, file=f) ise satır sonunu kendisi ekler.
+
+        Olmayan dosya: dosyanın olmayabileceği yerde FileNotFoundError'ı dar bir except ile yakala; diğer hatalar (örneğin izin hatası) yukarıya gitsin.
+
+        Yollar: open bir yazı ya da bir Path kabul eder; yolu pathlib ile kurmak (Path(klasor) / "veri.txt") en güvenlisidir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (hata yakalama ve yollar): try/except FileNotFoundError yalnız o hatayı yakalar; Path(klasor) / ad bir yolu ayraç karıştırmadan kurar.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: en_uzun_satir(yol) — dosyadaki en uzun satırı (satır sonu olmadan) döndür; dosya boşsa boş yazı döndür.
+
+          def en_uzun_satir(yol):
+              en_uzun = ""
+              with open(yol, encoding="utf-8") as f:
+                  for satir in f.read().splitlines():
+                      if len(satir) > len(en_uzun):
+                          en_uzun = satir
+              return en_uzun
+
+          - splitlines satır sonlarını atar; böylece uzunluk karşılaştırması yalnız metni sayar.
+          - with sayesinde dosya fonksiyon dönmeden kapanır.
+    misconceptions:
+      - slug: write_adds_newline
+        name: f.write bir satır yazar ve satır sonunu kendisi ekler
+        open_question: f.write("a") ve f.write("b") sonrasında dosyada iki ayrı satır olacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "write, print gibidir."
+
+            write yalnız verdiğin karakterleri yazar; satır sonu eklemez. f.write("a") ve f.write("b") dosyada "ab" bırakır. Ayrı satırlar için her yazının sonuna satır sonu karakterini eklersin ya da print(..., file=f) kullanırsın.
+      - slug: write_mode_appends
+        name: '"w" kipi dosyanın sonuna ekler'
+        open_question: Var olan bir dosyayı "w" kipinde açıp yazınca eski içeriğin korunacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Yazmak için w, ne yazarsam eklenir."
+
+            "w" kipi dosyayı açtığı anda içini boşaltır. Eskisini koruyup sona eklemek için "a" kipi kullanılır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına satir_sayisi(yol) adında bir fonksiyon yaz: verilen metin dosyasını UTF-8 ile açıp kaç satır olduğunu döndürsün. Son satırın sonunda satır sonu olsa da olmasa da doğru saysın; boş dosya 0 satırdır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print(cozum.satir_sayisi(yol))
+        suite:
+          - {id: ends_with_newline, args: ["elma|armut|kiraz|"], expected_stdout: "3\n"}
+          - {id: no_final_newline, args: ["şeker|çay"], expected_stdout: "2\n"}
+          - {id: empty, args: [""], expected_stdout: "0\n"}
+        reference: |
+          def satir_sayisi(yol):
+              with open(yol, encoding="utf-8") as f:
+                  return len(f.read().splitlines())
+        wrong:
+          - |
+            def satir_sayisi(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return f.read().count("\n")
+          - |
+            def satir_sayisi(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return len(f.read().split("\n"))
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına satirlari_yaz(yol, satirlar) adında bir fonksiyon yaz: verilen yazı listesinin her elemanını dosyaya ayrı bir satır olarak yazsın (her satırın sonunda bir satır sonu olsun); dosya önceden varsa içeriği tamamen değişsin; liste boşsa dosya boş kalsın. UTF-8 kullan.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "cikti.txt"
+              yol.write_bytes("ESKİ İÇERİK".encode("utf-8") + bytes([10]))
+              cozum.satirlari_yaz(yol, sys.argv[1:])
+              print(ascii(yol.read_text(encoding="utf-8")))
+        suite:
+          - {id: two_lines, args: ["bir", "iki"], expected_stdout: "'bir\\niki\\n'\n"}
+          - {id: turkish, args: ["ğüşıöç"], expected_stdout: "'\\u011f\\xfc\\u015f\\u0131\\xf6\\xe7\\n'\n"}
+          - {id: empty_list, args: [], expected_stdout: "''\n"}
+        reference: |
+          def satirlari_yaz(yol, satirlar):
+              with open(yol, "w", encoding="utf-8") as f:
+                  for s in satirlar:
+                      f.write(s + "\n")
+        wrong:
+          - |
+            def satirlari_yaz(yol, satirlar):
+                with open(yol, "w", encoding="utf-8") as f:
+                    for s in satirlar:
+                        f.write(s)
+          - |
+            def satirlari_yaz(yol, satirlar):
+                with open(yol, "a", encoding="utf-8") as f:
+                    for s in satirlar:
+                        f.write(s + "\n")
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına kayit_ekle(yol, olay) adında bir fonksiyon yaz: olay yazısını dosyanın sonuna yeni bir satır olarak eklesin (sonunda satır sonu olsun); dosyadaki eski satırlar korunsun, dosya yoksa oluşturulsun. UTF-8 kullan.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "gunluk.txt"
+              if sys.argv[1] == "var":
+                  yol.write_bytes("açılış".encode("utf-8") + bytes([10]))
+              for olay in sys.argv[2:]:
+                  cozum.kayit_ekle(yol, olay)
+              print(yol.read_text(encoding="utf-8").splitlines())
+        suite:
+          - {id: keeps_old, args: ["var", "giriş", "çıkış"], expected_stdout: "['açılış', 'giriş', 'çıkış']\n"}
+          - {id: creates, args: ["yok", "ilk"], expected_stdout: "['ilk']\n"}
+          - {id: three_appends, args: ["yok", "a", "b", "c"], expected_stdout: "['a', 'b', 'c']\n"}
+        reference: |
+          def kayit_ekle(yol, olay):
+              with open(yol, "a", encoding="utf-8") as f:
+                  f.write(olay + "\n")
+        wrong:
+          - |
+            def kayit_ekle(yol, olay):
+                with open(yol, "w", encoding="utf-8") as f:
+                    f.write(olay + "\n")
+          - |
+            def kayit_ekle(yol, olay):
+                with open(yol, "a", encoding="utf-8") as f:
+                    f.write(olay)
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına oku_ya_da_bos(yol) adında bir fonksiyon yaz: dosya varsa içeriğini (UTF-8) döndürsün; dosya yoksa boş yazı ("") döndürsün. Dosyanın olmaması dışındaki hatalar yakalanmasın.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "ayar.txt"
+              if sys.argv[1] == "var":
+                  yol.write_bytes(sys.argv[2].encode("utf-8"))
+              if sys.argv[1] == "klasor":
+                  yol.mkdir()
+              try:
+                  print(repr(cozum.oku_ya_da_bos(yol)))
+              except Exception as e:
+                  print("yukarıya geldi:", type(e).__name__ in ("IsADirectoryError", "PermissionError"))
+        suite:
+          - {id: exists, args: ["var", "tema=koyu"], expected_stdout: "'tema=koyu'\n"}
+          - {id: missing, args: ["yok"], expected_stdout: "''\n"}
+          - {id: other_error_propagates, args: ["klasor"], expected_stdout: "yukarıya geldi: True\n"}
+        reference: |
+          def oku_ya_da_bos(yol):
+              try:
+                  with open(yol, encoding="utf-8") as f:
+                      return f.read()
+              except FileNotFoundError:
+                  return ""
+        wrong:
+          - |
+            def oku_ya_da_bos(yol):
+                try:
+                    with open(yol, encoding="utf-8") as f:
+                        return f.read()
+                except OSError:
+                    return ""
+          - |
+            def oku_ya_da_bos(yol):
+                try:
+                    with open(yol, encoding="utf-8") as f:
+                        return f.read()
+                except FileNotFoundError:
+                    return None
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına toplami_yaz(kaynak, hedef) adında bir fonksiyon yaz: kaynak dosyada her satırda bir tam sayı vardır (boş satırlar atlanır); sayıların toplamını hedef dosyaya "toplam=SAYI" biçiminde tek bir satır olarak (sonunda satır sonuyla) yazsın. Kaynak dosya yoksa hedefe "toplam=yok" yazsın. UTF-8 kullan.
+        required_skills: [skill.python.functions_parameters_return, skill.python.exception_handling, skill.python.for_iteration, skill.python.conditionals, skill.python.string_text_operations, skill.python.value_type_behavior]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              kaynak = Path(d) / "sayilar.txt"
+              hedef = Path(d) / "sonuc.txt"
+              if sys.argv[1] != "<yok>":
+                  kaynak.write_bytes(sys.argv[1].replace("|", chr(10)).encode("utf-8"))
+              cozum.toplami_yaz(kaynak, hedef)
+              print(ascii(hedef.read_text(encoding="utf-8")))
+        suite:
+          - {id: numbers, args: ["4|10|-3|"], expected_stdout: "'toplam=11\\n'\n"}
+          - {id: blank_lines, args: ["5||7||"], expected_stdout: "'toplam=12\\n'\n"}
+          - {id: missing_source, args: ["<yok>"], expected_stdout: "'toplam=yok\\n'\n"}
+          - {id: empty_source, args: [""], expected_stdout: "'toplam=0\\n'\n"}
+        reference: |
+          def toplami_yaz(kaynak, hedef):
+              try:
+                  with open(kaynak, encoding="utf-8") as f:
+                      toplam = 0
+                      for satir in f.read().splitlines():
+                          if satir.strip() != "":
+                              toplam += int(satir)
+                  sonuc = str(toplam)
+              except FileNotFoundError:
+                  sonuc = "yok"
+              with open(hedef, "w", encoding="utf-8") as f:
+                  f.write(f"toplam={sonuc}" + "\n")
+        wrong:
+          - |
+            def toplami_yaz(kaynak, hedef):
+                toplam = 0
+                with open(kaynak, encoding="utf-8") as f:
+                    for satir in f.read().splitlines():
+                        if satir.strip() != "":
+                            toplam += int(satir)
+                with open(hedef, "w", encoding="utf-8") as f:
+                    f.write(f"toplam={toplam}" + "\n")
+          - |
+            def toplami_yaz(kaynak, hedef):
+                try:
+                    with open(kaynak, encoding="utf-8") as f:
+                        toplam = 0
+                        for satir in f.read().splitlines():
+                            toplam += int(satir)
+                    sonuc = str(toplam)
+                except FileNotFoundError:
+                    sonuc = "yok"
+                with open(hedef, "w", encoding="utf-8") as f:
+                    f.write(f"toplam={sonuc}" + "\n")

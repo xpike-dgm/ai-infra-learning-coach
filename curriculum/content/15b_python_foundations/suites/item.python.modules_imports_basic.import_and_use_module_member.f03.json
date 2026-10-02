@@ -1,0 +1,47 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.f03@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.f03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, runpy\nif sys.argv[1] == \"program\":\n    runpy.run_path(\"cozum.py\", run_name=\"__main__\")\nelse:\n    import cozum\n    print(cozum.selamla(sys.argv[2]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "imported",
+      "args": [
+        "import",
+        "Ali"
+      ],
+      "expected_stdout": "Merhaba, Ali!\n"
+    },
+    {
+      "id": "run_as_program",
+      "args": [
+        "program"
+      ],
+      "expected_stdout": "Merhaba, Dünya!\n"
+    },
+    {
+      "id": "imported_other",
+      "args": [
+        "import",
+        "Ece"
+      ],
+      "expected_stdout": "Merhaba, Ece!\n"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.f01@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.f01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.bas_harfler(sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "three_names",
+      "args": [
+        "Ada Nur Yılmaz"
+      ],
+      "expected_stdout": "A.N.Y.\n"
+    },
+    {
+      "id": "two_names",
+      "args": [
+        "Can Öztürk"
+      ],
+      "expected_stdout": "C.Ö.\n"
+    },
+    {
+      "id": "extra_spaces",
+      "args": [
+        "  Elif   Şahin "
+      ],
+      "expected_stdout": "E.Ş.\n"
+    }
+  ]
+}

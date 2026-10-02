@@ -1,0 +1,2037 @@
+package_version: 2
+items:
+- item: item.python.run_repl_script.execute_and_classify_result.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.run_repl_script.execute_and_classify_result.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.run_repl_script.execute_and_classify_result.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.run_repl_script.execute_and_classify_result.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.run_repl_script.execute_and_classify_result.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - floor_division_remainder
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value "<class 'int'>\n" is option A and no other
+  constructs:
+  - print_call
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value "5 <class 'int'>\n" is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '25TL\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.value_type_behavior.demonstrate_capability.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.assignment_binding.write_state_change.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.assignment_binding.write_state_change.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.assignment_binding.write_state_change.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.assignment_binding.write_state_change.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.assignment_binding.write_state_change.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 1 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - floor_division_remainder
+  - print_call
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - exponent
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '-16 16\n' is option A and no other
+  constructs:
+  - exponent
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value "2.0 <class 'float'>\n" is option A and no other
+  constructs:
+  - print_call
+  - true_division
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - floor_division_remainder
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.expression_evaluation.demonstrate_capability.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - exponent
+  - print_call
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.input_output_basic.build_small_io_flow.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - input_call
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.input_output_basic.build_small_io_flow.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - input_call
+  - print_call
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.input_output_basic.build_small_io_flow.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.input_output_basic.build_small_io_flow.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - input_call
+  - print_call
+  - true_division
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.input_output_basic.build_small_io_flow.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - floor_division_remainder
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.conditionals.write_branch_logic.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.conditionals.write_branch_logic.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.conditionals.write_branch_logic.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 6 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.conditionals.write_branch_logic.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.conditionals.write_branch_logic.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.for_iteration.iterate_sequence.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - for_loop
+  - input_call
+  - print_call
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.for_iteration.iterate_sequence.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - augmented_assignment
+  - for_loop
+  - input_call
+  - print_call
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.for_iteration.iterate_sequence.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - for_loop
+  - if_branch
+  - input_call
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.for_iteration.iterate_sequence.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - for_loop
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.for_iteration.iterate_sequence.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - for_loop
+  - if_branch
+  - input_call
+  - print_call
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.debug_infinite_loop.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - input_call
+  - print_call
+  - string_literal
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.debug_infinite_loop.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.debug_infinite_loop.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.debug_infinite_loop.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - floor_division_remainder
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.debug_infinite_loop.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - if_branch
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.write_terminating_loop.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - floor_division_remainder
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.write_terminating_loop.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.write_terminating_loop.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - augmented_assignment
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.write_terminating_loop.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - floor_division_remainder
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.while_termination.write_terminating_loop.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - input_call
+  - print_call
+  - type_conversion
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.functions_parameters_return.write_small_function.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.functions_parameters_return.write_small_function.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_def
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.functions_parameters_return.write_small_function.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - floor_division_remainder
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.functions_parameters_return.write_small_function.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_def
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.functions_parameters_return.write_small_function.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.list_operations.select_and_use_sequence.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - brackets
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.list_operations.select_and_use_sequence.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - brackets
+  - comparison
+  - floor_division_remainder
+  - for_loop
+  - function_def
+  - if_branch
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.list_operations.select_and_use_sequence.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - brackets
+  - function_def
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.list_operations.select_and_use_sequence.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - brackets
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.list_operations.select_and_use_sequence.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - brackets
+  - for_loop
+  - function_def
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.tuple_immutable_sequence.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.tuple_immutable_sequence.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.tuple_immutable_sequence.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.tuple_immutable_sequence.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - brackets
+  - comparison
+  - for_loop
+  - function_def
+  - if_branch
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.tuple_immutable_sequence.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - brackets
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.set_operations.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - length
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.set_operations.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.set_operations.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - assignment
+  - for_loop
+  - function_def
+  - if_branch
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.set_operations.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.set_operations.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - for_loop
+  - function_def
+  - if_branch
+  - methods
+  - none_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.mapping_collections_basic.select_and_use_mapping.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.mapping_collections_basic.select_and_use_mapping.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - braces
+  - brackets
+  - for_loop
+  - function_def
+  - length
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.mapping_collections_basic.select_and_use_mapping.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - brackets
+  - function_def
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.mapping_collections_basic.select_and_use_mapping.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - assignment
+  - boolean_logic
+  - brackets
+  - comparison
+  - for_loop
+  - function_def
+  - if_branch
+  - none_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.mapping_collections_basic.select_and_use_mapping.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - braces
+  - brackets
+  - for_loop
+  - function_def
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f01
+  status: validated
+  verify_mode: traceback
+  verification: executed; the traceback is real and its type is the key
+  constructs:
+  - assignment
+  - print_call
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f02
+  status: validated
+  verify_mode: traceback
+  verification: executed; the traceback is real and its line is the key
+  constructs:
+  - assignment
+  - brackets
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f03
+  status: validated
+  verify_mode: traceback
+  verification: executed; true value 'ortalama 3' is option A and no other
+  constructs:
+  - aggregate_builtins
+  - assignment
+  - brackets
+  - function_def
+  - length
+  - print_call
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f04
+  status: validated
+  verify_mode: traceback
+  verification: executed; true value 'TypeError' is option A and no other
+  constructs:
+  - assignment
+  - print_call
+  - string_literal
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f05
+  status: validated
+  verify_mode: traceback
+  verification: executed; true value "'mor'" is option A and no other
+  constructs:
+  - assignment
+  - braces
+  - brackets
+  - for_loop
+  - function_def
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exceptions_read_basic.extract_error_type_location.f06
+  status: validated
+  verify_mode: traceback
+  verification: executed; the traceback is real and its module_line is the key
+  constructs:
+  - assignment
+  - brackets
+  - for_loop
+  - function_def
+  - print_call
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - augmented_assignment
+  - function_def
+  - global_scope
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f04
+  status: validated
+  verify_mode: traceback
+  verification: executed; true value 'UnboundLocalError' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - aggregate_builtins
+  - assignment
+  - brackets
+  - comparison
+  - for_loop
+  - function_def
+  - if_branch
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.scope_name_resolution.demonstrate_capability.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - function_def
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.modules_imports_basic.import_and_use_module_member.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - aggregate_builtins
+  - arithmetic
+  - function_def
+  - imports
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.modules_imports_basic.import_and_use_module_member.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - imports
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.modules_imports_basic.import_and_use_module_member.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - function_def
+  - if_branch
+  - main_guard
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.modules_imports_basic.import_and_use_module_member.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_def
+  - imports
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.modules_imports_basic.import_and_use_module_member.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - floor_division_remainder
+  - function_def
+  - imports
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - exceptions
+  - function_def
+  - none_literal
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - brackets
+  - exceptions
+  - function_def
+  - none_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - exceptions
+  - for_loop
+  - function_def
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - exceptions
+  - function_def
+  - if_branch
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.exception_handling.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - exceptions
+  - floor_division_remainder
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.string_text_operations.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - augmented_assignment
+  - brackets
+  - for_loop
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.string_text_operations.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - f_string
+  - function_def
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.string_text_operations.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - for_loop
+  - function_def
+  - if_branch
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.string_text_operations.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - brackets
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.string_text_operations.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.path_handling.read_write_small_text_file.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - imports
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.path_handling.read_write_small_text_file.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - imports
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.path_handling.read_write_small_text_file.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - imports
+  - methods
+  - true_division
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.path_handling.read_write_small_text_file.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - function_def
+  - imports
+  - methods
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.path_handling.read_write_small_text_file.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - comparison
+  - function_def
+  - imports
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.files_paths_basic.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - file_io
+  - function_def
+  - length
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.files_paths_basic.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - file_io
+  - for_loop
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.files_paths_basic.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - file_io
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.files_paths_basic.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - exceptions
+  - file_io
+  - function_def
+  - methods
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.python.files_paths_basic.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - exceptions
+  - f_string
+  - file_io
+  - for_loop
+  - function_def
+  - if_branch
+  - methods
+  - string_literal
+  - type_conversion
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 116
+tasks:
+- task: task.python.run_repl_script.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.run_repl_script.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.run_repl_script.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.run_repl_script.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.run_repl_script.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.value_type_behavior.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.value_type_behavior.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.value_type_behavior.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.value_type_behavior.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.python.value_type_behavior.repair
+  status: validated
+  items: 5
+  explanations: 5
+- task: task.python.assignment_binding.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.assignment_binding.practice
+  status: validated
+  items: 2
+  explanations: 0
+- task: task.python.assignment_binding.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.assignment_binding.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.assignment_binding.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.python.expression_evaluation.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.expression_evaluation.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.expression_evaluation.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.expression_evaluation.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.python.expression_evaluation.repair
+  status: validated
+  items: 5
+  explanations: 5
+- task: task.python.input_output_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.input_output_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.input_output_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.input_output_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.input_output_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.conditionals.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.conditionals.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.conditionals.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.conditionals.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.conditionals.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.python.for_iteration.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.for_iteration.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.for_iteration.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.for_iteration.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.for_iteration.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.python.while_termination.teach
+  status: validated
+  items: 2
+  explanations: 4
+- task: task.python.while_termination.practice
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.python.while_termination.check
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.python.while_termination.review
+  status: validated
+  items: 8
+  explanations: 0
+- task: task.python.while_termination.repair
+  status: validated
+  items: 8
+  explanations: 7
+- task: task.python.functions_parameters_return.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.functions_parameters_return.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.functions_parameters_return.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.functions_parameters_return.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.functions_parameters_return.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.python.list_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.list_operations.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.list_operations.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.list_operations.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.list_operations.repair
+  status: validated
+  items: 4
+  explanations: 4
+- task: task.python.tuple_immutable_sequence.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.tuple_immutable_sequence.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.tuple_immutable_sequence.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.tuple_immutable_sequence.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.tuple_immutable_sequence.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.set_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.set_operations.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.set_operations.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.set_operations.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.set_operations.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.mapping_collections_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.mapping_collections_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.mapping_collections_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.mapping_collections_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.mapping_collections_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.exceptions_read_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.exceptions_read_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.exceptions_read_basic.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.exceptions_read_basic.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.python.exceptions_read_basic.repair
+  status: validated
+  items: 5
+  explanations: 3
+- task: task.python.scope_name_resolution.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.scope_name_resolution.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.scope_name_resolution.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.scope_name_resolution.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.python.scope_name_resolution.repair
+  status: validated
+  items: 5
+  explanations: 4
+- task: task.python.modules_imports_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.modules_imports_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.modules_imports_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.modules_imports_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.modules_imports_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.exception_handling.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.exception_handling.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.exception_handling.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.exception_handling.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.exception_handling.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.string_text_operations.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.string_text_operations.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.string_text_operations.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.string_text_operations.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.string_text_operations.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.path_handling.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.path_handling.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.path_handling.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.path_handling.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.path_handling.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.python.files_paths_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.python.files_paths_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.files_paths_basic.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.python.files_paths_basic.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.python.files_paths_basic.repair
+  status: validated
+  items: 4
+  explanations: 3
+failures: []
+explanation_checks:
+- objective: objective.python.run_repl_script.execute_and_classify_result
+  check: 1
+  result: PASS
+  printed: 'Merhaba
+
+    Python'
+- objective: objective.python.run_repl_script.execute_and_classify_result
+  check: 2
+  result: PASS
+  printed: 7 * 6
+- objective: objective.python.value_type_behavior.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: <class 'int'> <class 'float'> <class 'str'> <class 'bool'> <class 'NoneType'>
+- objective: objective.python.value_type_behavior.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: 53 8
+- objective: objective.python.value_type_behavior.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 3 2.0 False True
+- objective: objective.python.value_type_behavior.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: 12 12
+- objective: objective.python.assignment_binding.write_state_change
+  check: 1
+  result: PASS
+  printed: '40
+
+    55'
+- objective: objective.python.assignment_binding.write_state_change
+  check: 2
+  result: PASS
+  printed: 9 5
+- objective: objective.python.expression_evaluation.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 4.5 4 1
+- objective: objective.python.expression_evaluation.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: -5 1
+- objective: objective.python.expression_evaluation.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: -9 9 81
+- objective: objective.python.expression_evaluation.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: 3.0 <class 'float'>
+- objective: objective.python.expression_evaluation.demonstrate_capability
+  check: 5
+  result: PASS
+  printed: 7 3.14
+- objective: objective.python.input_output_basic.build_small_io_flow
+  check: 1
+  result: PASS
+  printed: Merhaba, Deniz!
+- objective: objective.python.input_output_basic.build_small_io_flow
+  check: 2
+  result: PASS
+  printed: Merhaba, Deniz !
+- objective: objective.python.input_output_basic.build_small_io_flow
+  check: 3
+  result: PASS
+  printed: '12'
+- objective: objective.python.conditionals.write_branch_logic
+  check: 1
+  result: PASS
+  printed: 'tek
+
+    çift'
+- objective: objective.python.conditionals.write_branch_logic
+  check: 2
+  result: PASS
+  printed: orta
+- objective: objective.python.for_iteration.iterate_sequence
+  check: 1
+  result: PASS
+  printed: '2
+
+    3
+
+    4'
+- objective: objective.python.for_iteration.iterate_sequence
+  check: 2
+  result: PASS
+  printed: '14'
+- objective: objective.python.for_iteration.iterate_sequence
+  check: 3
+  result: PASS
+  printed: '3'
+- objective: objective.python.while_termination.debug_infinite_loop
+  check: 1
+  result: PASS
+  printed: '3
+
+    2
+
+    1
+
+    Bitti'
+- objective: objective.python.while_termination.write_terminating_loop
+  check: 1
+  result: PASS
+  printed: '3'
+- objective: objective.python.functions_parameters_return.write_small_function
+  check: 1
+  result: PASS
+  printed: '135'
+- objective: objective.python.functions_parameters_return.write_small_function
+  check: 2
+  result: PASS
+  printed: 12 cm 3 m
+- objective: objective.python.functions_parameters_return.write_small_function
+  check: 3
+  result: PASS
+  printed: 12.0 300
+- objective: objective.python.list_operations.select_and_use_sequence
+  check: 1
+  result: PASS
+  printed: 10 30 3
+- objective: objective.python.list_operations.select_and_use_sequence
+  check: 2
+  result: PASS
+  printed: '[10, 20, 30, 40] [10, 20, 30, 40]'
+- objective: objective.python.list_operations.select_and_use_sequence
+  check: 3
+  result: PASS
+  printed: '[10, 20, 30] [10, 20, 30, 40]'
+- objective: objective.python.list_operations.select_and_use_sequence
+  check: 4
+  result: PASS
+  printed: 60 10 30 [10, 20, 30]
+- objective: objective.python.tuple_immutable_sequence.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: (3, 4) 3 4
+- objective: objective.python.tuple_immutable_sequence.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: TypeError
+- objective: objective.python.tuple_immutable_sequence.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: (9, 2, 3)
+- objective: objective.python.set_operations.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 3 True False
+- objective: objective.python.set_operations.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '[1, 2, 3, 4] [2, 3] [1]'
+- objective: objective.python.mapping_collections_basic.select_and_use_mapping
+  check: 1
+  result: PASS
+  printed: 12 0 3
+- objective: objective.python.mapping_collections_basic.select_and_use_mapping
+  check: 2
+  result: PASS
+  printed: '[(''a'', 2), (''b'', 1)]'
+- objective: objective.python.exceptions_read_basic.extract_error_type_location
+  check: 1
+  result: PASS
+  printed: ValueError
+- objective: objective.python.exceptions_read_basic.extract_error_type_location
+  check: 2
+  result: PASS
+  printed: ZeroDivisionError
+- objective: objective.python.scope_name_resolution.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 7 3
+- objective: objective.python.scope_name_resolution.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '20'
+- objective: objective.python.scope_name_resolution.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: UnboundLocalError
+- objective: objective.python.modules_imports_basic.import_and_use_module_member
+  check: 1
+  result: PASS
+  printed: 5.0 3
+- objective: objective.python.modules_imports_basic.import_and_use_module_member
+  check: 2
+  result: PASS
+  printed: '2.5'
+- objective: objective.python.modules_imports_basic.import_and_use_module_member
+  check: 3
+  result: PASS
+  printed: __main__
+- objective: objective.python.exception_handling.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: geçersiz
+- objective: objective.python.exception_handling.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: TypeError
+- objective: objective.python.exception_handling.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 'kapat
+
+    ZeroDivisionError'
+- objective: objective.python.string_text_operations.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: Pyt on 6
+- objective: objective.python.string_text_operations.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: elma-armut-kiraz
+- objective: objective.python.string_text_operations.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 'Toplam: 12.50 TL'
+- objective: objective.python.string_text_operations.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: ışık
+- objective: objective.python.string_text_operations.demonstrate_capability
+  check: 5
+  result: PASS
+  printed: 'False'
+- objective: objective.python.path_handling.read_write_small_text_file
+  check: 1
+  result: PASS
+  printed: rapor.pdf rapor .pdf
+- objective: objective.python.path_handling.read_write_small_text_file
+  check: 2
+  result: PASS
+  printed: belgeler/2026 2026
+- objective: objective.python.path_handling.read_write_small_text_file
+  check: 3
+  result: PASS
+  printed: veri/ocak/kayit.csv
+- objective: objective.python.path_handling.read_write_small_text_file
+  check: 4
+  result: PASS
+  printed: notlar.md
+- objective: objective.python.files_paths_basic.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 2 ['birinci satır', 'ikinci satır']
+- objective: objective.python.files_paths_basic.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: 'True'
+summary:
+  skills: 20
+  objectives: 21
+  topics: 3
+  items: 109
+  validated_items: 109
+  explanations: 116
+  misconceptions: 44
+  tasks: 100
+  failures: 0

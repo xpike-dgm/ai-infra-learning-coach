@@ -1,0 +1,819 @@
+model: PYFX-v0
+stage_step: 15B
+decision: D-113
+result: PASS
+checks_total: 254
+checks_passed: 254
+checks_failed: 0
+checks:
+- check: E15B-00_exists_python_foundations.yaml
+  result: PASS
+  details: missing arch\15b_python_foundations\python_foundations.yaml
+- check: E15B-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15b_python_foundations\content_verification.yaml
+- check: E15B-00_exists_PYTHON_FOUNDATIONS_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\PYTHON_FOUNDATIONS_CONTENT_SPEC.md
+- check: E15B-00_exists_15b_python_foundations_research.md
+  result: PASS
+  details: missing research\15b_python_foundations_research.md
+- check: E15B-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: E15B-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15B-00_exists_CurriculumStore.kt
+  result: PASS
+  details: missing android\data-persistence\src\main\kotlin\coach\persistence\CurriculumStore.kt
+- check: E15B-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: E15B-00_exists_Ports.kt
+  result: PASS
+  details: missing android\core-ports\src\main\kotlin\coach\ports\Ports.kt
+- check: E15B-00_exists_DailyMicroAssessment.kt
+  result: PASS
+  details: missing android\core-application\src\main\kotlin\coach\application\DailyMicroAssessment.kt
+- check: E15B-00_exists_CoachApplication.kt
+  result: PASS
+  details: missing android\app-wiring\src\main\kotlin\coach\wiring\CoachApplication.kt
+- check: E15B-00_exists_CurriculumPublishingTest.kt
+  result: PASS
+  details: missing android\data-persistence\src\test\kotlin\coach\persistence\CurriculumPublishingTest.kt
+- check: E15B-00_exists_PackageFormatTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\PackageFormatTest.kt
+- check: E15B-00_exists_ShippedPythonPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedPythonPackageTest.kt
+- check: E15B-00_exists_DailyMicroAssessmentTest.kt
+  result: PASS
+  details: missing android\core-application\src\test\kotlin\coach\application\DailyMicroAssessmentTest.kt
+- check: E15B-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: E15B-00_exists_code_test_runner.py
+  result: PASS
+  details: missing tools\code_test_runner.py
+- check: E15B-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15b_python_foundations\package.yaml
+- check: E15B-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15b_python_foundations\notation.yaml
+- check: E15B-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15b_python_foundations\independent_review.yaml
+- check: E15B-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15B-01_model
+  result: PASS
+  details: PYFX-v0
+- check: E15B-01_status
+  result: PASS
+  details: accepted_15b
+- check: E15B-01_decision
+  result: PASS
+  details: D-113
+- check: E15B-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-02'', ''scope'': ''seventeen_seeds_plus_three_prerequisites'',
+    ''shipping'': ''incremental_packages_entity_semantic_version''}'
+- check: E15B-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15B-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15B-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15B-02_report_recorded
+  result: PASS
+  details: arch/15b_python_foundations/content_verification.yaml is not the report
+    of this build
+- check: E15B-02_suites_are_rebuilt
+  result: PASS
+  details: 85 on disk, 85 built
+- check: E15B-02_first_package_untouched
+  result: PASS
+  details: 15A's shipped package is no longer a fresh build of its source
+- check: E15B-03_fbb_seeds
+  result: PASS
+  details: '[''skill.python.run_repl_script'', ''skill.python.values_variables_expressions'',
+    ''skill.python.input_output_basic'', ''skill.python.conditionals'', ''skill.python.for_iteration'',
+    ''skill.python.while_termination'', ''skill.python.functions_parameters_return'',
+    ''skill.python.sequence_collections_basic'', ''skill.python.mapping_collections_basic'',
+    ''skill.python.exceptions_read_basic'', ''skill.python.modules_imports_basic'',
+    ''skill.python.files_paths_basic'']'
+- check: E15B-03_seeds_as_6c_decomposed
+  result: PASS
+  details: '[''skill.python.assignment_binding'', ''skill.python.conditionals'', ''skill.python.exceptions_read_basic'',
+    ''skill.python.expression_evaluation'', ''skill.python.files_paths_basic'', ''skill.python.for_iteration'',
+    ''skill.python.functions_parameters_return'', ''skill.python.input_output_basic'',
+    ''skill.python.list_operations'', ''skill.python.mapping_collections_basic'',
+    ''skill.python.modules_imports_basic'', ''skill.python.path_handling'', ''skill.python.run_repl_script'',
+    ''skill.python.set_operations'', ''skill.python.tuple_immutable_sequence'', ''skill.python.value_type_behavior'',
+    ''skill.python.while_termination'']'
+- check: E15B-03_added_are_declared
+  result: PASS
+  details: added=['skill.python.exception_handling', 'skill.python.scope_name_resolution',
+    'skill.python.string_text_operations']
+- check: E15B-03_added_are_prerequisites
+  result: PASS
+  details: every added Skill is a hard prerequisite of a seed Skill
+- check: E15B-03_closed_under_hard_prerequisites
+  result: PASS
+  details: 'a Skill that could never become ready: []'
+- check: E15B-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15B-03_objective_identity
+  result: PASS
+  details: '[''objective.python.assignment_binding.write_state_change'', ''objective.python.conditionals.write_branch_logic'',
+    ''objective.python.exception_handling.demonstrate_capability'', ''objective.python.exceptions_read_basic.extract_error_type_location'',
+    ''objective.python.expression_evaluation.demonstrate_capability'', ''objective.python.files_paths_basic.demonstrate_capability'',
+    ''objective.python.for_iteration.iterate_sequence'', ''objective.python.functions_parameters_return.write_small_function'',
+    ''objective.python.input_output_basic.build_small_io_flow'', ''objective.python.list_operations.select_and_use_sequence'',
+    ''objective.python.mapping_collections_basic.select_and_use_mapping'', ''objective.python.modules_imports_basic.import_and_use_module_member'',
+    ''objective.python.path_handling.read_write_small_text_file'', ''objective.python.run_repl_script.execute_and_classify_result'',
+    ''objective.python.scope_name_resolution.demonstrate_capability'', ''objective.python.set_operations.demonstrate_capability'',
+    ''objective.python.string_text_operations.demonstrate_capability'', ''objective.python.tuple_immutable_sequence.demonstrate_capability'',
+    ''objective.python.value_type_behavior.demonstrate_capability'', ''objective.python.while_termination.debug_infinite_loop'',
+    ''objective.python.while_termination.write_terminating_loop'']'
+- check: E15B-03_edges_ratified
+  result: PASS
+  details: 31 edges
+- check: E15B-03_builds_on_15a
+  result: PASS
+  details: ''
+- check: E15B-03_skills_published
+  result: PASS
+  details: '[(''skill.python.run_repl_script'', ''published''), (''skill.python.value_type_behavior'',
+    ''published'')]'
+- check: E15B-03_hard_dag
+  result: PASS
+  details: '[]'
+- check: E15B-03_python_entry_points
+  result: PASS
+  details: '[''skill.python.run_repl_script'']'
+- check: E15B-04_recorded_run_repl_script_execute_and_classify_result
+  result: PASS
+  details: 'objective.python.run_repl_script.execute_and_classify_result: authored_code'
+- check: E15B-04_recorded_value_type_behavior_demonstrate_capability
+  result: PASS
+  details: 'objective.python.value_type_behavior.demonstrate_capability: code_reading'
+- check: E15B-04_recorded_assignment_binding_write_state_change
+  result: PASS
+  details: 'objective.python.assignment_binding.write_state_change: authored_code'
+- check: E15B-04_recorded_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: 'objective.python.expression_evaluation.demonstrate_capability: code_reading'
+- check: E15B-04_recorded_input_output_basic_build_small_io_flow
+  result: PASS
+  details: 'objective.python.input_output_basic.build_small_io_flow: authored_code'
+- check: E15B-04_recorded_conditionals_write_branch_logic
+  result: PASS
+  details: 'objective.python.conditionals.write_branch_logic: authored_code'
+- check: E15B-04_recorded_for_iteration_iterate_sequence
+  result: PASS
+  details: 'objective.python.for_iteration.iterate_sequence: authored_code'
+- check: E15B-04_recorded_while_termination_debug_infinite_loop
+  result: PASS
+  details: 'objective.python.while_termination.debug_infinite_loop: authored_code'
+- check: E15B-04_recorded_while_termination_write_terminating_loop
+  result: PASS
+  details: 'objective.python.while_termination.write_terminating_loop: authored_code'
+- check: E15B-04_recorded_functions_parameters_return_write_small_function
+  result: PASS
+  details: 'objective.python.functions_parameters_return.write_small_function: authored_code'
+- check: E15B-04_recorded_list_operations_select_and_use_sequence
+  result: PASS
+  details: 'objective.python.list_operations.select_and_use_sequence: authored_code'
+- check: E15B-04_recorded_tuple_immutable_sequence_demonstrate_capability
+  result: PASS
+  details: 'objective.python.tuple_immutable_sequence.demonstrate_capability: authored_code'
+- check: E15B-04_recorded_set_operations_demonstrate_capability
+  result: PASS
+  details: 'objective.python.set_operations.demonstrate_capability: authored_code'
+- check: E15B-04_recorded_mapping_collections_basic_select_and_use_mapping
+  result: PASS
+  details: 'objective.python.mapping_collections_basic.select_and_use_mapping: authored_code'
+- check: E15B-04_recorded_exceptions_read_basic_extract_error_type_location
+  result: PASS
+  details: 'objective.python.exceptions_read_basic.extract_error_type_location: code_reading'
+- check: E15B-04_recorded_scope_name_resolution_demonstrate_capability
+  result: PASS
+  details: 'objective.python.scope_name_resolution.demonstrate_capability: code_reading'
+- check: E15B-04_recorded_modules_imports_basic_import_and_use_module_member
+  result: PASS
+  details: 'objective.python.modules_imports_basic.import_and_use_module_member: authored_code'
+- check: E15B-04_recorded_exception_handling_demonstrate_capability
+  result: PASS
+  details: 'objective.python.exception_handling.demonstrate_capability: authored_code'
+- check: E15B-04_recorded_string_text_operations_demonstrate_capability
+  result: PASS
+  details: 'objective.python.string_text_operations.demonstrate_capability: authored_code'
+- check: E15B-04_recorded_path_handling_read_write_small_text_file
+  result: PASS
+  details: 'objective.python.path_handling.read_write_small_text_file: authored_code'
+- check: E15B-04_recorded_files_paths_basic_demonstrate_capability
+  result: PASS
+  details: 'objective.python.files_paths_basic.demonstrate_capability: authored_code'
+- check: E15B-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15B-05_review_method
+  result: PASS
+  details: ''
+- check: E15B-05_every_item_reviewed
+  result: PASS
+  details: 109 reviewed / 109 items
+- check: E15B-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15B-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15B-05_no_hidden_prerequisite
+  result: PASS
+  details: ''
+- check: E15B-05_known_modes
+  result: PASS
+  details: '{''suite'', ''stdout'', ''traceback''}'
+- check: E15B-05_counts
+  result: PASS
+  details: 109 85 24
+- check: E15B-05_code_executed_against_wrong
+  result: PASS
+  details: ''
+- check: E15B-05_suite_run_repl_script.execute_and_classify_result.f01
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_run_repl_script.execute_and_classify_result.f02
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_run_repl_script.execute_and_classify_result.f03
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_run_repl_script.execute_and_classify_result.f04
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_run_repl_script.execute_and_classify_result.f05
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_assignment_binding.write_state_change.f01
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_assignment_binding.write_state_change.f02
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_assignment_binding.write_state_change.f03
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_assignment_binding.write_state_change.f04
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_assignment_binding.write_state_change.f05
+  result: PASS
+  details: 1 tests
+- check: E15B-05_suite_input_output_basic.build_small_io_flow.f01
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_input_output_basic.build_small_io_flow.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_input_output_basic.build_small_io_flow.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_input_output_basic.build_small_io_flow.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_input_output_basic.build_small_io_flow.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_conditionals.write_branch_logic.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_conditionals.write_branch_logic.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_conditionals.write_branch_logic.f03
+  result: PASS
+  details: 6 tests
+- check: E15B-05_suite_conditionals.write_branch_logic.f04
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_conditionals.write_branch_logic.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_for_iteration.iterate_sequence.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_for_iteration.iterate_sequence.f02
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_for_iteration.iterate_sequence.f03
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_for_iteration.iterate_sequence.f04
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_for_iteration.iterate_sequence.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_while_termination.debug_infinite_loop.f01
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_while_termination.debug_infinite_loop.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.debug_infinite_loop.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.debug_infinite_loop.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.debug_infinite_loop.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.write_terminating_loop.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.write_terminating_loop.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.write_terminating_loop.f03
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_while_termination.write_terminating_loop.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_while_termination.write_terminating_loop.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_functions_parameters_return.write_small_function.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_functions_parameters_return.write_small_function.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_functions_parameters_return.write_small_function.f03
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_functions_parameters_return.write_small_function.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_functions_parameters_return.write_small_function.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_list_operations.select_and_use_sequence.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_list_operations.select_and_use_sequence.f02
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_list_operations.select_and_use_sequence.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_list_operations.select_and_use_sequence.f04
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_list_operations.select_and_use_sequence.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_tuple_immutable_sequence.demonstrate_capability.f01
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_tuple_immutable_sequence.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_tuple_immutable_sequence.demonstrate_capability.f03
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_tuple_immutable_sequence.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_tuple_immutable_sequence.demonstrate_capability.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_set_operations.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_set_operations.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_set_operations.demonstrate_capability.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_set_operations.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_set_operations.demonstrate_capability.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_mapping_collections_basic.select_and_use_mapping.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_mapping_collections_basic.select_and_use_mapping.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_mapping_collections_basic.select_and_use_mapping.f03
+  result: PASS
+  details: 2 tests
+- check: E15B-05_suite_mapping_collections_basic.select_and_use_mapping.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_mapping_collections_basic.select_and_use_mapping.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_modules_imports_basic.import_and_use_module_member.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_modules_imports_basic.import_and_use_module_member.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_modules_imports_basic.import_and_use_module_member.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_modules_imports_basic.import_and_use_module_member.f04
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_modules_imports_basic.import_and_use_module_member.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_exception_handling.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_exception_handling.demonstrate_capability.f02
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_exception_handling.demonstrate_capability.f03
+  result: PASS
+  details: 5 tests
+- check: E15B-05_suite_exception_handling.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_exception_handling.demonstrate_capability.f05
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_string_text_operations.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_string_text_operations.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_string_text_operations.demonstrate_capability.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_string_text_operations.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_string_text_operations.demonstrate_capability.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_suite_path_handling.read_write_small_text_file.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_path_handling.read_write_small_text_file.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_path_handling.read_write_small_text_file.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_path_handling.read_write_small_text_file.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_path_handling.read_write_small_text_file.f05
+  result: PASS
+  details: 5 tests
+- check: E15B-05_suite_files_paths_basic.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_files_paths_basic.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_files_paths_basic.demonstrate_capability.f03
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_files_paths_basic.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15B-05_suite_files_paths_basic.demonstrate_capability.f05
+  result: PASS
+  details: 4 tests
+- check: E15B-05_measurable_run_repl_script_execute_and_classify_result
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_value_type_behavior_demonstrate_capability
+  result: PASS
+  details: 6 families, 2 transfer
+- check: E15B-05_measurable_assignment_binding_write_state_change
+  result: PASS
+  details: 5 families, 2 transfer
+- check: E15B-05_measurable_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: 6 families, 2 transfer
+- check: E15B-05_measurable_input_output_basic_build_small_io_flow
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_conditionals_write_branch_logic
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_for_iteration_iterate_sequence
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_while_termination_debug_infinite_loop
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_while_termination_write_terminating_loop
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_functions_parameters_return_write_small_function
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_list_operations_select_and_use_sequence
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_tuple_immutable_sequence_demonstrate_capability
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_set_operations_demonstrate_capability
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_mapping_collections_basic_select_and_use_mapping
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_exceptions_read_basic_extract_error_type_location
+  result: PASS
+  details: 6 families, 2 transfer
+- check: E15B-05_measurable_scope_name_resolution_demonstrate_capability
+  result: PASS
+  details: 6 families, 2 transfer
+- check: E15B-05_measurable_modules_imports_basic_import_and_use_module_member
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_exception_handling_demonstrate_capability
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_string_text_operations_demonstrate_capability
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_path_handling_read_write_small_text_file
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_measurable_files_paths_basic_demonstrate_capability
+  result: PASS
+  details: 5 families, 1 transfer
+- check: E15B-05_ai_origin_declared
+  result: PASS
+  details: ''
+- check: E15B-05_ceiling_not_trusted
+  result: PASS
+  details: ''
+- check: E15B-05_code_tools
+  result: PASS
+  details: ''
+- check: E15B-05_reading_not_runnable
+  result: PASS
+  details: ''
+- check: E15B-06_runner_utf8
+  result: PASS
+  details: the runner does not run Python in UTF-8 mode
+- check: E15B-06_file_tests_read_text
+  result: PASS
+  details: a test reads a written file as bytes, so a correct solution fails on Windows
+    (CRLF)
+- check: E15B-06_path_results_portable
+  result: PASS
+  details: a path result depends on the operating system's separator
+- check: E15B-07_every_explanation_reviewed
+  result: PASS
+  details: 116 / 116
+- check: E15B-07_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15B-07_lesson_claims_executed
+  result: PASS
+  details: 59 checks
+- check: E15B-07_lesson_run_repl_script_execute_and_classify_result
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_value_type_behavior_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_assignment_binding_write_state_change
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_input_output_basic_build_small_io_flow
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_conditionals_write_branch_logic
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_for_iteration_iterate_sequence
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_while_termination_debug_infinite_loop
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_while_termination_write_terminating_loop
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_functions_parameters_return_write_small_function
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_list_operations_select_and_use_sequence
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_tuple_immutable_sequence_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_set_operations_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_mapping_collections_basic_select_and_use_mapping
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_exceptions_read_basic_extract_error_type_location
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_scope_name_resolution_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_modules_imports_basic_import_and_use_module_member
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_exception_handling_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_string_text_operations_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_path_handling_read_write_small_text_file
+  result: PASS
+  details: ''
+- check: E15B-07_lesson_files_paths_basic_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15B-07_no_combining_dot
+  result: PASS
+  details: a combining dot above (U+0307) reached the content
+- check: E15B-08_introducers_known
+  result: PASS
+  details: set()
+- check: E15B-08_forbidden_constructs
+  result: PASS
+  details: '[''classes'', ''comprehensions'', ''generators'', ''lambda_expression'']'
+- check: E15B-09_five_per_skill
+  result: PASS
+  details: '100'
+- check: E15B-09_task_purposes
+  result: PASS
+  details: '{''teach'': ''teach'', ''practice'': ''practice'', ''check'': ''assess'',
+    ''review'': ''retain'', ''repair'': ''remediate''}'
+- check: E15B-09_tasks_validated
+  result: PASS
+  details: ''
+- check: E15B-09_minutes_are_estimates
+  result: PASS
+  details: '[15, 15, 15, 12, 15]'
+- check: E15B-10_store_refuses_republished
+  result: PASS
+  details: ''
+- check: E15B-10_store_never_overwrites
+  result: PASS
+  details: ''
+- check: E15B-10_source_reads_all_or_none
+  result: PASS
+  details: ''
+- check: E15B-10_versions_rise
+  result: PASS
+  details: ''
+- check: E15B-10_authored_once
+  result: PASS
+  details: ''
+- check: E15B-10_port_refinement
+  result: PASS
+  details: ''
+- check: E15B-10_ingest_oldest_first_stops
+  result: PASS
+  details: ''
+- check: E15B-10_app_reads_later_packages
+  result: PASS
+  details: ''
+- check: E15B-10_nothing_carried_again
+  result: PASS
+  details: '[]'
+- check: E15B-10_entities_version_1
+  result: PASS
+  details: ''
+- check: E15B-10_jvm_driver_for_tests_only
+  result: PASS
+  details: ''
+- check: E15B-11_test_a later package that carries an entity a
+  result: PASS
+  details: 'CurriculumPublishingTest.kt: a later package that carries an entity already
+    published is refused whole and writes nothing'
+- check: E15B-11_test_a later package brings new entities at t
+  result: PASS
+  details: 'CurriculumPublishingTest.kt: a later package brings new entities at their
+    own version 1 and builds on what is published'
+- check: E15B-11_test_later packages are served with the first
+  result: PASS
+  details: 'PackageFormatTest.kt: later packages are served with the first as one
+    course, and published oldest first'
+- check: E15B-11_test_packages that do not rise in version, or
+  result: PASS
+  details: 'PackageFormatTest.kt: packages that do not rise in version, or author
+    something twice, are not served at all'
+- check: 'E15B-11_test_every package is published once, oldest '
+  result: PASS
+  details: 'DailyMicroAssessmentTest.kt: every package is published once, oldest first,
+    and a refusal stops the ones built on it'
+- check: E15B-11_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedPythonPackageTest.kt: everything shipped was validated, so nothing
+    is a candidate'
+- check: E15B-11_test_every item is judged by exactly one thin
+  result: PASS
+  details: 'ShippedPythonPackageTest.kt: every item is judged by exactly one thing,
+    and every code item by tests the course runs'
+- check: E15B-11_test_both packages are published into the rea
+  result: PASS
+  details: 'ShippedCourseTest.kt: both packages are published into the real store,
+    oldest first, and a second start publishes nothing'
+- check: E15B-11_test_with the Python package, a learner who h
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the Python package, a learner who has done
+    nothing is still offered only the two entry lessons'
+- check: E15B-11_course_test_reads_assets
+  result: PASS
+  details: ''
+- check: E15B-12_mutation_all_detected
+  result: PASS
+  details: 27/27
+- check: E15B-12_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E15B-12_control
+  result: PASS
+  details: ''
+- check: E15B-12_validator_mutation
+  result: PASS
+  details: '{''total'': 35, ''detected'': 35, ''negative_control'': ''a YAML comment
+    in a Skill file and a Kotlin comment in FileContentSource, each naming forbidden
+    fragments (versionMismatches, read_bytes().decode, human_authored, mapNotNull
+    { runCatching)'', ''negative_control_result'': ''no_false_positive'', ''crash_is_not_a_detection'':
+    True, ''baseline'': ''the only check allowed to fail at baseline is E15B-12_validator_mutation,
+    which reads this very result; a mutant counts as detected only by a failure that
+    is not in the baseline'', ''first_run'': ''the harness did not start (an indentation
+    error in the harness itself); nothing was mutated and no result was taken from
+    it'', ''final_run_is_a_single_clean_run'': True}'
+- check: E15B-12_runs_pass
+  result: PASS
+  details: ''
+- check: E15B-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15B-12_narrowed_gates
+  result: PASS
+  details: '{''tools/validate_daily_micro_assessment.py'': [''E11D-07_version_mismatch_refused'',
+    ''E11D-09_failed_parse_serves_nothing''], ''tools/validate_today_interior.py'':
+    [''E11A-13_content_port_returns_null''], ''tools/validate_wrong_answer_analysis.py'':
+    [''E14B-03_version_refused'']}'
+- check: E15B-12_narrowing_declared_validate_daily_micro_assessment
+  result: PASS
+  details: tools/validate_daily_micro_assessment.py
+- check: E15B-12_narrowing_declared_validate_today_interior
+  result: PASS
+  details: tools/validate_today_interior.py
+- check: E15B-12_narrowing_declared_validate_wrong_answer_analysis
+  result: PASS
+  details: tools/validate_wrong_answer_analysis.py
+- check: E15B-12_open_loops
+  result: PASS
+  details: '[''estimate_calibration'', ''fixed_output_items'', ''graph_requirements_declared_per_item'',
+    ''notation_coverage'', ''path_objective_action_name'', ''requires_transfer_not_stored'',
+    ''runner_presents_tasks'', ''t6_and_device_ingestion'', ''unicode_normal_forms'']'
+- check: E15B-13_spec_status
+  result: PASS
+  details: ''
+- check: E15B-13_spec_next
+  result: PASS
+  details: ''
+- check: E15B-13_spec_t6
+  result: PASS
+  details: ''
+- check: E15B-13_research
+  result: PASS
+  details: ''
+- check: E15B-13_decision
+  result: PASS
+  details: D-113 heading in DECISIONS

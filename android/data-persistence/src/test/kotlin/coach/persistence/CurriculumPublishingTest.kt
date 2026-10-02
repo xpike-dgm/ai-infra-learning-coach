@@ -133,11 +133,54 @@ class CurriculumPublishingTest {
     }
 
     @Test
-    fun `a row carrying another version than the package is refused`() {
+    fun `a later package that carries an entity already published is refused whole and writes nothing`() {
         withStore { db ->
-            val mixed = package1().copy(topics = listOf(NamedEntity(topicRef.logicalId, 2, "Control flow")))
-            val refused = assertIs<PublishOutcome.Refused>(db.publishCurriculum(mixed, 1_789_000_000_000))
-            assertTrue(refused.reasons.any { "not 1" in it || "version 2" in it }, refused.reasons.toString())
+            db.publishCurriculum(package1(), 1_789_000_000_000)
+            val before = Schema.curriculumTables.associateWith { db.count(it) }
+            // Version 2 of the curriculum, carrying v1 of a Skill version 1 already published: that would overwrite it.
+            val again = package1(version = 2, resources = emptyList(), validations = emptyList())
+            val refused = assertIs<PublishOutcome.Refused>(db.publishCurriculum(again, 1_789_000_100_000))
+            assertTrue(refused.reasons.any { "skill skill.python.loops@v1 is already published" in it }, refused.reasons.toString())
+            assertTrue(refused.reasons.any { "topic topic.python.control_flow@v1 is already published" in it }, refused.reasons.toString())
+            assertEquals(before, Schema.curriculumTables.associateWith { db.count(it) }, "a refused publish wrote something")
+        }
+    }
+
+    @Test
+    fun `each kind of published entity is refused when a later package carries it alone`() {
+        withStore { db ->
+            db.publishCurriculum(package1(), 1_789_000_000_000)
+            val base = CurriculumPackage(version = 2, sourceRefs = "curriculum", provenance = "authored")
+            for ((named, again) in listOf(
+                "objective $objectiveRef" to base.copy(objectives = package1().objectives),
+                "assessment_resource_version $itemRef" to base.copy(resources = package1().resources),
+            )) {
+                val refused = assertIs<PublishOutcome.Refused>(db.publishCurriculum(again, 1_789_000_100_000), named)
+                assertEquals(listOf("$named is already published and is never overwritten"), refused.reasons)
+            }
+            assertEquals(1, db.latestCurriculumVersion())
+        }
+    }
+
+    @Test
+    fun `a later package brings new entities at their own version 1 and builds on what is published`() {
+        withStore { db ->
+            db.publishCurriculum(package1(), 1_789_000_000_000)
+            val newSkill = VersionedRef("skill.python.functions", 1)
+            val second = CurriculumPackage(
+                version = 2, sourceRefs = "curriculum", provenance = "authored",
+                skills = listOf(skill(newSkill).copy(canonicalName = "Functions")),
+                objectives = listOf(ObjectiveRow(VersionedRef("objective.python.functions.write", 1), newSkill, true, "standard",
+                    listOf("authored_code"), listOf("authored_code"), "authored_code")),
+                // Placed in a topic version 1 already published, and gated on a Skill version 1 already published.
+                topicSkillLinks = listOf(TopicSkillLink(topicRef, newSkill)),
+                prerequisiteEdges = listOf(PrerequisiteEdge(skillRef, newSkill, 1, "hard", "evidence_interpretability",
+                    "default_prg_v0", "published", "authored")),
+            )
+            assertIs<PublishOutcome.Published>(db.publishCurriculum(second, 1_789_000_100_000))
+            assertEquals(2, db.latestCurriculumVersion())
+            assertEquals(listOf(1, 1), db.query("SELECT version FROM skill ORDER BY logical_id") { it.getLong(0).toInt() })
+            assertEquals(1, db.count("skill_prerequisite_edge"))
         }
     }
 
