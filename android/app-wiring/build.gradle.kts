@@ -35,6 +35,8 @@ android {
     sourceSets {
         getByName("main") {
             kotlin.srcDir(if (withAiAdapter) "src/withAi/kotlin" else "src/withoutAi/kotlin")
+            // 14G: only the AI build declares the network permission; with AI absent nothing can leave the device.
+            manifest.srcFile(if (withAiAdapter) "src/withAi/AndroidManifest.xml" else "src/main/AndroidManifest.xml")
         }
     }
 

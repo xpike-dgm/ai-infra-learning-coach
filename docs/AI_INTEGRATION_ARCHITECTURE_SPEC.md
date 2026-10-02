@@ -367,3 +367,7 @@ Next numbered step:
 ---
 
 **14F note (2026-10-02, `D-110`):** §5.1's `rubric_findings[]` is restored (`EvaluationResult.Provisional.rubricFindings`). For an open response the evaluator proposes one finding per rubric criterion and nothing else is taken from it: core derives each Objective's signal (`OpenResponse.acceptAi`). `EvaluationRequest` gained the rubric and the catalog's labels — curriculum text, never learner data. The evaluator's instructions and schema (`open_response_instructions/1`, `open_response_evaluation/1`) live in core; the adapter (14G) adds transport only. Details: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.
+
+---
+
+**14G note (2026-10-02, `D-111`):** the adapter has its call sites. Provider: OpenAI Responses API (user decision); request shape and model ids confirmed against the current reference on 2026-10-02 and recorded in `ProviderConfig` (§8.2). Every call sends core's instructions, message and schema with `strict: true` and `store: false`; the stop reason is read before the content; the budget is end to end (60 s, 2 attempts — product defaults); only network failure, 408, 429 and 5xx are retried; nothing is retried in the background. The learner's key is kept encrypted with an Android Keystore key, in the no-backup directory, never shown or logged; the no-AI build has no network permission. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.

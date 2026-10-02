@@ -182,3 +182,7 @@ Next numbered step: **14E — AI-generated code comprehension check**. It must r
 ---
 
 **14F note (2026-10-02, `D-110`):** `EvaluationRequest` gained `rubric` and `misconceptionCatalog` for open responses; a code evaluation still sends only its three original fields (`E14D-05_request_unchanged` narrowed accordingly). Details: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`.
+
+---
+
+**14G note (2026-10-02, `D-111`):** the AI path's instructions and schema now exist in core (`code_evaluation_instructions/1`, `code_evaluation/1`) and the adapter's call site in 14G; an objective the request did not name is no answer. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.

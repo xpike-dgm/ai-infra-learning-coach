@@ -1,0 +1,407 @@
+model: PRVX-v0
+stage_step: 14G
+decision: D-111
+result: PASS
+checks_total: 129
+checks_passed: 129
+checks_failed: 0
+checks:
+- check: E14G-00_exists_provider_adapter.yaml
+  result: PASS
+  details: missing arch/14g_provider_adapter/provider_adapter.yaml
+- check: E14G-00_exists_PROVIDER_ADAPTER_IMPL_SPEC.md
+  result: PASS
+  details: missing docs/PROVIDER_ADAPTER_IMPL_SPEC.md
+- check: E14G-00_exists_14g_provider_adapter_research.md
+  result: PASS
+  details: missing research/14g_provider_adapter_research.md
+- check: E14G-00_exists_OpenAiResponses.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/OpenAiResponses.kt
+- check: E14G-00_exists_Provider.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/Provider.kt
+- check: E14G-00_exists_Json.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/Json.kt
+- check: E14G-00_exists_AiTutor.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/AiTutor.kt
+- check: E14G-00_exists_AiEvaluator.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/AiEvaluator.kt
+- check: E14G-00_exists_ConnectionCheck.kt
+  result: PASS
+  details: missing android/ai-adapter/src/main/kotlin/coach/ai/ConnectionCheck.kt
+- check: E14G-00_exists_CodeEvaluationInstructions.kt
+  result: PASS
+  details: missing android/core-model/src/main/kotlin/coach/CodeEvaluationInstructions.kt
+- check: E14G-00_exists_AiSettingsPresentation.kt
+  result: PASS
+  details: missing android/core-presentation/src/main/kotlin/coach/presentation/AiSettingsPresentation.kt
+- check: E14G-00_exists_AiSettingsScreen.kt
+  result: PASS
+  details: missing android/app-ui/src/main/kotlin/coach/ui/AiSettingsScreen.kt
+- check: E14G-00_exists_AiWiring.kt
+  result: PASS
+  details: missing android/app-wiring/src/withAi/kotlin/coach/wiring/AiWiring.kt
+- check: E14G-00_exists_AiWiring.kt
+  result: PASS
+  details: missing android/app-wiring/src/withoutAi/kotlin/coach/wiring/AiWiring.kt
+- check: E14G-00_exists_AndroidManifest.xml
+  result: PASS
+  details: missing android/app-wiring/src/withAi/AndroidManifest.xml
+- check: E14G-01_model
+  result: PASS
+  details: PRVX-v0
+- check: E14G-01_status
+  result: PASS
+  details: accepted_14g
+- check: E14G-01_decision
+  result: PASS
+  details: D-111
+- check: E14G-01_scope_provider_client
+  result: PASS
+  details: provider_client=True
+- check: E14G-01_scope_router_by_task_class
+  result: PASS
+  details: router_by_task_class=True
+- check: E14G-01_scope_key_on_device_encrypted
+  result: PASS
+  details: key_on_device_encrypted=True
+- check: E14G-01_scope_settings_screen
+  result: PASS
+  details: settings_screen=True
+- check: E14G-01_scope_connection_check
+  result: PASS
+  details: connection_check=True
+- check: E14G-01_scope_code_evaluation_instructions_in_core
+  result: PASS
+  details: code_evaluation_instructions_in_core=True
+- check: E14G-01_scope_schema_changed
+  result: PASS
+  details: schema_changed=False
+- check: E14G-01_scope_core_names_a_model
+  result: PASS
+  details: core_names_a_model=False
+- check: E14G-01_scope_developer_key_shipped
+  result: PASS
+  details: developer_key_shipped=False
+- check: E14G-01_scope_backend_proxy
+  result: PASS
+  details: backend_proxy=False
+- check: E14G-01_scope_second_provider_or_model
+  result: PASS
+  details: second_provider_or_model=False
+- check: E14G-01_scope_background_retry
+  result: PASS
+  details: background_retry=False
+- check: E14G-01_scope_live_call_in_any_check
+  result: PASS
+  details: live_call_in_any_check=False
+- check: E14G-01_scope_live_call_run_by_claude
+  result: PASS
+  details: live_call_run_by_claude=False
+- check: E14G-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-02'', ''provider'': ''openai'', ''fallback'': ''single_provider_uniform_degradation'',
+    ''key_entry'': ''small_settings_screen_in_14g''}'
+- check: E14G-01_aiax_no_dev_key
+  result: PASS
+  details: 'AIAX-v0 moved: No developer or shared API key ships in the APK'
+- check: E14G-01_aiax_no_proxy
+  result: PASS
+  details: 'AIAX-v0 moved: No backend proxy exists in V1'
+- check: E14G-01_aiax_key_never_logged
+  result: PASS
+  details: 'AIAX-v0 moved: the key never appears in logs, crash reports, expo'
+- check: E14G-01_aiax_model_in_config
+  result: PASS
+  details: 'AIAX-v0 moved: the **model name lives in configuration**, never i'
+- check: E14G-01_aiax_budget
+  result: PASS
+  details: 'AIAX-v0 moved: the adapter declares an **end-to-end budget** cove'
+- check: E14G-01_aiax_bounded
+  result: PASS
+  details: 'AIAX-v0 moved: retries are bounded and never unbounded or unthrot'
+- check: E14G-01_aiax_stop_reason
+  result: PASS
+  details: 'AIAX-v0 moved: The adapter must therefore inspect the stop reason'
+- check: E14G-01_aiax_nothing_leaves
+  result: PASS
+  details: 'AIAX-v0 moved: with AI disabled, nothing leaves the device'
+- check: E14G-01_aiax_remove_safe
+  result: PASS
+  details: 'AIAX-v0 moved: removing the key returns the app to the null-evalu'
+- check: E14G-01_tvsx_no_live
+  result: PASS
+  details: TVSX-v0 §9 moved
+- check: E14G-02_reference_recorded
+  result: PASS
+  details: AIAX-v0 §8.2
+- check: E14G-02_research_pass
+  result: PASS
+  details: ''
+- check: E14G-02_endpoint
+  result: PASS
+  details: ''
+- check: E14G-02_router
+  result: PASS
+  details: ''
+- check: E14G-02_model_in_config
+  result: PASS
+  details: ''
+- check: E14G-02_no_model_in_core
+  result: PASS
+  details: core never names a provider or model
+- check: E14G-02_budget_defaults
+  result: PASS
+  details: ''
+- check: E14G-03_store_false
+  result: PASS
+  details: the provider keeps nothing
+- check: E14G-03_strict_schema
+  result: PASS
+  details: ''
+- check: E14G-03_only_core_content
+  result: PASS
+  details: '[''model'', ''instructions'', ''input'', ''text'', ''format'', ''type'',
+    ''name'', ''strict'', ''schema'', ''store'']'
+- check: E14G-03_no_key_no_call
+  result: PASS
+  details: ''
+- check: E14G-03_key_in_header_only
+  result: PASS
+  details: ''
+- check: E14G-03_no_logging
+  result: PASS
+  details: nothing in the adapter logs
+- check: E14G-03_no_library
+  result: PASS
+  details: ''
+- check: E14G-03_tutor_sends_core
+  result: PASS
+  details: ''
+- check: E14G-03_open_sends_core
+  result: PASS
+  details: ''
+- check: E14G-03_code_sends_core
+  result: PASS
+  details: ''
+- check: E14G-03_check_sends_nothing_personal
+  result: PASS
+  details: ''
+- check: E14G-04_stop_reason_first
+  result: PASS
+  details: '[307, 605, 1086, 1240, 1452]'
+- check: E14G-04_content_filter_refused
+  result: PASS
+  details: ''
+- check: E14G-04_exactly_one_text
+  result: PASS
+  details: ''
+- check: E14G-04_tutor_exact_fields
+  result: PASS
+  details: ''
+- check: E14G-04_open_exact_fields
+  result: PASS
+  details: ''
+- check: E14G-04_code_exact_fields
+  result: PASS
+  details: ''
+- check: E14G-04_core_decides_open
+  result: PASS
+  details: ''
+- check: E14G-04_never_verified
+  result: PASS
+  details: an AI is never more than provisional
+- check: E14G-04_no_guessing
+  result: PASS
+  details: ''
+- check: E14G-04_routed
+  result: PASS
+  details: ''
+- check: E14G-04_json_strict
+  result: PASS
+  details: ''
+- check: E14G-04_no_free_text
+  result: PASS
+  details: no verdict read out of free text
+- check: E14G-05_key_rejected
+  result: PASS
+  details: ''
+- check: E14G-05_retried_only
+  result: PASS
+  details: ''
+- check: E14G-05_timeout_ends
+  result: PASS
+  details: ''
+- check: E14G-05_budget_end_to_end
+  result: PASS
+  details: ''
+- check: E14G-05_bounded
+  result: PASS
+  details: ''
+- check: E14G-05_no_background
+  result: PASS
+  details: nothing retries in the background
+- check: E14G-05_no_client_unavailable
+  result: PASS
+  details: ''
+- check: E14G-05_availability_needs_key
+  result: PASS
+  details: ''
+- check: E14G-06_keystore
+  result: PASS
+  details: ''
+- check: E14G-06_no_backup_dir
+  result: PASS
+  details: ''
+- check: E14G-06_no_plain_storage
+  result: PASS
+  details: ''
+- check: E14G-06_no_logging
+  result: PASS
+  details: ''
+- check: E14G-06_remove_deletes_both
+  result: PASS
+  details: ''
+- check: E14G-06_prime_off_main
+  result: PASS
+  details: presence is read on the store thread
+- check: E14G-06_not_in_store
+  result: PASS
+  details: the key never enters the store
+- check: E14G-06_no_key_in_repo
+  result: PASS
+  details: ''
+- check: E14G-06_internet_only_with_ai
+  result: PASS
+  details: '[''<!-- The AI build only (14G): the provider call. The no-AI build has
+    no network permission at all. -->'', ''<uses-permission android:name="android.permission.INTERNET"
+    />'']'
+- check: E14G-06_manifest_per_build
+  result: PASS
+  details: ''
+- check: E14G-06_no_ai_build_inert
+  result: PASS
+  details: ''
+- check: E14G-07_says_optional
+  result: PASS
+  details: OPTIONAL
+- check: E14G-07_says_key_stays
+  result: PASS
+  details: KEY_STAYS
+- check: E14G-07_says_what_leaves
+  result: PASS
+  details: WHAT_LEAVES
+- check: E14G-07_says_remove_is_safe
+  result: PASS
+  details: REMOVE_IS_SAFE
+- check: E14G-07_said_before_asked
+  result: PASS
+  details: ''
+- check: E14G-07_provider_name_from_config
+  result: PASS
+  details: core never names the provider
+- check: E14G-07_masked_and_cleared
+  result: PASS
+  details: the key is never shown
+- check: E14G-07_ui_renders_only
+  result: PASS
+  details: ''
+- check: E14G-07_no_blame
+  result: PASS
+  details: ''
+- check: E14G-08_code_versions
+  result: PASS
+  details: ''
+- check: E14G-08_code_rules
+  result: PASS
+  details: ''
+- check: E14G-08_code_neutralised
+  result: PASS
+  details: ''
+- check: E14G-08_explicit_signal_ids
+  result: PASS
+  details: no case transform
+- check: E14G-09_no_live_call_in_tests
+  result: PASS
+  details: every adapter test uses a scripted transport
+- check: E14G-09_test_key_fake
+  result: PASS
+  details: ''
+- check: E14G-10_narrowed_declared
+  result: PASS
+  details: '{''tools/validate_app_health.py'': [''E10E-12_test''], ''tools/validate_tutor_contract.py'':
+    [''E14A-08_adapter_unavailable'', ''E14A-08_wiring'', ''E14A-12_adapter'']}'
+- check: E14G-10_narrowed_in_code
+  result: PASS
+  details: ''
+- check: E14G-10_port_count
+  result: PASS
+  details: ''
+- check: E14G-10_schema_unchanged
+  result: PASS
+  details: ''
+- check: E14G-11_suite_json
+  result: PASS
+  details: android/ai-adapter/src/test/kotlin/coach/ai/JsonTest.kt
+- check: E14G-11_suite_client
+  result: PASS
+  details: android/ai-adapter/src/test/kotlin/coach/ai/OpenAiResponsesTest.kt
+- check: E14G-11_suite_tutor
+  result: PASS
+  details: android/ai-adapter/src/test/kotlin/coach/ai/AiTutorTest.kt
+- check: E14G-11_suite_evaluator
+  result: PASS
+  details: android/ai-adapter/src/test/kotlin/coach/ai/AiEvaluatorTest.kt
+- check: E14G-11_suite_connection
+  result: PASS
+  details: android/ai-adapter/src/test/kotlin/coach/ai/ConnectionCheckTest.kt
+- check: E14G-11_suite_code_instructions
+  result: PASS
+  details: android/core-model/src/test/kotlin/coach/model/CodeEvaluationInstructionsTest.kt
+- check: E14G-11_suite_settings
+  result: PASS
+  details: android/core-presentation/src/test/kotlin/coach/presentation/AiSettingsPresentationTest.kt
+- check: E14G-11_mutation_all_detected
+  result: PASS
+  details: 41/41
+- check: E14G-11_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E14G-11_control
+  result: PASS
+  details: ''
+- check: E14G-11_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': ''forbidden fragments
+    (store true, a model name, a retry thread, SharedPreferences, Log.d) inside comments
+    must not fail the validator'', ''negative_control_result'': ''no_false_positive'',
+    ''crash_is_not_a_detection'': True}'
+- check: E14G-11_runs_pass
+  result: PASS
+  details: ''
+- check: E14G-11_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E14G-11_forbidden
+  result: PASS
+  details: '[''developer_key_in_apk_or_proxy'', ''key_in_plain_storage_log_backup_export_or_shown'',
+    ''call_without_learners_key'', ''network_permission_in_no_ai_build'', ''provider_keeps_the_call'',
+    ''anything_but_core_content_sent'', ''refusal_read_as_answer_or_wrong_answer'',
+    ''free_text_read_as_verdict_or_extra_field_kept'', ''retry_after_refusal_invalid_rejected_or_timeout_or_in_background'',
+    ''model_name_in_core'']'
+- check: E14G-12_spec_status
+  result: PASS
+  details: ''
+- check: E14G-12_spec_next
+  result: PASS
+  details: ''
+- check: E14G-12_spec_not_run
+  result: PASS
+  details: ''
+- check: E14G-12_decision
+  result: PASS
+  details: D-111 heading in DECISIONS

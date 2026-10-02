@@ -44,8 +44,26 @@ class CoachApplication : Application() {
         Thread(runnable, "coach-store").apply { isDaemon = true }
     }
 
+    // AI work (saving the key, the connection check) runs on its own thread: a network call must never hold up the store.
+    private val aiThread: Executor = Executors.newSingleThreadExecutor { runnable ->
+        Thread(runnable, "coach-ai").apply { isDaemon = true }
+    }
+
+    /** The AI settings behind Profile (14G); in the no-AI build there is nothing to configure. */
+    internal val aiSettings: AiSettings get() = provideAiSettings()
+
+    /** Runs [work] off the main thread and hands its result back on the main thread. */
+    internal fun <T> aiWork(work: () -> T, onDone: (T) -> Unit) {
+        aiThread.execute {
+            val result = work()
+            main.post { onDone(result) }
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
+        // Only resolves where the key would live; nothing is read here (14G).
+        initAi(this)
         if (BuildConfig.DEBUG) {
             // Debug builds log any disk read or write on the main thread, so a regression that
             // moves store work back onto it shows up in logcat on the device.
@@ -92,6 +110,8 @@ class CoachApplication : Application() {
 
     /** Runs on the store thread. Resolving the path touches the filesystem too, so it happens here. */
     private fun openApp(): StoreOpenOutcome<OpenedApp> {
+        // Whether a key is saved is read here, on the store thread, so the main thread only reads a flag (14G).
+        primeAi()
         val path: File = getDatabasePath(AppGraph.DATABASE_NAME)
         path.parentFile?.mkdirs()
         return when (val result = StoreOpener.open(path.absolutePath)) {

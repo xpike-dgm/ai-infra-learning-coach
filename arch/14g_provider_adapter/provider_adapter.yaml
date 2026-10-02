@@ -1,0 +1,206 @@
+model: PRVX-v0
+stage_step: 14G
+status: accepted_14g
+decision: D-111
+implements: [AIAX-v0, LEARNING_BEHAVIOR_RULES, MSBX-v0, TVSX-v0]
+builds_on: [TUTX-v0, CDEX-v0, ACCX-v0, OREX-v0, APHX-v0]
+boundaries: MSBX-v0
+purpose: the_first_real_provider_call_behind_the_ports
+
+scope:
+  provider_client: true
+  router_by_task_class: true
+  key_on_device_encrypted: true
+  settings_screen: true
+  connection_check: true
+  code_evaluation_instructions_in_core: true
+  schema_changed: false
+  core_names_a_model: false
+  developer_key_shipped: false
+  backend_proxy: false
+  second_provider_or_model: false
+  background_retry: false
+  live_call_in_any_check: false
+  live_call_run_by_claude: false
+
+question: AI gerçekten nasıl çağrılır — ve ürünün hiçbir şeyi ona bağlı kalmadan nasıl çalışır?
+
+primary_invariant: >-
+  The provider is a replaceable detail behind the ports. Only the learner's own key, kept encrypted on this device,
+  can make a call; without it nothing leaves the device and nothing in the product stops working. What is sent is
+  exactly what core built — its instructions, its message, its schema — and nothing the provider says becomes an
+  answer unless it is one schema-exact object; a refusal is a refusal, a timeout ends the call, and nothing is retried
+  behind the learner's back.
+
+user_decisions:
+  date: "2026-10-02"
+  provider: openai
+  fallback: single_provider_uniform_degradation
+  key_entry: small_settings_screen_in_14g
+
+provider:
+  name: openai
+  api: responses
+  endpoint: https://api.openai.com/v1/responses
+  reply_format: json_schema_strict
+  store: false
+  refusal_shape: output_message_content_type_refusal
+  incomplete_content_filter: refused
+  reference_checked_on: "2026-10-02"
+  reference: [developers.openai.com/api/reference/resources/responses/methods/create, developers.openai.com/api/docs/guides/structured-outputs, developers.openai.com/api/docs/models]
+
+router:
+  task_classes: [tutor_help, open_response_evaluation, code_evaluation]
+  default_model: gpt-6-astra
+  why_default: "AIAX-v0 §8.1 puts open-response evaluation and explanation/hint/feedback in the quality tier; the reference names gpt-6-astra the flagship"
+  model_lives_in: ProviderConfig
+
+budget:
+  end_to_end: true
+  default_millis: 60000
+  max_attempts: 2
+  retried: [io_failure, http_408, http_429, http_5xx]
+  never_retried: [refusal, invalid_response, key_rejected, http_4xx_other, timeout]
+  background_retry: false
+
+taxonomy:
+  no_key: unavailable
+  http_401_403: unavailable_key_rejected
+  timeout_or_budget_spent: timed_out
+  io_408_429_5xx_after_attempts: transport_error
+  other_4xx: transport_error
+  refusal_or_content_filter: refused
+  not_exactly_one_json_object: invalid_response
+  schema_mismatch_in_reply: invalid_response
+
+key:
+  storage: android_keystore_aes_gcm_ciphertext_in_no_backup_dir
+  plain_storage: false
+  shown_after_entry: false
+  logged: false
+  backed_up: false
+  in_export: false
+  removed_returns_null_path: true
+  read_on_main_thread: false
+
+network_permission:
+  ai_build: internet
+  no_ai_build: none
+
+renamed_tests:
+  - {gate: E10E-12_test, before: "an adapter without call sites degrades to evaluation pending instead of throwing", after: "without a client or a key the evaluator is unavailable, never a crash and never a verdict"}
+  - {gate: E14A-12_adapter, before: "an adapter without a call site is unavailable, never a crash and never a reply", after: "without a client the tutor is unavailable, never a crash and never a reply"}
+
+port_count: 5
+port_refinements: []
+schema_version: 8
+
+suites:
+  json: {file: android/ai-adapter/src/test/kotlin/coach/ai/JsonTest.kt}
+  client: {file: android/ai-adapter/src/test/kotlin/coach/ai/OpenAiResponsesTest.kt}
+  tutor: {file: android/ai-adapter/src/test/kotlin/coach/ai/AiTutorTest.kt}
+  evaluator: {file: android/ai-adapter/src/test/kotlin/coach/ai/AiEvaluatorTest.kt}
+  connection: {file: android/ai-adapter/src/test/kotlin/coach/ai/ConnectionCheckTest.kt}
+  code_instructions: {file: android/core-model/src/test/kotlin/coach/model/CodeEvaluationInstructionsTest.kt}
+  settings: {file: android/core-presentation/src/test/kotlin/coach/presentation/AiSettingsPresentationTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_app_health.py, checks: [E10E-12_test]}
+  - {file: tools/validate_tutor_contract.py, checks: [E14A-08_adapter_unavailable, E14A-08_wiring, E14A-12_adapter]}
+
+mutation_results:
+  total: 41
+  detected: 41
+  only_14g_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with test reports on disk before any mutant runs; one mutant (G02, the provider keeps the call) was re-run by hand and the named OpenAiResponsesTest test was seen failing
+  negative_control: a comment-only change in OpenAiResponses.kt
+  negative_control_result: survived_as_expected
+  first_run: 41 of 41 detected on the first run; the independent validator then caught core-presentation naming the provider in its wording (AIAX-v0 §8 — a provider swap must touch only the adapter and configuration); the name moved to ProviderConfig.displayName and the whole set was re-run once from the final tree, 41 of 41
+  numbering_gaps: G15 (the replying model ignored in favour of the configured one) was dropped as equivalent under the scripted transport, which always echoes the configured model
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: G01, mutant: no_key_still_calls, result: detected}
+    - {id: G02, mutant: the_provider_keeps_the_call, result: detected}
+    - {id: G03, mutant: the_schema_is_not_strict, result: detected}
+    - {id: G04, mutant: the_key_travels_in_the_body, result: detected}
+    - {id: G05, mutant: a_refusal_is_read_as_content, result: detected}
+    - {id: G06, mutant: a_content_filter_is_invalid, result: detected}
+    - {id: G07, mutant: an_incomplete_reply_is_not_inspected, result: detected}
+    - {id: G08, mutant: the_first_of_two_texts_wins, result: detected}
+    - {id: G09, mutant: a_rejected_key_is_retried, result: detected}
+    - {id: G10, mutant: a_timeout_is_retried, result: detected}
+    - {id: G11, mutant: each_attempt_gets_the_whole_budget, result: detected}
+    - {id: G12, mutant: one_attempt_too_many, result: detected}
+    - {id: G13, mutant: a_bad_request_is_retried, result: detected}
+    - {id: G14, mutant: a_429_is_not_retried, result: detected}
+    - {id: G16, mutant: plain_http_is_allowed, result: detected}
+    - {id: G17, mutant: a_task_class_without_a_model, result: detected}
+    - {id: G18, mutant: one_model_for_every_class, result: detected}
+    - {id: G19, mutant: an_extra_tutor_field_is_kept, result: detected}
+    - {id: G20, mutant: a_blank_tutor_text_is_a_reply, result: detected}
+    - {id: G21, mutant: other_instructions_are_sent, result: detected}
+    - {id: G22, mutant: an_unknown_level_reads_as_none, result: detected}
+    - {id: G23, mutant: no_client_crashes, result: detected}
+    - {id: G24, mutant: an_extra_evaluation_field_is_kept, result: detected}
+    - {id: G25, mutant: an_invented_label_is_kept, result: detected}
+    - {id: G26, mutant: an_unnamed_objective_is_guessed, result: detected}
+    - {id: G27, mutant: the_open_response_evaluator_gives_a_verdict, result: detected}
+    - {id: G28, mutant: everything_is_routed_as_code, result: detected}
+    - {id: G29, mutant: available_without_a_key, result: detected}
+    - {id: G30, mutant: code_goes_with_other_instructions, result: detected}
+    - {id: G31, mutant: a_rejected_key_is_said_unreachable, result: detected}
+    - {id: G32, mutant: any_reply_works, result: detected}
+    - {id: G33, mutant: a_duplicate_key_is_read, result: detected}
+    - {id: G34, mutant: trailing_text_is_ignored, result: detected}
+    - {id: G35, mutant: a_raw_control_character_is_read, result: detected}
+    - {id: G36, mutant: a_quote_is_not_escaped, result: detected}
+    - {id: G37, mutant: the_code_can_close_its_section, result: detected}
+    - {id: G38, mutant: style_may_count_for_code, result: detected}
+    - {id: G39, mutant: an_empty_catalog_is_sent_with_code, result: detected}
+    - {id: G40, mutant: where_the_key_stays_is_unsaid, result: detected}
+    - {id: G41, mutant: a_check_can_start_twice, result: detected}
+    - {id: G42, mutant: a_build_without_ai_asks_for_a_key, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: forbidden fragments (store true, a model name, a retry thread, SharedPreferences, Log.d) inside comments must not fail the validator
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew verifyModuleBoundaries", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew :data-curriculum:test :ai-adapter:test", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug -PwithAiAdapter=false", tier: T5, result: PASS}
+  - {id: RUN-07, command: "merged manifest read after each build: INTERNET present only in the AI build", tier: T5, result: PASS}
+jvm_tests: 964
+sweep: {passed: 55, total: 55}
+
+device_verification:
+  t6_run: false
+  claimed: false
+  live_call_run: false
+  why: no check calls a live provider (TVSX-v0) and Claude does not enter API keys; the first live call and the Keystore path are the learner's, on the device, from Profile
+
+open_loops:
+  first_live_call_and_keystore_on_device: {owner: learner_t6}
+  tutor_and_evaluator_from_task_screens: {owner: 16D}
+  evaluator_calibration: {owner: "18"}
+  usage_and_cost_visibility: {owner: 16D}
+
+forbidden_patterns:
+  - developer_key_in_apk_or_proxy
+  - key_in_plain_storage_log_backup_export_or_shown
+  - call_without_learners_key
+  - network_permission_in_no_ai_build
+  - provider_keeps_the_call
+  - anything_but_core_content_sent
+  - refusal_read_as_answer_or_wrong_answer
+  - free_text_read_as_verdict_or_extra_field_kept
+  - retry_after_refusal_invalid_rejected_or_timeout_or_in_background
+  - model_name_in_core

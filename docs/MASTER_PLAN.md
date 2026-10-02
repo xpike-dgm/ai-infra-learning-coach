@@ -967,12 +967,24 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 49/49, validator 117/117 ve kendi mutation testi 30/30,
 - **T6 çalıştırılmadı**; uygulama açık uçlu cevabı henüz değerlendirmiyor (16D), anahtarlar/rubric'ler henüz yazılmadı (15).
 
-### [ ] 14G — Provider abstraction/fallback — **AKTİF**
+### [x] 14G — Provider abstraction/fallback — PRVX-v0 / D-111
+
+**14G final coverage:**
+- sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır; core hiçbir model ya da sağlayıcı adı bilmez,
+- OpenAI Responses API (kullanıcı kararı), istek biçimi ve model kimlikleri güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi (`AIAX-v0` §8.2),
+- gönderilen yalnız core'un talimatı, mesajı ve şeması; `store: false`; katı `json_schema`; önce durma nedeni, red ve içerik filtresi `refused`; tek şemaya tam uyan nesne dışında her şey `invalid_response`,
+- uçtan uca bütçe (60 sn, 2 deneme — ürün varsayılanı); yalnız ağ hatası/408/429/5xx yeniden denenir; arka planda yeniden deneme yok; tek sağlayıcı, ikinci model yok (kullanıcı kararı),
+- anahtar öğrencinin: Android Keystore AES-GCM, yedeklenmeyen dizin, hiç gösterilmez/loglanmaz/dışa aktarılmaz; Profile'da küçük ekran ve bağlantı testi (kullanıcı kararı); AI'sız build'de ağ izni yok,
+- kod için AI talimatları core'da (`code_evaluation_instructions/1`); 10E ve 14A'nın dört kapısı daraltıldı; şema değişmedi,
+- mutation 41/41, validator 129/129 ve kendi mutation testi 30/30,
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı**; ilk gerçek çağrı öğrencinin, cihazda (`TVSX-v0`: hiçbir kontrol canlı sağlayıcı çağırmaz).
+
+**AŞAMA 14 TAMAMLANDI** — TUTX-v0 → WAAX-v0 → ALEX-v0 → CDEX-v0 → ACCX-v0 → OREX-v0 → PRVX-v0.
 
 ---
 
 # AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriği
-### [ ] 15A — Computer / Programming Fundamentals
+### [ ] 15A — Computer / Programming Fundamentals — **AKTİF**
 ### [ ] 15B — Python Foundations
 ### [ ] 15C — C Foundations
 ### [ ] 15D — Memory Foundations
@@ -1056,8 +1068,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14F`  
-**Son tamamlanan:** **`14F — OREX-v0 / D-110`**  
-**Aktif:** **`14G — Provider abstraction/fallback`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`  
+**Son tamamlanan:** **`14G — PRVX-v0 / D-111`**  
+**Aktif:** **`15A — Computer / Programming Fundamentals`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **14G fresh PRE-STEP → sağlayıcı soyutlaması / yedek (`AIAX-v0` adaptör kuralları; `TUTX-v0`, `CDEX-v0`, `ACCX-v0` ve `OREX-v0` sözleşmeleri, talimatları ve şemaları kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15A fresh PRE-STEP → Computer / Programming Fundamentals içeriği (AŞAMA 14'e kadar bütün motorlar, içerik bölümleri — explanation, code_test, comprehension_check, answer_key, rubric, misconception — ve sağlayıcı adaptörü kodda) → independent QA → D-050 POST sync + stale audit.**

@@ -74,8 +74,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **14D — Kod değerlendirme** | ✅ | CDEX-v0 / D-108. Kod çalıştırılarak değerlendirilir, yoksa yalnız görüştür; testler PC'de koşar ve rapor içe aktarılır, test yoksa AI yalnız provisional (kullanıcı kararları); test yalnız kendi Objective'i için konuşur, çalışmayan test hiçbir şey ölçmez; şema değişmedi; 122/122 QA PASS, mutation 49/49. |
 | **14E — AI-generated code comprehension check** | ✅ | ACCX-v0 / D-109. Başkasının yazdığı kodun çalışması öğrenci hakkında bir şey kanıtlamaz; açıklamak anlamayı kanıtlar, üretimi değil; önce yazılmış kontrol, yoksa tutor pratiği; hemen sonra, isteğe bağlı; AI yazımı kod yeniden kontrol açar (kullanıcı kararları); şema değişmedi; 112/112 QA PASS, mutation 43/43. |
 | **14F — Açık uçlu cevap değerlendirme** | ✅ | OREX-v0 / D-110. Serbest metin cevap dersin söylediğine göre değerlendirilir, kulağa nasıl geldiğine göre değil; kısa cevap kabul edilen listeyle (verified), uzun cevap rubric'le kriter kriter (AI yalnız bulgu önerir, core karar verir, en çok provisional); AI yoksa bekler + öz-kontrol, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi; 117/117 QA PASS, mutation 49/49. |
-| **14G — Provider abstraction/fallback** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **15–20** | ⬜ Bekliyor | 14G sonrası canonical sırada. |
+| **14G — Provider abstraction/fallback** | ✅ | PRVX-v0 / D-111. Sağlayıcı portların arkasında değiştirilebilir ayrıntı; OpenAI (kullanıcı kararı), `store: false`, katı şema, önce durma nedeni, uçtan uca bütçe, arka planda yeniden deneme yok; anahtar Keystore'da, Profile ekranından (kullanıcı kararı); AI'sız build'de ağ izni yok; şema değişmedi; 129/129 QA PASS, mutation 41/41. **AŞAMA 14 TAMAMLANDI.** |
+| **15A — Computer / Programming Fundamentals** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **15B–20** | ⬜ Bekliyor | 15A sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -94,7 +95,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 14F
+## Son tamamlanan numaralı adım — 14G
+
+**Final:** `PRVX-v0 — Provider Adapter` / D-111.
+**Ana çıktı:** `docs/PROVIDER_ADAPTER_IMPL_SPEC.md` + `arch/14g_provider_adapter/` + `android/`.
+
+14G sonucu:
+- sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır; ürünün hiçbir şeyi ona bağlı değildir,
+- kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de,
+- **bulgu:** adaptörün çağrı noktası, uygulamanın ağ izni ve anahtar girme yolu yoktu; kod için AI talimatı yoktu (14D açık loop'u); sağlayıcı yanıtları varsayılan olarak saklıyor (`store` true),
+- istek biçimi ve model kimlikleri güncel kaynaktan doğrulandı ve kaydedildi; yalnız core'un içeriği, `store: false`; önce durma nedeni; yalnız şemaya tam uyan nesne cevaptır,
+- uçtan uca bütçe, sınırlı yeniden deneme, arka planda yok; anahtar Keystore'da, gösterilmez/loglanmaz; AI'sız build'de ağ izni yok,
+- 10E ve 14A'nın dört kapısı daraltıldı; şema ve portlar değişmedi,
+- mutation 41/41 (ilk ve tek temiz koşuda), independent validator **129/129 PASS**, kendi mutation testi 30/30; 55/55 sweep PASS,
+- **T6 ve canlı çağrı çalıştırılmadı**.
+
+**AŞAMA 14 TAMAMLANDI** — TUTX-v0 → WAAX-v0 → ALEX-v0 → CDEX-v0 → ACCX-v0 → OREX-v0 → PRVX-v0.
+
+## Önceki numaralı adım — 14F
 
 **Final:** `OREX-v0 — Open-Response Evaluation` / D-110.
 **Ana çıktı:** `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md` + `arch/14f_open_response_evaluation/` + `android/`.
@@ -110,7 +128,7 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 - mutation 49/49 (üçü başta yaşadı, testler güçlendirildi), independent validator **117/117 PASS**, kendi mutation testi 30/30; 54/54 sweep PASS,
 - **T6 çalıştırılmadı**.
 
-## Önceki numaralı adım — 14E
+## 14E adımı
 
 **Final:** `ACCX-v0 — AI-Generated Code Comprehension` / D-109.
 **Ana çıktı:** `docs/CODE_COMPREHENSION_IMPL_SPEC.md` + `arch/14e_code_comprehension/` + `android/`.
@@ -317,6 +335,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 14G Provider abstraction/fallback
+## Aktif adım — 15A Computer / Programming Fundamentals
 
-**14G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**15A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

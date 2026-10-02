@@ -236,12 +236,14 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14D ✅ Kod değerlendirme — CDEX-v0 / D-108**
 - **14E ✅ AI-generated code comprehension check — ACCX-v0 / D-109**
 - **14F ✅ Açık uçlu cevap değerlendirme — OREX-v0 / D-110**
-- **14G 🟡 Provider abstraction/fallback — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15–20 ⬜
+- **14G ✅ Provider abstraction/fallback — PRVX-v0 / D-111**
+- **AŞAMA 14 ✅ TAMAMLANDI**
+- **15A 🟡 Computer / Programming Fundamentals — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15B–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 14G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -618,3 +620,13 @@ Kod yazmadan önce bulunanlar: değerlendirme isteği rubric taşımıyordu (AI 
 Serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. Mutation 49/49, validator 117/117, kendi mutation testi 30/30. **T6 çalıştırılmadı.**
 
 Canonical: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md` / D-110.
+
+## 12.36 14G Sağlayıcı adaptörü — PRVX-v0 / D-111
+
+Sağlayıcı adaptörü kodda ve **AŞAMA 14 kapandı**. Ana invariant: **sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır.**
+
+Kod yazmadan önce bulunanlar: adaptörün çağrı noktası yoktu (10A–14F bilerek böyle bıraktı); uygulamanın ağ izni ve anahtar girme yolu yoktu; kod için AI talimatı yoktu; sağlayıcı yanıtları varsayılan olarak en az 30 gün saklıyor. Kullanıcı kararları: OpenAI; tek sağlayıcı ve tek tip düşüş; anahtar ekranı 14G'de.
+
+Sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez. OpenAI Responses API, güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi; `store: false`, katı `json_schema`, önce durma nedeni; router görev sınıfı başına model (`gpt-6-astra`, yapılandırmada); uçtan uca 60 sn bütçe, en çok 2 deneme, yalnız ağ hatası/408/429/5xx yeniden denenir. Anahtar Android Keystore AES-GCM ile şifrelenir, yedeklenmeyen dizinde durur, hiç gösterilmez ve loglanmaz; Profile'daki küçük ekrandan girilir, kaldırılır, 'Bağlantıyı dene' ile denenir. AI'sız build'de ağ izni hiç yok. Kod için AI talimatları core'a eklendi (`code_evaluation_instructions/1`). Kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de. Mutation 41/41, validator 129/129, kendi mutation testi 30/30. **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı.**
+
+Canonical: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md` / D-111.

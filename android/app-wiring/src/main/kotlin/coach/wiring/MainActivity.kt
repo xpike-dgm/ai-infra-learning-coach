@@ -47,6 +47,9 @@ import coach.ui.HealthContextLine
 import coach.ui.PlannerExplanationScreen
 import coach.ui.TaskRunnerScreen
 import coach.ui.TodayScreen
+import coach.ui.AiSettingsScreen
+import coach.presentation.AiCheckState
+import coach.presentation.AiSettingsPresentation
 
 class MainActivity : ComponentActivity() {
 
@@ -90,7 +93,7 @@ class MainActivity : ComponentActivity() {
                         },
                     )
                 } else {
-                    Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation)
+                    Shell(health, current, facts, dayFacts.value, explain = app::loadExplanation, app = app)
                 }
             }
         }
@@ -118,6 +121,7 @@ private fun Shell(
     facts: TodayFacts,
     day: DayCloseFacts.Loaded?,
     explain: ((PlannerExplanationFacts) -> Unit) -> Unit,
+    app: CoachApplication,
 ) {
     var selected by remember { mutableStateOf(Destination.start) }
     // The focused flow in front of the shell, if any. Its entry decision is made in core.
@@ -129,6 +133,10 @@ private fun Shell(
     var sessionsStarted by remember { mutableStateOf(0L) }
     // The shared planner explanation opened from Today (12E); its facts are read on the store thread.
     var explanation by remember { mutableStateOf<PlannerExplanationView?>(null) }
+    // The AI settings on Profile (14G). The key state is read from memory; saving, removing and checking run off the
+    // main thread, and the key itself is never held here beyond the moment it is handed over to be stored.
+    var aiKey by remember { mutableStateOf(app.aiSettings.state()) }
+    var aiCheck by remember { mutableStateOf(AiCheckState.IDLE) }
 
     // The window class is computed by core-presentation from the accepted WFPX-v0
     // breakpoints, not by the UI toolkit's own bucketing, so the mapping stays canonical.
@@ -197,6 +205,21 @@ private fun Shell(
                     ) {
                         explain { facts -> explanation = PlannerExplanationPresentation.of(facts) }
                     }
+                },
+            )
+            selected == Destination.PROFILE -> AiSettingsScreen(
+                view = AiSettingsPresentation.of(aiKey, aiCheck, app.aiSettings.providerName()),
+                onSave = { key ->
+                    aiCheck = AiCheckState.IDLE
+                    app.aiWork({ app.aiSettings.save(key); app.aiSettings.state() }) { aiKey = it }
+                },
+                onRemove = {
+                    aiCheck = AiCheckState.IDLE
+                    app.aiWork({ app.aiSettings.remove(); app.aiSettings.state() }) { aiKey = it }
+                },
+                onCheck = {
+                    aiCheck = AiCheckState.CHECKING
+                    app.aiWork({ app.aiSettings.check() }) { aiCheck = it }
                 },
             )
             else -> Column(

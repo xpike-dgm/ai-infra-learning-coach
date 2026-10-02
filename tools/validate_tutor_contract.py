@@ -301,9 +301,15 @@ check("E14A-08_solution_exposure", "ServeDailyMicroItem.SOLUTION_EXPOSURE" in as
 check("E14A-08_reads_no_state", not re.search(r"persistence\.(evidenceFor|latestPlan|readProjection|publishedSkills|exposuresFor)", ask), "the tutor reads learner state")
 check("E14A-08_asked_once", ask_fn.count("tutor.assist(") == 1, "the tutor is asked twice")
 check("E14A-08_null_tutor", "object NullTutor : TutorPort" in null_tutor and "TutorReply.NotDelivered(PendingReason.UNAVAILABLE)" in null_tutor, "null tutor")
-check("E14A-08_adapter_unavailable", "class AiTutor : TutorPort" in ai and "TutorReply.NotDelivered(PendingReason.UNAVAILABLE)" in ai
-      and not re.search(r"import (java\.net|okhttp|io\.ktor|com\.anthropic|kotlinx\.coroutines)", ai), "the adapter calls out")
-check("E14A-08_wiring", "AiTutor()" in with_ai and "= NullTutor" in without_ai and "val tutor: TutorPort = provideTutor()," in graph, "wiring")
+# Narrowed at 14G (`D-111`): the adapter got its call site. What 14A required still holds and is checked as such:
+# without a client the tutor is unavailable (never a crash, never a reply); the tutor file itself opens no network —
+# the one HTTP seam lives in the adapter's `Provider.kt`, declared in 14G's contract; the no-AI build keeps NullTutor.
+G14 = load(ROOT / "arch/14g_provider_adapter/provider_adapter.yaml")
+check("E14A-08_adapter_unavailable", re.search(r"class AiTutor\([^)]*\) : TutorPort", ai) is not None
+      and "client ?: return TutorReply.NotDelivered(PendingReason.UNAVAILABLE)" in ai and "constructor() : this(null)" in ai
+      and not re.search(r"import (java\.net|okhttp|io\.ktor|com\.anthropic|kotlinx\.coroutines)", ai)
+      and G14.get("scope", {}).get("provider_client") is True, "the adapter calls out")
+check("E14A-08_wiring", "AiTutor(AiWiring.client)" in with_ai and "= NullTutor" in without_ai and "val tutor: TutorPort = provideTutor()," in graph, "wiring")
 
 # ---------------------------------------------------------------- the port extension (D-105); 9D unedited
 interfaces = sorted(re.findall(r"^interface (\w+)", ports, re.M))
@@ -380,7 +386,9 @@ named_tests = {
 for suite, names in named_tests.items():
     test_text = read(ROOT / suites.get(suite, {}).get("file", "missing"))
     for name in names:
-        check(f"E14A-12_{suite}_{name[:40]}", f"`{name}`" in test_text, f"missing test: {name}")
+        # Narrowed at 14G: a test whose guarantee survived a rename is accepted under the successor name 14G's contract declares.
+        renamed = {r["before"]: r["after"] for r in load(ROOT / "arch/14g_provider_adapter/provider_adapter.yaml").get("renamed_tests", [])}
+        check(f"E14A-12_{suite}_{name[:40]}", f"`{name}`" in test_text or f"`{renamed.get(name, '?')}`" in test_text, f"missing test: {name}")
 
 # ---------------------------------------------------------------- honesty
 mutation = contract.get("mutation_results", {}) if isinstance(contract.get("mutation_results"), dict) else {}

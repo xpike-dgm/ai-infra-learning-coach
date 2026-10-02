@@ -35,6 +35,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-108: 14D final kod değerlendirme `CDEX-v0`; testler PC'de koşar ve rapor içe aktarılır (kullanıcı kararı), test yalnız kendi Objective'i için konuşur, test yoksa AI yalnız provisional (kullanıcı kararı); şema değişmedi.
 - D-109: 14E final AI yazımı kod anlama kontrolü `ACCX-v0`; önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil), hemen sonra ve isteğe bağlı, `generated_or_copied` bağımsız yeniden kontrol açar (kullanıcı kararları); şema değişmedi.
 - D-110: 14F final açık uçlu cevap değerlendirme `OREX-v0`; kısa cevap kabul edilen cevap listesiyle doğrulanır, uzun cevap rubric'le kriter kriter (AI yalnız kriter bulgusu önerir, core karar verir, en çok provisional), AI yoksa bekler + rubric öz-kontrolü, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi.
+- D-111: 14G final sağlayıcı adaptörü `PRVX-v0`; OpenAI Responses API (güncel kaynak 2026-10-02), `store: false`, katı şema, uçtan uca bütçe, anahtar Android Keystore'da ve Profile'dan girilir, AI'sız build'de ağ izni yok (kullanıcı kararları); AŞAMA 14 kapandı.
 
 ---
 
@@ -186,12 +187,12 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **14D — Kod değerlendirme** — `CDEX-v0 / D-108`
 - [x] **14E — AI-generated code comprehension check** — `ACCX-v0 / D-109`
 - [x] **14F — Açık uçlu cevap değerlendirme** — `OREX-v0 / D-110`
-- [ ] **14G — Provider abstraction / fallback** **AKTİF**
+- [x] **14G — Provider abstraction / fallback** — `PRVX-v0 / D-111`
 
 ---
 
 # AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriğini Üret ve QA Et
-- [ ] **15A — Computer / Programming Fundamentals**
+- [ ] **15A — Computer / Programming Fundamentals** **AKTİF**
 - [ ] **15B — Python Foundations**
 - [ ] **15C — C Foundations**
 - [ ] **15D — Memory Foundations**
@@ -255,9 +256,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14F`  
-**Son tamamlanan:** **`14F — OREX-v0 / D-110`**  
-**Aktif:** **`14G — Provider abstraction/fallback`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`  
+**Son tamamlanan:** **`14G — PRVX-v0 / D-111`**  
+**Aktif:** **`15A — Computer / Programming Fundamentals`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -303,4 +304,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 14F `OREX-v0` ile açık uçlu cevap değerlendirme kodda: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. T6 çalıştırılmadı.
 
-14G başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+14G `PRVX-v0` ile sağlayıcı adaptörü kodda ve **AŞAMA 14 kapandı**: sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez. OpenAI Responses API, güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi; `store: false`, katı `json_schema`, önce durma nedeni; router görev sınıfı başına model (`gpt-6-astra`, yapılandırmada); uçtan uca 60 sn bütçe, en çok 2 deneme, yalnız ağ hatası/408/429/5xx yeniden denenir. Anahtar Android Keystore AES-GCM ile şifrelenir, yedeklenmeyen dizinde durur, hiç gösterilmez ve loglanmaz; Profile'daki küçük ekrandan girilir, kaldırılır, 'Bağlantıyı dene' ile denenir. AI'sız build'de ağ izni hiç yok. Kod için AI talimatları core'a eklendi (`code_evaluation_instructions/1`). Kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de. T6 ve canlı çağrı çalıştırılmadı.
+
+15A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
