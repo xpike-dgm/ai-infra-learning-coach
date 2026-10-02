@@ -1689,3 +1689,11 @@ Ayrıntı: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.
 - Sonraki numbered step `15D — Memory Foundations`; fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
 
 Ayrıntı: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.
+
+## D-115 — Kaynak repo herkese açık (D-080'in "repo private" maddesi kapandı)
+**Durum:** Kabul edildi — 2026-10-03 (kullanıcı kararı; numaralı adım değildir)
+
+- `xpike-dgm/ai-infra-learning-coach` **herkese açıktır** (kullanıcı, 2026-10-03). Sebep: hesabın GitHub Actions işleri bir fatura/harcama limiti engeliyle hiç başlamıyordu (15C PR #54); açık repolarda standart runner'lar ücretsizdir. Bu reponun kendi kullanımı Pro'nun aylık kotasının çok altındaydı (ekim ~165 iş-dakikası).
+- **Değişmeyen:** D-080'in ürün kararı aynen geçerlidir — uygulama tek kullanıcı içindir; hiçbir uygulama merkezine yüklenmez, APK paylaşılmaz, store/dağıtım işleri kapsam dışıdır. Yalnız D-080'in "Repo private'dır" cümlesi bu kararla kapandı; kanıt ve AI yetki kuralları değişmez.
+- **Açmadan önce yapılan tarama:** 667 commit'in bütün geçmişi API anahtarı, token, özel anahtar, `.env`/keystore dosyası ve şifre ataması için tarandı; hiçbiri yok. Kullanıcının e-posta adresi yalnız 50 commit'in yazar/committer bilgisinde vardır, dosya içeriğinde yoktur; kullanıcı geçmişin yeniden yazılmamasına ve adresin görünür kalmasına karar verdi.
+- Repo bir kez açıldığı için içeriği (kaynak, araştırma, `vault/` notları) başkalarınca kopyalanmış olabilir; sonradan yeniden gizlemek bu kopyaları kaldırmaz.
