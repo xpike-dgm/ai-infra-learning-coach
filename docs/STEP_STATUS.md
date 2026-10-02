@@ -77,8 +77,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **14G — Provider abstraction/fallback** | ✅ | PRVX-v0 / D-111. Sağlayıcı portların arkasında değiştirilebilir ayrıntı; OpenAI (kullanıcı kararı), `store: false`, katı şema, önce durma nedeni, uçtan uca bütçe, arka planda yeniden deneme yok; anahtar Keystore'da, Profile ekranından (kullanıcı kararı); AI'sız build'de ağ izni yok; şema değişmedi; 129/129 QA PASS, mutation 41/41. **AŞAMA 14 TAMAMLANDI.** |
 | **15A — Computer / Programming Fundamentals** | ✅ | CPFX-v0 / D-112. İlk gerçek içerik sevk ediliyor: FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 kenar) `published`; 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev; her anahtar çalıştırıldı ya da kaynaklandı ve bağımsız incelemeden geçti (95/95, 79/79); `[task]` bölümü ve iki format düzeltmesi; ilk plan iki giriş dersi; kullanıcı kararları: çalıştırma + bağımsız QA, okunur Python alt kümesi, netleştir ve kaydet; 131/131 QA PASS, mutation 22/22. |
 | **15B — Python Foundations** | ✅ | PYFX-v0 / D-113. Öğrenci ilk kez kod yazıyor: 20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle — referans geçer, en az iki yanlış çözüm düşer —, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; artımlı ikinci paket, "yayımlanmış sürümün üzerine yazılmaz"; koşucu UTF-8; bağımsız inceleme 109/109, 116/116; kullanıcı kararları: 20 Skill, artımlı paket; 254/254 QA PASS, Mutation 27/27. |
-| **15C — C Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **15D–20** | ⬜ Bekliyor | 15C sonrası canonical sırada. |
+| **15C — C Foundations** | ✅ | CFNX-v0 / D-114. Öğrenci C yazıyor: 9 Skill / 10 Objective / 15 kenar `published` (dört C tohumu + standard_io_basic + Linux terminal); 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; her şey Linux'ta gcc ile, öğrencinin koşucusuyla doğrulandı; `PackageFormat.unescape`; kullanıcı kararları: Linux Skill'i, WSL Ubuntu + gcc, standard_io_basic; 155/155 QA PASS, Mutation 8/8. |
+| **15D — Memory Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **15E–20** | ⬜ Bekliyor | 15D sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -97,7 +98,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15B
+## Son tamamlanan numaralı adım — 15C
+
+**Final:** `CFNX-v0 — C Foundations content` / D-114.
+**Ana çıktı:** `docs/C_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15c_c_foundations/` + `curriculum/content/15c_c_foundations/` + `android/app-wiring/src/main/assets/curriculum_package_v3.txt`.
+
+15C sonucu:
+- bir C programı öğrencinin onu derleyip çalıştırdığı yerde (Linux, gcc, öğrencinin koşucusu) değerlendirilir; paket C kodunu yazıldığı gibi gösterir,
+- kullanıcı kararları: Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc; standard_io_basic,
+- **bulgu:** ilk C Skill'i bir Linux Skill'ini bekliyor; girdi olmadan C denenemiyor; yazar makinesinde derleyici yoktu; paket ters bölü-n gösteremiyordu; fonksiyon item'ı fonksiyonsuz geçiliyordu,
+- 9 Skill / 10 Objective / 15 kenar `published`; 51 item, 56 anlatım, 21 misconception, 45 görev; 32 ders iddiası Linux'ta çalıştırıldı,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+- üç paket gerçek SQLite şemasına JVM'de yayımlanıyor; terminal Skill'i üçüncü giriş noktası; her C Skill'i bekliyor,
+- 15A ve 14C'nin birer satır sonu kapısı yeni okuyucuya daraltıldı; şema, portlar ve mağaza değişmedi,
+- Mutation 8/8, independent validator **155/155 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+## Önceki numaralı adım — 15B
 
 **Final:** `PYFX-v0 — Python Foundations content` / D-113.
 **Ana çıktı:** `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15b_python_foundations/` + `curriculum/content/15b_python_foundations/` + `android/app-wiring/src/main/assets/curriculum_package_v2.txt`.
@@ -370,6 +387,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15C C Foundations
+## Aktif adım — 15D Memory Foundations
 
-**15C henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. Öğrencinin ve yazarın bilgisayarında bir C derleyicisi gerekir; artımlı paket, kod suite'leri ve bağımsız inceleme akışı 15B'den hazır.
+**15D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. C araç zinciri (WSL Ubuntu + gcc), C gösterimi (işaretçi ve dizi listede, hâlâ yasak), C test düzeneği ve kaçış kuralı 15C'den hazır.

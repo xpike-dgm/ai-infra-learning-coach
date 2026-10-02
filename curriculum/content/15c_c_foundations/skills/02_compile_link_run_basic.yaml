@@ -1,0 +1,521 @@
+skill: skill.c.compile_link_run_basic
+activity: hands_on_system_task
+tasks:
+  teach: {title: "C programını derlemek, bağlamak ve çalıştırmak", minutes: 18}
+  practice: {title: "Derle-çalıştır alıştırması", minutes: 15}
+  check: {title: "Derle-çalıştır kontrolü", minutes: 15}
+  review: {title: "Derle-çalıştır tekrarı", minutes: 12}
+  repair: {title: "Hatanın aşamasını yeniden bulmak: derleme, bağlama, çalışma", minutes: 18}
+
+objectives:
+  - id: objective.c.compile_link_run_basic.compile_and_run_small_program
+    statement: >-
+      Küçük bir C programını (#include <stdio.h>, int main(void), printf, return 0) yazıp terminalde gcc ile derleyerek
+      çalıştırılabilir bir dosya üretebilmek ve ./ ile çalıştırabilmek; printf'te satır sonunu ve kaçış dizilerini doğru
+      kullanabilmek.
+    observable_behavior: >-
+      İstenen çıktıyı birebir yazan bir C programını yazar, gcc ile derler ve çalıştırır; ders testleri onu derleyip
+      çalıştırdığında beklenen çıktı görünür.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C'de bu Skill'in iki Objective'i aynı şablon cümleyi taşıyordu ("C translation, compile, link ve run aşamalarını
+      araç çıktısıyla ayırt edebilmek"); kimlikler korundu ve cümleler eylem adlarına göre ayrıldı: bu Objective programı
+      üretip çalıştırmak, diğeri başarısızlığın aşamasını ayırt etmek. Direct type hands_on_system_task: item'lar
+      öğrencinin kendi bilgisayarında derleyip çalıştırdığı programlardır ve dersin test suite'iyle (gcc, Linux) doğrulanır.
+      Bu Skill'in item'ları girdi okumaz (scanf standard_io_basic'tir); çıktıları sabittir ve beklenen metni doğrudan
+      yazdıran program da geçer — 15B'nin sabit çıktılı item'larıyla aynı sınır.
+    checks:
+      - prints: "Merhaba, C!"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Merhaba, C!\n");
+              return 0;
+          }
+      - prints: "bir\niki"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("bir\n");
+              printf("iki\n");
+              return 0;
+          }
+      - prints: "ayni satirda devam"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("ayni ");
+              printf("satirda devam\n");
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Python'da bir dosyayı doğrudan çalıştırıyordun. C'de önce derleyici kaynak kodu makine koduna çevirir, sonra o dosyayı çalıştırırsın.
+
+        En küçük C programı (merhaba.c):
+
+        #include <stdio.h>
+
+        int main(void) {
+            printf("Merhaba, C!\n");
+            return 0;
+        }
+
+        - #include <stdio.h>: printf'in bildirimini (adı, aldığı ve döndürdüğü) programa ekler. printf'in gövdesi C kütüphanesindedir ve bağlama aşamasında programa eklenir.
+        - int main(void) { ... }: program buradan başlar. Süslü parantezler gövdedir.
+        - printf("...\n"); her deyim noktalı virgülle biter. \n satır sonudur; printf onu kendiliğinden eklemez.
+        - return 0; programın "başarıyla bitti" demesidir.
+
+        Terminalde (WSL Ubuntu, dosyanın bulunduğu klasörde):
+
+        $ gcc -std=c11 -Wall -Wextra -o merhaba merhaba.c
+        $ ./merhaba
+        Merhaba, C!
+
+        - gcc derleyicidir; -o merhaba çıkan çalıştırılabilir dosyanın adıdır.
+        - -std=c11 hangi C standardını kullandığını, -Wall -Wextra uyarıları göstermesini söyler. Uyarılar derlemeyi durdurmaz ama çoğu zaman bir hatanın habercisidir; oku.
+        - ./merhaba "bu klasördeki merhaba dosyasını çalıştır" demektir. Yalnız merhaba yazarsan kabuk onu bu klasörde aramaz.
+
+        Bu aşamaların içinde aslında iki adım vardır: derleme (kaynak → nesne kodu) ve bağlama (nesne kodu + kütüphaneler → çalıştırılabilir dosya). gcc ikisini tek komutta yapar.
+
+        Kaçış dizileri: \n satır sonu, \t sekme, \" çift tırnak, \\ ters bölü. Bunları derleyici çözer. printf ise % ile başlayan her şeyi bir belirteç (%d gibi) sanır; yüzde işaretinin kendisini yazmak için %% yazarsın: printf("%%50 indirim\n"); ekrana %50 indirim yazar. Türkçe harfleri bu derste kullanmayacağız; terminal ve derleyici UTF-8'i destekler ama çıktıları karşılaştırırken sade ASCII hata payını azaltır.
+
+        Dersin testleri: cozum.c dosyanı derler (gcc -std=c11 -Wall -Wextra -o cozum cozum.c), ./cozum ile çalıştırır ve çıktıyı beklenenle karşılaştırır; satır sonlarındaki fazladan boşluklar ve sondaki boş satırlar görmezden gelinir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (programın yürütülmesi ve terminal): kaynak kod bir araçla çalıştırılabilir bir şeye dönüşür; terminal komutları çalışma dizininde çalışır, bu yüzden gcc'yi cozum.c'nin bulunduğu klasörde çalıştırırsın.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: iki satıra "Ad: Ece" ve "Yas: 20" yazan program.
+
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Ad: Ece\n");
+              printf("Yas: 20\n");
+              return 0;
+          }
+
+          $ gcc -std=c11 -Wall -Wextra -o kimlik kimlik.c
+          $ ./kimlik
+          Ad: Ece
+          Yas: 20
+
+          - Her satırın sonundaki \n olmasaydı ikinci yazı ilkinin hemen arkasına eklenirdi.
+    misconceptions:
+      - slug: printf_adds_newline
+        name: printf her çağrıdan sonra yeni satıra geçer
+        open_question: Python'daki print gibi printf'in de her seferinde yeni satıra geçtiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "printf, print'in C'deki adı."
+
+            printf yalnız verdiğin karakterleri yazar. Satır sonu istiyorsan "\n" kendin eklersin; eklemezsen sonraki printf aynı satıra devam eder.
+      - slug: source_runs_directly
+        name: Kaynak dosya .c doğrudan çalıştırılır
+        open_question: cozum.c dosyasını derlemeden doğrudan çalıştırabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Python'da python dosya.py diyordum, C'de de ./cozum.c derim."
+
+            .c dosyası metindir; işlemci onu çalıştıramaz. Önce gcc ile derleyip bir çalıştırılabilir dosya (cozum) üretirsin, sonra ./cozum ile onu çalıştırırsın. Kaynağı değiştirdiğinde yeniden derlemen gerekir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda Selam, dunya! yazsın. Sonra terminalde gcc -std=c11 -Wall -Wextra -o cozum cozum.c ile derleyip ./cozum ile çalıştırarak dene.
+        suite:
+          - {id: greets, expected_stdout: "Selam, dunya!\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Selam, dunya!\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Selam, dunya!\n")
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Selam dunya!\n");
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana üç ayrı satırda sırayla 3, 2 ve 1 yazsın (her satırda yalnız bir sayı). Derleyip çalıştırarak dene.
+        suite:
+          - {id: countdown, expected_stdout: "3\n2\n1\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("3\n");
+              printf("2\n");
+              printf("1\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("3");
+                printf("2");
+                printf("1\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("3 2 1\n");
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana tek satırda tırnaklarıyla birlikte "C" kolaydir yazsın (ilk iki karakter çift tırnak, C ve yine çift tırnak). Çift tırnağı printf içinde nasıl yazacağını düşün. Derleyip çalıştırarak dene.
+        suite:
+          - {id: quoted, expected_stdout: "\"C\" kolaydir\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("\"C\" kolaydir\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("C kolaydir\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf(""C" kolaydir\n");
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir C programı yaz: ilk satıra Ad<TAB>Not yazsın — Ad ve Not arasında bir sekme karakteri olsun — ikinci satıra da Ece<TAB>90 yazsın. Derleyip çalıştırarak dene.
+        suite:
+          - {id: tabbed, expected_stdout: "Ad\tNot\nEce\t90\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Ad\tNot\n");
+              printf("Ece\t90\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Ad Not\n");
+                printf("Ece 90\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("Ad\tNot");
+                printf("Ece\t90\n");
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir C programı yaz: ekrana iki satır yazsın — ilkinde C:\temp (ters bölü dahil), ikincisinde tam olarak %d bir belirtectir yazsın (yüzde işareti ve d harfi ekranda görünsün). Derleyicinin ters bölüyü bir kaçış dizisinin başı, printf'in de yüzde işaretini bir belirtecin başı olarak okuduğunu hatırla. Derleyip çalıştırarak dene.
+        suite:
+          - {id: special_characters, expected_stdout: "C:\\temp\n%d bir belirtectir\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("C:\\temp\n");
+              printf("%%d bir belirtectir\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("C:\temp\n");
+                printf("%%d bir belirtectir\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("C:\\temp\n");
+                printf("%d bir belirtectir\n");
+                return 0;
+            }
+  - id: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+    statement: >-
+      Bir C programının başarısızlığının hangi aşamada olduğunu araç çıktısından ayırt edebilmek: gcc'nin derleme
+      hatası (sözdizimi, tanımsız isim), bağlayıcı hatası (tanımı olmayan fonksiyon: "undefined reference"), çalışma
+      zamanı hatası (program başlar ama çöker ya da sıfırdan farklı bir kodla biter) ya da hatasız çalışma.
+    observable_behavior: >-
+      Verilen programı derleyip çalıştırarak (ya da okuyarak) başarısızlığın aşamasını doğru seçer ve aşamaya uygun
+      ipucunu (hata mesajı, undefined reference, çökme) tanır.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C'nin şablon cümlesi bu Objective'in eylem adına (classify_compile_vs_runtime_failure) göre özgülleştirildi;
+      kimlik korundu. Direct type hands_on_system_task: öğrenci programı gerçekten derleyip çalıştırabilir (terminal
+      serbesttir); anahtar, program gcc ile Linux'ta derlenip bağlanıp çalıştırılarak ve ilk başarısız olan aşama
+      belirlenerek doğrulanır. 15A'nın source_runtime_artifact_distinction'ı bu ayrımı C derleyicisi olmadan okutmuştu;
+      burada araç çıktısıyla yapılır.
+    checks:
+      - prints: "derlendi"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("derlendi\n");
+              return 0;
+          }
+      - stage: compile
+        prints: ""
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("eksik noktali virgul\n")
+              return 0;
+          }
+      - stage: link
+        prints: ""
+        code: |
+          #include <stdio.h>
+
+          int hesapla(void);
+
+          int main(void) {
+              printf("%d\n", hesapla());
+              return 0;
+          }
+    explanations:
+      canonical: |
+        gcc -o program program.c komutu iki aşamayı birlikte yapar; sonra programı sen çalıştırırsın. Bir şey ters gittiğinde önce hangi aşamada olduğunu bul:
+
+        1. Derleme (compile) hatası — gcc kaynak kodu anlayamaz. Çıktı dosya adı, satır ve "error:" içerir:
+           program.c:4:5: error: expected ';' before 'return'
+           Sebep: sözdizimi (eksik ; ya da parantez), tanımlanmamış bir değişken adı, yanlış türler. Çalıştırılabilir dosya oluşmaz.
+
+        2. Bağlama (link) hatası — her dosya tek tek doğru derlendi ama bir fonksiyonun gövdesi hiçbir yerde yok. Çıktı "undefined reference to `hesapla'" der ve satır numarası çoğu zaman yoktur; mesaj "ld" ya da "collect2" ile biter. Sebep: bildirilmiş (prototipi yazılmış) ama gövdesi hiçbir dosyada olmayan bir fonksiyon. Çalıştırılabilir dosya yine oluşmaz. (Bildirilmemiş bir fonksiyonu çağırmak — örneğin printf yerine prinft yazmak — güncel gcc'de bağlamaya kadar gelmez: "implicit declaration" bir derleme hatasıdır.)
+
+        3. Çalışma zamanı (run) hatası — derleme ve bağlama başarılı, dosya oluştu, ama program çalışırken çöker ya da sıfırdan farklı bir kodla biter. Örneğin bir tam sayıyı sıfıra bölmek "Floating point exception" ile durdurur. Kabukta echo $? son programın çıkış kodunu yazar; 0 başarıdır.
+
+        4. Hatasız — program çalışır, çıktı verir ve 0 ile biter. (Çıktının doğru olması ayrı bir sorudur!)
+
+        Uyarılar (warning:) bir aşama hatası değildir: dosya yine oluşur. Ama -Wall -Wextra uyarılarını okumak, çalışma zamanında karşılaşacağın hataların çoğunu önceden gösterir.
+
+        Yöntem: önce derle. Hata varsa mesajın türüne bak (error: satır numaralı mı, undefined reference mı). Dosya oluştuysa çalıştır ve davranışını izle.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (kaynak ve çalışan program): 15A'da kaynak dosya, ara dosya ve çalıştırılabilir dosya arasındaki farkı ve derlemenin çalıştırmadan önce bütün dosyayı okuduğunu gördün. Şimdi aynı ayrımı gcc'nin gerçek çıktılarıyla yapıyoruz.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          #include <stdio.h>
+
+          int kare(int x);
+
+          int main(void) {
+              printf("%d\n", kare(4));
+              return 0;
+          }
+
+          $ gcc -o kare kare.c
+          /usr/bin/ld: ... undefined reference to `kare'
+          collect2: error: ld returned 1 exit status
+
+          - "error: expected ..." gibi satır numaralı bir derleme hatası yok: kaynak doğru derlendi.
+          - "undefined reference" ve "ld": kare bildirilmiş ama gövdesi yazılmamış.
+          - Aşama: bağlama. Çözüm: kare fonksiyonunun gövdesini yazmak.
+    misconceptions:
+      - slug: every_failure_is_compile_error
+        name: gcc'den gelen her hata bir derleme hatasıdır
+        open_question: undefined reference mesajının kodunda bir yazım (sözdizimi) hatası olduğunu gösterdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "gcc kızdıysa kodumda yazım hatası vardır."
+
+            gcc iki işi yapar. "error:" ile satır numarası veren mesajlar derlemedendir; "undefined reference" ise bağlayıcıdandır ve kodun sözdizimi doğru olsa da bir fonksiyonun gövdesinin hiçbir yerde bulunmadığını söyler.
+      - slug: compiled_means_correct
+        name: Derlenen program doğru çalışır
+        open_question: Bir program hatasız derlendiyse çalışırken sorun çıkmayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "gcc hata vermediyse program sağlamdır."
+
+            Derleyici yalnız kodun dilin kurallarına uyduğunu kontrol eder. Sıfıra bölmek ya da yanlış bir hesap gibi sorunlar çalışırken ortaya çıkar: program çöker ya da yanlış çıktı verir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Bu program gcc -std=c11 -Wall -Wextra -o program program.c ile derlenip ./program ile çalıştırılınca ne olur? İstersen kendin derleyip çalıştırarak gör.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Basla\n";
+              return 0;
+          }
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Bu program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int yarim(int x);
+
+          int main(void) {
+              printf("%d\n", yarim(10));
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model, skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: B
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: f03
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int bolen = 0;
+              printf("Sonuc: %d\n", 100 / bolen);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model, skill.c.expression_evaluation]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: C
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Bu program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int sayi = 5;
+              printf("%d\n", sayi + adet);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: f05
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Bu programın yazarı fonksiyonun gövdesini yazarken adını yanlış yazmış. Program derlenip çalıştırılınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int topla(int a, int b);
+
+          int main(void) {
+              printf("%d\n", topla(2, 3));
+              return 0;
+          }
+
+          int topl(int a, int b) {
+              return a + b;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Derleme hatası"
+          B: "Bağlama hatası"
+          C: "Çalışma zamanı hatası"
+          D: "Hatasız çalışır ve 5 yazar"
+        scan_options: false
+        answer: B
+        verify:
+          mode: c_stage
+          outcomes: {A: compile, B: link, C: run, D: ok}

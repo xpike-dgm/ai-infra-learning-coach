@@ -1,0 +1,50 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.conditionals.write_control_flow.f04@v1",
+  "item": "item.c.conditionals.write_control_flow.f04@v1",
+  "build": {
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "cozum",
+      "cozum.c"
+    ]
+  },
+  "run": {
+    "command": [
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "monday",
+      "stdin": "1\n",
+      "expected_stdout": "Pazartesi\n"
+    },
+    {
+      "id": "friday",
+      "stdin": "5\n",
+      "expected_stdout": "Cuma\n"
+    },
+    {
+      "id": "sunday",
+      "stdin": "7\n",
+      "expected_stdout": "Pazar\n"
+    },
+    {
+      "id": "invalid",
+      "stdin": "8\n",
+      "expected_stdout": "Gecersiz gun\n"
+    },
+    {
+      "id": "zero",
+      "stdin": "0\n",
+      "expected_stdout": "Gecersiz gun\n"
+    }
+  ]
+}

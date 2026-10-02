@@ -1,0 +1,517 @@
+model: CFNX-v0
+stage_step: 15C
+decision: D-114
+result: PASS
+checks_total: 155
+checks_passed: 155
+checks_failed: 0
+checks:
+- check: E15C-00_exists_c_foundations.yaml
+  result: PASS
+  details: missing arch\15c_c_foundations\c_foundations.yaml
+- check: E15C-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15c_c_foundations\content_verification.yaml
+- check: E15C-00_exists_C_FOUNDATIONS_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\C_FOUNDATIONS_CONTENT_SPEC.md
+- check: E15C-00_exists_15c_c_foundations_research.md
+  result: PASS
+  details: missing research\15c_c_foundations_research.md
+- check: E15C-00_exists_curriculum_package_v3.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v3.txt
+- check: E15C-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15C-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: E15C-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: E15C-00_exists_PackageFormatTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\PackageFormatTest.kt
+- check: E15C-00_exists_ShippedCPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedCPackageTest.kt
+- check: E15C-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: E15C-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15c_c_foundations\package.yaml
+- check: E15C-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15c_c_foundations\notation.yaml
+- check: E15C-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15c_c_foundations\independent_review.yaml
+- check: E15C-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15C-01_model
+  result: PASS
+  details: CFNX-v0
+- check: E15C-01_status
+  result: PASS
+  details: accepted_15c
+- check: E15C-01_decision
+  result: PASS
+  details: D-114
+- check: E15C-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-02'', ''linux_prerequisite'': ''add_terminal_navigation_to_15c'',
+    ''environment'': ''wsl_ubuntu_gcc'', ''input'': ''add_standard_io_basic''}'
+- check: E15C-02_builds
+  result: PASS
+  details: ''
+- check: E15C-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15C-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15C-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15C-02_report_recorded
+  result: PASS
+  details: arch/15c_c_foundations/content_verification.yaml is not the report of this
+    build
+- check: E15C-02_suites_are_rebuilt
+  result: PASS
+  details: 35 on disk, 35 built
+- check: E15C-02_earlier_untouched_15a_computing_fundamentals
+  result: PASS
+  details: '15a_computing_fundamentals is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15C-02_earlier_untouched_15b_python_foundations
+  result: PASS
+  details: '15b_python_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15C-03_c_seeds
+  result: PASS
+  details: '[''skill.c.compile_link_run_basic'', ''skill.c.declarations_types_expressions'',
+    ''skill.c.conditionals_loops_basic'', ''skill.c.functions_basic'']'
+- check: E15C-03_seeds_as_6c_decomposed
+  result: PASS
+  details: '[''skill.c.compile_link_run_basic'', ''skill.c.conditionals'', ''skill.c.declaration_type_model'',
+    ''skill.c.expression_evaluation'', ''skill.c.for_iteration'', ''skill.c.functions_basic'',
+    ''skill.c.while_iteration'']'
+- check: E15C-03_added_are_declared
+  result: PASS
+  details: '[''skill.c.standard_io_basic'', ''skill.linux.terminal_filesystem_navigation'']'
+- check: E15C-03_pointers_and_memory_are_15d
+  result: PASS
+  details: '[''skill.linux.terminal_filesystem_navigation'', ''skill.c.compile_link_run_basic'',
+    ''skill.c.declaration_type_model'', ''skill.c.expression_evaluation'', ''skill.c.standard_io_basic'',
+    ''skill.c.conditionals'', ''skill.c.for_iteration'', ''skill.c.while_iteration'',
+    ''skill.c.functions_basic'']'
+- check: E15C-03_closed_under_hard_prerequisites
+  result: PASS
+  details: 'a Skill that could never become ready: []'
+- check: E15C-03_terminal_is_why
+  result: PASS
+  details: the Linux Skill is added because the first C Skill needs it
+- check: E15C-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15C-03_objective_identity
+  result: PASS
+  details: '[''objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure'',
+    ''objective.c.compile_link_run_basic.compile_and_run_small_program'', ''objective.c.conditionals.write_control_flow'',
+    ''objective.c.declaration_type_model.write_basic_declarations'', ''objective.c.expression_evaluation.demonstrate_capability'',
+    ''objective.c.for_iteration.demonstrate_capability'', ''objective.c.functions_basic.write_and_call_function'',
+    ''objective.c.standard_io_basic.demonstrate_capability'', ''objective.c.while_iteration.demonstrate_capability'',
+    ''objective.linux.terminal_filesystem_navigation.navigate_relative_absolute'']'
+- check: E15C-03_edges_ratified
+  result: PASS
+  details: 15 edges
+- check: E15C-03_builds_on_earlier
+  result: PASS
+  details: ''
+- check: E15C-03_entry_points
+  result: PASS
+  details: '[''skill.linux.terminal_filesystem_navigation'']'
+- check: E15C-04_recorded_terminal_filesystem_navigation_navigate_relative_absolute
+  result: PASS
+  details: objective.linux.terminal_filesystem_navigation.navigate_relative_absolute
+- check: E15C-04_recorded_compile_link_run_basic_compile_and_run_small_program
+  result: PASS
+  details: objective.c.compile_link_run_basic.compile_and_run_small_program
+- check: E15C-04_recorded_compile_link_run_basic_classify_compile_vs_runtime_failure
+  result: PASS
+  details: objective.c.compile_link_run_basic.classify_compile_vs_runtime_failure
+- check: E15C-04_recorded_declaration_type_model_write_basic_declarations
+  result: PASS
+  details: objective.c.declaration_type_model.write_basic_declarations
+- check: E15C-04_recorded_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: objective.c.expression_evaluation.demonstrate_capability
+- check: E15C-04_recorded_standard_io_basic_demonstrate_capability
+  result: PASS
+  details: objective.c.standard_io_basic.demonstrate_capability
+- check: E15C-04_recorded_conditionals_write_control_flow
+  result: PASS
+  details: objective.c.conditionals.write_control_flow
+- check: E15C-04_recorded_for_iteration_demonstrate_capability
+  result: PASS
+  details: objective.c.for_iteration.demonstrate_capability
+- check: E15C-04_recorded_while_iteration_demonstrate_capability
+  result: PASS
+  details: objective.c.while_iteration.demonstrate_capability
+- check: E15C-04_recorded_functions_basic_write_and_call_function
+  result: PASS
+  details: objective.c.functions_basic.write_and_call_function
+- check: E15C-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15C-05_review_method
+  result: PASS
+  details: ''
+- check: E15C-05_every_item_reviewed
+  result: PASS
+  details: 51 / 51
+- check: E15C-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15C-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15C-05_no_hidden_prerequisite
+  result: PASS
+  details: ''
+- check: E15C-05_linux_modes_only
+  result: PASS
+  details: '{''shell'', ''suite'', ''c_stdout'', ''c_stage''}'
+- check: E15C-05_counts
+  result: PASS
+  details: '51 {''suite'': 35, ''c_stdout'': 6, ''c_stage'': 5, ''shell'': 5}'
+- check: E15C-05_code_executed_against_wrong
+  result: PASS
+  details: ''
+- check: E15C-05_keys_built_on_linux
+  result: PASS
+  details: ''
+- check: E15C-05_code_environment
+  result: PASS
+  details: '{''file'': ''cozum.c'', ''build'': [''gcc'', ''-std=c11'', ''-Wall'',
+    ''-Wextra'', ''-o'', ''cozum'', ''cozum.c''], ''run'': [''./cozum''], ''environment'':
+    ''linux''}'
+- check: E15C-05_suite_compile_link_run_basic.compile_and_run_small_program.f01
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_compile_link_run_basic.compile_and_run_small_program.f02
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_compile_link_run_basic.compile_and_run_small_program.f03
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_compile_link_run_basic.compile_and_run_small_program.f04
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_compile_link_run_basic.compile_and_run_small_program.f05
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_declaration_type_model.write_basic_declarations.f01
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_declaration_type_model.write_basic_declarations.f02
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_declaration_type_model.write_basic_declarations.f03
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_declaration_type_model.write_basic_declarations.f04
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_declaration_type_model.write_basic_declarations.f05
+  result: PASS
+  details: 1 tests
+- check: E15C-05_suite_standard_io_basic.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_standard_io_basic.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_standard_io_basic.demonstrate_capability.f03
+  result: PASS
+  details: 5 tests
+- check: E15C-05_suite_standard_io_basic.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_standard_io_basic.demonstrate_capability.f05
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_conditionals.write_control_flow.f01
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_conditionals.write_control_flow.f02
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_conditionals.write_control_flow.f03
+  result: PASS
+  details: 11 tests
+- check: E15C-05_suite_conditionals.write_control_flow.f04
+  result: PASS
+  details: 5 tests
+- check: E15C-05_suite_conditionals.write_control_flow.f05
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_for_iteration.demonstrate_capability.f01
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_for_iteration.demonstrate_capability.f02
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_for_iteration.demonstrate_capability.f03
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_for_iteration.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_for_iteration.demonstrate_capability.f05
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_while_iteration.demonstrate_capability.f01
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_while_iteration.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_while_iteration.demonstrate_capability.f03
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_while_iteration.demonstrate_capability.f04
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_while_iteration.demonstrate_capability.f05
+  result: PASS
+  details: 4 tests
+- check: E15C-05_suite_functions_basic.write_and_call_function.f01
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_functions_basic.write_and_call_function.f02
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_functions_basic.write_and_call_function.f03
+  result: PASS
+  details: 5 tests
+- check: E15C-05_suite_functions_basic.write_and_call_function.f04
+  result: PASS
+  details: 3 tests
+- check: E15C-05_suite_functions_basic.write_and_call_function.f05
+  result: PASS
+  details: 4 tests
+- check: E15C-05_function_items_harnessed
+  result: PASS
+  details: every functions_basic item is called by the course's own main
+- check: E15C-05_measurable_terminal_filesystem_navigation_navigate_relative_absolute
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_compile_link_run_basic_compile_and_run_small_program
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_compile_link_run_basic_classify_compile_vs_runtime_failure
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_declaration_type_model_write_basic_declarations
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: 6 families
+- check: E15C-05_measurable_standard_io_basic_demonstrate_capability
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_conditionals_write_control_flow
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_for_iteration_demonstrate_capability
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_while_iteration_demonstrate_capability
+  result: PASS
+  details: 5 families
+- check: E15C-05_measurable_functions_basic_write_and_call_function
+  result: PASS
+  details: 5 families
+- check: E15C-05_ai_origin_declared
+  result: PASS
+  details: ''
+- check: E15C-05_terminal_at_the_computer
+  result: PASS
+  details: ''
+- check: E15C-05_reading_not_runnable
+  result: PASS
+  details: ''
+- check: E15C-06_unescape_rule
+  result: PASS
+  details: ''
+- check: E15C-06_multiline_values_unescaped
+  result: PASS
+  details: ''
+- check: E15C-06_package_escapes
+  result: PASS
+  details: ''
+- check: E15C-06_earlier_read_unchanged
+  result: PASS
+  details: an earlier package holds a doubled backslash, so the new rule would read
+    it differently
+- check: E15C-06_c_newline_shipped
+  result: PASS
+  details: C code in the package carries an escaped backslash-n
+- check: E15C-07_every_explanation_reviewed
+  result: PASS
+  details: 56 / 56
+- check: E15C-07_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15C-07_lesson_claims_executed
+  result: PASS
+  details: 32 checks
+- check: E15C-07_lesson_terminal_filesystem_navigation_navigate_relative_absolute
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_compile_link_run_basic_compile_and_run_small_program
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_compile_link_run_basic_classify_compile_vs_runtime_failure
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_declaration_type_model_write_basic_declarations
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_expression_evaluation_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_standard_io_basic_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_conditionals_write_control_flow
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_for_iteration_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_while_iteration_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15C-07_lesson_functions_basic_write_and_call_function
+  result: PASS
+  details: ''
+- check: E15C-07_no_combining_dot
+  result: PASS
+  details: ''
+- check: E15C-08_introducers_known
+  result: PASS
+  details: set()
+- check: E15C-08_forbidden_constructs
+  result: PASS
+  details: '[''aggregates'', ''allocation'', ''arrays'', ''goto_statement'', ''math_library'',
+    ''pointer_type'', ''string_library'']'
+- check: E15C-08_not_code_is_stripped
+  result: PASS
+  details: ''
+- check: E15C-09_five_per_skill
+  result: PASS
+  details: '45'
+- check: E15C-09_tasks_validated
+  result: PASS
+  details: ''
+- check: E15C-09_minutes_are_estimates
+  result: PASS
+  details: ''
+- check: E15C-10_runner_in_linux
+  result: PASS
+  details: ''
+- check: E15C-10_keys_in_linux
+  result: PASS
+  details: ''
+- check: E15C-10_earlier_packages_keep_python
+  result: PASS
+  details: ''
+- check: E15C-11_test_a doubled backslash is one backslash, so
+  result: PASS
+  details: 'PackageFormatTest.kt: a doubled backslash is one backslash, so C code
+    can show a backslash-n, and every other backslash is itself'
+- check: E15C-11_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedCPackageTest.kt: everything shipped was validated, so nothing is
+    a candidate'
+- check: E15C-11_test_C code is shown exactly as written, with
+  result: PASS
+  details: 'ShippedCPackageTest.kt: C code is shown exactly as written, with its backslash-n,
+    and the lines of the program are lines'
+- check: E15C-11_test_all three shipped packages are published
+  result: PASS
+  details: 'ShippedCourseTest.kt: all three shipped packages are published into the
+    real store, oldest first, and C waits on the terminal'
+- check: E15C-11_test_with the C package, a learner who has do
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the C package, a learner who has done nothing
+    may also start the terminal lesson, and no C Skill starts'
+- check: E15C-12_mutation_all_detected
+  result: PASS
+  details: 8/8
+- check: E15C-12_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E15C-12_control
+  result: PASS
+  details: ''
+- check: E15C-12_validator_mutation
+  result: PASS
+  details: '{''total'': 34, ''detected'': 34, ''negative_control'': ''a YAML comment
+    in a Skill file and a Kotlin comment in PackageFormat, each naming forbidden fragments
+    (int *p, malloc(, verdict fail, human_authored, the old replace call)'', ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True, ''baseline'': ''the
+    only check allowed to fail at baseline is E15C-12_validator_mutation, which reads
+    this very result; a mutant counts only by a failure not in the baseline'', ''fast_mode'':
+    ''every mutant except V32 ran with --skip-earlier-rebuild (rebuilding 15B runs
+    85 suites); V32, a change to an earlier package, ran in full'', ''earlier_runs'':
+    "the first run stopped at V05 (the harness''s own target text was wrong; nothing
+    was left mutated); the second ran to the end with 31 of 34 — V13 (escaping off)
+    and V15 (keys built on Windows) crashed the validator through a build error instead
+    of failing it, and V32 survived because a broken lesson check in an earlier package
+    does not change that package''s text. The validator now reports a build that cannot
+    be made as E15C-02_builds and requires an earlier package''s rebuild to have no
+    failures; the final run is the only result taken", ''flake_found'': "in the final
+    run, V33 also showed an unrelated lesson-check failure — a Linux call (WSL start
+    plus gcc) exceeded the build tool''s 5 s limit under load; the limit for Linux
+    calls is now 60 s (no C key or claim is about time) and the full validator was
+    re-run clean afterwards; the learner''s suite limit (5 s per test) is unchanged",
+    ''final_run_is_a_single_clean_run'': True}'
+- check: E15C-12_runs_pass
+  result: PASS
+  details: ''
+- check: E15C-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15C-12_narrowed_gates
+  result: PASS
+  details: '{''tools/validate_computing_fundamentals.py'': [''E15A-09_prompt_line_breaks''],
+    ''tools/validate_alternative_explanation.py'': [''E14C-09_line_breaks'']}'
+- check: E15C-12_narrowing_declared_validate_computing_fundamentals
+  result: PASS
+  details: tools/validate_computing_fundamentals.py
+- check: E15C-12_narrowing_declared_validate_alternative_explanation
+  result: PASS
+  details: tools/validate_alternative_explanation.py
+- check: E15C-13_spec_status
+  result: PASS
+  details: ''
+- check: E15C-13_spec_next
+  result: PASS
+  details: ''
+- check: E15C-13_spec_t6
+  result: PASS
+  details: ''
+- check: E15C-13_research
+  result: PASS
+  details: ''
+- check: E15C-13_decision
+  result: PASS
+  details: D-114 heading in DECISIONS

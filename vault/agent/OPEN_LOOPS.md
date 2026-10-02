@@ -65,7 +65,9 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15A Computer / Programming Fundamentals: CPFX-v0 / D-112 ile tamamlandı; 6C alt-grafı published, 95 item (çalıştırılarak/kaynakla + bağımsız inceleme), 79 anlatım, 34 misconception, 60 görev, `[task]` bölümü, ilk sevk edilen paket. **AŞAMA 15 başladı.**
 - [x] 15B Python Foundations: PYFX-v0 / D-113 ile tamamlandı; 20 Skill published, 109 item (85 kod suite'iyle), 116 anlatım, 44 misconception, 100 görev, bağımsız inceleme 109/109.
 - [x] İkinci bir paketin nasıl sevk edileceği → 15B'de kapandı: artımlı paket (`curriculum_package_v<N>.txt`), birlikte okunur ya da hiç sunulmaz, yayımlanmış sürümün üzerine yazılmaz (D-113, kullanıcı kararı).
-- [ ] 15C C Foundations **AKTİF**.
+- [x] 15C C Foundations: CFNX-v0 / D-114 ile tamamlandı; 9 Skill published (dört C tohumu + standard_io_basic + Linux terminal), 51 item, 56 anlatım, 21 misconception, 45 görev; WSL Ubuntu + gcc.
+- [ ] 15D Memory Foundations **AKTİF**.
+- [ ] C kontrol akışı item'ları standard_io_basic'i, bir derle-bağla item'ı functions_basic'i item düzeyinde beyan ediyor; graph söylemiyor → 15H.
 - [ ] Graph'ın söylemediği gereksinimler item başına beyan ediliyor (fonksiyon yazmak, set/tuple/sözlük item'larında köşeli parantez, `for_iteration`'da koşul, `path_handling`'de import) → 15H.
 - [ ] Sabit çıktılı kod item'ları (`run_repl_script`, `assignment_binding`'in çoğu) beklenen metni doğrudan yazdıran programı geçiriyor → 15H.
 - [ ] Gösterim `in`, `is`, `pass`, `break`, `as`'i kapsamıyor; ders iddiaları taranmıyor → 15H.
@@ -79,7 +81,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Sevk edilen paketin cihazda ilk SQLite ingestion'ı ve T6 → öğrenci, cihazda.
 - [ ] İlk canlı sağlayıcı çağrısı ve Keystore yolu cihazda (Profile → 'Bağlantıyı dene') → öğrenci (T6).
 - [ ] Tutor ve değerlendiricileri görev ekranlarından çağırmak; kullanım/maliyet görünürlüğü → 16D.
-- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15 (15A'nın 13 ve 15B'nin 21 Objective'i için yazıldı, D-112/D-113; 15C–15G'de devam).
+- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15 (15A'nın 13, 15B'nin 21 ve 15C'nin 10 Objective'i için yazıldı, D-112/D-113/D-114; 15D–15G'de devam).
 - [x] `open_response_evaluation/1` için adaptör çağrı noktası: 14G'de kuruldu (D-111).
 - [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16D.
 - [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
@@ -93,10 +95,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] AI kod değerlendiricisinin istemi ve çağrı noktası: `code_evaluation_instructions/1` core'da, çağrı noktası 14G'de (D-111).
 - [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
 - [ ] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15.
-- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13 ve 15B'nin 21 Objective'i için yazıldı, D-112/D-113; 15C–15G'de devam).
+- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13, 15B'nin 21 ve 15C'nin 10 Objective'i için yazıldı, D-112/D-113/D-114; 15D–15G'de devam).
 - [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
-- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34, 15B'de 44 katalog etiketi yazıldı, D-112/D-113; cevap→etiket anahtarı formatı yok, 15C–15G'de karar).
+- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34, 15B'de 44, 15C'de 21 katalog etiketi yazıldı, D-112/D-113/D-114; cevap→etiket anahtarı formatı yok, 15D–15G'de karar).
 - [ ] Misconception hafızasının item seçiminde kullanımı ve `misconception_contrast` içeriğinin yazılması → 15 (menüde hafızaya göre sunulması 14C'de, D-107).
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.

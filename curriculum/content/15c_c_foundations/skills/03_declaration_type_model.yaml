@@ -1,0 +1,306 @@
+skill: skill.c.declaration_type_model
+activity: coding_production
+tasks:
+  teach: {title: "C'de bildirim ve türler: int, double, char, const", minutes: 18}
+  practice: {title: "Bildirim ve tür alıştırması", minutes: 15}
+  check: {title: "Bildirim ve tür kontrolü", minutes: 15}
+  review: {title: "Bildirim ve tür tekrarı", minutes: 12}
+  repair: {title: "Türleri yeniden kurmak: bildirim, dönüşüm ve printf", minutes: 18}
+
+objectives:
+  - id: objective.c.declaration_type_model.write_basic_declarations
+    statement: >-
+      C'de bir değişkeni türüyle bildirip ilk değer verebilmek (int, double, char, bool, const), printf'te türe uygun
+      biçim belirtecini (%d, %f / %.Nf, %c) kullanabilmek ve atamada ya da açık dönüşümde (cast) değerin nasıl
+      değiştiğini — double'dan int'e kesilme, char'ın bir sayı olması — öngörebilmek.
+    observable_behavior: >-
+      Verilen değerleri doğru türlerle bildiren ve doğru biçimde yazdıran programlar yazar; int'e dönüşümde kesilmeyi ve
+      bir harfin sayısal kodunu doğru kullanır.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. 6C'nin "qualifier" ifadesi bu adımda
+      const olarak öğretilir; işaretsiz türler ve taşma expression_evaluation'dadır. Bu Skill'in item'ları girdi okumaz
+      (scanf standard_io_basic'tir); her program sabit değerlerle çalışır ve sabit çıktı verir, bu yüzden beklenen metni
+      doğrudan yazdıran program da geçer — 15B'nin açık loop'u (fixed_output_items) burada da geçerlidir.
+    checks:
+      - prints: "7 2.50 A"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int adet = 7;
+              double fiyat = 2.5;
+              char harf = 'A';
+              printf("%d %.2f %c\n", adet, fiyat, harf);
+              return 0;
+          }
+      - prints: "3"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              double d = 3.99;
+              int n = (int) d;
+              printf("%d\n", n);
+              return 0;
+          }
+      - prints: "66 C"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              char c = 'B';
+              printf("%d %c\n", c, c + 1);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        C'de her değişkenin bir türü vardır ve kullanmadan önce bildirilir:
+
+        int adet = 7;          (tam sayı)
+        double fiyat = 2.5;    (ondalıklı sayı)
+        char harf = 'A';       (tek bir karakter — tek tırnakla)
+        const int GUN = 7;     (const: sonradan değiştirilemez)
+        bool hazir = true;     (#include <stdbool.h> ile; true/false)
+        long long buyuk = 1;   (çok büyük tam sayılar için; printf'te %lld)
+
+        Python'dan farkı: tür değişkene aittir. adet = 2.9; yazsan bile adet bir int olarak kalır ve 2 olur.
+
+        printf ile yazdırmak: biçim yazısı içindeki belirteçler sırayla argümanlarla eşleşir.
+        - %d → int (ve char'ın sayısal değeri)
+        - %f → double, varsayılan 6 basamak: 2.500000; %.2f → 2.50
+        - %c → char
+        printf("%d %.2f %c\n", adet, fiyat, harf);  → 7 2.50 A
+        Yanlış belirteç (bir double'ı %d ile yazmak) anlamsız bir sayı yazar; -Wall bunun için uyarır.
+
+        Dönüşümler:
+        - double → int: ondalık kısım atılır (yuvarlanmaz): (int) 3.99 → 3. Açıkça yazmak için (int) dönüşümü (cast) kullanılır.
+        - int → double: 7 → 7.0.
+        - char bir küçük tam sayıdır: 'A' 65'tir (ASCII), 'A' + 1 66'dır ve %c ile B yazar.
+
+        Bildirmeden kullanmak derleme hatasıdır; bildirip değer vermeden okumak ise tanımsız (rastgele) bir değer verir — -Wall bunu da uyarabilir. Her değişkene ilk değer ver.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (durum ve atama; derle-çalıştır): bir değişken bir değeri tutar ve atama onu değiştirir; programı gcc -std=c11 -Wall -Wextra -o cozum cozum.c ile derleyip ./cozum ile çalıştırırsın.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          int a = 5;            → a: 5
+          double b = a;         → b: 5.0
+          b = b / 2;            → b: 2.5
+          a = b;                → a: 2   (int'e atanınca .5 atılır)
+          printf("%d %.1f\n", a, b);  → 2 2.5
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: bir ürünün adet ve birim fiyatını tutup toplamı iki basamakla yazan program.
+
+          #include <stdio.h>
+
+          int main(void) {
+              int adet = 3;
+              double birim = 4.25;
+              double toplam = adet * birim;
+              printf("Toplam: %.2f\n", toplam);
+              return 0;
+          }
+
+          - adet * birim: int ile double çarpılınca sonuç double'dır: 12.75.
+          - %.2f iki ondalık basamak yazar: Toplam: 12.75
+    misconceptions:
+      - slug: int_rounds
+        name: double'dan int'e dönüşüm yuvarlar
+        open_question: (int) 2.8 ifadesinin 3 sonucunu verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "2.8 int olunca 3 olur."
+
+            C'de double'dan int'e dönüşüm ondalık kısmı atar (sıfıra doğru keser): (int) 2.8 → 2, (int) -2.8 → -2. Yuvarlamak istiyorsan bunu kendin yazarsın.
+      - slug: char_is_text
+        name: char bir sayı değil, yalnız bir harftir
+        open_question: Bir char değişkenine 1 eklemenin anlamsız ya da hatalı olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "'A' bir harf; harfe sayı eklenmez."
+
+            char küçük bir tam sayıdır; 'A' 65'tir. 'A' + 1 66'dır ve %c ile yazdırılınca B görünür. Aynı değer %d ile yazdırılırsa 66 görünür.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir program yaz: yas adında bir int değişkene 19, boy adında bir double değişkene 1.82 değer versin ve printf ile tek satırda 19 1.82 yazdırsın (boy iki ondalık basamakla).
+        suite:
+          - {id: prints_values, expected_stdout: "19 1.82\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int yas = 19;
+              double boy = 1.82;
+              printf("%d %.2f\n", yas, boy);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int yas = 19;
+                double boy = 1.82;
+                printf("%d %f\n", yas, boy);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int yas = 19;
+                int boy = 1.82;
+                printf("%d %.2f\n", yas, boy);
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir program yaz: puan adında bir double değişkene 87.6 değer versin, bunu tam_puan adında bir int değişkene açık dönüşümle (cast) atasın ve tam_puan'ı yazdırsın. Ekranda 87 görünmeli.
+        suite:
+          - {id: truncates, expected_stdout: "87\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              double puan = 87.6;
+              int tam_puan = (int) puan;
+              printf("%d\n", tam_puan);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double puan = 87.6;
+                printf("%.0f\n", puan);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double puan = 87.6;
+                int tam_puan = (int) puan;
+                printf("%f\n", puan);
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: harf adında bir char değişkene 'm' değer versin; ekrana tek satırda önce harfin kendisini, sonra sayısal (ASCII) kodunu, sonra da alfabede kendisinden sonra gelen harfi yazdırsın: m 109 n
+        suite:
+          - {id: char_as_number, expected_stdout: "m 109 n\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char harf = 'm';
+              printf("%c %d %c\n", harf, harf, harf + 1);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char harf = 'm';
+                printf("%c %c %c\n", harf, harf, harf + 1);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char harf = 'm';
+                printf("%c %d %d\n", harf, harf, harf + 1);
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: KDV_ORANI adında değiştirilemeyen (const) bir double sabit 0.20 olsun; net adında bir double 150.0 olsun. Brüt tutarı (net + net * KDV_ORANI) iki ondalık basamakla, "Brut: 180.00" biçiminde yazdırsın.
+        suite:
+          - {id: gross, expected_stdout: "Brut: 180.00\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              const double KDV_ORANI = 0.20;
+              double net = 150.0;
+              printf("Brut: %.2f\n", net + net * KDV_ORANI);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                const double KDV_ORANI = 0.20;
+                double net = 150.0;
+                printf("Brut: %.2f\n", net * KDV_ORANI);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                const int KDV_ORANI = 0.20;
+                double net = 150.0;
+                printf("Brut: %.2f\n", net + net * KDV_ORANI);
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: toplam_dakika adında bir int 135 olsun. Bunu saate çevirip saat adında bir double'a atasın (toplam_dakika bir int; bölmeden önce double'a dönüştürmezsen ondalık kısım kaybolur) ve "2.25 saat" yazdırsın (iki ondalık basamak).
+        required_skills: [skill.c.expression_evaluation]
+        suite:
+          - {id: hours, expected_stdout: "2.25 saat\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int toplam_dakika = 135;
+              double saat = (double) toplam_dakika / 60;
+              printf("%.2f saat\n", saat);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int toplam_dakika = 135;
+                double saat = toplam_dakika / 60;
+                printf("%.2f saat\n", saat);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int toplam_dakika = 135;
+                int saat = toplam_dakika / 60;
+                printf("%d saat\n", saat);
+                return 0;
+            }

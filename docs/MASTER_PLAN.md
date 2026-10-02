@@ -1011,8 +1011,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation 27/27, validator 254/254,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15C — C Foundations — **AKTİF**
-### [ ] 15D — Memory Foundations
+### [x] 15C — C Foundations — CFNX-v0 / D-114
+
+**15C final coverage:**
+- bir C programı öğrencinin onu derleyip çalıştırdığı yerde değerlendirilir: Linux'ta gcc ile, öğrencinin koşucusundan; her anahtar gcc'nin ve programın gerçekte yaptığıdır,
+- FBB-v0 §6.3'ün dört C tohumu (6C'de 7 Skill) + standard_io_basic + Linux terminal Skill'i (kullanıcı kararları) — 9 Skill, 10 Objective, 15 kenar — `published`, kimlik değişmedi,
+- 51 item (35 kod suite'iyle — 5'i dersin main'iyle fonksiyonu çağırır —, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev,
+- ortam WSL Ubuntu + gcc (kullanıcı kurdu); biçim inceltmesi `PackageFormat.unescape`; önceki paketler bayt bayt aynı okunur,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+- üç paket gerçek SQLite şemasına JVM'de yayımlanıyor; terminal Skill'i üçüncü giriş noktası (`ShippedCourseTest`),
+- Mutation 8/8, validator 155/155,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15D — Memory Foundations — **AKTİF**
 ### [ ] 15E — Linux / Git / Shell Foundations
 ### [ ] 15F — English A0→A1/A2 başlangıç paketi
 ### [ ] 15G — Assessment content
@@ -1093,8 +1104,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15B`  
-**Son tamamlanan:** **`15B — PYFX-v0 / D-113`**  
-**Aktif:** **`15C — C Foundations`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15C`  
+**Son tamamlanan:** **`15C — CFNX-v0 / D-114`**  
+**Aktif:** **`15D — Memory Foundations`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15C fresh PRE-STEP → C Foundations içeriği (artımlı paket, kod suite'leri ve bağımsız inceleme akışı hazır; öğrencinin ve yazarın bilgisayarında bir C derleyicisi gerekir) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15D fresh PRE-STEP → Memory Foundations içeriği (C araç zinciri, C gösterimi ve test düzeneği hazır; işaretçi ve dizi yapıları açılacak) → independent QA → D-050 POST sync + stale audit.**

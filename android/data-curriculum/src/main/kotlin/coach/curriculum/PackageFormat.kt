@@ -70,6 +70,25 @@ object PackageFormat {
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
 
+    /**
+     * A multi-line value (a prompt, an explanation, a comprehension check) is one package line: a backslash-n is a line
+     * break (15A), and — 15C (`D-114`) — a doubled backslash is one backslash, so C code can show `printf("%d\\n", x)`.
+     * Any other backslash is itself (`C:\\Users` stays as written), which reads every earlier package exactly as before.
+     */
+    fun unescape(value: String): String = buildString(value.length) {
+        var i = 0
+        while (i < value.length) {
+            val next = value.getOrNull(i + 1)
+            if (value[i] == '\\' && (next == 'n' || next == '\\')) {
+                append(if (next == 'n') '\n' else '\\')
+                i += 2
+            } else {
+                append(value[i])
+                i += 1
+            }
+        }
+    }
+
     private data class Section(val name: String, val line: Int, val values: Map<String, String>)
 
     fun parse(text: String): Parsed {
@@ -138,7 +157,7 @@ object PackageFormat {
         val documents = sections.filter { it.name == "item" }.mapNotNull { section ->
             val ref = runCatching { reader.ref(section, "ref") }.getOrNull() ?: return@mapNotNull null
             // 15A: a prompt carries code, so a backslash-n is a line break exactly as in an explanation.
-            ref to section.values["prompt"].orEmpty().replace("\\n", "\n")
+            ref to unescape(section.values["prompt"].orEmpty())
         }
 
         val explanations = sections.filter { it.name == "explanation" }.mapNotNull { section ->
@@ -469,7 +488,7 @@ object PackageFormat {
                 objective = ref(section, "objective"),
                 form = enum(section, "form", ExplanationForm.entries.toTypedArray()) { it.id },
                 level = optional(section, "level")?.let { id -> AssessmentLevels.byId[id] ?: run { reasons += "[explanation] line ${section.line}: unknown level '$id'"; AssistanceLevel.H1 } },
-                text = text(section.values, "text", section.line).replace("\\n", "\n"),
+                text = unescape(text(section.values, "text", section.line)),
                 misconception = if (section.values.containsKey("misconception")) ref(section, "misconception") else null,
             )
         }
@@ -524,8 +543,8 @@ object PackageFormat {
                 objective = ref(section, "objective"),
                 kind = enum(section, "kind", ComprehensionKind.entries.toTypedArray()) { it.id },
                 evidenceType = text(section.values, "evidence_type", section.line),
-                prompt = text(section.values, "prompt", section.line).replace("\\n", "\n"),
-                choices = ComprehensionCheck.CHOICE_KEYS.mapNotNull { key -> optional(section, "choice_$key")?.let { key to it.replace("\\n", "\n") } }.toMap(),
+                prompt = unescape(text(section.values, "prompt", section.line)),
+                choices = ComprehensionCheck.CHOICE_KEYS.mapNotNull { key -> optional(section, "choice_$key")?.let { key to unescape(it) } }.toMap(),
                 answer = text(section.values, "answer", section.line),
             )
         }

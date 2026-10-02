@@ -288,7 +288,10 @@ check("E15A-08_minutes_are_estimates", contract.get("task_minutes", {}).get("cal
 
 # ---------------------------------------------------------------- the format
 check("E15A-09_whole_line_comment", 'if (raw.startsWith("#")) "" else raw' in format_kt and "substringBefore('#')" not in format_kt, "")
-check("E15A-09_prompt_line_breaks", 'section.values["prompt"].orEmpty().replace("\\\\n", "\\n")' in format_kt, "")
+# Narrowed at 15C (`CFNX-v0` / `D-114`): a prompt is read by PackageFormat.unescape, which still turns a backslash-n into a
+# line break and now also reads a doubled backslash as one, so C code can show its own backslash-n.
+check("E15A-09_prompt_line_breaks", 'ref to unescape(section.values["prompt"].orEmpty())' in format_kt
+      and "append(if (next == 'n') '\\n' else '\\\\')" in format_kt, "")
 keys = re.findall(r'"([a-z_]+)"', paren_body(format_kt, '"task" to setOf(')[len('"task"'):])
 check("E15A-09_task_keys", keys == contract.get("task_section_keys"), str(keys))
 check("E15A-09_task_section_known", '"task",' in body(format_kt, "private val KNOWN_SECTIONS"), "")

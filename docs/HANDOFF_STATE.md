@@ -302,14 +302,15 @@ PEM-v0:
 - **AŞAMA 14 TAMAMLANDI**
 - 15A ✅ CPFX-v0 / D-112
 - 15B ✅ PYFX-v0 / D-113
-- 15C 🟡 active-not-executed
-- 15D–20 ⬜
+- 15C ✅ CFNX-v0 / D-114
+- 15D 🟡 active-not-executed
+- 15E–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15B — PYFX-v0 / D-113`  
-**Aktif:** `15C — C Foundations`  
-**15C henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15C — CFNX-v0 / D-114`  
+**Aktif:** `15D — Memory Foundations`  
+**15D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1393,3 +1394,26 @@ PYFX-v0:
 ## 80. 15C handoff
 
 15C — C Foundations. 15B's pipeline is in place: incremental packages (`curriculum_package_v<N>.txt`, read all-or-none, published oldest first, never overwritten), code items judged by the course's runner with at least two wrong solutions each, the `traceback` check, platform-independent file and path tests. 15C needs a C toolchain on the learner's computer and on the authoring machine (15A had none; its C claims were reference-grounded). Open loops carried: graph requirements declared per item, fixed-output items, notation coverage, `path_handling`'s action name and `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15C fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 81. D-114 / 15C final özeti
+
+Canonical: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.
+Contract/QA: `arch/15c_c_foundations/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15c_c_foundations_research.md`.
+Content: `curriculum/content/15c_c_foundations/` (package, C notation, nine Skill files, independent review, 35 test suites) → `tools/build_curriculum_package.py` (Linux through WSL) → `android/app-wiring/src/main/assets/curriculum_package_v3.txt`.
+Code: `data-curriculum` `PackageFormat.unescape`; builder: per-package code configuration, `c_stdout`/`c_stage`/`shell` checks, C harness, `hands_on` items, opt-in backslash escaping.
+
+CFNX-v0:
+- a C program is judged where the learner builds it: gcc on Linux, through the learner's own runner; the package shows C code exactly,
+- user decisions: the Linux terminal Skill in 15C; WSL Ubuntu + gcc (installed by the user); standard_io_basic added,
+- found: the first C Skill waits on a Linux Skill; C programs need input; no C compiler on the authoring machine (and `gcc` alone lacked the C headers); the package could not show a backslash-n; a function item passed without the function; the terminal Skill is a third entry point,
+- 9 Skills / 10 Objectives / 15 edges published; 51 items (35 suite, 6 reading, 5 stage, 5 shell), 56 explanations, 21 misconceptions, 45 tasks,
+- independent review: Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+- three packages published into the real SQLite schema on the JVM; a learner with no history starts only entry Skills (now including the terminal); every C Skill waits,
+- 15A's `E15A-09_prompt_line_breaks` and 14C's `E14C-09_line_breaks` narrowed to the new reader; schema, ports and store unchanged,
+- Mutation 8/8, independent QA 155/155,
+- T6 and on-device ingestion were not run.
+
+## 82. 15D handoff
+
+15D — Memory Foundations. FBB-v0 §6.3's memory and pointer seeds (address_value_distinction, pointer_declaration_dereference_basic → pointer_formation + pointer_dereference, storage_lifetime_intuition). The C toolchain (WSL Ubuntu + gcc), the C notation (pointers and arrays are listed and still forbidden), the C harness and the escape rule are in place. Open loops carried: requirements declared per item, fixed-output items, notation coverage, `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

@@ -240,12 +240,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **AŞAMA 14 ✅ TAMAMLANDI**
 - **15A ✅ Computer / Programming Fundamentals — CPFX-v0 / D-112**
 - **15B ✅ Python Foundations — PYFX-v0 / D-113**
-- **15C 🟡 C Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15D–20 ⬜
+- **15C ✅ C Foundations — CFNX-v0 / D-114**
+- **15D 🟡 Memory Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15E–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -656,4 +657,16 @@ Canonical: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md` / D-112.
 Kullanıcı kararları: on yedi tohum + üç ön koşul (20 Skill); artımlı paket, varlık sürümü anlamsal revizyondur.
 
 Canonical: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md` / D-113.
+
+## 12.39 15C C Foundations içeriği — CFNX-v0 / D-114
+
+Üçüncü içerik paketi sevk ediliyor ve öğrenci C yazıyor. Ana invariant: **bir C programı öğrencinin onu derleyip çalıştırdığı yerde değerlendirilir — Linux'ta gcc ile, öğrencinin kendi koşucusundan — ve paket C kodunu yazıldığı gibi gösterir, hiçbir önceki paketin okunuşunu değiştirmeden.**
+
+İçerik yazmadan önce bulunanlar: ilk C Skill'i 15E'ye ait bir Linux Skill'ini bekliyor; girdi olmadan C programları denenemiyor; yazar makinesinde C derleyicisi yoktu; paket bir ters bölü-n'i gösteremiyordu; fonksiyon item'ı fonksiyonsuz bir programla geçiliyordu.
+
+9 Skill / 10 Objective / 15 kenar `published`; 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; hepsi Linux'ta gcc ile doğrulandı. Terminal Skill'i ön koşulsuz olduğu için üçüncü bir giriş noktası. Bağımsız inceleme ilk geçişte 51 item'ın 46'sını ve 56 anlatımın 52'sini geçirdi (her anahtar doğru, 70 yanlış çözümün hepsi düştü; düşenler 3 ders içi sızıntı, öğretilmemiş %%, sınırları test etmeyen bir suite ve 4 teknik cümleydi); ikinci geçişte 51/51 ve 56/56.
+
+Kullanıcı kararları: Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc; standard_io_basic eklendi.
+
+Canonical: `docs/C_FOUNDATIONS_CONTENT_SPEC.md` / D-114.
 

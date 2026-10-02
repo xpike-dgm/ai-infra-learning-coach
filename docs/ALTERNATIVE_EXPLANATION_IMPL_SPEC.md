@@ -177,3 +177,7 @@ Menu lines name the form, mark "AI ile" for a tutor-written option and "bu oturu
 If accepted, 14C becomes `ALEX-v0 / D-107`.
 
 Next numbered step: **14D — Kod değerlendirme**. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**15C note (2026-10-03, `D-114`):** an explanation's text is read by `PackageFormat.unescape` (a backslash-n is a line break; a doubled backslash is one backslash), so a written lesson can show C code. `E14C-09_line_breaks` was narrowed to the new reader. Details: `docs/C_FOUNDATIONS_CONTENT_SPEC.md`.

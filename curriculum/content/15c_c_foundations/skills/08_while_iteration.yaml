@@ -1,0 +1,442 @@
+skill: skill.c.while_iteration
+activity: coding_production
+tasks:
+  teach: {title: "C'de while ve do-while: bitiş koşulu ve sonsuz döngü", minutes: 18}
+  practice: {title: "C while alıştırması", minutes: 15}
+  check: {title: "C while kontrolü", minutes: 15}
+  review: {title: "C while tekrarı", minutes: 12}
+  repair: {title: "while döngüsünü yeniden kurmak: ilerleme ve bitiş", minutes: 18}
+
+objectives:
+  - id: objective.c.while_iteration.demonstrate_capability
+    statement: >-
+      Kaç kez döneceği önceden bilinmeyen işleri C'de while ve do-while ile kurabilmek: döngünün her turda bitişe
+      yaklaştığından emin olmak, girdi bitene ya da bir işaret değeri gelene kadar okumak, gövdenin en az bir kez çalışması
+      gerektiğinde do-while seçmek ve bitmeyen bir döngüyü nedenini bularak düzeltebilmek.
+    observable_behavior: >-
+      Rakam toplama, işaret değerine kadar okuma ve geçerli girdi isteme gibi işlerde doğru biten while/do-while döngüleri
+      yazar; verilen bitmeyen bir döngüyü düzeltir.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Bitmeyen döngü testlerde süre sınırıyla ölçülür: süresi dolan test başarısızdır (14D), bu yüzden
+      düzeltilmemiş bir program sayı içeren testlerde süre sınırına takılır ve suite'i geçemez. Item'lar girdiyi scanf ile okuduğu için standard_io_basic'i beyan eder.
+    checks:
+      - stdin: "4096\n"
+        prints: "19"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int toplam = 0;
+              while (n > 0) {
+                  toplam += n % 10;
+                  n /= 10;
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+      - stdin: "5 8 2 0 9\n"
+        prints: "15"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              int toplam = 0;
+              while (scanf("%d", &x) == 1 && x != 0) {
+                  toplam += x;
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+      - prints: "bir kez"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int k = 10;
+              do {
+                  printf("bir kez\n");
+              } while (k < 5);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        for, kaç kez döneceğin baştan belli olduğunda rahattır. Bir şey olana kadar (sayı bitene, kullanıcı 0 girene kadar) dönmek için while kullanılır:
+
+        while (koşul) {
+            ...
+        }
+
+        Koşul her turdan önce denetlenir; baştan yanlışsa gövde hiç çalışmaz.
+
+        Bitiş: döngünün gövdesi koşuldaki bir şeyi bitişe doğru değiştirmelidir. Rakam toplama:
+        while (n > 0) {
+            toplam += n % 10;   (son rakam)
+            n /= 10;            (son rakamı at — n küçülür, bir gün 0 olur)
+        }
+        n /= 10 satırı unutulursa n hiç değişmez ve döngü hiç bitmez.
+
+        Girdi bitene ya da işaret değeri gelene kadar okumak:
+        while (scanf("%d", &x) == 1 && x != 0) { ... }
+        scanf okuyamazsa (girdi bittiyse ya da sayı değilse) 1 döndürmez ve döngü biter; && kısa devresi sayesinde x != 0 yalnız okuma başarılıysa denetlenir.
+
+        do-while: gövde önce çalışır, koşul sonra denetlenir; en az bir kez çalışması gereken işler içindir (önce sor, geçersizse yeniden sor):
+        int okundu = 0;
+        do {
+            okundu = scanf("%d", &n);
+        } while (okundu == 1 && n < 1);
+        Sondaki noktalı virgülü unutma. okundu == 1 koşulu önemlidir: girdi biterse ya da sayı olmayan bir şey gelirse scanf her seferinde aynı yerde takılır ve okundu kontrolü olmayan döngü hiç bitmez.
+
+        Bitmeyen döngüyü bulmak: koşulda hangi değişkenler var? Gövde onları değiştiriyor mu? Değişiklik koşulu yanlış yapmaya doğru mu (i++ yerine i-- gibi ters yön)? Program takılırsa terminalde Ctrl+C ile durdurursun.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (yineleme ve C koşulları): 15A'da bir döngünün bitip bitmediğini koşuldaki değişkenin her turda nasıl değiştiğine bakarak anladın; C'de koşul 0 olunca döngü biter.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde (n = 352, rakamların çarpımı).
+
+          | tur | n başında | n % 10 | carpim | n sonunda |
+          | 1   | 352       | 2      | 2      | 35        |
+          | 2   | 35        | 5      | 10     | 3         |
+          | 3   | 3         | 3      | 30     | 0         |
+          | -   | 0         | koşul 0, döngü biter |
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: girdiden sayılar okunsun; ilk negatif sayı geldiğinde dursun ve okunan negatif olmayan sayıların en büyüğünü yazsın (hiç yoksa -1).
+
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              int en_buyuk = -1;
+              while (scanf("%d", &x) == 1 && x >= 0) {
+                  if (x > en_buyuk) {
+                      en_buyuk = x;
+                  }
+              }
+              printf("%d\n", en_buyuk);
+              return 0;
+          }
+
+          - Girdi "4 9 2 -1 50" → 9 (50 okunmaz).
+          - Girdi "-3" → -1.
+    misconceptions:
+      - slug: loop_ends_by_itself
+        name: Bir while döngüsü bir süre sonra kendiliğinden biter
+        open_question: Koşuldaki değişkeni gövdede değiştirmesen de döngünün bir noktada duracağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Program sonunda durur."
+
+            Koşul yalnız içindeki değerler değişirse değişir. Gövde koşuldaki değişkeni bitişe doğru değiştirmiyorsa döngü sonsuza kadar döner ve program takılır.
+      - slug: do_while_checks_first
+        name: do-while da koşulu önce denetler
+        open_question: Koşulu baştan yanlış olan bir do-while döngüsünün gövdesinin hiç çalışmayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "do-while, while'ın başka yazılışıdır."
+
+            do-while gövdeyi önce bir kez çalıştırır, koşulu sonra denetler; koşul baştan yanlış olsa bile gövde bir kez çalışır. while ise koşulu önce denetler.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c adında bir program yaz: girdiden negatif olmayan bir tam sayı okusun ve kaç basamaklı olduğunu yazsın (0 tek basamaklıdır). Örnek: 4096 → 4.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: four_digits, stdin: "4096\n", expected_stdout: "4\n"}
+          - {id: one_digit, stdin: "7\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "1\n"}
+          - {id: ten, stdin: "10\n", expected_stdout: "2\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int basamak = 0;
+              do {
+                  basamak++;
+                  n /= 10;
+              } while (n > 0);
+              printf("%d\n", basamak);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int basamak = 0;
+                while (n > 0) {
+                    basamak++;
+                    n /= 10;
+                }
+                printf("%d\n", basamak);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int basamak = 0;
+                while (n > 1) {
+                    basamak++;
+                    n /= 10;
+                }
+                printf("%d\n", basamak);
+                return 0;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 0 gelene kadar tam sayılar okusun (0 sayılmaz) ve okunan sayıların adedini ve toplamını "adet toplam" biçiminde yazsın. Girdi 0 gelmeden biterse o ana kadar okunanlar sayılsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: sentinel, stdin: "4 -2 10 0 99\n", expected_stdout: "3 12\n"}
+          - {id: only_zero, stdin: "0\n", expected_stdout: "0 0\n"}
+          - {id: no_sentinel, stdin: "5 5\n", expected_stdout: "2 10\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              int adet = 0;
+              int toplam = 0;
+              while (scanf("%d", &x) == 1 && x != 0) {
+                  adet++;
+                  toplam += x;
+              }
+              printf("%d %d\n", adet, toplam);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0;
+                int adet = 0;
+                int toplam = 0;
+                while (x != 0) {
+                    scanf("%d", &x);
+                    adet++;
+                    toplam += x;
+                }
+                printf("%d %d\n", adet, toplam);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0;
+                int adet = 0;
+                int toplam = 0;
+                while (scanf("%d", &x) == 1 && x != 0) {
+                    toplam += x;
+                }
+                printf("%d %d\n", adet, toplam);
+                return 0;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program bir n okuyup n'den 1'e kadar geri sayarak sayıları yazmalı (her sayı ayrı satırda), ama hiç bitmiyor. Bitmemesinin nedenini bul ve düzeltilmiş programı cozum.c olarak kaydet.
+
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              while (n >= 1) {
+                  printf("%d\n", n);
+                  n++;
+              }
+              return 0;
+          }
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "3\n2\n1\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              while (n >= 1) {
+                  printf("%d\n", n);
+                  n--;
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                while (n >= 1) {
+                    printf("%d\n", n);
+                    n++;
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                while (n > 1) {
+                    printf("%d\n", n);
+                    n--;
+                }
+                return 0;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden pozitif bir n okusun ve şu kuralla 1'e ulaşmak için kaç adım gerektiğini yazsın: n çiftse n = n / 2, tekse n = 3 * n + 1. n zaten 1 ise 0 adım. Örnek: 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1, yani 8.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: six, stdin: "6\n", expected_stdout: "8\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0\n"}
+          - {id: twenty_seven, stdin: "27\n", expected_stdout: "111\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int adim = 0;
+              while (n != 1) {
+                  if (n % 2 == 0) {
+                      n /= 2;
+                  } else {
+                      n = 3 * n + 1;
+                  }
+                  adim++;
+              }
+              printf("%d\n", adim);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int adim = 0;
+                do {
+                    if (n % 2 == 0) {
+                        n /= 2;
+                    } else {
+                        n = 3 * n + 1;
+                    }
+                    adim++;
+                } while (n != 1);
+                printf("%d\n", adim);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int adim = 0;
+                while (n > 1) {
+                    n /= 2;
+                    adim++;
+                }
+                printf("%d\n", adim);
+                return 0;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 1 ile 10 arasında (ikisi de dahil) bir sayı gelene kadar sayı okusun; ilk geçerli sayıda dursun ve "Gecerli: X (N deneme)" yazsın — X geçerli sayı, N o sayı dahil kaç sayı okunduğu. Örnek: girdi "15 0 7 3" → Gecerli: 7 (3 deneme). Girdi hiç geçerli sayı gelmeden biterse "Gecerli sayi yok" yazsın.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: third_try, stdin: "15 0 7 3\n", expected_stdout: "Gecerli: 7 (3 deneme)\n"}
+          - {id: first_try, stdin: "10\n", expected_stdout: "Gecerli: 10 (1 deneme)\n"}
+          - {id: boundary_one, stdin: "11 1\n", expected_stdout: "Gecerli: 1 (2 deneme)\n"}
+          - {id: none, stdin: "20 -4\n", expected_stdout: "Gecerli sayi yok\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              int deneme = 0;
+              int okundu = 0;
+              do {
+                  okundu = scanf("%d", &x);
+                  if (okundu == 1) {
+                      deneme++;
+                  }
+              } while (okundu == 1 && (x < 1 || x > 10));
+              if (okundu == 1) {
+                  printf("Gecerli: %d (%d deneme)\n", x, deneme);
+              } else {
+                  printf("Gecerli sayi yok\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0;
+                int deneme = 0;
+                while (scanf("%d", &x) == 1 && (x < 1 || x > 10)) {
+                    deneme++;
+                }
+                printf("Gecerli: %d (%d deneme)\n", x, deneme);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0;
+                int deneme = 0;
+                int okundu = 0;
+                do {
+                    okundu = scanf("%d", &x);
+                    if (okundu == 1) {
+                        deneme++;
+                    }
+                } while (okundu == 1 && (x < 1 && x > 10));
+                if (okundu == 1) {
+                    printf("Gecerli: %d (%d deneme)\n", x, deneme);
+                } else {
+                    printf("Gecerli sayi yok\n");
+                }
+                return 0;
+            }
