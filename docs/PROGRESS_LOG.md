@@ -1262,3 +1262,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14G tamamlandı; AŞAMA 14 kapandı; 15A aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15A — Computer / Programming Fundamentals`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 15A — Computer / Programming Fundamentals tamamlandı — CPFX-v0 / D-112 — AŞAMA 15 başladı
+
+- 14G (#51) main'e merge edilmişti (32db8cb); fresh 15A PRE yapıldı ve beş kanonik kaynak `14G ✅ / 15A active-not-executed` gösterdi. Kullanıcı açık onay verdi ("15A ile devam et") ve üç ürün sorusunu cevapladı.
+- **Kullanıcı kararları:** çalıştırma + bağımsız QA; okunur Python alt kümesi; Objective metadata'sını netleştir ve kaydet.
+- **Bulgu:** hiçbir format görev taşıyamıyordu (her ihtiyaç adaysızdı); 6C alt-grafı `draft` idi; Objective metadata'sı şablondu; `#` değerleri kesiyordu ve prompt satır sonu çözmüyordu; `while` koşulları graph'ın söylemediği bir ön koşul istiyor; `requires_transfer` mağazada taşınmıyor.
+- İçerik: FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 kenar) `published`; 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev; 40 ders iddiası çalıştırıldı. `[task]` bölümü (`AuthoredTask`, `TaskServing`), tam satır yorum, prompt satır sonu.
+- **Araştırma:** GCC kılavuzu §3.2/§3.16, Python glossary ve `unittest` belgeleri referanslı item'lar için okundu; bir bölüm numarası ve bir ders cümlesi düzeltildi.
+- **Bağımsız inceleme:** ilk geçişte 94 item'ın 62'si, 79 anlatımın 78'i geçti — 94 anahtarın hepsi doğruydu; düşenler ders içi sızıntıydı. 32 item yeniden yazıldı, ders içi item'lar sonraki havuzlardan çıkarıldı; son durum 95/95 ve 79/79.
+- İlk plan: sevk edilen paket, gerçek kapı ve planner'la, geçmişi olmayan öğrenciye iki giriş dersini planlıyor; on bağımlı Skill bekliyor.
+- 11D ve 12C'nin birer kapısı daraltıldı; şema, portlar ve mağaza değişmedi.
+- Mutation 22/22. Validator 131/131, kendi mutation testi 30/30, sweep 56/56, 977 JVM testi.
+- **T6 ve sevk edilen paketin SQLite'a ilk yayımlanması çalıştırılmadı** — ilk ingestion öğrencinin, cihazda.
+- D-050 POST living-memory accepted state'i `15A tamamlandı; 15B aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15B — Python Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

@@ -1,0 +1,495 @@
+skill: skill.programming.iteration_reasoning
+activity: code_reading_trace
+# Every while loop is guarded by a comparison, and comparisons are taught by expression_boolean_reasoning — which 6C
+# does not make a hard prerequisite of this Skill (only state_assignment_model hard, branching_reasoning soft). The
+# lesson and its tasks therefore declare it themselves (3B §10); whether the graph should say so is recorded for 15H.
+lesson_requires: [skill.programming.expression_boolean_reasoning]
+tasks:
+  teach: {title: "Döngüler: tekrar, durum ve sonlanma", minutes: 15}
+  practice: {title: "Döngü izleme ve sonlanma alıştırması", minutes: 12}
+  check: {title: "Döngü izleme ve sonlanma kontrolü", minutes: 10}
+  review: {title: "Döngü izleme ve sonlanma tekrarı", minutes: 8}
+  repair: {title: "Döngüyü yeniden kurmak: tur tablosu", minutes: 12}
+
+objectives:
+  - id: objective.programming.iteration_reasoning.trace_iteration
+    statement: >-
+      Bir while ya da for döngüsünün her turunda değişkenlerin nasıl değiştiğini izleyip, döngü bittiğinde
+      değişkenlerin değerlerini, döngünün kaç tur döndüğünü ve ekrana yazılanları söyleyebilmek.
+    observable_behavior: >-
+      Sayaç, toplam ve çarpım biriktiren döngülerde son değerleri ve tur sayısını doğru verir; range'in hangi
+      değerleri ürettiğini doğru uygular.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de iki Objective'in statement'ı birebir aynıydı ("Yeni bir bağlamda Iteration state, invariant ve termination
+      davranışını izleyebilmek") ve ikisinde de direct type explanation idi. 15A iki Objective'i ayırdı: bu Objective
+      tur tur izlemeyi ölçer; direct type code_reading, explanation direct kabul edilen ikinci tip.
+    checks:
+      - prints: "10"
+        code: |
+          toplam = 0
+          i = 1
+          while i <= 4:
+              toplam = toplam + i
+              i = i + 1
+          print(toplam)
+      - prints: "0\n1\n2"
+        code: |
+          for k in range(3):
+              print(k)
+      - prints: "2\n3\n4"
+        code: |
+          for k in range(2, 5):
+              print(k)
+      - prints: "1 1\n3 2\n6 3"
+        code: |
+          s = 0
+          for n in range(1, 4):
+              s = s + n
+              print(s, n)
+      - prints: "32 5"
+        code: |
+          x = 1
+          tur = 0
+          while x < 20:
+              x = x * 2
+              tur = tur + 1
+          print(x, tur)
+      - prints: "5 5 5"
+        code: |
+          a = 0
+          b = 10
+          tur = 0
+          while a < b:
+              a = a + 1
+              b = b - 1
+              tur = tur + 1
+          print(a, b, tur)
+    explanations:
+      canonical: |
+        Bir işi tekrar tekrar yaptırmak için döngü (loop) kullanılır. Döngüyü okumak, her turda (iteration) durumun nasıl değiştiğini izlemek demektir.
+
+        while döngüsü
+
+        i = 1
+        toplam = 0
+        while i <= 4:
+            toplam = toplam + i
+            i = i + 1
+        print(toplam)
+
+        Nasıl çalışır:
+        1. Koşul (i <= 4) sınanır.
+        2. True ise gövde — içeri itilmiş satırlar — baştan sona bir kez çalışır.
+        3. Sonra yeniden 1. adıma dönülür.
+        4. Koşul False olduğu anda döngü biter ve döngünün dışındaki ilk satırdan devam edilir.
+
+        Koşul yalnızca her turun başında sınanır; gövdenin ortasında koşul False olsa bile o tur sonuna kadar çalışır.
+
+        Tur tablosu ile izleme:
+
+        tur | koşul (i <= 4) | toplam | i
+        1   | 1 <= 4 True    | 1      | 2
+        2   | 2 <= 4 True    | 3      | 3
+        3   | 3 <= 4 True    | 6      | 4
+        4   | 4 <= 4 True    | 10     | 5
+        -   | 5 <= 4 False   | döngü biter
+
+        Ekrana 10 yazılır.
+
+        for döngüsü ve range
+
+        for k in range(3):
+            print(k)
+
+        range(3) sırasıyla 0, 1, 2 değerlerini üretir — 3 dahil değildir. range(2, 5) ise 2, 3, 4 üretir: başlangıç dahil, bitiş hariç. for her turda k'ye sıradaki değeri atar ve gövdeyi çalıştırır; değerler bitince döngü biter. Yukarıdaki kod alt alta 0, 1, 2 yazar.
+
+        Yöntem: Her turun başında koşulu (ya da sıradaki değeri) yaz, gövdeyi satır satır uygula, turun sonunda tablodaki değerleri güncelle. Tabloyu sabırla doldurmak, kafadan tahmin etmekten her zaman daha güvenilirdir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum): döngü gövdesindeki her atama, sağ tarafı o anki değerlerle hesaplar ve yalnız soldaki değişkeni günceller. Döngüyü izlemek, aynı atamaları her turda yeniden uygulamaktır; bu yüzden her turdan sonra bütün değişkenleri yeniden yaz.
+      state_trace:
+        level: H2
+        text: |
+          Tur tablosu — başka bir örnek üzerinde.
+
+          s = 0
+          for n in range(1, 4):
+              s = s + n
+              print(s, n)
+
+          range(1, 4) değerleri: 1, 2, 3.
+          tur 1: n=1, s = 0 + 1 = 1 → ekrana 1 1
+          tur 2: n=2, s = 1 + 2 = 3 → ekrana 3 2
+          tur 3: n=3, s = 3 + 3 = 6 → ekrana 6 3
+          Değerler bitti; döngü sona erer.
+
+          Her turda önce döngü değişkeninin yeni değerini yaz, sonra gövdeyi uygula.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          x = 1
+          tur = 0
+          while x < 20:
+              x = x * 2
+              tur = tur + 1
+          print(x, tur)
+
+          tur 1: 1 < 20 True → x=2, tur=1
+          tur 2: 2 < 20 True → x=4, tur=2
+          tur 3: 4 < 20 True → x=8, tur=3
+          tur 4: 8 < 20 True → x=16, tur=4
+          tur 5: 16 < 20 True → x=32, tur=5
+          sonra: 32 < 20 False → döngü biter.
+
+          Ekrana 32 5 yazılır. x'in 20'yi geçmesi döngüyü turun ortasında durdurmaz; koşul bir sonraki turun başında sınanır.
+    misconceptions:
+      - slug: range_counts_from_one
+        name: range(n) 1'den n'e kadar sayar
+        open_question: range(3)'ün 1, 2, 3 değerlerini ürettiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "range(3) üç sayı üretir: 1, 2, 3."
+
+            range(3) gerçekten üç değer üretir ama 0'dan başlar: 0, 1, 2. Bitiş değeri hiçbir zaman dahil değildir. range(2, 5) de 2, 3, 4 üretir. Sayıyı ve sınırları ayrı ayrı düşün: kaç değer, ilki ne, sonuncusu ne.
+      - slug: condition_checked_midway
+        name: while koşulu gövdenin ortasında da sınanır
+        open_question: while koşulunun gövdedeki her satırdan sonra yeniden kontrol edildiğini ve koşul bozulduğu anda döngünün hemen durduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "x 20'yi geçtiği anda döngü durur."
+
+            while koşulu yalnızca her turun başında sınanır. Bir tur başladıysa gövdenin bütün satırları çalışır; koşul bir sonraki turun başında yeniden sınanır. Bu yüzden döngüden çıkıldığında değişken sınırı aşmış olabilir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          toplam = 0
+          i = 1
+          while i <= 3:
+              toplam = toplam + i
+              i = i + 1
+          print(toplam)
+        answer: "6"
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          for k in range(4):
+              print(k * 2)
+        options:
+          A: 2, 4, 6, 8 (alt alta)
+          B: 0, 2, 4, 6 (alt alta)
+          C: 0, 2, 4, 6, 8 (alt alta)
+          D: Yalnızca 6
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "2\n4\n6\n8", B: "0\n2\n4\n6", C: "0\n2\n4\n6\n8", D: "6"}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 1
+          sayac = 0
+          while x < 50:
+              x = x * 3
+              sayac += 1
+          print(x, sayac)
+        answer: "81 4"
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          a = 10
+          b = 0
+          while a > b:
+              a = a - 2
+              b = b + 1
+          print(a, b)
+        answer: "2 4"
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          carpim = 1
+          for n in range(2, 6):
+              carpim = carpim * n
+          print(carpim)
+        answer: "120"
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngünün gövdesi kaç kez çalışır? (Döngü bittiğinde tur'un değeri nedir?)
+        code: |
+          n = 100
+          tur = 0
+          while n > 1:
+              n = n // 2
+              tur += 1
+        options:
+          A: "5"
+          B: "6"
+          C: "7"
+          D: "50"
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: probe
+          probe: print(tur)
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekranda son satırda ne görünür?
+        code: |
+          x = 5
+          for i in range(4):
+              x = x - i
+              print(x)
+        options:
+          A: "1"
+          B: "-1"
+          C: "5"
+          D: "-5"
+        answer: B
+        verify: {mode: stdout, last_line: true}
+
+  - id: objective.programming.iteration_reasoning.detect_nontermination
+    statement: >-
+      Bir while döngüsünün sonlanıp sonlanmayacağını, koşulu ve gövdedeki güncellemeyi inceleyerek belirleyebilmek;
+      sonlanmıyorsa nedenini (koşuldaki değişken hiç değişmiyor, yanlış yönde değişiyor ya da koşulu hiçbir zaman
+      bozmayacak biçimde değişiyor) söyleyebilmek ve döngüyü sonlandıracak düzeltmeyi seçebilmek.
+    observable_behavior: >-
+      Sonlanan ve sonlanmayan döngüleri doğru ayırır, nedenini doğru seçer; sonsuz döngüyü sonlandıran tek satırlık
+      değişikliği doğru bulur.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de statement trace_iteration ile birebir aynıydı; 15A bu Objective'i sonlanma kararına ayırdı. Direct type
+      code_reading (kod okunarak karar verilir), explanation direct kabul edilen ikinci tip.
+    checks:
+      - prints: "3"
+        code: |
+          n = 3
+          tur = 0
+          while n > 0:
+              n = n - 1
+              tur = tur + 1
+          print(tur)
+    explanations:
+      canonical: |
+        Bir while döngüsü, koşulu False olana kadar döner. Koşul hiçbir zaman False olmazsa döngü hiç bitmez: buna sonsuz döngü denir. Program takılı kalır; ne hata verir ne de sona erer.
+
+        Bir döngünün sonlanıp sonlanmayacağını üç soruyla karar verebilirsin:
+
+        1. Koşulda hangi değişken(ler) var?
+        2. Gövde o değişkeni değiştiriyor mu? Hiç değiştirmiyorsa koşul her turda aynı kalır: ilk turda True idiyse hep True kalır → sonsuz döngü.
+        3. Değişiyorsa, doğru yönde mi? Değişiklik değeri, koşulu False yapacak sınıra doğru mu götürüyor?
+
+        Örnekler:
+
+        n = 3
+        while n > 0:
+            n = n - 1
+        → n her turda 1 azalır; 3, 2, 1, 0. 0 > 0 False olunca biter. Sonlanır.
+
+        x = 20
+        while x > 0:
+            x = x + 1
+        → x değişiyor ama yanlış yönde: hep büyüyor, hiçbir zaman 0'a inmiyor. Sonlanmaz.
+
+        k = 1
+        while k != 10:
+            k = k + 2
+        → k doğru yönde ilerliyor ama tek sayılardan geçiyor: 1, 3, 5, 7, 9, 11, ... Hiçbir zaman tam 10 olmuyor. != ile yazılmış bir koşul, değer hedefin "üzerinden atlarsa" hiç bozulmaz. Sonlanmaz.
+
+        Dikkat: "değişken her turda değişiyor" demek "döngü sonlanır" demek değildir. Önemli olan, değişikliğin koşulu sonunda False yapıp yapmadığıdır.
+
+        Sonsuz döngüyü düzeltmek için gövdedeki güncellemeyi, koşulu False'a götürecek biçimde değiştirirsin: azalması gereken azalmalı, artması gereken artmalı, != yerine sınırı aşınca da bozulan < ya da > kullanılmalı.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum): koşul her turun başında, değişkenlerin o andaki değeriyle hesaplanır. Bir değişken gövdede hiç atanmıyorsa değeri tur tur aynı kalır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          a = 0
+          b = 10
+          while a < b:
+              a = a + 1
+              b = b - 1
+
+          1. Koşuldaki değişkenler: a ve b.
+          2. Gövde ikisini de değiştiriyor.
+          3. Yön: a artıyor, b azalıyor; aradaki fark her turda 2 kapanıyor. a=5, b=5 olunca 5 < 5 False olur.
+
+          Sonuç: döngü sonlanır (5 tur). Sonsuz döngü şüphesinde, değerlerin koşulu bozacak yöne gidip gitmediğini birkaç tur yazarak kontrol et.
+    misconceptions:
+      - slug: update_implies_termination
+        name: Koşuldaki değişken her turda değişiyorsa döngü mutlaka sonlanır
+        open_question: Koşuldaki değişkenin her turda değişmesinin, döngünün sonlanması için yeterli olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "x her turda değişiyor, demek ki döngü bir gün biter."
+
+            Değişmek yetmez; değişikliğin koşulu False yapması gerekir. x = x + 1 ile while x > 0 hiç bitmez, çünkü x büyüdükçe koşul hep True kalır. k = k + 2 ile while k != 10, k tek sayılardan geçtiği için 10'a hiç eşit olmaz. Kendine sor: değer hangi yöne gidiyor ve koşulun False olacağı noktaya gerçekten varıyor mu?
+      - slug: infinite_loop_crashes
+        name: Sonsuz döngü bir hata verip programı durdurur
+        open_question: Sonsuz bir döngünün, bir süre sonra kendiliğinden hata verip duracağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Döngü bitmezse Python bir hata verir."
+
+            Sonsuz döngü kendiliğinden bir hata üretmez; program aynı işi tekrar tekrar yapmaya devam eder ve takılı kalmış görünür. Onu ancak dışarıdan durdurursun. Bu yüzden sonsuz döngüyü çalıştırmadan, kodu okuyarak fark etmek önemlidir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          i = 0
+          x = 0
+          while i < 5:
+              x = x + 1
+        options:
+          A: Sonlanır; 5 tur döner.
+          B: Sonlanmaz; i gövdede hiç değişmediği için koşul hep True kalır.
+          C: Sonlanır; hiç dönmez.
+          D: Sonlanmaz; x büyüdüğü için.
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          sayac = 10
+          while sayac > 2:
+              sayac = sayac - 3
+        options:
+          A: Sonlanır; sayac her turda azalır ve 2'nin altına inince koşul False olur.
+          B: Sonlanmaz; sayac hiçbir zaman tam 2 olmaz.
+          C: Sonlanmaz; sayac gövdede hiç değişmez.
+          D: Sonlanır; ama yalnızca bir tur döndükten sonra.
+        answer: A
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          m = 20
+          while m != 3:
+              m = m - 4
+        options:
+          A: Sonlanır; m azaldıkça bir noktada 3 olur.
+          B: Sonlanmaz; m 20, 16, 12, 8, 4, 0, ... diye iner ve hiçbir zaman tam 3 olmaz.
+          C: Sonlanır; m 3'ün altına indiği anda.
+          D: Sonlanmaz; m gövdede hiç değişmez.
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          y = -5
+          while y < 0:
+              y = y - 1
+        options:
+          A: Sonlanır; y değiştiği için koşul bir gün bozulur.
+          B: Sonlanmaz; y yanlış yönde değişir ve hep 0'dan küçük kalır.
+          C: Sonlanır; 5 tur sonra.
+          D: Sonlanmaz; y gövdede hiç değişmez.
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          a = 1
+          b = 20
+          while a < b:
+              a = a * 2
+              b = b + 1
+        options:
+          A: Sonlanmaz; b de her turda büyüdüğü için a hiçbir zaman yetişemez.
+          B: Sonlanır; a her turda ikiye katlanır, b ise yalnızca 1 artar, bu yüzden a bir noktada b'yi geçer.
+          C: Sonlanmaz; ikisi de aynı yönde değiştiği için koşul hep True kalır.
+          D: Sonlanır; ama yalnızca a tam 20 olduğunda.
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: true}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngü sonlanır mı?
+        code: |
+          s = 1
+          while s != 0:
+              s = s * 2
+        options:
+          A: Sonlanır; s büyüdükçe bir gün 0'a döner.
+          B: Sonlanmaz; s ikiye katlandıkça hiçbir zaman 0 olmaz.
+          C: Sonlanır; ilk turda s 0 olur.
+          D: Sonlanmaz; s gövdede hiç değişmez.
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify: {mode: termination, keyed_terminates: false}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu döngü hiç sonlanmıyor. Beşinci satır hangisiyle değiştirilirse döngü sonlanır?
+        code: |
+          i = 10
+          toplam = 0
+          while i > 0:
+              toplam = toplam + i
+              i = i + 1
+        options:
+          A: i = i + 2
+          B: i = i - 1
+          C: toplam = toplam - 1
+          D: i = i * 2
+        answer: B
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: fix_terminates
+          line: 5
+          replacements: {A: "i = i + 2", B: "i = i - 1", C: "toplam = toplam - 1", D: "i = i * 2"}

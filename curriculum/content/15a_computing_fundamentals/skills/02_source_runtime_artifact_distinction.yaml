@@ -1,0 +1,252 @@
+skill: skill.computing.source_runtime_artifact_distinction
+activity: recognition_selection
+tasks:
+  teach: {title: "Kaynak dosya, ara dosya, çalıştırılabilir dosya ve çıktı", minutes: 10}
+  practice: {title: "Dosyaları ve çıktıları sınıflandırma alıştırması", minutes: 8}
+  check: {title: "Dosya ve çıktı sınıflandırma kontrolü", minutes: 8}
+  review: {title: "Dosya ve çıktı sınıflandırma tekrarı", minutes: 6}
+  repair: {title: "Kaynak, ara dosya ve çıktıyı yeniden ayırmak", minutes: 10}
+
+objectives:
+  - id: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+    statement: >-
+      Bir yazılım işinde karşılaşılan dosya ve çıktıları — kaynak dosya, çevirinin ürettiği ara dosya (nesne dosyası,
+      bytecode), çalıştırılabilir dosya ve programın çalışırken ürettiği çıktı (ekrana yazılanlar, programın yazdığı
+      dosyalar) — doğru sınıfa ayırabilmek ve hangisinin zincirin hangi adımında ortaya çıktığını söyleyebilmek.
+    observable_behavior: >-
+      Verilen dosya adlarını ve çıktıları dört sınıftan birine koyar; bir dosya silindiğinde ya da değiştiğinde neyin
+      etkileneceğini sınıfına dayanarak söyler.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C metni "Source, script, object, executable ve runtime output artifact'larını ayırt edebilmek" idi; 15A sınıfları
+      ve gözlenebilir davranışı adlandırdı. Direct type explanation olarak korundu.
+    explanations:
+      canonical: |
+        Bir program üzerinde çalışırken birbirine benzeyen ama çok farklı rolleri olan dosya ve çıktılarla karşılaşırsın. Onları dört sınıfa ayırmak, "neyi değiştirirsem ne değişir?" sorusunu cevaplamanın yoludur.
+
+        1. Kaynak dosya (source file): Programcının yazdığı, insanların okuyabildiği metin. Örnekler: hesap.c, odev.py. Programı değiştirmek istediğinde değiştirdiğin şey budur.
+
+        2. Ara dosya (çevirinin ürettiği, tek başına çalıştırılmayan dosya):
+        - C'de derleyici her kaynak dosyadan bir nesne dosyası (object file) üretir: hesap.o (Windows'ta çoğu zaman hesap.obj). İçinde makine komutları vardır ama henüz eksik bir parçadır; tek başına çalıştırılmaz.
+        - Python, bir dosyayı çevirdiğinde ürettiği bytecode'u bazen __pycache__ klasöründe .pyc uzantılı bir dosyada saklar, örneğin __pycache__/odev.cpython-314.pyc. Bu, yorumlayıcının kendi iç biçimidir; onu sen yazmazsın.
+
+        3. Çalıştırılabilir dosya (executable): C'de nesne dosyaları birleştirilip (bağlama, linking) çalıştırılabilir bir dosya üretilir: Linux'ta hesap, Windows'ta hesap.exe. İşletim sistemi bu dosyayı doğrudan çalıştırır; kaynak dosyaya artık ihtiyaç duymaz. Python'da genellikle böyle bir dosya üretilmez; .py dosyası yorumlayıcıya verilerek çalıştırılır.
+
+        4. Çalışma çıktısı (runtime output): Program çalışırken ortaya çıkanlar — ekrana yazdıkları ve çalışırken oluşturduğu dosyalar (örneğin sonuc.txt). Bunlar programın kendisi değil, onun çalışmasının sonucudur.
+
+        Bir tuzak: kaynak dosyada print("Toplam: 12") yazıyorsa, ekranda görünen Toplam: 12 yazısı yine de çalışma çıktısıdır. Aynı karakterler kaynakta da geçiyor; ama ekrandaki, program çalıştığı için oraya yazılmıştır.
+
+        Hangi adım hangi dosyayı üretir?
+        - Programcı → kaynak dosya
+        - Çevirici (derleyici ya da yorumlayıcı) → ara dosya, C'de bağlamayla birlikte çalıştırılabilir dosya
+        - Çalışan program → çalışma çıktısı
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (program çalışma modeli): kaynak kod → çevirici (derleyici ya da yorumlayıcı) → çalışan süreç → çıktı. Bu dersteki her dosya bu zincirin bir halkasından çıkar. Bir dosyayı sınıflandırırken kendine "Bunu zincirin hangi adımı üretti?" diye sor.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Bir klasörde şunlar var: hesap.c, hesap.o, hesap.exe, sonuc.txt. hesap.exe çalıştırılınca ekrana Bitti yazıyor ve sonuc.txt dosyasını oluşturuyor.
+
+          - hesap.c: Programcının yazdığı metin → kaynak dosya.
+          - hesap.o: Derleyicinin hesap.c'den ürettiği nesne dosyası; tek başına çalıştırılmaz → ara dosya.
+          - hesap.exe: Bağlamanın ürettiği, işletim sisteminin doğrudan çalıştırdığı dosya → çalıştırılabilir dosya.
+          - sonuc.txt ve ekrandaki Bitti: Program çalışırken ortaya çıktı → çalışma çıktısı.
+
+          Sonuç: hesap.c'yi değiştirirsen hesap.exe ancak yeniden derleyip bağladığında değişir; sonuc.txt'yi silersen program bir sonraki çalışmada onu yeniden oluşturur.
+    misconceptions:
+      - slug: screen_text_is_source
+        name: Ekrana yazılan metin kaynak kodun parçasıdır
+        open_question: Ekranda gördüğün yazının, kaynak dosyada da geçtiği için kaynak kod sayıldığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Ekranda Toplam: 12 görünüyor, aynı yazı kaynakta da var; demek ki bu kaynak kod."
+
+            Kaynak kod, programcının yazdığı dosyadaki metindir. Ekrandaki yazı ise program çalıştığı için oraya yazılmıştır; programı hiç çalıştırmasan ekranda olmazdı. Aynı karakterleri içermeleri, aynı şey oldukları anlamına gelmez: biri programın tarifi, öteki o tarifin çalışmasının sonucu.
+      - slug: object_file_runnable
+        name: Nesne dosyası doğrudan çalıştırılabilir
+        open_question: Derleyicinin ürettiği .o dosyasının, tek başına çalıştırılabilen bir program olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: ".o dosyasında makine komutları var, o halde çalıştırılabilir."
+
+            Nesne dosyasında makine komutları vardır ama program henüz tamam değildir: başka parçalarla birleştirilmesi (bağlama) gerekir. İşletim sisteminin çalıştırdığı dosya bağlamanın ürettiği çalıştırılabilir dosyadır (hesap ya da hesap.exe).
+      - slug: executable_needs_source
+        name: Çalıştırılabilir dosya her çalışmada kaynak dosyaya ihtiyaç duyar
+        open_question: Derlenmiş bir programın, her çalıştırıldığında kaynak dosyasını yeniden okuduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "hesap.c'yi silersem hesap.exe de çalışmaz."
+
+            Derleme ve bağlama bittiğinde çalıştırılabilir dosya kendi içinde tamamdır; çalışırken kaynak dosyayı okumaz. Kaynak dosyayı kaybetmek programı durdurmaz, ama programı değiştirme imkânını götürür: değiştirmek için kaynağı yeniden yazıp derlemen gerekir. Python'da durum farklıdır: orada .py dosyası her çalıştırmada yorumlayıcıya verilir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bir klasörde şu dört şey var. Hangisi kaynak dosyadır?
+        options:
+          A: hesap.c
+          B: hesap.o
+          C: hesap.exe
+          D: sonuc.txt (program çalışırken oluşturdu)
+        answer: A
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — 'file.c: C source code that must be preprocessed.'; -c: 'The ultimate output is in the form of an object file for each source file.'"
+          claim: "hesap.c C kaynak dosyasıdır; .o nesne dosyası, .exe çalıştırılabilir dosya, programın yazdığı dosya çalışma çıktısıdır."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir arkadaşın C projesinde derleyicinin ürettiği motor.o dosyasına çift tıklamış ve "açılmıyor" diyor. Bunun nedeni nedir?
+        options:
+          A: motor.o bir nesne dosyasıdır; makine komutları içerir ama bağlanmadan tek başına çalıştırılamaz.
+          B: motor.o bir kaynak dosyadır; önce içine kod yazılması gerekir.
+          C: motor.o bir çalışma çıktısıdır; program onu çalışırken üretmiştir.
+          D: motor.o bozulmuştur; çalışan bir nesne dosyası çift tıklayınca açılır.
+        answer: A
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — -c: 'Compile or assemble the source files, but do not link. … The ultimate output is in the form of an object file for each source file.'; 'Compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking'"
+          claim: "Bir nesne dosyası derlemenin çıktısıdır ve bağlama yapılmadan çalıştırılabilir bir program değildir."
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          rapor.py dosyası python rapor.py ile çalıştırıldığında ekrana Tamam yazıyor ve klasörde daha önce olmayan sonuc.txt dosyası beliriyor. sonuc.txt hangi sınıftandır?
+        options:
+          A: Kaynak dosya
+          B: Çalıştırılabilir dosya
+          C: Çalışma çıktısı — program çalışırken oluşturdu
+          D: Ara dosya — yorumlayıcı çeviri sırasında üretti
+        answer: C
+        verify:
+          mode: script
+          outcomes: {A: "kaynak", B: "calistirilabilir", C: "calisma_ciktisi", D: "ara_dosya"}
+          script: |
+            import os, subprocess, sys, py_compile
+            with open("rapor.py", "w", encoding="utf-8") as f:
+                f.write('with open("sonuc.txt", "w") as f:\n    f.write("1")\nprint("Tamam")\n')
+            before = os.path.exists("sonuc.txt")
+            py_compile.compile("rapor.py")
+            after_translation = os.path.exists("sonuc.txt")
+            r = subprocess.run([sys.executable, "rapor.py"], capture_output=True, text=True)
+            after_run = os.path.exists("sonuc.txt")
+            print("calisma_ciktisi" if (not before and not after_translation and after_run and r.stdout.strip() == "Tamam") else "baska")
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir Python klasöründe ders.py ile birlikte bir __pycache__ klasörü ve içinde .pyc ile biten bir dosya var. __pycache__ klasörünü silip python ders.py dersen ne olur?
+        options:
+          A: Program normal çalışır; .pyc dosyası yorumlayıcının kaynak koddan ürettiği bir çeviri (ara dosya) idi, kaynak dosya yerinde durduğu sürece yeniden çevrilebilir.
+          B: Program çalışmaz; .pyc dosyası programın asıl kendisidir.
+          C: ders.py de silinmiş olur; ikisi aynı dosyadır.
+          D: Program çalışır ama artık farklı bir çıktı verir.
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import os, py_compile, shutil, subprocess, sys
+            with open("ders.py", "w", encoding="utf-8") as f:
+                f.write('print("tamam")\n')
+            py_compile.compile("ders.py")
+            before = subprocess.run([sys.executable, "ders.py"], capture_output=True, text=True).stdout
+            shutil.rmtree("__pycache__")
+            after = subprocess.run([sys.executable, "ders.py"], capture_output=True, text=True)
+            claims = {"A": after.returncode == 0 and after.stdout == before and os.path.exists("ders.py"),
+                      "B": after.returncode != 0, "C": not os.path.exists("ders.py"),
+                      "D": after.returncode == 0 and after.stdout != before}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          kopya.py çalıştığında kendi kaynak kodunu okuyup, harfi harfine aynı içerikle kopya.txt adlı yeni bir dosyaya yazıyor. kopya.txt'nin içeriği kopya.py ile tıpatıp aynı. kopya.txt hangi sınıftandır?
+        options:
+          A: Kaynak dosya; içeriği kaynak kodla aynı olduğu için.
+          B: Çalışma çıktısı; program çalışırken oluşturdu, içeriğinin ne olduğu bunu değiştirmez.
+          C: Ara dosya; yorumlayıcı çeviri sırasında üretti.
+          D: Çalıştırılabilir dosya; içinde program var.
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "kaynak", B: "calisma_ciktisi", C: "ara_dosya", D: "calistirilabilir"}
+          script: |
+            import os, py_compile, subprocess, sys
+            with open("kopya.py", "w", encoding="utf-8") as f:
+                f.write('with open("kopya.py", encoding="utf-8") as k:\n    metin = k.read()\nwith open("kopya.txt", "w", encoding="utf-8") as h:\n    h.write(metin)\n')
+            py_compile.compile("kopya.py")
+            after_translation = os.path.exists("kopya.txt")
+            subprocess.run([sys.executable, "kopya.py"], capture_output=True)
+            same = open("kopya.txt", encoding="utf-8").read() == open("kopya.py", encoding="utf-8").read()
+            print("calisma_ciktisi" if not after_translation and same else "baska")
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          oyun.c'yi derleyip bağladın ve oyun.exe'yi elde ettin. Sonra klasörü temizlerken oyun.o dosyasını sildin (oyun.c duruyor). oyun.exe'yi çalıştırırsan ne olur?
+        options:
+          A: Çalışır; bağlama bitmiştir ve çalıştırılabilir dosya artık nesne dosyasına ihtiyaç duymaz.
+          B: Çalışmaz; çalıştırılabilir dosya her açılışta nesne dosyasını okur.
+          C: Çalışır, ama ilk açılışta oyun.o kendiliğinden yeniden oluşturulur.
+          D: Çalışmaz; nesne dosyası silinince kaynak dosya da bozulur.
+        answer: A
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output (bağlama son aşamadır ve çalıştırılabilir dosyayı üretir); §3.16 Options for Linking — bağlama çıktısı kendi başına çalıştırılabilir dosyadır"
+          claim: "Bağlanmış bir çalıştırılabilir dosya çalışırken kendisini üreten nesne dosyalarına ihtiyaç duymaz."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          karsila.py her çalıştırıldığında klasördeki kayit.txt dosyasını baştan yazıyor ve içine Merhaba koyuyor. Sen kayit.txt'yi bir metin düzenleyicide açıp içeriğini Güle güle olarak değiştirdin ve kaydettin. Sonra karsila.py'yi yeniden çalıştırdın. Şimdi kayit.txt'de ne yazar, ve programın her seferinde Güle güle yazmasını istiyorsan hangi dosyayı değiştirmen gerekir?
+        options:
+          A: Merhaba yazar; kayit.txt bir çalışma çıktısıdır ve her çalıştırmada yeniden üretilir. Programın davranışını değiştirmek için kaynak dosya karsila.py değiştirilmelidir.
+          B: Güle güle yazar; program artık senin kayit.txt'ye yazdığını kullanır. Başka bir şey değiştirmen gerekmez.
+          C: Merhaba yazar; ama davranışı değiştirmek için kayit.txt'yi her seferinde yeniden düzenlemek yeterlidir.
+          D: Güle güle yazar; çünkü kayit.txt programın kaynak dosyasıdır.
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import subprocess, sys
+            with open("karsila.py", "w", encoding="utf-8") as f:
+                f.write('with open("kayit.txt", "w", encoding="utf-8") as f:\n    f.write("Merhaba")\n')
+            subprocess.run([sys.executable, "karsila.py"], capture_output=True)
+            with open("kayit.txt", "w", encoding="utf-8") as f:
+                f.write("Güle güle")
+            subprocess.run([sys.executable, "karsila.py"], capture_output=True)
+            after = open("kayit.txt", encoding="utf-8").read()
+            # Changing the source, not the output, changes what the program writes from then on.
+            with open("karsila.py", "w", encoding="utf-8") as f:
+                f.write('with open("kayit.txt", "w", encoding="utf-8") as f:\n    f.write("Güle güle")\n')
+            subprocess.run([sys.executable, "karsila.py"], capture_output=True)
+            changed_by_source = open("kayit.txt", encoding="utf-8").read() == "Güle güle"
+            claims = {"A": after == "Merhaba" and changed_by_source, "B": after == "Güle güle",
+                      "C": after == "Merhaba" and not changed_by_source, "D": after == "Güle güle"}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bir Python klasöründe şunlar var: rapor.py, __pycache__ içinde rapor ile başlayıp .pyc ile biten bir dosya ve rapor.py çalışırken oluşturduğu ozet.txt. Ayrıca program çalışınca ekrana Bitti yazıyor. Bunların her birinin ne olduğunu ve zincirin hangi adımında ortaya çıktığını kısaca açıkla.
+        answer: "-"
+        rubric:
+          - id: source_written_by_programmer
+            statement: rapor.py'nin programcının yazdığı kaynak dosya olduğunu söyler.
+          - id: bytecode_from_translation
+            statement: .pyc dosyasının yorumlayıcının kaynak koddan ürettiği çeviri (bytecode, ara dosya) olduğunu söyler.
+          - id: runtime_output_file
+            statement: ozet.txt'nin program çalışırken oluşan çalışma çıktısı olduğunu söyler.
+          - id: runtime_output_screen
+            statement: Ekrandaki Bitti yazısının da programın çalışmasının çıktısı olduğunu söyler.
+        verify:
+          mode: rubric

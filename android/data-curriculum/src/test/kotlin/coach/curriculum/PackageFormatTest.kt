@@ -400,6 +400,83 @@ class PackageFormatTest {
         }
     }
 
+    // ------------------------------------------------------------------------------------ 15A
+
+    private val task = """
+        [task]
+        logical_id=task.python.loops.practice
+        version=1
+        title=Döngü izleme alıştırması
+        primary_skill=skill.python.loops@v1
+        target_objectives=objective.python.loops.trace@v1
+        purpose=practice
+        activity_kind=code_reading_trace
+        serves=continue_learning
+        cost_minutes=10
+        required_skills=
+        explanations=
+        items=item.python.loops.q1@v1
+        lifecycle_status=validated
+        content_origin=ai_generated
+    """.trimIndent()
+
+    @Test
+    fun `only a whole line is a comment, so code and prose may contain a hash`() {
+        val hashed = authored.replace("prompt=Bu döngü kaç kez çalışır?", "prompt=x = 1  # sayaç\\nprint(x)  # yazdır")
+        val parsed = PackageFormat.parse(hashed.replace("[topic]", "# yorum satırı\n[topic]"))
+        assertEquals("x = 1  # sayaç\nprint(x)  # yazdır", parsed.documents[itemRef], "a prompt keeps its hashes and its line breaks")
+    }
+
+    @Test
+    fun `an authored task is read strictly and served only for the needs it declares about its own Skill`() {
+        val parsed = PackageFormat.parse(authored + "\n\n" + task)
+        val read = parsed.tasks.single()
+        assertEquals(coach.model.TaskPurpose.PRACTICE, read.purpose)
+        assertEquals(setOf(coach.model.NeedTrigger.CONTINUE_LEARNING), read.serves)
+        assertEquals(listOf(itemRef), read.items)
+
+        val source = FileContentSource { authored + "\n\n" + task }
+        val skill = VersionedRef("skill.python.loops", 1)
+        fun need(trigger: coach.model.NeedTrigger, about: VersionedRef = skill) =
+            coach.model.LearningNeed("${trigger.id}:$about", trigger, listOf(about), coach.model.Criticality.REQUIRED)
+        val served = source.taskCandidates(need(coach.model.NeedTrigger.CONTINUE_LEARNING)).single()
+        assertEquals("authored:task.python.loops.practice@v1:continue_learning:$skill", served.id)
+        assertEquals(10, served.costMinutes)
+        assertEquals("Döngü izleme alıştırması", served.title)
+        assertTrue(source.taskCandidates(need(coach.model.NeedTrigger.NEW_LEARNING)).isEmpty(), "a practice task is not a lesson")
+        assertTrue(source.taskCandidates(need(coach.model.NeedTrigger.CONTINUE_LEARNING, VersionedRef("skill.python.loops", 2))).isEmpty(),
+            "another version of the Skill is another Skill")
+        assertTrue(FileContentSource { authored }.taskCandidates(need(coach.model.NeedTrigger.CONTINUE_LEARNING)).isEmpty(),
+            "with no task authored, no candidate is invented")
+    }
+
+    @Test
+    fun `a task that presents what the package lacks, or claims more trust than its items, refuses the package`() {
+        for (bad in listOf(
+            task.replace("items=item.python.loops.q1@v1", "items=item.python.loops.q9@v1"),
+            // A candidate task claims no trust, so only the missing item itself can refuse it.
+            task.replace("items=item.python.loops.q1@v1", "items=item.python.loops.q9@v1").replace("lifecycle_status=validated", "lifecycle_status=candidate"),
+            task.replace("explanations=", "explanations=explanation.python.loops.canonical@v1"),
+            task.replace("target_objectives=objective.python.loops.trace@v1", "target_objectives=objective.python.other.trace@v1"),
+            task.replace("primary_skill=skill.python.loops@v1", "primary_skill=skill.python.other@v1"),
+            task.replace("serves=continue_learning", "serves=continue_learning,verification_due"),
+            task.replace("serves=continue_learning", "serves=finish_lesson"),
+            // An unknown trigger beside a known one is still refused, never silently dropped.
+            task.replace("serves=continue_learning", "serves=continue_learning,finish_lesson"),
+            task.replace("purpose=practice", "purpose=diagnose"),
+            task.replace("cost_minutes=10", "cost_minutes=0"),
+            task.replace("activity_kind=code_reading_trace", "activity_kind=quiz"),
+            task + "\npriority=1",
+            task + "\n\n" + task,
+        )) {
+            assertFailsWith<PackageFormat.ParseFailure>(bad) { PackageFormat.parse(authored + "\n\n" + bad) }
+        }
+        // The item is validated by this package, so the task may say so; once it is only a candidate, it may not.
+        val candidateItem = authored.replace("status=validated", "status=candidate")
+        assertFailsWith<PackageFormat.ParseFailure> { PackageFormat.parse(candidateItem + "\n\n" + task) }
+        assertEquals(1, PackageFormat.parse(candidateItem + "\n\n" + task.replace("lifecycle_status=validated", "lifecycle_status=candidate")).tasks.size)
+    }
+
     @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }

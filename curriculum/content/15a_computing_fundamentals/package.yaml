@@ -1,0 +1,31 @@
+# 15A — Computer / Programming Fundamentals (CPFX-v0 / D-112)
+#
+# The first authored curriculum package. It ratifies exactly the shared computing/programming subgraph of
+# FBB-v0 §6.1 as 6C decomposed it (12 Skills, 13 Objectives, 11 internal edges: 10 hard, 1 soft) from `draft` to `published`, and
+# carries the lessons, items and tasks that make it learnable. Nothing outside this subgraph is published here.
+#
+# Identity is never changed: every Skill and Objective keeps its 6C logical id. What 15A refines is recorded per
+# Objective in the Skill files (`reconciliation`), with its reason — 6C stays the authoring seed it always was.
+version: 1
+source_refs: curriculum/decomposition/6c_foundations;curriculum/content/15a_computing_fundamentals
+provenance: authored_15a_cpfx_v0
+content_source_ref: source.repo.content_15a_cpfx_v0
+
+# In FBB-v0 §6.1 order. `critical` mirrors 6C's critical_prerequisite_candidate and only adds the critical
+# blueprint roles to the Skill's items (13A/13B); it changes no gate.
+skills:
+  - id: skill.computing.program_execution_model
+  - id: skill.computing.source_runtime_artifact_distinction
+  - id: skill.programming.state_assignment_model
+    critical: true
+  - id: skill.programming.expression_boolean_reasoning
+    critical: true
+  - id: skill.programming.branching_reasoning
+  - id: skill.programming.iteration_reasoning
+    critical: true
+  - id: skill.programming.function_decomposition
+  - id: skill.programming.trace_execution_basic
+  - id: skill.programming.debug_localization_basic
+  - id: skill.programming.test_case_basic
+  - id: skill.programming.code_reading_basic
+  - id: skill.programming.input_validation_reasoning

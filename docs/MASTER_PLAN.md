@@ -984,8 +984,20 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 ---
 
 # AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriği
-### [ ] 15A — Computer / Programming Fundamentals — **AKTİF**
-### [ ] 15B — Python Foundations
+### [x] 15A — Computer / Programming Fundamentals — CPFX-v0 / D-112
+
+**15A final coverage:**
+- içerik yalnız onu neyin kontrol ettiği kadar güvenilirdir: her anahtar çalıştırılarak (kod, seçmelide her seçenek, dersin kendi örnekleri) ya da yetkili kaynakla ve her item bağımsız incelemeyle doğrulanır; AI içeriği `ai_generated`, en çok `validated`,
+- FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 iç kenar, 8 topic) `draft` → `published`; kimlik değişmedi; Objective metadata'sı netleştirildi ve gerekçesiyle kaydedildi (kullanıcı kararı), 9 Objective'in direct type'ı code_reading,
+- okunur Python alt kümesi (kullanıcı kararı): her gösterimi hangi dersin öğrettiği `notation.yaml`'da; dersin öğretmediği gösterim item'da okunmaz,
+- 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev, 40 ders iddiası çalıştırıldı; FBB-v0 §16'nın rolleri her Objective için karşılandı,
+- `AuthoredTask` + `TaskServing` + katı `[task]` bölümü; tam satır yorum ve prompt satır sonu düzeltmeleri; şema, portlar ve mağaza değişmedi,
+- bağımsız inceleme ilk geçişte 32 item'ı ders içi sızıntı yüzünden düşürdü; yeniden yazıldı, son durum 95/95 ve 79/79,
+- ilk plan: geçmişi olmayan öğrenciye iki giriş dersi, on bağımlı Skill bekliyor (`FirstPlanTest`),
+- mutation 22/22, validator 131/131 ve kendi mutation testi 30/30,
+- **T6 ve sevk edilen paketin SQLite'a ilk yayımlanması çalıştırılmadı**; ilk ingestion öğrencinin, cihazda.
+
+### [ ] 15B — Python Foundations — **AKTİF**
 ### [ ] 15C — C Foundations
 ### [ ] 15D — Memory Foundations
 ### [ ] 15E — Linux / Git / Shell Foundations
@@ -1068,8 +1080,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`  
-**Son tamamlanan:** **`14G — PRVX-v0 / D-111`**  
-**Aktif:** **`15A — Computer / Programming Fundamentals`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A`  
+**Son tamamlanan:** **`15A — CPFX-v0 / D-112`**  
+**Aktif:** **`15B — Python Foundations`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15A fresh PRE-STEP → Computer / Programming Fundamentals içeriği (AŞAMA 14'e kadar bütün motorlar, içerik bölümleri — explanation, code_test, comprehension_check, answer_key, rubric, misconception — ve sağlayıcı adaptörü kodda) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15B fresh PRE-STEP → Python Foundations içeriği (15A'nın üreticisi, gösterim merdiveni ve bağımsız inceleme akışı hazır; ikinci paketin nasıl sevk edileceği 15B'nin kararı) → independent QA → D-050 POST sync + stale audit.**

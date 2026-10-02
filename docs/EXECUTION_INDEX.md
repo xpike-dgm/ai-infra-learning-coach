@@ -36,6 +36,7 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-109: 14E final AI yazımı kod anlama kontrolü `ACCX-v0`; önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil), hemen sonra ve isteğe bağlı, `generated_or_copied` bağımsız yeniden kontrol açar (kullanıcı kararları); şema değişmedi.
 - D-110: 14F final açık uçlu cevap değerlendirme `OREX-v0`; kısa cevap kabul edilen cevap listesiyle doğrulanır, uzun cevap rubric'le kriter kriter (AI yalnız kriter bulgusu önerir, core karar verir, en çok provisional), AI yoksa bekler + rubric öz-kontrolü, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi.
 - D-111: 14G final sağlayıcı adaptörü `PRVX-v0`; OpenAI Responses API (güncel kaynak 2026-10-02), `store: false`, katı şema, uçtan uca bütçe, anahtar Android Keystore'da ve Profile'dan girilir, AI'sız build'de ağ izni yok (kullanıcı kararları); AŞAMA 14 kapandı.
+- D-112: 15A final içerik `CPFX-v0`; FBB-v0 §6.1'in 6C alt-grafı `published` (kimlik değişmedi, Objective metadata'sı netleştirilip kaydedildi), her anahtar çalıştırılarak ya da kaynakla ve bağımsız incelemeyle doğrulandı, `[task]` bölümü, ilk sevk edilen paket (kullanıcı kararları); AŞAMA 15 başladı.
 
 ---
 
@@ -192,8 +193,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 ---
 
 # AŞAMA 15 — İlk 8–12 Haftalık Gerçek Eğitim İçeriğini Üret ve QA Et
-- [ ] **15A — Computer / Programming Fundamentals** **AKTİF**
-- [ ] **15B — Python Foundations**
+- [x] **15A — Computer / Programming Fundamentals** — `CPFX-v0 / D-112`
+- [ ] **15B — Python Foundations** **AKTİF**
 - [ ] **15C — C Foundations**
 - [ ] **15D — Memory Foundations**
 - [ ] **15E — Linux / Git / Shell Foundations**
@@ -256,9 +257,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`  
-**Son tamamlanan:** **`14G — PRVX-v0 / D-111`**  
-**Aktif:** **`15A — Computer / Programming Fundamentals`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A`  
+**Son tamamlanan:** **`15A — CPFX-v0 / D-112`**  
+**Aktif:** **`15B — Python Foundations`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -306,4 +307,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 14G `PRVX-v0` ile sağlayıcı adaptörü kodda ve **AŞAMA 14 kapandı**: sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez. OpenAI Responses API, güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi; `store: false`, katı `json_schema`, önce durma nedeni; router görev sınıfı başına model (`gpt-6-astra`, yapılandırmada); uçtan uca 60 sn bütçe, en çok 2 deneme, yalnız ağ hatası/408/429/5xx yeniden denenir. Anahtar Android Keystore AES-GCM ile şifrelenir, yedeklenmeyen dizinde durur, hiç gösterilmez ve loglanmaz; Profile'daki küçük ekrandan girilir, kaldırılır, 'Bağlantıyı dene' ile denenir. AI'sız build'de ağ izni hiç yok. Kod için AI talimatları core'a eklendi (`code_evaluation_instructions/1`). Kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de. T6 ve canlı çağrı çalıştırılmadı.
 
-15A başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+15A `CPFX-v0` ile ilk gerçek içerik sevk ediliyor ve **AŞAMA 15 başladı**: içerik yalnız onu neyin kontrol ettiği kadar güvenilirdir: her cevap anahtarı gerçekte olanla karşılaştırılır — kod çalıştırılır, seçmeli sorunun her seçeneği çalıştırılır, dersin kendi örnek çıktıları çalıştırılır — çalıştırılamayan yerde yetkili bir kaynağa dayanır; ve her item doğrulanmış sayılmadan önce bağımsız bir incelemeden geçer. AI'ın yazdığı hiçbir şey kendi başına güvenilir sayılmaz, dersin öğretmediği hiçbir gösterim bir item'da okunmaz ve bir görev yalnız planner'ın zaten açtığı, kendi Skill'ine ait ve amacının hizmet edebileceği bir ihtiyaca hizmet eder. FBB-v0 §6.1'in 6C'de ayrıştırılmış alt-grafı (12 Skill, 13 Objective, 11 kenar) `draft`'tan `published`'a onaylandı; kimlik değişmedi, şablon Objective metadata'sı netleştirilip gerekçesiyle kaydedildi. 95 item (83'ü çalıştırılarak, 8'i kaynakla, 4'ü rubric), 79 anlatım, 34 misconception, 60 görev; yeni `[task]` bölümü; yalnız tam satır yorum ve prompt'ta satır sonu. Bağımsız inceleme ilk geçişte 32 item'ı ders içi sızıntı yüzünden düşürdü; hepsi yeniden yazıldı (son durum 95/95, 79/79). İlk plan: geçmişi olmayan öğrenciye iki giriş dersi; on bağımlı Skill bekliyor. Kullanıcı kararları: çalıştırma + bağımsız QA; okunur Python alt kümesi; netleştir ve kaydet. T6 çalıştırılmadı.
+
+15B başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.

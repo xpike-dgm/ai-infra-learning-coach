@@ -1,0 +1,291 @@
+skill: skill.programming.branching_reasoning
+activity: code_reading_trace
+tasks:
+  teach: {title: "Dallanma: hangi kol çalışır?", minutes: 14}
+  practice: {title: "Dal tahmini alıştırması", minutes: 10}
+  check: {title: "Dal tahmini kontrolü", minutes: 8}
+  review: {title: "Dal tahmini tekrarı", minutes: 6}
+  repair: {title: "Dallanmayı yeniden kurmak: koşulları sırayla sınamak", minutes: 12}
+
+objectives:
+  - id: objective.programming.branching_reasoning.predict_branch
+    statement: >-
+      if / elif / else içeren kısa bir kodda, değişkenlerin o andaki değerlerine göre hangi kolun (branch) çalışacağını
+      ve dolayısıyla ekrana ne yazılacağını belirleyebilmek; ayrı if'ler ile tek bir if/elif zinciri arasındaki farkı
+      uygulayabilmek.
+    observable_behavior: >-
+      Verilen değerlerle çalışan kolu ve çıktıyı doğru söyler; hangi başlangıç değerinin istenen kolu çalıştıracağını
+      doğru seçer.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de required_direct_type explanation idi; "hangi branch çalışır" kodu okuyarak gözlenir. 15A direct type'ı
+      code_reading yaptı, explanation'ı direct kabul edilen ikinci tip bıraktı.
+    checks:
+      - prints: "ılık"
+        code: |
+          sicaklik = 30
+          if sicaklik > 10:
+              print("ılık")
+          elif sicaklik > 25:
+              print("sıcak")
+          else:
+              print("soğuk")
+      - prints: "Geçti\nbitti"
+        code: |
+          puan = 72
+          if puan >= 50:
+              print("Geçti")
+          else:
+              print("Kaldı")
+          print("bitti")
+      - prints: "küçük"
+        code: |
+          a = 2
+          b = 3
+          if a > b:
+              print("a büyük")
+          elif a == b:
+              print("eşit")
+          else:
+              print("küçük")
+    explanations:
+      canonical: |
+        Bir program her zaman aynı yolu izlemek zorunda değildir; bir koşula bakıp farklı işler yapabilir. Buna dallanma (branching) denir. Python'da dallanma if, elif ve else ile yazılır. Bu derste onları okumayı öğreneceksin.
+
+        puan = 72
+        if puan >= 50:
+            print("Geçti")
+        else:
+            print("Kaldı")
+        print("bitti")
+
+        Nasıl okunur:
+        - if'in yanındaki koşul (puan >= 50) hesaplanır.
+        - True ise, if'in altındaki içeri itilmiş (girintili) satırlar çalışır; else kısmı atlanır.
+        - False ise, if kısmı atlanır ve else'in altındaki satırlar çalışır.
+        - Girintisi geri gelen satır (print("bitti")) dallanmanın dışındadır ve her durumda çalışır.
+        Burada ekrana önce Geçti, sonra bitti yazılır.
+
+        Girinti (satır başındaki boşluk) hangi satırın hangi kola ait olduğunu gösterir. Koşul satırları iki nokta (:) ile biter.
+
+        Birden çok seçenek: elif ("else if" kısaltması)
+
+        if a > b:
+            print("a büyük")
+        elif a == b:
+            print("eşit")
+        else:
+            print("küçük")
+
+        Kurallar:
+        1. Koşullar yukarıdan aşağıya sırayla sınanır.
+        2. İlk True olan koşulun kolu çalışır ve zincirin geri kalanı tamamen atlanır — sonraki koşullar artık sınanmaz bile.
+        3. Hiçbiri True değilse else çalışır (else yoksa hiçbir kol çalışmaz).
+        4. Bir zincirde en fazla bir kol çalışır.
+
+        Ayrı if'ler ise ayrı zincirlerdir: alt alta iki if varsa ikisi de kendi koşuluna göre ayrı ayrı sınanır; ikisi de çalışabilir.
+
+        Koşul, satıra gelindiği andaki değerlerle hesaplanır. Bir kolun içinde bir değişken değiştiyse, sonraki if bu yeni değeri görür.
+
+        Yöntem: (1) değişkenlerin o andaki değerlerini yaz, (2) zincirdeki koşulları sırayla True/False'a çevir, (3) ilk True'da dur, (4) o kolu çalıştır ve dallanmanın dışından devam et.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (koşul değerlendirme): her if/elif satırındaki koşul önce True ya da False'a çevrilir. and, or'dan önce hesaplanır; karşılaştırmalar not'tan önce gelir. Kolu seçmeden önce koşulu tek bir True/False'a indir.
+      state_trace:
+        level: H2
+        text: |
+          Koşulları sırayla sınamak — başka bir örnek üzerinde.
+
+          hiz = 95
+          if hiz > 120:
+              print("ceza")
+          elif hiz > 90:
+              print("uyarı")
+          elif hiz > 50:
+              print("normal")
+          else:
+              print("yavaş")
+
+          1. hiz > 120 → 95 > 120 → False; bu kol atlanır.
+          2. hiz > 90 → 95 > 90 → True; ilk True bu. uyarı yazılır.
+          3. hiz > 50 de True olurdu ama artık sınanmaz: zincirde en fazla bir kol çalışır.
+
+          Ekrana yalnızca uyarı yazılır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek: ayrı if'ler ve bir değişkenin kol içinde değişmesi.
+
+          x = 5
+          if x > 3:
+              x = x - 4
+          if x > 3:
+              print("yine büyük")
+          else:
+              print("artık küçük")
+
+          - İlk if: x > 3 → 5 > 3 → True; x = 5 - 4 = 1 olur.
+          - İkinci if ayrı bir zincirdir ve x'in şimdiki değerini görür: 1 > 3 → False.
+          - else kolu çalışır: artık küçük yazılır.
+
+          Koşullar programın başındaki değerlere göre değil, satıra gelindiği andaki değerlere göre hesaplanır.
+    misconceptions:
+      - slug: all_true_branches_run
+        name: Bir if/elif zincirinde koşulu doğru olan bütün kollar çalışır
+        open_question: Bir if/elif zincirinde birden çok koşul True olduğunda, hepsinin kolunun çalışacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "sicaklik 30 ise hem > 10 hem > 25 doğru; ikisi de yazılır."
+
+            Bir if/elif/else zincirinde koşullar yukarıdan aşağıya sınanır ve ilk True olan kol çalışır; gerisi atlanır. sicaklik = 30 için ilk koşul (> 10) zaten True olduğundan yalnızca ılık yazılır. İki kolun da çalışmasını istiyorsan ayrı if'ler yazılır.
+      - slug: separate_ifs_exclusive
+        name: Alt alta iki ayrı if'ten yalnızca biri çalışır
+        open_question: Alt alta yazılmış iki ayrı if'ten yalnızca birinin çalışabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İki if var; biri çalıştıysa öteki çalışmaz."
+
+            Yalnızca bir if/elif/else zincirinin içinde "en fazla bir kol" kuralı vardır. Alt alta yazılan iki ayrı if iki ayrı zincirdir; her biri kendi koşuluna bakar. n = 12 için n % 2 == 0 ve n % 3 == 0 ayrı if'lerdeyse ikisinin kolu da çalışır.
+      - slug: condition_uses_initial_values
+        name: Koşullar değişkenlerin programın başındaki değerleriyle hesaplanır
+        open_question: Bir koşulun, değişkenin programın başındaki değerine göre hesaplandığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "x başta 5'ti, o yüzden ikinci if'te de x > 3 doğrudur."
+
+            Her koşul, o satıra gelindiği andaki değerlerle hesaplanır. Arada bir kol x'i değiştirdiyse, sonraki koşul yeni değeri görür. Bu yüzden durum tablosunu her satırda güncel tut.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          puan = 42
+          if puan >= 50:
+              print("Geçti")
+          else:
+              print("Kaldı")
+        answer: "Kaldı"
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 3
+          if x > 5:
+              print("büyük")
+          print("bitti")
+        answer: "bitti"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          boy = 185
+          if boy > 150:
+              print("uzun")
+          elif boy > 180:
+              print("çok uzun")
+          else:
+              print("kısa")
+        options:
+          A: uzun
+          B: çok uzun
+          C: önce uzun, sonra çok uzun
+          D: kısa
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "uzun", B: "çok uzun", C: "uzun\nçok uzun", D: "kısa"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          m = 15
+          if m > 10:
+              print("büyük")
+          if m % 5 == 0:
+              print("beşin katı")
+        options:
+          A: Yalnızca büyük
+          B: Yalnızca beşin katı
+          C: Önce büyük, sonra beşin katı (iki satır)
+          D: Hiçbir şey
+        answer: C
+        verify:
+          mode: stdout
+          outcomes: {A: "büyük", B: "beşin katı", C: "büyük\nbeşin katı", D: ""}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = 4
+          b = 9
+          if a > b:
+              print("a")
+          elif a + b > 10:
+              if b % 2 == 0:
+                  print("b çift")
+              else:
+                  print("b tek")
+          else:
+              print("küçük")
+        answer: "b tek"
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          s = 4
+          if s % 2 == 0:
+              s = s + 3
+          elif s > 3:
+              s = s * 10
+          if s > 5:
+              print("geçti")
+          else:
+              print("kaldı")
+        options:
+          A: geçti
+          B: kaldı
+          C: Önce geçti, sonra kaldı
+          D: Hiçbir şey
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "geçti", B: "kaldı", C: "geçti\nkaldı", D: ""}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki kod, başına hangi satır eklenirse ekrana orta yazar?
+        code: |
+          if y < 5:
+              print("düşük")
+          elif y < 10:
+              print("orta")
+          else:
+              print("yüksek")
+        options:
+          A: y = 0
+          B: y = 5
+          C: y = 10
+          D: y = 15
+        answer: B
+        verify:
+          mode: which_input
+          target: orta
+          assignments: {A: "y = 0", B: "y = 5", C: "y = 10", D: "y = 15"}

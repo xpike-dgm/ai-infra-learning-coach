@@ -44,11 +44,12 @@ class FileContentSource(private val source: () -> String? = { null }) : ContentP
     override fun curriculumPackage(): CurriculumPackage? = parsed?.curriculum
 
     /**
-     * `curriculum_package/1` has no task section: authored tasks, their purposes and durations are
-     * content Stage 15 writes. Until a format carries them, no task serves any need, and saying so is
-     * the truthful answer — the planner then records the need as having no valid candidate.
+     * The authored tasks that serve [need] (15A): those declaring its trigger and working on its Skill, in a stable
+     * order. Content never opens a need and never widens one; with no package, or no task for the need, the answer is
+     * still the truthful empty list and the planner records the need as having no valid candidate.
      */
-    override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()
+    override fun taskCandidates(need: LearningNeed): List<TaskCandidate> =
+        parsed?.tasks.orEmpty().mapNotNull { it.candidateFor(need) }.sortedBy { it.id }
 
     /** The authored items naming [skill] among their targets, in a stable order (13A). */
     override fun assessmentItemsFor(skill: VersionedRef): List<AssessmentItem> =

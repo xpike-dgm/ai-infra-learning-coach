@@ -1,0 +1,306 @@
+skill: skill.programming.function_decomposition
+activity: recognition_selection
+tasks:
+  teach: {title: "Fonksiyonlar: girdi, çıktı ve tek sorumluluk", minutes: 15}
+  practice: {title: "Girdi-çıktı ve bölme alıştırması", minutes: 10}
+  check: {title: "Girdi-çıktı ve bölme kontrolü", minutes: 10}
+  review: {title: "Girdi-çıktı ve bölme tekrarı", minutes: 8}
+  repair: {title: "Fonksiyonu yeniden kurmak: girdi, çıktı, sorumluluk", minutes: 12}
+
+objectives:
+  - id: objective.programming.function_decomposition.define_io_responsibility
+    statement: >-
+      Bir işi, her birinin girdisi (parametreleri), çıktısı (geri döndürdüğü değer) ve tek bir sorumluluğu belli
+      fonksiyonlara bölebilmek: verilen bir sorumluluğu doğru girdi/çıktıyla yerine getiren fonksiyonu seçebilmek,
+      fonksiyonların çıktılarının birbirine nasıl aktarıldığını söyleyebilmek ve ekrana yazmak (print) ile değer
+      döndürmek (return) arasındaki farkı uygulayabilmek.
+    observable_behavior: >-
+      Bir sorumluluk tarifine uyan fonksiyon tanımını seçer; iki fonksiyonu birleştiren doğru bölmeyi bulur; bir
+      çağrı dizisinin ne döndürdüğünü ya da ne yazdırdığını doğru söyler.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation, code_reading]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi. Direct type explanation kaldı (bölme kararını gerekçeli
+      seçmek); kod okuyarak çağrı sonucunu bulmak code_reading olarak direct kabul edildi. Seçmeli item'ların doğru
+      şıkkı her seçeneğin gerçekten çalıştırılmasıyla doğrulanır.
+    checks:
+      - prints: "36"
+        code: |
+          def alan(en, boy):
+              return en * boy
+
+          def fiyat(metrekare, birim_fiyat):
+              return metrekare * birim_fiyat
+
+          a = alan(3, 4)
+          print(fiyat(a, 3))
+      - prints: "10\nNone"
+        code: |
+          def ikiye_katla(x):
+              print(x * 2)
+          sonuc = ikiye_katla(5)
+          print(sonuc)
+      - prints: "-7 7"
+        code: |
+          def fark(a, b):
+              return a - b
+          x = 10
+          y = 3
+          print(fark(y, x), fark(x, y))
+      - prints: "75"
+        code: |
+          def ara_toplam(adet, birim):
+              return adet * birim
+
+          def toplam(adet, birim, kargo):
+              return ara_toplam(adet, birim) + kargo
+
+          print(toplam(3, 20, 15))
+    explanations:
+      canonical: |
+        Büyük bir işi tek parça halinde düşünmek zordur. Onu küçük, adı konmuş parçalara bölersin; her parçanın neyi aldığı (girdi), neyi geri verdiği (çıktı) ve tek bir işi (sorumluluk) bellidir. Programlamada bu parçalara fonksiyon (function) denir. Bu derste fonksiyonları okumayı öğreneceksin; yazmayı Python dersinde.
+
+        def alan(en, boy):
+            return en * boy
+
+        - def, bir fonksiyon tanımlar; adı alan.
+        - Parantezdeki en ve boy parametrelerdir: fonksiyonun girdileri.
+        - return, fonksiyonun çıktısıdır: hesaplanan değeri çağırana geri verir ve fonksiyonu bitirir.
+        - Tanım tek başına hiçbir şey çalıştırmaz; yalnızca fonksiyonu tarif eder.
+
+        Fonksiyon çağrıldığında çalışır:
+
+        a = alan(3, 4)
+
+        Çağrıdaki değerler (argümanlar) parametrelere sırayla atanır: en = 3, boy = 4. Gövde çalışır, return 12'yi geri verir ve a'ya 12 atanır. Eşleşme isimlere göre değil, sıraya göre yapılır: alan(4, 3) dersen en = 4, boy = 3 olur.
+
+        print ile return aynı şey değildir:
+        - print bir değeri ekrana yazar; çağırana hiçbir şey vermez.
+        - return değeri çağırana geri verir; ekrana hiçbir şey yazmaz.
+        return'ü olmayan bir fonksiyon çağırana None adlı "hiçbir şey" değerini verir. Bu yüzden bir fonksiyonun sonucunu başka bir hesapta kullanmak istiyorsan, o fonksiyon return etmelidir.
+
+        Bölme (decomposition): Bir duvar boyası işinin fiyatını hesaplamak istiyoruz: önce duvarın alanı, sonra alan × metrekare fiyatı.
+
+        def alan(en, boy):
+            return en * boy
+
+        def fiyat(metrekare, birim_fiyat):
+            return metrekare * birim_fiyat
+
+        a = alan(3, 4)
+        print(fiyat(a, 3))
+
+        Her fonksiyonun tek bir sorumluluğu var: biri alanı, öteki fiyatı hesaplıyor. alan'ın çıktısı fiyat'ın girdisi oluyor. Ekrana 36 yazılır.
+
+        İyi bir bölmenin işaretleri:
+        - Her fonksiyonun adı yaptığı işi söyler ve tek bir iş yapar.
+        - İhtiyaç duyduğu her bilgi parametre olarak gelir.
+        - Sonucu return ile geri verir; ekrana yazmayı çağırana bırakır.
+        - Bir fonksiyonun çıktısı, başka bir fonksiyonun girdisi olarak aktarılabilir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum): bir fonksiyon çağrıldığında, argümanlar parametrelere tıpkı atama gibi sırayla atanır (en = 3, boy = 4). Gövdenin içini, bu değerlerle başlayan küçük bir durum tablosuyla izleyebilirsin.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Sorumluluk: "Bir siparişin toplamını hesapla: adet ile birim fiyatı çarp, sonra kargo ücretini ekle." Bu işi iki fonksiyona bölelim.
+
+          def ara_toplam(adet, birim):
+              return adet * birim
+
+          def toplam(adet, birim, kargo):
+              return ara_toplam(adet, birim) + kargo
+
+          - ara_toplam'ın girdisi adet ve birim, çıktısı ikisinin çarpımı.
+          - toplam, ara_toplam'ın çıktısını kendi hesabında kullanıyor ve kargoyu ekleyip geri veriyor.
+          - Hiçbiri ekrana yazmıyor; yazmak çağıranın işi: print(toplam(3, 20, 15)) ekrana 75 yazar.
+
+          ara_toplam, return yerine print kullansaydı toplam onun çıktısını alamazdı (None + 15 bir hata olurdu).
+    misconceptions:
+      - slug: print_is_return
+        name: Ekrana yazmak ile değer döndürmek aynı şeydir
+        open_question: Bir fonksiyonun sonucu ekrana yazmasının (print), o sonucu çağırana geri vermesiyle (return) aynı olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fonksiyon sonucu yazdırıyor, o halde sonucu veriyor."
+
+            print yalnızca ekrana yazar; çağırana bir değer vermez. return değeri çağırana verir; ekrana yazmaz. sonuc = ikiye_katla(5) satırında, fonksiyon print kullanıyorsa ekranda 10 görünür ama sonuc'a None atanır. Başka bir hesapta kullanılacak sonuç return ile verilmelidir.
+      - slug: arguments_matched_by_name
+        name: Argümanlar parametrelerle isimlerine göre eşleşir
+        open_question: Bir fonksiyon çağrısında değerlerin, parametrelere isimlerine bakılarak eşleştiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "fark(y, x) çağrısında x, a'ya gider çünkü..."
+
+            Argümanlar parametrelere sırayla atanır: ilk argüman ilk parametreye, ikinci ikinciye. fark(y, x) çağrısında a = y, b = x olur; değişkenlerin adlarının ne olduğu önemli değildir. fark(a, b) a - b döndürüyorsa fark(3, 10) -7, fark(10, 3) 7 verir.
+      - slug: definition_runs_function
+        name: def satırı fonksiyonu çalıştırır
+        open_question: Bir fonksiyonu tanımlayan def bloğunun, okunduğu anda fonksiyonu çalıştırdığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "def kare(x): satırına gelince kare hesaplanır."
+
+            def yalnızca tarif eder: "kare adında, x alan ve x * x döndüren bir fonksiyon var." Gövde, fonksiyon çağrıldığında — kare(3) gibi — ve her çağrıldığında yeniden çalışır. Hiç çağrılmayan bir fonksiyonun gövdesi hiç çalışmaz.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Aşağıdaki fonksiyonun girdisi ve çıktısı nedir?
+        code: |
+          def kare_alan(kenar):
+              return kenar * kenar
+        options:
+          A: "Girdi: kenar; çıktı: kenar * kenar değeri, çağırana geri döndürülür."
+          B: "Girdi yok; çıktı: ekrana yazılan alan."
+          C: "Girdi: kenar; çıktı yok, sonuç ekrana yazılır."
+          D: "Girdi: alan; çıktı: kenar."
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "kenar|return", B: "-|print", C: "kenar|print", D: "alan|kenar"}
+          script: |
+            import contextlib, inspect, io
+            def kare_alan(kenar):
+                return kenar * kenar
+            params = "|".join(inspect.signature(kare_alan).parameters) or "-"
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                value = kare_alan(3)
+            print(params + "|" + ("return" if value == 9 and buf.getvalue() == "" else "print"))
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          İstenen sorumluluk: "Bir dikdörtgenin en ve boyunu alıp çevresini hesapla ve geri döndür (ekrana yazma)." Hangi fonksiyon bunu doğru yapar?
+        options:
+          A: "def cevre(en, boy):\n    print(2 * (en + boy))"
+          B: "def cevre(en, boy):\n    return 2 * (en + boy)"
+          C: "def cevre(en):\n    return 4 * en"
+          D: "def cevre(en, boy):\n    return en * boy"
+        answer: B
+        verify:
+          mode: functions
+          name: cevre
+          spec: "def spec(en, boy):\n    return 2 * (en + boy)"
+          cases: [[3, 4], [1, 1], [5, 2], [0, 7]]
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bir taksi ücreti hesaplanacak: önce gidilen km ile km başına ücret çarpılıyor, sonra bu yol ücretine açılış ücreti ve bahşiş ekleniyor. İş iki fonksiyona bölünmek isteniyor; ucret(km, birim, acilis, bahsis) sonucu geri döndürmeli. Hangi bölme doğrudur?
+        options:
+          A: "def yol(km, birim):\n    return km * birim\n\ndef ucret(km, birim, acilis, bahsis):\n    return acilis + yol(km, birim) + bahsis"
+          B: "def yol(km, birim):\n    print(km * birim)\n\ndef ucret(km, birim, acilis, bahsis):\n    return acilis + yol(km, birim) + bahsis"
+          C: "def yol(km, birim):\n    return km * birim\n\ndef ucret(km, birim, acilis, bahsis):\n    return acilis + yol(km, acilis) + bahsis"
+          D: "def yol(km, birim):\n    return km + birim\n\ndef ucret(km, birim, acilis, bahsis):\n    return acilis + yol(km, birim) + bahsis"
+        answer: A
+        verify:
+          mode: functions
+          name: ucret
+          spec: "def spec(km, birim, acilis, bahsis):\n    return acilis + km * birim + bahsis"
+          cases: [[10, 7, 20, 5], [3, 15, 30, 0], [1, 1, 1, 1], [0, 9, 25, 10]]
+      - slug: f04
+        difficulty: authentic_application
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def topla(a, b):
+              print(a + b)
+
+          x = topla(2, 3)
+          y = topla(4, 1)
+          print(x)
+        options:
+          A: 5, 5, 5 (alt alta)
+          B: 5, 5, None (alt alta)
+          C: Yalnızca 5
+          D: Hata verir
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "5\n5\n5", B: "5\n5\nNone", C: "5", D: "<hata>"}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Elimizde aşağıdaki iki fonksiyon var. Hangi ifade, her x sayısı için "x'in karesinin iki katı"nı verir?
+        code: |
+          def kare(x):
+              return x * x
+
+          def iki_kat(x):
+              return 2 * x
+        options:
+          A: iki_kat(kare(x))
+          B: kare(iki_kat(x))
+          C: kare(x) + iki_kat(x)
+          D: iki_kat(x) * 3
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def kare(x):
+                return x * x
+            def iki_kat(x):
+                return 2 * x
+            options = {"A": lambda x: iki_kat(kare(x)), "B": lambda x: kare(iki_kat(x)),
+                       "C": lambda x: kare(x) + iki_kat(x), "D": lambda x: iki_kat(x) * 3}
+            print(",".join(k for k, f in options.items() if all(f(x) == 2 * x * x for x in range(-5, 8))))
+      - slug: f06
+        difficulty: transfer_integration
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          def birlestir(onlar, birler):
+              return onlar * 10 + birler
+
+          x = 3
+          y = 7
+          print(birlestir(y, x), birlestir(x, y))
+        answer: "73 37"
+        verify: {mode: stdout}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir programda aşağıdaki iki satır var ve sırasıyla 170 ile 45 yazması gerekiyor. Hangi tanım bu çağrılarla birlikte doğru çalışır?
+        code: |
+          print(indirimli(200, 30))
+          print(indirimli(50, 5))
+        options:
+          A: "def indirimli(fiyat):\n    return fiyat - 30"
+          B: "def indirimli(fiyat, indirim):\n    return fiyat - indirim"
+          C: "def indirimli(indirim, fiyat):\n    return fiyat - indirim"
+          D: "def indirimli(fiyat, indirim):\n    return indirim - fiyat"
+        answer: B
+        verify:
+          mode: functions
+          name: indirimli
+          spec: "def spec(fiyat, indirim):\n    return fiyat - indirim"
+          cases: [[200, 30], [50, 5], [10, 10]]
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bir not ortalaması programı yazılacak: iki sınav notu alınacak, toplamları hesaplanacak, toplam ikiye bölünüp ortalama bulunacak ve ortalama ekrana yazılacak. Bu işi fonksiyonlara nasıl bölerdin? Her fonksiyonun adını, girdisini ve çıktısını kısaca yaz.
+        answer: "-"
+        rubric:
+          - id: separate_responsibilities
+            statement: İşi her biri tek bir şey yapan en az iki ayrı fonksiyona böler (örneğin toplamı ve ortalamayı ayrı hesaplar).
+          - id: inputs_as_parameters
+            statement: Her fonksiyonun ihtiyaç duyduğu bilgiyi parametre (girdi) olarak aldığını belirtir.
+          - id: outputs_returned
+            statement: Hesaplayan fonksiyonların sonucu geri döndürdüğünü (return) ve ekrana yazmanın ayrı bir adım olduğunu belirtir.
+          - id: outputs_feed_inputs
+            statement: Bir fonksiyonun çıktısının başka bir fonksiyona girdi olarak aktarıldığını gösterir.
+        verify:
+          mode: rubric

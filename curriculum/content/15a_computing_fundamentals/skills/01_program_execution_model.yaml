@@ -1,0 +1,236 @@
+skill: skill.computing.program_execution_model
+activity: recognition_selection
+tasks:
+  teach: {title: "Kaynak koddan çalışan programa: bir program nasıl çalışır?", minutes: 12}
+  practice: {title: "Program çalışma zinciri alıştırması", minutes: 8}
+  check: {title: "Program çalışma zinciri kontrolü", minutes: 8}
+  review: {title: "Program çalışma zinciri tekrarı", minutes: 6}
+  repair: {title: "Program çalışma zincirini yeniden kurmak", minutes: 10}
+
+objectives:
+  - id: objective.computing.program_execution_model.explain_pipeline
+    statement: >-
+      Bir programın kaynak koddan ekrandaki çıktıya nasıl ulaştığını — kaynak dosya, çevirici (derleyici ya da
+      yorumlayıcı), çalışan süreç ve çıktı — doğru sırayla açıklayabilmek ve bu zinciri kullanarak yeni bir durumda
+      ne olacağını gerekçesiyle söyleyebilmek.
+    observable_behavior: >-
+      Zincirin adımlarını sıralar; kaynak dosya değiştiğinde, bir satır hata verdiğinde ya da program başka bir
+      makineye taşındığında ne olacağını zincire dayanarak doğru seçer.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C metni şablondu ("Source, translator veya runtime ve çalışan process ilişkisini açıklayabilmek"); 15A onu
+      gözlenebilir davranışa çevirdi. Direct type 6C'deki gibi explanation kaldı; code_reading yalnız kabul edilen
+      (destekleyici) tip olarak kaldı, çünkü bu Objective kod okumayı değil zincirin açıklamasını ölçer.
+    checks:
+      - prints: "Merhaba"
+        code: |
+          print("Merhaba")
+    explanations:
+      canonical: |
+        Bir program, bilgisayara ne yapacağını adım adım söyleyen talimatlar dizisidir. Bu talimatları insanlar okunabilir bir dilde yazar; buna kaynak kod (source code) denir. Kaynak kod bir metin dosyasıdır: örneğin merhaba.py ya da merhaba.c.
+
+        İşlemci (CPU) kaynak kodu doğrudan anlamaz; yalnızca kendi makine komutlarını (machine instructions) yürütebilir. Bu yüzden kaynak kod ile çalışan program arasında her zaman bir çevirici vardır. İki temel çevirici türü var:
+
+        1. Derleyici (compiler) — örneğin C için gcc. Kaynak kodun tamamını önceden okur ve makine komutlarından oluşan ayrı bir çalıştırılabilir dosya (executable) üretir. Program daha sonra bu dosyadan çalıştırılır. Kaynak kodu değiştirirsen, yeniden derleyene kadar çalıştırılabilir dosya eski hâliyle kalır.
+        2. Yorumlayıcı (interpreter) — örneğin python. Ayrı bir çalıştırılabilir dosya bırakmaz: python dosya.py ile çalıştırdığın dosyayı her seferinde yeniden okur ve yürütür. Python, yürütmeden önce dosyanın tamamını kendi iç biçimine (bytecode) çevirir; doğrudan çalıştırılan dosya için bu çeviri her çalıştırmada kaynak dosyadan yapılır. (Python bazı dosyaların bytecode'unu .pyc dosyalarında saklayıp yeniden kullanabilir; bunu dosya türleri dersinde göreceksin. Kaynak değiştiğinde saklanan çeviri kullanılmaz.)
+
+        Program çalışmaya başladığında işletim sistemi onun için bir süreç (process) oluşturur: bellekte yer ayrılır ve komutlar sırayla yürütülür. Programın ekrana yazdıkları onun çıktısıdır (output). Program bitince süreç de biter.
+
+        Zincirin tamamı:
+
+        kaynak kod → çevirici (derleyici ya da yorumlayıcı) → çalışan süreç → çıktı
+
+        Küçük bir örnek. merhaba.py dosyasında tek satır var:
+
+        print("Merhaba")
+
+        print(...) parantezin içindekini ekrana yazan komuttur; tırnak içindeki yazı olduğu gibi yazdırılır. python merhaba.py dediğinde yorumlayıcı dosyayı okur, çevirir, satırı yürütür ve ekrana Merhaba yazar.
+
+        Bir ayrıntı daha önemli: Python yürütmeye başlamadan önce dosyanın tamamını çevirdiği için, dosyanın herhangi bir yerinde bir yazım hatası (syntax error) varsa hiçbir satır yürütülmez ve ekrana yalnız hata mesajı gelir. Ama yazım doğruysa ve bir satır yürütülürken hata verirse, o satırdan önceki satırlar çoktan yürütülmüş, çıktıları da ekrana yazılmış olur.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Durum: Ayşe hesap.c dosyasını derledi ve hesap adlı çalıştırılabilir dosyayı elde etti. Sonra hesap.c içinde ekrana yazılan sayıyı 5'ten 7'ye değiştirdi, dosyayı kaydetti ve yeniden derlemeden hesap dosyasını çalıştırdı. Ekranda hangi sayı görünür?
+
+          Adım 1 — Hangi dosya çalışıyor? Ayşe hesap dosyasını çalıştırdı; bu derleyicinin ürettiği çalıştırılabilir dosyadır, kaynak dosya değil.
+          Adım 2 — Bu dosya ne zaman üretildi? Değişiklikten önce, eski kaynak koddan.
+          Adım 3 — Değişiklik bu dosyaya ulaştı mı? Hayır. Derleyici yeniden çalışmadıkça çalıştırılabilir dosya değişmez.
+
+          Sonuç: ekranda 5 görünür. 7'yi görmek için önce yeniden derlemek gerekir.
+
+          Aynı durum Python'da farklıdır: python selam.py her seferinde kaynak dosyayı yeniden okuduğu için değişiklik bir sonraki çalıştırmada hemen görünür.
+    misconceptions:
+      - slug: source_runs_directly
+        name: Kaynak kod çeviri olmadan doğrudan çalışır
+        open_question: Bilgisayarın, yazdığın kaynak kodu hiçbir çeviri olmadan doğrudan yürüttüğünü mü düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Yazdığım kod doğrudan işlemcide çalışıyor."
+
+            Aslında işlemci yalnızca kendi makine komutlarını yürütür. Kaynak kod insanlar için yazılmış bir metindir. Arada her zaman bir çevirici vardır: C'de derleyici kaynak kodu önceden çalıştırılabilir bir dosyaya çevirir; Python'da yorumlayıcı her çalıştırmada kaynak dosyayı okuyup çevirir ve yürütür. Çeviriyi göremesen de o adım zincirin bir parçasıdır.
+      - slug: edit_updates_executable
+        name: Kaynak dosyayı değiştirmek derlenmiş dosyayı da değiştirir
+        open_question: Kaynak dosyada yaptığın değişikliğin, daha önce derlenmiş çalıştırılabilir dosyaya kendiliğinden geçtiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Kaynak dosyayı kaydettim, programı çalıştırınca yeni hâli çalışır."
+
+            Derlenen dillerde çalıştırılabilir dosya, derleyicinin o anki kaynak koddan ürettiği ayrı bir dosyadır. Kaynak dosya değişince o dosya değişmez; yeniden derleyene kadar eski davranış sürer. Yorumlanan dillerde (Python) ise ayrı bir dosya yoktur; yorumlayıcı her çalıştırmada kaynak dosyayı yeniden okur, bu yüzden değişiklik hemen görünür.
+      - slug: interpreter_skips_syntax
+        name: Yorumlayıcı satır satır okuduğu için sonraki satırdaki yazım hatası öncekileri durdurmaz
+        open_question: Dosyanın sonlarındaki bir yazım hatasına rağmen Python'un önceki satırları yürüteceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Python satır satır çalışır, o yüzden hatalı satıra kadar her şey çalışır."
+
+            Python yürütmeye başlamadan önce dosyanın tamamını çevirir. Çeviri bir yazım hatasına (syntax error) takılırsa hiçbir satır yürütülmez. "Hatalı satıra kadar çalışır" yalnız yürütme sırasında ortaya çıkan hatalar için doğrudur: o durumda çeviri başarıyla bitmiştir, satırlar sırayla yürütülürken biri hata verir ve öncekilerin çıktısı ekranda kalır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bir programın yazılmasından ekrana çıktı vermesine kadar geçen adımları doğru sıraya koy. Cevabını harflerle yaz (örnek: ABC).
+
+          A) Çalışan süreç komutları yürütür ve ekrana yazar.
+          B) Programcı kaynak kodu bir dosyaya yazar.
+          C) Çevirici (derleyici ya da yorumlayıcı) kaynak kodu makinenin yürütebileceği biçime çevirir.
+        answer: BCA
+        also_accept: ["B C A", "B,C,A", "B, C, A"]
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — 'Compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking, always in that order.'; Python Glossary — 'interpreted' ve 'bytecode'"
+          claim: "Kaynak önce yazılır, sonra bir çevirici tarafından işlenir, ancak sonra çalışan program çıktı üretir."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Kaynak kod (source code) için hangisi doğrudur?
+        options:
+          A: İşlemcinin doğrudan yürüttüğü makine komutlarıdır.
+          B: İnsanların yazıp okuyabildiği, bir dosyada duran metindir; yürütülmesi için önce bir çeviriciden geçmesi gerekir.
+          C: Program çalışırken ekrana yazılan yazıdır.
+          D: Yalnızca derleyicinin ürettiği dosyadır.
+        answer: B
+        verify:
+          mode: reference
+          reference: "Python Glossary — 'bytecode' ve 'interpreted'; GCC Manual §3.2 Options Controlling the Kind of Output"
+          claim: "Kaynak kod insanların yazdığı metindir; işlemci onu ancak bir çeviriden sonra yürütür."
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          oyun.py dosyasını python oyun.py ile çalıştırdın ve dosyadaki bir yazım hatası yüzünden yalnızca bir hata mesajı gördün. Hatayı dosyada düzeltip kaydettin ve başka hiçbir şey yapmadan yine python oyun.py dedin. Ne olur?
+        options:
+          A: Aynı hata mesajı yine görünür; yorumlayıcı ilk denemedeki çevirisini kullanır.
+          B: Düzeltilmiş program çalışır; yorumlayıcı dosyayı yeniden okuyup çevirir.
+          C: Önce dosyayı ayrıca derleyip bir çalıştırılabilir dosya üretmen gerekir; yoksa hiçbir şey olmaz.
+          D: Bilgisayarı yeniden başlatmadan düzeltme görünmez.
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "eski_hata", B: "duzeltilmis", C: "bos", D: "bos"}
+          script: |
+            import subprocess, sys
+            with open("oyun.py", "w", encoding="utf-8") as f:
+                f.write('print("Oyun başladı"\n')
+            first = subprocess.run([sys.executable, "oyun.py"], capture_output=True, text=True)
+            with open("oyun.py", "w", encoding="utf-8") as f:
+                f.write('print("Oyun başladı")\n')
+            second = subprocess.run([sys.executable, "oyun.py"], capture_output=True, text=True)
+            if first.returncode != 0 and second.returncode == 0 and second.stdout.strip() == "Oyun başladı":
+                print("duzeltilmis")
+            elif second.returncode != 0:
+                print("eski_hata")
+            else:
+                print("bos")
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program.py dosyası python program.py ile çalıştırılıyor. Python'da yazdir adında bir komut yoktur; bu yüzden üçüncü satır yürütülürken hata verir (yazımında bir hata yoktur). Ekranda, hata mesajından önce ne görünür?
+        code: |
+          print("Bir")
+          print("İki")
+          yazdir("Üç")
+          print("Dört")
+        options:
+          A: Hiçbir şey; hata olan bir program hiç başlamaz.
+          B: Bir ve İki; hatalı satırdan önceki satırlar çoktan yürütülmüştür.
+          C: Bir, İki ve Dört; hatalı satır atlanır, program devam eder.
+          D: Yalnızca Dört; program hatadan sonra kaldığı yerden başlar.
+        answer: B
+        verify:
+          mode: stdout
+          expect_error: true
+          outcomes: {A: "", B: "Bir\nİki", C: "Bir\nİki\nDört", D: "Dört"}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki hesap.py dosyasında iki ayrı sorun var: ikinci satır yürütülürken hata verir (Python'da yaz adında bir komut yoktur), beşinci satırda ise kapanış parantezi unutulmuştur. Dosya python hesap.py ile çalıştırılıyor. Ekranda, hata mesajından önce ne görünür?
+        code: |
+          print("Bir")
+          yaz("İki")
+          print("Üç")
+          print("Dört")
+          print("Beş"
+        options:
+          A: Bir; ikinci satır yürütülürken program durur.
+          B: Hiçbir şey; yalnızca beşinci satırdaki yazım hatası bildirilir.
+          C: Bir, Üç ve Dört; hatalı satırlar atlanır.
+          D: Bir, Üç, Dört ve Beş
+        answer: B
+        verify:
+          mode: stdout
+          expect_error: true
+          outcomes: {A: "Bir", B: "", C: "Bir\nÜç\nDört", D: "Bir\nÜç\nDört\nBeş"}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Standart kütüphane dışında hiçbir şeye ihtiyaç duymayan küçük bir C programını derleyip hesap adlı çalıştırılabilir dosyayı üretiyorsun. Bu dosyayı, aynı işletim sistemine ve aynı işlemci türüne sahip ama üzerinde hiç C derleyicisi kurulu olmayan başka bir bilgisayara kopyalıyorsun. Orada çalıştırabilir misin, neden?
+        options:
+          A: Hayır; çalıştırmak için de derleyici gerekir.
+          B: Evet; çeviriyi derleyici önceden yaptı, çalıştırılabilir dosya artık makine komutlarını içeriyor.
+          C: Evet; çünkü kaynak kod da dosyanın içinde saklanır ve orada yeniden derlenir.
+          D: Hayır; çalıştırılabilir dosyalar yalnızca üretildikleri bilgisayarda çalışır.
+        answer: B
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output (bağlama sonucunda çalıştırılabilir dosya üretilir); derlenmiş programın çalışması için derleyiciye değil hedef platformun çalışma ortamına ihtiyaç duyulur"
+          claim: "Derleyici çeviriyi önceden yapar; aynı platformdaki başka bir makine çalıştırılabilir dosyayı derleyici olmadan yürütebilir."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          oyun.py adlı bir Python programını, üzerinde Python yorumlayıcısı kurulu olmayan bir bilgisayara kopyalıyorsun. Orada yalnız bu dosyayla programı çalıştırabilir misin, neden?
+        options:
+          A: Evet; .py dosyası makine komutlarını içerir.
+          B: Evet; işletim sistemi kaynak kodu kendisi yürütür.
+          C: Hayır; .py dosyası kaynak koddur ve onu okuyup yürütecek bir yorumlayıcı gerekir.
+          D: Hayır; Python programları yalnızca yazıldıkları bilgisayarda çalışır.
+        answer: C
+        verify:
+          mode: reference
+          reference: "Python Tutorial §2 Using the Python Interpreter; Python Glossary — 'interpreted'"
+          claim: "Bir .py dosyasını yürütmek için onu okuyacak bir Python yorumlayıcısı gerekir."
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Kendi cümlelerinle anlat: Python ile yazılmış bir programı python dosya.py diyerek çalıştırdığında, kaynak dosyadan ekrandaki çıktıya kadar neler olur? (3–5 cümle yeterli.)
+        answer: "-"
+        rubric:
+          - id: source_file_read
+            statement: Yorumlayıcının kaynak dosyayı (dosya.py) okuduğunu söyler.
+          - id: translation_before_execution
+            statement: Kodun yürütülmeden önce yorumlayıcı tarafından çevrildiğini (bytecode ya da makinenin yürütebileceği bir biçim) belirtir.
+          - id: running_process
+            statement: Programın çalışan bir süreç olarak komutları sırayla yürüttüğünü söyler.
+          - id: output_from_process
+            statement: Ekrandaki çıktının bu yürütmenin sonucu olduğunu söyler.
+        verify:
+          mode: rubric

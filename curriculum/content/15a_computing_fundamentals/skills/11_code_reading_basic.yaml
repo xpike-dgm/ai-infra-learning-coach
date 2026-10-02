@@ -1,0 +1,320 @@
+skill: skill.programming.code_reading_basic
+activity: code_reading_trace
+tasks:
+  teach: {title: "Kod okuma: bir program genel olarak ne hesaplar?", minutes: 14}
+  practice: {title: "Kod okuma alıştırması", minutes: 10}
+  check: {title: "Kod okuma kontrolü", minutes: 10}
+  review: {title: "Kod okuma tekrarı", minutes: 8}
+  repair: {title: "Kod okumayı yeniden kurmak: birkaç girdiyle izleyip genellemek", minutes: 12}
+
+objectives:
+  - id: objective.programming.code_reading_basic.demonstrate_capability
+    statement: >-
+      Kısa bir programın, çalıştırmadan, kontrol ve veri akışını izleyerek genel olarak ne hesapladığını
+      söyleyebilmek: tek bir girdi için sonucu değil, her girdi için geçerli olan davranışı tarif edebilmek.
+    observable_behavior: >-
+      Birkaç satırlık bir programın her girdi için ne yaptığını doğru tarif eden seçeneği seçer; tek bir örneğe uyan
+      ama genel olarak yanlış olan tarifleri eler.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability) ve required_direct_type explanation idi.
+      Kimlik değiştirilmedi (logical id korunur); 15A gözlenebilir davranışı adlandırdı ve direct type'ı code_reading
+      yaptı. Her seçenek, programın birçok girdide gerçekten çalıştırılmasıyla karşılaştırılarak doğrulanır: yalnız
+      doğru tarif her girdide programla aynı sonucu verir.
+    checks:
+      - prints: "16"
+        code: |
+          a = 3
+          b = 5
+          c = a + b
+          c = c * 2
+          print(c)
+      - prints: "3 1\n0 2\n1 3"
+        code: |
+          for sayi in (7, 8, 13):
+              kalan = sayi % 4
+              bolum = sayi // 4
+              print(kalan, bolum)
+      - prints: "12 12 4"
+        code: |
+          a = 1
+          b = 5
+          print(2 * (a + b), 2 * (3 + 3), 4 * a)
+      - prints: "6 6 4"
+        code: |
+          def k(x, y):
+              if x < y:
+                  return x
+              else:
+                  return y
+          print(k(6, 9), k(9, 6), k(4, 4))
+    explanations:
+      canonical: |
+        Bir programı izlemek (trace) tek bir girdi için ne olduğunu gösterir. Kod okumak bir adım ötesidir: programın her girdi için ne yaptığını, yani amacını söylemek.
+
+        a = 3
+        b = 5
+        c = a + b
+        c = c * 2
+        print(c)
+
+        a = 3, b = 5 için izlersen ekranda 16 görürsün. Ama soru "16 yazar" değil, "ne hesaplar?": a ile b toplanıyor, sonuç ikiyle çarpılıyor. Program, iki sayının toplamının iki katını yazar — a ve b ne olursa olsun.
+
+        Kod okumanın yöntemi:
+        1. Veri akışını izle: Her değişken nereden geliyor, nereye gidiyor? c önce a + b oluyor, sonra kendisinin iki katı oluyor.
+        2. Kontrol akışını izle: Bir koşul ya da döngü varsa hangi durumlarda hangi yol izleniyor?
+        3. Birkaç farklı girdiyle zihninde çalıştır: küçük bir sayı, sıfır, eşit değerler. Bulduğun tarif hepsine uymalı.
+        4. Tarifini sına: Aklındaki tarif ile programın bir girdide farklı sonuç verdiği bir örnek bulabiliyorsan tarif yanlıştır.
+
+        Tek bir örnek yanıltabilir. a = 3, b = 3 için "a'nın dört katı" tarifi de 12 verir; a = 1, b = 5 için aynı tarif 4 der, program ise 12 yazar. Bu yüzden genel tarife birkaç girdiyi denemeden karar verme.
+
+        Değişken adları ipucudur ama kanıt değildir. ortalama adında bir değişken gerçekten ortalamayı tutmayabilir; ne tuttuğunu kod söyler.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (çalışma izi): bir programın ne yaptığını genellemeden önce, onu iki üç farklı girdiyle izleme tablosunda çalıştır. Genel tarif, bu izlerin hepsine uyan tariftir.
+      state_trace:
+        level: H2
+        text: |
+          Birkaç girdiyle izleyip genellemek — başka bir örnek üzerinde.
+
+          sayi = 7
+          kalan = sayi % 4
+          bolum = sayi // 4
+          print(kalan, bolum)
+
+          sayi = 7 → kalan 3, bolum 1 → ekranda 3 1
+          sayi = 8 → kalan 0, bolum 2 → ekranda 0 2
+          sayi = 13 → kalan 1, bolum 3 → ekranda 1 3
+
+          Ortak tarif: program, sayının 4'e bölümünden kalanı ve bölümü (kaç kez sığdığını) yazar. Tek bir girdiye bakarak "3 ve 1 yazar" demek bir tarif değildir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          x = 6
+          y = 9
+          if x < y:
+              k = x
+          else:
+              k = y
+          print(k)
+
+          - Veri: k, x'ten ya da y'den birini alıyor.
+          - Kontrol: x < y ise x, değilse y.
+          - Birkaç girdi: (6, 9) → 6; (9, 6) → 6; (4, 4) → 4.
+          - Tarif: program iki sayıdan küçük olanı yazar (eşitse ikisi de aynıdır).
+
+          "Her zaman x'i yazar" tarifi (6, 9) için doğru görünür ama (9, 6) için 9 der; program ise 6 yazar. Tarif yanlıştır.
+    misconceptions:
+      - slug: single_case_generalization
+        name: Bir programın ne yaptığı tek bir örnek girdiden çıkarılabilir
+        open_question: Bir programın genel olarak ne yaptığını, tek bir örnek girdide ne yazdığına bakarak söyleyebileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "3 ve 5 için 16 yazdı; demek ki büyük sayının üç fazlasının iki katını alıyor."
+
+            Tek bir örnek, birbirinden çok farklı birçok tarife uyar. Tarifi bulmak için veri ve kontrol akışını oku, sonra birkaç farklı girdide (sıfır, eşit değerler, ters sıra) dene. Tarif hepsine uymuyorsa yanlıştır.
+      - slug: names_tell_purpose
+        name: Değişken adları programın ne yaptığını söyler
+        open_question: Bir programın ne hesapladığını değişken adlarından anlayabileceğini, kodu izlemeye gerek olmadığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Değişkenin adı ortalama, o halde program ortalamayı hesaplıyor."
+
+            İsimler programcının niyetini anlatır; programın gerçekte ne yaptığını kod belirler. Bir isim yanlış seçilmiş ya da kod hatalı olabilir. Ne hesaplandığını görmek için atamaları ve koşulları izle.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu program, başındaki a ve b değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 3
+          b = 5
+          c = a + b
+          c = c * 2
+          print(c)
+        options:
+          A: İki sayının toplamının iki katını
+          B: a'ya b'nin iki katını ekleyerek bulunan sayıyı
+          C: İki sayının çarpımının iki katını
+          D: Her zaman 16'yı
+        answer: A
+        verify:
+          mode: behaviour
+          template: "a = {a}\nb = {b}\nc = a + b\nc = c * 2\nprint(c)"
+          cases: [{a: 3, b: 5}, {a: 0, b: 0}, {a: 1, b: 4}, {a: 7, b: 2}, {a: 4, b: 4}]
+          refs:
+            A: "lambda a, b: 2 * (a + b)"
+            B: "lambda a, b: a + 2 * b"
+            C: "lambda a, b: 2 * a * b"
+            D: "lambda a, b: 16"
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu program, başındaki x ve y değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          x = 4
+          y = 9
+          t = x
+          x = y
+          y = t
+          print(x, y)
+        options:
+          A: İki değeri başlangıçtaki sırayla
+          B: İki değeri yerleri değişmiş olarak
+          C: İki kez başlangıçtaki x'i
+          D: İki değerin toplamını
+        answer: B
+        verify:
+          mode: behaviour
+          template: "x = {x}\ny = {y}\nt = x\nx = y\ny = t\nprint(x, y)"
+          cases: [{x: 4, y: 9}, {x: 1, y: 2}, {x: 0, y: 7}, {x: 5, y: 5}]
+          refs:
+            A: "lambda x, y: f'{x} {y}'"
+            B: "lambda x, y: f'{y} {x}'"
+            C: "lambda x, y: f'{x} {x}'"
+            D: "lambda x, y: x + y"
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu program, başındaki a ve b değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 6
+          b = 2
+          if a > b:
+              m = a
+          else:
+              m = b
+          print(m)
+        options:
+          A: Her zaman a'yı
+          B: İki sayıdan büyük olanı
+          C: İki sayıdan küçük olanı
+          D: İki sayının farkını
+        answer: B
+        required_skills: [skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "a = {a}\nb = {b}\nif a > b:\n    m = a\nelse:\n    m = b\nprint(m)"
+          cases: [{a: 6, b: 2}, {a: 2, b: 6}, {a: 3, b: 3}, {a: 0, b: 9}]
+          refs:
+            A: "lambda a, b: a"
+            B: "lambda a, b: max(a, b)"
+            C: "lambda a, b: min(a, b)"
+            D: "lambda a, b: a - b"
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program, başındaki n değeri (0 ya da pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 4
+          s = 0
+          for i in range(n + 1):
+              s = s + i
+          print(s)
+        options:
+          A: 0'dan n'e kadar (n dahil) bütün tamsayıların toplamını
+          B: n'nin karesini
+          C: 0'dan n'e kadar ama n hariç tamsayıların toplamını
+          D: n'nin iki katını
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\ns = 0\nfor i in range(n + 1):\n    s = s + i\nprint(s)"
+          cases: [{n: 0}, {n: 1}, {n: 2}, {n: 4}, {n: 7}]
+          refs:
+            A: "lambda n: sum(range(n + 1))"
+            B: "lambda n: n * n"
+            C: "lambda n: sum(range(n))"
+            D: "lambda n: 2 * n"
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki n değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 4721
+          k = 0
+          while n > 0:
+              n = n // 10
+              k = k + 1
+          print(k)
+        options:
+          A: n'nin kaç basamaklı olduğunu
+          B: n'nin 10'a bölümünü
+          C: n'nin son basamağını
+          D: n'nin basamaklarının toplamını
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nk = 0\nwhile n > 0:\n    n = n // 10\n    k = k + 1\nprint(k)"
+          cases: [{n: 4721}, {n: 5}, {n: 10}, {n: 99}, {n: 100}, {n: 123456}]
+          refs:
+            A: "lambda n: len(str(n))"
+            B: "lambda n: n // 10"
+            C: "lambda n: n % 10"
+            D: "lambda n: sum(int(d) for d in str(n))"
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki x değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          x = 7
+          if x % 2 == 0:
+              x = x // 2
+          else:
+              x = 3 * x + 1
+          print(x)
+        options:
+          A: x çiftse yarısını, tekse üç katının bir fazlasını
+          B: Her zaman x'in yarısını
+          C: x çiftse üç katının bir fazlasını, tekse yarısını
+          D: Her zaman x'in bir fazlasını
+        answer: A
+        required_skills: [skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "x = {x}\nif x % 2 == 0:\n    x = x // 2\nelse:\n    x = 3 * x + 1\nprint(x)"
+          cases: [{x: 7}, {x: 8}, {x: 1}, {x: 10}, {x: 3}]
+          refs:
+            A: "lambda x: x // 2 if x % 2 == 0 else 3 * x + 1"
+            B: "lambda x: x // 2"
+            C: "lambda x: 3 * x + 1 if x % 2 == 0 else x // 2"
+            D: "lambda x: x + 1"
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki n değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 12
+          c = 0
+          for i in range(1, n + 1):
+              if n % i == 0:
+                  c = c + 1
+          print(c)
+        options:
+          A: n'nin kaç tane böleni olduğunu
+          B: n'den küçük çift sayıların sayısını
+          C: n'nin bölenlerinin toplamını
+          D: n'nin kendisini
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nc = 0\nfor i in range(1, n + 1):\n    if n % i == 0:\n        c = c + 1\nprint(c)"
+          cases: [{n: 12}, {n: 1}, {n: 7}, {n: 9}, {n: 10}]
+          refs:
+            A: "lambda n: sum(1 for i in range(1, n + 1) if n % i == 0)"
+            B: "lambda n: len([k for k in range(n) if k % 2 == 0])"
+            C: "lambda n: sum(i for i in range(1, n + 1) if n % i == 0)"
+            D: "lambda n: n"

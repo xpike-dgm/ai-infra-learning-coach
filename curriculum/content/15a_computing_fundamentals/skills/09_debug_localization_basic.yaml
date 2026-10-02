@@ -1,0 +1,318 @@
+skill: skill.programming.debug_localization_basic
+activity: debugging_diagnosis
+tasks:
+  teach: {title: "Hata ayıklama: belirti, yer ve neden", minutes: 15}
+  practice: {title: "Hatanın yerini bulma alıştırması", minutes: 10}
+  check: {title: "Hatanın yerini bulma kontrolü", minutes: 10}
+  review: {title: "Hatanın yerini bulma tekrarı", minutes: 8}
+  repair: {title: "Hata ayıklamayı yeniden kurmak: beklenen ile gerçekleşeni karşılaştırmak", minutes: 12}
+
+objectives:
+  - id: objective.programming.debug_localization_basic.locate_cause
+    statement: >-
+      Beklenen davranışı ve gözlenen yanlış çıktıyı bilen kısa bir programda belirtiyi (symptom), hatanın bulunduğu
+      satırı (location) ve olası nedeni (cause) birbirinden ayırabilmek: hatanın, belirtinin göründüğü yerde değil,
+      durumun beklenenden ilk saptığı yerde olduğunu uygulayabilmek.
+    observable_behavior: >-
+      Hatalı satırı doğru seçer (belirtinin göründüğü satırla karıştırmaz) ve hatanın nedenini doğru açıklayan
+      seçeneği seçer.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de required_direct_type explanation idi; hatanın yeri kodu okuyarak bulunur. 15A direct type'ı code_reading
+      yaptı, explanation'ı direct kabul edilen ikinci tip bıraktı. Her item'da belirtinin gerçekten oluştuğu ve yalnızca
+      işaretlenen satırı düzeltmenin beklenen çıktıyı verdiği çalıştırılarak doğrulanır.
+    checks:
+      - prints: "27"
+        code: |
+          fiyat = 40
+          kdv = 8
+          toplam = fiyat - kdv
+          indirimli = toplam - 5
+          print(indirimli)
+      - prints: "43"
+        code: |
+          fiyat = 40
+          kdv = 8
+          toplam = fiyat + kdv
+          indirimli = toplam - 5
+          print(indirimli)
+      - prints: "20"
+        code: |
+          x = 12
+          y = 30
+          z = 8
+          t = x + y
+          t = x + z
+          print(t)
+      - prints: "183"
+        code: |
+          saat = 3
+          hiz = 60
+          yol = hiz * saat
+          ek = 20
+          toplam = yol + saat
+          print(toplam)
+    explanations:
+      canonical: |
+        Bir program istediğin şeyi yapmıyorsa üç ayrı soru vardır ve bunları karıştırmamak hata ayıklamanın (debugging) yarısıdır:
+
+        1. Belirti (symptom): Ne yanlış görünüyor? "43 bekliyordum, 27 yazdı."
+        2. Yer (location): Hata hangi satırda? Durumun, olması gerekenden ilk kez saptığı satır.
+        3. Neden (cause): O satır neden yanlış? "Vergiyi eklemek yerine çıkarmış."
+
+        En sık yapılan yanılgı, hatayı belirtinin göründüğü satırda aramaktır:
+
+        fiyat = 40
+        kdv = 8
+        toplam = fiyat - kdv
+        indirimli = toplam - 5
+        print(indirimli)
+
+        Amaç: vergi eklenmiş fiyattan 5 lira indirim yapmak, yani 40 + 8 - 5 = 43. Program 27 yazıyor. Belirti 5. satırda görünüyor ama print doğru olanı yapıyor: elindeki değeri yazıyor. 4. satır da doğru: aldığı değerden 5 çıkarıyor. Değer 3. satırda bozuldu: toplam 48 olmalıyken 32 oldu. Hata 3. satırdadır; neden, + yerine - kullanılmasıdır.
+
+        Yöntem:
+        1. Beklenen davranışı her ara adım için yaz: toplam 48 olmalı, indirimli 43 olmalı.
+        2. Programın izini çıkar (izleme tablosu).
+        3. Beklenen ile gerçekleşeni satır satır karşılaştır.
+        4. İlk farklı satır, hatanın yeridir. Ondan sonraki satırlar yalnızca yanlış değeri taşır.
+        5. Nedeni o satırda ara: yanlış işleç mi, yanlış değişken mi, yanlış sıra mı?
+
+        Düzeltmek, nedeni düzeltmektir. print(43) yazarak belirtiyi gizlemek bir düzeltme değildir: başka değerlerle program yine yanlış çalışır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (çalışma izi): her satırdan sonra bütün değişkenlerin değerini bir izleme tablosuna yaz. Hata ayıklarken aynı tabloya bir sütun daha eklersin: "olması gereken". İki sütunun ilk ayrıldığı satır, aradığın satırdır.
+      state_trace:
+        level: H2
+        text: |
+          Beklenen ve gerçekleşen sütunlarıyla izleme — başka bir örnek üzerinde.
+
+          Amaç: üç alışverişin (12, 30 ve 8 lira) toplamını yazmak (50).
+
+          x = 12
+          y = 30
+          z = 8
+          t = x + y
+          t = x + z
+          print(t)
+
+          satır 4: t gerçekleşen 42, beklenen 42 → aynı
+          satır 5: t gerçekleşen 20, beklenen 50 → ilk fark burada
+          satır 6: 20 yazılır (belirti)
+
+          Hatanın yeri 5. satır; nedeni, önceki t'nin üzerine eklemek yerine x'i yeniden kullanması (t + z olmalıydı).
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Amaç: saatte 60 km hızla 3 saat gidilen yola 20 km daha eklemek: 60 × 3 + 20 = 200. Program 183 yazıyor.
+
+          saat = 3
+          hiz = 60
+          yol = hiz * saat
+          ek = 20
+          toplam = yol + saat
+          print(toplam)
+
+          - Beklenen: yol 180, toplam 200, ekranda 200.
+          - İz: yol 180 (doğru), ek 20, toplam 183 (yanlış), ekranda 183.
+          - İlk fark: 5. satır. 3. satır doğru, 6. satır yalnızca elindeki yanlış değeri yazıyor.
+
+          Yer: 5. satır. Neden: ek yerine saat eklenmiş (yanlış değişken). Düzeltme: toplam = yol + ek. Belirti 6. satırda göründü, ama hatanın yeri orası değildi; bunu tahminle değil, izi karşılaştırarak bulduk.
+    misconceptions:
+      - slug: symptom_is_location
+        name: Hata, yanlış değerin ekrana yazıldığı satırdadır
+        open_question: Hatanın, yanlış sonucun ekrana yazıldığı satırda olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "27 print satırında çıktı, demek ki hata orada."
+
+            print çoğu zaman masumdur: elindeki değeri yazar. Değer daha önce, durumun beklenenden ilk saptığı satırda bozulmuştur. Belirtinin göründüğü yerden geriye doğru, beklenen ve gerçekleşen değerleri karşılaştırarak ilerle.
+      - slug: fix_by_forcing_output
+        name: Hata, çıktıyı istenen değere zorlayarak düzeltilir
+        open_question: Yanlış çıktıyı, doğru değeri doğrudan yazdıracak biçimde değiştirmenin hatayı düzelttiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "43 yazması gerekiyorsa print(43) yazarım."
+
+            Bu yalnız belirtiyi gizler; neden yerinde durur. Fiyat 50 olduğunda program yine yanlış hesaplar. Düzeltme, hatanın nedenini — yanlış işleci, yanlış değişkeni, yanlış sırayı — düzeltmektir; sonra program her değer için doğru çalışır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Amaç: eni 3, boyu 5 olan bir dikdörtgenin çevresini yazmak (beklenen: 16). Program 15 yazıyor. Hata hangi satırda?
+        code: |
+          en = 3
+          boy = 5
+          cevre = en * boy
+          print(cevre)
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 4. satır
+        answer: C
+        verify:
+          mode: fault
+          observed: 15
+          intended: 16
+          line_options: {A: 1, B: 2, C: 3, D: 4}
+          fix: cevre = 2 * (en + boy)
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Amaç: 4, 7 ve 9'un toplamını yazmak (beklenen: 20). Program 13 yazıyor. Hata hangi satırda?
+        code: |
+          a = 4
+          b = 7
+          c = 9
+          toplam = a + b
+          toplam = a + c
+          print(toplam)
+        options:
+          A: 3. satır
+          B: 4. satır
+          C: 5. satır
+          D: 6. satır
+        answer: C
+        verify:
+          mode: fault
+          observed: 13
+          intended: 20
+          line_options: {A: 3, B: 4, C: 5, D: 6}
+          fix: toplam = toplam + c
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Amaç: 3 ürünün tutarından 10 lira indirim yapıp ödenecek tutarı yazmak (beklenen: 65). Program 75 yazıyor. Hata hangi satırda?
+        code: |
+          adet = 3
+          birim = 25
+          indirim = 10
+          tutar = adet * birim
+          odenecek = tutar - indirim
+          print(tutar)
+        options:
+          A: 3. satır
+          B: 4. satır
+          C: 5. satır
+          D: 6. satır
+        answer: D
+        verify:
+          mode: fault
+          observed: 75
+          intended: 65
+          line_options: {A: 3, B: 4, C: 5, D: 6}
+          fix: print(odenecek)
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Amaç: 1200 liralık kiraya 150 lira aidat ekleyip, sonra 100 lira erken ödeme indirimi yapmak (beklenen: 1250). Program 950 yazıyor. Hata hangi satırda?
+        code: |
+          kira = 1200
+          aidat = 150
+          aylik = kira - aidat
+          odenecek = aylik - 100
+          print(odenecek)
+        options:
+          A: 2. satır
+          B: 3. satır
+          C: 4. satır
+          D: 5. satır
+        answer: B
+        verify:
+          mode: fault
+          observed: 950
+          intended: 1250
+          line_options: {A: 2, B: 3, C: 4, D: 5}
+          fix: aylik = kira + aidat
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: 50 ve üstü puan alan geçer. Puanı 50 olan biri için program Kaldı yazıyor (beklenen: Geçti). Hata hangi satırda?
+        code: |
+          puan = 50
+          if puan > 50:
+              print("Geçti")
+          else:
+              print("Kaldı")
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 5. satır
+        answer: B
+        required_skills: [skill.programming.branching_reasoning]
+        verify:
+          mode: fault
+          observed: Kaldı
+          intended: Geçti
+          line_options: {A: 1, B: 2, C: 3, D: 5}
+          fix: "if puan >= 50:"
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: 1'den 5'e kadar sayıların toplamını yazmak (beklenen: 15). Program 10 yazıyor. Hata hangi satırda?
+        code: |
+          toplam = 0
+          for i in range(5):
+              toplam = toplam + i
+          print(toplam)
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 4. satır
+        answer: B
+        required_skills: [skill.programming.iteration_reasoning]
+        verify:
+          mode: fault
+          observed: 10
+          intended: 15
+          line_options: {A: 1, B: 2, C: 3, D: 4}
+          fix: "for i in range(1, 6):"
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: a ile b'nin değerlerini takas edip 9 7 yazmak. Program 9 9 yazıyor. Hatanın nedeni hangisi?
+        code: |
+          a = 7
+          b = 9
+          a = b
+          b = a
+          print(a, b)
+        options:
+          A: 3. satır a'nın eski değerini (7) kaybettiriyor; 4. satır artık yalnızca 9'u kopyalayabiliyor.
+          B: print, değerleri yanlış sırada yazıyor.
+          C: 4. satır hiç çalışmıyor.
+          D: Python iki değişkenin değerini değiştirmeye izin vermez.
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def run(lines):
+                env = {}
+                exec("\n".join(lines), env)
+                return env
+            lines = ["a = 7", "b = 9", "a = b", "b = a"]
+            after3 = run(lines[:3])
+            claims = {
+                # A: after line 3 the old 7 is held by no variable.
+                "A": 7 not in (after3["a"], after3["b"]),
+                # B: swapping the printed order would show the intended 9 7.
+                "B": (run(lines)["b"], run(lines)["a"]) == (9, 7),
+                # C: line 4 is skipped — it would have to leave b untouched even when a differs.
+                "C": run(["a = 1", "b = 2", "b = a"])["b"] == 2,
+                # D: a value cannot be reassigned.
+                "D": run(["a = 7", "a = 9"])["a"] == 7,
+            }
+            print(",".join(k for k, v in claims.items() if v))

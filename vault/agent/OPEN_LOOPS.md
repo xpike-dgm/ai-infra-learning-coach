@@ -62,10 +62,17 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 14E AI-generated code comprehension check: ACCX-v0 / D-109 ile tamamlandı; önce yazılmış kontrol, yoksa tutor pratiği, hemen sonra ve isteğe bağlı, `generated_or_copied` yeniden kontrol açar.
 - [x] 14F Açık uçlu cevap değerlendirme: OREX-v0 / D-110 ile tamamlandı; kısa cevap kabul edilen listeyle, uzun cevap rubric'le (AI yalnız kriter bulgusu), AI yoksa bekler + öz-kontrol.
 - [x] 14G Provider abstraction/fallback: PRVX-v0 / D-111 ile tamamlandı; OpenAI adaptörü, Keystore anahtarı, Profile ekranı, AI'sız build'de ağ izni yok. **AŞAMA 14 kapandı.**
-- [ ] 15A Computer / Programming Fundamentals **AKTİF**.
+- [x] 15A Computer / Programming Fundamentals: CPFX-v0 / D-112 ile tamamlandı; 6C alt-grafı published, 95 item (çalıştırılarak/kaynakla + bağımsız inceleme), 79 anlatım, 34 misconception, 60 görev, `[task]` bölümü, ilk sevk edilen paket. **AŞAMA 15 başladı.**
+- [ ] 15B Python Foundations **AKTİF**.
+- [ ] İkinci bir paketin nasıl sevk edileceği (tek asset; mağaza her varlığın paket sürümünü taşımasını istiyor) → 15B.
+- [ ] 6C'nin `requires_transfer` beyanı mağazada taşınmıyor, `GRE-v0` transfer kapısı hiç uygulanmıyor → 15H.
+- [ ] `iteration_reasoning` ← `expression_boolean_reasoning` kenarı graph'ta yok; 15A bunu ders ve item düzeyinde beyan etti → 15H.
+- [ ] Runner'ın görevin anlatımlarını sunması ve havuzundan görülmemiş item seçmesi → 16D.
+- [ ] Görev ve item dakikalarının kalibrasyonu → 18B.
+- [ ] Sevk edilen paketin cihazda ilk SQLite ingestion'ı ve T6 → öğrenci, cihazda.
 - [ ] İlk canlı sağlayıcı çağrısı ve Keystore yolu cihazda (Profile → 'Bağlantıyı dene') → öğrenci (T6).
 - [ ] Tutor ve değerlendiricileri görev ekranlarından çağırmak; kullanım/maliyet görünürlüğü → 16D.
-- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15.
+- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15 (15A'nın 13 Objective'i için yazıldı, D-112; 15B–15G'de devam).
 - [x] `open_response_evaluation/1` için adaptör çağrı noktası: 14G'de kuruldu (D-111).
 - [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16D.
 - [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
@@ -79,10 +86,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] AI kod değerlendiricisinin istemi ve çağrı noktası: `code_evaluation_instructions/1` core'da, çağrı noktası 14G'de (D-111).
 - [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
 - [ ] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15.
-- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15.
+- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13 Objective'i için yazıldı, D-112; 15B–15G'de devam).
 - [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
-- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15.
+- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34 katalog etiketi yazıldı, D-112; cevap→etiket anahtarı formatı yok, 15B–15G'de karar).
 - [ ] Misconception hafızasının item seçiminde kullanımı ve `misconception_contrast` içeriğinin yazılması → 15 (menüde hafızaya göre sunulması 14C'de, D-107).
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.

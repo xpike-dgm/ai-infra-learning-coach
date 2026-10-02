@@ -300,14 +300,15 @@ PEM-v0:
 - 14F ✅ OREX-v0 / D-110
 - 14G ✅ PRVX-v0 / D-111
 - **AŞAMA 14 TAMAMLANDI**
-- 15A 🟡 active-not-executed
-- 15B–20 ⬜
+- 15A ✅ CPFX-v0 / D-112
+- 15B 🟡 active-not-executed
+- 15C–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14G — PRVX-v0 / D-111`  
-**Aktif:** `15A — Computer / Programming Fundamentals`  
-**15A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15A — CPFX-v0 / D-112`  
+**Aktif:** `15B — Python Foundations`  
+**15B henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1345,3 +1346,26 @@ PRVX-v0:
 ## 76. 15A handoff
 
 15A — Computer / Programming Fundamentals (AŞAMA 15 — İlk 8–12 haftalık gerçek eğitim içeriği). Bütün motorlar (12–13), tutor ve değerlendirme sözleşmeleri (14) ve içerik bölümleri kodda: `[item]`, `[explanation]`, `[code_test_suite]`/`[code_test]`, `[comprehension_check]`, `[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, `[misconception]`. AŞAMA 14'ün içerik açık loop'ları (yazılı anlatımlar, testler, anlama kontrolleri, anahtarlar, rubric'ler, katalog etiketleri) 15'e bağlı. 15A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 77. D-112 / 15A final özeti
+
+Canonical: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.
+Contract/QA: `arch/15a_computing_fundamentals/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15a_computing_fundamentals_research.md`.
+Content: `curriculum/content/15a_computing_fundamentals/` (package, notation, twelve Skill files, independent review) → `tools/build_curriculum_package.py` → `android/app-wiring/src/main/assets/curriculum_package.txt` (generated).
+Code: `core-model` `AuthoredTaskFacts.kt`; `data-curriculum` `PackageFormat` (`[task]`, whole-line comments, prompt line breaks), `FileContentSource.taskCandidates`; `app-wiring` first JVM test.
+
+CPFX-v0:
+- content is only as trustworthy as what checked it: every key executed (code, every option of a choice, the lessons' own examples) or reference-grounded, and every item and explanation independently reviewed; AI content stays `ai_generated` and at most `validated`,
+- user decisions: executed keys plus independent review; a readable Python subset taught for reading; refine and record the Objective metadata,
+- found: no task format (every need had no candidate); the 6C subgraph all `draft`; templated Objective metadata; `#` cut values and prompts did not decode line breaks; `while` needs comparisons the graph does not state; `requires_transfer` not stored,
+- 12 Skills / 13 Objectives / 11 edges published, identities unchanged; 95 items (83 executed, 8 reference, 4 rubric), 79 explanations, 34 misconceptions, 60 tasks, 40 lesson claims executed,
+- the independent review failed 32 items in its first pass for lesson leakage; all rewritten; final 95/95 and 79/79,
+- the first plan: two entry lessons for a learner with no history, ten dependent Skills waiting, no need without a candidate,
+- 11D's and 12C's gates narrowed for exactly this step; schema, ports and store unchanged,
+- mutation 22/22, independent QA 131/131, validator mutation 30/30, sweep 56/56,
+- T6 and the first SQLite ingestion of the shipped package were not run.
+
+## 78. 15B handoff
+
+15B — Python Foundations. 15A's pipeline is in place: the content source format, the reading-notation ladder, the generator that executes every key and lesson claim, the independent review file, the `[task]` section and the first-plan test. 15B decides how a second package ships (one asset today; the store requires every entity of a package to carry the package's own version). Open loops carried: `requires_transfer` not stored and the `iteration_reasoning` ← `expression_boolean_reasoning` edge (15H), the runner presenting a task's pool (16D), minute calibration (18B), T6 and on-device ingestion. 15B fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

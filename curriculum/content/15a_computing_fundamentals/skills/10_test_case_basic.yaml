@@ -1,0 +1,272 @@
+skill: skill.programming.test_case_basic
+activity: recognition_selection
+tasks:
+  teach: {title: "Test durumu: girdi, beklenen sonuç ve sınır durumları", minutes: 14}
+  practice: {title: "Test durumu tasarlama alıştırması", minutes: 10}
+  check: {title: "Test durumu tasarlama kontrolü", minutes: 8}
+  review: {title: "Test durumu tasarlama tekrarı", minutes: 6}
+  repair: {title: "Testi yeniden kurmak: beklenen sonucu tariften hesaplamak", minutes: 12}
+
+objectives:
+  - id: objective.programming.test_case_basic.design_expected_case
+    statement: >-
+      Bir fonksiyonun tarifinden (specification) yola çıkarak bağımsız bir test durumu tasarlayabilmek: bir girdi
+      seçip beklenen sonucu koddan değil tariften hesaplayabilmek, sınır (edge) girdilerini seçebilmek ve verilen
+      girdilerden hangisinin hatalı bir fonksiyonu doğrusundan ayırdığını söyleyebilmek.
+    observable_behavior: >-
+      Bir girdi için beklenen sonucu tariften doğru hesaplar; eksiksiz bir test durumunu tanır; hatayı yakalayan girdiyi
+      ve yetersiz bir testin sorununu doğru seçer.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation, code_reading]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi. Direct type explanation kaldı. Hatayı yakalayan girdiyi
+      soran item'lar, her girdinin hatalı ve doğru fonksiyonda gerçekten çalıştırılmasıyla doğrulanır.
+    checks:
+      - prints: "18 11"
+        code: |
+          def cevre(en, boy):
+              return 2 * (en + boy)
+          def hatali_cevre(en, boy):
+              return 2 * en + boy
+          print(cevre(2, 7), hatali_cevre(2, 7))
+      - prints: "True False"
+        code: |
+          def dogru(en, boy):
+              return 2 * (en + boy)
+          def hatali(en, boy):
+              return 2 * en + boy
+          print(dogru(3, 0) == hatali(3, 0), dogru(0, 4) == hatali(0, 4))
+      - prints: "10 0"
+        code: |
+          def alan(en, boy):
+              return en + en * boy - en
+          print(alan(2, 5), alan(0, 3))
+    explanations:
+      canonical: |
+        Bir fonksiyonun doğru çalışıp çalışmadığını nasıl anlarsın? Onu, sonucunu önceden bildiğin bir girdiyle çalıştırıp, gerçek sonucu beklediğinle karşılaştırırsın. Buna test durumu (test case) denir.
+
+        Bir test durumunun iki parçası vardır:
+        1. Girdi: Fonksiyon hangi değerlerle çağrılacak? cevre(2, 7)
+        2. Beklenen sonuç (expected): Tarife göre ne dönmeli? 2 × (2 + 7) = 18
+
+        Fonksiyon çalıştırılır, gerçek sonuç (actual) beklenenle karşılaştırılır. Aynıysa test geçer; farklıysa başarısız olur ve bir hata olduğunu gösterir.
+
+        En önemli kural: beklenen sonuç tariften hesaplanır, koddan değil. Fonksiyonu çalıştırıp gördüğün sonucu "beklenen" diye yazarsan test, kod ne yapıyorsa onu doğru sayar ve hiçbir hatayı yakalayamaz. Tarif "çevreyi döndür" diyorsa, 18'i kafandan ya da kâğıt üzerinde tarife göre hesaplarsın.
+
+        İyi girdi seçmek: Her girdi her hatayı yakalamaz.
+
+        def cevre(en, boy):
+            return 2 * en + boy
+
+        Bu fonksiyon hatalı (doğrusu 2 * (en + boy)). cevre(3, 0) testi 6 bekler ve 6 alır: test geçer, hata gizli kalır. cevre(0, 4) testi 8 bekler ama 4 alır: hata yakalanır. Bir test, ancak hatalı fonksiyon ile doğru fonksiyonun farklı sonuç verdiği bir girdi kullanıyorsa o hatayı yakalar.
+
+        Sınır (edge) durumları, hataların en çok saklandığı yerlerdir:
+        - sıfır, eksi değerler, eşit değerler,
+        - bir koşulun tam sınırı: "100 ve üstü" diyen bir kural için 100'ün kendisi, 99 ve 101.
+
+        Son olarak: geçen bir test, fonksiyonun yalnızca o girdi için doğru çalıştığını gösterir. Fonksiyonun her girdi için doğru olduğunu kanıtlamaz; bu yüzden farklı türden girdilerle birkaç test yazılır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (fonksiyonlar): bir fonksiyonun girdileri parametreleri, çıktısı return ettiği değerdir. Bir test durumu tam da bu ikisini yazar: hangi girdilerle çağrılacak ve hangi çıktıyı döndürmesi gerekiyor.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Tarif: alan(en, boy) dikdörtgenin alanını döndürür.
+          Şüpheli kod:
+
+          def alan(en, boy):
+              return en + en * boy - en
+
+          1. Bir test: alan(2, 5). Tariften beklenen: 2 × 5 = 10. Kod: 2 + 10 - 2 = 10. Test geçer.
+          2. Başka bir test: alan(0, 3). Beklenen 0; kod: 0 + 0 - 0 = 0. Geçer.
+
+          Bu kod aslında her girdi için en * boy'a eşit (en ile -en birbirini götürüyor); testlerin geçmesi doğru. Burada önemli olan, beklenen değerleri her seferinde tariften hesaplamamız: kodun ne döndürdüğüne bakmadan 10 ve 0 yazdık, sonra karşılaştırdık.
+    misconceptions:
+      - slug: expected_from_code
+        name: Beklenen sonuç, kodu çalıştırınca görülen sonuçtur
+        open_question: Bir testin beklenen sonucunu, fonksiyonu çalıştırıp gördüğün değerden alabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fonksiyon 13 döndürdü, beklenen sonuç olarak 13 yazarım."
+
+            Böyle yazılan bir test, kod ne yapıyorsa onu doğru kabul eder; kod hatalıysa test de hatalı değeri bekler ve geçer. Beklenen sonuç tariften hesaplanmalıdır: "çevreyi döndür" diyorsa 2 × (en + boy). Gerçek sonuç ancak bundan sonra karşılaştırılır.
+      - slug: passing_test_proves_correct
+        name: Geçen bir test fonksiyonun doğru olduğunu kanıtlar
+        open_question: Bir test geçtiğinde, fonksiyonun her girdi için doğru çalıştığının kanıtlandığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "indirim(150) testi geçti, fonksiyon doğru."
+
+            Bir test yalnız kendi girdisi hakkında konuşur. Hata başka bir girdide — çoğu zaman bir sınırda, örneğin 100'de — saklanıyor olabilir. Farklı türden girdilerle (normal, sınır, sıfır) birden çok test yazmak bu yüzdendir.
+      - slug: any_input_detects
+        name: Her test girdisi bir hatayı ortaya çıkarır
+        open_question: Hatalı bir fonksiyonu hangi girdiyle test edersen et, hatanın ortaya çıkacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hangi sayıyla denediğimin önemi yok, hata varsa görünür."
+
+            Hatalı ve doğru fonksiyon birçok girdide aynı sonucu verebilir. 2 * en + boy ile 2 * (en + boy), boy 0 olduğunda aynı sonucu verir. Hatayı yakalamak için, ikisinin farklı davrandığı bir girdi seçmen gerekir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Tarif: cevre(en, boy) bir dikdörtgenin çevresini döndürür. cevre(4, 9) için bir test yazıyorsun. Beklenen sonuç ne olmalı?
+        answer: "26"
+        verify:
+          mode: script
+          script: |
+            def cevre(en, boy):
+                return 2 * (en + boy)
+            print(cevre(4, 9))
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Tarif: alan(en, boy) bir dikdörtgenin alanını döndürür. Aşağıdakilerden hangisi eksiksiz bir test durumudur?
+        options:
+          A: alan(3, 4) çağrılır.
+          B: alan(3, 4) çağrılır; sonucun 12 olması beklenir.
+          C: Sonucun 12 olması beklenir.
+          D: alan fonksiyonunun hata vermemesi beklenir.
+        answer: B
+        verify:
+          mode: reference
+          reference: "Python Library Reference — unittest: 'A test case is the individual unit of testing. It checks for a specific response to a particular set of inputs.'"
+          claim: "Bir test durumu belirli bir girdi ile o girdiye beklenen belirli bir yanıttan oluşur."
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Tarif: uc_kat_fark(a, b), a ile b'nin farkının üç katını döndürür, yani 3 × (a − b). Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def uc_kat_fark(a, b):
+              return 3 * a - b
+        options:
+          A: uc_kat_fark(5, 0)
+          B: uc_kat_fark(0, 0)
+          C: uc_kat_fark(2, 1)
+          D: uc_kat_fark(7, 0)
+        answer: C
+        verify:
+          mode: detects
+          name: uc_kat_fark
+          correct: "def uc_kat_fark(a, b):\n    return 3 * (a - b)"
+          faulty: "def uc_kat_fark(a, b):\n    return 3 * a - b"
+          inputs: {A: [5, 0], B: [0, 0], C: [2, 1], D: [7, 0]}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Tarif: toplam(adet, birim, kargo) adet ile birim fiyatın çarpımına kargo ücretini ekleyip döndürür. toplam(4, 15, 12) için beklenen sonuç ne olmalı?
+        answer: "72"
+        verify:
+          mode: script
+          script: |
+            def toplam(adet, birim, kargo):
+                return adet * birim + kargo
+            print(toplam(4, 15, 12))
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: indirim(tutar), tutar 100 ve üstüyse 10 düşülmüş tutarı, değilse tutarın kendisini döndürür. Aşağıdaki kodda bir hata var. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def indirim(tutar):
+              if tutar > 100:
+                  return tutar - 10
+              return tutar
+        options:
+          A: indirim(150)
+          B: indirim(100)
+          C: indirim(50)
+          D: indirim(99)
+        answer: B
+        required_skills: [skill.programming.branching_reasoning]
+        verify:
+          mode: detects
+          name: indirim
+          correct: "def indirim(tutar):\n    if tutar >= 100:\n        return tutar - 10\n    return tutar"
+          faulty: "def indirim(tutar):\n    if tutar > 100:\n        return tutar - 10\n    return tutar"
+          inputs: {A: [150], B: [100], C: [50], D: [99]}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: kargo(tutar), tutar 200 ve üstüyse 0, değilse 30 döndürür. Bu fonksiyon için yalnızca bir test yazılmış: kargo(500) sonucunun 0 olması bekleniyor. Test geçiyor. Bu ne gösterir?
+        options:
+          A: Fonksiyonun doğru olduğunu; geçen bir test yeterlidir.
+          B: Yalnızca 500 için doğru çalıştığını; 200 gibi bir sınır girdisinde hata yine de olabilir.
+          C: Fonksiyonun doğru olduğunu; çünkü 500 büyük bir tutardır.
+          D: Hiçbir şey; testler bir fonksiyon hakkında bilgi vermez.
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def faulty(tutar):
+                if tutar > 200:
+                    return 0
+                return 30
+            def correct(tutar):
+                if tutar >= 200:
+                    return 0
+                return 30
+            def broken(tutar):
+                return 30
+            passes = faulty(500) == 0
+            claims = {
+                # A: one passing test proves correctness — yet a version wrong at the boundary passes it.
+                "A": not (passes and faulty(200) != correct(200)),
+                # B: the test speaks only for 500; the boundary can still be wrong.
+                "B": passes and faulty(200) != correct(200),
+                # C: the size of the input proves correctness — the same faulty version shows it does not.
+                "C": not (passes and faulty(200) != correct(200)),
+                # D: the test tells nothing — yet it fails a version that always charges.
+                "D": broken(500) == 0,
+            }
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: kare_cevre(kenar), bir karenin çevresini (4 × kenar) döndürür. Bir arkadaşın aşağıdaki fonksiyonu çalıştırmış, kare_cevre(3) için 9 görmüş ve testine beklenen sonuç olarak 9 yazmış; test geçiyor. Sonra fonksiyonu tarife uygun biçimde düzeltiyor (return 4 * kenar). Aynı test şimdi ne olur?
+        code: |
+          def kare_cevre(kenar):
+              return kenar * kenar
+        options:
+          A: Geçmeye devam eder; düzeltme testi etkilemez.
+          B: Başarısız olur; beklenen değer hatalı koddan alındığı için artık doğru kodu yanlış sayar.
+          C: Hata verir; test artık çalıştırılamaz.
+          D: Geçer; çünkü 9 ile 12 birbirine yakındır.
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "gecer", B: "basarisiz", C: "hata", D: "gecer"}
+          script: |
+            def fixed(kenar):
+                return 4 * kenar
+            def faulty(kenar):
+                return kenar * kenar
+            expected = faulty(3)
+            print("gecer" if fixed(3) == expected else "basarisiz")
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Tarif: buyuk(a, b), iki sayıdan büyük olanı döndürür. Bu fonksiyon için üç test durumu yaz. Her birinde girdiyi ve beklenen sonucu belirt; en az birinin bir sınır durumu olduğunu açıkla.
+        answer: "-"
+        rubric:
+          - id: input_and_expected
+            statement: Her test durumu için hem girdileri hem beklenen sonucu yazar.
+          - id: expected_from_specification
+            statement: Beklenen sonuçlar tarife göre doğrudur (iki sayıdan büyük olanı).
+          - id: boundary_case
+            statement: En az bir sınır durumu içerir (örneğin iki sayının eşit olduğu durum) ve neden sınır olduğunu söyler.
+          - id: varied_cases
+            statement: Testler farklı türden durumları kapsar (örneğin ilk sayının büyük olduğu, ikincinin büyük olduğu, eşit oldukları).
+        verify:
+          mode: rubric

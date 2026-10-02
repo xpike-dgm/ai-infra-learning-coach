@@ -75,8 +75,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **14E — AI-generated code comprehension check** | ✅ | ACCX-v0 / D-109. Başkasının yazdığı kodun çalışması öğrenci hakkında bir şey kanıtlamaz; açıklamak anlamayı kanıtlar, üretimi değil; önce yazılmış kontrol, yoksa tutor pratiği; hemen sonra, isteğe bağlı; AI yazımı kod yeniden kontrol açar (kullanıcı kararları); şema değişmedi; 112/112 QA PASS, mutation 43/43. |
 | **14F — Açık uçlu cevap değerlendirme** | ✅ | OREX-v0 / D-110. Serbest metin cevap dersin söylediğine göre değerlendirilir, kulağa nasıl geldiğine göre değil; kısa cevap kabul edilen listeyle (verified), uzun cevap rubric'le kriter kriter (AI yalnız bulgu önerir, core karar verir, en çok provisional); AI yoksa bekler + öz-kontrol, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi; 117/117 QA PASS, mutation 49/49. |
 | **14G — Provider abstraction/fallback** | ✅ | PRVX-v0 / D-111. Sağlayıcı portların arkasında değiştirilebilir ayrıntı; OpenAI (kullanıcı kararı), `store: false`, katı şema, önce durma nedeni, uçtan uca bütçe, arka planda yeniden deneme yok; anahtar Keystore'da, Profile ekranından (kullanıcı kararı); AI'sız build'de ağ izni yok; şema değişmedi; 129/129 QA PASS, mutation 41/41. **AŞAMA 14 TAMAMLANDI.** |
-| **15A — Computer / Programming Fundamentals** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **15B–20** | ⬜ Bekliyor | 15A sonrası canonical sırada. |
+| **15A — Computer / Programming Fundamentals** | ✅ | CPFX-v0 / D-112. İlk gerçek içerik sevk ediliyor: FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 kenar) `published`; 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev; her anahtar çalıştırıldı ya da kaynaklandı ve bağımsız incelemeden geçti (95/95, 79/79); `[task]` bölümü ve iki format düzeltmesi; ilk plan iki giriş dersi; kullanıcı kararları: çalıştırma + bağımsız QA, okunur Python alt kümesi, netleştir ve kaydet; 131/131 QA PASS, mutation 22/22. |
+| **15B — Python Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **15C–20** | ⬜ Bekliyor | 15B sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -95,7 +96,24 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 14G
+## Son tamamlanan numaralı adım — 15A
+
+**Final:** `CPFX-v0 — Computer / Programming Fundamentals content` / D-112.
+**Ana çıktı:** `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md` + `arch/15a_computing_fundamentals/` + `curriculum/content/15a_computing_fundamentals/` + `android/app-wiring/src/main/assets/curriculum_package.txt`.
+
+15A sonucu:
+- içerik yalnız onu neyin kontrol ettiği kadar güvenilirdir; AI'ın yazdığı hiçbir şey kendi başına güvenilir sayılmaz,
+- kullanıcı kararları: çalıştırma + bağımsız QA; okunur Python alt kümesi; Objective metadata'sını netleştir ve kaydet,
+- **bulgu:** hiçbir format görev taşıyamıyordu (her ihtiyaç adaysızdı); 6C alt-grafı `draft` ve rotada değildi; Objective metadata'sı şablondu; `#` değerleri kesiyordu ve prompt satır sonu çözmüyordu; `while` koşulları graph'ın söylemediği bir ön koşul istiyor; `requires_transfer` mağazada taşınmıyor,
+- 12 Skill / 13 Objective / 11 kenar `published`, kimlik değişmedi; 9 Objective'in direct type'ı code_reading,
+- 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev; 40 ders iddiası çalıştırıldı,
+- bağımsız inceleme ilk geçişte 32 item'ı ders içi sızıntı yüzünden düşürdü; yeniden yazıldı, son durum 95/95 ve 79/79,
+- ilk plan: geçmişi olmayan öğrenciye iki giriş dersi, on bağımlı Skill bekliyor, hiçbir ihtiyaç adaysız değil,
+- 11D ve 12C'nin birer kapısı daraltıldı; şema, portlar ve mağaza değişmedi,
+- mutation 22/22, independent validator **131/131 PASS**, kendi mutation testi 30/30; 56/56 sweep PASS,
+- **T6 ve sevk edilen paketin SQLite'a ilk yayımlanması çalıştırılmadı** (öğrencinin, cihazda).
+
+## Önceki numaralı adım — 14G
 
 **Final:** `PRVX-v0 — Provider Adapter` / D-111.
 **Ana çıktı:** `docs/PROVIDER_ADAPTER_IMPL_SPEC.md` + `arch/14g_provider_adapter/` + `android/`.
@@ -335,6 +353,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15A Computer / Programming Fundamentals
+## Aktif adım — 15B Python Foundations
 
-**15A henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+**15B henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. Açık loop: ikinci bir paketin nasıl sevk edileceği (tek asset; varlık sürümü paket sürümüne bağlı).

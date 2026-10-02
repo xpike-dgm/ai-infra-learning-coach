@@ -743,3 +743,7 @@ Diagnostic'in hangi şartta lesson skip/waiver vereceği 3E'de tanımlanır.
 3C şu soruyu cevaplayacaktır:
 
 > Aynı gün capacity'ye sığmayacak kadar çok açık LearningNeed ve TaskCandidate varsa, hangileri bugün seçilir, hangileri ertelenir ve bu karar hangi explainable priority sinyalleriyle verilir?
+
+---
+
+**15A note (2026-10-02, `D-112`):** §15's TaskCandidate now has an authored content side — `AuthoredTask` and the strict `[task]` package section. Which needs a purpose may serve (`TaskServing`) is taken from §3.1 and §19's examples; `diagnose` is never authored. Details: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.

@@ -65,6 +65,9 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     testImplementation(kotlin("test"))
+    // 15A: the first JVM test in this module (the shipped package planned by the real planner). An Android module does
+    // not infer the JUnit 5 flavour of kotlin-test the way the JVM modules do, so it is named.
+    testImplementation(kotlin("test-junit5"))
 }
 
 tasks.withType<Test>().configureEach {
