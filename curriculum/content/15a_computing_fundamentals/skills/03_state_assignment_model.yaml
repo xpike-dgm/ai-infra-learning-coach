@@ -1,0 +1,255 @@
+skill: skill.programming.state_assignment_model
+activity: code_reading_trace
+tasks:
+  teach: {title: "Değişken ve atama: durumu adım adım izlemek", minutes: 14}
+  practice: {title: "Atama izleme alıştırması", minutes: 10}
+  check: {title: "Atama izleme kontrolü", minutes: 8}
+  review: {title: "Atama izleme tekrarı", minutes: 6}
+  repair: {title: "Atamayı yeniden kurmak: durum tablosu", minutes: 12}
+
+objectives:
+  - id: objective.programming.state_assignment_model.trace_state
+    statement: >-
+      Kısa ve dallanmasız bir kod parçasında her atamadan sonra hangi değişkenin hangi değeri tuttuğunu adım adım
+      izleyebilmek ve programın sonunda ekrana ne yazdığını söyleyebilmek.
+    observable_behavior: >-
+      Atama, yeniden atama, kopyalama ve takas içeren 3–6 satırlık kodda herhangi bir satırdan sonraki değerleri ve
+      son çıktıyı doğru verir.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de required_direct_type explanation idi; ancak bu Objective'in gözlenebilir davranışı ("state'i adım adım
+      izlemek") kodu okuyup değerleri vermektir. 15A direct type'ı code_reading yaptı ve explanation'ı direct kabul
+      edilen ikinci tip olarak bıraktı (kullanıcı kararı 2026-10-02: netleştir ve kaydet).
+    checks:
+      - prints: "8 4"
+        code: |
+          a = 3
+          b = a + 1
+          a = b * 2
+          print(a, b)
+      - prints: "14 20"
+        code: |
+          print(2 + 3 * 4, (2 + 3) * 4)
+      - prints: "8 18"
+        code: |
+          k = 2
+          m = k * 5
+          k = m - k
+          m += k
+          print(k, m)
+      - prints: "9 7"
+        code: |
+          a = 7
+          b = 9
+          t = a
+          a = b
+          b = t
+          print(a, b)
+    explanations:
+      canonical: |
+        Bir program çalışırken bilgileri değişkenlerde (variable) tutar. Değişken, bir değere verilmiş isimdir. Programın herhangi bir andaki durumu (state), o anda hangi değişkenin hangi değeri tuttuğudur.
+
+        Bu derste Python'u yalnızca okumak için kullanacağız; yazmayı Python dersinde öğreneceksin. Okuman gereken her şey burada.
+
+        Atama (assignment): isim = değer
+
+        x = 5
+
+        "x eşittir 5" diye değil, "x'e 5'i ata" diye oku. = bir denklem değildir; sağdaki değeri hesaplar ve soldaki isme bağlar.
+
+        Atama her zaman iki adımda çalışır:
+        1. Önce sağ taraf hesaplanır (o andaki değerlerle).
+        2. Sonra sonuç soldaki isme atanır; o ismin eski değeri unutulur.
+
+        Bu yüzden şu satır anlamlıdır:
+
+        x = x + 1
+
+        Sağ taraf x'in o anki değeriyle hesaplanır (5 + 1 = 6), sonra x'e 6 atanır. Kısaltması da vardır: x += 1 aynı şeyi yapar. Aynı şekilde x -= 2 ve x *= 3 de yazılabilir.
+
+        Aritmetik: + toplama, - çıkarma, * çarpma. Çarpma toplamadan önce yapılır: 2 + 3 * 4 sonucu 14'tür; parantez içi önce hesaplanır: (2 + 3) * 4 sonucu 20'dir.
+
+        Ekrana yazmak: print(x) x'in değerini yazar. print(a, b) iki değeri aralarında bir boşlukla yazar. print("Merhaba") tırnak içindeki yazıyı olduğu gibi yazar. # işaretinden sonrası açıklamadır (comment) ve çalışmaz.
+
+        Satırlar yukarıdan aşağıya, sırayla çalışır. Bir atama, yalnızca kendisinden sonraki satırları etkiler.
+
+        Kopyalama: b = a satırı çalıştığı anda a'nın değeri b'ye atanır. Sonra a değişse bile b değişmez; b o anki değeri almıştı.
+
+        Durum tablosu: Değerleri izlemenin en güvenilir yolu her satırdan sonra bütün değişkenleri bir tabloya yazmaktır:
+
+        a = 3        →  a=3
+        b = a + 1    →  a=3, b=4
+        a = b * 2    →  a=8, b=4
+        print(a, b)  →  ekrana: 8 4
+      state_trace:
+        level: H2
+        text: |
+          Durum tablosuyla izleme — başka bir örnek üzerinde.
+
+          k = 2
+          m = k * 5
+          k = m - k
+          m += k
+
+          Her satırdan sonra bütün değişkenleri yaz; yalnız değişeni değil:
+
+          1. satırdan sonra: k=2
+          2. satırdan sonra: k=2, m=10 (sağ taraf: 2 * 5)
+          3. satırdan sonra: k=8, m=10 (sağ taraf: 10 - 2; m değişmedi)
+          4. satırdan sonra: k=8, m=18 (m += k demek m = m + k: 10 + 8)
+
+          Kural: her satırda önce sağ tarafı o anki tablodan hesapla, sonra yalnızca soldaki ismi güncelle.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek: iki değişkenin değerlerini takas etmek.
+
+          a = 7
+          b = 9
+          t = a
+          a = b
+          b = t
+          print(a, b)
+
+          - t = a: t'ye a'nın o anki değeri, 7 atanır. (a=7, b=9, t=7)
+          - a = b: a'ya 9 atanır; a'nın eski değeri 7 artık yalnız t'de duruyor. (a=9, b=9, t=7)
+          - b = t: b'ye t'deki 7 atanır. (a=9, b=7, t=7)
+
+          Ekrana 9 7 yazılır. Üçüncü değişken t olmasaydı, a = b satırı 7'yi kaybettirirdi ve iki değişken de 9 olurdu.
+    misconceptions:
+      - slug: assignment_is_equation
+        name: Atama iki yönlü bir eşitliktir
+        open_question: a = b satırından sonra a ile b'nin birbirine bağlı kaldığını, birinin değişmesinin ötekini de değiştireceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "= matematikteki eşittir; a = b dedikten sonra a ve b hep eşittir."
+
+            Programda = bir eylemdir: sağdaki değeri o anda hesaplar ve soldaki isme koyar. Sonrasında aralarında bir bağ kalmaz. a = b'den sonra b'ye yeni bir değer atanırsa a değişmez; a, atamanın yapıldığı andaki değeri tutmaya devam eder.
+      - slug: copy_tracks_later_changes
+        name: Kopya, asıl değişkendeki sonraki değişiklikleri izler
+        open_question: yedek = puan satırından sonra puan değişirse yedek'in de değişeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "yedek, puan'ın kopyası; puan büyüyünce yedek de büyür."
+
+            yedek = puan çalıştığı anda yedek'e puan'ın o anki değeri atanır; yedek bundan sonra kendi değerini tutar. puan = puan + 5 yalnızca puan'ı değiştirir. (Sayılar için durum budur; daha sonra liste gibi değiştirilebilen değerlerde bu sorunun cevabı farklılaşacak, ama o konu Python derslerinin.)
+      - slug: self_update_impossible
+        name: x = x + 1 imkânsız bir eşitliktir
+        open_question: x = x + 1 satırının, matematikte doğru olamayacağı için bir hata olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "x = x + 1 olamaz, hiçbir sayı kendisinin bir fazlasına eşit değildir."
+
+            Bu bir denklem değil, bir talimattır: "x'in şimdiki değerine 1 ekle ve sonucu yeniden x'e koy." Önce sağ taraf eski değerle hesaplanır (örneğin 5 + 1 = 6), sonra x'e 6 atanır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          a = 3
+          b = 4
+          a = b
+          print(a, b)
+        answer: "4 4"
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 5
+          x = x + 2
+          x = x * 3
+          print(x)
+        answer: "21"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod a ile b'nin değerlerini takas etmeye çalışıyor. Ekrana ne yazılır?
+        code: |
+          a = 1
+          b = 2
+          a = b
+          b = a
+          print(a, b)
+        options:
+          A: "2 1"
+          B: "2 2"
+          C: "1 1"
+          D: "1 2"
+        answer: B
+        verify: {mode: stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          a = 2
+          b = 5
+          c = 8
+          t = a
+          a = b
+          b = c
+          c = t
+          print(a, b, c)
+        answer: "5 8 2"
+        verify: {mode: stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          fiyat = 40
+          eski = fiyat
+          fiyat = fiyat * 2
+          eski = eski + 5
+          print(fiyat, eski)
+        options:
+          A: "80 45"
+          B: "80 85"
+          C: "45 45"
+          D: "40 45"
+        answer: A
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          n = 2
+          m = n * 3
+          n += m
+          m = n - m
+          print(n, m)
+        answer: "8 2"
+        verify: {mode: stdout}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Kodun yalnızca ilk üç satırı çalıştı; dördüncü satır henüz çalışmadı. Bu anda x ve y'nin değerleri nedir?
+        code: |
+          x = 4
+          y = x + 1
+          x = y * 2
+          y = y - x
+        options:
+          A: x=10, y=5
+          B: x=4, y=5
+          C: x=10, y=-5
+          D: x=8, y=5
+        answer: A
+        verify:
+          mode: probe
+          upto: 3
+          probe: print(x, y)
+          outcomes: {A: "10 5", B: "4 5", C: "10 -5", D: "8 5"}

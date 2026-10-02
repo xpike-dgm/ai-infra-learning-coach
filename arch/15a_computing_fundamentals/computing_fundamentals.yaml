@@ -1,0 +1,183 @@
+model: CPFX-v0
+stage_step: 15A
+status: accepted_15a
+decision: D-112
+implements: [FBB-v0, KGC-v0, QAB-v0, AIV-v0, GRE-v0, TASK_TAXONOMY_SPEC]
+builds_on: [DMAX-v0, PLNX-v0, PRQX-v0, ALEX-v0, WAAX-v0, OREX-v0]
+boundaries: MSBX-v0
+purpose: the_first_authored_curriculum_package
+
+question: Sıfırdan başlayan bir öğrenci için ilk gerçek içerik nasıl yazılır — ve yapay zekâ tarafından yazılmış bir sorunun doğru olduğuna neye dayanarak güvenilir?
+
+primary_invariant: >-
+  Content is only as trustworthy as what checked it. Every answer key is checked against what really happens — the
+  code is run, every option of a choice is run, a lesson's own example outputs are run — or, where nothing can be run,
+  against a cited authoritative source; and every item, run or cited, needs an independent reviewer's pass before it is
+  validated. Nothing AI-written is ever trusted by itself, nothing a lesson has not taught is read in an item, and a
+  task serves only a need the planner already opened, about its own Skill, for a purpose that may serve it.
+
+user_decisions:
+  date: "2026-10-02"
+  validation: executed_key_plus_independent_review
+  notation: readable_python_subset
+  objectives: refine_and_record
+
+scope:
+  skills: 12
+  objectives: 13
+  internal_edges: 11
+  hard_edges: 10
+  topics: 8
+  lifecycle_ratified: draft_to_published
+  identity_changed: false
+  outside_subgraph_published: false
+  schema_changed: false
+  ports_changed: false
+  store_changed: false
+
+entry_skills: [skill.computing.program_execution_model, skill.programming.state_assignment_model]
+
+# User decision "netleştir ve kaydet": each change from 6C's draft is recorded with its reason in the Skill file.
+required_direct_types:
+  objective.computing.program_execution_model.explain_pipeline: explanation
+  objective.computing.source_runtime_artifact_distinction.classify_artifacts: explanation
+  objective.programming.state_assignment_model.trace_state: code_reading
+  objective.programming.expression_boolean_reasoning.evaluate_condition: code_reading
+  objective.programming.branching_reasoning.predict_branch: code_reading
+  objective.programming.iteration_reasoning.trace_iteration: code_reading
+  objective.programming.iteration_reasoning.detect_nontermination: code_reading
+  objective.programming.function_decomposition.define_io_responsibility: explanation
+  objective.programming.trace_execution_basic.produce_trace: code_reading
+  objective.programming.debug_localization_basic.locate_cause: code_reading
+  objective.programming.test_case_basic.design_expected_case: explanation
+  objective.programming.code_reading_basic.demonstrate_capability: code_reading
+  objective.programming.input_validation_reasoning.demonstrate_capability: code_reading
+
+item_counts:
+  total: 95
+  executed: 83
+  reference_grounded: 8
+  rubric: 4
+
+lesson_checks_min: 30
+
+never_introduced: [collections, conversions_builtins, imports, input_call, methods, true_division]
+
+task_serving:
+  teach: [new_learning]
+  practice: [continue_learning, parallel_track_due]
+  assess: [verification_due]
+  retain: [retention_review_due]
+  remediate: [remediation_required, weakness_detected]
+  reinforce: [reinforcement_opportunity, integration_opportunity]
+  diagnose: []
+
+task_section_keys: [logical_id, version, title, primary_skill, target_objectives, purpose, activity_kind, serves,
+                    cost_minutes, required_skills, explanations, items, lifecycle_status, content_origin, track,
+                    splittable, minimum_safe_chunk_minutes, atomic_evidence_boundary]
+
+task_minutes:
+  source: authoring_estimate
+  calibrated: false
+  owner_of_calibration: 18B
+
+validation:
+  validator_record: ["15a/executed_key+independent_review", "15a/reference_grounded+independent_review", "15a/rubric_reviewed+independent_review"]
+  validated_at: "2026-10-02T12:00:00Z"
+  origin: ai_generated
+  highest_status: validated
+  effective_ceiling: standard_mastery_eligible
+  rubric_items_ceiling: low_stakes_assessment
+
+format_refinements:
+  - {what: whole_line_comments, why: "a # inside code or prose was cut off"}
+  - {what: prompt_line_breaks, why: "an item prompt could not show code on more than one line"}
+  - {what: task_section, why: "no format could carry a task, so no need ever had a candidate"}
+
+found:
+  - no_task_format_every_need_without_candidate
+  - subgraph_all_draft_off_route
+  - objective_metadata_templated
+  - hash_comment_cut_values
+  - prompt_line_breaks_not_decoded
+  - iteration_needs_comparisons_graph_silent
+  - requires_transfer_not_carried_by_store
+  - one_asset_and_version_bound_entities
+
+suites:
+  task: {file: android/core-model/src/test/kotlin/coach/model/AuthoredTaskFactsTest.kt}
+  format: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/PackageFormatTest.kt}
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedPackageTest.kt}
+  first_plan: {file: android/app-wiring/src/test/kotlin/coach/wiring/FirstPlanTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_daily_micro_assessment.py, checks: [E11D-13_no_asset_ships]}
+  - {file: tools/validate_planner_engine.py, checks: [E12C-09_adapter_answers_truthfully]}
+
+mutation_results:
+  total: 22
+  detected: 22
+  only_15a_suites_run: true
+  compile_failure_is_detection: false
+  harness_verified_to_run_gradle: true
+  harness_verification: an unmutated baseline must pass with JUnit reports on disk (5 suites, 29 tests) before any mutant runs; the first harness invocation called gradlew without its path and produced no reports, so the baseline refused to start and the path was fixed before any result was taken
+  negative_control: a comment-only change in AuthoredTaskFacts.kt
+  negative_control_result: survived_as_expected
+  first_run: 21 of 23 detected; F04 (a task presenting an item the package lacks) survived because the only test case also tripped the trust check, so a candidate-task case was added; F10 (a task's Skill outside the package) was equivalent — every Objective a task names must belong to its Skill in the package, so the separate Skill check was redundant and removed
+  numbering_gaps: F10 dropped as equivalent (see first_run)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: C01, mutant: candidate_ignores_trigger, result: detected}
+    - {id: C02, mutant: candidate_ignores_skill, result: detected}
+    - {id: C03, mutant: candidate_id_without_need, result: detected}
+    - {id: C04, mutant: teach_also_verifies, result: detected}
+    - {id: C05, mutant: diagnose_authored, result: detected}
+    - {id: C06, mutant: serves_not_checked, result: detected}
+    - {id: C07, mutant: any_activity, result: detected}
+    - {id: C08, mutant: presents_nothing_allowed, result: detected}
+    - {id: C09, mutant: own_skill_as_prerequisite, result: detected}
+    - {id: C10, mutant: objectives_dropped_from_candidate, result: detected}
+    - {id: C11, mutant: required_dropped_from_candidate, result: detected}
+    - {id: F01, mutant: hash_cuts_values, result: detected}
+    - {id: F02, mutant: prompt_breaks_not_decoded, result: detected}
+    - {id: F03, mutant: task_over_candidate_items, result: detected}
+    - {id: F04, mutant: task_item_outside_package, result: detected}
+    - {id: F05, mutant: task_explanation_outside_package, result: detected}
+    - {id: F06, mutant: task_other_skill_objective, result: detected}
+    - {id: F07, mutant: task_declared_twice, result: detected}
+    - {id: F08, mutant: unknown_trigger_dropped, result: detected}
+    - {id: F09, mutant: zero_minutes_defaulted, result: detected}
+    - {id: S01, mutant: adapter_answers_nothing, result: detected}
+    - {id: S02, mutant: adapter_answers_every_task, result: detected}
+
+validator_mutation:
+  total: 30
+  detected: 30
+  negative_control: a YAML comment in a Skill file and a Kotlin comment in FileContentSource, each naming forbidden fragments (emptyList(), substringBefore('#'), human_authored, trusted)
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+  note: content mutants that the shipped asset does not yet carry (V21, V28, V29) are caught by E15A-02_shipped_is_rebuilt — the asset must be a fresh build of its source, so a source change that was not rebuilt and re-validated can never ship
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test :data-curriculum:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew :ai-adapter:test :app-wiring:testDebugUnitTest", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-07, command: "read assets/curriculum_package.txt from the built APK and compare its SHA-256 with the source asset", tier: T5, result: PASS}
+jvm_tests: 977
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_of_shipped_package_run: false
+  why: no check runs on the device; the first real ingestion of the shipped package into SQLite is the learner's, on the phone
+
+open_loops:
+  multi_package_shipping: {owner: 15B, note: "one asset, and the store requires every entity of a package to carry the package's version; 15B decides how a second package ships"}
+  requires_transfer_not_stored: {owner: 15H, note: "6C declares requires_transfer on every Objective, the store's Objective row has no such column, so GRE-v0's transfer gate is never applied; content already carries transfer items"}
+  iteration_comparison_prerequisite: {owner: 15H, note: "while conditions need expression_boolean_reasoning; 6C makes it neither hard nor soft for iteration_reasoning; 15A declares it at task and item level"}
+  runner_presents_tasks: {owner: 16D, note: "a task names the explanations and items it presents; the runner choosing unseen items from that pool and showing them is the app's"}
+  estimate_calibration: {owner: 18B, note: "task and item minutes are authoring estimates"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first SQLite ingestion of the shipped package happen on the device"}

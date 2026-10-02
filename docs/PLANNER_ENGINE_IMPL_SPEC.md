@@ -206,3 +206,7 @@ Next numbered step: **12D — Replan**. It must receive a fresh PRE-STEP and exp
 ---
 
 **13F note (2026-10-01, `D-104`):** `PlannerEngine.plan` takes `coverage` (`VDW-v0` §17): a lesson (`teach`) that declares its Objectives (`TaskCandidate.targetObjectives`) and has all of them waived is `resolved_before_selection`; one with any still under the learner's diagnostic is `conditional_not_selected`; practice and undeclared lessons are never held. A blocked `diagnose` candidate also records `diagnostic.prerequisite_blocked`. Priority, bands and capacity rules are unchanged.
+
+---
+
+**15A note (2026-10-02, `D-112`):** `ContentPort.taskCandidates` now answers with authored tasks (`[task]`, `AuthoredTask.candidateFor`): only a task declaring the need's trigger and working on the need's own Skill, for a purpose `TaskServing` allows. Nothing in the planner changed; for a learner with no history the shipped package yields the two entry lessons and ten blocked needs (`FirstPlanTest`). `E12C-09_adapter_answers_truthfully` was narrowed accordingly. Details: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.

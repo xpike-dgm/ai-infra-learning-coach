@@ -467,7 +467,11 @@ check("E12C-09_newest_version", "WHERE s.version = (SELECT MAX(n.version) FROM s
       "every version of a Skill is planned from")
 check("E12C-09_lifecycle_unfiltered", "lifecycle_status" not in skills_read, "the store filters lifecycles")
 check("E12C-09_skills_read_only", not re.search(r"\b(INSERT|UPDATE|DELETE)\b", skills_read), "reading Skills writes")
-check("E12C-09_adapter_answers_truthfully", "override fun taskCandidates(need: LearningNeed): List<TaskCandidate> = emptyList()" in content,
+# Narrowed by 15A (CPFX-v0 / D-112): the format now carries authored tasks, so the adapter answers with them — and only
+# with them: every candidate comes from an authored task's own candidateFor(need), never from the adapter's invention.
+check("E12C-09_adapter_answers_truthfully",
+      re.search(r"override fun taskCandidates\(need: LearningNeed\): List<TaskCandidate> =\s+"
+                r"parsed\?\.tasks\.orEmpty\(\)\.mapNotNull \{ it\.candidateFor\(need\) \}\.sortedBy \{ it\.id \}", content) is not None,
       "the file adapter claims tasks its format cannot carry")
 
 # ---------------------------------------------------------------- tests

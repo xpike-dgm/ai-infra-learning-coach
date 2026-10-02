@@ -1,0 +1,477 @@
+model: CPFX-v0
+stage_step: 15A
+decision: D-112
+result: PASS
+checks_total: 131
+checks_passed: 131
+checks_failed: 0
+checks:
+- check: E15A-00_exists_computing_fundamentals.yaml
+  result: PASS
+  details: missing arch\15a_computing_fundamentals\computing_fundamentals.yaml
+- check: E15A-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15a_computing_fundamentals\content_verification.yaml
+- check: E15A-00_exists_COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md
+- check: E15A-00_exists_15a_computing_fundamentals_research.md
+  result: PASS
+  details: missing research\15a_computing_fundamentals_research.md
+- check: E15A-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15A-00_exists_AuthoredTaskFacts.kt
+  result: PASS
+  details: missing android\core-model\src\main\kotlin\coach\AuthoredTaskFacts.kt
+- check: E15A-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: E15A-00_exists_FileContentSource.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\FileContentSource.kt
+- check: E15A-00_exists_AuthoredTaskFactsTest.kt
+  result: PASS
+  details: missing android\core-model\src\test\kotlin\coach\model\AuthoredTaskFactsTest.kt
+- check: E15A-00_exists_PackageFormatTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\PackageFormatTest.kt
+- check: E15A-00_exists_ShippedPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedPackageTest.kt
+- check: E15A-00_exists_FirstPlanTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\FirstPlanTest.kt
+- check: E15A-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15a_computing_fundamentals\package.yaml
+- check: E15A-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15a_computing_fundamentals\notation.yaml
+- check: E15A-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15a_computing_fundamentals\independent_review.yaml
+- check: E15A-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15A-01_model
+  result: PASS
+  details: CPFX-v0
+- check: E15A-01_status
+  result: PASS
+  details: accepted_15a
+- check: E15A-01_decision
+  result: PASS
+  details: D-112
+- check: E15A-01_user_decisions
+  result: PASS
+  details: '{''date'': ''2026-10-02'', ''validation'': ''executed_key_plus_independent_review'',
+    ''notation'': ''readable_python_subset'', ''objectives'': ''refine_and_record''}'
+- check: E15A-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15A-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15A-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15A-02_report_recorded
+  result: PASS
+  details: arch/15a_computing_fundamentals/content_verification.yaml is not the report
+    of this build
+- check: E15A-03_fbb_seeds_covered
+  result: PASS
+  details: fbb=['skill.computing.program_execution_model', 'skill.computing.source_runtime_artifact_distinction',
+    'skill.programming.state_assignment_model', 'skill.programming.expression_boolean_reasoning',
+    'skill.programming.branching_reasoning', 'skill.programming.iteration_reasoning',
+    'skill.programming.function_decomposition', 'skill.programming.trace_execution_basic',
+    'skill.programming.debug_localization_basic', 'skill.programming.test_case_basic']
+- check: E15A-03_exactly_6c_shared
+  result: PASS
+  details: package=['skill.computing.program_execution_model', 'skill.computing.source_runtime_artifact_distinction',
+    'skill.programming.branching_reasoning', 'skill.programming.code_reading_basic',
+    'skill.programming.debug_localization_basic', 'skill.programming.expression_boolean_reasoning',
+    'skill.programming.function_decomposition', 'skill.programming.input_validation_reasoning',
+    'skill.programming.iteration_reasoning', 'skill.programming.state_assignment_model',
+    'skill.programming.test_case_basic', 'skill.programming.trace_execution_basic']
+    6c=['skill.computing.program_execution_model', 'skill.computing.source_runtime_artifact_distinction',
+    'skill.programming.branching_reasoning', 'skill.programming.code_reading_basic',
+    'skill.programming.debug_localization_basic', 'skill.programming.expression_boolean_reasoning',
+    'skill.programming.function_decomposition', 'skill.programming.input_validation_reasoning',
+    'skill.programming.iteration_reasoning', 'skill.programming.state_assignment_model',
+    'skill.programming.test_case_basic', 'skill.programming.trace_execution_basic']
+- check: E15A-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15A-03_objective_identity
+  result: PASS
+  details: '[''objective.computing.program_execution_model.explain_pipeline'', ''objective.computing.source_runtime_artifact_distinction.classify_artifacts'',
+    ''objective.programming.branching_reasoning.predict_branch'', ''objective.programming.code_reading_basic.demonstrate_capability'',
+    ''objective.programming.debug_localization_basic.locate_cause'', ''objective.programming.expression_boolean_reasoning.evaluate_condition'',
+    ''objective.programming.function_decomposition.define_io_responsibility'', ''objective.programming.input_validation_reasoning.demonstrate_capability'',
+    ''objective.programming.iteration_reasoning.detect_nontermination'', ''objective.programming.iteration_reasoning.trace_iteration'',
+    ''objective.programming.state_assignment_model.trace_state'', ''objective.programming.test_case_basic.design_expected_case'',
+    ''objective.programming.trace_execution_basic.produce_trace'']'
+- check: E15A-03_closed_subgraph
+  result: PASS
+  details: 'edges from outside: []'
+- check: E15A-03_edge_count
+  result: PASS
+  details: '11'
+- check: E15A-03_edges_ratified
+  result: PASS
+  details: 11 edges in package
+- check: E15A-03_skills_published
+  result: PASS
+  details: '[(''skill.computing.program_execution_model'', ''published''), (''skill.computing.source_runtime_artifact_distinction'',
+    ''published'')]'
+- check: E15A-03_hard_dag
+  result: PASS
+  details: '[]'
+- check: E15A-03_entry_points
+  result: PASS
+  details: entry=['skill.computing.program_execution_model', 'skill.programming.state_assignment_model']
+- check: E15A-04_recorded_program_execution_model_explain_pipeline
+  result: PASS
+  details: 'objective.computing.program_execution_model.explain_pipeline: explanation
+    vs contract explanation'
+- check: E15A-04_recorded_source_runtime_artifact_distinction_classify_artifacts
+  result: PASS
+  details: 'objective.computing.source_runtime_artifact_distinction.classify_artifacts:
+    explanation vs contract explanation'
+- check: E15A-04_recorded_state_assignment_model_trace_state
+  result: PASS
+  details: 'objective.programming.state_assignment_model.trace_state: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_expression_boolean_reasoning_evaluate_condition
+  result: PASS
+  details: 'objective.programming.expression_boolean_reasoning.evaluate_condition:
+    code_reading vs contract code_reading'
+- check: E15A-04_recorded_branching_reasoning_predict_branch
+  result: PASS
+  details: 'objective.programming.branching_reasoning.predict_branch: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_iteration_reasoning_trace_iteration
+  result: PASS
+  details: 'objective.programming.iteration_reasoning.trace_iteration: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_iteration_reasoning_detect_nontermination
+  result: PASS
+  details: 'objective.programming.iteration_reasoning.detect_nontermination: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_function_decomposition_define_io_responsibility
+  result: PASS
+  details: 'objective.programming.function_decomposition.define_io_responsibility:
+    explanation vs contract explanation'
+- check: E15A-04_recorded_trace_execution_basic_produce_trace
+  result: PASS
+  details: 'objective.programming.trace_execution_basic.produce_trace: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_debug_localization_basic_locate_cause
+  result: PASS
+  details: 'objective.programming.debug_localization_basic.locate_cause: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_test_case_basic_design_expected_case
+  result: PASS
+  details: 'objective.programming.test_case_basic.design_expected_case: explanation
+    vs contract explanation'
+- check: E15A-04_recorded_code_reading_basic_demonstrate_capability
+  result: PASS
+  details: 'objective.programming.code_reading_basic.demonstrate_capability: code_reading
+    vs contract code_reading'
+- check: E15A-04_recorded_input_validation_reasoning_demonstrate_capability
+  result: PASS
+  details: 'objective.programming.input_validation_reasoning.demonstrate_capability:
+    code_reading vs contract code_reading'
+- check: E15A-04_criticality_unchanged
+  result: PASS
+  details: ''
+- check: E15A-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15A-05_review_method
+  result: PASS
+  details: ''
+- check: E15A-05_every_item_reviewed
+  result: PASS
+  details: 95 reviewed / 95 items
+- check: E15A-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15A-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15A-05_no_hidden_prerequisite
+  result: PASS
+  details: ''
+- check: E15A-05_known_modes
+  result: PASS
+  details: '{''reference'', ''termination'', ''fault'', ''script'', ''stdout'', ''fix_terminates'',
+    ''behaviour'', ''functions'', ''which_input'', ''probe'', ''rubric'', ''detects''}'
+- check: E15A-05_counts
+  result: PASS
+  details: 95 83 8 4
+- check: E15A-05_reference_minority
+  result: PASS
+  details: most keys must be executed, not cited
+- check: E15A-05_measurable_program_execution_model_explain_pipeline
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_source_runtime_artifact_distinction_classify_artifacts
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_state_assignment_model_trace_state
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_expression_boolean_reasoning_evaluate_condition
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_branching_reasoning_predict_branch
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_iteration_reasoning_trace_iteration
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_iteration_reasoning_detect_nontermination
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_function_decomposition_define_io_responsibility
+  result: PASS
+  details: 5 families, 2 transfer
+- check: E15A-05_measurable_trace_execution_basic_produce_trace
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_debug_localization_basic_locate_cause
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_test_case_basic_design_expected_case
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_code_reading_basic_demonstrate_capability
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_measurable_input_validation_reasoning_demonstrate_capability
+  result: PASS
+  details: 7 families, 3 transfer
+- check: E15A-05_difficulty_vocabulary
+  result: PASS
+  details: '{''authentic_application'', ''transfer_integration'', ''basic''}'
+- check: E15A-05_ai_origin_declared
+  result: PASS
+  details: AI-written content is never declared human-authored
+- check: E15A-05_ceiling_not_trusted
+  result: PASS
+  details: ''
+- check: E15A-05_code_reading_not_runnable
+  result: PASS
+  details: ''
+- check: E15A-06_every_explanation_reviewed
+  result: PASS
+  details: 79 / 79
+- check: E15A-06_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15A-06_lesson_claims_executed
+  result: PASS
+  details: 40 checks
+- check: E15A-06_lesson_program_execution_model_explain_pipeline
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_source_runtime_artifact_distinction_classify_artifacts
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_state_assignment_model_trace_state
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_expression_boolean_reasoning_evaluate_condition
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_branching_reasoning_predict_branch
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_iteration_reasoning_trace_iteration
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_iteration_reasoning_detect_nontermination
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_function_decomposition_define_io_responsibility
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_trace_execution_basic_produce_trace
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_debug_localization_basic_locate_cause
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_test_case_basic_design_expected_case
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_code_reading_basic_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15A-06_lesson_input_validation_reasoning_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15A-06_prerequisite_refresh
+  result: PASS
+  details: ''
+- check: E15A-07_introducers_in_package
+  result: PASS
+  details: set()
+- check: E15A-07_forbidden_constructs
+  result: PASS
+  details: '[''collections'', ''conversions_builtins'', ''imports'', ''input_call'',
+    ''methods'', ''true_division'']'
+- check: E15A-07_iteration_declares_comparison
+  result: PASS
+  details: ''
+- check: E15A-08_serving_table
+  result: PASS
+  details: '{''teach'': {''new_learning''}, ''practice'': {''parallel_track_due'',
+    ''continue_learning''}, ''assess'': {''verification_due''}, ''retain'': {''retention_review_due''},
+    ''remediate'': {''weakness_detected'', ''remediation_required''}, ''reinforce'':
+    {''reinforcement_opportunity'', ''integration_opportunity''}, ''diagnose'': set()}'
+- check: E15A-08_activity_kinds_are_3b
+  result: PASS
+  details: '[''content_explanation'', ''worked_example'', ''recognition_selection'',
+    ''recall_free_response'', ''code_reading_trace'', ''coding_production'', ''debugging_diagnosis'',
+    ''hands_on_system_task'', ''explanation_justification'', ''transfer_problem'',
+    ''integrated_project_task'', ''language_activity'']'
+- check: E15A-08_never_widens
+  result: PASS
+  details: ''
+- check: E15A-08_adapter_only_authored
+  result: PASS
+  details: ''
+- check: E15A-08_task_trust_bounded
+  result: PASS
+  details: ''
+- check: E15A-08_five_per_skill
+  result: PASS
+  details: '60'
+- check: E15A-08_task_purposes
+  result: PASS
+  details: '{''teach'': ''teach'', ''practice'': ''practice'', ''check'': ''assess'',
+    ''review'': ''retain'', ''repair'': ''remediate''}'
+- check: E15A-08_tasks_validated
+  result: PASS
+  details: ''
+- check: E15A-08_minutes_are_estimates
+  result: PASS
+  details: '[12, 8, 8, 6, 10]'
+- check: E15A-09_whole_line_comment
+  result: PASS
+  details: ''
+- check: E15A-09_prompt_line_breaks
+  result: PASS
+  details: ''
+- check: E15A-09_task_keys
+  result: PASS
+  details: '[''logical_id'', ''version'', ''title'', ''primary_skill'', ''target_objectives'',
+    ''purpose'', ''activity_kind'', ''serves'', ''cost_minutes'', ''required_skills'',
+    ''explanations'', ''items'', ''lifecycle_status'', ''content_origin'', ''track'',
+    ''splittable'', ''minimum_safe_chunk_minutes'', ''atomic_evidence_boundary'']'
+- check: E15A-09_task_section_known
+  result: PASS
+  details: ''
+- check: E15A-10_test_a task serves only a need it declares, a
+  result: PASS
+  details: 'AuthoredTaskFactsTest.kt: a task serves only a need it declares, and only
+    about its own Skill'
+- check: E15A-10_test_a purpose serves only the needs the acce
+  result: PASS
+  details: 'AuthoredTaskFactsTest.kt: a purpose serves only the needs the accepted
+    contracts give it'
+- check: 'E15A-10_test_only a whole line is a comment, so code '
+  result: PASS
+  details: 'PackageFormatTest.kt: only a whole line is a comment, so code and prose
+    may contain a hash'
+- check: E15A-10_test_a task that presents what the package la
+  result: PASS
+  details: 'PackageFormatTest.kt: a task that presents what the package lacks, or
+    claims more trust than its items, refuses the package'
+- check: E15A-10_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedPackageTest.kt: everything shipped was validated, so nothing is
+    a candidate'
+- check: E15A-10_test_every Objective is teachable, practisabl
+  result: PASS
+  details: 'ShippedPackageTest.kt: every Objective is teachable, practisable and measurable
+    by its own direct type'
+- check: E15A-10_test_a learner who has done nothing is offere
+  result: PASS
+  details: 'FirstPlanTest.kt: a learner who has done nothing is offered the two entry
+    lessons and nothing that waits on them'
+- check: E15A-10_shipped_test_reads_the_asset
+  result: PASS
+  details: ''
+- check: E15A-10_plan_test_reads_the_asset
+  result: PASS
+  details: ''
+- check: E15A-11_mutation_all_detected
+  result: PASS
+  details: 22/22
+- check: E15A-11_compile_failure_not_detection
+  result: PASS
+  details: ''
+- check: E15A-11_control
+  result: PASS
+  details: ''
+- check: E15A-11_validator_mutation
+  result: PASS
+  details: '{''total'': 30, ''detected'': 30, ''negative_control'': "a YAML comment
+    in a Skill file and a Kotlin comment in FileContentSource, each naming forbidden
+    fragments (emptyList(), substringBefore(''#''), human_authored, trusted)", ''negative_control_result'':
+    ''no_false_positive'', ''crash_is_not_a_detection'': True, ''note'': ''content
+    mutants that the shipped asset does not yet carry (V21, V28, V29) are caught by
+    E15A-02_shipped_is_rebuilt — the asset must be a fresh build of its source, so
+    a source change that was not rebuilt and re-validated can never ship''}'
+- check: E15A-11_runs_pass
+  result: PASS
+  details: ''
+- check: E15A-11_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15A-11_narrowed_gates
+  result: PASS
+  details: '{''tools/validate_daily_micro_assessment.py'': [''E11D-13_no_asset_ships''],
+    ''tools/validate_planner_engine.py'': [''E12C-09_adapter_answers_truthfully'']}'
+- check: E15A-11_narrowing_declared_validate_daily_micro_assessment
+  result: PASS
+  details: tools/validate_daily_micro_assessment.py
+- check: E15A-11_narrowing_declared_validate_planner_engine
+  result: PASS
+  details: tools/validate_planner_engine.py
+- check: E15A-11_open_loops
+  result: PASS
+  details: '{''multi_package_shipping'': {''owner'': ''15B'', ''note'': "one asset,
+    and the store requires every entity of a package to carry the package''s version;
+    15B decides how a second package ships"}, ''requires_transfer_not_stored'': {''owner'':
+    ''15H'', ''note'': "6C declares requires_transfer on every Objective, the store''s
+    Objective row has no such column, so GRE-v0''s transfer gate is never applied;
+    content already carries transfer items"}, ''iteration_comparison_prerequisite'':
+    {''owner'': ''15H'', ''note'': ''while conditions need expression_boolean_reasoning;
+    6C makes it neither hard nor soft for iteration_reasoning; 15A declares it at
+    task and item level''}, ''runner_presents_tasks'': {''owner'': ''16D'', ''note'':
+    "a task names the explanations and items it presents; the runner choosing unseen
+    items from that pool and showing them is the app''s"}, ''estimate_calibration'':
+    {''owner'': ''18B'', ''note'': ''task and item minutes are authoring estimates''},
+    ''t6_and_device_ingestion'': {''owner'': 19, ''note'': ''T6 and the first SQLite
+    ingestion of the shipped package happen on the device''}}'
+- check: E15A-12_spec_status
+  result: PASS
+  details: ''
+- check: E15A-12_spec_next
+  result: PASS
+  details: ''
+- check: E15A-12_spec_t6
+  result: PASS
+  details: ''
+- check: E15A-12_research
+  result: PASS
+  details: ''
+- check: E15A-12_decision
+  result: PASS
+  details: D-112 heading in DECISIONS

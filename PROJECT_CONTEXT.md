@@ -238,12 +238,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14F ✅ Açık uçlu cevap değerlendirme — OREX-v0 / D-110**
 - **14G ✅ Provider abstraction/fallback — PRVX-v0 / D-111**
 - **AŞAMA 14 ✅ TAMAMLANDI**
-- **15A 🟡 Computer / Programming Fundamentals — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15B–20 ⬜
+- **15A ✅ Computer / Programming Fundamentals — CPFX-v0 / D-112**
+- **15B 🟡 Python Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15C–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15A'dır.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -630,3 +631,16 @@ Kod yazmadan önce bulunanlar: adaptörün çağrı noktası yoktu (10A–14F bi
 Sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez. OpenAI Responses API, güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi; `store: false`, katı `json_schema`, önce durma nedeni; router görev sınıfı başına model (`gpt-6-astra`, yapılandırmada); uçtan uca 60 sn bütçe, en çok 2 deneme, yalnız ağ hatası/408/429/5xx yeniden denenir. Anahtar Android Keystore AES-GCM ile şifrelenir, yedeklenmeyen dizinde durur, hiç gösterilmez ve loglanmaz; Profile'daki küçük ekrandan girilir, kaldırılır, 'Bağlantıyı dene' ile denenir. AI'sız build'de ağ izni hiç yok. Kod için AI talimatları core'a eklendi (`code_evaluation_instructions/1`). Kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de. Mutation 41/41, validator 129/129, kendi mutation testi 30/30. **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı.**
 
 Canonical: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md` / D-111.
+
+## 12.37 15A Computer / Programming Fundamentals içeriği — CPFX-v0 / D-112
+
+İlk gerçek içerik sevk ediliyor ve **AŞAMA 15 başladı**. Ana invariant: **içerik yalnız onu neyin kontrol ettiği kadar güvenilirdir.**
+
+İçerik yazmadan önce bulunanlar: hiçbir format görev taşıyamıyordu, bu yüzden planner her ihtiyacı adaysız kaydediyordu; 6C alt-grafının tamamı `draft` idi ve rotada değildi; 6C Objective metadata'sı şablondu; `#` her değeri kesiyordu ve item prompt'u satır sonu çözmüyordu; `while` koşulları graph'ın söylemediği bir ön koşul istiyor; `requires_transfer` mağazada taşınmıyor.
+
+Her cevap anahtarı gerçekte olanla karşılaştırılır — kod çalıştırılır, seçmeli sorunun her seçeneği çalıştırılır, dersin kendi örnek çıktıları çalıştırılır — çalıştırılamayan yerde yetkili bir kaynağa dayanır; ve her item doğrulanmış sayılmadan önce bağımsız bir incelemeden geçer. AI'ın yazdığı hiçbir şey kendi başına güvenilir sayılmaz, dersin öğretmediği hiçbir gösterim bir item'da okunmaz ve bir görev yalnız planner'ın zaten açtığı, kendi Skill'ine ait ve amacının hizmet edebileceği bir ihtiyaca hizmet eder. FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 kenar) `published`; kimlik değişmedi. 95 item, 79 anlatım, 34 misconception, 60 görev. Bağımsız inceleme ilk geçişte 32 item'ı ders içi sızıntı yüzünden düşürdü; hepsi yeniden yazıldı. İlk plan: geçmişi olmayan öğrenciye iki giriş dersi.
+
+Kullanıcı kararları: çalıştırma + bağımsız QA; okunur Python alt kümesi; Objective metadata'sını netleştir ve kaydet.
+
+Canonical: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md` / D-112.
+

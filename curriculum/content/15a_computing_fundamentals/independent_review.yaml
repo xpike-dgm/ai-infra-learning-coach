@@ -1,0 +1,209 @@
+reviewer: independent_15a_content_review
+date: "2026-10-02"
+method: >-
+  Read package.yaml, notation.yaml, all 12 Skill files in full and the 11 computing/programming edges of
+  6c_foundations/prerequisite_edges.yaml. Every item key was worked out by hand first and then confirmed by running the
+  code independently with python (stdout items, probes upto line N, termination by inspection plus bounded runs,
+  every fault item's proposed fix, every distractor of the which_input / functions / detects / behaviour items, and the
+  disambiguating inputs of the code-reading distractors). The author's verify scripts were not trusted or reused. Each
+  item's code and option text was scanned against the notation.yaml construct patterns, with the allowed set taken as
+  the item's own Skill, the transitive closure of its hard prerequisites, and its declared required_skills (plus their
+  closures); no hidden construct was found. Each item was compared line by line with its own Skill's canonical,
+  worked_example, state_trace, prerequisite_refresh and contrast texts and with the lesson checks. Rule applied for
+  leakage: an item fails when its problem instance (same code, same scenario, or the same rule with the same answer
+  values) is already solved in its own Skill's lesson text; an isomorphic item with new surface values passes with a
+  note; in_lesson items pass because they belong to the lesson, but see findings. Reference items were checked against
+  the live GCC manual (3.2 Options Controlling the Kind of Output, 3.16 Options for Linking: quotes and section numbers
+  are correct) and the Python glossary ('bytecode', 'interpreted': consistent with the claims); the unittest
+  'test case' quote matches the library documentation. Rubric criteria were checked for being about content, one
+  judgement each. Every explanation was checked for technical correctness (arithmetic re-done), Turkish clarity, and
+  every misconception open_question for neutral, non-accusing wording. Second pass (same day): the 32 items failed in
+  the first pass were rewritten by the author and the new classify_artifacts.f07 was added; each was re-solved by
+  hand, re-executed independently (stdout, termination, distractors), re-scanned for constructs (none hidden across
+  all 95 items) and re-compared against its own Skill's lesson texts with the same leakage rule. The fixed contrast
+  text was re-checked, and the build change that keeps in_lesson items out of practice/check/review/repair pools was
+  confirmed in tools/build_curriculum_package.py. All other entries are unchanged from the first pass.
+items:
+  item.computing.program_execution_model.explain_pipeline.f01: {verdict: pass, note: "in_lesson; recalls the chain stated verbatim in canonical (acceptable for an in-lesson check). GCC quote verified."}
+  item.computing.program_execution_model.explain_pipeline.f02: {verdict: pass, note: ""}
+  item.computing.program_execution_model.explain_pipeline.f03: {verdict: pass, note: "Rewrite: syntax error fixed, then rerun -> corrected program runs. Same principle as the worked_example's last paragraph (source re-read each run) on a new scenario; pass with note."}
+  item.computing.program_execution_model.explain_pipeline.f04: {verdict: pass, note: "Key correct (Bir, İki then NameError). Option B echoes the canonical sentence; acceptable as a new code instance."}
+  item.computing.program_execution_model.explain_pipeline.f05: {verdict: pass, note: "Rewrite is self-contained and genuinely integrates both rules (a runtime error before a syntax error -> nothing runs); verified: SyntaxError, empty stdout."}
+  item.computing.program_execution_model.explain_pipeline.f06: {verdict: pass, note: "Claim true for a standard-library-only program on the same OS/CPU; good inference beyond the lesson."}
+  item.computing.program_execution_model.explain_pipeline.f07: {verdict: pass, note: ""}
+  item.computing.program_execution_model.explain_pipeline.r1: {verdict: pass, note: "Four content criteria, each judgeable alone."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f01: {verdict: pass, note: "in_lesson; same hesap.* files as the worked_example (acceptable in-lesson). GCC 'file.c' quote verified."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f02: {verdict: pass, note: "Rewrite: new file and scenario (double-clicking motor.o). Keyed option paraphrases the canonical/contrast object_file_runnable principle; acceptable at basic."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f03: {verdict: pass, note: "Python context is new; sonuc.txt name reused from lesson but the reasoning is required. Prompt wording strongly cues C."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f04: {verdict: pass, note: "Rewrite: deleting __pycache__ and rerunning is not solved in the lesson; verified the program runs with identical output. Minor cue: option A is the longest and carries the explanation."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f05: {verdict: pass, note: "Rewrite: a file copy of the program's own source is runtime output. Same principle as the canonical 'Bir tuzak' (same characters != same thing) on a new instance; good transfer."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f06: {verdict: pass, note: "Rewrite: deleting the object file (not the source) is not solved in the lesson; claim true (a linked executable does not read the .o)."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.f07: {verdict: pass, note: "Rewrite: hand-editing the runtime output file, re-running, and naming the file that controls behaviour is not solved in the lesson (the worked_example covers deleting the output file only). It integrates two ideas: a runtime output is overwritten on every run, and behaviour lives in the source file (.py re-read each run). Only A is correct; the prompt states the file is rewritten from scratch, so C is unambiguous. Minor cue: A is the longest option and carries the explanation."}
+  item.computing.source_runtime_artifact_distinction.classify_artifacts.r1: {verdict: pass, note: "Rewrite: Python context (.py, .pyc, ozet.txt, screen Bitti) differs from the worked_example's C files; the screen-text and output-file parts mirror it, but the bytecode criterion needs new reasoning. Criteria clear."}
+  item.programming.state_assignment_model.trace_state.f01: {verdict: pass, note: "in_lesson; new values."}
+  item.programming.state_assignment_model.trace_state.f02: {verdict: pass, note: ""}
+  item.programming.state_assignment_model.trace_state.f03: {verdict: pass, note: "Worked_example remarks that a swap without t leaves both equal, with other values; acceptable as an application."}
+  item.programming.state_assignment_model.trace_state.f04: {verdict: pass, note: "Rewrite: three-variable rotation, key 5 8 2 verified; extends the worked_example's swap with new values."}
+  item.programming.state_assignment_model.trace_state.f05: {verdict: pass, note: "Rewrite: new copy scenario where the copy itself changes; key 80 45 verified."}
+  item.programming.state_assignment_model.trace_state.f06: {verdict: pass, note: "Key 8 2 verified."}
+  item.programming.state_assignment_model.trace_state.f07: {verdict: pass, note: "Key x=10, y=5 verified."}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f02: {verdict: pass, note: ""}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f03: {verdict: pass, note: ""}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f04: {verdict: pass, note: ""}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f05: {verdict: pass, note: "Rewrite: same structure as the lesson's precedence example with new values; key True verified, and left-to-right grouping gives False, so it discriminates."}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f06: {verdict: pass, note: "Rewrite: key True verified; the (not k) > 4 misreading gives False, so it now discriminates not_binds_first."}
+  item.programming.expression_boolean_reasoning.evaluate_condition.f07: {verdict: pass, note: "Rewrite: new numbers (23, 4); key 5 3 True verified."}
+  item.programming.branching_reasoning.predict_branch.f01: {verdict: pass, note: "in_lesson; new value."}
+  item.programming.branching_reasoning.predict_branch.f02: {verdict: pass, note: ""}
+  item.programming.branching_reasoning.predict_branch.f03: {verdict: pass, note: "Rewrite: isomorphic to contrast all_true_branches_run with new names/values; key uzun verified."}
+  item.programming.branching_reasoning.predict_branch.f04: {verdict: pass, note: "Rewrite: isomorphic to contrast separate_ifs_exclusive with new conditions; key verified."}
+  item.programming.branching_reasoning.predict_branch.f05: {verdict: pass, note: "Nested if is a fair transfer; key b tek verified."}
+  item.programming.branching_reasoning.predict_branch.f06: {verdict: pass, note: "Rewrite: chain plus a separate if with an in-branch update; key geçti verified; the initial-values misreading gives kaldı, so it discriminates."}
+  item.programming.branching_reasoning.predict_branch.f07: {verdict: pass, note: "Boundary item; only y = 5 prints orta."}
+  item.programming.iteration_reasoning.trace_iteration.f01: {verdict: pass, note: "in_lesson; variant of canonical (bound 3)."}
+  item.programming.iteration_reasoning.trace_iteration.f02: {verdict: pass, note: "Rewrite: range(4) with k * 2; key 0, 2, 4, 6 verified."}
+  item.programming.iteration_reasoning.trace_iteration.f03: {verdict: pass, note: "Isomorphic to the worked_example (x*2 < 20) with new values; key 81 4 verified."}
+  item.programming.iteration_reasoning.trace_iteration.f04: {verdict: pass, note: "Key 2 4 verified."}
+  item.programming.iteration_reasoning.trace_iteration.f05: {verdict: pass, note: "Key 120 verified."}
+  item.programming.iteration_reasoning.trace_iteration.f06: {verdict: pass, note: "Key 6 verified; // covered by declared expression_boolean_reasoning."}
+  item.programming.iteration_reasoning.trace_iteration.f07: {verdict: pass, note: "Last line -1 verified."}
+  item.programming.iteration_reasoning.detect_nontermination.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.iteration_reasoning.detect_nontermination.f02: {verdict: pass, note: "Rewrite: 10, 7, 4, 1 -> terminates; the 'never exactly 2' distractor is a good probe of > vs !=."}
+  item.programming.iteration_reasoning.detect_nontermination.f03: {verdict: pass, note: "Rewrite: isomorphic to the canonical's != overshoot example with new values; never reaches 3 (verified)."}
+  item.programming.iteration_reasoning.detect_nontermination.f04: {verdict: pass, note: "Rewrite: isomorphic to the canonical's wrong-direction example with new values; never terminates."}
+  item.programming.iteration_reasoning.detect_nontermination.f05: {verdict: pass, note: "Rewrite: both variables grow but at different rates; terminates after 5 turns (32 vs 25), verified. Good transfer."}
+  item.programming.iteration_reasoning.detect_nontermination.f06: {verdict: pass, note: "Correct for Python's unbounded ints (never 0). The lesson does not say ints never overflow; a learner with C background could argue overflow to 0 - acceptable since notation is Python."}
+  item.programming.iteration_reasoning.detect_nontermination.f07: {verdict: pass, note: "Only i = i - 1 terminates; line 5 is the update line."}
+  item.programming.function_decomposition.define_io_responsibility.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.function_decomposition.define_io_responsibility.f02: {verdict: pass, note: ""}
+  item.programming.function_decomposition.define_io_responsibility.f03: {verdict: pass, note: "Rewrite: taxi fare, isomorphic to the worked_example's split with new names; only A matches the spec on all cases (verified)."}
+  item.programming.function_decomposition.define_io_responsibility.f04: {verdict: pass, note: "Rewrite: two print-only calls then print(x); key 5, 5, None verified."}
+  item.programming.function_decomposition.define_io_responsibility.f05: {verdict: pass, note: "Only A equals 2x² for all x."}
+  item.programming.function_decomposition.define_io_responsibility.f06: {verdict: pass, note: "Rewrite: positional matching with birlestir(y, x); key 73 37 verified."}
+  item.programming.function_decomposition.define_io_responsibility.f07: {verdict: pass, note: "Only B yields 170 and 45; C reverses parameter order (-170)."}
+  item.programming.function_decomposition.define_io_responsibility.r1: {verdict: pass, note: "Criteria about content; division in the scenario is prose only, no code required."}
+  item.programming.trace_execution_basic.produce_trace.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.trace_execution_basic.produce_trace.f02: {verdict: pass, note: "Rewrite: isomorphic to the state_trace with new values; key 3, 9, 5 verified."}
+  item.programming.trace_execution_basic.produce_trace.f03: {verdict: pass, note: "Key: after line 3 y = 9 > x = 8."}
+  item.programming.trace_execution_basic.produce_trace.f04: {verdict: pass, note: "Rewrite: new code; the true table has p=18, r=9 at line 4, so the first wrong row is 4 (verified)."}
+  item.programming.trace_execution_basic.produce_trace.f05: {verdict: pass, note: "Key -8 10 verified."}
+  item.programming.trace_execution_basic.produce_trace.f06: {verdict: pass, note: "Key verified; iteration declared in required_skills."}
+  item.programming.trace_execution_basic.produce_trace.f07: {verdict: pass, note: "Key 2 3 2 verified."}
+  item.programming.debug_localization_basic.locate_cause.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.debug_localization_basic.locate_cause.f02: {verdict: pass, note: "Isomorphic to the state_trace (x, y, z; t = x + y; t = x + z) with new names/values; fix toplam = toplam + c gives 20. Consider varying the bug structure."}
+  item.programming.debug_localization_basic.locate_cause.f03: {verdict: pass, note: "Good: here the symptom line is the fault line; fix print(odenecek) gives 65."}
+  item.programming.debug_localization_basic.locate_cause.f04: {verdict: pass, note: "Isomorphic to the canonical (- instead of + on line 3) in a new context; fix gives 1250."}
+  item.programming.debug_localization_basic.locate_cause.f05: {verdict: pass, note: "Fix >= 50 verified; branching declared."}
+  item.programming.debug_localization_basic.locate_cause.f06: {verdict: pass, note: "range(1, 6) fix gives 15; line 2 is the first deviation (i starts at 0). Line 3 could be patched (i + 1) but is not where the state first deviates, per the lesson's method."}
+  item.programming.debug_localization_basic.locate_cause.f07: {verdict: pass, note: "Uses the prerequisite Skill's swap example values, not this Skill's lesson; only A is a true cause."}
+  item.programming.test_case_basic.design_expected_case.f01: {verdict: pass, note: "in_lesson; 2 * (4 + 9) = 26."}
+  item.programming.test_case_basic.design_expected_case.f02: {verdict: pass, note: "Rewrite: alan(3, 4) -> 12 is not in this Skill's lesson (it appears in the prerequisite function_decomposition lesson); structure recognition is what is measured."}
+  item.programming.test_case_basic.design_expected_case.f03: {verdict: pass, note: "Rewrite: new faulty function; only (2, 1) separates 3*a - b from 3*(a - b) (verified)."}
+  item.programming.test_case_basic.design_expected_case.f04: {verdict: pass, note: "4 * 15 + 12 = 72."}
+  item.programming.test_case_basic.design_expected_case.f05: {verdict: pass, note: "Only indirim(100) separates > from >=. Note: the canonical's edge example is the same '100 ve üstü' rule naming 100 and 99, but choosing between 100 and 99 still needs tracing."}
+  item.programming.test_case_basic.design_expected_case.f06: {verdict: pass, note: "Rewrite: isomorphic to contrast passing_test_proves_correct with a new rule and values (kargo, 200, 500)."}
+  item.programming.test_case_basic.design_expected_case.f07: {verdict: pass, note: "Rewrite: asks the consequence after fixing the code (copied expected 9 now fails against 12), a new angle on expected_from_code; verified."}
+  item.programming.test_case_basic.design_expected_case.r1: {verdict: pass, note: "Criteria clear and content-based; equal-values boundary is fair."}
+  item.programming.code_reading_basic.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; code and answer are the canonical example verbatim - acceptable only as an in-lesson check (see findings on task placement)."}
+  item.programming.code_reading_basic.demonstrate_capability.f02: {verdict: pass, note: ""}
+  item.programming.code_reading_basic.demonstrate_capability.f03: {verdict: pass, note: "Max variant of the worked_example's min; fine."}
+  item.programming.code_reading_basic.demonstrate_capability.f04: {verdict: pass, note: "A vs C (n inclusive/exclusive) verified for n = 0..7."}
+  item.programming.code_reading_basic.demonstrate_capability.f05: {verdict: pass, note: "Digit count verified (5, 10, 99, 100, 123456)."}
+  item.programming.code_reading_basic.demonstrate_capability.f06: {verdict: pass, note: ""}
+  item.programming.code_reading_basic.demonstrate_capability.f07: {verdict: pass, note: "Distractor B coincides with A at n = 12 (6) by design; differs for n = 1, 7, 9, 10, so only A is general."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f01: {verdict: pass, note: "in_lesson."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f02: {verdict: pass, note: "Rewrite: exclusive bounds (seviye 0-5) are not solved in the lesson; only A matches (verified)."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f03: {verdict: pass, note: "Rewrite: isomorphic to the worked_example's rejection condition with new, negative bounds; only -10 is accepted (verified)."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f04: {verdict: pass, note: "Rewrite: isomorphic to the canonical's rejection example, now at the boundary 0; key verified."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f05: {verdict: pass, note: "Only A matches {2,4,6,8,10}."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f06: {verdict: pass, note: "Rewrite: or between two range checks; only gun = 40, ay = 5 is wrongly accepted (verified). Good transfer of the or_for_range idea."}
+  item.programming.input_validation_reasoning.demonstrate_capability.f07: {verdict: pass, note: "Accepted set is -50..60 inclusive, verified."}
+explanations:
+  explanation.computing.program_execution_model.explain_pipeline.canonical: {verdict: pass, note: "Correct, incl. whole-file compile before execution and .pyc invalidation on source change."}
+  explanation.computing.program_execution_model.explain_pipeline.worked_example: {verdict: pass, note: "Correct; its last paragraph pre-solves item f03 (see items)."}
+  explanation.computing.program_execution_model.explain_pipeline.contrast_source_runs_directly: {verdict: pass, note: ""}
+  explanation.computing.program_execution_model.explain_pipeline.contrast_edit_updates_executable: {verdict: pass, note: ""}
+  explanation.computing.program_execution_model.explain_pipeline.contrast_interpreter_skips_syntax: {verdict: pass, note: "Correct distinction between syntax errors and runtime errors; open_question neutral."}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.canonical: {verdict: pass, note: "Correct. Minor: with a one-step gcc build the .o is temporary; harmless at this level."}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.worked_example: {verdict: pass, note: ""}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.contrast_screen_text_is_source: {verdict: pass, note: ""}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.contrast_object_file_runnable: {verdict: pass, note: ""}
+  explanation.computing.source_runtime_artifact_distinction.classify_artifacts.contrast_executable_needs_source: {verdict: pass, note: ""}
+  explanation.programming.state_assignment_model.trace_state.canonical: {verdict: pass, note: ""}
+  explanation.programming.state_assignment_model.trace_state.state_trace: {verdict: pass, note: "k=8, m=18 verified."}
+  explanation.programming.state_assignment_model.trace_state.worked_example: {verdict: pass, note: ""}
+  explanation.programming.state_assignment_model.trace_state.contrast_assignment_is_equation: {verdict: pass, note: ""}
+  explanation.programming.state_assignment_model.trace_state.contrast_copy_tracks_later_changes: {verdict: pass, note: "The list aside is imprecise (rebinding behaves the same for lists; only in-place mutation differs) but is hedged and deferred to Python lessons."}
+  explanation.programming.state_assignment_model.trace_state.contrast_self_update_impossible: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.canonical: {verdict: pass, note: "Precedence table correct for the taught subset."}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.state_trace: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.worked_example: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.contrast_assign_vs_equal: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.contrast_left_to_right_logic: {verdict: pass, note: ""}
+  explanation.programming.expression_boolean_reasoning.evaluate_condition.contrast_not_binds_first: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.canonical: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.state_trace: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.worked_example: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.contrast_all_true_branches_run: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.contrast_separate_ifs_exclusive: {verdict: pass, note: ""}
+  explanation.programming.branching_reasoning.predict_branch.contrast_condition_uses_initial_values: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.trace_iteration.canonical: {verdict: pass, note: "Trace table and range semantics correct."}
+  explanation.programming.iteration_reasoning.trace_iteration.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.trace_iteration.state_trace: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.trace_iteration.worked_example: {verdict: pass, note: "32 5 verified."}
+  explanation.programming.iteration_reasoning.trace_iteration.contrast_range_counts_from_one: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.trace_iteration.contrast_condition_checked_midway: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.detect_nontermination.canonical: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.detect_nontermination.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.detect_nontermination.worked_example: {verdict: pass, note: "5 turns verified."}
+  explanation.programming.iteration_reasoning.detect_nontermination.contrast_update_implies_termination: {verdict: pass, note: ""}
+  explanation.programming.iteration_reasoning.detect_nontermination.contrast_infinite_loop_crashes: {verdict: pass, note: ""}
+  explanation.programming.function_decomposition.define_io_responsibility.canonical: {verdict: pass, note: "print vs return and None correct; 'Bölme (decomposition)' is defined, so the division sense is not confusing."}
+  explanation.programming.function_decomposition.define_io_responsibility.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.function_decomposition.define_io_responsibility.worked_example: {verdict: pass, note: "75 and the None + 15 TypeError claim are correct."}
+  explanation.programming.function_decomposition.define_io_responsibility.contrast_print_is_return: {verdict: pass, note: ""}
+  explanation.programming.function_decomposition.define_io_responsibility.contrast_arguments_matched_by_name: {verdict: pass, note: ""}
+  explanation.programming.function_decomposition.define_io_responsibility.contrast_definition_runs_function: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.canonical: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.state_trace: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.worked_example: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.contrast_print_shows_final_value: {verdict: pass, note: ""}
+  explanation.programming.trace_execution_basic.produce_trace.contrast_unchanged_vars_forgotten: {verdict: pass, note: ""}
+  explanation.programming.debug_localization_basic.locate_cause.canonical: {verdict: pass, note: "40 - 8 - 5 = 27 vs 43 verified."}
+  explanation.programming.debug_localization_basic.locate_cause.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.debug_localization_basic.locate_cause.state_trace: {verdict: pass, note: ""}
+  explanation.programming.debug_localization_basic.locate_cause.worked_example: {verdict: pass, note: "183 vs 200 verified."}
+  explanation.programming.debug_localization_basic.locate_cause.contrast_symptom_is_location: {verdict: pass, note: ""}
+  explanation.programming.debug_localization_basic.locate_cause.contrast_fix_by_forcing_output: {verdict: pass, note: ""}
+  explanation.programming.test_case_basic.design_expected_case.canonical: {verdict: pass, note: "cevre(3, 0) and cevre(0, 4) claims verified."}
+  explanation.programming.test_case_basic.design_expected_case.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.test_case_basic.design_expected_case.worked_example: {verdict: pass, note: "Correct (the code really equals en * boy); pedagogically it shows only passing tests, which is acceptable for its stated point."}
+  explanation.programming.test_case_basic.design_expected_case.contrast_expected_from_code: {verdict: pass, note: ""}
+  explanation.programming.test_case_basic.design_expected_case.contrast_passing_test_proves_correct: {verdict: pass, note: "Clarity: indirim(...) is never defined in this text, so why 100 is the boundary is implicit; consider one clause stating the rule."}
+  explanation.programming.test_case_basic.design_expected_case.contrast_any_input_detects: {verdict: pass, note: ""}
+  explanation.programming.code_reading_basic.demonstrate_capability.canonical: {verdict: pass, note: "Single-example counterexample (a = 1, b = 5 -> 12 vs 4) verified."}
+  explanation.programming.code_reading_basic.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.code_reading_basic.demonstrate_capability.state_trace: {verdict: pass, note: ""}
+  explanation.programming.code_reading_basic.demonstrate_capability.worked_example: {verdict: pass, note: ""}
+  explanation.programming.code_reading_basic.demonstrate_capability.contrast_single_case_generalization: {verdict: pass, note: "Fixed: 'üç fazlasının iki katı' gives (5 + 3) * 2 = 16, so the wrong description now fits the single example as intended."}
+  explanation.programming.code_reading_basic.demonstrate_capability.contrast_names_tell_purpose: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.canonical: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.state_trace: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.worked_example: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.contrast_or_for_range: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.contrast_boundary_inclusion_ignored: {verdict: pass, note: ""}
+  explanation.programming.input_validation_reasoning.demonstrate_capability.contrast_partial_rule_enough: {verdict: pass, note: ""}
+findings:
+  - "First pass: all 94 keys were correct; 32 items failed (31 for reusing a problem already solved in the same Skill's lesson, one for self-containment/difficulty) and one contrast text had an arithmetic error. Second pass: all 32 rewrites pass (keys re-verified by execution) and the contrast is fixed. The new classify_artifacts.f07 failed once (it restated the worked_example's closing sentence) and passes after its rewrite. No item or explanation failures remain: 95/95 items and 79/79 explanations pass."
+  - "Leakage pattern to watch in future authoring: the lesson `checks` blocks and the items had been drawn from one pool. Several rewrites are deliberate isomorphs of lesson examples (new names/values, same structure); they pass, but a pool built only from isomorphs measures near transfer, so keep some structurally new items per Objective."
+  - "Graph: every while loop needs comparisons (expression_boolean_reasoning), but 6C makes only state_assignment_model hard and branching_reasoning soft for iteration_reasoning. The file works around this with lesson_requires and per-item required_skills; the missing hard edge expression_boolean_reasoning -> iteration_reasoning should be decided in the graph (15H), not per item."
+  - "Construct check: with transitive hard-prerequisite closure plus declared required_skills, no item (all 95) uses a construct outside its reachable set. input_validation_reasoning, code_reading_basic, debug_localization_basic and test_case_basic depend on the closure being transitive (e.g. comparisons in input_validation come via branching -> expression)."
+  - "Task placement: resolved. The build now presents in_lesson items only in the teach task (confirmed in tools/build_curriculum_package.py), so the three in_lesson items that restate the lesson (program_execution_model f01, source_runtime_artifact_distinction f01, code_reading_basic f01) no longer produce practice/check/review/repair evidence."
+  - "Coverage after the second pass: every Objective has at least one passing non-in_lesson item at basic, authentic_application and transfer_integration, and every Objective whose required direct type is explanation keeps a passing rubric item (classify_artifacts r1 now passes). The earlier gaps (classify_artifacts transfer and explanation; authentic_application in predict_branch, detect_nontermination, define_io_responsibility and input_validation_reasoning) are closed. With in_lesson items out of the pools, each Objective has exactly one non-in_lesson basic item."
+  - "No failure holds any task back: classify_artifacts.f07 now passes, so the classify_artifacts check, review and repair tasks are no longer kept candidate by it, and classify_artifacts has three passing transfer_integration items (f05, f06, f07)."

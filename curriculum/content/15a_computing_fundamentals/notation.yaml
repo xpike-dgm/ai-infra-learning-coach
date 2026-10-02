@@ -1,0 +1,83 @@
+# The reading notation of 15A (user decision 2026-10-02: a readable Python subset).
+#
+# These twelve Skills are language-neutral reasoning, but reasoning needs a notation, and Python (15B) is not yet
+# taught. Each construct below is therefore **taught for reading** by the lesson of the Skill(s) that introduce it;
+# writing Python stays 15B's. An item may use a construct only if its own Skill, a hard prerequisite of it, or a
+# Skill the item declares in `required_skills` introduces it — otherwise the construct is a hidden prerequisite
+# (KGC-v0 §28.11, AIV-v0 §11-§12) and the build refuses to validate the item. A construct nobody introduces here is
+# forbidden in every 15A item.
+#
+# Patterns are matched against an item's code only, never against prose.
+constructs:
+  print_call:
+    pattern: '\bprint\('
+    introduced_by: [skill.computing.program_execution_model, skill.programming.state_assignment_model]
+  string_literal:
+    pattern: '"[^"\n]*"'
+    introduced_by: [skill.computing.program_execution_model, skill.programming.state_assignment_model]
+  comment:
+    pattern: '#'
+    introduced_by: [skill.programming.state_assignment_model]
+  assignment:
+    pattern: '^\s*[A-Za-z_]\w*\s*=(?!=)'
+    introduced_by: [skill.programming.state_assignment_model]
+  augmented_assignment:
+    pattern: '[+\-*]='
+    introduced_by: [skill.programming.state_assignment_model]
+  arithmetic:
+    pattern: '[\w)]\s*[+\-*]\s*[\w(]'
+    introduced_by: [skill.programming.state_assignment_model]
+  floor_division_remainder:
+    pattern: '//|%'
+    introduced_by: [skill.programming.expression_boolean_reasoning]
+  comparison:
+    pattern: '==|!=|<=|>=|<|>'
+    introduced_by: [skill.programming.expression_boolean_reasoning]
+  boolean_logic:
+    pattern: '\b(and|or|not|True|False)\b'
+    introduced_by: [skill.programming.expression_boolean_reasoning]
+  if_branch:
+    pattern: '^\s*(if|elif|else)\b'
+    introduced_by: [skill.programming.branching_reasoning]
+  while_loop:
+    pattern: '^\s*while\b'
+    introduced_by: [skill.programming.iteration_reasoning]
+  for_range:
+    pattern: '^\s*for\b'
+    introduced_by: [skill.programming.iteration_reasoning]
+  function_def:
+    pattern: '^\s*def\b|\breturn\b'
+    introduced_by: [skill.programming.function_decomposition]
+  # Never introduced in 15A — each belongs to a later Python Skill (15B) or would need one.
+  true_division:
+    pattern: '(?<![/])/(?![/])'
+    introduced_by: []
+  input_call:
+    pattern: '\binput\('
+    introduced_by: []
+  collections:
+    pattern: '[\[\]{}]'
+    introduced_by: []
+  imports:
+    pattern: '^\s*(import|from)\b'
+    introduced_by: []
+  conversions_builtins:
+    pattern: '\b(int|str|float|len|list|dict|abs|max|min|sum|round)\('
+    introduced_by: []
+  methods:
+    pattern: '\.[A-Za-z_]\w*\('
+    introduced_by: []
+
+# Blueprint roles each item is declared eligible for (QAB-v0 §14). A declaration is eligibility, never priority:
+# current state produces the role (13A/13B).
+roles:
+  all: [recent_required_progress, weakness_or_verification, retention_due,
+        longitudinal_required_capability, persistent_weakness_or_verification, delayed_retention_sampling]
+  transfer: [integration_or_transfer, cross_topic_transfer]
+  critical: [critical_prerequisite_confidence, critical_capability_revalidation]
+
+# Authoring estimates of active minutes (QAB-v0 §22). Uncalibrated: 18B observes and corrects them.
+minutes:
+  basic: 2
+  authentic_application: 3
+  transfer_integration: 4

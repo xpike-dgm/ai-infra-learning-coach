@@ -1,0 +1,235 @@
+skill: skill.programming.expression_boolean_reasoning
+activity: code_reading_trace
+tasks:
+  teach: {title: "Karşılaştırma ve mantık: bir koşul ne zaman doğrudur?", minutes: 14}
+  practice: {title: "Koşul değerlendirme alıştırması", minutes: 10}
+  check: {title: "Koşul değerlendirme kontrolü", minutes: 8}
+  review: {title: "Koşul değerlendirme tekrarı", minutes: 6}
+  repair: {title: "Koşulları yeniden değerlendirmek: öncelik ve parçalara ayırma", minutes: 12}
+
+objectives:
+  - id: objective.programming.expression_boolean_reasoning.evaluate_condition
+    statement: >-
+      Karşılaştırma (==, !=, <, >, <=, >=), mantık işleçleri (and, or, not) ve tamsayı bölme/kalan (//, %) içeren bir
+      ifadenin değerini, işleç önceliğine uyarak adım adım hesaplayabilmek ve sonucun True mu False mı olduğunu
+      gerekçesiyle söyleyebilmek.
+    observable_behavior: >-
+      Verilen değişken değerleriyle bir koşulun sonucunu doğru verir; and/or/not birlikteyken hangi parçanın önce
+      hesaplandığını doğru uygular.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de required_direct_type explanation idi; Objective'in gözlenebilir davranışı bir ifadenin değerini kodu
+      okuyarak bulmaktır. 15A direct type'ı code_reading yaptı, explanation'ı direct kabul edilen ikinci tip bıraktı.
+    checks:
+      - prints: "3 2"
+        code: |
+          print(17 // 5, 17 % 5)
+      - prints: "True False"
+        code: |
+          x = 1
+          print(x > 0 or x > 5 and x < 0, (x > 0 or x > 5) and x < 0)
+      - prints: "False"
+        code: |
+          a = 4
+          b = 9
+          print(a < 5 and b % 2 == 0)
+      - prints: "True"
+        code: |
+          s = 12
+          print(s % 3 == 0 and not s > 20 or s == 5)
+      - prints: "True True"
+        code: |
+          yas = 16
+          veli_izni = True
+          print(yas >= 18 or veli_izni and yas >= 15, (yas >= 18 or veli_izni) and yas >= 15)
+    explanations:
+      canonical: |
+        Programlar sürekli sorular sorar: "Puan 50'den büyük mü?", "Sayı çift mi?" Bu soruların cevabı iki değerden biridir: True (doğru) ya da False (yanlış). Bunlara mantıksal (boolean) değerler denir.
+
+        Karşılaştırma işleçleri iki değeri karşılaştırır ve True ya da False üretir:
+        - a == b : a, b'ye eşit mi?
+        - a != b : a, b'den farklı mı?
+        - a < b, a > b : küçük mü, büyük mü?
+        - a <= b, a >= b : küçük-eşit mi, büyük-eşit mi?
+
+        Dikkat: == karşılaştırmadır, = atamadır. x == 5 bir soru sorar; x = 5 x'e değer koyar.
+
+        Tamsayı bölme ve kalan:
+        - 17 // 5 sonucu 3'tür (kaç kere sığar).
+        - 17 % 5 sonucu 2'dir (bölümden kalan).
+        Bir sayının çift olup olmadığı n % 2 == 0 ile sorulur.
+
+        Mantık işleçleri koşulları birleştirir:
+        - A and B : ikisi de True ise True.
+        - A or B : en az biri True ise True.
+        - not A : A'nın tersi.
+
+        Öncelik — hangisi önce hesaplanır? Yukarıdan aşağıya:
+        1. Parantez içi
+        2. *, //, %
+        3. +, -
+        4. Karşılaştırmalar (==, !=, <, >, <=, >=)
+        5. not
+        6. and
+        7. or
+
+        Bu yüzden x > 0 or x > 5 and x < 0 ifadesi aslında x > 0 or (x > 5 and x < 0) demektir: and, or'dan önce hesaplanır. Ve not sayi > 3, not (sayi > 3) demektir: karşılaştırma not'tan önce yapılır.
+
+        Adım adım hesaplamak için ifadeyi parçalara ayır, her karşılaştırmayı True/False'a çevir, sonra önceliğe göre birleştir:
+
+        a = 4
+        b = 9
+        a < 5 and b % 2 == 0
+        → (4 < 5) and (9 % 2 == 0)
+        → True and (1 == 0)
+        → True and False
+        → False
+
+        print(...) bir mantıksal değeri ekrana True ya da False olarak yazar.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum): bir ifade, o satıra gelindiği andaki değerlerle hesaplanır. Bir koşulu değerlendirmeden önce, ilgili değişkenlerin o andaki değerlerini bir durum tablosuna yaz.
+      state_trace:
+        level: H2
+        text: |
+          Parçalara ayırarak değerlendirme — başka bir örnek üzerinde.
+
+          s = 12
+          s % 3 == 0 and not s > 20 or s == 5
+
+          1. Değerleri yerine koy: 12 % 3 == 0 and not 12 > 20 or 12 == 5
+          2. Aritmetik: 12 % 3 = 0
+          3. Karşılaştırmalar: (0 == 0) → True, (12 > 20) → False, (12 == 5) → False
+          4. not: not False → True
+          5. and: True and True → True
+          6. or: True or False → True
+
+          Her adımda yalnızca o önceliğe ait işleçleri hesapla; sırayı atlama.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          yas = 16
+          veli_izni = True
+          print(yas >= 18 or veli_izni and yas >= 15)
+
+          - Karşılaştırmalar: yas >= 18 → False; yas >= 15 → True.
+          - and önce gelir: veli_izni and True → True and True → True.
+          - Sonra or: False or True → True.
+
+          Ekrana True yazılır. Soldan sağa okusaydık (False or True) and True gibi gruplardık; burada sonuç aynı çıkıyor, ama her zaman aynı çıkmaz — gruplamayı her zaman önceliğe göre yap.
+    misconceptions:
+      - slug: assign_vs_equal
+        name: = ile == aynı şeydir
+        open_question: x = 5 ile x == 5'in aynı işi yaptığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "= ve == ikisi de eşitlik."
+
+            x = 5 bir talimattır: x'e 5'i koyar, bir sonuç üretmez. x == 5 bir sorudur: x'in o anki değeri 5 mi diye bakar ve True ya da False üretir; x'i değiştirmez. Bir koşulun içinde her zaman == görürsün.
+      - slug: left_to_right_logic
+        name: and ve or her zaman soldan sağa hesaplanır
+        open_question: Bir ifadede and ile or yan yana geldiğinde, onları yazıldıkları sırayla soldan sağa birleştirmen gerektiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "A or B and C, önce A or B, sonra and C demek."
+
+            and, or'dan önce hesaplanır; tıpkı çarpmanın toplamadan önce gelmesi gibi. A or B and C aslında A or (B and C) demektir. Örneğin x = 1 iken x > 0 or x > 5 and x < 0 ifadesi True'dur: x > 0 zaten True, (x > 5 and x < 0) ise False; True or False → True. Soldan sağa gruplasaydık (True or False) and False → False çıkardı ve yanlış olurdu.
+      - slug: not_binds_first
+        name: not karşılaştırmadan önce uygulanır
+        open_question: not sayi > 3 ifadesinde not'un önce yalnızca sayi'ye uygulandığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "not sayi > 3, (not sayi) > 3 demek."
+
+            Karşılaştırmalar not'tan önce hesaplanır: not sayi > 3, not (sayi > 3) demektir. Önce sayi > 3 True ya da False olur, sonra not onu tersine çevirir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 7
+          print(x > 5)
+        answer: "True"
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = 4
+          b = 4
+          print(a != b)
+        answer: "False"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          n = 15
+          print(n % 2 == 0 or n % 5 == 0)
+        options:
+          A: "True"
+          B: "False"
+          C: "1"
+          D: Hata verir; or yalnızca iki sayıyı birleştirebilir.
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "True", B: "False", C: "1", D: "<hata>"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 3
+          y = 8
+          print(x > 2 and y < 5)
+        answer: "False"
+        verify: {mode: stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          hiz = 2
+          print(hiz < 3 or hiz > 5 and hiz > 10)
+        options:
+          A: "True"
+          B: "False"
+          C: Hata verir; and ile or aynı ifadede kullanılamaz.
+          D: "2"
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "True", B: "False", C: "<hata>", D: "2"}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          k = 1
+          print(not k > 4 and k == 1)
+        answer: "True"
+        verify: {mode: stdout}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          t = 23
+          print(t // 4, t % 4, t // 4 * 4 + t % 4 == t)
+        answer: "5 3 True"
+        verify: {mode: stdout}

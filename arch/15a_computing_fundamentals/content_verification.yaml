@@ -1,0 +1,1410 @@
+package_version: 1
+items:
+- item: item.computing.program_execution_model.explain_pipeline.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: GCC Manual §3.2 Options Controlling the Kind of Output — ''Compilation can involve up
+    to four stages: preprocessing, compilation proper, assembly and linking, always in that order.''; Python Glossary — ''interpreted''
+    ve ''bytecode'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Python Glossary — ''bytecode'' ve ''interpreted''; GCC Manual §3.2 Options Controlling
+    the Kind of Output'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f03
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'duzeltilmis\n' is option B and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'Bir\nİki\n' is option B and no other
+  constructs:
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '' is option B and no other
+  constructs:
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: GCC Manual §3.2 Options Controlling the Kind of Output (bağlama sonucunda çalıştırılabilir
+    dosya üretilir); derlenmiş programın çalışması için derleyiciye değil hedef platformun çalışma ortamına ihtiyaç duyulur'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Python Tutorial §2 Using the Python Interpreter; Python Glossary — ''interpreted'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.program_execution_model.explain_pipeline.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: GCC Manual §3.2 Options Controlling the Kind of Output — ''file.c: C source code that
+    must be preprocessed.''; -c: ''The ultimate output is in the form of an object file for each source file.'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: GCC Manual §3.2 Options Controlling the Kind of Output — -c: ''Compile or assemble the
+    source files, but do not link. … The ultimate output is in the form of an object file for each source file.''; ''Compilation
+    can involve up to four stages: preprocessing, compilation proper, assembly and linking'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f03
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'calisma_ciktisi\n' is option C and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f04
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f05
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'calisma_ciktisi\n' is option B and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: GCC Manual §3.2 Options Controlling the Kind of Output (bağlama son aşamadır ve çalıştırılabilir
+    dosyayı üretir); §3.16 Options for Linking — bağlama çıktısı kendi başına çalıştırılabilir dosyadır'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.f07
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.computing.source_runtime_artifact_distinction.classify_artifacts.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '2 2\n' is option B and no other
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '80 45\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - augmented_assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.state_assignment_model.trace_state.f07
+  status: validated
+  verify_mode: probe
+  verification: executed; true value '10 5\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - comparison
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - comparison
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'True\n' is option A and no other
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - floor_division_remainder
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'True\n' is option A and no other
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.expression_boolean_reasoning.evaluate_condition.f07
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'uzun\n' is option A and no other
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'büyük\nbeşin katı\n' is option C and no other
+  constructs:
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value 'geçti\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.branching_reasoning.predict_branch.f07
+  status: validated
+  verify_mode: which_input
+  verification: executed for every option; only option B prints 'orta'
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f01
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - print_call
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '0\n2\n4\n6\n' is option B and no other
+  constructs:
+  - arithmetic
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f03
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - augmented_assignment
+  - comparison
+  - print_call
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - print_call
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f06
+  status: validated
+  verify_mode: probe
+  verification: executed; true value '6\n' is option B and no other
+  constructs:
+  - assignment
+  - augmented_assignment
+  - comparison
+  - floor_division_remainder
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.trace_iteration.f07
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '-1' is option B and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f01
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=False as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - boolean_logic
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f02
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=True as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - boolean_logic
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f03
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=False as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f04
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=False as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f05
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=True as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - boolean_logic
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f06
+  status: validated
+  verify_mode: termination
+  verification: executed with a 2s limit; terminates=False as keyed
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.iteration_reasoning.detect_nontermination.f07
+  status: validated
+  verify_mode: fix_terminates
+  verification: executed with a 2s limit; only replacement B terminates
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f01
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'kenar|return\n' is option A and no other
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f02
+  status: validated
+  verify_mode: functions
+  verification: executed on 4 cases; only option B meets the specification
+  constructs:
+  - arithmetic
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f03
+  status: validated
+  verify_mode: functions
+  verification: executed on 4 cases; only option A meets the specification
+  constructs:
+  - arithmetic
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f04
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '5\n5\nNone\n' is option B and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f05
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.f07
+  status: validated
+  verify_mode: functions
+  verification: executed on 3 cases; only option B meets the specification
+  constructs:
+  - arithmetic
+  - function_def
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.function_decomposition.define_io_responsibility.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f01
+  status: validated
+  verify_mode: probe
+  verification: executed; true value '10 5\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f02
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '3\n9\n5\n' is option B and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f03
+  status: validated
+  verify_mode: script
+  verification: executed; true value '3\n' is option B and no other
+  constructs:
+  - arithmetic
+  - assignment
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f04
+  status: validated
+  verify_mode: script
+  verification: executed; true value '4\n' is option C and no other
+  constructs:
+  - arithmetic
+  - assignment
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f05
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f06
+  status: validated
+  verify_mode: stdout
+  verification: executed; true value '0 0\n1 1\n2 3\n' is option A and no other
+  constructs:
+  - arithmetic
+  - assignment
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.trace_execution_basic.produce_trace.f07
+  status: validated
+  verify_mode: stdout
+  verification: executed; the key is exactly what the code prints
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f01
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 3 alone gives the intended output
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f02
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 5 alone gives the intended output
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f03
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 6 alone gives the intended output
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f04
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 3 alone gives the intended output
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f05
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 2 alone gives the intended output
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f06
+  status: validated
+  verify_mode: fault
+  verification: executed; the symptom is real and fixing line 2 alone gives the intended output
+  constructs:
+  - arithmetic
+  - assignment
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.debug_localization_basic.locate_cause.f07
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f01
+  status: validated
+  verify_mode: script
+  verification: script prints '26'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Python Library Reference — unittest: ''A test case is the individual unit of testing.
+    It checks for a specific response to a particular set of inputs.'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f03
+  status: validated
+  verify_mode: detects
+  verification: executed; only input C separates the faulty function from the correct one
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f04
+  status: validated
+  verify_mode: script
+  verification: script prints '72'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f05
+  status: validated
+  verify_mode: detects
+  verification: executed; only input B separates the faulty function from the correct one
+  constructs:
+  - arithmetic
+  - comparison
+  - function_def
+  - if_branch
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f06
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'B\n' is option B and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.f07
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'basarisiz\n' is option B and no other
+  constructs:
+  - arithmetic
+  - function_def
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.test_case_basic.design_expected_case.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f01
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 5 cases; only option A describes the program
+  constructs:
+  - arithmetic
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f02
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 4 cases; only option B describes the program
+  constructs:
+  - assignment
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f03
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 4 cases; only option B describes the program
+  constructs:
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f04
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 5 cases; only option A describes the program
+  constructs:
+  - arithmetic
+  - assignment
+  - for_range
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f05
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 6 cases; only option A describes the program
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - print_call
+  - while_loop
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f06
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 5 cases; only option A describes the program
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - if_branch
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.code_reading_basic.demonstrate_capability.f07
+  status: validated
+  verify_mode: behaviour
+  verification: executed on 5 cases; only option A describes the program
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - floor_division_remainder
+  - for_range
+  - if_branch
+  - print_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f01
+  status: validated
+  verify_mode: which_input
+  verification: executed for every option; only option C prints 'geçersiz'
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f02
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs:
+  - boolean_logic
+  - comparison
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f03
+  status: validated
+  verify_mode: which_input
+  verification: executed for every option; only option C prints 'geçerli'
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f04
+  status: validated
+  verify_mode: stdout
+  verification: 'executed; true value ''hata: miktar pozitif olmalı\n'' is option B and no other'
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f05
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs:
+  - boolean_logic
+  - comparison
+  - floor_division_remainder
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f06
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'C\n' is option C and no other
+  constructs:
+  - assignment
+  - boolean_logic
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.programming.input_validation_reasoning.demonstrate_capability.f07
+  status: validated
+  verify_mode: script
+  verification: executed; true value 'A\n' is option A and no other
+  constructs:
+  - arithmetic
+  - comparison
+  - if_branch
+  - print_call
+  - string_literal
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 79
+tasks:
+- task: task.computing.program_execution_model.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.computing.program_execution_model.practice
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.computing.program_execution_model.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.computing.program_execution_model.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.computing.program_execution_model.repair
+  status: validated
+  items: 6
+  explanations: 3
+- task: task.computing.source_runtime_artifact_distinction.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.computing.source_runtime_artifact_distinction.practice
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.computing.source_runtime_artifact_distinction.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.computing.source_runtime_artifact_distinction.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.computing.source_runtime_artifact_distinction.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.state_assignment_model.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.state_assignment_model.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.state_assignment_model.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.state_assignment_model.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.state_assignment_model.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.expression_boolean_reasoning.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.expression_boolean_reasoning.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.expression_boolean_reasoning.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.expression_boolean_reasoning.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.expression_boolean_reasoning.repair
+  status: validated
+  items: 6
+  explanations: 5
+- task: task.programming.branching_reasoning.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.branching_reasoning.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.branching_reasoning.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.branching_reasoning.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.branching_reasoning.repair
+  status: validated
+  items: 6
+  explanations: 5
+- task: task.programming.iteration_reasoning.teach
+  status: validated
+  items: 2
+  explanations: 4
+- task: task.programming.iteration_reasoning.practice
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.iteration_reasoning.check
+  status: validated
+  items: 10
+  explanations: 0
+- task: task.programming.iteration_reasoning.review
+  status: validated
+  items: 12
+  explanations: 0
+- task: task.programming.iteration_reasoning.repair
+  status: validated
+  items: 12
+  explanations: 7
+- task: task.programming.function_decomposition.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.function_decomposition.practice
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.programming.function_decomposition.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.function_decomposition.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.function_decomposition.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.trace_execution_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.trace_execution_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.trace_execution_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.trace_execution_basic.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.trace_execution_basic.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.debug_localization_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.debug_localization_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.debug_localization_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.debug_localization_basic.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.debug_localization_basic.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.test_case_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.test_case_basic.practice
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.programming.test_case_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.test_case_basic.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.test_case_basic.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.code_reading_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.code_reading_basic.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.code_reading_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.code_reading_basic.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.code_reading_basic.repair
+  status: validated
+  items: 6
+  explanations: 4
+- task: task.programming.input_validation_reasoning.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.programming.input_validation_reasoning.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.programming.input_validation_reasoning.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.programming.input_validation_reasoning.review
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.programming.input_validation_reasoning.repair
+  status: validated
+  items: 6
+  explanations: 5
+failures: []
+explanation_checks:
+- objective: objective.computing.program_execution_model.explain_pipeline
+  check: 1
+  result: PASS
+  printed: Merhaba
+- objective: objective.programming.state_assignment_model.trace_state
+  check: 1
+  result: PASS
+  printed: 8 4
+- objective: objective.programming.state_assignment_model.trace_state
+  check: 2
+  result: PASS
+  printed: 14 20
+- objective: objective.programming.state_assignment_model.trace_state
+  check: 3
+  result: PASS
+  printed: 8 18
+- objective: objective.programming.state_assignment_model.trace_state
+  check: 4
+  result: PASS
+  printed: 9 7
+- objective: objective.programming.expression_boolean_reasoning.evaluate_condition
+  check: 1
+  result: PASS
+  printed: 3 2
+- objective: objective.programming.expression_boolean_reasoning.evaluate_condition
+  check: 2
+  result: PASS
+  printed: True False
+- objective: objective.programming.expression_boolean_reasoning.evaluate_condition
+  check: 3
+  result: PASS
+  printed: 'False'
+- objective: objective.programming.expression_boolean_reasoning.evaluate_condition
+  check: 4
+  result: PASS
+  printed: 'True'
+- objective: objective.programming.expression_boolean_reasoning.evaluate_condition
+  check: 5
+  result: PASS
+  printed: True True
+- objective: objective.programming.branching_reasoning.predict_branch
+  check: 1
+  result: PASS
+  printed: ılık
+- objective: objective.programming.branching_reasoning.predict_branch
+  check: 2
+  result: PASS
+  printed: 'Geçti
+
+    bitti'
+- objective: objective.programming.branching_reasoning.predict_branch
+  check: 3
+  result: PASS
+  printed: küçük
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 1
+  result: PASS
+  printed: '10'
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 2
+  result: PASS
+  printed: '0
+
+    1
+
+    2'
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 3
+  result: PASS
+  printed: '2
+
+    3
+
+    4'
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 4
+  result: PASS
+  printed: '1 1
+
+    3 2
+
+    6 3'
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 5
+  result: PASS
+  printed: 32 5
+- objective: objective.programming.iteration_reasoning.trace_iteration
+  check: 6
+  result: PASS
+  printed: 5 5 5
+- objective: objective.programming.iteration_reasoning.detect_nontermination
+  check: 1
+  result: PASS
+  printed: '3'
+- objective: objective.programming.function_decomposition.define_io_responsibility
+  check: 1
+  result: PASS
+  printed: '36'
+- objective: objective.programming.function_decomposition.define_io_responsibility
+  check: 2
+  result: PASS
+  printed: '10
+
+    None'
+- objective: objective.programming.function_decomposition.define_io_responsibility
+  check: 3
+  result: PASS
+  printed: -7 7
+- objective: objective.programming.function_decomposition.define_io_responsibility
+  check: 4
+  result: PASS
+  printed: '75'
+- objective: objective.programming.trace_execution_basic.produce_trace
+  check: 1
+  result: PASS
+  printed: '1
+
+    5
+
+    10'
+- objective: objective.programming.trace_execution_basic.produce_trace
+  check: 2
+  result: PASS
+  printed: '9 6
+
+    9 3'
+- objective: objective.programming.trace_execution_basic.produce_trace
+  check: 3
+  result: PASS
+  printed: 8 5
+- objective: objective.programming.debug_localization_basic.locate_cause
+  check: 1
+  result: PASS
+  printed: '27'
+- objective: objective.programming.debug_localization_basic.locate_cause
+  check: 2
+  result: PASS
+  printed: '43'
+- objective: objective.programming.debug_localization_basic.locate_cause
+  check: 3
+  result: PASS
+  printed: '20'
+- objective: objective.programming.debug_localization_basic.locate_cause
+  check: 4
+  result: PASS
+  printed: '183'
+- objective: objective.programming.test_case_basic.design_expected_case
+  check: 1
+  result: PASS
+  printed: 18 11
+- objective: objective.programming.test_case_basic.design_expected_case
+  check: 2
+  result: PASS
+  printed: True False
+- objective: objective.programming.test_case_basic.design_expected_case
+  check: 3
+  result: PASS
+  printed: 10 0
+- objective: objective.programming.code_reading_basic.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: '16'
+- objective: objective.programming.code_reading_basic.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '3 1
+
+    0 2
+
+    1 3'
+- objective: objective.programming.code_reading_basic.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 12 12 4
+- objective: objective.programming.code_reading_basic.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: 6 6 4
+- objective: objective.programming.input_validation_reasoning.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 'geçerli
+
+    geçersiz
+
+    geçerli'
+- objective: objective.programming.input_validation_reasoning.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: 'True'
+summary:
+  skills: 12
+  objectives: 13
+  topics: 8
+  items: 95
+  validated_items: 95
+  explanations: 79
+  misconceptions: 34
+  tasks: 60
+  failures: 0

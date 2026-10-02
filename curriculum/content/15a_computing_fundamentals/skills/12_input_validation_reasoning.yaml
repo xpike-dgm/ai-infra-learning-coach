@@ -1,0 +1,297 @@
+skill: skill.programming.input_validation_reasoning
+activity: code_reading_trace
+tasks:
+  teach: {title: "Girdi doğrulama: hangi girdiyi kabul eder, hangisini reddeder?", minutes: 14}
+  practice: {title: "Girdi doğrulama alıştırması", minutes: 10}
+  check: {title: "Girdi doğrulama kontrolü", minutes: 8}
+  review: {title: "Girdi doğrulama tekrarı", minutes: 6}
+  repair: {title: "Doğrulamayı yeniden kurmak: kural, sınır ve koşul", minutes: 12}
+
+objectives:
+  - id: objective.programming.input_validation_reasoning.demonstrate_capability
+    statement: >-
+      Bir girdinin kabul koşullarını (geçerli aralık ve sınırları, izin verilen değerler) tanımlayabilmek, bir kuralı
+      doğru ifade eden koşulu seçebilmek ve verilen bir doğrulama kodunun hangi girdileri kabul edip hangilerini
+      reddettiğini, geçersiz girdide programın ne yaptığını söyleyebilmek.
+    observable_behavior: >-
+      Bir kuralı doğru ifade eden koşulu seçer; bir doğrulama kodunun kabul ettiği aralığı ve sınırları doğru söyler;
+      kodun yanlışlıkla kabul ettiği geçersiz girdiyi bulur.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability) ve required_direct_type explanation idi.
+      Kimlik korundu; 15A gözlenebilir davranışı adlandırdı ve direct type'ı code_reading yaptı. Koşul seçen her item,
+      bütün seçeneklerin geniş bir girdi aralığında kuralla karşılaştırılarak çalıştırılmasıyla doğrulanır.
+    checks:
+      - prints: "geçerli\ngeçersiz\ngeçerli"
+        code: |
+          for ay in (1, 13, 12):
+              if ay >= 1 and ay <= 12:
+                  print("geçerli")
+              else:
+                  print("geçersiz")
+      - prints: "True"
+        code: |
+          print(all((x >= 1 or x <= 12) for x in range(-50, 50)))
+    explanations:
+      canonical: |
+        Programlar dış dünyadan veri alır: kullanıcının yazdığı bir yaş, bir dosyadaki bir sayı. Bu veriler her zaman beklediğin gibi gelmez. Girdi doğrulama (input validation), bir girdiyi kullanmadan önce kurallara uyup uymadığını kontrol etmektir.
+
+        Önce kuralı açıkça yaz:
+        - Ay numarası 1 ile 12 arasında olmalı (1 ve 12 dahil).
+        - Yaş 0'dan küçük olamaz.
+
+        Sonra kuralı bir koşula çevir:
+
+        if ay >= 1 and ay <= 12:
+            print("geçerli")
+        else:
+            print("geçersiz")
+
+        Dikkat edilecekler:
+
+        1. Aralık için and kullanılır. "1 ile 12 arasında" demek, iki şartın birlikte doğru olması demektir: ay >= 1 and ay <= 12. Burada or kullanılsaydı (ay >= 1 or ay <= 12) her sayı kabul edilirdi: her sayı ya 1'den büyük-eşit ya da 12'den küçük-eşittir.
+
+        2. Sınırlar: "dahil" ise >= ve <=, "hariç" ise > ve < kullanılır. Hatalar çoğu zaman tam sınırda saklanır; bu yüzden bir doğrulamayı okurken önce sınır değerlerini dene: 0, 1, 12, 13.
+
+        3. Geçersiz girdide ne olur? İyi bir program geçersiz girdiyi sessizce kullanmaz; onu reddeder ve nedenini söyler:
+
+        adet = -3
+        if adet > 0:
+            print(adet * 10)
+        else:
+            print("hata: adet pozitif olmalı")
+
+        Burada hesap yalnızca geçerli girdiyle yapılır; -3 için ekrana hata mesajı yazılır.
+
+        4. Eksik kural: Bir doğrulama, kuralın bir parçasını unutursa geçersiz girdileri kabul eder. "Saat 0–23, dakika 0–59" kuralını kontrol eden kod dakikanın üst sınırını unutmuşsa, 10:75 gibi bir saati geçerli sayar.
+
+        Bir doğrulama kodunu okurken sor: Hangi girdileri kabul ediyor? Sınırlar dahil mi? Kuralda olup kodda olmayan bir parça var mı?
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (dallanma): if koşulu True ise if kolu, değilse else kolu çalışır; bir zincirde ilk True olan kol çalışır. Doğrulamada if kolu çoğunlukla "kabul", else kolu "ret"tir; hangisinin çalışacağını koşulu True/False'a çevirerek bulursun.
+      state_trace:
+        level: H2
+        text: |
+          Sınır değerleriyle sınamak — başka bir örnek üzerinde.
+
+          Kural: kat numarası 0 ile 20 arasında olmalı (ikisi dahil).
+
+          if kat > 0 and kat <= 20:
+              print("geçerli")
+          else:
+              print("geçersiz")
+
+          kat = 5 → 5 > 0 True, 5 <= 20 True → geçerli
+          kat = 20 → True and True → geçerli
+          kat = 21 → 21 <= 20 False → geçersiz
+          kat = 0 → 0 > 0 False → geçersiz (ama kurala göre geçerli olmalıydı!)
+
+          Sınırda deneme, > yerine >= yazılması gerektiğini gösterdi.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Kural: bir sınav notu 0 ile 100 arasında olmalı (ikisi dahil). Kod:
+
+          if puan < 0 or puan > 100:
+              print("geçersiz")
+          else:
+              print("geçerli")
+
+          Bu kod reddetme koşulunu yazıyor: puan sınırların dışındaysa. Dışarıda olmak için tek bir taraftan taşmak yeter, bu yüzden burada or doğrudur.
+
+          - puan = -1 → -1 < 0 True → geçersiz
+          - puan = 0 → 0 < 0 False, 0 > 100 False → geçerli
+          - puan = 100 → geçerli
+          - puan = 101 → 101 > 100 True → geçersiz
+
+          Kabul edilen aralık 0 ile 100, ikisi de dahil. Kabul koşulu and ile ("içeride: iki şart birlikte"), ret koşulu or ile ("dışarıda: bir şart yeter") yazılır.
+    misconceptions:
+      - slug: or_for_range
+        name: Bir aralık koşulu or ile yazılır
+        open_question: '"1 ile 12 arasında" kuralının ay >= 1 or ay <= 12 biçiminde yazılabileceğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "1'den büyük veya 12'den küçük olsun."
+
+            ay >= 1 or ay <= 12 koşulunu her sayı sağlar: 50, 1'den büyüktür; -7, 12'den küçüktür. Bir aralığın içinde olmak, iki şartın birlikte doğru olmasıdır: ay >= 1 and ay <= 12. or, aralığın dışını tarif ederken kullanılır: ay < 1 or ay > 12.
+      - slug: boundary_inclusion_ignored
+        name: "> ile >= arasındaki fark önemsizdir"
+        open_question: Bir doğrulamada > ile >= kullanmanın aynı girdileri kabul ettiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "kat > 0 ile kat >= 0 hemen hemen aynı."
+
+            Fark tam sınırdadır: kat = 0 için ilki False, ikincisi True. Kural "0 dahil" diyorsa ilki geçerli bir girdiyi reddeder. Bu yüzden bir doğrulamayı her zaman sınır değerinin kendisiyle de dene.
+      - slug: partial_rule_enough
+        name: Kuralın bir kısmını kontrol etmek yeterlidir
+        open_question: Bir doğrulamanın, kuralın yalnızca bir kısmını kontrol etse de geçersiz girdileri yakalayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Saat kontrol ediliyor, dakika da muhtemelen doğrudur."
+
+            Kontrol edilmeyen her parça, geçersiz girdinin içeri sızabileceği bir kapıdır. Kuraldaki her şartı (alt sınır, üst sınır, her alan) koşulla tek tek eşleştir; eşleşmeyen bir şart varsa doğrulama eksiktir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Aşağıdaki kod, başına hangi satır eklenirse geçersiz yazar?
+        code: |
+          if yas >= 0 and yas <= 120:
+              print("geçerli")
+          else:
+              print("geçersiz")
+        options:
+          A: yas = 0
+          B: yas = 120
+          C: yas = -1
+          D: yas = 45
+        answer: C
+        verify:
+          mode: which_input
+          target: geçersiz
+          assignments: {A: "yas = 0", B: "yas = 120", C: "yas = -1", D: "yas = 45"}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Kural: seviye 0'dan büyük ve 5'ten küçük olmalı (iki sınır da hariç). Hangi koşul bu kuralı doğru ifade eder?
+        options:
+          A: seviye > 0 and seviye < 5
+          B: seviye >= 0 and seviye <= 5
+          C: seviye > 0 or seviye < 5
+          D: seviye > 0 and seviye <= 5
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            options = {"A": lambda s: s > 0 and s < 5, "B": lambda s: s >= 0 and s <= 5,
+                       "C": lambda s: s > 0 or s < 5, "D": lambda s: s > 0 and s <= 5}
+            rule = lambda s: 0 < s < 5
+            print(",".join(k for k, f in options.items() if all(f(s) == rule(s) for s in range(-20, 40))))
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kod, başına hangi satır eklenirse geçerli yazar?
+        code: |
+          if derece < -10 or derece > 40:
+              print("geçersiz")
+          else:
+              print("geçerli")
+        options:
+          A: derece = -11
+          B: derece = 41
+          C: derece = -10
+          D: derece = 50
+        answer: C
+        verify:
+          mode: which_input
+          target: geçerli
+          assignments: {A: "derece = -11", B: "derece = 41", C: "derece = -10", D: "derece = 50"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          miktar = 0
+          if miktar > 0:
+              print(miktar * 25)
+          else:
+              print("hata: miktar pozitif olmalı")
+        options:
+          A: "0"
+          B: "hata: miktar pozitif olmalı"
+          C: "25"
+          D: Hiçbir şey
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "0", B: "hata: miktar pozitif olmalı", C: "25", D: ""}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Kural: n, 2 ile 10 arasında (ikisi dahil) bir çift sayı olmalı. Hangi koşul bu kuralı doğru ifade eder?
+        options:
+          A: n % 2 == 0 and n >= 2 and n <= 10
+          B: n % 2 == 0 or n >= 2 and n <= 10
+          C: n % 2 == 1 and n >= 2 and n <= 10
+          D: n >= 2 and n <= 10
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            options = {"A": lambda n: n % 2 == 0 and n >= 2 and n <= 10, "B": lambda n: n % 2 == 0 or n >= 2 and n <= 10,
+                       "C": lambda n: n % 2 == 1 and n >= 2 and n <= 10, "D": lambda n: n >= 2 and n <= 10}
+            rule = lambda n: n in (2, 4, 6, 8, 10)
+            print(",".join(k for k, f in options.items() if all(f(n) == rule(n) for n in range(-20, 40))))
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Kural: gün 1 ile 31, ay 1 ile 12 arasında olmalı (sınırlar dahil). Aşağıdaki kodda koşulları birleştirirken bir hata yapılmış. Hangi girdi, kurala göre geçersiz olduğu halde bu kod tarafından geçerli kabul edilir?
+        code: |
+          if gun >= 1 and gun <= 31 or ay >= 1 and ay <= 12:
+              print("geçerli")
+          else:
+              print("geçersiz")
+        options:
+          A: gun = 31, ay = 12
+          B: gun = 0, ay = 0
+          C: gun = 40, ay = 5
+          D: gun = 0, ay = 13
+        answer: C
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            code = 'if gun >= 1 and gun <= 31 or ay >= 1 and ay <= 12:\n    sonuc = "geçerli"\nelse:\n    sonuc = "geçersiz"\n'
+            options = {"A": (31, 12), "B": (0, 0), "C": (40, 5), "D": (0, 13)}
+            wrong = []
+            for k, (gun, ay) in options.items():
+                env = {"gun": gun, "ay": ay}
+                exec(code, env)
+                valid = 1 <= gun <= 31 and 1 <= ay <= 12
+                if env["sonuc"] == "geçerli" and not valid:
+                    wrong.append(k)
+            print(",".join(wrong))
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod, sicaklik'in hangi değerlerini geçerli kabul eder?
+        code: |
+          if sicaklik < -50:
+              print("çok düşük, geçersiz")
+          elif sicaklik > 60:
+              print("çok yüksek, geçersiz")
+          else:
+              print("geçerli")
+        options:
+          A: -50 ile 60 arası, iki sınır da dahil
+          B: -50 ile 60 arası, iki sınır da hariç
+          C: -50'den küçük ya da 60'tan büyük değerler
+          D: 0 ile 60 arası
+        answer: A
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            code = 'if sicaklik < -50:\n    s = "d"\nelif sicaklik > 60:\n    s = "y"\nelse:\n    s = "g"\n'
+            accepted = set()
+            for t in range(-100, 101):
+                env = {"sicaklik": t}
+                exec(code, env)
+                if env["s"] == "g":
+                    accepted.add(t)
+            options = {"A": set(range(-50, 61)), "B": set(range(-49, 60)),
+                       "C": set(range(-100, -50)) | set(range(61, 101)), "D": set(range(0, 61))}
+            print(",".join(k for k, s in options.items() if s == accepted))

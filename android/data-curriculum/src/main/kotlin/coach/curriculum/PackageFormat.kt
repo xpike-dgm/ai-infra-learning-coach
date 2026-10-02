@@ -10,6 +10,9 @@ import coach.model.EvaluatorRequirement
 import coach.model.EvaluatorStatusRequirement
 import coach.model.IndependenceMode
 import coach.model.AssistanceLevel
+import coach.model.AuthoredTask
+import coach.model.NeedTrigger
+import coach.model.TaskPurpose
 import coach.model.CodeTest
 import coach.model.CodeTestSuite
 import coach.model.ComprehensionCheck
@@ -61,6 +64,8 @@ object PackageFormat {
         val answerKeys: List<AcceptedAnswers> = emptyList(),
         /** Rubrics of open-response items (14F): content, never published into the store. */
         val rubrics: List<Rubric> = emptyList(),
+        /** Authored tasks (15A): content the planner asks for by need, never published into the store. */
+        val tasks: List<AuthoredTask> = emptyList(),
     )
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
@@ -80,7 +85,9 @@ object PackageFormat {
 
         lines.forEachIndexed { index, raw ->
             val number = index + 1
-            val line = raw.substringBefore('#').trim()
+            // 15A: only a whole line is a comment. Content is code and prose, and both contain `#` — a Python
+            // comment, a C preprocessor line, a heading — so a `#` inside a value is never cut off.
+            val line = if (raw.startsWith("#")) "" else raw
             when {
                 index == 0 || line.isEmpty() -> Unit
                 line.startsWith("[") && line.endsWith("]") -> {
@@ -130,7 +137,8 @@ object PackageFormat {
         }
         val documents = sections.filter { it.name == "item" }.mapNotNull { section ->
             val ref = runCatching { reader.ref(section, "ref") }.getOrNull() ?: return@mapNotNull null
-            ref to section.values["prompt"].orEmpty()
+            // 15A: a prompt carries code, so a backslash-n is a line break exactly as in an explanation.
+            ref to section.values["prompt"].orEmpty().replace("\\n", "\n")
         }
 
         val explanations = sections.filter { it.name == "explanation" }.mapNotNull { section ->
@@ -144,10 +152,48 @@ object PackageFormat {
 
         val answerKeys = answerKeys(sections, reader, reasons)
         val rubrics = rubrics(sections, reader, reasons)
+        val tasks = sections.filter { it.name == "task" }.mapNotNull { section ->
+            runCatching { reader.task(section) }.getOrElse { reasons += "task: ${it.message}"; null }
+        }
+        if (curriculum != null) reasons += taskReferences(tasks, curriculum, items.map { it.ref }.toSet(), explanations.map { it.ref }.toSet())
 
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
-        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks, answerKeys, rubrics)
+        return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks, answerKeys, rubrics,
+            tasks)
     }
+
+    /**
+     * 15A: a task may only present what this package carries, may only name its own Skill's Objectives, and may not
+     * claim more trust than the items it presents. The planner reads a task's validation status directly, so a task
+     * declaring itself `validated` over candidate items would be an item promoting itself through its wrapper
+     * (`AIV-v0` §23) — the package is refused instead.
+     */
+    private fun taskReferences(
+        tasks: List<AuthoredTask>,
+        curriculum: CurriculumPackage,
+        itemRefs: Set<VersionedRef>,
+        explanationRefs: Set<VersionedRef>,
+    ): List<String> = buildList {
+        tasks.groupBy { it.ref }.filterValues { it.size > 1 }.keys.forEach { add("task ${it.logicalId}@v${it.version} is declared twice") }
+        // A task's own Skill needs no check of its own: every Objective it names must belong to that Skill in this
+        // package, so a Skill the package lacks is already refused there (15A mutation F10 was equivalent).
+        val parents = curriculum.objectives.associate { it.ref to it.parentSkill }
+        val validated = curriculum.validationRecords.groupBy { it.resource }
+            .mapValues { (_, records) -> records.maxBy { it.validatedAtInstant }.status }
+        tasks.forEach { task ->
+            val id = "task ${task.ref.logicalId}@v${task.ref.version}"
+            task.targetObjectives.filter { parents[it] != task.primarySkill }
+                .forEach { add("$id: objective $it is not an Objective of ${task.primarySkill}") }
+            task.items.filterNot { it in itemRefs }.forEach { add("$id: item $it is not in this package") }
+            task.explanations.filterNot { it in explanationRefs }.forEach { add("$id: explanation $it is not in this package") }
+            if (task.validationStatus in TRUSTING) {
+                task.items.filter { validated[it] !in TRUSTING || (task.validationStatus == LifecycleStatus.TRUSTED && validated[it] != LifecycleStatus.TRUSTED) }
+                    .forEach { add("$id: declares ${task.validationStatus.id} over item $it, which this package does not validate") }
+            }
+        }
+    }
+
+    private val TRUSTING = setOf(LifecycleStatus.VALIDATED, LifecycleStatus.TRUSTED)
 
     /**
      * 14C's pattern for 14D: a `[code_test_suite]` names the item version it tests; each `[code_test]` names its suite
@@ -209,6 +255,7 @@ object PackageFormat {
         "domain", "module", "topic", "skill", "objective", "topic_skill",
         "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
         "code_test_suite", "code_test", "comprehension_check", "answer_key", "accepted_answer", "rubric", "rubric_criterion",
+        "task",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -248,6 +295,12 @@ object PackageFormat {
         // 14E (`D-109`): one written comprehension check after an item version, judged by its answer key.
         "comprehension_check" to setOf(
             "logical_id", "version", "item", "objective", "kind", "evidence_type", "prompt", "choice_a", "choice_b", "choice_c", "choice_d", "answer",
+        ),
+        // 15A (`D-112`): an authored task — 3B §15's content side of a TaskCandidate.
+        "task" to setOf(
+            "logical_id", "version", "title", "primary_skill", "target_objectives", "purpose", "activity_kind", "serves",
+            "cost_minutes", "required_skills", "explanations", "items", "lifecycle_status", "content_origin", "track",
+            "splittable", "minimum_safe_chunk_minutes", "atomic_evidence_boundary",
         ),
         "item" to setOf(
             "ref", "prompt", "target_objectives", "target_skills", "required_skills", "evidence_type",
@@ -474,6 +527,35 @@ object PackageFormat {
                 prompt = text(section.values, "prompt", section.line).replace("\\n", "\n"),
                 choices = ComprehensionCheck.CHOICE_KEYS.mapNotNull { key -> optional(section, "choice_$key")?.let { key to it.replace("\\n", "\n") } }.toMap(),
                 answer = text(section.values, "answer", section.line),
+            )
+        }
+
+        fun task(section: Section): AuthoredTask {
+            check(section)
+            return AuthoredTask(
+                ref = VersionedRef(text(section.values, "logical_id", section.line), int(section.values, "version", section.line)),
+                title = text(section.values, "title", section.line),
+                primarySkill = ref(section, "primary_skill"),
+                targetObjectives = refs(section, "target_objectives"),
+                purpose = enum(section, "purpose", TaskPurpose.entries.toTypedArray()) { it.id },
+                activityKind = text(section.values, "activity_kind", section.line),
+                serves = list(section, "serves").mapNotNull { raw ->
+                    NeedTrigger.entries.firstOrNull { it.id == raw }
+                        ?: run { reasons += "[task] line ${section.line}: unknown need trigger '$raw'"; null }
+                }.toSet(),
+                costMinutes = section.values["cost_minutes"]?.toIntOrNull()?.takeIf { it > 0 }
+                    ?: run { reasons += "[task] line ${section.line}: 'cost_minutes' is not a positive number"; 1 },
+                validationStatus = enum(section, "lifecycle_status", LifecycleStatus.entries.toTypedArray()) { it.id },
+                contentOrigin = enum(section, "content_origin", ContentOrigin.entries.toTypedArray()) { it.id },
+                requiredSkills = refs(section, "required_skills"),
+                explanations = refs(section, "explanations"),
+                items = refs(section, "items"),
+                track = optional(section, "track"),
+                splittable = boolean(section, "splittable", default = false),
+                minimumSafeChunkMinutes = optional(section, "minimum_safe_chunk_minutes")?.let { raw ->
+                    raw.toIntOrNull() ?: run { reasons += "[task] line ${section.line}: 'minimum_safe_chunk_minutes' is not a number"; null }
+                },
+                atomicEvidenceBoundary = boolean(section, "atomic_evidence_boundary", default = false),
             )
         }
 

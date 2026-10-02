@@ -1105,3 +1105,7 @@ Corrected seed:
 - 6A/6C ratification öncesi learner-published değil.
 
 FBB-v0 authoring seed olduğu için bu QA patch published learner semantic state'i mutate etmez. 6A/6C ratification ve 6H external Research QA öncesi production publish yasaktır.
+
+---
+
+**15A note (2026-10-02, `D-112`):** the first production package ratified §6.1's shared computing/programming subgraph as 6C decomposed it (12 Skills, 13 Objectives, 11 internal edges) from `draft` to `published`, with identities unchanged and each Objective's refined metadata recorded with its reason; §16's authoring roles are met for every Objective. Details: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md`.

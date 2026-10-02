@@ -1,0 +1,293 @@
+skill: skill.programming.trace_execution_basic
+activity: code_reading_trace
+tasks:
+  teach: {title: "Çalışma izi: programı satır satır izleme tablosuyla takip etmek", minutes: 14}
+  practice: {title: "İzleme tablosu alıştırması", minutes: 10}
+  check: {title: "İzleme tablosu kontrolü", minutes: 8}
+  review: {title: "İzleme tablosu tekrarı", minutes: 6}
+  repair: {title: "İzlemeyi yeniden kurmak: her satırdan sonra bütün durum", minutes: 12}
+
+objectives:
+  - id: objective.programming.trace_execution_basic.produce_trace
+    statement: >-
+      Kısa bir programın çalışma izini (execution trace) üretebilmek: her satırdan sonra bütün değişkenlerin değerini
+      bir izleme tablosuna yazabilmek, ekrana yazılan her satırı o andaki durumla ilişkilendirebilmek ve verilmiş bir
+      izdeki ilk hatalı satırı bulabilmek.
+    observable_behavior: >-
+      İstenen satırdan sonraki durumu, ekrana yazılan satırların sırasını ve bir izleme tablosundaki ilk hatayı doğru
+      verir.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de required_direct_type explanation idi; iz üretmek kodu okuyarak yapılır. 15A direct type'ı code_reading
+      yaptı, explanation'ı direct kabul edilen ikinci tip bıraktı. state_assignment_model'den farkı: tek bir sonucu
+      değil, durumun bütün geçiş dizisini ve çıktılarla ilişkisini ister.
+    checks:
+      - prints: "1\n5\n10"
+        code: |
+          x = 1
+          print(x)
+          x = x + 4
+          print(x)
+          x = x * 2
+          print(x)
+      - prints: "9 6\n9 3"
+        code: |
+          k = 3
+          m = k * 2
+          k = m + k
+          print(k, m)
+          m = k - m
+          print(k, m)
+      - prints: "8 5"
+        code: |
+          a = 5
+          b = 8
+          a = a + b
+          b = a - b
+          a = a - b
+          print(a, b)
+    explanations:
+      canonical: |
+        Bir programın çalışma izi (execution trace), program çalışırken durumun nasıl değiştiğinin kaydıdır: hangi satır çalıştı, ondan sonra her değişken neydi, ekrana ne yazıldı. Bir programı çalıştırmadan anlamanın en güvenilir yolu izini elle çıkarmaktır; ileride hata ayıklarken (debugging) de en çok kullanacağın araç budur.
+
+        İzleme tablosu: Her satır için bir satır; her değişken için bir sütun; bir de çıktı sütunu.
+
+        k = 3
+        m = k * 2
+        k = m + k
+        print(k, m)
+        m = k - m
+        print(k, m)
+
+        satır | k | m | çıktı
+        1     | 3 | - |
+        2     | 3 | 6 |
+        3     | 9 | 6 |
+        4     | 9 | 6 | 9 6
+        5     | 9 | 3 |
+        6     | 9 | 3 | 9 3
+
+        Kurallar:
+        1. Her satırdan sonra bütün değişkenleri yaz; değişmeyenleri de bir önceki satırdan taşı. Değişmeyen bir değişkeni boş bırakmak, sonra onu yanlış hatırlamanın en kısa yoludur.
+        2. Sağ tarafı, tablonun bir önceki satırındaki değerlerle hesapla.
+        3. Ekrana yazılan değer, print satırının çalıştığı andaki değerdir — programın sonundaki değer değil. Aynı değişken farklı anlarda yazdırılırsa farklı değerler görünebilir.
+        4. Ekrana bir şey yazmayan satırlar da durumu değiştirir; onları atlama.
+
+        Bir izdeki hatayı bulmak: tabloyu kendi hesabınla satır satır karşılaştır; ilk farklı satır, hatanın ortaya çıktığı yerdir. Ondan sonraki satırlar genellikle o hatayı taşıdığı için onlar da yanlış görünür; ama sorun ilk farklı satırdadır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve durum): atama önce sağ tarafı o anki değerlerle hesaplar, sonra yalnız soldaki ismi günceller. İzleme tablosunun her satırı, tam olarak bu kuralı bir kez uygulamaktır.
+      state_trace:
+        level: H2
+        text: |
+          İzleme tablosu — başka bir örnek üzerinde.
+
+          x = 1
+          print(x)
+          x = x + 4
+          print(x)
+          x = x * 2
+          print(x)
+
+          satır 1: x=1
+          satır 2: x=1, çıktı 1
+          satır 3: x=5
+          satır 4: x=5, çıktı 5
+          satır 5: x=10
+          satır 6: x=10, çıktı 10
+
+          Ekranda alt alta 1, 5, 10 görünür. Her print, o anki x'i yazar; üçü de son değer olan 10'u yazmaz.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek: üçüncü bir değişken olmadan takas.
+
+          a = 5
+          b = 8
+          a = a + b
+          b = a - b
+          a = a - b
+          print(a, b)
+
+          satır 1: a=5
+          satır 2: a=5, b=8
+          satır 3: a=13, b=8 (5 + 8)
+          satır 4: a=13, b=5 (13 - 8)
+          satır 5: a=8, b=5 (13 - 5)
+          satır 6: çıktı 8 5
+
+          Her satırda sağ tarafı bir önceki satırdaki değerlerle hesapladık; değişmeyen değişkeni de her satıra taşıdık.
+    misconceptions:
+      - slug: print_shows_final_value
+        name: print, değişkenin programın sonundaki değerini yazar
+        open_question: Bir print satırının, değişkenin programın sonundaki değerini yazdığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "x en sonda 10 oluyor, o yüzden her print 10 yazar."
+
+            print, çalıştığı anda değişkenin o andaki değerini yazar. x = 1 iken çalışan print 1 yazar; sonra x değişir ve sonraki print yeni değeri yazar. İzleme tablosunda çıktıyı, print satırının hizasındaki değerlerden al.
+      - slug: unchanged_vars_forgotten
+        name: İzlemede yalnız değişen değişkeni yazmak yeterlidir
+        open_question: İzleme tablosunda her satırda yalnızca değişen değişkeni yazmanın yeterli olduğunu, ötekileri sonra hatırlayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Bu satırda yalnız m değişti, k'yi yazmama gerek yok."
+
+            Bir sonraki satır k'nin değerine ihtiyaç duyduğunda onu tabloda bulamazsan aklındaki — çoğu zaman eski ya da yanlış — değeri kullanırsın. Her satırda bütün değişkenleri yaz; değişmeyenleri bir önceki satırdan aynen taşı.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          İzleme tablosunda bu kodun 3. satırından sonraki durum hangisidir?
+        code: |
+          a = 2
+          b = a + 3
+          a = a * b
+          print(a, b)
+        options:
+          A: a=10, b=5
+          B: a=2, b=5
+          C: a=10, b=15
+          D: a=6, b=5
+        answer: A
+        verify:
+          mode: probe
+          upto: 3
+          probe: print(a, b)
+          outcomes: {A: "10 5", B: "2 5", C: "10 15", D: "6 5"}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          y = 3
+          print(y)
+          y = y * y
+          print(y)
+          y = y - 4
+          print(y)
+        options:
+          A: 5, 5, 5 (alt alta)
+          B: 3, 9, 5 (alt alta)
+          C: 3, 6, 2 (alt alta)
+          D: Yalnızca 5
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "5\n5\n5", B: "3\n9\n5", C: "3\n6\n2", D: "5"}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod satır satır izleniyor. Hangi satır çalıştıktan hemen sonra y'nin değeri ilk kez x'in değerinden büyük olur?
+        code: |
+          x = 8
+          y = 1
+          y = y + x
+          x = y * 2
+          y = y - 1
+        options:
+          A: 2. satır
+          B: 3. satır
+          C: 4. satır
+          D: 5. satır
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "2", B: "3", C: "4", D: "5"}
+          script: |
+            lines = ["x = 8", "y = 1", "y = y + x", "x = y * 2", "y = y - 1"]
+            first = None
+            for n in range(2, len(lines) + 1):
+                env = {}
+                exec("\n".join(lines[:n]), env)
+                if first is None and env["y"] > env["x"]:
+                    first = n
+            print(first)
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir öğrenci bu kodun izleme tablosunu çıkarmış. Tablodaki ilk hatalı satır hangisi?
+
+          satır 1: p=5
+          satır 2: p=5, r=9
+          satır 3: p=18, r=9
+          satır 4: p=18, r=13
+        code: |
+          p = 5
+          r = p + 4
+          p = r * 2
+          r = p - r
+        options:
+          A: Satır 2
+          B: Satır 3
+          C: Satır 4
+          D: Tabloda hata yok
+        answer: C
+        verify:
+          mode: script
+          outcomes: {A: "2", B: "3", C: "4", D: "yok"}
+          script: |
+            lines = ["p = 5", "r = p + 4", "p = r * 2", "r = p - r"]
+            given = [{"p": 5}, {"p": 5, "r": 9}, {"p": 18, "r": 9}, {"p": 18, "r": 13}]
+            first = "yok"
+            for n in range(1, len(lines) + 1):
+                env = {}
+                exec("\n".join(lines[:n]), env)
+                if {k: env[k] for k in given[n - 1]} != given[n - 1]:
+                    first = str(n)
+                    break
+            print(first)
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          p = 6
+          q = 2
+          p = p * q
+          q = p - q
+          p = p - q * 2
+          print(p, q)
+        answer: "-8 10"
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          t = 0
+          for i in range(3):
+              t = t + i
+              print(i, t)
+        options:
+          A: 0 0, 1 1, 2 3 (alt alta)
+          B: 0 0, 1 1, 2 2 (alt alta)
+          C: 1 1, 2 3, 3 6 (alt alta)
+          D: Yalnızca 2 3
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning]
+        verify:
+          mode: stdout
+          outcomes: {A: "0 0\n1 1\n2 3", B: "0 0\n1 1\n2 2", C: "1 1\n2 3\n3 6", D: "2 3"}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 1
+          y = 2
+          z = 3
+          x = y
+          y = z
+          z = x
+          print(x, y, z)
+        answer: "2 3 2"
+        verify: {mode: stdout}
