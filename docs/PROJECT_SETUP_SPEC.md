@@ -239,3 +239,7 @@ T6 is deliberately absent from CI. The device tier runs on the Poco M6 Pro by ha
 If accepted, 10A becomes `MPSX-v0 / D-082`.
 
 Next numbered step: **10B — Navigation**. 10B builds the `UXIA-v0` four-destination shell on the adaptive APIs pinned here, with `WFPX-v0`'s three window classes and geometry, and `SPWX-v0`'s state text carried through the semantics APIs named in §6. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**14G note (2026-10-02, `D-111`):** the adapter's call site exists now, and still no HTTP client library is declared: it uses the platform's `HttpURLConnection` and a small strict JSON reader/writer in `ai-adapter`. Only the AI build's manifest declares `INTERNET`. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.

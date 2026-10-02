@@ -298,14 +298,16 @@ PEM-v0:
 - 14D ✅ CDEX-v0 / D-108
 - 14E ✅ ACCX-v0 / D-109
 - 14F ✅ OREX-v0 / D-110
-- 14G 🟡 active-not-executed
-- 15–20 ⬜
+- 14G ✅ PRVX-v0 / D-111
+- **AŞAMA 14 TAMAMLANDI**
+- 15A 🟡 active-not-executed
+- 15B–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `14F — OREX-v0 / D-110`  
-**Aktif:** `14G — Provider abstraction/fallback`  
-**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `14G — PRVX-v0 / D-111`  
+**Aktif:** `15A — Computer / Programming Fundamentals`  
+**15A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1320,3 +1322,26 @@ OREX-v0:
 ## 74. 14G handoff
 
 14G — Provider abstraction/fallback. AIAX-v0'ın adaptör kuralları (uçtan uca zaman bütçesi, router, konfigürasyonda model adı, stop reason önce, şema doğrulama, APK'da key yok) ve dört core sözleşmesi kodda: tutor (`tutor_instructions/3`, `tutor_reply/2`), kod (`CDEX-v0`), anlama (`ACCX-v0`) ve açık uçlu değerlendirme (`open_response_instructions/1`, `open_response_evaluation/1`). `AiTutor` ve `AiEvaluator` hâlâ kullanılamaz. Kullanıcı kararı (14A): ilk gerçek sağlayıcı çağrısı 14G'de. Açık loop'lar: anahtarlar ve rubric'ler (15), uygulama çağrıları (16D), kalibrasyon (18), T6. 14G fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 75. D-111 / 14G final özeti — AŞAMA 14 kapandı
+
+Canonical: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.
+Contract/QA: `arch/14g_provider_adapter/`.
+Synthesis: `research/14g_provider_adapter_research.md`.
+Code: `ai-adapter` (`Provider.kt`, `OpenAiResponses.kt`, `Json.kt`, `AiTutor.kt`, `AiEvaluator.kt`, `ConnectionCheck.kt`); `core-model` `CodeEvaluationInstructions.kt`; `core-presentation` `AiSettingsPresentation.kt`; `app-ui` `AiSettingsScreen.kt`; `app-wiring` `AiSettings`, `AiWiring` (withAi Keystore / withoutAi inert), Profile wiring, per-build manifest.
+
+PRVX-v0:
+- the provider is a replaceable detail behind the ports; nothing in the product depends on it,
+- user decisions: OpenAI; one provider with uniform degradation; a small settings screen in 14G,
+- found: no call site, no network permission, no key entry; no AI instructions for code; the provider stores responses by default,
+- request shape and model ids verified against the current reference on 2026-10-02 and recorded with the build; only core's content, `store: false`, strict schema; stop reason first; only a schema-exact object is an answer,
+- end-to-end budget, bounded retries, none in the background; key in the Android Keystore, never shown or logged; no network permission in the no-AI build,
+- four gates (10E, 14A) narrowed for exactly this step; schema and ports unchanged,
+- mutation 41/41, independent QA 129/129, validator mutation 30/30, sweep 55/55,
+- T6 and a live provider call were not run (no check calls a live provider; the first real call is the learner's, on the device).
+
+**AŞAMA 14 TAMAMLANDI** — TUTX-v0 → WAAX-v0 → ALEX-v0 → CDEX-v0 → ACCX-v0 → OREX-v0 → PRVX-v0.
+
+## 76. 15A handoff
+
+15A — Computer / Programming Fundamentals (AŞAMA 15 — İlk 8–12 haftalık gerçek eğitim içeriği). Bütün motorlar (12–13), tutor ve değerlendirme sözleşmeleri (14) ve içerik bölümleri kodda: `[item]`, `[explanation]`, `[code_test_suite]`/`[code_test]`, `[comprehension_check]`, `[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, `[misconception]`. AŞAMA 14'ün içerik açık loop'ları (yazılı anlatımlar, testler, anlama kontrolleri, anahtarlar, rubric'ler, katalog etiketleri) 15'e bağlı. 15A fresh PRE + kullanıcı açık onayı olmadan yürütülmez.

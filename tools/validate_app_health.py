@@ -352,7 +352,10 @@ for name in [
     "no health action can reset delete or recreate the learner's data",
     "an adapter without call sites degrades to evaluation pending instead of throwing",
 ]:
-    check(f"E10E-12_test_{name[:44]}", f"`{name}`" in app_tests, f"missing test: {name}")
+    # Narrowed at 14G (`D-111`): the adapter now has a call site, so its "no call sites" test was renamed to say the same
+    # guarantee about a missing client or key. The successor name is read from 14G's contract; nothing else is accepted.
+    renamed = {r["before"]: r["after"] for r in load(ROOT / "arch/14g_provider_adapter/provider_adapter.yaml").get("renamed_tests", [])}
+    check(f"E10E-12_test_{name[:44]}", f"`{name}`" in app_tests or f"`{renamed.get(name, '?')}`" in app_tests, f"missing test: {name}")
 check("E10E-12_latch_proves_async", "CountDownLatch" in app_tests and "assertNotEquals(Thread.currentThread()" in app_tests,
       "the off-thread claim must be proven with a blocked opener")
 neg = {n["id"]: n for n in tvsx["negative_checks_required"]}

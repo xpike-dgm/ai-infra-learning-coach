@@ -1247,3 +1247,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `14F tamamlandı; 14G aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `14G — Provider abstraction/fallback`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-02 — 14G — Provider abstraction/fallback tamamlandı — PRVX-v0 / D-111 — AŞAMA 14 kapandı
+
+- 14F (#50) main'e merge edilmişti (ed95916); fresh 14G PRE yapıldı ve beş kanonik kaynak `14F ✅ / 14G active-not-executed` gösterdi. Kullanıcı açık onay verdi ("merge edildi devam et") ve üç ürün sorusunu cevapladı.
+- **Kullanıcı kararları:** sağlayıcı OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de (Profile).
+- Sözleşme koda döküldü: sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez.
+- **Araştırma:** OpenAI Responses API referansı, Structured Outputs rehberi ve model rehberi 2026-10-02'de yerleşik tarayıcıda okundu ve build'e kaydedildi; sağlayıcıya hiçbir şey gönderilmedi, hesap ya da anahtar kullanılmadı.
+- **Bulgu:** adaptörün çağrı noktası, ağ izni ve anahtar girme yolu yoktu; kod için AI talimatı yoktu; sağlayıcı yanıtları varsayılan olarak saklıyor — her çağrı `store: false` gönderiyor.
+- 10E'nin bir ve 14A'nın üç kapısı 14G kontratına göre daraltıldı; şema ve portlar değişmedi; birleştirilmiş manifest'ler okundu: ağ izni yalnız AI build'de.
+- Mutation 41/41 (ilk ve tek temiz koşuda). Yedi run PASS, 964 JVM testi. Validator 129/129, kendi mutation testi 30/30, sweep 55/55.
+- **T6 ve canlı sağlayıcı çağrısı çalıştırılmadı**: hiçbir kontrol canlı sağlayıcı çağırmaz (`TVSX-v0`) ve Claude API anahtarı girmez; ilk gerçek çağrı öğrencinin, cihazda Profile'dan.
+- **AŞAMA 14 TAMAMLANDI** — TUTX-v0 → WAAX-v0 → ALEX-v0 → CDEX-v0 → ACCX-v0 → OREX-v0 → PRVX-v0.
+- D-050 POST living-memory accepted state'i `14G tamamlandı; AŞAMA 14 kapandı; 15A aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15A — Computer / Programming Fundamentals`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

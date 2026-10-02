@@ -61,19 +61,22 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 14D Kod değerlendirme: CDEX-v0 / D-108 ile tamamlandı; testler PC'de koşar ve rapor içe aktarılır, test yalnız kendi Objective'i için, test yoksa AI yalnız provisional, referans koşucu `tools/code_test_runner.py`.
 - [x] 14E AI-generated code comprehension check: ACCX-v0 / D-109 ile tamamlandı; önce yazılmış kontrol, yoksa tutor pratiği, hemen sonra ve isteğe bağlı, `generated_or_copied` yeniden kontrol açar.
 - [x] 14F Açık uçlu cevap değerlendirme: OREX-v0 / D-110 ile tamamlandı; kısa cevap kabul edilen listeyle, uzun cevap rubric'le (AI yalnız kriter bulgusu), AI yoksa bekler + öz-kontrol.
-- [ ] 14G Provider abstraction/fallback **AKTİF**.
+- [x] 14G Provider abstraction/fallback: PRVX-v0 / D-111 ile tamamlandı; OpenAI adaptörü, Keystore anahtarı, Profile ekranı, AI'sız build'de ağ izni yok. **AŞAMA 14 kapandı.**
+- [ ] 15A Computer / Programming Fundamentals **AKTİF**.
+- [ ] İlk canlı sağlayıcı çağrısı ve Keystore yolu cihazda (Profile → 'Bağlantıyı dene') → öğrenci (T6).
+- [ ] Tutor ve değerlendiricileri görev ekranlarından çağırmak; kullanım/maliyet görünürlüğü → 16D.
 - [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15.
-- [ ] `open_response_evaluation/1` için adaptör çağrı noktası → 14G.
+- [x] `open_response_evaluation/1` için adaptör çağrı noktası: 14G'de kuruldu (D-111).
 - [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16D.
 - [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
 - [ ] Gerçek görevler için yazılı anlama kontrolleri → 15.
 - [ ] Anlama kontrolünü çizmek ve `CheckUnderstanding`'i uygulamadan çağırmak → 16D.
-- [ ] `check_understanding` için adaptör istemi ve çağrı noktası → 14G.
+- [x] `check_understanding` için adaptör istemi ve çağrı noktası: 14G'de tutor çağrı noktası kuruldu (D-111); görev ekranından çağrı 16D.
 - [x] Serbest metin anlama cevaplarının değerlendirilmesi: 14F'nin genel yolu (rubric'li açık uçlu item) kuruldu (D-110); gerçek kontrollerin yazılması 15.
 - [ ] Tutor'un yazdığı soruların güvenilir sayılabilmesi için kalibrasyon → 18.
 - [ ] Gerçek kod görevlerinin test suite'leri ve koşucu dosyaları → 15.
 - [ ] Yapıştırılan raporu artifact olarak saklamak, `EvaluateCode`'u uygulamadan çağırmak, suite dosyasını öğrenciye vermek → 16D.
-- [ ] AI kod değerlendiricisinin istemi ve çağrı noktası → 14G.
+- [x] AI kod değerlendiricisinin istemi ve çağrı noktası: `code_evaluation_instructions/1` core'da, çağrı noktası 14G'de (D-111).
 - [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
 - [ ] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15.
 - [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15.
@@ -84,7 +87,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.
 - [ ] Katalogun gerçek öğrenci hatalarıyla genişletilmesi ve yükselme kalibrasyonu → 18.
-- [ ] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması → 14G (kullanıcı kararı).
+- [x] Tutor adaptörünün gerçek çağrı noktası, router ve model kimliklerinin güncel kaynakla doğrulanması: 14G'de yapıldı (D-111; kaynak 2026-10-02, build'e kayıtlı).
 - [ ] Yazılmış ipucu basamakları ve her görevin instruction mode'u → 15.
 - [ ] Tutor panelini çizmek; `AskTutor` ve `AttemptSubmission.independence`'ı uygulamanın kanıt yolundan çağırmak → 16D.
 - [ ] Tutor konuşmalarının öğrenme geçmişi olarak saklanması → 16B.
@@ -157,8 +160,8 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Açılış ve bütünlük kontrolü süre bütçeleri → 18E.
 - [ ] `DDM-v0`nin alanlarını adlandırmadığı entity'lerde en küçük içerik kolonları sahipleri tarafından tamamlanacak: `assessment_session.scope` (13A'da blueprint ile tamamlandı), `artifact.content_ref` (11), `planned_task.position` (12), `planner_decision_trace.trace` (12), `resume_checkpoint.context` (11C'de dolduruldu: `resume_context/1`), `plan_version.policy_version` (12), `domain/module/topic.name` (11).
 - [ ] `TVSX-v0` invariant register'ı ileri aşamalar invariant kabul ettikçe büyümek zorundadır; sahipsiz bir invariant release'i bloklar.
-- [ ] `AIAX-v0` model varsayılanlarının güncelliği gerçek çağrı noktasıyla birlikte **14G**'de yeniden doğrulanacak (14A kullanıcı kararı); somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
-- [ ] Evaluator prompt metni ve rubric ifadesi (14B–14F), evaluator kalibrasyonu (18) ve somut SDK çağrı noktaları (14G) hâlâ açık. Tutor talimat metni (`tutor_instructions/1`) ve tutor konuşma sözleşmesi 14A'da kapandı (D-105); paneli çizmek 16D.
+- [x] `AIAX-v0` model varsayılanlarının güncelliği 14G'de yeniden doğrulandı (D-111): `gpt-6-astra` her üç görev sınıfı için, `ProviderConfig`'de; somut model kimlikleri konfigürasyon değeridir, kanonik değildir.
+- [ ] Evaluator kalibrasyonu (18) hâlâ açık; evaluator talimatları ve rubric sözleşmesi 14D–14F'de, somut çağrı noktaları 14G'de kapandı (D-111). Tutor talimat metni (`tutor_instructions/1`) ve tutor konuşma sözleşmesi 14A'da kapandı (D-105); paneli çizmek 16D.
 - [x] AMTS-v0 §9 bounded verification list: altı maddenin tamamı 10A'da güncel kaynaklarla kapandı; `minSdk` 26'da compatibility library gerekmiyor.
 - [x] Hedef Android cihaz kaydedildi: **Poco M6 Pro**, `2312FPCA6G`, Android 16 / API 36, HyperOS 3.0.304.0.WNFMIXM.C10, Helio G99-Ultra, 12+6 GB. `D-080` gereği tek hedef cihaz; `TVSX-v0` T6 bu telefonda elle koşar.
 - [ ] T6 device smoke henüz hiç koşulmadı; 10E'de de telefon bağlı değildi. Cihazda doğrulanacaklar: temiz kurulumdan `Ready`, recovery ekranı ve TalkBack duyurusu, main thread'de StrictMode disk ihlali olmaması, cihaz dosya sisteminde atomik rename.

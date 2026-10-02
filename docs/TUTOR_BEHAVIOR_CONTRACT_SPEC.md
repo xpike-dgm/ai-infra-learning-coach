@@ -265,3 +265,7 @@ Next numbered step: **14B — Yanlış analizi**. It must receive a fresh PRE-ST
 ---
 
 **14E note (2026-10-02, `D-109`):** a sixth intent, `check_understanding` — only after the answer froze and only with the submitted code: the tutor asks one short question about code the learner did not write alone, then responds to their answer without grading it (rule 16). `TutorAsk`/`TutorRequest` gained `checkQuestion` and `learnerAnswer`, sent as `<check_question>` and `<learner_answer>`. Instructions `tutor_instructions/3`; the reply schema's intent enum grew, so its id is `tutor_reply/2`. The independence rule for `generated_or_copied` changed to `requires_independent_recheck` (user decision). Details: `docs/CODE_COMPREHENSION_IMPL_SPEC.md`.
+
+---
+
+**14G note (2026-10-02, `D-111`):** the first provider call is in code, as decided at 14A: `AiTutor` sends `TutorInstructions` unchanged and reads only a reply with exactly the schema's four fields; core still decides what is shown. Details: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`.

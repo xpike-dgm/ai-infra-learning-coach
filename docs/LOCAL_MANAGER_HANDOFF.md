@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12 ve AŞAMA 13'ün kapandığını, AŞAMA 14'ün başladığını ve aktif adımın `14G active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13 ve AŞAMA 14'ün kapandığını ve aktif adımın `15A active-not-executed` olduğunu living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1151,14 +1151,16 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 14D ✅ CDEX-v0 / D-108
 - AŞAMA 14E ✅ ACCX-v0 / D-109
 - AŞAMA 14F ✅ OREX-v0 / D-110
-- AŞAMA 14G 🟡 active-not-executed
-- 15–20 ⬜
+- AŞAMA 14G ✅ PRVX-v0 / D-111
+- **AŞAMA 14 TAMAMLANDI**
+- AŞAMA 15A 🟡 active-not-executed
+- 15B–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `14F — Açık uçlu cevap değerlendirme`  
-**Final:** `OREX-v0 — Open-Response Evaluation` / D-110  
-**Canonical:** `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md` + `arch/14f_open_response_evaluation/`
+**Son tamamlanan numaralı adım:** `14G — Provider abstraction/fallback`  
+**Final:** `PRVX-v0 — Provider Adapter` / D-111  
+**Canonical:** `docs/PROVIDER_ADAPTER_IMPL_SPEC.md` + `arch/14g_provider_adapter/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1208,17 +1210,19 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 14D:** ✅ TAMAMLANDI  
 **AŞAMA 14E:** ✅ TAMAMLANDI  
 **AŞAMA 14F:** ✅ TAMAMLANDI  
-**Aktif adım:** `14G — Provider abstraction/fallback`  
+**AŞAMA 14G:** ✅ TAMAMLANDI  
+**AŞAMA 14:** ✅ TAMAMLANDI  
+**Aktif adım:** `15A — Computer / Programming Fundamentals`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-14G için:
+15A için:
 
 ```text
-fresh 14G PRE-STEP GitHub refresh
+fresh 15A PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 14G execution
+→ 15A execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1799,8 +1803,10 @@ AŞAMA 13 ✅ TAMAMLANDI
 14D ✅ CDEX-v0 / D-108
 14E ✅ ACCX-v0 / D-109
 14F ✅ OREX-v0 / D-110
-14G 🟡 active-not-executed
-15–20 ⬜
+14G ✅ PRVX-v0 / D-111
+AŞAMA 14 ✅ TAMAMLANDI
+15A 🟡 active-not-executed
+15B–20 ⬜
 ```
 
 10D final:
@@ -1997,9 +2003,9 @@ AŞAMA 13 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `14G — Provider abstraction/fallback`.
+**Sıradaki gerçek numbered work:** `15A — Computer / Programming Fundamentals`.
 
-**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**15A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2049,8 +2055,8 @@ AŞAMA 13 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `14G — Provider abstraction/fallback`.  
-**14G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `15A — Computer / Programming Fundamentals`.  
+**15A henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2311,4 +2317,13 @@ Ana invariant: başkasının yazdığı kodun çalışması öğrenci hakkında 
 
 14F `OREX-v0 — Open-Response Evaluation` ile tamamlandı. Canonical: `docs/OPEN_RESPONSE_EVALUATION_IMPL_SPEC.md`; contract/QA: `arch/14f_open_response_evaluation/`; synthesis: `research/14f_open_response_evaluation_research.md`.
 
-Ana invariant: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. Mutation 49/49, 117/117 QA PASS, validator mutation 30/30, 54/54 sweep. T6 çalıştırılmadı. Current active numbered step 14G'dir; fresh PRE + kullanıcı açık onayı gerekir.
+Ana invariant: serbest metin bir cevap dersin doğru cevabın neyi içerdiğini söylediği şeye göre değerlendirilir, nasıl kulağa geldiğine göre değil: kısa cevap dersin kabul edilen cevap listesiyle doğrulanır; uzun cevap rubric'iyle, kriter kriter değerlendirilir — AI yalnız her kriterin karşılanıp karşılanmadığını söyleyebilir, bunun her Objective için ne anlama geldiğine core karar verir ve AI'ın kararı asla provisional'dan fazlası değildir; doğrulanmış sonuç isteyen görev AI'a hiç sorulmaz; hiçbir şey cevap vermezse cevap bekler, hiçbir şey yazılmaz, öğrenci rubric'le kendi cevabını kontrol edebilir ve yalnız öğrenci isterse yeniden değerlendirilir. Cevap anahtarları ve rubric'ler içeriktir (`[answer_key]`/`[accepted_answer]`, `[rubric]`/`[rubric_criterion]`, item sürümüne pinli, `answerKeyFor`, `rubricFor`); eşleştirme yalnız uçları kırpar, büyük-küçük harf yalnız ASCII harflerde katlanır (Türkçe ı/İ birleştirilmez); `EvaluationResult` `rubric_findings[]`'i geri kazandı; değerlendirici talimatları `open_response_instructions/1`, şema `open_response_evaluation/1` (not alanı yok; uzunluk ve üslup sayılmaz). Kullanıcı kararları: kısa cevap kabul edilen cevap listesiyle; AI yoksa bekler, rubric'le öz-kontrol, yalnız istenince yeniden. Mutation 49/49, 117/117 QA PASS, validator mutation 30/30, 54/54 sweep. T6 çalıştırılmadı. Bu addendum 14F kapanışında yazıldı; ardından 14G D-111 ile tamamlandı ve AŞAMA 14 kapandı (aşağıdaki 14G addendum'u).
+
+
+---
+
+## 14G completion addendum — D-111 (AŞAMA 14 kapandı)
+
+14G `PRVX-v0 — Provider Adapter` ile tamamlandı ve **AŞAMA 14 kapandı**. Canonical: `docs/PROVIDER_ADAPTER_IMPL_SPEC.md`; contract/QA: `arch/14g_provider_adapter/`; synthesis: `research/14g_provider_adapter_research.md`.
+
+Ana invariant: sağlayıcı portların arkasında değiştirilebilir bir ayrıntıdır: yalnız öğrencinin bu cihazda şifreli saklanan kendi anahtarı bir çağrı yapabilir; anahtar yoksa cihazdan hiçbir şey çıkmaz ve üründe hiçbir şey çalışmayı bırakmaz; gönderilen tam olarak core'un kurduğudur — talimatları, mesajı, şeması — ve sağlayıcının söylediği hiçbir şey tek bir şemaya tam uyan nesne olmadıkça cevap olmaz; red red'dir, zaman aşımı çağrıyı bitirir ve öğrencinin arkasından hiçbir şey yeniden denenmez. OpenAI Responses API, güncel resmi kaynaktan 2026-10-02'de doğrulandı ve build'e kaydedildi; `store: false`, katı `json_schema`, önce durma nedeni; router görev sınıfı başına model (`gpt-6-astra`, yapılandırmada); uçtan uca 60 sn bütçe, en çok 2 deneme, yalnız ağ hatası/408/429/5xx yeniden denenir. Anahtar Android Keystore AES-GCM ile şifrelenir, yedeklenmeyen dizinde durur, hiç gösterilmez ve loglanmaz; Profile'daki küçük ekrandan girilir, kaldırılır, 'Bağlantıyı dene' ile denenir. AI'sız build'de ağ izni hiç yok. Kod için AI talimatları core'a eklendi (`code_evaluation_instructions/1`). Kullanıcı kararları: OpenAI; tek sağlayıcı ve AIAX'ın tek tip düşüşü; anahtar ekranı 14G'de. Mutation 41/41, 129/129 QA PASS, validator mutation 30/30, 55/55 sweep. T6 ve canlı sağlayıcı çağrısı çalıştırılmadı. AŞAMA 14: TUTX-v0 → WAAX-v0 → ALEX-v0 → CDEX-v0 → ACCX-v0 → OREX-v0 → PRVX-v0. Current active numbered step 15A'dır; fresh PRE + kullanıcı açık onayı gerekir.
