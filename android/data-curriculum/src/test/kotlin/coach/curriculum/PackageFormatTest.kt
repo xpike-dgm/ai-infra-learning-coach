@@ -477,6 +477,130 @@ class PackageFormatTest {
         assertEquals(1, PackageFormat.parse(candidateItem + "\n\n" + task.replace("lifecycle_status=validated", "lifecycle_status=candidate")).tasks.size)
     }
 
+    // ------------------------------------------------------------------------------------ 15B
+
+    private val second = """
+        curriculum_package/1
+        version=2
+        source_refs=curriculum/content/15b
+        provenance=authored_15b
+
+        [skill]
+        logical_id=skill.python.functions
+        version=1
+        canonical_name=Functions
+        capability_statement=Write a small function
+        lifecycle_status=published
+        capability_kind=language_specific_production
+        retention_profile=standard
+        source_refs=src
+        provenance=authored_15b
+
+        [objective]
+        logical_id=objective.python.functions.write
+        version=1
+        parent_skill=skill.python.functions@v1
+        required=true
+        criticality=standard
+        acceptable_evidence_types=authored_code
+        direct_evidence_types=authored_code
+        required_direct_type=authored_code
+
+        [prerequisite_edge]
+        prerequisite=skill.python.loops@v1
+        target=skill.python.functions@v1
+        edge_version=1
+        edge_kind=hard
+        reason_kind=evidence_interpretability
+        strictness_profile=default_prg_v0
+        lifecycle_status=published
+        provenance=authored_15b
+
+        [explanation]
+        logical_id=explanation.python.functions.write.canonical
+        version=1
+        objective=objective.python.functions.write@v1
+        form=canonical
+        text=Bir fonksiyon def ile tanımlanır.
+
+        [task]
+        logical_id=task.python.functions.teach
+        version=1
+        title=Fonksiyon yazmak
+        primary_skill=skill.python.functions@v1
+        target_objectives=objective.python.functions.write@v1
+        purpose=teach
+        activity_kind=content_explanation
+        serves=new_learning
+        cost_minutes=12
+        explanations=explanation.python.functions.write.canonical@v1
+        lifecycle_status=validated
+        content_origin=ai_generated
+    """.trimIndent()
+
+    @Test
+    fun `later packages are served with the first as one course, and published oldest first`() {
+        val source = FileContentSource(later = { listOf(second) }, source = { authored })
+        assertEquals(listOf(1, 2), source.curriculumPackages().map { it.version })
+        assertEquals(1, assertNotNull(source.curriculumPackage()).version)
+        assertNotNull(source.assessmentItem(itemRef), "the first package's items are still served")
+        val functions = VersionedRef("skill.python.functions", 1)
+        val need = coach.model.LearningNeed("new_learning:$functions", coach.model.NeedTrigger.NEW_LEARNING, listOf(functions),
+            coach.model.Criticality.REQUIRED)
+        assertEquals("authored:task.python.functions.teach@v1:new_learning:$functions", source.taskCandidates(need).single().id)
+        assertEquals(1, source.explanationsFor(VersionedRef("objective.python.functions.write", 1)).size)
+        // The second package's edge points at a Skill only the first publishes: that is resolved at publishing, not here.
+        assertEquals(listOf("prerequisite_edge -> skill skill.python.loops@v1"), source.curriculumPackages()[1].unresolvedReferences())
+    }
+
+    @Test
+    fun `packages that do not rise in version, or author something twice, are not served at all`() {
+        for (later in listOf(
+            second.replace("version=2\n", "version=1\n"),
+            authored.replace("version=1\nsource_refs", "version=2\nsource_refs"),
+        )) {
+            val source = FileContentSource(later = { listOf(later) }, source = { authored })
+            assertTrue(source.curriculumPackages().isEmpty(), later.take(40))
+            assertNull(source.assessmentItem(itemRef), "nothing is half served")
+            assertNotNull(source.failure)
+        }
+    }
+
+    /** A third package that authors one thing a second time — and nothing else that the sequence check would object to. */
+    private fun third(sections: List<String>) = "curriculum_package/1\nversion=3\nsource_refs=curriculum/content/test\nprovenance=test\n\n" +
+        sections.joinToString("\n\n")
+
+    private fun sectionsOf(text: String) = text.split("\n\n").filter { it.startsWith("[") }
+
+    @Test
+    fun `each kind of thing authored in two packages is named, and the course is not served`() {
+        val v2 = sectionsOf(second)
+        // The explanation again, under a package that otherwise repeats only the second one's graph (which publishing refuses).
+        val explanationTwice = third(v2.filterNot { it.startsWith("[task]") })
+        // The task again; its explanation renamed so only the task is repeated.
+        val taskTwice = third(v2.map { it.replace("explanation.python.functions.write.canonical", "explanation.python.functions.write.canonical_again") })
+        // A test suite and an answer key again, each over a renamed item, taken from the real second package.
+        val shipped = sectionsOf(java.io.File("../app-wiring/src/main/assets/curriculum_package_v2.txt").readText())
+        fun over(item: String, judge: String) = third(shipped.filter { s -> item in s && (s.startsWith("[resource]") || s.startsWith("[validation]") ||
+            s.startsWith("[item]")) || judge in s && !s.startsWith("[item]") && !s.startsWith("[task]") }.map { it.replace(item, "${item}_again") })
+        val suiteTwice = over("item.python.set_operations.demonstrate_capability.f02", "codetest.python.set_operations.demonstrate_capability.f02")
+        val keyTwice = over("item.python.value_type_behavior.demonstrate_capability.f02", "answerkey.python.value_type_behavior.demonstrate_capability.f02")
+
+        for ((later, named) in listOf(
+            explanationTwice to "explanation explanation.python.functions.write.canonical@v1",
+            taskTwice to "task task.python.functions.teach@v1",
+            suiteTwice to "code test suite codetest.python.set_operations.demonstrate_capability.f02@v1",
+            keyTwice to "answer key answerkey.python.value_type_behavior.demonstrate_capability.f02@v1",
+        )) {
+            val first = if (later === suiteTwice || later === keyTwice) java.io.File("../app-wiring/src/main/assets/curriculum_package.txt").readText() else authored
+            val middle = if (later === suiteTwice || later === keyTwice) java.io.File("../app-wiring/src/main/assets/curriculum_package_v2.txt").readText() else second
+            val source = FileContentSource(later = { listOf(middle, later) }, source = { first })
+            assertTrue(source.curriculumPackages().isEmpty(), named)
+            val failure = assertNotNull(source.failure as? PackageFormat.ParseFailure, "$named: ${source.failure}")
+            assertEquals(listOf("$named is authored in more than one package"), failure.reasons)
+        }
+    }
+
     @Test
     fun `an authored package is served as pinned documents and items`() {
         val source = FileContentSource { authored }

@@ -1,0 +1,242 @@
+skill: skill.python.tuple_immutable_sequence
+activity: coding_production
+tasks:
+  teach: {title: "Tuple: değiştirilemeyen sıralı kayıtlar", minutes: 15}
+  practice: {title: "Tuple alıştırması", minutes: 15}
+  check: {title: "Tuple kontrolü", minutes: 15}
+  review: {title: "Tuple tekrarı", minutes: 12}
+  repair: {title: "Tuple'ı yeniden kurmak: kayıt, açma ve değiştirilemezlik", minutes: 15}
+
+objectives:
+  - id: objective.python.tuple_immutable_sequence.demonstrate_capability
+    statement: >-
+      Birlikte anlam taşıyan sabit sayıda değeri (bir nokta, bir ad-puan kaydı) tuple olarak modelleyebilmek: tuple
+      kurmak ve döndürmek, indeksle ve açarak (a, b = t) okumak, bir fonksiyondan birden çok değeri tuple ile döndürmek ve
+      tuple değiştirilemediği için değişiklik gerektiğinde yeni bir tuple kurmak.
+    observable_behavior: >-
+      İstenen tuple'ı ya da tuple'lardan hesaplanan değeri döndüren fonksiyonu yazar; bir tuple'ı yerinde değiştirmeye
+      çalışmak yerine yenisini kurar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de bu Skill FBB'nin sequence_collections_basic seed'inin parçası ve eylemi şablon adıyla kaldı
+      (demonstrate_capability); kimlik korundu, gözlenebilir davranış adlandırıldı. Direct type authored_code. Girdi
+      olarak liste alan item'lar list_operations'ı, hepsi functions_parameters_return'ü beyan eder.
+    checks:
+      - prints: "(3, 4) 3 4"
+        code: |
+          nokta = (3, 4)
+          x, y = nokta
+          print(nokta, nokta[0], y)
+      - prints: "TypeError"
+        code: |
+          t = (1, 2)
+          try:
+              t[0] = 5
+          except TypeError:
+              print("TypeError")
+      - prints: "(9, 2, 3)"
+        code: |
+          t = (1, 2, 3)
+          print((9,) + t[1:])
+    explanations:
+      canonical: |
+        Bir tuple, sıralı bir değerler dizisidir — tıpkı bir liste gibi — ama değiştirilemez (immutable).
+
+        nokta = (3, 4)
+        kayit = ("Ayşe", 87)
+
+        Ne zaman tuple? Birlikte tek bir şeyi anlatan, sayısı sabit değerler için: bir noktanın x ve y'si, bir öğrencinin adı ve puanı. Eleman ekleyip çıkaracağın bir dizi için ise liste kullanırsın.
+
+        Okuma: nokta[0] → 3, nokta[-1] → 4, len(nokta) → 2. Açma (unpacking):
+        x, y = nokta     → x = 3, y = 4
+        ad, puan = kayit → ad = "Ayşe", puan = 87
+        Soldaki isim sayısı tuple'ın eleman sayısına eşit olmalıdır.
+
+        Değiştirilemezlik: nokta[0] = 5 bir TypeError verir. Farklı bir değer gerekiyorsa yeni bir tuple kurarsın:
+        yeni = (5,) + nokta[1:]   → (5, 4)
+        Tek elemanlı bir tuple yazarken virgül şarttır: (5,). (5) yalnızca 5 sayısıdır.
+
+        Bir fonksiyondan birden çok değer döndürmek:
+        def bol(a, b):
+            return (a // b, a % b)
+        bolum, kalan = bol(17, 5)   → 3 ve 2
+
+        print bir tuple'ı parantezleriyle yazar: print((3, 4)) → (3, 4). Liste köşeli parantezle yazılır: [3, 4]. Testler bu farkı görür.
+
+        Tuple'ların listesi, kayıtların bir tablosu gibidir:
+        ogrenciler = [("Ayşe", 87), ("Can", 92)]
+        for ad, puan in ogrenciler:
+            print(ad, puan)
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (for döngüsü ve atama): for ad, puan in liste satırı, her turda listedeki iki elemanlı tuple'ı açıp ad ve puan isimlerine atar.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: orta_nokta(p, q) — iki noktanın (x, y) orta noktasını tuple olarak döndür.
+
+          def orta_nokta(p, q):
+              x1, y1 = p
+              x2, y2 = q
+              return ((x1 + x2) / 2, (y1 + y2) / 2)
+
+          - Açma, kodu okunur kılıyor: p[0] yerine x1.
+          - Sonuç yeni bir tuple; p ve q değişmedi.
+          - orta_nokta((0, 0), (4, 6)) → (2.0, 3.0).
+    misconceptions:
+      - slug: tuple_mutable
+        name: Bir tuple'ın elemanı yerinde değiştirilebilir
+        open_question: t[0] = 5 satırının bir tuple'ın ilk elemanını değiştireceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Tuple da bir liste gibi, elemanını değiştiririm."
+
+            Tuple değiştirilemez; t[0] = 5 TypeError verir. Bu bir kısıt değil bir güvencedir: bir kaydın beklenmedik yerde değişmeyeceğini bilirsin. Farklı bir değer gerekiyorsa (5,) + t[1:] gibi yeni bir tuple kurarsın.
+      - slug: single_without_comma
+        name: (5) tek elemanlı bir tuple'dır
+        open_question: (5) yazdığında tek elemanlı bir tuple oluşturduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Parantez tuple yapar."
+
+            Tuple'ı virgül yapar; parantez çoğu zaman yalnızca gruplar. (5) sadece 5 sayısıdır; tek elemanlı tuple (5,) diye yazılır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına nokta(x, y) adında bir fonksiyon yaz: x ve y'den oluşan bir tuple döndürsün (liste değil). Örnek: nokta(3, 4) → (3, 4).
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.nokta(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: positive, args: ["3", "4"], expected_stdout: "(3, 4)\n"}
+          - {id: negative, args: ["-1", "0"], expected_stdout: "(-1, 0)\n"}
+        reference: |
+          def nokta(x, y):
+              return (x, y)
+        wrong:
+          - |
+            def nokta(x, y):
+                return [x, y]
+          - |
+            def nokta(x, y):
+                return (y, x)
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına en_kucuk_en_buyuk(sayilar) adında bir fonksiyon yaz: boş olmayan bir listenin en küçüğünü ve en büyüğünü (bu sırayla) bir tuple olarak döndürsün. Örnek: en_kucuk_en_buyuk([4, 9, 1]) → (1, 9).
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.en_kucuk_en_buyuk([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: three, args: ["4", "9", "1"], expected_stdout: "(1, 9)\n"}
+          - {id: single, args: ["7"], expected_stdout: "(7, 7)\n"}
+          - {id: negatives, args: ["-3", "-8", "-1"], expected_stdout: "(-8, -1)\n"}
+        reference: |
+          def en_kucuk_en_buyuk(sayilar):
+              return (min(sayilar), max(sayilar))
+        wrong:
+          - |
+            def en_kucuk_en_buyuk(sayilar):
+                return (max(sayilar), min(sayilar))
+          - |
+            def en_kucuk_en_buyuk(sayilar):
+                return [min(sayilar), max(sayilar)]
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına yer_degistir(cift) adında bir fonksiyon yaz: iki elemanlı bir tuple alsın, elemanlarını açma (a, b = cift) ile okusun ve yerleri değişmiş yeni bir tuple döndürsün. Örnek: yer_degistir((1, 2)) → (2, 1).
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.yer_degistir((sys.argv[1], sys.argv[2])))
+        suite:
+          - {id: numbers, args: ["1", "2"], expected_stdout: "('2', '1')\n"}
+          - {id: words, args: ["sol", "sağ"], expected_stdout: "('sağ', 'sol')\n"}
+        reference: |
+          def yer_degistir(cift):
+              a, b = cift
+              return (b, a)
+        wrong:
+          - |
+            def yer_degistir(cift):
+                a, b = cift
+                return (a, b)
+          - |
+            def yer_degistir(cift):
+                a, b = cift
+                return [b, a]
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına birinci(kayitlar) adında bir fonksiyon yaz: (ad, puan) tuple'larından oluşan boş olmayan bir listede puanı en yüksek olanın adını döndürsün; eşitlikte listede önce geleni döndürsün. Örnek: birinci([("Ayşe", 87), ("Can", 92), ("Ece", 92)]) → "Can".
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1:]
+          kayitlar = [(a[i], int(a[i + 1])) for i in range(0, len(a), 2)]
+          print(cozum.birinci(kayitlar))
+        suite:
+          - {id: tie_keeps_first, args: ["Ayşe", "87", "Can", "92", "Ece", "92"], expected_stdout: "Can\n"}
+          - {id: single, args: ["Deniz", "50"], expected_stdout: "Deniz\n"}
+          - {id: first_is_best, args: ["Ali", "99", "Su", "10"], expected_stdout: "Ali\n"}
+        reference: |
+          def birinci(kayitlar):
+              en_iyi_ad, en_iyi_puan = kayitlar[0]
+              for ad, puan in kayitlar:
+                  if puan > en_iyi_puan:
+                      en_iyi_ad = ad
+                      en_iyi_puan = puan
+              return en_iyi_ad
+        wrong:
+          - |
+            def birinci(kayitlar):
+                en_iyi_ad, en_iyi_puan = kayitlar[0]
+                for ad, puan in kayitlar:
+                    if puan >= en_iyi_puan:
+                        en_iyi_ad = ad
+                        en_iyi_puan = puan
+                return en_iyi_ad
+          - |
+            def birinci(kayitlar):
+                en_iyi_ad = ""
+                en_iyi_puan = 0
+                for ad, puan in kayitlar:
+                    if puan > en_iyi_puan:
+                        en_iyi_ad = ad
+                return en_iyi_ad
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına sonuncuyu_degistir(t, yeni) adında bir fonksiyon yaz: boş olmayan bir tuple'ın son elemanı yeni ile değiştirilmiş YENİ bir tuple döndürsün; verilen tuple değişmesin (tuple zaten yerinde değiştirilemez). Örnek: sonuncuyu_degistir((1, 2, 3), 9) → (1, 2, 9). Testler hem sonucu hem verilen tuple'ı yazdırır.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          t = tuple(int(x) for x in sys.argv[2:])
+          print(cozum.sonuncuyu_degistir(t, int(sys.argv[1])), t)
+        suite:
+          - {id: three, args: ["9", "1", "2", "3"], expected_stdout: "(1, 2, 9) (1, 2, 3)\n"}
+          - {id: single, args: ["0", "5"], expected_stdout: "(0,) (5,)\n"}
+          - {id: two, args: ["7", "4", "8"], expected_stdout: "(4, 7) (4, 8)\n"}
+        reference: |
+          def sonuncuyu_degistir(t, yeni):
+              return t[:-1] + (yeni,)
+        wrong:
+          - |
+            def sonuncuyu_degistir(t, yeni):
+                return t[1:] + (yeni,)
+          - |
+            def sonuncuyu_degistir(t, yeni):
+                return t + (yeni,)

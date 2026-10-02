@@ -1,0 +1,212 @@
+skill: skill.python.value_type_behavior
+activity: code_reading_trace
+# Reading a value's type needs a name to hold it; assignment is 15A's state_assignment_model, which 6C does not make a
+# prerequisite of this Skill. The lesson and its items declare it (3B §10).
+lesson_requires: [skill.programming.state_assignment_model]
+tasks:
+  teach: {title: "Değer türleri: int, float, str, bool ve None", minutes: 14}
+  practice: {title: "Değer türleri alıştırması", minutes: 10}
+  check: {title: "Değer türleri kontrolü", minutes: 8}
+  review: {title: "Değer türleri tekrarı", minutes: 6}
+  repair: {title: "Türleri yeniden ayırmak: değer, tür ve dönüşüm", minutes: 12}
+
+objectives:
+  - id: objective.python.value_type_behavior.demonstrate_capability
+    statement: >-
+      Python'un temel değer türlerini (int, float, str, bool, None) ayırt edebilmek; bir ifadenin hangi türde bir değer
+      ürettiğini, türler arası dönüşümlerin (int(), float(), str(), bool()) sonucunu ve uyumsuz türlerin birlikte
+      kullanıldığında ne olduğunu kodu okuyarak söyleyebilmek.
+    observable_behavior: >-
+      Kısa bir kodun yazdırdığı değerleri ve türleri doğru verir; bir dönüşümün sonucunu ve bir tür hatasının nerede
+      çıkacağını doğru söyler.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Direct type 6C'deki gibi code_reading.
+    checks:
+      - prints: "<class 'int'> <class 'float'> <class 'str'> <class 'bool'> <class 'NoneType'>"
+        code: |
+          print(type(7), type(2.5), type("7"), type(True), type(None))
+      - prints: "53 8"
+        code: |
+          print("5" + "3", 5 + 3)
+      - prints: "3 2.0 False True"
+        code: |
+          print(int(3.9), float("2"), bool(0), bool("0"))
+      - prints: "12 12"
+        code: |
+          x = "12"
+          print(x, int(x))
+    explanations:
+      canonical: |
+        Python'da her değerin bir türü (type) vardır. Tür, o değerle neler yapılabileceğini belirler. Bu derste beş temel tür var:
+
+        - int: tam sayı. 7, -3, 0
+        - float: ondalıklı sayı. 2.5, 3.0 (Python'da ondalık ayırıcı noktadır)
+        - str: yazı (string). "7", "Merhaba" — tırnak içindeki her şey
+        - bool: doğruluk değeri. True ya da False
+        - None: "hiçbir şey" değeri; türü NoneType
+
+        Bir değerin türünü type() söyler: print(type(7)) ekrana <class 'int'> yazar; print(type("7")) ise <class 'str'>.
+
+        7 ile "7" aynı şey değildir. Biri sayı, öteki yazıdır ve + işleci ikisinde farklı çalışır:
+        - 5 + 3 → 8 (sayı toplama)
+        - "5" + "3" → "53" (yazıları uç uca ekleme)
+
+        Türler arası dönüşüm:
+        - int("12") → 12. Yazıyı tam sayıya çevirir. int("3.5") ise hata verir (ValueError).
+        - int(3.9) → 3. Ondalığı atar; yuvarlamaz.
+        - float("2") → 2.0
+        - str(10) → "10"
+        - bool(x): bu dersteki türlerden 0, 0.0, boş yazı "" ve None için False, diğer her değer için True. (İleride göreceğin boş listeler gibi boş topluluklar da False verir.) Dikkat: bool("0") True'dur, çünkü "0" boş olmayan bir yazıdır.
+
+        Uyumsuz türler: 10 + "kg" bir TypeError verir; Python bir sayıya bir yazı ekleyemez. Önce dönüştürmelisin: str(10) + "kg" → "10kg".
+
+        print bir değeri yazdırırken tırnakları göstermez: print("12") ekrana 12 yazar, print(12) de 12 yazar. Hangisinin yazı hangisinin sayı olduğunu ekrana bakarak değil, koda ya da type()'a bakarak anlarsın.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama): x = "4" satırı x'e "4" yazısını bağlar; değerin türü, atamayla birlikte değişkene geçer. Bir değişkenin türünü öğrenmek için o andaki değerine bak.
+      state_trace:
+        level: H2
+        text: |
+          Tür izleme — başka bir örnek üzerinde.
+
+          fiyat = "40"
+          adet = 3
+          toplam = int(fiyat) * adet
+          print(toplam, type(toplam))
+
+          satır 1: fiyat = "40" (str)
+          satır 2: adet = 3 (int)
+          satır 3: int(fiyat) → 40 (int); 40 * 3 → 120 (int)
+          satır 4: ekrana 120 <class 'int'>
+
+          Her satırda değerin yanına türünü de yaz; hata çoğu zaman bir türün sandığın gibi olmamasından çıkar.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          sayi = "8"
+          print(sayi * 2)
+          print(int(sayi) * 2)
+
+          - sayi bir yazı: "8".
+          - "8" * 2 → yazıyı iki kez tekrarlar: 88.
+          - int("8") * 2 → 8 * 2 → 16.
+
+          Ekranda önce 88, sonra 16 görünür. Aynı * işleci yazıda tekrar, sayıda çarpma yapar; farkı türler belirler.
+    misconceptions:
+      - slug: string_plus_adds
+        name: İki yazıyı + ile birleştirmek sayıları toplar
+        open_question: '"5" + "3" ifadesinin 8 sonucunu verdiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İçlerinde rakam var, o halde toplanırlar."
+
+            Tırnak içindeki rakamlar yazıdır; + yazıları uç uca ekler: "5" + "3" → "53". Toplamak istiyorsan önce sayıya çevir: int("5") + int("3") → 8.
+      - slug: int_rounds
+        name: int() bir ondalık sayıyı yuvarlar
+        open_question: int(3.9) ifadesinin 4 sonucunu verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "int(3.9) en yakın tam sayıya yuvarlar."
+
+            int() ondalık kısmı atar: int(3.9) → 3, int(-3.9) → -3. Yuvarlamak başka bir işlemdir (round). Ayrıca int("3.9") gibi ondalıklı bir yazıyı doğrudan tam sayıya çeviremez ve hata verir.
+      - slug: zero_string_false
+        name: '"0" yazısı False sayılır'
+        open_question: bool("0") ifadesinin False olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Sıfır yanlıştır, '0' da yanlıştır."
+
+            Bu dersteki türlerde bool() yalnız "boş" değerler için False verir: 0, 0.0, boş yazı "" ve None. "0" içinde bir karakter olan, boş olmayan bir yazıdır; bu yüzden bool("0") True'dur.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(type(7))
+        options:
+          A: "<class 'int'>"
+          B: "<class 'str'>"
+          C: "7"
+          D: "<class 'float'>"
+        answer: A
+        scan_options: false
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print("2" + "9")
+        answer: "29"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = "4"
+          y = int(x) + 1
+          print(y, type(y))
+        options:
+          A: "5 <class 'int'>"
+          B: "41 <class 'str'>"
+          C: "5 <class 'str'>"
+          D: Hata verir; bir yazı ile bir sayı toplanamaz.
+        answer: A
+        scan_options: false
+        required_skills: [skill.programming.state_assignment_model]
+        verify:
+          mode: stdout
+          outcomes: {A: "5 <class 'int'>", B: "41 <class 'str'>", C: "5 <class 'str'>", D: "<hata>"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(int("7") * 2, "7" * 2)
+        answer: "14 77"
+        required_skills: [skill.programming.state_assignment_model]
+        verify: {mode: stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalıştırılınca ekranda ne görünür?
+        code: |
+          fiyat = 25
+          birim = "TL"
+          print(str(fiyat) + birim)
+          print(fiyat + birim)
+        options:
+          A: Önce 25TL, sonra bir TypeError
+          B: 25TL iki kez
+          C: Hiçbir şey; ilk print satırında hata verir
+          D: Önce 25TL, sonra 50TL
+        answer: A
+        scan_options: false
+        required_skills: [skill.programming.state_assignment_model]
+        verify:
+          mode: stdout
+          expect_error: true
+          outcomes: {A: "25TL", B: "25TL\n25TL", C: "", D: "25TL\n50TL"}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(int(5.7), float("4"), bool(""), bool("False"))
+        answer: "5 4.0 False True"
+        verify: {mode: stdout}

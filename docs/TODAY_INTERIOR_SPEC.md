@@ -198,3 +198,7 @@ Sixteen deliberate mutations, **all sixteen caught** — three only after the te
 If accepted, 11A becomes `TDYX-v0 / D-087`.
 
 Next numbered step: **11B — Task runner**. It owns the start action Today now offers, the focused-flow entry from `TRUX-v0`, and the first thing that makes a task row do something. It must receive a fresh PRE-STEP and explicit user approval before execution.
+
+---
+
+**15B note (2026-10-02, `D-113`):** the content adapter now reads several packages; a bad sequence is refused by a throw inside its lazy read, which `runCatching` turns into "nothing is served". No lookup can throw, so `E11A-13_content_port_returns_null` was narrowed to exclude that sequence check. Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.

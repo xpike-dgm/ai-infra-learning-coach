@@ -1,0 +1,203 @@
+skill: skill.python.input_output_basic
+activity: coding_production
+tasks:
+  teach: {title: "Girdi ve çıktı: input() ve print()", minutes: 15}
+  practice: {title: "Girdi-çıktı programları alıştırması", minutes: 15}
+  check: {title: "Girdi-çıktı programları kontrolü", minutes: 15}
+  review: {title: "Girdi-çıktı programları tekrarı", minutes: 12}
+  repair: {title: "Girdi ve çıktıyı yeniden kurmak: türler ve biçim", minutes: 15}
+
+objectives:
+  - id: objective.python.input_output_basic.build_small_io_flow
+    statement: >-
+      input() ile kullanıcıdan satır satır değer okuyan, gerekiyorsa sayıya çeviren, bir hesap yapan ve sonucu print()
+      ile birebir istenen biçimde yazdıran küçük bir program yazabilmek.
+    observable_behavior: >-
+      Farklı girdilerle çalıştırıldığında her seferinde doğru çıktıyı, istenen biçimde (boşluklar, sıra, etiketler)
+      üreten programı yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni ("Basit stdin/input ve stdout/print akışı kurabilmek") korundu ve gözlenebilir davranışa çevrildi; direct
+      type authored_code. Bu Skill'den itibaren testler programı farklı girdilerle çalıştırır.
+    checks:
+      - prints: "Merhaba, Deniz!"
+        code: |
+          ad = "Deniz"
+          print("Merhaba, " + ad + "!")
+      - prints: "Merhaba, Deniz !"
+        code: |
+          ad = "Deniz"
+          print("Merhaba,", ad, "!")
+      - prints: "12"
+        code: |
+          a = "5"
+          b = "7"
+          print(int(a) + int(b))
+    explanations:
+      canonical: |
+        Şimdiye kadar programların hep aynı şeyi yaptı. input() ile programın kullanıcıdan değer alır ve her çalıştırmada farklı bir sonuç üretebilir.
+
+        ad = input()
+        print("Merhaba, " + ad + "!")
+
+        input() kullanıcının yazdığı bir satırı okur ve onu bir yazı (str) olarak verir. Kullanıcı Deniz yazıp Enter'a basarsa ad = "Deniz" olur ve ekrana Merhaba, Deniz! yazılır. Dersin testleri de girdiyi böyle, satır satır verir.
+
+        input() her zaman yazı verir. Sayı istiyorsan çevir:
+        a = int(input())
+        b = int(input())
+        print(a + b)
+        Girdi 5 ve 7 ise ekrana 12 yazılır. Çevirmeseydin "5" + "7" → 57 olurdu.
+
+        Bu derste girdiler her zaman ayrı satırlarda gelir: iki sayı okuyacaksan iki kez input() çağırırsın.
+
+        print ile biçim:
+        - print("Toplam:", t) değerlerin arasına bir boşluk koyar: Toplam: 12
+        - print("Merhaba, " + ad + "!") yazıları boşluksuz birleştirir; + yalnız yazıları birleştirir, bir sayıyı eklemek için önce str() ile çevirmelisin.
+        - Her print yeni bir satıra yazar.
+
+        Testler çıktıyı harf harf karşılaştırır: fazladan bir kelime, eksik bir iki nokta ya da yanlış sırada bir satır testi düşürür. input() içine bir soru yazarsan, örneğin input("Adın? "), o soru da çıktıya karışır; bu derste input()'u parantezleri boş bırakarak kullan.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: iki satırda bir sayı ve bir birim oku; Değer: <sayının iki katı> <birim> yaz.
+
+          sayi = int(input())
+          birim = input()
+          print("Değer:", sayi * 2, birim)
+
+          Girdi 21 ve km ise ekrana Değer: 42 km yazılır.
+          - sayi int'e çevrildi, çünkü çarpılacak.
+          - birim yazı olarak kaldı, çünkü yalnız yazdırılacak.
+          - print virgülle ayrılmış üç değeri aralarına boşluk koyarak yazdı.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (değer türleri): input() her zaman bir yazı (str) verir; "5" ile 5 farklıdır. Toplama ya da çarpma yapacaksan önce int() ya da float() ile çevir.
+    misconceptions:
+      - slug: input_returns_number
+        name: input() bir sayı yazıldığında sayı verir
+        open_question: Kullanıcı 5 yazdığında input()'un sana 5 sayısını verdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Kullanıcı rakam yazdı, input() da sayı verir."
+
+            input() her zaman bir yazı verir: kullanıcı 5 yazarsa "5" gelir. "5" + "7" → "57" olur. Sayı olarak kullanacaksan int(input()) ile çevir.
+      - slug: comma_adds_nothing
+        name: print'te virgül değerleri boşluksuz yan yana yazar
+        open_question: print("Toplam:", 12) satırının ekrana Toplam:12 yazacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Virgül yalnız değerleri ayırır, çıktıya bir şey eklemez."
+
+            print virgülle verilen değerlerin arasına bir boşluk koyar: print("Toplam:", 12) → Toplam: 12. Boşluk istemiyorsan yazıları + ile birleştirirsin (sayıyı önce str() ile çevirerek).
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda bir isim okusun ve Merhaba, <isim>! yazsın. Örnek: girdi Ayşe ise çıktı Merhaba, Ayşe! olmalı.
+        suite:
+          - {id: greets_ayse, stdin: "Ayşe\n", expected_stdout: "Merhaba, Ayşe!\n"}
+          - {id: greets_can, stdin: "Can\n", expected_stdout: "Merhaba, Can!\n"}
+        reference: |
+          ad = input()
+          print("Merhaba, " + ad + "!")
+        wrong:
+          - |
+            ad = input()
+            print("Merhaba,", ad, "!")
+          - |
+            ad = input()
+            print("Merhaba, ad!")
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda iki tam sayı okusun; önce çarpımlarını, sonra toplamlarını aralarında bir boşlukla tek satıra yazsın. Örnek: girdi 2 ve 3 ise çıktı 6 5.
+        suite:
+          - {id: small, stdin: "2\n3\n", expected_stdout: "6 5\n"}
+          - {id: negative, stdin: "10\n-4\n", expected_stdout: "-40 6\n"}
+          - {id: zeros, stdin: "0\n0\n", expected_stdout: "0 0\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          print(a * b, a + b)
+        wrong:
+          - |
+            a = input()
+            b = input()
+            print(a * b, a + b)
+          - |
+            a = int(input())
+            b = int(input())
+            print(a + b, a * b)
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda bir ürünün fiyatını, ikinci satırda adedini (ikisi de tam sayı) okusun ve Tutar: <fiyat × adet> yazsın. Örnek: girdi 40 ve 3 ise çıktı Tutar: 120.
+        suite:
+          - {id: three_items, stdin: "40\n3\n", expected_stdout: "Tutar: 120\n"}
+          - {id: one_item, stdin: "15\n1\n", expected_stdout: "Tutar: 15\n"}
+          - {id: zero_items, stdin: "99\n0\n", expected_stdout: "Tutar: 0\n"}
+        reference: |
+          fiyat = int(input())
+          adet = int(input())
+          print("Tutar:", fiyat * adet)
+        wrong:
+          - |
+            fiyat = input()
+            adet = int(input())
+            print("Tutar:", fiyat * adet)
+          - |
+            fiyat = int(input())
+            adet = int(input())
+            print("Tutar:", fiyat + adet)
+          - |
+            fiyat = int(input())
+            adet = int(input())
+            print("Tutar:" + str(fiyat * adet))
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda Celsius cinsinden bir sıcaklık (tam sayı) okusun ve Fahrenheit karşılığını yazsın: F = C × 9 / 5 + 32. Sonuç ondalıklı yazılmalı. Örnek: girdi 100 ise çıktı 212.0.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: boiling, stdin: "100\n", expected_stdout: "212.0\n"}
+          - {id: freezing, stdin: "0\n", expected_stdout: "32.0\n"}
+          - {id: same_point, stdin: "-40\n", expected_stdout: "-40.0\n"}
+        reference: |
+          c = int(input())
+          print(c * 9 / 5 + 32)
+        wrong:
+          - |
+            c = int(input())
+            print(c * 9 // 5 + 32)
+          - |
+            c = int(input())
+            print(c * (9 / 5 + 32))
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda toplam dakika (sıfır ya da pozitif tam sayı) okusun ve bunu <saat> saat <dakika> dakika biçiminde yazsın. Örnek: girdi 135 ise çıktı 2 saat 15 dakika.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: hours_and_minutes, stdin: "135\n", expected_stdout: "2 saat 15 dakika\n"}
+          - {id: under_an_hour, stdin: "59\n", expected_stdout: "0 saat 59 dakika\n"}
+          - {id: whole_hours, stdin: "120\n", expected_stdout: "2 saat 0 dakika\n"}
+        reference: |
+          toplam = int(input())
+          print(toplam // 60, "saat", toplam % 60, "dakika")
+        wrong:
+          - |
+            toplam = int(input())
+            print(toplam / 60, "saat", toplam % 60, "dakika")
+          - |
+            toplam = int(input())
+            print(toplam // 60, "saat", toplam - 60, "dakika")

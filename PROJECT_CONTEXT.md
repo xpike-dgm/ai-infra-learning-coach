@@ -239,12 +239,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **14G ✅ Provider abstraction/fallback — PRVX-v0 / D-111**
 - **AŞAMA 14 ✅ TAMAMLANDI**
 - **15A ✅ Computer / Programming Fundamentals — CPFX-v0 / D-112**
-- **15B 🟡 Python Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15C–20 ⬜
+- **15B ✅ Python Foundations — PYFX-v0 / D-113**
+- **15C 🟡 C Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15D–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15B'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15C'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -643,4 +644,16 @@ Her cevap anahtarı gerçekte olanla karşılaştırılır — kod çalıştır�
 Kullanıcı kararları: çalıştırma + bağımsız QA; okunur Python alt kümesi; Objective metadata'sını netleştir ve kaydet.
 
 Canonical: `docs/COMPUTING_FUNDAMENTALS_CONTENT_SPEC.md` / D-112.
+
+## 12.38 15B Python Foundations içeriği — PYFX-v0 / D-113
+
+İkinci içerik paketi sevk ediliyor ve öğrenci ilk kez kod yazıyor. Ana invariant: **bir program ne yaptığına göre, öğrencinin kendi bilgisayarında, doğru çözümü makul bir yanlış çözümden ayırabilen testlerle değerlendirilir; sonraki bir paket yalnız ekler — yayımlanmış hiçbir şey yeniden taşınmaz ya da üzerine yazılmaz.**
+
+İçerik yazmadan önce bulunanlar: ikinci paket sevk edilemiyordu (tek asset, paket sürümüne bağlı varlıklar); 14D koşucusu Windows'ta doğru Türkçe çıktılı programları düşürüyordu; üç tohum Skill'in hard ön koşulu tohum değildi, yani hiç hazır olamazlardı; fonksiyon yazmak graph'ta ön koşul değil; metin kipindeki dosyalar ve traceback'ler platforma ve sürüme göre farklı.
+
+20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev. Her kod item'ının referansı öğrencinin kullandığı koşucudan geçer ve en az iki makul yanlış çözüm düşer; dosya ve yol testleri platformdan bağımsız. Paketler birlikte okunur ya da hiç sunulmaz; mağaza yayımlanmış bir varlığı yeniden taşıyan paketi reddeder. Bağımsız inceleme üç geçişte 109/109, 116/116.
+
+Kullanıcı kararları: on yedi tohum + üç ön koşul (20 Skill); artımlı paket, varlık sürümü anlamsal revizyondur.
+
+Canonical: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md` / D-113.
 

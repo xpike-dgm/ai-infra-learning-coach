@@ -116,13 +116,14 @@ class CoachApplication : Application() {
         path.parentFile?.mkdirs()
         return when (val result = StoreOpener.open(path.absolutePath)) {
             is StoreOpener.Result.Opened -> {
-                val graph = AppGraph(persistence = result.store, content = FileContentSource(::authoredPackage))
+                val graph = AppGraph(persistence = result.store, content = FileContentSource(later = ::laterPackages, source = ::authoredPackage))
                 // Ingestion runs here because it is disk work and because Today must be read after
                 // it: publishing is what turns "nothing is published" into a curriculum Today can
                 // report. With no authored package shipping, it publishes nothing and says so by
                 // returning null (11D).
-                val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingest()
-                Log.i(TAG, "curriculum ingestion: ${published ?: "no authored package"}")
+                // 15B: every package that ships is published once, oldest first; each later one only adds.
+                val published = IngestCurriculum(graph.persistence, graph.content, graph.clock).ingestAll()
+                Log.i(TAG, "curriculum ingestion: ${published.ifEmpty { "no authored package" }}")
                 StoreOpenOutcome.Opened(
                     OpenedApp(
                         graph,
@@ -148,7 +149,19 @@ class CoachApplication : Application() {
         assets.open(AUTHORED_PACKAGE).bufferedReader().use { it.readText() }
     }.getOrNull()
 
+    /**
+     * The packages after the first (15B, `D-113`): `curriculum_package_v<N>.txt`, in the order of N. Each step of Stage
+     * 15 ships its own; the content source checks that their versions rise and that nothing is authored twice.
+     */
+    private fun laterPackages(): List<String> = runCatching {
+        assets.list("").orEmpty()
+            .mapNotNull { name -> LATER_PACKAGE.matchEntire(name)?.let { it.groupValues[1].toInt() to name } }
+            .sortedBy { it.first }
+            .map { (_, name) -> assets.open(name).bufferedReader().use { it.readText() } }
+    }.getOrDefault(emptyList())
+
     private companion object {
+        val LATER_PACKAGE = Regex("^curriculum_package_v(\\d+)\\.txt$")
         const val AUTHORED_PACKAGE = "curriculum_package.txt"
         const val TAG = "coach.store"
     }

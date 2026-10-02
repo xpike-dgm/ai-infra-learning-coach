@@ -194,3 +194,7 @@ Next numbered step: **14C — Alternatif anlatım**. It must receive a fresh PRE
 ---
 
 **14C note (2026-10-01, `D-107`):** the misconception memory now decides, on the device, which written `misconception_contrast` explanations may be offered (a label held open: hypothesis, supported or confirmed); it is offered as a common mix-up and never sent to a provider. Writing the contrasts stays with 15. Details: `docs/ALTERNATIVE_EXPLANATION_IMPL_SPEC.md`.
+
+---
+
+**15B note (2026-10-02, `D-113`, user decision):** a label's version is its own, not the package's. A later package may pin a new version-1 label to an Objective an earlier package published; carrying an already-published label refuses the package. `E14B-03_version_refused` was narrowed accordingly. Details: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md`.

@@ -1,0 +1,251 @@
+skill: skill.python.set_operations
+activity: coding_production
+tasks:
+  teach: {title: "Kümeler: tekrarsız değerler ve üyelik", minutes: 15}
+  practice: {title: "Küme alıştırması", minutes: 15}
+  check: {title: "Küme kontrolü", minutes: 15}
+  review: {title: "Küme tekrarı", minutes: 12}
+  repair: {title: "Kümeyi yeniden kurmak: tekrarsızlık ve küme işlemleri", minutes: 15}
+
+objectives:
+  - id: objective.python.set_operations.demonstrate_capability
+    statement: >-
+      Tekrarsızlığın ya da hızlı üyelik sorgusunun önemli olduğu bir problemde kümeyi seçip kullanabilmek: set() ile
+      tekrarları atmak, add ve in ile görülenleri izlemek, birleşim (|), kesişim (&) ve fark (-) işlemlerini uygulamak ve
+      kümenin sırasız olduğunu bilerek sıralı bir sonuç gerektiğinde sorted ile sıralamak.
+    observable_behavior: >-
+      Tekrarsızlık ya da iki grubun karşılaştırılması gereken problemlerde doğru sonucu döndüren fonksiyonu yazar; sıra
+      istenen sonuçları sıralar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de bu Skill FBB'nin sequence_collections_basic seed'inin parçası ve eylemi şablon adıyla kaldı
+      (demonstrate_capability); kimlik korundu, gözlenebilir davranış adlandırıldı. Direct type authored_code. Item'lar
+      liste alan fonksiyonlar yazdırdığı için functions_parameters_return'ü ve list_operations'ı beyan eder.
+    checks:
+      - prints: "3 True False"
+        code: |
+          renkler = set(["kırmızı", "mavi", "kırmızı", "yeşil"])
+          print(len(renkler), "mavi" in renkler, "mor" in renkler)
+      - prints: "[1, 2, 3, 4] [2, 3] [1]"
+        code: |
+          a = {1, 2, 3}
+          b = {2, 3, 4}
+          print(sorted(a | b), sorted(a & b), sorted(a - b))
+    explanations:
+      canonical: |
+        Bir küme (set), tekrarsız değerlerden oluşan sırasız bir topluluktur.
+
+        renkler = {"kırmızı", "mavi", "yeşil"}
+        bos = set()          (dikkat: {} boş bir küme değil, boş bir sözlüktür)
+
+        Tekrarları atmak: set(["kırmızı", "mavi", "kırmızı", "yeşil"]) → 3 elemanlı bir küme. len ile kaç farklı değer olduğunu öğrenirsin.
+
+        Üyelik: "mavi" in renkler → True. Kümelerde in, liste taramasından çok daha hızlıdır; "bunu daha önce gördüm mü?" sorusu için idealdir:
+        gorulen = set()
+        for x in veriler:
+            if x in gorulen:
+                ...   (tekrar eden bir değer)
+            gorulen.add(x)
+
+        Küme işlemleri:
+        - a | b → birleşim: ikisinden birinde olanlar
+        - a & b → kesişim: ikisinde de olanlar
+        - a - b → fark: a'da olup b'de olmayanlar
+
+        Sırasızlık: bir kümenin elemanlarının hangi sırayla yazdırılacağına güvenemezsin. Sonucu belli bir sırada vermen gerekiyorsa sorted(kume) ile sıralı bir listeye çevir. Bu Skill'in testleri bu yüzden çoğu zaman sıralanmış bir liste bekler.
+
+        Kümeye yalnız değiştirilemeyen değerler girebilir (sayılar, yazılar, tuple'lar); bir liste kümeye eklenemez.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (for döngüsü ve listeler): bir listenin elemanları üzerinde for ile dolaşırsın; sorted(x) bir topluluktan sıralı yeni bir liste döndürür.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: ilk_kez(sayilar) — her sayının yalnız ilk görüldüğü yerde tutulduğu, sırası korunmuş yeni bir liste döndür.
+
+          def ilk_kez(sayilar):
+              gorulen = set()
+              sonuc = []
+              for n in sayilar:
+                  if n not in gorulen:
+                      sonuc.append(n)
+                      gorulen.add(n)
+              return sonuc
+
+          - Küme, "görüldü mü?" sorusunu hızlı cevaplıyor; liste ise sırayı koruyor.
+          - ilk_kez([3, 1, 3, 2, 1]) → [3, 1, 2].
+          - Yalnız set(sayilar) kullansaydık sıra kaybolurdu.
+    misconceptions:
+      - slug: set_keeps_order
+        name: Bir küme elemanları eklendiği sırayla tutar
+        open_question: Bir kümeyi yazdırdığında elemanların eklendikleri sırayla geleceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Kümeye 3, 1, 2 ekledim; 3, 1, 2 diye yazılır."
+
+            Küme sırasızdır; yazdırma sırası bir güvence değildir. Sıra önemliyse sonucu sorted ile sırala ya da sırayı bir listede ayrıca tut.
+      - slug: empty_braces_set
+        name: '{} boş bir kümedir'
+        open_question: '{} yazarak boş bir küme oluşturduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Küme süslü parantezle yazılıyor, o halde {} boş küme."
+
+            {} boş bir sözlüktür (dict). Boş bir küme set() ile oluşturulur. İçinde eleman olan süslü parantez ({1, 2}) ise bir kümedir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına farkli_sayisi(degerler) adında bir fonksiyon yaz: listede kaç farklı değer olduğunu döndürsün. Örnek: farkli_sayisi([1, 2, 2, 3]) → 3; boş liste için 0.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.farkli_sayisi(sys.argv[1:]))
+        suite:
+          - {id: with_repeats, args: ["1", "2", "2", "3"], expected_stdout: "3\n"}
+          - {id: empty, args: [], expected_stdout: "0\n"}
+          - {id: all_same, args: ["a", "a", "a"], expected_stdout: "1\n"}
+        reference: |
+          def farkli_sayisi(degerler):
+              return len(set(degerler))
+        wrong:
+          - |
+            def farkli_sayisi(degerler):
+                return len(degerler)
+          - |
+            def farkli_sayisi(degerler):
+                return len(set(degerler)) - 1
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına ortak(a, b) adında bir fonksiyon yaz: iki listede de geçen değerleri, tekrarsız ve küçükten büyüğe sıralı bir liste olarak döndürsün. Örnek: ortak([1, 2, 2, 5], [2, 5, 7]) → [2, 5].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          a = [int(x) for x in sys.argv[1:ayrac]]
+          b = [int(x) for x in sys.argv[ayrac + 1:]]
+          print(cozum.ortak(a, b))
+        suite:
+          - {id: two_common, args: ["1", "2", "2", "5", "|", "2", "5", "7"], expected_stdout: "[2, 5]\n"}
+          - {id: none_common, args: ["1", "|", "2"], expected_stdout: "[]\n"}
+          - {id: unsorted_input, args: ["9", "3", "6", "|", "6", "9", "1"], expected_stdout: "[6, 9]\n"}
+        reference: |
+          def ortak(a, b):
+              return sorted(set(a) & set(b))
+        wrong:
+          - |
+            def ortak(a, b):
+                return sorted(set(a) | set(b))
+          - |
+            def ortak(a, b):
+                sonuc = []
+                for x in a:
+                    if x in b:
+                        sonuc.append(x)
+                return sonuc
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına tekrar_edenler(degerler) adında bir fonksiyon yaz: listede birden fazla kez geçen değerleri, tekrarsız ve küçükten büyüğe sıralı bir liste olarak döndürsün. Örnek: tekrar_edenler([4, 1, 4, 2, 1, 4]) → [1, 4].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.tekrar_edenler([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: two_repeat, args: ["4", "1", "4", "2", "1", "4"], expected_stdout: "[1, 4]\n"}
+          - {id: none, args: ["1", "2", "3"], expected_stdout: "[]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          def tekrar_edenler(degerler):
+              gorulen = set()
+              tekrar = set()
+              for x in degerler:
+                  if x in gorulen:
+                      tekrar.add(x)
+                  gorulen.add(x)
+              return sorted(tekrar)
+        wrong:
+          - |
+            def tekrar_edenler(degerler):
+                return sorted(set(degerler))
+          - |
+            def tekrar_edenler(degerler):
+                gorulen = set()
+                tekrar = []
+                for x in degerler:
+                    if x in gorulen:
+                        tekrar.append(x)
+                    gorulen.add(x)
+                return sorted(tekrar)
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına yalniz_ilkinde(a, b) adında bir fonksiyon yaz: birinci listede olup ikinci listede olmayan değerleri, tekrarsız ve küçükten büyüğe sıralı bir liste olarak döndürsün. Örnek: yalniz_ilkinde([5, 1, 3, 1], [3]) → [1, 5].
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          ayrac = sys.argv.index("|")
+          a = [int(x) for x in sys.argv[1:ayrac]]
+          b = [int(x) for x in sys.argv[ayrac + 1:]]
+          print(cozum.yalniz_ilkinde(a, b))
+        suite:
+          - {id: basic, args: ["5", "1", "3", "1", "|", "3"], expected_stdout: "[1, 5]\n"}
+          - {id: all_removed, args: ["2", "|", "2", "4"], expected_stdout: "[]\n"}
+          - {id: second_empty, args: ["7", "7", "6", "|"], expected_stdout: "[6, 7]\n"}
+        reference: |
+          def yalniz_ilkinde(a, b):
+              return sorted(set(a) - set(b))
+        wrong:
+          - |
+            def yalniz_ilkinde(a, b):
+                return sorted(set(b) - set(a))
+          - |
+            def yalniz_ilkinde(a, b):
+                return sorted(set(a) & set(b))
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ilk_tekrar(kelimeler) adında bir fonksiyon yaz: listede soldan sağa okurken daha önce görülmüş olan ilk kelimeyi döndürsün; hiçbir kelime tekrar etmiyorsa None döndürsün. Örnek: ilk_tekrar(["elma", "armut", "kiraz", "armut", "elma"]) → "armut".
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.ilk_tekrar(sys.argv[1:]))
+        suite:
+          - {id: second_repeats_first, args: ["elma", "armut", "kiraz", "armut", "elma"], expected_stdout: "armut\n"}
+          - {id: no_repeat, args: ["a", "b", "c"], expected_stdout: "None\n"}
+          - {id: adjacent, args: ["x", "x"], expected_stdout: "x\n"}
+          - {id: empty, args: [], expected_stdout: "None\n"}
+        reference: |
+          def ilk_tekrar(kelimeler):
+              gorulen = set()
+              for k in kelimeler:
+                  if k in gorulen:
+                      return k
+                  gorulen.add(k)
+              return None
+        wrong:
+          - |
+            def ilk_tekrar(kelimeler):
+                for k in kelimeler:
+                    if kelimeler.count(k) > 1:
+                        return k
+                return None
+          - |
+            def ilk_tekrar(kelimeler):
+                gorulen = set()
+                for k in kelimeler:
+                    gorulen.add(k)
+                    if k in gorulen:
+                        return k
+                return None

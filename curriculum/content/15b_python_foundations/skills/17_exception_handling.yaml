@@ -1,0 +1,321 @@
+skill: skill.python.exception_handling
+activity: coding_production
+tasks:
+  teach: {title: "Hata yakalamak: dar except, raise ve finally", minutes: 18}
+  practice: {title: "Hata yakalama alıştırması", minutes: 15}
+  check: {title: "Hata yakalama kontrolü", minutes: 15}
+  review: {title: "Hata yakalama tekrarı", minutes: 12}
+  repair: {title: "Hata yakalamayı yeniden kurmak: yalnız beklenen hata", minutes: 18}
+
+objectives:
+  - id: objective.python.exception_handling.demonstrate_capability
+    statement: >-
+      Beklenen bir hatayı yalnız o hatanın türüyle (dar except) yakalayıp anlamlı bir sonuca çevirebilmek, beklenmeyen
+      hataların yukarıya iletilmesine (propagation) izin verebilmek, geçersiz bir durumda raise ile kendi hatasını
+      üretebilmek ve hata olsa da olmasa da yapılması gereken temizliği finally ile kurabilmek.
+    observable_behavior: >-
+      Beklenen hata için doğru sonucu döndüren, beklenmeyen hatayı yutmayan, geçersiz girdide doğru türde hata üreten
+      ve temizliği her iki yolda da yapan fonksiyonlar yazar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. "Dar" yakalama testlerle ölçülür:
+      her item'da beklenmeyen bir hatanın yukarıya ulaşması gerektiği bir test vardır, böylece except Exception ile
+      her şeyi yutan bir çözüm geçemez. Item'lar fonksiyon yazdırdığı için functions_parameters_return'ü beyan eder.
+    checks:
+      - prints: "geçersiz"
+        code: |
+          try:
+              n = int("on iki")
+          except ValueError:
+              n = "geçersiz"
+          print(n)
+      - prints: "TypeError"
+        code: |
+          def cevir(x):
+              try:
+                  return int(x)
+              except ValueError:
+                  return None
+          try:
+              cevir([1])
+          except TypeError:
+              print("TypeError")
+      - prints: "kapat\nZeroDivisionError"
+        code: |
+          def bol(a, b):
+              try:
+                  return a // b
+              finally:
+                  print("kapat")
+          try:
+              bol(1, 0)
+          except ZeroDivisionError:
+              print("ZeroDivisionError")
+    explanations:
+      canonical: |
+        Bir hata (exception) oluştuğunda program durur — ama hatayı bekliyorsan yakalayıp ne olacağına sen karar verebilirsin.
+
+        try:
+            n = int(metin)
+        except ValueError:
+            n = None
+
+        try bloğu çalışır; içinde ValueError olursa geri kalanı atlanır ve except bloğu çalışır. Hata olmazsa except bloğu hiç çalışmaz.
+
+        Dar yakala: yalnız beklediğin türü yaz. int(metin) için beklenen hata ValueError'dır (sayı olmayan bir yazı). except Exception: ya da tek başına except: yazmak her hatayı yutar — yanlış türde bir değer, bir yazım hatası (NameError) bile sessizce kaybolur ve programın neden yanlış çalıştığını bulamazsın.
+
+        Yakalamadığın hata yukarıya iletilir (propagation): fonksiyon durur, hata onu çağıran yere geçer; orada da yakalanmazsa program traceback ile durur. Bu kötü bir şey değildir — beklenmeyen bir durumu gizlemek yerine görünür kılar.
+
+        Kendi hatanı üretmek: geçersiz bir girdiyi sessizce kabul etmek yerine
+        if adet < 0:
+            raise ValueError("adet negatif olamaz")
+        Çağıran bunu except ValueError ile yakalayabilir.
+
+        Hatayı bir değişkene almak: except ValueError as e: — str(e) mesajı verir.
+
+        finally: hata olsa da olmasa da en sonda çalışır. Bir dosyayı kapatmak, bir kaydı tamamlamak gibi temizlik işleri buraya yazılır. Hata yakalanmamışsa finally çalıştıktan sonra hata yukarıya iletilmeye devam eder.
+
+        Birden fazla tür: except (ValueError, TypeError): ikisini birlikte yakalar; ayrı except blokları ayrı tepkiler verir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (hata mesajını okumak): traceback'in son satırı hatanın türünü söyler — ZeroDivisionError, ValueError, TypeError, KeyError... except'e yazacağın tür budur.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: ilk_eleman(liste) — listenin ilk elemanını döndür; liste boşsa None döndür. Liste yerine başka bir şey verilirse hata yukarıya gitsin.
+
+          def ilk_eleman(liste):
+              try:
+                  return liste[0]
+              except IndexError:
+                  return None
+
+          - Boş liste IndexError verir; yalnız onu yakalıyoruz.
+          - ilk_eleman(5) TypeError verir ve yakalanmaz: çağıran kod yanlış bir şey yaptığını görür.
+          - except Exception yazsaydık ilk_eleman(5) sessizce None dönerdi.
+    misconceptions:
+      - slug: catch_everything_is_safe
+        name: Her hatayı yakalamak programı daha güvenli yapar
+        open_question: except Exception yazarak her hatayı yakalamanın programı daha güvenli yaptığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Ne olursa olsun yakalarsam program hiç çökmez."
+
+            Her şeyi yakalamak beklenmeyen hataları da yutar: yanlış türde bir değer ya da bir yazım hatası sessizce bir "varsayılan" sonuca dönüşür ve hata başka yerde, sebebi görünmeden ortaya çıkar. Yalnız beklediğin türü yakala; gerisinin yukarıya gitmesine izin ver.
+      - slug: finally_only_on_error
+        name: finally yalnız hata olduğunda çalışır
+        open_question: finally bloğunun yalnız bir hata oluştuğunda çalıştığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "finally, hata için yazılan ikinci bir except gibidir."
+
+            finally her durumda çalışır: hata olmadığında, hata yakalandığında ve hata yakalanmayıp yukarıya gittiğinde. Bu yüzden temizlik işleri oraya yazılır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına guvenli_bol(a, b) adında bir fonksiyon yaz: a / b sonucunu döndürsün; b sıfırsa None döndürsün. Sıfıra bölme dışındaki hatalar (örneğin a bir yazıysa) yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1] if sys.argv[1].isalpha() else int(sys.argv[1])
+          try:
+              print(cozum.guvenli_bol(a, int(sys.argv[2])))
+          except Exception as e:
+              print("yukarıya geldi:", type(e).__name__)
+        suite:
+          - {id: normal, args: ["9", "2"], expected_stdout: "4.5\n"}
+          - {id: zero, args: ["9", "0"], expected_stdout: "None\n"}
+          - {id: other_error_propagates, args: ["abc", "2"], expected_stdout: "yukarıya geldi: TypeError\n"}
+        reference: |
+          def guvenli_bol(a, b):
+              try:
+                  return a / b
+              except ZeroDivisionError:
+                  return None
+        wrong:
+          - |
+            def guvenli_bol(a, b):
+                try:
+                    return a / b
+                except Exception:
+                    return None
+          - |
+            def guvenli_bol(a, b):
+                return a / b
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına stok_miktari(stok, urun) adında bir fonksiyon yaz: stok sözlüğünde urun varsa miktarını döndürsün; urun sözlükte yoksa None döndürsün. Sözlük yerine başka türde bir değer verilirse oluşan hata yakalanmasın, yukarıya gitsin. Yalnız eksik anahtar hatasını yakala.
+        required_skills: [skill.python.functions_parameters_return, skill.python.mapping_collections_basic, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          stok = [3, 5] if sys.argv[1] == "<liste>" else {"kalem": 12, "defter": 0}
+          try:
+              print(cozum.stok_miktari(stok, sys.argv[2]))
+          except Exception as e:
+              print("yukarıya geldi")
+        suite:
+          - {id: present, args: ["sozluk", "kalem"], expected_stdout: "12\n"}
+          - {id: present_zero, args: ["sozluk", "defter"], expected_stdout: "0\n"}
+          - {id: missing, args: ["sozluk", "silgi"], expected_stdout: "None\n"}
+          - {id: wrong_type_propagates, args: ["<liste>", "kalem"], expected_stdout: "yukarıya geldi\n"}
+        reference: |
+          def stok_miktari(stok, urun):
+              try:
+                  return stok[urun]
+              except KeyError:
+                  return None
+        wrong:
+          - |
+            def stok_miktari(stok, urun):
+                try:
+                    return stok[urun]
+                except Exception:
+                    return None
+          - |
+            def stok_miktari(stok, urun):
+                try:
+                    return stok[urun]
+                except KeyError:
+                    return 0
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına gecerli_toplam(degerler) adında bir fonksiyon yaz: yazılardan oluşan listedeki tam sayı olanları toplasın, tam sayıya çevrilemeyen yazıları atlasın ve (toplam, atlanan_sayisi) çiftini döndürsün. Örnek: gecerli_toplam(["4", "x", "6"]) → (10, 1). Listede yazı olmayan bir eleman (örneğin None) varsa oluşan hata yakalanmasın, yukarıya gitsin.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.tuple_immutable_sequence]
+        harness: |
+          import sys, cozum
+          degerler = [None if x == "<none>" else x for x in sys.argv[1:]]
+          try:
+              print(cozum.gecerli_toplam(degerler))
+          except Exception as e:
+              print("yukarıya geldi:", type(e).__name__)
+        suite:
+          - {id: one_bad, args: ["4", "x", "6"], expected_stdout: "(10, 1)\n"}
+          - {id: all_good, args: ["1", "2", "3"], expected_stdout: "(6, 0)\n"}
+          - {id: all_bad, args: ["a", "b"], expected_stdout: "(0, 2)\n"}
+          - {id: negative_and_decimal, args: ["-5", "3.5", "10"], expected_stdout: "(5, 1)\n"}
+          - {id: non_text_propagates, args: ["4", "<none>"], expected_stdout: "yukarıya geldi: TypeError\n"}
+        reference: |
+          def gecerli_toplam(degerler):
+              toplam = 0
+              atlanan = 0
+              for d in degerler:
+                  try:
+                      toplam += int(d)
+                  except ValueError:
+                      atlanan += 1
+              return toplam, atlanan
+        wrong:
+          - |
+            def gecerli_toplam(degerler):
+                toplam = 0
+                atlanan = 0
+                for d in degerler:
+                    try:
+                        toplam += int(d)
+                    except ValueError:
+                        return toplam, atlanan + 1
+                return toplam, atlanan
+          - |
+            def gecerli_toplam(degerler):
+                toplam = 0
+                atlanan = 0
+                for d in degerler:
+                    try:
+                        toplam += int(d)
+                    except Exception:
+                        atlanan += 1
+                return toplam, atlanan
+          - |
+            def gecerli_toplam(degerler):
+                toplam = 0
+                atlanan = 0
+                for d in degerler:
+                    if d.isdigit():
+                        toplam += int(d)
+                    else:
+                        atlanan += 1
+                return toplam, atlanan
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına siparis_tutari(adet, birim_fiyat) adında bir fonksiyon yaz: adet × birim_fiyat döndürsün; adet sıfır ya da negatifse "adet pozitif olmalı" mesajıyla bir ValueError üretsin (raise).
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          try:
+              print(cozum.siparis_tutari(int(sys.argv[1]), int(sys.argv[2])))
+          except Exception as e:
+              print(type(e).__name__ + ":", e)
+        suite:
+          - {id: valid, args: ["3", "20"], expected_stdout: "60\n"}
+          - {id: zero, args: ["0", "20"], expected_stdout: "ValueError: adet pozitif olmalı\n"}
+          - {id: negative, args: ["-2", "5"], expected_stdout: "ValueError: adet pozitif olmalı\n"}
+        reference: |
+          def siparis_tutari(adet, birim_fiyat):
+              if adet <= 0:
+                  raise ValueError("adet pozitif olmalı")
+              return adet * birim_fiyat
+        wrong:
+          - |
+            def siparis_tutari(adet, birim_fiyat):
+                if adet < 0:
+                    raise ValueError("adet pozitif olmalı")
+                return adet * birim_fiyat
+          - |
+            def siparis_tutari(adet, birim_fiyat):
+                if adet <= 0:
+                    return None
+                return adet * birim_fiyat
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına islem_yap(n, kayit) adında bir fonksiyon yaz: önce kayit listesine "başla" eklesin, sonra 100 // n sonucunu döndürsün; hata olsa da olmasa da en sonda kayit listesine "bitti" eklesin. n sıfırsa oluşan hata yakalanmasın, çağırana ulaşsın.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          kayit = []
+          try:
+              print(cozum.islem_yap(int(sys.argv[1]), kayit))
+          except ZeroDivisionError:
+              print("hata çağırana ulaştı")
+          print(kayit)
+        suite:
+          - {id: normal, args: ["7"], expected_stdout: "14\n['başla', 'bitti']\n"}
+          - {id: error_cleans_up, args: ["0"], expected_stdout: "hata çağırana ulaştı\n['başla', 'bitti']\n"}
+          - {id: negative, args: ["-30"], expected_stdout: "-4\n['başla', 'bitti']\n"}
+        reference: |
+          def islem_yap(n, kayit):
+              kayit.append("başla")
+              try:
+                  return 100 // n
+              finally:
+                  kayit.append("bitti")
+        wrong:
+          - |
+            def islem_yap(n, kayit):
+                kayit.append("başla")
+                sonuc = 100 // n
+                kayit.append("bitti")
+                return sonuc
+          - |
+            def islem_yap(n, kayit):
+                kayit.append("başla")
+                try:
+                    return 100 // n
+                except ZeroDivisionError:
+                    return None
+                finally:
+                    kayit.append("bitti")

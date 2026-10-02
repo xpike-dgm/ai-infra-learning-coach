@@ -1,0 +1,56 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.modules_imports_basic.import_and_use_module_member.f05@v1",
+  "item": "item.python.modules_imports_basic.import_and_use_module_member.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.sadelestir(int(sys.argv[1]), int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "halves",
+      "args": [
+        "6",
+        "8"
+      ],
+      "expected_stdout": "(3, 4)\n"
+    },
+    {
+      "id": "already_simple",
+      "args": [
+        "5",
+        "7"
+      ],
+      "expected_stdout": "(5, 7)\n"
+    },
+    {
+      "id": "whole",
+      "args": [
+        "12",
+        "4"
+      ],
+      "expected_stdout": "(3, 1)\n"
+    },
+    {
+      "id": "big",
+      "args": [
+        "84",
+        "36"
+      ],
+      "expected_stdout": "(7, 3)\n"
+    }
+  ]
+}

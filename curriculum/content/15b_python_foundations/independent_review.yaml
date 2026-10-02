@@ -1,0 +1,286 @@
+reviewer: independent_15b_content_review
+date: "2026-10-02"
+method: >-
+  Read package.yaml, notation.yaml and all 20 Skill files in full (21 Objectives, 109 items, 116 explanation forms),
+  the 15A independent_review.yaml for format and rule, the hard and soft edges of
+  6c_foundations/prerequisite_edges.yaml whose target is a 15B Skill, tools/code_test_runner.py, and the build's
+  constructs_used and traceback verification. Every reading item (24) was solved by hand first and then run
+  independently as program.py with Python 3.14.3 (-X utf8) in a fresh temporary directory; for the six traceback items
+  the real stderr was compared line by line with the traceback in the prompt after removing caret lines and shortening
+  the absolute script path; every option of the option items was checked for exactly one true answer. For each of the
+  85 code items the generated suite JSON was compared with the YAML suite and harness, and the course runner
+  (tools/code_test_runner.py SUITE --dir DIR) was run on the reference (all 85 pass every test) and on each of the 172
+  wrong solutions (each fails at least one test), on Windows 11 with a cp1254 locale. Then about 45 adversarial
+  solutions were written and run through the runner: plausible correct alternatives (other formulas, loops instead of
+  slicing, manual median/gcd, print(..., file=f), readlines, as_posix comparison, single-quoted guards) and plausible
+  wrong ones (print(b, a) without a swap, sentinel initialisation, broad except, no reuse of a helper, str(Path) on
+  Windows, is_file pre-check, join-based writing, wrong boundaries). Every lesson check (59) was re-executed and its
+  printed claim confirmed, and every code claim in the explanations was re-run (Turkish lower/upper incl.
+  len('İ'.lower()) == 2, LEGB/UnboundLocalError, default-parameter SyntaxError, pathlib on Windows, bool of empty
+  values, local math.py/random.py/statistics.py shadowing, default locale encoding). Constructs were scanned with the
+  notation.yaml patterns after masking double-quoted string literals as the build does, with the allowed set = own
+  Skill + transitive hard-prerequisite closure (including published 15A Skills) + declared required_skills and
+  lesson_requires (plus closures); items, options and references were scanned, and lesson checks separately. Each item
+  was compared with its own Skill's canonical, prerequisite_refresh, state_trace, worked_example, contrast texts and
+  lesson checks with the 15A leakage rule: an item fails when its problem instance (same code, same scenario, or the
+  same rule with the same answer values) is already solved in its own lesson; an isomorph with new surface values
+  passes with a note; in_lesson items pass. The author's verify blocks were not used. Misconception open_questions
+  were read for neutral wording (all are neutral 'mı düşünüyorsun?' questions).
+
+  Second pass (same day): the 11 failed items and the 3 failed explanations were rewritten by the author (plus the
+  zero_string_false contrast for consistency). The suite JSON files on disk were stale (written before the rewrites;
+  the build writes suites only with --out), so the suites were regenerated in a scratch directory by calling the
+  build's own build() function, and the build reported no construct or verification problem for the rewrites. Each
+  rewritten item was re-solved by hand, re-run through tools/code_test_runner.py (every reference passes; all 22 wrong
+  solutions of the 10 code items fail), the new reading item f04 was run as program.py, and 23 new adversarial
+  solutions were run (tuple swap, hard-coded values, helper reuse via intermediate variables, get/in-check instead of
+  try, try/except/else, strip-first, round instead of a format spec, both-replace and character-loop Turkish casing,
+  guarded join). Each rewrite was re-compared with its own Skill's canonical, refresh, state_trace, worked_example,
+  contrast texts and lesson checks under the same leakage rule, and the four edited explanation texts were re-read and
+  their claims re-run (runner whitespace handling, bool of empty collections, local random.py/statistics.py
+  shadowing). All other entries are unchanged from the first pass.
+
+  Third pass (same day): exception_handling f02 (harness now accepts any propagated exception) and
+  string_text_operations f02 (example name changed to Deniz) were rechecked against suites regenerated in scratch with
+  the build's build() function (build reports no construct or verification problem); references, wrongs and
+  adversarial solutions (get, in-check, except Exception, bare except, except (KeyError, TypeError), KeyError -> 0,
+  round, concatenation) were re-run through the runner and both items were re-compared with their lessons.
+items:
+  item.python.run_repl_script.execute_and_classify_result.f01: {verdict: pass, note: "in_lesson; the canonical's own Merhaba/Python program (acceptable in-lesson). Reference passes; all three wrongs fail."}
+  item.python.run_repl_script.execute_and_classify_result.f02: {verdict: pass, note: "Second pass: rewritten to 125 - 38 -> 87; the lesson only computes 7 * 6, so nothing is pre-solved. Re-run with a freshly built suite: the reference passes, both wrongs (quoted expression, +) fail. A hard-coded print(87) also passes; the prompt forbids it but the output cannot show it (fixed-output limit, as before)."}
+  item.python.run_repl_script.execute_and_classify_result.f03: {verdict: pass, note: "NameError on an undefined variable is a new scenario (the worked_example's NameError comes from missing quotes). Defining bes = 5 or writing sayi + 5 both pass, as they should; wrongs fail."}
+  item.python.run_repl_script.execute_and_classify_result.f04: {verdict: pass, note: "SyntaxError (unclosed parenthesis) fixed; Turkish İki/Üç output passes through the runner's UTF-8 mode on Windows (cp1254 locale here)."}
+  item.python.run_repl_script.execute_and_classify_result.f05: {verdict: pass, note: "ZeroDivisionError at line 4 after partial output; fix verified (Toplam: 12 / Ortalama: 3 / Bitti). Note: an extra space inside a print (print('Toplam: ', toplam)) fails this test although the canonical says extra spaces are ignored (see the canonical's fail)."}
+  item.python.value_type_behavior.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; print(type(7)) -> <class 'int'> is stated verbatim in the canonical."}
+  item.python.value_type_behavior.demonstrate_capability.f02: {verdict: pass, note: "Key 29 verified. Isomorph of the canonical's '5' + '3' with new values."}
+  item.python.value_type_behavior.demonstrate_capability.f03: {verdict: pass, note: "Key A (5 <class 'int'>) verified; exactly one option true, distractors B/C/D each match a misconception. prerequisite_refresh binds the same x = '4' but does not solve the expression."}
+  item.python.value_type_behavior.demonstrate_capability.f04: {verdict: pass, note: "Key 14 77 verified. Isomorph of the worked_example ('8' * 2 vs int('8') * 2) with new values; near transfer."}
+  item.python.value_type_behavior.demonstrate_capability.f05: {verdict: pass, note: "Key A verified (25TL, then TypeError). Same rule as the canonical's 10 + 'kg' / str(10) + 'kg' with new values, plus partial output before a runtime error. transfer_integration is generous."}
+  item.python.value_type_behavior.demonstrate_capability.f06: {verdict: pass, note: "Key 5 4.0 False True verified. Same shape as lesson check 3 (int/float/bool/bool); bool('False') is a genuine new twist. transfer_integration is generous. The build's string masking keeps the literal 'False' from counting as boolean_logic (confirmed in constructs_used)."}
+  item.python.assignment_binding.write_state_change.f01: {verdict: pass, note: "in_lesson; the canonical's fiyat 40 += 15 program. Fixed-output limit (print(55) passes) is recorded in the reconciliation."}
+  item.python.assignment_binding.write_state_change.f02: {verdict: pass, note: "Second pass: the harness imports cozum with stdout captured and prints the captured output and cozum.a, cozum.b (expected '8 3 | 8 3'). Verified: print(b, a) without a swap and a = b; b = a both fail; a tuple swap and a temporary in either direction pass. Hard-coding a = 8; b = 3 still passes (recorded constant-output limit), acceptable."}
+  item.python.assignment_binding.write_state_change.f03: {verdict: pass, note: "Values verified (70, 120). Isomorph of the worked_example (kasa 200, -45, +80) with new values. Fixed-output limit applies (recorded)."}
+  item.python.assignment_binding.write_state_change.f04: {verdict: pass, note: "Isomorph of the canonical (x = 5; y = x; x = 9 -> 9 5) with new values. The prompt dictates every line and states the output, so this is transcription; kopya = 7 also passes. transfer_integration is not plausible; a harness reading cozum.kopya and a prompt that does not dictate the order would make it real."}
+  item.python.assignment_binding.write_state_change.f05: {verdict: pass, note: "Totals verified (Toplam 50 Adet 3). The prompt dictates the steps and print('Toplam', 50, 'Adet', 3) passes (recorded limit). transfer_integration is generous."}
+  item.python.expression_evaluation.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; key 3.5 3 verified."}
+  item.python.expression_evaluation.demonstrate_capability.f02: {verdict: pass, note: "Key 50 verified (4 ** 2 first, then 3 * 16, then + 2)."}
+  item.python.expression_evaluation.demonstrate_capability.f03: {verdict: pass, note: "Key A (-16 16) verified. Isomorph of lesson check 3 (-3 ** 2, (-3) ** 2) with new values."}
+  item.python.expression_evaluation.demonstrate_capability.f04: {verdict: pass, note: "Key A (2.0 <class 'float'>) verified. Isomorph of lesson check 4 (12 / 4) with new values. type( is reachable through value_type_behavior (hard prerequisite)."}
+  item.python.expression_evaluation.demonstrate_capability.f05: {verdict: pass, note: "Key -4 1 verified. Same rule as lesson check 2 and the worked_example with new values: near transfer, so transfer_integration is generous."}
+  item.python.expression_evaluation.demonstrate_capability.f06: {verdict: pass, note: "Key True 512 verified; combines left-to-right / and *, float equality and right-associative **. Good integration."}
+  item.python.input_output_basic.build_small_io_flow.f01: {verdict: pass, note: "in_lesson; Turkish name input (Ayşe) passes through the runner's UTF-8 stdin."}
+  item.python.input_output_basic.build_small_io_flow.f02: {verdict: pass, note: "Negatives and zeros tested; string-input and swapped-order wrongs fail."}
+  item.python.input_output_basic.build_small_io_flow.f03: {verdict: pass, note: "The example shows 'Tutar: 120' with the space, so the concatenation wrong ('Tutar:120') failing is fair."}
+  item.python.input_output_basic.build_small_io_flow.f04: {verdict: pass, note: "Alternatives verified to pass: 9 / 5 * c + 32, c * 1.8 + 32 with float input, (c * 9) / 5 + 32; test values avoid float-representation traps. // and misplaced-parenthesis wrongs fail."}
+  item.python.input_output_basic.build_small_io_flow.f05: {verdict: pass, note: "Values verified (2 saat 15 dakika, 0 saat 59 dakika, 2 saat 0 dakika)."}
+  item.python.conditionals.write_branch_logic.f01: {verdict: pass, note: "in_lesson."}
+  item.python.conditionals.write_branch_logic.f02: {verdict: pass, note: "Boundary 18 tested; isomorph of the strict_boundary contrast with new values."}
+  item.python.conditionals.write_branch_logic.f03: {verdict: pass, note: "Isomorph of the worked_example's grade bands with new cutoffs (85/70/50). Extra wrong boundaries (> 50, > 70, >= 71) each fail a boundary test (verified)."}
+  item.python.conditionals.write_branch_logic.f04: {verdict: pass, note: "Leap-year rule fully stated; 2024/1900/2000/2023 discriminate both partial rules."}
+  item.python.conditionals.write_branch_logic.f05: {verdict: pass, note: "The string-comparison wrong fails only on the negatives test (designed so); the other branch order passes, as it should."}
+  item.python.for_iteration.iterate_sequence.f01: {verdict: pass, note: "in_lesson; the canonical gives range(1, n + 1)."}
+  item.python.for_iteration.iterate_sequence.f02: {verdict: pass, note: "Sum 1..n is not solved in the lesson (the worked_example sums evens with a step); range(n) and reset-inside-loop wrongs fail."}
+  item.python.for_iteration.iterate_sequence.f03: {verdict: pass, note: "Keys verified incl. dotless ı (ılık -> 2). Note: the reference uses membership (harf in '...'), which no reachable lesson teaches and notation.yaml does not model; an or-chain solution like lesson check 3 passes (verified), so the item is solvable with taught constructs. Prefer an or-chain reference."}
+  item.python.for_iteration.iterate_sequence.f04: {verdict: pass, note: "Output format via print with commas, consistent with the canonical; range(5) and n + i wrongs fail."}
+  item.python.for_iteration.iterate_sequence.f05: {verdict: pass, note: "max() prohibited; the all-negative test catches 0 initialisation. Note: an arbitrary sentinel (en_buyuk = -1000) passes every test (verified); say 'ilk sayıyla başla' in the prompt or add values below common sentinels."}
+  item.python.while_termination.debug_infinite_loop.f01: {verdict: pass, note: "in_lesson; the canonical solves this exact countdown (missing n -= 1), acceptable only in-lesson."}
+  item.python.while_termination.debug_infinite_loop.f02: {verdict: pass, note: "Second pass: the symptom now reads 'n 1 ya da daha büyük olunca', which matches the code (only n <= 0 terminates). Reference passes; both wrongs fail; i = i + 1 passes."}
+  item.python.while_termination.debug_infinite_loop.f03: {verdict: pass, note: "Canonical step 4 states this case generically ('i 2'şer artarken tek bir hedefe hiç eşit olmaz; < ya da <= kullan'), and the state_trace shows an overshoot; the item still discriminates < from <= (the <= wrong fails). Pass with note."}
+  item.python.while_termination.debug_infinite_loop.f04: {verdict: pass, note: "Missing n = n // 10 fixed; 1005 tests zeros; wrongs fail (n - 10 terminates with a wrong sum)."}
+  item.python.while_termination.debug_infinite_loop.f05: {verdict: pass, note: "Same bug and fix as the worked_example (re-read inside the loop) on a new task (count positives); near transfer, label generous."}
+  item.python.while_termination.write_terminating_loop.f01: {verdict: pass, note: "in_lesson; identical to the canonical example (8 -> 3)."}
+  item.python.while_termination.write_terminating_loop.f02: {verdict: pass, note: "The canonical shows the sentinel skeleton with '...'; counting is not solved. zero_is_data catches 'while sayi > 0'."}
+  item.python.while_termination.write_terminating_loop.f03: {verdict: pass, note: "Step counts verified (6 -> 8, 7 -> 16, 16 -> 4). Wrong #1 uses break (not taught) but wrongs are not learner-facing."}
+  item.python.while_termination.write_terminating_loop.f04: {verdict: pass, note: "Digit count; 100 tests trailing zeros; > 9 and > 10 wrongs fail."}
+  item.python.while_termination.write_terminating_loop.f05: {verdict: pass, note: "Months verified (4, 0, 4, 3); exact_hit catches <=. Note: the until_written_as_while contrast already writes 'while bakiye < 300' and four_months uses target 300; another target would avoid the echo."}
+  item.python.functions_parameters_return.write_small_function.f01: {verdict: pass, note: "in_lesson; print-instead-of-return wrong fails (None is printed)."}
+  item.python.functions_parameters_return.write_small_function.f02: {verdict: pass, note: "Float average; 0.5 * (a + b) style alternatives pass; // and precedence wrongs fail."}
+  item.python.functions_parameters_return.write_small_function.f03: {verdict: pass, note: "The formula is stated in the prompt, so the rounding test (99, 10 -> 90) is fair. Sign-flipped isomorph of kdv_dahil (state_trace, lesson check 3)."}
+  item.python.functions_parameters_return.write_small_function.f04: {verdict: pass, note: "Isomorph of the canonical olcu(sayi, birim='cm') with new values; default and override both tested."}
+  item.python.functions_parameters_return.write_small_function.f05: {verdict: pass, note: "Second pass: the harness wraps cozum.alan and reports whether boya_maliyeti called it (the prompt announces the check). Verified: en * boy * birim without alan now fails all three tests; calling alan through an intermediate variable or with swapped arguments passes. The two earlier wrongs still fail."}
+  item.python.list_operations.select_and_use_sequence.f01: {verdict: pass, note: "in_lesson."}
+  item.python.list_operations.select_and_use_sequence.f02: {verdict: pass, note: "Isomorph of the worked_example buyukleri (filter into a new list) with a new condition; empty, none-even and negative cases tested."}
+  item.python.list_operations.select_and_use_sequence.f03: {verdict: pass, note: "The harness prints the argument after the call, so mutating and aliasing wrongs fail; liste + [deger] passes (correct)."}
+  item.python.list_operations.select_and_use_sequence.f04: {verdict: pass, note: "sort() mutation caught by printing the argument; duplicates tested; s[len(s) - 2] passes."}
+  item.python.list_operations.select_and_use_sequence.f05: {verdict: pass, note: "Running total; update-order and reset-inside-loop wrongs fail."}
+  item.python.tuple_immutable_sequence.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; list-instead-of-tuple wrong fails on the printed brackets."}
+  item.python.tuple_immutable_sequence.demonstrate_capability.f02: {verdict: pass, note: "Isomorph of the canonical bol returning a tuple; order and list wrongs fail."}
+  item.python.tuple_immutable_sequence.demonstrate_capability.f03: {verdict: pass, note: "The harness passes strings, so tests print ('2', '1') while the prompt's example is (2, 1); harmless. Unpacking is requested but cannot be tested: cift[::-1] passes (verified), which is an acceptable reading of a tuple."}
+  item.python.tuple_immutable_sequence.demonstrate_capability.f04: {verdict: pass, note: "Tie-keeps-first tested; >= and zero-start wrongs fail."}
+  item.python.tuple_immutable_sequence.demonstrate_capability.f05: {verdict: pass, note: "Mirror isomorph of the canonical (5,) + nokta[1:] (replace the last element instead of the first); the single-element case tests (yeni,). t[:len(t) - 1] passes too."}
+  item.python.set_operations.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; the canonical's set + len."}
+  item.python.set_operations.demonstrate_capability.f02: {verdict: pass, note: "Same & rule as lesson check 2 on new values; sorted output avoids set ordering; a list-loop solution with dedupe passes."}
+  item.python.set_operations.demonstrate_capability.f03: {verdict: pass, note: "Duplicate-in-result wrong fails; empty and no-repeat cases tested."}
+  item.python.set_operations.demonstrate_capability.f04: {verdict: pass, note: "Difference direction and empty second list tested."}
+  item.python.set_operations.demonstrate_capability.f05: {verdict: pass, note: "Applies the canonical 'gorulen' pattern to a new question (first repeat); None and empty list tested; count-based wrong returns the wrong word."}
+  item.python.mapping_collections_basic.select_and_use_mapping.f01: {verdict: pass, note: "in_lesson; the canonical's stok.get('defter', 0) is the same rule."}
+  item.python.mapping_collections_basic.select_and_use_mapping.f02: {verdict: pass, note: "Second pass: new task (count words per length). Same get(..., 0) + 1 pattern as the canonical and lesson check 2, but with a new key (len(k)) and new values: isomorph, pass with note. Example {2: 2, 3: 1} verified; an if/else counting solution passes; set-to-1 and word-as-key wrongs fail."}
+  item.python.mapping_collections_basic.select_and_use_mapping.f03: {verdict: pass, note: "Same get(..., 0) + value rule as the worked_example on a new task; the harness reuses the canonical's stok dict (kalem 12, silgi 3), consider new values."}
+  item.python.mapping_collections_basic.select_and_use_mapping.f04: {verdict: pass, note: "Tie-alphabetical tested with ASCII keys (no Turkish collation issue). Note: the reference uses 'is None', which no lesson teaches (not modelled in notation.yaml); a solution without 'is' passes (verified). Prefer initialising from the first sorted key."}
+  item.python.mapping_collections_basic.select_and_use_mapping.f05: {verdict: pass, note: "Inversion; sorted harness output avoids ordering issues."}
+  item.python.exceptions_read_basic.extract_error_type_location.f01: {verdict: pass, note: "in_lesson; traceback re-run as program.py under Python 3.14.3: identical after path normalisation and caret removal."}
+  item.python.exceptions_read_basic.extract_error_type_location.f02: {verdict: pass, note: "Traceback verified (line 3, IndexError); 70 printed first."}
+  item.python.exceptions_read_basic.extract_error_type_location.f03: {verdict: pass, note: "Traceback verified; key A (ortalama, line 3); distractors are the other frame and neighbouring lines; 5.0 printed first."}
+  item.python.exceptions_read_basic.extract_error_type_location.f04: {verdict: pass, note: "Second pass: toplam = 90; kisi = '3'; toplam / kisi raises TypeError (unsupported operand type(s) for /: 'int' and 'str'), verified by running program.py. Exactly one option is true; ValueError ('3' looks numeric) and ZeroDivisionError are good distractors. Same TypeError rule as the canonical's 'Yaş: ' + 17 with a different operator and values: isomorph, pass with note."}
+  item.python.exceptions_read_basic.extract_error_type_location.f05: {verdict: pass, note: "Traceback verified; key A; 2 printed first. The answer is read straight off the last line (KeyError: 'mor'), so transfer_integration is generous."}
+  item.python.exceptions_read_basic.extract_error_type_location.f06: {verdict: pass, note: "Traceback verified (lines 9, 6, 2); key 9; 25.0 printed first. Isomorph of the worked_example's three-frame chain with new values."}
+  item.python.scope_name_resolution.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; isomorph of canonical rule 1."}
+  item.python.scope_name_resolution.demonstrate_capability.f02: {verdict: pass, note: "Key 14 verified. Isomorph of lesson check 2 (kat) with new values."}
+  item.python.scope_name_resolution.demonstrate_capability.f03: {verdict: pass, note: "Key 3 verified; global with += over three calls is not solved in the lesson."}
+  item.python.scope_name_resolution.demonstrate_capability.f04: {verdict: pass, note: "Key A (UnboundLocalError) verified. Isomorph of canonical rule 3 and lesson check 3 with new names; NameError is a good distractor."}
+  item.python.scope_name_resolution.demonstrate_capability.f05: {verdict: pass, note: "Key 8 9 verified; local shadowing of max inside the function only."}
+  item.python.scope_name_resolution.demonstrate_capability.f06: {verdict: pass, note: "Key son verified; combines the enclosing scope with call-time lookup, real transfer beyond the worked_example."}
+  item.python.modules_imports_basic.import_and_use_module_member.f01: {verdict: pass, note: "in_lesson; 12.57 and 0.79 rounding verified; the 3.14-constant wrong fails at r = 2."}
+  item.python.modules_imports_basic.import_and_use_module_member.f02: {verdict: pass, note: "statistics.median is reachable only through the prompt's '(median)' hint; acceptable for this Objective. A manual median and 'import statistics' both pass (verified)."}
+  item.python.modules_imports_basic.import_and_use_module_member.f03: {verdict: pass, note: "runpy run_name='__main__' check verified; an unguarded print fails the import tests; single-quoted guard passes. Isomorph of the canonical selam() guard example with a parameter."}
+  item.python.modules_imports_basic.import_and_use_module_member.f04: {verdict: pass, note: "date.fromisoformat and .days are hinted; 'import datetime' variant passes; leap-year and year-crossing tests verified."}
+  item.python.modules_imports_basic.import_and_use_module_member.f05: {verdict: pass, note: "math.gcd hinted; a manual gcd also passes; / gives floats and fails."}
+  item.python.exception_handling.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; an if b == 0 check also passes (correct per prompt)."}
+  item.python.exception_handling.demonstrate_capability.f02: {verdict: pass, note: "Third pass: the harness now prints only 'yukarıya geldi' for any exception that reaches it, and wrong_type_propagates expects that, so the taught get-based solution (AttributeError propagates) passes. Re-run with a freshly built suite: the reference and a try-with-variable form pass; except Exception, bare except, except (KeyError, TypeError) and KeyError -> 0 fail. The in-check (if urun in stok) fails because it silently returns None for a list; it catches no missing-key error as the prompt asks, so this is fair. Isomorph of the worked_example (IndexError -> None, wrong type propagates) with another exception and scenario; not pre-solved. Note: a get-based solution passes without any try/except, so for that learner the item measures narrow handling only weakly; acceptable at basic."}
+  item.python.exception_handling.demonstrate_capability.f03: {verdict: pass, note: "Second pass: the prompt now requires a non-text element (None) to propagate and non_text_propagates (TypeError from int(None)) was added. Verified: except Exception and except (ValueError, TypeError) fail that test; try/except/else passes. Note: a solution that calls d.strip() first raises AttributeError and fails although the error does propagate; low plausibility."}
+  item.python.exception_handling.demonstrate_capability.f04: {verdict: pass, note: "Isomorph of the canonical raise example (adet) with a changed boundary (<= 0) that the < 0 wrong misses; the message is stated exactly in the prompt."}
+  item.python.exception_handling.demonstrate_capability.f05: {verdict: pass, note: "Isomorph of lesson check 3 (try/return/finally) on a new task; 100 // -30 = -4 verified; catch-and-return-None wrong fails; try/finally then return also passes."}
+  item.python.string_text_operations.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; split(' ') wrong fails on extra spaces."}
+  item.python.string_text_operations.demonstrate_capability.f02: {verdict: pass, note: "Third pass: the example name is now Deniz (prompt and example test), so it no longer echoes the canonical's f'{ad}: {puan:.1f}' with Ece; the item adds a computation and the % sign, an isomorph with new values. Re-run with a freshly built suite: reference, round(..., 1) and concatenation pass; missing * 100 and missing :.1f wrongs fail (0.07 * 100 -> %7.0 verified)."}
+  item.python.string_text_operations.demonstrate_capability.f03: {verdict: pass, note: "English-only names avoid the Turkish-casing trap; substring and case-sensitive wrongs fail; an upper() variant passes."}
+  item.python.string_text_operations.demonstrate_capability.f04: {verdict: pass, note: "split() handles extra spaces; split(' ') and character-reverse wrongs fail; a loop solution passes."}
+  item.python.string_text_operations.demonstrate_capability.f05: {verdict: pass, note: "Second pass: reverse direction (tr_buyuk). The canonical only states that 'i'.upper() gives 'I'; the learner must see that only i needs replacing before upper() (ı.upper() is already I). Verified: both-replace and character-loop solutions pass; upper-then-replace fails two tests. An analog of the canonical's lower recipe, so near transfer; acceptable for transfer_integration."}
+  item.python.path_handling.read_write_small_text_file.f01: {verdict: pass, note: "in_lesson; no-extension case returns ''."}
+  item.python.path_handling.read_write_small_text_file.f02: {verdict: pass, note: "Same rule as the canonical (stem) with new values; the two-dot test discriminates split('.')[0]."}
+  item.python.path_handling.read_write_small_text_file.f03: {verdict: pass, note: "as_posix gives '/' on Windows (verified); str(Path) fails on Windows as the prompt requires '/'. Isomorph of lesson check 3 and the string_join_is_portable contrast ('veri/' trailing slash); consider new folder names."}
+  item.python.path_handling.read_write_small_text_file.f04: {verdict: pass, note: "Folder-with-dot and two-dot tests discriminate replace/split wrongs. The example (notlar/ders.txt -> .md) echoes lesson check 4 (notlar.txt -> notlar.md); consider new values."}
+  item.python.path_handling.read_write_small_text_file.f05: {verdict: pass, note: "Parent equality verified on Windows (both '.' for bare names); the parent.name wrong is caught by same_folder_name_elsewhere; an as_posix comparison passes."}
+  item.python.files_paths_basic.demonstrate_capability.f01: {verdict: pass, note: "in_lesson; readlines() and for-line counting also pass."}
+  item.python.files_paths_basic.demonstrate_capability.f02: {verdict: pass, note: "Second pass: the prompt now says 'liste boşsa dosya boş kalsın'. Verified: print(s, file=f) and a guarded join pass; no-newline and append wrongs fail; CRLF normalised on Windows."}
+  item.python.files_paths_basic.demonstrate_capability.f03: {verdict: pass, note: "Append mode verified incl. file creation; Turkish content round-trips; 'w' and no-newline wrongs fail."}
+  item.python.files_paths_basic.demonstrate_capability.f04: {verdict: pass, note: "A directory at the path raises PermissionError on Windows (IsADirectoryError on Linux/macOS) and the harness accepts both; the except OSError wrong fails. Note: a Path.is_file() pre-check returns '' for the directory and fails; is_file is not taught, but 'open() dosyayı bulamazsa' in the prompt would remove the reading 'a directory is no file'."}
+  item.python.files_paths_basic.demonstrate_capability.f05: {verdict: pass, note: "Blank lines, negatives, missing and empty source tested; iterating the file object and print(..., file=f) pass too."}
+explanations:
+  explanation.python.run_repl_script.execute_and_classify_result.canonical: {verdict: pass, note: "Second pass: now says only line-end whitespace and trailing blank lines are ignored while spaces inside a line count (matches the runner, verified), and tells the learner to save cozum.py as UTF-8. Minor: the sample traceback shows File 'cozum.py' while a real one shows the full path."}
+  explanation.python.run_repl_script.execute_and_classify_result.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.run_repl_script.execute_and_classify_result.worked_example: {verdict: pass, note: "NameError for print(Başla) verified."}
+  explanation.python.run_repl_script.execute_and_classify_result.contrast_quotes_still_compute: {verdict: pass, note: ""}
+  explanation.python.run_repl_script.execute_and_classify_result.contrast_error_means_nothing_ran: {verdict: pass, note: ""}
+  explanation.python.value_type_behavior.demonstrate_capability.canonical: {verdict: pass, note: "Second pass: the bool() rule is limited to this lesson's types and empty collections are noted as False (bool([]) is False, verified). Other claims verified."}
+  explanation.python.value_type_behavior.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.value_type_behavior.demonstrate_capability.state_trace: {verdict: pass, note: "120 <class 'int'> verified."}
+  explanation.python.value_type_behavior.demonstrate_capability.worked_example: {verdict: pass, note: "88 then 16 verified; pre-solves the shape of item f04 (isomorph, see items)."}
+  explanation.python.value_type_behavior.demonstrate_capability.contrast_string_plus_adds: {verdict: pass, note: ""}
+  explanation.python.value_type_behavior.demonstrate_capability.contrast_int_rounds: {verdict: pass, note: "int(-3.9) -> -3 verified."}
+  explanation.python.value_type_behavior.demonstrate_capability.contrast_zero_string_false: {verdict: pass, note: "Second pass: limited to this lesson's types; correct."}
+  explanation.python.assignment_binding.write_state_change.canonical: {verdict: pass, note: ""}
+  explanation.python.assignment_binding.write_state_change.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.assignment_binding.write_state_change.state_trace: {verdict: pass, note: "17 verified."}
+  explanation.python.assignment_binding.write_state_change.worked_example: {verdict: pass, note: "200, 155, 235 verified."}
+  explanation.python.assignment_binding.write_state_change.contrast_copy_follows_original: {verdict: pass, note: "Correct; the hedge 'Sayılar ve yazılar için' suggests rebinding behaves differently for lists, which it does not (only in-place mutation differs). Acceptable since list_operations explains mutation."}
+  explanation.python.assignment_binding.write_state_change.contrast_swap_without_temp: {verdict: pass, note: ""}
+  explanation.python.expression_evaluation.demonstrate_capability.canonical: {verdict: pass, note: "All claims verified (9 / 2, 12 / 4, 3 ** 2 ** 2, -3 ** 2, -9 // 2, -9 % 2, 20 / 4 * 2, 2 + 3.0, abs, round). Precedence table correct for the taught subset."}
+  explanation.python.expression_evaluation.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.expression_evaluation.demonstrate_capability.state_trace: {verdict: pass, note: "3.0 verified."}
+  explanation.python.expression_evaluation.demonstrate_capability.worked_example: {verdict: pass, note: "-3 1 verified."}
+  explanation.python.expression_evaluation.demonstrate_capability.contrast_slash_gives_int: {verdict: pass, note: ""}
+  explanation.python.expression_evaluation.demonstrate_capability.contrast_floor_toward_zero: {verdict: pass, note: "int(-4.5) -> -4 verified."}
+  explanation.python.expression_evaluation.demonstrate_capability.contrast_minus_before_power: {verdict: pass, note: ""}
+  explanation.python.input_output_basic.build_small_io_flow.canonical: {verdict: pass, note: ""}
+  explanation.python.input_output_basic.build_small_io_flow.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.input_output_basic.build_small_io_flow.worked_example: {verdict: pass, note: "Değer: 42 km verified."}
+  explanation.python.input_output_basic.build_small_io_flow.contrast_input_returns_number: {verdict: pass, note: ""}
+  explanation.python.input_output_basic.build_small_io_flow.contrast_comma_adds_nothing: {verdict: pass, note: ""}
+  explanation.python.conditionals.write_branch_logic.canonical: {verdict: pass, note: "Correct. Its lesson check 1 uses a for loop over a tuple, which conditionals' reachable set does not teach (see findings)."}
+  explanation.python.conditionals.write_branch_logic.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.conditionals.write_branch_logic.state_trace: {verdict: pass, note: ""}
+  explanation.python.conditionals.write_branch_logic.worked_example: {verdict: pass, note: ""}
+  explanation.python.conditionals.write_branch_logic.contrast_order_does_not_matter: {verdict: pass, note: ""}
+  explanation.python.conditionals.write_branch_logic.contrast_strict_boundary: {verdict: pass, note: ""}
+  explanation.python.for_iteration.iterate_sequence.canonical: {verdict: pass, note: "14 verified; range semantics correct. Lesson check 3 uses if/or, which for_iteration's hard closure does not contain (see findings)."}
+  explanation.python.for_iteration.iterate_sequence.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.for_iteration.iterate_sequence.state_trace: {verdict: pass, note: "6 verified."}
+  explanation.python.for_iteration.iterate_sequence.worked_example: {verdict: pass, note: "n = 7 -> 12, n = 1 -> 0 verified."}
+  explanation.python.for_iteration.iterate_sequence.contrast_range_end_inclusive: {verdict: pass, note: ""}
+  explanation.python.for_iteration.iterate_sequence.contrast_accumulator_inside_loop: {verdict: pass, note: ""}
+  explanation.python.while_termination.debug_infinite_loop.canonical: {verdict: pass, note: "Correct; the 5-second limit matches the suites. Step 4 pre-states the fix of item f03 in general form (see items)."}
+  explanation.python.while_termination.debug_infinite_loop.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.while_termination.debug_infinite_loop.state_trace: {verdict: pass, note: "Verified (1 -> 10 ends; 2 overshoots)."}
+  explanation.python.while_termination.debug_infinite_loop.worked_example: {verdict: pass, note: "Same bug class as item f05 (see items)."}
+  explanation.python.while_termination.debug_infinite_loop.contrast_read_once_enough: {verdict: pass, note: ""}
+  explanation.python.while_termination.debug_infinite_loop.contrast_crash_stops_infinite: {verdict: pass, note: ""}
+  explanation.python.while_termination.write_terminating_loop.canonical: {verdict: pass, note: "8 -> 3 and 1 -> 0 verified."}
+  explanation.python.while_termination.write_terminating_loop.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.while_termination.write_terminating_loop.worked_example: {verdict: pass, note: "5 -> 3 turns, 150 -> 0 verified."}
+  explanation.python.while_termination.write_terminating_loop.contrast_until_written_as_while: {verdict: pass, note: ""}
+  explanation.python.while_termination.write_terminating_loop.contrast_sentinel_counted: {verdict: pass, note: ""}
+  explanation.python.functions_parameters_return.write_small_function.canonical: {verdict: pass, note: "ucgen_alan(6, 4) -> 12.0, olcu, toplam_dakika -> 135 verified; the instructions about no top-level print/input match how the harness imports cozum.py."}
+  explanation.python.functions_parameters_return.write_small_function.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.functions_parameters_return.write_small_function.state_trace: {verdict: pass, note: "300 verified."}
+  explanation.python.functions_parameters_return.write_small_function.worked_example: {verdict: pass, note: "cevre(3, 5) -> 16 verified."}
+  explanation.python.functions_parameters_return.write_small_function.contrast_print_instead_of_return: {verdict: pass, note: ""}
+  explanation.python.functions_parameters_return.write_small_function.contrast_default_must_be_first: {verdict: pass, note: "Verified: SyntaxError 'parameter without a default follows parameter with a default'. The slug name reads oddly (the rule is defaults last) but the text is right."}
+  explanation.python.list_operations.select_and_use_sequence.canonical: {verdict: pass, note: "All claims verified (indexing, IndexError, aliasing, min([]) ValueError, slicing)."}
+  explanation.python.list_operations.select_and_use_sequence.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.list_operations.select_and_use_sequence.state_trace: {verdict: pass, note: "Verified."}
+  explanation.python.list_operations.select_and_use_sequence.worked_example: {verdict: pass, note: "[9, 7] verified."}
+  explanation.python.list_operations.select_and_use_sequence.contrast_assignment_copies_list: {verdict: pass, note: ""}
+  explanation.python.list_operations.select_and_use_sequence.contrast_index_from_one: {verdict: pass, note: ""}
+  explanation.python.tuple_immutable_sequence.demonstrate_capability.canonical: {verdict: pass, note: "(5,) + nokta[1:] -> (5, 4), (5) is int, bol(17, 5) -> (3, 2) verified. Lesson check 2 uses try/except, not yet taught (see findings)."}
+  explanation.python.tuple_immutable_sequence.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.tuple_immutable_sequence.demonstrate_capability.worked_example: {verdict: pass, note: "(2.0, 3.0) verified."}
+  explanation.python.tuple_immutable_sequence.demonstrate_capability.contrast_tuple_mutable: {verdict: pass, note: ""}
+  explanation.python.tuple_immutable_sequence.demonstrate_capability.contrast_single_without_comma: {verdict: pass, note: ""}
+  explanation.python.set_operations.demonstrate_capability.canonical: {verdict: pass, note: "Verified ({} is a dict, a list cannot be a set element, & | -)."}
+  explanation.python.set_operations.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.set_operations.demonstrate_capability.worked_example: {verdict: pass, note: "[3, 1, 2] verified."}
+  explanation.python.set_operations.demonstrate_capability.contrast_set_keeps_order: {verdict: pass, note: ""}
+  explanation.python.set_operations.demonstrate_capability.contrast_empty_braces_set: {verdict: pass, note: ""}
+  explanation.python.mapping_collections_basic.select_and_use_mapping.canonical: {verdict: pass, note: "Verified (KeyError on missing key and on += of a missing key, insertion order, in checks keys). The counting pattern plus lesson check 2 pre-solve item f02 (see items)."}
+  explanation.python.mapping_collections_basic.select_and_use_mapping.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.mapping_collections_basic.select_and_use_mapping.worked_example: {verdict: pass, note: "{'yemek': 65, 'yol': 10} verified."}
+  explanation.python.mapping_collections_basic.select_and_use_mapping.contrast_missing_key_returns_none: {verdict: pass, note: ""}
+  explanation.python.mapping_collections_basic.select_and_use_mapping.contrast_in_checks_values: {verdict: pass, note: "12 in stok -> False, 12 in stok.values() -> True verified."}
+  explanation.python.exceptions_read_basic.extract_error_type_location.canonical: {verdict: pass, note: "The kare_kok traceback was re-run: identical to the real one after removing caret lines and shortening the absolute path (Python 3.9+ prints the full path of the script; say so in one clause). Its 'Yaş: ' + 17 example pre-solves item f04 (see items). Lesson checks use try/except and type(e).__name__, taught only later (see findings)."}
+  explanation.python.exceptions_read_basic.extract_error_type_location.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.exceptions_read_basic.extract_error_type_location.worked_example: {verdict: pass, note: "Synthetic but consistent traceback; reading order correct."}
+  explanation.python.exceptions_read_basic.extract_error_type_location.contrast_read_traceback_top_down: {verdict: pass, note: ""}
+  explanation.python.exceptions_read_basic.extract_error_type_location.contrast_error_line_is_cause: {verdict: pass, note: ""}
+  explanation.python.scope_name_resolution.demonstrate_capability.canonical: {verdict: pass, note: "LEGB, rule 1-3 and global verified (UnboundLocalError in 3.14: 'cannot access local variable ...'). Lesson check 3 uses try/except (see findings)."}
+  explanation.python.scope_name_resolution.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.scope_name_resolution.demonstrate_capability.state_trace: {verdict: pass, note: "5g kg verified."}
+  explanation.python.scope_name_resolution.demonstrate_capability.worked_example: {verdict: pass, note: "mavi verified."}
+  explanation.python.scope_name_resolution.demonstrate_capability.contrast_assignment_changes_global: {verdict: pass, note: ""}
+  explanation.python.scope_name_resolution.demonstrate_capability.contrast_lookup_at_definition: {verdict: pass, note: ""}
+  explanation.python.modules_imports_basic.import_and_use_module_member.canonical: {verdict: pass, note: "Second pass: the shadowing example is now random.py / statistics.py; verified on Windows that a local random.py and statistics.py are imported instead of the standard modules. Other claims verified."}
+  explanation.python.modules_imports_basic.import_and_use_module_member.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.modules_imports_basic.import_and_use_module_member.worked_example: {verdict: pass, note: "6.28 verified."}
+  explanation.python.modules_imports_basic.import_and_use_module_member.contrast_import_brings_members: {verdict: pass, note: ""}
+  explanation.python.modules_imports_basic.import_and_use_module_member.contrast_import_runs_nothing: {verdict: pass, note: ""}
+  explanation.python.exception_handling.demonstrate_capability.canonical: {verdict: pass, note: "Semantics correct. Clarity: 'bir yazım hatası (NameError)' clashes with run_repl_script, where 'yazım hatası' means SyntaxError (which except cannot catch in the same file); say 'yanlış yazılmış bir isim (NameError)'."}
+  explanation.python.exception_handling.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.exception_handling.demonstrate_capability.worked_example: {verdict: pass, note: "ilk_eleman([]) -> None and ilk_eleman(5) -> TypeError verified."}
+  explanation.python.exception_handling.demonstrate_capability.contrast_catch_everything_is_safe: {verdict: pass, note: "Correct; same 'yazım hatası' wording note as the canonical."}
+  explanation.python.exception_handling.demonstrate_capability.contrast_finally_only_on_error: {verdict: pass, note: ""}
+  explanation.python.string_text_operations.demonstrate_capability.canonical: {verdict: pass, note: "All Turkish casing claims verified ('IŞIK'.lower() -> 'işik', 'İ'.lower() has length 2, 'i'.upper() -> 'I'), as are slicing, split/join/strip/replace/find/count/startswith and :.1f. Its last line pre-solves item f05 (see items)."}
+  explanation.python.string_text_operations.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.string_text_operations.demonstrate_capability.worked_example: {verdict: pass, note: "Merhaba... and Selam verified."}
+  explanation.python.string_text_operations.demonstrate_capability.contrast_string_methods_mutate: {verdict: pass, note: ""}
+  explanation.python.string_text_operations.demonstrate_capability.contrast_lower_is_turkish_aware: {verdict: pass, note: "Verified."}
+  explanation.python.path_handling.read_write_small_text_file.canonical: {verdict: pass, note: "Verified on Windows (name/stem/suffix/parent, str uses backslashes, as_posix, arsiv.tar.gz). Its lesson checks import pathlib, but modules_imports_basic is not a hard prerequisite of this Skill (see findings)."}
+  explanation.python.path_handling.read_write_small_text_file.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.path_handling.read_write_small_text_file.worked_example: {verdict: pass, note: "veri/ocak_yedek.csv and liste_yedek.txt verified on Windows."}
+  explanation.python.path_handling.read_write_small_text_file.contrast_suffix_is_after_first_dot: {verdict: pass, note: ""}
+  explanation.python.path_handling.read_write_small_text_file.contrast_string_join_is_portable: {verdict: pass, note: ""}
+  explanation.python.files_paths_basic.demonstrate_capability.canonical: {verdict: pass, note: "Correct for Python <= 3.14 (verified: locale encoding cp1254 here). From Python 3.15 UTF-8 mode is the default (PEP 686), so 'Yazmazsan Python işletim sisteminin varsayılanını kullanır' becomes version-dependent; the advice to write encoding='utf-8' stays right. Minor: the last line read by 'for satir in f' may have no newline."}
+  explanation.python.files_paths_basic.demonstrate_capability.prerequisite_refresh: {verdict: pass, note: ""}
+  explanation.python.files_paths_basic.demonstrate_capability.worked_example: {verdict: pass, note: "Logic verified (splitlines, strict >)."}
+  explanation.python.files_paths_basic.demonstrate_capability.contrast_write_adds_newline: {verdict: pass, note: "Verified ('ab')."}
+  explanation.python.files_paths_basic.demonstrate_capability.contrast_write_mode_appends: {verdict: pass, note: ""}
+findings:
+  - "First pass: all keys, tracebacks and lesson-check claims were correct; 11 items failed (6 leakage, 3 output-only tests that miss the required behaviour, 2 prompt-accuracy) and 3 explanations had technical errors. Second pass: 10 rewrites and all 3 explanations (plus the edited contrast) passed; exception_handling f02 failed because a taught get-based solution raised AttributeError where TypeError was expected. Third pass: its harness now accepts any propagated exception and it passes; string_text_operations f02's example name no longer echoes the canonical. Final: 109/109 items and 116/116 explanations pass."
+  - "Leakage (6 items): the lesson again pre-solves items through its checks and canonical text: run_repl_script f02 (7 * 6), mapping f02 (lesson check 2 is the item), exceptions_read_basic f04 ('Yaş: ' + 17), exception_handling f02 (lesson check 2 is the item), string_text_operations f02 (lesson check 3 with 12.5) and f05 (the canonical's own replace/lower line and 'IŞIK'). Many passing items are near isomorphs of lesson checks with new values (noted per item), and several such isomorphs carry transfer_integration (value_type f05/f06, expression f05, while debug f05, exceptions_read f05, assignment f04/f05); keep structurally new items per Objective."
+  - "Output-only tests miss the behaviour the prompt requires (3 items fail): assignment_binding f02 (print(b, a) passes without a swap), functions f05 (no reuse of alan passes), exception_handling f03 (except Exception passes, contrary to the reconciliation's promise). The recorded fixed-output limit of assignment_binding is avoidable: a harness can import cozum and print the module's final variables (cozum.a, cozum.kopya), and can wrap a helper (cozum.alan) because globals are looked up at call time. Other unmeasured method requirements are noted (tuple f03 unpacking, for f05 sentinel, files f04 is_file)."
+  - "Prompt accuracy (2 items): while debug_infinite_loop f02 misstates when the loop hangs (n = 1 also hangs); files_paths_basic f02 tests an empty-list result the prompt never states."
+  - "Coverage after the third pass (non-in_lesson, passing): every one of the 21 Objectives has at least one passing item at basic, authentic_application and transfer_integration; the gaps found in the first pass (basic in seven Objectives, transfer in functions_parameters_return and string_text_operations) and the remaining exception_handling basic gap are all closed."
+  - "Explanations (3 fail): run_repl_script canonical says the tests ignore extra spaces (only line-end whitespace is trimmed), value_type_behavior canonical says every value other than 0/0.0/''/None is True (empty collections are False), modules_imports_basic canonical says a local math.py shadows math (false on Windows, where math is built in). Minor notes: tracebacks really show the absolute path (the build shortens it; say so once); 'yazım hatası' means SyntaxError in run_repl_script but NameError in exception_handling; Python 3.15 (PEP 686) makes UTF-8 the default encoding, so the files canonical's encoding claim becomes version-dependent."
+  - "Graph (decide in 15H, not per item): path_handling cannot be taught without import, and all five of its items declare modules_imports_basic, but 6C gives path_handling only string_text_operations as a hard prerequisite (files_paths_basic inherits the gap; its lesson checks import tempfile/pathlib). set_operations, mapping_collections_basic and tuple items declare list_operations (6C has only for_iteration); all for_iteration items with a condition and its lesson check need conditionals; all conditionals items declare input_output_basic. value_type_behavior f03-f05 redeclare state_assignment_model already in lesson_requires (f04 has no assignment), and path_handling f05 declares expression_evaluation only for ==, which 15A already teaches — harmless."
+  - "Lesson checks use constructs their Skill cannot reach (items are clean: no item uses a hidden construct after the build's string masking): exceptions_read_basic (both checks) and scope_name_resolution check 3 and tuple check 2 use try/except/type(e).__name__, but exception_handling is taught later and itself depends on exceptions_read_basic; conditionals check 1 uses a for loop over a tuple; for_iteration check 3 uses if/or; path_handling and files_paths_basic checks use import (and files uses pass and tempfile). Consider scanning lesson checks in the build, or rewriting these checks."
+  - "Notation gaps: membership (in / not in), identity (is), pass, break, 'as' and attribute access are not modelled. for_iteration f03's reference uses 'in' before any lesson teaches it and mapping f04's reference uses 'is None'; both have verified alternatives with taught constructs, but a reference should prove solvability with taught constructs. True/False are taught by value_type_behavior's lesson (bool), yet notation lists only expression lessons for boolean_logic."
+  - "Platform: the runner's -X utf8 makes Turkish stdin/stdout work on Windows (verified with a cp1254 locale), CRLF is normalised, the files harness reads with universal newlines, and files f04 accepts both PermissionError (Windows) and IsADirectoryError (Linux/macOS). Remaining risk: cozum.py must be saved as UTF-8 (many prompts require Turkish literals such as 'sıfır', 'reşit', 'İki'); no lesson says so — one sentence in run_repl_script's canonical would cover it."
+  - "Process: the shipped suites in curriculum/content/15b_python_foundations/suites/ predate the rewrites and must be regenerated (the author will run the build with --out) before publishing; this review's second and third passes ran against suites produced by the build's own build() function from the current content."

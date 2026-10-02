@@ -1,0 +1,45 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.exception_handling.demonstrate_capability.f05@v1",
+  "item": "item.python.exception_handling.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nkayit = []\ntry:\n    print(cozum.islem_yap(int(sys.argv[1]), kayit))\nexcept ZeroDivisionError:\n    print(\"hata çağırana ulaştı\")\nprint(kayit)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "normal",
+      "args": [
+        "7"
+      ],
+      "expected_stdout": "14\n['başla', 'bitti']\n"
+    },
+    {
+      "id": "error_cleans_up",
+      "args": [
+        "0"
+      ],
+      "expected_stdout": "hata çağırana ulaştı\n['başla', 'bitti']\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-30"
+      ],
+      "expected_stdout": "-4\n['başla', 'bitti']\n"
+    }
+  ]
+}

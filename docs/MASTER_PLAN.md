@@ -997,8 +997,21 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - mutation 22/22, validator 131/131 ve kendi mutation testi 30/30,
 - **T6 ve sevk edilen paketin SQLite'a ilk yayımlanması çalıştırılmadı**; ilk ingestion öğrencinin, cihazda.
 
-### [ ] 15B — Python Foundations — **AKTİF**
-### [ ] 15C — C Foundations
+### [x] 15B — Python Foundations — PYFX-v0 / D-113
+
+**15B final coverage:**
+- bir program ne yaptığına göre, öğrencinin kendi bilgisayarında değerlendirilir: her kod item'ının referansı dersin koşucusundan geçer ve en az iki makul yanlış çözüm düşer; gösterilen traceback'ler gerçektir,
+- FBB-v0 §6.2'nin tohumları (6C'de 17 Skill) + dışarıdaki üç hard ön koşul (kullanıcı kararı) — 20 Skill, 21 Objective, 31 kenar — `draft` → `published`, kimlik değişmedi,
+- yazma gösterimi: her yapıyı hangi dersin öğrettiği `notation.yaml`'da; referans çözüm de taranır,
+- 109 item (85 kod suite'iyle, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev, 59 ders iddiası çalıştırıldı,
+- artımlı ikinci paket (kullanıcı kararı): birlikte okunur ya da hiç sunulmaz, en eskiden yayımlanır, yayımlanmış sürümün üzerine asla yazılmaz; `ContentPort.curriculumPackages` port inceltmesi,
+- öğrencinin bilgisayarı: koşucu UTF-8 kipinde; dosya testleri metin kipinde okur; yol sonuçları platformdan bağımsız,
+- bağımsız inceleme ilk geçişte 11 item ve 3 anlatım cümlesi düşürdü; üç geçişte 109/109 ve 116/116,
+- iki paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenciye yine iki giriş dersi (`ShippedCourseTest`),
+- Mutation 27/27, validator 254/254,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15C — C Foundations — **AKTİF**
 ### [ ] 15D — Memory Foundations
 ### [ ] 15E — Linux / Git / Shell Foundations
 ### [ ] 15F — English A0→A1/A2 başlangıç paketi
@@ -1080,8 +1093,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A`  
-**Son tamamlanan:** **`15A — CPFX-v0 / D-112`**  
-**Aktif:** **`15B — Python Foundations`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15B`  
+**Son tamamlanan:** **`15B — PYFX-v0 / D-113`**  
+**Aktif:** **`15C — C Foundations`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15B fresh PRE-STEP → Python Foundations içeriği (15A'nın üreticisi, gösterim merdiveni ve bağımsız inceleme akışı hazır; ikinci paketin nasıl sevk edileceği 15B'nin kararı) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15C fresh PRE-STEP → C Foundations içeriği (artımlı paket, kod suite'leri ve bağımsız inceleme akışı hazır; öğrencinin ve yazarın bilgisayarında bir C derleyicisi gerekir) → independent QA → D-050 POST sync + stale audit.**

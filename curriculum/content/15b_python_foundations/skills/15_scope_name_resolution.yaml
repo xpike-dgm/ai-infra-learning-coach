@@ -1,0 +1,239 @@
+skill: skill.python.scope_name_resolution
+activity: code_reading_trace
+tasks:
+  teach: {title: "İsimler nerede aranır: yerel, çevreleyen, global ve yerleşik", minutes: 15}
+  practice: {title: "İsim çözümleme alıştırması", minutes: 10}
+  check: {title: "İsim çözümleme kontrolü", minutes: 8}
+  review: {title: "İsim çözümleme tekrarı", minutes: 6}
+  repair: {title: "İsim çözümlemeyi yeniden izlemek: atama yereldir", minutes: 12}
+
+objectives:
+  - id: objective.python.scope_name_resolution.demonstrate_capability
+    statement: >-
+      Bir ismin hangi değere bağlı olduğunu yerel, çevreleyen, global ve yerleşik (LEGB) sırasıyla izleyebilmek: bir
+      fonksiyon içindeki atamanın yerel bir isim oluşturduğunu, global bir ismin çağrı anındaki değeriyle okunduğunu,
+      global anahtar kelimesinin ne değiştirdiğini ve yerel bir ismin yerleşik bir ismi yalnız o fonksiyonda
+      gölgelediğini kodu okuyarak söyleyebilmek.
+    observable_behavior: >-
+      Fonksiyon içi ve dışı aynı isimleri kullanan kısa kodların yazdırdığını doğru verir; bir atamanın yerel bir isim
+      oluşturduğu için UnboundLocalError verdiği durumu tanır.
+    acceptable_evidence_types: [code_reading, explanation]
+    direct_evidence_types: [code_reading, explanation]
+    required_direct_type: code_reading
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Direct type code_reading. 15A'nın function_decomposition'ı fonksiyonu bir sınır olarak öğretti; bu
+      Skill isimlerin o sınırda nasıl arandığını öğretir. nonlocal bu adımda öğretilmez.
+    checks:
+      - prints: "7 3"
+        code: |
+          a = 3
+          def f():
+              a = 7
+              return a
+          print(f(), a)
+      - prints: "20"
+        code: |
+          kat = 2
+          def carp(n):
+              return n * kat
+          kat = 4
+          print(carp(5))
+      - prints: "UnboundLocalError"
+        code: |
+          sayi = 1
+          def g():
+              sayi = sayi + 1
+              return sayi
+          try:
+              g()
+          except Exception as e:
+              print(type(e).__name__)
+    explanations:
+      canonical: |
+        Python bir ismi (bir değişkeni ya da fonksiyonu) gördüğünde onu dört yerde, bu sırayla arar — LEGB:
+
+        1. Local (yerel): şu an çalışan fonksiyonun kendi isimleri — parametreleri ve fonksiyonun içinde atanan isimler.
+        2. Enclosing (çevreleyen): bir fonksiyon başka bir fonksiyonun içinde tanımlandıysa, dıştaki fonksiyonun isimleri.
+        3. Global: programın (modülün) en dış seviyesinde atanan isimler.
+        4. Built-in (yerleşik): Python'un hazır isimleri: print, len, max, int...
+
+        İlk bulduğu yerde durur.
+
+        Kural 1 — Fonksiyonun içinde atama yapılan isim o fonksiyonda yereldir.
+        a = 3
+        def f():
+            a = 7        (yeni, yerel bir a; dıştaki a değişmez)
+            return a
+        print(f(), a)    → 7 3
+
+        Kural 2 — Okumak, değeri çağrı anında arar.
+        Fonksiyon global bir ismi yalnız okuyorsa, değeri fonksiyon tanımlandığında değil çağrıldığında bulunur. Tanımdan sonra değiştirilen global bir isim, çağrıda yeni değeriyle okunur.
+
+        Kural 3 — Bir isim fonksiyonun herhangi bir yerinde atanıyorsa, o fonksiyonun her yerinde yereldir.
+        sayi = 1
+        def g():
+            sayi = sayi + 1   (sağdaki sayi da yerel sayılır, ama henüz değeri yok)
+        g() çağrısı UnboundLocalError verir.
+
+        global anahtar kelimesi: fonksiyonun bir global ismi değiştirmesini sağlar.
+        def g():
+            global sayi
+            sayi = sayi + 1   (artık global sayi değişir)
+        Bunu az kullanırsın; bir fonksiyonun değeri döndürmesi çoğu zaman daha açıktır.
+
+        Gölgeleme: bir fonksiyonun içinde len ya da max gibi yerleşik bir ismi kendi değişkenine verirsen, yalnız o fonksiyonun içinde yerleşik olan görünmez olur; fonksiyonun dışında yerleşik isim çalışmaya devam eder.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (atama ve fonksiyonlar): x = ... bir ismi bir değere bağlar; bir fonksiyon çağrıldığında parametreleri verilen değerlere bağlanır ve return bir değeri çağırana geri verir.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          birim = "kg"
+          def etiket(n):
+              birim = "g"
+              return str(n) + birim
+          print(etiket(5), birim)
+
+          1. Global: birim → "kg".
+          2. etiket(5) çağrılır: yerel n → 5; yerel birim → "g" (atama yerel yapar).
+          3. return str(5) + yerel birim → "5g". Çağrı biter, yerel isimler kaybolur.
+          4. print'teki birim global olanı bulur: "kg".
+
+          Ekranda 5g kg görünür.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          def dis():
+              renk = "mavi"
+              def ic():
+                  return renk
+              return ic()
+          print(dis())
+
+          - ic'nin içinde renk atanmıyor, yani yerel değil.
+          - Bir sonraki yer çevreleyen fonksiyon dis: orada renk → "mavi".
+          - Ekranda mavi görünür.
+    misconceptions:
+      - slug: assignment_changes_global
+        name: Fonksiyonun içindeki atama aynı adlı global ismi değiştirir
+        open_question: Bir fonksiyonun içinde x = 10 yazınca dışarıdaki x'in de 10 olacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Aynı isim, aynı değişken."
+
+            Fonksiyonun içinde atanan bir isim o fonksiyona ait yeni, yerel bir isimdir; dıştaki aynı adlı isim değişmez. Dıştakini değiştirmek için global yazmak gerekir — ama çoğu zaman değeri return ile döndürmek daha iyidir.
+      - slug: lookup_at_definition
+        name: Fonksiyon global bir ismin değerini tanımlandığı anda alır
+        open_question: Bir fonksiyonun, okuduğu global ismin tanımlandığı andaki değerini kullanacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fonksiyon yazıldığında x 2 idi, o halde 2 kullanılır."
+
+            Fonksiyon bir ismi her çağrıldığında, o anda arar. Tanımdan sonra ama çağrıdan önce değiştirilen global bir isim, yeni değeriyle okunur.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          puan = 50
+          def bonus():
+              puan = 80
+              return puan
+          print(bonus(), puan)
+        answer: "80 50"
+        verify: {mode: stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          oran = 3
+          def hesapla(n):
+              return n * oran
+          oran = 7
+          print(hesapla(2))
+        required_skills: [skill.python.expression_evaluation]
+        answer: "14"
+        verify: {mode: stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          adim = 0
+          def ilerle():
+              global adim
+              adim += 1
+          ilerle()
+          ilerle()
+          ilerle()
+          print(adim)
+        answer: "3"
+        verify: {mode: stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalıştırılınca ne olur?
+        code: |
+          bakiye = 100
+
+          def cek(tutar):
+              bakiye = bakiye - tutar
+              return bakiye
+
+          print(cek(30))
+        options:
+          A: "UnboundLocalError ile durur"
+          B: "70 yazılır"
+          C: "-30 yazılır"
+          D: "NameError ile durur"
+        scan_options: false
+        answer: A
+        verify:
+          mode: traceback
+          ask: type
+          shown: false
+          outcomes: {A: "UnboundLocalError", B: "70", C: "-30", D: "NameError"}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          def en_buyuk(sayilar):
+              max = sayilar[0]
+              for s in sayilar:
+                  if s > max:
+                      max = s
+              return max
+
+          print(en_buyuk([3, 8, 2]), max(1, 9))
+        required_skills: [skill.python.list_operations, skill.python.for_iteration, skill.python.conditionals]
+        answer: "8 9"
+        verify: {mode: stdout}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def dis():
+              mesaj = "ilk"
+              def ic():
+                  return mesaj
+              mesaj = "son"
+              return ic()
+
+          print(dis())
+        answer: "son"
+        verify: {mode: stdout}

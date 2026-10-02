@@ -1,0 +1,46 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.files_paths_basic.demonstrate_capability.f04@v1",
+  "item": "item.python.files_paths_basic.demonstrate_capability.f04@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, tempfile, cozum\nfrom pathlib import Path\nwith tempfile.TemporaryDirectory() as d:\n    yol = Path(d) / \"ayar.txt\"\n    if sys.argv[1] == \"var\":\n        yol.write_bytes(sys.argv[2].encode(\"utf-8\"))\n    if sys.argv[1] == \"klasor\":\n        yol.mkdir()\n    try:\n        print(repr(cozum.oku_ya_da_bos(yol)))\n    except Exception as e:\n        print(\"yukarıya geldi:\", type(e).__name__ in (\"IsADirectoryError\", \"PermissionError\"))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "exists",
+      "args": [
+        "var",
+        "tema=koyu"
+      ],
+      "expected_stdout": "'tema=koyu'\n"
+    },
+    {
+      "id": "missing",
+      "args": [
+        "yok"
+      ],
+      "expected_stdout": "''\n"
+    },
+    {
+      "id": "other_error_propagates",
+      "args": [
+        "klasor"
+      ],
+      "expected_stdout": "yukarıya geldi: True\n"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+skill: skill.python.mapping_collections_basic
+activity: coding_production
+tasks:
+  teach: {title: "Sözlükler: anahtar ve değer", minutes: 18}
+  practice: {title: "Sözlük alıştırması", minutes: 15}
+  check: {title: "Sözlük kontrolü", minutes: 15}
+  review: {title: "Sözlük tekrarı", minutes: 12}
+  repair: {title: "Sözlüğü yeniden kurmak: arama, güncelleme ve sayma", minutes: 18}
+
+objectives:
+  - id: objective.python.mapping_collections_basic.select_and_use_mapping
+    statement: >-
+      Bir değeri bir anahtarla bulmak gerektiğinde sözlüğü (dict) seçip kullanabilmek: anahtarla okumak ve olmayan
+      anahtarda get ile varsayılan vermek, değer eklemek ve güncellemek, bir sözlükte saymak (sayac[k] = sayac.get(k, 0)
+      + 1) ve items() ile anahtar-değer çiftleri üzerinde dolaşmak.
+    observable_behavior: >-
+      Var olan ve olmayan anahtarlarda doğru davranan, sayım ve güncelleme yapan fonksiyonu yazar; sıra istenen sonuçları
+      sıralar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type authored_code. Item'lar fonksiyon yazdırdığı için
+      functions_parameters_return'ü; liste ya da koşul kullananlar list_operations ve conditionals'ı beyan eder.
+    checks:
+      - prints: "12 0 3"
+        code: |
+          stok = {"kalem": 12, "silgi": 3}
+          print(stok["kalem"], stok.get("defter", 0), len(stok) + 1)
+      - prints: "[('a', 2), ('b', 1)]"
+        code: |
+          sayac = {}
+          for h in ["a", "b", "a"]:
+              sayac[h] = sayac.get(h, 0) + 1
+          print(sorted(sayac.items()))
+    explanations:
+      canonical: |
+        Bir sözlük (dict), anahtarları değerlere bağlar. Bir şeyi sırasıyla değil adıyla bulmak istediğinde kullanılır.
+
+        stok = {"kalem": 12, "silgi": 3}
+
+        Okuma: stok["kalem"] → 12. Olmayan bir anahtar (stok["defter"]) KeyError verir. Emin değilsen get kullan: stok.get("defter", 0) → 0; anahtar yoksa verdiğin varsayılanı döndürür.
+
+        Ekleme ve güncelleme aynı yazımla yapılır:
+        stok["defter"] = 5      (yoksa ekler)
+        stok["kalem"] = 10      (varsa üzerine yazar)
+        stok["kalem"] += 2      (var olan değeri artırır; anahtar yoksa KeyError)
+
+        Üyelik: "silgi" in stok → True (anahtarlara bakar, değerlere değil).
+
+        Saymak — en sık kullanılan kalıp:
+        sayac = {}
+        for h in harfler:
+            sayac[h] = sayac.get(h, 0) + 1
+        Her harf ilk görüldüğünde 0'dan başlar, sonra artar.
+
+        Dolaşmak:
+        for anahtar, deger in stok.items():
+            print(anahtar, deger)
+        keys() anahtarları, values() değerleri verir.
+
+        Sıra: Python sözlükleri eklenme sırasını korur; ama bir sonucu "alfabetik" ya da "küçükten büyüğe" vermen istendiğinde sorted(stok.items()) gibi açıkça sıralarsın. Bu Skill'in testleri sıralı bir sonuç ister.
+
+        Anahtarlar değiştirilemeyen değerler olmalıdır (yazı, sayı, tuple); değerler herhangi bir şey olabilir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (değer türleri ve for): bir sözlüğün anahtarı "3" (yazı) ile 3 (sayı) farklı anahtarlardır; for k, v in d.items() her turda bir anahtar-değer çiftini açar.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: toplam_harcama(kalemler) — (kategori, tutar) çiftlerinden her kategorinin toplamını tutan bir sözlük döndür.
+
+          def toplam_harcama(kalemler):
+              toplam = {}
+              for kategori, tutar in kalemler:
+                  toplam[kategori] = toplam.get(kategori, 0) + tutar
+              return toplam
+
+          - get(kategori, 0) ilk görülen kategori için 0 verir.
+          - [("yemek", 40), ("yol", 10), ("yemek", 25)] → {"yemek": 65, "yol": 10}.
+          - Sıralı bir görüntü için çağıran sorted(sonuc.items()) yazdırabilir.
+    misconceptions:
+      - slug: missing_key_returns_none
+        name: Olmayan bir anahtarı okumak None verir
+        open_question: Sözlükte olmayan bir anahtarı d["x"] ile okuduğunda sonucun None olacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Anahtar yoksa boş bir değer gelir."
+
+            d["x"] olmayan bir anahtarda KeyError verir ve program durur. Anahtarın olmayabileceği yerde d.get("x", varsayilan) kullan ya da önce "x" in d ile kontrol et.
+      - slug: in_checks_values
+        name: in bir sözlüğün değerlerine bakar
+        open_question: '12 in {"kalem": 12} ifadesinin True olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "in sözlükte o değer var mı diye bakar."
+
+            Bir sözlükte in yalnız anahtarlara bakar: "kalem" in stok → True, 12 in stok → False. Değerlerde aramak için 12 in stok.values() yazılır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına fiyat(fiyatlar, urun) adında bir fonksiyon yaz: fiyatlar sözlüğünde urun varsa fiyatını, yoksa 0 döndürsün. Örnek: fiyat({"elma": 5, "armut": 7}, "armut") → 7; "kiraz" için 0.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          fiyatlar = {"elma": 5, "armut": 7, "muz": 12}
+          print(cozum.fiyat(fiyatlar, sys.argv[1]))
+        suite:
+          - {id: present, args: ["armut"], expected_stdout: "7\n"}
+          - {id: missing, args: ["kiraz"], expected_stdout: "0\n"}
+          - {id: another, args: ["muz"], expected_stdout: "12\n"}
+        reference: |
+          def fiyat(fiyatlar, urun):
+              return fiyatlar.get(urun, 0)
+        wrong:
+          - |
+            def fiyat(fiyatlar, urun):
+                return fiyatlar[urun]
+          - |
+            def fiyat(fiyatlar, urun):
+                return fiyatlar.get(urun)
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına uzunluga_gore(kelimeler) adında bir fonksiyon yaz: her harf sayısından kaç kelime olduğunu tutan bir sözlük döndürsün (anahtar: kelimenin uzunluğu, değer: o uzunlukta kaç kelime olduğu). Örnek: uzunluga_gore(["su", "çay", "at"]) → {2: 2, 3: 1}. Testler sonucu sıralayarak yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.uzunluga_gore(sys.argv[1:]).items()))
+        suite:
+          - {id: mixed, args: ["su", "çay", "at", "kahve"], expected_stdout: "[(2, 2), (3, 1), (5, 1)]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: all_same_length, args: ["elma", "kivi", "erik"], expected_stdout: "[(4, 3)]\n"}
+        reference: |
+          def uzunluga_gore(kelimeler):
+              sayac = {}
+              for k in kelimeler:
+                  sayac[len(k)] = sayac.get(len(k), 0) + 1
+              return sayac
+        wrong:
+          - |
+            def uzunluga_gore(kelimeler):
+                sayac = {}
+                for k in kelimeler:
+                    sayac[len(k)] = 1
+                return sayac
+          - |
+            def uzunluga_gore(kelimeler):
+                sayac = {}
+                for k in kelimeler:
+                    sayac[k] = len(k)
+                return sayac
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına stok_ekle(stok, urun, adet) adında bir fonksiyon yaz: stok sözlüğünde urun varsa adet kadar artırsın, yoksa adet ile eklesin ve güncellenmiş sözlüğü döndürsün. Testler sonucu sıralayarak yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          stok = {"kalem": 12, "silgi": 3}
+          print(sorted(cozum.stok_ekle(stok, sys.argv[1], int(sys.argv[2])).items()))
+        suite:
+          - {id: existing, args: ["kalem", "5"], expected_stdout: "[('kalem', 17), ('silgi', 3)]\n"}
+          - {id: new, args: ["defter", "4"], expected_stdout: "[('defter', 4), ('kalem', 12), ('silgi', 3)]\n"}
+        reference: |
+          def stok_ekle(stok, urun, adet):
+              stok[urun] = stok.get(urun, 0) + adet
+              return stok
+        wrong:
+          - |
+            def stok_ekle(stok, urun, adet):
+                stok[urun] = adet
+                return stok
+          - |
+            def stok_ekle(stok, urun, adet):
+                if urun in stok:
+                    stok[urun] += adet
+                return stok
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına en_cok(sayim) adında bir fonksiyon yaz: boş olmayan bir {anahtar: sayı} sözlüğünde değeri en büyük olan anahtarı döndürsün; eşitlikte alfabetik olarak önce gelen anahtarı döndürsün. Örnek: en_cok({"b": 3, "a": 3, "c": 1}) → "a".
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1:]
+          sayim = {a[i]: int(a[i + 1]) for i in range(0, len(a), 2)}
+          print(cozum.en_cok(sayim))
+        suite:
+          - {id: tie_alphabetical, args: ["b", "3", "a", "3", "c", "1"], expected_stdout: "a\n"}
+          - {id: clear_winner, args: ["x", "1", "y", "9"], expected_stdout: "y\n"}
+          - {id: single, args: ["z", "0"], expected_stdout: "z\n"}
+        reference: |
+          def en_cok(sayim):
+              en_iyi = None
+              for anahtar in sorted(sayim):
+                  if en_iyi is None or sayim[anahtar] > sayim[en_iyi]:
+                      en_iyi = anahtar
+              return en_iyi
+        wrong:
+          - |
+            def en_cok(sayim):
+                en_iyi = None
+                for anahtar in sayim:
+                    if en_iyi is None or sayim[anahtar] > sayim[en_iyi]:
+                        en_iyi = anahtar
+                return en_iyi
+          - |
+            def en_cok(sayim):
+                en_iyi = None
+                for anahtar in sorted(sayim):
+                    if en_iyi is None or sayim[anahtar] >= sayim[en_iyi]:
+                        en_iyi = anahtar
+                return en_iyi
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına ters_cevir(sozluk) adında bir fonksiyon yaz: değerleri anahtar, anahtarları değer olan yeni bir sözlük döndürsün (değerlerin hepsinin farklı olduğunu varsayabilirsin). Örnek: ters_cevir({"bir": 1, "iki": 2}) → {1: "bir", 2: "iki"}. Testler sonucu sıralayarak yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          a = sys.argv[1:]
+          sozluk = {a[i]: int(a[i + 1]) for i in range(0, len(a), 2)}
+          print(sorted(cozum.ters_cevir(sozluk).items()))
+        suite:
+          - {id: two, args: ["bir", "1", "iki", "2"], expected_stdout: "[(1, 'bir'), (2, 'iki')]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: three, args: ["c", "30", "a", "10", "b", "20"], expected_stdout: "[(10, 'a'), (20, 'b'), (30, 'c')]\n"}
+        reference: |
+          def ters_cevir(sozluk):
+              ters = {}
+              for anahtar, deger in sozluk.items():
+                  ters[deger] = anahtar
+              return ters
+        wrong:
+          - |
+            def ters_cevir(sozluk):
+                ters = {}
+                for anahtar, deger in sozluk.items():
+                    ters[anahtar] = deger
+                return ters
+          - |
+            def ters_cevir(sozluk):
+                ters = {}
+                for anahtar in sozluk:
+                    ters[anahtar] = anahtar
+                return ters

@@ -227,6 +227,13 @@ interface ContentPort {
     fun curriculumPackage(): CurriculumPackage?
 
     /**
+     * Every authored package, oldest first (15B, `D-113`). Each step of Stage 15 ships its own package: a later one only
+     * adds — new entities at their own version, references to what earlier ones published — so they are published once
+     * each, in this order. An adapter with a single package answers with just that one.
+     */
+    fun curriculumPackages(): List<CurriculumPackage> = listOfNotNull(curriculumPackage())
+
+    /**
      * The authored tasks that could serve one open need (12C). Which purpose serves which need, and
      * how long a task takes, is authored content (15), so the content side answers and the planner never
      * invents a task. An empty list is a truthful answer: nothing authored serves this need yet.

@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.string_text_operations.demonstrate_capability.f03@v1",
+  "item": "item.python.string_text_operations.demonstrate_capability.f03@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.uzanti_say(sys.argv[2:], sys.argv[1]))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "mixed_case",
+      "args": [
+        ".txt",
+        "a.txt",
+        "B.TXT",
+        "c.txt.bak"
+      ],
+      "expected_stdout": "2\n"
+    },
+    {
+      "id": "none",
+      "args": [
+        ".py",
+        "notlar.md",
+        "resim.png"
+      ],
+      "expected_stdout": "0\n"
+    },
+    {
+      "id": "upper_extension",
+      "args": [
+        ".PNG",
+        "x.png",
+        "y.Png",
+        "png.txt"
+      ],
+      "expected_stdout": "2\n"
+    }
+  ]
+}

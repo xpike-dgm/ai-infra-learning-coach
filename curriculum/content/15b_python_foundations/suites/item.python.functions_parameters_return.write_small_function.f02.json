@@ -1,0 +1,48 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.functions_parameters_return.write_small_function.f02@v1",
+  "item": "item.python.functions_parameters_return.write_small_function.f02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import sys, cozum\nprint(cozum.ortalama(int(sys.argv[1]), int(sys.argv[2])))"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "whole",
+      "args": [
+        "4",
+        "6"
+      ],
+      "expected_stdout": "5.0\n"
+    },
+    {
+      "id": "half",
+      "args": [
+        "3",
+        "4"
+      ],
+      "expected_stdout": "3.5\n"
+    },
+    {
+      "id": "negative",
+      "args": [
+        "-2",
+        "1"
+      ],
+      "expected_stdout": "-0.5\n"
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+skill: skill.python.run_repl_script
+activity: coding_production
+tasks:
+  teach: {title: "Python'u çalıştırmak: REPL, script, çıktı ve hata", minutes: 15}
+  practice: {title: "İlk script'ler alıştırması", minutes: 15}
+  check: {title: "İlk script'ler kontrolü", minutes: 15}
+  review: {title: "İlk script'ler tekrarı", minutes: 12}
+  repair: {title: "Çalıştırmayı yeniden kurmak: çıktıyı ve hatayı okumak", minutes: 15}
+
+objectives:
+  - id: objective.python.run_repl_script.execute_and_classify_result
+    statement: >-
+      Bilgisayarında bir Python script'i yazıp çalıştırabilmek, sonucun beklenen çıktı mı yoksa bir hata (traceback)
+      mı olduğunu ayırt edebilmek ve hata veren küçük bir script'i düzelterek istenen çıktıyı üretebilmek.
+    observable_behavior: >-
+      İstenen çıktıyı birebir üreten script'i yazar; hata veren script'teki hatanın yerini bulup düzeltir ve script'in
+      dersin testlerinden geçmesini sağlar.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C metni ("REPL ve script çalıştırıp output ile error sonucunu ayırt edebilmek") korundu ve gözlenebilir davranışa
+      çevrildi; direct type 6C'deki gibi authored_code. Bu Skill'in ön koşulu yalnız program çalışma modeli olduğu için
+      değişken ya da aritmetik kullanan item'lar bunu `required_skills` ile 15A'nın ilgili Skill'ine bağlar.
+    checks:
+      - prints: "Merhaba\nPython"
+        code: |
+          print("Merhaba")
+          print("Python")
+      - prints: "7 * 6"
+        code: |
+          print("7 * 6")
+    explanations:
+      canonical: |
+        Bu dersten itibaren Python'u yalnızca okumuyorsun, yazıyor ve çalıştırıyorsun. Bunun için bilgisayarında Python kurulu olmalı. Bir terminal aç ve şunu yaz:
+
+        python --version
+
+        Ekranda Python 3.x gibi bir sürüm görürsen hazırsın. (Bazı sistemlerde komut python3'tür.)
+
+        Python'u iki biçimde çalıştırabilirsin:
+
+        1. REPL (etkileşimli kabuk): Terminalde yalnızca python yazarsan >>> işareti çıkar. Yazdığın her satır hemen çalışır ve sonucu görünür. Denemek için iyidir; yazdıkların bir dosyada saklanmaz. Çıkmak için exit() yaz.
+
+        2. Script (dosya): Kodunu bir dosyaya yazarsın, örneğin cozum.py, ve terminalde python cozum.py diyerek çalıştırırsın. Bu derste görevlerin hep böyle olacak: kodunu cozum.py dosyasına yazacak ve dersin testleriyle çalıştıracaksın.
+
+        cozum.py:
+        print("Merhaba")
+        print("Python")
+
+        python cozum.py dediğinde ekrana alt alta Merhaba ve Python yazılır. Bu çıktıdır (output).
+
+        Çıktı mı, hata mı?
+
+        Python bir sorunla karşılaşırsa durur ve ekrana bir hata raporu (traceback) yazar. Son satır hatanın türünü ve kısa açıklamasını söyler; üstündeki satırlar hatanın hangi dosyada ve hangi satırda olduğunu gösterir:
+
+        Traceback (most recent call last):
+          File "cozum.py", line 2, in <module>
+            print(sonuc)
+        NameError: name 'sonuc' is not defined
+
+        Burada hata 2. satırda ve türü NameError: sonuc adında bir şey hiç tanımlanmamış. Hatadan önceki satırların çıktısı ekranda kalır; hatalı satırdan sonrakiler çalışmaz. Bir yazım hatası (SyntaxError) varsa ise hiçbir satır çalışmaz.
+
+        Hatayı düzeltmenin yolu: traceback'in son satırını oku (ne oldu?), satır numarasına git (nerede?), satırı düzelt ve yeniden çalıştır.
+
+        Tırnak meselesi: print("7 * 6") ekrana 7 * 6 yazar; tırnak içindeki her şey yazıdır. print(7 * 6) ise hesabı yapar ve 42 yazar.
+
+        Dersin testleri: Her görevin bir test dosyası vardır. Dersin test koşucusu cozum.py'yi çalıştırır, çıktısını beklenenle harf harf karşılaştırır ve her test için passed ya da failed yazar. Testler satır sonlarındaki fazladan boşlukları ve sondaki boş satırları görmezden gelir; satır içindeki boşluklara, büyük-küçük harfe ve satır sırasına ise dikkat eder. cozum.py'yi UTF-8 kodlamasıyla kaydet (çoğu editörün varsayılanıdır); Türkçe harfler ancak böyle doğru okunur.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: Ekrana önce Hazır, sonra Başla yazan bir script.
+
+          Bir öğrencinin ilk denemesi:
+          print("Hazır")
+          print(Başla)
+
+          Çalıştırınca ekranda Hazır görünür, sonra bir traceback gelir:
+          NameError: name 'Başla' is not defined
+
+          - Ne oldu? NameError: Python, Başla adında bir değişken arıyor.
+          - Nerede? 2. satır.
+          - Neden? Tırnak unutulmuş; Başla bir yazı değil, bir isim gibi okunuyor.
+
+          Düzeltilmiş hâli:
+          print("Hazır")
+          print("Başla")
+
+          Testler artık geçer: çıktı iki satır, sıraları ve harfleri istenenle aynı.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (program çalışma modeli): python cozum.py dediğinde yorumlayıcı dosyanın tamamını önce çevirir, sonra satırları sırayla yürütür. Yazım hatası çeviride yakalanır ve hiçbir satır çalışmaz; yürütme sırasındaki bir hata ise o satıra kadar olan çıktıyı ekranda bırakır.
+    misconceptions:
+      - slug: quotes_still_compute
+        name: Tırnak içindeki ifade de hesaplanır
+        open_question: print("7 * 6") satırının ekrana 42 yazacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "print içindeki her şey hesaplanır."
+
+            Tırnak içindeki her şey bir yazıdır (string) ve olduğu gibi yazılır: print("7 * 6") ekrana 7 * 6 yazar. Python'un hesaplamasını istiyorsan tırnak kullanmazsın: print(7 * 6) ekrana 42 yazar.
+      - slug: error_means_nothing_ran
+        name: Hata veren bir script'te hiçbir satır çalışmamıştır
+        open_question: Bir script traceback ile durduğunda, hatalı satırdan önceki satırların da hiç çalışmadığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hata verdiyse hiçbir şey çalışmadı."
+
+            Bu yalnız yazım hatası (SyntaxError) için doğrudur: Python dosyayı çeviremez ve hiçbir satır çalışmaz. Yürütme sırasındaki hatalarda (NameError, ZeroDivisionError gibi) hatalı satıra kadar olan satırlar çalışmış, çıktıları da ekrana yazılmıştır. Traceback'in son satırı hangisinin olduğunu söyler.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py adında bir script yaz: çalıştırılınca ekrana alt alta önce Merhaba, sonra Python yazsın (iki satır, başka hiçbir şey yazmasın).
+        suite:
+          - {id: two_lines_in_order, stdin: "", expected_stdout: "Merhaba\nPython\n"}
+        reference: |
+          print("Merhaba")
+          print("Python")
+        wrong:
+          - |
+            print("Merhaba Python")
+          - |
+            print("Python")
+            print("Merhaba")
+          - |
+            print("merhaba")
+            print("python")
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py adında bir script yaz: Python'un 125'ten 38'i çıkarmasını sağlasın ve ekrana yalnızca sonucu (tek bir sayı) yazsın. Sonucu kendin hesaplayıp yazma; çıkarmayı Python yapsın.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: prints_difference, stdin: "", expected_stdout: "87\n"}
+        reference: |
+          print(125 - 38)
+        wrong:
+          - |
+            print("125 - 38")
+          - |
+            print(125 + 38)
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script çalıştırılınca bir NameError ile duruyor. Hatanın türünü ve satırını traceback'ten bulup düzelt. Düzeltilmiş script ekrana önce Toplam hesaplanıyor, sonra 15 yazmalı. Düzeltilmiş hâlini cozum.py olarak kaydet.
+
+          sayi = 10
+          print("Toplam hesaplanıyor")
+          print(sayi + bes)
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: fixed_output, stdin: "", expected_stdout: "Toplam hesaplanıyor\n15\n"}
+        reference: |
+          sayi = 10
+          bes = 5
+          print("Toplam hesaplanıyor")
+          print(sayi + bes)
+        wrong:
+          - |
+            sayi = 10
+            print("Toplam hesaplanıyor")
+            print(sayi + bes)
+          - |
+            sayi = 10
+            print("Toplam hesaplanıyor")
+            print("sayi + bes")
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script hiç çalışmıyor ve ekrana tek bir satır bile yazmadan bir SyntaxError veriyor. Hatayı bul, düzelt ve düzeltilmiş hâlini cozum.py olarak kaydet. Script ekrana alt alta Bir, İki ve Üç yazmalı.
+
+          print("Bir")
+          print("İki"
+          print("Üç")
+        suite:
+          - {id: three_lines, stdin: "", expected_stdout: "Bir\nİki\nÜç\n"}
+        reference: |
+          print("Bir")
+          print("İki")
+          print("Üç")
+        wrong:
+          - |
+            print("Bir")
+            print("İki"
+            print("Üç")
+          - |
+            print("Bir")
+            print("Üç")
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki script üç satır yazmalı ama ikinci satırı yazarken bir hata ile duruyor. Traceback'i oku: hatanın türü ne, hangi satırda ve neden? Sorunun kaynağı olan satırı düzelt (adet 4 olmalıydı) ve düzeltilmiş hâlini cozum.py olarak kaydet. Script ekrana Toplam: 12, Ortalama: 3 ve Bitti yazmalı.
+
+          toplam = 12
+          adet = 0
+          print("Toplam:", toplam)
+          print("Ortalama:", toplam // adet)
+          print("Bitti")
+        required_skills: [skill.programming.state_assignment_model, skill.programming.expression_boolean_reasoning]
+        suite:
+          - {id: three_lines_after_fix, stdin: "", expected_stdout: "Toplam: 12\nOrtalama: 3\nBitti\n"}
+        reference: |
+          toplam = 12
+          adet = 4
+          print("Toplam:", toplam)
+          print("Ortalama:", toplam // adet)
+          print("Bitti")
+        wrong:
+          - |
+            toplam = 12
+            adet = 0
+            print("Toplam:", toplam)
+            print("Ortalama:", toplam // adet)
+            print("Bitti")
+          - |
+            toplam = 12
+            adet = 0
+            print("Toplam:", toplam)
+            print("Bitti")

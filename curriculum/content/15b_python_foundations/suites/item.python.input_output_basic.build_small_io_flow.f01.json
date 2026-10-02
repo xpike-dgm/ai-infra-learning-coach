@@ -1,0 +1,33 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.input_output_basic.build_small_io_flow.f01@v1",
+  "item": "item.python.input_output_basic.build_small_io_flow.f01@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "cozum.py"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "greets_ayse",
+      "stdin": "Ayşe\n",
+      "expected_stdout": "Merhaba, Ayşe!\n"
+    },
+    {
+      "id": "greets_can",
+      "stdin": "Can\n",
+      "expected_stdout": "Merhaba, Can!\n"
+    }
+  ]
+}

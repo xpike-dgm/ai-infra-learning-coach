@@ -39,7 +39,7 @@ class ShippedPackageTest {
         assertTrue(curriculum.prerequisiteEdges.all { it.lifecycleStatus == "published" })
         assertEquals(11, curriculum.prerequisiteEdges.size, "6C has ten hard and one soft edge inside this subgraph")
         assertTrue(curriculum.unresolvedReferences().isEmpty(), curriculum.unresolvedReferences().toString())
-        // The store refuses an entity whose version is not the package's (11D).
+        // Every entity is first published here at its own version 1 (an entity's version is its semantic revision, D-113).
         assertTrue(curriculum.skills.all { it.ref.version == 1 } && curriculum.objectives.all { it.ref.version == 1 })
         // Every primary key the store would write is written once: SQLite would refuse the whole transaction otherwise.
         for (keys in listOf(curriculum.skills.map { it.ref }, curriculum.objectives.map { it.ref }, curriculum.resources.map { it.ref },

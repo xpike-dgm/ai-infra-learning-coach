@@ -1,0 +1,29 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.python.assignment_binding.write_state_change.f02@v1",
+  "item": "item.python.assignment_binding.write_state_change.f02@v1",
+  "build": {
+    "command": [
+      "{python}",
+      "-m",
+      "py_compile",
+      "cozum.py"
+    ]
+  },
+  "run": {
+    "command": [
+      "{python}",
+      "-c",
+      "import io, contextlib\nwith contextlib.redirect_stdout(io.StringIO()) as cikti:\n    import cozum\nprint(cikti.getvalue().strip(), \"|\", cozum.a, cozum.b)"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "swapped",
+      "args": [],
+      "expected_stdout": "8 3 | 8 3\n"
+    }
+  ]
+}

@@ -99,16 +99,19 @@ class MisconceptionStorageTest {
     }
 
     @Test
-    fun `a label belongs to the version being published, and may be pinned to an Objective an earlier version published`() {
+    fun `a published label is never carried again, and a later package may pin a new one to an earlier Objective`() {
+        // Narrowed at 15B (`D-113`, user decision): an entity carries its own version, not the package's; what stays
+        // refused is carrying a label that is already published.
         withStore { db ->
-            val wrongVersion = MisconceptionRow(VersionedRef(addressValue.ref.logicalId, 2), objective, addressValue.name, addressValue.openQuestion)
-            assertIs<PublishOutcome.Refused>(db.publishCurriculum(pkg(listOf(wrongVersion)), at.instantEpochMillis))
-            assertIs<PublishOutcome.Published>(db.publishCurriculum(pkg(emptyList()), at.instantEpochMillis))
+            assertIs<PublishOutcome.Published>(db.publishCurriculum(pkg(), at.instantEpochMillis))
+            val again = CurriculumPackage(version = 2, sourceRefs = "curriculum", provenance = "authored", misconceptions = listOf(addressValue))
+            assertIs<PublishOutcome.Refused>(db.publishCurriculum(again, at.instantEpochMillis))
             val later = CurriculumPackage(version = 2, sourceRefs = "curriculum", provenance = "authored",
-                misconceptions = listOf(MisconceptionRow(VersionedRef("misconception.c.pointers.star_amp_roles", 2), objective,
+                misconceptions = listOf(MisconceptionRow(VersionedRef("misconception.c.pointers.star_amp_roles", 1), objective,
                     "* ile & rolleri", "* ile & rollerini karıştırmış olabilir misin?")))
             assertIs<PublishOutcome.Published>(db.publishCurriculum(later, at.instantEpochMillis))
-            assertEquals(listOf("misconception.c.pointers.star_amp_roles"), db.misconceptionsOf(objective).map { it.ref.logicalId })
+            assertEquals(setOf("misconception.c.pointers.address_value", "misconception.c.pointers.star_amp_roles"),
+                db.misconceptionsOf(objective).map { it.ref.logicalId }.toSet())
         }
     }
 

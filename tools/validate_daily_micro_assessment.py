@@ -289,8 +289,10 @@ check("E11D-07_no_overwrite", "if (versionExists(curriculum.version)) return Pub
       "a published version can be overwritten")
 check("E11D-07_unresolved_refused", "unresolvedReferences(::isPublished)" in refusal,
       "references are not resolved against the package and the store")
-check("E11D-07_version_mismatch_refused", "versionMismatches(curriculum)" in refusal,
-      "a row of another version can be published")
+# Narrowed at 15B (`PYFX-v0` / `D-113`, user decision): an entity's version is its own semantic revision, not the
+# package's, so a later package may bring version-1 entities; what is refused is carrying an already published entity.
+check("E11D-07_version_mismatch_refused", "republishedEntities(curriculum)" in refusal,
+      "an already published entity can be carried again")
 check("E11D-07_one_transaction",
       "inTransaction { curriculumStore.write(" in strip_comments(read(ANDROID / "data-persistence/src/main/kotlin/coach/persistence/SqlitePersistence.kt")),
       "publishing is not one transaction")
@@ -318,7 +320,9 @@ check("E11D-09_unpinned_ref_refused", "is not a pinned reference" in fmt, "an un
 check("E11D-09_refuses_whole_package", "if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)" in fmt,
       "a package with problems is partly imported")
 check("E11D-09_failed_parse_serves_nothing",
-      "parsed?.documents" in source and "parsed?.items" in source and "parsed?.curriculum" in source,
+      # Narrowed at 15B (`D-113`): the packages are read together; a failure leaves `loaded` null, so nothing is served.
+      "parsed?.documents" in source and "parsed?.items" in source and "loaded?.first()?.curriculum" in source
+      and "loaded.orEmpty()" in source,
       "a failed parse still serves fragments")
 check("E11D-09_no_package_is_null", "source() ?: return@lazy null" in source, "a missing package is not null")
 

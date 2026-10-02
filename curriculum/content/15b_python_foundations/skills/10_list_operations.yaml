@@ -1,0 +1,287 @@
+skill: skill.python.list_operations
+activity: coding_production
+tasks:
+  teach: {title: "Listeler: oluşturma, erişme, güncelleme ve kopyalama", minutes: 18}
+  practice: {title: "Liste alıştırması", minutes: 15}
+  check: {title: "Liste kontrolü", minutes: 15}
+  review: {title: "Liste tekrarı", minutes: 12}
+  repair: {title: "Listeyi yeniden kurmak: indeks, değiştirme ve kopya", minutes: 18}
+
+objectives:
+  - id: objective.python.list_operations.select_and_use_sequence
+    statement: >-
+      Sıralı ve değiştirilebilir bir veri için listeyi seçip kullanabilmek: indeksle (negatif indeks dahil) erişmek,
+      append ile eleman eklemek, liste üzerinde dolaşmak, sum/min/max/sorted kullanmak ve bir listeyi değiştirmeden yeni
+      bir liste üretmek için kopyalamak (a[:] ya da list(a)) ile aynı listeye ikinci bir isim vermek (b = a) arasındaki
+      farkı uygulayabilmek.
+    observable_behavior: >-
+      İstenen listeyi döndüren fonksiyonu yazar; boş ve tek elemanlı listelerde de doğru çalışır; verilen listeyi
+      değiştirmemesi istendiğinde değiştirmez.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de bu Skill FBB'nin sequence_collections_basic seed'inin üç parçasından biri; metni korundu ve gözlenebilir
+      davranışa çevrildi. Direct type authored_code. Item'lar fonksiyon yazdırır (testler fonksiyonu çağırır), bu yüzden
+      functions_parameters_return'ü; koşul kullananlar conditionals'ı beyan eder.
+    checks:
+      - prints: "10 30 3"
+        code: |
+          notlar = [10, 20, 30]
+          print(notlar[0], notlar[-1], len(notlar))
+      - prints: "[10, 20, 30, 40] [10, 20, 30, 40]"
+        code: |
+          a = [10, 20, 30]
+          b = a
+          b.append(40)
+          print(a, b)
+      - prints: "[10, 20, 30] [10, 20, 30, 40]"
+        code: |
+          a = [10, 20, 30]
+          b = a[:]
+          b.append(40)
+          print(a, b)
+      - prints: "60 10 30 [10, 20, 30]"
+        code: |
+          x = [30, 10, 20]
+          print(sum(x), min(x), max(x), sorted(x))
+    explanations:
+      canonical: |
+        Bir liste, sıralı bir değerler dizisidir ve değiştirilebilir (mutable).
+
+        notlar = [10, 20, 30]
+
+        Erişme: notlar[0] → 10 (ilk eleman; indeks 0'dan başlar). notlar[-1] → 30 (son eleman). len(notlar) → 3. Var olmayan bir indeks (notlar[3]) IndexError verir.
+
+        Güncelleme:
+        - notlar[1] = 25 → [10, 25, 30]
+        - notlar.append(40) → sona ekler: [10, 25, 30, 40]
+        - Boş bir listeyle başlayıp append ile doldurmak çok yaygındır: sonuc = [] ... sonuc.append(x)
+
+        Dolaşmak:
+        for n in notlar:
+            print(n)
+
+        Hazır fonksiyonlar: sum(x), min(x), max(x) ve sorted(x). sorted yeni ve sıralı bir liste döndürür; x'i değiştirmez. Boş bir listede min ve max hata verir.
+
+        Dilimleme (slicing): a[1:3] 1'den 3'e kadar (3 hariç) olan elemanlarla yeni bir liste verir; a[:] bütün listenin kopyasıdır.
+
+        En önemli tuzak — iki isim, tek liste:
+        a = [10, 20, 30]
+        b = a
+        b.append(40)
+        print(a, b)  → [10, 20, 30, 40] [10, 20, 30, 40]
+
+        b = a yeni bir liste yapmaz; aynı listeye ikinci bir isim verir. Listeyi biri üzerinden değiştirmek, ötekinden de görünür. (15A'da sayılar için "kopya değişmez" demiştik; liste gibi değiştirilebilir değerlerde durum budur.) Ayrı bir liste istiyorsan kopyala:
+        b = a[:]   ya da   b = list(a)
+
+        Bir fonksiyona liste verdiğinde de aynı şey olur: fonksiyon parametre üzerinden append yaparsa çağıranın listesi değişir. "Verilen listeyi değiştirmeden" bir sonuç istendiğinde yeni bir liste kur ya da önce kopyala.
+
+        Bu Skill'in görevlerinde fonksiyon yazarsın; testler fonksiyonu bir listeyle çağırır ve döndürdüğün değeri yazdırır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (for döngüsü): for x in liste her turda x'e sıradaki elemanı atar; biriktiriciyi (ör. sonuc = []) döngüden önce bir kez başlatırsın.
+      state_trace:
+        level: H2
+        text: |
+          Takma isimleri izlemek — başka bir örnek üzerinde.
+
+          sepet = ["elma"]
+          yedek = sepet
+          kopya = list(sepet)
+          sepet.append("armut")
+
+          - sepet ve yedek aynı listeyi gösteriyor: ikisi de ["elma", "armut"].
+          - kopya ayrı bir liste: ["elma"].
+
+          Durum tablosuna listeleri kutu olarak çiz ve isimlerden kutulara ok çek; aynı kutuya iki ok gidiyorsa biri üzerinden yapılan değişiklik ikisinde de görünür.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: buyukleri(sayilar, sinir) — sınırdan büyük sayılardan oluşan yeni bir liste döndür; verilen listeyi değiştirme.
+
+          def buyukleri(sayilar, sinir):
+              sonuc = []
+              for n in sayilar:
+                  if n > sinir:
+                      sonuc.append(n)
+              return sonuc
+
+          - Yeni bir liste (sonuc) döngüden önce kuruldu; sayilar hiç değiştirilmedi.
+          - Boş liste verilirse döngü dönmez ve [] döner.
+          - buyukleri([4, 9, 2, 7], 5) → [9, 7].
+    misconceptions:
+      - slug: assignment_copies_list
+        name: b = a bir listenin kopyasını oluşturur
+        open_question: b = a satırından sonra b'ye bir eleman eklemenin a'yı değiştirmeyeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "b, a'nın kopyası oldu."
+
+            Listelerde b = a yalnız aynı listeye ikinci bir isim verir; tek bir liste vardır. b.append(...) o tek listeyi değiştirir ve a'dan da görünür. Ayrı bir liste için a[:] ya da list(a) ile kopyala.
+      - slug: index_from_one
+        name: Listenin ilk elemanı 1. indekstedir
+        open_question: Bir listenin ilk elemanına liste[1] ile eriştiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İlk eleman 1 numara."
+
+            Python'da indeksler 0'dan başlar: ilk eleman liste[0], son eleman liste[len(liste) - 1] ya da kısaca liste[-1]'dir. liste[len(liste)] her zaman IndexError verir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.py dosyasına ilk_ve_son(sayilar) adında bir fonksiyon yaz: boş olmayan bir listenin ilk ve son elemanından oluşan iki elemanlı yeni bir liste döndürsün. Örnek: ilk_ve_son([3, 8, 5]) → [3, 5]. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.ilk_ve_son([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: three, args: ["3", "8", "5"], expected_stdout: "[3, 5]\n"}
+          - {id: single, args: ["7"], expected_stdout: "[7, 7]\n"}
+          - {id: two, args: ["1", "2"], expected_stdout: "[1, 2]\n"}
+        reference: |
+          def ilk_ve_son(sayilar):
+              return [sayilar[0], sayilar[-1]]
+        wrong:
+          - |
+            def ilk_ve_son(sayilar):
+                return [sayilar[1], sayilar[-1]]
+          - |
+            def ilk_ve_son(sayilar):
+                return [sayilar[0], sayilar[len(sayilar) - 2]]
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.py dosyasına ciftler(sayilar) adında bir fonksiyon yaz: listedeki çift sayılardan, aynı sırayla, yeni bir liste döndürsün. Örnek: ciftler([3, 4, 7, 10]) → [4, 10]. Boş liste için [] döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.ciftler([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: mixed, args: ["3", "4", "7", "10"], expected_stdout: "[4, 10]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: none_even, args: ["1", "5"], expected_stdout: "[]\n"}
+          - {id: zero_and_negative, args: ["0", "-2", "-3"], expected_stdout: "[0, -2]\n"}
+        reference: |
+          def ciftler(sayilar):
+              sonuc = []
+              for n in sayilar:
+                  if n % 2 == 0:
+                      sonuc.append(n)
+              return sonuc
+        wrong:
+          - |
+            def ciftler(sayilar):
+                sonuc = []
+                for n in sayilar:
+                    if n % 2 == 1:
+                        sonuc.append(n)
+                return sonuc
+          - |
+            def ciftler(sayilar):
+                for n in sayilar:
+                    sonuc = []
+                    if n % 2 == 0:
+                        sonuc.append(n)
+                return sonuc
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına eklenmis(liste, deger) adında bir fonksiyon yaz: listenin sonuna deger eklenmiş YENİ bir liste döndürsün; verilen listeyi değiştirmesin. Testler hem döndürdüğün listeyi hem de verilen listenin çağrıdan sonraki hâlini yazdırır. Örnek: [1, 2] ve 3 için döndürülen [1, 2, 3], verilen liste ise [1, 2] kalmalı.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          liste = [int(x) for x in sys.argv[2:]]
+          yeni = cozum.eklenmis(liste, int(sys.argv[1]))
+          print(yeni, liste)
+        suite:
+          - {id: two_items, args: ["3", "1", "2"], expected_stdout: "[1, 2, 3] [1, 2]\n"}
+          - {id: empty, args: ["9"], expected_stdout: "[9] []\n"}
+          - {id: three_items, args: ["0", "5", "6", "7"], expected_stdout: "[5, 6, 7, 0] [5, 6, 7]\n"}
+        reference: |
+          def eklenmis(liste, deger):
+              yeni = liste[:]
+              yeni.append(deger)
+              return yeni
+        wrong:
+          - |
+            def eklenmis(liste, deger):
+                liste.append(deger)
+                return liste
+          - |
+            def eklenmis(liste, deger):
+                yeni = liste
+                yeni.append(deger)
+                return yeni
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına ikinci_buyuk(sayilar) adında bir fonksiyon yaz: en az iki sayı içeren bir listenin, sıralandığında sondan ikinci olan sayısını döndürsün (tekrar eden sayılar ayrı sayılır). Örnek: ikinci_buyuk([4, 9, 7]) → 7; ikinci_buyuk([5, 5, 3]) → 5. Verilen listeyi değiştirmesin.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          sayilar = [int(x) for x in sys.argv[1:]]
+          print(cozum.ikinci_buyuk(sayilar), sayilar)
+        suite:
+          - {id: three, args: ["4", "9", "7"], expected_stdout: "7 [4, 9, 7]\n"}
+          - {id: duplicates, args: ["5", "5", "3"], expected_stdout: "5 [5, 5, 3]\n"}
+          - {id: four, args: ["10", "1", "5", "8"], expected_stdout: "8 [10, 1, 5, 8]\n"}
+          - {id: two, args: ["1", "2"], expected_stdout: "1 [1, 2]\n"}
+        reference: |
+          def ikinci_buyuk(sayilar):
+              return sorted(sayilar)[-2]
+        wrong:
+          - |
+            def ikinci_buyuk(sayilar):
+                return sorted(sayilar)[1]
+          - |
+            def ikinci_buyuk(sayilar):
+                sayilar.sort()
+                return sayilar[-2]
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına birikimli(sayilar) adında bir fonksiyon yaz: her konumda o ana kadarki toplamı içeren yeni bir liste döndürsün. Örnek: birikimli([1, 2, 3]) → [1, 3, 6]; birikimli([]) → [].
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.birikimli([int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: three, args: ["1", "2", "3"], expected_stdout: "[1, 3, 6]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+          - {id: cancel, args: ["5", "-5", "2"], expected_stdout: "[5, 0, 2]\n"}
+          - {id: single, args: ["4"], expected_stdout: "[4]\n"}
+        reference: |
+          def birikimli(sayilar):
+              sonuc = []
+              toplam = 0
+              for n in sayilar:
+                  toplam += n
+                  sonuc.append(toplam)
+              return sonuc
+        wrong:
+          - |
+            def birikimli(sayilar):
+                sonuc = []
+                toplam = 0
+                for n in sayilar:
+                    sonuc.append(toplam)
+                    toplam += n
+                return sonuc
+          - |
+            def birikimli(sayilar):
+                sonuc = []
+                for n in sayilar:
+                    toplam = 0
+                    toplam += n
+                    sonuc.append(toplam)
+                return sonuc
