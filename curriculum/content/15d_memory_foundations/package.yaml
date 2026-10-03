@@ -1,0 +1,36 @@
+# 15D — Memory Foundations (MMFX-v0 / D-116)
+#
+# The fourth authored package. It builds on 15A, 15B and 15C (curriculum versions 1-3) and publishes curriculum
+# version 4: FBB-v0 §6.3's memory and pointer seeds as 6C decomposed them — address_value_distinction,
+# pointer_declaration_dereference_basic (pointer_formation + pointer_dereference) and storage_lifetime_intuition. Every
+# hard prerequisite is already published, so nothing is added. Four Skills, six Objectives.
+#
+# C is built and run on Linux (WSL Ubuntu + gcc, D-114). Memory errors are undefined behaviour — what such a program
+# prints proves nothing — so this package builds the learner's code with AddressSanitizer and
+# UndefinedBehaviorSanitizer: a program that reads memory it does not own fails its test even when its output looks
+# right. Identity is never changed.
+version: 4
+step: 15d
+builds_on: [curriculum/content/15a_computing_fundamentals, curriculum/content/15b_python_foundations, curriculum/content/15c_c_foundations]
+source_refs: curriculum/decomposition/6c_foundations;curriculum/content/15d_memory_foundations
+provenance: authored_15d_mmfx_v0
+content_source_ref: source.repo.content_15d_mmfx_v0
+# Noon UTC of the day the independent review of 15D content is recorded (the 15A convention): 2026-10-03T12:00:00Z.
+validated_at_instant: 1791028800000
+
+code:
+  file: cozum.c
+  build: [gcc, -std=c11, -Wall, -Wextra, -g, "-fsanitize=address,undefined", -fno-omit-frame-pointer, -fno-sanitize-recover=all, -o, cozum, cozum.c]
+  run: [env, "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0", ./cozum]
+  harness_cflags: [gcc, -std=c11, -Wall, -Wextra, -g, "-fsanitize=address,undefined", -fno-omit-frame-pointer, -fno-sanitize-recover=all]
+  environment: linux
+  # A sanitizer report ends the program with an error code even when everything it printed was right.
+  expect_clean_exit: true
+lesson_checks: c
+escape_backslash: true
+
+skills:
+  - id: skill.memory.address_value_distinction
+  - id: skill.c.pointer_formation
+  - id: skill.c.pointer_dereference
+  - id: skill.memory.storage_lifetime_intuition

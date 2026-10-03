@@ -1,0 +1,151 @@
+# The C notation of 15D: 15C's constructs, plus addresses, pointers, static storage and (for reading) allocation.
+# Originally the C notation of 15C. Each construct is introduced by the lesson(s) of the Skill(s) named here. An item may use a
+# construct — in the code it shows, in its options, and in the reference solution the learner has to be able to write —
+# only if its own Skill, a hard prerequisite of it (including 15A's language-neutral reasoning Skills), or a Skill the
+# item declares in `required_skills` introduces it. Otherwise the construct is a hidden prerequisite and the build refuses
+# to validate the item. A construct nobody introduces here is forbidden in every 15C item.
+#
+# Patterns are matched against code only: string literals are emptied first, and the lines below are removed.
+strip:
+  - '^\s*#\s*include\s*<[^>\n]*>'
+  - "'(?:\\\\.|[^'\\\\\\n])'"
+  - '//[^\n]*'
+  - '/\*.*?\*/'
+
+constructs:
+  # ---- the toolchain and the smallest program
+  main_function:
+    pattern: '\bint\s+main\s*\('
+    introduced_by: [skill.c.compile_link_run_basic]
+  printf_call:
+    pattern: '\bprintf\s*\('
+    introduced_by: [skill.c.compile_link_run_basic]
+  # ---- declarations and types
+  variable_declaration:
+    pattern: '^\s*(?:const\s+)?(?:unsigned\s+|signed\s+)?(?:int|double|float|char|long|short|bool)\b(?!\s+main\b)[^(;\n]*[;=,]'
+    introduced_by: [skill.c.declaration_type_model]
+  assignment:
+    pattern: '^\s*[A-Za-z_]\w*\s*=(?!=)'
+    introduced_by: [skill.c.declaration_type_model]
+  type_cast:
+    pattern: '\(\s*(?:int|double|float|char|long|unsigned)\s*\)'
+    introduced_by: [skill.c.declaration_type_model]
+  const_qualifier:
+    pattern: '\bconst\b'
+    introduced_by: [skill.c.declaration_type_model]
+  bool_type:
+    pattern: '\b(?:bool|true|false)\b'
+    introduced_by: [skill.c.declaration_type_model]
+  # ---- expressions (+ - * are read since 15A; C's integer division, comparisons and side effects are taught here)
+  arithmetic:
+    pattern: '[\w)]\s*[+\-*]\s*[\w(]'
+    introduced_by: [skill.programming.state_assignment_model, skill.c.expression_evaluation]
+  division_remainder:
+    pattern: '[\w)]\s*[/%]\s*[\w(]'
+    introduced_by: [skill.c.expression_evaluation]
+  comparison:
+    pattern: '==|!=|<=|>=|(?<![<\-])[<>](?![<>=])'
+    introduced_by: [skill.c.expression_evaluation]
+  logical:
+    pattern: '&&|\|\||!(?!=)'
+    introduced_by: [skill.c.expression_evaluation]
+  increment:
+    pattern: '\+\+|--'
+    introduced_by: [skill.c.expression_evaluation]
+  compound_assignment:
+    pattern: '[+\-*/%]='
+    introduced_by: [skill.c.expression_evaluation]
+  # ---- input
+  scanf_call:
+    pattern: '\bscanf\s*\('
+    introduced_by: [skill.c.standard_io_basic]
+  address_for_scanf:
+    pattern: '(?<!&)&(?!&)\s*[A-Za-z_]'
+    introduced_by: [skill.c.standard_io_basic, skill.memory.address_value_distinction]
+  # ---- addresses, pointers, storage (15D)
+  sizeof_operator:
+    pattern: '\bsizeof\b'
+    introduced_by: [skill.memory.address_value_distinction]
+  null_pointer:
+    pattern: '\bNULL\b'
+    introduced_by: [skill.c.pointer_formation]
+  # *p reads or writes through a pointer: a star after an operator, an opening, `return` or the start of a line, and
+  # before a name. `int *p` (a declaration) and `a * b` (a product) do not match.
+  dereference:
+    pattern: '(?:^|[=(,;{!+\-<>&|?:]|\breturn)\s*\*(?=[A-Za-z_(])'
+    introduced_by: [skill.c.pointer_dereference]
+  static_storage:
+    pattern: '\bstatic\b'
+    introduced_by: [skill.memory.storage_lifetime_intuition]
+  # ---- control flow
+  if_else:
+    pattern: '\bif\s*\(|\belse\b'
+    introduced_by: [skill.c.conditionals]
+  switch_case:
+    pattern: '\bswitch\s*\(|\bcase\b|\bdefault\s*:'
+    introduced_by: [skill.c.conditionals]
+  ternary:
+    pattern: '\?[^:\n]*:'
+    introduced_by: [skill.c.conditionals]
+  break_statement:
+    pattern: '\bbreak\s*;'
+    introduced_by: [skill.c.conditionals, skill.c.for_iteration, skill.c.while_iteration]
+  continue_statement:
+    pattern: '\bcontinue\s*;'
+    introduced_by: [skill.c.for_iteration, skill.c.while_iteration]
+  for_loop:
+    pattern: '\bfor\s*\('
+    introduced_by: [skill.c.for_iteration]
+  while_loop:
+    pattern: '\bwhile\s*\('
+    introduced_by: [skill.c.while_iteration]
+  do_while:
+    pattern: '\bdo\b'
+    introduced_by: [skill.c.while_iteration]
+  # ---- functions
+  function_definition:
+    pattern: '^\s*(?:static\s+)?(?:int|double|float|char|long|void|bool)\s*\*?\s*(?!main\b)[A-Za-z_]\w*\s*\('
+    introduced_by: [skill.c.functions_basic]
+  void_return:
+    pattern: '\breturn\s*;'
+    introduced_by: [skill.c.functions_basic]
+  # ---- never introduced in 15D: arrays, strings and aggregates are later C
+  pointer_type:
+    pattern: '\b(?:int|double|float|char|long|void)\s*\*'
+    introduced_by: [skill.c.pointer_formation]
+  arrays:
+    pattern: '\w\s*\['
+    introduced_by: []
+  aggregates:
+    pattern: '\b(?:struct|enum|union|typedef)\b'
+    introduced_by: []
+  # Read, not written, in 15D: writing allocation code is dynamic_allocation_lifecycle's.
+  allocation:
+    pattern: '\b(?:malloc|calloc|realloc|free)\s*\('
+    introduced_by: [skill.memory.storage_lifetime_intuition]
+  string_library:
+    pattern: '\b(?:strlen|strcpy|strcmp|strcat|strncpy)\s*\('
+    introduced_by: []
+  math_library:
+    pattern: '\b(?:sqrt|pow|fabs|floor|ceil)\s*\('
+    introduced_by: []
+  goto_statement:
+    pattern: '\bgoto\b'
+    introduced_by: []
+
+roles:
+  all: [recent_required_progress, weakness_or_verification, retention_due,
+        longitudinal_required_capability, persistent_weakness_or_verification, delayed_retention_sampling]
+  transfer: [integration_or_transfer, cross_topic_transfer]
+  critical: [critical_prerequisite_confidence, critical_capability_revalidation]
+
+# Authoring estimates of active minutes (QAB-v0 §22). Uncalibrated: 18B observes and corrects them.
+minutes:
+  basic: 2
+  authentic_application: 3
+  transfer_integration: 4
+# Writing, building and running at the computer (C needs a compile step) takes longer than reading.
+minutes_code:
+  basic: 6
+  authentic_application: 9
+  transfer_integration: 12

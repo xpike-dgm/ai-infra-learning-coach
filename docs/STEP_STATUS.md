@@ -78,8 +78,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15A — Computer / Programming Fundamentals** | ✅ | CPFX-v0 / D-112. İlk gerçek içerik sevk ediliyor: FBB-v0 §6.1'in 6C alt-grafı (12 Skill, 13 Objective, 11 kenar) `published`; 95 item (83 çalıştırılarak, 8 kaynakla, 4 rubric), 79 anlatım, 34 misconception, 60 görev; her anahtar çalıştırıldı ya da kaynaklandı ve bağımsız incelemeden geçti (95/95, 79/79); `[task]` bölümü ve iki format düzeltmesi; ilk plan iki giriş dersi; kullanıcı kararları: çalıştırma + bağımsız QA, okunur Python alt kümesi, netleştir ve kaydet; 131/131 QA PASS, mutation 22/22. |
 | **15B — Python Foundations** | ✅ | PYFX-v0 / D-113. Öğrenci ilk kez kod yazıyor: 20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle — referans geçer, en az iki yanlış çözüm düşer —, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; artımlı ikinci paket, "yayımlanmış sürümün üzerine yazılmaz"; koşucu UTF-8; bağımsız inceleme 109/109, 116/116; kullanıcı kararları: 20 Skill, artımlı paket; 254/254 QA PASS, Mutation 27/27. |
 | **15C — C Foundations** | ✅ | CFNX-v0 / D-114. Öğrenci C yazıyor: 9 Skill / 10 Objective / 15 kenar `published` (dört C tohumu + standard_io_basic + Linux terminal); 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; her şey Linux'ta gcc ile, öğrencinin koşucusuyla doğrulandı; `PackageFormat.unescape`; kullanıcı kararları: Linux Skill'i, WSL Ubuntu + gcc, standard_io_basic; 155/155 QA PASS, Mutation 8/8. |
-| **15D — Memory Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **15E–20** | ⬜ Bekliyor | 15D sonrası canonical sırada. |
+| **15D — Memory Foundations** | ✅ | MMFX-v0 / D-116. Bellek erişimi AddressSanitizer'ın bildirdiğine göre doğrulanır: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; öğrencinin derlemesi sanitizer'lı ve temiz çıkış ister; yeni kullanıcı kararı gerekmedi; 132/132 QA PASS, Mutation 9/9. |
+| **15E — Linux / Git / Shell Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
+| **15F–20** | ⬜ Bekliyor | 15E sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -98,7 +99,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15C
+## Son tamamlanan numaralı adım — 15D
+
+**Final:** `MMFX-v0 — Memory Foundations content` / D-116.
+**Ana çıktı:** `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15d_memory_foundations/` + `curriculum/content/15d_memory_foundations/` + `android/app-wiring/src/main/assets/curriculum_package_v4.txt`.
+
+15D sonucu:
+- artık var olmayan belleğin kullanımı AddressSanitizer'ın bildirdiğine göre değerlendirilir; öğrencinin derlemesi kontrol edilen derlemedir,
+- yeni kullanıcı kararı gerekmedi; kapsam 6C'nin üç bellek tohumu ayrıştırması, kapanış 15C'de yayımlı,
+- **bulgu:** ömür hatasının çıktısı hiçbir şey kanıtlamaz; gcc 15.2 libasan'ında stack-use-after-return varsayılan açık; sanitizer raporu stdout yazılmadan durdurur; ömür Skill'i işaretçiden okur ama graph söylemez; NULL başlık ister; sanitizer her hatayı yakalamaz,
+- 4 Skill / 6 Objective / 5 kenar `published`; 34 item, 33 anlatım, 13 misconception, 20 görev; 15 ders iddiası Linux'ta çalıştırıldı,
+- bağımsız inceleme: ilk geçişte 29/34 item ve 30/33 anlatım; ikinci geçişte 34/34 ve 33/33,
+- dört paket gerçek SQLite şemasına JVM'de yayımlanıyor; giriş noktası değişmedi; her bellek Skill'i bekliyor,
+- yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi; hiçbir yaşayan kapı daraltılmadı,
+- Mutation 9/9, independent validator **132/132 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+## Önceki numaralı adım — 15C
 
 **Final:** `CFNX-v0 — C Foundations content` / D-114.
 **Ana çıktı:** `docs/C_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15c_c_foundations/` + `curriculum/content/15c_c_foundations/` + `android/app-wiring/src/main/assets/curriculum_package_v3.txt`.
@@ -387,6 +404,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15D Memory Foundations
+## Aktif adım — 15E Linux / Git / Shell Foundations
 
-**15D henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. C araç zinciri (WSL Ubuntu + gcc), C gösterimi (işaretçi ve dizi listede, hâlâ yasak), C test düzeneği ve kaçış kuralı 15C'den hazır.
+**15E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. WSL Ubuntu ortamı, `shell` anahtar kipi ve koşucu hazır; `terminal_filesystem_navigation` 15C'de yayımlandı.

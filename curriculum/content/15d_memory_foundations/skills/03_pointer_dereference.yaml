@@ -1,0 +1,732 @@
+skill: skill.c.pointer_dereference
+activity: coding_production
+tasks:
+  teach: {title: "İşaretçiden okumak ve yazmak: *p", minutes: 18}
+  practice: {title: "İşaretçi üzerinden okuma ve yazma alıştırması", minutes: 15}
+  check: {title: "İşaretçi üzerinden okuma ve yazma kontrolü", minutes: 15}
+  review: {title: "İşaretçi üzerinden okuma ve yazma tekrarı", minutes: 12}
+  repair: {title: "*p'yi yeniden kurmak: geçerli adres, okuma ve güncelleme", minutes: 18}
+
+objectives:
+  - id: objective.c.pointer_dereference.read_pointed_value
+    statement: >-
+      Geçerli bir işaretçinin gösterdiği değeri *p ile okuyabilmek: işaretçi alan fonksiyonlarda gösterilen değerleri
+      kullanarak sonuç hesaplamak ve okumadan önce işaretçinin NULL olup olmadığını denetlemek.
+    observable_behavior: >-
+      İşaretçi parametrelerinin gösterdiği değerlerden doğru sonucu döndüren fonksiyonlar yazar; NULL bir işaretçiyi
+      okumaya çalışmaz.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de bu Skill'in iki Objective'i aynı şablon cümleyi taşıyordu; kimlikler korundu ve cümleler eylem adlarına göre
+      ayrıldı: bu Objective gösterilen değeri okumak, diğeri onu işaretçi üzerinden güncellemek. Testler programı
+      AddressSanitizer ve UBSan ile derler; NULL bir işaretçiyi okuyan çözüm çökme ya da sanitizer raporuyla sıfırdan
+      farklı bir kodla biter ve test geçemez. Item'lar fonksiyon yazdırdığı için functions_basic'i beyan eder.
+    checks:
+      - prints: "5 5 1"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 5;
+              int *p = &x;
+              printf("%d %d %d\n", *p, x, *p == x);
+              return 0;
+          }
+      - prints: "9"
+        code: |
+          #include <stdio.h>
+
+          int topla(int *a, int *b) {
+              return *a + *b;
+          }
+
+          int main(void) {
+              int m = 4, n = 5;
+              printf("%d\n", topla(&m, &n));
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Bir işaretçinin gösterdiği yerdeki değere ulaşmak için önüne * koyarsın (dereference):
+
+        int x = 5;
+        int *p = &x;
+        *p   → 5   (p'nin gösterdiği yerdeki değer, yani x)
+
+        Dikkat: * iki yerde iki farklı anlamdadır.
+        - int *p = &x;  bildirimde: "p bir int işaretçisidir".
+        - *p            ifadede: "p'nin gösterdiği değer".
+
+        İşaretçi alan fonksiyonlar, gösterilen değerleri okuyabilir:
+        int topla(int *a, int *b) {
+            return *a + *b;
+        }
+        topla(&m, &n) → m + n
+
+        Geçerli olmayan işaretçiyi okumamak: NULL bir işaretçinin gösterdiği bir yer yoktur. *p ile okumak tanımsızdır ve program çoğu zaman çöker. Okumadan önce denetle:
+        if (p != NULL) {
+            ... *p ...
+        }
+
+        İlk değeri verilmemiş bir işaretçiyi okumak da tanımsızdır: int *q; *q → ? Bir işaretçiye her zaman ya bir adres ya NULL ver.
+
+        *p ile x aynı yeri anlatır: x'in değeri değişirse *p'nin okuduğu da değişir.
+
+        Dersin testleri programını AddressSanitizer ve UBSan ile derler: NULL'dan, free edilmiş bellekten ya da dönmüş bir fonksiyonun yerelinden okumak gibi pek çok geçersiz okuma, çıktı doğru görünse bile testi düşürür. Ama hepsi yakalanmaz — ilk değeri verilmemiş bir işaretçiden okumak sessizce bir sayı verebilir; bu yüzden işaretçiye her zaman bir adres ya da NULL ver.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (işaretçi oluşturmak): int *p = &x; p'ye x'in adresini koyar; p'nin değeri bir adrestir ve hiçbir yeri göstermeyen işaretçi NULL'dur.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          int a = 3;          a:[3]
+          int *p = &a;        p:[a'nın adresi]
+          int b = *p + 1;     *p → a'nın değeri 3; b:[4]
+          a = 10;             a:[10]  (p hâlâ a'yı gösterir)
+          printf("%d %d", *p, b);   → 10 4
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: double fark(double *a, double *b) — gösterilen iki değerin farkını (*a - *b) döndür.
+
+          double fark(double *a, double *b) {
+              return *a - *b;
+          }
+
+          - double u = 7.5, v = 2.0; için fark(&u, &v) → 5.5.
+          - Fonksiyon u'yu ve v'yi kopyalamadı; onların yerlerine baktı.
+    misconceptions:
+      - slug: p_is_the_value
+        name: p ile *p aynı şeydir
+        open_question: printf("%d", p) yazmanın p'nin gösterdiği değeri yazdıracağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "p, x'i gösteriyor; o halde p x'tir."
+
+            p bir adrestir; gösterdiği değer *p'dir. Değeri yazdırmak için *p yazarsın. p'yi %d ile yazdırmak bir adresi yanlış biçimde yazdırır (-Wall uyarır).
+      - slug: null_reads_zero
+        name: NULL bir işaretçiyi okumak 0 verir
+        open_question: NULL bir işaretçiyi *p ile okuyunca 0 elde edileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "NULL boş demek, boşun değeri 0."
+
+            NULL hiçbir yeri göstermez; *p ile okunacak bir değer yoktur. Bunu yapmak tanımsızdır ve program çoğu zaman çöker. Okumadan önce p != NULL diye denetlersin.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c dosyasına int deger(int *p) fonksiyonunu yaz: p'nin gösterdiği değeri döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int deger(int *p);
+
+          int main(void) {
+              int x = 0;
+              scanf("%d", &x);
+              printf("%d\n", deger(&x));
+              return 0;
+          }
+        suite:
+          - {id: positive, stdin: "42\n", expected_stdout: "42\n"}
+          - {id: negative, stdin: "-7\n", expected_stdout: "-7\n"}
+        reference: |
+          int deger(int *p) {
+              return *p;
+          }
+        wrong:
+          - |
+            int deger(int *p) {
+                return p != 0;
+            }
+          - |
+            int deger(int *p) {
+                return 0;
+            }
+          - |
+            int *kopya(int *p) {
+                int k = *p;
+                int *q = &k;
+                return q;
+            }
+
+            int deger(int *p) {
+                return *kopya(p);
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c dosyasına int carpim(int *a, int *b) fonksiyonunu yaz: a ve b'nin gösterdiği değerlerin çarpımını döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int carpim(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              scanf("%d %d", &x, &y);
+              printf("%d\n", carpim(&x, &y));
+              return 0;
+          }
+        suite:
+          - {id: small, stdin: "6 7\n", expected_stdout: "42\n"}
+          - {id: negative, stdin: "-3 5\n", expected_stdout: "-15\n"}
+          - {id: zero, stdin: "0 9\n", expected_stdout: "0\n"}
+        reference: |
+          int carpim(int *a, int *b) {
+              return *a * *b;
+          }
+        wrong:
+          - |
+            int carpim(int *a, int *b) {
+                return *a + *b;
+            }
+          - |
+            int carpim(int *a, int *b) {
+                return *a * *a;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int buyugu(int *a, int *b) fonksiyonunu yaz: a ve b'nin gösterdiği değerlerden büyük olanı döndürsün (eşitse o değeri). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int buyugu(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              scanf("%d %d", &x, &y);
+              printf("%d\n", buyugu(&x, &y));
+              return 0;
+          }
+        suite:
+          - {id: first, stdin: "9 2\n", expected_stdout: "9\n"}
+          - {id: second, stdin: "-4 3\n", expected_stdout: "3\n"}
+          - {id: equal, stdin: "5 5\n", expected_stdout: "5\n"}
+        reference: |
+          int buyugu(int *a, int *b) {
+              if (*a >= *b) {
+                  return *a;
+              }
+              return *b;
+          }
+        wrong:
+          - |
+            int buyugu(int *a, int *b) {
+                if (*a <= *b) {
+                    return *a;
+                }
+                return *b;
+            }
+          - |
+            int buyugu(int *a, int *b) {
+                if (a >= b) {
+                    return *a;
+                }
+                return *b;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int oku_ya_da(int *p, int varsayilan) fonksiyonunu yaz: p NULL değilse gösterdiği değeri, NULL ise varsayilan değerini döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle, bazen NULL vererek çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int oku_ya_da(int *p, int varsayilan);
+
+          int main(void) {
+              int x = 0, bos = 0, v = 0;
+              scanf("%d %d %d", &x, &bos, &v);
+              printf("%d\n", oku_ya_da(bos ? NULL : &x, v));
+              return 0;
+          }
+        suite:
+          - {id: valid, stdin: "15 0 -1\n", expected_stdout: "15\n"}
+          - {id: null_pointer, stdin: "15 1 -1\n", expected_stdout: "-1\n"}
+          - {id: null_other_default, stdin: "0 1 99\n", expected_stdout: "99\n"}
+        reference: |
+          #include <stddef.h>
+
+          int oku_ya_da(int *p, int varsayilan) {
+              if (p == NULL) {
+                  return varsayilan;
+              }
+              return *p;
+          }
+        wrong:
+          - |
+            int oku_ya_da(int *p, int varsayilan) {
+                return *p;
+            }
+          - |
+            #include <stddef.h>
+
+            int oku_ya_da(int *p, int varsayilan) {
+                if (p == NULL) {
+                    return 0;
+                }
+                return *p;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına double ortalama3(double *a, double *b, double *c) fonksiyonunu yaz: üç işaretçinin gösterdiği değerlerin ortalamasını döndürsün. NULL olan işaretçiler hesaba katılmasın (yalnız NULL olmayanların ortalaması); üçü de NULL ise 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          double ortalama3(double *a, double *b, double *c);
+
+          int main(void) {
+              double x = 0, y = 0, z = 0;
+              int na = 0, nb = 0, nc = 0;
+              scanf("%lf %lf %lf %d %d %d", &x, &y, &z, &na, &nb, &nc);
+              printf("%.2f\n", ortalama3(na ? NULL : &x, nb ? NULL : &y, nc ? NULL : &z));
+              return 0;
+          }
+        suite:
+          - {id: all, stdin: "1 2 6 0 0 0\n", expected_stdout: "3.00\n"}
+          - {id: one_null, stdin: "1 2 6 0 1 0\n", expected_stdout: "3.50\n"}
+          - {id: two_null, stdin: "1 2 6 1 1 0\n", expected_stdout: "6.00\n"}
+          - {id: all_null, stdin: "1 2 6 1 1 1\n", expected_stdout: "0.00\n"}
+          - {id: fractions, stdin: "1.5 2 6 0 0 0\n", expected_stdout: "3.17\n"}
+        reference: |
+          #include <stddef.h>
+
+          double ortalama3(double *a, double *b, double *c) {
+              double toplam = 0;
+              int adet = 0;
+              if (a != NULL) {
+                  toplam += *a;
+                  adet++;
+              }
+              if (b != NULL) {
+                  toplam += *b;
+                  adet++;
+              }
+              if (c != NULL) {
+                  toplam += *c;
+                  adet++;
+              }
+              if (adet == 0) {
+                  return 0;
+              }
+              return toplam / adet;
+          }
+        wrong:
+          - |
+            #include <stddef.h>
+
+            double ortalama3(double *a, double *b, double *c) {
+                double toplam = 0;
+                if (a != NULL) {
+                    toplam += *a;
+                }
+                if (b != NULL) {
+                    toplam += *b;
+                }
+                if (c != NULL) {
+                    toplam += *c;
+                }
+                return toplam / 3;
+            }
+          - |
+            double ortalama3(double *a, double *b, double *c) {
+                return (*a + *b + *c) / 3;
+            }
+
+  - id: objective.c.pointer_dereference.modify_value_via_pointer
+    statement: >-
+      Geçerli bir işaretçi üzerinden gösterilen değeri *p = ... ile güncelleyebilmek: bir fonksiyonun çağıranın
+      değişkenini işaretçi parametresiyle değiştirmesini sağlamak, iki değeri işaretçilerle yer değiştirmek, birden çok
+      sonucu çıkış parametreleriyle (int *sonuc) vermek ve güncellemeden önce işaretçinin NULL olmadığını denetlemek.
+    observable_behavior: >-
+      Çağıranın değişkenlerini işaretçi parametreleriyle doğru güncelleyen fonksiyonlar yazar; NULL bir işaretçiye
+      yazmaz.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'nin şablon cümlesi bu Objective'in eylem adına (modify_value_via_pointer) göre özgülleştirildi; kimlik korundu.
+      Direct type authored_code; testler AddressSanitizer ve UBSan ile derler. 15C'nin functions_basic'i "değerle
+      geçirme"yi öğretti ve çağıranın değişkenini değiştirmenin yolunu buraya bıraktı; bu Objective o yolu kurar.
+    checks:
+      - prints: "12"
+        code: |
+          #include <stdio.h>
+
+          void artir(int *p) {
+              *p = *p + 2;
+          }
+
+          int main(void) {
+              int k = 10;
+              artir(&k);
+              printf("%d\n", k);
+              return 0;
+          }
+      - prints: "7 3"
+        code: |
+          #include <stdio.h>
+
+          void degistir(int *a, int *b) {
+              int gecici = *a;
+              *a = *b;
+              *b = gecici;
+          }
+
+          int main(void) {
+              int x = 3, y = 7;
+              degistir(&x, &y);
+              printf("%d %d\n", x, y);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        *p yalnız okumak için değil, yazmak için de kullanılır:
+
+        int x = 3;
+        int *p = &x;
+        *p = 8;      (p'nin gösterdiği yere, yani x'e 8 yazılır)
+        x → 8
+
+        Fonksiyonun çağıranın değişkenini değiştirmesi: C'de argümanlar değerle geçirilir; bir fonksiyon kendi kopyasını değiştirir. Çağıranın değişkenini değiştirmek için onun adresini verirsin:
+
+        void artir(int *p) {
+            *p = *p + 2;
+        }
+        int k = 10;
+        artir(&k);   → k 12
+
+        Yer değiştirme: iki işaretçi ve bir geçici değişken.
+        void degistir(int *a, int *b) {
+            int gecici = *a;
+            *a = *b;
+            *b = gecici;
+        }
+
+        Birden çok sonuç: bir fonksiyon yalnız bir değer döndürebilir; fazlasını çıkış parametreleriyle verir:
+        void toplam_fark(int a, int b, int *toplam, int *fark) {
+            *toplam = a + b;
+            *fark = a - b;
+        }
+
+        NULL'a yazmamak: işaretçi NULL olabilecekse yazmadan önce denetle: if (p != NULL) { *p = ...; }
+
+        Yaygın hata: p = ... yazmak (işaretçinin kendisini değiştirir, gösterdiği değeri değil). Çağıranın değişkeni değişmez.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (işaretçiden okumak): *p p'nin gösterdiği değerdir; *p ile x aynı yeri anlatır ve NULL bir işaretçinin gösterdiği bir yer yoktur.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: void sinirla(int *p, int ust) — p'nin gösterdiği değer ust'ten büyükse onu ust'e indir.
+
+          void sinirla(int *p, int ust) {
+              if (*p > ust) {
+                  *p = ust;
+              }
+          }
+
+          - int s = 140; sinirla(&s, 100); → s 100.
+          - int t = 40; sinirla(&t, 100); → t 40 (değişmez).
+    misconceptions:
+      - slug: assign_pointer_not_value
+        name: p = 5 yazmak p'nin gösterdiği değişkeni 5 yapar
+        open_question: Bir fonksiyon içinde p = yeni_deger; yazmanın çağıranın değişkenini değiştireceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "p x'i gösteriyor, p'ye yazarsam x'e yazarım."
+
+            p = ... işaretçinin kendisini (taşıdığı adresi) değiştirir; gösterdiği değişkene dokunmaz. Gösterilen değeri değiştirmek için *p = ... yazılır.
+      - slug: swap_by_value_works
+        name: Değerleri parametre olarak alan bir fonksiyon onları yer değiştirebilir
+        open_question: void degistir(int a, int b) gibi bir fonksiyonun çağıranın iki değişkenini yer değiştirebileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fonksiyonun içinde değiştirdim, dışarıda da değişir."
+
+            int parametreler kopyadır; fonksiyon kopyaları değiştirir ve döner, çağıranın değişkenleri aynı kalır. Yer değiştirmek için adresleri (int *) alırsın ve *a, *b üzerinden yazarsın.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c dosyasına void ikiye_katla(int *p) fonksiyonunu yaz: p'nin gösterdiği değeri iki katına çıkarsın. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve değişkenin yeni değerini yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void ikiye_katla(int *p);
+
+          int main(void) {
+              int x = 0;
+              scanf("%d", &x);
+              ikiye_katla(&x);
+              printf("%d\n", x);
+              return 0;
+          }
+        suite:
+          - {id: positive, stdin: "21\n", expected_stdout: "42\n"}
+          - {id: negative, stdin: "-8\n", expected_stdout: "-16\n"}
+        reference: |
+          void ikiye_katla(int *p) {
+              *p = *p * 2;
+          }
+        wrong:
+          - |
+            void ikiye_katla(int *p) {
+                int kopya = *p;
+                kopya = kopya * 2;
+            }
+          - |
+            void ikiye_katla(int *p) {
+                *p = *p + 2;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c dosyasına void sifirla(int *a, int *b) fonksiyonunu yaz: iki işaretçinin gösterdiği değerleri 0 yapsın. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve iki değişkeni yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void sifirla(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              scanf("%d %d", &x, &y);
+              sifirla(&x, &y);
+              printf("%d %d\n", x, y);
+              return 0;
+          }
+        suite:
+          - {id: both, stdin: "5 9\n", expected_stdout: "0 0\n"}
+          - {id: negatives, stdin: "-1 -2\n", expected_stdout: "0 0\n"}
+        reference: |
+          void sifirla(int *a, int *b) {
+              *a = 0;
+              *b = 0;
+          }
+        wrong:
+          - |
+            void sifirla(int *a, int *b) {
+                *a = 0;
+            }
+          - |
+            #include <stddef.h>
+
+            void sifirla(int *a, int *b) {
+                a = NULL;
+                b = NULL;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void kucuk_basa(int *a, int *b) fonksiyonunu yaz: a'nın gösterdiği değer b'ninkinden büyükse ikisini yer değiştirsin, böylece fonksiyondan sonra *a <= *b olsun. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          void kucuk_basa(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              scanf("%d %d", &x, &y);
+              kucuk_basa(&x, &y);
+              printf("%d %d\n", x, y);
+              return 0;
+          }
+        suite:
+          - {id: swap_needed, stdin: "9 4\n", expected_stdout: "4 9\n"}
+          - {id: already_ordered, stdin: "2 8\n", expected_stdout: "2 8\n"}
+          - {id: equal, stdin: "5 5\n", expected_stdout: "5 5\n"}
+          - {id: negatives, stdin: "-1 -6\n", expected_stdout: "-6 -1\n"}
+        reference: |
+          void kucuk_basa(int *a, int *b) {
+              if (*a > *b) {
+                  int gecici = *a;
+                  *a = *b;
+                  *b = gecici;
+              }
+          }
+        wrong:
+          - |
+            void kucuk_basa(int *a, int *b) {
+                if (*a > *b) {
+                    *a = *b;
+                    *b = *a;
+                }
+            }
+          - |
+            void kucuk_basa(int *a, int *b) {
+                int gecici = *a;
+                *a = *b;
+                *b = gecici;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void bol(int a, int b, int *bolum, int *kalan) fonksiyonunu yaz: a / b tam sayı bölümünü *bolum'e, kalanı *kalan'a yazsın (b sıfır olmayacak). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          void bol(int a, int b, int *bolum, int *kalan);
+
+          int main(void) {
+              int a = 0, b = 1, q = -99, r = -99;
+              scanf("%d %d", &a, &b);
+              bol(a, b, &q, &r);
+              printf("%d %d\n", q, r);
+              return 0;
+          }
+        suite:
+          - {id: simple, stdin: "17 5\n", expected_stdout: "3 2\n"}
+          - {id: exact, stdin: "20 4\n", expected_stdout: "5 0\n"}
+          - {id: negative, stdin: "-7 2\n", expected_stdout: "-3 -1\n"}
+        reference: |
+          void bol(int a, int b, int *bolum, int *kalan) {
+              *bolum = a / b;
+              *kalan = a % b;
+          }
+        wrong:
+          - |
+            void bol(int a, int b, int *bolum, int *kalan) {
+                *bolum = a % b;
+                *kalan = a / b;
+            }
+          - |
+            void bol(int a, int b, int *bolum, int *kalan) {
+                int q = a / b;
+                int r = a % b;
+                bolum = &q;
+                kalan = &r;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int en_kucuk_en_buyuk(int a, int b, int c, int *en_kucuk, int *en_buyuk) fonksiyonunu yaz: üç sayının en küçüğünü *en_kucuk'e, en büyüğünü *en_buyuk'e yazsın ve 1 döndürsün. İşaretçilerden biri NULL ise hiçbir yere yazmadan 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle, bazen NULL vererek çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int en_kucuk_en_buyuk(int a, int b, int c, int *en_kucuk, int *en_buyuk);
+
+          int main(void) {
+              int a = 0, b = 0, c = 0, bos = 0;
+              int lo = -99, hi = -99;
+              scanf("%d %d %d %d", &a, &b, &c, &bos);
+              int r = en_kucuk_en_buyuk(a, b, c, bos == 1 ? NULL : &lo, bos == 2 ? NULL : &hi);
+              printf("%d %d %d\n", r, lo, hi);
+              return 0;
+          }
+        suite:
+          - {id: mixed, stdin: "4 -2 9 0\n", expected_stdout: "1 -2 9\n"}
+          - {id: ties, stdin: "3 3 1 0\n", expected_stdout: "1 1 3\n"}
+          - {id: descending, stdin: "5 3 1 0\n", expected_stdout: "1 1 5\n"}
+          - {id: ascending, stdin: "1 3 7 0\n", expected_stdout: "1 1 7\n"}
+          - {id: middle_largest, stdin: "2 9 4 0\n", expected_stdout: "1 2 9\n"}
+          - {id: first_null, stdin: "4 -2 9 1\n", expected_stdout: "0 -99 -99\n"}
+          - {id: second_null, stdin: "4 -2 9 2\n", expected_stdout: "0 -99 -99\n"}
+        reference: |
+          #include <stddef.h>
+
+          int en_kucuk_en_buyuk(int a, int b, int c, int *en_kucuk, int *en_buyuk) {
+              if (en_kucuk == NULL || en_buyuk == NULL) {
+                  return 0;
+              }
+              int lo = a;
+              int hi = a;
+              if (b < lo) {
+                  lo = b;
+              }
+              if (c < lo) {
+                  lo = c;
+              }
+              if (b > hi) {
+                  hi = b;
+              }
+              if (c > hi) {
+                  hi = c;
+              }
+              *en_kucuk = lo;
+              *en_buyuk = hi;
+              return 1;
+          }
+        wrong:
+          - |
+            int en_kucuk_en_buyuk(int a, int b, int c, int *en_kucuk, int *en_buyuk) {
+                int lo = a;
+                int hi = a;
+                if (b < lo) {
+                    lo = b;
+                }
+                if (c < lo) {
+                    lo = c;
+                }
+                if (b > hi) {
+                    hi = b;
+                }
+                if (c > hi) {
+                    hi = c;
+                }
+                *en_kucuk = lo;
+                *en_buyuk = hi;
+                return 1;
+            }
+          - |
+            #include <stddef.h>
+
+            int en_kucuk_en_buyuk(int a, int b, int c, int *en_kucuk, int *en_buyuk) {
+                if (en_kucuk == NULL) {
+                    return 0;
+                }
+                int lo = a;
+                int hi = a;
+                if (b < lo) {
+                    lo = b;
+                }
+                if (c < lo) {
+                    lo = c;
+                }
+                if (b > hi) {
+                    hi = b;
+                }
+                if (c > hi) {
+                    hi = c;
+                }
+                *en_kucuk = lo;
+                if (en_buyuk != NULL) {
+                    *en_buyuk = hi;
+                }
+                return 1;
+            }

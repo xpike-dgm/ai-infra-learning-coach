@@ -1,0 +1,361 @@
+skill: skill.memory.storage_lifetime_intuition
+activity: code_reading_trace
+tasks:
+  teach: {title: "Ne zamana kadar var? Otomatik, static ve dinamik ömür", minutes: 18}
+  practice: {title: "Depolama ömrü alıştırması", minutes: 10}
+  check: {title: "Depolama ömrü kontrolü", minutes: 8}
+  review: {title: "Depolama ömrü tekrarı", minutes: 6}
+  repair: {title: "Ömrü yeniden çizmek: fonksiyon dönünce ve free'den sonra", minutes: 14}
+
+objectives:
+  - id: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+    statement: >-
+      Basit örneklerde bir değişkenin ya da bellek parçasının ne zamana kadar var olduğunu ayırt edebilmek: bir
+      fonksiyonun yerel (otomatik) değişkenlerinin fonksiyon dönünce yok olduğunu, static yerel değişkenin çağrılar
+      arasında değerini koruduğunu, malloc ile alınan belleğin free edilene kadar yaşadığını ve ömrü bitmiş bir yere
+      erişmenin tanımsız olduğunu söyleyebilmek.
+    observable_behavior: >-
+      Kısa programlarda bir erişimin geçerli olup olmadığını (yerel değişkenin adresi fonksiyon dönünce, free sonrası)
+      ve static ile otomatik değişkenlerin çağrılar arasındaki davranışını doğru söyler; bunu kendi cümleleriyle
+      açıklar.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation, code_reading]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type explanation (anahtarlı item'lar ve bir rubric
+      item'ı). Ömrü bitmiş belleğe erişmek tanımsız davranıştır ve böyle bir programın çıktısı hiçbir şey kanıtlamaz;
+      bu yüzden "bu erişim geçerli mi" sorularının anahtarları program AddressSanitizer ile derlenip çalıştırılarak
+      doğrulanır (stack-use-after-return, heap-use-after-free ya da bulgu yok). malloc/free burada yalnız okunur;
+      dinamik belleği yazmak dynamic_allocation_lifecycle'ındır. Item'lar işaretçi kullandığı için pointer_dereference'ı
+      beyan eder; graph bu Skill'i yalnız functions_basic'e bağlar.
+    checks:
+      - prints: "1 2 3"
+        code: |
+          #include <stdio.h>
+
+          int say(void) {
+              static int n = 0;
+              n++;
+              return n;
+          }
+
+          int main(void) {
+              int a = say();
+              int b = say();
+              int c = say();
+              printf("%d %d %d\n", a, b, c);
+              return 0;
+          }
+      - prints: "1 1 1"
+        code: |
+          #include <stdio.h>
+
+          int say(void) {
+              int n = 0;
+              n++;
+              return n;
+          }
+
+          int main(void) {
+              int a = say();
+              int b = say();
+              int c = say();
+              printf("%d %d %d\n", a, b, c);
+              return 0;
+          }
+      - finding: stack-use-after-return
+        prints: ""
+        code: |
+          #include <stdio.h>
+
+          int *yerel_adres(void) {
+              int x = 5;
+              int *p = &x;
+              return p;
+          }
+
+          int main(void) {
+              int *q = yerel_adres();
+              printf("%d\n", *q);
+              return 0;
+          }
+      - finding: heap-use-after-free
+        prints: ""
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+
+          int main(void) {
+              int *p = malloc(sizeof(int));
+              *p = 7;
+              free(p);
+              printf("%d\n", *p);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Her değişkenin bir ömrü vardır: bellekteki yeri ne zaman ayrılır, ne zaman geri alınır?
+
+        1. Otomatik (yerel) değişkenler: bir fonksiyonun içinde bildirilen değişkenler fonksiyon çağrılınca oluşur, fonksiyon dönünce yok olur. Her çağrıda yeniden oluşur ve ilk değerini yeniden alır.
+        int say(void) { int n = 0; n++; return n; }   → her çağrı 1 döndürür.
+
+        2. static yerel değişkenler: static int n = 0; program başlarken bir kez oluşur ve program bitene kadar yaşar; çağrılar arasında değerini korur. İlk değer ataması yalnız bir kez yapılır.
+        int say(void) { static int n = 0; n++; return n; }   → 1, 2, 3, ...
+
+        3. Dinamik bellek: malloc ile istenen bellek free edilene kadar yaşar; hangi fonksiyonda istendiği önemli değildir.
+        int *p = malloc(sizeof(int));   (bir int'lik yer)
+        ...
+        free(p);                        (yer geri verildi; p hâlâ eski adresi taşır ama orası artık senin değil)
+
+        Ömrü bitmiş yere erişmek tanımsızdır:
+        - Bir fonksiyonun yerel değişkeninin adresini döndürüp fonksiyon döndükten sonra kullanmak (o yer artık yok).
+        - free edilmiş belleği okumak ya da yazmak.
+        Böyle bir program bazen "doğru" sayıyı yazdırır, bazen çöker, bazen başka bir şey yapar — çıktısı hiçbir şey kanıtlamaz. AddressSanitizer bunları güvenilir biçimde yakalar: stack-use-after-return (dönmüş fonksiyonun yereli) ve heap-use-after-free (free edilmiş bellek).
+
+        Güvenli kalıplar: değeri döndür (adresini değil); adres döndürmen gerekiyorsa static ya da malloc ile alınmış bir yerin adresini döndür; free ettiğin işaretçiyi bir daha kullanma (p = NULL; yapmak iyi bir alışkanlıktır).
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (fonksiyonlar ve işaretçiler): bir fonksiyonun parametreleri ve yerel değişkenleri çağrı sırasında açılan kutulardır; *p bir işaretçinin gösterdiği değere erişir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          int *sayac_adresi(void) {
+              static int sayac = 10;
+              sayac++;
+              return &sayac;
+          }
+          ...
+          int *a = sayac_adresi();
+          int *b = sayac_adresi();
+          printf("%d %d\n", *a, a == b);
+
+          - sayac static: program boyunca yaşar; iki çağrı aynı yeri döndürür.
+          - İlk çağrı 11, ikinci 12 yapar; *a o yeri gösterdiği için 12 okur.
+          - a == b → 1. Erişim geçerlidir; ekranda 12 1.
+    misconceptions:
+      - slug: local_outlives_function
+        name: Yerel bir değişkenin adresi fonksiyon döndükten sonra da kullanılabilir
+        open_question: Bir fonksiyonun yerel değişkeninin adresini döndürüp sonra o adresten okumanın güvenli olduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Program doğru sayıyı yazdırdı, o halde sorun yok."
+
+            Yerel değişkenin yeri fonksiyon dönünce geri alınır. O adresten okumak tanımsızdır: bazen eski değer görünür, bazen başka bir şey. Değeri döndür ya da static/malloc ile alınmış bir yerin adresini döndür.
+      - slug: static_resets_each_call
+        name: static yerel değişken her çağrıda ilk değerine döner
+        open_question: static int n = 0; satırının her çağrıda n'yi yeniden 0 yaptığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Satır her çağrıda çalışıyor, o halde n her seferinde 0."
+
+            static bir yerelin ilk değeri yalnız bir kez, program başlarken verilir; değişken çağrılar arasında yaşar ve son değerini korur.
+      - slug: free_clears_pointer
+        name: free(p) p'yi NULL yapar ya da belleği sıfırlar
+        open_question: free(p) çağrısından sonra p'nin NULL olduğunu ya da *p'nin hâlâ güvenle okunabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "free'den sonra p boş oldu."
+
+            free belleği geri verir ama p'nin taşıdığı adresi değiştirmez; p artık sahibi olmadığın bir yeri gösterir. Oradan okumak ya da oraya yazmak tanımsızdır. İstersen kendin p = NULL; yazarsın.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int adim(void) {
+              static int toplam = 0;
+              toplam += 5;
+              return toplam;
+          }
+
+          int main(void) {
+              adim();
+              adim();
+              printf("%d\n", adim());
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        answer: "15"
+        verify: {mode: c_stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int adim(void) {
+              int toplam = 0;
+              toplam += 5;
+              return toplam;
+          }
+
+          int main(void) {
+              adim();
+              adim();
+              printf("%d\n", adim());
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        answer: "5"
+        verify: {mode: c_stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu programdaki *sonuc okuması için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+
+          int *karesi(int n) {
+              int k = n * n;
+              int *p = &k;
+              return p;
+          }
+
+          int main(void) {
+              int *sonuc = karesi(6);
+              printf("%d\n", *sonuc);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçersizdir: k, karesi dönünce yok olmuş bir yerel değişkendir"
+          B: "Geçerlidir ve her zaman 36 yazar"
+          C: "Geçersizdir: okunan bellek daha önce free edilmiştir"
+          D: "Program derlenmez"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_sanitize
+          outcomes: {A: stack-use-after-return, B: ok, C: heap-use-after-free, D: compile}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu programdaki son printf satırı için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+
+          int main(void) {
+              double *oran = malloc(sizeof(double));
+              *oran = 0.25;
+              printf("%.2f\n", *oran);
+              free(oran);
+              printf("%.2f\n", *oran);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçersizdir: free edilmiş belleği okur"
+          B: "Geçerlidir; iki kez 0.25 yazar"
+          C: "Geçerlidir; free belleği sıfırladığı için ikinci satır 0.00 yazar"
+          D: "Geçersizdir: oran, main dönünce yok olmuş bir yerel değişkendir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_sanitize
+          outcomes: {A: heap-use-after-free, B: ok, C: ok-zero, D: stack-use-after-return}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu programdaki *a ve *b okumaları için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+
+          int *sira_no(void) {
+              static int sira = 100;
+              sira++;
+              return &sira;
+          }
+
+          int main(void) {
+              int *a = sira_no();
+              int *b = sira_no();
+              printf("%d %d %d\n", *a, *b, a == b);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference, skill.c.expression_evaluation]
+        options:
+          A: "Geçerlidir; sira static olduğu için program boyunca yaşar ve ekranda 102 102 1 görünür"
+          B: "Geçersizdir: sira, sira_no dönünce yok olur"
+          C: "Geçerlidir; ekranda 101 102 0 görünür"
+          D: "Geçersizdir: döndürülen bellek free edilmiştir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_sanitize
+          prints: "102 102 1"
+          outcomes: {A: ok, B: stack-use-after-return, C: ok-different, D: heap-use-after-free}
+      - slug: f06
+        difficulty: transfer_integration
+        prompt: |
+          Bu programdaki okumalar için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+
+          int *yeni_sayi(int deger) {
+              int *p = malloc(sizeof(int));
+              *p = deger;
+              return p;
+          }
+
+          int main(void) {
+              int *x = yeni_sayi(8);
+              printf("%d\n", *x);
+              free(x);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçerlidir: malloc ile alınan bellek yeni_sayi dönünce de free edilene kadar yaşar; ekranda 8 görünür"
+          B: "Geçersizdir: p, yeni_sayi'nin yereli olduğu için gösterdiği bellek de fonksiyon dönünce yok olur"
+          C: "Geçersizdir: bellek okunmadan önce free edilmiştir"
+          D: "Program derlenmez"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_sanitize
+          prints: "8"
+          outcomes: {A: ok, B: stack-use-after-return, C: heap-use-after-free, D: compile}
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bu programı yazan biri "çalıştırdım, 5 yazdı, demek ki doğru" diyor:
+          int *toplam_adresi(int a, int b) {
+              int t = a + b;
+              int *p = &t;
+              return p;
+          }
+          int main(void) {
+              int *s = toplam_adresi(2, 3);
+              printf("%d\n", *s);
+              return 0;
+          }
+          Kendi cümlelerinle anlat: bu programda ne yanlış ve neden "5 yazdı" bir kanıt değil? Programı iki farklı biçimde düzelt; her düzeltmede neyi değiştirdiğini ve neden artık geçerli olduğunu söyle. (3–6 cümle yeterli.)
+        required_skills: [skill.c.pointer_dereference]
+        answer: "-"
+        rubric:
+          - id: names_the_local
+            statement: Sorunun t olduğunu söyler — t toplam_adresi'nin yereli olduğu için fonksiyon dönünce yok olur, s artık var olmayan bir yeri gösterir.
+          - id: output_proves_nothing
+            statement: "*s okumasının tanımsız olduğunu, bu yüzden 5 yazmasının programın doğru olduğunu kanıtlamadığını belirtir."
+          - id: first_repair
+            statement: Geçerli bir düzeltme verir ve nedenini söyler (örneğin işaretçi yerine toplamın değerini döndürmek; değer kopyalanır, yok olan bir yere bakılmaz).
+          - id: second_repair
+            statement: Birinciden farklı ikinci geçerli bir düzeltme verir ve nedenini söyler (örneğin t'yi static yapmak ya da malloc ile alınmış bir yerin adresini döndürüp sonra free etmek; o yer fonksiyondan sonra da yaşar).
+        verify:
+          mode: rubric

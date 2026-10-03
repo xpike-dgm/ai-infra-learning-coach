@@ -133,4 +133,41 @@ class ShippedCourseTest {
         assertTrue(waiting.containsAll(listOf("compile_link_run_basic", "declaration_type_model", "functions_basic").map { skill("skill.c.$it") }))
         assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
     }
+
+    // ------------------------------------------------- 15D (`MMFX-v0`, `D-116`): the course with memory and pointers
+
+    private val memory = File("src/main/assets/curriculum_package_v4.txt").readText()
+    private val withMemory = FileContentSource(later = { listOf(python, c, memory) }, source = { first })
+    private val memorySkills = listOf("skill.memory.address_value_distinction", "skill.c.pointer_formation",
+        "skill.c.pointer_dereference", "skill.memory.storage_lifetime_intuition").map { skill(it) }
+
+    @Test
+    fun `all four shipped packages are published into the real store, oldest first, and pointers wait on addresses`() {
+        assertEquals(listOf(1, 2, 3, 4), IngestCurriculum(store, withMemory, clock).ingestAll().map { assertIs<PublishOutcome.Published>(it, "$it").version })
+        assertEquals(4, store.latestCurriculumVersion())
+        assertEquals(45, store.publishedSkills().size)
+        // A pointer is formed only after address and value are told apart, and on 15C's types (6C), through the store.
+        val into = store.prerequisiteEdgesInto(skill("skill.c.pointer_formation")).map { it.prerequisite }.toSet()
+        assertEquals(setOf(skill("skill.memory.address_value_distinction"), skill("skill.c.declaration_type_model")), into)
+        assertEquals((1..4).map { PublishOutcome.AlreadyPublished(it) }, IngestCurriculum(store, withMemory, clock).ingestAll())
+    }
+
+    @Test
+    fun `with the memory package, a learner who has done nothing is offered the same three entry lessons, and every memory Skill waits`() {
+        IngestCurriculum(store, withMemory, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, withMemory, clock)
+            .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))).trace
+
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal)
+        assertTrue(entry.containsAll(trace.selected.map { it.primarySkill }), "only entry Skills start: ${trace.selected.map { it.primarySkill }}")
+        assertTrue(trace.selected.all { it.purpose == TaskPurpose.TEACH })
+        assertTrue(trace.selected.sumOf { it.plannedMinutes } <= 60, "the day is never extended")
+
+        assertEquals(45, trace.needs.count { it.trigger == NeedTrigger.NEW_LEARNING })
+        val waiting = trace.needs.filter { it.disposition == NeedDisposition.BLOCKED }.flatMap { it.targetSkills }.toSet()
+        assertEquals(42, waiting.size, "everything downstream waits: $waiting")
+        assertTrue(waiting.none { it in entry })
+        assertTrue(waiting.containsAll(memorySkills))
+        assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
+    }
 }

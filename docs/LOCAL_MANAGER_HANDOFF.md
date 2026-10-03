@@ -21,7 +21,7 @@ Yerel ana yönetici hiçbir numaralı proje adımına başlamadan önce şunlar�
 5. `PROJECT_CONTEXT.md`, `docs/HANDOFF_STATE.md`, `docs/EXECUTION_INDEX.md`, `docs/STEP_STATUS.md`, `docs/DECISIONS.md`, `docs/MASTER_PLAN.md` dosyalarını fresh oku.
 6. Repo içindeki tüm Markdown dosyalarının envanterini çıkar ve **tamamını oku**. Yalnız bu handoff'a güvenerek karar verme.
 7. `git status`, current branch ve HEAD'i doğrula; kullanıcı açıkça istemedikçe local uncommitted değişiklikleri bozma.
-8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13 ve AŞAMA 14'ün kapandığını, aktif adımın `15D active-not-executed` olduğunu ve önceki adımın `CFNX-v0 / D-114` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
+8. Current execution state'in `AŞAMA 6 ✅ / AŞAMA 7 ✅ / 8A ✅ UXIA-v0 / D-068 / 8B ✅ THUX-v0 / D-069 / 8C ✅ TRUX-v0 / D-070 / 8D ✅ ASUX-v0 / D-071 / 8E ✅ SPWX-v0 / D-072 / 8F ✅ VDSX-v0 / D-073 / 8G ✅ WFPX-v0 / D-074 / 9A ✅ AMTS-v0 / D-075 / 9B ✅ LFPS-v0 / D-076 / 9C ✅ DDM-v0 / D-077 / 9D ✅ MSBX-v0 / D-078 / 9E ✅ AIAX-v0 / D-079 / 9F ✅ TVSX-v0 / D-081 / 10A ✅ MPSX-v0 / D-082 / 10B ✅ NSHX-v0 / D-083 / 10C ✅ DSIX-v0 / D-084 / 10D ✅ LDBX-v0 / D-085 / 10E ✅ APHX-v0 / D-086 / 11A ✅ TDYX-v0 / D-087 / 11B ✅ RNRX-v0 / D-088 / 11C ✅ SESX-v0 / D-089 / 11D ✅ DMAX-v0 / D-090 / 11E ✅ EODX-v0 / D-091 / 12A ✅ MSTX-v0 / D-092 / 12B ✅ PRQX-v0 / D-093 / 12C ✅ PLNX-v0 / D-094 / 12D ✅ RPLX-v0 / D-095 / 12E ✅ RSNX-v0 / D-096 / 12F ✅ VUSX-v0 / D-097 / 13A ✅ WBAX-v0 / D-098 / 13B ✅ MCAX-v0 / D-100 / 13C ✅ RVRX-v0 / D-101 / 13D ✅ WLRX-v0 / D-102 / 13E ✅ PCRX-v0 / D-103 / 13F ✅ VDWX-v0 / D-104 / 14A ✅ TUTX-v0 / D-105 / 14B ✅ WAAX-v0 / D-106 / 14C ✅ ALEX-v0 / D-107 / 14D ✅ CDEX-v0 / D-108 / 14E ✅ ACCX-v0 / D-109 / 14F ✅ OREX-v0 / D-110 / 14G ✅ PRVX-v0 / D-111 / 15A ✅ CPFX-v0 / D-112 / 15B ✅ PYFX-v0 / D-113 / 15C ✅ CFNX-v0 / D-114 / 15D ✅ MMFX-v0 / D-116`; AŞAMA 8, AŞAMA 9, AŞAMA 10, AŞAMA 11, AŞAMA 12, AŞAMA 13 ve AŞAMA 14'ün kapandığını, aktif adımın `15E active-not-executed` olduğunu ve önceki adımın `MMFX-v0 / D-116` ile tamamlandığını living-memory setiyle doğrula. (AŞAMA 13'ün son adımı D-099 ile eklenmişti.)
 9. Ancak bundan sonra, aktif numbered step için **ayrı bir fresh PRE-STEP GitHub refresh** yap; kullanıcı açık onayı olmadan yürütme.
 
 Önerilen local komutlar:
@@ -1156,14 +1156,15 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 - AŞAMA 15A ✅ CPFX-v0 / D-112
 - AŞAMA 15B ✅ PYFX-v0 / D-113
 - AŞAMA 15C ✅ CFNX-v0 / D-114
-- AŞAMA 15D 🟡 active-not-executed
-- 15E–20 ⬜
+- AŞAMA 15D ✅ MMFX-v0 / D-116
+- AŞAMA 15E 🟡 active-not-executed
+- 15F–20 ⬜
 
 # 22. Current exact state — en kritik takeover bilgisi
 
-**Son tamamlanan numaralı adım:** `15C — C Foundations`  
-**Final:** `CFNX-v0 — C Foundations content` / D-114  
-**Canonical:** `docs/C_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15c_c_foundations/`
+**Son tamamlanan numaralı adım:** `15D — Memory Foundations`  
+**Final:** `MMFX-v0 — Memory Foundations content` / D-116  
+**Canonical:** `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15d_memory_foundations/`
 
 **AŞAMA 7:** ✅ TAMAMLANDI  
 **AŞAMA 8A:** ✅ TAMAMLANDI  
@@ -1218,17 +1219,18 @@ D-055–D-058 exact semantiği için `docs/DECISIONS.md` canonical kayıttır.
 **AŞAMA 15A:** ✅ TAMAMLANDI  
 **AŞAMA 15B:** ✅ TAMAMLANDI  
 **AŞAMA 15C:** ✅ TAMAMLANDI  
-**Aktif adım:** `15D — Memory Foundations`  
+**AŞAMA 15D:** ✅ TAMAMLANDI  
+**Aktif adım:** `15E — Linux / Git / Shell Foundations`  
 **Durum:** **HENÜZ YÜRÜTÜLMEDİ**
 
 8C focused günlük çalışma akışını kilitledi: Task Runner bir execution surface'tir; working session emergent ve ungraded'dır; tek shared focused-flow frame hem Task Runner hem assessment session tarafından devralınır ve assessment interior 8D'ye aittir. Entry/resume revalidation deterministiktir; assistance non-punitive ve talep üzerine escalate eder; solution exposure sonrası same-item mastery path yoktur ve recheck scheduling planner-owned kalır; provenance sorulur, çıkarsanmaz; in-flight run replan'dan korunur; AI evaluator yoksa attempt `evaluation_pending` olur ve evidence yazılmaz.
 
-15D için:
+15E için:
 
 ```text
-fresh 15D PRE-STEP GitHub refresh
+fresh 15E PRE-STEP GitHub refresh
 → user explicit approval verification
-→ 15D execution
+→ 15E execution
 → independent QA
 → D-050 POST sync
 → repo-wide stale-reference audit
@@ -1814,8 +1816,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 15A ✅ CPFX-v0 / D-112
 15B ✅ PYFX-v0 / D-113
 15C ✅ CFNX-v0 / D-114
-15D 🟡 active-not-executed
-15E–20 ⬜
+15D ✅ MMFX-v0 / D-116
+15E 🟡 active-not-executed
+15F–20 ⬜
 ```
 
 10D final:
@@ -2012,9 +2015,9 @@ AŞAMA 14 ✅ TAMAMLANDI
 - `evaluation_pending` evidence yazmaz ve pass/fail değildir,
 - independent 8C QA 123/123 PASS.
 
-**Sıradaki gerçek numbered work:** `15D — Memory Foundations`.
+**Sıradaki gerçek numbered work:** `15E — Linux / Git / Shell Foundations`.
 
-**15D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**15E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2064,8 +2067,8 @@ AŞAMA 14 ✅ TAMAMLANDI
 - 12 semantic loading/ready/empty/offline/AI-degraded/recovery state,
 - independent QA 90/90 PASS; Stage 6/7/8A + external-memory regressions PASS.
 
-**Sıradaki gerçek numbered work:** `15D — Memory Foundations`.  
-**15D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Sıradaki gerçek numbered work:** `15E — Linux / Git / Shell Foundations`.  
+**15E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 
 ---
@@ -2374,4 +2377,17 @@ Kullanıcı kararları: Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc (kullan�
 
 **AŞAMA 15C ✅ CFNX-v0 / D-114.**
 
-**Aktif adım:** `15D — Memory Foundations` — henüz yürütülmedi; fresh PRE + kullanıcı açık onayı zorunlu.
+**Sonraki durum için aşağıdaki D-116 ekine bakın.**
+
+---
+## 15D completion addendum — D-116
+
+15D `MMFX-v0 — Memory Foundations content` ile tamamlandı; dördüncü içerik paketi sevk ediliyor ve öğrenci işaretçi ve bellek ömrü çalışıyor. Canonical: `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md`; contract/QA: `arch/15d_memory_foundations/`; içerik kaynağı `curriculum/content/15d_memory_foundations/`; sevk edilen paket `android/app-wiring/src/main/assets/curriculum_package_v4.txt`; synthesis `research/15d_memory_foundations_research.md`.
+
+Ana invariant: bellekle ilgili bir anahtar programın gerçekte yaptığıdır ve artık var olmayan belleğin kullanımı, tanımsız bir programın ne yazdırdığına göre değil AddressSanitizer'ın ne bildirdiğine göre değerlendirilir; öğrencinin derlemesi kontrol edilen derlemedir — aynı sanitizer'lar, aynı çalışma seçenekleri, temiz çıkış şartı.
+
+Yeni kullanıcı kararı gerekmedi. 4 Skill, 34 item, 33 anlatım; bağımsız inceleme ilk geçişte 29/34 ve 30/33, ikinci geçişte 34/34 ve 33/33; Mutation 9/9, 132/132 QA PASS. T6 ve cihazda ingestion çalıştırılmadı.
+
+**AŞAMA 15D ✅ MMFX-v0 / D-116.**
+
+**Aktif adım:** `15E — Linux / Git / Shell Foundations` — henüz yürütülmedi; fresh PRE + kullanıcı açık onayı zorunlu.

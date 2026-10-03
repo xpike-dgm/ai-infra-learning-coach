@@ -1,0 +1,41 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.modify_value_via_pointer.f04@v1",
+  "item": "item.c.pointer_dereference.modify_value_via_pointer.f04@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nvoid bol(int a, int b, int *bolum, int *kalan);\n\nint main(void) {\n    int a = 0, b = 1, q = -99, r = -99;\n    scanf(\"%d %d\", &a, &b);\n    bol(a, b, &q, &r);\n    printf(\"%d %d\\n\", q, r);\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "simple",
+      "stdin": "17 5\n",
+      "expected_stdout": "3 2\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "exact",
+      "stdin": "20 4\n",
+      "expected_stdout": "5 0\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "negative",
+      "stdin": "-7 2\n",
+      "expected_stdout": "-3 -1\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

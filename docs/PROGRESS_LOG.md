@@ -1310,3 +1310,18 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15C tamamlandı; 15D aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15D — Memory Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-03 — 15D — Memory Foundations tamamlandı — MMFX-v0 / D-116
+
+- 15C (#54) main'e merge edildi (1c60571); repo herkese açıldı (D-115). Fresh 15D PRE yapıldı ve beş kanonik kaynak `15C ✅ / 15D active-not-executed` gösterdi. Kullanıcı açık onay verdi ("onay veriyorum"; "Sen merge et, 15D'ye başla"); yeni bir karar gerekmedi.
+- **Bulgu:** ömür hatasının çıktısı hiçbir şey kanıtlamaz (anahtarlar sanitizer bulgusuyla); gcc 15.2'nin libasan'ında stack-use-after-return varsayılan açık (Google wiki'sinin tersine); sanitizer raporu stdout yazılmadan durdurur; ömür Skill'i işaretçiden okur ama graph söylemez; NULL başlık ister; sanitizer her geçersiz erişimi yakalamaz.
+- İçerik: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; her şey Linux'ta gcc ve AddressSanitizer + UBSan ile doğrulandı.
+- **Araştırma:** GCC enstrümantasyon seçenekleri, google/sanitizers AddressSanitizerUseAfterReturn, cppreference (depolama süresi, işaretçi, printf).
+- **Bağımsız inceleme:** ilk geçişte 29/34 item ve 30/33 anlatım (testi geçen iki yanlış çözüm, üç ders içi sızıntı, üç cümle); ikinci geçişte 34/34 ve 33/33.
+- Dört paket gerçek SQLite şemasına JVM'de yayımlanıyor; giriş noktası değişmedi.
+- Yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi; hiçbir yaşayan kapı daraltılmadı.
+- Mutation 9/9. Validator 132/132, sweep 59/59, 1009 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- D-050 POST living-memory accepted state'i `15D tamamlandı; 15E aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15E — Linux / Git / Shell Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.

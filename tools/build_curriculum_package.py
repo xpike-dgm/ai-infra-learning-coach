@@ -54,13 +54,17 @@ PYTHON_CODE = {"file": CODE_FILE, "build": CODE_BUILD, "run": CODE_RUN, "environ
 GCC = ["gcc", "-std=c11", "-Wall", "-Wextra"]
 
 
-def c_harness_build(harness: str) -> list[str]:
+def c_harness_build(harness: str, cflags: list[str] | None = None) -> list[str]:
     """15C: the build of an item that asks for a function. The course's test program (its own main) is written beside
     the learner's file; the learner's main, if any, is renamed so that only the course's runs; the two are linked. A
     missing or misnamed function is an undefined reference: the build fails and no test passes."""
+    # 15D: a package may build with more flags (sanitizers); they must reach every compile and the link.
+    flags = " ".join(cflags) if cflags else " ".join(GCC)
+    link = ("gcc " + " ".join(f for f in cflags if f.startswith("-fsanitize") or f == "-g") + " cozum.o ders_test.o -o cozum") if cflags \
+        else "gcc cozum.o ders_test.o -o cozum"
     script = ("cat > ders_test.c <<'DERS_TEST_EOF'\n" + harness.strip("\n") + "\nDERS_TEST_EOF\n"
-              + " ".join(GCC) + " -Dmain=ogrenci_main -c cozum.c -o cozum.o && "
-              + " ".join(GCC) + " -c ders_test.c -o ders_test.o && gcc cozum.o ders_test.o -o cozum")
+              + flags + " -Dmain=ogrenci_main -c cozum.c -o cozum.o && "
+              + flags + " -c ders_test.c -o ders_test.o && " + link)
     return ["bash", "-c", script]
 
 
@@ -100,6 +104,30 @@ def c_stages(code: str, stdin: str = "") -> tuple[str, str]:
             return "link", ""
         status, _, out, _ = in_linux(["./program"], d, stdin=stdin)
         return ("ok" if status == "ok" else "run"), out
+
+
+# 15D (`D-116`): a use of memory that no longer exists is undefined behaviour — its output proves nothing — but
+# AddressSanitizer reports it deterministically. The kind of report (or "ok") is what a key about lifetime is checked against.
+SANITIZE = ["-g", "-fsanitize=address,undefined", "-fno-omit-frame-pointer", "-fno-sanitize-recover=all"]
+ASAN_RUN = ["env", "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0"]
+
+
+def c_sanitized(code: str, stdin: str = "") -> tuple[str, str]:
+    """Builds the program with AddressSanitizer and UndefinedBehaviorSanitizer and runs it in Linux. Returns (finding,
+    stdout): the sanitizer's error kind (e.g. "stack-use-after-return", "heap-use-after-free"), "compile" if it does
+    not build, or "ok"."""
+    with tempfile.TemporaryDirectory() as d:
+        (Path(d) / "program.c").write_text(code, encoding="utf-8", newline="\n")
+        status, _, _, _ = in_linux(GCC + SANITIZE + ["-o", "program", "program.c"], d)
+        if status != "ok":
+            return "compile", ""
+        status, _, out, err = in_linux(ASAN_RUN + ["./program"], d, stdin=stdin)
+    for line in err.splitlines():
+        if "ERROR: AddressSanitizer:" in line:
+            return line.split("ERROR: AddressSanitizer:", 1)[1].split()[0], out
+        if "runtime error:" in line:
+            return "undefined-behavior", out
+    return ("ok" if status == "ok" else "run"), out
 
 
 def run_shell(script: str) -> tuple[str, str]:
@@ -351,6 +379,15 @@ def verify_item(item: dict) -> tuple[bool, str]:
         if norm(out) != norm(key):
             return False, f"program prints {norm(out)!r}, key is {key!r}"
         return True, "built with gcc and run in Linux; the key is exactly what the program prints"
+
+    if mode == "c_sanitize":
+        # 15D: what AddressSanitizer reports when the program runs — a lifetime error by its kind, or "ok".
+        finding, out = c_sanitized(item["code"], v.get("stdin", ""))
+        if "prints" in v and finding == "ok" and norm(out) != norm(str(v["prints"])):
+            return False, f"program prints {norm(out)!r}, the item says {v['prints']!r}"
+        if options:
+            return keyed_option_matches(finding)
+        return (norm(finding) == norm(key)), f"built with AddressSanitizer in Linux; the finding is {finding!r}"
 
     if mode == "c_stage":
         # 15C: which stage the program first fails at — compile, link, run — or ok. Only the keyed option names it.
@@ -645,7 +682,10 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
             # Every code claim a lesson makes is executed too: teaching a wrong output is worse than asking about one.
             for n, check in enumerate(o.get("checks", []), 1):
                 lang = check.get("lang", pkg.get("lesson_checks", "python"))
-                if lang == "c":
+                if lang == "c" and "finding" in check:
+                    finding, printed = c_sanitized(check["code"], check.get("stdin", ""))
+                    status = "ok" if finding == check["finding"] else finding
+                elif lang == "c":
                     stage, printed = c_stages(check["code"], check.get("stdin", ""))
                     status = "ok" if stage == check.get("stage", "ok") else stage
                 elif lang == "shell":
@@ -679,11 +719,14 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 if is_code:
                     suite = {
                         "format": "code_test_suite/1", "suite": f"codetest.{base}.{it['slug']}@v1", "item": f"{iid}@v1",
-                        "build": {"command": c_harness_build(it["c_harness"]) if it.get("c_harness") else code_cfg["build"]},
+                        "build": {"command": c_harness_build(it["c_harness"], code_cfg.get("harness_cflags")) if it.get("c_harness") else code_cfg["build"]},
                         # A function is checked by the course's own small harness, which imports the learner's file.
                         "run": {"command": ["{python}", "-c", it["harness"].strip()] if it.get("harness") else code_cfg["run"]},
                         "timeout_seconds": CODE_TIMEOUT_SECONDS, "compare": "trim_trailing_whitespace",
-                        "tests": [{k: t[k] for k in ("id", "stdin", "args", "expected_stdout", "expected_exit_code") if k in t}
+                        # 15D: a package may require every test to end cleanly (a sanitizer report ends a program with an
+                        # error code even when everything it printed was right).
+                        "tests": [{**{k: t[k] for k in ("id", "stdin", "args", "expected_stdout", "expected_exit_code") if k in t},
+                                   **({"expected_exit_code": 0} if code_cfg.get("expect_clean_exit") and "expected_exit_code" not in t else {})}
                                   for t in it["suite"]],
                     }
                     suite_files[iid] = json.dumps(suite, ensure_ascii=False, indent=2) + "\n"

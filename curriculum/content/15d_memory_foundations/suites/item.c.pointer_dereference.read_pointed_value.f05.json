@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_dereference.read_pointed_value.f05@v1",
+  "item": "item.c.pointer_dereference.read_pointed_value.f05@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n#include <stddef.h>\n\ndouble ortalama3(double *a, double *b, double *c);\n\nint main(void) {\n    double x = 0, y = 0, z = 0;\n    int na = 0, nb = 0, nc = 0;\n    scanf(\"%lf %lf %lf %d %d %d\", &x, &y, &z, &na, &nb, &nc);\n    printf(\"%.2f\\n\", ortalama3(na ? NULL : &x, nb ? NULL : &y, nc ? NULL : &z));\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "all",
+      "stdin": "1 2 6 0 0 0\n",
+      "expected_stdout": "3.00\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "one_null",
+      "stdin": "1 2 6 0 1 0\n",
+      "expected_stdout": "3.50\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "two_null",
+      "stdin": "1 2 6 1 1 0\n",
+      "expected_stdout": "6.00\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "all_null",
+      "stdin": "1 2 6 1 1 1\n",
+      "expected_stdout": "0.00\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "fractions",
+      "stdin": "1.5 2 6 0 0 0\n",
+      "expected_stdout": "3.17\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

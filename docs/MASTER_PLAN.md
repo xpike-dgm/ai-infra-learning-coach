@@ -1023,8 +1023,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation 8/8, validator 155/155,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15D — Memory Foundations — **AKTİF**
-### [ ] 15E — Linux / Git / Shell Foundations
+### [x] 15D — Memory Foundations — MMFX-v0 / D-116
+
+**15D final coverage:**
+- artık var olmayan belleğin kullanımı, tanımsız bir programın çıktısına göre değil AddressSanitizer'ın bildirdiğine göre değerlendirilir; öğrencinin derlemesi kontrol edilen derlemedir (aynı sanitizer'lar, temiz çıkış),
+- FBB-v0 §6.3'ün üç bellek tohumu (6C'de 4 Skill) — 4 Skill, 6 Objective, 5 kenar — `published`, kimlik değişmedi; hiçbir Skill eklenmedi, giriş noktası yok,
+- 34 item (15 kod suite'iyle — hepsi dersin main'iyle —, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev,
+- yeni `c_sanitize` anahtar kipi; dizi, struct, string ve math kütüphanesi hâlâ yasak,
+- bağımsız inceleme: ilk geçişte 29/34 item, 30/33 anlatım; ikinci geçişte 34/34 ve 33/33,
+- dört paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`),
+- Mutation 9/9, validator 132/132,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15E — Linux / Git / Shell Foundations — **AKTİF**
 ### [ ] 15F — English A0→A1/A2 başlangıç paketi
 ### [ ] 15G — Assessment content
 ### [ ] 15H — Content QA
@@ -1104,8 +1115,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15C`  
-**Son tamamlanan:** **`15C — CFNX-v0 / D-114`**  
-**Aktif:** **`15D — Memory Foundations`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15D`  
+**Son tamamlanan:** **`15D — MMFX-v0 / D-116`**  
+**Aktif:** **`15E — Linux / Git / Shell Foundations`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15D fresh PRE-STEP → Memory Foundations içeriği (C araç zinciri, C gösterimi ve test düzeneği hazır; işaretçi ve dizi yapıları açılacak) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15E fresh PRE-STEP → Linux / Git / Shell Foundations içeriği (WSL Ubuntu, `shell` anahtar kipi ve koşucu hazır; terminal Skill'i 15C'de yayımlandı) → independent QA → D-050 POST sync + stale audit.**

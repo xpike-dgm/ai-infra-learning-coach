@@ -1,0 +1,53 @@
+{
+  "format": "code_test_suite/1",
+  "suite": "codetest.c.pointer_formation.demonstrate_capability.f05@v1",
+  "item": "item.c.pointer_formation.demonstrate_capability.f05@v1",
+  "build": {
+    "command": [
+      "bash",
+      "-c",
+      "cat > ders_test.c <<'DERS_TEST_EOF'\n#include <stdio.h>\n\nint iki_sayi_oku(int *a, int *b);\n\nint main(void) {\n    int x = -1, y = -1;\n    int sonuc = iki_sayi_oku(&x, &y);\n    printf(\"%d %d %d\\n\", sonuc, x, y);\n    return 0;\n}\nDERS_TEST_EOF\ngcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -Dmain=ogrenci_main -c cozum.c -o cozum.o && gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -c ders_test.c -o ders_test.o && gcc -g -fsanitize=address,undefined cozum.o ders_test.o -o cozum"
+    ]
+  },
+  "run": {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0",
+      "./cozum"
+    ]
+  },
+  "timeout_seconds": 5,
+  "compare": "trim_trailing_whitespace",
+  "tests": [
+    {
+      "id": "two_numbers",
+      "stdin": "4 9\n",
+      "expected_stdout": "1 4 9\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "negative_and_zero",
+      "stdin": "-3 0\n",
+      "expected_stdout": "1 -3 0\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "second_not_a_number",
+      "stdin": "7 x\n",
+      "expected_stdout": "0 7 -1\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "only_one",
+      "stdin": "12\n",
+      "expected_stdout": "0 12 -1\n",
+      "expected_exit_code": 0
+    },
+    {
+      "id": "empty_input",
+      "stdin": "",
+      "expected_stdout": "0 -1 -1\n",
+      "expected_exit_code": 0
+    }
+  ]
+}

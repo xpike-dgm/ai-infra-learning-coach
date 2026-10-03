@@ -1,0 +1,441 @@
+model: MMFX-v0
+stage_step: 15D
+decision: D-116
+result: PASS
+checks_total: 132
+checks_passed: 132
+checks_failed: 0
+checks:
+- check: E15D-00_exists_memory_foundations.yaml
+  result: PASS
+  details: missing arch\15d_memory_foundations\memory_foundations.yaml
+- check: E15D-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15d_memory_foundations\content_verification.yaml
+- check: E15D-00_exists_MEMORY_FOUNDATIONS_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\MEMORY_FOUNDATIONS_CONTENT_SPEC.md
+- check: E15D-00_exists_15d_memory_foundations_research.md
+  result: PASS
+  details: missing research\15d_memory_foundations_research.md
+- check: E15D-00_exists_curriculum_package_v4.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v4.txt
+- check: E15D-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15D-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: E15D-00_exists_curriculum_package_v3.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v3.txt
+- check: E15D-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: E15D-00_exists_ShippedMemoryPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedMemoryPackageTest.kt
+- check: E15D-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: E15D-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15d_memory_foundations\package.yaml
+- check: E15D-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15d_memory_foundations\notation.yaml
+- check: E15D-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15d_memory_foundations\independent_review.yaml
+- check: E15D-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15D-01_model
+  result: PASS
+  details: MMFX-v0
+- check: E15D-01_status
+  result: PASS
+  details: accepted_15d
+- check: E15D-01_decision
+  result: PASS
+  details: D-116
+- check: E15D-01_user_approval
+  result: PASS
+  details: '{''approved_to_start'': ''2026-10-03'', ''new_decisions_needed'': False,
+    ''why'': "The scope is FBB-v0 §6.3''s three remaining seeds as 6C decomposed them,
+    their hard closure is already published by 15C, and 15C''s WSL Ubuntu + gcc already
+    ships the sanitizers; nothing had to be chosen or installed."}'
+- check: E15D-02_builds
+  result: PASS
+  details: ''
+- check: E15D-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15D-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15D-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15D-02_report_recorded
+  result: PASS
+  details: arch/15d_memory_foundations/content_verification.yaml is not the report
+    of this build
+- check: E15D-02_suites_are_rebuilt
+  result: PASS
+  details: 15 on disk, 15 built
+- check: E15D-02_earlier_untouched_15a_computing_fundamentals
+  result: PASS
+  details: '15a_computing_fundamentals is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15D-02_earlier_untouched_15b_python_foundations
+  result: PASS
+  details: '15b_python_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15D-02_earlier_untouched_15c_c_foundations
+  result: PASS
+  details: '15c_c_foundations is no longer a clean, fresh build of its source: 0 build
+    failures'
+- check: E15D-03_memory_seeds
+  result: PASS
+  details: '[''skill.memory.address_value_distinction'', ''skill.c.pointer_declaration_dereference_basic'',
+    ''skill.memory.storage_lifetime_intuition'']'
+- check: E15D-03_seeds_as_6c_decomposed
+  result: PASS
+  details: '[''skill.c.pointer_dereference'', ''skill.c.pointer_formation'', ''skill.memory.address_value_distinction'',
+    ''skill.memory.storage_lifetime_intuition'']'
+- check: E15D-03_nothing_added
+  result: PASS
+  details: '[]'
+- check: E15D-03_c_seeds_were_15c
+  result: PASS
+  details: ''
+- check: E15D-03_closed_under_hard_prerequisites
+  result: PASS
+  details: 'a Skill that could never become ready: []'
+- check: E15D-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15D-03_objective_identity
+  result: PASS
+  details: '[''objective.c.pointer_dereference.modify_value_via_pointer'', ''objective.c.pointer_dereference.read_pointed_value'',
+    ''objective.c.pointer_formation.demonstrate_capability'', ''objective.memory.address_value_distinction.explain_address_vs_value'',
+    ''objective.memory.address_value_distinction.trace_simple_memory_example'', ''objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary'']'
+- check: E15D-03_edges_ratified
+  result: PASS
+  details: 5 edges
+- check: E15D-03_builds_on_15c
+  result: PASS
+  details: ''
+- check: E15D-03_no_entry_point
+  result: PASS
+  details: '[]'
+- check: E15D-04_recorded_address_value_distinction_explain_address_vs_value
+  result: PASS
+  details: objective.memory.address_value_distinction.explain_address_vs_value
+- check: E15D-04_recorded_address_value_distinction_trace_simple_memory_example
+  result: PASS
+  details: objective.memory.address_value_distinction.trace_simple_memory_example
+- check: E15D-04_recorded_pointer_formation_demonstrate_capability
+  result: PASS
+  details: objective.c.pointer_formation.demonstrate_capability
+- check: E15D-04_recorded_pointer_dereference_read_pointed_value
+  result: PASS
+  details: objective.c.pointer_dereference.read_pointed_value
+- check: E15D-04_recorded_pointer_dereference_modify_value_via_pointer
+  result: PASS
+  details: objective.c.pointer_dereference.modify_value_via_pointer
+- check: E15D-04_recorded_storage_lifetime_intuition_identify_simple_lifetime_boundary
+  result: PASS
+  details: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+- check: E15D-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15D-05_review_method
+  result: PASS
+  details: ''
+- check: E15D-05_every_item_reviewed
+  result: PASS
+  details: 34 / 34
+- check: E15D-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15D-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15D-05_no_hidden_prerequisite
+  result: PASS
+  details: ''
+- check: E15D-05_modes
+  result: PASS
+  details: '{''suite'', ''c_stdout'', ''rubric'', ''c_sanitize''}'
+- check: E15D-05_counts
+  result: PASS
+  details: '34 {''suite'': 15, ''c_stdout'': 12, ''c_sanitize'': 4, ''rubric'': 3}'
+- check: E15D-05_code_executed_against_wrong
+  result: PASS
+  details: ''
+- check: E15D-05_keys_built_on_linux
+  result: PASS
+  details: ''
+- check: E15D-05_rubrics_provisional
+  result: PASS
+  details: ''
+- check: E15D-05_code_environment
+  result: PASS
+  details: '{''file'': ''cozum.c'', ''build'': [''gcc'', ''-std=c11'', ''-Wall'',
+    ''-Wextra'', ''-g'', ''-fsanitize=address,undefined'', ''-fno-omit-frame-pointer'',
+    ''-fno-sanitize-recover=all'', ''-o'', ''cozum'', ''cozum.c''], ''run'': [''env'',
+    ''ASAN_OPTIONS=detect_stack_use_after_return=1:detect_leaks=0'', ''./cozum''],
+    ''harness_cflags'': [''gcc'', ''-std=c11'', ''-Wall'', ''-Wextra'', ''-g'', ''-fsanitize=address,undefined'',
+    ''-fno-omit-frame-pointer'', ''-fno-sanitize-recover=all''], ''environment'':
+    ''linux'', ''expect_clean_exit'': True}'
+- check: E15D-05_suite_pointer_formation.demonstrate_capability.f01
+  result: PASS
+  details: 2 tests
+- check: E15D-05_suite_pointer_formation.demonstrate_capability.f02
+  result: PASS
+  details: 3 tests
+- check: E15D-05_suite_pointer_formation.demonstrate_capability.f03
+  result: PASS
+  details: 4 tests
+- check: E15D-05_suite_pointer_formation.demonstrate_capability.f04
+  result: PASS
+  details: 4 tests
+- check: E15D-05_suite_pointer_formation.demonstrate_capability.f05
+  result: PASS
+  details: 5 tests
+- check: E15D-05_suite_pointer_dereference.read_pointed_value.f01
+  result: PASS
+  details: 2 tests
+- check: E15D-05_suite_pointer_dereference.read_pointed_value.f02
+  result: PASS
+  details: 3 tests
+- check: E15D-05_suite_pointer_dereference.read_pointed_value.f03
+  result: PASS
+  details: 3 tests
+- check: E15D-05_suite_pointer_dereference.read_pointed_value.f04
+  result: PASS
+  details: 3 tests
+- check: E15D-05_suite_pointer_dereference.read_pointed_value.f05
+  result: PASS
+  details: 5 tests
+- check: E15D-05_suite_pointer_dereference.modify_value_via_pointer.f01
+  result: PASS
+  details: 2 tests
+- check: E15D-05_suite_pointer_dereference.modify_value_via_pointer.f02
+  result: PASS
+  details: 2 tests
+- check: E15D-05_suite_pointer_dereference.modify_value_via_pointer.f03
+  result: PASS
+  details: 4 tests
+- check: E15D-05_suite_pointer_dereference.modify_value_via_pointer.f04
+  result: PASS
+  details: 3 tests
+- check: E15D-05_suite_pointer_dereference.modify_value_via_pointer.f05
+  result: PASS
+  details: 7 tests
+- check: E15D-05_function_items_harnessed
+  result: PASS
+  details: '15'
+- check: E15D-05_measurable_address_value_distinction_explain_address_vs_value
+  result: PASS
+  details: 5 families
+- check: E15D-05_measurable_address_value_distinction_trace_simple_memory_example
+  result: PASS
+  details: 5 families
+- check: E15D-05_measurable_pointer_formation_demonstrate_capability
+  result: PASS
+  details: 5 families
+- check: E15D-05_measurable_pointer_dereference_read_pointed_value
+  result: PASS
+  details: 5 families
+- check: E15D-05_measurable_pointer_dereference_modify_value_via_pointer
+  result: PASS
+  details: 5 families
+- check: E15D-05_measurable_storage_lifetime_intuition_identify_simple_lifetime_boundary
+  result: PASS
+  details: 6 families
+- check: E15D-05_ai_origin_declared
+  result: PASS
+  details: ''
+- check: E15D-05_terminal_at_the_computer
+  result: PASS
+  details: ''
+- check: E15D-05_reading_not_runnable
+  result: PASS
+  details: ''
+- check: E15D-05_lifetime_errors_sanitized
+  result: PASS
+  details: '[]'
+- check: E15D-05_both_lifetime_errors
+  result: PASS
+  details: '{''stack-use-after-return'', ''heap-use-after-free'', ''ok-zero'', ''ok-different'',
+    ''compile'', ''ok''}'
+- check: E15D-05_valid_reads_print_what_they_say
+  result: PASS
+  details: ''
+- check: E15D-06_unescape_rule_unchanged
+  result: PASS
+  details: ''
+- check: E15D-06_package_escapes
+  result: PASS
+  details: ''
+- check: E15D-06_c_newline_shipped
+  result: PASS
+  details: C code in the package carries an escaped backslash-n
+- check: E15D-06_kotlin_unchanged
+  result: PASS
+  details: ''
+- check: E15D-07_every_explanation_reviewed
+  result: PASS
+  details: 33 / 33
+- check: E15D-07_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15D-07_lesson_claims_executed
+  result: PASS
+  details: 15 checks
+- check: E15D-07_lifetime_lesson_sanitized
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_address_value_distinction_explain_address_vs_value
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_address_value_distinction_trace_simple_memory_example
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_pointer_formation_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_pointer_dereference_read_pointed_value
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_pointer_dereference_modify_value_via_pointer
+  result: PASS
+  details: ''
+- check: E15D-07_lesson_storage_lifetime_intuition_identify_simple_lifetime_boundary
+  result: PASS
+  details: ''
+- check: E15D-07_no_combining_dot
+  result: PASS
+  details: ''
+- check: E15D-08_introducers_known
+  result: PASS
+  details: set()
+- check: E15D-08_forbidden_constructs
+  result: PASS
+  details: '[''aggregates'', ''arrays'', ''goto_statement'', ''math_library'', ''string_library'']'
+- check: E15D-08_pointer_type_owned
+  result: PASS
+  details: '{''pattern'': ''\\b(?:int|double|float|char|long|void)\\s*\\*'', ''introduced_by'':
+    [''skill.c.pointer_formation'']}'
+- check: E15D-08_null_pointer_owned
+  result: PASS
+  details: '{''pattern'': ''\\bNULL\\b'', ''introduced_by'': [''skill.c.pointer_formation'']}'
+- check: E15D-08_dereference_owned
+  result: PASS
+  details: '{''pattern'': ''(?:^|[=(,;{!+\\-<>&|?:]|\\breturn)\\s*\\*(?=[A-Za-z_(])'',
+    ''introduced_by'': [''skill.c.pointer_dereference'']}'
+- check: E15D-08_static_storage_owned
+  result: PASS
+  details: '{''pattern'': ''\\bstatic\\b'', ''introduced_by'': [''skill.memory.storage_lifetime_intuition'']}'
+- check: E15D-08_allocation_owned
+  result: PASS
+  details: '{''pattern'': ''\\b(?:malloc|calloc|realloc|free)\\s*\\('', ''introduced_by'':
+    [''skill.memory.storage_lifetime_intuition'']}'
+- check: E15D-08_not_code_is_stripped
+  result: PASS
+  details: ''
+- check: E15D-09_five_per_skill
+  result: PASS
+  details: '20'
+- check: E15D-09_tasks_validated
+  result: PASS
+  details: ''
+- check: E15D-09_minutes_are_estimates
+  result: PASS
+  details: ''
+- check: E15D-09_lifetime_work_declares_dereference
+  result: PASS
+  details: the lifetime work reads through pointers; 6C does not say so (3B §10)
+- check: E15D-10_sanitizer_flags
+  result: PASS
+  details: ''
+- check: E15D-10_sanitized_in_linux
+  result: PASS
+  details: ''
+- check: E15D-10_harness_carries_flags
+  result: PASS
+  details: ''
+- check: E15D-10_clean_exit_required
+  result: PASS
+  details: ''
+- check: E15D-10_runner_in_linux
+  result: PASS
+  details: ''
+- check: E15D-11_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedMemoryPackageTest.kt: everything shipped was validated, so nothing
+    is a candidate'
+- check: E15D-11_test_C code is shown exactly as written, with
+  result: PASS
+  details: 'ShippedMemoryPackageTest.kt: C code is shown exactly as written, with
+    its backslash-n and its address-of, and the lines of the program are lines'
+- check: E15D-11_test_every Skill has a lesson for new learnin
+  result: PASS
+  details: 'ShippedMemoryPackageTest.kt: every Skill has a lesson for new learning
+    and work for each later need, and nothing else answers'
+- check: 'E15D-11_test_all four shipped packages are published '
+  result: PASS
+  details: 'ShippedCourseTest.kt: all four shipped packages are published into the
+    real store, oldest first, and pointers wait on addresses'
+- check: E15D-11_test_with the memory package, a learner who h
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the memory package, a learner who has done
+    nothing is offered the same three entry lessons, and every memory Skill waits'
+- check: E15D-12_mutation_all_detected
+  result: PASS
+  details: 9/9
+- check: E15D-12_crash_not_detection
+  result: PASS
+  details: ''
+- check: E15D-12_control
+  result: PASS
+  details: ''
+- check: E15D-12_validator_mutation
+  result: PASS
+  details: '{''total'': 36, ''detected'': 36, ''negative_control'': ''a YAML comment
+    in a Skill file and a builder comment, each naming forbidden fragments (int a[3],
+    malloc(, verdict fail, human_authored, detect_leaks=1, return &x, the sanitizer
+    names)'', ''negative_control_result'': ''no_false_positive'', ''crash_is_not_a_detection'':
+    True, ''baseline'': ''the only check allowed to fail at baseline is E15D-12_validator_mutation,
+    which reads this very result; a mutant counts only by a failure not in the baseline'',
+    ''fast_mode'': ''every mutant except V31 ran with --skip-earlier-rebuild (rebuilding
+    15B and 15C runs 120 suites); V31, a change to an earlier package, ran in full'',
+    ''earlier_runs'': "the first full run detected 35 of 36 — V28 (a research source''s
+    URL removed) survived because the check looked for a word that the source''s name
+    also carries; the check now requires each source URL; the second full run is the
+    only result taken", ''final_run_is_a_single_clean_run'': True}'
+- check: E15D-12_runs_pass
+  result: PASS
+  details: ''
+- check: E15D-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15D-13_spec_status
+  result: PASS
+  details: ''
+- check: E15D-13_spec_next
+  result: PASS
+  details: ''
+- check: E15D-13_spec_t6
+  result: PASS
+  details: ''
+- check: E15D-13_research
+  result: PASS
+  details: every source the lessons rest on is named by its URL
+- check: E15D-13_decision
+  result: PASS
+  details: D-116 heading in DECISIONS
