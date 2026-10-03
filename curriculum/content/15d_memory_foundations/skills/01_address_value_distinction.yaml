@@ -1,0 +1,460 @@
+skill: skill.memory.address_value_distinction
+activity: code_reading_trace
+tasks:
+  teach: {title: "Değer ve adres: bir değişkenin içi ve yeri", minutes: 16}
+  practice: {title: "Değer ve adres alıştırması", minutes: 10}
+  check: {title: "Değer ve adres kontrolü", minutes: 8}
+  review: {title: "Değer ve adres tekrarı", minutes: 6}
+  repair: {title: "Değeri ve adresi yeniden ayırmak: kopya, yer ve boyut", minutes: 14}
+
+objectives:
+  - id: objective.memory.address_value_distinction.explain_address_vs_value
+    statement: >-
+      Bir değişkenin değeri (içinde tuttuğu şey) ile adresini (bellekte durduğu yer) ayırt edebilmek: &x'in x'in
+      adresini verdiğini, iki farklı değişkenin aynı değeri taşısa da farklı adreslerde durduğunu, atamanın değeri
+      kopyalayıp hiçbir adresi değiştirmediğini ve sizeof'un bir türün bellekte kaç bayt yer kapladığını söylediğini
+      açıklayabilmek.
+    observable_behavior: >-
+      Değerleri ve adresleri karşılaştıran kısa programların yazdırdığını doğru verir; bir değerin bir değişkenden ötekine
+      kopyalandığını ama yerlerin ayrı kaldığını kendi cümleleriyle açıklar.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation, code_reading]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C'de bu Skill'in iki Objective'i aynı şablon cümleyi taşıyordu; kimlikler korundu ve cümleler eylem adlarına göre
+      ayrıldı: bu Objective adresi değerden ayırıp açıklamak, diğeri basit bir örnekte değerleri yerleriyle izlemek.
+      Direct type 6C'deki gibi explanation: anahtarlı item'lar (açıklamanın sonucu doğru mu) ve bir rubric item'ı
+      (açıklamanın kendisi). Adresler her çalıştırmada değişebildiği için hiçbir item bir adresin kendisini yazdırmaz;
+      adresler == ile karşılaştırılır. İşaretçi değişkenleri pointer_formation'ındır ve burada kullanılmaz. sizeof
+      değerleri Linux x86_64 ve gcc içindir (char 1, int 4, double 8), ders bunu açıkça söyler.
+    checks:
+      - prints: "1 0"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 9;
+              int b = 9;
+              printf("%d %d\n", a == b, &a == &b);
+              return 0;
+          }
+      - prints: "1 4 8"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%zu %zu %zu\n", sizeof(char), sizeof(int), sizeof(double));
+              return 0;
+          }
+      - prints: "1"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int k = 3;
+              printf("%d\n", &k == &k);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Her değişkenin iki yüzü vardır:
+        - değeri: içinde tuttuğu şey (örneğin 9),
+        - adresi: bellekte durduğu yer.
+
+        Belleği numaralı kutulardan oluşan uzun bir raf gibi düşünebilirsin. int a = 9; satırı rafta a için bir yer ayırır ve oraya 9 koyar. &a ("a'nın adresi") o yerin numarasıdır.
+
+        Aynı değer, farklı yerler:
+        int a = 9;
+        int b = 9;
+        a == b  → 1 (değerler eşit)
+        &a == &b → 0 (iki ayrı değişken, iki ayrı yer)
+
+        Atama değeri kopyalar, yeri değil:
+        b = a; satırından sonra b'nin içinde a'nın değerinin bir kopyası vardır. a ve b hâlâ ayrı yerlerdedir; sonradan a'yı değiştirmek b'yi değiştirmez. Bir değişkenin adresi o değişken var oldukça hiç değişmez.
+
+        Bir fonksiyona argüman verdiğinde de değer kopyalanır (değerle geçirme): parametre, kendi yeri olan yeni bir değişkendir.
+
+        Boyut: sizeof bir türün (ya da değişkenin) kaç bayt yer kapladığını verir; sonucu %zu ile yazdırılır. Bu kursun ortamında (Linux, x86_64, gcc): sizeof(int) 4, sizeof(double) 8. sizeof(char) C standardına göre her zaman 1'dir; int ve double'ın boyutları ise makineye ve derleyiciye bağlıdır, başka bir sistemde farklı olabilir.
+
+        Adresi yazdırabilirsin (printf("%p", (void *) &a)), ama her çalıştırmada farklı bir sayı görebilirsin: işletim sistemi programı her seferinde başka bir yere yerleştirebilir. Bu yüzden adresleri yazdırmak yerine karşılaştırırız.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (C'de bildirim ve türler): int a = 9; a adında, int türünde bir değişken oluşturur ve ona 9 değerini verir; türler bir değerin nasıl saklandığını belirler.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          int x = 4;
+          int y = x;
+          x = 10;
+          printf("%d %d %d\n", x == y, &x == &y, y);
+
+          - y = x; 4 değerini y'nin kendi yerine kopyaladı.
+          - x = 10; yalnız x'in yerini değiştirdi; y hâlâ 4.
+          - x == y → 0, &x == &y → 0 (iki ayrı yer), y → 4.
+          Ekranda: 0 0 4
+    misconceptions:
+      - slug: same_value_same_place
+        name: Aynı değeri taşıyan iki değişken aynı yerde durur
+        open_question: İki değişken aynı değeri taşıyorsa bellekte aynı yeri paylaştıklarını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "a da 9, b de 9; o halde aynı 9."
+
+            Her değişkenin kendi yeri vardır. a ve b'nin değerleri eşit olsa bile &a ile &b farklıdır; birini değiştirmek ötekini etkilemez.
+      - slug: assignment_links_variables
+        name: b = a; satırı b'yi a'ya bağlar
+        open_question: b = a; satırından sonra a'yı değiştirince b'nin de değişeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "b artık a'yı gösteriyor."
+
+            C'de atama değeri kopyalar: b = a; a'nın o anki değerini b'nin kendi yerine yazar. Sonra a'ya ne olursa olsun b etkilenmez. Bir değişkenin başka bir yeri "göstermesi" için işaretçi gerekir — bir sonraki Skill.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int m = 12;
+              int n = 12;
+              printf("%d %d\n", m == n, &m == &n);
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        answer: "1 0"
+        verify: {mode: c_stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu programda u = t; satırından sonra hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int t = 30;
+              int u = 0;
+              u = t;
+              printf("%d %d\n", u == t, &u == &t);
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        options:
+          A: "u ile t'nin değerleri eşittir, ama ikisi bellekte ayrı yerlerdedir"
+          B: "u artık t ile aynı yerdedir"
+          C: "u ile t'nin değerleri de yerleri de farklıdır"
+          D: "u, t'nin yerine taşınmıştır ve t artık 0'dır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stdout
+          outcomes: {A: "1 0", B: "1 1", C: "0 0", D: "0 1"}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              char c = 'A';
+              int n = 'A';
+              printf("%d %d %zu %zu\n", c == n, c, sizeof c, sizeof n);
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        answer: "1 65 1 4"
+        verify: {mode: c_stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int ilk = 5;
+              int ikinci = ilk;
+              ilk = ilk + 1;
+              ikinci = ikinci * 3;
+              printf("%d %d %d\n", ilk, ikinci, &ilk == &ikinci);
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        answer: "6 15 0"
+        verify: {mode: c_stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          void ekle(int deger) {
+              deger = deger + 100;
+              printf("%d ", deger);
+          }
+
+          int main(void) {
+              int puan = 8;
+              ekle(puan);
+              printf("%d\n", puan);
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        answer: "108 8"
+        verify: {mode: c_stdout}
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bir arkadaşın şu üç satırı yazıyor ve "eski = fiyat dediğim için eski artık fiyatı takip eder" diyor:
+          int fiyat = 40;
+          int eski = fiyat;
+          fiyat = fiyat - 5;
+          Kendi cümlelerinle anlat: üç satırdan sonra eski'nin değeri nedir ve neden? &fiyat == &eski ifadesi ne verir? Arkadaşının düşüncesi neden yanlış? (3–5 cümle yeterli.)
+        required_skills: [skill.c.expression_evaluation]
+        answer: "-"
+        rubric:
+          - id: eski_stays
+            statement: Üçüncü satırdan sonra eski'nin 40 olarak kaldığını söyler (fiyat 35 olur).
+          - id: copied_at_assignment
+            statement: eski = fiyat satırının fiyatın o andaki değerini eski'nin yerine kopyaladığını açıklar.
+          - id: separate_places
+            statement: "&fiyat == &eski ifadesinin 0 verdiğini, çünkü iki değişkenin bellekte ayrı yerlerde durduğunu söyler."
+          - id: no_link
+            statement: Atamanın iki değişken arasında bir bağ kurmadığını, fiyat'ı değiştirmenin yalnız fiyat'ın kendi yerini değiştirdiğini söyleyerek arkadaşının düşüncesini düzeltir.
+        verify:
+          mode: rubric
+
+  - id: objective.memory.address_value_distinction.trace_simple_memory_example
+    statement: >-
+      Basit bir programda her adımda hangi değerin hangi değişkenin yerinde durduğunu izleyebilmek: atama zincirlerini,
+      geçici değişkenle yer değiştirmeyi ve bir fonksiyona değer kopyalanmasını bir bellek tablosu üzerinde adım adım
+      takip edip programın sonunda her yerdeki değeri söyleyebilmek.
+    observable_behavior: >-
+      Birkaç atama ve bir fonksiyon çağrısı içeren programların sonunda her değişkenin değerini doğru verir; bir bellek
+      tablosunu doğru doldurur.
+    acceptable_evidence_types: [explanation, code_reading]
+    direct_evidence_types: [explanation, code_reading]
+    required_direct_type: explanation
+    reconciliation: >-
+      6C'nin şablon cümlesi bu Objective'in eylem adına (trace_simple_memory_example) göre özgülleştirildi; kimlik
+      korundu. Direct type explanation; item'ların anahtarları programlar gcc ile Linux'ta çalıştırılarak doğrulanır ve
+      bir rubric item'ı izlemenin anlatımını değerlendirir. 15A'nın state_assignment_model'i durumu izlemeyi Python ile
+      öğretti; bu Objective aynı izlemeyi her değişkenin ayrı bir bellek yeri olduğu bilgisiyle yaptırır.
+    checks:
+      - prints: "3 8 3"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int p = 3;
+              int q = 8;
+              int r = p;
+              p = q;
+              q = r;
+              printf("%d %d %d\n", q, p, r);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Bir programı izlerken her değişkeni bir kutu olarak çiz: kutunun adı değişkenin adı, kutunun yeri adresi, içindeki sayı değeri.
+
+        int p = 3;    p: [3]
+        int q = 8;    p: [3]  q: [8]
+        int r = p;    p: [3]  q: [8]  r: [3]   (r'nin kendi kutusu var; p'nin değeri kopyalandı)
+        p = q;        p: [8]  q: [8]  r: [3]   (yalnız p'nin kutusu değişti)
+        q = r;        p: [8]  q: [3]  r: [3]
+
+        Kurallar:
+        - Bir bildirim (int r = ...) yeni bir kutu açar.
+        - Bir atama (p = q) yalnız sol taraftaki kutunun içini değiştirir; sağ taraftaki kutuya dokunmaz.
+        - Bir fonksiyon çağrılınca parametreler için yeni kutular açılır ve argümanların değerleri oraya kopyalanır; fonksiyon bitince bu kutular kaldırılır. Fonksiyonun kendi kutularına yaptığı değişiklik çağıranın kutularına ulaşmaz.
+
+        Yöntem: her satırdan sonra tablonun yeni bir satırını yaz; sonunda istenen kutuların içini oku.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (değer ve adres): her değişkenin kendi yeri vardır ve atama değeri o yere kopyalar; iki değişken aynı değeri taşısa da ayrı yerlerdedir.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          int a = 1;          a:[1]
+          int b = a + 1;      a:[1] b:[2]
+          a = b * 5;          a:[10] b:[2]
+          b = a - b;          a:[10] b:[8]
+
+          Sonunda a 10, b 8.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          int karesi(int s) {
+              s = s * s;
+              return s;
+          }
+          ...
+          int k = 6;
+          int m = karesi(k);
+
+          - Çağrıda s için yeni bir kutu açılır: s:[6].
+          - s = s * s; → s:[36]; k'nin kutusu hâlâ [6].
+          - return 36 → m:[36]; fonksiyon bitince s'nin kutusu kaldırılır.
+          Sonunda k 6, m 36.
+    misconceptions:
+      - slug: swap_without_third_box
+        name: İki değişken üçüncü bir kutu olmadan yer değiştirir
+        open_question: x = y; y = x; satırlarının iki değeri yer değiştirdiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Önce x'e y'yi, sonra y'ye x'i koydum."
+
+            x = y; x'in kutusundaki eski değeri siler; artık iki kutuda da y'nin değeri vardır ve y = x; bunu geri kopyalar. Değerleri korumak için önce birini üçüncü bir kutuya (geçici değişkene) kopyalarsın.
+      - slug: parameter_shares_box
+        name: Fonksiyon parametresi çağıranın kutusunu kullanır
+        open_question: Bir fonksiyon parametresine yeni değer atayınca çağıranın değişkeninin kutusunun da değiştiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Değişkeni fonksiyona verdim, aynı kutu."
+
+            Parametre, çağrı sırasında açılan yeni bir kutudur ve argümanın değerinin bir kopyasını tutar. Fonksiyon kendi kutusunu değiştirir; çağıranın kutusu aynı kalır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int g = 4;
+              int h = g;
+              g = 11;
+              printf("%d %d\n", g, h);
+              return 0;
+          }
+        answer: "11 4"
+        verify: {mode: c_stdout}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 1;
+              int y = 2;
+              int z = 3;
+              int t = x;
+              x = y;
+              y = z;
+              z = t;
+              printf("%d %d %d\n", x, y, z);
+              return 0;
+          }
+        answer: "2 3 1"
+        verify: {mode: c_stdout}
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          Bu programın yazarı a ile b'nin değerlerini yer değiştirmek istiyordu. Program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 7;
+              int b = 2;
+              a = b;
+              b = a;
+              printf("%d %d\n", a, b);
+              return 0;
+          }
+        options:
+          A: "2 2"
+          B: "2 7"
+          C: "7 7"
+          D: "7 2"
+        scan_options: false
+        answer: A
+        verify: {mode: c_stdout}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int s = 5;
+              int d = s;
+              d = d * 2;
+              s = d - s;
+              printf("%d %d\n", s, d);
+              return 0;
+          }
+        answer: "5 10"
+        verify: {mode: c_stdout}
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int ucle(int n) {
+              n = n * 3;
+              return n;
+          }
+
+          int main(void) {
+              int x = 4;
+              int y = ucle(x);
+              x = x + y;
+              printf("%d %d\n", x, y);
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        answer: "16 12"
+        verify: {mode: c_stdout}
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Aşağıdaki satırlar çalışırken her adımda hangi değişkenin kutusunda ne olduğunu anlat ve sonunda m ile n'nin değerlerini söyle (bir tablo ya da 3–5 cümle yeterli):
+
+          int m = 2;
+          int n = m + 4;
+          m = n;
+          n = n - m + 1;
+        answer: "-"
+        rubric:
+          - id: new_boxes
+            statement: Her bildirimin (int m, int n) yeni bir kutu açtığını ya da her değişkenin ayrı bir yeri olduğunu belirtir.
+          - id: step_values
+            statement: Ara değerleri doğru izler (m 2, n 6; sonra m 6).
+          - id: assignment_changes_left_only
+            statement: Bir atamanın yalnız sol taraftaki değişkeni değiştirdiğini söyler.
+          - id: final_values
+            statement: Sonuçta m'nin 6, n'nin 1 olduğunu söyler.
+        verify:
+          mode: rubric

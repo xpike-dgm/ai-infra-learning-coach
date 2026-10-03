@@ -1,0 +1,595 @@
+package_version: 4
+items:
+- item: item.memory.address_value_distinction.explain_address_vs_value.f01
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - address_for_scanf
+  - comparison
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.explain_address_vs_value.f02
+  status: validated
+  verify_mode: c_stdout
+  verification: executed; true value '1 0\n' is option A and no other
+  constructs:
+  - address_for_scanf
+  - assignment
+  - comparison
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.explain_address_vs_value.f03
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - comparison
+  - main_function
+  - printf_call
+  - sizeof_operator
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.explain_address_vs_value.f04
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - assignment
+  - comparison
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.explain_address_vs_value.f05
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.explain_address_vs_value.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f01
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f02
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f03
+  status: validated
+  verify_mode: c_stdout
+  verification: executed; true value '2 2\n' is option A and no other
+  constructs:
+  - assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f04
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - assignment
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.f05
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - arithmetic
+  - assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.address_value_distinction.trace_simple_memory_example.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_formation.demonstrate_capability.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_formation.demonstrate_capability.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - function_definition
+  - if_else
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_formation.demonstrate_capability.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - function_definition
+  - if_else
+  - null_pointer
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_formation.demonstrate_capability.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - function_definition
+  - if_else
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_formation.demonstrate_capability.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - function_definition
+  - if_else
+  - pointer_type
+  - scanf_call
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.read_pointed_value.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 3 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - dereference
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.read_pointed_value.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - dereference
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.read_pointed_value.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - dereference
+  - function_definition
+  - if_else
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.read_pointed_value.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - dereference
+  - function_definition
+  - if_else
+  - null_pointer
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.read_pointed_value.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 5 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - compound_assignment
+  - dereference
+  - division_remainder
+  - function_definition
+  - if_else
+  - increment
+  - null_pointer
+  - pointer_type
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.modify_value_via_pointer.f01
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - dereference
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.modify_value_via_pointer.f02
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 2 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - dereference
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.modify_value_via_pointer.f03
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 4 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - comparison
+  - dereference
+  - function_definition
+  - if_else
+  - pointer_type
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.modify_value_via_pointer.f04
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 3 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - dereference
+  - division_remainder
+  - function_definition
+  - pointer_type
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.c.pointer_dereference.modify_value_via_pointer.f05
+  status: validated
+  verify_mode: suite
+  verification: executed with the course runner; the reference passes 7 tests and each of 2 wrong solutions fails at least
+    one
+  constructs:
+  - arithmetic
+  - assignment
+  - comparison
+  - dereference
+  - function_definition
+  - if_else
+  - logical
+  - null_pointer
+  - pointer_type
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f01
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - compound_assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - static_storage
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f02
+  status: validated
+  verify_mode: c_stdout
+  verification: built with gcc and run in Linux; the key is exactly what the program prints
+  constructs:
+  - compound_assignment
+  - function_definition
+  - main_function
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f03
+  status: validated
+  verify_mode: c_sanitize
+  verification: executed; true value 'stack-use-after-return' is option A and no other
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - dereference
+  - function_definition
+  - main_function
+  - pointer_type
+  - printf_call
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f04
+  status: validated
+  verify_mode: c_sanitize
+  verification: executed; true value 'heap-use-after-free' is option A and no other
+  constructs:
+  - allocation
+  - arithmetic
+  - dereference
+  - main_function
+  - pointer_type
+  - printf_call
+  - sizeof_operator
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f05
+  status: validated
+  verify_mode: c_sanitize
+  verification: executed; true value 'ok' is option A and no other
+  constructs:
+  - address_for_scanf
+  - arithmetic
+  - comparison
+  - dereference
+  - function_definition
+  - increment
+  - main_function
+  - pointer_type
+  - printf_call
+  - static_storage
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.f06
+  status: validated
+  verify_mode: c_sanitize
+  verification: executed; true value 'ok' is option A and no other
+  constructs:
+  - allocation
+  - arithmetic
+  - dereference
+  - function_definition
+  - main_function
+  - pointer_type
+  - printf_call
+  - sizeof_operator
+  - type_cast
+  - variable_declaration
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 33
+tasks:
+- task: task.memory.address_value_distinction.teach
+  status: validated
+  items: 2
+  explanations: 4
+- task: task.memory.address_value_distinction.practice
+  status: validated
+  items: 8
+  explanations: 0
+- task: task.memory.address_value_distinction.check
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.memory.address_value_distinction.review
+  status: validated
+  items: 8
+  explanations: 0
+- task: task.memory.address_value_distinction.repair
+  status: validated
+  items: 8
+  explanations: 7
+- task: task.c.pointer_formation.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.c.pointer_formation.practice
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.pointer_formation.check
+  status: validated
+  items: 3
+  explanations: 0
+- task: task.c.pointer_formation.review
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.c.pointer_formation.repair
+  status: validated
+  items: 4
+  explanations: 3
+- task: task.c.pointer_dereference.teach
+  status: validated
+  items: 2
+  explanations: 4
+- task: task.c.pointer_dereference.practice
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.c.pointer_dereference.check
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.c.pointer_dereference.review
+  status: validated
+  items: 8
+  explanations: 0
+- task: task.c.pointer_dereference.repair
+  status: validated
+  items: 8
+  explanations: 7
+- task: task.memory.storage_lifetime_intuition.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.memory.storage_lifetime_intuition.practice
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.memory.storage_lifetime_intuition.check
+  status: validated
+  items: 4
+  explanations: 0
+- task: task.memory.storage_lifetime_intuition.review
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.memory.storage_lifetime_intuition.repair
+  status: validated
+  items: 5
+  explanations: 4
+failures: []
+explanation_checks:
+- objective: objective.memory.address_value_distinction.explain_address_vs_value
+  check: 1
+  result: PASS
+  printed: 1 0
+- objective: objective.memory.address_value_distinction.explain_address_vs_value
+  check: 2
+  result: PASS
+  printed: 1 4 8
+- objective: objective.memory.address_value_distinction.explain_address_vs_value
+  check: 3
+  result: PASS
+  printed: '1'
+- objective: objective.memory.address_value_distinction.trace_simple_memory_example
+  check: 1
+  result: PASS
+  printed: 3 8 3
+- objective: objective.c.pointer_formation.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 1 1 0
+- objective: objective.c.pointer_formation.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: '1'
+- objective: objective.c.pointer_formation.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: 8 8 4
+- objective: objective.c.pointer_dereference.read_pointed_value
+  check: 1
+  result: PASS
+  printed: 5 5 1
+- objective: objective.c.pointer_dereference.read_pointed_value
+  check: 2
+  result: PASS
+  printed: '9'
+- objective: objective.c.pointer_dereference.modify_value_via_pointer
+  check: 1
+  result: PASS
+  printed: '12'
+- objective: objective.c.pointer_dereference.modify_value_via_pointer
+  check: 2
+  result: PASS
+  printed: 7 3
+- objective: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  check: 1
+  result: PASS
+  printed: 1 2 3
+- objective: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  check: 2
+  result: PASS
+  printed: 1 1 1
+- objective: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  check: 3
+  result: PASS
+  printed: ''
+- objective: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+  check: 4
+  result: PASS
+  printed: ''
+summary:
+  skills: 4
+  objectives: 6
+  topics: 2
+  items: 34
+  validated_items: 34
+  explanations: 33
+  misconceptions: 13
+  tasks: 20
+  failures: 0

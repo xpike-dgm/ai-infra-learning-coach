@@ -241,12 +241,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15A ✅ Computer / Programming Fundamentals — CPFX-v0 / D-112**
 - **15B ✅ Python Foundations — PYFX-v0 / D-113**
 - **15C ✅ C Foundations — CFNX-v0 / D-114**
-- **15D 🟡 Memory Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15E–20 ⬜
+- **15D ✅ Memory Foundations — MMFX-v0 / D-116**
+- **15E 🟡 Linux / Git / Shell Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15F–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15D'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -669,4 +670,16 @@ Canonical: `docs/PYTHON_FOUNDATIONS_CONTENT_SPEC.md` / D-113.
 Kullanıcı kararları: Linux terminal Skill'i 15C'de; WSL Ubuntu + gcc; standard_io_basic eklendi.
 
 Canonical: `docs/C_FOUNDATIONS_CONTENT_SPEC.md` / D-114.
+
+## 12.40 15D Memory Foundations içeriği — MMFX-v0 / D-116
+
+Dördüncü içerik paketi sevk ediliyor ve öğrenci işaretçi ve bellek ömrü çalışıyor. Ana invariant: **bir erişimin geçerli olup olmadığı, tanımsız bir programın ne yazdırdığına göre değil AddressSanitizer'ın ne bildirdiğine göre doğrulanır ve öğrencinin derlemesi kontrol edilen derlemedir — ölü belleği okuyan bir çözüm çıktısı doğru olsa bile düşer.**
+
+Bulunanlar: ömür hatasının çıktısı hiçbir şey kanıtlamaz; gcc 15.2'nin libasan'ında stack-use-after-return varsayılan olarak açık; sanitizer raporu stdout yazılmadan programı durdurur; ömür Skill'i işaretçiden okur ama graph bunu söylemez; yalnız fonksiyon içeren bir dosyada NULL başlık ister; sanitizer her geçersiz erişimi yakalamaz.
+
+4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; hepsi Linux'ta gcc ve sanitizer ile doğrulandı. Hiçbir Skill eklenmedi, giriş noktası yok. Bağımsız inceleme ilk geçişte 34 item'ın 29'unu ve 33 anlatımın 30'unu geçirdi (her anahtar ve ders kontrolü doğru, 30 yanlış çözümün hepsi düştü; düşenler testi geçen iki yanlış çözüm, üç ders içi sızıntı ve üç cümleydi: sizeof(char), NULL'ın başlığı, sanitizer'ın her geçersiz erişimi yakaladığı iddiası); ikinci geçişte 34/34 ve 33/33.
+
+Yeni kullanıcı kararı gerekmedi (kapsam 6C'nin ayrıştırması, kapanış 15C'de yayımlı, sanitizer'lar gcc ile geliyor).
+
+Canonical: `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md` / D-116.
 

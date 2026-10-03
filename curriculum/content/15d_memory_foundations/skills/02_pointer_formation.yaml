@@ -1,0 +1,368 @@
+skill: skill.c.pointer_formation
+activity: coding_production
+tasks:
+  teach: {title: "İşaretçi oluşturmak: int *p = &x, tür uyumu ve NULL", minutes: 18}
+  practice: {title: "İşaretçi oluşturma alıştırması", minutes: 15}
+  check: {title: "İşaretçi oluşturma kontrolü", minutes: 15}
+  review: {title: "İşaretçi oluşturma tekrarı", minutes: 12}
+  repair: {title: "İşaretçiyi yeniden kurmak: tür, adres ve NULL", minutes: 18}
+
+objectives:
+  - id: objective.c.pointer_formation.demonstrate_capability
+    statement: >-
+      Bir değişkenin adresini tutan, gösterdiği türle uyumlu bir işaretçi (int *, double *, char *) bildirip &
+      ile oluşturabilmek; bir işaretçiyi başka bir işaretçiye atayıp karşılaştırabilmek, hiçbir yeri göstermediğini
+      NULL ile belirtebilmek ve işaretçi alan ya da döndüren fonksiyonlarda doğru adresi aktarabilmek.
+    observable_behavior: >-
+      Doğru türde işaretçiler kuran ve istenen değişkenin adresini döndüren fonksiyonlar yazar; dersin test programı
+      dönen adresi değişkenlerin adresleriyle karşılaştırdığında doğru sonucu alır.
+    acceptable_evidence_types: [authored_code, deterministic_test]
+    direct_evidence_types: [authored_code, deterministic_test]
+    required_direct_type: authored_code
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. FBB-v0'ın pointer_declaration_dereference_basic tohumu 6C'de ikiye ayrıldı; işaretçinin gösterdiği
+      değeri okumak ve yazmak (*p) pointer_dereference'ındır, bu yüzden bu Skill'in item'ları adres oluşturur, aktarır ve
+      karşılaştırır ama içinden okumaz. Testler programı AddressSanitizer ve UBSan ile derler; gcc 14+ uyumsuz işaretçi
+      türlerini ve tamsayıdan işaretçiye dönüşümü hata sayar, bu yüzden yanlış türdeki işaretçi derlenmez. İşaretçi
+      boyutu (8 bayt) Linux x86_64 içindir.
+    checks:
+      - prints: "1 1 0"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 5;
+              int y = 5;
+              int *p = &x;
+              int *q = p;
+              printf("%d %d %d\n", p == &x, q == p, p == &y);
+              return 0;
+          }
+      - prints: "1"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int *bos = NULL;
+              printf("%d\n", bos == NULL);
+              return 0;
+          }
+      - prints: "8 8 4"
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 1;
+              double d = 2.0;
+              int *pn = &n;
+              double *pd = &d;
+              printf("%zu %zu %zu\n", sizeof pn, sizeof pd, sizeof n);
+              return 0;
+          }
+    explanations:
+      canonical: |
+        Bir işaretçi (pointer), değeri bir adres olan değişkendir. Hangi türü gösterdiği türüne yazılır:
+
+        int x = 5;
+        int *p = &x;      (p, bir int'in adresini tutar; şimdi x'in adresini)
+
+        - int *p: "p, int gösteren bir işaretçidir". * burada bildirimin parçasıdır.
+        - &x: x'in adresi. p = &x; ataması bu adresi p'nin kutusuna kopyalar.
+        - p'nin kendisi de bir değişkendir: kendi yeri ve kendi değeri (bir adres) vardır.
+
+        Tür uyumu: bir double'ın adresi double * içinde tutulur.
+        double d = 2.5;
+        double *pd = &d;     (doğru)
+        int *pi = &d;        (yanlış: güncel gcc bunu derlemez — "incompatible pointer types")
+        int *pk = 5;         (yanlış: bir tamsayı adres değildir — derlenmez)
+
+        İşaretçileri karşılaştırmak ve kopyalamak:
+        int *q = p;    (q de x'in adresini tutar; iki işaretçi aynı yeri gösterir)
+        q == p   → 1,   p == &x → 1
+
+        NULL: hiçbir yeri göstermeyen işaretçi. int *bos = NULL; Bir işaretçinin geçerli bir yeri gösterip göstermediği bos == NULL ile denetlenir. Bir işaretçiye ilk değer vermeden kullanmak tanımsızdır; ya bir adres ya da NULL ver.
+        NULL <stddef.h> başlığında tanımlıdır (<stdio.h> ve <stdlib.h> de getirir). Yalnız bir fonksiyon yazdığın ve hiçbir başlık eklemediğin bir dosyada NULL kullanacaksan dosyanın başına #include <stddef.h> yaz; yoksa derleyici "'NULL' undeclared" der.
+
+        Fonksiyonlarla: bir fonksiyon bir işaretçi alabilir ve döndürebilir:
+        int *birinci(int *a, int *b) {
+            return a;
+        }
+        Döndürülen şey bir adrestir (a'nın taşıdığı adres).
+
+        Boyut: bu ortamda (Linux x86_64) her işaretçi 8 bayttır — gösterdiği tür ne olursa olsun.
+
+        Bu derste işaretçinin gösterdiği değeri okumayacağız; *p ile okumak ve yazmak bir sonraki Skill'in konusu.
+
+        Dersin testleri programını AddressSanitizer ve UBSan ile derler (-fsanitize=address,undefined): NULL'dan okumak, free edilmiş bellek ya da dönmüş bir fonksiyonun yereli gibi pek çok geçersiz erişim, çıktı doğru görünse bile testi düşürür. Ama her geçersiz erişim yakalanmaz (örneğin ilk değeri verilmemiş bir işaretçi bazen fark edilmez); bu yüzden işaretçiye her zaman bir adres ya da NULL ver.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (değer ve adres): &x x'in adresini verir; iki farklı değişken aynı değeri taşısa da farklı adreslerdedir ve adresler == ile karşılaştırılır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: double *uzun_olan(double *a, double *b, int a_uzun_mu) — a_uzun_mu sıfırdan farklıysa a'yı, değilse b'yi döndür.
+
+          double *uzun_olan(double *a, double *b, int a_uzun_mu) {
+              if (a_uzun_mu) {
+                  return a;
+              }
+              return b;
+          }
+
+          - Dönüş türü double *: bir double'ın adresi döner.
+          - double u = 1.5, v = 2.5; için uzun_olan(&u, &v, 0) == &v → 1.
+    misconceptions:
+      - slug: star_is_part_of_name
+        name: int *p ile p'nin değeri bir int'tir
+        open_question: int *p = &x; satırından sonra p'nin içinde x'in değerinin (bir sayının) durduğunu mu düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "p, x'in kopyası."
+
+            p'nin değeri x'in değeri değil, x'in adresidir. p'nin türü int * (int gösteren işaretçi) olduğu için içinde bir adres tutar. x'in değerine p üzerinden ulaşmak *p ile olur — bir sonraki Skill.
+      - slug: any_pointer_fits
+        name: Herhangi bir işaretçi herhangi bir değişkenin adresini tutabilir
+        open_question: Bir double'ın adresini int * türünde bir işaretçide tutabileceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Adres adrestir."
+
+            İşaretçinin türü, gösterdiği yerde ne tür bir değer olduğunu söyler. double'ın adresi double * içinde tutulur; int * içine koymak güncel gcc'de derleme hatasıdır, çünkü o adresten bir int okumak yanlış olur.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          cozum.c dosyasına int *ilki(int *a, int *b) fonksiyonunu yaz: her zaman ilk aldığı adresi (a'yı) döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve dönen adresi değişkenlerin adresleriyle karşılaştırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int *ilki(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              int sira = 0;
+              scanf("%d", &sira);
+              int *r = sira == 0 ? ilki(&x, &y) : ilki(&y, &x);
+              printf("%d %d\n", r == &x, r == &y);
+              return 0;
+          }
+        suite:
+          - {id: x_first, stdin: "0\n", expected_stdout: "1 0\n"}
+          - {id: y_first, stdin: "1\n", expected_stdout: "0 1\n"}
+        reference: |
+          int *ilki(int *a, int *b) {
+              return a;
+          }
+        wrong:
+          - |
+            int *ilki(int *a, int *b) {
+                return b;
+            }
+          - |
+            #include <stddef.h>
+
+            int *ilki(int *a, int *b) {
+                return NULL;
+            }
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          cozum.c dosyasına int *secim(int *a, int *b, int ilki_mi) fonksiyonunu yaz: ilki_mi sıfırdan farklıysa a'yı, sıfırsa b'yi döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.conditionals, skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int *secim(int *a, int *b, int ilki_mi);
+
+          int main(void) {
+              int x = 7, y = 7;
+              int bayrak = 0;
+              scanf("%d", &bayrak);
+              int *r = secim(&x, &y, bayrak);
+              printf("%d %d\n", r == &x, r == &y);
+              return 0;
+          }
+        suite:
+          - {id: first, stdin: "1\n", expected_stdout: "1 0\n"}
+          - {id: second, stdin: "0\n", expected_stdout: "0 1\n"}
+          - {id: other_nonzero, stdin: "-3\n", expected_stdout: "1 0\n"}
+        reference: |
+          int *secim(int *a, int *b, int ilki_mi) {
+              if (ilki_mi) {
+                  return a;
+              }
+              return b;
+          }
+        wrong:
+          - |
+            int *secim(int *a, int *b, int ilki_mi) {
+                if (ilki_mi == 1) {
+                    return a;
+                }
+                return b;
+            }
+          - |
+            int *secim(int *a, int *b, int ilki_mi) {
+                if (ilki_mi) {
+                    return b;
+                }
+                return a;
+            }
+      - slug: f03
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int *bos_olmayan(int *a, int *b) fonksiyonunu yaz: a NULL değilse a'yı döndürsün; a NULL ise b'yi döndürsün (b de NULL olabilir; o zaman NULL döner). Dersin testleri bu fonksiyonu kendi main'iyle, bazen NULL vererek çağırır.
+        required_skills: [skill.c.conditionals, skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int *bos_olmayan(int *a, int *b);
+
+          int main(void) {
+              int x = 1, y = 2;
+              int a_bos = 0, b_bos = 0;
+              scanf("%d %d", &a_bos, &b_bos);
+              int *r = bos_olmayan(a_bos ? NULL : &x, b_bos ? NULL : &y);
+              printf("%d %d %d\n", r == &x, r == &y, r == NULL);
+              return 0;
+          }
+        suite:
+          - {id: both, stdin: "0 0\n", expected_stdout: "1 0 0\n"}
+          - {id: first_null, stdin: "1 0\n", expected_stdout: "0 1 0\n"}
+          - {id: second_null, stdin: "0 1\n", expected_stdout: "1 0 0\n"}
+          - {id: both_null, stdin: "1 1\n", expected_stdout: "0 0 1\n"}
+        reference: |
+          #include <stddef.h>
+
+          int *bos_olmayan(int *a, int *b) {
+              if (a != NULL) {
+                  return a;
+              }
+              return b;
+          }
+        wrong:
+          - |
+            #include <stddef.h>
+
+            int *bos_olmayan(int *a, int *b) {
+                return a;
+            }
+          - |
+            #include <stddef.h>
+
+            int *bos_olmayan(int *a, int *b) {
+                if (b != NULL) {
+                    return b;
+                }
+                return a;
+            }
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına double *buyugun_yeri(double *a, double a_deger, double *b, double b_deger) fonksiyonunu yaz: a_deger b_deger'den büyük ya da eşitse a'yı, değilse b'yi döndürsün (a ve b, değerleri a_deger ve b_deger olan değişkenlerin adresleridir). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.conditionals, skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          double *buyugun_yeri(double *a, double a_deger, double *b, double b_deger);
+
+          int main(void) {
+              double u = 0, v = 0;
+              scanf("%lf %lf", &u, &v);
+              double *r = buyugun_yeri(&u, u, &v, v);
+              printf("%d %d\n", r == &u, r == &v);
+              return 0;
+          }
+        suite:
+          - {id: first_bigger, stdin: "3.5 1.25\n", expected_stdout: "1 0\n"}
+          - {id: second_bigger, stdin: "-2 0.5\n", expected_stdout: "0 1\n"}
+          - {id: equal, stdin: "4 4\n", expected_stdout: "1 0\n"}
+          - {id: fraction_only, stdin: "2.25 2.5\n", expected_stdout: "0 1\n"}
+        reference: |
+          double *buyugun_yeri(double *a, double a_deger, double *b, double b_deger) {
+              if (a_deger >= b_deger) {
+                  return a;
+              }
+              return b;
+          }
+        wrong:
+          - |
+            double *buyugun_yeri(double *a, double a_deger, double *b, double b_deger) {
+                if (a_deger > b_deger) {
+                    return a;
+                }
+                return b;
+            }
+          - |
+            double *buyugun_yeri(double *a, double a_deger, double *b, double b_deger) {
+                if (a_deger >= b_deger) {
+                    return b;
+                }
+                return a;
+            }
+      - slug: f05
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int iki_sayi_oku(int *a, int *b) fonksiyonunu yaz: standart girdiden iki tam sayı okuyup birincisini a'nın gösterdiği değişkene, ikincisini b'nin gösterdiği değişkene koysun; ikisi de okunabildiyse 1, okunamadıysa 0 döndürsün (okunabilen sayı, diğeri okunamasa bile yerine yazılır — scanf'in yaptığı gibi). Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve değişkenleri yazdırır.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals, skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          int iki_sayi_oku(int *a, int *b);
+
+          int main(void) {
+              int x = -1, y = -1;
+              int sonuc = iki_sayi_oku(&x, &y);
+              printf("%d %d %d\n", sonuc, x, y);
+              return 0;
+          }
+        suite:
+          - {id: two_numbers, stdin: "4 9\n", expected_stdout: "1 4 9\n"}
+          - {id: negative_and_zero, stdin: "-3 0\n", expected_stdout: "1 -3 0\n"}
+          - {id: second_not_a_number, stdin: "7 x\n", expected_stdout: "0 7 -1\n"}
+          - {id: only_one, stdin: "12\n", expected_stdout: "0 12 -1\n"}
+          - {id: empty_input, stdin: "", expected_stdout: "0 -1 -1\n"}
+        reference: |
+          #include <stdio.h>
+
+          int iki_sayi_oku(int *a, int *b) {
+              if (scanf("%d %d", a, b) == 2) {
+                  return 1;
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int iki_sayi_oku(int *a, int *b) {
+                if (scanf("%d %d", &a, &b) == 2) {
+                    return 1;
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int iki_sayi_oku(int *a, int *b) {
+                return scanf("%d %d", a, b);
+            }
+          - |
+            #include <stdio.h>
+
+            int iki_sayi_oku(int *a, int *b) {
+                scanf("%d", a);
+                scanf("%d", b);
+                return 1;
+            }

@@ -303,14 +303,15 @@ PEM-v0:
 - 15A ✅ CPFX-v0 / D-112
 - 15B ✅ PYFX-v0 / D-113
 - 15C ✅ CFNX-v0 / D-114
-- 15D 🟡 active-not-executed
-- 15E–20 ⬜
+- 15D ✅ MMFX-v0 / D-116
+- 15E 🟡 active-not-executed
+- 15F–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15C — CFNX-v0 / D-114`  
-**Aktif:** `15D — Memory Foundations`  
-**15D henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15D — MMFX-v0 / D-116`  
+**Aktif:** `15E — Linux / Git / Shell Foundations`  
+**15E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1417,3 +1418,25 @@ CFNX-v0:
 ## 82. 15D handoff
 
 15D — Memory Foundations. FBB-v0 §6.3's memory and pointer seeds (address_value_distinction, pointer_declaration_dereference_basic → pointer_formation + pointer_dereference, storage_lifetime_intuition). The C toolchain (WSL Ubuntu + gcc), the C notation (pointers and arrays are listed and still forbidden), the C harness and the escape rule are in place. Open loops carried: requirements declared per item, fixed-output items, notation coverage, `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15D fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 83. D-116 / 15D final özeti
+
+Canonical: `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md`.
+Contract/QA: `arch/15d_memory_foundations/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15d_memory_foundations_research.md`.
+Content: `curriculum/content/15d_memory_foundations/` (package, notation, four Skill files, independent review, 15 test suites) → `tools/build_curriculum_package.py` (Linux through WSL, with AddressSanitizer + UBSan) → `android/app-wiring/src/main/assets/curriculum_package_v4.txt`.
+Code: builder only — `c_sanitized`, the `c_sanitize` mode, lesson checks with a `finding:`, `harness_cflags` reaching the harness compiles and link, `expect_clean_exit`. Kotlin main code, schema, ports and store unchanged.
+
+MMFX-v0:
+- a use of memory that no longer exists is judged by what AddressSanitizer reports, never by what an undefined program printed; the learner's build is the checked build,
+- no new user decision was needed: the scope is 6C's decomposition of FBB-v0 §6.3's three memory seeds and its closure was published by 15C,
+- found: a lifetime error's output proves nothing; gcc 15.2's libasan detects stack-use-after-return by default (unlike Google's wiki); a sanitizer report aborts before stdout is flushed (so the clean-exit rule is defensive and checked statically); the lifetime Skill reads through pointers but the graph does not say so (15H); NULL needs a header in a function-only file; the sanitizer does not catch every invalid access,
+- 4 Skills / 6 Objectives / 5 edges published; 34 items (15 suite, 12 reading, 4 sanitizer, 3 rubric), 33 explanations, 13 misconceptions, 20 tasks; no entry point,
+- independent review: first pass 29/34 items and 30/33 explanations (two suites a wrong solution passed, three leakages, three sentences); second pass 34/34 and 33/33,
+- four packages published into the real SQLite schema on the JVM; a learner with no history still starts only the three entry Skills; every memory Skill waits,
+- Mutation 9/9, independent QA 132/132,
+- T6 and on-device ingestion were not run.
+
+## 84. 15E handoff
+
+15E — Linux / Git / Shell Foundations. FBB-v0 §6.4's seeds; `terminal_filesystem_navigation` was already published in 15C (D-114). The WSL Ubuntu environment, the `shell` key mode (bash in an empty directory in Linux) and the runner are in place. Open loops carried: requirements declared per item (including the lifetime Skill's pointer edge), moderate transfer labels, notation coverage, `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
