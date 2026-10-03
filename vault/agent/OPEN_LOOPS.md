@@ -68,7 +68,9 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] 15C C Foundations: CFNX-v0 / D-114 ile tamamlandı; 9 Skill published (dört C tohumu + standard_io_basic + Linux terminal), 51 item, 56 anlatım, 21 misconception, 45 görev; WSL Ubuntu + gcc.
 - [x] 15D Memory Foundations: MMFX-v0 / D-116 ile tamamlandı; 4 Skill published (6C'nin üç bellek tohumu ayrıştırması), 34 item, 33 anlatım, 13 misconception, 20 görev; AddressSanitizer + UBSan.
 - [x] 15E Linux / Git / Shell Foundations: LGSX-v0 / D-118 ile tamamlandı; 5 Skill published (FBB-v0 §6.4; terminal 15C'de), 41 item, 35 anlatım, 15 misconception, 25 görev; Objective başına 8 item.
-- [ ] 15F English A0→A1/A2 başlangıç paketi **AKTİF**.
+- [x] 15F English A0→A1/A2 başlangıç paketi: EAAX-v0 / D-119 ile tamamlandı; 10 Skill published (7B A1/A2), 82 item, 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi.
+- [ ] 15G Assessment content **AKTİF** — kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti).
+- [ ] documentation_navigation'ın graph'ı: yardım metni emir, ilişki kelimesi ve isim öbeği içerir ama Skill yalnız etiket dersine bağlı → 15H.
 - [ ] Git item'ları ve görevleri command_options_redirection_basic'i item düzeyinde beyan ediyor (dosya oluşturur); 6C repository_status_diff'i yalnız terminale bağlar → 15H.
 - [ ] **Soru havuzu küçük (kullanıcı endişesi, 2026-10-03):** 15A–15D'de Objective başına ~5 doğrulanmış item var; gösterilen item taze ölçüm sayılmadığı ve remediation yalnız taze, temiz kanıtla kapandığı için zorlanan bir öğrenci birkaç denemede taze item'ı tüketir ve planner `no_valid_candidate`'te takılır. Öneri: Objective başına 15–25 item (elle doğrulanmış ya da çalıştırılarak doğrulanan üretim) — ayrı bir havuz-genişletme adımı ya da 15G; karar kullanıcının (D-117 sürerken 15E kanonik sırayla yürür).
 - [ ] storage_lifetime_intuition işaretçiden okur ama 6C onu yalnız functions_basic'e bağlar; işi pointer_dereference'ı item düzeyinde beyan ediyor → 15H.
@@ -86,7 +88,7 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [ ] Sevk edilen paketin cihazda ilk SQLite ingestion'ı ve T6 → öğrenci, cihazda.
 - [ ] İlk canlı sağlayıcı çağrısı ve Keystore yolu cihazda (Profile → 'Bağlantıyı dene') → öğrenci (T6).
 - [ ] Tutor ve değerlendiricileri görev ekranlarından çağırmak; kullanım/maliyet görünürlüğü → 16D.
-- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15 (15A'nın 13, 15B'nin 21, 15C'nin 10, 15D'nin 6 ve 15E'nin 5 Objective'i için yazıldı, D-112/D-113/D-114/D-116/D-118; 15F–15G'de devam).
+- [ ] Gerçek item'lar için kabul edilen cevaplar ve rubric'ler → 15 (15A'nın 13, 15B'nin 21, 15C'nin 10, 15D'nin 6, 15E'nin 5 ve 15F'nin 10 Objective'i için yazıldı, D-112/D-113/D-114/D-116/D-118/D-119; 15G'de devam).
 - [x] `open_response_evaluation/1` için adaptör çağrı noktası: 14G'de kuruldu (D-111).
 - [ ] Cevapları saklamak, `EvaluateOpenResponse`'u uygulamadan çağırmak, öz-kontrol ekranı → 16D.
 - [ ] Değerlendiricinin hiç `verified` olabilmesi için kalibrasyon → 18.
@@ -100,10 +102,10 @@ Bu sayfa karar yerine geçmez; henüz çözülmemiş veya sonraki aşamaya bıra
 - [x] AI kod değerlendiricisinin istemi ve çağrı noktası: `code_evaluation_instructions/1` core'da, çağrı noktası 14G'de (D-111).
 - [ ] AI kod değerlendiricisinin kalibrasyonu (provisional'ın ötesine geçebilmesi için) → 18.
 - [ ] C suite'lerinin bir C derleyicisi olan makinede koşulması → 15.
-- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13, 15B'nin 21, 15C'nin 10, 15D'nin 6 ve 15E'nin 5 Objective'i için yazıldı, D-112/D-113/D-114/D-116/D-118; 15F–15G'de devam).
+- [ ] Yazılı anlatımlar (dersin kendi anlatımı, alternatifler, misconception karşılaştırmaları) → 15 (15A'nın 13, 15B'nin 21, 15C'nin 10, 15D'nin 6, 15E'nin 5 ve 15F'nin 10 Objective'i için yazıldı, D-112/D-113/D-114/D-116/D-118/D-119; 15G'de devam).
 - [ ] Alternatif anlatım menüsünü çizmek ve `ExplainDifferently`'yi uygulamadan çağırmak → 16D.
 - [ ] Hangi biçimin öğrenciye daha çok yardım ettiğinin kalibrasyonu → 18.
-- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34, 15B'de 44, 15C'de 21, 15D'de 13, 15E'de 15 katalog etiketi yazıldı, D-112/D-113/D-114/D-116/D-118; cevap→etiket anahtarı formatı yok, 15F–15G'de karar).
+- [ ] Katalogdaki authored etiketler ve deterministik cevap→etiket anahtarları → 15 (15A'da 34, 15B'de 44, 15C'de 21, 15D'de 13, 15E'de 15, 15F'de 20 katalog etiketi yazıldı, D-112/D-113/D-114/D-116/D-118/D-119; cevap→etiket anahtarı formatı yok, 15G'de karar).
 - [ ] Misconception hafızasının item seçiminde kullanımı ve `misconception_contrast` içeriğinin yazılması → 15 (menüde hafızaya göre sunulması 14C'de, D-107).
 - [ ] Destekli/doğrulanmış misconception'ların Progress görünümü → 16C.
 - [ ] Yanlış analizini gerçek bir oturumdan sonra uygulamadan çağırmak → 16D.

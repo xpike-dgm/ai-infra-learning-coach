@@ -1,0 +1,133 @@
+model: EAAX-v0
+stage_step: 15F
+status: accepted_15f
+decision: D-119
+implements: [FBB-v0, KGC-v0, LFPS-v0, QAB-v0, AIV-v0, GRE-v0, EED-v0, TECP-v0, TEIP-v0, TASK_TAXONOMY_SPEC]
+builds_on: [CPFX-v0, PYFX-v0, CFNX-v0, MMFX-v0, LGSX-v0, DMAX-v0, PLNX-v0, PRQX-v0]
+boundaries: MSBX-v0
+purpose: english_a1_a2_starter_with_taught_vocabulary_only
+
+question: Bir İngilizce item'ın öğrenciden öğretilmemiş bir kelime ya da yapı istemediği nasıl garanti edilir?
+
+primary_invariant: >-
+  Every English word an item shows is a word a lesson the item may rely on teaches (the per-lesson lexicon); a word no
+  lesson teaches is refused by the build. A meaning key cites its source; a tool message is produced by the real tool and
+  shown verbatim. English is never a gate for anything technical.
+
+user_decisions:
+  approval: standing_D-117
+  new_user_decisions: false
+  standing_approval_ended_after: 15F
+  assistant_defaults_under_D-117:
+    - scope_is_the_ten_a1_a2_anchor_skills
+    - a_lexicon_per_lesson_enforced_by_the_builder
+    - turkish_prompts_and_options_english_stimulus_measured
+    - authored_help_excerpts_keeping_real_conventions
+    - only_stable_tool_messages
+    - eight_keyed_items_per_objective
+
+seed_skills: [skill.english.be_and_simple_present_comprehension, skill.english.documentation_navigation,
+              skill.english.follow_bilingual_technical_instruction, skill.english.imperative_instruction_comprehension,
+              skill.english.negation_question_comprehension, skill.english.preposition_function_word_comprehension,
+              skill.english.read_simple_terminal_error_fragments, skill.english.recognize_core_technical_labels,
+              skill.english.technical_noun_phrase_recognition, skill.english.write_command_result_note]
+added_skills: []
+entry_skills: [skill.english.recognize_core_technical_labels]
+
+scope:
+  skills: 10
+  objectives: 10
+  edges: 9
+  edges_from_earlier: 0
+  lifecycle_ratified: draft_to_published
+  identity_changed: false
+  schema_changed: false
+  ports_changed: false
+  store_changed: false
+  kotlin_main_changed: false
+  format_refined: none
+
+item_counts:
+  total: 82
+  reference: 72
+  shell: 8
+  rubric: 2
+
+lesson_checks_min: 2
+
+task_minutes:
+  source: authoring_estimate
+  calibrated: false
+  owner_of_calibration: 18B
+
+found:
+  - a_per_lesson_lexicon_is_the_only_honest_guard_for_vocabulary
+  - literals_are_not_vocabulary
+  - yaml_reads_yes_no_on_as_booleans
+  - tool_messages_differ_by_version_and_shell
+  - real_help_pages_hold_more_words_than_a2
+
+suites:
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedEnglishPackageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates: []
+
+open_loops:
+  documentation_navigation_graph: {owner: 15H, note: "help text uses imperatives, prepositions and noun phrases; the Skill depends only on the label lesson; the canonical glosses every word it uses"}
+  generous_labels: {owner: 15H, note: "some isomorph items carry authentic/transfer labels (independent review)"}
+  item_pool_size: {owner: user, note: "the user's concern about ~5 items per Objective in 15A-15D; a pool-expansion step awaits the user's decision"}
+  listening_speaking_b1: {owner: later steps, note: "listening, speaking, B1 and the pre-A1 bridge context"}
+  estimate_calibration: {owner: 18B, note: "task and item minutes are authoring estimates"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first on-device ingestion"}
+
+mutation_results:
+  total: 8
+  detected: 8
+  scope: the checking 15F adds to the builder (english_words and the lexicon check, including declared Skills); 15F changes no Kotlin main code
+  tests: the real 15F build (must stay clean) and two fault fixtures, each one Skill file with a planted vocabulary error that the unmutated builder must catch — a word no lesson teaches (F1) and a word from a lesson the item may not rely on (F2)
+  detection: the real build reports a failure, or a fixture's planted error adds no failure beyond the same file built clean under the same mutant
+  crash_is_detection: false
+  harness_verified: the unmutated baseline must be clean and catch both fixtures before any mutant runs; files are read and written as bytes and restored
+  negative_control: a comment-only change in the builder
+  negative_control_result: survived_as_expected
+  not_counted_as_mutants: removing the backtick stripping in english_words is equivalent for this content (a backticked token always carries a backtick or a non-letter and is skipped anyway); the validator checks the line statically (E15F-06_literals_are_not_words)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: B01, mutant: quoted_names_counted_as_words, result: detected}
+    - {id: B02, mutant: mixed_case_identifiers_counted, result: detected}
+    - {id: B03, mutant: non_letter_tokens_counted, result: detected}
+    - {id: B04, mutant: words_not_lowered, result: detected}
+    - {id: B05, mutant: unknown_words_allowed, result: detected}
+    - {id: B06, mutant: word_scope_not_checked, result: detected}
+    - {id: B07, mutant: lexicon_not_read, result: detected}
+    - {id: B08, mutant: declared_skills_ignored, result: detected}
+
+validator_mutation:
+  total: 36
+  detected: 36
+  negative_control: a YAML comment in a Skill file and a builder comment, each naming forbidden fragments (banana, happy, verdict fail, human_authored, yes, no, NameError, a quoted name, unknown_word)
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is E15F-12_validator_mutation, which reads this very result; a mutant counts only by a failure not in the baseline
+  fast_mode: every mutant except V27 ran with --skip-earlier-rebuild; V27, a change to an earlier package, ran in full
+  earlier_runs: none — the first full run is the result taken (the english_options_scanned check was strengthened before the run, after it was found to see only options with the/is/are/a)
+  final_run_is_a_single_clean_run: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test :data-curriculum:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew :ai-adapter:test :app-wiring:testDebugUnitTest", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-07, command: "read the six curriculum packages from the built APK and compare their SHA-256 with the source assets", tier: T5, result: PASS}
+  - {id: RUN-08, command: "python -X utf8 tools/validate_english_a1_a2.py (every English word checked against the lesson lexicons; every tool message produced again in Linux)", tier: T2, result: PASS}
+jvm_tests: 1025
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_on_jvm_run: true
+  sqlite_publish_on_device_run: false
+  why: no check runs on the device; ShippedCourseTest publishes all six shipped packages into the real schema on the JVM

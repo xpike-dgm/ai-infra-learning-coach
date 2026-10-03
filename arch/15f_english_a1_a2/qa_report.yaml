@@ -1,0 +1,402 @@
+model: EAAX-v0
+stage_step: 15F
+decision: D-119
+result: PASS
+checks_total: 119
+checks_passed: 119
+checks_failed: 0
+checks:
+- check: E15F-00_exists_english_a1_a2.yaml
+  result: PASS
+  details: missing arch\15f_english_a1_a2\english_a1_a2.yaml
+- check: E15F-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15f_english_a1_a2\content_verification.yaml
+- check: E15F-00_exists_ENGLISH_A1_A2_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\ENGLISH_A1_A2_CONTENT_SPEC.md
+- check: E15F-00_exists_15f_english_a1_a2_research.md
+  result: PASS
+  details: missing research\15f_english_a1_a2_research.md
+- check: E15F-00_exists_curriculum_package_v6.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v6.txt
+- check: E15F-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15F-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: E15F-00_exists_curriculum_package_v3.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v3.txt
+- check: E15F-00_exists_curriculum_package_v4.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v4.txt
+- check: E15F-00_exists_curriculum_package_v5.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v5.txt
+- check: E15F-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: E15F-00_exists_ShippedEnglishPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedEnglishPackageTest.kt
+- check: E15F-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: E15F-00_exists_alignment.yaml
+  result: PASS
+  details: missing curriculum\english\7b_cefr_progression\alignment.yaml
+- check: E15F-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15f_english_a1_a2\package.yaml
+- check: E15F-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15f_english_a1_a2\notation.yaml
+- check: E15F-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15f_english_a1_a2\independent_review.yaml
+- check: E15F-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15F-01_model
+  result: PASS
+  details: EAAX-v0
+- check: E15F-01_status
+  result: PASS
+  details: accepted_15f
+- check: E15F-01_decision
+  result: PASS
+  details: D-119
+- check: E15F-01_standing_approval
+  result: PASS
+  details: '{''approval'': ''standing_D-117'', ''new_user_decisions'': False, ''standing_approval_ended_after'':
+    ''15F'', ''assistant_defaults_under_D-117'': [''scope_is_the_ten_a1_a2_anchor_skills'',
+    ''a_lexicon_per_lesson_enforced_by_the_builder'', ''turkish_prompts_and_options_english_stimulus_measured'',
+    ''authored_help_excerpts_keeping_real_conventions'', ''only_stable_tool_messages'',
+    ''eight_keyed_items_per_objective'']}'
+- check: E15F-02_builds
+  result: PASS
+  details: ''
+- check: E15F-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15F-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15F-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15F-02_report_recorded
+  result: PASS
+  details: arch/15f_english_a1_a2/content_verification.yaml is not the report of this
+    build
+- check: E15F-02_no_code_suites
+  result: PASS
+  details: 15F has no program to test
+- check: E15F-02_earlier_untouched_15a_computing_fundamentals
+  result: PASS
+  details: '15a_computing_fundamentals is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15F-02_earlier_untouched_15b_python_foundations
+  result: PASS
+  details: '15b_python_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15F-02_earlier_untouched_15c_c_foundations
+  result: PASS
+  details: '15c_c_foundations is no longer a clean, fresh build of its source: 0 build
+    failures'
+- check: E15F-02_earlier_untouched_15d_memory_foundations
+  result: PASS
+  details: '15d_memory_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15F-02_earlier_untouched_15e_linux_git_shell
+  result: PASS
+  details: '15e_linux_git_shell is no longer a clean, fresh build of its source: 0
+    build failures'
+- check: E15F-03_a1_a2_anchor_skills
+  result: PASS
+  details: '[''skill.english.recognize_core_technical_labels'', ''skill.english.technical_noun_phrase_recognition'',
+    ''skill.english.be_and_simple_present_comprehension'', ''skill.english.imperative_instruction_comprehension'',
+    ''skill.english.preposition_function_word_comprehension'', ''skill.english.negation_question_comprehension'',
+    ''skill.english.follow_bilingual_technical_instruction'', ''skill.english.read_simple_terminal_error_fragments'',
+    ''skill.english.documentation_navigation'', ''skill.english.write_command_result_note'']'
+- check: E15F-03_nothing_added
+  result: PASS
+  details: '[]'
+- check: E15F-03_closed_under_hard_prerequisites
+  result: PASS
+  details: 'a Skill that could never become ready: []'
+- check: E15F-03_band_monotonic
+  result: PASS
+  details: TECP-v0 §7
+- check: E15F-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15F-03_objective_identity
+  result: PASS
+  details: '[''objective.english.be_and_simple_present_comprehension.demonstrate_capability'',
+    ''objective.english.documentation_navigation.demonstrate_capability'', ''objective.english.follow_bilingual_technical_instruction.execute_known_instruction'',
+    ''objective.english.imperative_instruction_comprehension.demonstrate_capability'',
+    ''objective.english.negation_question_comprehension.demonstrate_capability'',
+    ''objective.english.preposition_function_word_comprehension.demonstrate_capability'',
+    ''objective.english.read_simple_terminal_error_fragments.extract_known_signal'',
+    ''objective.english.recognize_core_technical_labels.match_term_meaning'', ''objective.english.technical_noun_phrase_recognition.demonstrate_capability'',
+    ''objective.english.write_command_result_note.demonstrate_capability'']'
+- check: E15F-03_edges_ratified
+  result: PASS
+  details: 9 edges
+- check: E15F-03_english_never_a_technical_gate
+  result: PASS
+  details: TEIP-v0
+- check: E15F-03_entry_point
+  result: PASS
+  details: '[''skill.english.recognize_core_technical_labels'']'
+- check: E15F-04_recorded_recognize_core_technical_labels_match_term_meaning
+  result: PASS
+  details: objective.english.recognize_core_technical_labels.match_term_meaning
+- check: E15F-04_recorded_technical_noun_phrase_recognition_demonstrate_capability
+  result: PASS
+  details: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+- check: E15F-04_recorded_be_and_simple_present_comprehension_demonstrate_capability
+  result: PASS
+  details: objective.english.be_and_simple_present_comprehension.demonstrate_capability
+- check: E15F-04_recorded_imperative_instruction_comprehension_demonstrate_capability
+  result: PASS
+  details: objective.english.imperative_instruction_comprehension.demonstrate_capability
+- check: E15F-04_recorded_preposition_function_word_comprehension_demonstrate_capability
+  result: PASS
+  details: objective.english.preposition_function_word_comprehension.demonstrate_capability
+- check: E15F-04_recorded_negation_question_comprehension_demonstrate_capability
+  result: PASS
+  details: objective.english.negation_question_comprehension.demonstrate_capability
+- check: E15F-04_recorded_follow_bilingual_technical_instruction_execute_known_instruction
+  result: PASS
+  details: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+- check: E15F-04_recorded_read_simple_terminal_error_fragments_extract_known_signal
+  result: PASS
+  details: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+- check: E15F-04_recorded_documentation_navigation_demonstrate_capability
+  result: PASS
+  details: objective.english.documentation_navigation.demonstrate_capability
+- check: E15F-04_recorded_write_command_result_note_demonstrate_capability
+  result: PASS
+  details: objective.english.write_command_result_note.demonstrate_capability
+- check: E15F-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15F-05_review_method
+  result: PASS
+  details: ''
+- check: E15F-05_every_item_reviewed
+  result: PASS
+  details: 82 / 82
+- check: E15F-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15F-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15F-05_no_hidden_prerequisite
+  result: PASS
+  details: no untaught word, no untaught construct
+- check: E15F-05_modes
+  result: PASS
+  details: '{''rubric'', ''shell'', ''reference''}'
+- check: E15F-05_counts
+  result: PASS
+  details: '82 {''reference'': 72, ''shell'': 8, ''rubric'': 2}'
+- check: E15F-05_meaning_keys_sourced
+  result: PASS
+  details: ''
+- check: E15F-05_tool_messages_verbatim
+  result: PASS
+  details: '[]'
+- check: E15F-05_shell_prelude
+  result: PASS
+  details: English tool messages whatever the locale
+- check: E15F-05_turkish_options_not_scanned
+  result: PASS
+  details: '[]'
+- check: E15F-05_english_options_scanned
+  result: PASS
+  details: '[]'
+- check: E15F-05_measurable_recognize_core_technical_labels_match_term_meaning
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_technical_noun_phrase_recognition_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_be_and_simple_present_comprehension_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_imperative_instruction_comprehension_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_preposition_function_word_comprehension_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_negation_question_comprehension_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_follow_bilingual_technical_instruction_execute_known_instruction
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_read_simple_terminal_error_fragments_extract_known_signal
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_documentation_navigation_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_measurable_write_command_result_note_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15F-05_ai_origin_declared
+  result: PASS
+  details: ''
+- check: E15F-05_no_terminal
+  result: PASS
+  details: reading and writing English is the construct
+- check: E15F-06_lexicon_per_skill
+  result: PASS
+  details: '[]'
+- check: E15F-06_lexicon_strings
+  result: PASS
+  details: a plain yes / no / on in YAML is a boolean, not a word
+- check: E15F-06_lexicon_is_taught
+  result: PASS
+  details: '[]'
+- check: E15F-06_literals_are_not_words
+  result: PASS
+  details: backticks, quoted names, non-letters and mixed-case identifiers are skipped
+- check: E15F-06_builder_refuses_unknown_words
+  result: PASS
+  details: ''
+- check: E15F-06_earlier_have_no_lexicon
+  result: PASS
+  details: ''
+- check: E15F-07_unescape_rule_unchanged
+  result: PASS
+  details: ''
+- check: E15F-07_kotlin_unchanged
+  result: PASS
+  details: ''
+- check: E15F-08_every_explanation_reviewed
+  result: PASS
+  details: 50 / 50
+- check: E15F-08_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15F-08_lesson_claims_executed
+  result: PASS
+  details: 2 checks
+- check: E15F-08_lesson_recognize_core_technical_labels_match_term_meaning
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_technical_noun_phrase_recognition_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_be_and_simple_present_comprehension_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_imperative_instruction_comprehension_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_preposition_function_word_comprehension_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_negation_question_comprehension_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_follow_bilingual_technical_instruction_execute_known_instruction
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_read_simple_terminal_error_fragments_extract_known_signal
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_documentation_navigation_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_lesson_write_command_result_note_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15F-08_no_combining_dot
+  result: PASS
+  details: ''
+- check: E15F-08_question_owned
+  result: PASS
+  details: ''
+- check: E15F-09_five_per_skill
+  result: PASS
+  details: '50'
+- check: E15F-09_tasks_validated
+  result: PASS
+  details: ''
+- check: E15F-09_minutes_are_estimates
+  result: PASS
+  details: ''
+- check: E15F-11_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedEnglishPackageTest.kt: everything shipped was validated, so nothing
+    is a candidate'
+- check: E15F-11_test_the English a learner reads is shown exa
+  result: PASS
+  details: 'ShippedEnglishPackageTest.kt: the English a learner reads is shown exactly,
+    with a tool''s own message word for word'
+- check: E15F-11_test_the package is version 6 of the ten A1 a
+  result: PASS
+  details: 'ShippedEnglishPackageTest.kt: the package is version 6 of the ten A1 and
+    A2 Technical English Skills, published, and closed on its own'
+- check: E15F-11_test_all six shipped packages are published i
+  result: PASS
+  details: 'ShippedCourseTest.kt: all six shipped packages are published into the
+    real store, oldest first, and English waits only on English'
+- check: 'E15F-11_test_with the English package, a learner who '
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the English package, a learner who has done
+    nothing may also start the first English lesson, and nothing technical waits on
+    English'
+- check: E15F-12_mutation_all_detected
+  result: PASS
+  details: 8/8
+- check: E15F-12_crash_not_detection
+  result: PASS
+  details: ''
+- check: E15F-12_control
+  result: PASS
+  details: ''
+- check: E15F-12_validator_mutation
+  result: PASS
+  details: '{''total'': 36, ''detected'': 36, ''negative_control'': ''a YAML comment
+    in a Skill file and a builder comment, each naming forbidden fragments (banana,
+    happy, verdict fail, human_authored, yes, no, NameError, a quoted name, unknown_word)'',
+    ''negative_control_result'': ''no_false_positive'', ''crash_is_not_a_detection'':
+    True, ''baseline'': ''the only check allowed to fail at baseline is E15F-12_validator_mutation,
+    which reads this very result; a mutant counts only by a failure not in the baseline'',
+    ''fast_mode'': ''every mutant except V27 ran with --skip-earlier-rebuild; V27,
+    a change to an earlier package, ran in full'', ''earlier_runs'': ''none — the
+    first full run is the result taken (the english_options_scanned check was strengthened
+    before the run, after it was found to see only options with the/is/are/a)'', ''final_run_is_a_single_clean_run'':
+    True}'
+- check: E15F-12_runs_pass
+  result: PASS
+  details: ''
+- check: E15F-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15F-13_spec_status
+  result: PASS
+  details: ''
+- check: E15F-13_spec_next
+  result: PASS
+  details: ''
+- check: E15F-13_spec_t6
+  result: PASS
+  details: ''
+- check: E15F-13_research
+  result: PASS
+  details: every source the lessons rest on is named by its URL
+- check: E15F-13_decision
+  result: PASS
+  details: D-119 heading in DECISIONS

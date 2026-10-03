@@ -243,12 +243,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15C ✅ C Foundations — CFNX-v0 / D-114**
 - **15D ✅ Memory Foundations — MMFX-v0 / D-116**
 - **15E ✅ Linux / Git / Shell Foundations — LGSX-v0 / D-118**
-- **15F 🟡 English A0→A1/A2 başlangıç paketi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15G–20 ⬜
+- **15F ✅ English A0→A1/A2 başlangıç paketi — EAAX-v0 / D-119**
+- **15G 🟡 Assessment content — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15H–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15G'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -695,4 +696,16 @@ Bulunanlar: terminal Skill'i 15C'de yayımlanmıştı; 15C'de bir kabuk kontrol�
 Onay kullanıcının sürekli onayıdır (D-117); varsayılan seçimler (hazırlık satırları, gösterilen komut + probe, Objective başına 8 item) asistanındır.
 
 Canonical: `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md` / D-118.
+
+## 12.42 15F English A0→A1/A2 başlangıç içeriği — EAAX-v0 / D-119
+
+Altıncı içerik paketi sevk ediliyor ve öğrenci teknik İngilizceye sıfırdan başlıyor. Ana invariant: **bir item'ın gösterdiği her İngilizce kelime, item'ın dayanabileceği bir dersin öğrettiği bir kelimedir ve hiçbir dersin öğretmediği kelimeyi derleme reddeder; İngilizce hiçbir teknik şey için kapı değildir.**
+
+Bulunanlar: kelime için tek dürüst koruma ders başına kelime listesidir; literal'ler kelime değildir; YAML yes/no/on'u boolean okur; araç mesajları sürüme ve kabuğa göre değişir; gerçek yardım sayfaları A2 öğrencisinin bildiğinden çok kelime içerir.
+
+10 Skill / 10 Objective / 9 kenar `published` (hepsi İngilizcenin içinde); 82 item, 50 anlatım, 20 misconception, 50 görev. Bağımsız inceleme ilk geçişte 82 item'ın 71'ini ve 50 anlatımın 46'sını geçirdi (72 anlam anahtarının hepsi doğru; düşenler Cancel'ın da savunulabildiği bir item, belirsiz bir 'It', kabuğa göre değişen bir araç mesajı, anlamı verilmemiş kelimeler, dar kabul listeleri, cevabı gösteren bir görev başlığı ve 'Permission denied dosyanın var olduğunu söyler' yanlışıydı); ikinci geçişte 82/82 ve 50/50.
+
+Onay D-117; varsayılan seçimler asistanın. Kullanıcı 2026-10-04'te "mevcut aşamayı bitirince durursun" dedi: D-117'nin sürekli onayı 15F ile sona erdi; 15G kullanıcının yeni açık onayı olmadan başlamaz.
+
+Canonical: `docs/ENGLISH_A1_A2_CONTENT_SPEC.md` / D-119.
 

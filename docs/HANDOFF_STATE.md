@@ -305,14 +305,15 @@ PEM-v0:
 - 15C ✅ CFNX-v0 / D-114
 - 15D ✅ MMFX-v0 / D-116
 - 15E ✅ LGSX-v0 / D-118
-- 15F 🟡 active-not-executed
-- 15G–20 ⬜
+- 15F ✅ EAAX-v0 / D-119
+- 15G 🟡 active-not-executed
+- 15H–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15E — LGSX-v0 / D-118`  
-**Aktif:** `15F — English A0→A1/A2 başlangıç paketi`  
-**15F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15F — EAAX-v0 / D-119`  
+**Aktif:** `15G — Assessment content`  
+**15G henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1463,3 +1464,24 @@ LGSX-v0:
 ## 86. 15F handoff
 
 15F — English A0→A1/A2 başlangıç paketi. The English track has its own Stage 7 contracts (EED-v0, TECP-v0, DECP-v0, TEIP-v0, TEPM-v0) and its own decomposition (`curriculum/english`); no item in 15A–15E taught English. Open loops carried: requirements declared per item, notation coverage (15H); the 15A–15D item pool size (awaiting the user's decision); moving answers between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15F fresh PRE ile yürütülür; kullanıcının onayı D-117 ile sürüyor.
+
+## 87. D-119 / 15F final özeti
+
+Canonical: `docs/ENGLISH_A1_A2_CONTENT_SPEC.md`.
+Contract/QA: `arch/15f_english_a1_a2/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15f_english_a1_a2_research.md`.
+Content: `curriculum/content/15f_english_a1_a2/` (package, notation with a per-lesson lexicon, ten Skill files, independent review) → `tools/build_curriculum_package.py` → `android/app-wiring/src/main/assets/curriculum_package_v6.txt`.
+Code: builder only — `english_words` (literals are not vocabulary) and the lexicon check (`unknown_word:` / `word:` hidden prerequisites). Kotlin main code, schema, ports and store unchanged.
+
+EAAX-v0:
+- every English word an item shows is taught by a lesson the item may rely on; the build refuses any other word; a meaning key cites its source; a tool message is produced by the real tool and shown verbatim; English is never a gate for anything technical,
+- approval: the user's standing approval (D-117); assistant defaults: the ten A1/A2 Skills, the lexicon, Turkish prompts with the English stimulus measured, authored help excerpts, only stable tool messages, 8 keyed items per Objective,
+- 10 Skills / 10 Objectives / 9 edges published, all inside English; recognize_core_technical_labels is a fourth entry point; 82 items (72 reference, 8 tool messages, 2 rubric), 50 explanations, 20 misconceptions, 50 tasks,
+- independent review: first pass 71/82 items and 46/50 explanations (all 72 meaning keys correct; Cancel also defensible in one item, an ambiguous 'It', a tool message that differs by shell, lesson words without meanings, narrow accept lists, a task title showing an answer, and 'Permission denied means the file exists'); second pass 82/82 and 50/50.
+- six packages published into the real SQLite schema on the JVM; a learner with no history may start four entry Skills,
+- Mutation 8/8, independent QA 119/119,
+- T6 and on-device ingestion were not run.
+
+## 88. 15G handoff
+
+15G — Assessment content. **The user's standing approval (D-117) ended with 15F** ("mevcut aşamayı bitirince durursun", 2026-10-04): 15G needs a fresh PRE and the user's new explicit approval. Open loops carried: the 15A–15D item pool size (the user's concern; a pool-expansion step awaits the user's decision and could be part of 15G), documentation_navigation's graph, generous labels, notation coverage (15H); moving answers between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19).

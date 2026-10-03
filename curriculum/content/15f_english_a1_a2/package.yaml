@@ -1,0 +1,39 @@
+# 15F — English A0→A1/A2 starter package (EAAX-v0 / D-119)
+#
+# The sixth authored package. It builds on 15A–15E (curriculum versions 1-5) and publishes curriculum version 6: the A1
+# and A2 anchor Skills of the Technical English route (6C's D01, aligned in 7B TECP-v0) — ten Skills, ten Objectives.
+# Every hard prerequisite is in this package (B1 and the professional extension come later), so nothing is added;
+# recognize_core_technical_labels has no prerequisite and is a fourth entry point.
+#
+# English is never a global gate for the technical route (TEIP-v0) and an item never asks for a word or a structure
+# its lesson and its prerequisites have not taught (EED-v0, ENGLISH_FOUNDATION_RULES): every English word an item shows
+# is in the lexicon of a lesson the item may rely on (notation.yaml). Prompts are Turkish; the English stimulus is
+# what is measured. A meaning key cites its source (Wiktionary for words, grammar references for structures); a
+# terminal or compiler message is checked by producing it with the real tool in Linux. Identity is never changed.
+version: 6
+step: 15f
+builds_on: [curriculum/content/15a_computing_fundamentals, curriculum/content/15b_python_foundations, curriculum/content/15c_c_foundations,
+            curriculum/content/15d_memory_foundations, curriculum/content/15e_linux_git_shell]
+source_refs: curriculum/decomposition/6c_foundations;curriculum/english/7b_cefr_progression;curriculum/content/15f_english_a1_a2
+provenance: authored_15f_eaax_v0
+content_source_ref: source.repo.content_15f_eaax_v0
+# Noon UTC of the day the independent review of 15F content is recorded (the 15A convention): 2026-10-03T12:00:00Z.
+validated_at_instant: 1791028800000
+
+# A tool's message is produced in Linux with English messages, whatever the checking machine's locale.
+shell_prelude: |
+  export LC_ALL=C.UTF-8
+lesson_checks: shell
+escape_backslash: true
+
+skills:
+  - id: skill.english.recognize_core_technical_labels
+  - id: skill.english.technical_noun_phrase_recognition
+  - id: skill.english.be_and_simple_present_comprehension
+  - id: skill.english.imperative_instruction_comprehension
+  - id: skill.english.preposition_function_word_comprehension
+  - id: skill.english.negation_question_comprehension
+  - id: skill.english.follow_bilingual_technical_instruction
+  - id: skill.english.read_simple_terminal_error_fragments
+  - id: skill.english.documentation_navigation
+  - id: skill.english.write_command_result_note

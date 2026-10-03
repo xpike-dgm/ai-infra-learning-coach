@@ -80,8 +80,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15C — C Foundations** | ✅ | CFNX-v0 / D-114. Öğrenci C yazıyor: 9 Skill / 10 Objective / 15 kenar `published` (dört C tohumu + standard_io_basic + Linux terminal); 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; her şey Linux'ta gcc ile, öğrencinin koşucusuyla doğrulandı; `PackageFormat.unescape`; kullanıcı kararları: Linux Skill'i, WSL Ubuntu + gcc, standard_io_basic; 155/155 QA PASS, Mutation 8/8. |
 | **15D — Memory Foundations** | ✅ | MMFX-v0 / D-116. Bellek erişimi AddressSanitizer'ın bildirdiğine göre doğrulanır: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; öğrencinin derlemesi sanitizer'lı ve temiz çıkış ister; yeni kullanıcı kararı gerekmedi; 132/132 QA PASS, Mutation 9/9. |
 | **15E — Linux / Git / Shell Foundations** | ✅ | LGSX-v0 / D-118. Komutlar Linux'ta gösterildiği gibi çalıştırılarak doğrulanır: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; kabuk prelude'u, "# hazırlık" satırları; onay D-117; 114/114 QA PASS, Mutation 5/5. |
-| **15F — English A0→A1/A2 başlangıç paketi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE gerekir; kullanıcı onayı D-117 ile sürüyor. |
-| **15G–20** | ⬜ Bekliyor | 15F sonrası canonical sırada. |
+| **15F — English A0→A1/A2 başlangıç paketi** | ✅ | EAAX-v0 / D-119. Her İngilizce kelime bir dersin öğrettiği kelimedir: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; ders başına kelime listesi; onay D-117; 119/119 QA PASS, Mutation 8/8. |
+| **15G — Assessment content** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcının yeni açık onayı gerekir (D-117 15F ile bitti). |
+| **15H–20** | ⬜ Bekliyor | 15G sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -100,7 +101,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15E
+## Son tamamlanan numaralı adım — 15F
+
+**Final:** `EAAX-v0 — English A0→A1/A2 starter content` / D-119.
+**Ana çıktı:** `docs/ENGLISH_A1_A2_CONTENT_SPEC.md` + `arch/15f_english_a1_a2/` + `curriculum/content/15f_english_a1_a2/` + `android/app-wiring/src/main/assets/curriculum_package_v6.txt`.
+
+15F sonucu:
+- bir item'ın gösterdiği her İngilizce kelime bir dersin öğrettiği kelimedir; üretici öğretilmemiş kelimeyi reddeder,
+- onay kullanıcının sürekli onayıydı (D-117); varsayılan seçimler asistanın; Kullanıcı 2026-10-04'te "mevcut aşamayı bitirince durursun" dedi: D-117'nin sürekli onayı 15F ile sona erdi; 15G kullanıcının yeni açık onayı olmadan başlamaz.
+- **bulgu:** ders başına kelime listesi tek dürüst korumadır; literal'ler kelime değildir; YAML yes/no/on'u boolean okur; araç mesajları sürüme ve kabuğa göre değişir; gerçek yardım sayfaları çok kelime içerir,
+- 10 Skill / 10 Objective / 9 kenar `published`; 82 item, 50 anlatım, 20 misconception, 50 görev,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 82 item'ın 71'ini ve 50 anlatımın 46'sını geçirdi (72 anlam anahtarının hepsi doğru; düşenler Cancel'ın da savunulabildiği bir item, belirsiz bir 'It', kabuğa göre değişen bir araç mesajı, anlamı verilmemiş kelimeler, dar kabul listeleri, cevabı gösteren bir görev başlığı ve 'Permission denied dosyanın var olduğunu söyler' yanlışıydı); ikinci geçişte 82/82 ve 50/50.
+- altı paket gerçek SQLite şemasına JVM'de yayımlanıyor; ilk İngilizce ders dördüncü giriş noktası,
+- yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi,
+- Mutation 8/8, independent validator **119/119 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+## Önceki numaralı adım — 15E
 
 **Final:** `LGSX-v0 — Linux / Git / Shell Foundations content` / D-118.
 **Ana çıktı:** `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md` + `arch/15e_linux_git_shell/` + `curriculum/content/15e_linux_git_shell/` + `android/app-wiring/src/main/assets/curriculum_package_v5.txt`.
@@ -421,6 +438,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15F English A0→A1/A2 başlangıç paketi
+## Aktif adım — 15G Assessment content
 
-**15F henüz yürütülmedi.** Fresh PRE-STEP zorunludur; kullanıcının onayı D-117 ile sürüyor. English izinin AŞAMA 7 kontratları (EED-v0, TECP-v0, DECP-v0, TEIP-v0, TEPM-v0) ve `curriculum/english` ayrıştırması hazır.
+**15G henüz yürütülmedi.** Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur (D-117'nin sürekli onayı 15F ile bitti). Kullanıcının açık endişesi (15A–15D'de Objective başına ~5 item) bu adımda ele alınabilir.

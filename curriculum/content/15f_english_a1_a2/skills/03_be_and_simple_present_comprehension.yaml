@@ -1,0 +1,218 @@
+skill: skill.english.be_and_simple_present_comprehension
+activity: recognition_selection
+tasks:
+  teach: {title: "is / are ve geniş zaman: \"The file is empty.\", \"This option shows all files.\"", minutes: 15}
+  practice: {title: "Kısa teknik cümleleri anlama alıştırması", minutes: 8}
+  check: {title: "Kısa teknik cümleleri anlama kontrolü", minutes: 6}
+  review: {title: "Kısa teknik cümleleri anlama tekrarı", minutes: 5}
+  repair: {title: "Cümleyi yeniden okumak: ne, nasıl, ne yapar", minutes: 10}
+
+objectives:
+  - id: objective.english.be_and_simple_present_comprehension.demonstrate_capability
+    statement: >-
+      Kısa teknik cümlelerde be (is, are) ile anlatılan durumu ve kimliği (The file is empty. The tests are done.) ve geniş
+      zamanla (simple present) anlatılan, bir şeyin her zaman ya da genel olarak yaptığı işi (This command shows the
+      version. The program reads the input file.) anlayabilmek; tek bir özneyle fiilin -s aldığını tanıyabilmek.
+    observable_behavior: >-
+      Bir-iki kısa İngilizce cümlenin söylediği durumu ya da işi doğru Türkçe karşılığıyla seçer; cümlede kimin ne
+      yaptığını (hangi dosyanın okunduğu, hangisinin yazıldığı) doğru ayırt eder.
+    acceptable_evidence_types: [reading_comprehension, structured_response]
+    direct_evidence_types: [reading_comprehension, structured_response]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul recognize_core_technical_labels'tır (6C hard). Olumsuzluk ve soru (isn't, does not, ?)
+      negation_question_comprehension'ındır; burada yalnız olumlu cümleler okunur. Anahtarlar geniş zamanın genel
+      gerçekleri ve alışılmış işleri anlattığı ve tekil öznede -s aldığı bilgisine dayanır.
+    explanations:
+      canonical: |
+        Bu derste iki küçük yapı öğreniyoruz.
+
+        1. be: is, are — "-dir / durumda" demektir.
+        - The file is empty. → Dosya boş(tur).
+        - The tests are done. → Testler bitti (tamamlanmış durumda).
+        is tek bir şey için (the file, it, this), are birden çok şey için (the tests, these, they) kullanılır. am yalnız "I am" içindir.
+
+        2. Geniş zaman (simple present): bir şeyin her zaman ya da genel olarak yaptığı iş.
+        - This command shows the version. → Bu komut sürümü gösterir.
+        - The program opens the file. → Program dosyayı açar.
+        Tek bir özneyle (the command, it, this) fiil -s alır: show → shows, read → reads, use → uses. Birden çok özneyle almaz: These commands show ...
+
+        Cümlenin sırası: kim/ne + fiil + neyi. The program (kim) opens (ne yapar) the file (neyi). Türkçede fiil sondadır; İngilizcede ortadadır.
+
+        Küçük kelimeler: a / an (bir), the (belirli o şey), this / these (bu / bunlar), it (o — bir şey), they (onlar), and (ve).
+
+        Bu dersin kelimeleri: is, are, am, it, this, these, they, a, an, the, and, has (vardır / sahip), have, contains (içerir), returns (döndürür), uses (kullanır), needs (gerektirir / ister), shows (gösterir), prints (yazdırır), reads (okur), writes (yazar), stores (saklar), takes (alır), works (çalışır), runs (çalışır / çalıştırır), saves (kaydeder), opens (açar), moves (taşır), copies (kopyalar), empty (boş), ready (hazır), small (küçük), large (büyük), same (aynı), different (farklı), correct (doğru), wrong (yanlış), only (yalnız), one, two, three, four, five (bir, iki, üç, dört, beş), all (hepsi / tüm), now (şimdi).
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (etiketler): file dosya, input girdi, output çıktı, error hata, warning uyarı, command komut, option seçenek, version sürüm demektir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          The log is large. It contains all warnings.
+          - The log is large → kayıt (log) büyük.
+          - It contains all warnings → o (kayıt) tüm uyarıları içerir; contains, tek özne (it) olduğu için -s aldı.
+          Cevap: Kayıt büyük ve bütün uyarıları içeriyor.
+    misconceptions:
+      - slug: s_means_plural_verb
+        name: Fiildeki -s çoğul demektir
+        open_question: '"The command shows the files" cümlesinde shows''taki -s''nin birden çok komut olduğunu gösterdiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "-s çoğul eki."
+
+            İsimde -s çoğuldur (files). Geniş zamanda fiile gelen -s ise öznenin TEK olduğunu gösterir: the command shows. Birden çok komut: the commands show.
+      - slug: is_means_exists
+        name: is her zaman "var" demektir
+        open_question: '"The file is empty" cümlesinin "dosya var" anlamına geldiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "is = var."
+
+            is bir şeyin ne olduğunu ya da hangi durumda olduğunu söyler: The file is empty → dosya boş. "Bir şey var" demek için başka yapılar kullanılır (sonraki derslerde).
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The folder is empty.
+        options:
+          A: "Klasör boş."
+          B: "Klasörü boşalt."
+          C: "Klasör var."
+          D: "Klasör dolu."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Copula (linguistics): English 'be' links a subject to a predicate adjective; Wiktionary — empty (adjective)"
+          claim: "The folder is empty klasörün boş olduğunu söyler."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir derleme aracının son satırı bu. Ne söylüyor?
+        code: |
+          The build is ready.
+        options:
+          A: "Derleme hazır."
+          B: "Derlemeyi hazırla."
+          C: "Derleme başladı."
+          D: "Derleme hazır değil."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Copula (linguistics); Wiktionary — ready (adjective): prepared for immediate use"
+          claim: "The build is ready derlemenin hazır olduğunu söyler."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir yardım metninde bu cümle var. Ne söylüyor?
+        code: |
+          The `ls` command shows the files.
+        options:
+          A: "ls komutu dosyaları gösterir."
+          B: "Dosyalar ls komutunu gösterir."
+          C: "ls komutunu göster."
+          D: "ls komutu tek bir dosyayı gösterir."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (habitual actions, facts; third-person singular -s)"
+          claim: "Özne the ls command, fiil shows, nesne the files (çoğul): ls komutu dosyaları gösterir."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir derlemenin sonunda bu iki cümle yazıyor. Hangisi doğru?
+        code: |
+          The build is ready. It has two warnings.
+        options:
+          A: "Derleme hazır; iki uyarı var."
+          B: "Derleme hazır değil; iki hata var."
+          C: "İki derleme hazır."
+          D: "Derleme iki uyarı yüzünden durdu."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Copula (linguistics); Simple present; Wiktionary — have/has (verb): to possess"
+          claim: "İlk cümle derlemenin hazır olduğunu, ikincisi onun (it) iki uyarısı olduğunu söyler."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir programın belgesinde bu cümle var. errors.log dosyası ne yapar?
+        code: |
+          The `errors.log` file stores all errors.
+        options:
+          A: "Tüm hataları saklar."
+          B: "Tüm hataları siler."
+          C: "Yalnız bir hatayı gösterir."
+          D: "Hataları başka bir dosyaya yazdırır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — store (verb, computing): to keep data; Wikipedia — Simple present"
+          claim: "stores all errors: tüm hataları saklar."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          İki dosyayı karşılaştıran bir araç bunu yazdı. Ne söylüyor?
+        code: |
+          These two files are the same.
+        options:
+          A: "Bu iki dosya aynı."
+          B: "Bu iki dosya farklı."
+          C: "Bu dosyalardan biri eksik."
+          D: "İki dosyayı aynı yap."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Copula (linguistics); Wiktionary — same (adjective): identical"
+          claim: "These two files are the same: iki dosya aynıdır."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir aracın belgesinde bu cümle var. Araç hangi dosyaya yazar?
+        code: |
+          The tool reads the input file and writes the output file.
+        options:
+          A: "Çıktı dosyasına (output file)"
+          B: "Girdi dosyasına (input file)"
+          C: "İkisine de"
+          D: "Hiçbirine; yalnız okur"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present; Wiktionary — write (verb, computing): to record data in a file"
+          claim: "Araç girdi dosyasını okur, çıktı dosyasını yazar."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir komutun belgesinde bu cümle var. Komuta ne verirsin ve komut ne yazdırır?
+        code: |
+          The command takes a file name and prints the size.
+        options:
+          A: "Bir dosya adı verirsin; komut boyutu yazdırır."
+          B: "Bir boyut verirsin; komut dosya adını yazdırır."
+          C: "Hiçbir şey vermezsin; komut dosya adlarını yazdırır."
+          D: "Bir dosya adı verirsin; komut dosyayı yazdırır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (third-person singular -s); Wiktionary — take (verb): to accept as input"
+          claim: "Özne the command; iki eylem: takes a file name (bir dosya adı alır) ve prints the size (boyutu yazdırır)."

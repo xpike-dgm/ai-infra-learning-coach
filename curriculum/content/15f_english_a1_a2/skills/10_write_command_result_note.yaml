@@ -1,0 +1,219 @@
+skill: skill.english.write_command_result_note
+activity: explanation_justification
+tasks:
+  teach: {title: "Kısa bir komut notu yazmak: komut + fiil + sonuç", minutes: 15}
+  practice: {title: "Komut ve sonuç notu yazma alıştırması", minutes: 10}
+  check: {title: "Komut ve sonuç notu yazma kontrolü", minutes: 10}
+  review: {title: "Komut ve sonuç notu yazma tekrarı", minutes: 8}
+  repair: {title: "Notu yeniden kurmak: komut, fiil, sonuç", minutes: 12}
+
+objectives:
+  - id: objective.english.write_command_result_note.demonstrate_capability
+    statement: >-
+      Bir komutu ve sonucunu anlatan kısa, doğru bir İngilizce not yazabilmek: komutu adıyla vermek (`ls -a`), geniş
+      zamanlı bir fiille ne yaptığını söylemek (shows, prints, returns, has) ve sonucu bir sayı ya da bir durumla vermek
+      (shows five files, prints one warning, The build is ready); yalnız daha önce öğrenilmiş kelime ve dilbilgisiyle.
+    observable_behavior: >-
+      Boşluk doldurma, kelime sıralama ve kısa not yazma görevlerinde komutu, tekil özneye uygun -s'li fiili ve sonucu
+      doğru biçimde yazar.
+    acceptable_evidence_types: [written_or_spoken_production]
+    direct_evidence_types: [written_or_spoken_production]
+    required_direct_type: written_or_spoken_production
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul be_and_simple_present_comprehension'dır (6C hard); 6C'nin engineering.reproducible_run_notes
+      yumuşak kenarı yayımlanmamış bir Skill'e işaret ettiği için pakete girmez. ENGLISH_FOUNDATION_RULES'un tanıma →
+      kontrollü üretim → serbest üretim sırası izlenir: anahtarlı item'lar kontrollü üretimdir (boşluk doldurma, sıralama,
+      kalıpla not) ve kabul edilen cevap listesiyle değerlendirilir; serbest notlar rubric'le, en çok provisional
+      olarak değerlendirilir (OREX-v0). Hiçbir görev öğretilmemiş bir yapıyı (geçmiş zaman, ilişki kelimeleri, olumsuzluk)
+      gerektirmez.
+    explanations:
+      canonical: |
+        Bir komut çalıştırdığında kısa bir not yazmak işini başkasına (ya da yarınki sana) anlatır. Kalıp:
+
+        `komut` + fiil (-s) + sonuç.
+
+        - `ls -a` shows five files. → ls -a beş dosya gösterir.
+        - `gcc` prints one warning. → gcc bir uyarı yazdırır.
+        - The build is ready. → Derleme hazır.
+
+        Kurallar:
+        - Komut tek bir şeydir: fiil -s alır (shows, prints, returns, has). show değil shows.
+        - Komutu ters tırnak (`) içine yaz; böylece komut olduğu anlaşılır.
+        - Sonuç bir sayı (one, two, three ya da 5) ve bir isimdir (files, lines, warnings, errors); birden çoksa isim de -s alır.
+        - Durum için is / are: The tests are done.
+        - Kısa tut: bir ya da iki cümle.
+
+        Kullanabileceğin fiiller: shows (gösterir), prints (yazdırır), returns (döndürür), has (vardır), passes (geçer), fails (başarısız olur), is / are. Birden çok özneyle -s yok: the tests pass, two tests fail.
+
+        Bu dersin kelimeleri: note, notes, pass, passes, fail, fails, result, return, returns.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (geniş zaman): tek bir özneyle fiil -s alır: the command shows, the test passes; is tek şey, are birden çok şey içindir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Terminal:
+          $ cat errors.log
+          (iki satır hata)
+
+          Not: `cat errors.log` shows two errors.
+          - Komut: `cat errors.log` (ters tırnak içinde).
+          - Fiil: show → shows (komut tek bir şey).
+          - Sonuç: two errors (iki tane, isim -s aldı).
+    misconceptions:
+      - slug: verb_without_s
+        name: Tek bir özneyle de fiil yalın kalır
+        open_question: '"`pwd` show one line" yazmanın doğru olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Fiilin yalın hâli yeter."
+
+            Komut tek bir şeydir; geniş zamanda tek özneyle fiil -s alır: `pwd` shows one line.
+      - slug: number_without_plural
+        name: Sayıdan sonra isim tekil kalır
+        open_question: '"prints four line" yazmanın doğru olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Türkçede 'dört satır' diyoruz, İngilizcede de öyle."
+
+            İngilizcede birden fazla şeyi sayarken isim -s alır: four lines, six errors. Türkçede sayıdan sonra isim tekil kalır; İngilizcede kalmaz.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Notu tamamla. Boşluğa tek bir fiil yaz (komut ekranda dosyaları gösteriyor).
+        code: |
+          `ls` ___ four files.
+        answer: "shows"
+        also_accept: ["prints"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (third-person singular -s)"
+          claim: "Tek özne (`ls`) ile geniş zaman fiili -s alır: shows."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Notu tamamla. Boşluğa tek bir kelime yaz.
+        code: |
+          The tests ___ ready.
+        answer: "are"
+        verify:
+          mode: reference
+          reference: "Wikipedia — Copula (linguistics): are with plural subjects"
+          claim: "Çoğul özne (the tests) ile are."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Notu tamamla. Boşluğa tek bir kelime yaz (derlemede iki uyarı var).
+        code: |
+          The build ___ two warnings.
+        answer: "has"
+        also_accept: ["shows", "prints"]
+        verify:
+          mode: reference
+          reference: "Wiktionary — have (verb): third-person singular simple present has"
+          claim: "Tek özne (the build) ile have → has; shows ve prints de doğru, tek özneyle -s alır."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Parantezdeki fiili doğru biçimde yazarak notu tamamla. Yalnız fiili yaz.
+        code: |
+          The program ___ (return) the value.
+        answer: "returns"
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (third-person singular -s)"
+          claim: "Tek özne (the program) ile return → returns."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bu dört parçanın hepsini kullanarak tek cümlelik bir not yaz (komutu ters tırnaksız da yazabilirsin).
+        code: |
+          shows / files / `ls` / three
+        answer: "`ls` shows three files."
+        also_accept: ["`ls` shows three files", "ls shows three files.", "ls shows three files"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present; English word order subject–verb–object"
+          claim: "Özne (`ls`) + fiil (shows) + sayı ve çoğul isim (three files)."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Testler çalıştı ve bir test başarısız oldu. Notu tamamla: boşluğa tek bir fiil yaz.
+        code: |
+          The test ___ .
+        answer: "fails"
+        also_accept: ["failed"]
+        verify:
+          mode: reference
+          reference: "Wiktionary — fail (verb): to be unsuccessful; Wikipedia — Simple present (third-person singular -s)"
+          claim: "Tek özne (the test) ile fail → fails; etiket dersinin failed'ı da (başarısız oldu) doğrudur."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu Türkçe notu kalıba uygun bir İngilizce cümleyle yaz (komutu ters tırnak içinde ya da tırnaksız yazabilirsin): "`make` komutu iki uyarı yazdırır."
+        answer: "`make` prints two warnings."
+        also_accept: ["`make` prints two warnings", "`make` prints 2 warnings.", "`make` prints 2 warnings", "`make` shows two warnings.", "`make` shows two warnings", "`make` shows 2 warnings.", "`make` shows 2 warnings", "make prints two warnings.", "make prints two warnings", "make prints 2 warnings.", "make prints 2 warnings", "make shows two warnings.", "make shows two warnings", "make shows 2 warnings.", "make shows 2 warnings", "The `make` command prints two warnings.", "The `make` command prints two warnings", "The `make` command prints 2 warnings.", "The `make` command prints 2 warnings", "The `make` command shows two warnings.", "The `make` command shows two warnings", "The `make` command shows 2 warnings.", "The `make` command shows 2 warnings", "The make command prints two warnings.", "The make command prints two warnings", "The make command prints 2 warnings.", "The make command prints 2 warnings", "The make command shows two warnings.", "The make command shows two warnings", "The make command shows 2 warnings.", "The make command shows 2 warnings", "The command `make` prints two warnings.", "The command `make` prints two warnings", "The command `make` prints 2 warnings.", "The command `make` prints 2 warnings", "The command `make` shows two warnings.", "The command `make` shows two warnings", "The command `make` shows 2 warnings.", "The command `make` shows 2 warnings", "The command make prints two warnings.", "The command make prints two warnings", "The command make prints 2 warnings.", "The command make prints 2 warnings", "The command make shows two warnings.", "The command make shows two warnings", "The command make shows 2 warnings.", "The command make shows 2 warnings"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present; English plural -s"
+          claim: "Özne `make` + prints/shows + two warnings (çoğul)."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bu Türkçe notu kalıba uygun bir İngilizce cümleyle yaz (komutu ters tırnak içinde ya da tırnaksız yazabilirsin): "`git status` komutu bir dosya gösterir."
+        answer: "`git status` shows one file."
+        also_accept: ["`git status` shows one file", "`git status` shows a file.", "`git status` shows a file", "`git status` shows 1 file.", "`git status` shows 1 file", "git status shows one file.", "git status shows one file", "git status shows a file.", "git status shows a file", "git status shows 1 file.", "git status shows 1 file", "The `git status` command shows one file.", "The `git status` command shows one file", "The `git status` command shows a file.", "The `git status` command shows a file", "The `git status` command shows 1 file.", "The `git status` command shows 1 file", "The git status command shows one file.", "The git status command shows one file", "The git status command shows a file.", "The git status command shows a file", "The git status command shows 1 file.", "The git status command shows 1 file", "The command `git status` shows one file.", "The command `git status` shows one file", "The command `git status` shows a file.", "The command `git status` shows a file", "The command `git status` shows 1 file.", "The command `git status` shows 1 file", "The command git status shows one file.", "The command git status shows one file", "The command git status shows a file.", "The command git status shows a file", "The command git status shows 1 file.", "The command git status shows 1 file"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present; English singular noun after one / a"
+          claim: "Özne `git status` + shows + one file (tekil)."
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Terminalde şunu gördün:
+          $ ls
+          notes.txt  report.txt  test.txt
+          Bu sonucu anlatan bir-iki cümlelik İngilizce bir not yaz: hangi komutu çalıştırdın ve ne gösterdi.
+        answer: "-"
+        rubric:
+          - id: names_command
+            statement: Komutu adıyla verir (ls; tercihen ters tırnak içinde).
+          - id: verb_with_s
+            statement: Tek özneyle -s'li bir geniş zaman fiili kullanır (shows / prints / has).
+          - id: result_with_number
+            statement: Sonucu bir sayıyla ve çoğul isimle verir (three files) ya da dosyaları adlarıyla sayar.
+          - id: clear_and_correct
+            statement: Not açık ve doğru İngilizcedir; okuyan biri hangi komutun ne gösterdiğini anlar. (Derste öğretilmemiş ama doğru bir kelime ya da yapı kullanmak eksik sayılmaz.)
+        verify:
+          mode: rubric
+      - slug: r2
+        difficulty: transfer_integration
+        independence: guided
+        prompt: |
+          Testleri çalıştırdın ve son satır şuydu:
+          5 passed, 1 failed
+          Durumu anlatan iki cümlelik İngilizce bir not yaz.
+        answer: "-"
+        rubric:
+          - id: passed_count
+            statement: Geçen testlerin sayısını doğru verir (five tests pass ya da 5 tests pass).
+          - id: failed_count
+            statement: Başarısız olan testi doğru verir (one test fails).
+          - id: agreement
+            statement: Özne-fiil uyumu doğrudur (tests pass, test fails; is/are doğru).
+          - id: clear_and_correct
+            statement: Not açık ve doğru İngilizcedir; okuyan biri kaç testin geçtiğini ve kaçının başarısız olduğunu anlar. (Geçmiş zaman — passed, failed — da doğrudur.)
+        verify:
+          mode: rubric

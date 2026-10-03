@@ -1,0 +1,218 @@
+skill: skill.english.technical_noun_phrase_recognition
+activity: recognition_selection
+tasks:
+  teach: {title: "İsim öbekleri: log file, missing config file — asıl şey sondaki isimdir", minutes: 15}
+  practice: {title: "Teknik isim öbeklerini okuma alıştırması", minutes: 8}
+  check: {title: "Teknik isim öbeklerini okuma kontrolü", minutes: 6}
+  review: {title: "Teknik isim öbeklerini okuma tekrarı", minutes: 5}
+  repair: {title: "Öbeği sondan okumak: asıl isim ve onu anlatan kelimeler", minutes: 10}
+
+objectives:
+  - id: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+    statement: >-
+      Kısa teknik isim öbeklerini (log file, error message, missing config file, current project name) doğru
+      çözebilmek: öbeğin asıl isminin (head) sondaki isim olduğunu, öndeki kelimelerin onu anlattığını bilmek ve öbeğin
+      neyi gösterdiğini Türkçe söyleyebilmek.
+    observable_behavior: >-
+      İki-dört kelimelik bir teknik öbekte asıl şeyin ne olduğunu (bir dosya mı, bir ad mı, bir yol mu) ve hangi kelimenin
+      neyi anlattığını doğru seçer; uzman alan bilgisi gerektirmeden.
+    acceptable_evidence_types: [reading_comprehension, structured_response]
+    direct_evidence_types: [reading_comprehension, structured_response]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul recognize_core_technical_labels'tır (6C hard). İngilizce metin yalnız bu dersin ve ön
+      koşulunun kelime listesinden oluşur; dilbilgisi yok, yalnız isim + isim / sıfat + isim. Anahtarlar İngilizcede
+      sıfatların ve isim belirleyicilerin (noun adjunct) asıl ismin önünde durduğu kuralına dayanır.
+    explanations:
+      canonical: |
+        Teknik metinlerde isimler çoğu zaman yan yana gelir: log file, error message, config file. Kural:
+
+        Asıl şey (head) sondaki isimdir. Öndeki kelimeler onu anlatır.
+
+        - log file → bir dosya (file); ne tür dosya? log (kayıt / günlük) dosyası.
+        - error message → bir mesaj; ne mesajı? hata mesajı.
+        - missing config file → bir dosya; hangi dosya? config (yapılandırma) dosyası; durumu ne? missing (eksik).
+
+        Türkçe de aynı sırayı kullanır ("hata mesajı"): anlatan önce, asıl şey sonra. Okurken sondan başla: önce asıl ismi bul, sonra soldaki kelimelerle onu daralt.
+
+        Bu dersin kelimeleri:
+        Anlatan kelimeler: default (varsayılan), current (şu anki), empty (boş), missing (eksik), invalid (geçersiz), temporary (geçici), local (yerel), remote (uzak), main (ana), total (toplam), full (dolu / tam).
+        İsimler: source (kaynak), target (hedef), log (kayıt / günlük), list (liste), number (sayı / numara), system (sistem), memory (bellek), disk (disk), space (alan), project (proje), message (mesaj), status (durum), result (sonuç), user (kullanıcı), key (anahtar), time (zaman), data (veri), config (yapılandırma), backup (yedek), home (ev / ana dizin), page (sayfa), server (sunucu).
+
+        Bir öbekte birden çok isim olabilir: project log file → bir dosya; ne dosyası? log dosyası; hangi log? projenin. Asıl şey yine sondaki file'dır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (etiketler): file dosya, name ad, error hata, path yol, output çıktı, size boyut demektir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Öbek: current project name
+          - Sondaki isim: name (ad). Asıl şey bir ad.
+          - project name → projenin adı.
+          - current project name → şu anki projenin adı.
+          Cevap: bir addır (dosya ya da proje değil); şu anki projenin adı.
+    misconceptions:
+      - slug: head_is_first
+        name: Öbeğin asıl ismi ilk kelimedir
+        open_question: log file öbeğinde asıl şeyin "log" olduğunu, yani bir dosyanın günlüğünden söz edildiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İlk kelime en önemli kelimedir."
+
+            İngilizce isim öbeğinde asıl şey sondaki isimdir. log file bir dosyadır; bir log'un türü değildir.
+      - slug: adjective_describes_last_only
+        name: Baştaki sıfat yalnız hemen yanındaki kelimeyi anlatır, öbeğin tamamını değil
+        open_question: missing config file öbeğinde eksik olanın "config" kelimesi olup dosyanın kendisinin eksik olmadığını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "missing yalnız config'i anlatıyor."
+
+            Öbek sondan okunur: config file bir dosyadır; missing o dosyanın durumudur. Eksik olan dosyanın kendisidir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu öbek neyi anlatır?
+        code: |
+          log file
+        options:
+          A: "Kayıt tutan bir dosya"
+          B: "Bir dosyanın kaydı"
+          C: "Bir dosya listesi"
+          D: "Bir dosyanın adı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct (an optional noun that modifies another noun, e.g. 'chicken soup'); Wiktionary — log file (noun): a file that records events"
+          claim: "log file bir dosyadır; log onu anlatır."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu öbekte asıl şey (head) hangisidir?
+        code: |
+          backup data
+        options:
+          A: "data (veri) — yedek olan veri"
+          B: "backup (yedek) — verinin yedeği"
+          C: "İkisi eşit; sıra fark etmez"
+          D: "Öbek bir komuttur, isim değildir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct; English noun phrases are head-final for noun premodifiers"
+          claim: "backup data'da asıl isim data'dır."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu öbeğin Türkçe karşılığı hangisidir?
+        code: |
+          empty folder
+        options:
+          A: "Boş klasör"
+          B: "Klasörü boşalt"
+          C: "Klasör boş değil"
+          D: "Boş dosya"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — empty (adjective): containing nothing; folder (noun, computing): a directory"
+          claim: "empty folder boş bir klasördür."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir programın ekranında bu satır görünüyor. Boş olan ne?
+        code: |
+          empty source list
+        options:
+          A: "Kaynakların listesi"
+          B: "Kaynağın kendisi"
+          C: "Bir klasör"
+          D: "Listedeki ilk kaynak"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct; Wiktionary — empty (adjective): containing nothing; source (noun): origin"
+          claim: "Öbeğin asıl ismi list'tir; source list kaynak listesidir ve boş olan odur."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir formun altında bu kırmızı satır görünüyor. Geçersiz olan ne?
+        code: |
+          invalid user name
+        options:
+          A: "Kullanıcı adı"
+          B: "Kullanıcının kendisi"
+          C: "Formun tamamı"
+          D: "Ad listesi"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — invalid (adjective): not valid; user name (noun): an identifier for a user"
+          claim: "Asıl isim name'dir; geçersiz olan kullanıcı adıdır."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bir ayar ekranında bu alan var. Bu alana ne yazılır?
+        code: |
+          default output file name
+        options:
+          A: "Bir ad: çıktı dosyasının varsayılan adı"
+          B: "Bir dosyanın içeriği"
+          C: "Bir çıktı: programın varsayılan çıktısı"
+          D: "Bir sayı: dosyanın boyutu"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct (stacked noun adjuncts modify the final head noun); Wiktionary — default (adjective, computing)"
+          claim: "default output file name bir addır: çıktı dosyasının varsayılan adı."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          İki öbek aynı kelimelerden yapılmış. Hangisi bir sayıyı anlatır?
+        code: |
+          user number list
+          user list number
+        options:
+          A: "user list number — kullanıcı listesinin numarası"
+          B: "user number list — kullanıcı numaralarının listesi"
+          C: "İkisi de aynı şeyi anlatır"
+          D: "Hiçbiri; ikisi de bir listedir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct; the head of an English compound noun is its final element"
+          claim: "user list number'ın asıl ismi number'dır; user number list'inki list'tir."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir hata satırında bu öbek geçiyor. Söz edilen şey nedir?
+        code: |
+          remote server log page
+        options:
+          A: "Bir sayfa: uzak sunucunun kayıt sayfası"
+          B: "Bir sunucu: kayıt sayfası olan uzak sunucu"
+          C: "Bir kayıt: sayfanın uzaktaki kaydı"
+          D: "Bir dosya: sunucudaki kayıt dosyası"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Noun adjunct (stacked modifiers before a head noun)"
+          claim: "Asıl isim page'dir; remote server log onu anlatır."

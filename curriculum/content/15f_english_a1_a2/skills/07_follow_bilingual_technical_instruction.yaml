@@ -1,0 +1,232 @@
+skill: skill.english.follow_bilingual_technical_instruction
+activity: recognition_selection
+tasks:
+  teach: {title: "Adım adım talimat: First, Then, Next, Finally, Step 1 — Türkçe destekle", minutes: 15}
+  practice: {title: "Adımlı talimatı izleme alıştırması", minutes: 10}
+  check: {title: "Adımlı talimatı izleme kontrolü", minutes: 8}
+  review: {title: "Adımlı talimatı izleme tekrarı", minutes: 6}
+  repair: {title: "Adımları yeniden sıralamak: hangisi önce, hangisi sonra", minutes: 12}
+
+objectives:
+  - id: objective.english.follow_bilingual_technical_instruction.execute_known_instruction
+    statement: >-
+      Kısa, yapılandırılmış İngilizce bir teknik talimatı (Step 1 ..., First ... Then ... Finally ...) Türkçe destek
+      (bazı kelimelerin Türkçe karşılığı) varken izleyebilmek: hangi adımın ne istediğini, adımların sırasını ve son
+      adımdan sonra ne olacağını söyleyebilmek.
+    observable_behavior: >-
+      İki-dört adımlı bir talimatta belirli bir adımın eylemini ve nesnesini, iki eylemin sırasını ve talimatın sonunda
+      neyin yapılmış olacağını doğru seçer.
+    acceptable_evidence_types: [reading_comprehension, hands_on_task]
+    direct_evidence_types: [reading_comprehension, hands_on_task]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type reading_comprehension. Ön koşul
+      imperative_instruction_comprehension'dır (6C hard); bu yüzden talimatlar yalnız emir cümleleriyle ve sıra
+      kelimeleriyle kurulur — ilişki kelimeleri (to, from, in) ön koşulda olmadığı için kullanılmaz. Türkçe destek
+      (TEIP-v0 bilingual scaffold) istemde verilir ve hiçbir zaman cevabı vermez; ölçülen şey İngilizce talimatın
+      izlenmesidir. Destek İngilizcenin anlamını değiştirmez (TEIP-v0 §10.1).
+    explanations:
+      canonical: |
+        Bir işlem birkaç adımla anlatıldığında İngilizce talimatlar sıra kelimeleri kullanır:
+
+        - First, ... → Önce / ilk olarak ...
+        - Then, ... → Sonra ...
+        - Next, ... → Ardından ...
+        - Finally, ... → En sonunda ...
+        - Step 1: ..., Step 2: ... → Adım 1, Adım 2 (step = adım; steps = adımlar)
+        - first cümlenin sonunda da gelebilir: Save the file first. → Önce dosyayı kaydet.
+        - now → şimdi.
+
+        Her adım bir emir cümlesidir (fiil başta): Step 2: Save the file. → 2. adım: dosyayı kaydet.
+
+        it bir önceki adımdaki şeyi gösterir: First, open the file. Then, edit it. → Önce dosyayı aç, sonra onu (dosyayı) düzenle.
+
+        Türkçe destek: bazı alıştırmalarda zor kelimelerin Türkçesi verilir (ör. "rename = yeniden adlandır"). Destek yalnız kelimeyi açıklar; adımların sırası ve ne yapılacağı İngilizce talimattadır.
+
+        İzleme yöntemi: adımları sırayla bir kâğıda Türkçe yaz; her adımda fiili ve nesneyi bul.
+
+        Bu dersin kelimeleri: first, then, next, finally, step, steps, now.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (emir cümlesi): fiille başlayan, öznesi olmayan cümle bir talimattır: Save the file → dosyayı kaydet; and ile bağlı eylemler sırayla yapılır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Step 1: Download the tool.
+          Step 2: Install it.
+          Step 3: Run the tests.
+          (Türkçe destek: download = indir, install = kur)
+
+          - Adım 1: aracı indir.
+          - Adım 2: onu (aracı) kur.
+          - Adım 3: testleri çalıştır.
+          Cevap: aracı kurmadan önce indirmen gerekir; testler en son çalışır.
+    misconceptions:
+      - slug: then_means_before
+        name: Then bir önceki adımı gösterir
+        open_question: '"First, open the file. Then, edit it." talimatında then''in açmadan önce düzenlemeyi söylediğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "then = o zaman, önce."
+
+            Talimatta then "sonra" demektir: then ile başlayan adım bir önceki adımdan SONRA yapılır.
+      - slug: it_is_new_thing
+        name: Bir adımdaki it yeni bir şeyi gösterir
+        open_question: '"First, select a file. Then, rename it." talimatında it''in yeni, başka bir şey olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "it bir şey ama ne olduğu belli değil."
+
+            it bir önceki adımda söz edilen şeyi gösterir: select a file ... rename it → seçtiğin dosyayı yeniden adlandır.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu talimatın ikinci adımında ne yapılır?
+        code: |
+          First, create a folder. Then, open it.
+        options:
+          A: "Oluşturulan klasör açılır."
+          B: "Yeni bir klasör oluşturulur."
+          C: "Klasör silinir."
+          D: "Bir dosya açılır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — then (adverb): next in order; it (pronoun): refers to a previously mentioned thing"
+          claim: "Then, open it: önceki adımda oluşturulan klasörü aç."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu talimatın 2. adımında ne yapılır?
+        code: |
+          Step 1: Select the file.
+          Step 2: Click Delete.
+        options:
+          A: "Delete düğmesine tıklanır (seçilen dosya silinir)."
+          B: "Dosya seçilir."
+          C: "Dosya açılır."
+          D: "Yeni bir dosya oluşturulur."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — step (noun): a stage in a process; click (verb, computing); delete (verb, computing)"
+          claim: "Step 2: Click Delete — Delete'e tıkla."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu talimatın son adımı nedir?
+          (Türkçe destek: update = güncelle)
+        code: |
+          First, stop the program. Then, update it. Finally, start it again.
+        options:
+          A: "Programı yeniden başlat."
+          B: "Programı durdur."
+          C: "Programı güncelle."
+          D: "Programı sil."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — finally (adverb): lastly; again (adverb): once more"
+          claim: "Finally, start it again: en sonunda programı yeniden başlat."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bu talimata göre hangi dosya yeniden adlandırılır?
+          (Türkçe destek: rename = yeniden adlandır; copy = kopya / kopyala)
+        code: |
+          First, copy the file. Next, rename the copy. Finally, open it.
+        options:
+          A: "Kopya"
+          B: "Asıl dosya"
+          C: "İkisi de"
+          D: "Hiçbiri"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — copy (noun): an imitation or reproduction; rename (verb)"
+          claim: "Next, rename the copy: yeniden adlandırılan, oluşturulan kopyadır."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bu talimatta kurulumdan hemen sonra ne yapılır?
+          (Türkçe destek: install = kur, restart = yeniden başlat)
+        code: |
+          Step 1: Install the tool.
+          Step 2: Restart the program.
+          Step 3: Check the version.
+        options:
+          A: "Program yeniden başlatılır."
+          B: "Sürüm kontrol edilir."
+          C: "Araç yeniden kurulur."
+          D: "Program kapatılır ve silinir."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — step (noun); restart (verb); install (verb)"
+          claim: "Step 1'den (kurulum) hemen sonra Step 2 gelir: programı yeniden başlat."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bu talimata göre Enter tuşuna ne zaman basılır?
+        code: |
+          Type your name and press Enter. Then, select a folder.
+        options:
+          A: "Adını yazdıktan sonra, klasör seçmeden önce"
+          B: "Klasör seçtikten sonra"
+          C: "Adını yazmadan önce"
+          D: "Hiç basılmaz"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood (coordinated imperatives are performed in order); Wiktionary — then (adverb)"
+          claim: "Önce ad yazılır ve Enter'a basılır; sonra klasör seçilir."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimattaki adımların doğru sırası hangisidir?
+        code: |
+          First, save the file. Next, close the program. Then, run the tests.
+        options:
+          A: "Kaydet → programı kapat → testleri çalıştır"
+          B: "Testleri çalıştır → kaydet → programı kapat"
+          C: "Programı kapat → kaydet → testleri çalıştır"
+          D: "Kaydet → testleri çalıştır → programı kapat"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — first, next, then (adverbs of sequence)"
+          claim: "First kaydet, next programı kapat, then testleri çalıştır."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bu talimata göre dosyayı silmeden önce ne yapılmalı?
+        code: |
+          Stop the program first. Then, delete the file.
+        options:
+          A: "Programı durdurmak"
+          B: "Dosyayı kaydetmek"
+          C: "Programı yeniden başlatmak"
+          D: "Hiçbir şey; dosya hemen silinir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — first (adverb): before anything else"
+          claim: "Stop the program first: önce programı durdur; then delete the file."

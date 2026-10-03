@@ -1,0 +1,821 @@
+package_version: 6
+items:
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — save (verb, computing): to write a file to a storage medium'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — warning (noun): something spoken or written that warns; GCC manual §3.8
+    Options to Request or Suppress Warnings — warnings report constructs that are not inherently erroneous'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — delete (verb, computing): to remove a file or data'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — save (verb, computing); cancel (verb): to stop something that was going
+    to happen'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — pass (verb): to succeed in a test; fail (verb): to be unsuccessful'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — exit (verb, computing): to terminate a program; close (verb): to close a
+    window or file'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — help (noun): assistance. The rest is a convention of desktop programs, not
+    a dictionary claim: the Help menu holds the About entry with the version'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.recognize_core_technical_labels.match_term_meaning.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — upload (verb): to transfer data to a remote system; download (verb): to
+    transfer data from a remote system'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct (an optional noun that modifies another noun, e.g. ''chicken
+    soup''); Wiktionary — log file (noun): a file that records events'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct; English noun phrases are head-final for noun premodifiers'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — empty (adjective): containing nothing; folder (noun, computing): a directory'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct; Wiktionary — empty (adjective): containing nothing; source
+    (noun): origin'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — invalid (adjective): not valid; user name (noun): an identifier for a user'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct (stacked noun adjuncts modify the final head noun); Wiktionary
+    — default (adjective, computing)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct; the head of an English compound noun is its final element'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.technical_noun_phrase_recognition.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Noun adjunct (stacked modifiers before a head noun)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Copula (linguistics): English ''be'' links a subject to a predicate adjective;
+    Wiktionary — empty (adjective)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Copula (linguistics); Wiktionary — ready (adjective): prepared for immediate
+    use'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present (habitual actions, facts; third-person singular -s)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Copula (linguistics); Simple present; Wiktionary — have/has (verb): to possess'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — store (verb, computing): to keep data; Wikipedia — Simple present'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Copula (linguistics); Wiktionary — same (adjective): identical'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present; Wiktionary — write (verb, computing): to record data in a
+    file'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.be_and_simple_present_comprehension.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present (third-person singular -s); Wiktionary — take (verb): to accept
+    as input'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood (English imperatives use the bare infinitive; the subject
+    is usually omitted)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — restart (verb): to start again'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — type (verb): to enter text with a keyboard'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — select (verb), click (verb, computing)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — rename (verb): to give a new name to'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — press (verb): to push a key or button; Enter (noun): the Enter key'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood (form). The order of instructions joined by and is the reading
+    order, as this lesson teaches; Wikipedia does not state it'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.imperative_instruction_comprehension.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood; Wiktionary — wait (verb), try (verb), again (adverb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (in: location)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (at: location at a point)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (from: source)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (to: goal/direction)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (with: accompaniment)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (inside: location within)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (from: source, to: goal); Wiktionary — move (verb):
+    to change place'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.preposition_function_word_comprehension.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — English prepositions (after/before: time)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Do-support (be negates directly: is not)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Do-support (negation of lexical verbs with does not + base form)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Do-support (be inverts directly in questions: Is she home?)'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — no (determiner): not any'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — where (adverb, interrogative): at what place'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — which (determiner, interrogative): what one or ones of a group'
+  constructs:
+  - question
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Do-support; Wiktionary — can''t (contraction): cannot; isn''t: is not'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.negation_question_comprehension.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Do-support (do not + base form for plural subjects; be negates directly)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — then (adverb): next in order; it (pronoun): refers to a previously mentioned
+    thing'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — step (noun): a stage in a process; click (verb, computing); delete (verb,
+    computing)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — finally (adverb): lastly; again (adverb): once more'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — copy (noun): an imitation or reproduction; rename (verb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — step (noun); restart (verb); install (verb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Imperative mood (coordinated imperatives are performed in order); Wiktionary
+    — then (adverb)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — first, next, then (adverbs of sequence)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.follow_bilingual_technical_instruction.execute_known_instruction.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — first (adverb): before anything else'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f02
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'dosya_yok\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f03
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f05
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f06
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f07
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'klasor\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.read_simple_terminal_error_fragments.extract_known_signal.f08
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'once_noktali_virgul\n' is option A and no other
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7), Sections within a manual page — EXAMPLES'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7), Sections within a manual page — SYNOPSIS: a brief summary of the command''s
+    interface'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7) — OPTIONS lists each option with its description'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7) — OPTIONS; the option is found by its description in the right-hand column'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7), Sections within a manual page — SEE ALSO: related man pages'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — default (noun, computing): a value used when none is given'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man-pages(7) — OPTIONS'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.documentation_navigation.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: man(1) — ''any or all arguments within [ ] are optional'''
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f01
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present (third-person singular -s)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f02
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Copula (linguistics): are with plural subjects'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f03
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — have (verb): third-person singular simple present has'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f04
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present (third-person singular -s)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f05
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present; English word order subject–verb–object'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f06
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wiktionary — fail (verb): to be unsuccessful; Wikipedia — Simple present (third-person
+    singular -s)'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f07
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present; English plural -s'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.f08
+  status: validated
+  verify_mode: reference
+  verification: 'reference-grounded: Wikipedia — Simple present; English singular noun after one / a'
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.english.write_command_result_note.demonstrate_capability.r2
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 50
+tasks:
+- task: task.english.recognize_core_technical_labels.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.recognize_core_technical_labels.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.recognize_core_technical_labels.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.recognize_core_technical_labels.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.recognize_core_technical_labels.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.technical_noun_phrase_recognition.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.technical_noun_phrase_recognition.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.technical_noun_phrase_recognition.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.technical_noun_phrase_recognition.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.technical_noun_phrase_recognition.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.be_and_simple_present_comprehension.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.be_and_simple_present_comprehension.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.be_and_simple_present_comprehension.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.be_and_simple_present_comprehension.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.be_and_simple_present_comprehension.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.imperative_instruction_comprehension.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.imperative_instruction_comprehension.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.imperative_instruction_comprehension.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.imperative_instruction_comprehension.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.imperative_instruction_comprehension.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.preposition_function_word_comprehension.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.preposition_function_word_comprehension.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.preposition_function_word_comprehension.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.preposition_function_word_comprehension.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.preposition_function_word_comprehension.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.negation_question_comprehension.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.negation_question_comprehension.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.negation_question_comprehension.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.negation_question_comprehension.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.negation_question_comprehension.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.follow_bilingual_technical_instruction.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.follow_bilingual_technical_instruction.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.follow_bilingual_technical_instruction.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.follow_bilingual_technical_instruction.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.follow_bilingual_technical_instruction.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.read_simple_terminal_error_fragments.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.read_simple_terminal_error_fragments.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.read_simple_terminal_error_fragments.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.read_simple_terminal_error_fragments.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.read_simple_terminal_error_fragments.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.documentation_navigation.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.documentation_navigation.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.documentation_navigation.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.documentation_navigation.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.documentation_navigation.repair
+  status: validated
+  items: 7
+  explanations: 3
+- task: task.english.write_command_result_note.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.english.write_command_result_note.practice
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.write_command_result_note.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.english.write_command_result_note.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.english.write_command_result_note.repair
+  status: validated
+  items: 7
+  explanations: 3
+failures: []
+explanation_checks:
+- objective: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  check: 1
+  result: PASS
+  printed: 'ls: cannot access ''yok.txt'': No such file or directory'
+- objective: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+  check: 2
+  result: PASS
+  printed: 'ZeroDivisionError: division by zero'
+summary:
+  skills: 10
+  objectives: 10
+  topics: 5
+  items: 82
+  validated_items: 82
+  explanations: 50
+  misconceptions: 20
+  tasks: 50
+  failures: 0

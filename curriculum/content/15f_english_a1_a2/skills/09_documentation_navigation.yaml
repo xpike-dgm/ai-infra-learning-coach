@@ -1,0 +1,227 @@
+skill: skill.english.documentation_navigation
+activity: recognition_selection
+tasks:
+  teach: {title: "Bir yardım sayfasında yol bulmak: SYNOPSIS, OPTIONS, EXAMPLES, SEE ALSO", minutes: 15}
+  practice: {title: "Yardım sayfasında arama alıştırması", minutes: 10}
+  check: {title: "Yardım sayfasında arama kontrolü", minutes: 8}
+  review: {title: "Yardım sayfasında arama tekrarı", minutes: 6}
+  repair: {title: "Yardım sayfasını yeniden taramak: başlık, seçenek, örnek", minutes: 12}
+
+objectives:
+  - id: objective.english.documentation_navigation.demonstrate_capability
+    statement: >-
+      Basit bir teknik yardım sayfasında (man sayfası, --help çıktısı) aradığını bulabilmek: hangi başlığın neyi verdiğini
+      (NAME, SYNOPSIS / Usage, DESCRIPTION, OPTIONS, EXAMPLES, SEE ALSO) bilmek, bir işi yapan seçeneği seçenek
+      listesinden bulmak, köşeli parantezin isteğe bağlı kısmı gösterdiğini ve (default: ...) bilgisini okuyabilmek.
+    observable_behavior: >-
+      Kısa bir yardım metninde istenen bilgiyi taşıyan başlığı, istenen işi yapan seçeneği, varsayılan değeri ve komutun
+      zorunlu kısmını doğru seçer; metnin tamamını çevirmeden.
+    acceptable_evidence_types: [reading_comprehension, hands_on_task]
+    direct_evidence_types: [reading_comprehension, hands_on_task]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul recognize_core_technical_labels'tır (6C hard). Gerçek man sayfaları bu aşamada öğretilmemiş
+      çok kelime içerdiği için item'lardaki yardım metinleri gerçek düzeni (man-pages(7) başlıkları, seçenek listesi,
+      köşeli parantez) koruyan, kelimesi bu dersin ve ön koşulunun listesinden seçilmiş kısa metinlerdir; araç adları
+      kurgusaldır ve tire içerir (kelime sayılmaz). Anahtarlar man-pages(7)'in başlık düzenine ve man(1)'in "[ ] isteğe
+      bağlı" kuralına dayanır.
+    explanations:
+      canonical: |
+        Bir komutun yardım sayfası (man sayfası ya da komut --help çıktısı) hep benzer başlıklarla düzenlenir. Tamamını okumana gerek yok; aradığın şeyin hangi başlıkta olduğunu bil:
+
+        - NAME → komutun adı ve bir satırlık açıklaması.
+        - SYNOPSIS (ya da Usage:) → komutun nasıl yazılacağı: biçimi.
+        - DESCRIPTION → komutun ne yaptığı.
+        - OPTIONS → seçeneklerin listesi: solda seçenek (-a, --all), sağında ya da bir alt satırında ne yaptığı. (Bir --help çıktısında açıklama aynı satırın sağındadır; man sayfalarında çoğu zaman bir alt satırdadır. GNU araçlarının bazı man sayfalarında seçenekler ayrı bir OPTIONS başlığı yerine DESCRIPTION altında listelenir.)
+        - EXAMPLES → örnek komutlar.
+        - SEE ALSO → ilgili başka komutlar ve sayfalar.
+
+        Biçim satırını okumak:
+        Usage: rapor-yaz [OPTION]... FILE
+        - [ ] içindeki kısım isteğe bağlıdır: vermesen de olur.
+        - ... "birden çok olabilir" demektir.
+        - Köşeli parantez içinde olmayan FILE zorunludur.
+
+        Seçenek satırı: -m, --more   show more information
+        - Kısa biçim -m ile uzun biçim --more aynı seçenektir.
+        - Bir satırın sonunda (default: ...) varsa, o seçeneği vermezsen kullanılan değer odur: (default: 5) → 5.
+
+        Arama yöntemi: aradığın işin anahtar kelimesini (size, sort, all, version ...) seçeneklerin açıklamalarında ara; bulduğun açıklamanın seçeneği odur. Dikkat: harfler araçtan araca değişir; birçok araçta -v "verbose" (ayrıntılı), -V "version" demektir. Harfi değil açıklamayı oku.
+
+        Bu dersin kelimeleri (anlamlarıyla): usage (kullanım), synopsis (özet / yazılış biçimi), description (açıklama), example / examples (örnek / örnekler), see (bak), also (ayrıca), section (bölüm), show (göster), print (yazdır), list (listele / liste), all (hepsi / tüm), more (daha çok), information (bilgi), about (hakkında), default (varsayılan), the (o, belirli şey), a (bir), of (-in), and (ve), for (için), each (her biri), only (yalnız), first (ilk), number (sayı), count (sayı / say), sort (sırala), by (-e göre), time (zaman), reverse (ters çevir), order (sıra), hidden (gizli), recursive (alt klasörlere de inen), quiet (sessiz), verbose (ayrıntılı), unique (tekrarsız, benzersiz).
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (etiketler): file dosya, line satır, option seçenek, options seçenekler, help yardım, version sürüm, size boyut, name ad, output çıktı demektir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          OPTIONS
+            -q, --quiet     print only the result
+            -l, --list      show the list of all files
+
+          Soru: Yalnız sonucu yazdırmak için hangi seçenek?
+          - Sağ sütunda "only the result" ara: ilk satır.
+          - Solundaki seçenek: -q (ya da --quiet).
+          Cevap: -q.
+    misconceptions:
+      - slug: brackets_required
+        name: Köşeli parantez içindeki kısım zorunludur
+        open_question: '"Usage: rapor-yaz [OPTION] FILE" satırında OPTION''ı mutlaka vermen gerektiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Satırda yazıyorsa vermeliyim."
+
+            [ ] içindeki kısım isteğe bağlıdır. Köşeli parantez içinde olmayan kısım (burada FILE) zorunludur.
+      - slug: read_everything
+        name: Yardım sayfasının tamamını baştan sona okumak gerekir
+        open_question: Bir seçeneği bulmak için yardım sayfasının her satırını baştan sona çevirmen gerektiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Her kelimeyi anlamadan bulamam."
+
+            Başlıklar sayfayı böler: bir seçenek arıyorsan doğrudan OPTIONS'a git ve sağ sütunda aradığın işin kelimesini ara.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bir yardım sayfasının başlıkları bunlar. Örnek komutları hangi başlığın altında bulursun?
+        code: |
+          NAME
+          SYNOPSIS
+          DESCRIPTION
+          OPTIONS
+          EXAMPLES
+          SEE ALSO
+        options:
+          A: "EXAMPLES"
+          B: "OPTIONS"
+          C: "SYNOPSIS"
+          D: "SEE ALSO"
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7), Sections within a manual page — EXAMPLES"
+          claim: "Örnekler EXAMPLES başlığındadır."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir komutun nasıl yazılacağını (biçimini) bu sayfada hangi başlık gösterir?
+        code: |
+          NAME
+          SYNOPSIS
+          DESCRIPTION
+          OPTIONS
+        options:
+          A: "SYNOPSIS"
+          B: "NAME"
+          C: "DESCRIPTION"
+          D: "OPTIONS"
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7), Sections within a manual page — SYNOPSIS: a brief summary of the command's interface"
+          claim: "Komutun yazılış biçimi SYNOPSIS'tedir."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir aracın seçenek listesi bu. Sürümü hangi seçenek gösterir? Kısa biçimini yaz.
+        code: |
+          OPTIONS
+            -h, --help      show help
+            -v, --version   show the version
+        answer: "-v"
+        also_accept: ["--version"]
+        verify:
+          mode: reference
+          reference: "man-pages(7) — OPTIONS lists each option with its description"
+          claim: "show the version satırının seçeneği -v'dir."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          `sira-ver` adlı bir aracın seçenek listesi bu. Satırları sayıya göre sıralamak için hangi seçeneği kullanırsın? Kısa biçimini yaz.
+        code: |
+          OPTIONS
+            -r, --reverse   reverse the order
+            -n, --number    sort by number
+            -u, --unique    show only unique lines
+        answer: "-n"
+        also_accept: ["--number"]
+        verify:
+          mode: reference
+          reference: "man-pages(7) — OPTIONS; the option is found by its description in the right-hand column"
+          claim: "sort by number satırının seçeneği -n'dir."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir yardım sayfasının sonunda bu kısım var. Bu kısım ne verir?
+        code: |
+          SEE ALSO
+            ls, cat
+        options:
+          A: "İlgili başka komutları"
+          B: "Bu komutun örneklerini"
+          C: "Bu komutun seçeneklerini"
+          D: "Bu komutun hatalarını"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "man-pages(7), Sections within a manual page — SEE ALSO: related man pages"
+          claim: "SEE ALSO ilgili başka sayfaları ve komutları listeler."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          `bas-yaz` adlı bir aracın seçenek satırı bu. -c seçeneğini vermezsen araç kaç satır gösterir? Yalnız sayıyı yaz.
+        code: |
+          -c, --count NUMBER   show the first NUMBER lines (default: 10)
+        answer: "10"
+        verify:
+          mode: reference
+          reference: "Wiktionary — default (noun, computing): a value used when none is given"
+          claim: "(default: 10): seçenek verilmezse 10 satır gösterilir."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          `dosya-bul` adlı bir aracın yardım sayfasından bir parça bu. Her dosyanın boyutunu da görmek için hangi seçeneği eklersin? Kısa biçimini yaz.
+        code: |
+          DESCRIPTION
+            List the files in a directory.
+          OPTIONS
+            -a, --all         show all files
+            -s, --size        show the size of each file
+            -t, --time        sort by time
+            -q, --quiet       print only the number of files
+        answer: "-s"
+        also_accept: ["--size"]
+        required_skills: [skill.english.preposition_function_word_comprehension]
+        verify:
+          mode: reference
+          reference: "man-pages(7) — OPTIONS"
+          claim: "show the size of each file satırının seçeneği -s'dir."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          `rapor-al` adlı bir aracın biçim satırı bu. Komutu çalıştırırken hangisini MUTLAKA vermen gerekir?
+        code: |
+          Usage: rapor-al [OPTION]... [NAME] FILE
+        options:
+          A: "FILE"
+          B: "OPTION"
+          C: "NAME"
+          D: "Hiçbirini; hepsi isteğe bağlı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "man(1) — 'any or all arguments within [ ] are optional'"
+          claim: "Köşeli parantez içinde olmayan tek kısım FILE'dır; o zorunludur."

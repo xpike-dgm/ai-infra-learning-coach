@@ -1341,3 +1341,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15E tamamlandı; 15F aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15F — English A0→A1/A2 başlangıç paketi`. Fresh PRE-STEP zorunludur; kullanıcının onayı D-117 ile sürüyor.
+
+## 2026-10-04 — 15F — English A0→A1/A2 başlangıç paketi tamamlandı — EAAX-v0 / D-119
+
+- 15E (#56) main'e merge edildi (6dcf992). Fresh 15F PRE yapıldı ve beş kanonik kaynak `15E ✅ / 15F active-not-executed` gösterdi. Onay D-117 ile sürekliydi; kullanıcı 2026-10-04'te "devam et mevcut aşamayı bitirince durursun" dedi: sürekli onay 15F ile sona erdi.
+- **Bulgu:** ders başına kelime listesi tek dürüst korumadır; literal'ler kelime değildir; YAML yes/no/on'u boolean okur; araç mesajları sürüme ve kabuğa göre değişir; gerçek yardım sayfaları A2 öğrencisinin bildiğinden çok kelime içerir.
+- **Asistanın varsayılan seçimleri (D-117):** 10 A1/A2 Skill; ders başına kelime listesi; Türkçe istem, ölçülen İngilizce uyaran; yazılmış yardım parçaları; yalnız kararlı araç mesajları; Objective başına 8 item.
+- İçerik: 10 Skill / 10 Objective / 9 kenar `published`; 82 item (72 kaynaklı, 8 araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev.
+- **Araştırma:** Wikipedia (Imperative mood, Do-support, Simple present, English prepositions), Wiktionary, man-pages(7), man(1); Cambridge (403) ve British Council (politika) kullanılamadı.
+- **Bağımsız inceleme:** Bağımsız inceleme ilk geçişte 82 item'ın 71'ini ve 50 anlatımın 46'sını geçirdi (72 anlam anahtarının hepsi doğru; düşenler Cancel'ın da savunulabildiği bir item, belirsiz bir 'It', kabuğa göre değişen bir araç mesajı, anlamı verilmemiş kelimeler, dar kabul listeleri, cevabı gösteren bir görev başlığı ve 'Permission denied dosyanın var olduğunu söyler' yanlışıydı); ikinci geçişte 82/82 ve 50/50.
+- Altı paket gerçek SQLite şemasına JVM'de yayımlanıyor; ilk İngilizce ders dördüncü giriş noktası.
+- Yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi.
+- Mutation 8/8. Validator 119/119, sweep 61/61, 1025 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- D-050 POST living-memory accepted state'i `15F tamamlandı; 15G aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15G — Assessment content`. Fresh PRE-STEP + kullanıcının yeni açık onayı zorunludur.

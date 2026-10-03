@@ -1047,8 +1047,18 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation 5/5, validator 114/114,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15F — English A0→A1/A2 başlangıç paketi — **AKTİF**
-### [ ] 15G — Assessment content
+### [x] 15F — English A0→A1/A2 başlangıç paketi — EAAX-v0 / D-119
+
+**15F final coverage:**
+- bir item'ın gösterdiği her İngilizce kelime, item'ın dayanabileceği bir dersin öğrettiği kelimedir; üretici öğretilmemiş kelimeyi reddeder,
+- 7B'nin D01 A1/A2 çapa Skill'leri (6C) — 10 Skill, 10 Objective, 9 kenar (hepsi İngilizcenin içinde) — `published`, kimlik değişmedi; ilk İngilizce ders dördüncü giriş noktası,
+- 82 item (72 kaynaklı anlam anahtarı, 8 gerçek araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev; Objective başına 8 item,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 82 item'ın 71'ini ve 50 anlatımın 46'sını geçirdi (72 anlam anahtarının hepsi doğru; düşenler Cancel'ın da savunulabildiği bir item, belirsiz bir 'It', kabuğa göre değişen bir araç mesajı, anlamı verilmemiş kelimeler, dar kabul listeleri, cevabı gösteren bir görev başlığı ve 'Permission denied dosyanın var olduğunu söyler' yanlışıydı); ikinci geçişte 82/82 ve 50/50.
+- altı paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`),
+- Mutation 8/8, validator 119/119,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15G — Assessment content — **AKTİF**
 ### [ ] 15H — Content QA
 
 ---
@@ -1126,8 +1136,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15E`  
-**Son tamamlanan:** **`15E — LGSX-v0 / D-118`**  
-**Aktif:** **`15F — English A0→A1/A2 başlangıç paketi`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15F`  
+**Son tamamlanan:** **`15F — EAAX-v0 / D-119`**  
+**Aktif:** **`15G — Assessment content`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15F fresh PRE-STEP → English A0→A1/A2 başlangıç paketi (AŞAMA 7'nin English kontratları ve `curriculum/english` ayrıştırması hazır) → independent QA → D-050 POST sync + stale audit.** Kullanıcının onayı D-117 ile sürüyor.
+Bir sonraki yürütme: **15G fresh PRE-STEP + kullanıcının yeni açık onayı → Assessment content → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.

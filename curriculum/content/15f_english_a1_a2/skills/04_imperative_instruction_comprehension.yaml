@@ -1,0 +1,213 @@
+skill: skill.english.imperative_instruction_comprehension
+activity: recognition_selection
+tasks:
+  teach: {title: "Emir cümleleri: \"Save the file.\" — ne yapılacak, neye yapılacak", minutes: 15}
+  practice: {title: "Teknik talimatları anlama alıştırması", minutes: 8}
+  check: {title: "Teknik talimatları anlama kontrolü", minutes: 6}
+  review: {title: "Teknik talimatları anlama tekrarı", minutes: 5}
+  repair: {title: "Talimatı yeniden ayırmak: eylem ve nesne", minutes: 10}
+
+objectives:
+  - id: objective.english.imperative_instruction_comprehension.demonstrate_capability
+    statement: >-
+      Kısa teknik emir cümlelerinden (Open the folder. Run the tests and close the program.) yapılacak eylemi
+      ve eylemin nesnesini çıkarabilmek; emir cümlesinin özne almadığını ve fiilin yalın hâliyle başladığını, and ile
+      bağlanan iki eylemin sırayla yapıldığını bilmek.
+    observable_behavior: >-
+      Bir-iki eylemli kısa bir İngilizce talimatta ne yapılacağını, neye yapılacağını ve eylemlerin sırasını doğru seçer.
+    acceptable_evidence_types: [reading_comprehension, structured_response]
+    direct_evidence_types: [reading_comprehension, structured_response]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul recognize_core_technical_labels'tır (6C hard). Olumsuz emir (Do not ..., Don't ...)
+      negation_question_comprehension'ındır ve burada kullanılmaz. Anahtarlar emir kipinin yalın fiille ve öznesiz
+      kurulduğu bilgisine dayanır (Wikipedia — Imperative mood).
+    explanations:
+      canonical: |
+        Talimatlar emir cümlesiyle verilir: cümle doğrudan fiille başlar, "sen" (you) yazılmaz.
+
+        Open the file. → Dosyayı aç.
+        - Open: eylem (ne yapılacak) — fiilin yalın hâli.
+        - the file: nesne (neye yapılacak).
+
+        İki eylem and ile bağlanabilir; sırayla yapılır:
+        Save the file and close the program. → Önce dosyayı kaydet, sonra programı kapat.
+
+        Okurken: önce baştaki fiili bul (eylem), sonra arkasındaki ismi (nesne).
+
+        Bu dersin kelimeleri: type (yaz — klavyeyle), enter (gir / Enter tuşu), press (bas), select (seç), click (tıkla), add (ekle), remove (kaldır), create (oluştur), use (kullan), check (kontrol et), restart (yeniden başlat), wait (bekle), try (dene), set (ayarla), change (değiştir), rename (yeniden adlandır), move (taşı), write (yaz), read (oku), keep (tut / sakla), again (yeniden), the (o, belirli şey), a, an (bir), this (bu), your (senin), it (onu — az önce söz edilen şeyi), and (ve).
+        Etiket dersinden: open, save, close, delete, copy, paste, run, start, stop, install, update, download, upload, search ... hepsi talimatın fiili olabilir.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (etiketler): save kaydet, close kapat, delete sil, open aç, run çalıştır, update güncelle, file dosya, folder klasör demektir.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Create a folder and move the file.
+          - İlk fiil: Create (oluştur) → nesne: a folder (bir klasör).
+          - and → ikinci fiil: move (taşı) → nesne: the file (dosya).
+          Cevap: önce bir klasör oluştur, sonra dosyayı taşı.
+    misconceptions:
+      - slug: imperative_is_description
+        name: Emir cümlesi bir durumu anlatır
+        open_question: '"Update the tool" cümlesinin "araç güncellendi" anlamına geldiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Cümle bir şeyin olduğunu söylüyor."
+
+            Fiille başlayan, öznesi olmayan cümle bir talimattır: Update the tool → aracı (sen) güncelle. Olmuş bir şeyi anlatmaz.
+      - slug: and_order_free
+        name: and ile bağlı eylemlerin sırası önemli değildir
+        open_question: '"Save the file and close the program" talimatında dosyayı kapattıktan sonra kaydetmenin de aynı olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de yapılsın yeter."
+
+            Talimatta and ile bağlanan eylemler yazıldıkları sırayla yapılır; sıra çoğu zaman önemlidir (kapatılan program artık kaydedemez).
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu talimat ne istiyor?
+        code: |
+          Save the file.
+        options:
+          A: "Dosyayı kaydet."
+          B: "Dosya kaydedildi."
+          C: "Dosyayı sil."
+          D: "Dosyayı aç."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood (English imperatives use the bare infinitive; the subject is usually omitted)"
+          claim: "Save the file bir talimattır: dosyayı kaydet."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir güncelleme bittikten sonra ekranda bu talimat çıktı. Ne yapman gerekiyor?
+        code: |
+          Restart the program.
+        options:
+          A: "Programı yeniden başlat."
+          B: "Program yeniden başladı."
+          C: "Programı sil."
+          D: "Programı güncelle."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood; Wiktionary — restart (verb): to start again"
+          claim: "Restart the program programı yeniden başlatma talimatıdır."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir kurulum ekranında bu talimat var. Ne yapmalısın?
+        code: |
+          Type your name.
+        options:
+          A: "Adını yaz."
+          B: "Ad türünü seç."
+          C: "Adın yazıldı."
+          D: "Adını sil."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood; Wiktionary — type (verb): to enter text with a keyboard"
+          claim: "Type your name: adını (klavyeyle) yaz."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir pencerede bu talimat var. İki eylemi sırasıyla söyleyen seçenek hangisi?
+        code: |
+          Select a folder and click OK.
+        options:
+          A: "Önce bir klasör seç, sonra OK'ye tıkla."
+          B: "Önce OK'ye tıkla, sonra bir klasör seç."
+          C: "Klasör seçildi ve OK'ye tıklandı."
+          D: "Bir klasör oluştur ve kapat."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood; Wiktionary — select (verb), click (verb, computing)"
+          claim: "and ile bağlı iki talimat sırayla yapılır: önce klasör seç, sonra OK'ye tıkla."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir hata penceresinde bu talimat var. Neyi değiştirmen gerekiyor?
+        code: |
+          Rename the file.
+        options:
+          A: "Dosyanın adını"
+          B: "Dosyanın içeriğini"
+          C: "Dosyanın yerini"
+          D: "Dosyanın türünü"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — rename (verb): to give a new name to"
+          claim: "Rename the file: dosyaya yeni bir ad ver."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Terminal sana bir soru sordu; hemen altında bu satır var. Ne yapmalısın?
+        code: |
+          Press Enter.
+        options:
+          A: "Enter tuşuna bas."
+          B: "Bir şey gir (yaz)."
+          C: "Enter yazdı."
+          D: "Programdan çık."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — press (verb): to push a key or button; Enter (noun): the Enter key"
+          claim: "Press Enter: Enter tuşuna bas."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir talimatta bu cümle var. İlk olarak ne yapılır?
+        code: |
+          Check the version and update the program.
+        options:
+          A: "Sürümü kontrol et."
+          B: "Programı güncelle."
+          C: "İkisi aynı anda yapılır."
+          D: "Programı yeniden başlat."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood (form). The order of instructions joined by and is the reading order, as this lesson teaches; Wikipedia does not state it"
+          claim: "İlk eylem check the version'dır; ardından update the program gelir."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir indirme yarıda kaldı ve ekranda bu yazdı. Ne yapman isteniyor?
+        code: |
+          Wait and try again.
+        options:
+          A: "Biraz bekle ve yeniden dene."
+          B: "Bekleme, hemen kapat."
+          C: "Yeniden denendi."
+          D: "Programı sil ve yeniden kur."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood; Wiktionary — wait (verb), try (verb), again (adverb)"
+          claim: "Wait and try again: bekle ve yeniden dene."

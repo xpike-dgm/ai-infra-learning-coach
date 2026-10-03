@@ -1746,3 +1746,22 @@ Ayrıntı: `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md`.
 - Sonraki numbered step `15F — English A0→A1/A2 başlangıç paketi`; fresh PRE ile yürütülür (kullanıcının onayı D-117 ile sürüyor).
 
 Ayrıntı: `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md`.
+
+## D-119 — English A0→A1/A2 başlangıç içeriği = EAAX-v0
+**Durum:** Kabul edildi — 2026-10-04
+
+- 15F final modeli `EAAX-v0 — English A0→A1/A2 starter content` oldu; uygulama altıncı içerik paketini sevk ediyor ve öğrenci teknik İngilizceye sıfırdan başlıyor.
+- Canonical spec `docs/ENGLISH_A1_A2_CONTENT_SPEC.md`; machine-readable contract `arch/15f_english_a1_a2/english_a1_a2.yaml`; doğrulama raporu `arch/15f_english_a1_a2/content_verification.yaml`; research `research/15f_english_a1_a2_research.md`; içerik kaynağı `curriculum/content/15f_english_a1_a2/` (10 Skill dosyası, ders başına kelime listesi = lexicon, bağımsız inceleme); sevk edilen paket `android/app-wiring/src/main/assets/curriculum_package_v6.txt`; kod `tools/build_curriculum_package.py` (`english_words`, lexicon denetimi). Kotlin ana kodu, şema, portlar ve depo değişmedi.
+- Ana invariant: **bir item'ın gösterdiği her İngilizce kelime, item'ın dayanabileceği bir dersin öğrettiği bir kelimedir;** hiçbir dersin öğretmediği kelimeyi derleme reddeder. Anlam anahtarı kaynağını adlandırır; bir aracın mesajı gerçek araçla üretilir ve harfi harfine gösterilir. İngilizce hiçbir teknik şey için kapı değildir.
+- **Onay:** kullanıcının sürekli onayı (D-117); kullanıcıya düşen yeni bir ürün kararı çıkmadı. **D-117 15F ile sona erdi:** kullanıcı 2026-10-04'te "devam et mevcut aşamayı bitirince durursun" dedi; 15G kullanıcının yeni açık onayı olmadan başlamaz. **Asistanın varsayılan seçimleri (D-117):** 10 A1/A2 Skill; üretici tarafından uygulanan ders başına kelime listesi; Türkçe istem ve seçenekler, ölçülen İngilizce uyaran; gerçek düzeni koruyan yazılmış yardım parçaları; yalnız kararlı araç mesajları; Objective başına 8 anahtarlı item.
+- **Bulunanlar:** kelime için tek dürüst koruma ders başına kelime listesidir; literal'ler (ters tırnak, tırnaklı ad, harf dışı karakterli belirteç, NameError gibi karışık harfli ad) kelime değildir; YAML yes/no/on'u boolean okur; araç mesajları sürüme ve kabuğa göre değişir (uutils/GNU mkdir, git'in bağlama noktası notu, etkileşimli/etkileşimsiz bash "command not found"); gerçek yardım sayfaları A2 öğrencisinin bildiğinden çok kelime içerir.
+- **Alt-graf:** 7B'nin D01 A1/A2 çapa Skill'leri (6C ayrıştırması) — 10 Skill, 10 Objective, 9 hard kenar, hepsi İngilizcenin içinde — `published`, kimlik değişmedi; `recognize_core_technical_labels` dördüncü giriş noktası; hiçbir Skill eklenmedi; hiçbir teknik Skill İngilizceyi beklemez.
+- **İçerik:** 82 item (72 kaynaklı anlam anahtarı, 8 gerçek araç mesajı, 2 rubric), 50 anlatım, 20 misconception, 50 görev.
+- **Bağımsız inceleme:** Bağımsız inceleme ilk geçişte 82 item'ın 71'ini ve 50 anlatımın 46'sını geçirdi (72 anlam anahtarının hepsi doğru; düşenler Cancel'ın da savunulabildiği bir item, belirsiz bir 'It', kabuğa göre değişen bir araç mesajı, anlamı verilmemiş kelimeler, dar kabul listeleri, cevabı gösteren bir görev başlığı ve 'Permission denied dosyanın var olduğunu söyler' yanlışıydı); ikinci geçişte 82/82 ve 50/50.
+- **Sevk edilen kurs:** altı paket gerçek SQLite şemasına JVM'de yayımlanıyor; geçmişi olmayan öğrenci dört giriş Skill'ini başlatabiliyor — artık ilk İngilizce ders de bunlardan biri (`ShippedCourseTest`).
+- **Mutation 8/8** (üreticinin 15F denetimi: `english_words` ve lexicon; 15F Kotlin ana kodu değiştirmedi), gerçek derleme ve bilerek bozulmuş fikstürlere karşı; kontrol mutantı hayatta kaldı. Validator mutation **36/36**. Çalıştırılan runlar: T1, T2, T3, `verifyModuleBoundaries`, adaptörlü ve adaptörsüz `assembleDebug` PASS, altı paketin APK içindeki SHA-256'sı kaynakla aynı; 1025 JVM testi. Independent 15F QA: **119/119 PASS**; sweep 61/61.
+- Çalıştırılmayan: **T6 ve cihazda ilk ingestion**; SQLite yayımı yalnız JVM'de koştu.
+- Açık loop'lar: documentation_navigation'ın graph'ı ve cömert zorluk etiketleri (15H); 15A–15D'nin soru havuzu (kullanıcı kararı bekliyor); dinleme, konuşma, B1 ve pre-A1 köprüsü (sonraki adımlar); dakika kalibrasyonu (18B); T6 (19).
+- Sonraki numbered step `15G — Assessment content`; fresh PRE ile yürütülür (kullanıcının onayı D-117 ile sürüyor).
+
+Ayrıntı: `docs/ENGLISH_A1_A2_CONTENT_SPEC.md`.
