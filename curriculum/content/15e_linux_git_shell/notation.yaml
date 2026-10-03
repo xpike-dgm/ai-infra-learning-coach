@@ -1,0 +1,97 @@
+# The shell notation of 15E. Each construct is introduced by the lesson(s) of the Skill(s) named here. An item may use a
+# construct — in the commands it shows and in its options — only if its own Skill, a hard prerequisite of it (including
+# 15C's terminal Skill and 15A's reasoning Skills), or a Skill the item declares in `required_skills` introduces it.
+# Otherwise the construct is a hidden prerequisite and the build refuses to validate the item. A construct nobody
+# introduces here is forbidden in every 15E item.
+#
+# Patterns are matched against the shown commands only: double-quoted text is emptied by the builder, and the text
+# below is removed first — single-quoted text (a program's own source, e.g. bash -c '...'), and a line marked
+# "# hazırlık", which an item gives the learner to copy as it is (a starting commit before commits are taught); the
+# item never asks about such a line.
+strip:
+  - '^.*#\s*hazırlık\s*$'
+  - "'[^'\\n]*'"
+  - '(?:^|\s)#[^\n]*'
+  - '^\s*$'
+
+constructs:
+  # ---- the terminal (15C)
+  navigation:
+    pattern: '\b(?:cd|mkdir|ls|pwd)\b'
+    introduced_by: [skill.linux.terminal_filesystem_navigation]
+  # mkdir -p was the first option (15C) and bash -c the process lesson's; options in general are taught with commands
+  # and arguments.
+  option_flag:
+    pattern: '(?:^|\s)--?[A-Za-z]'
+    introduced_by: [skill.linux.terminal_filesystem_navigation, skill.linux.process_exit_stdout_stderr_basic,
+                    skill.shell.command_options_redirection_basic]
+  # ---- processes: what a command leaves behind when it ends
+  echo_command:
+    pattern: '\becho\b'
+    introduced_by: [skill.linux.process_exit_stdout_stderr_basic, skill.shell.command_options_redirection_basic]
+  exit_status:
+    pattern: '\$\?'
+    introduced_by: [skill.linux.process_exit_stdout_stderr_basic]
+  program_exit:
+    pattern: '\bbash\s+-c\b|\bexit\b|\btrue\b|\bfalse\b'
+    introduced_by: [skill.linux.process_exit_stdout_stderr_basic]
+  # ---- commands, options, arguments and stdout into a file
+  file_tools:
+    pattern: '\b(?:cat|wc|head|tail|sort)\b'
+    introduced_by: [skill.shell.command_options_redirection_basic]
+  redirect_stdout:
+    pattern: '(?<![0-9&>])>(?!&)'
+    introduced_by: [skill.shell.command_options_redirection_basic]
+  and_chain:
+    pattern: '&&'
+    introduced_by: [skill.shell.command_options_redirection_basic]
+  # ---- pipelines and stderr
+  pipe:
+    pattern: '(?<!\|)\|(?!\|)'
+    introduced_by: [skill.shell.pipeline_redirection]
+  redirect_stderr:
+    pattern: '\b2>|&>|>&'
+    introduced_by: [skill.shell.pipeline_redirection]
+  filters:
+    pattern: '\b(?:grep|uniq)\b'
+    introduced_by: [skill.shell.pipeline_redirection]
+  dev_null:
+    pattern: '/dev/null'
+    introduced_by: [skill.shell.pipeline_redirection]
+  # ---- Git
+  git_inspect:
+    pattern: '\bgit\s+(?:init|status|diff|config)\b'
+    introduced_by: [skill.git.repository_status_diff]
+  git_record:
+    pattern: '\bgit\s+(?:add|commit|log)\b'
+    introduced_by: [skill.git.stage_commit_history_basic]
+  # ---- not taught in 15E: forbidden in every item
+  control_flow:
+    pattern: '\b(?:if|then|else|fi|for|while|do|done|case|esac)\b'
+    introduced_by: []
+  shell_variables:
+    pattern: '\$[A-Za-z_{(]'
+    introduced_by: []
+  removal:
+    pattern: '\brm\b'
+    introduced_by: []
+  superuser:
+    pattern: '\bsudo\b'
+    introduced_by: []
+
+roles:
+  all: [recent_required_progress, weakness_or_verification, retention_due,
+        longitudinal_required_capability, persistent_weakness_or_verification, delayed_retention_sampling]
+  transfer: [integration_or_transfer, cross_topic_transfer]
+  critical: [critical_prerequisite_confidence, critical_capability_revalidation]
+
+# Authoring estimates of active minutes (QAB-v0 §22). Uncalibrated: 18B observes and corrects them.
+minutes:
+  basic: 2
+  authentic_application: 3
+  transfer_integration: 4
+# Typing the commands at the terminal and reading what they print takes longer than reading alone; no compile step.
+minutes_code:
+  basic: 4
+  authentic_application: 6
+  transfer_integration: 8

@@ -1035,8 +1035,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation 9/9, validator 132/132,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15E — Linux / Git / Shell Foundations — **AKTİF**
-### [ ] 15F — English A0→A1/A2 başlangıç paketi
+### [x] 15E — Linux / Git / Shell Foundations — LGSX-v0 / D-118
+
+**15E final coverage:**
+- bir komut hakkındaki anahtar gösterilen komutların Linux'ta gerçekten çalıştırılmasıdır; hiçbir anahtar makineye bağlı değildir (hash, tarih, kimlik, dal),
+- FBB-v0 §6.4'ün tohumları (6C'de 6 Skill; terminal 15C'de) — 5 Skill, 5 Objective, 6 kenar — `published`, kimlik değişmedi; hiçbir Skill eklenmedi, giriş noktası yok,
+- 41 item (40 kabuk — 8 gözlem, 32 terminalde —, 1 rubric), 35 anlatım, 15 misconception, 25 görev; Objective başına 8 item,
+- kontrol gösterilen komutlar + probe; paketin kabuk prelude'u; kayıt öğretilmeden önceki başlangıç kaydı "# hazırlık" satırlarıyla,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 41 item'ın 39'unu ve 35 anlatımın 34'ünü geçirdi (40 anahtarın hepsi doğru; düşenler kanonik metnin söylediği bir mkdir kodu, istemin sormadığı bir rubric ölçütü ve git init'in hint satırlarını atlayan bir cümleydi; öğrencinin Git kimliği eksikse kayıtların başarısız olacağı da bulundu ve iki derste tekrarlandı); ikinci geçişte 41/41 ve 35/35.
+- beş paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`),
+- Mutation 5/5, validator 114/114,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15F — English A0→A1/A2 başlangıç paketi — **AKTİF**
 ### [ ] 15G — Assessment content
 ### [ ] 15H — Content QA
 
@@ -1115,8 +1126,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15D`  
-**Son tamamlanan:** **`15D — MMFX-v0 / D-116`**  
-**Aktif:** **`15E — Linux / Git / Shell Foundations`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15E`  
+**Son tamamlanan:** **`15E — LGSX-v0 / D-118`**  
+**Aktif:** **`15F — English A0→A1/A2 başlangıç paketi`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15E fresh PRE-STEP → Linux / Git / Shell Foundations içeriği (WSL Ubuntu, `shell` anahtar kipi ve koşucu hazır; terminal Skill'i 15C'de yayımlandı) → independent QA → D-050 POST sync + stale audit.**
+Bir sonraki yürütme: **15F fresh PRE-STEP → English A0→A1/A2 başlangıç paketi (AŞAMA 7'nin English kontratları ve `curriculum/english` ayrıştırması hazır) → independent QA → D-050 POST sync + stale audit.** Kullanıcının onayı D-117 ile sürüyor.

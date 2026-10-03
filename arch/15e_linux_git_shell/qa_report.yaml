@@ -1,0 +1,382 @@
+model: LGSX-v0
+stage_step: 15E
+decision: D-118
+result: PASS
+checks_total: 114
+checks_passed: 114
+checks_failed: 0
+checks:
+- check: E15E-00_exists_linux_git_shell.yaml
+  result: PASS
+  details: missing arch\15e_linux_git_shell\linux_git_shell.yaml
+- check: E15E-00_exists_content_verification.yaml
+  result: PASS
+  details: missing arch\15e_linux_git_shell\content_verification.yaml
+- check: E15E-00_exists_LINUX_GIT_SHELL_CONTENT_SPEC.md
+  result: PASS
+  details: missing docs\LINUX_GIT_SHELL_CONTENT_SPEC.md
+- check: E15E-00_exists_15e_linux_git_shell_research.md
+  result: PASS
+  details: missing research\15e_linux_git_shell_research.md
+- check: E15E-00_exists_curriculum_package_v5.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v5.txt
+- check: E15E-00_exists_curriculum_package.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package.txt
+- check: E15E-00_exists_curriculum_package_v2.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v2.txt
+- check: E15E-00_exists_curriculum_package_v3.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v3.txt
+- check: E15E-00_exists_curriculum_package_v4.txt
+  result: PASS
+  details: missing android\app-wiring\src\main\assets\curriculum_package_v4.txt
+- check: E15E-00_exists_PackageFormat.kt
+  result: PASS
+  details: missing android\data-curriculum\src\main\kotlin\coach\curriculum\PackageFormat.kt
+- check: E15E-00_exists_ShippedShellGitPackageTest.kt
+  result: PASS
+  details: missing android\data-curriculum\src\test\kotlin\coach\curriculum\ShippedShellGitPackageTest.kt
+- check: E15E-00_exists_ShippedCourseTest.kt
+  result: PASS
+  details: missing android\app-wiring\src\test\kotlin\coach\wiring\ShippedCourseTest.kt
+- check: E15E-00_exists_package.yaml
+  result: PASS
+  details: missing curriculum\content\15e_linux_git_shell\package.yaml
+- check: E15E-00_exists_notation.yaml
+  result: PASS
+  details: missing curriculum\content\15e_linux_git_shell\notation.yaml
+- check: E15E-00_exists_independent_review.yaml
+  result: PASS
+  details: missing curriculum\content\15e_linux_git_shell\independent_review.yaml
+- check: E15E-00_exists_build_curriculum_package.py
+  result: PASS
+  details: missing tools\build_curriculum_package.py
+- check: E15E-01_model
+  result: PASS
+  details: LGSX-v0
+- check: E15E-01_status
+  result: PASS
+  details: accepted_15e
+- check: E15E-01_decision
+  result: PASS
+  details: D-118
+- check: E15E-01_standing_approval
+  result: PASS
+  details: '{''approval'': ''standing_D-117'', ''new_user_decisions'': False, ''assistant_defaults_under_D-117'':
+    [''setup_lines_marked_hazirlik_for_the_starting_commit_in_repository_status_items'',
+    ''the_check_runs_the_shown_commands_plus_a_probe_never_a_separate_script'', ''eight_keyed_items_per_objective_answering_the_users_pool_concern'']}'
+- check: E15E-02_builds
+  result: PASS
+  details: ''
+- check: E15E-02_shipped_is_rebuilt
+  result: PASS
+  details: the shipped asset differs from a fresh build of its source
+- check: E15E-02_generated_marker
+  result: PASS
+  details: ''
+- check: E15E-02_no_failures
+  result: PASS
+  details: '0 failures: []'
+- check: E15E-02_report_recorded
+  result: PASS
+  details: arch/15e_linux_git_shell/content_verification.yaml is not the report of
+    this build
+- check: E15E-02_no_code_suites
+  result: PASS
+  details: '15E has no program to test: every key is a command''s output'
+- check: E15E-02_earlier_untouched_15a_computing_fundamentals
+  result: PASS
+  details: '15a_computing_fundamentals is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15E-02_earlier_untouched_15b_python_foundations
+  result: PASS
+  details: '15b_python_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15E-02_earlier_untouched_15c_c_foundations
+  result: PASS
+  details: '15c_c_foundations is no longer a clean, fresh build of its source: 0 build
+    failures'
+- check: E15E-02_earlier_untouched_15d_memory_foundations
+  result: PASS
+  details: '15d_memory_foundations is no longer a clean, fresh build of its source:
+    0 build failures'
+- check: E15E-03_linux_seeds
+  result: PASS
+  details: '[''skill.linux.terminal_filesystem_navigation'', ''skill.linux.process_exit_stdout_stderr_basic'',
+    ''skill.shell.command_options_redirection_basic'', ''skill.git.repository_status_diff'',
+    ''skill.git.stage_commit_history_basic'']'
+- check: E15E-03_terminal_was_15c
+  result: PASS
+  details: published by 15C (D-114), never carried again
+- check: E15E-03_seeds_as_6c_decomposed
+  result: PASS
+  details: '[''skill.git.repository_status_diff'', ''skill.git.stage_commit_history_basic'',
+    ''skill.linux.process_exit_stdout_stderr_basic'', ''skill.linux.terminal_filesystem_navigation'',
+    ''skill.shell.command_options_redirection_basic'', ''skill.shell.pipeline_redirection'']'
+- check: E15E-03_nothing_added
+  result: PASS
+  details: '[]'
+- check: E15E-03_closed_under_hard_prerequisites
+  result: PASS
+  details: 'a Skill that could never become ready: []'
+- check: E15E-03_content_per_skill
+  result: PASS
+  details: ''
+- check: E15E-03_objective_identity
+  result: PASS
+  details: '[''objective.git.repository_status_diff.inspect_change_state'', ''objective.git.stage_commit_history_basic.commit_and_verify_history'',
+    ''objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs'',
+    ''objective.shell.command_options_redirection_basic.construct_simple_command'',
+    ''objective.shell.pipeline_redirection.demonstrate_capability'']'
+- check: E15E-03_edges_ratified
+  result: PASS
+  details: 6 edges
+- check: E15E-03_builds_on_earlier
+  result: PASS
+  details: ''
+- check: E15E-03_no_entry_point
+  result: PASS
+  details: '[]'
+- check: E15E-04_recorded_process_exit_stdout_stderr_basic_classify_process_outputs
+  result: PASS
+  details: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+- check: E15E-04_recorded_command_options_redirection_basic_construct_simple_command
+  result: PASS
+  details: objective.shell.command_options_redirection_basic.construct_simple_command
+- check: E15E-04_recorded_pipeline_redirection_demonstrate_capability
+  result: PASS
+  details: objective.shell.pipeline_redirection.demonstrate_capability
+- check: E15E-04_recorded_repository_status_diff_inspect_change_state
+  result: PASS
+  details: objective.git.repository_status_diff.inspect_change_state
+- check: E15E-04_recorded_stage_commit_history_basic_commit_and_verify_history
+  result: PASS
+  details: objective.git.stage_commit_history_basic.commit_and_verify_history
+- check: E15E-04_no_template_statement
+  result: PASS
+  details: ''
+- check: E15E-05_review_method
+  result: PASS
+  details: ''
+- check: E15E-05_every_item_reviewed
+  result: PASS
+  details: 41 / 41
+- check: E15E-05_every_item_passed_review
+  result: PASS
+  details: '[]'
+- check: E15E-05_every_item_validated
+  result: PASS
+  details: ''
+- check: E15E-05_no_hidden_prerequisite
+  result: PASS
+  details: ''
+- check: E15E-05_modes
+  result: PASS
+  details: '{''rubric'', ''shell''}'
+- check: E15E-05_counts
+  result: PASS
+  details: '41 {''shell'': 40, ''rubric'': 1}'
+- check: E15E-05_keys_run_in_linux
+  result: PASS
+  details: ''
+- check: E15E-05_rubrics_provisional
+  result: PASS
+  details: ''
+- check: E15E-05_shown_is_run
+  result: PASS
+  details: '[]'
+- check: E15E-05_shell_prelude
+  result: PASS
+  details: the fixed Git identity, no user or system Git configuration, the C.UTF-8
+    locale
+- check: E15E-05_setup_lines_only_record
+  result: PASS
+  details: '[''skill.git.repository_status_diff'']'
+- check: E15E-05_setup_lines_shown
+  result: PASS
+  details: the learner sees every setup line it runs
+- check: E15E-05_setup_explained
+  result: PASS
+  details: the lesson says what a setup line is
+- check: E15E-05_no_machine_dependent_key
+  result: PASS
+  details: '[]'
+- check: E15E-05_measurable_process_exit_stdout_stderr_basic_classify_process_outputs
+  result: PASS
+  details: 8 families
+- check: E15E-05_measurable_command_options_redirection_basic_construct_simple_command
+  result: PASS
+  details: 8 families
+- check: E15E-05_measurable_pipeline_redirection_demonstrate_capability
+  result: PASS
+  details: 8 families
+- check: E15E-05_measurable_repository_status_diff_inspect_change_state
+  result: PASS
+  details: 8 families
+- check: E15E-05_measurable_stage_commit_history_basic_commit_and_verify_history
+  result: PASS
+  details: 8 families
+- check: E15E-05_ai_origin_declared
+  result: PASS
+  details: ''
+- check: E15E-05_terminal_at_the_computer
+  result: PASS
+  details: ''
+- check: E15E-05_observation_not_runnable
+  result: PASS
+  details: 'predicting what a process leaves behind: the terminal would answer it'
+- check: E15E-06_unescape_rule_unchanged
+  result: PASS
+  details: ''
+- check: E15E-06_package_escapes
+  result: PASS
+  details: ''
+- check: E15E-06_kotlin_unchanged
+  result: PASS
+  details: ''
+- check: E15E-07_every_explanation_reviewed
+  result: PASS
+  details: 35 / 35
+- check: E15E-07_every_explanation_passed
+  result: PASS
+  details: '[]'
+- check: E15E-07_lesson_claims_executed
+  result: PASS
+  details: 23 checks
+- check: E15E-07_lesson_checks_are_shell
+  result: PASS
+  details: ''
+- check: E15E-07_lesson_process_exit_stdout_stderr_basic_classify_process_outputs
+  result: PASS
+  details: ''
+- check: E15E-07_lesson_command_options_redirection_basic_construct_simple_command
+  result: PASS
+  details: ''
+- check: E15E-07_lesson_pipeline_redirection_demonstrate_capability
+  result: PASS
+  details: ''
+- check: E15E-07_lesson_repository_status_diff_inspect_change_state
+  result: PASS
+  details: ''
+- check: E15E-07_lesson_stage_commit_history_basic_commit_and_verify_history
+  result: PASS
+  details: ''
+- check: E15E-07_no_combining_dot
+  result: PASS
+  details: ''
+- check: E15E-08_introducers_known
+  result: PASS
+  details: set()
+- check: E15E-08_forbidden_constructs
+  result: PASS
+  details: '[''control_flow'', ''removal'', ''shell_variables'', ''superuser'']'
+- check: E15E-08_pipe_owned
+  result: PASS
+  details: '{''pattern'': ''(?<!\\|)\\|(?!\\|)'', ''introduced_by'': [''skill.shell.pipeline_redirection'']}'
+- check: E15E-08_redirect_stderr_owned
+  result: PASS
+  details: '{''pattern'': ''\\b2>|&>|>&'', ''introduced_by'': [''skill.shell.pipeline_redirection'']}'
+- check: E15E-08_exit_status_owned
+  result: PASS
+  details: '{''pattern'': ''\\$\\?'', ''introduced_by'': [''skill.linux.process_exit_stdout_stderr_basic'']}'
+- check: E15E-08_redirect_stdout_owned
+  result: PASS
+  details: '{''pattern'': ''(?<![0-9&>])>(?!&)'', ''introduced_by'': [''skill.shell.command_options_redirection_basic'']}'
+- check: E15E-08_git_inspect_owned
+  result: PASS
+  details: '{''pattern'': ''\\bgit\\s+(?:init|status|diff|config)\\b'', ''introduced_by'':
+    [''skill.git.repository_status_diff'']}'
+- check: E15E-08_git_record_owned
+  result: PASS
+  details: '{''pattern'': ''\\bgit\\s+(?:add|commit|log)\\b'', ''introduced_by'':
+    [''skill.git.stage_commit_history_basic'']}'
+- check: E15E-08_setup_lines_stripped
+  result: PASS
+  details: a setup line is copied, never scanned
+- check: E15E-09_five_per_skill
+  result: PASS
+  details: '25'
+- check: E15E-09_tasks_validated
+  result: PASS
+  details: ''
+- check: E15E-09_minutes_are_estimates
+  result: PASS
+  details: ''
+- check: E15E-09_git_work_declares_files
+  result: PASS
+  details: making a file to inspect is not in 6C's graph for Git; the work declares
+    it (3B §10)
+- check: E15E-10_shown_code_runs
+  result: PASS
+  details: ''
+- check: E15E-10_prelude_everywhere
+  result: PASS
+  details: every item and lesson check gets the same first lines
+- check: E15E-10_earlier_have_no_prelude
+  result: PASS
+  details: ''
+- check: E15E-11_test_everything shipped was validated, so not
+  result: PASS
+  details: 'ShippedShellGitPackageTest.kt: everything shipped was validated, so nothing
+    is a candidate'
+- check: E15E-11_test_the commands are shown exactly as the ch
+  result: PASS
+  details: 'ShippedShellGitPackageTest.kt: the commands are shown exactly as the check
+    runs them, setup lines included, one command per line'
+- check: E15E-11_test_every item is judged by exactly one thin
+  result: PASS
+  details: 'ShippedShellGitPackageTest.kt: every item is judged by exactly one thing,
+    and work at the terminal allows it but never an AI'
+- check: 'E15E-11_test_all five shipped packages are published '
+  result: PASS
+  details: 'ShippedCourseTest.kt: all five shipped packages are published into the
+    real store, oldest first, and Git waits on the terminal'
+- check: E15E-11_test_with the Linux, shell and Git package, a
+  result: PASS
+  details: 'ShippedCourseTest.kt: with the Linux, shell and Git package, a learner
+    who has done nothing still starts only the three entry lessons'
+- check: E15E-12_mutation_all_detected
+  result: PASS
+  details: 5/5
+- check: E15E-12_crash_not_detection
+  result: PASS
+  details: ''
+- check: E15E-12_control
+  result: PASS
+  details: ''
+- check: E15E-12_validator_mutation
+  result: PASS
+  details: '{''total'': 36, ''detected'': 36, ''negative_control'': ''a YAML comment
+    in a Skill file and a builder comment, each naming forbidden fragments (git commit,
+    |, 2>&1, if/then, rm, sudo, $HOME, master, a hash, verdict fail, human_authored,
+    hazırlık)'', ''negative_control_result'': ''no_false_positive'', ''crash_is_not_a_detection'':
+    True, ''baseline'': ''the only check allowed to fail at baseline is E15E-12_validator_mutation,
+    which reads this very result; a mutant counts only by a failure not in the baseline'',
+    ''fast_mode'': ''every mutant except V30 ran with --skip-earlier-rebuild (rebuilding
+    15B–15D runs 135 suites); V30, a change to an earlier package, ran in full'',
+    ''earlier_runs'': ''none — the first full run is the result taken'', ''final_run_is_a_single_clean_run'':
+    True}'
+- check: E15E-12_runs_pass
+  result: PASS
+  details: ''
+- check: E15E-12_t6_not_claimed
+  result: PASS
+  details: ''
+- check: E15E-13_spec_status
+  result: PASS
+  details: ''
+- check: E15E-13_spec_next
+  result: PASS
+  details: ''
+- check: E15E-13_spec_t6
+  result: PASS
+  details: ''
+- check: E15E-13_research
+  result: PASS
+  details: every source the lessons rest on is named by its URL
+- check: E15E-13_decision
+  result: PASS
+  details: D-118 heading in DECISIONS

@@ -291,8 +291,11 @@ check("E15C-09_minutes_are_estimates", contract.get("task_minutes", {}).get("cal
 # ---------------------------------------------------------------- the builder judges C where the learner builds it
 builder_src = read(BUILDER)
 check("E15C-10_runner_in_linux", '["python3", wsl_path(RUNNER) if os.name == "nt" else str(RUNNER), "suite.json", "--dir", "."]' in builder_src, "")
+# Narrowed at 15E (`LGSX-v0` / `D-118`): a shell run now starts with the package's own prelude; 15C has none, so its shell
+# keys still run as plain bash in Linux.
 check("E15C-10_keys_in_linux", 'in_linux(GCC + ["-c", "program.c", "-o", "program.o"], d)' in builder_src
-      and 'in_linux(["gcc", "program.o", "-o", "program"], d)' in builder_src and 'in_linux(["bash", "-c", script], d)' in builder_src, "")
+      and 'in_linux(["gcc", "program.o", "-o", "program"], d)' in builder_src
+      and 'in_linux(["bash", "-c", SHELL_PRELUDE + script], d)' in builder_src and "shell_prelude" not in pkg, "")
 check("E15C-10_earlier_packages_keep_python", 'PYTHON_CODE = {"file": CODE_FILE, "build": CODE_BUILD, "run": CODE_RUN, "environment": "host"}' in builder_src
       and 'ESCAPE_BACKSLASH = bool(pkg.get("escape_backslash", False))' in builder_src, "")
 

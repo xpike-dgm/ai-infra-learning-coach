@@ -1,0 +1,271 @@
+skill: skill.shell.command_options_redirection_basic
+activity: hands_on_system_task
+tasks:
+  teach: {title: "Komut, seçenek, argüman ve çıktıyı dosyaya yazmak (> ve >>)", minutes: 15}
+  practice: {title: "Komut kurma ve yönlendirme alıştırması", minutes: 12}
+  check: {title: "Komut kurma ve yönlendirme kontrolü", minutes: 12}
+  review: {title: "Komut kurma ve yönlendirme tekrarı", minutes: 10}
+  repair: {title: "Bir komutu yeniden okumak: ne çalışır, ne nereye yazılır", minutes: 15}
+
+objectives:
+  - id: objective.shell.command_options_redirection_basic.construct_simple_command
+    statement: >-
+      Basit bir komutu parçalarına ayırıp kurabilmek: komutun adı, seçenekleri (-n 2 gibi) ve argümanları (dosya
+      adları); echo, cat, wc -l, head -n, tail -n ve sort ile metin dosyalarını oluşturup okuyabilmek; bir komutun
+      standart çıktısını > ile bir dosyaya yazmanın dosyayı baştan yazdığını, >> ile eklemenin sonuna eklediğini ve
+      yönlendirilen çıktının ekranda görünmediğini bilerek kullanabilmek.
+    observable_behavior: >-
+      Verilen komutları kendi terminalinde çalıştırır, oluşan dosyaların içeriğini ve komutların ne yazdığını doğru
+      söyler; > ile >> arasındaki farkı, sort'un metin olarak sıraladığını ve seçeneklerin komutun davranışını
+      değiştirdiğini kullanır.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type hands_on_system_task. FBB-v0 §6.4'ün
+      command_options_redirection_basic tohumu 6C'de ikiye ayrıldı: bu Skill komut + seçenek + argüman ve stdout'u
+      dosyaya yazmayı (>, >>) öğretir; boru hattı (|), stderr'i yönlendirmek (2>) ve filtreler pipeline_redirection'ındır.
+      Item'lar uygulamalıdır: öğrenci komutları boş bir klasörde kendi terminalinde çalıştırır ve sonucu yazar; anahtarlar
+      komutlar boş bir dizinde bash ile gerçekten çalıştırılarak doğrulanır.
+    checks:
+      - lang: shell
+        prints: |
+          bir
+          iki
+        code: |
+          echo bir > not.txt
+          echo iki >> not.txt
+          cat not.txt
+      - lang: shell
+        prints: "dort"
+        code: |
+          echo uc > not.txt
+          echo dort > not.txt
+          cat not.txt
+      - lang: shell
+        prints: "2 a.txt"
+        code: |
+          echo x > a.txt
+          echo y >> a.txt
+          wc -l a.txt
+      - lang: shell
+        prints: |
+          armut
+          ayva
+          elma
+        code: |
+          echo armut > m.txt
+          echo elma >> m.txt
+          echo ayva >> m.txt
+          sort m.txt
+      - lang: shell
+        prints: |
+          40
+          5
+        code: |
+          echo 5 > s.txt
+          echo 40 >> s.txt
+          sort s.txt
+      - lang: shell
+        prints: "tamam"
+        code: |
+          mkdir -p d && echo tamam
+    explanations:
+      canonical: |
+        Bir komut üç parçadan oluşur:
+
+        wc  -l  rapor.txt
+        │   │   └── argüman: komutun üzerinde çalışacağı şey (çoğu zaman bir dosya)
+        │   └────── seçenek: komutun davranışını değiştirir; - ile başlar
+        └────────── komutun adı
+
+        Seçeneğin kendi değeri olabilir: head -n 3 rapor.txt "ilk 3 satır" demektir. Seçenekler komuta göre anlam taşır: -n head'de satır sayısıdır.
+
+        Metinle çalışan birkaç komut:
+        - echo metin       → metni ekrana (stdout) yazar.
+        - cat dosya        → dosyanın içeriğini yazar.
+        - wc -l dosya      → dosyadaki satır sayısını ve dosyanın adını yazar: 2 a.txt
+        - head -n 2 dosya  → ilk 2 satırı yazar; tail -n 2 dosya son 2 satırı.
+        - sort dosya       → satırları sıralayıp yazar (dosyanın kendisi değişmez).
+
+        sort metin olarak sıralar: satırları harf harf karşılaştırır. "40" ile "5"i karşılaştırırken önce "4" ile "5"e bakar, bu yüzden 40 önce gelir. Sayıları büyüklüğe göre sıralamak için sort -n gerekir.
+
+        Çıktıyı dosyaya yazmak (yönlendirme): bir komutun stdout'u ekrana gideceğine bir dosyaya gidebilir.
+        - komut > dosya   → dosyayı (yoksa) oluşturur, varsa içini silip baştan yazar.
+        - komut >> dosya  → dosyanın sonuna ekler (yoksa oluşturur).
+        Yönlendirilen çıktı ekranda görünmez; ne yazıldığını görmek için cat dosya.
+
+        echo ocak > ay.txt      (ay.txt: ocak)
+        echo subat >> ay.txt    (ay.txt: ocak, subat)
+        echo mart > ay.txt      (ay.txt: yalnız mart — > baştan yazdı)
+
+        > yalnız çalışma dizinindeki ya da yolu verilen var olan bir klasöre yazabilir; klasörü kendisi oluşturmaz.
+
+        İki komutu bağlamak: komut1 && komut2 — ikinci komut yalnız birincisi başarıyla (çıkış durumu 0) biterse çalışır.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (terminal): komutlar çalışma dizininde çalışır; mkdir -p'deki -p bir seçenekti ve göreli bir dosya adı çalışma dizinine göre aranır.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde. Boş bir klasörde:
+
+          $ echo kirmizi > renk.txt     renk.txt: kirmizi
+          $ echo mavi >> renk.txt       renk.txt: kirmizi, mavi
+          $ wc -l renk.txt              ekranda: 2 renk.txt
+          $ sort renk.txt > s.txt       ekranda hiçbir şey; s.txt: kirmizi, mavi
+          $ head -n 1 s.txt             ekranda: kirmizi
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: boş bir klasörde şu komutlardan sonra not.txt'de kaç satır var?
+          $ echo alfa > not.txt
+          $ echo beta >> not.txt
+          $ echo gama > not.txt
+          $ echo delta >> not.txt
+
+          - alfa yazıldı, beta eklendi (2 satır).
+          - echo gama > not.txt dosyayı baştan yazdı: yalnız gama (1 satır).
+          - delta eklendi: gama, delta.
+          Cevap: wc -l not.txt → 2 not.txt
+    misconceptions:
+      - slug: overwrite_appends
+        name: ">, dosyanın sonuna ekler"
+        open_question: Var olan bir dosyaya > ile yazmanın eski içeriği koruyup yenisini sonuna ekleyeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "> dosyaya yazar, o halde eklenir."
+
+            > dosyayı baştan yazar: eski içerik silinir. Sonuna eklemek için >> kullanılır. Önemli bir dosyada > kullanmadan önce iki kez düşün.
+      - slug: redirect_still_shows
+        name: Yönlendirilen çıktı ekranda da görünür
+        open_question: komut > dosya yazdığında çıktının hem dosyaya yazılıp hem de ekranda görüneceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Komutu çalıştırdım ama hiçbir şey yazmadı, bozuk mu?"
+
+            > stdout'u ekrandan alıp dosyaya gönderir; ekranda hiçbir şey görünmemesi doğrudur. Ne yazıldığını görmek için cat dosya.
+      - slug: sort_is_numeric
+        name: sort sayıları büyüklüğüne göre sıralar
+        open_question: sort'un 7, 30 ve 200'ü küçükten büyüğe sıralayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Sayılar sayı gibi sıralanır."
+
+            sort satırları metin olarak, ilk karakterden başlayarak karşılaştırır; "2" ile başlayanlar "7" ile başlayanlardan önce gelir. Sayıların büyüklüğüne göre sıralamak için sort -n gerekir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Terminalinde boş bir klasöre geç ve şu komutları sırayla çalıştır. Sonra cat selam.txt ile dosyanın içeriğine bak. Satırları sırayla, aralarında birer boşlukla yaz.
+        code: |
+          echo merhaba > selam.txt
+          echo dunya >> selam.txt
+        answer: "merhaba dunya"
+        verify: {mode: shell, last_line: true, probe: 'echo $(cat selam.txt)'}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo kalem > liste.txt
+          echo silgi > liste.txt
+          cat liste.txt
+        answer: "silgi"
+        verify: {mode: shell}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          echo pazartesi > gun.txt
+          echo sali >> gun.txt
+          echo carsamba >> gun.txt
+          wc -l gun.txt
+        answer: "3 gun.txt"
+        verify: {mode: shell}
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo 9 > puan.txt
+          echo 12 >> puan.txt
+          echo 100 >> puan.txt
+          sort puan.txt > sirali.txt
+          head -n 1 sirali.txt
+        answer: "100"
+        verify: {mode: shell}
+      - slug: f05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          echo a > log.txt
+          echo b >> log.txt
+          echo c > yeni.txt
+          cat log.txt yeni.txt > hepsi.txt
+          wc -l hepsi.txt
+        answer: "3 hepsi.txt"
+        verify: {mode: shell}
+      - slug: f06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo ocak > takvim.txt
+          echo subat >> takvim.txt
+          echo mart >> takvim.txt
+          echo nisan >> takvim.txt
+          tail -n 2 takvim.txt > son.txt
+          head -n 1 son.txt
+        answer: "mart"
+        verify: {mode: shell}
+      - slug: f07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          mkdir -p kutu/a kutu/b kutu/c
+          ls kutu > icerik.txt
+          wc -l icerik.txt
+        answer: "3 icerik.txt"
+        verify: {mode: shell}
+      - slug: f08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutu çalıştır (yok_klasor adında bir klasör yok). Ne olur?
+        code: |
+          echo test > yok_klasor/dosya.txt
+        options:
+          A: "Hata verir; ne yok_klasor ne de dosya.txt oluşturulur"
+          B: "yok_klasor klasörü ve içinde dosya.txt oluşturulur"
+          C: "dosya.txt çalışma dizininde oluşturulur"
+          D: "Komut başarıyla biter ama hiçbir şey oluşturulmaz"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            s=$?; [ -e yok_klasor ] && k=var || k=yok; [ -e dosya.txt ] && f=var || f=yok
+            echo "$s $k $f"
+          outcomes: {A: "1 yok yok", B: "0 var yok", C: "0 yok var", D: "0 yok yok"}

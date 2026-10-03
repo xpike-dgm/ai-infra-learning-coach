@@ -1325,3 +1325,19 @@ Kullanıcı, `PROJECT_CONTEXT.md` dosyasının 4B'de kaldığını fark ederek P
 - D-050 POST living-memory accepted state'i `15D tamamlandı; 15E aktif ve henüz yürütülmedi` konumuna taşır.
 
 **Sonraki kesin adım:** `15E — Linux / Git / Shell Foundations`. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.
+
+## 2026-10-03 — 15E — Linux / Git / Shell Foundations tamamlandı — LGSX-v0 / D-118
+
+- 15D (#55) main'e merge edildi (6172fa7). Kullanıcı sürekli onay verdi (D-117: "ben dur diyene kadar ... merge et, direkt diğer adıma geç"). Fresh 15E PRE yapıldı ve beş kanonik kaynak `15D ✅ / 15E active-not-executed` gösterdi.
+- **Bulgu:** terminal Skill'i 15C'de yayımlanmıştı; 15C'de bir kabuk kontrolü gösterilenden ayrı bir betikti; Git makineden makineye hash, tarih, kimlik ve dal adı uydurur; değişmiş bir dosyayı görmek kayıt ister ama kayıt sonraki Skill'dir; Git'in bazı mesajları stdout'a gider; Git işi dosya oluşturur ama graph söylemez.
+- **Asistanın varsayılan seçimleri (D-117):** "# hazırlık" satırları; kontrol gösterilen komutlar + probe; Objective başına 8 item.
+- İçerik: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; her şey Linux'ta bash ve git ile doğrulandı.
+- **Araştırma:** GNU Bash el kitabı (gnu.org sınırladığı için WSL'deki bash 5.3 kılavuz sayfasından), git-status, git-commit, git-diff.
+- **Bağımsız inceleme:** Bağımsız inceleme ilk geçişte 41 item'ın 39'unu ve 35 anlatımın 34'ünü geçirdi (40 anahtarın hepsi doğru; düşenler kanonik metnin söylediği bir mkdir kodu, istemin sormadığı bir rubric ölçütü ve git init'in hint satırlarını atlayan bir cümleydi; öğrencinin Git kimliği eksikse kayıtların başarısız olacağı da bulundu ve iki derste tekrarlandı); ikinci geçişte 41/41 ve 35/35.
+- Beş paket gerçek SQLite şemasına JVM'de yayımlanıyor; giriş noktası değişmedi.
+- Yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi.
+- Mutation 5/5. Validator 114/114, sweep 60/60, 1017 JVM testi.
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+- D-050 POST living-memory accepted state'i `15E tamamlandı; 15F aktif ve henüz yürütülmedi` konumuna taşır.
+
+**Sonraki kesin adım:** `15F — English A0→A1/A2 başlangıç paketi`. Fresh PRE-STEP zorunludur; kullanıcının onayı D-117 ile sürüyor.

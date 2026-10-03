@@ -1,0 +1,37 @@
+# 15E — Linux / Git / Shell Foundations (LGSX-v0 / D-118)
+#
+# The fifth authored package. It builds on 15A–15D (curriculum versions 1-4) and publishes curriculum version 5:
+# FBB-v0 §6.4's Linux, shell and Git seeds as 6C decomposed them. terminal_filesystem_navigation was already published
+# in 15C (D-114); the rest is here — process_exit_stdout_stderr_basic, command_options_redirection_basic (6C split it
+# into command_options_redirection_basic and pipeline_redirection), repository_status_diff and
+# stage_commit_history_basic. Every hard prerequisite is published or in this package, so nothing is added. Five
+# Skills, five Objectives.
+#
+# Every key is what bash and git really print, run in an empty directory in Linux (WSL Ubuntu, D-114). A shell item's
+# check runs exactly the commands it shows, then a probe that prints what the question asks about. Identity is never
+# changed.
+version: 5
+step: 15e
+builds_on: [curriculum/content/15a_computing_fundamentals, curriculum/content/15b_python_foundations, curriculum/content/15c_c_foundations,
+            curriculum/content/15d_memory_foundations]
+source_refs: curriculum/decomposition/6c_foundations;curriculum/content/15e_linux_git_shell
+provenance: authored_15e_lgsx_v0
+content_source_ref: source.repo.content_15e_lgsx_v0
+# Noon UTC of the day the independent review of 15E content is recorded (the 15A convention): 2026-10-03T12:00:00Z.
+validated_at_instant: 1791028800000
+
+# Every check starts the same way, whatever machine runs it: Git ignores the user's and the system's configuration,
+# commits get a fixed identity (no key asks about it), and messages and sort order are the C.UTF-8 ones.
+shell_prelude: |
+  export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1
+  export GIT_AUTHOR_NAME=Ogrenci GIT_AUTHOR_EMAIL=ogrenci@example.com GIT_COMMITTER_NAME=Ogrenci GIT_COMMITTER_EMAIL=ogrenci@example.com
+  export LC_ALL=C.UTF-8
+lesson_checks: shell
+escape_backslash: true
+
+skills:
+  - id: skill.linux.process_exit_stdout_stderr_basic
+  - id: skill.shell.command_options_redirection_basic
+  - id: skill.shell.pipeline_redirection
+  - id: skill.git.repository_status_diff
+  - id: skill.git.stage_commit_history_basic

@@ -1,0 +1,145 @@
+model: LGSX-v0
+stage_step: 15E
+status: accepted_15e
+decision: D-118
+implements: [FBB-v0, KGC-v0, LFPS-v0, QAB-v0, AIV-v0, GRE-v0, TASK_TAXONOMY_SPEC]
+builds_on: [CPFX-v0, PYFX-v0, CFNX-v0, MMFX-v0, DMAX-v0, PLNX-v0, PRQX-v0]
+boundaries: MSBX-v0
+purpose: linux_shell_git_content_run_in_linux
+
+question: Bir komut hakkındaki anahtar nasıl doğrulanır — öğrencinin gördüğü komutların ta kendisi çalıştırılarak ve makineden makineye değişen hiçbir şeye dayanmadan?
+
+primary_invariant: >-
+  A key about a command is what bash and git really print when exactly the shown commands run in an empty directory in
+  Linux; a probe may only print what the question asks about. No key depends on what the checking machine's Git makes
+  up for itself (a hash, a date, an identity, a branch name), a setup line never teaches what its item asks, and no
+  earlier package reads differently.
+
+user_decisions:
+  approval: standing_D-117
+  new_user_decisions: false
+  assistant_defaults_under_D-117:
+    - setup_lines_marked_hazirlik_for_the_starting_commit_in_repository_status_items
+    - the_check_runs_the_shown_commands_plus_a_probe_never_a_separate_script
+    - eight_keyed_items_per_objective_answering_the_users_pool_concern
+
+seed_skills: [skill.git.repository_status_diff, skill.git.stage_commit_history_basic, skill.linux.process_exit_stdout_stderr_basic,
+              skill.shell.command_options_redirection_basic, skill.shell.pipeline_redirection]
+added_skills: []
+entry_skills: []
+
+scope:
+  skills: 5
+  objectives: 5
+  edges: 6
+  edges_from_earlier: 3
+  lifecycle_ratified: draft_to_published
+  identity_changed: false
+  schema_changed: false
+  ports_changed: false
+  store_changed: false
+  kotlin_main_changed: false
+  format_refined: none
+
+environment:
+  learner: wsl_ubuntu
+  shell: bash 5.3
+  git: "2.53"
+  checks: every item and lesson check runs in bash in an empty directory in Linux, after the package's shell_prelude
+  shell_prelude: fixed Git identity, GIT_CONFIG_GLOBAL=/dev/null, GIT_CONFIG_NOSYSTEM=1, LC_ALL=C.UTF-8
+  installed_by: user (15C); nothing new installed
+
+item_counts:
+  total: 41
+  shell: 40
+  rubric: 1
+  hands_on: 32
+
+lesson_checks_min: 23
+
+never_introduced: [control_flow, removal, shell_variables, superuser]
+
+task_minutes:
+  source: authoring_estimate
+  calibrated: false
+  owner_of_calibration: 18B
+
+validation:
+  validator_record: ["15e/executed_key+independent_review", "15e/rubric_reviewed+independent_review"]
+  validated_at: "2026-10-03T12:00:00Z"
+  origin: ai_generated
+  highest_status: validated
+  effective_ceiling: standard_mastery_eligible
+
+found:
+  - terminal_skill_already_published_in_15c
+  - a_check_ran_a_script_other_than_the_shown_commands
+  - git_makes_up_hashes_dates_identity_and_branch_per_machine
+  - a_modified_file_needs_a_commit_before_commits_are_taught
+  - git_messages_like_nothing_to_commit_go_to_stdout
+  - git_work_creates_files_the_graph_does_not_say
+  - nothing_added_no_entry_point
+
+suites:
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedShellGitPackageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+
+narrowed_gates:
+  - {file: tools/validate_c_foundations.py, checks: [E15C-10_keys_in_linux], why: "it read the builder's old shell call literally; it now requires the prelude form and that 15C has no prelude, so 15C's shell keys still run as plain bash in Linux"}
+sweep_note: the first sweep showed this one failure (59/60); after narrowing, 15C's validator is 155/155 and the sweep is 60/60
+
+mutation_results:
+  total: 5
+  detected: 5
+  scope: the checking 15E adds to the builder (the shown commands run with a probe; one prelude for every shell run); 15E changes no Kotlin main code
+  tests: the real 15E build (must stay clean) and two fault fixtures, each one Skill file with a planted wrong key that the unmutated builder must catch — a status item's key (F1) and a key read by a probe (F2)
+  detection: the real build reports a failure, or a fixture's planted error adds no failure beyond the same file built clean under the same mutant
+  crash_is_detection: false
+  harness_verified: the unmutated baseline must be clean and catch both fixtures before any mutant runs; files are read and written as bytes and restored
+  negative_control: a comment-only change in the builder
+  negative_control_result: survived_as_expected
+  machine_note: B04 and B05 (no prelude) were detected because this WSL has no Git identity, so every commit failed; on a machine with an identity they might survive — the validator also checks the prelude text and its use statically (E15E-05_shell_prelude, E15E-10_prelude_everywhere)
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: B01, mutant: shown_commands_not_run, result: detected}
+    - {id: B02, mutant: probe_dropped, result: detected}
+    - {id: B03, mutant: probe_runs_first, result: detected}
+    - {id: B04, mutant: prelude_not_applied, result: detected}
+    - {id: B05, mutant: prelude_not_read_from_package, result: detected}
+
+validator_mutation:
+  total: 36
+  detected: 36
+  negative_control: a YAML comment in a Skill file and a builder comment, each naming forbidden fragments (git commit, |, 2>&1, if/then, rm, sudo, $HOME, master, a hash, verdict fail, human_authored, hazırlık)
+  negative_control_result: no_false_positive
+  crash_is_not_a_detection: true
+  baseline: the only check allowed to fail at baseline is E15E-12_validator_mutation, which reads this very result; a mutant counts only by a failure not in the baseline
+  fast_mode: every mutant except V30 ran with --skip-earlier-rebuild (rebuilding 15B–15D runs 135 suites); V30, a change to an earlier package, ran in full
+  earlier_runs: none — the first full run is the result taken
+  final_run_is_a_single_clean_run: true
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test :data-curriculum:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew :ai-adapter:test :app-wiring:testDebugUnitTest", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-07, command: "read the five curriculum packages from the built APK and compare their SHA-256 with the source assets", tier: T5, result: PASS}
+  - {id: RUN-08, command: "python -X utf8 tools/validate_linux_git_shell.py (every key and lesson claim run again with bash and git in WSL Ubuntu)", tier: T2, result: PASS}
+jvm_tests: 1017
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_on_jvm_run: true
+  sqlite_publish_on_device_run: false
+  why: no check runs on the device; ShippedCourseTest publishes all five shipped packages into the real schema on the JVM
+
+open_loops:
+  graph_requirements_declared_per_item: {owner: 15H, note: "Git items and tasks declare command_options_redirection_basic (they create files); 6C links repository_status_diff to the terminal only"}
+  item_pool_size: {owner: user, note: "the user's 2026-10-03 concern: ~5 items per Objective in 15A–15D can run out for a struggling learner; 15E has 8; a pool-expansion step awaits the user's decision"}
+  notation_coverage: {owner: 15H, note: "lesson checks are not scanned; the probe is not scanned"}
+  runner_presents_tasks: {owner: 16D, note: "moving the learner's answers between phone and computer"}
+  estimate_calibration: {owner: 18B, note: "task and item minutes are authoring estimates"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first on-device ingestion"}

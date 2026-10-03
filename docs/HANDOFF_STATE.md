@@ -304,14 +304,15 @@ PEM-v0:
 - 15B ✅ PYFX-v0 / D-113
 - 15C ✅ CFNX-v0 / D-114
 - 15D ✅ MMFX-v0 / D-116
-- 15E 🟡 active-not-executed
-- 15F–20 ⬜
+- 15E ✅ LGSX-v0 / D-118
+- 15F 🟡 active-not-executed
+- 15G–20 ⬜
 
 ## 11. Güncel kesin konum
 
-**Son tamamlanan:** `15D — MMFX-v0 / D-116`  
-**Aktif:** `15E — Linux / Git / Shell Foundations`  
-**15E henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
+**Son tamamlanan:** `15E — LGSX-v0 / D-118`  
+**Aktif:** `15F — English A0→A1/A2 başlangıç paketi`  
+**15F henüz yürütülmedi. Fresh PRE-STEP + kullanıcı açık onayı zorunludur.**
 
 ## 12. D-061 / 6G final özeti — external QA sonrası
 
@@ -1440,3 +1441,25 @@ MMFX-v0:
 ## 84. 15E handoff
 
 15E — Linux / Git / Shell Foundations. FBB-v0 §6.4's seeds; `terminal_filesystem_navigation` was already published in 15C (D-114). The WSL Ubuntu environment, the `shell` key mode (bash in an empty directory in Linux) and the runner are in place. Open loops carried: requirements declared per item (including the lifetime Skill's pointer edge), moderate transfer labels, notation coverage, `requires_transfer` (15H); the runner's pool and moving files between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15E fresh PRE + kullanıcı açık onayı olmadan yürütülmez.
+
+## 85. D-118 / 15E final özeti
+
+Canonical: `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md`.
+Contract/QA: `arch/15e_linux_git_shell/` (contract, content verification report, QA report, stale audit).
+Synthesis: `research/15e_linux_git_shell_research.md`.
+Content: `curriculum/content/15e_linux_git_shell/` (package, shell notation, five Skill files, independent review) → `tools/build_curriculum_package.py` (Linux through WSL) → `android/app-wiring/src/main/assets/curriculum_package_v5.txt`.
+Code: builder only — a shell item without a `script` runs its shown `code` plus a `probe`; the package's `shell_prelude` reaches every shell run. Kotlin main code, schema, ports and store unchanged.
+
+LGSX-v0:
+- a key about a command is what bash and git really print when exactly the shown commands run; no key depends on a hash, a date, an identity or a branch name,
+- approval: the user's standing approval (D-117); assistant defaults: "# hazırlık" setup lines for the starting commit, shown commands + probe, 8 keyed items per Objective (the user's pool concern),
+- found: the terminal Skill was already published (15C); a 15C shell check was a separate script; Git makes up hashes, dates, identity and branch per machine; a modified file needs a commit before commits are taught; some Git messages go to stdout; Git work creates files the graph does not mention (15H),
+- 5 Skills / 5 Objectives / 6 edges published; 41 items (40 shell — 8 observation, 32 hands-on —, 1 rubric), 35 explanations, 15 misconceptions, 25 tasks; no entry point,
+- independent review: first pass 39/41 items and 34/35 explanations (all 40 keys correct; an mkdir code the canonical stated, a rubric criterion the prompt did not ask for, and git init's hint lines; the learner's missing Git identity found and the setup repeated in both Git lessons); second pass 41/41 and 35/35.
+- five packages published into the real SQLite schema on the JVM; a learner with no history still starts only the three entry Skills; every 15E Skill waits,
+- Mutation 5/5, independent QA 114/114,
+- T6 and on-device ingestion were not run.
+
+## 86. 15F handoff
+
+15F — English A0→A1/A2 başlangıç paketi. The English track has its own Stage 7 contracts (EED-v0, TECP-v0, DECP-v0, TEIP-v0, TEPM-v0) and its own decomposition (`curriculum/english`); no item in 15A–15E taught English. Open loops carried: requirements declared per item, notation coverage (15H); the 15A–15D item pool size (awaiting the user's decision); moving answers between phone and computer (16D); minute calibration (18B); T6 and on-device ingestion (19). 15F fresh PRE ile yürütülür; kullanıcının onayı D-117 ile sürüyor.
