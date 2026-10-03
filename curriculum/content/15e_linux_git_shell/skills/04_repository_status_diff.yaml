@@ -1,0 +1,313 @@
+skill: skill.git.repository_status_diff
+activity: hands_on_system_task
+tasks:
+  teach: {title: "Bir depo ve durumu: git init, git status, git diff", minutes: 18}
+  practice: {title: "Depo durumunu okuma alıştırması", minutes: 14}
+  check: {title: "Depo durumunu okuma kontrolü", minutes: 14}
+  review: {title: "Depo durumunu okuma tekrarı", minutes: 10}
+  repair: {title: "Durumu yeniden okumak: takip edilmeyen, değişen, aynı kalan", minutes: 18}
+
+objectives:
+  - id: objective.git.repository_status_diff.inspect_change_state
+    statement: >-
+      Bir Git deposunun (repository) o anki durumunu okuyabilmek: git init ile depo oluşturmak, git status --short
+      çıktısında takip edilmeyen dosyayı (??) ve son kayda göre değişmiş ama henüz hazırlanmamış dosyayı ( M) ayırt
+      etmek, temiz bir deponun hiçbir şey göstermediğini bilmek ve git diff çıktısında hangi satırların çıkarıldığını
+      (-) ve eklendiğini (+) okuyabilmek; git diff'in takip edilmeyen dosyaları göstermediğini bilmek.
+    observable_behavior: >-
+      Verilen komutları kendi terminalinde çalıştırır; git status --short ve git diff çıktısından hangi dosyanın hangi
+      durumda olduğunu ve hangi satırın değiştiğini doğru söyler.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type hands_on_system_task. Bu Skill yalnız okur;
+      değişikliği hazırlamak ve kaydetmek (git add, git commit, git log) stage_commit_history_basic'indir. Değişmiş bir
+      dosyayı görmek için önce bir kayıt gerekir: item'lar bu başlangıç kaydını "# hazırlık" ile işaretli satırlarla
+      verir; öğrenci onları olduğu gibi kopyalar ve hiçbir soru onlarla ilgili değildir (gösterim bu satırları taramaz).
+      Dosya oluşturmak (echo > dosya) command_options_redirection_basic'tir ve item'lar onu beyan eder; graph bu Skill'i
+      yalnız terminale bağlar. Anahtarlar komutlar boş bir dizinde bash ve git ile gerçekten çalıştırılarak doğrulanır
+      (sabit bir kimlikle; hiçbir anahtar kimliği, tarihi ya da kayıt numarasını sormaz).
+    checks:
+      - lang: shell
+        prints: "?? a.txt"
+        code: |
+          git init -q depo
+          cd depo
+          echo x > a.txt
+          git status --short
+      - lang: shell
+        prints: "bitti"
+        code: |
+          git init -q d
+          cd d
+          echo 1 > s.txt
+          git add s.txt
+          git commit -q -m ilk
+          git status --short
+          echo bitti
+      - lang: shell
+        prints: "+yeni"
+        code: |
+          git init -q d
+          cd d
+          echo eski > m.txt
+          git add m.txt
+          git commit -q -m ilk
+          echo yeni >> m.txt
+          git diff | tail -n 1
+    explanations:
+      canonical: |
+        Git bir klasördeki dosyaların geçmişini tutar. Böyle bir klasöre depo (repository) denir.
+
+        $ git init proje       (proje klasörünü oluşturur ve içine .git adında gizli bir klasör koyar; geçmiş orada tutulur)
+        $ cd proje
+
+        git init "Initialized empty Git repository..." satırını yazar; bu Git sürümünde, varsayılan dal adı ayarlanmamışsa önce birkaç "hint:" satırı da görürsün. -q seçeneği (git init -q proje) hepsini susturur.
+
+        Bir kez yapılacak ayar: Git her kayda yazarın adını ve e-postasını yazar; bunlar ayarlanmamışsa kayıt yapılamaz ("Author identity unknown"). Bilgisayarında bir kez şunları çalıştır (kendi adın ve e-postanla):
+        $ git config --global user.name "Adın Soyadın"
+        $ git config --global user.email "sen@example.com"
+        $ git config --global init.defaultBranch main      (isteğe bağlı: dal adı uyarısını kapatır)
+
+        Durumu okumak: git status ne olduğunu uzun uzun anlatır; git status --short her dosya için tek satır yazar. Bu derste iki kısaltmayı okuyacaksın:
+        - ?? dosya   → takip edilmiyor: Git bu dosyayı henüz hiç kaydetmedi.
+        -  M dosya   → (başta boşluk) dosyada henüz kayda hazırlanmamış bir değişiklik var (bu derste: son kayıttan beri değişti).
+        Temiz bir depoda (her şey son kayıttakiyle aynıyken) git status --short hiçbir şey yazmaz; değişmemiş dosyaları listelemez. Git, bir dosyanın şimdiki içeriğini son kayıttaki içeriğiyle karşılaştırır.
+
+        Neyin değiştiğini görmek: git diff, takip edilen dosyalarda son kayıttan beri yapılmış (henüz hazırlanmamış) değişiklikleri gösterir:
+        diff --git a/m.txt b/m.txt
+        ...
+        --- a/m.txt          (eski hâl)
+        +++ b/m.txt          (yeni hâl)
+        @@ -1 +1 @@          (değişikliğin yeri)
+        -eski                (çıkarılan satır)
+        +yeni                (eklenen satır)
+        Başında boşluk olan satırlar değişmemiş komşu satırlardır. git diff takip edilmeyen (??) dosyaları göstermez: Git'in karşılaştıracağı bir eski hâl yoktur.
+
+        Hazırlık satırları: bazı alıştırmalarda sonu "# hazırlık" ile biten satırlar var. Bunlar başlangıç kaydını oluşturur (git add ve git commit bir sonraki dersin konusu). Onları olduğu gibi kopyala; soru onlarla ilgili değildir. (# ve sonrası bash'te bir açıklamadır; komutun çalışmasını değiştirmez. Komutları WSL Ubuntu'nun varsayılan kabuğu bash'te çalıştır.) Kayıt yapabilmek için yukarıdaki kimlik ayarını bir kez yapmış olmalısın.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (terminal): mkdir ile klasör oluşturur, cd ile içine girersin; komutlar çalışma dizininde çalışır.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde. Boş bir klasörde:
+
+          $ git init -q bahce           bahce/.git oluştu
+          $ cd bahce
+          $ echo gul > cicek.txt
+          $ git status --short          → ?? cicek.txt (takip edilmiyor)
+          (hazırlık satırlarıyla cicek.txt kaydedildi)
+          $ git status --short          → (hiçbir şey: temiz)
+          $ echo lale >> cicek.txt
+          $ git status --short          →  M cicek.txt (değişti, hazırlanmadı)
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          $ git init -q okul
+          $ cd okul
+          $ echo ders > program.txt
+          $ git add program.txt              # hazırlık
+          $ git commit -q -m "baslangic"     # hazırlık
+          $ echo sinav >> program.txt
+          $ git diff
+
+          - program.txt kaydedildi (ders); sonra sonuna sinav eklendi.
+          - git diff'in son satırları:  ders (değişmemiş, başında boşluk) ve +sinav.
+          Cevap: eklenen satır +sinav; çıkarılan satır yok.
+    misconceptions:
+      - slug: new_file_is_tracked
+        name: Klasöre konan her dosyayı Git zaten takip eder
+        open_question: Bir depoya yeni bir dosya koyduğunda Git'in onu kendiliğinden takip etmeye başlayacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Dosya depoda, o halde Git'te."
+
+            Yeni bir dosya ?? ile görünür: Git onu görür ama takip etmez, geçmişinde yoktur. git diff de onu göstermez. Takip ettirmek için git add ile eklemek gerekir (bir sonraki ders).
+      - slug: diff_shows_everything
+        name: git diff depodaki her farkı gösterir
+        open_question: git diff'in yeni eklediğin, henüz takip edilmeyen dosyaları da göstereceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "diff boş, demek ki hiçbir şey değişmedi."
+
+            git diff yalnız takip edilen dosyalardaki, henüz hazırlanmamış değişiklikleri gösterir. Takip edilmeyen yeni dosyalar için git status'a bakmalısın.
+      - slug: status_lists_everything
+        name: git status --short depodaki her dosyayı listeler
+        open_question: git status --short'un değişmemiş dosyaları da listeleyeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hiçbir şey yazmadı, demek ki depo boş."
+
+            git status --short yalnız durumu son kayıttan farklı olan dosyaları gösterir. Temiz bir depoda hiçbir şey yazmaması dosyaların yok olduğu değil, hepsinin son kayıttakiyle aynı olduğu anlamına gelir.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Terminalinde boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          git init -q not
+          cd not
+          echo bir > liste.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "?? liste.txt"
+        verify: {mode: shell}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. git status --short hangi dosyaları ?? ile gösterir? Dosya adlarını alfabetik sırayla, aralarında bir boşlukla yaz.
+        code: |
+          git init -q oyun
+          cd oyun
+          echo kart > deste.txt
+          echo zar > atis.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "atis.txt deste.txt"
+        verify: {mode: shell, last_line: true, probe: 'echo $(git status --porcelain | grep "^??" | cut -c4- | sort)'}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala; kayıt için dersteki git config kimlik ayarını bir kez yapmış olmalısın). Son komutun çıktısı sayac.txt için ne söyler?
+        code: |
+          git init -q proje
+          cd proje
+          echo 1 > sayac.txt
+          git add sayac.txt                 # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo 2 > sayac.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "sayac.txt son kayıttan beri değişti ama değişiklik henüz kayda hazırlanmadı ( M)"
+          B: "sayac.txt takip edilmeyen yeni bir dosya (??)"
+          C: "Hiçbir şey yazmaz; sayac.txt son kayıttakiyle aynı"
+          D: "sayac.txt silinmiş görünür ( D)"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "[$(git status --porcelain | cut -c1-2 | tr " " "_")]"'
+          outcomes: {A: "[_M]", B: "[??]", C: "[]", D: "[_D]"}
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında + ile başlayan satır (+++ ile başlayan başlık satırı hariç) nedir?
+        code: |
+          git init -q pazar
+          cd pazar
+          echo elma > meyve.txt
+          git add meyve.txt                 # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo armut > meyve.txt
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "+armut"
+        verify: {mode: shell, last_line: true, probe: 'git diff | grep "^+[^+]"'}
+      - slug: f05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yapar?
+        code: |
+          git init -q taslak
+          cd taslak
+          echo yeni > yeni.txt
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "Hiçbir şey yazmaz ve başarıyla biter: yeni.txt takip edilmediği için git diff onu göstermez"
+          B: "+yeni satırını gösterir"
+          C: "Hata verir, çünkü depoda henüz hiç kayıt yok"
+          D: "?? yeni.txt yazar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            o=$(git diff); s=$?
+            [ -z "$o" ] && echo "bos $s" || echo "dolu $s"
+          outcomes: {A: "bos 0", B: "dolu 0", C: "bos 1", D: "dolu 0"}
+      - slug: f06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git status --short'ta kaç dosya " M" ile, kaç dosya "??" ile görünür? İki sayıyı bu sırayla, aralarında bir boşlukla yaz.
+        code: |
+          git init -q ofis
+          cd ofis
+          echo a > plan.txt
+          echo b > butce.txt
+          git add plan.txt butce.txt        # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo c >> plan.txt
+          echo d > notlar.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "1 1"
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "$(git status --porcelain | grep -c "^ M") $(git status --porcelain | grep -c "^??")"'
+      - slug: f07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında - ile başlayan satır (--- ile başlayan başlık satırı hariç) nedir?
+        code: |
+          git init -q gezi
+          cd gezi
+          echo birinci > durak.txt
+          echo ikinci >> durak.txt
+          git add durak.txt                 # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo birinci > durak.txt
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "-ikinci"
+        verify: {mode: shell, last_line: true, probe: 'git diff | grep "^-[^-]"'}
+      - slug: f08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Son komut ne yazar?
+        code: |
+          git init -q arsiv
+          cd arsiv
+          echo mavi > renk.txt
+          git add renk.txt                  # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo yesil > renk.txt
+          echo mavi > renk.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "Hiçbir şey yazmaz: renk.txt'nin içeriği son kayıttakiyle aynı"
+          B: " M renk.txt — dosyaya iki kez yazıldı"
+          C: "?? renk.txt"
+          D: "İki satır yazar: önce yesil, sonra mavi değişikliği"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "satir=$(git status --porcelain | wc -l)"'
+          outcomes: {A: "satir=0", B: "satir=1", C: "satir=1", D: "satir=2"}

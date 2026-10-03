@@ -1,0 +1,695 @@
+package_version: 5
+items:
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f03
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '- stderr sifirdan_farkli' is option A and no other
+  constructs:
+  - navigation
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - navigation
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f05
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'basarisiz 7' is option A and no other
+  constructs:
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f06
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - navigation
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f07
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'sifirdan_farkli' is option A and no other
+  constructs:
+  - echo_command
+  - exit_status
+  - navigation
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.f08
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'bitti|uyari|0' is option A and no other
+  constructs:
+  - option_flag
+  - program_exit
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.linux.process_exit_stdout_stderr_basic.classify_process_outputs.r1
+  status: validated
+  verify_mode: rubric
+  verification: open response; judged by its rubric (OREX-v0), provisional at most
+  constructs: []
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f03
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f05
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f06
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f07
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - file_tools
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.command_options_redirection_basic.construct_simple_command.f08
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '1 yok yok' is option A and no other
+  constructs:
+  - echo_command
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - filters
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - filters
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f03
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - file_tools
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f05
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - dev_null
+  - echo_command
+  - exit_status
+  - navigation
+  - redirect_stderr
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f06
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '1 1' is option A and no other
+  constructs:
+  - echo_command
+  - file_tools
+  - redirect_stderr
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f07
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - file_tools
+  - navigation
+  - option_flag
+  - redirect_stderr
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.shell.pipeline_redirection.demonstrate_capability.f08
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - file_tools
+  - filters
+  - option_flag
+  - pipe
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f03
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '[_M]' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f05
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'bos 0' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f06
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f07
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.repository_status_diff.inspect_change_state.f08
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'satir=0' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f01
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f02
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f03
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '[A_]' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f04
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f05
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - exit_status
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f06
+  status: validated
+  verify_mode: shell
+  verification: executed; true value '[_M]' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f07
+  status: validated
+  verify_mode: shell
+  verification: run in bash in an empty directory in Linux; the key is exactly what the commands print
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+- item: item.git.stage_commit_history_basic.commit_and_verify_history.f08
+  status: validated
+  verify_mode: shell
+  verification: executed; true value 'bos dolu' is option A and no other
+  constructs:
+  - echo_command
+  - git_inspect
+  - git_record
+  - navigation
+  - option_flag
+  - redirect_stdout
+  hidden_prerequisites: []
+  reviewed: true
+explanations: 35
+tasks:
+- task: task.linux.process_exit_stdout_stderr_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.linux.process_exit_stdout_stderr_basic.practice
+  status: validated
+  items: 6
+  explanations: 0
+- task: task.linux.process_exit_stdout_stderr_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.linux.process_exit_stdout_stderr_basic.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.linux.process_exit_stdout_stderr_basic.repair
+  status: validated
+  items: 7
+  explanations: 5
+- task: task.shell.command_options_redirection_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.shell.command_options_redirection_basic.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.shell.command_options_redirection_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.shell.command_options_redirection_basic.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.shell.command_options_redirection_basic.repair
+  status: validated
+  items: 7
+  explanations: 5
+- task: task.shell.pipeline_redirection.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.shell.pipeline_redirection.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.shell.pipeline_redirection.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.shell.pipeline_redirection.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.shell.pipeline_redirection.repair
+  status: validated
+  items: 7
+  explanations: 5
+- task: task.git.repository_status_diff.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.git.repository_status_diff.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.git.repository_status_diff.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.git.repository_status_diff.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.git.repository_status_diff.repair
+  status: validated
+  items: 7
+  explanations: 5
+- task: task.git.stage_commit_history_basic.teach
+  status: validated
+  items: 1
+  explanations: 2
+- task: task.git.stage_commit_history_basic.practice
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.git.stage_commit_history_basic.check
+  status: validated
+  items: 5
+  explanations: 0
+- task: task.git.stage_commit_history_basic.review
+  status: validated
+  items: 7
+  explanations: 0
+- task: task.git.stage_commit_history_basic.repair
+  status: validated
+  items: 7
+  explanations: 5
+failures: []
+explanation_checks:
+- objective: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  check: 1
+  result: PASS
+  printed: '0'
+- objective: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  check: 2
+  result: PASS
+  printed: '1'
+- objective: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  check: 3
+  result: PASS
+  printed: 'selam
+
+    4'
+- objective: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  check: 4
+  result: PASS
+  printed: '1
+
+    0'
+- objective: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+  check: 5
+  result: PASS
+  printed: duz
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 1
+  result: PASS
+  printed: 'bir
+
+    iki'
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 2
+  result: PASS
+  printed: dort
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 3
+  result: PASS
+  printed: 2 a.txt
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 4
+  result: PASS
+  printed: 'armut
+
+    ayva
+
+    elma'
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 5
+  result: PASS
+  printed: '40
+
+    5'
+- objective: objective.shell.command_options_redirection_basic.construct_simple_command
+  check: 6
+  result: PASS
+  printed: tamam
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 1
+  result: PASS
+  printed: 'a
+
+    b'
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 2
+  result: PASS
+  printed: 'elma
+
+    elmas'
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 3
+  result: PASS
+  printed: '2'
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 4
+  result: PASS
+  printed: 1 hata.txt
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 5
+  result: PASS
+  printed: 1 tum.txt
+- objective: objective.shell.pipeline_redirection.demonstrate_capability
+  check: 6
+  result: PASS
+  printed: '0'
+- objective: objective.git.repository_status_diff.inspect_change_state
+  check: 1
+  result: PASS
+  printed: ?? a.txt
+- objective: objective.git.repository_status_diff.inspect_change_state
+  check: 2
+  result: PASS
+  printed: bitti
+- objective: objective.git.repository_status_diff.inspect_change_state
+  check: 3
+  result: PASS
+  printed: +yeni
+- objective: objective.git.stage_commit_history_basic.commit_and_verify_history
+  check: 1
+  result: PASS
+  printed: ilk kayit
+- objective: objective.git.stage_commit_history_basic.commit_and_verify_history
+  check: 2
+  result: PASS
+  printed: A  b.txt
+- objective: objective.git.stage_commit_history_basic.commit_and_verify_history
+  check: 3
+  result: PASS
+  printed: 'ikinci
+
+    ilk'
+summary:
+  skills: 5
+  objectives: 5
+  topics: 4
+  items: 41
+  validated_items: 41
+  explanations: 35
+  misconceptions: 15
+  tasks: 25
+  failures: 0

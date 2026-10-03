@@ -130,10 +130,15 @@ def c_sanitized(code: str, stdin: str = "") -> tuple[str, str]:
     return ("ok" if status == "ok" else "run"), out
 
 
+# 15E (`D-118`): a package may give every shell run the same hidden first lines — a fixed Git identity and no user or
+# system configuration — so that a key never depends on the machine that checks it. Earlier packages have none.
+SHELL_PRELUDE = ""
+
+
 def run_shell(script: str) -> tuple[str, str]:
     """Runs a shell script in an empty directory in Linux. Returns (status, stdout)."""
     with tempfile.TemporaryDirectory() as d:
-        status, _, out, _ = in_linux(["bash", "-c", script], d)
+        status, _, out, _ = in_linux(["bash", "-c", SHELL_PRELUDE + script], d)
     return status, out
 
 
@@ -398,7 +403,15 @@ def verify_item(item: dict) -> tuple[bool, str]:
 
     if mode == "shell":
         # 15C: the commands are run in an empty directory in Linux (bash); what they print is the key.
-        status, out = run_shell(v["script"])
+        # 15E: without a separate script, the commands the item shows are what runs, followed by an optional probe
+        # (e.g. basename "$PWD") that prints what the question asks about.
+        if "script" in v:
+            script = v["script"]
+        elif item.get("code"):
+            script = item["code"].rstrip("\n") + "\n" + v.get("probe", "")
+        else:
+            return False, "a shell item names the commands it runs (code) or a script"
+        status, out = run_shell(script)
         if status != "ok":
             return False, f"the shell script failed: {norm(out)!r}"
         if v.get("last_line"):
@@ -547,8 +560,9 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
     known = set(skill_ids) | earlier_skills
     validated_at = pkg.get("validated_at_instant", VALIDATED_AT)
     code_cfg = {**PYTHON_CODE, **pkg.get("code", {})}
-    global ESCAPE_BACKSLASH
+    global ESCAPE_BACKSLASH, SHELL_PRELUDE
     ESCAPE_BACKSLASH = bool(pkg.get("escape_backslash", False))
+    SHELL_PRELUDE = pkg.get("shell_prelude", "")
     step = pkg.get("step", "15a")
 
     hard_prereqs: dict[str, set[str]] = {s: set() for s in known}

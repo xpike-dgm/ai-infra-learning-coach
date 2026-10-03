@@ -1,0 +1,296 @@
+skill: skill.linux.process_exit_stdout_stderr_basic
+activity: code_reading_trace
+tasks:
+  teach: {title: "Bir komut bitince geride ne kalır: stdout, stderr ve çıkış durumu", minutes: 15}
+  practice: {title: "Çıktıları ve çıkış durumunu ayırt etme alıştırması", minutes: 10}
+  check: {title: "Çıktı ve çıkış durumu kontrolü", minutes: 8}
+  review: {title: "Çıktı ve çıkış durumu tekrarı", minutes: 6}
+  repair: {title: "Başarıyı yeniden okumak: çıktı değil, çıkış durumu", minutes: 12}
+
+objectives:
+  - id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+    statement: >-
+      Bir komut (bir süreç) çalışıp bittiğinde geride bıraktığı üç ayrı şeyi ayırt edebilmek: standart çıktıya (stdout)
+      yazdıkları, standart hataya (stderr) yazdıkları ve çıkış durumu (exit status); 0'ın başarı, 0'dan farklı her
+      değerin başarısızlık anlamına geldiğini, hata mesajlarının stderr'e gittiğini, terminalin ikisini de aynı ekranda
+      gösterdiğini ve $?'in yalnız son çalışan komutun durumunu tuttuğunu söyleyebilmek.
+    observable_behavior: >-
+      Gösterilen komutlar ve ekran çıktısı için hangi satırın stdout'tan, hangisinin stderr'den geldiğini ve echo $?'in
+      ne yazacağını doğru söyler; bir komutun başarılı olup olmadığına çıktısına bakarak değil çıkış durumuna bakarak
+      karar verir ve bunu açıklar.
+    acceptable_evidence_types: [system_observation, explanation]
+    direct_evidence_types: [system_observation, explanation]
+    required_direct_type: system_observation
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type system_observation. Item'lar okuma ve gözlemdir:
+      komutlar ve gerektiğinde ekran çıktısı gösterilir, öğrenci ne olacağını söyler (terminal kullanmaz); anahtarlar
+      komutlar boş bir dizinde bash ile gerçekten çalıştırılarak doğrulanır. Stdout ile stderr'i dosyaya ayırmak (2>)
+      pipeline_redirection'ındır; burada stderr'in ayrı bir kanal olduğu yalnız gözlemlenir. 6C bu Skill'i yalnız 15A'nın
+      program_execution_model'ine bağlar; ls ve mkdir kullanan item'lar 15C'nin terminal Skill'ini beyan eder.
+    checks:
+      - lang: shell
+        prints: "0"
+        code: |
+          true
+          echo $?
+      - lang: shell
+        prints: "1"
+        code: |
+          false
+          echo $?
+      - lang: shell
+        prints: |
+          selam
+          4
+        code: |
+          bash -c 'echo selam; exit 4'
+          echo $?
+      - lang: shell
+        prints: |
+          1
+          0
+        code: |
+          false
+          echo $?
+          echo $?
+      - lang: shell
+        prints: "duz"
+        code: |
+          bash -c 'echo duz; echo hata >&2'
+    explanations:
+      canonical: |
+        Terminalde bir komut çalıştırdığında bir süreç (process) başlar. Süreç biterken geride üç ayrı şey bırakır:
+
+        1. Standart çıktı (stdout): programın normal çıktısı. echo merhaba "merhaba"yı stdout'a yazar.
+        2. Standart hata (stderr): hata ve uyarı mesajları. Olmayan bir dosya için ls'in yazdığı "No such file or directory" mesajı stderr'e gider.
+        3. Çıkış durumu (exit status): program bitince bıraktığı bir sayı. 0 "başarılı", 0'dan farklı her değer "başarısız" demektir.
+
+        Terminal stdout'u ve stderr'i aynı ekranda gösterir, bu yüzden göz ile ayırt edilemezler; ama iki ayrı kanaldır (bir sonraki derslerde onları ayrı yerlere göndereceksin).
+
+        Çıkış durumunu görmek: $? son çalışan komutun çıkış durumunu tutar.
+        $ true          (hiçbir şey yazmaz, başarıyla biter)
+        $ echo $?
+        0
+        $ false         (hiçbir şey yazmaz, başarısız biter)
+        $ echo $?
+        1
+
+        Kendi küçük programını denemek: bash -c 'komutlar' tırnak içindeki komutları ayrı bir süreç olarak çalıştırır. exit N o süreci N çıkış durumuyla bitirir:
+        $ bash -c 'echo selam; exit 4'
+        selam
+        $ echo $?
+        4
+
+        echo hata >&2 yazısı (>&2) mesajı stdout yerine stderr'e yazar; tırnak içinde gördüğünde "bu satır stderr'e gidiyor" diye oku.
+
+        Dikkat edilecek üç şey:
+        - Çıktı başarı demek değildir: yukarıdaki program "selam" yazdı ama 4 ile, yani başarısız bitti. Hiçbir şey yazmayan bir komut da başarılı olabilir (mkdir yeni_klasor sessizce 0 ile biter).
+        - $? her komuttan sonra değişir — echo $?'in kendisi de bir komuttur ve başarıyla biter. İki kez arka arkaya echo $? yazarsan ikincisi 0 gösterir.
+        - Hangi sayının ne demek olduğunu program belirler: örneğin ls olmayan bir dosya için 2 döner. Senin bilmen gereken: 0 başarı, 0'dan farklısı başarısızlık.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (programın çalışması): bir program başlar, sırayla adımlarını yürütür ve biter; bittiğinde ne yaptığı yalnız ekrana yazdıklarından ibaret değildir.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde.
+
+          $ bash -c 'exit 6'      → hiçbir şey yazmaz; $? artık 6
+          $ echo $?               → ekranda 6; bu echo başarıyla bitti, $? artık 0
+          $ true                  → $? 0
+          $ false                 → $? 1
+          $ echo $?               → ekranda 1
+
+          Her satırdan sonra "$? şimdi kaç?" diye kâğıda yazarsan hiç şaşırmazsın.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          $ bash -c 'echo yarisi bitti; exit 9'
+          yarisi bitti
+          $ echo $?
+
+          - Program "yarisi bitti" yazdı: bu stdout'tur.
+          - exit 9 süreci 9 ile bitirdi; 0 değil, yani başarısız.
+          - echo $? 9 yazar.
+          Cevap: program bir şey yazmış olsa da başarısızdır; echo $? 9 gösterir.
+    misconceptions:
+      - slug: output_means_success
+        name: Ekrana bir şey yazan komut başarılı olmuştur
+        open_question: Bir komut ekrana normal görünen bir şey yazdıysa başarıyla bittiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Program sonuç yazdı, demek ki başarılı."
+
+            Başarıyı çıktı değil çıkış durumu söyler. Bir program önce bir şeyler yazıp sonra 0'dan farklı bir durumla bitebilir; hiçbir şey yazmayan bir program da 0 ile bitebilir. Emin olmak için hemen ardından echo $? ile bak.
+      - slug: status_stays
+        name: $? ilk hatanın durumunu saklar
+        open_question: Bir komut başarısız olduktan sonra $?'in sen bakana kadar o başarısızlığı göstermeye devam edeceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hata 1 idi, $? hep 1 kalır."
+
+            $? yalnız son çalışan komutun durumudur ve her komuttan sonra yenilenir — echo $?'in kendisinden sonra bile. Bir hatanın durumunu görmek istiyorsan hemen bir sonraki komutta bakmalısın.
+      - slug: error_text_is_stdout
+        name: Hata mesajı da normal çıktıdır
+        open_question: Ekranda gördüğün hata mesajının programın normal çıktısıyla (stdout) aynı kanaldan geldiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de ekranda, ikisi de çıktı."
+
+            Terminal iki kanalı aynı ekranda gösterir ama programlar hata mesajlarını stderr'e yazar. Bu yüzden normal çıktıyı bir dosyaya gönderdiğinde hata mesajları ekranda kalmaya devam eder — bunu bir sonraki derslerde göreceksin.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu komutlar çalıştırılınca son satırda ne görünür? (Terminal kullanmadan, ne olacağını düşünerek cevapla.)
+        code: |
+          false
+          echo $?
+        answer: "1"
+        verify: {mode: shell, last_line: true}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bu komutlar çalıştırılınca son satırda ne görünür?
+        code: |
+          bash -c 'exit 5'
+          echo $?
+        answer: "5"
+        verify: {mode: shell, last_line: true}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          rapor.txt adında bir dosya yokken bu komut çalıştırıldı ve ekranda şu satır göründü:
+          ls: cannot access 'rapor.txt': No such file or directory
+          Bu satır hangi kanaldan geldi ve komutun çıkış durumu nedir?
+        code: |
+          ls rapor.txt
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        options:
+          A: "Satır stderr'den geldi; çıkış durumu 0'dan farklı"
+          B: "Satır stdout'tan geldi; çıkış durumu 0"
+          C: "Satır stderr'den geldi; çıkış durumu 0, çünkü ls çalıştı"
+          D: "Satır stdout'tan geldi; çıkış durumu 0'dan farklı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            o=$(ls rapor.txt 2>/dev/null | wc -c); e=$(ls rapor.txt 2>&1 >/dev/null | wc -c); ls rapor.txt >/dev/null 2>&1; s=$?
+            echo "$([ "$o" -gt 0 ] && echo stdout || echo -) $([ "$e" -gt 0 ] && echo stderr || echo -) $([ "$s" -eq 0 ] && echo sifir || echo sifirdan_farkli)"
+          outcomes: {A: "- stderr sifirdan_farkli", B: "stdout - sifir", C: "- stderr sifir", D: "stdout - sifirdan_farkli"}
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Boş bir klasörde bu komutlar çalıştırıldı. Son satırda ne görünür?
+        code: |
+          bash -c 'exit 2'
+          mkdir yedek
+          echo $?
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        answer: "0"
+        verify: {mode: shell, last_line: true}
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bu komut ekrana "yazdim" satırını yazdı. Program başarılı oldu mu?
+        code: |
+          bash -c 'echo yazdim; exit 7'
+        options:
+          A: "Hayır: çıkış durumu 7, yani başarısız; ekrana bir şey yazmış olması bunu değiştirmez"
+          B: "Evet: ekrana bir sonuç yazdı"
+          C: "Evet: çıkış durumu 7 de bir başarı kodudur"
+          D: "Hayır: çıkış durumu 0, ama mesaj eksik"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            bash -c 'echo yazdim; exit 7' >/dev/null; s=$?
+            [ "$s" -eq 0 ] && echo "basarili $s" || echo "basarisiz $s"
+          outcomes: {A: "basarisiz 7", B: "basarili 7", C: "basarili 7", D: "basarisiz 0"}
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Boş bir klasörde bu komutlar çalıştırıldı. mkdir ekrana hiçbir şey yazmadı. Son satırda ne görünür?
+        code: |
+          mkdir arsiv
+          echo $?
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        answer: "0"
+        verify: {mode: shell, last_line: true}
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Boş bir klasörde bu komutlar sırayla çalıştırıldı. echo $? ne gösterir?
+        code: |
+          mkdir dosyalar
+          mkdir dosyalar
+          echo $?
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        options:
+          A: "0'dan farklı bir sayı: dosyalar zaten var olduğu için ikinci mkdir başarısız olur"
+          B: "0: mkdir, klasör zaten varsa sessizce başarıyla biter"
+          C: "0: $? ilk mkdir'in başarısını gösterir"
+          D: "Hiçbir şey göstermez, çünkü ikinci mkdir hata mesajı yazdı"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            mkdir -p tekrar && cd tekrar && mkdir dosyalar && mkdir dosyalar 2>/dev/null; s=$?
+            [ "$s" -eq 0 ] && echo sifir || echo sifirdan_farkli
+          outcomes: {A: "sifirdan_farkli", B: "sifir", C: "sifir", D: "bos"}
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bu program iki satır yazar ve biter. Hangisi doğrudur?
+        code: |
+          bash -c 'echo bitti; echo uyari >&2; exit 0'
+        options:
+          A: "bitti stdout'a, uyari stderr'e gider; çıkış durumu 0"
+          B: "uyari stdout'a, bitti stderr'e gider; çıkış durumu 0"
+          C: "İkisi de stdout'a gider; uyari bir uyarı olduğu için çıkış durumu 1"
+          D: "bitti stdout'a, uyari stderr'e gider; stderr'e bir şey yazıldığı için çıkış durumu 1"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            p='echo bitti; echo uyari >&2; exit 0'
+            o=$(bash -c "$p" 2>/dev/null); e=$(bash -c "$p" 2>&1 >/dev/null); bash -c "$p" >/dev/null 2>&1; s=$?
+            echo "$o|$e|$s"
+          outcomes: {A: "bitti|uyari|0", B: "uyari|bitti|0", C: "bitti uyari||1", D: "bitti|uyari|1"}
+      - slug: r1
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bir arkadaşın kendi yazdığı bir programı çalıştırıyor. Program ekrana hiçbir hata mesajı yazmıyor; arkadaşın "hata yazmadı, demek ki başarılı" diyor. Sonra echo $? yazınca 3 görüyor.
+          Kendi cümlelerinle anlat: program başarılı mı? Bir komutun başarılı olup olmadığına neye bakarak karar verilir ve neden ekrana yazılanlar bunun için yetmez? Arkadaşın bunu ne zaman ve nasıl kontrol etmeli, neden? (3–5 cümle yeterli.)
+        evidence_type: explanation
+        answer: "-"
+        rubric:
+          - id: not_successful
+            statement: Programın başarısız olduğunu, çünkü çıkış durumunun 0 değil 3 olduğunu söyler.
+          - id: status_decides
+            statement: Başarıya çıkış durumuna (0 başarı, 0'dan farklısı başarısızlık) bakılarak karar verildiğini söyler.
+          - id: output_is_separate
+            statement: Ekrana yazılanların (stdout ya da stderr) çıkış durumundan ayrı olduğunu; hata mesajı olmamasının başarı anlamına gelmediğini belirtir.
+          - id: check_right_after
+            statement: Komuttan hemen sonra echo $? ile bakılması gerektiğini, çünkü $?'in her komuttan sonra değiştiğini söyler.
+        verify:
+          mode: rubric

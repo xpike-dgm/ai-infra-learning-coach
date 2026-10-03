@@ -242,12 +242,13 @@ Ana manager/koordinatör rolü local çalışan agent'a devredilebilir. Canonica
 - **15B ✅ Python Foundations — PYFX-v0 / D-113**
 - **15C ✅ C Foundations — CFNX-v0 / D-114**
 - **15D ✅ Memory Foundations — MMFX-v0 / D-116**
-- **15E 🟡 Linux / Git / Shell Foundations — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
-- 15F–20 ⬜
+- **15E ✅ Linux / Git / Shell Foundations — LGSX-v0 / D-118**
+- **15F 🟡 English A0→A1/A2 başlangıç paketi — AKTİF, HENÜZ YÜRÜTÜLMEDİ**
+- 15G–20 ⬜
 
 Final Stage 6 graph: **549 Skill / 608 Objective / 950 prerequisite edge / 549/549 hard DAG**. WLRM final registry coverage 549/608; 10/10 6H review resolved.
 
-**Sıradaki numaralı çalışma 15E'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
+**Sıradaki numaralı çalışma 15F'dir.** Fresh PRE-STEP + kullanıcı açık onayı olmadan yürütülmez.
 
 ## 11.1 8A UX Information Architecture — UXIA-v0 / D-068
 
@@ -682,4 +683,16 @@ Bulunanlar: ömür hatasının çıktısı hiçbir şey kanıtlamaz; gcc 15.2'ni
 Yeni kullanıcı kararı gerekmedi (kapsam 6C'nin ayrıştırması, kapanış 15C'de yayımlı, sanitizer'lar gcc ile geliyor).
 
 Canonical: `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md` / D-116.
+
+## 12.41 15E Linux / Git / Shell Foundations içeriği — LGSX-v0 / D-118
+
+Beşinci içerik paketi sevk ediliyor ve öğrenci süreç çıktılarını, komut kurmayı, boru hattını ve Git'i çalışıyor. Ana invariant: **bir komut hakkındaki anahtar, gösterilen komutların ta kendisi Linux'ta boş bir dizinde çalıştırılınca bash'in ve git'in gerçekte yazdığıdır ve hiçbir anahtar kontrol eden makinenin Git'inin kendi uydurduğuna dayanmaz.**
+
+Bulunanlar: terminal Skill'i 15C'de yayımlanmıştı; 15C'de bir kabuk kontrolü gösterilenden ayrı bir betikti; Git makineden makineye hash, tarih, kimlik ve dal adı uydurur; değişmiş dosyayı görmek kayıt ister ama kayıt sonraki Skill'dir ("# hazırlık" satırları); Git'in bazı mesajları stdout'a gider; Git işi dosya oluşturur ama graph söylemez.
+
+5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; hepsi Linux'ta bash ve git ile doğrulandı. Bağımsız inceleme ilk geçişte 41 item'ın 39'unu ve 35 anlatımın 34'ünü geçirdi (40 anahtarın hepsi doğru; düşenler kanonik metnin söylediği bir mkdir kodu, istemin sormadığı bir rubric ölçütü ve git init'in hint satırlarını atlayan bir cümleydi; öğrencinin Git kimliği eksikse kayıtların başarısız olacağı da bulundu ve iki derste tekrarlandı); ikinci geçişte 41/41 ve 35/35.
+
+Onay kullanıcının sürekli onayıdır (D-117); varsayılan seçimler (hazırlık satırları, gösterilen komut + probe, Objective başına 8 item) asistanındır.
+
+Canonical: `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md` / D-118.
 

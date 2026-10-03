@@ -1,0 +1,253 @@
+skill: skill.shell.pipeline_redirection
+activity: hands_on_system_task
+tasks:
+  teach: {title: "Boru hattı (|), stderr'i yönlendirmek (2>) ve /dev/null", minutes: 18}
+  practice: {title: "Boru hattı ve yönlendirme alıştırması", minutes: 14}
+  check: {title: "Boru hattı ve yönlendirme kontrolü", minutes: 14}
+  review: {title: "Boru hattı ve yönlendirme tekrarı", minutes: 10}
+  repair: {title: "Akışı yeniden çizmek: stdout nereye, stderr nereye", minutes: 18}
+
+objectives:
+  - id: objective.shell.pipeline_redirection.demonstrate_capability
+    statement: >-
+      Komutları boru hattıyla (|) birleştirip bir komutun standart çıktısını diğerinin girdisi yapabilmek (sort | uniq,
+      grep, wc -l); boru hattının yalnız stdout'u taşıdığını, stderr'in ekranda kaldığını bilmek; stderr'i 2> ile bir
+      dosyaya ya da /dev/null'a göndermek, ikisini > dosya 2>&1 ile aynı dosyada toplamak ve bir boru hattının çıkış
+      durumunun son komutunki olduğunu söyleyebilmek.
+    observable_behavior: >-
+      Verilen boru hatlarını ve yönlendirmeleri kendi terminalinde çalıştırır; hangi çıktının nereye gittiğini (ekran,
+      dosya, sonraki komut) ve ne yazıldığını doğru söyler; yönlendirmelerin sırasının önemli olduğunu kullanır.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Bu Skill FBB-v0 §6.4'ün command_options_redirection_basic tohumunun 6C'deki ikinci yarısıdır ve
+      ikisine de (komut kurma ve süreç çıktıları) hard bağlıdır. Item'lar uygulamalıdır; anahtarlar komutlar boş bir
+      dizinde bash ile gerçekten çalıştırılarak doğrulanır.
+    checks:
+      - lang: shell
+        prints: |
+          a
+          b
+        code: |
+          echo b > h.txt
+          echo a >> h.txt
+          echo b >> h.txt
+          sort h.txt | uniq
+      - lang: shell
+        prints: |
+          elma
+          elmas
+        code: |
+          echo elma > m.txt
+          echo armut >> m.txt
+          echo elmas >> m.txt
+          grep elma m.txt
+      - lang: shell
+        prints: "2"
+        code: |
+          echo bir > x.txt
+          echo iki >> x.txt
+          cat x.txt | wc -l
+      - lang: shell
+        prints: "1 hata.txt"
+        code: |
+          ls yok 2> hata.txt
+          wc -l hata.txt
+      - lang: shell
+        prints: "1 tum.txt"
+        code: |
+          ls yok > tum.txt 2>&1
+          wc -l tum.txt
+      - lang: shell
+        prints: "0"
+        code: |
+          false | true
+          echo $?
+    explanations:
+      canonical: |
+        Boru hattı (pipe): komut1 | komut2 — komut1'in stdout'u ekrana gideceğine komut2'nin girdisi olur.
+
+        $ cat x.txt | wc -l       (wc dosya adı almadığı için girdisini sayar ve yalnız sayıyı yazar)
+        2
+
+        Birkaç kullanışlı komut:
+        - grep kelime dosya   → içinde kelime geçen satırları yazar ("elmas" da "elma"yı içerir). Dosya verilmezse girdisini süzer: cat dosya | grep kelime.
+        - uniq                → art arda gelen aynı satırlardan yalnız birini bırakır; bu yüzden çoğu zaman sort | uniq diye kullanılır.
+        - wc -l, head, tail, sort → dosya verilmezse girdilerinden okurlar.
+
+        Boru hattı yalnız stdout'u taşır. Hata mesajları (stderr) bir sonraki komuta gitmez, ekranda kalır:
+        $ ls yok | wc -l
+        ls: cannot access 'yok': No such file or directory    (stderr, ekranda)
+        0                                                     (wc'nin hiçbir satır görmediği)
+
+        stderr'i yönlendirmek:
+        - komut 2> dosya      → hata mesajlarını dosyaya yazar (2 stderr'in numarasıdır; stdout'unki 1).
+        - komut 2>/dev/null   → hata mesajlarını atar. /dev/null, içine yazılanı yok eden özel bir dosyadır.
+        - komut > dosya 2>&1  → önce stdout dosyaya yönlendirilir, sonra 2>&1 "stderr'i stdout'un şu an gittiği yere gönder" der: ikisi de dosyaya gider.
+
+        Sıra önemlidir: yönlendirmeler soldan sağa uygulanır. 2>&1 yazıldığı anda stdout nereye gidiyorsa stderr'i oraya bağlar; sonradan stdout'u başka yere çevirmek stderr'i taşımaz.
+
+        Çıkış durumu: bir boru hattının çıkış durumu son komutunkidir. false | true sonrasında echo $? 0 yazar; ortadaki bir komutun başarısızlığı $?'te görünmez.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (komutlar ve süreçler): > ve >> stdout'u bir dosyaya yazar; bir süreç stdout ve stderr'e ayrı ayrı yazar ve bir çıkış durumuyla biter.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde. Boş bir klasörde:
+
+          $ echo pembe > r.txt
+          $ echo mor >> r.txt
+          $ echo pembe >> r.txt         r.txt: pembe, mor, pembe
+          $ sort r.txt                  → mor, pembe, pembe (ekranda)
+          $ sort r.txt | uniq           → mor, pembe
+          $ grep pembe r.txt            → pembe, pembe
+          $ ls yok 2> h.txt             → ekranda hiçbir şey; hata mesajı h.txt'de
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Görev: boş bir klasörde şunlardan sonra ekranda ne görünür?
+          $ echo zeytin > liste.txt
+          $ echo badem >> liste.txt
+          $ cat liste.txt eksik.txt 2>/dev/null | sort | head -n 1
+
+          - cat liste.txt'nin iki satırını (zeytin, badem) stdout'a, eksik.txt'nin hata mesajını stderr'e yazar.
+          - 2>/dev/null hata mesajını attı; boruya yalnız iki satır girdi.
+          - sort → badem, zeytin; head -n 1 → badem
+          Cevap: badem (ekranda hata mesajı da görünmez).
+    misconceptions:
+      - slug: pipe_carries_errors
+        name: Boru hattı hata mesajlarını da taşır
+        open_question: komut1 | komut2 yazdığında komut1'in hata mesajlarının da komut2'ye gideceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Ekranda ne varsa boruya girer."
+
+            Boru hattı yalnız stdout'u taşır; stderr ekranda kalır. Hata mesajlarını da sonraki komuta vermek istersen önce 2>&1 ile stdout'a bağlaman gerekir.
+      - slug: order_does_not_matter
+        name: Yönlendirmelerin sırası önemli değildir
+        open_question: komut 2>&1 > dosya ile komut > dosya 2>&1 yazmanın aynı sonucu vereceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de stderr'i ve stdout'u dosyaya gönderir."
+
+            Yönlendirmeler soldan sağa uygulanır. 2>&1 stderr'i stdout'un o anda gittiği yere bağlar. Önce > dosya gelirse ikisi de dosyaya gider; önce 2>&1 gelirse stderr ekrana bağlanmış olur ve orada kalır.
+      - slug: pipeline_status_first_failure
+        name: Boru hattında bir komut başarısız olursa $? bunu gösterir
+        open_question: Bir boru hattında ilk komut başarısız olduysa echo $?'in 0'dan farklı bir değer göstereceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Hattın bir yeri bozulduysa $? söyler."
+
+            Bir boru hattının çıkış durumu yalnız son komutun çıkış durumudur. Son komut başarıyla biterse $? 0'dır, öndeki komutlar başarısız olsa bile.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Terminalinde boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo kedi > hayvan.txt
+          echo kopek >> hayvan.txt
+          echo kedi >> hayvan.txt
+          sort hayvan.txt | uniq | wc -l
+        answer: "2"
+        verify: {mode: shell}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo hata disk > gunluk.txt
+          echo bilgi acilis >> gunluk.txt
+          echo hata ag >> gunluk.txt
+          echo bilgi kapanis >> gunluk.txt
+          grep hata gunluk.txt | wc -l
+        answer: "2"
+        verify: {mode: shell}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          echo 3 > sayi.txt
+          echo 1 >> sayi.txt
+          echo 2 >> sayi.txt
+          sort sayi.txt | head -n 1
+        answer: "1"
+        verify: {mode: shell}
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (rapor.txt yok) şu komutları çalıştır. Ekranda iki satır görürsün. wc'nin yazdığı satır nedir?
+        code: |
+          echo deniz > a.txt
+          cat a.txt rapor.txt | wc -l
+        answer: "1"
+        verify: {mode: shell, last_line: true}
+      - slug: f05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (bilinmeyen adında bir dosya yok) şu komutları çalıştır. Son satırda ne görünür?
+        code: |
+          ls bilinmeyen 2>/dev/null
+          echo $?
+        answer: "2"
+        verify: {mode: shell, last_line: true}
+      - slug: f06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (yok.txt yok) şu komutları çalıştır. Sonra hepsi.txt ve hata.txt'ye cat ile bak. Hangisi doğrudur?
+        code: |
+          echo alfa > a.txt
+          cat a.txt yok.txt > hepsi.txt 2> hata.txt
+        options:
+          A: "hepsi.txt'de alfa var; hata.txt'de cat'in yok.txt için yazdığı hata mesajı var"
+          B: "hepsi.txt'de hem alfa hem hata mesajı var; hata.txt boş"
+          C: "İkisi de boş: cat bir dosyayı bulamayınca hiçbir şey yazmaz"
+          D: "hepsi.txt'de alfa var; hata.txt boş, çünkü hata ekranda görünür"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "$(wc -l < hepsi.txt) $(wc -l < hata.txt)"'
+          outcomes: {A: "1 1", B: "2 0", C: "0 0", D: "1 0"}
+      - slug: f07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (yok.txt yok) şu komutları çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          ls yok.txt 2>&1 > tum.txt
+          wc -l tum.txt
+        answer: "0 tum.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: f08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır. Son satırda ne görünür?
+        code: |
+          echo gunes > metin.txt
+          grep yagmur metin.txt | wc -l
+          echo $?
+        answer: "0"
+        verify: {mode: shell, last_line: true}

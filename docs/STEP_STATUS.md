@@ -79,8 +79,9 @@ Bu dosya `docs/EXECUTION_INDEX.md` içindeki canonical adım kodlarının günce
 | **15B — Python Foundations** | ✅ | PYFX-v0 / D-113. Öğrenci ilk kez kod yazıyor: 20 Skill / 21 Objective / 31 kenar `published`; 109 item (85 kod suite'iyle — referans geçer, en az iki yanlış çözüm düşer —, 17 stdout, 7 traceback), 116 anlatım, 44 misconception, 100 görev; artımlı ikinci paket, "yayımlanmış sürümün üzerine yazılmaz"; koşucu UTF-8; bağımsız inceleme 109/109, 116/116; kullanıcı kararları: 20 Skill, artımlı paket; 254/254 QA PASS, Mutation 27/27. |
 | **15C — C Foundations** | ✅ | CFNX-v0 / D-114. Öğrenci C yazıyor: 9 Skill / 10 Objective / 15 kenar `published` (dört C tohumu + standard_io_basic + Linux terminal); 51 item (35 kod suite'iyle, 6 okuma, 5 aşama, 5 kabuk), 56 anlatım, 21 misconception, 45 görev; her şey Linux'ta gcc ile, öğrencinin koşucusuyla doğrulandı; `PackageFormat.unescape`; kullanıcı kararları: Linux Skill'i, WSL Ubuntu + gcc, standard_io_basic; 155/155 QA PASS, Mutation 8/8. |
 | **15D — Memory Foundations** | ✅ | MMFX-v0 / D-116. Bellek erişimi AddressSanitizer'ın bildirdiğine göre doğrulanır: 4 Skill / 6 Objective / 5 kenar `published`; 34 item (15 kod suite'iyle, 12 okuma, 4 sanitizer, 3 rubric), 33 anlatım, 13 misconception, 20 görev; öğrencinin derlemesi sanitizer'lı ve temiz çıkış ister; yeni kullanıcı kararı gerekmedi; 132/132 QA PASS, Mutation 9/9. |
-| **15E — Linux / Git / Shell Foundations** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE + kullanıcı onayı gerekir. |
-| **15F–20** | ⬜ Bekliyor | 15E sonrası canonical sırada. |
+| **15E — Linux / Git / Shell Foundations** | ✅ | LGSX-v0 / D-118. Komutlar Linux'ta gösterildiği gibi çalıştırılarak doğrulanır: 5 Skill / 5 Objective / 6 kenar `published`; 41 item (40 kabuk, 1 rubric), 35 anlatım, 15 misconception, 25 görev; kabuk prelude'u, "# hazırlık" satırları; onay D-117; 114/114 QA PASS, Mutation 5/5. |
+| **15F — English A0→A1/A2 başlangıç paketi** | 🟡 Aktif | Henüz yürütülmedi. Fresh PRE gerekir; kullanıcı onayı D-117 ile sürüyor. |
+| **15G–20** | ⬜ Bekliyor | 15F sonrası canonical sırada. |
 
 ## Manager transition — D-055
 
@@ -99,7 +100,23 @@ Bağlayıcı değişiklik:
 
 Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
-## Son tamamlanan numaralı adım — 15D
+## Son tamamlanan numaralı adım — 15E
+
+**Final:** `LGSX-v0 — Linux / Git / Shell Foundations content` / D-118.
+**Ana çıktı:** `docs/LINUX_GIT_SHELL_CONTENT_SPEC.md` + `arch/15e_linux_git_shell/` + `curriculum/content/15e_linux_git_shell/` + `android/app-wiring/src/main/assets/curriculum_package_v5.txt`.
+
+15E sonucu:
+- bir komut hakkındaki anahtar gösterilen komutların Linux'ta gerçekten çalıştırılmasıdır; hiçbir anahtar makineye bağlı değildir,
+- onay kullanıcının sürekli onayıdır (D-117); hazırlık satırları, gösterilen komut + probe ve Objective başına 8 item asistanın varsayılan seçimleridir,
+- **bulgu:** terminal 15C'de yayımlanmıştı; 15C'de bir kabuk kontrolü ayrı bir betikti; Git makineye özgü şeyler uydurur; değişen dosya kayıt ister; Git'in bazı mesajları stdout'a gider; Git işi dosya oluşturur ama graph söylemez,
+- 5 Skill / 5 Objective / 6 kenar `published`; 41 item, 35 anlatım, 15 misconception, 25 görev; 23 ders iddiası Linux'ta çalıştırıldı,
+- bağımsız inceleme: Bağımsız inceleme ilk geçişte 41 item'ın 39'unu ve 35 anlatımın 34'ünü geçirdi (40 anahtarın hepsi doğru; düşenler kanonik metnin söylediği bir mkdir kodu, istemin sormadığı bir rubric ölçütü ve git init'in hint satırlarını atlayan bir cümleydi; öğrencinin Git kimliği eksikse kayıtların başarısız olacağı da bulundu ve iki derste tekrarlandı); ikinci geçişte 41/41 ve 35/35.
+- beş paket gerçek SQLite şemasına JVM'de yayımlanıyor; giriş noktası değişmedi,
+- yalnız üretici değişti; Kotlin ana kodu, şema, portlar ve mağaza değişmedi,
+- Mutation 5/5, independent validator **114/114 PASS**,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+## Önceki numaralı adım — 15D
 
 **Final:** `MMFX-v0 — Memory Foundations content` / D-116.
 **Ana çıktı:** `docs/MEMORY_FOUNDATIONS_CONTENT_SPEC.md` + `arch/15d_memory_foundations/` + `curriculum/content/15d_memory_foundations/` + `android/app-wiring/src/main/assets/curriculum_package_v4.txt`.
@@ -404,6 +421,6 @@ Canonical: `docs/PROJECT_MEMORY_PROTOCOL.md` / D-050.
 
 **AŞAMA 12 TAMAMLANDI** — MSTX-v0 → PRQX-v0 → PLNX-v0 → RPLX-v0 → RSNX-v0 → VUSX-v0.
 
-## Aktif adım — 15E Linux / Git / Shell Foundations
+## Aktif adım — 15F English A0→A1/A2 başlangıç paketi
 
-**15E henüz yürütülmedi.** Fresh PRE-STEP + kullanıcı açık onayı zorunludur. WSL Ubuntu ortamı, `shell` anahtar kipi ve koşucu hazır; `terminal_filesystem_navigation` 15C'de yayımlandı.
+**15F henüz yürütülmedi.** Fresh PRE-STEP zorunludur; kullanıcının onayı D-117 ile sürüyor. English izinin AŞAMA 7 kontratları (EED-v0, TECP-v0, DECP-v0, TEIP-v0, TEPM-v0) ve `curriculum/english` ayrıştırması hazır.

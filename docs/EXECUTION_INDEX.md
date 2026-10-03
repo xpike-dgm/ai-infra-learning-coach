@@ -36,6 +36,8 @@ Bu belge projenin sabit adım kodlarının canonical indeksidir. Ayrıntılı ch
 - D-109: 14E final AI yazımı kod anlama kontrolü `ACCX-v0`; önce yazılmış kontrol, yoksa tutor pratiği (kanıt değil), hemen sonra ve isteğe bağlı, `generated_or_copied` bağımsız yeniden kontrol açar (kullanıcı kararları); şema değişmedi.
 - D-110: 14F final açık uçlu cevap değerlendirme `OREX-v0`; kısa cevap kabul edilen cevap listesiyle doğrulanır, uzun cevap rubric'le kriter kriter (AI yalnız kriter bulgusu önerir, core karar verir, en çok provisional), AI yoksa bekler + rubric öz-kontrolü, yalnız istenince yeniden (kullanıcı kararları); şema değişmedi.
 - D-111: 14G final sağlayıcı adaptörü `PRVX-v0`; OpenAI Responses API (güncel kaynak 2026-10-02), `store: false`, katı şema, uçtan uca bütçe, anahtar Android Keystore'da ve Profile'dan girilir, AI'sız build'de ağ izni yok (kullanıcı kararları); AŞAMA 14 kapandı.
+- D-118: 15E final içerik `LGSX-v0`; FBB-v0 §6.4'ün tohumları (5 Skill; terminal 15C'de), anahtarlar gösterilen komutlar Linux'ta çalıştırılarak, makineye bağlı hiçbir şey sorulmadan doğrulanır.
+- D-117: kullanıcının sürekli onayı — adımlar onay beklemeden sürer.
 - D-116: 15D final içerik `MMFX-v0`; 6C'nin üç bellek tohumu ayrıştırması (4 Skill), ömür anahtarları ve suite'ler AddressSanitizer + UBSan ile Linux'ta doğrulanır; yeni kullanıcı kararı gerekmedi.
 - D-114: 15C final içerik `CFNX-v0`; dört C tohumu + standard_io_basic + Linux terminal Skill'i, WSL Ubuntu + gcc ile Linux'ta doğrulama (kullanıcı kararları), `PackageFormat.unescape` (çift ters bölü tek ters bölüdür).
 - D-113: 15B final içerik `PYFX-v0`; on yedi tohum + üç ön koşul (20 Skill), kod item'ları öğrencinin koşucusuyla ve en az iki yanlış çözümle doğrulanır, artımlı ikinci paket ve "yayımlanmış sürümün üzerine yazılmaz" (kullanıcı kararları), koşucu UTF-8.
@@ -200,7 +202,8 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 - [x] **15B — Python Foundations** — `PYFX-v0 / D-113`
 - [x] **15C — C Foundations** — `CFNX-v0 / D-114`
 - [x] **15D — Memory Foundations** — `MMFX-v0 / D-116`
-- [ ] **15E — Linux / Git / Shell Foundations** **AKTİF**
+- [x] **15E — Linux / Git / Shell Foundations** — `LGSX-v0 / D-118`
+- [ ] **15F — English A0→A1/A2 başlangıç paketi** **AKTİF**
 - [ ] **15E — Linux / Git / Shell Foundations**
 - [ ] **15F — English A0→A1/A2 başlangıç paketi**
 - [ ] **15G — Assessment content**
@@ -261,9 +264,9 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15D`  
-**Son tamamlanan:** **`15D — MMFX-v0 / D-116`**  
-**Aktif:** **`15E — Linux / Git / Shell Foundations`** — active-not-executed
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15E`  
+**Son tamamlanan:** **`15E — LGSX-v0 / D-118`**  
+**Aktif:** **`15F — English A0→A1/A2 başlangıç paketi`** — active-not-executed
 
 **AŞAMA 8, AŞAMA 9 ve AŞAMA 10 tamamlandı.** 10E `APHX-v0` ile uygulama dürüst bir başlangıç kazandı: **store'un hiçbir arızası çökme değil, hiçbir arızası reset değil.** Store süreçte bir kez, arka planda açılıyor; bütünlük migration'dan önce kontrol ediliyor ve migration sonrası tam kontrol ediliyor; her hata `UXIA-v0`nin kabul edilmiş bir state'i; "hiçbir şey sıfırlanmadı" byte karşılaştırmasıyla kanıtlanıyor; recovery ekranında reset temsil edilemez. Kod kontratlara karşı okununca handoff'un bilmediği iki sorun daha çıktı: açılışta bütünlük kontrolü yoktu ve varsayılan build'in AI adaptörü çökecekti. Restore mekanizması kuruldu, kontrolleri 16D'de. Mutation 16/16; ikisi başta yaşadı ve testler güçlendirildi. T6 çalıştırılmadı.
 
@@ -319,4 +322,6 @@ Ana charter: `docs/GRANULAR_CAPABILITY_MAP_PLAN.md`
 
 15D `MMFX-v0` ile dördüncü paket sevk ediliyor ve öğrenci işaretçi ve bellek ömrü çalışıyor: bir erişimin geçerli olup olmadığı, tanımsız bir programın ne yazdırdığına göre değil AddressSanitizer'ın ne bildirdiğine göre doğrulanır ve öğrencinin derlemesi kontrol edilen derlemedir — ölü belleği okuyan bir çözüm çıktısı doğru olsa bile düşer. 4 Skill / 6 Objective / 5 kenar `published`; 34 item, 33 anlatım, 13 misconception, 20 görev; her şey WSL Ubuntu'da gcc ve sanitizer'larla, öğrencinin koşucusuyla doğrulandı. Yeni kullanıcı kararı gerekmedi. T6 çalıştırılmadı.
 
-15E başlamadan fresh PRE-STEP GitHub refresh + kullanıcı açık onayı zorunludur.
+15E `LGSX-v0` ile beşinci paket sevk ediliyor: bir komut hakkındaki anahtar, gösterilen komutların ta kendisi Linux'ta boş bir dizinde çalıştırılınca bash'in ve git'in gerçekte yazdığıdır ve hiçbir anahtar kontrol eden makinenin Git'inin kendi uydurduğuna dayanmaz. 5 Skill / 5 Objective / 6 kenar `published`; 41 item, 35 anlatım, 15 misconception, 25 görev; her şey WSL Ubuntu'da bash ve git ile doğrulandı. Onay D-117 ile sürekli. T6 çalıştırılmadı.
+
+15F başlamadan fresh PRE-STEP GitHub refresh zorunludur; kullanıcının onayı D-117 ile sürüyor.

@@ -1,0 +1,322 @@
+skill: skill.git.stage_commit_history_basic
+activity: hands_on_system_task
+tasks:
+  teach: {title: "Değişikliği kaydetmek: git add, git commit, git log", minutes: 18}
+  practice: {title: "Hazırlama ve kaydetme alıştırması", minutes: 14}
+  check: {title: "Hazırlama ve kaydetme kontrolü", minutes: 14}
+  review: {title: "Hazırlama ve kaydetme tekrarı", minutes: 10}
+  repair: {title: "Kayda neyin girdiğini yeniden izlemek: hazırlanan, hazırlanmayan", minutes: 18}
+
+objectives:
+  - id: objective.git.stage_commit_history_basic.commit_and_verify_history
+    statement: >-
+      Küçük bir değişikliği git add ile kayda hazırlayıp (staging) git commit -m ile kaydedebilmek ve git log ile
+      geçmişte doğrulayabilmek: bir kayda yalnız hazırlanmış değişikliklerin girdiğini, git add'den sonra yapılan
+      değişikliğin yeniden hazırlanması gerektiğini, hazırlanmış bir şey yokken git commit'in başarısız olduğunu,
+      git status --short'ta hazırlanmış (A , M ) ve hazırlanmamış ( M) durumları ve git diff ile git diff --staged
+      arasındaki farkı bilmek.
+    observable_behavior: >-
+      Verilen komutları kendi terminalinde çalıştırır; hangi değişikliğin kayda girdiğini, geçmişte kaç kayıt olduğunu
+      ve git status --short'un ne göstereceğini doğru söyler.
+    acceptable_evidence_types: [hands_on_system_task, observed_result]
+    direct_evidence_types: [hands_on_system_task, observed_result]
+    required_direct_type: hands_on_system_task
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type hands_on_system_task. Bu Skill 6C'de
+      repository_status_diff'e hard bağlıdır (durumu okumadan kaydetmek öğretilmez). Dosya oluşturmak (echo > dosya)
+      command_options_redirection_basic'tir ve item'lar onu beyan eder; $? kullanan item process_exit_stdout_stderr_basic'i
+      beyan eder. Anahtarlar komutlar boş bir dizinde bash ve git ile gerçekten çalıştırılarak doğrulanır; kayıt
+      numaraları (hash), tarihler ve yazar her makinede farklı olduğu için hiçbir anahtar onları sormaz.
+    checks:
+      - lang: shell
+        prints: "ilk kayit"
+        code: |
+          git init -q k
+          cd k
+          echo bir > a.txt
+          git add a.txt
+          git commit -q -m "ilk kayit"
+          git log --format=%s
+      - lang: shell
+        prints: "A  b.txt"
+        code: |
+          git init -q k
+          cd k
+          echo iki > b.txt
+          git add b.txt
+          git status --short
+      - lang: shell
+        prints: |
+          ikinci
+          ilk
+        code: |
+          git init -q k
+          cd k
+          echo 1 > s.txt
+          git add s.txt
+          git commit -q -m ilk
+          echo 2 >> s.txt
+          git add s.txt
+          git commit -q -m ikinci
+          git log --format=%s
+    explanations:
+      canonical: |
+        Git'te bir değişiklik üç yerden geçer:
+
+        çalışma klasörü  ──git add──▶  hazırlık alanı (staging)  ──git commit──▶  geçmiş (kayıtlar)
+
+        - git add dosya: dosyanın şu anki içeriğini bir sonraki kayda hazırlar.
+        - git commit -m "mesaj": hazırlanmış her şeyi tek bir kayıt (commit) olarak geçmişe yazar. -m kaydın mesajıdır; ne yaptığını kısaca anlatsın. (-q, commit'in yazdığı özeti susturur.)
+        - git log --oneline: geçmişi en yeniden eskiye, her kayıt bir satır olarak yazar: kısa kayıt numarası (hash) ve mesaj. Numara her makinede farklıdır; terminalde en yeni satırda (HEAD -> master) gibi bir dal etiketi de görebilirsin. git log --format=%s yalnız mesajları yazar.
+
+        Kayıt yapabilmek için Git'in senin adını ve e-postanı bilmesi gerekir. Bir önceki derste yapmadıysan bir kez çalıştır: git config --global user.name "Adın Soyadın" ve git config --global user.email "sen@example.com". Yoksa her git commit "Author identity unknown" diye başarısız olur.
+
+        git status --short'ta iki sütun vardır: soldaki hazırlık alanını, sağdaki çalışma klasörünü anlatır.
+        - A  dosya   → yeni dosya, kayda hazırlandı.
+        - M  dosya   → değişiklik kayda hazırlandı.
+        -  M dosya   → değişti ama hazırlanmadı (kayda girmez).
+        - MM dosya   → bir değişiklik hazırlandı, sonra dosya yeniden değişti.
+
+        En önemli kural: bir kayda yalnız hazırlanmış olan girer. git add, dosyanın o anki içeriğini hazırlar; git add'den sonra dosyayı yeniden değiştirirsen yeni değişikliği de kayda katmak için yeniden git add gerekir.
+
+        Hazırlanmış hiçbir şey yokken git commit kayıt oluşturmaz: "nothing to commit" ya da "no changes added to commit" gibi bir mesaj yazar ve 0'dan farklı bir çıkış durumuyla biter.
+
+        Neyi kaydedeceğini görmek:
+        - git diff            → hazırlanmamış değişiklikler.
+        - git diff --staged   → hazırlanmış, bir sonraki kayda girecek değişiklikler.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (depo durumu): git status --short'ta ?? takip edilmeyen,  M değişmiş ama hazırlanmamış dosyadır; git diff son kayıttan beri değişen satırları gösterir.
+      state_trace:
+        level: H2
+        text: |
+          Adım adım izleme — başka bir örnek üzerinde. Boş bir klasörde:
+
+          $ git init -q tarif && cd tarif
+          $ echo un > malzeme.txt          status: ?? malzeme.txt
+          $ git add malzeme.txt            status: A  malzeme.txt
+          $ git commit -q -m "malzemeler"  status: (temiz); log: 1 kayıt
+          $ echo seker >> malzeme.txt      status:  M malzeme.txt
+          $ git add malzeme.txt            status: M  malzeme.txt
+          $ git commit -q -m "seker"       status: (temiz); log: 2 kayıt
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          $ git init -q kitap && cd kitap
+          $ echo bolum1 > icerik.txt
+          $ echo onsoz > giris.txt
+          $ git add icerik.txt
+          $ git commit -q -m "bolum 1"
+          $ git status --short
+
+          - Yalnız icerik.txt hazırlandı ve kaydedildi.
+          - giris.txt hiç git add edilmedi: hâlâ takip edilmiyor.
+          Cevap: ?? giris.txt
+    misconceptions:
+      - slug: commit_takes_all_changes
+        name: git commit klasördeki bütün değişiklikleri kaydeder
+        open_question: git commit'in hazırlamadığın değişiklikleri de kayda katacağını mı düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "commit = her şeyi kaydet."
+
+            Kayda yalnız git add ile hazırlanmış olan girer. Hazırlanmamış değişiklikler çalışma klasöründe kalır ve git status --short'ta görünmeye devam eder.
+      - slug: add_tracks_future_changes
+        name: git add bir dosyayı ileride yapılacak değişiklikleriyle birlikte hazırlar
+        open_question: Bir dosyayı git add ettikten sonra yaptığın değişikliklerin de kendiliğinden kayda gireceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Dosyayı bir kez ekledim, artık hazır."
+
+            git add dosyanın o anki içeriğini hazırlar. Sonrasında yaptığın değişiklik hazırlanmamış kalır; onu da kayda katmak için yeniden git add gerekir.
+      - slug: failed_commit_counts
+        name: Başarısız bir git commit de geçmişe bir kayıt ekler
+        open_question: git commit "nothing to commit" dediğinde bile geçmişe boş bir kayıt eklendiğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Komutu çalıştırdım, kayıt oldu."
+
+            Hazırlanmış bir şey yoksa git commit kayıt oluşturmaz ve 0'dan farklı bir durumla biter. Geçmişte ne olduğunu görmek için git log'a bak.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        hands_on: true
+        prompt: |
+          Terminalinde boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          git init -q defter
+          cd defter
+          echo pazartesi > notlar.txt
+          git add notlar.txt
+          git commit -q -m "notlar eklendi"
+          git log --format=%s
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "notlar eklendi"
+        verify: {mode: shell}
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut kaç satır yazar?
+        code: |
+          git init -q sepet
+          cd sepet
+          echo ekmek > liste.txt
+          git add liste.txt
+          git commit -q -m "ekmek"
+          echo sut >> liste.txt
+          git add liste.txt
+          git commit -q -m "sut"
+          echo peynir >> liste.txt
+          git add liste.txt
+          git commit -q -m "peynir"
+          git log --oneline
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "3"
+        verify: {mode: shell, last_line: true, probe: 'git log --oneline | wc -l'}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komutun çıktısı yeni.txt için ne söyler?
+        code: |
+          git init -q depo
+          cd depo
+          echo merhaba > yeni.txt
+          git add yeni.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "yeni.txt yeni bir dosya olarak kayda hazırlandı (A )"
+          B: "yeni.txt hâlâ takip edilmiyor (??)"
+          C: "yeni.txt değişti ama hazırlanmadı ( M)"
+          D: "Hiçbir şey yazmaz: git add dosyayı kaydetti"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "[$(git status --porcelain | cut -c1-2 | tr " " "_")]"'
+          outcomes: {A: "[A_]", B: "[??]", C: "[_M]", D: "[]"}
+      - slug: f04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut hangi dosyayı gösterir? Yalnız dosyanın adını yaz.
+        code: |
+          git init -q yazi
+          cd yazi
+          echo 1 > a.txt
+          echo 1 > b.txt
+          git add a.txt b.txt
+          git commit -q -m "ilk"
+          echo 2 > a.txt
+          echo 2 > b.txt
+          git add a.txt
+          git commit -q -m "a guncellendi"
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "b.txt"
+        verify: {mode: shell, last_line: true, probe: 'git status --porcelain | cut -c4-'}
+      - slug: f05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son satırda hangi sayı görünür?
+        code: |
+          git init -q hesap
+          cd hesap
+          echo 100 > bakiye.txt
+          git add bakiye.txt
+          git commit -q -m "bir"
+          git commit -m "iki"
+          echo $?
+        required_skills: [skill.shell.command_options_redirection_basic, skill.linux.process_exit_stdout_stderr_basic]
+        answer: "1"
+        verify: {mode: shell, last_line: true}
+      - slug: f06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komutun çıktısı not.txt için ne söyler?
+        code: |
+          git init -q gunce
+          cd gunce
+          echo v1 > not.txt
+          git add not.txt
+          echo v2 > not.txt
+          git commit -q -m "kayit"
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "not.txt değişmiş ve hazırlanmamış görünür ( M): kayıt v1'i aldı, v2 hazırlanmadı"
+          B: "Hiçbir şey yazmaz: commit v2'yi kaydetti"
+          C: "not.txt hazırlanmış yeni dosya olarak görünür (A )"
+          D: "not.txt takip edilmiyor görünür (??)"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: 'echo "[$(git status --porcelain | cut -c1-2 | tr " " "_")]"'
+          outcomes: {A: "[_M]", B: "[]", C: "[A_]", D: "[??]"}
+      - slug: f07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Bazıları başarısız olabilir. Son komut kaç satır yazar (geçmişte kaç kayıt var)?
+        code: |
+          git init -q hafta
+          cd hafta
+          echo pzt > gunler.txt
+          git add gunler.txt
+          git commit -q -m "pazartesi"
+          git commit -q -m "bos deneme"
+          echo sali >> gunler.txt
+          git commit -q -m "sali unutuldu"
+          git add gunler.txt
+          git commit -q -m "sali"
+          git log --oneline
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "2"
+        verify: {mode: shell, last_line: true, probe: 'git log --oneline | wc -l'}
+      - slug: f08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son iki komut ne yazar?
+        code: |
+          git init -q rapor
+          cd rapor
+          echo ozet > rapor.txt
+          git add rapor.txt
+          git commit -q -m "ozet"
+          echo sonuc >> rapor.txt
+          git add rapor.txt
+          git diff
+          git diff --staged
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "git diff hiçbir şey yazmaz; git diff --staged +sonuc satırını gösterir"
+          B: "git diff +sonuc satırını gösterir; git diff --staged hiçbir şey yazmaz"
+          C: "İkisi de hiçbir şey yazmaz: değişiklik hazırlandığı için artık fark yok"
+          D: "İkisi de +sonuc satırını gösterir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            [ -z "$(git diff)" ] && a=bos || a=dolu; [ -z "$(git diff --staged)" ] && b=bos || b=dolu
+            echo "$a $b"
+          outcomes: {A: "bos dolu", B: "dolu bos", C: "bos bos", D: "dolu dolu"}
