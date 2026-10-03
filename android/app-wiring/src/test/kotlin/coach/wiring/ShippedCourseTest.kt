@@ -207,4 +207,40 @@ class ShippedCourseTest {
             "skill.git.stage_commit_history_basic").map { skill(it) }))
         assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
     }
+
+    // ------------------------------------------------ 15F (`EAAX-v0`, `D-119`): the course with the A1/A2 English start
+
+    private val english = File("src/main/assets/curriculum_package_v6.txt").readText()
+    private val withEnglish = FileContentSource(later = { listOf(python, c, memory, shellGit, english) }, source = { first })
+    private val labels = skill("skill.english.recognize_core_technical_labels")
+
+    @Test
+    fun `all six shipped packages are published into the real store, oldest first, and English waits only on English`() {
+        assertEquals((1..6).toList(), IngestCurriculum(store, withEnglish, clock).ingestAll().map { assertIs<PublishOutcome.Published>(it, "$it").version })
+        assertEquals(6, store.latestCurriculumVersion())
+        assertEquals(60, store.publishedSkills().size)
+        assertTrue(store.prerequisiteEdgesInto(labels).isEmpty(), "the first English Skill has no prerequisite")
+        val into = store.prerequisiteEdgesInto(skill("skill.english.negation_question_comprehension")).map { it.prerequisite }.toSet()
+        assertEquals(setOf(skill("skill.english.be_and_simple_present_comprehension")), into)
+        assertEquals((1..6).map { PublishOutcome.AlreadyPublished(it) }, IngestCurriculum(store, withEnglish, clock).ingestAll())
+    }
+
+    @Test
+    fun `with the English package, a learner who has done nothing may also start the first English lesson, and nothing technical waits on English`() {
+        IngestCurriculum(store, withEnglish, clock).ingestAll()
+        val trace = assertIs<BuildDailyPlan.Built.Planned>(BuildDailyPlan(store, withEnglish, clock)
+            .build(DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))).trace
+
+        // The first English Skill has no prerequisite: a fourth entry point, next to 15A's two and the terminal.
+        val entry = setOf(skill("skill.computing.program_execution_model"), skill("skill.programming.state_assignment_model"), terminal, labels)
+        assertTrue(entry.containsAll(trace.selected.map { it.primarySkill }), "only entry Skills start: ${trace.selected.map { it.primarySkill }}")
+        assertTrue(trace.selected.all { it.purpose == TaskPurpose.TEACH })
+        assertTrue(trace.selected.sumOf { it.plannedMinutes } <= 60, "the day is never extended")
+
+        assertEquals(60, trace.needs.count { it.trigger == NeedTrigger.NEW_LEARNING })
+        val waiting = trace.needs.filter { it.disposition == NeedDisposition.BLOCKED }.flatMap { it.targetSkills }.toSet()
+        assertEquals(56, waiting.size, "everything downstream waits: $waiting")
+        assertTrue(waiting.none { it in entry })
+        assertTrue(trace.needs.none { it.disposition == NeedDisposition.NO_VALID_CANDIDATE }, "every Skill has its lesson")
+    }
 }

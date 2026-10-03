@@ -1,0 +1,221 @@
+skill: skill.english.negation_question_comprehension
+activity: recognition_selection
+tasks:
+  teach: {title: "Olumsuz ve soru: isn't, doesn't, can't, no; Is it ...? Where ...? Which ...?", minutes: 15}
+  practice: {title: "Olumsuz ve soru cümlelerini anlama alıştırması", minutes: 8}
+  check: {title: "Olumsuz ve soru cümlelerini anlama kontrolü", minutes: 6}
+  review: {title: "Olumsuz ve soru cümlelerini anlama tekrarı", minutes: 5}
+  repair: {title: "Olumsuzluğu ve soruyu yeniden yakalamak", minutes: 10}
+
+objectives:
+  - id: objective.english.negation_question_comprehension.demonstrate_capability
+    statement: >-
+      Kısa teknik cümlelerde olumsuzluğu (is not / isn't, are not / aren't, does not / doesn't, cannot / can't, no + isim)
+      ve soru niyetini (Is ...?, Does ...?, What / Where / Which / Why / How ...?) ayırt edebilmek: bir cümlenin bir şeyin
+      OLMADIĞINI mı söylediğini yoksa bir şeyi mi sorduğunu ve neyi sorduğunu söyleyebilmek.
+    observable_behavior: >-
+      Kısa bir İngilizce cümlenin olumlu mu olumsuz mu olduğunu, soru ise neyi sorduğunu (bir yeri mi, bir seçeneği mi,
+      evet/hayır mı) doğru seçer; olumsuzluğu gözden kaçırıp anlamı tersine çevirmez.
+    acceptable_evidence_types: [reading_comprehension, structured_response]
+    direct_evidence_types: [reading_comprehension, structured_response]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul be_and_simple_present_comprehension'dır (6C hard). Olumsuz emir (Do not open ...) emir
+      kipini de gerektirdiği için kullanılmaz (imperative bu Skill'in ön koşulu değildir). Soru işareti gösterimde bu
+      Skill'e aittir. Anahtarlar İngilizcede olumsuzluk ve soruların be ile doğrudan, öteki fiillerle do/does
+      yardımıyla kurulduğu bilgisine dayanır (Wikipedia — Do-support).
+    explanations:
+      canonical: |
+        Olumsuzluk (bir şey DEĞİL / YAPMAZ):
+        - is → is not / isn't: The program is not ready. → Program hazır değil.
+        - are → are not / aren't: The tests aren't done.
+        - Öteki fiiller: does not / doesn't + yalın fiil (tek özne), do not / don't + yalın fiil (çoğul özne): The tool doesn't use the input. → Araç girdiyi kullanmaz. (doesn't'tan sonra fiil -s almaz: use, uses değil.)
+        - can → cannot / can't: The program can't read the input. → Program girdiyi okuyamaz.
+        - no + isim: The folder has no files. → Klasörde hiç dosya yok.
+
+        Kısa biçimler ('t) uzun biçimlerle aynıdır: isn't = is not, doesn't = does not, can't = cannot.
+
+        Soru (cümlenin sonunda ? vardır):
+        - is ile: is başa gelir: The file is empty. → Is the file empty? (Dosya boş mu?)
+        - Öteki fiillerle: Does / Do başa gelir: Does the tool use a file? (Araç bir dosya kullanır mı?)
+        - Soru kelimeleri: What (ne), Where (nerede), Which (hangisi), Why (neden), How (nasıl), Who (kim), When (ne zaman).
+        Where is the log? → Kayıt (log) nerede?
+
+        Okurken: önce not / n't / no var mı bak — varsa anlam tersine döner. Sonra ? var mı bak — varsa cümle bir şey söylemiyor, soruyor.
+
+        Bu dersin kelimeleri: not, no, isn't, aren't, do, does, don't, doesn't, can, cannot, can't, what, where, which, why, how, who, when.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (is / geniş zaman): The file is empty → dosya boş; The tool opens the file → araç dosyayı açar.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          The command doesn't show the size. Where is the size?
+          - İlk cümle olumsuz: doesn't show → göstermez. Komut boyutu göstermez.
+          - İkinci cümle soru (?): Where is → nerede; the size → boyut.
+          Cevap: komut boyutu göstermiyor; boyutun nerede bulunacağı soruluyor.
+    misconceptions:
+      - slug: missed_negation
+        name: Kısa olumsuzluk ('t) cümlenin anlamını değiştirmez
+        open_question: '"The tool can''t read the input" cümlesinin aracın girdiyi okuyabildiğini söylediğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "can't küçük bir ek, anlamı değiştirmez."
+
+            n't "not" demektir ve anlamı tersine çevirir: can't read → okuyamaz, doesn't show → göstermez. Teknik metinde bunu kaçırmak tam ters işlem yapmaya yol açar.
+      - slug: question_is_statement
+        name: Soru cümlesi bir durumu bildirir
+        open_question: '"Is the folder empty?" cümlesinin klasörün boş olduğunu söylediğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İçinde empty geçiyor, demek ki boş."
+
+            is başa geldiğinde ve cümle ? ile bittiğinde cümle bir soru sorar: Is the folder empty? → Klasör boş mu? Cevabı bilmiyoruz.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The folder is not empty.
+        options:
+          A: "Klasör boş değil."
+          B: "Klasör boş."
+          C: "Klasör boş mu?"
+          D: "Klasörü boşalt."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Do-support (be negates directly: is not)"
+          claim: "is not empty: boş değil."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir programın belgesinde bu cümle var. Ne söylüyor?
+        code: |
+          The program doesn't save the file.
+        options:
+          A: "Program dosyayı kaydetmez."
+          B: "Program dosyayı kaydeder."
+          C: "Program dosyayı kaydeder mi?"
+          D: "Dosyayı kaydetme."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Do-support (negation of lexical verbs with does not + base form)"
+          claim: "doesn't save: kaydetmez."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir sohbet penceresinde biri bunu yazdı. Ne yapıyor?
+        code: |
+          Is the test ready?
+        options:
+          A: "Testin hazır olup olmadığını soruyor."
+          B: "Testin hazır olduğunu söylüyor."
+          C: "Testin hazır olmadığını söylüyor."
+          D: "Testi hazırlamanı istiyor."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Do-support (be inverts directly in questions: Is she home?)"
+          claim: "is başta ve sonunda ? var: bir evet/hayır sorusu."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir denetim aracının son satırı bu. Ne söylüyor?
+        code: |
+          The file has no errors.
+        options:
+          A: "Dosyada hiç hata yok."
+          B: "Dosyada hatalar var."
+          C: "Dosyanın hataları gösterilmiyor ama var."
+          D: "Dosya yok."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — no (determiner): not any"
+          claim: "has no errors: hiç hatası yok."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir arkadaşın sana bunu yazdı. Ne öğrenmek istiyor?
+        code: |
+          Where is the output file?
+        options:
+          A: "Çıktı dosyasının nerede olduğunu"
+          B: "Çıktı dosyasının ne olduğunu"
+          C: "Çıktı dosyasının boş olup olmadığını"
+          D: "Çıktı dosyasının adını"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — where (adverb, interrogative): at what place"
+          claim: "Where is ...? bir yer sorusudur."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bir forumdaki soru bu. Ne soruluyor?
+        code: |
+          Which option shows all files?
+        options:
+          A: "Tüm dosyaları hangi seçeneğin gösterdiği"
+          B: "Bir seçeneğin tüm dosyaları gösterip göstermediği"
+          C: "Kaç dosya olduğu"
+          D: "Dosyaların nerede olduğu"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — which (determiner, interrogative): what one or ones of a group"
+          claim: "Which option ...? seçeneklerden hangisinin olduğunu sorar."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir hata penceresinde bu iki cümle var. Araç neden dosyayı açamıyor?
+        code: |
+          The tool can't open the file. It isn't in the folder.
+        options:
+          A: "Dosya klasörde değil."
+          B: "Dosya boş."
+          C: "Araç dosyayı açtı ama okuyamadı."
+          D: "Klasör yok."
+        scan_options: false
+        required_skills: [skill.english.preposition_function_word_comprehension]
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Do-support; Wiktionary — can't (contraction): cannot; isn't: is not"
+          claim: "İkinci cümle nedeni söyler: dosya (it) klasörde değil."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir derleme sisteminin durum satırları bu. Hangisi doğru?
+        code: |
+          The tests don't run. The build isn't ready.
+        options:
+          A: "Testler çalışmıyor ve derleme hazır değil."
+          B: "Testler çalışıyor ama derleme hazır değil."
+          C: "Testler çalışmıyor ama derleme hazır."
+          D: "Testler ve derleme hazır mı diye soruluyor."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Do-support (do not + base form for plural subjects; be negates directly)"
+          claim: "İki cümle de olumsuz: testler çalışmaz, derleme hazır değil."

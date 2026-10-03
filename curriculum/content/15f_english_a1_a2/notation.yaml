@@ -1,0 +1,57 @@
+# The English notation of 15F. What an English item shows (its stimulus, and its options when they are English) may use
+# only words a lesson has taught: the lexicon below lists, for each Skill, exactly the words its lesson introduces (the
+# lesson's own word list). A word is allowed in an item when its own Skill, a hard prerequisite of it, or a Skill the
+# item declares in `required_skills` introduces it; a word no lesson introduces is refused outright (EED-v0: unknown
+# vocabulary is never a hidden prerequisite; ENGLISH_FOUNDATION_RULES). Literals are not vocabulary: a `code literal`
+# in backticks, a 'quoted' name, any token with a non-letter (notes.txt, -h, 404) and a mixed-case identifier
+# (NameError) — see english_words in the builder. Turkish options are not scanned (scan_options: false).
+#
+# Grammar beyond words: a question mark makes a sentence a question, which negation_question_comprehension teaches.
+strip:
+  - '`[^`\n]*`'
+
+constructs:
+  question:
+    pattern: '\?'
+    introduced_by: [skill.english.negation_question_comprehension]
+
+lexicon:
+  skill.english.recognize_core_technical_labels: [file, folder, directory, name, size, type, path, line, code, program, menu, new, open,
+    save, close, delete, copy, paste, edit, view, search, settings, tools, help, cancel, ok, 'yes', exit, run, start, stop, build, test,
+    install, update, download, upload, command, option, options, version, tool, error, warning, done, passed, failed, input, output,
+    value, git, gcc, python, bash, ls, cat, files, folders, errors, warnings, tests, lines, values, commands, names, programs]
+  skill.english.technical_noun_phrase_recognition: [default, current, empty, missing, invalid, temporary, local, remote, main, total, full,
+    source, target, log, list, number, system, memory, disk, space, project, message, status, result, user, key, time, data, config,
+    backup, home, page, server]
+  skill.english.be_and_simple_present_comprehension: [is, are, am, it, this, these, they, a, an, the, and, has, have, contains, returns,
+    uses, needs, shows, prints, reads, writes, stores, takes, works, runs, saves, opens, moves, copies, empty, ready, small, large, same,
+    different, correct, wrong, only, one, two, three, four, five, all, now]
+  skill.english.imperative_instruction_comprehension: [type, enter, press, select, click, add, remove, create, use, check, restart, wait,
+    try, set, change, rename, move, write, read, keep, again, the, a, an, this, your, it, and]
+  skill.english.preposition_function_word_comprehension: [in, 'on', at, to, from, into, with, for, of, by, after, before, inside, under,
+    between, out]
+  skill.english.negation_question_comprehension: [not, 'no', isn't, aren't, do, does, don't, doesn't, can, cannot, can't, what, where,
+    which, why, how, who, when]
+  skill.english.follow_bilingual_technical_instruction: [first, then, next, finally, step, steps, now]
+  skill.english.read_simple_terminal_error_fragments: [cannot, access, 'no', such, or, not, found, permission, denied, defined, undeclared,
+    expected, before, first, use, in, this, function, return, fatal, is, a, errno, division, by, zero, module, named]
+  skill.english.documentation_navigation: [usage, synopsis, description, examples, example, see, also, section, show, print, list, all,
+    more, information, about, default, the, a, of, and, for, each, only, first, number, count, sort, by, time, reverse, order, hidden,
+    recursive, quiet, verbose, unique]
+  skill.english.write_command_result_note: [note, notes, pass, passes, fail, fails, result, return, returns]
+
+roles:
+  all: [recent_required_progress, weakness_or_verification, retention_due,
+        longitudinal_required_capability, persistent_weakness_or_verification, delayed_retention_sampling]
+  transfer: [integration_or_transfer, cross_topic_transfer]
+  critical: [critical_prerequisite_confidence, critical_capability_revalidation]
+
+# Authoring estimates of active minutes (QAB-v0 §22). Uncalibrated: 18B observes and corrects them.
+minutes:
+  basic: 2
+  authentic_application: 3
+  transfer_integration: 4
+minutes_code:
+  basic: 4
+  authentic_application: 6
+  transfer_integration: 8

@@ -1,0 +1,213 @@
+skill: skill.english.recognize_core_technical_labels
+activity: recognition_selection
+tasks:
+  teach: {title: "Ekrandaki İngilizce etiketler: menüler, düğmeler, sonuç satırları", minutes: 15}
+  practice: {title: "Teknik etiketleri tanıma alıştırması", minutes: 8}
+  check: {title: "Teknik etiketleri tanıma kontrolü", minutes: 6}
+  review: {title: "Teknik etiketleri tanıma tekrarı", minutes: 5}
+  repair: {title: "Etiketleri yeniden eşlemek: benzer görünen kelimeler", minutes: 10}
+
+objectives:
+  - id: objective.english.recognize_core_technical_labels.match_term_meaning
+    statement: >-
+      Programların menülerinde, düğmelerinde ve sonuç satırlarında sık görülen İngilizce tek kelimelik etiketleri (Save,
+      Cancel, Delete, Warning, Error, Exit, Download, Upload, passed, failed ...) Türkçe anlamlarıyla eşleyebilmek ve bir
+      etikete basınca ya da bir etiketi görünce ne olacağını söyleyebilmek.
+    observable_behavior: >-
+      Kısa bir ekran metninde (menü satırı, iki düğme, bir sonuç satırı) etiketin anlamını ve yol açacağı işlemi doğru
+      seçer; benzer görünen etiketleri (Download/Upload, Close/Delete, Exit/Output) karıştırmaz.
+    acceptable_evidence_types: [recognition, structured_response]
+    direct_evidence_types: [recognition, structured_response]
+    required_direct_type: recognition
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type recognition. Bu Skill'in ön koşulu yoktur
+      (dördüncü giriş noktası). Item'ların İngilizce kısmı yalnız bu dersin kelime listesindeki (notation.yaml lexicon)
+      kelimelerden oluşur; seçenekler Türkçedir ve taranmaz. Bir tanıma item'ı dersin öğrettiği kelimeyi ölçmek
+      zorundadır; sızıntı kuralı burada şöyle uygulanır: item'ın gösterdiği ekran metni ve bağlamı derste geçmez.
+      Anlam anahtarları Wiktionary'nin ilgili girişine dayanır ve bağımsız incelemeyle doğrulanır.
+    explanations:
+      canonical: |
+        Programlar ve terminal İngilizce kısa etiketlerle konuşur. Bu derste bir cümle kurmuyoruz; tek tek etiketleri tanıyoruz. Aşağıdaki kelimeler bu dersin kelime listesidir:
+
+        Dosya ve klasör: file (dosya), folder / directory (klasör), name (ad), size (boyut), type (tür), path (yol), line (satır), code (kod), program (program).
+        Menü ve düğme: menu (menü), new (yeni), open (aç), save (kaydet), close (kapat), delete (sil), copy (kopyala), paste (yapıştır), edit (düzenle), view (görünüm), search (ara), settings (ayarlar), tools (araçlar), help (yardım), cancel (vazgeç / iptal), ok (tamam), yes (evet), exit (çık / programdan çık).
+        Çalıştırma: run (çalıştır), start (başlat), stop (durdur), build (derle / oluştur), test (test), install (kur), update (güncelle), download (indir: başka bir yerden senin bilgisayarına), upload (yükle: senin bilgisayarından başka bir yere), command (komut), option / options (seçenek), version (sürüm), tool (araç).
+        Sonuç: error (hata), warning (uyarı), done (bitti), passed (geçti), failed (başarısız oldu), input (girdi), output (çıktı), value (değer).
+        Araç adları (önceki derslerden tanıdığın adlar): git, gcc, python, bash, ls, cat. Python hata türlerinin adları (NameError, TypeError ...) bitişik yazılmış adlardır, kelime değildir.
+
+        Dikkat edilecek üç çift:
+        - close bir pencereyi ya da dosyayı kapatır; delete onu siler. Kapanan dosya hâlâ vardır.
+        - exit programdan çıkmaktır; output programın çıktısıdır. İkisi de Türkçede "çık"la başlar ama farklıdır.
+        - download indirmek, upload yüklemektir: ok yönünü düşün — down (aşağı, sana doğru), up (yukarı, senden dışarı).
+
+        Etiketler çoğu zaman büyük harfle başlar (Save, File) ya da tümü büyük yazılır (ERROR); anlam değişmez.
+
+        Çoğul: isimlerin çoğu -s alır ve "birden çok" demektir: file → files (dosyalar), folder → folders, error → errors, warning → warnings, test → tests, line → lines, value → values, command → commands, name → names, program → programs.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Bu ders ilk İngilizce derstir; bir ön koşulu yoktur. Daha önce terminalde gördüğün git, gcc, python, ls gibi araç adlarını tanıyorsun; onlar çevrilmez.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          Bir metin düzenleyicinin üst satırı: File   Edit   View   Tools   Help
+          Soru: "Settings" (ayarlar) seçeneğini en çok hangi menüde ararsın?
+
+          - File dosya işleri (new, open, save, close) içindir.
+          - Edit düzenleme (copy, paste) içindir; View görünüm içindir.
+          - Tools araçlar demektir; ayarlar çoğu zaman araçların arasındadır.
+          Cevap: Tools (bazı programlarda Edit altında da bulunur; ama listede en uygun olan Tools).
+    misconceptions:
+      - slug: close_deletes
+        name: Close dosyayı siler
+        open_question: Close etiketine basınca dosyanın silineceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Kapat = yok et."
+
+            Close yalnız pencereyi ya da açık dosyayı kapatır; dosya diskte durmaya devam eder. Silmek Delete'tir.
+      - slug: download_is_upload
+        name: Download ile upload aynı yöne gider
+        open_question: Download etiketinin dosyanı senin bilgisayarından dışarı göndereceğini mi düşünüyorsun?
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de dosya taşır, fark etmez."
+
+            Download başka bir yerdeki dosyayı senin bilgisayarına getirir (indirir); upload senin dosyanı başka bir yere gönderir (yükler).
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bir pencerenin altında bu düğme var. Ne anlama gelir?
+        code: |
+          Save
+        options:
+          A: "Kaydet"
+          B: "Sil"
+          C: "Kapat"
+          D: "Ara"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — save (verb, computing): to write a file to a storage medium"
+          claim: "Save, dosyayı kaydetmektir."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Derleme çıktısında bir satırın başında bu kelime var. Satır ne bildiriyor?
+        code: |
+          WARNING
+        options:
+          A: "Bir uyarı: program yine de derlenmiş olabilir ama dikkat edilmesi gereken bir şey var"
+          B: "Bir hata: derleme kesinlikle durdu"
+          C: "İşlemin başarıyla bittiği"
+          D: "Bir dosyanın silindiği"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — warning (noun): something spoken or written that warns; GCC manual §3.8 Options to Request or Suppress Warnings — warnings report constructs that are not inherently erroneous"
+          claim: "WARNING bir uyarıdır, hata değildir."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir dosya listesinde her satırın yanında bu düğme var. Basarsan ne olur?
+        code: |
+          Delete
+        options:
+          A: "Dosya silinir"
+          B: "Dosya açılır"
+          C: "Dosya kapatılır ama yerinde kalır"
+          D: "Dosyanın bir kopyası oluşur"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — delete (verb, computing): to remove a file or data"
+          claim: "Delete dosyayı siler."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir dosyada değişiklik yaptın ve programı kapatmak istedin. Şu iki düğmeli kutu çıktı. Değişikliklerini dosyaya yazmak için hangisine basarsın?
+        code: |
+          Save   Cancel
+        options:
+          A: "Save"
+          B: "Cancel"
+          C: "İkisi de değişiklikleri dosyaya yazar"
+          D: "Hiçbiri; ikisi de değişiklikleri siler"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — save (verb, computing); cancel (verb): to stop something that was going to happen"
+          claim: "Save değişiklikleri dosyaya yazar; Cancel yalnız kapatmayı durdurur, dosyaya bir şey yazmaz."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Testler çalıştı ve son satırda bu yazdı. Kaç test başarısız oldu? Yalnız sayıyı yaz.
+        code: |
+          7 passed, 2 failed
+        answer: "2"
+        verify:
+          mode: reference
+          reference: "Wiktionary — pass (verb): to succeed in a test; fail (verb): to be unsuccessful"
+          claim: "failed başarısız olan testlerin sayısını verir: 2."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bir programın menüsünde bu satır var. Programdan çıkmak için hangisini seçersin?
+        code: |
+          Open   Save   Close   Exit
+        options:
+          A: "Exit"
+          B: "Close"
+          C: "Save"
+          D: "Open"
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — exit (verb, computing): to terminate a program; close (verb): to close a window or file"
+          claim: "Exit programdan çıkar; Close yalnız açık dosyayı ya da pencereyi kapatır."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir programın üst satırı bu. Programın hangi sürümünü (version) kullandığını öğrenmek için büyük olasılıkla hangi menüyü açarsın?
+        code: |
+          File   Edit   View   Help
+        options:
+          A: "Help"
+          B: "File"
+          C: "Edit"
+          D: "View"
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — help (noun): assistance. The rest is a convention of desktop programs, not a dictionary claim: the Help menu holds the About entry with the version"
+          claim: "Program hakkındaki bilgiler (sürüm) Help menüsündedir; File, Edit ve View dosya, düzenleme ve görünüm içindir."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir web sayfasında bu iki düğme var. Kendi bilgisayarındaki rapor dosyanı sayfaya göndermek için hangisine basarsın?
+        code: |
+          Download   Upload
+        options:
+          A: "Upload"
+          B: "Download"
+          C: "İkisi de olur"
+          D: "Hiçbiri; bunlar yalnız dosya adlarıdır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — upload (verb): to transfer data to a remote system; download (verb): to transfer data from a remote system"
+          claim: "Kendi dosyanı başka bir yere göndermek upload'dır."

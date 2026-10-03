@@ -1,0 +1,217 @@
+skill: skill.english.read_simple_terminal_error_fragments
+activity: code_reading_trace
+tasks:
+  teach: {title: "Hata satırını okumak: hangi dosya, hangi satır, ne tür sorun", minutes: 15}
+  practice: {title: "Terminal ve derleyici hatalarını okuma alıştırması", minutes: 10}
+  check: {title: "Terminal ve derleyici hatalarını okuma kontrolü", minutes: 8}
+  review: {title: "Terminal ve derleyici hatalarını okuma tekrarı", minutes: 6}
+  repair: {title: "Hata satırını yeniden bölmek: araç, yer, tür", minutes: 12}
+
+objectives:
+  - id: objective.english.read_simple_terminal_error_fragments.extract_known_signal
+    statement: >-
+      Kısa bir terminal, derleyici ya da Python hata satırından bilinen işaretleri çıkarabilmek: mesajı hangi aracın
+      yazdığını, hangi dosyadan ya da addan söz edildiğini, hangi satırda olduğunu ve sorunun türünü (No such file or
+      directory, Permission denied, command not found, is not defined, undeclared, expected ... before ...) söyleyebilmek;
+      sorunu çözmeyi değil, mesajı okumayı.
+    observable_behavior: >-
+      Gerçek bir araç tarafından üretilmiş bir hata satırında dosya adını, tanımsız adı, satır numarasını ya da sorun
+      türünü doğru seçer veya yazar.
+    acceptable_evidence_types: [reading_comprehension, hands_on_task]
+    direct_evidence_types: [reading_comprehension, hands_on_task]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C metni korundu ve gözlenebilir davranışa çevrildi; direct type reading_comprehension. Ön koşul
+      recognize_core_technical_labels'tır (6C hard). Hata mesajları sabit kalıplardır; içlerindeki kelimeler (cannot,
+      access, no, such, not, found, denied, expected, before ...) bu dersin kelime listesindedir ve dilbilgisi olarak değil
+      kalıp olarak öğretilir. Her item'daki hata satırı gerçek araç Linux'ta çalıştırılarak üretilir ve gösterilen satırın
+      çıktıda harfi harfine bulunduğu kontrol edilir (kontrol betiği). Araç sürümüne göre değişen mesajlar (coreutils
+      mkdir, git'in bağlama noktası notu, gcc'nin eksik dosya mesajı) kullanılmadı. Uzman alan bilgisi istenmez: soru
+      sorunun nedenini çözmek değil, mesajın ne söylediğidir (TECP-v0 §9).
+    checks:
+      - lang: shell
+        prints: "ls: cannot access 'yok.txt': No such file or directory"
+        code: |
+          ls yok.txt 2>&1 || true
+      - lang: shell
+        prints: "ZeroDivisionError: division by zero"
+        code: |
+          python3 -c 'print(1/0)' 2>&1 | tail -n 1
+    explanations:
+      canonical: |
+        Bir hata satırı çoğu zaman üç parçadır: KİM (hangi araç), NEREDE (hangi dosya, hangi satır), NE (sorun ne).
+
+        ls: cannot access 'yok.txt': No such file or directory
+        - ls → mesajı yazan araç.
+        - 'yok.txt' → söz edilen dosya (tırnak içindeki adlar dosya ya da isimdir; çevrilmez).
+        - No such file or directory → sorun: böyle bir dosya ya da klasör yok.
+
+        Python'un son satırı: HataTürü: açıklama
+        ZeroDivisionError: division by zero → tür ZeroDivisionError; açıklama: sıfıra bölme.
+
+        gcc: dosya:satır:sütun: error: açıklama
+        a.c:5:3: error: ... → a.c dosyasının 5. satırı, 3. sütun.
+
+        Sık görülen kalıplar (bu dersin kelimeleri):
+        - No such file or directory → böyle bir dosya ya da klasör yok (no = hiç, such = böyle, or = ya da).
+        - cannot access → erişemiyor; cannot = -emez.
+        - Permission denied → izin reddedildi: bu işlem için iznin yok (dosyaya ya da onun bulunduğu klasöre). Dosyanın var olup olmadığını söylemez.
+        - command not found → komut bulunamadı.
+        - name '...' is not defined → bu ad tanımlı değil (Python).
+        - '...' undeclared → bildirilmemiş (C): kullanmadan önce bildirmen gerekir. first use in this function → bu fonksiyonda ilk kullanım.
+        - expected X before Y → Y'den önce X bekleniyordu (çoğu zaman eksik ; ).
+        - fatal → ölümcül: işlem durdu.
+
+        - Python hata türlerinin adları (NameError, TypeError, FileNotFoundError ...) bitişik yazılmış adlardır; birer etiket gibi okunur, kelime kelime çevrilmez. Asıl açıklama iki noktadan sonra gelir.
+
+        - No module named '...' → bu adda bir modül yok (Python).
+
+        Bu dersin kelimeleri (anlamlarıyla): cannot (-emez), access (erişmek), no (hiç / yok), such (böyle), or (ya da), not (değil), found (bulundu), permission (izin), denied (reddedildi), defined (tanımlı), undeclared (bildirilmemiş), expected (beklenen / bekleniyordu), before (önce), first (ilk), use (kullanım), in (içinde), this (bu), function (fonksiyon), return (C'deki return deyimi), fatal (ölümcül), is (-dir), a (bir), errno (hata numarası: Errno 2 gibi), division (bölme), by (ile / -e), zero (sıfır), module (modül), named (adlı).
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (etiketler): error hata, warning uyarı, file dosya, directory klasör, line satır, name ad, command komut demektir; ls, cat, gcc, python, bash araç adlarıdır.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          TypeError: can only concatenate str (not "int") to str
+          - Python'un son satırı: tür TypeError (tür hatası).
+          - Açıklamanın tamamını bilmen gerekmez: tür hatası, iki farklı türdeki değerin birlikte kullanılamadığını söyler.
+          Cevap: sorun bir tür hatasıdır (TypeError); ad ya da dosya sorunu değildir.
+    misconceptions:
+      - slug: quoted_name_is_english
+        name: Tırnak içindeki ad da çevrilmesi gereken bir kelimedir
+        open_question: '"cannot access ''notes.txt''" mesajında tırnak içindeki notes.txt''yi bir İngilizce kelime olarak çevirmen gerektiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Her kelimeyi anlamalıyım."
+
+            Tırnak içindeki şey (dosya adı, değişken adı) bir addır; çevrilmez, olduğu gibi okunur. Mesajın İngilizce kısmı onun hakkında ne söylendiğidir.
+      - slug: permission_means_missing
+        name: Permission denied dosyanın olmadığını söyler
+        open_question: '"Permission denied" mesajının dosyanın olmadığı anlamına geldiğini mi düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Açılamıyor, demek ki yok."
+
+            Permission denied dosyanın olmadığını söylemez; bu işlem için iznin olmadığını söyler. Dosya yoksa ve onun klasörüne erişebiliyorsan mesaj çoğu zaman No such file or directory olur.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Terminal bu satırı yazdı. Hangi dosya bulunamadı? Yalnız dosyanın adını yaz.
+        code: |
+          ls: cannot access 'notes.txt': No such file or directory
+        answer: "notes.txt"
+        verify:
+          mode: shell
+          script: |
+            ls notes.txt 2>&1 | grep -qxF "ls: cannot access 'notes.txt': No such file or directory" && echo notes.txt
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Terminal bu satırı yazdı. Sorun nedir?
+        code: |
+          cat: report.txt: No such file or directory
+        options:
+          A: "report.txt adında bir dosya yok."
+          B: "report.txt var ama okuma iznin yok."
+          C: "report.txt boş."
+          D: "cat diye bir komut yok."
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            cat report.txt 2>&1 | grep -qxF "cat: report.txt: No such file or directory" && echo dosya_yok
+          outcomes: {A: "dosya_yok", B: "izin_yok", C: "bos", D: "komut_yok"}
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Python bu son satırı yazdı. Hangi ad tanımlı değil? Yalnız adı yaz.
+        code: |
+          NameError: name 'total' is not defined
+        answer: "total"
+        verify:
+          mode: shell
+          script: |
+            python3 -c 'print(total)' 2>&1 | tail -n 1 | grep -qxF "NameError: name 'total' is not defined" && echo total
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          gcc bu satırı yazdı. Hata kaçıncı satırda? Yalnız sayıyı yaz.
+        code: |
+          a.c:2:12: error: ‘count’ undeclared (first use in this function)
+        answer: "2"
+        verify:
+          mode: shell
+          script: |
+            printf 'int main(void) {\n    return count;\n}\n' > a.c
+            gcc -c a.c 2>&1 | grep -qxF "a.c:2:12: error: ‘count’ undeclared (first use in this function)" && echo 2
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Python bu son satırı yazdı. Program hangi dosyayı bulamadı? Yalnız dosyanın adını yaz.
+        code: |
+          FileNotFoundError: [Errno 2] No such file or directory: 'data.txt'
+        answer: "data.txt"
+        verify:
+          mode: shell
+          script: |
+            python3 -c 'open("data.txt")' 2>&1 | tail -n 1 | grep -qxF "FileNotFoundError: [Errno 2] No such file or directory: 'data.txt'" && echo data.txt
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bir Python programı çalışırken durdu ve son satır bu oldu. Hangi modül bulunamadı? Yalnız modülün adını yaz.
+        code: |
+          ModuleNotFoundError: No module named 'numpyy'
+        answer: "numpyy"
+        verify:
+          mode: shell
+          script: |
+            python3 -c 'import numpyy' 2>&1 | tail -n 1 | grep -qxF "ModuleNotFoundError: No module named 'numpyy'" && echo numpyy
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir Python programı logs adlı şeyi bir dosya gibi açmaya çalıştı ve son satır bu oldu. Sorun nedir?
+        code: |
+          IsADirectoryError: [Errno 21] Is a directory: 'logs'
+        options:
+          A: "logs bir klasör; program onu bir dosya gibi açmaya çalıştı."
+          B: "logs diye bir şey yok."
+          C: "logs'u açma iznin yok."
+          D: "logs boş bir dosya."
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            python3 -c 'import os; os.mkdir("logs"); open("logs")' 2>&1 | tail -n 1 | grep -qxF "IsADirectoryError: [Errno 21] Is a directory: 'logs'" && [ -d logs ] && echo klasor
+          outcomes: {A: "klasor", B: "yok", C: "izin_yok", D: "bos_dosya"}
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          gcc bu satırı yazdı. Derleyici ne söylüyor?
+        code: |
+          b.c:3:5: error: expected ‘,’ or ‘;’ before ‘return’
+        options:
+          A: "b.c'nin 3. satırında, return'den önce bir , ya da ; bekleniyordu."
+          B: "b.c'nin 5. satırında return eksik."
+          C: "return kelimesi 3. satırda tanımlı değil."
+          D: "b.c diye bir dosya yok."
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          script: |
+            printf 'int main(void) {\n    int x = 1\n    return x;\n}\n' > b.c
+            gcc -c b.c 2>&1 | grep -qxF "b.c:3:5: error: expected ‘,’ or ‘;’ before ‘return’" && echo once_noktali_virgul
+          outcomes: {A: "once_noktali_virgul", B: "satir5", C: "tanimsiz", D: "dosya_yok"}

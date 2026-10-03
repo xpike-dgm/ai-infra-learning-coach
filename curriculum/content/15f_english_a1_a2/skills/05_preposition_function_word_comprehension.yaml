@@ -1,0 +1,218 @@
+skill: skill.english.preposition_function_word_comprehension
+activity: recognition_selection
+tasks:
+  teach: {title: "Küçük ilişki kelimeleri: in, at, to, from, with, after — nerede, nereye, nereden, ne zaman", minutes: 15}
+  practice: {title: "İlişki kelimelerini anlama alıştırması", minutes: 8}
+  check: {title: "İlişki kelimelerini anlama kontrolü", minutes: 6}
+  review: {title: "İlişki kelimelerini anlama tekrarı", minutes: 5}
+  repair: {title: "İlişkiyi yeniden kurmak: yer, yön, kaynak, sıra", minutes: 10}
+
+objectives:
+  - id: objective.english.preposition_function_word_comprehension.demonstrate_capability
+    statement: >-
+      Kısa teknik cümlelerde ilişki kelimelerinin (preposition) anlamını çözebilmek: in (içinde), at (bir noktada: at line
+      12), to (-e / -a: yön), from (-den / -dan: kaynak), into (-in içine), with (ile / birlikte), for (için), of (-in),
+      after ve before (sonra / önce); bir şeyin nerede olduğunu, nereden nereye gittiğini ve ne zaman olduğunu söyleyebilmek.
+    observable_behavior: >-
+      Kısa bir İngilizce cümlede yeri, yönü, kaynağı ya da sırayı gösteren kelimeyi doğru yorumlar; örneğin bir hatanın
+      hangi satırda olduğunu, bir dosyanın nereden nereye gittiğini, bir adımın ötekinden önce mi sonra mı geldiğini seçer.
+    acceptable_evidence_types: [reading_comprehension, structured_response]
+    direct_evidence_types: [reading_comprehension, structured_response]
+    required_direct_type: reading_comprehension
+    reconciliation: >-
+      6C'de Objective'in eylemi şablon adıyla kaldı (demonstrate_capability); kimlik korundu, gözlenebilir davranış
+      adlandırıldı. Ön koşul be_and_simple_present_comprehension'dır (6C hard); bu yüzden cümleler is/are ve geniş zamanla
+      kurulur, emir cümlesi kullanılmaz (imperative bu Skill'in ön koşulu değildir). ENGLISH_FOUNDATION_RULES'un istediği
+      gibi to'nun yön anlamı burada öğretilir; "to + fiil" (to run) ayrı bir işlevdir ve bu derste yoktur. Anahtarlar
+      İngilizce ilişki kelimelerinin yer, yön ve zaman ilişkisi kurduğu bilgisine dayanır (Wikipedia — English
+      prepositions).
+    explanations:
+      canonical: |
+        İlişki kelimeleri (preposition) iki şey arasındaki ilişkiyi söyler. Türkçede bu iş çoğu zaman eklerle yapılır (-de, -e, -den); İngilizcede ayrı, küçük kelimelerle ve ismin ÖNÜNDE.
+
+        Yer:
+        - in → içinde: The file is in the folder. → Dosya klasörün içinde.
+        - at → bir noktada: The error is at line 7. → Hata 7. satırda.
+        - on → üstünde / -de (bir yüzeyde, bir sayfada): The name is on the page.
+        - inside → içinde (in ile yakın); under → altında; between → arasında.
+
+        Yön ve kaynak:
+        - to → -e / -a (nereye): The tool copies the file to the folder.
+        - from → -den / -dan (nereden): The tool takes the value from the input.
+        - into → -in içine: The file moves into the folder.
+        - out → dışarı.
+
+        Diğer:
+        - with → ile / birlikte; for → için; of → -in (the name of the file → dosyanın adı); by → tarafından / ile.
+        - after → sonra; before → önce: The update starts after the download. → Güncelleme indirmeden sonra başlar.
+
+        Okurken: ilişki kelimesini gördüğünde hemen arkasındaki isme bak — ilişki o isimle kurulur: from the file → dosyadan.
+
+        Bu dersin kelimeleri: in, on, at, to, from, into, with, for, of, by, after, before, inside, under, between, out.
+      prerequisite_refresh:
+        level: H1
+        text: |
+          Kısa bir hatırlatma (is / geniş zaman): The file is empty → dosya boş; The program opens the file → program dosyayı açar. is/are durumu, -s'li fiil bir şeyin yaptığı işi söyler.
+      worked_example:
+        level: H3
+        text: |
+          Çözülmüş bir örnek.
+
+          The program copies the file from the `old` folder into the `new` folder.
+          - from the old folder → kaynak: eski klasör.
+          - into the new folder → hedef: yeni klasörün içine.
+          Cevap: dosya eski klasörden alınıp yeni klasörün içine kopyalanır.
+    misconceptions:
+      - slug: to_from_swapped
+        name: to ile from aynı yönü gösterir
+        open_question: '"from the file" ifadesinin dosyaya doğru bir yönü anlattığını mı düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "İkisi de dosyayla ilgili."
+
+            from kaynağı söyler (-den: dosyadan), to hedefi söyler (-e: dosyaya). Bir şey from X to Y gider: X'ten Y'ye.
+      - slug: preposition_after_noun
+        name: İlişki kelimesi önündeki ismi anlatır
+        open_question: '"at line 7" ifadesinde at''in önündeki kelimeyle ilgili olduğunu mu düşünüyorsun?'
+        contrast:
+          level: H2
+          text: |
+            Sık yapılan bir karışıklık: "Türkçede ek ismin sonuna gelir, burada da öyle olmalı."
+
+            İngilizce ilişki kelimesi ismin ÖNÜNDE durur ve arkasındaki isimle ilişki kurar: at line 7 → 7. satırda.
+    items:
+      - slug: f01
+        difficulty: basic
+        independence: guided
+        in_lesson: true
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The file is in the folder.
+        options:
+          A: "Dosya klasörün içinde."
+          B: "Dosya klasöre gidiyor."
+          C: "Dosya klasörden geliyor."
+          D: "Dosya klasörün altında."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (in: location)"
+          claim: "in the folder: klasörün içinde."
+      - slug: f02
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir derleyicinin mesajı bu. Hata kaçıncı satırda? Yalnız sayıyı yaz.
+        code: |
+          The error is at line 12.
+        answer: "12"
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (at: location at a point)"
+          claim: "at line 12: 12. satırda."
+      - slug: f03
+        difficulty: basic
+        independence: guided
+        prompt: |
+          Bir programın belgesinde bu cümle var. Program adı nereden okur?
+        code: |
+          The program reads the name from the file.
+        options:
+          A: "Dosyadan"
+          B: "Dosyaya"
+          C: "Dosyanın içine"
+          D: "Klavyeden"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (from: source)"
+          claim: "from the file: dosyadan."
+      - slug: f04
+        difficulty: authentic_application
+        prompt: |
+          Bir aracın belgesinde bu cümle var. Hatalar nereye yazılır?
+        code: |
+          The tool writes all errors to the output file.
+        options:
+          A: "Çıktı dosyasına"
+          B: "Çıktı dosyasından"
+          C: "Ekrana"
+          D: "Girdi dosyasına"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (to: goal/direction)"
+          claim: "to the output file: çıktı dosyasına."
+      - slug: f05
+        difficulty: authentic_application
+        prompt: |
+          Bir komutun yardım metninde bu cümle var. Ne söylüyor?
+        code: |
+          This option works with the `-l` option.
+        options:
+          A: "Bu seçenek -l seçeneğiyle birlikte çalışır."
+          B: "Bu seçenek -l seçeneğinin yerine çalışır."
+          C: "Bu seçenek -l seçeneğinden önce çalışır."
+          D: "Bu seçenek -l olmadan çalışır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (with: accompaniment)"
+          claim: "works with the -l option: -l seçeneğiyle birlikte çalışır."
+      - slug: f06
+        difficulty: authentic_application
+        prompt: |
+          Bu cümleye göre hangi klasör hangisinin içinde?
+        code: |
+          The `test` folder is inside the `app` folder.
+        options:
+          A: "test klasörü app klasörünün içinde."
+          B: "app klasörü test klasörünün içinde."
+          C: "İki klasör yan yana."
+          D: "test klasörü app klasörünün dışında."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (inside: location within)"
+          claim: "test folder is inside the app folder: test, app'in içindedir."
+      - slug: f07
+        difficulty: transfer_integration
+        prompt: |
+          Bir yedekleme aracının belgesinde bu cümle var. Dosya en sonunda hangi klasörde olur?
+        code: |
+          The tool moves the file from the `a` folder to the `b` folder.
+        options:
+          A: "b klasöründe"
+          B: "a klasöründe"
+          C: "İkisinde de"
+          D: "Hiçbirinde; dosya silinir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (from: source, to: goal); Wiktionary — move (verb): to change place"
+          claim: "from a to b: a'dan b'ye; taşınan dosya b'de olur."
+      - slug: f08
+        difficulty: transfer_integration
+        prompt: |
+          Bir derleme sisteminin belgesinde bu cümle var. Araç ne zaman çalışır?
+        code: |
+          The tool runs after the build and before the tests.
+        options:
+          A: "Derlemeden sonra, testlerden önce"
+          B: "Derlemeden önce, testlerden sonra"
+          C: "Derlemeyle aynı anda"
+          D: "Testlerden sonra"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (after/before: time)"
+          claim: "after the build and before the tests: derlemeden sonra, testlerden önce."

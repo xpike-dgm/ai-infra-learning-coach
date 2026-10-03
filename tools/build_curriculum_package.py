@@ -473,6 +473,24 @@ def verify_suite(suite: dict, item: dict, code: dict = PYTHON_CODE) -> tuple[boo
 
 # ------------------------------------------------------------------------------------------------ notation
 
+def english_words(text: str) -> set[str]:
+    """15F: the English words a learner has to read, lower-cased. A literal is not vocabulary: a `code literal` in
+    backticks, a 'quoted' or "quoted" name (as tools quote file names and identifiers), any token with a character that
+    is not a letter (notes.txt, -h, 404, main.c), and a mixed-case identifier such as NameError (a capital after a small
+    letter). A capitalised (Save) or all-capital (ERROR) label is a word. An apostrophe inside a word (don't) belongs to
+    the word."""
+    text = re.sub(r"`[^`\n]*`", " ", text)
+    words: set[str] = set()
+    for raw in text.split():
+        bare = raw.rstrip(".,;:!?)]}")
+        quoted = raw[:1] in "'\"" or bare[-1:] in "'\""
+        token = raw.strip("()[]{}<>,.;:!?\"'")
+        if quoted or not re.fullmatch(r"[A-Za-z]+(?:'[A-Za-z]+)?", token) or re.search(r"[a-z][A-Z]", token):
+            continue
+        words.add(token.lower())
+    return words
+
+
 def constructs_used(code: str, notation: dict) -> set[str]:
     # What is inside a string literal is text, not code: print("bool('False')") uses no boolean logic (15B).
     code = re.sub(r'"[^"\n]*"', '""', code)
@@ -582,9 +600,21 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
 
     introduced: dict[str, list[str]] = {c: list(spec["introduced_by"]) for c, spec in notation["constructs"].items()}
 
+    # 15F (`D-119`): an English package names the words each lesson introduces. An English item may show only words its
+    # own Skill, a hard prerequisite of it or a declared Skill has taught (EED-v0: unknown vocabulary is never a hidden
+    # prerequisite); a word no lesson introduces is refused outright. Earlier packages have no lexicon.
+    lexicon: dict[str, set[str]] = {}
+    for by, words in (notation.get("lexicon") or {}).items():
+        for w in words:
+            lexicon.setdefault(str(w).lower(), set()).add(by)
+
+    def sources_of(skill: str, declared: set[str]) -> set[str]:
+        # The Skill itself, its hard prerequisites, and what the item declares it requires (with their prerequisites).
+        return {skill} | closure(skill) | declared | {p for d in declared for p in closure(d)}
+
     def teachable(skill: str, declared: set[str]) -> set[str]:
         # The constructs taught by the Skill itself, its hard prerequisites, or what the item declares it requires.
-        sources = {skill} | closure(skill) | declared | {p for d in declared for p in closure(d)}
+        sources = sources_of(skill, declared)
         return {c for c, by in introduced.items() if sources & set(by)}
 
     out: list[str] = ["\n".join([
@@ -725,11 +755,17 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 at_computer = is_code or bool(it.get("hands_on"))
                 # Code may stand in the code block or in the options (a choice between definitions); both are read. For a
                 # code item the reference solution is read too: it is what the learner has to be able to write.
-                used = constructs_used((code or "") + "\n" + "\n".join(str(t) for t in (it.get("options") or {}).values() if it.get("scan_options", True))
-                                       + "\n" + (it.get("reference") or ""), notation)
+                scanned = ((code or "") + "\n" + "\n".join(str(t) for t in (it.get("options") or {}).values() if it.get("scan_options", True))
+                           + "\n" + (it.get("reference") or ""))
+                used = constructs_used(scanned, notation)
                 declared = set(it.get("required_skills", []))
                 reachable = teachable(sid, declared)
                 hidden = sorted(used - reachable)
+                if lexicon:
+                    words = english_words(scanned)
+                    allowed = sources_of(sid, declared)
+                    hidden += sorted(f"unknown_word:{w}" for w in words if w not in lexicon)
+                    hidden += sorted(f"word:{w}" for w in words if w in lexicon and not (lexicon[w] & allowed))
                 if is_code:
                     suite = {
                         "format": "code_test_suite/1", "suite": f"codetest.{base}.{it['slug']}@v1", "item": f"{iid}@v1",
