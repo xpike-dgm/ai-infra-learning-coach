@@ -1,0 +1,186 @@
+skill: skill.c.expression_evaluation
+objectives:
+  - id: objective.c.expression_evaluation.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d\n", 10 / 4 * 4);
+              return 0;
+          }
+        answer: "8"
+        verify: {mode: c_stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d\n", 2 + 3 * 4 - 1);
+              return 0;
+          }
+        answer: "13"
+        verify: {mode: c_stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 10;
+              a += 5;
+              a *= 2;
+              printf("%d\n", a);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        answer: "30"
+        verify: {mode: c_stdout}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d\n", -9 / 4);
+              return 0;
+          }
+        options:
+          A: "-2"
+          B: "-3"
+          C: "-2.25"
+          D: "2"
+        scan_options: false
+        answer: A
+        misconception_options: {B: int_division_floors}
+        verify: {mode: c_stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int i = 3;
+              int a = i++;
+              int b = ++i;
+              printf("%d %d %d\n", a, b, i);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "3 5 5"
+          B: "4 5 5"
+          C: "4 4 4"
+          D: "3 4 5"
+        scan_options: false
+        answer: A
+        misconception_options: {B: postfix_same_as_prefix, C: postfix_same_as_prefix}
+        verify: {mode: c_stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              printf("%d %d %d\n", 5 > 3, 2 == 3, 7 != 7 || 1);
+              return 0;
+          }
+        answer: "1 0 1"
+        verify: {mode: c_stdout}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int toplam = 7;
+              int adet = 2;
+              printf("%.1f %.1f\n", (double) (toplam / adet), (double) toplam / adet);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "3.0 3.5"
+          B: "3.5 3.5"
+          C: "3.0 3.0"
+          D: "3.5 3.0"
+        scan_options: false
+        answer: A
+        misconception_options: {B: average_with_ints}
+        verify: {mode: c_stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu programda ikinci ifade, x sıfır olduğu için 10 / x hesaplanırsa çalışma zamanı hatası verirdi. Program çalışınca ne olur?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0;
+              int y = (x != 0) && (10 / x > 1);
+              printf("%d\n", y);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        options:
+          A: "Ekrana 0 yazılır; && solu 0 olduğu için sağı hiç hesaplanmaz."
+          B: "Sıfıra bölme yüzünden program çalışma zamanı hatasıyla durur."
+          C: "Ekrana 1 yazılır."
+          D: "Program derlenmez; bir ifadede sıfıra bölme olamaz."
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stdout
+          outcomes: {A: "0", B: "", C: "1", D: "derlenmez"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 5;
+              int b = 3;
+              int c = a++ * 2 + --b;
+              printf("%d %d %d\n", c, a, b);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        answer: "12 6 2"
+        verify: {mode: c_stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int k = 7;
+              k %= 3;
+              k -= 5;
+              k *= -2;
+              printf("%d\n", k);
+              return 0;
+          }
+        required_skills: [skill.c.declaration_type_model]
+        answer: "8"
+        verify: {mode: c_stdout}

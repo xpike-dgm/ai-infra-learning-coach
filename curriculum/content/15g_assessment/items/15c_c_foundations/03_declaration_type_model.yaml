@@ -1,0 +1,370 @@
+skill: skill.c.declaration_type_model
+objectives:
+  - id: objective.c.declaration_type_model.write_basic_declarations
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: adet adında bir int değişkene 12, fiyat adında bir double değişkene 3.75 değer versin ve printf ile tek satırda 12 adet 3.75 TL yazdırsın (fiyat iki ondalık basamakla).
+        suite:
+          - {id: prints_values, expected_stdout: "12 adet 3.75 TL\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int adet = 12;
+              double fiyat = 3.75;
+              printf("%d adet %.2f TL\n", adet, fiyat);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int adet = 12;
+                double fiyat = 3.75;
+                printf("%d adet %f TL\n", adet, fiyat);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int adet = 12;
+                int fiyat = 3.75;
+                printf("%d adet %d TL\n", adet, fiyat);
+                return 0;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: stdbool.h'yi ekleyip hazir adında bir bool değişkene false değer versin ve değerini %d ile yazdırsın. Ekranda 0 görünmeli.
+        suite:
+          - {id: false_is_zero, expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+          #include <stdbool.h>
+
+          int main(void) {
+              bool hazir = false;
+              printf("%d\n", hazir);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+            #include <stdbool.h>
+
+            int main(void) {
+                bool hazir = true;
+                printf("%d\n", hazir);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                printf("false\n");
+                return 0;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: rakam adında bir char değişkene '7' karakterini versin; bu karakterin temsil ettiği sayıyı (rakam - '0') %d ile yazdırsın. Ekranda 7 görünmeli.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: digit_value, expected_stdout: "7\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char rakam = '7';
+              printf("%d\n", rakam - '0');
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char rakam = '7';
+                printf("%d\n", rakam);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char rakam = '7';
+                printf("%c\n", rakam - '0');
+                return 0;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: sicaklik adında bir double değişkene -3.7 değer versin, bunu tam adında bir int değişkene açık dönüşümle (cast) atasın ve tam'ı yazdırsın. Dönüşümün eksi sayılarda ne yaptığını düşün.
+        suite:
+          - {id: toward_zero, expected_stdout: "-3\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              double sicaklik = -3.7;
+              int tam = (int) sicaklik;
+              printf("%d\n", tam);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double sicaklik = -3.7;
+                printf("-4\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double sicaklik = -3.7;
+                printf("%.0f\n", sicaklik);
+                return 0;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: nufus adında, 3000000000 (üç milyar) değerini tutabilecek bir tam sayı değişkeni bildirsin (int bunun için yetmez; long long kullan) ve değerini yazdırsın. Ekranda 3000000000 görünmeli.
+        suite:
+          - {id: big_value, expected_stdout: "3000000000\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              long long nufus = 3000000000LL;
+              printf("%lld\n", nufus);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int nufus = 2147483647;
+                printf("%d\n", nufus);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                long long nufus = 300000000LL;
+                printf("%lld\n", nufus);
+                return 0;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: a adında bir int değişkene 7 versin, b adında bir double değişkene a'yı atasın ve b'yi üç ondalık basamakla yazdırsın. Ekranda 7.000 görünmeli.
+        suite:
+          - {id: widened, expected_stdout: "7.000\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 7;
+              double b = a;
+              printf("%.3f\n", b);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 7;
+                double b = a;
+                printf("%f\n", b);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 7;
+                int b = a;
+                printf("%d\n", b);
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: kalan adında bir int değişkene 10 versin; sonra kalan = kalan - 3.5; satırını çalıştırıp kalan'ı yazdırsın. Sonuç bir int'e atandığında ondalık kısmın ne olduğunu düşün.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: truncated, expected_stdout: "6\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int kalan = 10;
+              kalan = kalan - 3.5;
+              printf("%d\n", kalan);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double kalan = 10;
+                kalan = kalan - 3.5;
+                printf("%.1f\n", kalan);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int kalan = 10;
+                kalan = kalan - 3;
+                printf("%d\n", kalan);
+                return 0;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: kucuk adında bir char değişkene 'k' versin; büyük harf karşılığını kucuk - 'a' + 'A' ile hesaplayıp buyuk adında bir char değişkene atasın ve tek satırda k K yazdırsın (%c ile).
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: uppercase, expected_stdout: "k K\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              char kucuk = 'k';
+              char buyuk = kucuk - 'a' + 'A';
+              printf("%c %c\n", kucuk, buyuk);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char kucuk = 'k';
+                char buyuk = kucuk - 'a' + 'A';
+                printf("%c %d\n", kucuk, buyuk);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                char kucuk = 'k';
+                char buyuk = kucuk + 'A';
+                printf("%c %c\n", kucuk, buyuk);
+                return 0;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: stdbool.h'yi ekleyip buyuk adında bir bool değişkene 5 > 3 karşılaştırmasının sonucunu versin; tek satırda buyuk'u ve !buyuk'u %d ile yazdırsın. Ekranda 1 0 görünmeli.
+        required_skills: [skill.c.expression_evaluation]
+        suite:
+          - {id: bool_values, expected_stdout: "1 0\n"}
+        reference: |
+          #include <stdio.h>
+          #include <stdbool.h>
+
+          int main(void) {
+              bool buyuk = 5 > 3;
+              printf("%d %d\n", buyuk, !buyuk);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+            #include <stdbool.h>
+
+            int main(void) {
+                bool buyuk = 5 < 3;
+                printf("%d %d\n", buyuk, !buyuk);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+            #include <stdbool.h>
+
+            int main(void) {
+                bool buyuk = 5 > 3;
+                printf("%d %d\n", buyuk, buyuk);
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: pi adında bir double değişkene 3.14159 versin ve tek satırda, aralarında | karakteriyle, önce varsayılan %f ile, sonra %.0f ile, sonra %.3f ile yazdırsın. Her biçimin kaç basamak gösterdiğini ve yuvarlayıp yuvarlamadığını önce tahmin et.
+        suite:
+          - {id: three_formats, expected_stdout: "3.141590|3|3.142\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              double pi = 3.14159;
+              printf("%f|%.0f|%.3f\n", pi, pi, pi);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double pi = 3.14159;
+                printf("%f|%.0f|%.3f\n", pi, pi, (int) pi);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                double pi = 3.14159;
+                printf("%.5f|%.1f|%.2f\n", pi, pi, pi);
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: SAYFA adında değiştirilemeyen (const) bir int sabit 250 olsun; okunan adında bir int 3 olsun. Toplam sayfa sayısını SAYFA * okunan ile hesaplayıp tek satırda Toplam: 750 yazdırsın.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: total, expected_stdout: "Toplam: 750\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              const int SAYFA = 250;
+              int okunan = 3;
+              printf("Toplam: %d\n", SAYFA * okunan);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                const int SAYFA = 250;
+                int okunan = 3;
+                printf("Toplam: %d\n", SAYFA + okunan);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                const int SAYFA = 250;
+                int okunan = 3;
+                printf("Toplam: %d\n", SAYFA);
+                return 0;
+            }
