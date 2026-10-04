@@ -1,0 +1,257 @@
+skill: skill.memory.storage_lifetime_intuition
+objectives:
+  - id: objective.memory.storage_lifetime_intuition.identify_simple_lifetime_boundary
+    items:
+      - slug: g01
+        difficulty: authentic_application
+        prompt: |
+          Bu programda iki ayrı fonksiyonun ikisi de n adında bir static yerel değişken kullanıyor. Program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+          int a(void) {
+              static int n = 0;
+              n++;
+              return n;
+          }
+          int b(void) {
+              static int n = 10;
+              n++;
+              return n;
+          }
+          int main(void) {
+              a();
+              a();
+              b();
+              int x = a();
+              int y = b();
+              printf("%d %d\n", x, y);
+              return 0;
+          }
+        required_skills: [skill.c.expression_evaluation]
+        options:
+          A: "3 12"
+          B: "1 11"
+          C: "4 4"
+          D: "3 3"
+        scan_options: false
+        answer: A
+        misconception_options: {B: static_resets_each_call}
+        verify: {mode: c_stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu programdaki son satırdan önceki *p = 4; yazması için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+          int main(void) {
+              int *p = malloc(sizeof(int));
+              *p = 3;
+              printf("%d\n", *p);
+              free(p);
+              *p = 4;
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçersizdir: free edilmiş belleğe yazar"
+          B: "Geçerlidir; p hâlâ aynı adresi tuttuğu için oraya yazmak sorun değildir"
+          C: "Geçerlidir; free p'yi NULL yaptığı için yazma hiçbir şey yapmaz"
+          D: "Geçersizdir: p, main'in yereli olduğu için yok olmuştur"
+        scan_options: false
+        answer: A
+        misconception_options: {C: free_clears_pointer}
+        verify:
+          mode: c_sanitize
+          outcomes: {A: heap-use-after-free, B: ok, C: ok-null, D: stack-use-after-return}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu programdaki bellek kullanımı için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+          int main(void) {
+              int *p = malloc(sizeof(int));
+              *p = 12;
+              printf("%d\n", *p + 1);
+              free(p);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçerlidir: bellek yalnız free edilmeden önce kullanılıyor; ekranda 13 görünür"
+          B: "Geçersizdir: malloc ile alınan bellek printf'ten önce kendiliğinden geri verilir"
+          C: "Geçersizdir: free edilmiş belleği okur"
+          D: "Program derlenmez"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_sanitize
+          prints: "13"
+          outcomes: {A: ok, B: stack-use-after-return, C: heap-use-after-free, D: compile}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu programda fonksiyon, kendi parametresinin adresini döndürüyor. main'deki *s okuması için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          int *iki_kati(int x) {
+              x = x * 2;
+              int *p = &x;
+              return p;
+          }
+          int main(void) {
+              int *s = iki_kati(21);
+              printf("%d\n", *s);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference]
+        options:
+          A: "Geçersizdir: parametre de bir yerel değişkendir ve iki_kati dönünce yok olur"
+          B: "Geçerlidir; parametre çağıranın değişkeni olduğu için yaşamaya devam eder ve 42 yazılır"
+          C: "Geçersizdir: okunan bellek free edilmiştir"
+          D: "Program derlenmez"
+        scan_options: false
+        answer: A
+        misconception_options: {B: local_outlives_function}
+        verify:
+          mode: c_sanitize
+          outcomes: {A: stack-use-after-return, B: ok, C: heap-use-after-free, D: compile}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          #include <stdio.h>
+          int simdiye_kadar_en_buyuk(int x) {
+              static int en = -1000;
+              if (x > en) {
+                  en = x;
+              }
+              return en;
+          }
+          int main(void) {
+              int a = simdiye_kadar_en_buyuk(3);
+              int b = simdiye_kadar_en_buyuk(8);
+              int c = simdiye_kadar_en_buyuk(5);
+              printf("%d %d %d\n", a, b, c);
+              return 0;
+          }
+        required_skills: [skill.c.conditionals]
+        answer: "3 8 8"
+        verify: {mode: c_stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu programdaki bellek kullanımı için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+          int *sayac_olustur(void) {
+              int *p = malloc(sizeof(int));
+              *p = 0;
+              return p;
+          }
+          int main(void) {
+              int *s = sayac_olustur();
+              *s += 5;
+              *s += 2;
+              printf("%d\n", *s);
+              free(s);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference, skill.c.expression_evaluation]
+        options:
+          A: "Geçerlidir: malloc ile alınan yer, sayac_olustur dönünce değil free edilince geri verilir; ekranda 7 görünür"
+          B: "Geçersizdir: p yerel olduğu için gösterdiği bellek de sayac_olustur dönünce yok olur"
+          C: "Geçersizdir: bellek okunmadan önce free edilmiştir"
+          D: "Geçerlidir ama ekranda 0 görünür"
+        scan_options: false
+        answer: A
+        misconception_options: {B: local_outlives_function}
+        verify:
+          mode: c_sanitize
+          prints: "7"
+          outcomes: {A: ok, B: stack-use-after-return, C: heap-use-after-free, D: ok-zero}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu programda belleği başka bir fonksiyon geri veriyor. main'deki son printf okuması için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          #include <stdlib.h>
+          void bitir(int *p) {
+              free(p);
+          }
+          int main(void) {
+              int *x = malloc(sizeof(int));
+              *x = 1;
+              bitir(x);
+              printf("%d\n", *x);
+              return 0;
+          }
+        required_skills: [skill.c.pointer_dereference, skill.c.functions_basic]
+        options:
+          A: "Geçersizdir: bellek bitir içinde free edildi; x hâlâ o adresi taşısa da orası artık geçerli değildir"
+          B: "Geçerlidir; free yalnız bitir'in kendi kopyası p'yi etkiler, main'deki x'in gösterdiği bellek yaşamaya devam eder"
+          C: "Geçerlidir; free belleği sıfırladığı için ekranda 0 görünür"
+          D: "Geçersizdir: x, main'in yereli olduğu için yok olmuştur"
+        scan_options: false
+        answer: A
+        misconception_options: {C: free_clears_pointer}
+        verify:
+          mode: c_sanitize
+          outcomes: {A: heap-use-after-free, B: ok, C: ok-zero, D: stack-use-after-return}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu programda toplam fonksiyonu yerel bir değişkenin adresini değil değerini döndürüyor. Program için hangisi doğrudur?
+        code: |
+          #include <stdio.h>
+          int toplam(int a, int b) {
+              int t = a + b;
+              return t;
+          }
+          int main(void) {
+              int s = toplam(2, 3);
+              printf("%d\n", s);
+              return 0;
+          }
+        required_skills: [skill.c.functions_basic]
+        options:
+          A: "Geçerlidir: t yok olmadan önce değeri s'ye kopyalanır; ekranda 5 görünür"
+          B: "Geçersizdir: t, toplam dönünce yok olduğu için s de geçersiz olur"
+          C: "Geçersizdir: s free edilmemiştir"
+          D: "Program derlenmez"
+        scan_options: false
+        answer: A
+        misconception_options: {B: local_outlives_function}
+        verify:
+          mode: c_sanitize
+          prints: "5"
+          outcomes: {A: ok, B: stack-use-after-return, C: heap-use-after-free, D: compile}
+      - slug: g09
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Biri kaç kez çağrıldığını sayması gereken bir fonksiyon yazmış ama fonksiyon her seferinde 1 döndürüyor:
+          int cagri_sayisi(void) {
+              int sayac = 0;
+              sayac++;
+              return sayac;
+          }
+          Kendi cümlelerinle anlat: neden hep 1 döndürüyor? sayac'ın ömrü ne zaman başlıyor ve bitiyor? Fonksiyonu düzeltmenin bir yolunu yaz ve o yolun ömrü nasıl değiştirdiğini açıkla. (3–5 cümle yeterli.)
+        required_skills: [skill.c.functions_basic]
+        answer: "-"
+        rubric:
+          - id: fresh_each_call
+            statement: sayac'ın otomatik (yerel) bir değişken olduğunu, her çağrıda yeniden oluşup 0 ile başladığını söyler.
+          - id: lifetime_bounds
+            statement: sayac'ın ömrünün çağrıyla başlayıp fonksiyon dönünce bittiğini belirtir.
+          - id: static_fix
+            statement: Çalışan bir düzeltme verir — örneğin static int sayac = 0; yazmak — ve bunun değişkeni program boyunca yaşattığını, ilk değerin yalnız bir kez verildiğini söyler.
+          - id: no_false_claim
+            statement: Yanlış bir iddiada bulunmaz (örneğin static değişkenin her çağrıda sıfırlandığını ya da yerel değişkenin değerini koruduğunu söylemez).
+        verify:
+          mode: rubric
