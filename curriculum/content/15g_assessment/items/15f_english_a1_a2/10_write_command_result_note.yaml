@@ -1,0 +1,83 @@
+skill: skill.english.write_command_result_note
+objectives:
+  - id: objective.english.write_command_result_note.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          İki test çalıştı ve ikisi de geçti. Notu tamamla: boşluğa tek bir fiil yaz.
+        code: |
+          The two tests ___ .
+        answer: "pass"
+        also_accept: ["passed"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present: no -s with a plural subject; Wiktionary — pass (verb): to succeed"
+          claim: "Çoğul özne (the two tests) ile fiil -s almaz: pass; geçmiş zaman passed da doğrudur."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          `whoami` komutu ekranda tek bir ad (kullanıcı adını) gösteriyor. Notu tamamla: boşluğa tek bir fiil yaz.
+        code: |
+          `whoami` ___ one name.
+        answer: "shows"
+        also_accept: ["prints"]
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (third-person singular -s)"
+          claim: "Tek özne (`whoami`) ile geniş zaman fiili -s alır: shows ya da prints."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Parantezdeki kelimeyi doğru biçimde yazarak notu tamamla. Yalnız kelimeyi yaz.
+        code: |
+          `ls` shows five ___ (file).
+        answer: "files"
+        verify:
+          mode: reference
+          reference: "Wikipedia — English plurals: a count noun after a number greater than one takes -s"
+          claim: "five'tan sonra isim çoğuldur: files."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Parantezdeki fiili doğru biçimde yazarak notu tamamla. Yalnız fiili yaz.
+        code: |
+          The log file ___ (have) two errors.
+        answer: "has"
+        required_skills: [skill.english.technical_noun_phrase_recognition]
+        verify:
+          mode: reference
+          reference: "Wiktionary — have (verb): third-person singular simple present has"
+          claim: "Tek özne (the log file) ile have → has."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Program iki değer döndürüyor. Hangi not doğru?
+        options:
+          A: "The program returns two values."
+          B: "The program return two values."
+          C: "The program returns two value."
+          D: "The program return two value."
+        answer: A
+        misconception_options: {B: verb_without_s, C: number_without_plural}
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (third-person singular -s); English plurals (count noun after two)"
+          claim: "Tek özneyle returns, two'dan sonra values: The program returns two values."
+      - slug: g06
+        difficulty: transfer_integration
+        prompt: |
+          Testleri çalıştırdın ve son satır bu oldu. Hangi not sonucu doğru anlatır?
+        code: |
+          3 passed, 1 failed
+        options:
+          A: "Three tests pass. One test fails."
+          B: "Three test pass. One test fails."
+          C: "Three tests passes. One test fail."
+          D: "Three tests fail. One test passes."
+        answer: A
+        misconception_options: {B: number_without_plural}
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (agreement: plural subject + base verb, singular subject + verb-s); English plurals"
+          claim: "Üç test geçti (Three tests pass), bir test başarısız (One test fails)."

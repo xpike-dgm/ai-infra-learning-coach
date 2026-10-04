@@ -1,0 +1,139 @@
+skill: skill.english.be_and_simple_present_comprehension
+objectives:
+  - id: objective.english.be_and_simple_present_comprehension.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The program is ready.
+        options:
+          A: "Program hazır."
+          B: "Programı hazırla."
+          C: "Program hazır mı?"
+          D: "Program hazır değil."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, 'be' (copula linking a subject to a description); Wiktionary — ready (adjective)"
+          claim: "The program is ready, programın hazır olduğunu bildirir."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          It is a test file.
+        options:
+          A: "Bu bir test dosyası."
+          B: "Bu dosyayı test et."
+          C: "Test dosyası nerede?"
+          D: "Bir test dosyası var mı?"
+        scan_options: false
+        answer: A
+        misconception_options: {D: is_means_exists}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, 'be' as copula; Wiktionary — it (pronoun), a (article)"
+          claim: "It is a test file, bunun bir test dosyası olduğunu söyler."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu cümle neyi anlatıyor?
+        code: |
+          The tool saves the output.
+        options:
+          A: "Aracın her seferinde yaptığı bir işi: araç çıktıyı kaydeder."
+          B: "Bir emri: çıktıyı kaydet."
+          C: "Birden çok aracın çıktıyı kaydettiğini."
+          D: "Çıktının aracı kaydettiğini."
+        scan_options: false
+        answer: A
+        misconception_options: {C: s_means_plural_verb}
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (English): third-person singular -s marks the verb (saves) with a singular subject (the tool)"
+          claim: "The tool saves the output; tekil bir araç her zaman yaptığı işi (kaydetme) anlatır. -s fiilde tekil öznenin işaretidir."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          These files are different.
+        options:
+          A: "Bu dosyalar farklı."
+          B: "Bu dosyalar aynı."
+          C: "Bu dosya farklı."
+          D: "Bu dosyaları farklılaştır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — these (determiner, plural of this); different (adjective); Wikipedia — English verbs, 'are' with a plural subject"
+          claim: "These files are different, bu dosyaların birbirinden farklı olduğunu söyler."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu cümleye göre program kaç değer döndürür? Yalnız sayıyı yaz.
+        code: |
+          The program uses one file and returns two values.
+        answer: "2"
+        also_accept: ["iki"]
+        verify:
+          mode: reference
+          reference: "Wiktionary — return (verb, computing): to give a value back; two (numeral)"
+          claim: "returns two values, iki değer döndürdüğünü söyler."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          İki satırdan hangisi bir durumu anlatıyor, hangisi bir emir veriyor?
+        code: |
+          The test runs now.
+          Run the test now.
+        options:
+          A: "İlki bir durumu anlatıyor (test şimdi çalışıyor); ikincisi bir emir (testi şimdi çalıştır)."
+          B: "İkisi de emir veriyor."
+          C: "İkisi de bir durumu anlatıyor."
+          D: "İlki emir, ikincisi durum."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — Simple present (statement with subject + verb-s); Wikipedia — Imperative mood (verb first, no subject)"
+          claim: "The test runs now özneli bir bildirimdir; Run the test now öznesiz, fiille başlayan bir emirdir."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu cümleye göre hangi dosya açılır?
+        code: |
+          The command copies the file and opens the copy.
+        options:
+          A: "Kopya"
+          B: "Asıl dosya"
+          C: "İkisi de"
+          D: "Hiçbiri; komut yalnız kopyalar"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — copy (noun): an item that is a duplicate; open (verb); Wikipedia — Simple present (opens: third-person -s)"
+          claim: "opens the copy, kopyanın açıldığını söyler."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The value is wrong.
+        options:
+          A: "Değer yanlış."
+          B: "Bir değer var."
+          C: "Değeri yanlış yap."
+          D: "Yanlış bir değer yok."
+        scan_options: false
+        answer: A
+        misconception_options: {B: is_means_exists}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English verbs, 'be' as copula linking the subject to a description (here: wrong); Wiktionary — wrong (adjective)"
+          claim: "The value is wrong, değerin yanlış olduğunu söyler; burada is 'var' anlamında değildir."

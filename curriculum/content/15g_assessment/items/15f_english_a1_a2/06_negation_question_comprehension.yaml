@@ -1,0 +1,149 @@
+skill: skill.english.negation_question_comprehension
+objectives:
+  - id: objective.english.negation_question_comprehension.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The file is not ready.
+        options:
+          A: "Dosya hazır değil."
+          B: "Dosya hazır."
+          C: "Dosya hazır mı?"
+          D: "Dosyayı hazırla."
+        scan_options: false
+        answer: A
+        misconception_options: {B: missed_negation}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English grammar, negation: 'not' after the verb be negates the sentence"
+          claim: "is not ready, hazır olmadığını söyler."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The program doesn't stop.
+        options:
+          A: "Program durmuyor."
+          B: "Program duruyor."
+          C: "Program duruyor mu?"
+          D: "Programı durdur."
+        scan_options: false
+        answer: A
+        misconception_options: {B: missed_negation}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English grammar, do-support: doesn't + base verb negates a simple present sentence with a singular subject"
+          claim: "doesn't stop, durmadığını söyler."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu satır ne yapıyor?
+        code: |
+          Is the file empty?
+        options:
+          A: "Dosyanın boş olup olmadığını soruyor."
+          B: "Dosyanın boş olduğunu söylüyor."
+          C: "Dosyayı boşaltmanı istiyor."
+          D: "Dosyanın boş olmadığını söylüyor."
+        scan_options: false
+        answer: A
+        misconception_options: {B: question_is_statement}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English grammar, questions: subject–auxiliary inversion (Is the file ...?) forms a yes/no question"
+          claim: "Is the file empty? bir evet/hayır sorusudur."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu soru neyi soruyor?
+        code: |
+          Why does the build stop?
+        options:
+          A: "Derlemenin neden durduğunu"
+          B: "Derlemenin ne zaman durduğunu"
+          C: "Derlemenin durup durmadığını"
+          D: "Hangi derlemenin durduğunu"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — why (adverb): for what reason; Wikipedia — English grammar, wh-questions with do-support"
+          claim: "Why does the build stop? derlemenin neden başarısız olduğunu sorar."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu soru neyi soruyor?
+        code: |
+          How does the tool save the output?
+        options:
+          A: "Aracın çıktıyı nasıl kaydettiğini"
+          B: "Aracın çıktıyı nereye kaydettiğini"
+          C: "Aracın çıktıyı kaydedip kaydetmediğini"
+          D: "Aracın çıktıyı ne zaman kaydettiğini"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — how (adverb): in what manner; Wikipedia — English grammar, wh-questions"
+          claim: "How does the tool save the output? ayarların nasıl açılacağını sorar."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu iki cümleye göre hangisi doğru?
+        code: |
+          The tool can't open the file.
+          The file isn't empty.
+        options:
+          A: "Dosyada bir şey var ama araç dosyayı açamıyor."
+          B: "Dosya boş ve araç onu açıyor."
+          C: "Dosya boş ve araç onu açamıyor."
+          D: "Dosyada bir şey var ve araç onu açıyor."
+        scan_options: false
+        answer: A
+        misconception_options: {B: missed_negation}
+        verify:
+          mode: reference
+          reference: "Wiktionary — can't (contraction of cannot); isn't (contraction of is not)"
+          claim: "can't open açamıyor, isn't empty boş değil demektir: dosyada bir şey var ama araç onu açamıyor."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bir yardım sayfasında bu soru ve cevap var. Cevaba göre hangisi doğru?
+        code: |
+          Does the tool save the output?
+          No, it doesn't. It only prints the output.
+        options:
+          A: "Araç çıktıyı kaydetmiyor; yalnız ekrana yazdırıyor."
+          B: "Araç çıktıyı kaydediyor ve yazdırıyor."
+          C: "Araç çıktıyı yalnız kaydediyor."
+          D: "Araç çıktıyı ne kaydediyor ne yazdırıyor."
+        scan_options: false
+        answer: A
+        misconception_options: {B: missed_negation}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English grammar, short answers (No, it doesn't) negate the question's verb; Wiktionary — only (adverb)"
+          claim: "No, it doesn't kaydetmediğini, It only prints the output yalnız yazdırdığını söyler."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu iki satırdan hangisi bir soru sorar, hangisi bir durum bildirir?
+        code: |
+          Which file does the program open?
+          The program doesn't open a file.
+        options:
+          A: "İlki programın hangi dosyayı açtığını soruyor; ikincisi programın bir dosya açmadığını bildiriyor."
+          B: "İkisi de programın bir dosya açtığını bildiriyor."
+          C: "İkisi de soru soruyor."
+          D: "İlki programın bir dosya açtığını bildiriyor; ikincisi soru soruyor."
+        scan_options: false
+        answer: A
+        misconception_options: {B: question_is_statement, D: question_is_statement}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English grammar: wh-questions (Which ... does ...?) and negation with doesn't"
+          claim: "Which file does the program open? bir sorudur; The program doesn't open a file olumsuz bir bildirimdir."

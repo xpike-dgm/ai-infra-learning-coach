@@ -1,0 +1,143 @@
+skill: skill.english.preposition_function_word_comprehension
+objectives:
+  - id: objective.english.preposition_function_word_comprehension.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The code is in the file.
+        options:
+          A: "Kod dosyanın içinde."
+          B: "Kod dosyaya gidiyor."
+          C: "Kod dosyadan geliyor."
+          D: "Dosya kodun içinde."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wikipedia — English prepositions (in: location inside); Wiktionary — in (preposition)"
+          claim: "in the file, dosyanın içinde demektir."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          The tool runs with two options.
+        options:
+          A: "Araç iki seçenekle birlikte çalışır."
+          B: "Araç iki seçenek olmadan çalışır."
+          C: "Araç iki seçenek için çalışır."
+          D: "İki seçenek aracı çalıştırır."
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — with (preposition): in the company of, using; Wikipedia — English prepositions"
+          claim: "runs with two options, iki seçenekle birlikte çalışır demektir."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu cümle ne söylüyor?
+        code: |
+          This is a copy of the file.
+        options:
+          A: "Bu, dosyanın bir kopyası."
+          B: "Bu, kopyanın dosyası."
+          C: "Bu dosya bir kopyadan geliyor."
+          D: "Bu dosyayı kopyala."
+        scan_options: false
+        answer: A
+        misconception_options: {B: preposition_after_noun}
+        verify:
+          mode: reference
+          reference: "Wiktionary — of (preposition): expressing the relationship between a part or copy and its source; Wikipedia — English prepositions"
+          claim: "a copy of the file, dosyanın bir kopyasıdır; of'tan sonraki isim (file) kopyanın neyin kopyası olduğunu söyler."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu cümleye göre program değerleri nereye yazar?
+        code: |
+          The program writes the values into the output file.
+        options:
+          A: "Çıktı dosyasının içine"
+          B: "Çıktı dosyasından dışarı"
+          C: "Ekrana"
+          D: "Girdi dosyasına"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — into (preposition): to the inside of; Wikipedia — English prepositions (direction)"
+          claim: "into the output file, çıktı dosyasının içine demektir."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu cümleye göre değerler nereye gider?
+        code: |
+          The program copies the values to the file.
+        options:
+          A: "Dosyaya"
+          B: "Dosyadan"
+          C: "Programın içine"
+          D: "Hiçbir yere; değerler yerinde kalır"
+        scan_options: false
+        answer: A
+        misconception_options: {B: to_from_swapped}
+        verify:
+          mode: reference
+          reference: "Wiktionary — to (preposition): indicating destination; Wikipedia — English prepositions (to: goal, from: source)"
+          claim: "copies the values to the file, değerleri dosyaya kopyalar."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu cümle aracın ne için olduğunu söylüyor. Ne için?
+        code: |
+          The tool is for tests.
+        options:
+          A: "Testler için"
+          B: "Testlerden"
+          C: "Testlerle birlikte"
+          D: "Testlerden sonra"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — for (preposition): intended to belong to or be used by; Wikipedia — English prepositions"
+          claim: "for tests, testler için demektir."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu cümleye göre yanlış olan nedir?
+        code: |
+          The name of the program is wrong.
+        options:
+          A: "Programın adı"
+          B: "Program"
+          C: "Adın programı"
+          D: "Hiçbir şey; bu bir soru"
+        scan_options: false
+        answer: A
+        misconception_options: {C: preposition_after_noun}
+        verify:
+          mode: reference
+          reference: "Wiktionary — of (preposition): belonging to; Wikipedia — English prepositions (of-phrase after a noun names what it belongs to)"
+          claim: "The name of the program is wrong; yanlış olan programın adıdır."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu cümleye göre çıktı nereye kaydedilir?
+        code: |
+          The program saves the output in the folder with the input.
+        options:
+          A: "Girdinin bulunduğu klasöre"
+          B: "Girdi dosyasının içine"
+          C: "Girdi olmayan bir klasöre"
+          D: "Ekrana"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — in (preposition): location; with (preposition): accompanied by, together with; Wikipedia — English prepositions"
+          claim: "in the folder with the input, girdinin de bulunduğu klasörde demektir."

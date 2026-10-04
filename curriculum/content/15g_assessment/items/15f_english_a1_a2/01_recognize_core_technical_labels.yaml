@@ -1,0 +1,136 @@
+skill: skill.english.recognize_core_technical_labels
+objectives:
+  - id: objective.english.recognize_core_technical_labels.match_term_meaning
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bir düzenleme menüsünde bu komut var. Ne yapar?
+        code: |
+          Paste
+        options:
+          A: "Daha önce kopyaladığın şeyi buraya yapıştırır"
+          B: "Seçili şeyi kopyalar"
+          C: "Seçili şeyi siler"
+          D: "Dosyayı kaydeder"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — paste (verb, computing): to insert a piece of data previously copied or cut"
+          claim: "Paste, daha önce kopyalanan ya da kesilen bir şeyi yapıştırır."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bir programın üst köşesinde bu düğme var. Ne işe yarar?
+        code: |
+          Search
+        options:
+          A: "Bir şey aramak"
+          B: "Bir şeyi silmek"
+          C: "Programı kapatmak"
+          D: "Ayarları açmak"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — search (verb): to look in some place in order to find something"
+          claim: "Search aramaktır."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bir programı indirdikten sonra bu düğmeyi görüyorsun. Basarsan ne olur?
+        code: |
+          Install
+        options:
+          A: "Program bilgisayara kurulur"
+          B: "Program silinir"
+          C: "Program kapatılır"
+          D: "Program güncellenmeden açılır"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — install (verb, computing): to set up a program for use on a computer"
+          claim: "Install programı kullanılmak üzere kurar."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bir geliştirme aracının üstünde bu üç düğme var. Yazdığın programı çalıştırmak için hangisine basarsın?
+        code: |
+          Build   Run   Test
+        options:
+          A: "Run"
+          B: "Build"
+          C: "Test"
+          D: "Hiçbiri; programı çalıştıran bir düğme yok"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — run (verb, computing): to execute a program; build (verb, computing): to compile source into a program; test (verb): to check"
+          claim: "Programı çalıştıran Run'dır; Build derler, Test sınar."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Derleyici işini bitirince son satırda bu yazdı. Kaç hata (error) var? Yalnız sayıyı yaz.
+        code: |
+          3 errors, 1 warning
+        answer: "3"
+        verify:
+          mode: reference
+          reference: "Wiktionary — error (noun, computing): a failure of a program; warning (noun): a notice of something that may cause a problem"
+          claim: "3 errors, 3 hata demektir; 1 warning ayrı bir uyarıdır."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bir programın üst satırı bu. Programın seçeneklerini (dil, tema gibi) değiştirmek için hangisini açarsın?
+        code: |
+          File   Edit   Settings   Help
+        options:
+          A: "Settings"
+          B: "File"
+          C: "Edit"
+          D: "Help"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — settings (noun, plural; computing): the options that can be chosen to configure a program; edit (verb): to change a text or file"
+          claim: "Programın seçenekleri Settings'tedir; Edit belgenin içeriğini değiştirmek içindir."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bir web sayfasında bir rapor dosyasının yanında bu düğme var. Basarsan ne olur?
+        code: |
+          Download
+        options:
+          A: "Rapor dosyası sayfadan senin bilgisayarına gelir"
+          B: "Senin bilgisayarındaki bir dosya sayfaya gönderilir"
+          C: "Rapor dosyası sayfadan silinir"
+          D: "Rapor dosyası açılmadan kapatılır"
+        scan_options: false
+        answer: A
+        misconception_options: {B: download_is_upload}
+        verify:
+          mode: reference
+          reference: "Wiktionary — download (verb): to transfer data from a remote system to a local one; upload (verb): the opposite direction"
+          claim: "Download dosyayı uzaktaki sistemden senin bilgisayarına getirir."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bir metin düzenleyicide açık bir dosyanın sekmesinde bu düğme var. Kaydettiğin bir dosyada buna basarsan dosyaya ne olur?
+        code: |
+          Close
+        options:
+          A: "Dosya kapanır; bilgisayarda olduğu gibi durur"
+          B: "Dosya bilgisayardan silinir"
+          C: "Dosyanın bir kopyası oluşur"
+          D: "Dosya yeniden açılır"
+        scan_options: false
+        answer: A
+        misconception_options: {B: close_deletes}
+        verify:
+          mode: reference
+          reference: "Wiktionary — close (verb, computing): to terminate access to a file or window; delete (verb, computing): to remove"
+          claim: "Close dosyayı yalnız kapatır; silmez."

@@ -1,0 +1,148 @@
+skill: skill.english.technical_noun_phrase_recognition
+objectives:
+  - id: objective.english.technical_noun_phrase_recognition.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu öbek ne anlama gelir?
+        code: |
+          temporary file
+        options:
+          A: "Geçici dosya"
+          B: "Dosyanın süresi"
+          C: "Kalıcı dosya"
+          D: "Dosyayı geçici yap"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wiktionary — temporary (adjective): lasting for a limited time; Wikipedia — English noun phrases (premodifiers precede the head noun)"
+          claim: "temporary file, geçici olan bir dosyadır; öbeğin asıl ismi file'dır."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu öbek ne anlama gelir?
+        code: |
+          local folder
+        options:
+          A: "Yerel klasör (kendi bilgisayarındaki klasör)"
+          B: "Uzaktaki klasör"
+          C: "Klasörün yeri"
+          D: "Klasörü yerleştir"
+        scan_options: false
+        answer: A
+        verify:
+          mode: reference
+          reference: "Wiktionary — local (adjective, computing): on the user's own computer, as opposed to remote"
+          claim: "local folder kullanıcının kendi bilgisayarındaki klasördür."
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu öbekteki asıl şey (öbeğin başı) nedir?
+        code: |
+          error message
+        options:
+          A: "Bir mesaj: hatayı anlatan mesaj"
+          B: "Bir hata: mesajdaki hata"
+          C: "İki ayrı şey: bir hata ve bir mesaj"
+          D: "Bir eylem: mesajı hatalı yap"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English noun phrases: in a compound noun the last noun is the head and the earlier noun modifies it"
+          claim: "error message bir mesajdır; error onu niteler."
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu öbek ne anlama gelir?
+        code: |
+          remote server
+        options:
+          A: "Uzaktaki sunucu"
+          B: "Sunucunun uzaklığı"
+          C: "Yerel sunucu"
+          D: "Sunucuyu uzaklaştır"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wiktionary — remote (adjective, computing): located elsewhere and accessed over a network; server (noun, computing)"
+          claim: "remote server ağ üzerinden erişilen, başka yerdeki bir sunucudur."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bir hata mesajında bu öbek geçiyor. Eksik olan şey hangisi?
+        code: |
+          missing config file
+        options:
+          A: "Bir yapılandırma dosyası eksik"
+          B: "Bir dosyanın içinde yapılandırma eksik"
+          C: "Dosya var ama yapılandırma kayıp"
+          D: "Hiçbir şey eksik değil; bu bir dosya adı"
+        scan_options: false
+        answer: A
+        misconception_options: {B: adjective_describes_last_only, C: adjective_describes_last_only}
+        verify:
+          mode: reference
+          reference: "Wiktionary — missing (adjective): not present; config (noun): configuration; Wikipedia — English noun phrases (an adjective premodifier applies to the rest of the noun phrase)"
+          claim: "missing config file, bulunmayan bir yapılandırma dosyasıdır; missing bütün 'config file' öbeğini niteler."
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu öbek bir sayıyı anlatıyor. Neyin sayısı?
+        code: |
+          total memory size
+        options:
+          A: "Belleğin toplam boyutu"
+          B: "Toplam sayısı"
+          C: "Boyutun belleği"
+          D: "Bellekteki dosyaların sayısı"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wiktionary — total (adjective): entire; memory (noun, computing); size (noun); Wikipedia — English noun phrases (head noun last)"
+          claim: "total memory size bir boyuttur: belleğin toplam boyutu."
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu öbekteki asıl şey (öbeğin başı) nedir?
+        code: |
+          current project backup folder
+        options:
+          A: "Bir klasör: şu anki projenin yedeklerinin tutulduğu klasör"
+          B: "Bir proje: klasörü olan şu anki proje"
+          C: "Bir yedek: klasörün yedeği"
+          D: "Bir eylem: projeyi klasöre yedekle"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English noun phrases: modifiers precede the head; in a stack of nouns the final noun is the head"
+          claim: "current project backup folder bir klasördür; current project ve backup onu niteler."
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          İki öbekten hangisi bir adı (name) anlatır?
+        code: |
+          log file name
+          file name log
+        options:
+          A: "log file name — kayıt dosyasının adı"
+          B: "file name log — dosya adlarının kaydı"
+          C: "İkisi de aynı şeyi anlatır"
+          D: "Hiçbiri; ikisi de bir dosyayı anlatır"
+        scan_options: false
+        answer: A
+        misconception_options: {B: head_is_first, C: head_is_first}
+        verify:
+          mode: reference
+          reference: "Wikipedia — English noun phrases: the head noun comes last, so the last word decides what the phrase names"
+          claim: "log file name bir addır (son kelime name); file name log bir kayıttır (son kelime log)."
