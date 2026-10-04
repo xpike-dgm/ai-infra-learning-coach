@@ -219,3 +219,22 @@ objectives:
                 if env["s"] != rule:
                     wrong.append(str(x))
             print(",".join(wrong))
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: floor_number_validator
+        required_skills: [skill.programming.function_decomposition]
+        prompt: |
+          Kural: bir binada kat numarası 0 ile 20 arasında olmalı (0 ve 20 dahil). Kat numarası geçerliyse True, değilse False döndüren hangi fonksiyon kuralı doğru uygular?
+        options:
+          A: "def gecerli_kat(kat):\n    return kat > 0 and kat < 20"
+          B: "def gecerli_kat(kat):\n    return kat >= 0 or kat <= 20"
+          C: "def gecerli_kat(kat):\n    return kat >= 0 and kat <= 20"
+          D: "def gecerli_kat(kat):\n    return kat <= 0 and kat >= 20"
+        answer: C
+        misconception_options: {A: boundary_inclusion_ignored, B: or_for_range}
+        verify:
+          mode: functions
+          name: gecerli_kat
+          spec: "def spec(kat):\n    return 0 <= kat <= 20"
+          cases: [[-1], [0], [1], [10], [19], [20], [21]]

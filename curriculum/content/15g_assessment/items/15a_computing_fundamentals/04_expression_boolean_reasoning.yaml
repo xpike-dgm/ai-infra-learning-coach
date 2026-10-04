@@ -130,3 +130,18 @@ objectives:
         verify:
           mode: stdout
           outcomes: {A: "True 5", B: "5 5", C: "True True", D: "<hata>"}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: multiples_counter
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.branching_reasoning]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          sayac = 0
+          for n in range(1, 11):
+              if n % 3 == 0 or n % 5 == 0:
+                  sayac += 1
+          print(sayac)
+        answer: "5"
+        verify: {mode: stdout}

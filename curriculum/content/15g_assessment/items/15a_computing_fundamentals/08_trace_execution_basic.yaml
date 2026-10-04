@@ -206,3 +206,21 @@ objectives:
             body = "\n".join(line.replace("print(n)", f"printed.append(({i + 1}, n))") for i, line in enumerate(lines))
             exec(body, env)
             print(",".join(str(no) for no, value in env["printed"] if value == 6))
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: call_trace
+        required_skills: [skill.programming.function_decomposition]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
+        code: |
+          def iki_kat(n):
+              print("cagri", n)
+              return n * 2
+
+          a = iki_kat(3)
+          b = iki_kat(a)
+          print(a + b)
+        answer: "cagri 3\ncagri 6\n18"
+        also_accept: ["cagri 3 cagri 6 18"]
+        verify: {mode: stdout}

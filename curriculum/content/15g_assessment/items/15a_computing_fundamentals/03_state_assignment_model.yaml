@@ -146,3 +146,21 @@ objectives:
           D: "13 9"
         answer: A
         verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: wallet_balance
+        required_skills: [skill.programming.branching_reasoning]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          bakiye = 100
+          harcama = 30
+          if harcama <= bakiye:
+              bakiye = bakiye - harcama
+          harcama = 90
+          if harcama <= bakiye:
+              bakiye = bakiye - harcama
+          print(bakiye)
+        answer: "70"
+        verify: {mode: stdout}

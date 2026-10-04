@@ -250,3 +250,33 @@ objectives:
             B: "lambda a, b, c: b"
             C: "lambda a, b, c: min(a, b, c)"
             D: "lambda a, b, c: max(a, c)"
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: power_of_two_reader
+        required_skills: [skill.programming.iteration_reasoning]
+        prompt: |
+          Bu program, başındaki a değeri (0 ya da pozitif bir tam sayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 6
+          sonuc = 1
+          for i in range(a):
+              sonuc = sonuc * 2
+          print(sonuc)
+        options:
+          A: a'nın iki katını
+          B: 2'nin a'ncı kuvvetini (2'yi a kez kendisiyle çarpmanın sonucunu)
+          C: a'nın karesini
+          D: Her zaman 64'ü
+        scan_options: false
+        answer: B
+        misconception_options: {D: single_case_generalization}
+        verify:
+          mode: behaviour
+          template: "a = {a}\nsonuc = 1\nfor i in range(a):\n    sonuc = sonuc * 2\nprint(sonuc)"
+          cases: [{a: 6}, {a: 0}, {a: 1}, {a: 3}]
+          refs:
+            A: "lambda a: a * 2"
+            B: "lambda a: 2 ** a"
+            C: "lambda a: a * a"
+            D: "lambda a: 64"

@@ -180,3 +180,19 @@ objectives:
             statement: Beklenen sonuçları kodu çalıştırarak değil tariften hesapladığını söyler.
         verify:
           mode: rubric
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: discount_boundary_test
+        required_skills: [skill.programming.branching_reasoning]
+        prompt: |
+          Tarif: odenecek(tutar), tutar 100 ya da daha fazlaysa tutardan 10 düşer; 100'den azsa tutarı olduğu gibi döndürür. Sınırı sınayan bir test yazıyorsun: odenecek(100) için beklenen sonuç ne olmalı?
+        answer: "90"
+        verify:
+          mode: script
+          script: |
+            def odenecek(tutar):
+                if tutar >= 100:
+                    return tutar - 10
+                return tutar
+            print(odenecek(100))

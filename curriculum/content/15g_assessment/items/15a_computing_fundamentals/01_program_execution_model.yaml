@@ -153,3 +153,33 @@ objectives:
             statement: Farkı doğru söyler — Python'da ayrı bir dosya üretilmez, yorumlayıcı kaynak dosyayı her çalıştırmada okuyup çevirir.
         verify:
           mode: rubric
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: stale_build_test
+        required_skills: [skill.programming.test_case_basic]
+        prompt: |
+          Linux'ta hesap.c programını gcc hesap.c -o hesap ile derledin ve ./hesap ile testini koştun. Beklenen çıktı 12 idi; program 10 yazdı, test başarısız oldu. Kaynak dosyadaki hatayı düzelttin ve kaydettin, sonra yeniden derlemeden ./hesap ile testi tekrar koştun. Ne olur?
+        options:
+          A: Program yine 10 yazar; çalışan dosya kaynağın eski hâlinden üretilmiştir ve yeniden derlenmeden değişmez.
+          B: Program 12 yazar; kaynak düzeltildiği için çalışan program da düzelir.
+          C: Program hiç çalışmaz; kaynak değiştiği için çalıştırılabilir dosya geçersiz olur.
+          D: İşletim sistemi kaynağın değiştiğini görür, programı kendiliğinden yeniden derler ve 12 yazar.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "eski", B: "yeni", C: "calismaz", D: "otomatik"}
+          script: |
+            cat > hesap.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("%d\n", 5 + 5);
+                return 0;
+            }
+            KAYNAK
+            gcc hesap.c -o hesap
+            sed -i 's/5 + 5/5 + 7/' hesap.c
+            grep -q '5 + 7' hesap.c || exit 1
+            out=$(./hesap)
+            if [ "$out" = "10" ]; then echo eski; elif [ "$out" = "12" ]; then echo yeni; else echo calismaz; fi

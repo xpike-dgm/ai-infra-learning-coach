@@ -170,3 +170,26 @@ objectives:
             with open("yardimci.py", "w", encoding="utf-8") as f:
                 f.write('print("yeni sürüm")\n')
             print(subprocess.run([sys.executable, "ana.py"], capture_output=True, text=True).stdout.strip())
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: debug_traceback_output
+        required_skills: [skill.programming.debug_localization_basic]
+        prompt: |
+          Hatanın yerini bulmak için hata.py programını python3 hata.py ile çalıştırdın. Ekranda ZeroDivisionError ile biten bir hata mesajı belirdi. Bu hata mesajı hangi sınıftandır?
+        options:
+          A: Kaynak dosya
+          B: Ara dosya (nesne dosyası)
+          C: Çalıştırılabilir dosya
+          D: Çalışma çıktısı
+        scan_options: false
+        answer: D
+        misconception_options: {A: screen_text_is_source}
+        verify:
+          mode: shell
+          outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}
+          script: |
+            printf 'print("basla")\nprint(1 // 0)\n' > hata.py
+            cp hata.py once.py
+            python3 hata.py > out.txt 2> err.txt
+            if grep -q ZeroDivisionError err.txt && ! grep -q ZeroDivisionError hata.py && cmp -s hata.py once.py; then echo calisma_ciktisi; else echo baska; fi

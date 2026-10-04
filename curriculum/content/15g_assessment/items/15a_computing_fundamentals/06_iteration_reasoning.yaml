@@ -134,6 +134,23 @@ objectives:
         answer: "6561 3"
         required_skills: [skill.programming.expression_boolean_reasoning]
         verify: {mode: stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: squares_sum
+        required_skills: [skill.programming.function_decomposition]
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def kare(x):
+              return x * x
+
+          toplam = 0
+          for i in range(1, 4):
+              toplam += kare(i)
+          print(toplam)
+        answer: "14"
+        verify: {mode: stdout}
   - id: objective.programming.iteration_reasoning.detect_nontermination
     items:
       - slug: g01

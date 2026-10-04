@@ -160,3 +160,22 @@ objectives:
         verify:
           mode: stdout
           outcomes: {A: "3", B: "3\nbitti", C: "bitti\n3", D: "<hata>"}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: even_counter_function
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.branching_reasoning]
+        prompt: |
+          İstenen sorumluluk: "bas'tan son'a kadar (ikisi de dahil) kaç çift sayı olduğunu say ve bu sayıyı geri döndür (ekrana yazma)." Hangi fonksiyon bunu doğru yapar?
+        options:
+          A: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n    print(sayac)"
+          B: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son):\n        if n % 2 == 0:\n            sayac += 1\n    return sayac"
+          C: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n    return sayac"
+          D: "def cift_say(bas, son):\n    sayac = 0\n    for n in range(bas, son + 1):\n        if n % 2 == 0:\n            sayac += 1\n            return sayac"
+        answer: C
+        misconception_options: {A: print_is_return}
+        verify:
+          mode: functions
+          name: cift_say
+          spec: "def spec(bas, son):\n    return len([n for n in range(bas, son + 1) if n % 2 == 0])"
+          cases: [[1, 10], [2, 2], [3, 3], [0, 7], [4, 9]]
