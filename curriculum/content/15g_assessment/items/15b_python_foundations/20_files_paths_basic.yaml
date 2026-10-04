@@ -1,0 +1,465 @@
+skill: skill.python.files_paths_basic
+objectives:
+  - id: objective.python.files_paths_basic.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ilk_satir(yol) adında bir fonksiyon yaz: UTF-8 metin dosyasının ilk satırını satır sonu olmadan döndürsün; dosya boşsa boş yazı ("") döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print("[" + cozum.ilk_satir(yol) + "]")
+        suite:
+          - {id: two_lines, args: ["başlık|gövde|"], expected_stdout: "[başlık]\n"}
+          - {id: single_no_newline, args: ["tek"], expected_stdout: "[tek]\n"}
+          - {id: empty, args: [""], expected_stdout: "[]\n"}
+        reference: |
+          def ilk_satir(yol):
+              with open(yol, encoding="utf-8") as f:
+                  satirlar = f.read().splitlines()
+              if len(satirlar) == 0:
+                  return ""
+              return satirlar[0]
+        wrong:
+          - |
+            def ilk_satir(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return f.readline()
+          - |
+            def ilk_satir(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return f.read()
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına kelime_sayisi(yol) adında bir fonksiyon yaz: UTF-8 metin dosyasındaki toplam kelime sayısını (boşluklara ve satır sonlarına göre ayrılmış) döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.string_text_operations]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print(cozum.kelime_sayisi(yol))
+        suite:
+          - {id: two_lines, args: ["bir iki üç|dört beş|"], expected_stdout: "5\n"}
+          - {id: extra_spaces, args: ["  a   b  "], expected_stdout: "2\n"}
+          - {id: empty, args: [""], expected_stdout: "0\n"}
+        reference: |
+          def kelime_sayisi(yol):
+              with open(yol, encoding="utf-8") as f:
+                  return len(f.read().split())
+        wrong:
+          - |
+            def kelime_sayisi(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return len(f.read().split(" "))
+          - |
+            def kelime_sayisi(yol):
+                with open(yol, encoding="utf-8") as f:
+                    return len(f.read().splitlines())
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına dosyaya_yaz(yol, metin) adında bir fonksiyon yaz: metni dosyaya tam olarak yazsın (başka bir şey eklemeden); dosya önceden varsa eski içeriği tamamen silinsin. UTF-8 kullan. Testler dosyayı önce başka bir içerikle oluşturur.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "cikti.txt"
+              yol.write_bytes("eski içerik burada".encode("utf-8"))
+              cozum.dosyaya_yaz(yol, sys.argv[1])
+              with open(yol, encoding="utf-8") as f:
+                  print("[" + f.read() + "]")
+        suite:
+          - {id: replaces, args: ["yeni"], expected_stdout: "[yeni]\n"}
+          - {id: turkish, args: ["ığüşöç"], expected_stdout: "[ığüşöç]\n"}
+          - {id: empty, args: [""], expected_stdout: "[]\n"}
+        reference: |
+          def dosyaya_yaz(yol, metin):
+              with open(yol, "w", encoding="utf-8") as f:
+                  f.write(metin)
+        wrong:
+          - |
+            def dosyaya_yaz(yol, metin):
+                with open(yol, "a", encoding="utf-8") as f:
+                    f.write(metin)
+          - |
+            def dosyaya_yaz(yol, metin):
+                with open(yol, "w", encoding="utf-8") as f:
+                    f.write(metin + "\n")
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına en_uzun_satir(yol) adında bir fonksiyon yaz: UTF-8 metin dosyasındaki en uzun satırı satır sonu olmadan döndürsün; aynı uzunlukta birden çok satır varsa önce geleni. Dosyada en az bir satır vardır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.conditionals]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print("[" + cozum.en_uzun_satir(yol) + "]")
+        suite:
+          - {id: middle, args: ["kısa|en uzun satır|orta|"], expected_stdout: "[en uzun satır]\n"}
+          - {id: tie, args: ["abc|xyz"], expected_stdout: "[abc]\n"}
+          - {id: last_no_newline, args: ["a|bb|ccc"], expected_stdout: "[ccc]\n"}
+        reference: |
+          def en_uzun_satir(yol):
+              with open(yol, encoding="utf-8") as f:
+                  satirlar = f.read().splitlines()
+              en_uzun = satirlar[0]
+              for s in satirlar:
+                  if len(s) > len(en_uzun):
+                      en_uzun = s
+              return en_uzun
+        wrong:
+          - |
+            def en_uzun_satir(yol):
+                with open(yol, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                en_uzun = satirlar[0]
+                for s in satirlar:
+                    if len(s) >= len(en_uzun):
+                        en_uzun = s
+                return en_uzun
+          - |
+            def en_uzun_satir(yol):
+                en_uzun = ""
+                with open(yol, encoding="utf-8") as f:
+                    for s in f:
+                        if len(s) > len(en_uzun):
+                            en_uzun = s
+                return en_uzun
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına satir_numaralari(yol, kelime) adında bir fonksiyon yaz: UTF-8 metin dosyasında içinde kelime geçen satırların numaralarını (1'den başlayarak) bir liste olarak döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.conditionals]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "veri.txt"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print(cozum.satir_numaralari(yol, sys.argv[2]))
+        suite:
+          - {id: two_hits, args: ["hata var|her şey yolunda|yine hata|", "hata"], expected_stdout: "[1, 3]\n"}
+          - {id: none, args: ["a|b", "c"], expected_stdout: "[]\n"}
+          - {id: last_line, args: ["x|y|son", "son"], expected_stdout: "[3]\n"}
+        reference: |
+          def satir_numaralari(yol, kelime):
+              sonuc = []
+              with open(yol, encoding="utf-8") as f:
+                  satirlar = f.read().splitlines()
+              for i in range(len(satirlar)):
+                  if kelime in satirlar[i]:
+                      sonuc.append(i + 1)
+              return sonuc
+        wrong:
+          - |
+            def satir_numaralari(yol, kelime):
+                sonuc = []
+                with open(yol, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                for i in range(len(satirlar)):
+                    if kelime in satirlar[i]:
+                        sonuc.append(i)
+                return sonuc
+          - |
+            def satir_numaralari(yol, kelime):
+                sonuc = []
+                with open(yol, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                for i in range(len(satirlar)):
+                    if kelime == satirlar[i]:
+                        sonuc.append(i + 1)
+                return sonuc
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına kopyala(kaynak, hedef) adında bir fonksiyon yaz: kaynak dosyanın içeriğini değiştirmeden hedef dosyaya yazsın (hedef yoksa oluşsun, varsa içeriği değişsin). İkisini de UTF-8 ile aç.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              kaynak = Path(d) / "kaynak.txt"
+              hedef = Path(d) / "hedef.txt"
+              kaynak.write_bytes(icerik.encode("utf-8"))
+              hedef.write_bytes("eski".encode("utf-8"))
+              cozum.kopyala(kaynak, hedef)
+              with open(hedef, encoding="utf-8") as f:
+                  print(repr(f.read()))
+        suite:
+          - {id: two_lines, args: ["çay|şeker|"], expected_stdout: "'çay\\nşeker\\n'\n"}
+          - {id: no_newline, args: ["tek"], expected_stdout: "'tek'\n"}
+          - {id: empty, args: [""], expected_stdout: "''\n"}
+        reference: |
+          def kopyala(kaynak, hedef):
+              with open(kaynak, encoding="utf-8") as f:
+                  icerik = f.read()
+              with open(hedef, "w", encoding="utf-8") as f:
+                  f.write(icerik)
+        wrong:
+          - |
+            def kopyala(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    icerik = f.read()
+                with open(hedef, "a", encoding="utf-8") as f:
+                    f.write(icerik)
+          - |
+            def kopyala(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                with open(hedef, "w", encoding="utf-8") as f:
+                    for s in satirlar:
+                        f.write(s)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına buyuk_harfli_kopya(kaynak, hedef) adında bir fonksiyon yaz: kaynak dosyanın içeriğini upper() ile büyük harfe çevirip hedef dosyaya yazsın; kaynak dosya değişmesin. UTF-8 kullan. (Testlerde yalnız İngilizce harfler var.)
+        required_skills: [skill.python.functions_parameters_return, skill.python.string_text_operations]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              kaynak = Path(d) / "kaynak.txt"
+              hedef = Path(d) / "hedef.txt"
+              kaynak.write_bytes(icerik.encode("utf-8"))
+              cozum.buyuk_harfli_kopya(kaynak, hedef)
+              with open(hedef, encoding="utf-8") as f:
+                  yeni = f.read()
+              with open(kaynak, encoding="utf-8") as f:
+                  eski = f.read()
+              print(repr(yeni), repr(eski))
+        suite:
+          - {id: two_lines, args: ["code|test|"], expected_stdout: "'CODE\\nTEST\\n' 'code\\ntest\\n'\n"}
+          - {id: mixed, args: ["Abc 1"], expected_stdout: "'ABC 1' 'Abc 1'\n"}
+        reference: |
+          def buyuk_harfli_kopya(kaynak, hedef):
+              with open(kaynak, encoding="utf-8") as f:
+                  icerik = f.read()
+              with open(hedef, "w", encoding="utf-8") as f:
+                  f.write(icerik.upper())
+        wrong:
+          - |
+            def buyuk_harfli_kopya(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    icerik = f.read()
+                icerik.upper()
+                with open(hedef, "w", encoding="utf-8") as f:
+                    f.write(icerik)
+          - |
+            def buyuk_harfli_kopya(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    icerik = f.read()
+                with open(kaynak, "w", encoding="utf-8") as f:
+                    f.write(icerik.upper())
+                with open(hedef, "w", encoding="utf-8") as f:
+                    f.write(icerik.upper())
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına puanlari_oku(yol) adında bir fonksiyon yaz: dosyanın her satırında ad,puan biçiminde bir kayıt var (boş satırlar atlanır); her adı tam sayı puanına bağlayan bir sözlük döndürsün. Testler sonucu sıralı yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.mapping_collections_basic, skill.python.string_text_operations, skill.python.conditionals]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "puanlar.csv"
+              yol.write_bytes(icerik.encode("utf-8"))
+              print(sorted(cozum.puanlari_oku(yol).items()))
+        suite:
+          - {id: two, args: ["Ali,70|Ece,95|"], expected_stdout: "[('Ali', 70), ('Ece', 95)]\n"}
+          - {id: blank_lines, args: ["|Can,5||"], expected_stdout: "[('Can', 5)]\n"}
+          - {id: empty, args: [""], expected_stdout: "[]\n"}
+        reference: |
+          def puanlari_oku(yol):
+              sonuc = {}
+              with open(yol, encoding="utf-8") as f:
+                  for satir in f.read().splitlines():
+                      if satir.strip() == "":
+                          continue
+                      ad, puan = satir.split(",")
+                      sonuc[ad] = int(puan)
+              return sonuc
+        wrong:
+          - |
+            def puanlari_oku(yol):
+                sonuc = {}
+                with open(yol, encoding="utf-8") as f:
+                    for satir in f.read().splitlines():
+                        if satir.strip() == "":
+                            continue
+                        ad, puan = satir.split(",")
+                        sonuc[ad] = puan
+                return sonuc
+          - |
+            def puanlari_oku(yol):
+                sonuc = {}
+                with open(yol, encoding="utf-8") as f:
+                    for satir in f:
+                        ad, puan = satir.split(",")
+                        sonuc[ad] = int(puan)
+                return sonuc
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına numarala(kaynak, hedef) adında bir fonksiyon yaz: kaynak dosyanın her satırını, başına satır numarası ve ": " eklenmiş olarak hedef dosyaya yazsın; her satır bir satır sonuyla bitsin. Örnek: "elma" satırı 1. satırsa hedefte "1: elma" olur. UTF-8 kullan.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.value_type_behavior]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          icerik = sys.argv[1].replace("|", chr(10))
+          with tempfile.TemporaryDirectory() as d:
+              kaynak = Path(d) / "kaynak.txt"
+              hedef = Path(d) / "hedef.txt"
+              kaynak.write_bytes(icerik.encode("utf-8"))
+              cozum.numarala(kaynak, hedef)
+              with open(hedef, encoding="utf-8") as f:
+                  print(repr(f.read()))
+        suite:
+          - {id: two, args: ["elma|armut|"], expected_stdout: "'1: elma\\n2: armut\\n'\n"}
+          - {id: no_final_newline, args: ["a|b|c"], expected_stdout: "'1: a\\n2: b\\n3: c\\n'\n"}
+          - {id: empty, args: [""], expected_stdout: "''\n"}
+        reference: |
+          def numarala(kaynak, hedef):
+              with open(kaynak, encoding="utf-8") as f:
+                  satirlar = f.read().splitlines()
+              with open(hedef, "w", encoding="utf-8") as f:
+                  for i in range(len(satirlar)):
+                      f.write(str(i + 1) + ": " + satirlar[i] + "\n")
+        wrong:
+          - |
+            def numarala(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                with open(hedef, "w", encoding="utf-8") as f:
+                    for i in range(len(satirlar)):
+                        f.write(str(i) + ": " + satirlar[i] + "\n")
+          - |
+            def numarala(kaynak, hedef):
+                with open(kaynak, encoding="utf-8") as f:
+                    satirlar = f.read().splitlines()
+                with open(hedef, "w", encoding="utf-8") as f:
+                    for i in range(len(satirlar)):
+                        f.write(str(i + 1) + ": " + satirlar[i])
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına birlestir(yollar, hedef) adında bir fonksiyon yaz: yollar listesindeki dosyaların satırlarını sırayla hedef dosyaya yazsın (her satır bir satır sonuyla bitsin); listede var olmayan bir dosya varsa onu atlasın (FileNotFoundError'ı yalnız o dosya için yakala) ve devam etsin. UTF-8 kullan.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations, skill.python.exception_handling]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yollar = []
+              for i, parca in enumerate(sys.argv[1:]):
+                  yol = Path(d) / ("p" + str(i) + ".txt")
+                  if parca != "YOK":
+                      yol.write_bytes(parca.replace("|", chr(10)).encode("utf-8"))
+                  yollar.append(yol)
+              hedef = Path(d) / "hepsi.txt"
+              cozum.birlestir(yollar, hedef)
+              with open(hedef, encoding="utf-8") as f:
+                  print(repr(f.read()))
+        suite:
+          - {id: two_files, args: ["a|b|", "c"], expected_stdout: "'a\\nb\\nc\\n'\n"}
+          - {id: missing_middle, args: ["x", "YOK", "y|"], expected_stdout: "'x\\ny\\n'\n"}
+          - {id: all_missing, args: ["YOK"], expected_stdout: "''\n"}
+        reference: |
+          def birlestir(yollar, hedef):
+              with open(hedef, "w", encoding="utf-8") as h:
+                  for yol in yollar:
+                      try:
+                          with open(yol, encoding="utf-8") as f:
+                              for satir in f.read().splitlines():
+                                  h.write(satir + "\n")
+                      except FileNotFoundError:
+                          continue
+        wrong:
+          - |
+            def birlestir(yollar, hedef):
+                with open(hedef, "w", encoding="utf-8") as h:
+                    try:
+                        for yol in yollar:
+                            with open(yol, encoding="utf-8") as f:
+                                for satir in f.read().splitlines():
+                                    h.write(satir + "\n")
+                    except FileNotFoundError:
+                        pass
+          - |
+            def birlestir(yollar, hedef):
+                for yol in yollar:
+                    try:
+                        with open(yol, encoding="utf-8") as f:
+                            icerik = f.read()
+                        with open(hedef, "w", encoding="utf-8") as h:
+                            h.write(icerik)
+                    except FileNotFoundError:
+                        continue
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına sayaci_artir(yol) adında bir fonksiyon yaz: dosyada tek bir tam sayı yazılıdır; dosya yoksa sayı 0 kabul edilsin. Sayıyı 1 artırıp dosyaya (eski içeriğin yerine) yazsın ve yeni sayıyı döndürsün. Testler fonksiyonu iki kez arka arkaya çağırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.exception_handling, skill.python.value_type_behavior]
+        harness: |
+          import sys, tempfile, cozum
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as d:
+              yol = Path(d) / "sayac.txt"
+              if sys.argv[1] != "YOK":
+                  yol.write_bytes(sys.argv[1].encode("utf-8"))
+              birinci = cozum.sayaci_artir(yol)
+              ikinci = cozum.sayaci_artir(yol)
+              with open(yol, encoding="utf-8") as f:
+                  print(birinci, ikinci, f.read().strip())
+        suite:
+          - {id: missing, args: ["YOK"], expected_stdout: "1 2 2\n"}
+          - {id: existing, args: ["41"], expected_stdout: "42 43 43\n"}
+          - {id: zero, args: ["0"], expected_stdout: "1 2 2\n"}
+        reference: |
+          def sayaci_artir(yol):
+              try:
+                  with open(yol, encoding="utf-8") as f:
+                      sayi = int(f.read())
+              except FileNotFoundError:
+                  sayi = 0
+              sayi += 1
+              with open(yol, "w", encoding="utf-8") as f:
+                  f.write(str(sayi))
+              return sayi
+        wrong:
+          - |
+            def sayaci_artir(yol):
+                try:
+                    with open(yol, encoding="utf-8") as f:
+                        sayi = int(f.read())
+                except FileNotFoundError:
+                    sayi = 0
+                sayi += 1
+                with open(yol, "a", encoding="utf-8") as f:
+                    f.write(str(sayi))
+                return sayi
+          - |
+            def sayaci_artir(yol):
+                try:
+                    with open(yol, encoding="utf-8") as f:
+                        sayi = int(f.read())
+                except FileNotFoundError:
+                    sayi = 0
+                return sayi + 1

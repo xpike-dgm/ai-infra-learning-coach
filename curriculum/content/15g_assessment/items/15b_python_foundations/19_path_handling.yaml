@@ -1,0 +1,336 @@
+skill: skill.python.path_handling
+objectives:
+  - id: objective.python.path_handling.read_write_small_text_file
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak dosya_adi(yol) adında bir fonksiyon yaz: yolun son parçasını (dosyanın klasörsüz adını, uzantısıyla) döndürsün. Örnek: dosya_adi("belgeler/2026/rapor.pdf") → "rapor.pdf".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print(cozum.dosya_adi(sys.argv[1]))
+        suite:
+          - {id: nested, args: ["belgeler/2026/rapor.pdf"], expected_stdout: "rapor.pdf\n"}
+          - {id: bare, args: ["notlar"], expected_stdout: "notlar\n"}
+          - {id: two_dots, args: ["arsiv/yedek.tar.gz"], expected_stdout: "yedek.tar.gz\n"}
+        reference: |
+          from pathlib import Path
+
+          def dosya_adi(yol):
+              return Path(yol).name
+        wrong:
+          - |
+            from pathlib import Path
+
+            def dosya_adi(yol):
+                return Path(yol).stem
+          - |
+            def dosya_adi(yol):
+                return yol.split("/")[0]
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak ust_klasor(yol) adında bir fonksiyon yaz: dosyanın içinde bulunduğu klasörün yalnız adını döndürsün; dosya bir klasörde değilse boş yazı döndürsün. Örnek: ust_klasor("veri/2026/olcum.csv") → "2026".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print("[" + cozum.ust_klasor(sys.argv[1]) + "]")
+        suite:
+          - {id: nested, args: ["veri/2026/olcum.csv"], expected_stdout: "[2026]\n"}
+          - {id: one_level, args: ["resimler/a.png"], expected_stdout: "[resimler]\n"}
+          - {id: none, args: ["tek.txt"], expected_stdout: "[]\n"}
+        reference: |
+          from pathlib import Path
+
+          def ust_klasor(yol):
+              return Path(yol).parent.name
+        wrong:
+          - |
+            from pathlib import Path
+
+            def ust_klasor(yol):
+                return str(Path(yol).parent)
+          - |
+            from pathlib import Path
+
+            def ust_klasor(yol):
+                return Path(yol).parent.parent.name
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak tasi(yol, klasor) adında bir fonksiyon yaz: dosyanın aynı adla klasor içine taşınmış hâlinin yolunu, düz bölüyle (as_posix) yazılmış olarak döndürsün. Örnek: tasi("indirilenler/foto.jpg", "arsiv/2026") → "arsiv/2026/foto.jpg".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print(cozum.tasi(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: nested_target, args: ["indirilenler/foto.jpg", "arsiv/2026"], expected_stdout: "arsiv/2026/foto.jpg\n"}
+          - {id: bare_file, args: ["not.txt", "yedek"], expected_stdout: "yedek/not.txt\n"}
+          - {id: trailing_slash, args: ["a/b/c.md", "d/"], expected_stdout: "d/c.md\n"}
+        reference: |
+          from pathlib import Path
+
+          def tasi(yol, klasor):
+              return (Path(klasor) / Path(yol).name).as_posix()
+        wrong:
+          - |
+            from pathlib import Path
+
+            def tasi(yol, klasor):
+                return (Path(klasor) / yol).as_posix()
+          - |
+            def tasi(yol, klasor):
+                return klasor + "/" + yol.split("/")[-1]
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak yedek_adi(yol) adında bir fonksiyon yaz: aynı klasörde, adının sonuna _yedek eklenmiş (uzantı korunarak) dosyanın yolunu düz bölüyle döndürsün. Örnek: yedek_adi("veri/not.txt") → "veri/not_yedek.txt".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print(cozum.yedek_adi(sys.argv[1]))
+        suite:
+          - {id: nested, args: ["veri/not.txt"], expected_stdout: "veri/not_yedek.txt\n"}
+          - {id: bare, args: ["ayar.ini"], expected_stdout: "ayar_yedek.ini\n"}
+          - {id: two_dots, args: ["a/arsiv.tar.gz"], expected_stdout: "a/arsiv.tar_yedek.gz\n"}
+          - {id: no_suffix, args: ["b/README"], expected_stdout: "b/README_yedek\n"}
+        reference: |
+          from pathlib import Path
+
+          def yedek_adi(yol):
+              p = Path(yol)
+              return (p.parent / (p.stem + "_yedek" + p.suffix)).as_posix()
+        wrong:
+          - |
+            from pathlib import Path
+
+            def yedek_adi(yol):
+                p = Path(yol)
+                return (p.parent / (p.name + "_yedek")).as_posix()
+          - |
+            def yedek_adi(yol):
+                ad, uzanti = yol.split(".", 1)
+                return ad + "_yedek." + uzanti
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak uzanti_sayimi(yollar) adında bir fonksiyon yaz: bir yol listesinde her son uzantıdan (küçük harfe çevrilmiş, noktasıyla; uzantısız dosyalar için "") kaç dosya olduğunu tutan bir sözlük döndürsün. Testler sonucu sıralı yazdırır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.for_iteration, skill.python.mapping_collections_basic]
+        harness: |
+          import sys, cozum
+          print(sorted(cozum.uzanti_sayimi(sys.argv[1:]).items()))
+        suite:
+          - {id: mixed, args: ["a.txt", "b/c.TXT", "d.png"], expected_stdout: "[('.png', 1), ('.txt', 2)]\n"}
+          - {id: no_suffix, args: ["Makefile", "x/y.py"], expected_stdout: "[('', 1), ('.py', 1)]\n"}
+          - {id: empty, args: [], expected_stdout: "[]\n"}
+        reference: |
+          from pathlib import Path
+
+          def uzanti_sayimi(yollar):
+              sayim = {}
+              for y in yollar:
+                  u = Path(y).suffix.lower()
+                  sayim[u] = sayim.get(u, 0) + 1
+              return sayim
+        wrong:
+          - |
+            from pathlib import Path
+
+            def uzanti_sayimi(yollar):
+                sayim = {}
+                for y in yollar:
+                    u = Path(y).suffix
+                    sayim[u] = sayim.get(u, 0) + 1
+                return sayim
+          - |
+            def uzanti_sayimi(yollar):
+                sayim = {}
+                for y in yollar:
+                    u = "." + y.split(".")[-1].lower()
+                    sayim[u] = sayim.get(u, 0) + 1
+                return sayim
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak kardes(yol, ad) adında bir fonksiyon yaz: yoldaki dosyayla aynı klasörde duran, adı ad olan dosyanın yolunu düz bölüyle döndürsün. Örnek: kardes("proje/src/ana.py", "test.py") → "proje/src/test.py".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print(cozum.kardes(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: nested, args: ["proje/src/ana.py", "test.py"], expected_stdout: "proje/src/test.py\n"}
+          - {id: top_level, args: ["ana.py", "yardim.py"], expected_stdout: "yardim.py\n"}
+        reference: |
+          from pathlib import Path
+
+          def kardes(yol, ad):
+              return (Path(yol).parent / ad).as_posix()
+        wrong:
+          - |
+            from pathlib import Path
+
+            def kardes(yol, ad):
+                return (Path(yol) / ad).as_posix()
+          - |
+            from pathlib import Path
+
+            def kardes(yol, ad):
+                return (Path(yol).parent.parent / ad).as_posix()
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak resim_mi(yol) adında bir fonksiyon yaz: dosyanın son uzantısı büyük/küçük harf farkı gözetmeksizin .jpg, .jpeg ya da .png ise True, değilse False döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.list_operations, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.resim_mi(sys.argv[1]))
+        suite:
+          - {id: upper, args: ["tatil/B.JPG"], expected_stdout: "True\n"}
+          - {id: pdf, args: ["belge.pdf"], expected_stdout: "False\n"}
+          - {id: zipped, args: ["arsiv.png.zip"], expected_stdout: "False\n"}
+          - {id: jpeg, args: ["x.jpeg"], expected_stdout: "True\n"}
+        reference: |
+          from pathlib import Path
+
+          def resim_mi(yol):
+              return Path(yol).suffix.lower() in [".jpg", ".jpeg", ".png"]
+        wrong:
+          - |
+            from pathlib import Path
+
+            def resim_mi(yol):
+                return Path(yol).suffix in [".jpg", ".jpeg", ".png"]
+          - |
+            def resim_mi(yol):
+                return ".png" in yol.lower() or ".jpg" in yol.lower() or ".jpeg" in yol.lower()
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak rapor_yolu(yil, ay) adında bir fonksiyon yaz: raporlar klasöründe, yıl adlı bir alt klasörde, ay numarasının iki haneli yazılışıyla adlandırılmış .txt dosyasının yolunu düz bölüyle döndürsün. Örnek: rapor_yolu(2026, 3) → "raporlar/2026/03.txt".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.conditionals, skill.python.value_type_behavior]
+        harness: |
+          import sys, cozum
+          print(cozum.rapor_yolu(int(sys.argv[1]), int(sys.argv[2])))
+        suite:
+          - {id: march, args: ["2026", "3"], expected_stdout: "raporlar/2026/03.txt\n"}
+          - {id: december, args: ["2025", "12"], expected_stdout: "raporlar/2025/12.txt\n"}
+          - {id: october, args: ["2026", "10"], expected_stdout: "raporlar/2026/10.txt\n"}
+        reference: |
+          from pathlib import Path
+
+          def rapor_yolu(yil, ay):
+              ay_yazi = str(ay)
+              if ay < 10:
+                  ay_yazi = "0" + ay_yazi
+              return (Path("raporlar") / str(yil) / (ay_yazi + ".txt")).as_posix()
+        wrong:
+          - |
+            from pathlib import Path
+
+            def rapor_yolu(yil, ay):
+                return (Path("raporlar") / str(yil) / (str(ay) + ".txt")).as_posix()
+          - |
+            from pathlib import Path
+
+            def rapor_yolu(yil, ay):
+                ay_yazi = "0" + str(ay)
+                return (Path("raporlar") / str(yil) / (ay_yazi + ".txt")).as_posix()
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak esi_mi(yol1, yol2) adında bir fonksiyon yaz: iki dosyanın uzantısız adları (stem) aynı ama son uzantıları farklıysa True, değilse False döndürsün; klasörleri önemli değil. Örnek: esi_mi("src/ana.c", "build/ana.o") → True.
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.esi_mi(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: pair, args: ["src/ana.c", "build/ana.o"], expected_stdout: "True\n"}
+          - {id: same_suffix, args: ["a/x.txt", "b/x.txt"], expected_stdout: "False\n"}
+          - {id: different_stem, args: ["ana.c", "yan.o"], expected_stdout: "False\n"}
+        reference: |
+          from pathlib import Path
+
+          def esi_mi(yol1, yol2):
+              p, q = Path(yol1), Path(yol2)
+              return p.stem == q.stem and p.suffix != q.suffix
+        wrong:
+          - |
+            from pathlib import Path
+
+            def esi_mi(yol1, yol2):
+                return Path(yol1).stem == Path(yol2).stem
+          - |
+            from pathlib import Path
+
+            def esi_mi(yol1, yol2):
+                p, q = Path(yol1), Path(yol2)
+                return p.name == q.name or p.suffix != q.suffix
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak python_dosyalari(yollar) adında bir fonksiyon yaz: son uzantısı .py olan dosyaların yalnız adlarını (klasörsüz, uzantılı) alfabetik sıralı bir liste olarak döndürsün.
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic, skill.python.for_iteration, skill.python.conditionals, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.python_dosyalari(sys.argv[1:]))
+        suite:
+          - {id: mixed, args: ["src/b.py", "README.md", "test/a.py"], expected_stdout: "['a.py', 'b.py']\n"}
+          - {id: compiled, args: ["x.pyc", "y.py"], expected_stdout: "['y.py']\n"}
+          - {id: none, args: ["a.txt"], expected_stdout: "[]\n"}
+        reference: |
+          from pathlib import Path
+
+          def python_dosyalari(yollar):
+              sonuc = []
+              for y in yollar:
+                  p = Path(y)
+                  if p.suffix == ".py":
+                      sonuc.append(p.name)
+              return sorted(sonuc)
+        wrong:
+          - |
+            def python_dosyalari(yollar):
+                sonuc = []
+                for y in yollar:
+                    if ".py" in y:
+                        sonuc.append(y.split("/")[-1])
+                return sorted(sonuc)
+          - |
+            from pathlib import Path
+
+            def python_dosyalari(yollar):
+                sonuc = []
+                for y in yollar:
+                    p = Path(y)
+                    if p.suffix == ".py":
+                        sonuc.append(y)
+                return sorted(sonuc)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına pathlib kullanarak cikti_yolu(girdi, klasor) adında bir fonksiyon yaz: girdi dosyasıyla aynı adlı ama .json uzantılı bir dosyanın klasor içindeki yolunu düz bölüyle döndürsün. Örnek: cikti_yolu("veri/olcum.csv", "sonuc") → "sonuc/olcum.json".
+        required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
+        harness: |
+          import sys, cozum
+          print(cozum.cikti_yolu(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: csv, args: ["veri/olcum.csv", "sonuc"], expected_stdout: "sonuc/olcum.json\n"}
+          - {id: two_dots, args: ["a/kayit.2026.log", "b/c"], expected_stdout: "b/c/kayit.2026.json\n"}
+          - {id: no_suffix, args: ["veri", "x"], expected_stdout: "x/veri.json\n"}
+        reference: |
+          from pathlib import Path
+
+          def cikti_yolu(girdi, klasor):
+              return (Path(klasor) / Path(girdi).with_suffix(".json").name).as_posix()
+        wrong:
+          - |
+            from pathlib import Path
+
+            def cikti_yolu(girdi, klasor):
+                return (Path(klasor) / Path(girdi).with_suffix(".json")).as_posix()
+          - |
+            from pathlib import Path
+
+            def cikti_yolu(girdi, klasor):
+                return (Path(klasor) / (Path(girdi).name + ".json")).as_posix()
