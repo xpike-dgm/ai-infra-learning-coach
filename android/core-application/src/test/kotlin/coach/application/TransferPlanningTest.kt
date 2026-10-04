@@ -213,6 +213,14 @@ class TransferPlanningTest {
         assertEquals(MonthlyRole.CROSS_TOPIC_TRANSFER, monthly.slots.single { it.targetSkill == loops }.role)
         val weekly = blueprint(AssessmentScope.WEEKLY_BLUEPRINT)
         assertTrue(weekly.slots.none { it.targetSkill == loops && it.role == MonthlyRole.CROSS_TOPIC_TRANSFER })
+
+        // The planner reads the same owner: the need is in its trace, and no daily task serves it.
+        val planned = BuildDailyPlan(learned, Content(listOf(transfer)), clock)
+            .build(coach.model.DailyCapacityInput(normalProfileMinutes = 60, shortProfileMinutes = 30, intensiveProfileMinutes = 90))
+        val trace = (planned as BuildDailyPlan.Built.Planned).trace
+        val need = trace.needs.single { it.trigger == NeedTrigger.TRANSFER_OPPORTUNITY }
+        assertEquals(listOf(loops), need.targetSkills)
+        assertTrue(trace.selected.none { it.needKey == need.needKey })
     }
 
     @Test
