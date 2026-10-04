@@ -5,22 +5,30 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.c adında bir program yaz: girdiden bir sıcaklık (tam sayı) okusun; 30'dan büyükse sicak, değilse normal yazsın.
+          cozum.c adında bir program yaz: girdiden 0–23 arası bir saat okusun ve günün bölümünü yazsın: 6–11 sabah, 12–17 ogle, 18–21 aksam, geri kalan saatler (22, 23 ve 0–5) gece.
         required_skills: [skill.c.standard_io_basic]
         suite:
-          - {id: hot, stdin: "35\n", expected_stdout: "sicak\n"}
-          - {id: boundary, stdin: "30\n", expected_stdout: "normal\n"}
-          - {id: cold, stdin: "-2\n", expected_stdout: "normal\n"}
+          - {id: morning_edges, stdin: "6\n", expected_stdout: "sabah\n"}
+          - {id: noon, stdin: "12\n", expected_stdout: "ogle\n"}
+          - {id: evening_end, stdin: "21\n", expected_stdout: "aksam\n"}
+          - {id: late, stdin: "22\n", expected_stdout: "gece\n"}
+          - {id: early, stdin: "5\n", expected_stdout: "gece\n"}
+          - {id: before_noon, stdin: "11\n", expected_stdout: "sabah\n"}
+          - {id: midnight, stdin: "0\n", expected_stdout: "gece\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int derece = 0;
-              scanf("%d", &derece);
-              if (derece > 30) {
-                  printf("sicak\n");
+              int saat = 0;
+              scanf("%d", &saat);
+              if (saat >= 6 && saat <= 11) {
+                  printf("sabah\n");
+              } else if (saat >= 12 && saat <= 17) {
+                  printf("ogle\n");
+              } else if (saat >= 18 && saat <= 21) {
+                  printf("aksam\n");
               } else {
-                  printf("normal\n");
+                  printf("gece\n");
               }
               return 0;
           }
@@ -29,12 +37,16 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int derece = 0;
-                scanf("%d", &derece);
-                if (derece >= 30) {
-                    printf("sicak\n");
+                int saat = 0;
+                scanf("%d", &saat);
+                if (saat <= 11) {
+                    printf("sabah\n");
+                } else if (saat <= 17) {
+                    printf("ogle\n");
+                } else if (saat <= 21) {
+                    printf("aksam\n");
                 } else {
-                    printf("normal\n");
+                    printf("gece\n");
                 }
                 return 0;
             }
@@ -42,12 +54,17 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int derece = 0;
-                scanf("%d", &derece);
-                if (derece > 30) {
-                    printf("sicak\n");
+                int saat = 0;
+                scanf("%d", &saat);
+                if (saat > 6 && saat < 11) {
+                    printf("sabah\n");
+                } else if (saat >= 12 && saat <= 17) {
+                    printf("ogle\n");
+                } else if (saat >= 18 && saat <= 21) {
+                    printf("aksam\n");
+                } else {
+                    printf("gece\n");
                 }
-                printf("normal\n");
                 return 0;
             }
       - slug: g02
@@ -358,35 +375,32 @@ objectives:
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki program girilen sayı 5 ise bes, değilse bes degil yazmalı; ama hangi sayı girilirse girilsin hep bes yazıyor (gcc de bir uyarı veriyor). Hatayı bul, düzelt ve cozum.c olarak kaydet.
+          Aşağıdaki program girilen sayı 10'dan büyükse alt alta buyuk ve dikkat yazmalı, değilse hiçbir şey yazmamalı. Ama 3 girilince de dikkat yazıyor. Hatayı bul, düzelt ve cozum.c olarak kaydet.
 
           #include <stdio.h>
 
           int main(void) {
-              int x = 0;
-              scanf("%d", &x);
-              if (x = 5) {
-                  printf("bes\n");
-              } else {
-                  printf("bes degil\n");
-              }
+              int n = 0;
+              scanf("%d", &n);
+              if (n > 10)
+                  printf("buyuk\n");
+                  printf("dikkat\n");
               return 0;
           }
         required_skills: [skill.c.standard_io_basic]
         suite:
-          - {id: five, stdin: "5\n", expected_stdout: "bes\n"}
-          - {id: three, stdin: "3\n", expected_stdout: "bes degil\n"}
-          - {id: zero, stdin: "0\n", expected_stdout: "bes degil\n"}
+          - {id: big, stdin: "15\n", expected_stdout: "buyuk\ndikkat\n"}
+          - {id: small, stdin: "3\n", expected_stdout: ""}
+          - {id: boundary, stdin: "10\n", expected_stdout: ""}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int x = 0;
-              scanf("%d", &x);
-              if (x == 5) {
-                  printf("bes\n");
-              } else {
-                  printf("bes degil\n");
+              int n = 0;
+              scanf("%d", &n);
+              if (n > 10) {
+                  printf("buyuk\n");
+                  printf("dikkat\n");
               }
               return 0;
           }
@@ -395,25 +409,22 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int x = 0;
-                scanf("%d", &x);
-                if (x = 5) {
-                    printf("bes\n");
-                } else {
-                    printf("bes degil\n");
-                }
+                int n = 0;
+                scanf("%d", &n);
+                if (n > 10)
+                    printf("buyuk\n");
+                    printf("dikkat\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int x = 0;
-                scanf("%d", &x);
-                if (x != 5) {
-                    printf("bes\n");
-                } else {
-                    printf("bes degil\n");
+                int n = 0;
+                scanf("%d", &n);
+                if (n >= 10) {
+                    printf("buyuk\n");
+                    printf("dikkat\n");
                 }
                 return 0;
             }
@@ -531,43 +542,51 @@ objectives:
       - slug: g10
         difficulty: transfer_integration
         prompt: |
-          Aşağıdaki program 1 için bir, 2 için iki, başka sayılar için diger yazmalı; ama 1 girilince birden fazla satır yazıyor. switch'in nasıl çalıştığını düşün, hatayı düzelt ve cozum.c olarak kaydet.
+          Aşağıdaki program girilen harfe göre trafik ışığının anlamını yazmalı: k için dur, s için hazirlan, y için gec, başka bir harf için bilinmiyor. Ama s girilince iki satır yazıyor. switch'in nasıl çalıştığını düşün, hatayı düzelt ve cozum.c olarak kaydet.
 
           #include <stdio.h>
 
           int main(void) {
-              int n = 0;
-              scanf("%d", &n);
-              switch (n) {
-                  case 1:
-                      printf("bir\n");
-                  case 2:
-                      printf("iki\n");
+              char isik = ' ';
+              scanf(" %c", &isik);
+              switch (isik) {
+                  case 'k':
+                      printf("dur\n");
+                      break;
+                  case 's':
+                      printf("hazirlan\n");
+                  case 'y':
+                      printf("gec\n");
+                      break;
                   default:
-                      printf("diger\n");
+                      printf("bilinmiyor\n");
               }
               return 0;
           }
         required_skills: [skill.c.standard_io_basic]
         suite:
-          - {id: one, stdin: "1\n", expected_stdout: "bir\n"}
-          - {id: two, stdin: "2\n", expected_stdout: "iki\n"}
-          - {id: other, stdin: "7\n", expected_stdout: "diger\n"}
+          - {id: red, stdin: "k\n", expected_stdout: "dur\n"}
+          - {id: yellow, stdin: "s\n", expected_stdout: "hazirlan\n"}
+          - {id: green, stdin: "y\n", expected_stdout: "gec\n"}
+          - {id: other, stdin: "m\n", expected_stdout: "bilinmiyor\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int n = 0;
-              scanf("%d", &n);
-              switch (n) {
-                  case 1:
-                      printf("bir\n");
+              char isik = ' ';
+              scanf(" %c", &isik);
+              switch (isik) {
+                  case 'k':
+                      printf("dur\n");
                       break;
-                  case 2:
-                      printf("iki\n");
+                  case 's':
+                      printf("hazirlan\n");
+                      break;
+                  case 'y':
+                      printf("gec\n");
                       break;
                   default:
-                      printf("diger\n");
+                      printf("bilinmiyor\n");
               }
               return 0;
           }
@@ -576,16 +595,19 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int n = 0;
-                scanf("%d", &n);
-                switch (n) {
-                    case 1:
-                        printf("bir\n");
+                char isik = ' ';
+                scanf(" %c", &isik);
+                switch (isik) {
+                    case 'k':
+                        printf("dur\n");
                         break;
-                    case 2:
-                        printf("iki\n");
+                    case 's':
+                        printf("hazirlan\n");
+                    case 'y':
+                        printf("gec\n");
+                        break;
                     default:
-                        printf("diger\n");
+                        printf("bilinmiyor\n");
                 }
                 return 0;
             }
@@ -593,16 +615,17 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int n = 0;
-                scanf("%d", &n);
-                switch (n) {
-                    case 1:
-                        printf("bir\n");
-                    case 2:
-                        printf("iki\n");
+                char isik = ' ';
+                scanf(" %c", &isik);
+                switch (isik) {
+                    case 'k':
+                        printf("dur\n");
                         break;
-                    default:
-                        printf("diger\n");
+                    case 's':
+                        printf("hazirlan\n");
+                        break;
+                    case 'y':
+                        printf("gec\n");
                 }
                 return 0;
             }
@@ -659,62 +682,6 @@ objectives:
                     printf("ayni\n");
                 } else {
                     printf("sonra\n");
-                }
-                return 0;
-            }
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: grade_band_function
-        required_skills: [skill.c.functions_basic]
-        prompt: |
-          cozum.c dosyasına int kademe(int puan) fonksiyonunu yaz: puan 85 ya da üstüyse 3, 70 ile 84 arasındaysa 2, 50 ile 69 arasındaysa 1, 50'nin altındaysa 0 döndürsün (puan 0 ile 100 arasında). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
-        c_harness: |
-          #include <stdio.h>
-
-          int kademe(int puan);
-
-          int main(void) {
-              int p = 0;
-              while (scanf("%d", &p) == 1) {
-                  printf("%d\n", kademe(p));
-              }
-              return 0;
-          }
-        suite:
-          - {id: boundaries_high, stdin: "100 85 84 70\n", expected_stdout: "3\n3\n2\n2\n"}
-          - {id: boundaries_low, stdin: "69 50 49 0\n", expected_stdout: "1\n1\n0\n0\n"}
-        reference: |
-          int kademe(int puan) {
-              if (puan >= 85) {
-                  return 3;
-              } else if (puan >= 70) {
-                  return 2;
-              } else if (puan >= 50) {
-                  return 1;
-              }
-              return 0;
-          }
-        wrong:
-          - |
-            int kademe(int puan) {
-                if (puan > 85) {
-                    return 3;
-                } else if (puan > 70) {
-                    return 2;
-                } else if (puan > 50) {
-                    return 1;
-                }
-                return 0;
-            }
-          - |
-            int kademe(int puan) {
-                if (puan >= 50) {
-                    return 1;
-                } else if (puan >= 70) {
-                    return 2;
-                } else if (puan >= 85) {
-                    return 3;
                 }
                 return 0;
             }

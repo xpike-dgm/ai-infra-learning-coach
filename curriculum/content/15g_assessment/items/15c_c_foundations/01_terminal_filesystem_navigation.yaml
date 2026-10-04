@@ -25,17 +25,19 @@ objectives:
         difficulty: basic
         hands_on: true
         prompt: |
-          Terminal hangi klasörde olursa olsun şu komutları çalıştır:
+          Terminal hangi klasörde olursa olsun şu komutları çalıştır (Ubuntu'da /usr/share klasörü her zaman vardır):
 
-          cd /tmp
+          cd /usr/share
+          cd ..
           pwd
 
           pwd ne yazar?
-        answer: "/tmp"
+        answer: "/usr"
         verify:
           mode: shell
           script: |
-            cd /tmp
+            cd /usr/share
+            cd ..
             pwd
       - slug: g03
         difficulty: basic
@@ -60,22 +62,24 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları çalıştır:
+          Boş bir klasörde şu komutları sırayla çalıştır:
 
-          mkdir -p ev/mutfak ev/salon
-          cd ev/mutfak
-          cd ../salon
-          cd ../mutfak
+          mkdir -p a1/b1 a2
+          cd a1/b1
+          cd ../../a2
+          mkdir c2
+          cd c2
 
           Şimdi hangi klasördesin? Klasörün adını yaz.
-        answer: "mutfak"
+        answer: "c2"
         verify:
           mode: shell
           script: |
-            mkdir -p ev/mutfak ev/salon
-            cd ev/mutfak
-            cd ../salon
-            cd ../mutfak
+            mkdir -p a1/b1 a2
+            cd a1/b1
+            cd ../../a2
+            mkdir c2
+            cd c2
             basename "$PWD"
       - slug: g05
         difficulty: authentic_application
@@ -122,31 +126,22 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları çalıştır:
+          Boş bir klasörde şu komutları sırayla çalıştır:
 
-          mkdir -p a/b/c
-          cd a
-          cd b/c
-          cd ..
+          mkdir -p k1/k2/k3/k4
+          cd k1/k2/k3/k4
+          cd ../..
+          ls
 
-          Şimdi hangi klasördesin?
-        options:
-          A: "b; .. her zaman çalışma dizininin bir üstüdür"
-          B: "a; cd .. son cd komutundan önceki klasöre döner"
-          C: "Başladığın boş klasör; cd .. başlangıç klasörüne döndürür"
-          D: "c; cd .. çalışma dizinini değiştirmez"
-        scan_options: false
-        answer: A
-        misconception_options: {B: dotdot_goes_home, C: dotdot_goes_home}
+          ls ne listeler?
+        answer: "k3"
         verify:
           mode: shell
-          outcomes: {A: "b", B: "a", C: "start", D: "c"}
           script: |
-            mkdir -p a/b/c
-            cd a
-            cd b/c
-            cd ..
-            basename "$PWD"
+            mkdir -p k1/k2/k3/k4
+            cd k1/k2/k3/k4
+            cd ../..
+            ls
       - slug: g08
         difficulty: transfer_integration
         hands_on: true

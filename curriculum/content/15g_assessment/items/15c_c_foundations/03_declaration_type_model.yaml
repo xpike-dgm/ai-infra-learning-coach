@@ -5,16 +5,16 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.c adında bir program yaz: adet adında bir int değişkene 12, fiyat adında bir double değişkene 3.75 değer versin ve printf ile tek satırda 12 adet 3.75 TL yazdırsın (fiyat iki ondalık basamakla).
+          cozum.c adında bir program yaz: blok adında bir char değişkene 'B', no adında bir int değişkene 12 değer versin ve tek bir printf ile ekrana B-12 yazdırsın (önce blok, sonra tire, sonra no; arada boşluk yok).
         suite:
-          - {id: prints_values, expected_stdout: "12 adet 3.75 TL\n"}
+          - {id: label, expected_stdout: "B-12\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int adet = 12;
-              double fiyat = 3.75;
-              printf("%d adet %.2f TL\n", adet, fiyat);
+              char blok = 'B';
+              int no = 12;
+              printf("%c-%d\n", blok, no);
               return 0;
           }
         wrong:
@@ -22,18 +22,18 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int adet = 12;
-                double fiyat = 3.75;
-                printf("%d adet %f TL\n", adet, fiyat);
+                char blok = 'B';
+                int no = 12;
+                printf("%d-%d\n", blok, no);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int adet = 12;
-                int fiyat = 3.75;
-                printf("%d adet %d TL\n", adet, fiyat);
+                char blok = 'B';
+                int no = 12;
+                printf("%c - %d\n", blok, no);
                 return 0;
             }
       - slug: g02
@@ -103,16 +103,16 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir program yaz: sicaklik adında bir double değişkene -3.7 değer versin, bunu tam adında bir int değişkene açık dönüşümle (cast) atasın ve tam'ı yazdırsın. Dönüşümün eksi sayılarda ne yaptığını düşün.
+          cozum.c adında bir program yaz: genislik ve yukseklik adında iki int değişkeni TEK bir bildirim satırında bildirip sırasıyla 6 ve 9 değerlerini versin; ekrana tek satırda önce alanı (genislik * yukseklik), sonra çevreyi (2 * (genislik + yukseklik)) aralarında bir boşlukla yazsın.
+        required_skills: [skill.c.expression_evaluation]
         suite:
-          - {id: toward_zero, expected_stdout: "-3\n"}
+          - {id: area_perimeter, expected_stdout: "54 30\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              double sicaklik = -3.7;
-              int tam = (int) sicaklik;
-              printf("%d\n", tam);
+              int genislik = 6, yukseklik = 9;
+              printf("%d %d\n", genislik * yukseklik, 2 * (genislik + yukseklik));
               return 0;
           }
         wrong:
@@ -120,16 +120,16 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                double sicaklik = -3.7;
-                printf("-4\n");
+                int genislik = 6, yukseklik = 9;
+                printf("%d %d\n", genislik * yukseklik, 2 * genislik + yukseklik);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                double sicaklik = -3.7;
-                printf("%.0f\n", sicaklik);
+                int genislik = 9, yukseklik = 6;
+                printf("%d %d\n", genislik + yukseklik, genislik * yukseklik);
                 return 0;
             }
       - slug: g05
@@ -166,16 +166,15 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir program yaz: a adında bir int değişkene 7 versin, b adında bir double değişkene a'yı atasın ve b'yi üç ondalık basamakla yazdırsın. Ekranda 7.000 görünmeli.
+          cozum.c adında bir program yaz: oran adında bir int değişkene 45 değer versin ve ekrana Türkçedeki gibi yüzde işareti sayının ÖNÜNDE olacak şekilde %45 yazdırsın. printf'te yüzde işaretini nasıl yazacağını düşün.
         suite:
-          - {id: widened, expected_stdout: "7.000\n"}
+          - {id: percent_first, expected_stdout: "%45\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int a = 7;
-              double b = a;
-              printf("%.3f\n", b);
+              int oran = 45;
+              printf("%%%d\n", oran);
               return 0;
           }
         wrong:
@@ -183,18 +182,16 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int a = 7;
-                double b = a;
-                printf("%f\n", b);
+                int oran = 45;
+                printf("%d%%\n", oran);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int a = 7;
-                int b = a;
-                printf("%d\n", b);
+                int oran = 45;
+                printf("% %d\n", oran);
                 return 0;
             }
       - slug: g07

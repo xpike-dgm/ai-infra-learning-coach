@@ -94,26 +94,27 @@ objectives:
                 return 0;
             }
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.c adında bir program yaz: girdiden bir n okusun ve 1'den n'e kadar (n dahil) sayılardan kaçının 7'ye tam bölündüğünü yazsın.
+          cozum.c adında bir program yaz: girdiden bir başlangıç ve bir bitiş (iki tam sayı, başlangıç ≤ bitiş) okusun ve başlangıçtan başlayıp her adımda 3 artan, bitişi geçmeyen sayıları aralarında bir boşlukla tek satırda yazsın; satır sonuyla bitsin. Örnek: 2 10 → 2 5 8
         required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
         suite:
-          - {id: twenty, stdin: "20\n", expected_stdout: "2\n"}
-          - {id: exact, stdin: "21\n", expected_stdout: "3\n"}
-          - {id: small, stdin: "6\n", expected_stdout: "0\n"}
+          - {id: example, stdin: "2 10\n", expected_stdout: "2 5 8\n"}
+          - {id: lands_on_end, stdin: "1 7\n", expected_stdout: "1 4 7\n"}
+          - {id: single, stdin: "5 5\n", expected_stdout: "5\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              int n = 0, sayac = 0;
-              scanf("%d", &n);
-              for (int i = 1; i <= n; i++) {
-                  if (i % 7 == 0) {
-                      sayac++;
+              int bas = 0, bit = 0;
+              scanf("%d %d", &bas, &bit);
+              for (int i = bas; i <= bit; i += 3) {
+                  if (i > bas) {
+                      printf(" ");
                   }
+                  printf("%d", i);
               }
-              printf("%d\n", sayac);
+              printf("\n");
               return 0;
           }
         wrong:
@@ -121,28 +122,30 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                int n = 0, sayac = 0;
-                scanf("%d", &n);
-                for (int i = 1; i < n; i++) {
-                    if (i % 7 == 0) {
-                        sayac++;
+                int bas = 0, bit = 0;
+                scanf("%d %d", &bas, &bit);
+                for (int i = bas; i < bit; i += 3) {
+                    if (i > bas) {
+                        printf(" ");
                     }
+                    printf("%d", i);
                 }
-                printf("%d\n", sayac);
+                printf("\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int n = 0, sayac = 0;
-                scanf("%d", &n);
-                for (int i = 0; i <= n; i++) {
-                    if (i % 7 == 0) {
-                        sayac++;
+                int bas = 0, bit = 0;
+                scanf("%d %d", &bas, &bit);
+                for (int i = bas; i <= bit; i++) {
+                    if (i > bas) {
+                        printf(" ");
                     }
+                    printf("%d", i);
                 }
-                printf("%d\n", sayac);
+                printf("\n");
                 return 0;
             }
       - slug: g04
@@ -587,58 +590,4 @@ objectives:
                 }
                 printf("%d\n", artis);
                 return 0;
-            }
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: divisor_count_function
-        required_skills: [skill.c.functions_basic, skill.c.conditionals]
-        prompt: |
-          cozum.c dosyasına int bolen_say(int n) fonksiyonunu yaz: n'nin (n ≥ 1) pozitif bölenlerinin sayısını bir for döngüsüyle bulup döndürsün. Örnek: bolen_say(6) → 4 (1, 2, 3, 6). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
-        c_harness: |
-          #include <stdio.h>
-
-          int bolen_say(int n);
-
-          int main(void) {
-              int n = 0;
-              while (scanf("%d", &n) == 1) {
-                  printf("%d\n", bolen_say(n));
-              }
-              return 0;
-          }
-        suite:
-          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
-          - {id: composite, stdin: "6 12\n", expected_stdout: "4\n6\n"}
-          - {id: prime, stdin: "7\n", expected_stdout: "2\n"}
-        reference: |
-          int bolen_say(int n) {
-              int sayac = 0;
-              for (int i = 1; i <= n; i++) {
-                  if (n % i == 0) {
-                      sayac++;
-                  }
-              }
-              return sayac;
-          }
-        wrong:
-          - |
-            int bolen_say(int n) {
-                int sayac = 0;
-                for (int i = 1; i < n; i++) {
-                    if (n % i == 0) {
-                        sayac++;
-                    }
-                }
-                return sayac;
-            }
-          - |
-            int bolen_say(int n) {
-                int sayac = 0;
-                for (int i = 2; i <= n; i++) {
-                    if (n % i == 0) {
-                        sayac++;
-                    }
-                }
-                return sayac;
             }

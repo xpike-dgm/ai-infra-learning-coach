@@ -224,27 +224,27 @@ objectives:
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          Aşağıdaki program girilen ondalıklı sayının iki katını yazmalı ama yanlış bir sonuç veriyor (derleyici de bir uyarı yazıyor). scanf'teki biçim belirtecini düşün, hatayı düzelt ve cozum.c olarak kaydet. Örnek: girdi 2.5 → çıktı 5.00.
+          Aşağıdaki program, aralarında BOŞLUK olan iki tam sayı okuyup çarpımlarını yazmalı (girdi 3 4 → çıktı 12). Ama 12 yerine 0 yazıyor. scanf'in biçim yazısıyla girdinin nasıl eşleştiğini düşün, hatayı düzelt ve cozum.c olarak kaydet.
 
           #include <stdio.h>
 
           int main(void) {
-              double x = 0;
-              scanf("%f", &x);
-              printf("%.2f\n", x * 2);
+              int a = 0, b = 0;
+              scanf("%d,%d", &a, &b);
+              printf("%d\n", a * b);
               return 0;
           }
         suite:
-          - {id: half, stdin: "2.5\n", expected_stdout: "5.00\n"}
-          - {id: negative, stdin: "-1.25\n", expected_stdout: "-2.50\n"}
-          - {id: whole, stdin: "100\n", expected_stdout: "200.00\n"}
+          - {id: example, stdin: "3 4\n", expected_stdout: "12\n"}
+          - {id: newline_separated, stdin: "5\n6\n", expected_stdout: "30\n"}
+          - {id: negative, stdin: "-2 7\n", expected_stdout: "-14\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              double x = 0;
-              scanf("%lf", &x);
-              printf("%.2f\n", x * 2);
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              printf("%d\n", a * b);
               return 0;
           }
         wrong:
@@ -252,18 +252,18 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                double x = 0;
-                scanf("%d", &x);
-                printf("%.2f\n", x * 2);
+                int a = 0, b = 0;
+                scanf("%d,%d", &a, &b);
+                printf("%d\n", a * b);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                int x = 0;
-                scanf("%d", &x);
-                printf("%.2f\n", x * 2.0);
+                int a = 0, b = 0;
+                scanf("%d", &a);
+                printf("%d\n", a * b);
                 return 0;
             }
       - slug: g08

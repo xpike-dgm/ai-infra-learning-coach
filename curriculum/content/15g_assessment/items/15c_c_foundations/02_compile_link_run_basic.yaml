@@ -5,15 +5,14 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.c adında bir C programı yaz: ekrana iki ayrı satırda önce Ad: Deniz, sonra Yas: 20 yazsın. Derleyip çalıştırarak dene.
+          cozum.c adında bir C programı yaz: YALNIZ BİR printf çağrısıyla ekrana alt alta üç satır yazsın: Kirmizi, Sari ve Yesil. Derleyip çalıştırarak dene.
         suite:
-          - {id: two_lines, expected_stdout: "Ad: Deniz\nYas: 20\n"}
+          - {id: three_lines, expected_stdout: "Kirmizi\nSari\nYesil\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              printf("Ad: Deniz\n");
-              printf("Yas: 20\n");
+              printf("Kirmizi\nSari\nYesil\n");
               return 0;
           }
         wrong:
@@ -21,29 +20,27 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("Ad: Deniz");
-                printf("Yas: 20\n");
+                printf("Kirmizi Sari Yesil\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("Yas: 20\n");
-                printf("Ad: Deniz\n");
+                printf("KirmiziSariYesil\n");
                 return 0;
             }
       - slug: g02
         difficulty: basic
         prompt: |
-          cozum.c adında bir C programı yaz: ekrana tek satırda isim, bir sekme karakteri (\t) ve puan yazsın; satır sonuyla bitsin. Derleyip çalıştırarak dene.
+          cozum.c adında bir C programı yaz: ekrana önce Baslik yazsın, sonra tamamen BOŞ bir satır bıraksın, sonra Metin yazsın (toplam üç satır, ortadaki boş). Derleyip çalıştırarak dene.
         suite:
-          - {id: tab_separated, expected_stdout: "isim\tpuan\n"}
+          - {id: blank_middle, expected_stdout: "Baslik\n\nMetin\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              printf("isim\tpuan\n");
+              printf("Baslik\n\nMetin\n");
               return 0;
           }
         wrong:
@@ -51,36 +48,36 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("isim puan\n");
+                printf("Baslik\nMetin\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("isim\\tpuan\n");
+                printf("Baslik\n\n\nMetin\n");
                 return 0;
             }
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku, hatayı düzelt ve düzeltilmiş programı cozum.c olarak kaydet. Program ekrana iki satırda Bir ve Iki yazmalı.
+          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku, hatayı düzelt ve düzeltilmiş programı cozum.c olarak kaydet. Program ekrana iki satırda Kirmizi ve Mavi yazmalı.
 
           #include <stdio.h>
 
           int main(void) {
-              printf("Bir\n");
-              printf("Iki\n")
+              printf("Kirmizi\n");
+              printf("Mavi\n);
               return 0;
           }
         suite:
-          - {id: two_lines, expected_stdout: "Bir\nIki\n"}
+          - {id: two_lines, expected_stdout: "Kirmizi\nMavi\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              printf("Bir\n");
-              printf("Iki\n");
+              printf("Kirmizi\n");
+              printf("Mavi\n");
               return 0;
           }
         wrong:
@@ -88,57 +85,71 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("Bir\n");
-                printf("Iki\n")
+                printf("Kirmizi\n");
+                printf("Mavi\n);
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("Bir\n");
+                printf("Kirmizi\n");
                 return 0;
             }
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir C programı yaz: ekrana tek satırda bir Windows yolu olan C:\Users\ali yazsın (ters bölüler dahil). Ters bölüyü bir C yazısında nasıl yazacağını düşün. Derleyip çalıştırarak dene.
+          Aşağıdaki program gcc -std=c11 -Wall -Wextra ile derlenmiyor. gcc'nin mesajını oku: derleyici printf'i tanımıyor. Programda bir satır eksik; bul, ekle ve düzeltilmiş programı cozum.c olarak kaydet. Program ekrana Tamam yazmalı.
+
+          int main(void) {
+              printf("Tamam\n");
+              return 0;
+          }
         suite:
-          - {id: backslashes, expected_stdout: "C:\\Users\\ali\n"}
+          - {id: prints, expected_stdout: "Tamam\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              printf("C:\\Users\\ali\n");
+              printf("Tamam\n");
               return 0;
           }
         wrong:
           - |
-            #include <stdio.h>
-
             int main(void) {
-                printf("C:/Users/ali\n");
+                printf("Tamam\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("C:\\\\Users\\\\ali\n");
+                printf("Tamam");
+                printf("\n!");
                 return 0;
             }
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          cozum.c adında bir C programı yaz: iki ayrı printf çağrısıyla ekrana tek bir satırda Yukleniyor...tamam yazsın (ilk printf Yukleniyor..., ikincisi tamam ve satır sonu yazsın). Derleyip çalıştırarak dene.
+          Aşağıdaki program derleniyor ve çalışıyor ama dersin testi başarısız oluyor: beklenen çıktı alt alta Hazir, Ayar ve Bitti (üç ayrı satır). Programı çalıştırıp çıktısını beklenenle karşılaştır, farkı düzelt ve cozum.c olarak kaydet.
+
+          #include <stdio.h>
+
+          int main(void) {
+              printf("Hazir\n");
+              printf("Ayar");
+              printf("Bitti\n");
+              return 0;
+          }
         suite:
-          - {id: one_line, expected_stdout: "Yukleniyor...tamam\n"}
+          - {id: three_lines, expected_stdout: "Hazir\nAyar\nBitti\n"}
         reference: |
           #include <stdio.h>
 
           int main(void) {
-              printf("Yukleniyor...");
-              printf("tamam\n");
+              printf("Hazir\n");
+              printf("Ayar\n");
+              printf("Bitti\n");
               return 0;
           }
         wrong:
@@ -146,23 +157,25 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("Yukleniyor...\n");
-                printf("tamam\n");
+                printf("Hazir\n");
+                printf("Ayar");
+                printf("Bitti\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("Yukleniyor... ");
-                printf("tamam\n");
+                printf("Hazir\n");
+                printf("Ayar ");
+                printf("Bitti\n");
                 return 0;
             }
       - slug: g06
         difficulty: authentic_application
         prompt: |
           cozum.c adında bir C programı yaz: ekrana Toplam: 437 yazsın; 437'yi program 19 ile 23'ü çarparak hesaplasın ve printf'e %d ile versin. Derleyip çalıştırarak dene.
-        required_skills: [skill.programming.state_assignment_model]
+        required_skills: [skill.programming.state_assignment_model, skill.c.declaration_type_model]
         suite:
           - {id: product, expected_stdout: "Toplam: 437\n"}
         reference: |
@@ -223,7 +236,7 @@ objectives:
       - slug: g08
         difficulty: transfer_integration
         prompt: |
-          cozum.c adında bir C programı yaz: ekrana Hata kodu: 3 yazsın ve main 3 döndürsün (return 3;), böylece program işletim sistemine 3 çıkış koduyla bitsin. Testler hem çıktıya hem çıkış koduna bakar. Terminalde ./cozum; echo $? ile kendin de görebilirsin.
+          cozum.c adında bir C programı yaz: ekrana Hata kodu: 3 yazsın ve program işletim sistemine 0 yerine 3 çıkış koduyla bitsin (başarısız bittiğini bildirsin). Testler hem çıktıyı hem çıkış kodunu kontrol eder. Derleyip ./cozum; echo $? ile dene.
         suite:
           - {id: exit_three, expected_stdout: "Hata kodu: 3\n", expected_exit_code: 3}
         reference: |
@@ -245,14 +258,14 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("Hata kodu: 0\n");
-                return 3;
+                printf("Hata kodu: 3\n");
+                return 1;
             }
       - slug: g09
         difficulty: transfer_integration
         prompt: |
           cozum.c adında bir C programı yaz: ekrana tek satırda 2 * (3 + 4) = 14 yazsın. Eşittirin solundaki ifade yazı olarak, sağdaki 14 ise programın aynı ifadeyi hesaplamasıyla %d ile yazılsın. Derleyip çalıştırarak dene.
-        required_skills: [skill.programming.state_assignment_model]
+        required_skills: [skill.programming.state_assignment_model, skill.c.declaration_type_model]
         suite:
           - {id: expression, expected_stdout: "2 * (3 + 4) = 14\n"}
         reference: |
@@ -278,19 +291,19 @@ objectives:
                 return 0;
             }
       - slug: g10
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          Aşağıdaki program derlenmiyor. gcc'nin hata mesajını oku: derleyici bilmediği bir fonksiyon adından söz ediyor. Hatayı düzelt ve cozum.c olarak kaydet. Program ekrana alt alta Basla ve Bitti yazmalı.
+          Python'dan gelen bir öğrenci aşağıdaki programı yazmış; program gcc -std=c11 -Wall -Wextra ile derlenmiyor. gcc'nin mesajını oku, hatayı düzelt ve cozum.c olarak kaydet. Program ekrana Basla ve Bitti yazmalı (iki satır).
 
           #include <stdio.h>
 
           int main(void) {
-              printf("Basla\n");
-              prinft("Bitti\n");
+              print("Basla\n");
+              printf("Bitti\n");
               return 0;
           }
         suite:
-          - {id: both_lines, expected_stdout: "Basla\nBitti\n"}
+          - {id: two_lines, expected_stdout: "Basla\nBitti\n"}
         reference: |
           #include <stdio.h>
 
@@ -304,15 +317,15 @@ objectives:
             #include <stdio.h>
 
             int main(void) {
-                printf("Basla\n");
-                prinft("Bitti\n");
+                print("Basla\n");
+                printf("Bitti\n");
                 return 0;
             }
           - |
             #include <stdio.h>
 
             int main(void) {
-                printf("Basla\n");
+                printf("Bitti\n");
                 return 0;
             }
       - slug: g11
@@ -419,20 +432,18 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Bu program derlenip çalıştırılınca ne olur?
+          Bu program derlenip çalıştırılınca ne olur? (Programın sonunda return 2; var.)
         code: |
           #include <stdio.h>
 
           int main(void) {
-              int sifir = 0;
-              printf("Kalan: %d\n", 10 % sifir);
-              return 0;
+              printf("Dosya bulunamadi\n");
+              return 2;
           }
-        required_skills: [skill.c.declaration_type_model, skill.c.expression_evaluation]
         options:
           A: "Derleme hatası"
           B: "Bağlama hatası"
-          C: "Çalışma zamanı hatası"
+          C: "Çalışma zamanı hatası: program çalışır ama sıfırdan farklı bir kodla biter"
           D: "Hatasız çalışır"
         scan_options: false
         answer: C
@@ -622,62 +633,6 @@ objectives:
         verify:
           mode: c_stage
           outcomes: {A: compile, B: link, C: run, D: ok}
-      - slug: t01
-        difficulty: transfer_integration
-        hands_on: true
-        transfer_profile: cross_topic_context
-        context_family: two_file_link
-        required_skills: [skill.c.functions_basic]
-        prompt: |
-          Bir klasörde iki dosya var. ana.c, topla.c içinde yazılmış topla fonksiyonunu çağırıyor:
-
-          ana.c:
-          #include <stdio.h>
-          int topla(int a, int b);
-          int main(void) {
-          printf("%d\n", topla(2, 3));
-          return 0;
-          }
-
-          topla.c:
-          int topla(int a, int b) {
-          return a + b;
-          }
-
-          Yalnızca gcc ana.c -o ana komutunu çalıştırırsan ne olur?
-        options:
-          A: "Derleme hatası: topla tanımlı değil"
-          B: "Bağlama hatası: topla'nın tanımı bulunamaz"
-          C: "Program oluşur ama çalışınca çöker"
-          D: "Program oluşur ve 5 yazar"
-        scan_options: false
-        answer: B
-        misconception_options: {A: every_failure_is_compile_error}
-        verify:
-          mode: shell
-          outcomes: {A: "compile", B: "link", C: "run", D: "ok"}
-          script: |
-            cat > ana.c <<'KAYNAK'
-            #include <stdio.h>
-            int topla(int a, int b);
-            int main(void) {
-                printf("%d\n", topla(2, 3));
-                return 0;
-            }
-            KAYNAK
-            cat > topla.c <<'KAYNAK'
-            int topla(int a, int b) {
-                return a + b;
-            }
-            KAYNAK
-            gcc -c ana.c -o ana.o 2> derleme.txt || { echo compile; exit 0; }
-            if gcc ana.c -o ana 2> bag.txt; then
-                if [ "$(./ana)" = "5" ]; then echo ok; else echo run; fi
-            elif grep -q "undefined reference to .topla" bag.txt; then
-                echo link
-            else
-                echo baska
-            fi
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:
