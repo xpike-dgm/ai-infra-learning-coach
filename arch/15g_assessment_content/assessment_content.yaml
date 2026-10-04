@@ -1,0 +1,208 @@
+model: ACNX-v0
+stage_step: 15G
+status: accepted_15g
+decision: D-120
+implements: [QAB-v0, MCA-v0, AIV-v0, WAAX-v0, GRE-v0, PDT-v0, PBR-v0, LFPS-v0, CDEX-v0]
+builds_on: [CPFX-v0, PYFX-v0, CFNX-v0, MMFX-v0, LGSX-v0, EAAX-v0, MCAX-v0, PLNX-v0, PRQX-v0, WAAX-v0]
+boundaries: MSBX-v0
+purpose: unseen_items_for_every_published_objective_without_overwriting_anything_published
+
+question: Yayımlanmış bir Objective'e, yayımlanmış hiçbir şeyi değiştirmeden, öğrencinin görmediği ve gerçekten aynı yeteneği ölçen yeni item'lar nasıl eklenir?
+
+primary_invariant: >-
+  An added item measures its Objective in a structure the learner has not seen, in a form that can produce the evidence
+  the Objective requires, and ships only after an independent reviewer passed it. A supplement adds items, grown task
+  versions, transfer items and wrong-option misconception keys and never overwrites anything published. A transfer claim
+  is checked, never assumed, and a transfer item is reserved for the month's transfer slot. A wrong option names a
+  misconception only where it follows from exactly that misconception of the key's own Objective.
+
+user_decisions:
+  approval: explicit_user_approval_2026-10-04
+  pool: 15_to_20_outside_the_lesson
+  transfer: content_and_monthly_producer
+  misconception_keys: option_level_deterministic
+  authorship: assistant_writes_independent_agents_review
+  english_pool: honest_small_pool_shortfall_recorded
+  professional_evidence_checkpoint_owner: AŞAMA 20
+
+declared_extensions:
+  - {what: "NeedTrigger.TRANSFER_OPPORTUNITY / need.transfer_opportunity", extends: "3B §2.1 / PDT-v0 §8.1", band: "integration's row (MCA-v0 §7)"}
+  - {what: "BlueprintExclusion.TRANSFER_IS_MONTHLY", extends: "WBA-v0 exclusions"}
+  - {what: "SlotItemRefusal.TRANSFER_CLAIM_UNSUPPORTED", extends: "AIV-v0 §16 in the composer"}
+  - {what: "[answer_misconception] section; transfer_profile and context_family_id on [item]", extends: "curriculum_package/1"}
+  - {what: "a later package publishes a task's next version and maps an earlier package's key", extends: "D-113 incremental packages"}
+
+scope:
+  package_version: 7
+  supplement: true
+  skills_added: 0
+  objectives_added: 0
+  edges_added: 0
+  lessons_added: 0
+  labels_added: 0
+  schema_changed: false
+  ports_changed: false
+  store_changed: false
+  kotlin_main_changed: true
+  earlier_packages_rebuilt_identical: true
+
+counts:
+  items: 613
+  task_versions: 240
+  answer_misconceptions: 144
+  answer_misconceptions_on_added_items: 66
+  answer_misconceptions_on_published_items: 78
+  transfer_items: 21
+  by_source:
+    15a_computing_fundamentals: {items: 120, transfer: 5, task_versions: 48}
+    15b_python_foundations: {items: 235, transfer: 9, task_versions: 80}
+    15c_c_foundations: {items: 112, transfer: 4, task_versions: 36}
+    15d_memory_foundations: {items: 63, transfer: 1, task_versions: 16}
+    15e_linux_git_shell: {items: 40, transfer: 2, task_versions: 20}
+    15f_english_a1_a2: {items: 43, transfer: 0, task_versions: 40}
+
+review:
+  reviewer: independent_15g_content_review
+  rounds: 4
+  final_verdict_round: {"1": 425, "2": 158, "3": 25, "4": 5}
+  file: curriculum/content/15g_assessment/independent_review.yaml
+
+pool:
+  rule: published items outside the lesson plus added items, transfer items not counted
+  objectives: 65
+  target: 15
+  shortfall:
+    - {objective: objective.python.scope_name_resolution.demonstrate_capability, pool: 14, decision: assistant_drop_over_near_variant, reason: "every further candidate repeated a sibling's local-shadows-caller structure"}
+    - {objective: objective.c.declaration_type_model.write_basic_declarations, pool: 14, decision: assistant_drop_over_near_variant, reason: "a further conversion case was the lesson's own int_rounds contrast"}
+    - {objective: objective.git.repository_status_diff.inspect_change_state, pool: 14, decision: assistant_drop_over_near_variant, reason: "a further diff case restated the lesson's worked example"}
+    - {objective: objective.english.technical_noun_phrase_recognition.demonstrate_capability, pool: 12, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.be_and_simple_present_comprehension.demonstrate_capability, pool: 10, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.imperative_instruction_comprehension.demonstrate_capability, pool: 10, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.preposition_function_word_comprehension.demonstrate_capability, pool: 10, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.negation_question_comprehension.demonstrate_capability, pool: 11, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.follow_bilingual_technical_instruction.execute_known_instruction, pool: 11, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.documentation_navigation.demonstrate_capability, pool: 11, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+    - {objective: objective.english.write_command_result_note.demonstrate_capability, pool: 10, decision: user_honest_small_pool, reason: "the taught lexicon admits no further structurally distinct item"}
+
+found:
+  - leakage_and_near_variance_not_wrong_keys
+  - a_choice_item_cannot_carry_code_hands_on_or_written_evidence
+  - a_harder_item_of_the_same_lesson_is_not_transfer
+  - the_english_lexicon_bounds_distinct_items
+  - a_transfer_item_without_a_context_crashed_the_build
+
+suites:
+  shipped: {file: android/data-curriculum/src/test/kotlin/coach/curriculum/ShippedAssessmentPackageTest.kt}
+  course: {file: android/app-wiring/src/test/kotlin/coach/wiring/ShippedCourseTest.kt}
+  owner: {file: android/core-engines/src/test/kotlin/coach/engines/TransferEngineTest.kt}
+  facts: {file: android/core-application/src/test/kotlin/coach/application/TransferPlanningTest.kt}
+
+open_loops:
+  pool_shortfall: {owner: 15H, note: "3 technical Objectives at 14; 8 English Objectives at 10–12 (a wider taught lexicon first)"}
+  professional_evidence_checkpoint: {owner: AŞAMA 20, note: "the month's other role still has no producer"}
+  review_findings: {owner: 15H, note: "generous difficulty labels and isomorph notes recorded by the reviewers"}
+  estimate_calibration: {owner: 18B, note: "added items carry authoring-estimate minutes"}
+  t6_and_device_ingestion: {owner: 19, note: "T6 and the first on-device ingestion"}
+
+mutation_results_builder:
+  total: 22
+  detected: 22
+  scope: the 15G builder (form_problems, transfer_problems and reservation, task versions, answer_misconception sections, the review gate for added items and mappings)
+  tests: a fixture supplement through the real build(source, supplement=...) on 15A's function_decomposition Objective (two clean items, eleven planted faults, an unreviewed item and a harder item without a transfer profile) plus form_problems on real Objectives of 15B, 15C, 15F and 15A
+  detection: a fixture check fails; the module is loaded in memory from the mutated text and the repository file is never written
+  crash_is_detection: false
+  harness_verified: the unmutated baseline passes every check before any mutant runs
+  negative_control: a comment on TRANSFER_ROLE
+  negative_control_result: survived_as_expected
+  found_defect: a transfer item without a named context raised KeyError and crashed the whole build instead of being reported; fixed
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: B01, mutant: form_declared_type_not_checked, result: detected}
+    - {id: B02, mutant: form_code_suite_not_required, result: detected}
+    - {id: B03, mutant: form_hands_on_not_required, result: detected}
+    - {id: B04, mutant: form_production_options_allowed, result: detected}
+    - {id: B05, mutant: form_check_not_called, result: detected}
+    - {id: B06, mutant: near_context_counts_as_transfer, result: detected}
+    - {id: B07, mutant: context_family_not_required, result: detected}
+    - {id: B08, mutant: own_skill_allowed, result: detected}
+    - {id: B09, mutant: other_topic_not_required, result: detected}
+    - {id: B10, mutant: transfer_difficulty_not_checked, result: detected}
+    - {id: B11, mutant: transfer_items_in_tasks, result: detected}
+    - {id: B12, mutant: ungrown_task_republished, result: detected}
+    - {id: B13, mutant: task_version_overwritten, result: detected}
+    - {id: B14, mutant: correct_option_mappable, result: detected}
+    - {id: B15, mutant: uncatalogued_label_mappable, result: detected}
+    - {id: B16, mutant: unreviewed_mapping_shipped, result: detected}
+    - {id: B17, mutant: missing_option_mappable, result: detected}
+    - {id: B18, mutant: published_review_used_for_added_items, result: detected}
+    - {id: B19, mutant: harder_item_gets_transfer_role, result: detected}
+    - {id: B20, mutant: transfer_role_not_reserved, result: detected}
+    - {id: B21, mutant: transfer_problems_not_called, result: detected}
+    - {id: B22, mutant: published_mappings_ignored, result: detected}
+
+mutation_results_kotlin:
+  total: 32
+  detected: 32
+  scope: the 15G Kotlin main code (TransferEngine, TransferPlanning, the planner band, the monthly role, the weekly exclusion, the composer refusal, BuildDailyPlan and ComposeAssessmentBlueprint asking the owner, AcceptedAnswers wrong answers, OpenResponse hypotheses, FileContentSource task versions and wrong-answer attachment, PackageFormat supplement references and transfer profiles)
+  tests: the owning modules' JVM tests (core-engines, core-application, core-model, data-curriculum; app-wiring for K32), run with Gradle against each mutated source file
+  detection: the test task fails on a test; a compilation error is a crash
+  crash_is_detection: false
+  harness_verified: the unmutated baseline passes every module first; each file is read as bytes, written mutated and restored in finally, and the restore is checked
+  negative_control: a comment on the TransferEngine object line
+  negative_control_result: survived_as_expected
+  strengthened: the first run left three mutants alive — the planner and the monthly composer never asking the transfer owner (K21, K22), a wrong answer mapped again by a later package (K28) and a label of another Objective (K29); a test was added for each, and the harness was fixed to match CRLF working-tree sources (three mutants first did not apply)
+  not_counted_as_mutants: removing `if (accepts(response)) return null` in misconceptionFor is equivalent — a key's constructor already refuses a wrong answer equal to an accepted one, so the guard can never change a result
+  final_run_is_a_single_clean_run: true
+  mutants:
+    - {id: K01, mutant: learned_ignores_mastery, result: detected}
+    - {id: K02, mutant: transfer_item_needs_no_cross_topic, result: detected}
+    - {id: K03, mutant: transfer_item_needs_no_monthly_scope, result: detected}
+    - {id: K04, mutant: transfer_item_needs_no_role, result: detected}
+    - {id: K05, mutant: untrusted_item_counts, result: detected}
+    - {id: K06, mutant: unverified_row_measures, result: detected}
+    - {id: K07, mutant: assisted_row_measures, result: detected}
+    - {id: K08, mutant: contested_row_measures, result: detected}
+    - {id: K09, mutant: prerequisite_invalid_row_measures, result: detected}
+    - {id: K10, mutant: unlearned_skill_opens, result: detected}
+    - {id: K11, mutant: criticality_dropped, result: detected}
+    - {id: K12, mutant: transfer_composed_as_integration, result: detected}
+    - {id: K13, mutant: transfer_excluded_weekly_for_another_reason, result: detected}
+    - {id: K14, mutant: transfer_band_raised, result: detected}
+    - {id: K15, mutant: unsupported_transfer_claim_accepted, result: detected}
+    - {id: K16, mutant: item_trust_taken_from_item, result: detected}
+    - {id: K17, mutant: measured_skill_reopens, result: detected}
+    - {id: K18, mutant: seen_item_counts_as_unseen, result: detected}
+    - {id: K19, mutant: solution_shown_family_counts, result: detected}
+    - {id: K20, mutant: gate_ignored, result: detected}
+    - {id: K21, mutant: planner_never_asks_transfer, result: detected}
+    - {id: K22, mutant: composer_never_asks_transfer, result: detected}
+    - {id: K23, mutant: accepted_answer_may_be_misconception, result: detected}
+    - {id: K25, mutant: wrong_answer_proposes_nothing, result: detected}
+    - {id: K26, mutant: every_task_version_offered, result: detected}
+    - {id: K27, mutant: wrong_answers_not_attached, result: detected}
+    - {id: K28, mutant: wrong_answer_may_repeat_across_packages, result: detected}
+    - {id: K29, mutant: label_of_another_objective_accepted, result: detected}
+    - {id: K30, mutant: accepted_answer_mappable, result: detected}
+    - {id: K31, mutant: unknown_transfer_profile_dropped, result: detected}
+    - {id: K32, mutant: later_task_cannot_present_earlier_items, result: detected}
+    - {id: K33, mutant: unknown_key_mappable, result: detected}
+
+validator_mutation: __VALIDATOR__
+
+verified_runs:
+  - {id: RUN-01, command: "./gradlew :core-model:test :core-ports:test :core-engines:test :core-application:test :core-presentation:test", tier: T1, result: PASS}
+  - {id: RUN-02, command: "./gradlew :data-persistence:test :data-curriculum:test", tier: T2, result: PASS}
+  - {id: RUN-03, command: "./gradlew :ai-adapter:test :app-wiring:testDebugUnitTest", tier: T3, result: PASS}
+  - {id: RUN-04, command: "./gradlew verifyModuleBoundaries", tier: T5, result: PASS}
+  - {id: RUN-05, command: "./gradlew -PwithAiAdapter=false :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-06, command: "./gradlew :app-wiring:assembleDebug", tier: T5, result: PASS}
+  - {id: RUN-07, command: "read the seven curriculum packages from both built APKs and compare their SHA-256 with the source assets; the APK without the AI adapter has no INTERNET permission", tier: T5, result: PASS}
+  - {id: RUN-08, command: "python -X utf8 tools/validate_assessment_content.py (all seven packages rebuilt; every added key run again by its own content directory)", tier: T2, result: PASS}
+jvm_tests: 1059
+
+device_verification:
+  t6_run: false
+  claimed: false
+  sqlite_publish_on_jvm_run: true
+  sqlite_publish_on_device_run: false
+  why: no check runs on the device; ShippedCourseTest publishes all seven shipped packages into the real schema on the JVM

@@ -1058,8 +1058,19 @@ _Aşağıdaki maddeler önceki bir düzenlemeden kalmış tarihsel 9C checklist 
 - Mutation 8/8, validator 119/119,
 - **T6 ve cihazda ingestion çalıştırılmadı**.
 
-### [ ] 15G — Assessment content — **AKTİF**
-### [ ] 15H — Content QA
+### [x] 15G — Assessment content — ACNX-v0 / D-120
+
+**15G final coverage:**
+- yayımlanmış Objective'lere, yayımlanmış hiçbir şeyi değiştirmeden, öğrencinin görmediği ve aynı yeteneği ölçen item'lar ekleyen yedinci paket (ek paket, v7); 1–6. paketler bayt bayt aynı,
+- 613 item, 240 büyüyen görev v2'si (teach görevleri değişmedi), 21 cross-topic transfer item'ı (ayın transfer slotuna ayrılır, hiçbir görev harcamaz), 144 seçenek düzeyinde misconception anahtarı; hiçbir Skill, Objective, kenar, Topic, ders ya da etiket eklenmedi,
+- seçmeli bir item kod, uygulamalı ya da yazılı kanıt taşıyamaz (üretici reddeder); aynı dersin daha zor item'ı transfer değildir; `TRANSFER_OPPORTUNITY` sahibi `TransferEngine`, planner ve aylık composer aynı ihtiyacı okur (beyan edilmiş uzantılar, D-120),
+- bağımsız inceleme dört turda 613/613 item, 144/144 eşleme,
+- havuz: 65 Objective'in 54'ü ≥15; üç teknik Objective 14, sekiz İngilizce Objective 10–12 (kullanıcı kararı: dürüst küçük havuz) — eksik kayıtlı,
+- yedi paket gerçek SQLite şemasına JVM'de yayımlanıyor (`ShippedCourseTest`, `ShippedAssessmentPackageTest`),
+- Mutation üretici 22/22, Kotlin __KOTLIN_MUTATION__; validator __QA__,
+- **T6 ve cihazda ingestion çalıştırılmadı**.
+
+### [ ] 15H — Content QA — **AKTİF**
 
 ---
 
@@ -1136,8 +1147,8 @@ Bu operasyonel handoff numaralı stage değildir. Local manager mevcut accepted 
 
 # Güncel Konum
 
-**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15F`  
-**Son tamamlanan:** **`15F — EAAX-v0 / D-119`**  
-**Aktif:** **`15G — Assessment content`** — henüz yürütülmedi.
+**Tamamlanan:** `1A–1D`, `2A–2F`, `3A–3H`, `4A–4E`, `5A–5D`, `6A–6H`, `7A–7E`, `8A–8G`, `9A–9F`, `10A–10E`, `11A–11E`, `12A–12F`, `13A–13F`, `14A–14G`, `15A–15G`  
+**Son tamamlanan:** **`15G — ACNX-v0 / D-120`**  
+**Aktif:** **`15H — Content QA`** — henüz yürütülmedi.
 
-Bir sonraki yürütme: **15G fresh PRE-STEP + kullanıcının yeni açık onayı → Assessment content → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
+Bir sonraki yürütme: **15H fresh PRE-STEP + kullanıcının yeni açık onayı → Content QA → independent QA → D-050 POST sync + stale audit.** D-117'nin sürekli onayı 15F ile bitti.
