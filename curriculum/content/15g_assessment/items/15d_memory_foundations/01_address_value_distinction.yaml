@@ -26,16 +26,27 @@ objectives:
           mode: c_stdout
           outcomes: {A: "0", B: "1", C: "3", D: "derlenmez"}
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır?
+          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
+
+          int ekle(int d) {
+              d = d + 100;
+              return d;
+          }
+
           int main(void) {
-              printf("%zu\n", sizeof(double));
+              int puan = 8;
+              ekle(puan);
+              printf("%d ", puan);
+              puan = ekle(puan);
+              printf("%d\n", puan);
               return 0;
           }
-        answer: "8"
+        required_skills: [skill.c.functions_basic]
+        answer: "8 108"
         verify: {mode: c_stdout}
       - slug: g03
         difficulty: basic
@@ -55,46 +66,51 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır?
-        code: |
-          #include <stdio.h>
-          void sifirla(int x) {
-              x = 0;
-          }
-          int main(void) {
-              int s = 7;
-              sifirla(s);
-              printf("%d\n", s);
-              return 0;
-          }
-        required_skills: [skill.c.functions_basic]
-        options:
-          A: "7"
-          B: "0"
-          C: Program derlenmez; x değiştirilemez.
-          D: "Rastgele bir sayı"
-        scan_options: false
-        answer: A
-        verify:
-          mode: c_stdout
-          outcomes: {A: "7", B: "0", C: "derlenmez", D: "rastgele"}
-      - slug: g05
-        difficulty: authentic_application
-        prompt: |
           Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
+
+          void arttir(int n) {
+              n = n + 1;
+              printf("%d ", n);
+          }
+
           int main(void) {
               int a = 1;
-              int b = a;
-              a = 2;
-              b = b + a;
-              printf("%d %d\n", a, b);
+              arttir(a);
+              arttir(a);
+              printf("%d\n", a);
               return 0;
           }
-        required_skills: [skill.c.expression_evaluation]
-        answer: "2 3"
+        required_skills: [skill.c.functions_basic]
+        answer: "2 2 1"
         verify: {mode: c_stdout}
+      - slug: g05
+        difficulty: basic
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 3;
+              int b = 4;
+              int c = a + b;
+              a = 0;
+              printf("%d\n", c);
+              return 0;
+          }
+        options:
+          A: "7"
+          B: "4"
+          C: "0"
+          D: "3"
+        scan_options: false
+        answer: A
+        misconception_options: {B: assignment_links_variables}
+        verify:
+          mode: c_stdout
+          outcomes: {A: "7", B: "4", C: "0", D: "3"}
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -123,55 +139,91 @@ objectives:
         answer: A
         verify: {mode: c_stdout}
       - slug: g07
-        difficulty: authentic_application
+        difficulty: basic
         prompt: |
-          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu program çalışınca ekrana ne yazılır?
         code: |
           #include <stdio.h>
+
           int main(void) {
-              int i = 65;
-              char c = 'A';
-              printf("%d %d\n", i == c, sizeof i == sizeof c);
+              int a = 9;
+              int b = 9;
+              a = 1;
+              printf("%d\n", b);
               return 0;
           }
-        required_skills: [skill.c.expression_evaluation]
-        answer: "1 0"
-        verify: {mode: c_stdout}
-      - slug: g08
-        difficulty: transfer_integration
-        prompt: |
-          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır? (İpucu: bir char ile bir int'i topladığında sonucun türü nedir?)
-        code: |
-          #include <stdio.h>
-          int main(void) {
-              char c = 100;
-              printf("%zu %zu\n", sizeof c, sizeof (c + 1));
-              return 0;
-          }
-        required_skills: [skill.c.expression_evaluation]
         options:
-          A: "1 4"
-          B: "1 1"
-          C: "4 4"
-          D: "1 2"
+          A: "9"
+          B: "1"
+          C: "10"
+          D: "0"
         scan_options: false
         answer: A
-        verify: {mode: c_stdout}
+        misconception_options: {B: same_value_same_place}
+        verify:
+          mode: c_stdout
+          outcomes: {A: "9", B: "1", C: "10", D: "0"}
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Bu program bu kursun ortamında (Linux, x86_64, gcc) çalışınca ekrana ne yazılır? Değişkenlerin içindeki değerlerin büyüklüğüne değil, türlerine dikkat et.
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int buyuk = 1000000;
+              int kucuk = 1;
+              char harf = 'z';
+              printf("%zu %zu %zu\n", sizeof buyuk, sizeof kucuk, sizeof harf);
+              return 0;
+          }
+        options:
+          A: "4 4 1"
+          B: "7 1 1"
+          C: "8 4 1"
+          D: "4 1 1"
+        scan_options: false
+        answer: A
+        verify:
+          mode: c_stdout
+          outcomes: {A: "4 4 1", B: "7 1 1", C: "8 4 1", D: "4 1 1"}
       - slug: g09
         difficulty: transfer_integration
         prompt: |
-          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Aşağıdaki programın 3. ve 4. satırlarından hangisi y'nin kutusunun içini değiştirebilir? (Programa girdi olarak 7 veriliyor.)
         code: |
-          #include <stdio.h>
-          int main(void) {
-              int a = 5;
-              int b = 5;
-              printf("%d %d %d\n", a == b, &a != &b, sizeof a == sizeof b);
-              return 0;
-          }
-        required_skills: [skill.c.expression_evaluation]
-        answer: "1 1 1"
-        verify: {mode: c_stdout}
+          int x = 1;
+          int y = 2;
+          x = y;
+          scanf("%d", &y);
+        required_skills: [skill.c.standard_io_basic]
+        options:
+          A: Yalnız 4. satır; scanf'e y'nin adresi verildiği için okunan değer y'nin yerine yazılır. 3. satır yalnız x'in kutusunu değiştirir.
+          B: Yalnız 3. satır; x = y satırı y'ye x'in değerini koyar.
+          C: İkisi de; ikisinde de y geçiyor.
+          D: Hiçbiri; y'ye yalnız y = ... ile yazılır.
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            cat > p.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                int x = 1;
+                int y = 2;
+                int y0 = y;
+                x = y;
+                int y1 = y;
+                scanf("%d", &y);
+                printf("%d %d %d %d\n", y0, y1, y, x);
+                return 0;
+            }
+            KAYNAK
+            gcc -std=c11 -o p p.c
+            out=$(echo 7 | ./p)
+            if [ "$out" = "2 2 7 2" ]; then echo A; else echo D; fi
       - slug: g10
         difficulty: authentic_application
         independence: guided
@@ -197,35 +249,45 @@ objectives:
   - id: objective.memory.address_value_distinction.trace_simple_memory_example
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu programın yazarı a ile b'yi geçici bir değişkenle yer değiştirmek istemiş ama satırlardan birini yanlış yazmış. Program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
+
           int main(void) {
-              int p = 2;
-              int q = p * 3;
-              p = q - p;
-              printf("%d %d\n", p, q);
+              int a = 4;
+              int b = 6;
+              int t = a;
+              a = b;
+              b = a;
+              printf("%d %d %d\n", a, b, t);
               return 0;
           }
-        answer: "4 6"
+        answer: "6 6 4"
         verify: {mode: c_stdout}
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
           Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
+
+          int birlestir(int a, int b) {
+              a = a + b;
+              b = 0;
+              return a;
+          }
+
           int main(void) {
-              int a = 1;
-              int b = 2;
-              a = b;
-              b = 5;
-              printf("%d %d\n", a, b);
+              int x = 2;
+              int y = 5;
+              int z = birlestir(x, y);
+              printf("%d %d %d\n", x, y, z);
               return 0;
           }
-        answer: "2 5"
+        required_skills: [skill.c.functions_basic]
+        answer: "2 5 7"
         verify: {mode: c_stdout}
       - slug: g03
         difficulty: basic
@@ -248,26 +310,35 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu program x ile y'nin değerlerini takas etmeye çalışıyor. Ekrana ne yazılır?
+          Bu programda ekle fonksiyonu üç kez çağrılıyor ama dönen değer yalnız iki kez kullanılıyor. Program çalışınca ekrana ne yazılır?
         code: |
           #include <stdio.h>
+
+          int ekle(int t, int d) {
+              t = t + d;
+              return t;
+          }
+
           int main(void) {
-              int x = 7;
-              int y = 9;
-              x = y;
-              y = x;
-              printf("%d %d\n", x, y);
+              int top = 0;
+              top = ekle(top, 3);
+              ekle(top, 4);
+              top = ekle(top, 5);
+              printf("%d\n", top);
               return 0;
           }
+        required_skills: [skill.c.functions_basic]
         options:
-          A: "9 9"
-          B: "9 7"
-          C: "7 7"
-          D: "7 9"
+          A: "8"
+          B: "12"
+          C: "5"
+          D: "7"
         scan_options: false
         answer: A
-        misconception_options: {B: swap_without_third_box}
-        verify: {mode: c_stdout}
+        misconception_options: {B: parameter_shares_box}
+        verify:
+          mode: c_stdout
+          outcomes: {A: "8", B: "12", C: "5", D: "7"}
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -288,39 +359,64 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu programda parametrenin adı da main'deki değişkenin adı da k. Program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
-          int degistir(int n) {
-              n = n + 10;
-              return n * 2;
+
+          int arttir(int k) {
+              k = k + 1;
+              return k;
           }
+
           int main(void) {
-              int k = 1;
-              int m = degistir(k);
-              printf("%d %d\n", k, m);
+              int k = 10;
+              int s = arttir(k);
+              printf("%d %d\n", k, s);
               return 0;
           }
         required_skills: [skill.c.functions_basic]
-        answer: "1 22"
+        answer: "10 11"
         verify: {mode: c_stdout}
       - slug: g07
-        difficulty: authentic_application
+        difficulty: basic
         prompt: |
-          Bu program çalışınca ekrana ne yazılır?
+          Bu programın 4. satırı (b = c + a;) çalıştıktan hemen sonra a, b ve c'nin kutularında ne vardır?
         code: |
-          #include <stdio.h>
-          int main(void) {
-              int x = 1;
-              for (int i = 0; i < 3; i++) {
-                  x = x * 2 + i;
-              }
-              printf("%d\n", x);
-              return 0;
-          }
-        required_skills: [skill.c.for_iteration]
-        answer: "12"
-        verify: {mode: c_stdout}
+          int a = 5;
+          int c = a;
+          a = 2;
+          int b = c + a;
+          c = 0;
+        options:
+          A: a=2, b=7, c=5
+          B: a=2, b=4, c=2
+          C: a=2, b=7, c=0
+          D: a=5, b=10, c=5
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            cat > p.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                int a = 5;
+                int c = a;
+                a = 2;
+                int b = c + a;
+                printf("%d %d %d\n", a, b, c);
+                c = 0;
+                return 0;
+            }
+            KAYNAK
+            gcc -std=c11 -o p p.c
+            case "$(./p)" in
+                "2 7 5") echo A ;;
+                "2 4 2") echo B ;;
+                "2 7 0") echo C ;;
+                *) echo D ;;
+            esac
       - slug: g08
         difficulty: transfer_integration
         prompt: |
@@ -364,17 +460,16 @@ objectives:
           Bu program çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
           #include <stdio.h>
+
           int main(void) {
-              int a = 3;
-              int b = 8;
-              int t = a;
-              a = b;
-              b = t;
-              a = a + b;
-              printf("%d %d %d\n", a, b, t);
+              char c = 'a';
+              int n = c;
+              c = c + 1;
+              printf("%c %d\n", c, n);
               return 0;
           }
-        answer: "11 3 3"
+        required_skills: [skill.c.declaration_type_model]
+        answer: "b 97"
         verify: {mode: c_stdout}
       - slug: t01
         difficulty: transfer_integration

@@ -5,36 +5,40 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.c dosyasına int *bos_isaretci(void) fonksiyonunu yaz: hiçbir yeri göstermeyen işaretçiyi (NULL) döndürsün. Hiçbir başlık eklemiyorsan NULL için #include <stddef.h> ekle. Dersin testleri dönen işaretçinin NULL olup olmadığına bakar.
-        required_skills: [skill.c.functions_basic]
+          cozum.c dosyasına int bos_sayisi(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçiden kaçının hiçbir yeri göstermediğini (NULL olduğunu) döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
         c_harness: |
           #include <stdio.h>
           #include <stddef.h>
 
-          int *bos_isaretci(void);
+          int bos_sayisi(int *a, int *b, int *c);
 
           int main(void) {
-              printf("%d\n", bos_isaretci() == NULL);
+              int x = 0, y = 0;
+              printf("%d %d %d %d\n", bos_sayisi(&x, &y, &x), bos_sayisi(NULL, &y, NULL),
+                     bos_sayisi(NULL, NULL, NULL), bos_sayisi(&x, NULL, &y));
               return 0;
           }
         suite:
-          - {id: is_null, expected_stdout: "1\n"}
+          - {id: counts, expected_stdout: "0 2 3 1\n"}
         reference: |
           #include <stddef.h>
 
-          int *bos_isaretci(void) {
-              return NULL;
+          int bos_sayisi(int *a, int *b, int *c) {
+              return (a == NULL) + (b == NULL) + (c == NULL);
           }
         wrong:
           - |
-            int *bos_isaretci(void) {
-                static int x = 0;
-                return &x;
+            #include <stddef.h>
+
+            int bos_sayisi(int *a, int *b, int *c) {
+                return (a != NULL) + (b != NULL) + (c != NULL);
             }
           - |
-            int *bos_isaretci(void) {
-                static int bos = 0;
-                return &bos;
+            #include <stddef.h>
+
+            int bos_sayisi(int *a, int *b, int *c) {
+                return (a == NULL) + (b == NULL);
             }
       - slug: g02
         difficulty: basic
@@ -146,184 +150,195 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          cozum.c dosyasına int oku_bir(int *hedef) fonksiyonunu yaz: standart girdiden bir tam sayıyı scanf ile doğrudan hedef'in gösterdiği değişkene okusun ve scanf'in döndürdüğü değeri döndürsün. Dersin testleri bir değişkenin adresini verir, sonra dönen değeri ve değişkeni yazdırır.
-        required_skills: [skill.c.functions_basic, skill.c.standard_io_basic]
-        c_harness: |
-          #include <stdio.h>
-
-          int oku_bir(int *hedef);
-
-          int main(void) {
-              int x = -99;
-              int r = oku_bir(&x);
-              printf("%d %d\n", r, x);
-              return 0;
-          }
-        suite:
-          - {id: number, stdin: "42\n", expected_stdout: "1 42\n"}
-          - {id: not_number, stdin: "abc\n", expected_stdout: "0 -99\n"}
-          - {id: negative, stdin: "-7\n", expected_stdout: "1 -7\n"}
-        reference: |
-          #include <stdio.h>
-
-          int oku_bir(int *hedef) {
-              return scanf("%d", hedef);
-          }
-        wrong:
-          - |
-            #include <stdio.h>
-
-            int oku_bir(int *hedef) {
-                int x = 0;
-                return scanf("%d", &x);
-            }
-          - |
-            #include <stdio.h>
-
-            int oku_bir(int *hedef) {
-                scanf("%d", hedef);
-                return 1;
-            }
-      - slug: g06
-        difficulty: authentic_application
-        prompt: |
-          cozum.c dosyasına int oku_ondalik(double *d) fonksiyonunu yaz: standart girdiden bir ondalıklı sayıyı scanf ile d'nin gösterdiği double'a okusun ve scanf'in döndürdüğü değeri döndürsün. Dersin testleri dönen değeri ve sayıyı iki ondalık basamakla yazdırır.
-        required_skills: [skill.c.functions_basic, skill.c.standard_io_basic]
-        c_harness: |
-          #include <stdio.h>
-
-          int oku_ondalik(double *d);
-
-          int main(void) {
-              double x = 0;
-              int r = oku_ondalik(&x);
-              printf("%d %.2f\n", r, x);
-              return 0;
-          }
-        suite:
-          - {id: decimal, stdin: "3.75\n", expected_stdout: "1 3.75\n"}
-          - {id: whole, stdin: "10\n", expected_stdout: "1 10.00\n"}
-        reference: |
-          #include <stdio.h>
-
-          int oku_ondalik(double *d) {
-              return scanf("%lf", d);
-          }
-        wrong:
-          - |
-            #include <stdio.h>
-
-            int oku_ondalik(double *d) {
-                int n = 0;
-                int r = scanf("%d", &n);
-                return r;
-            }
-          - |
-            #include <stdio.h>
-
-            int oku_ondalik(double *d) {
-                double kopya = 0;
-                return scanf("%lf", &kopya);
-            }
-      - slug: g07
-        difficulty: authentic_application
-        prompt: |
-          cozum.c dosyasına int oku_harf_sayi(char *c, int *n) fonksiyonunu yaz: standart girdiden önce bir harfi (önündeki boşlukları atlayarak), sonra bir tam sayıyı tek bir scanf çağrısıyla c ve n'nin gösterdiği değişkenlere okusun ve scanf'in döndürdüğü değeri döndürsün.
-        required_skills: [skill.c.functions_basic, skill.c.standard_io_basic]
-        c_harness: |
-          #include <stdio.h>
-
-          int oku_harf_sayi(char *c, int *n);
-
-          int main(void) {
-              char h = '?';
-              int s = -1;
-              int r = oku_harf_sayi(&h, &s);
-              printf("%d %c %d\n", r, h, s);
-              return 0;
-          }
-        suite:
-          - {id: both, stdin: "B 85\n", expected_stdout: "2 B 85\n"}
-          - {id: leading_space, stdin: "  A\n90\n", expected_stdout: "2 A 90\n"}
-          - {id: missing_number, stdin: "C x\n", expected_stdout: "1 C -1\n"}
-        reference: |
-          #include <stdio.h>
-
-          int oku_harf_sayi(char *c, int *n) {
-              return scanf(" %c %d", c, n);
-          }
-        wrong:
-          - |
-            #include <stdio.h>
-
-            int oku_harf_sayi(char *c, int *n) {
-                return scanf("%c %d", c, n);
-            }
-          - |
-            #include <stdio.h>
-
-            int oku_harf_sayi(char *c, int *n) {
-                return scanf(" %c %d", c, n) - 1;
-            }
-      - slug: g08
-        difficulty: transfer_integration
-        prompt: |
-          cozum.c dosyasına int *daha_yakin(int *a, int a_deger, int *b, int b_deger, int hedef) fonksiyonunu yaz: a_deger ile b_deger'den hedefe daha yakın olanın işaretçisini döndürsün (uzaklıklar eşitse a'yı). Değerler parametre olarak geliyor; işaretçilerin gösterdiği yerleri okumana gerek yok. Dersin testleri dönen adresi karşılaştırır.
+          cozum.c dosyasına int hangisi(int *a, int *b, int *aranan) fonksiyonunu yaz: aranan a ile aynı yeri gösteriyorsa 1, b ile aynı yeri gösteriyorsa 2, ikisiyle de aynı yeri göstermiyorsa 0 döndürsün (a ve b farklı yerlerdir). Gösterilen değerlere bakma. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
         required_skills: [skill.c.functions_basic, skill.c.conditionals]
         c_harness: |
           #include <stdio.h>
 
-          int *daha_yakin(int *a, int a_deger, int *b, int b_deger, int hedef);
+          int hangisi(int *a, int *b, int *aranan);
 
           int main(void) {
-              int x = 0, y = 0;
-              int av = 0, bv = 0, h = 0;
-              while (scanf("%d %d %d", &av, &bv, &h) == 3) {
-                  int *r = daha_yakin(&x, av, &y, bv, h);
-                  printf("%c\n", r == &x ? 'a' : (r == &y ? 'b' : '?'));
-              }
+              int x = 5, y = 5, z = 5;
+              printf("%d %d %d\n", hangisi(&x, &y, &x), hangisi(&x, &y, &y), hangisi(&x, &y, &z));
               return 0;
           }
         suite:
-          - {id: cases, stdin: "3 10 5\n3 10 9\n2 8 5\n-4 6 0\n", expected_stdout: "a\nb\na\na\n"}
-          - {id: b_below, stdin: "20 1 3\n", expected_stdout: "b\n"}
+          - {id: identities, expected_stdout: "1 2 0\n"}
         reference: |
-          int *daha_yakin(int *a, int a_deger, int *b, int b_deger, int hedef) {
-              int da = a_deger - hedef;
-              int db = b_deger - hedef;
-              if (da < 0) {
-                  da = -da;
+          int hangisi(int *a, int *b, int *aranan) {
+              if (aranan == a) {
+                  return 1;
               }
-              if (db < 0) {
-                  db = -db;
+              if (aranan == b) {
+                  return 2;
               }
-              if (db < da) {
-                  return b;
-              }
-              return a;
+              return 0;
           }
         wrong:
           - |
-            int *daha_yakin(int *a, int a_deger, int *b, int b_deger, int hedef) {
-                if (b_deger - hedef < a_deger - hedef) {
-                    return b;
+            int hangisi(int *a, int *b, int *aranan) {
+                if (*aranan == *a) {
+                    return 1;
                 }
-                return a;
+                if (*aranan == *b) {
+                    return 2;
+                }
+                return 0;
             }
           - |
-            int *daha_yakin(int *a, int a_deger, int *b, int b_deger, int hedef) {
-                int da = a_deger - hedef;
-                int db = b_deger - hedef;
-                if (da < 0) {
-                    da = -da;
+            int hangisi(int *a, int *b, int *aranan) {
+                if (aranan == a) {
+                    return 1;
                 }
-                if (db < 0) {
-                    db = -db;
+                return 2;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: a ve b adında iki int değişken (ikisi de 3) ve p adında bir int işaretçisi bildirsin. p önce a'yı göstersin; ekrana p'nin a'yı ve b'yi gösterip göstermediğini (1 ya da 0) yazsın. Sonra p'yi b'yi gösterecek şekilde değiştirsin ve aynı iki karşılaştırmayı yeniden yazsın. Çıktı iki satır: 1 0 ve 0 1.
+        required_skills: [skill.c.expression_evaluation]
+        suite:
+          - {id: repointed, expected_stdout: "1 0\n0 1\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 3, b = 3;
+              int *p = &a;
+              printf("%d %d\n", p == &a, p == &b);
+              p = &b;
+              printf("%d %d\n", p == &a, p == &b);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 3, b = 3;
+                int *p = &a;
+                printf("%d %d\n", *p == a, *p == b);
+                p = &b;
+                printf("%d %d\n", *p == a, *p == b);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 3, b = 3;
+                int *p = &a;
+                printf("%d %d\n", p == &a, p == &b);
+                printf("%d %d\n", p == &a, p == &b);
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int kac_farkli(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçinin (hiçbiri NULL değil) kaç FARKLI yeri gösterdiğini (1, 2 ya da 3) döndürsün. Gösterilen değerlere bakma; yerleri karşılaştır. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int kac_farkli(int *a, int *b, int *c);
+
+          int main(void) {
+              int x = 7, y = 7, z = 7;
+              printf("%d %d %d %d %d\n", kac_farkli(&x, &y, &z), kac_farkli(&x, &x, &x), kac_farkli(&x, &x, &y),
+                     kac_farkli(&x, &y, &x), kac_farkli(&y, &x, &x));
+              return 0;
+          }
+        suite:
+          - {id: distinct_places, expected_stdout: "3 1 2 2 2\n"}
+        reference: |
+          int kac_farkli(int *a, int *b, int *c) {
+              int sayi = 1;
+              if (b != a) {
+                  sayi++;
+              }
+              if (c != a && c != b) {
+                  sayi++;
+              }
+              return sayi;
+          }
+        wrong:
+          - |
+            int kac_farkli(int *a, int *b, int *c) {
+                int sayi = 1;
+                if (*b != *a) {
+                    sayi++;
                 }
-                if (db <= da) {
-                    return b;
+                if (*c != *a && *c != *b) {
+                    sayi++;
                 }
-                return a;
+                return sayi;
+            }
+          - |
+            int kac_farkli(int *a, int *b, int *c) {
+                return (a != b) + (b != c) + 1;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: a, b ve c adında üç int değişken ve p adında bir int işaretçisi bildirsin. p sırayla önce a'yı, sonra c'yi, sonra b'yi göstersin; her seferinde p'nin hangi değişkeni gösterdiğini p'yi &a, &b ve &c ile karşılaştırarak bulsun ve o değişkenin adını (a, b ya da c) yazsın. Çıktı tek satırda a c b olmalı (aralarında birer boşluk).
+        required_skills: [skill.c.conditionals, skill.c.for_iteration]
+        suite:
+          - {id: order, expected_stdout: "a c b\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0, c = 0;
+              int *p = &a;
+              for (int adim = 0; adim < 3; adim++) {
+                  if (adim == 1) {
+                      p = &c;
+                  } else if (adim == 2) {
+                      p = &b;
+                  }
+                  if (p == &a) {
+                      printf("a");
+                  } else if (p == &b) {
+                      printf("b");
+                  } else {
+                      printf("c");
+                  }
+                  printf(adim < 2 ? " " : "\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                int *p = &a;
+                printf("a ");
+                p = &c;
+                printf("b ");
+                p = &b;
+                printf("c\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, c = 0;
+                int *p = &a;
+                if (*p == a) {
+                    printf("a ");
+                }
+                p = &c;
+                if (*p == a) {
+                    printf("a ");
+                }
+                p = &b;
+                if (*p == a) {
+                    printf("a\n");
+                }
+                return 0;
             }
       - slug: g09
         difficulty: transfer_integration
@@ -480,51 +495,4 @@ objectives:
 
             int ikisi_de_gecerli(int *a, int *b) {
                 return (a != NULL || b != NULL) && a != b;
-            }
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: choose_address
-        required_skills: [skill.c.conditionals, skill.c.functions_basic]
-        prompt: |
-          cozum.c dosyasına int *sec(int *a, int *b, int ilk) fonksiyonunu yaz: ilk 1 ise a'yı, değilse b'yi döndürsün (yani seçilen değişkenin adresini). Dersin testleri dönen adres üzerinden değişkene yazar ve iki değişkeni de yazdırır.
-        c_harness: |
-          #include <stdio.h>
-
-          int *sec(int *a, int *b, int ilk);
-
-          int main(void) {
-              int x = 0, y = 0, ilk = 0;
-              while (scanf("%d %d %d", &x, &y, &ilk) == 3) {
-                  int *p = sec(&x, &y, ilk);
-                  *p = 99;
-                  printf("%d %d\n", x, y);
-              }
-              return 0;
-          }
-        suite:
-          - {id: first, stdin: "1 2 1\n", expected_stdout: "99 2\n"}
-          - {id: second, stdin: "1 2 0\n", expected_stdout: "1 99\n"}
-          - {id: equal_values, stdin: "5 5 0\n", expected_stdout: "5 99\n"}
-        reference: |
-          int *sec(int *a, int *b, int ilk) {
-              if (ilk == 1) {
-                  return a;
-              }
-              return b;
-          }
-        wrong:
-          - |
-            int *sec(int *a, int *b, int ilk) {
-                if (ilk == 1) {
-                    return b;
-                }
-                return a;
-            }
-          - |
-            int *sec(int *a, int *b, int ilk) {
-                if (ilk == 1) {
-                    return a;
-                }
-                return a;
             }
