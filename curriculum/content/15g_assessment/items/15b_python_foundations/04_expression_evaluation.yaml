@@ -1,0 +1,116 @@
+skill: skill.python.expression_evaluation
+objectives:
+  - id: objective.python.expression_evaluation.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(15 / 3)
+        options:
+          A: "5"
+          B: "5.0"
+          C: "5.00"
+          D: Hata verir; tam bölünen sayılar / ile bölünemez.
+        scan_options: false
+        answer: B
+        misconception_options: {A: slash_gives_int}
+        verify:
+          mode: stdout
+          outcomes: {A: "5", B: "5.0", C: "5.00", D: "<hata>"}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(17 % 5, 2 ** 5)
+        answer: "2 32"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(3 * 2.0, 3 * 2)
+        answer: "6.0 6"
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(-13 // 5)
+        options:
+          A: "-2"
+          B: "-3"
+          C: "-2.6"
+          D: "2"
+        scan_options: false
+        answer: B
+        misconception_options: {A: floor_toward_zero}
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(-(4 ** 2), -4 ** 2 + 20)
+        answer: "-16 4"
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(100 / 8 // 2)
+        options:
+          A: "6"
+          B: "6.0"
+          C: "6.25"
+          D: "50"
+        scan_options: false
+        answer: B
+        misconception_options: {A: slash_gives_int}
+        verify: {mode: stdout}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(abs(3 - 10), round(7 / 3, 1))
+        answer: "7 2.3"
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(-17 % 5, 17 % -5)
+        answer: "3 -3"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = 6
+          y = 4
+          print(x ** 2 - y ** 2 == (x - y) * (x + y), x / y * y)
+        answer: "True 6.0"
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(2 * -3 ** 2)
+        options:
+          A: "-18"
+          B: "36"
+          C: "18"
+          D: "-36"
+        scan_options: false
+        answer: A
+        misconception_options: {C: minus_before_power}
+        verify: {mode: stdout}

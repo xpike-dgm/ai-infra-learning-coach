@@ -1,0 +1,138 @@
+skill: skill.python.value_type_behavior
+objectives:
+  - id: objective.python.value_type_behavior.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(type(3.0))
+        options:
+          A: "<class 'int'>"
+          B: "<class 'float'>"
+          C: "<class 'str'>"
+          D: "3.0"
+        answer: B
+        scan_options: false
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(type("False"))
+        options:
+          A: "<class 'bool'>"
+          B: "<class 'str'>"
+          C: "False"
+          D: "<class 'NoneType'>"
+        answer: B
+        scan_options: false
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(int(9.99))
+        options:
+          A: "9"
+          B: "10"
+          C: "9.99"
+          D: Hata verir; ondalıklı bir sayı tam sayıya çevrilemez.
+        answer: A
+        scan_options: false
+        misconception_options: {B: int_rounds}
+        verify:
+          mode: stdout
+          outcomes: {A: "9", B: "10", C: "9.99", D: "<hata>"}
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(bool(0), bool(-1))
+        answer: "False True"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print("3" * 3, 3 * 3)
+        answer: "333 9"
+        required_skills: [skill.programming.state_assignment_model]
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(bool("0"), bool(0))
+        options:
+          A: "True False"
+          B: "False False"
+          C: "True True"
+          D: "False True"
+        answer: A
+        scan_options: false
+        misconception_options: {B: zero_string_false}
+        verify: {mode: stdout}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = "10"
+          b = "20"
+          print(a + b, int(a) + int(b))
+        options:
+          A: "1020 30"
+          B: "30 30"
+          C: "1020 1020"
+          D: Hata verir; yazılar + ile birleştirilemez.
+        answer: A
+        scan_options: false
+        misconception_options: {B: string_plus_adds}
+        required_skills: [skill.programming.state_assignment_model]
+        verify:
+          mode: stdout
+          outcomes: {A: "1020 30", B: "30 30", C: "1020 1020", D: "<hata>"}
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalıştırılınca ne olur?
+        code: |
+          print(int("3.5"))
+        options:
+          A: Ekrana 3 yazılır.
+          B: Ekrana 4 yazılır.
+          C: Ekrana 3.5 yazılır.
+          D: Hiçbir şey yazılmaz; ondalıklı bir yazı doğrudan tam sayıya çevrilemediği için ValueError verir.
+        answer: D
+        scan_options: false
+        misconception_options: {B: int_rounds}
+        verify:
+          mode: stdout
+          expect_error: true
+          outcomes: {A: "3", B: "4", C: "3.5", D: ""}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          x = None
+          print(x, type(x), bool(x))
+        answer: "None <class 'NoneType'> False"
+        required_skills: [skill.programming.state_assignment_model]
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          print(float(7) + int("3"), str(2) + str(5.0))
+        answer: "10.0 25.0"
+        required_skills: [skill.programming.state_assignment_model]
+        verify: {mode: stdout}

@@ -1,0 +1,329 @@
+skill: skill.python.functions_parameters_return
+objectives:
+  - id: objective.python.functions_parameters_return.write_small_function
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına kup(x) adında bir fonksiyon yaz: x'in küpünü (x × x × x) döndürsün (return). Dosyada fonksiyonun dışında çalışan hiçbir satır olmasın; testler fonksiyonu kendisi çağırır.
+        harness: |
+          import sys, cozum
+          print(cozum.kup(int(sys.argv[1])))
+        suite:
+          - {id: two, args: ["2"], expected_stdout: "8\n"}
+          - {id: negative, args: ["-3"], expected_stdout: "-27\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+        reference: |
+          def kup(x):
+              return x * x * x
+        wrong:
+          - |
+            def kup(x):
+                print(x * x * x)
+          - |
+            def kup(x):
+                return x * 3
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına tam_ad(ad, soyad) adında bir fonksiyon yaz: ad, bir boşluk ve soyaddan oluşan yazıyı döndürsün. Örnek: tam_ad("Deniz", "Yıldız") → "Deniz Yıldız". Dosyada fonksiyonun dışında çalışan satır olmasın.
+        harness: |
+          import sys, cozum
+          print(cozum.tam_ad(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: deniz, args: ["Deniz", "Yıldız"], expected_stdout: "Deniz Yıldız\n"}
+          - {id: short, args: ["Ali", "Er"], expected_stdout: "Ali Er\n"}
+        reference: |
+          def tam_ad(ad, soyad):
+              return ad + " " + soyad
+        wrong:
+          - |
+            def tam_ad(ad, soyad):
+                return ad + soyad
+          - |
+            def tam_ad(ad, soyad):
+                return soyad + " " + ad
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına kdv_dahil(fiyat) adında bir fonksiyon yaz: fiyata yüzde 20 vergi eklenmiş tutarı tam sayı olarak döndürsün; vergi fiyat * 20 // 100 ile hesaplanır. Örnek: kdv_dahil(100) → 120. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.kdv_dahil(int(sys.argv[1])))
+        suite:
+          - {id: hundred, args: ["100"], expected_stdout: "120\n"}
+          - {id: odd, args: ["55"], expected_stdout: "66\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+          - {id: rounding_down, args: ["7"], expected_stdout: "8\n"}
+        reference: |
+          def kdv_dahil(fiyat):
+              return fiyat + fiyat * 20 // 100
+        wrong:
+          - |
+            def kdv_dahil(fiyat):
+                return fiyat * 20 // 100
+          - |
+            def kdv_dahil(fiyat):
+                return fiyat + 20
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına us_al(taban, us) adında bir fonksiyon yaz: taban'ın us'üncü kuvvetini (**) döndürsün. us verilmezse 2 kullanılsın. Örnek: us_al(5) → 25, us_al(2, 10) → 1024. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.us_al(*[int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: default_square, args: ["5"], expected_stdout: "25\n"}
+          - {id: given, args: ["2", "10"], expected_stdout: "1024\n"}
+          - {id: zero_power, args: ["3", "0"], expected_stdout: "1\n"}
+        reference: |
+          def us_al(taban, us=2):
+              return taban ** us
+        wrong:
+          - |
+            def us_al(taban, us):
+                return taban ** us
+          - |
+            def us_al(taban, us=1):
+                return taban ** us
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına cift_mi(n) adında bir fonksiyon yaz: n çift bir sayıysa True, değilse False döndürsün (bool). Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          sonuc = cozum.cift_mi(int(sys.argv[1]))
+          print(sonuc, type(sonuc).__name__)
+        suite:
+          - {id: even, args: ["4"], expected_stdout: "True bool\n"}
+          - {id: odd, args: ["7"], expected_stdout: "False bool\n"}
+          - {id: zero, args: ["0"], expected_stdout: "True bool\n"}
+          - {id: negative, args: ["-3"], expected_stdout: "False bool\n"}
+        reference: |
+          def cift_mi(n):
+              return n % 2 == 0
+        wrong:
+          - |
+            def cift_mi(n):
+                return n % 2 == 1
+          - |
+            def cift_mi(n):
+                if n % 2 == 0:
+                    return "True"
+                return "False"
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına isaret(n) adında bir fonksiyon yaz: n pozitifse "+", negatifse "-", sıfırsa "0" yazısını döndürsün. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.isaret(int(sys.argv[1])))
+        suite:
+          - {id: positive, args: ["12"], expected_stdout: "+\n"}
+          - {id: negative, args: ["-5"], expected_stdout: "-\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0\n"}
+        reference: |
+          def isaret(n):
+              if n > 0:
+                  return "+"
+              elif n < 0:
+                  return "-"
+              return "0"
+        wrong:
+          - |
+            def isaret(n):
+                if n > 0:
+                    return "+"
+                return "-"
+          - |
+            def isaret(n):
+                if n >= 0:
+                    return "+"
+                elif n < 0:
+                    return "-"
+                return "0"
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına km_mil(km) adında bir fonksiyon yaz: kilometreyi mile çevirip (km / 1.609) round(..., 2) ile iki basamağa yuvarlanmış olarak döndürsün. Örnek: km_mil(10) → 6.22. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.km_mil(float(sys.argv[1])))
+        suite:
+          - {id: ten, args: ["10"], expected_stdout: "6.22\n"}
+          - {id: zero, args: ["0"], expected_stdout: "0.0\n"}
+          - {id: one_mile, args: ["1.609"], expected_stdout: "1.0\n"}
+          - {id: marathon, args: ["42.195"], expected_stdout: "26.22\n"}
+        reference: |
+          def km_mil(km):
+              return round(km / 1.609, 2)
+        wrong:
+          - |
+            def km_mil(km):
+                return round(km * 1.609, 2)
+          - |
+            def km_mil(km):
+                return km // 1.609
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: buyuk(a, b) iki sayıdan büyük olanı döndürsün; buyuk3(a, b, c) ise üç sayıdan en büyüğünü buyuk fonksiyonunu kullanarak döndürsün. max() kullanma. Testler buyuk3'ün buyuk'u gerçekten kullandığını da kontrol eder. Dosyada fonksiyonların dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          asil = cozum.buyuk
+          cagrilar = []
+          def izle(x, y):
+              cagrilar.append((x, y))
+              return asil(x, y)
+          cozum.buyuk = izle
+          print(asil(a[0], a[1]), cozum.buyuk3(a[0], a[1], a[2]), "buyuk kullanıldı" if cagrilar else "buyuk kullanılmadı")
+        suite:
+          - {id: last_largest, args: ["3", "8", "11"], expected_stdout: "8 11 buyuk kullanıldı\n"}
+          - {id: first_largest, args: ["9", "2", "5"], expected_stdout: "9 9 buyuk kullanıldı\n"}
+          - {id: tie, args: ["4", "4", "1"], expected_stdout: "4 4 buyuk kullanıldı\n"}
+        reference: |
+          def buyuk(a, b):
+              if a > b:
+                  return a
+              return b
+
+          def buyuk3(a, b, c):
+              return buyuk(buyuk(a, b), c)
+        wrong:
+          - |
+            def buyuk(a, b):
+                if a > b:
+                    return a
+                return b
+
+            def buyuk3(a, b, c):
+                if a > b and a > c:
+                    return a
+                if b > c:
+                    return b
+                return c
+          - |
+            def buyuk(a, b):
+                if a > b:
+                    return a
+                return b
+
+            def buyuk3(a, b, c):
+                return buyuk(a, b)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına faktoriyel(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir n için 1 × 2 × ... × n çarpımını döndürsün; faktoriyel(0) 1'dir. Bir döngüyle hesapla. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        required_skills: [skill.python.for_iteration]
+        harness: |
+          import sys, cozum
+          print(cozum.faktoriyel(int(sys.argv[1])))
+        suite:
+          - {id: zero, args: ["0"], expected_stdout: "1\n"}
+          - {id: one, args: ["1"], expected_stdout: "1\n"}
+          - {id: five, args: ["5"], expected_stdout: "120\n"}
+          - {id: ten, args: ["10"], expected_stdout: "3628800\n"}
+        reference: |
+          def faktoriyel(n):
+              carpim = 1
+              for i in range(1, n + 1):
+                  carpim *= i
+              return carpim
+        wrong:
+          - |
+            def faktoriyel(n):
+                carpim = 0
+                for i in range(1, n + 1):
+                    carpim *= i
+                return carpim
+          - |
+            def faktoriyel(n):
+                carpim = 1
+                for i in range(1, n):
+                    carpim *= i
+                return carpim
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına fiyat_hesapla(adet, birim, indirim) adında bir fonksiyon yaz: adet × birim tutarından toplam indirim miktarını düşüp döndürsün. indirim verilmezse 0 kullanılsın. Örnek: fiyat_hesapla(3, 10) → 30, fiyat_hesapla(3, 10, 5) → 25. Dosyada fonksiyonun dışında çalışan satır olmasın.
+        harness: |
+          import sys, cozum
+          print(cozum.fiyat_hesapla(*[int(x) for x in sys.argv[1:]]))
+        suite:
+          - {id: no_discount, args: ["3", "10"], expected_stdout: "30\n"}
+          - {id: discount, args: ["3", "10", "5"], expected_stdout: "25\n"}
+          - {id: all_off, args: ["1", "99", "99"], expected_stdout: "0\n"}
+        reference: |
+          def fiyat_hesapla(adet, birim, indirim=0):
+              return adet * birim - indirim
+        wrong:
+          - |
+            def fiyat_hesapla(adet, birim, indirim):
+                return adet * birim - indirim
+          - |
+            def fiyat_hesapla(adet, birim, indirim=0):
+                return adet * (birim - indirim)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına iki fonksiyon yaz: derece(puan) puan 90 ve üstüyse "pekiyi", 75 ve üstüyse "iyi", 60 ve üstüyse "orta", değilse "zayıf" döndürsün; karne(p1, p2) ise iki puanın tam sayı ortalamasını ((p1 + p2) // 2) derece fonksiyonuyla değerlendirip döndürsün. Testler karne'nin derece'yi gerçekten kullandığını da kontrol eder. Dosyada fonksiyonların dışında çalışan satır olmasın.
+        required_skills: [skill.python.conditionals, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          a = [int(x) for x in sys.argv[1:]]
+          asil = cozum.derece
+          cagrilar = []
+          def izle(p):
+              cagrilar.append(p)
+              return asil(p)
+          cozum.derece = izle
+          print(asil(a[0]), cozum.karne(a[0], a[1]), "derece kullanıldı" if cagrilar else "derece kullanılmadı")
+        suite:
+          - {id: mixed, args: ["95", "80"], expected_stdout: "pekiyi iyi derece kullanıldı\n"}
+          - {id: boundary, args: ["60", "61"], expected_stdout: "orta orta derece kullanıldı\n"}
+          - {id: low, args: ["40", "70"], expected_stdout: "zayıf zayıf derece kullanıldı\n"}
+          - {id: top, args: ["90", "90"], expected_stdout: "pekiyi pekiyi derece kullanıldı\n"}
+        reference: |
+          def derece(puan):
+              if puan >= 90:
+                  return "pekiyi"
+              elif puan >= 75:
+                  return "iyi"
+              elif puan >= 60:
+                  return "orta"
+              return "zayıf"
+
+          def karne(p1, p2):
+              return derece((p1 + p2) // 2)
+        wrong:
+          - |
+            def derece(puan):
+                if puan > 90:
+                    return "pekiyi"
+                elif puan > 75:
+                    return "iyi"
+                elif puan > 60:
+                    return "orta"
+                return "zayıf"
+
+            def karne(p1, p2):
+                return derece((p1 + p2) // 2)
+          - |
+            def derece(puan):
+                if puan >= 90:
+                    return "pekiyi"
+                elif puan >= 75:
+                    return "iyi"
+                elif puan >= 60:
+                    return "orta"
+                return "zayıf"
+
+            def karne(p1, p2):
+                return derece(p1) + derece(p2)

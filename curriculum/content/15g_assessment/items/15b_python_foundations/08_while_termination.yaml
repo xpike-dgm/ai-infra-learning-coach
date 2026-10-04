@@ -1,0 +1,838 @@
+skill: skill.python.while_termination
+objectives:
+  - id: objective.python.while_termination.debug_infinite_loop
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Aşağıdaki program bir n okuyup 5'in n'yi geçmeyen katlarını (5, 10, 15, ...) alt alta yazmalı, ama n 5 ya da daha büyük olunca hiç bitmiyor. Döngüyü düzelt ve düzeltilmiş programı cozum.py olarak kaydet.
+
+              n = int(input())
+              i = 5
+              while i <= n:
+                  print(i)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: twenty, stdin: "20\n", expected_stdout: "5\n10\n15\n20\n"}
+          - {id: below_five, stdin: "4\n", expected_stdout: ""}
+          - {id: twelve, stdin: "12\n", expected_stdout: "5\n10\n"}
+        reference: |
+          n = int(input())
+          i = 5
+          while i <= n:
+              print(i)
+              i += 5
+        wrong:
+          - |
+            n = int(input())
+            i = 5
+            while i < n:
+                print(i)
+                i += 5
+          - |
+            n = int(input())
+            i = 5
+            while i <= n:
+                i += 5
+                print(i)
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Aşağıdaki program 10 ya da daha küçük bir n okuyup n'den 10'a kadar (10 dahil) sayıları alt alta yazmalı, ama hiç bitmiyor. Döngüyü düzelt ve düzeltilmiş programı cozum.py olarak kaydet.
+
+              n = int(input())
+              while n <= 10:
+                  print(n)
+                  n -= 1
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: seven, stdin: "7\n", expected_stdout: "7\n8\n9\n10\n"}
+          - {id: ten, stdin: "10\n", expected_stdout: "10\n"}
+          - {id: above, stdin: "11\n", expected_stdout: ""}
+        reference: |
+          n = int(input())
+          while n <= 10:
+              print(n)
+              n += 1
+        wrong:
+          - |
+            n = int(input())
+            while n < 10:
+                print(n)
+                n += 1
+          - |
+            n = int(input())
+            while n <= 10:
+                n += 1
+                print(n)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Aşağıdaki program bir n okuyup alt alta n tane yıldız (*) yazmalı, ama n pozitif olunca hiç bitmiyor. Hatayı bul (koşula dikkat et), düzelt ve düzeltilmiş programı cozum.py olarak kaydet.
+
+              n = int(input())
+              i = 0
+              while n > 0:
+                  print("*")
+                  i += 1
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "*\n*\n*\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+          - {id: one, stdin: "1\n", expected_stdout: "*\n"}
+        reference: |
+          n = int(input())
+          i = 0
+          while i < n:
+              print("*")
+              i += 1
+        wrong:
+          - |
+            n = int(input())
+            i = 0
+            while i <= n:
+                print("*")
+                i += 1
+          - |
+            n = int(input())
+            i = 0
+            while i < n:
+                print("*")
+                i += 2
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program bir sınır okuyup, 1'den başlayan ve her turda iki katına çıkan bir sayının sınıra ulaşması (sınıra eşit ya da büyük olması) için kaç tur gerektiğini yazmalı (ör. sınır 10 → 1, 2, 4, 8, 16 → 4 tur). Ama sınır 1'den büyük olunca hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              sinir = int(input())
+              x = 0
+              tur = 0
+              while x < sinir:
+                  x = x * 2
+                  tur += 1
+              print(tur)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "4\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0\n"}
+          - {id: two, stdin: "2\n", expected_stdout: "1\n"}
+          - {id: exact_power, stdin: "16\n", expected_stdout: "4\n"}
+        reference: |
+          sinir = int(input())
+          x = 1
+          tur = 0
+          while x < sinir:
+              x = x * 2
+              tur += 1
+          print(tur)
+        wrong:
+          - |
+            sinir = int(input())
+            x = 1
+            tur = 0
+            while x <= sinir:
+                x = x * 2
+                tur += 1
+            print(tur)
+          - |
+            sinir = int(input())
+            x = 2
+            tur = 0
+            while x < sinir:
+                x = x * 2
+                tur += 1
+            print(tur)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program bir n okuyup 1'den n'e kadar (n dahil) tek sayıların toplamını yazmalı, ama n 2 ya da daha büyük olunca hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              n = int(input())
+              toplam = 0
+              i = 1
+              while i <= n:
+                  if i % 2 == 1:
+                      toplam += i
+                      i += 1
+              print(toplam)
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: five, stdin: "5\n", expected_stdout: "9\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+          - {id: six, stdin: "6\n", expected_stdout: "9\n"}
+        reference: |
+          n = int(input())
+          toplam = 0
+          i = 1
+          while i <= n:
+              if i % 2 == 1:
+                  toplam += i
+              i += 1
+          print(toplam)
+        wrong:
+          - |
+            n = int(input())
+            toplam = 0
+            i = 1
+            while i <= n:
+                toplam += i
+                i += 1
+            print(toplam)
+          - |
+            n = int(input())
+            toplam = 0
+            i = 1
+            while i < n:
+                if i % 2 == 1:
+                    toplam += i
+                i += 1
+            print(toplam)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program kullanıcıya en çok üç deneme hakkı vermeli: doğru şifre (gizli) girilince ya da üçüncü yanlış denemeden sonra durmalı ve Açıldı ya da Kilitlendi yazmalı. Ama ne doğru şifrede ne de üç yanlış denemeden sonra duruyor. Koşulu düzelt ve cozum.py olarak kaydet.
+
+              sifre = input()
+              deneme = 1
+              while sifre != "gizli" or deneme < 3:
+                  sifre = input()
+                  deneme += 1
+              if sifre == "gizli":
+                  print("Açıldı")
+              else:
+                  print("Kilitlendi")
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: first_try, stdin: "gizli\n", expected_stdout: "Açıldı\n"}
+          - {id: third_try, stdin: "a\nb\ngizli\n", expected_stdout: "Açıldı\n"}
+          - {id: locked, stdin: "a\nb\nc\nd\n", expected_stdout: "Kilitlendi\n"}
+          - {id: no_fourth_try, stdin: "a\nb\nc\ngizli\n", expected_stdout: "Kilitlendi\n"}
+        reference: |
+          sifre = input()
+          deneme = 1
+          while sifre != "gizli" and deneme < 3:
+              sifre = input()
+              deneme += 1
+          if sifre == "gizli":
+              print("Açıldı")
+          else:
+              print("Kilitlendi")
+        wrong:
+          - |
+            sifre = input()
+            deneme = 1
+            while sifre != "gizli" and deneme < 2:
+                sifre = input()
+                deneme += 1
+            if sifre == "gizli":
+                print("Açıldı")
+            else:
+                print("Kilitlendi")
+          - |
+            sifre = input()
+            deneme = 1
+            while sifre != "gizli" and deneme <= 3:
+                sifre = input()
+                deneme += 1
+            if sifre == "gizli":
+                print("Açıldı")
+            else:
+                print("Kilitlendi")
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program bir kumbara hedefi ve her hafta atılan parayı (ikisi de pozitif tam sayı) okuyup, boş kumbaranın hedefe ulaşması için kaç hafta gerektiğini yazmalı. Ama hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              hedef = int(input())
+              haftalik = int(input())
+              kumbara = 0
+              hafta = 0
+              while kumbara < hedef:
+                  kumbara + haftalik
+                  hafta += 1
+              print(hafta)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: exact, stdin: "100\n25\n", expected_stdout: "4\n"}
+          - {id: overshoot, stdin: "100\n30\n", expected_stdout: "4\n"}
+          - {id: one_week, stdin: "5\n50\n", expected_stdout: "1\n"}
+        reference: |
+          hedef = int(input())
+          haftalik = int(input())
+          kumbara = 0
+          hafta = 0
+          while kumbara < hedef:
+              kumbara += haftalik
+              hafta += 1
+          print(hafta)
+        wrong:
+          - |
+            hedef = int(input())
+            haftalik = int(input())
+            kumbara = 0
+            hafta = 0
+            while kumbara <= hedef:
+                kumbara += haftalik
+                hafta += 1
+            print(hafta)
+          - |
+            hedef = int(input())
+            haftalik = int(input())
+            kumbara = haftalik
+            hafta = 0
+            while kumbara < hedef:
+                kumbara += haftalik
+                hafta += 1
+            print(hafta)
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki program iki pozitif tam sayının en büyük ortak bölenini, büyüğü küçüğünden çıkararak bulmalı (ör. 12 ve 18 → 6). Ama ikinci sayı büyük olduğunda hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              a = int(input())
+              b = int(input())
+              while a != b:
+                  if a > b:
+                      a = a - b
+                  else:
+                      a = a - b
+              print(a)
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: twelve_eighteen, stdin: "12\n18\n", expected_stdout: "6\n"}
+          - {id: equal, stdin: "7\n7\n", expected_stdout: "7\n"}
+          - {id: coprime, stdin: "9\n4\n", expected_stdout: "1\n"}
+          - {id: multiple, stdin: "5\n20\n", expected_stdout: "5\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          while a != b:
+              if a > b:
+                  a = a - b
+              else:
+                  b = b - a
+          print(a)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            while a > b:
+                a = a - b
+            print(a)
+          - |
+            a = int(input())
+            b = int(input())
+            while a != b:
+                if a > b:
+                    a = a - b
+                else:
+                    b = b - a
+            print(b - a)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki program pozitif bir n'nin 3'e kaç kez arka arkaya tam bölünebildiğini saymalı (ör. 54 → 18 → 6 → 2: 3 kez). Ama n 3'ün katı olunca hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              n = int(input())
+              sayac = 0
+              while n % 3 == 0:
+                  sayac += 1
+              print(sayac)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: fifty_four, stdin: "54\n", expected_stdout: "3\n"}
+          - {id: not_multiple, stdin: "7\n", expected_stdout: "0\n"}
+          - {id: power, stdin: "81\n", expected_stdout: "4\n"}
+          - {id: three, stdin: "3\n", expected_stdout: "1\n"}
+        reference: |
+          n = int(input())
+          sayac = 0
+          while n % 3 == 0:
+              sayac += 1
+              n = n // 3
+          print(sayac)
+        wrong:
+          - |
+            n = int(input())
+            sayac = 0
+            while n % 3 == 0 and n > 3:
+                sayac += 1
+                n = n // 3
+            print(sayac)
+          - |
+            n = int(input())
+            sayac = 0
+            while n % 3 == 0:
+                sayac += 1
+                n = n - 3
+            print(sayac)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki programda x her turda 2, y her turda 1 artmalı; program x'in y'ye yetişmesi (x ≥ y) için kaç tur gerektiğini yazmalı (ör. x = 0, y = 5 → 5 tur). Ama x y'den küçükken hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              x = int(input())
+              y = int(input())
+              tur = 0
+              while x < y:
+                  x += 2
+                  y += 2
+                  tur += 1
+              print(tur)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: zero_five, stdin: "0\n5\n", expected_stdout: "5\n"}
+          - {id: equal, stdin: "3\n3\n", expected_stdout: "0\n"}
+          - {id: one_four, stdin: "1\n4\n", expected_stdout: "3\n"}
+          - {id: ahead, stdin: "9\n2\n", expected_stdout: "0\n"}
+        reference: |
+          x = int(input())
+          y = int(input())
+          tur = 0
+          while x < y:
+              x += 2
+              y += 1
+              tur += 1
+          print(tur)
+        wrong:
+          - |
+            x = int(input())
+            y = int(input())
+            tur = 0
+            while x < y:
+                x += 2
+                tur += 1
+            print(tur)
+          - |
+            x = int(input())
+            y = int(input())
+            tur = 0
+            while x <= y:
+                x += 2
+                y += 1
+                tur += 1
+            print(tur)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki program bir n okuyup n'den başlayarak, sayı negatif olana kadar her turda 3 azaltıp her değeri alt alta yazmalı (ör. 7 → 7, 4, 1). Ama n 0 ya da pozitif olunca hiç bitmiyor. Hatayı bul, düzelt ve cozum.py olarak kaydet.
+
+              n = int(input())
+              adim = 0
+              while n >= 0:
+                  print(n)
+                  adim -= 3
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: seven, stdin: "7\n", expected_stdout: "7\n4\n1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+          - {id: negative, stdin: "-1\n", expected_stdout: ""}
+          - {id: six, stdin: "6\n", expected_stdout: "6\n3\n0\n"}
+        reference: |
+          n = int(input())
+          while n >= 0:
+              print(n)
+              n -= 3
+        wrong:
+          - |
+            n = int(input())
+            while n > 0:
+                print(n)
+                n -= 3
+          - |
+            n = int(input())
+            while n >= 0:
+                n -= 3
+                print(n)
+  - id: objective.python.while_termination.write_terminating_loop
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun ve n'yi geçmeyen tam kareleri (1, 4, 9, 16, ...) alt alta yazsın. n 1'den küçükse hiçbir şey yazmasın. while kullan.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: twenty, stdin: "20\n", expected_stdout: "1\n4\n9\n16\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+          - {id: exact_square, stdin: "25\n", expected_stdout: "1\n4\n9\n16\n25\n"}
+        reference: |
+          n = int(input())
+          i = 1
+          while i * i <= n:
+              print(i * i)
+              i += 1
+        wrong:
+          - |
+            n = int(input())
+            i = 1
+            while i * i < n:
+                print(i * i)
+                i += 1
+          - |
+            n = int(input())
+            i = 1
+            while i <= n:
+                print(i * i)
+                i += 1
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: sıfır ya da pozitif bir n okusun ve n'den 0'ın altına inmeden kaç kez 7 çıkarılabileceğini while döngüsüyle sayıp yazsın (// kullanma). Örnek: 20 → 2.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: twenty, stdin: "20\n", expected_stdout: "2\n"}
+          - {id: below, stdin: "6\n", expected_stdout: "0\n"}
+          - {id: exact, stdin: "21\n", expected_stdout: "3\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+        reference: |
+          n = int(input())
+          sayac = 0
+          while n >= 7:
+              n -= 7
+              sayac += 1
+          print(sayac)
+        wrong:
+          - |
+            n = int(input())
+            sayac = 0
+            while n > 7:
+                n -= 7
+                sayac += 1
+            print(sayac)
+          - |
+            n = int(input())
+            sayac = 0
+            while n >= 0:
+                n -= 7
+                sayac += 1
+            print(sayac)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir n tam sayısı okusun; n pozitif kaldığı sürece n'yi yazıp 4 azaltsın. Örnek: 10 → 10, 6, 2 (alt alta). n pozitif değilse hiçbir şey yazmasın.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "10\n6\n2\n"}
+          - {id: four, stdin: "4\n", expected_stdout: "4\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+        reference: |
+          n = int(input())
+          while n > 0:
+              print(n)
+              n -= 4
+        wrong:
+          - |
+            n = int(input())
+            while n >= 0:
+                print(n)
+                n -= 4
+          - |
+            n = int(input())
+            while n > 0:
+                n -= 4
+                print(n)
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: satır satır kelime okusun; son kelimesi okununca dursun (son sayılmaz). Sonunda <kelime sayısı> kelime, son kelime: <son'dan önceki kelime> yazsın. Hiç kelime gelmeden son gelirse 0 kelime yazsın.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: three_words, stdin: "elma\narmut\nkiraz\nson\n", expected_stdout: "3 kelime, son kelime: kiraz\n"}
+          - {id: one_word, stdin: "tek\nson\n", expected_stdout: "1 kelime, son kelime: tek\n"}
+          - {id: none, stdin: "son\n", expected_stdout: "0 kelime\n"}
+        reference: |
+          kelime = input()
+          sayac = 0
+          onceki = ""
+          while kelime != "son":
+              sayac += 1
+              onceki = kelime
+              kelime = input()
+          if sayac == 0:
+              print("0 kelime")
+          else:
+              print(sayac, "kelime, son kelime:", onceki)
+        wrong:
+          - |
+            kelime = input()
+            sayac = 0
+            onceki = ""
+            while kelime != "son":
+                sayac += 1
+                kelime = input()
+                onceki = kelime
+            if sayac == 0:
+                print("0 kelime")
+            else:
+                print(sayac, "kelime, son kelime:", onceki)
+          - |
+            kelime = input()
+            sayac = 1
+            onceki = ""
+            while kelime != "son":
+                onceki = kelime
+                kelime = input()
+                sayac += 1
+            if sayac == 0:
+                print("0 kelime")
+            else:
+                print(sayac, "kelime, son kelime:", onceki)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir sayı tahmin programı yaz: gizli sayı 37'dir. Program satır satır tahmin okusun; her yanlış tahminde, gizli sayı tahminden büyükse büyük, küçükse küçük yazsın. Doğru tahminde Bildin! <deneme sayısı> denemede yazıp dursun.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: three_tries, stdin: "50\n20\n37\n", expected_stdout: "küçük\nbüyük\nBildin! 3 denemede\n"}
+          - {id: first_try, stdin: "37\n", expected_stdout: "Bildin! 1 denemede\n"}
+          - {id: close, stdin: "36\n38\n37\n", expected_stdout: "büyük\nküçük\nBildin! 3 denemede\n"}
+        reference: |
+          gizli = 37
+          tahmin = int(input())
+          deneme = 1
+          while tahmin != gizli:
+              if gizli > tahmin:
+                  print("büyük")
+              else:
+                  print("küçük")
+              tahmin = int(input())
+              deneme += 1
+          print("Bildin!", deneme, "denemede")
+        wrong:
+          - |
+            gizli = 37
+            tahmin = int(input())
+            deneme = 1
+            while tahmin != gizli:
+                if gizli < tahmin:
+                    print("büyük")
+                else:
+                    print("küçük")
+                tahmin = int(input())
+                deneme += 1
+            print("Bildin!", deneme, "denemede")
+          - |
+            gizli = 37
+            tahmin = int(input())
+            deneme = 0
+            while tahmin != gizli:
+                if gizli > tahmin:
+                    print("büyük")
+                else:
+                    print("küçük")
+                tahmin = int(input())
+                deneme += 1
+            print("Bildin!", deneme, "denemede")
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: iki pozitif tam sayı okusun ve en büyük ortak bölenlerini Öklid yöntemiyle bulsun: ikinci sayı 0 olmadığı sürece, birinci sayı ikinci sayı olur, ikinci sayı ise eski birincinin eski ikinciye bölümünden kalan (%) olur. İkinci sayı 0 olunca birinci sayı cevaptır.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: twelve_eighteen, stdin: "12\n18\n", expected_stdout: "6\n"}
+          - {id: coprime, stdin: "17\n5\n", expected_stdout: "1\n"}
+          - {id: equal, stdin: "9\n9\n", expected_stdout: "9\n"}
+          - {id: multiple, stdin: "100\n25\n", expected_stdout: "25\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          while b != 0:
+              kalan = a % b
+              a = b
+              b = kalan
+          print(a)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            while b != 0:
+                a = b
+                b = a % b
+            print(a)
+          - |
+            a = int(input())
+            b = int(input())
+            while b != 0:
+                kalan = a % b
+                a = b
+                b = kalan
+            print(b)
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: 2 ya da daha büyük bir n okusun ve n'nin 1'den büyük en küçük bölenini while döngüsüyle bulup yazsın. Örnek: 15 → 3; 13 → 13.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: fifteen, stdin: "15\n", expected_stdout: "3\n"}
+          - {id: prime, stdin: "13\n", expected_stdout: "13\n"}
+          - {id: two, stdin: "2\n", expected_stdout: "2\n"}
+          - {id: square, stdin: "49\n", expected_stdout: "7\n"}
+        reference: |
+          n = int(input())
+          d = 2
+          while n % d != 0:
+              d += 1
+          print(d)
+        wrong:
+          - |
+            n = int(input())
+            d = 1
+            while n % d != 0:
+                d += 1
+            print(d)
+          - |
+            n = int(input())
+            d = 2
+            while n % d != 0 and d < n // 2:
+                d += 1
+            print(d)
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: sıfır ya da pozitif bir n okusun ve n'nin ikili (binary) yazılışını yazsın. Yöntem: n 0 olana kadar n % 2'yi elde ettiğin yazının başına ekle ve n'yi n // 2 yap. n 0 ise 0 yazsın. Örnek: 6 → 110.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: six, stdin: "6\n", expected_stdout: "110\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0\n"}
+          - {id: ten, stdin: "10\n", expected_stdout: "1010\n"}
+        reference: |
+          n = int(input())
+          if n == 0:
+              print(0)
+          else:
+              ikili = ""
+              while n > 0:
+                  ikili = str(n % 2) + ikili
+                  n = n // 2
+              print(ikili)
+        wrong:
+          - |
+            n = int(input())
+            if n == 0:
+                print(0)
+            else:
+                ikili = ""
+                while n > 0:
+                    ikili = ikili + str(n % 2)
+                    n = n // 2
+                print(ikili)
+          - |
+            n = int(input())
+            ikili = ""
+            while n > 0:
+                ikili = str(n % 2) + ikili
+                n = n // 2
+            print(ikili)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç satırda bir borç, her ay yapılan ödeme ve aylık faiz yüzdesi (üçü de pozitif tam sayı) okusun. Her ay borç önce borç × faiz // 100 kadar artar, sonra ödeme kadar azalır. Borç 0 ya da daha az olana kadar kaç ay geçtiğini yazsın. (Testlerde ödeme her zaman faizden büyüktür.)
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: no_interest_growth, stdin: "1000\n300\n1\n", expected_stdout: "4\n"}
+          - {id: one_month, stdin: "50\n100\n10\n", expected_stdout: "1\n"}
+          - {id: with_interest, stdin: "1000\n200\n10\n", expected_stdout: "8\n"}
+        reference: |
+          borc = int(input())
+          odeme = int(input())
+          faiz = int(input())
+          ay = 0
+          while borc > 0:
+              borc = borc + borc * faiz // 100
+              borc = borc - odeme
+              ay += 1
+          print(ay)
+        wrong:
+          - |
+            borc = int(input())
+            odeme = int(input())
+            faiz = int(input())
+            ay = 0
+            while borc > 0:
+                borc = borc - odeme
+                ay += 1
+            print(ay)
+          - |
+            borc = int(input())
+            odeme = int(input())
+            faiz = int(input())
+            ay = 0
+            while borc > 0:
+                borc = borc - odeme
+                borc = borc + borc * faiz // 100
+                ay += 1
+            print(ay)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: pozitif bir n okusun ve n'nin basamaklarını toplayıp, sonuç tek basamaklı olana kadar bunu tekrarlasın; son tek basamaklı sayıyı yazsın. Örnek: 9875 → 29 → 11 → 2.
+        required_skills: [skill.python.input_output_basic]
+        suite:
+          - {id: three_rounds, stdin: "9875\n", expected_stdout: "2\n"}
+          - {id: single_digit, stdin: "7\n", expected_stdout: "7\n"}
+          - {id: one_round, stdin: "23\n", expected_stdout: "5\n"}
+          - {id: nines, stdin: "999\n", expected_stdout: "9\n"}
+          - {id: passes_ten, stdin: "19\n", expected_stdout: "1\n"}
+        reference: |
+          n = int(input())
+          while n >= 10:
+              toplam = 0
+              while n > 0:
+                  toplam += n % 10
+                  n = n // 10
+              n = toplam
+          print(n)
+        wrong:
+          - |
+            n = int(input())
+            toplam = 0
+            while n > 0:
+                toplam += n % 10
+                n = n // 10
+            print(toplam)
+          - |
+            n = int(input())
+            while n > 10:
+                toplam = 0
+                while n > 0:
+                    toplam += n % 10
+                    n = n // 10
+                n = toplam
+            print(n)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: satır satır sıcaklık değerleri (tam sayı) okusun; 999 okununca dursun (999 değerlendirilmez). Okunan sıcaklıklardan 30 ve üstü olanların sayısını Sıcak gün: <sayı> biçiminde yazsın.
+        required_skills: [skill.python.input_output_basic, skill.python.conditionals]
+        suite:
+          - {id: mixed, stdin: "28\n31\n30\n15\n999\n", expected_stdout: "Sıcak gün: 2\n"}
+          - {id: none, stdin: "999\n", expected_stdout: "Sıcak gün: 0\n"}
+          - {id: all_hot, stdin: "35\n40\n999\n", expected_stdout: "Sıcak gün: 2\n"}
+        reference: |
+          derece = int(input())
+          sicak = 0
+          while derece != 999:
+              if derece >= 30:
+                  sicak += 1
+              derece = int(input())
+          print("Sıcak gün:", sicak)
+        wrong:
+          - |
+            derece = int(input())
+            sicak = 0
+            while derece != 999:
+                if derece > 30:
+                    sicak += 1
+                derece = int(input())
+            print("Sıcak gün:", sicak)
+          - |
+            derece = int(input())
+            sicak = 0
+            while derece != 999:
+                derece = int(input())
+                if derece >= 30:
+                    sicak += 1
+            print("Sıcak gün:", sicak)

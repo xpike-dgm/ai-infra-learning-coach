@@ -1,0 +1,235 @@
+skill: skill.python.run_repl_script
+objectives:
+  - id: objective.python.run_repl_script.execute_and_classify_result
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir script yaz: çalıştırılınca ekrana alt alta üç satır yazsın: Ad: Deniz, Şehir: İzmir ve Bölüm: Bilgisayar. Başka hiçbir şey yazmasın.
+        suite:
+          - {id: three_lines_in_order, stdin: "", expected_stdout: "Ad: Deniz\nŞehir: İzmir\nBölüm: Bilgisayar\n"}
+        reference: |
+          print("Ad: Deniz")
+          print("Şehir: İzmir")
+          print("Bölüm: Bilgisayar")
+        wrong:
+          - |
+            print("Ad: Deniz")
+            print("Bölüm: Bilgisayar")
+          - |
+            print("Ad: Deniz Şehir: İzmir Bölüm: Bilgisayar")
+          - |
+            print("Ad: Deniz")
+            print("Sehir: Izmir")
+            print("Bölüm: Bilgisayar")
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir script yaz: Python 19 ile 23'ü çarpsın ve ekrana yalnızca sonucu yazsın. Sonucu kendin hesaplayıp yazma; çarpmayı Python yapsın.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: prints_product, stdin: "", expected_stdout: "437\n"}
+        reference: |
+          print(19 * 23)
+        wrong:
+          - |
+            print("19 * 23")
+          - |
+            print(19 + 23)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Aşağıdaki script hiçbir şey yazmadan bir SyntaxError veriyor. Hatayı bul, düzelt ve düzeltilmiş hâlini cozum.py olarak kaydet. Script ekrana alt alta Günaydın ve Dünya yazmalı.
+
+              print("Günaydın)
+              print("Dünya")
+        suite:
+          - {id: two_lines, stdin: "", expected_stdout: "Günaydın\nDünya\n"}
+        reference: |
+          print("Günaydın")
+          print("Dünya")
+        wrong:
+          - |
+            print("Günaydın)
+            print("Dünya")
+          - |
+            print("Dünya")
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script önce Mesafe: yazıyor, sonra bir NameError ile duruyor. Traceback'te hatanın türünü ve satırını bul, düzelt. Düzeltilmiş script ekrana alt alta Mesafe: ve 42 yazmalı. cozum.py olarak kaydet.
+
+              mesafe = 42
+              print("Mesafe:")
+              print(mesfe)
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: fixed_output, stdin: "", expected_stdout: "Mesafe:\n42\n"}
+        reference: |
+          mesafe = 42
+          print("Mesafe:")
+          print(mesafe)
+        wrong:
+          - |
+            mesafe = 42
+            print("Mesafe:")
+            print(mesfe)
+          - |
+            mesafe = 42
+            print("Mesafe:")
+            print("mesafe")
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir script yaz: ekrana tek satır olarak Sonuç: 42 yazsın. 42'yi Python 6 ile 7'yi çarparak hesaplasın; Sonuç: yazısı ile sayı arasında tek bir boşluk olsun.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: labelled_product, stdin: "", expected_stdout: "Sonuç: 42\n"}
+        reference: |
+          print("Sonuç:", 6 * 7)
+        wrong:
+          - |
+            print("Sonuç:", "6 * 7")
+          - |
+            print("Sonuç:", 6 + 7)
+          - |
+            print("Sonuç:")
+            print(6 * 7)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script hiçbir şey yazmadan bir IndentationError (bir tür SyntaxError) veriyor. Traceback'i oku, hatanın satırını bul ve düzelt. Düzeltilmiş script ekrana alt alta Bir, İki ve Üç yazmalı. cozum.py olarak kaydet.
+
+              print("Bir")
+                  print("İki")
+              print("Üç")
+        suite:
+          - {id: three_lines, stdin: "", expected_stdout: "Bir\nİki\nÜç\n"}
+        reference: |
+          print("Bir")
+          print("İki")
+          print("Üç")
+        wrong:
+          - |
+            print("Bir")
+                print("İki")
+            print("Üç")
+          - |
+            print("Bir")
+            print("Üç")
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script çalıştırılınca hemen bir NameError ile duruyor: toplam daha tanımlanmadan kullanılıyor. Satırların sırasını düzelt; script ekrana Kalan: 32 yazmalı. cozum.py olarak kaydet.
+
+              print("Kalan:", toplam - harcanan)
+              toplam = 50
+              harcanan = 18
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: ordered_output, stdin: "", expected_stdout: "Kalan: 32\n"}
+        reference: |
+          toplam = 50
+          harcanan = 18
+          print("Kalan:", toplam - harcanan)
+        wrong:
+          - |
+            print("Kalan:", toplam - harcanan)
+            toplam = 50
+            harcanan = 18
+          - |
+            toplam = 50
+            harcanan = 18
+            print("Kalan:", toplam + harcanan)
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki script ekrana 42 yazmalıydı ama 12 + 30 yazıyor. Neden böyle olduğunu bul ve düzelt; düzeltilmiş script ekrana yalnızca 42 yazmalı ve toplamayı Python yapmalı. cozum.py olarak kaydet.
+
+              print("12 + 30")
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: computes_sum, stdin: "", expected_stdout: "42\n"}
+        reference: |
+          print(12 + 30)
+        wrong:
+          - |
+            print("12 + 30")
+          - |
+            print(12 + 3)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir script yaz: kenarı 9 olan bir karenin önce çevresini, sonra alanını yazsın. Ekranda alt alta Çevre: 36 ve Alan: 81 görünmeli; sayıları Python hesaplasın.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: perimeter_then_area, stdin: "", expected_stdout: "Çevre: 36\nAlan: 81\n"}
+        reference: |
+          kenar = 9
+          print("Çevre:", 4 * kenar)
+          print("Alan:", kenar * kenar)
+        wrong:
+          - |
+            kenar = 9
+            print("Alan:", kenar * kenar)
+            print("Çevre:", 4 * kenar)
+          - |
+            kenar = 9
+            print("Çevre:", 2 * kenar)
+            print("Alan:", kenar * kenar)
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Aşağıdaki script'te iki ayrı sorun var: biri tırnak unutulmuş bir yazı, öteki tanımlanmamış bir y değişkeni (y 5 olmalı). Python her seferinde yalnızca ilk karşılaştığı hatayı bildirir; script'i çalıştır, traceback'i oku, düzelt ve tekrar çalıştır. Düzeltilmiş script ekrana alt alta Başlıyor, Hazır ve 20 yazmalı. cozum.py olarak kaydet.
+
+              print("Başlıyor")
+              print(Hazır)
+              x = 4
+              print(x * y)
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: all_fixed, stdin: "", expected_stdout: "Başlıyor\nHazır\n20\n"}
+        reference: |
+          print("Başlıyor")
+          print("Hazır")
+          x = 4
+          y = 5
+          print(x * y)
+        wrong:
+          - |
+            print("Başlıyor")
+            print("Hazır")
+            x = 4
+            print(x * y)
+          - |
+            print("Başlıyor")
+            print(Hazır)
+            x = 4
+            y = 5
+            print(x * y)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir script yaz: bir yolculukta önce saatte 80 km hızla 3 saat, sonra saatte 60 km hızla 2 saat gidiliyor. Ekrana alt alta İlk bölüm: 240, İkinci bölüm: 120 ve Toplam: 360 yazsın; sayıları Python hesaplasın.
+        required_skills: [skill.programming.state_assignment_model]
+        suite:
+          - {id: three_parts, stdin: "", expected_stdout: "İlk bölüm: 240\nİkinci bölüm: 120\nToplam: 360\n"}
+        reference: |
+          ilk = 80 * 3
+          ikinci = 60 * 2
+          print("İlk bölüm:", ilk)
+          print("İkinci bölüm:", ikinci)
+          print("Toplam:", ilk + ikinci)
+        wrong:
+          - |
+            ilk = 80 * 3
+            ikinci = 60 * 2
+            print("İlk bölüm:", ilk)
+            print("İkinci bölüm:", ikinci)
+            print("Toplam:", 80 * 3 + 60)
+          - |
+            ilk = 80 * 3
+            ikinci = 60 * 2
+            print("İlk bölüm:", ilk)
+            print("İkinci bölüm:", ikinci)
+            print("Toplam:", ilk * ikinci)

@@ -1,0 +1,247 @@
+skill: skill.python.input_output_basic
+objectives:
+  - id: objective.python.input_output_basic.build_small_io_flow
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda bir isim, ikinci satırda bir şehir okusun ve <isim>, <şehir> şehrinden. yazsın. Örnek: girdi Ali ve Bursa ise çıktı Ali, Bursa şehrinden. olmalı.
+        suite:
+          - {id: ali_bursa, stdin: "Ali\nBursa\n", expected_stdout: "Ali, Bursa şehrinden.\n"}
+          - {id: zeynep_van, stdin: "Zeynep\nVan\n", expected_stdout: "Zeynep, Van şehrinden.\n"}
+        reference: |
+          ad = input()
+          sehir = input()
+          print(ad + ", " + sehir + " şehrinden.")
+        wrong:
+          - |
+            ad = input()
+            sehir = input()
+            print(ad, ",", sehir, "şehrinden.")
+          - |
+            sehir = input()
+            ad = input()
+            print(ad + ", " + sehir + " şehrinden.")
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda bir tam sayı okusun ve Kare: <sayının karesi> yazsın. Örnek: girdi 7 ise çıktı Kare: 49 olmalı.
+        suite:
+          - {id: seven, stdin: "7\n", expected_stdout: "Kare: 49\n"}
+          - {id: negative, stdin: "-3\n", expected_stdout: "Kare: 9\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "Kare: 0\n"}
+        reference: |
+          n = int(input())
+          print("Kare:", n * n)
+        wrong:
+          - |
+            n = int(input())
+            print("Kare:", n * 2)
+          - |
+            n = input()
+            print("Kare:", n * n)
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py adında bir program yaz: bir satırda bir tam sayı okusun; alt alta Sonraki: <sayı + 1> ve Önceki: <sayı - 1> yazsın. Örnek: girdi 10 ise çıktı iki satır: Sonraki: 11 ve Önceki: 9.
+        suite:
+          - {id: ten, stdin: "10\n", expected_stdout: "Sonraki: 11\nÖnceki: 9\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "Sonraki: 1\nÖnceki: -1\n"}
+        reference: |
+          n = int(input())
+          print("Sonraki:", n + 1)
+          print("Önceki:", n - 1)
+        wrong:
+          - |
+            n = int(input())
+            print("Sonraki:", n - 1)
+            print("Önceki:", n + 1)
+          - |
+            n = input()
+            print("Sonraki:", n + "1")
+            print("Önceki:", n)
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda iki tam sayı (a ve b, b sıfır değil) okusun ve <a> / <b> = <a'nın b'ye bölümü> yazsın; bölüm / ile hesaplansın. Örnek: girdi 7 ve 2 ise çıktı 7 / 2 = 3.5 olmalı.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: half, stdin: "7\n2\n", expected_stdout: "7 / 2 = 3.5\n"}
+          - {id: exact, stdin: "8\n4\n", expected_stdout: "8 / 4 = 2.0\n"}
+          - {id: negative, stdin: "-9\n3\n", expected_stdout: "-9 / 3 = -3.0\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          print(a, "/", b, "=", a / b)
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            print(a, "/", b, "=", a // b)
+          - |
+            a = int(input())
+            b = int(input())
+            print(a, "/", b, "=", b / a)
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda bir ürünün fiyatını, ikinci satırda indirim yüzdesini (ikisi de tam sayı) okusun ve Ödenecek: <indirimli fiyat> yazsın. İndirimli fiyat fiyat × (100 − yüzde) / 100 ile hesaplansın. Örnek: girdi 200 ve 25 ise çıktı Ödenecek: 150.0 olmalı.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: quarter_off, stdin: "200\n25\n", expected_stdout: "Ödenecek: 150.0\n"}
+          - {id: no_discount, stdin: "80\n0\n", expected_stdout: "Ödenecek: 80.0\n"}
+          - {id: free, stdin: "45\n100\n", expected_stdout: "Ödenecek: 0.0\n"}
+        reference: |
+          fiyat = int(input())
+          yuzde = int(input())
+          print("Ödenecek:", fiyat * (100 - yuzde) / 100)
+        wrong:
+          - |
+            fiyat = int(input())
+            yuzde = int(input())
+            print("Ödenecek:", fiyat - yuzde)
+          - |
+            fiyat = int(input())
+            yuzde = int(input())
+            print("Ödenecek:", fiyat * yuzde / 100)
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda bir ad, ikinci satırda bir soyad okusun ve Kullanıcı adı: <ad>.<soyad> yazsın; ad, nokta ve soyad arasında boşluk olmasın. Örnek: girdi Ece ve Kaya ise çıktı Kullanıcı adı: Ece.Kaya olmalı.
+        suite:
+          - {id: ece_kaya, stdin: "Ece\nKaya\n", expected_stdout: "Kullanıcı adı: Ece.Kaya\n"}
+          - {id: mert_oz, stdin: "Mert\nÖz\n", expected_stdout: "Kullanıcı adı: Mert.Öz\n"}
+        reference: |
+          ad = input()
+          soyad = input()
+          print("Kullanıcı adı: " + ad + "." + soyad)
+        wrong:
+          - |
+            ad = input()
+            soyad = input()
+            print("Kullanıcı adı:", ad, ".", soyad)
+          - |
+            ad = input()
+            soyad = input()
+            print("Kullanıcı adı: " + ad + soyad)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py adında bir program yaz: üç ayrı satırda üç tam sayı okusun ve Toplam: <toplam> Ortalama: <ortalama> yazsın; ortalama / ile hesaplanıp round(..., 2) ile iki basamağa yuvarlansın. Örnek: girdi 3, 4 ve 5 ise çıktı Toplam: 12 Ortalama: 4.0 olmalı.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: even, stdin: "3\n4\n5\n", expected_stdout: "Toplam: 12 Ortalama: 4.0\n"}
+          - {id: repeating, stdin: "1\n2\n2\n", expected_stdout: "Toplam: 5 Ortalama: 1.67\n"}
+          - {id: one_nonzero, stdin: "10\n0\n0\n", expected_stdout: "Toplam: 10 Ortalama: 3.33\n"}
+        reference: |
+          a = int(input())
+          b = int(input())
+          c = int(input())
+          toplam = a + b + c
+          print("Toplam:", toplam, "Ortalama:", round(toplam / 3, 2))
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            toplam = a + b + c
+            print("Toplam:", toplam, "Ortalama:", toplam // 3)
+          - |
+            a = int(input())
+            b = int(input())
+            c = int(input())
+            toplam = a + b + c
+            print("Toplam:", toplam, "Ortalama:", round(a + b + c / 3, 2))
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: iki ayrı satırda iki tam sayı okusun ve tek satıra önce ikisinin yazı olarak yan yana eklenmiş hâlini, sonra sayı olarak toplamını yazsın (aralarında bir boşluk). Örnek: girdi 12 ve 34 ise çıktı 1234 46 olmalı.
+        suite:
+          - {id: two_digit, stdin: "12\n34\n", expected_stdout: "1234 46\n"}
+          - {id: single_digit, stdin: "5\n7\n", expected_stdout: "57 12\n"}
+          - {id: with_zero, stdin: "0\n9\n", expected_stdout: "09 9\n"}
+        reference: |
+          a = input()
+          b = input()
+          print(a + b, int(a) + int(b))
+        wrong:
+          - |
+            a = int(input())
+            b = int(input())
+            print(a + b, a + b)
+          - |
+            a = input()
+            b = input()
+            print(a + b, a + b)
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda gidilen yolu (km), ikinci satırda geçen süreyi (saat) okusun; ikisi de ondalıklı olabilir. Hız: <hız> km/sa yazsın; hız yol / süre ile hesaplanıp round(..., 1) ile bir basamağa yuvarlansın. Örnek: girdi 150 ve 2 ise çıktı Hız: 75.0 km/sa olmalı.
+        required_skills: [skill.python.expression_evaluation]
+        suite:
+          - {id: whole, stdin: "150\n2\n", expected_stdout: "Hız: 75.0 km/sa\n"}
+          - {id: thirds, stdin: "100\n3\n", expected_stdout: "Hız: 33.3 km/sa\n"}
+          - {id: decimals, stdin: "7.5\n0.5\n", expected_stdout: "Hız: 15.0 km/sa\n"}
+        reference: |
+          yol = float(input())
+          sure = float(input())
+          print("Hız:", round(yol / sure, 1), "km/sa")
+        wrong:
+          - |
+            yol = int(input())
+            sure = int(input())
+            print("Hız:", round(yol / sure, 1), "km/sa")
+          - |
+            yol = float(input())
+            sure = float(input())
+            print("Hız:", round(sure / yol, 1), "km/sa")
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: ilk satırda bir kelime, ikinci satırda bir tam sayı n (0 ya da pozitif) okusun ve Tekrar: <kelimenin n kez arka arkaya yazılmış hâli> yazsın. Örnek: girdi ha ve 3 ise çıktı Tekrar: hahaha olmalı.
+        suite:
+          - {id: three_times, stdin: "ha\n3\n", expected_stdout: "Tekrar: hahaha\n"}
+          - {id: once, stdin: "abc\n1\n", expected_stdout: "Tekrar: abc\n"}
+          - {id: zero_times, stdin: "x\n0\n", expected_stdout: "Tekrar: \n"}
+        reference: |
+          kelime = input()
+          n = int(input())
+          print("Tekrar:", kelime * n)
+        wrong:
+          - |
+            kelime = input()
+            n = input()
+            print("Tekrar:", kelime + n)
+          - |
+            kelime = input()
+            n = int(input())
+            print("Tekrar:", kelime, n)
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py adında bir program yaz: üç ayrı satırda bir ürün adı, birim fiyatı (tam sayı) ve adedi (tam sayı) okusun ve alt alta üç satır yazsın: Ürün: <ad>, Adet: <adet>, Toplam: <fiyat × adet>. Örnek: girdi kalem, 15 ve 3 ise çıktı Ürün: kalem, Adet: 3, Toplam: 45 satırları olmalı.
+        suite:
+          - {id: pens, stdin: "kalem\n15\n3\n", expected_stdout: "Ürün: kalem\nAdet: 3\nToplam: 45\n"}
+          - {id: single, stdin: "defter\n40\n1\n", expected_stdout: "Ürün: defter\nAdet: 1\nToplam: 40\n"}
+        reference: |
+          ad = input()
+          fiyat = int(input())
+          adet = int(input())
+          print("Ürün:", ad)
+          print("Adet:", adet)
+          print("Toplam:", fiyat * adet)
+        wrong:
+          - |
+            ad = input()
+            fiyat = int(input())
+            adet = int(input())
+            print("Ürün:", ad)
+            print("Adet:", fiyat)
+            print("Toplam:", fiyat * adet)
+          - |
+            ad = input()
+            adet = int(input())
+            fiyat = int(input())
+            print("Ürün:", ad)
+            print("Adet:", adet)
+            print("Toplam:", fiyat * adet)
