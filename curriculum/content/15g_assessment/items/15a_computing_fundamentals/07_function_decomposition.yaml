@@ -1,0 +1,162 @@
+skill: skill.programming.function_decomposition
+objectives:
+  - id: objective.programming.function_decomposition.define_io_responsibility
+    items:
+      - slug: g01
+        difficulty: basic
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def selamla():
+              print("Merhaba")
+          print("son")
+        options:
+          A: Yalnızca son
+          B: Önce Merhaba, sonra son (iki satır)
+          C: Yalnızca Merhaba
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        misconception_options: {B: definition_runs_function}
+        verify:
+          mode: stdout
+          outcomes: {A: "son", B: "Merhaba\nson", C: "Merhaba", D: ""}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          İstenen sorumluluk: "Bir sayıyı alıp üç katının bir eksiğini hesapla ve geri döndür (ekrana yazma)." Hangi fonksiyon bunu doğru yapar?
+        options:
+          A: "def hesapla(x):\n    print(3 * x - 1)"
+          B: "def hesapla(x):\n    return 3 * x - 1"
+          C: "def hesapla(x):\n    return 3 * (x - 1)"
+          D: "def hesapla(x):\n    return x * 3"
+        answer: B
+        misconception_options: {A: print_is_return}
+        verify:
+          mode: functions
+          name: hesapla
+          spec: "def spec(x):\n    return 3 * x - 1"
+          cases: [[0], [1], [4], [-2]]
+      - slug: g03
+        difficulty: basic
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def iki_kat(x):
+              x * 2
+          print(iki_kat(4))
+        options:
+          A: "8"
+          B: "None"
+          C: "4"
+          D: Hata verir; fonksiyon bir şey döndürmek zorundadır.
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "8", B: "None", C: "4", D: "<hata>"}
+      - slug: g04
+        difficulty: authentic_application
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          def kare(x):
+              return x * x
+          a = kare(3)
+          b = kare(a)
+          print(a, b)
+        answer: "9 81"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def kalan_para(cuzdan, harcama):
+              return cuzdan - harcama
+          harcama = 30
+          cuzdan = 100
+          print(kalan_para(harcama, cuzdan))
+        options:
+          A: "-70"
+          B: "70"
+          C: "130"
+          D: Hata verir; argümanların adları parametrelerle aynı sırada değil.
+        answer: A
+        misconception_options: {B: arguments_matched_by_name}
+        verify:
+          mode: stdout
+          outcomes: {A: "-70", B: "70", C: "130", D: "<hata>"}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bir programda kargo ücreti hesaplanıp başka hesaplarda da kullanılacak. Ücret, kilo başına 4 lira ile 10 liralık sabit ücretin toplamıdır; ekrana yazma işi çağırana bırakılacak. Hangi fonksiyon bu sorumluluğu doğru taşır?
+        options:
+          A: "def kargo(kilo):\n    print(kilo * 4 + 10)\n    return kilo * 4 + 10"
+          B: "def kargo(kilo):\n    return kilo * 4 + 10"
+          C: "def kargo(kilo):\n    print(kilo * 4 + 10)"
+          D: "def kargo(kilo):\n    return kilo * 4"
+        answer: B
+        misconception_options: {C: print_is_return}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import contextlib, io
+            sources = {
+                "A": "def kargo(kilo):\n    print(kilo * 4 + 10)\n    return kilo * 4 + 10",
+                "B": "def kargo(kilo):\n    return kilo * 4 + 10",
+                "C": "def kargo(kilo):\n    print(kilo * 4 + 10)",
+                "D": "def kargo(kilo):\n    return kilo * 4",
+            }
+            good = []
+            for k, src in sources.items():
+                env = {}
+                exec(src, env)
+                ok = True
+                for kilo in (0, 1, 3, 10):
+                    buf = io.StringIO()
+                    with contextlib.redirect_stdout(buf):
+                        value = env["kargo"](kilo)
+                    # Returns the fee for further use, and leaves the screen to the caller.
+                    if value != kilo * 4 + 10 or buf.getvalue() != "":
+                        ok = False
+                if ok:
+                    good.append(k)
+            print(",".join(good))
+      - slug: g07
+        difficulty: transfer_integration
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def ekle(x, y):
+              return x + y
+          def kat(x):
+              return x * 3
+          print(kat(ekle(2, kat(1))))
+        answer: "15"
+        verify: {mode: stdout}
+      - slug: g08
+        difficulty: transfer_integration
+        evidence_type: code_reading
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          def sonraki(x):
+              return x + 1
+              print("bitti")
+          print(sonraki(2))
+        options:
+          A: Yalnızca 3
+          B: Önce 3, sonra bitti
+          C: Önce bitti, sonra 3
+          D: Hata verir; return'den sonra satır olamaz.
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "3", B: "3\nbitti", C: "bitti\n3", D: "<hata>"}

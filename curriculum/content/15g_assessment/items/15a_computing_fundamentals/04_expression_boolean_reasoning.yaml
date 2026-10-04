@@ -1,0 +1,132 @@
+skill: skill.programming.expression_boolean_reasoning
+objectives:
+  - id: objective.programming.expression_boolean_reasoning.evaluate_condition
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          n = 29
+          print(n % 10)
+        answer: "9"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          a = 5
+          print(a >= 5, a > 5)
+        answer: "True False"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Hangisi x'in değerini değiştirmeden, x'in o anki değerinin 3 olup olmadığını sorar ve True ya da False üretir?
+        options:
+          A: x = 3
+          B: x == 3
+          C: x != 3
+          D: x >= 3
+        answer: B
+        misconception_options: {A: assign_vs_equal}
+        verify:
+          mode: reference
+          reference: "Python Language Reference §6.10 Comparisons — '==' karşılaştırması bir bool sonuç üretir; §7.2 Assignment statements — '=' bir ad bağlar, bir değer üretmez"
+          claim: "x == 3 x'i değiştirmeden eşitliği sorar ve True/False üretir; x = 3 bir atamadır, x != 3 ise eşit olmamayı sorar."
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          print(not (3 > 2 and 2 > 3))
+        answer: "True"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 6
+          print(x % 2 == 0 and x % 3 == 0)
+        answer: "True"
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          n = 2
+          print(not n == 3)
+        options:
+          A: "True"
+          B: "False"
+          C: "2"
+          D: Hata verir; not bir sayıya uygulanamaz.
+        answer: A
+        misconception_options: {B: not_binds_first}
+        verify:
+          mode: stdout
+          outcomes: {A: "True", B: "False", C: "2", D: "<hata>"}
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kodun başına hangi satır eklenirse ekrana True yazılır?
+        code: |
+          print(n % 4 == 1 and n > 10)
+        options:
+          A: n = 5
+          B: n = 9
+          C: n = 12
+          D: n = 13
+        answer: D
+        verify:
+          mode: which_input
+          target: "True"
+          assignments: {A: "n = 5", B: "n = 9", C: "n = 12", D: "n = 13"}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          d = 135
+          s = d // 60
+          k = d - s * 60
+          print(k == d % 60)
+        answer: "True"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bir yılın artık yıl olup olmadığını hesaplayan bu kod, y = 1900 için ekrana ne yazar?
+        code: |
+          y = 1900
+          print(y % 4 == 0 and y % 100 != 0 or y % 400 == 0)
+        options:
+          A: "True"
+          B: "False"
+          C: "1900"
+          D: Hata verir; and ile or aynı ifadede kullanılamaz.
+        answer: B
+        verify:
+          mode: stdout
+          outcomes: {A: "True", B: "False", C: "1900", D: "<hata>"}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 5
+          y = x == 5
+          print(y, x)
+        options:
+          A: "True 5"
+          B: "5 5"
+          C: "True True"
+          D: Hata verir; bir satırda = ile == birlikte kullanılamaz.
+        answer: A
+        misconception_options: {B: assign_vs_equal}
+        verify:
+          mode: stdout
+          outcomes: {A: "True 5", B: "5 5", C: "True True", D: "<hata>"}

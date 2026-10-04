@@ -540,15 +540,46 @@ def pin(ref: str) -> str:
     return f"{ref}@v1"
 
 
+# 15G (`D-120`): the month's transfer role and the `QAB-v0` §17 profiles that can carry it — a context built from
+# another Topic. `same_context`/`near_context` are not transfer, and `novel_application` is not cross-topic.
+TRANSFER_ROLE = "cross_topic_transfer"
+CROSS_TOPIC_PROFILES = {"cross_topic_context", "integrated_system_context"}
+
+
+def transfer_problems(it: dict, skill: str, declared: set[str], topic_of: dict[str, str]) -> list[str]:
+    """What keeps a transfer claim from being checked (`AIV-v0` §16). The review decides whether the structure really
+    changed; the build checks what it can: the profile, a named context, and a context that really comes from another
+    Topic — a declared Skill, gated like every requirement, whose lesson lives elsewhere."""
+    problems = []
+    if it.get("transfer_profile") not in CROSS_TOPIC_PROFILES:
+        problems.append(f"transfer profile {it.get('transfer_profile')!r} is not a cross-topic context")
+    if not it.get("context_family"):
+        problems.append("a transfer item names its context family")
+    if skill in declared:
+        problems.append("a transfer item does not require its own Skill")
+    if not any(topic_of.get(r) and topic_of.get(r) != topic_of.get(skill) for r in declared):
+        problems.append("a cross-topic context needs a declared Skill from another Topic")
+    if it.get("in_lesson") or it.get("difficulty") != "transfer_integration":
+        problems.append("a transfer item is a transfer_integration item outside the lesson")
+    return problems
+
+
 # ------------------------------------------------------------------------------------------------ build
 
-def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
+def build(content_dir: Path, partial: bool = False, supplement: dict | None = None) -> tuple[str, dict]:
+    """Builds one package. With [supplement] (15G, `D-120`) it builds nothing of the package itself: the graph, the
+    lessons and the items already published stay where they are, and only what the supplement adds to this content
+    directory's Objectives is emitted — new items (checked by this directory's notation, lexicon and runner exactly as
+    its own were), new versions of the tasks whose item lists grow, and wrong-option misconception keys."""
     pkg = load(content_dir / "package.yaml")
     notation = load(content_dir / "notation.yaml")
     review_path = content_dir / "independent_review.yaml"
     review = load(review_path) if review_path.exists() else {}
     reviewed_items = (review or {}).get("items", {}) or {}
     reviewed_text = (review or {}).get("explanations", {}) or {}
+    published_reviewed = reviewed_items
+    if supplement is not None:
+        reviewed_items = supplement["review"]
 
     skills6c = {s["skill_id_candidate"]: s for s in load(DECOMPOSITION / "skills.yaml")}
     objectives6c = {o["objective_id_candidate"]: o for o in load(DECOMPOSITION / "objectives.yaml")}
@@ -582,6 +613,12 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
     ESCAPE_BACKSLASH = bool(pkg.get("escape_backslash", False))
     SHELL_PRELUDE = pkg.get("shell_prelude", "")
     step = pkg.get("step", "15a")
+    if supplement is not None:
+        # A supplement is read by today's reader, which unescapes a doubled backslash (15C), whatever rule the content
+        # directory's own package was built with.
+        ESCAPE_BACKSLASH = True
+        validated_at = supplement["validated_at"]
+        step = supplement["step"]
 
     hard_prereqs: dict[str, set[str]] = {s: set() for s in known}
     for e in edges6c:
@@ -680,11 +717,48 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 ("provenance", pkg["provenance"]),
             ]))
 
+    if supplement is not None:
+        # The graph is published; a supplement only refers to it.
+        out = []
+
     # -------------------------------------------------------------- per Skill content
     resources, validations, items_out, keys_out, rubrics_out, explanations_out, misconceptions_out, tasks_out = ([] for _ in range(8))
     suites_out: list[str] = []
+    answer_misconceptions_out: list[str] = []
     suite_files: dict[str, str] = {}
     item_status: dict[str, str] = {}
+    # 15G: items reserved for a blueprint's transfer slot are never presented by a task (a task would spend them).
+    transfer_only: set[str] = set()
+    topic_of = {s: skills6c[s]["primary_teaching_topic_id"] for s in known}
+
+    def answer_misconception_sections(iid: str, base: str, ns: str, it: dict, keyed: dict, slugs: set[str], report: dict) -> list[str]:
+        """15G (`D-120`, user decision): a wrong option written to follow from one catalogued misconception of the item's
+        own Objective names it. Only a choice item judged by an answer key can say so, never its correct option, and
+        only a mapping the independent review passed is shipped (`WAAX-v0`: a label is as strong as its evidence)."""
+        sections, problems = [], []
+        options = it.get("options") or {}
+        if not options or "suite" in it or it.get("rubric") is not None:
+            problems.append("only a choice item judged by an answer key maps a wrong option")
+        for option, slug in sorted(keyed.items()):
+            mapping = f"{iid}:{option}"
+            if option not in options:
+                problems.append(f"{mapping}: no such option")
+            elif option == str(it["answer"]).strip():
+                problems.append(f"{mapping}: the correct option names no misconception")
+            elif slug not in slugs:
+                problems.append(f"{mapping}: {slug} is not in this Objective's catalog")
+            elif (supplement or {}).get("mapping_review", {}).get(mapping, {}).get("verdict") != "pass":
+                problems.append(f"{mapping}: no pass verdict from the independent review")
+            else:
+                sections.append(section("answer_misconception", [
+                    ("key", f"answerkey.{base}.{it['slug']}@v1"), ("text", option),
+                    ("misconception", f"misconception.{ns}.{slug}@v1")]))
+        report.setdefault("answer_misconceptions", []).extend(
+            {"mapping": f"{iid}:{o}", "misconception": s} for o, s in sorted(keyed.items()))
+        if problems:
+            report["failures"].append({"item": f"{iid} wrong-option misconceptions", "problems": problems})
+            return []
+        return sections
 
     for s in pkg["skills"]:
         sid = s["id"]
@@ -724,7 +798,8 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 report["explanations"] += 1
             explanation_refs[oid] = refs
             # Every code claim a lesson makes is executed too: teaching a wrong output is worse than asking about one.
-            for n, check in enumerate(o.get("checks", []), 1):
+            # (A supplement does not run them again: the lesson is published and its claims were checked then.)
+            for n, check in enumerate(o.get("checks", []) if supplement is None else [], 1):
                 lang = check.get("lang", pkg.get("lesson_checks", "python"))
                 if lang == "c" and "finding" in check:
                     finding, printed = c_sanitized(check["code"], check.get("stdin", ""))
@@ -744,12 +819,29 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                                                "problems": [f"lesson claims {check['prints']!r}, code prints {norm(printed)!r} ({status})"]})
 
             item_refs[oid] = []
-            for it in o["items"]:
+            misconception_slugs = {m["slug"] for m in o.get("misconceptions", [])}
+            added = (supplement or {}).get("items", {}).get(oid, [])
+            if supplement is not None:
+                # The published items are what they were: their status is the one their own build gave them.
+                for it in o["items"]:
+                    iid = f"item.{base}.{it['slug']}"
+                    item_status[iid] = "validated" if published_reviewed.get(iid, {}).get("verdict") == "pass" else "candidate"
+                    item_refs[oid].append(iid)
+                    keyed = (supplement.get("misconception_options") or {}).get(iid)
+                    if keyed:
+                        answer_misconceptions_out.extend(
+                            answer_misconception_sections(iid, base, ns, it, keyed, misconception_slugs, report))
+                taken = {it["slug"] for it in o["items"]}
+                clash = sorted(taken & {it["slug"] for it in added})
+                if clash:
+                    raise BuildError(f"{oid}: added items reuse published slugs {clash}")
+            for it in (added if supplement is not None else o["items"]):
                 iid = f"item.{base}.{it['slug']}"
                 family = f"family.{base}.{it['slug']}"
                 code = it.get("code")
                 rubric = it.get("rubric")
                 is_code = "suite" in it
+                transfer = it.get("transfer_profile")
                 # 15C: a hands-on item (building a program, navigating a terminal) is done at the computer; its answer
                 # is checked by a key, but the terminal and documentation are part of the work, as for code.
                 at_computer = is_code or bool(it.get("hands_on"))
@@ -791,6 +883,9 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     problems.append(f"uses constructs no prerequisite teaches: {hidden}")
                 if not reviewed:
                     problems.append("no pass verdict from the independent review")
+                if transfer is not None:
+                    problems += transfer_problems(it, sid, declared, topic_of)
+                    transfer_only.add(iid)
                 status = "validated" if not problems else "candidate"
                 item_status[iid] = status
                 mode = "suite" if is_code else (it.get("verify") or {}).get("mode")
@@ -825,10 +920,17 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                 ]))
                 difficulty = it["difficulty"]
                 roles = list(notation["roles"]["all"])
-                if difficulty == "transfer_integration":
+                # 15G (`D-120`, `AIV-v0` §16): a transfer role is a claim about the context, not the difficulty. A
+                # supplement gives it only to an item whose cross-topic context is declared and checked; a harder item
+                # of the same lesson is a harder item. (The published packages keep the roles they were built with.)
+                if difficulty == "transfer_integration" and supplement is None:
                     roles += notation["roles"]["transfer"]
                 if s.get("critical"):
                     roles += notation["roles"]["critical"]
+                scopes = ["daily_micro", "weekly_blueprint", "monthly_capability"]
+                if transfer is not None:
+                    # Reserved for the month's transfer slot (`MCA-v0` §9): seen anywhere earlier it would not be unseen.
+                    roles, scopes = [TRANSFER_ROLE], ["monthly_capability"]
                 independence = "h0_required" if it.get("independence", "h0") == "h0" else "guided_allowed"
                 items_out.append(section("item", [
                     ("ref", f"{iid}@v1"), ("prompt", esc(prompt, multiline=True)),
@@ -848,11 +950,14 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
                     ("independence_mode", independence), ("difficulty_class", difficulty),
                     ("lifecycle_status", status), ("content_origin", "ai_generated"),
                     ("declared_use_ceiling", "low_stakes_assessment" if is_rubric else "standard_mastery_eligible"),
-                    ("scope_eligibility", ["daily_micro", "weekly_blueprint", "monthly_capability"]),
+                    ("scope_eligibility", scopes),
                     ("variant_family_id", family), ("forbidden_not_yet_concepts", sorted(set(introduced) - reachable)),
                     ("expected_active_minutes", it.get("minutes", notation["minutes_code" if at_computer else "minutes"][difficulty])),
                     ("blueprint_roles", sorted(set(roles))),
-                ]))
+                ] + ([("transfer_profile", transfer), ("context_family_id", f"context.{it['context_family']}")] if transfer is not None else [])))
+                if it.get("misconception_options"):
+                    answer_misconceptions_out.extend(
+                        answer_misconception_sections(iid, base, ns, it, it["misconception_options"], misconception_slugs, report))
                 if is_rubric:
                     rubrics_out.append(section("rubric", [("logical_id", f"rubric.{base}.{it['slug']}"), ("version", 1), ("item", f"{iid}@v1")]))
                     for c in rubric:
@@ -877,42 +982,56 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
 
         # -------------------------------------------------------------- tasks
         objectives = [o["id"] for o in doc["objectives"]]
-        def items_where(pred):
+        # 15G: a supplement's task presents the published items and the added ones, in the same planning rule; an item
+        # reserved for a transfer slot is never in a task.
+        def pool(o, with_added: bool = True):
+            extra = (supplement or {}).get("items", {}).get(o["id"], []) if with_added else []
+            return [it for it in o["items"] + extra
+                    if f"item.{ns}.{o['id'].rsplit('.', 1)[1]}.{it['slug']}" not in transfer_only]
+
+        def items_where(pred, with_added: bool = True):
             # An item shown inside the lesson belongs to the lesson only: offered again later it would measure recall
             # of the lesson, not the capability (independent review, 15A).
-            return [i for o in doc["objectives"] for it in o["items"] for i in [f"item.{ns}.{o['id'].rsplit('.', 1)[1]}.{it['slug']}"]
+            return [i for o in doc["objectives"] for it in pool(o, with_added) for i in [f"item.{ns}.{o['id'].rsplit('.', 1)[1]}.{it['slug']}"]
                     if pred(it) and (it.get("in_lesson") is True) == (pred is lesson_items)]
 
         def lesson_items(it):
             return bool(it.get("in_lesson"))
         def exps(forms):
             return [e for o in objectives for e in explanation_refs[o] if any(e.endswith("." + f) or ("." + f + "_") in e for f in forms)]
-        plans = {
-            "teach": dict(purpose="teach", activity="content_explanation", serves=["new_learning"],
-                          explanations=exps(["canonical", "worked_example"]),
-                          items=items_where(lesson_items)),
-            "practice": dict(purpose="practice", activity=doc["activity"], serves=["continue_learning"], explanations=[],
-                             items=items_where(lambda it: it["difficulty"] in ("basic", "authentic_application") and "rubric" not in it)
-                             + items_where(lambda it: "rubric" in it)),
-            "check": dict(purpose="assess", activity=doc["activity"], serves=["verification_due"], explanations=[],
-                          items=items_where(lambda it: it["difficulty"] != "basic" and "rubric" not in it), atomic=True),
-            "review": dict(purpose="retain", activity=doc["activity"], serves=["retention_review_due"], explanations=[],
-                           items=items_where(lambda it: "rubric" not in it), atomic=True),
-            "repair": dict(purpose="remediate", activity=doc["activity"], serves=["remediation_required", "weakness_detected"],
-                           explanations=exps(["prerequisite_refresh", "state_trace", "plain_reteach", "different_example", "contrast"]),
-                           items=items_where(lambda it: "rubric" not in it)),
-        }
+        def make_plans(w: bool) -> dict:
+            return {
+                "teach": dict(purpose="teach", activity="content_explanation", serves=["new_learning"],
+                              explanations=exps(["canonical", "worked_example"]),
+                              items=items_where(lesson_items, w)),
+                "practice": dict(purpose="practice", activity=doc["activity"], serves=["continue_learning"], explanations=[],
+                                 items=items_where(lambda it: it["difficulty"] in ("basic", "authentic_application") and "rubric" not in it, w)
+                                 + items_where(lambda it: "rubric" in it, w)),
+                "check": dict(purpose="assess", activity=doc["activity"], serves=["verification_due"], explanations=[],
+                              items=items_where(lambda it: it["difficulty"] != "basic" and "rubric" not in it, w), atomic=True),
+                "review": dict(purpose="retain", activity=doc["activity"], serves=["retention_review_due"], explanations=[],
+                               items=items_where(lambda it: "rubric" not in it, w), atomic=True),
+                "repair": dict(purpose="remediate", activity=doc["activity"], serves=["remediation_required", "weakness_detected"],
+                               explanations=exps(["prerequisite_refresh", "state_trace", "plain_reteach", "different_example", "contrast"]),
+                               items=items_where(lambda it: "rubric" not in it, w)),
+            }
+        plans = make_plans(True)
+        published_plans = make_plans(False) if supplement is not None else plans
         for kind, plan in plans.items():
             spec = doc["tasks"][kind]
             tid = f"task.{ns}.{kind}"
+            # A supplement publishes a task again only when what it presents grew: a new version, never an overwrite.
+            if supplement is not None and plan["items"] == published_plans[kind]["items"]:
+                continue
+            task_version = 1 if supplement is None else 2
             status = "validated" if all(item_status[i] == "validated" for i in plan["items"]) else "candidate"
             # A task needs what its items need, and what its lesson text needs when the graph does not already say so
             # (3B §10: a task's own requirement is hard even where the graph is silent).
-            required = sorted({r for o in doc["objectives"] for it in o["items"] for r in it.get("required_skills", [])
+            required = sorted({r for o in doc["objectives"] for it in pool(o) for r in it.get("required_skills", [])
                                if f"item.{ns}.{o['id'].rsplit('.', 1)[1]}.{it['slug']}" in plan["items"]}
                               | set(doc.get("lesson_requires", [])))
             tasks_out.append(section("task", [
-                ("logical_id", tid), ("version", 1), ("title", esc(spec["title"])), ("primary_skill", pin(sid)),
+                ("logical_id", tid), ("version", task_version), ("title", esc(spec["title"])), ("primary_skill", pin(sid)),
                 ("target_objectives", [pin(o) for o in objectives]), ("purpose", plan["purpose"]),
                 ("activity_kind", plan["activity"]), ("serves", plan["serves"]), ("cost_minutes", spec["minutes"]),
                 ("required_skills", [pin(r) for r in required]),
@@ -922,6 +1041,11 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
             ]))
             report["tasks"].append({"task": tid, "status": status, "items": len(plan["items"]), "explanations": len(plan["explanations"])})
 
+    if supplement is not None:
+        # The caller writes one supplement from every content directory's blocks, in one order.
+        report["blocks"] = {"resources": resources, "validations": validations, "items": items_out, "keys": keys_out,
+                            "answer_misconceptions": answer_misconceptions_out, "rubrics": rubrics_out,
+                            "suites": suites_out, "tasks": tasks_out}
     for block in (misconceptions_out, resources, validations, explanations_out, items_out, keys_out, rubrics_out, suites_out, tasks_out):
         out.extend(block)
 
@@ -931,6 +1055,60 @@ def build(content_dir: Path, partial: bool = False) -> tuple[str, dict]:
         "skills": len(skill_ids), "objectives": len(objective_parent), "topics": len(topics),
         "items": len(report["items"]), "validated_items": sum(1 for i in report["items"] if i["status"] == "validated"),
         "explanations": report["explanations"], "misconceptions": len(misconceptions_out), "tasks": len(tasks_out),
+        "failures": len(report["failures"]),
+    }
+    return text, report
+
+
+SUPPLEMENT_BLOCKS = ["resources", "validations", "items", "keys", "answer_misconceptions", "rubrics", "suites", "tasks"]
+
+
+def build_supplement(content_dir: Path) -> tuple[str, dict]:
+    """15G (`D-120`): a package that adds to Objectives already published — more items, new task versions, transfer
+    items and wrong-option misconception keys — and changes nothing that was published. Each added item is checked by the
+    content directory it belongs to, so its notation, lexicon, runner and prelude are the ones its lesson was written in."""
+    pkg = load(content_dir / "package.yaml")
+    review = load(content_dir / "independent_review.yaml") or {}
+    reviewed = review.get("items", {}) or {}
+    mapping_review = review.get("answer_misconceptions", {}) or {}
+    out = ["\n".join([
+        "curriculum_package/1",
+        "# Generated by tools/build_curriculum_package.py from " + content_dir.relative_to(ROOT).as_posix() + " — do not edit by hand.",
+        f"version={pkg['version']}",
+        f"source_refs={pkg['source_refs']}",
+        f"provenance={pkg['provenance']}",
+    ])]
+    blocks: dict[str, list[str]] = {b: [] for b in SUPPLEMENT_BLOCKS}
+    report: dict = {"package_version": pkg["version"], "items": [], "tasks": [], "answer_misconceptions": [], "failures": [],
+                    "suite_files": {}, "by_source": {}}
+    for rel in pkg["supplements"]:
+        source = ROOT / rel
+        added: dict[str, list[dict]] = {}
+        options: dict[str, dict] = {}
+        for path in sorted((content_dir / "items" / source.name).glob("*.yaml")):
+            doc = load(path)
+            for o in doc.get("objectives", []):
+                added.setdefault(o["id"], []).extend(o.get("items", []))
+            options.update(doc.get("misconception_options") or {})
+        _, sub = build(source, supplement={
+            "items": added, "review": reviewed, "mapping_review": mapping_review, "misconception_options": options,
+            "step": pkg["step"], "validated_at": pkg["validated_at_instant"],
+        })
+        for b in SUPPLEMENT_BLOCKS:
+            blocks[b].extend(sub["blocks"][b])
+        report["items"].extend(sub["items"])
+        report["tasks"].extend(sub["tasks"])
+        report["answer_misconceptions"].extend(sub.get("answer_misconceptions", []))
+        report["failures"].extend(sub["failures"])
+        report["suite_files"].update(sub["suite_files"])
+        report["by_source"][source.name] = {"added_items": sum(len(v) for v in added.values()), "tasks": len(sub["tasks"])}
+    for b in SUPPLEMENT_BLOCKS:
+        out.extend(blocks[b])
+    text = "\n\n".join(out) + "\n"
+    report["summary"] = {
+        "items": len(report["items"]), "validated_items": sum(1 for i in report["items"] if i["status"] == "validated"),
+        "transfer_items": sum(1 for b in blocks["items"] if "\ntransfer_profile=" in b),
+        "task_versions": len(blocks["tasks"]), "answer_misconceptions": len(blocks["answer_misconceptions"]),
         "failures": len(report["failures"]),
     }
     return text, report
@@ -947,7 +1125,10 @@ def main() -> int:
     if args.partial and args.out:
         raise SystemExit("a partial build is never written as the shipped package")
     content_dir = (ROOT / args.content_dir).resolve()
-    text, report = build(content_dir, partial=args.partial)
+    if (load(content_dir / "package.yaml") or {}).get("supplements"):
+        text, report = build_supplement(content_dir)
+    else:
+        text, report = build(content_dir, partial=args.partial)
     suite_files = report.pop("suite_files", {})
     if args.out:
         Path(ROOT / args.out).parent.mkdir(parents=True, exist_ok=True)

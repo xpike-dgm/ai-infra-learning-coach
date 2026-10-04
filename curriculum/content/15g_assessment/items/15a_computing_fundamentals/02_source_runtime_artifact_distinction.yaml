@@ -1,0 +1,172 @@
+skill: skill.computing.source_runtime_artifact_distinction
+objectives:
+  - id: objective.computing.source_runtime_artifact_distinction.classify_artifacts
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bir C projesinde şu dört şey var. Hangisi bir ara dosyadır (çevirinin ürettiği, tek başına çalıştırılmayan dosya)?
+        options:
+          A: grafik.c
+          B: grafik.o
+          C: grafik (Linux'ta çalıştırılabilir dosya)
+          D: grafik.txt (program çalışırken yazdı)
+        scan_options: false
+        answer: B
+        misconception_options: {C: object_file_runnable}
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — -c: 'Compile or assemble the source files, but do not link. … The ultimate output is in the form of an object file for each source file.'"
+          claim: "grafik.o derleyicinin ürettiği nesne dosyasıdır (ara dosya); grafik.c kaynak, grafik çalıştırılabilir, grafik.txt çalışma çıktısıdır."
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          C'de çalıştırılabilir dosyayı hangi adım üretir?
+        options:
+          A: Programcının kaynak dosyayı yazması
+          B: Derlemenin her kaynak dosyadan bir nesne dosyası üretmesi
+          C: Nesne dosyalarının birleştirilmesi, yani bağlama (linking)
+          D: Programın çalışması
+        scan_options: false
+        answer: C
+        misconception_options: {B: object_file_runnable}
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — 'Compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking, always in that order. … linking combines all the object files … into an executable file.'"
+          claim: "Çalıştırılabilir dosyayı bağlama (linking) aşaması üretir; derleme yalnız nesne dosyaları üretir."
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Linux'ta tablo.c dosyasını -o seçeneği vermeden gcc tablo.c komutuyla derledin. Klasörde daha önce olmayan a.out adlı bir dosya belirdi ve ./a.out ile çalıştırınca program ekrana yazı yazdı. a.out hangi sınıftandır?
+        options:
+          A: Kaynak dosya
+          B: Ara dosya (nesne dosyası)
+          C: Çalıştırılabilir dosya
+          D: Çalışma çıktısı
+        scan_options: false
+        answer: C
+        misconception_options: {D: screen_text_is_source}
+        verify:
+          mode: shell
+          outcomes: {A: "kaynak", B: "ara_dosya", C: "calistirilabilir", D: "calisma_ciktisi"}
+          script: |
+            cat > tablo.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                puts("tablo");
+                return 0;
+            }
+            KAYNAK
+            gcc tablo.c
+            if [ -f a.out ] && [ "$(./a.out)" = "tablo" ]; then echo calistirilabilir; else echo baska; fi
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bir klasörde ana.c ve yardim.c var. Linux'ta gcc -c ana.c yardim.c komutunu çalıştırdın; başka hiçbir komut çalıştırmadın. Şimdi klasörde doğrudan çalıştırılabilen kaç dosya vardır?
+        options:
+          A: Hiç; -c her kaynak dosyadan yalnızca bir nesne dosyası üretir, bağlama yapılmadığı için çalıştırılabilir dosya yoktur.
+          B: Bir; iki kaynak dosya birleştirilip tek bir program üretilmiştir.
+          C: İki; ana.o ve yardim.o, her biri ayrı bir programdır.
+          D: Dört; kaynak dosyalar da çalıştırılabilir hâle gelmiştir.
+        scan_options: false
+        answer: A
+        misconception_options: {C: object_file_runnable}
+        verify:
+          mode: shell
+          outcomes: {A: "0", B: "1", C: "2", D: "4"}
+          script: |
+            cat > ana.c <<'KAYNAK'
+            int yardim(void);
+            int main(void) { return yardim(); }
+            KAYNAK
+            cat > yardim.c <<'KAYNAK'
+            int yardim(void) { return 0; }
+            KAYNAK
+            gcc -c ana.c yardim.c
+            n=0
+            for f in *; do ./"$f" >/dev/null 2>&1 && n=$((n+1)); done
+            echo "$n"
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bir C programı ekrana Hoş geldin yazıyor. Arkadaşın bu yazıyı İyi günler olarak değiştirmek istiyor ve senden bir dosya istiyor. Klasörde kutu.c, kutu.o, kutu (çalıştırılabilir dosya) ve programın çalışırken yazdığı kutu_kayit.txt var. Ona hangisini göndermelisin, neden?
+        options:
+          A: kutu.c; programın davranışı kaynak dosyada yazılıdır, değişiklik orada yapılıp yeniden derlenir.
+          B: kutu; çalışan dosya odur, yazıyı onun içinde değiştirmek yeterlidir.
+          C: kutu.o; makine komutları onun içindedir.
+          D: kutu_kayit.txt; program yazıyı oradan okur.
+        scan_options: false
+        answer: A
+        misconception_options: {D: screen_text_is_source}
+        verify:
+          mode: reference
+          reference: "GCC Manual §3.2 Options Controlling the Kind of Output — çalıştırılabilir dosya kaynak dosyalardan derleme ve bağlamayla üretilir; davranışı değiştirmek için kaynak değiştirilip yeniden derlenir"
+          claim: "Programın davranışını değiştirmek için kaynak dosya değiştirilir ve yeniden derlenir; nesne ve çalıştırılabilir dosya bunun ürünüdür, çalışma çıktısı programın davranışını belirlemez."
+      - slug: g06
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Bir C klasöründe şunlar var: oyun.c, gcc -c ile üretilmiş oyun.o, bağlamayla üretilmiş oyun adlı çalıştırılabilir dosya ve oyun çalışırken oluşturduğu skor.txt. Her birinin hangi sınıftan olduğunu ve zincirin hangi adımında ortaya çıktığını yaz. Hangisini silersen program yine çalışır, hangisini silersen artık değiştiremezsin? (3–5 cümle yeterli.)
+        answer: "-"
+        rubric:
+          - id: source_file
+            statement: oyun.c'nin programcının yazdığı kaynak dosya olduğunu söyler.
+          - id: object_file_from_compilation
+            statement: oyun.o'nun derlemenin ürettiği, tek başına çalıştırılmayan ara dosya (nesne dosyası) olduğunu söyler.
+          - id: executable_from_linking
+            statement: oyun'un bağlamanın ürettiği çalıştırılabilir dosya olduğunu söyler.
+          - id: runtime_output
+            statement: skor.txt'nin program çalışırken oluşan çalışma çıktısı olduğunu söyler.
+          - id: what_deletion_breaks
+            statement: oyun.o, oyun.c ya da skor.txt silinse de oyun'un çalıştığını; oyun.c silinirse programın artık değiştirilemeyeceğini söyler.
+        verify:
+          mode: rubric
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          sayi.c ekrana 5 yazıyordu. Linux'ta gcc sayi.c -o eski ile derledin. Sonra sayi.c'de 5'i 9 yaptın ve bu kez gcc sayi.c -o yeni ile derledin. Şimdi önce ./eski, sonra ./yeni çalıştırırsan ekranda sırayla ne görünür?
+        options:
+          A: 5, sonra 9; her çalıştırılabilir dosya, derlendiği andaki kaynak kodun çevirisidir.
+          B: 9, sonra 9; kaynak dosya değiştiği için iki program da yeni hâli çalıştırır.
+          C: 5, sonra 5; ilk derleme kalıcıdır.
+          D: eski artık çalışmaz, yeni 9 yazar.
+        scan_options: false
+        answer: A
+        misconception_options: {B: executable_needs_source}
+        verify:
+          mode: shell
+          outcomes: {A: "5\n9", B: "9\n9", C: "5\n5", D: "9"}
+          script: |
+            printf '#include <stdio.h>\nint main(void) { printf("%%d\\n", 5); return 0; }\n' > sayi.c
+            gcc sayi.c -o eski
+            printf '#include <stdio.h>\nint main(void) { printf("%%d\\n", 9); return 0; }\n' > sayi.c
+            gcc sayi.c -o yeni
+            ./eski
+            ./yeni
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          ana.py, yardimci.py dosyasındaki kodu kullanıyor. python ana.py ilk kez çalıştırıldığında ekrana eski yazıldı ve klasörde, içinde yardimci ile başlayıp .pyc ile biten bir dosya olan __pycache__ klasörü belirdi. Sonra yardimci.py'yi ekrana yeni sürüm yazacak biçimde değiştirdin; __pycache__ klasörüne dokunmadın. Yeniden python ana.py dersen ekranda ne görünür?
+        options:
+          A: yeni sürüm; .pyc kaynak dosyadan üretilmiş bir ara dosyadır, kaynak değişince yorumlayıcı onu yeniden üretir.
+          B: eski; yorumlayıcı saklanan .pyc dosyasını kaynak değişse de kullanır.
+          C: Hiçbir şey; .pyc ile kaynak uyuşmadığı için program çalışmaz.
+          D: Önce eski, sonra yeni sürüm.
+        scan_options: false
+        answer: A
+        misconception_options: {B: executable_needs_source}
+        verify:
+          mode: script
+          outcomes: {A: "yeni sürüm", B: "eski", C: "", D: "eski\nyeni sürüm"}
+          script: |
+            import os, subprocess, sys, time
+            with open("yardimci.py", "w", encoding="utf-8") as f:
+                f.write('print("eski")\n')
+            with open("ana.py", "w", encoding="utf-8") as f:
+                f.write('import yardimci\n')
+            first = subprocess.run([sys.executable, "ana.py"], capture_output=True, text=True).stdout
+            assert first.strip() == "eski" and os.path.isdir("__pycache__"), first
+            time.sleep(1.1)
+            with open("yardimci.py", "w", encoding="utf-8") as f:
+                f.write('print("yeni sürüm")\n')
+            print(subprocess.run([sys.executable, "ana.py"], capture_output=True, text=True).stdout.strip())

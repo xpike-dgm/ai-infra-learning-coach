@@ -1,0 +1,252 @@
+skill: skill.programming.code_reading_basic
+objectives:
+  - id: objective.programming.code_reading_basic.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu program, başındaki a değeri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 5
+          d = a * a
+          print(d)
+        options:
+          A: a'nın karesini
+          B: a'nın iki katını
+          C: a'nın kendisini
+          D: Her zaman 25'i
+        scan_options: false
+        answer: A
+        misconception_options: {D: single_case_generalization}
+        verify:
+          mode: behaviour
+          template: "a = {a}\nd = a * a\nprint(d)"
+          cases: [{a: 5}, {a: 0}, {a: 1}, {a: 3}, {a: 7}]
+          refs:
+            A: "lambda a: a * a"
+            B: "lambda a: 2 * a"
+            C: "lambda a: a"
+            D: "lambda a: 25"
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu program, başındaki fiyat ve indirim değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          fiyat = 80
+          indirim = 15
+          odenecek = fiyat - indirim
+          print(odenecek)
+        options:
+          A: Fiyattan indirimin düşülmüş hâlini
+          B: Fiyat ile indirimin toplamını
+          C: Yalnızca indirimi
+          D: Her zaman 65'i
+        scan_options: false
+        answer: A
+        misconception_options: {D: single_case_generalization}
+        verify:
+          mode: behaviour
+          template: "fiyat = {fiyat}\nindirim = {indirim}\nodenecek = fiyat - indirim\nprint(odenecek)"
+          cases: [{fiyat: 80, indirim: 15}, {fiyat: 10, indirim: 0}, {fiyat: 50, indirim: 50}, {fiyat: 7, indirim: 3}]
+          refs:
+            A: "lambda fiyat, indirim: fiyat - indirim"
+            B: "lambda fiyat, indirim: fiyat + indirim"
+            C: "lambda fiyat, indirim: indirim"
+            D: "lambda fiyat, indirim: 65"
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Bu program, başındaki a ve b değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 4
+          b = 8
+          ortalama = a + b
+          print(ortalama)
+        options:
+          A: İki sayının ortalamasını
+          B: İki sayının toplamını
+          C: İki sayıdan büyük olanı
+          D: Her zaman 12'yi
+        scan_options: false
+        answer: B
+        misconception_options: {A: names_tell_purpose, D: single_case_generalization}
+        verify:
+          mode: behaviour
+          template: "a = {a}\nb = {b}\nortalama = a + b\nprint(ortalama)"
+          cases: [{a: 4, b: 8}, {a: 0, b: 0}, {a: 3, b: 3}, {a: 10, b: 2}]
+          refs:
+            A: "lambda a, b: (a + b) / 2"
+            B: "lambda a, b: a + b"
+            C: "lambda a, b: max(a, b)"
+            D: "lambda a, b: 12"
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu program, başındaki n değeri (bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 5
+          if n < 0:
+              n = 0 - n
+          print(n)
+        options:
+          A: n'nin işaretsiz büyüklüğünü (eksiyse eksisini atarak)
+          B: Her zaman 0'ı
+          C: n'nin eksisini
+          D: Her zaman n'nin kendisini
+        scan_options: false
+        answer: A
+        misconception_options: {D: single_case_generalization}
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nif n < 0:\n    n = 0 - n\nprint(n)"
+          cases: [{n: 5}, {n: -3}, {n: 0}, {n: -10}, {n: 7}]
+          refs:
+            A: "lambda n: abs(n)"
+            B: "lambda n: 0"
+            C: "lambda n: -n"
+            D: "lambda n: n"
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu program, başındaki n değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 4
+          p = 1
+          for i in range(1, n + 1):
+              p = p * i
+          print(p)
+        options:
+          A: 1'den n'e kadar (n dahil) bütün tamsayıların çarpımını
+          B: n'nin karesini
+          C: 1'den n'e kadar tamsayıların toplamını
+          D: 2'nin n'inci kuvvetini
+        scan_options: false
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\np = 1\nfor i in range(1, n + 1):\n    p = p * i\nprint(p)"
+          cases: [{n: 1}, {n: 2}, {n: 3}, {n: 4}, {n: 5}]
+          refs:
+            A: "lambda n: __import__('math').factorial(n)"
+            B: "lambda n: n * n"
+            C: "lambda n: n * (n + 1) // 2"
+            D: "lambda n: 2 ** n"
+      - slug: g06
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki n değeri (0 ya da pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 10
+          c = 0
+          for i in range(n):
+              if i % 2 == 0:
+                  c = c + 1
+          print(c)
+        options:
+          A: 0'dan n'e kadar (n hariç) çift sayıların kaç tane olduğunu
+          B: n'nin yarısını (aşağı yuvarlanmış)
+          C: n'den küçük tek sayıların kaç tane olduğunu
+          D: n'den küçük çift sayıların toplamını
+        scan_options: false
+        answer: A
+        misconception_options: {B: single_case_generalization}
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nc = 0\nfor i in range(n):\n    if i % 2 == 0:\n        c = c + 1\nprint(c)"
+          cases: [{n: 10}, {n: 7}, {n: 1}, {n: 0}, {n: 4}]
+          refs:
+            A: "lambda n: len([i for i in range(n) if i % 2 == 0])"
+            B: "lambda n: n // 2"
+            C: "lambda n: len([i for i in range(n) if i % 2 == 1])"
+            D: "lambda n: sum(i for i in range(n) if i % 2 == 0)"
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki n değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 352
+          t = 0
+          while n > 0:
+              t = t + n % 10
+              n = n // 10
+          print(t)
+        options:
+          A: n'nin basamaklarının toplamını
+          B: n'nin kaç basamaklı olduğunu
+          C: n'nin son basamağını
+          D: n'nin basamaklarının ters sırada yazılışını
+        scan_options: false
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nt = 0\nwhile n > 0:\n    t = t + n % 10\n    n = n // 10\nprint(t)"
+          cases: [{n: 352}, {n: 7}, {n: 10}, {n: 999}, {n: 1203}]
+          refs:
+            A: "lambda n: sum(int(d) for d in str(n))"
+            B: "lambda n: len(str(n))"
+            C: "lambda n: n % 10"
+            D: "lambda n: int(str(n)[::-1])"
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki n değeri (pozitif bir tamsayı) ne olursa olsun, genel olarak ne yazar?
+        code: |
+          n = 123
+          r = 0
+          while n > 0:
+              r = r * 10 + n % 10
+              n = n // 10
+          print(r)
+        options:
+          A: n'nin basamaklarını ters sırada yazarak oluşan sayıyı
+          B: n'nin basamaklarının toplamını
+          C: n'nin kendisini
+          D: n'nin 10 katını
+        scan_options: false
+        answer: A
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: behaviour
+          template: "n = {n}\nr = 0\nwhile n > 0:\n    r = r * 10 + n % 10\n    n = n // 10\nprint(r)"
+          cases: [{n: 123}, {n: 5}, {n: 40}, {n: 1203}, {n: 99}]
+          refs:
+            A: "lambda n: int(str(n)[::-1])"
+            B: "lambda n: sum(int(d) for d in str(n))"
+            C: "lambda n: n"
+            D: "lambda n: 10 * n"
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu program, başındaki a, b ve c değerleri ne olursa olsun, genel olarak ne yazar?
+        code: |
+          a = 3
+          b = 9
+          c = 5
+          m = a
+          if b > m:
+              m = b
+          if c > m:
+              m = c
+          print(m)
+        options:
+          A: Üç sayıdan en büyüğünü
+          B: Her zaman b'yi
+          C: Üç sayıdan en küçüğünü
+          D: a ile c'den büyük olanı
+        scan_options: false
+        answer: A
+        misconception_options: {B: single_case_generalization}
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: behaviour
+          template: "a = {a}\nb = {b}\nc = {c}\nm = a\nif b > m:\n    m = b\nif c > m:\n    m = c\nprint(m)"
+          cases: [{a: 3, b: 9, c: 5}, {a: 9, b: 3, c: 5}, {a: 3, b: 5, c: 9}, {a: 4, b: 4, c: 4}, {a: 0, b: -2, c: -1}]
+          refs:
+            A: "lambda a, b, c: max(a, b, c)"
+            B: "lambda a, b, c: b"
+            C: "lambda a, b, c: min(a, b, c)"
+            D: "lambda a, b, c: max(a, c)"

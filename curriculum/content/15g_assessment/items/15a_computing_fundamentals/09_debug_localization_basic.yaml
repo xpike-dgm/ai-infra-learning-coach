@@ -1,0 +1,227 @@
+skill: skill.programming.debug_localization_basic
+objectives:
+  - id: objective.programming.debug_localization_basic.locate_cause
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Amaç: 4 ile 5'in çarpımını yazmak (beklenen: 20). Program 0 yazıyor. Hata hangi satırda?
+        code: |
+          carpim = 0
+          carpim = carpim * 4
+          carpim = carpim * 5
+          print(carpim)
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 4. satır
+        answer: A
+        misconception_options: {D: symptom_is_location}
+        verify:
+          mode: fault
+          observed: 0
+          intended: 20
+          line_options: {A: 1, B: 2, C: 3, D: 4}
+          fix: carpim = 1
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Amaç: 7 ile 8'in toplamını yazmak (beklenen: 15). Program ekrana toplam kelimesini yazıyor. Hata hangi satırda?
+        code: |
+          toplam = 7 + 8
+          print("toplam")
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: İki satırda da
+          D: Hiçbirinde; Python sayıları böyle yazar.
+        scan_options: false
+        answer: B
+        verify:
+          mode: fault
+          observed: toplam
+          intended: 15
+          line_options: {A: 1, B: 2}
+          fix: print(toplam)
+      - slug: g03
+        difficulty: authentic_application
+        prompt: |
+          Amaç: 4 elma (tanesi 3 lira) ve 6 armut (tanesi 5 lira) için ödenecek tutarı yazmak (beklenen: 42). Program 30 yazıyor. Hata hangi satırda?
+        code: |
+          elma = 4
+          armut = 6
+          elma_fiyat = 3
+          armut_fiyat = 5
+          tutar = elma * elma_fiyat + armut * elma_fiyat
+          print(tutar)
+        options:
+          A: 2. satır
+          B: 4. satır
+          C: 5. satır
+          D: 6. satır
+        answer: C
+        misconception_options: {D: symptom_is_location}
+        verify:
+          mode: fault
+          observed: 30
+          intended: 42
+          line_options: {A: 2, B: 4, C: 5, D: 6}
+          fix: tutar = elma * elma_fiyat + armut * armut_fiyat
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Amaç: a'nın iki katına 1 ekleyip sonucu 3 ile çarpmak (a = 5 için beklenen: 33). Program 24 yazıyor. Hata hangi satırda?
+        code: |
+          a = 5
+          b = a + 2
+          c = b + 1
+          d = c * 3
+          print(d)
+        options:
+          A: 2. satır
+          B: 3. satır
+          C: 4. satır
+          D: 5. satır
+        answer: A
+        misconception_options: {D: symptom_is_location}
+        verify:
+          mode: fault
+          observed: 24
+          intended: 33
+          line_options: {A: 2, B: 3, C: 4, D: 5}
+          fix: b = a * 2
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bir önceki programda (a'nın iki katına 1 ekleyip 3 ile çarpmak; ikinci satırda a * 2 yerine a + 2 yazılmış) a = 5 için ekranda 33 yerine 24 görünüyordu. Bir öğrenci son satırı print(33) yaptı ve ekranda 33 gördü. Bu, hatayı düzeltmiş midir?
+        code: |
+          a = 5
+          b = a + 2
+          c = b + 1
+          d = c * 3
+          print(33)
+        options:
+          A: Evet; ekranda artık beklenen değer görünüyor.
+          B: Hayır; yalnızca belirti gizlendi. a başka bir değer olduğunda program yine yanlış sonuç verir, çünkü neden (2. satır) yerinde duruyor.
+          C: Evet; ama yalnızca a = 5 olduğu sürece önemi yok.
+          D: Hayır; print içine sayı yazılamaz.
+        scan_options: false
+        answer: B
+        misconception_options: {A: fix_by_forcing_output}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import contextlib, io
+            def run(a, last):
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    exec(f"a = {a}\nb = a + 2\nc = b + 1\nd = c * 3\n{last}", {})
+                return buf.getvalue().strip()
+            forced_ok_everywhere = all(run(a, "print(33)") == str((2 * a + 1) * 3) for a in (5, 1, 10))
+            forced_ok_at_5 = run(5, "print(33)") == "33"
+            claims = {"A": forced_ok_everywhere, "B": forced_ok_at_5 and not forced_ok_everywhere,
+                      "C": forced_ok_everywhere, "D": not forced_ok_at_5}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Amaç: a ile b'nin toplamının iki katını yazmak (a = 4, b = 6 için beklenen: 20). Program 16 yazıyor. Hata hangi satırda?
+        code: |
+          a = 4
+          b = 6
+          cift_toplam = a + b * 2
+          print(cift_toplam)
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 4. satır
+        answer: C
+        verify:
+          mode: fault
+          observed: 16
+          intended: 20
+          line_options: {A: 1, B: 2, C: 3, D: 4}
+          fix: cift_toplam = (a + b) * 2
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: 1, 2 ve 3'ün karelerinin toplamını yazmak (beklenen: 14). Program 12 yazıyor. Hata hangi satırda?
+        code: |
+          kare_toplam = 0
+          for k in range(1, 4):
+              kare_toplam = kare_toplam + k * 2
+          print(kare_toplam)
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 4. satır
+        answer: C
+        required_skills: [skill.programming.iteration_reasoning]
+        verify:
+          mode: fault
+          observed: 12
+          intended: 14
+          line_options: {A: 1, B: 2, C: 3, D: 4}
+          fix: kare_toplam = kare_toplam + k * k
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: Boyu 140 ve üstü olanlar oyuncağa binebilir. Boyu 150 olan 20 yaşındaki biri için program binemez yazıyor (beklenen: binebilir). Hata hangi satırda?
+        code: |
+          yas = 20
+          boy = 150
+          if yas >= 140:
+              print("binebilir")
+          else:
+              print("binemez")
+        options:
+          A: 1. satır
+          B: 2. satır
+          C: 3. satır
+          D: 6. satır
+        answer: C
+        misconception_options: {D: symptom_is_location}
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: fault
+          observed: binemez
+          intended: binebilir
+          line_options: {A: 1, B: 2, C: 3, D: 6}
+          fix: "if boy >= 140:"
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Amaç: adım uzunluğunu 8 yapıp, 3 adımda gidilen toplam yolu yazmak (beklenen: 24). Program 15 yazıyor. Hatanın nedeni hangisi?
+        code: |
+          adim = 5
+          toplam = adim * 3
+          adim = 8
+          print(toplam)
+        options:
+          A: Yanlış işleç; 2. satırda * yerine + olmalıydı.
+          B: Yanlış sıra; toplam, adım 8 yapılmadan önce hesaplanıyor.
+          C: print yanlış değişkeni yazıyor; adim yazmalıydı.
+          D: Python bir değişkene ikinci kez değer atanmasına izin vermiyor.
+        scan_options: false
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import contextlib, io
+            def run(lines):
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    exec("\n".join(lines), {})
+                return buf.getvalue().strip()
+            claims = {
+                "A": run(["adim = 5", "toplam = adim + 3", "adim = 8", "print(toplam)"]) == "24",
+                "B": run(["adim = 5", "adim = 8", "toplam = adim * 3", "print(toplam)"]) == "24",
+                "C": run(["adim = 5", "toplam = adim * 3", "adim = 8", "print(adim)"]) == "24",
+                "D": run(["adim = 5", "adim = 8", "print(adim)"]) != "8",
+            }
+            print(",".join(k for k, v in claims.items() if v))

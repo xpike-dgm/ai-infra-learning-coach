@@ -117,6 +117,9 @@ enum class BlueprintExclusion(val id: String) {
      * **required** capabilities, and a supporting or optional Skill is not one (13B).
      */
     NOT_REQUIRED_CAPABILITY("not_required_capability"),
+
+    /** 15G (`D-120`): a cross-topic transfer opportunity is measured by the month (`MCA-v0` §9), never by the week. */
+    TRANSFER_IS_MONTHLY("transfer_is_monthly"),
 }
 
 /** Why an item could not fill a slot. Each value names a rule about the item or the store, never the learner. */
@@ -129,6 +132,12 @@ enum class SlotItemRefusal(val id: String) {
     VARIANT_FAMILY_IN_USE("variant_family_in_use"),
     DEPENDENCY_GROUP_IN_USE("dependency_group_in_use"),
     EXPECTED_MINUTES_MISSING("expected_minutes_missing"),
+
+    /**
+     * 15G (`D-120`, `AIV-v0` §16): the item declares a transfer role but no context from another Topic, so its claim is
+     * downgraded to an ordinary application — it measures, but not as transfer, and adds no false diversity.
+     */
+    TRANSFER_CLAIM_UNSUPPORTED("transfer_claim_unsupported"),
 }
 
 data class SlotItemRejection(val item: VersionedRef, val reasons: List<String>)

@@ -1,0 +1,168 @@
+skill: skill.programming.branching_reasoning
+objectives:
+  - id: objective.programming.branching_reasoning.predict_branch
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          not_ = 85
+          if not_ >= 90:
+              print("pekiyi")
+          elif not_ >= 70:
+              print("iyi")
+          else:
+              print("orta")
+        answer: "iyi"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          kalan = 0
+          if kalan > 0:
+              print("devam")
+          else:
+              print("bitti")
+        answer: "bitti"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
+        code: |
+          n = 7
+          if n % 2 == 1:
+              print("tek")
+          print("son")
+        answer: "tek\nson"
+        also_accept: ["tek son"]
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          puanlar = 55
+          if puanlar > 20:
+              print("A")
+          elif puanlar > 50:
+              print("B")
+          elif puanlar > 40:
+              print("C")
+        options:
+          A: Yalnızca A
+          B: Yalnızca B
+          C: A, B ve C (üç satır)
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        misconception_options: {C: all_true_branches_run}
+        verify:
+          mode: stdout
+          outcomes: {A: "A", B: "B", C: "A\nB\nC", D: ""}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          t = 12
+          if t > 10:
+              print("büyük")
+          if t > 5:
+              print("orta")
+          else:
+              print("küçük")
+        options:
+          A: Yalnızca büyük
+          B: Önce büyük, sonra orta (iki satır)
+          C: Önce büyük, sonra küçük (iki satır)
+          D: Yalnızca orta
+        scan_options: false
+        answer: B
+        misconception_options: {A: separate_ifs_exclusive}
+        verify:
+          mode: stdout
+          outcomes: {A: "büyük", B: "büyük\norta", C: "büyük\nküçük", D: "orta"}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kodun başına hangi satır eklenirse ekrana bedava yazılır?
+        code: |
+          if yas < 7 or yas >= 65:
+              print("bedava")
+          elif yas < 18:
+              print("indirimli")
+          else:
+              print("tam")
+        options:
+          A: yas = 7
+          B: yas = 17
+          C: yas = 40
+          D: yas = 70
+        answer: D
+        verify:
+          mode: which_input
+          target: bedava
+          assignments: {A: "yas = 7", B: "yas = 17", C: "yas = 40", D: "yas = 70"}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          bakiye = 100
+          if bakiye >= 80:
+              bakiye = bakiye - 80
+          if bakiye >= 80:
+              print("ikinci alım yapıldı")
+          else:
+              print("bakiye yetersiz")
+        options:
+          A: ikinci alım yapıldı
+          B: bakiye yetersiz
+          C: Önce ikinci alım yapıldı, sonra bakiye yetersiz
+          D: Hiçbir şey
+        scan_options: false
+        answer: B
+        misconception_options: {A: condition_uses_initial_values}
+        verify:
+          mode: stdout
+          outcomes: {A: "ikinci alım yapıldı", B: "bakiye yetersiz", C: "ikinci alım yapıldı\nbakiye yetersiz", D: ""}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          x = 3
+          y = 0
+          if x > 2:
+              y = y + 1
+              if x > 5:
+                  y = y + 10
+              else:
+                  y = y + 100
+          else:
+              y = y + 1000
+          print(y)
+        answer: "101"
+        verify: {mode: stdout}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          sayac = 0
+          a = 9
+          if a % 3 == 0:
+              sayac += 1
+          if a % 2 == 0:
+              sayac += 1
+          elif a > 5:
+              sayac += 5
+          if a % 9 == 0:
+              sayac += 1
+          print(sayac)
+        answer: "7"
+        verify: {mode: stdout}

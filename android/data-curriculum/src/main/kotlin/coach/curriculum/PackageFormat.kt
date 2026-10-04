@@ -30,6 +30,7 @@ import coach.model.PrerequisiteEdge
 import coach.model.ResourceVersion
 import coach.model.SkillRow
 import coach.model.TopicSkillLink
+import coach.model.TransferProfile
 import coach.model.UseCeiling
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
@@ -66,7 +67,15 @@ object PackageFormat {
         val rubrics: List<Rubric> = emptyList(),
         /** Authored tasks (15A): content the planner asks for by need, never published into the store. */
         val tasks: List<AuthoredTask> = emptyList(),
+        /**
+         * 15G (`D-120`): wrong answers mapped to catalogued misconceptions, as authored. They may name a key of an earlier
+         * package; the content source attaches them to their keys once every package is read.
+         */
+        val answerMisconceptions: List<AnswerMisconception> = emptyList(),
     )
+
+    /** One `[answer_misconception]` section: a wrong answer to one answer key, and the misconception it follows from. */
+    data class AnswerMisconception(val key: VersionedRef, val text: String, val misconception: VersionedRef)
 
     class ParseFailure(val reasons: List<String>) : IllegalArgumentException(reasons.joinToString("; "))
 
@@ -91,7 +100,12 @@ object PackageFormat {
 
     private data class Section(val name: String, val line: Int, val values: Map<String, String>)
 
-    fun parse(text: String): Parsed {
+    /**
+     * Reads one package. [earlier] are the packages it builds on, already read, oldest first (15B): a later package may
+     * present an earlier one's items in a new task version and map wrong answers of its keys (15G, `D-120`), and those
+     * references are checked against everything read so far — never left for the app to discover.
+     */
+    fun parse(text: String, earlier: List<Parsed> = emptyList()): Parsed {
         val reasons = mutableListOf<String>()
         val lines = text.split("\n").map { it.trim() }
         if (lines.firstOrNull() != FORMAT) throw ParseFailure(listOf("not a $FORMAT document"))
@@ -174,11 +188,49 @@ object PackageFormat {
         val tasks = sections.filter { it.name == "task" }.mapNotNull { section ->
             runCatching { reader.task(section) }.getOrElse { reasons += "task: ${it.message}"; null }
         }
-        if (curriculum != null) reasons += taskReferences(tasks, curriculum, items.map { it.ref }.toSet(), explanations.map { it.ref }.toSet())
+        if (curriculum != null) {
+            reasons += taskReferences(tasks, earlier.map { it.curriculum } + curriculum,
+                (earlier.flatMap { it.items.keys } + items.map { it.ref }).toSet(),
+                (earlier.flatMap { p -> p.explanations.map { it.ref } } + explanations.map { it.ref }).toSet())
+        }
+        val answerMisconceptions = sections.filter { it.name == "answer_misconception" }.mapNotNull { section ->
+            runCatching { reader.answerMisconception(section) }.getOrElse { reasons += "answer_misconception: ${it.message}"; null }
+        }
+        if (curriculum != null) {
+            reasons += answerMisconceptionReferences(answerMisconceptions, earlier.flatMap { it.answerKeys } + answerKeys,
+                (earlier.map { it.curriculum } + curriculum).flatMap { it.misconceptions })
+        }
 
         if (reasons.isNotEmpty() || curriculum == null) throw ParseFailure(reasons)
         return Parsed(curriculum, items.associateBy { it.ref }, documents.toMap(), explanations, codeTests, comprehensionChecks, answerKeys, rubrics,
-            tasks)
+            tasks, answerMisconceptions)
+    }
+
+    /**
+     * 15G (`D-120`): a wrong answer may only name a misconception of the very Objective its key speaks for, catalogued in
+     * this package or an earlier one; it can never be an answer the key accepts, and one wrong answer names one label.
+     * Anything else makes the package unreadable — a label attached to the wrong Objective would be blame, not analysis.
+     */
+    private fun answerMisconceptionReferences(
+        mappings: List<AnswerMisconception>,
+        keys: List<AcceptedAnswers>,
+        catalog: List<MisconceptionRow>,
+    ): List<String> = buildList {
+        val byRef = keys.associateBy { it.ref }
+        val labels = catalog.associateBy { it.ref }
+        mappings.groupBy { it.key to it.text.trim() }.filterValues { it.size > 1 }.keys
+            .forEach { (key, text) -> add("answer_misconception: '$text' of ${key.logicalId}@v${key.version} is mapped twice") }
+        mappings.forEach { m ->
+            val id = "answer_misconception ${m.key.logicalId}@v${m.key.version} '${m.text}'"
+            val key = byRef[m.key]
+            val label = labels[m.misconception]
+            when {
+                key == null -> add("$id: no such answer key")
+                label == null -> add("$id: misconception ${m.misconception.logicalId}@v${m.misconception.version} is not catalogued")
+                label.objective != key.objective -> add("$id: the misconception belongs to another Objective")
+                key.accepts(m.text) -> add("$id: an accepted answer is never a misconception")
+            }
+        }
     }
 
     /**
@@ -189,25 +241,26 @@ object PackageFormat {
      */
     private fun taskReferences(
         tasks: List<AuthoredTask>,
-        curriculum: CurriculumPackage,
+        curricula: List<CurriculumPackage>,
         itemRefs: Set<VersionedRef>,
         explanationRefs: Set<VersionedRef>,
     ): List<String> = buildList {
         tasks.groupBy { it.ref }.filterValues { it.size > 1 }.keys.forEach { add("task ${it.logicalId}@v${it.version} is declared twice") }
         // A task's own Skill needs no check of its own: every Objective it names must belong to that Skill in this
-        // package, so a Skill the package lacks is already refused there (15A mutation F10 was equivalent).
-        val parents = curriculum.objectives.associate { it.ref to it.parentSkill }
-        val validated = curriculum.validationRecords.groupBy { it.resource }
+        // package or one it builds on, so a Skill none of them has is already refused there (15A mutation F10 was
+        // equivalent). 15G (`D-120`): a later task version may present items an earlier package published.
+        val parents = curricula.flatMap { it.objectives }.associate { it.ref to it.parentSkill }
+        val validated = curricula.flatMap { it.validationRecords }.groupBy { it.resource }
             .mapValues { (_, records) -> records.maxBy { it.validatedAtInstant }.status }
         tasks.forEach { task ->
             val id = "task ${task.ref.logicalId}@v${task.ref.version}"
             task.targetObjectives.filter { parents[it] != task.primarySkill }
                 .forEach { add("$id: objective $it is not an Objective of ${task.primarySkill}") }
-            task.items.filterNot { it in itemRefs }.forEach { add("$id: item $it is not in this package") }
-            task.explanations.filterNot { it in explanationRefs }.forEach { add("$id: explanation $it is not in this package") }
+            task.items.filterNot { it in itemRefs }.forEach { add("$id: item $it is not in this package or an earlier one") }
+            task.explanations.filterNot { it in explanationRefs }.forEach { add("$id: explanation $it is not in this package or an earlier one") }
             if (task.validationStatus in TRUSTING) {
                 task.items.filter { validated[it] !in TRUSTING || (task.validationStatus == LifecycleStatus.TRUSTED && validated[it] != LifecycleStatus.TRUSTED) }
-                    .forEach { add("$id: declares ${task.validationStatus.id} over item $it, which this package does not validate") }
+                    .forEach { add("$id: declares ${task.validationStatus.id} over item $it, which no package validates") }
             }
         }
     }
@@ -274,7 +327,7 @@ object PackageFormat {
         "domain", "module", "topic", "skill", "objective", "topic_skill",
         "prerequisite_edge", "resource", "validation", "item", "misconception", "explanation",
         "code_test_suite", "code_test", "comprehension_check", "answer_key", "accepted_answer", "rubric", "rubric_criterion",
-        "task",
+        "task", "answer_misconception",
     )
 
     private val KNOWN_KEYS = mapOf(
@@ -309,6 +362,8 @@ object PackageFormat {
         // 14F (`D-110`): accepted answers to a short-answer item version, and the rubric of an open-response one.
         "answer_key" to setOf("logical_id", "version", "item", "objective", "case_sensitive"),
         "accepted_answer" to setOf("key", "text"),
+        // 15G (`D-120`): one wrong answer of a key and the catalogued misconception it was written to follow from.
+        "answer_misconception" to setOf("key", "text", "misconception"),
         "rubric" to setOf("logical_id", "version", "item"),
         "rubric_criterion" to setOf("rubric", "id", "objective", "statement"),
         // 14E (`D-109`): one written comprehension check after an item version, judged by its answer key.
@@ -330,6 +385,8 @@ object PackageFormat {
             // `QAB-v0` §8/§14/§22, needed by a weekly slot (13A). Both are optional: an item that does not
             // declare them simply cannot fill a weekly slot, and no default is invented for either.
             "expected_active_minutes", "blueprint_roles",
+            // `QAB-v0` §17 (15G, `D-120`): the context the item asks in. Both optional; no profile is no transfer claim.
+            "transfer_profile", "context_family_id",
         ),
     )
 
@@ -513,6 +570,11 @@ object PackageFormat {
             )
         }
 
+        fun answerMisconception(section: Section): AnswerMisconception {
+            check(section)
+            return AnswerMisconception(ref(section, "key"), text(section.values, "text", section.line), ref(section, "misconception"))
+        }
+
         fun acceptedAnswer(section: Section): Pair<VersionedRef, String> {
             check(section)
             return ref(section, "key") to text(section.values, "text", section.line)
@@ -633,6 +695,11 @@ object PackageFormat {
                         else -> BlueprintScopes.roles(scope).single { it.id == raw }
                     }
                 }.toSet(),
+                transferProfile = optional(section, "transfer_profile")?.let { raw ->
+                    TransferProfile.entries.firstOrNull { it.id == raw }
+                        ?: run { reasons += "[item] line ${section.line}: unknown transfer profile '$raw'"; null }
+                },
+                contextFamilyId = optional(section, "context_family_id"),
             )
         }
     }

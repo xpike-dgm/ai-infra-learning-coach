@@ -282,6 +282,11 @@ object BlueprintComposer {
                 if (item.variantFamilyId in usedFamilies) add(SlotItemRefusal.VARIANT_FAMILY_IN_USE.id)
                 item.dependencyGroupId?.let { if (it in usedGroups) add(SlotItemRefusal.DEPENDENCY_GROUP_IN_USE.id) }
                 if (item.expectedActiveMinutes == null) add(SlotItemRefusal.EXPECTED_MINUTES_MISSING.id)
+                // 15G (`D-120`): a transfer slot is measured only by an item whose context really comes from another Topic;
+                // a harder item of the same lesson declaring the role is an application, not transfer (`AIV-v0` §16).
+                if (role.evidenceKind == RoleEvidenceKind.TRANSFER && item.transferProfile?.crossTopic != true) {
+                    add(SlotItemRefusal.TRANSFER_CLAIM_UNSUPPORTED.id)
+                }
             }
             if (refusals.isNotEmpty()) {
                 rejections += SlotItemRejection(item.ref, refusals)

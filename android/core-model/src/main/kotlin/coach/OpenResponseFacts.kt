@@ -24,17 +24,36 @@ data class AcceptedAnswers(
     val objective: VersionedRef,
     val answers: List<String>,
     val caseSensitive: Boolean,
+    /**
+     * 15G (`D-120`, user decision): wrong answers the course wrote to follow from one catalogued misconception — a choice
+     * item's wrong option. Matched exactly like an accepted answer. A later package may add them to a key already
+     * published; they never change what the key accepts.
+     */
+    val wrongAnswerMisconceptions: List<WrongAnswerMisconception> = emptyList(),
 ) {
     init {
         require(ID.matches(ref.logicalId)) { "an answer key id is answerkey.<namespace>.<slug> (GNS-v0): ${ref.logicalId}" }
         require(answers.isNotEmpty()) { "an answer key accepts at least one answer" }
         require(answers.all { it.isNotBlank() }) { "an accepted answer says something" }
+        require(wrongAnswerMisconceptions.none { wrong -> answers.any { same(it.trim(), wrong.text.trim()) } }) {
+            "an accepted answer is never a misconception"
+        }
+        require(wrongAnswerMisconceptions.map { it.text.trim() }.toSet().size == wrongAnswerMisconceptions.size) {
+            "one wrong answer names one misconception"
+        }
     }
 
     /** The response, trimmed at both ends, against each accepted answer; nothing else is normalised. */
     fun accepts(response: String): Boolean {
         val given = response.replace("\r\n", "\n").trim()
         return answers.any { same(it.trim(), given) }
+    }
+
+    /** The misconception a wrong [response] was written to follow from, if the course wrote one; otherwise none. */
+    fun misconceptionFor(response: String): VersionedRef? {
+        if (accepts(response)) return null
+        val given = response.replace("\r\n", "\n").trim()
+        return wrongAnswerMisconceptions.firstOrNull { same(it.text.trim(), given) }?.misconception
     }
 
     private fun same(expected: String, given: String): Boolean =
@@ -50,6 +69,13 @@ data class AcceptedAnswers(
 
     companion object {
         val ID = Regex("^answerkey(\\.[a-z0-9]+(_[a-z0-9]+)*){2,}$")
+    }
+}
+
+/** 15G (`D-120`): one wrong answer and the catalogued misconception (`WAAX-v0`) it was written to follow from. */
+data class WrongAnswerMisconception(val text: String, val misconception: VersionedRef) {
+    init {
+        require(text.isNotBlank()) { "a wrong answer says something" }
     }
 }
 
@@ -144,6 +170,10 @@ object OpenResponse {
             EvaluationResult.Verified(
                 listOf(ComponentResult(key.objective, signal)),
                 EvaluatorRef(EVALUATOR_PROVIDER, EVALUATOR_MODEL, "${key.ref.logicalId}@v${key.ref.version}"),
+                // 15G (`D-120`): a wrong option the course mapped proposes its misconception for the key's own Objective. The
+                // pipeline keeps it only where the catalog declares it and only on the row that went wrong (14B).
+                misconceptionHypotheses = listOfNotNull(key.misconceptionFor(response))
+                    .map { MisconceptionHypothesis(key.objective, it.logicalId) },
             )
         )
     }

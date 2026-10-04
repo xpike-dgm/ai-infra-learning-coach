@@ -210,7 +210,10 @@ object PlannerEngine {
                 if (need.continuation == ContinuationValue.PAUSED_SAFE_CHECKPOINT) PriorityBand.P2 else PriorityBand.P3
             NeedTrigger.NEW_LEARNING, NeedTrigger.PARALLEL_TRACK_DUE, NeedTrigger.DIAGNOSTIC_OPPORTUNITY -> PriorityBand.P3
             NeedTrigger.REINFORCEMENT_OPPORTUNITY -> PriorityBand.P4
-            NeedTrigger.INTEGRATION_OPPORTUNITY -> if (need.requiredByCurriculum) PriorityBand.P3 else PriorityBand.P4
+            // 15G (`D-120`): a transfer opportunity takes integration's row — `MCA-v0` §7 orders the two together, as
+            // "transfer/integration information value", after every repair, verification and due review.
+            NeedTrigger.INTEGRATION_OPPORTUNITY, NeedTrigger.TRANSFER_OPPORTUNITY ->
+                if (need.requiredByCurriculum) PriorityBand.P3 else PriorityBand.P4
         }
         // §6.5: promotion lifts planned progress one band and no further; it never passes repair work
         // and never turns an optional P4 into a P2.

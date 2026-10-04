@@ -1,0 +1,148 @@
+skill: skill.programming.state_assignment_model
+objectives:
+  - id: objective.programming.state_assignment_model.trace_state
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          p = 10
+          p -= 3
+          p *= 2
+          print(p)
+        answer: "14"
+        verify: {mode: stdout}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          u = 4 * 3 - 2 * 5
+          print(u)
+        answer: "2"
+        verify: {mode: stdout}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          ad = "Ali"
+          selam = "Merhaba"
+          ad = selam
+          print(ad, selam)
+        answer: "Merhaba Merhaba"
+        verify: {mode: stdout}
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          k = 2  # k = 100 diye de yazılabilirdi
+          print(k * 3)
+        answer: "6"
+        verify: {mode: stdout}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır?
+        code: |
+          a = 1
+          b = a
+          c = b
+          b = 7
+          print(a, b, c)
+        options:
+          A: "1 7 1"
+          B: "1 7 7"
+          C: "7 7 7"
+          D: "1 1 1"
+        answer: A
+        misconception_options: {B: copy_tracks_later_changes, C: copy_tracks_later_changes}
+        verify: {mode: stdout}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Kodun yalnızca ilk dört satırı çalıştı; beşinci satır henüz çalışmadı. Bu anda s'nin değeri nedir?
+        code: |
+          s = 0
+          s += 4
+          s += 6
+          s = s * 2
+          s -= 5
+        options:
+          A: "10"
+          B: "15"
+          C: "20"
+          D: "25"
+        answer: C
+        verify:
+          mode: probe
+          upto: 4
+          probe: print(s)
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki kodun başına hangi satır eklenirse ekrana 11 yazılır?
+        code: |
+          y = x * 2 + 1
+          print(y)
+        options:
+          A: x = 4
+          B: x = 5
+          C: x = 6
+          D: x = 11
+        answer: B
+        verify:
+          mode: which_input
+          target: "11"
+          assignments: {A: "x = 4", B: "x = 5", C: "x = 6", D: "x = 11"}
+      - slug: g08
+        difficulty: authentic_application
+        prompt: |
+          Bir öğrenci ikinci satırı görünce "x hiçbir zaman x + 1'e eşit olamaz, bu satır hata verir" diyor. Bu kod çalışınca ne olur?
+        code: |
+          x = 7
+          x = x + 1
+          print(x)
+        options:
+          A: Ekrana 8 yazılır; sağ taraf x'in o anki değeriyle hesaplanır ve sonuç x'e atanır.
+          B: Program hata verir; bir değişken kendisinden büyük bir değere eşit olamaz.
+          C: Ekrana 7 yazılır; ikinci satır bir denklem olduğu için hiçbir şeyi değiştirmez.
+          D: Ekrana 1 yazılır; x x'ten çıkarılır ve 1 eklenir.
+        scan_options: false
+        answer: A
+        misconception_options: {B: self_update_impossible, C: assignment_is_equation}
+        verify:
+          mode: stdout
+          outcomes: {A: "8", B: "hata", C: "7", D: "1"}
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+        code: |
+          a = 3
+          b = a * a
+          a = b - a
+          b = b - a
+          print(a, b)
+        answer: "6 3"
+        verify: {mode: stdout}
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          Bu kod üçüncü bir değişken kullanmadan iki sayının yerini değiştirmeye çalışıyor. Ekrana ne yazılır?
+        code: |
+          a = 4
+          b = 9
+          a = a + b
+          b = a - b
+          a = a - b
+          print(a, b)
+        options:
+          A: "9 4"
+          B: "4 9"
+          C: "13 4"
+          D: "13 9"
+        answer: A
+        verify: {mode: stdout}

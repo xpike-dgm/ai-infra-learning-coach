@@ -144,7 +144,7 @@ object PlanReading {
                 NeedTrigger.PARALLEL_TRACK_DUE ->
                     if (english) ReasonFamily.PARALLEL_TECHNICAL_ENGLISH else ReasonFamily.CONTINUE_CURRENT_LEARNING
                 NeedTrigger.CONTINUE_LEARNING, NeedTrigger.NEW_LEARNING,
-                NeedTrigger.REINFORCEMENT_OPPORTUNITY, NeedTrigger.INTEGRATION_OPPORTUNITY ->
+                NeedTrigger.REINFORCEMENT_OPPORTUNITY, NeedTrigger.INTEGRATION_OPPORTUNITY, NeedTrigger.TRANSFER_OPPORTUNITY ->
                     ReasonFamily.CONTINUE_CURRENT_LEARNING
             }
         }

@@ -1,0 +1,182 @@
+skill: skill.programming.test_case_basic
+objectives:
+  - id: objective.programming.test_case_basic.design_expected_case
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Tarif: ucgen_cevre(a, b, c) bir üçgenin üç kenarının toplamını döndürür. ucgen_cevre(3, 4, 5) için bir test yazıyorsun. Beklenen sonuç ne olmalı?
+        answer: "12"
+        verify:
+          mode: script
+          script: |
+            def ucgen_cevre(a, b, c):
+                return a + b + c
+            print(ucgen_cevre(3, 4, 5))
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Tarif: saniye(dakika, sn) verilen süreyi toplam saniye olarak döndürür (1 dakika = 60 saniye). saniye(2, 15) için beklenen sonuç ne olmalı?
+        answer: "135"
+        verify:
+          mode: script
+          script: |
+            def saniye(dakika, sn):
+                return dakika * 60 + sn
+            print(saniye(2, 15))
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bir arkadaşın test yazarken şöyle yapıyor: fonksiyonu bir girdiyle çalıştırıyor ve ekranda ne görürse onu beklenen sonuç olarak yazıyor. Bu yöntemin sorunu nedir?
+        options:
+          A: Sorun yok; kodun verdiği sonuç en güvenilir beklenen değerdir.
+          B: Test, kod ne yapıyorsa onu doğru kabul eder; kod hatalıysa test de hatalı değeri bekler ve hatayı yakalayamaz.
+          C: Testler hiçbir zaman fonksiyon çalıştırılarak yazılmamalıdır.
+          D: Sorun yok; ama yalnızca sayı döndüren fonksiyonlar için.
+        scan_options: false
+        answer: B
+        misconception_options: {A: expected_from_code, D: expected_from_code}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def spec(en, boy):
+                return 2 * (en + boy)
+            def faulty(en, boy):
+                return 2 * en + boy
+            expected_from_code = faulty(4, 5)
+            catches_with_code = faulty(4, 5) != expected_from_code
+            catches_with_spec = faulty(4, 5) != spec(4, 5)
+            claims = {"A": catches_with_code, "B": (not catches_with_code) and catches_with_spec,
+                      "C": False, "D": catches_with_code}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Tarif: mutlak_fark(a, b), a ile b'nin farkının büyüklüğünü döndürür; sonuç hiçbir zaman eksi değildir. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def mutlak_fark(a, b):
+              return a - b
+        options:
+          A: mutlak_fark(5, 2)
+          B: mutlak_fark(7, 7)
+          C: mutlak_fark(2, 5)
+          D: mutlak_fark(9, 0)
+        answer: C
+        misconception_options: {A: any_input_detects, D: any_input_detects}
+        verify:
+          mode: detects
+          name: mutlak_fark
+          correct: "def mutlak_fark(a, b):\n    if a >= b:\n        return a - b\n    return b - a"
+          faulty: "def mutlak_fark(a, b):\n    return a - b"
+          inputs: {A: [5, 2], B: [7, 7], C: [2, 5], D: [9, 0]}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Tarif: son_rakam(n), sıfır ya da pozitif bir n sayısının birler basamağını döndürür. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def son_rakam(n):
+              return n % 100
+        options:
+          A: son_rakam(7)
+          B: son_rakam(205)
+          C: son_rakam(3)
+          D: son_rakam(58)
+        answer: D
+        misconception_options: {B: any_input_detects}
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: detects
+          name: son_rakam
+          correct: "def son_rakam(n):\n    return n % 10"
+          faulty: "def son_rakam(n):\n    return n % 100"
+          inputs: {A: [7], B: [205], C: [3], D: [58]}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Tarif: cift_mi(n), n çift bir sayıysa True, değilse False döndürür. Aşağıdaki kod için tek bir test yazılmış: cift_mi(2) sonucunun True olması bekleniyor. Test geçiyor. Bu ne gösterir?
+        code: |
+          def cift_mi(n):
+              return n == 2
+        options:
+          A: Fonksiyonun doğru olduğunu; test geçtiğine göre fonksiyon her girdi için çalışır.
+          B: Yalnızca 2 için doğru sonuç verdiğini; örneğin 4 için yanlış sonuç verebilir ve vermektedir.
+          C: Fonksiyonun hatalı olduğunu; geçen testler hep hatalı fonksiyonlarda olur.
+          D: Hiçbir şey; testler fonksiyon hakkında bilgi vermez.
+        scan_options: false
+        answer: B
+        misconception_options: {A: passing_test_proves_correct}
+        required_skills: [skill.programming.expression_boolean_reasoning]
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def cift_mi(n):
+                return n == 2
+            passes = cift_mi(2) is True
+            wrong_elsewhere = cift_mi(4) is not True
+            claims = {"A": passes and not wrong_elsewhere, "B": passes and wrong_elsewhere,
+                      "C": False, "D": not passes}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: en_kucuk(a, b), iki sayıdan küçük olanı döndürür. Aşağıdaki kod hatalı. Hangi test girdisi bu hatayı yakalar?
+        code: |
+          def en_kucuk(a, b):
+              if a < b:
+                  return a
+              return a
+        options:
+          A: en_kucuk(2, 9)
+          B: en_kucuk(5, 5)
+          C: en_kucuk(8, 3)
+          D: en_kucuk(1, 4)
+        answer: C
+        misconception_options: {A: any_input_detects, D: any_input_detects}
+        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
+        verify:
+          mode: detects
+          name: en_kucuk
+          correct: "def en_kucuk(a, b):\n    if a < b:\n        return a\n    return b"
+          faulty: "def en_kucuk(a, b):\n    if a < b:\n        return a\n    return a"
+          inputs: {A: [2, 9], B: [5, 5], C: [8, 3], D: [1, 4]}
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          Tarif: kare(x), x'in karesini (x × x) döndürür. Bir test şöyle yazılmış: kare(3) çağrılır ve sonucun 6 olması beklenir. Fonksiyon tarife tam uygun yazılmış olsun. Test çalıştırılınca ne olur ve sorun nerededir?
+        options:
+          A: Test geçer; fonksiyon doğru olduğu için.
+          B: Test başarısız olur, ama hata fonksiyonda değil testte; beklenen değer tariften yanlış hesaplanmış, 9 olmalıydı.
+          C: Test başarısız olur; demek ki fonksiyon hatalıdır.
+          D: Test hata verir ve hiç çalışmaz.
+        scan_options: false
+        answer: B
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            def kare(x):
+                return x * x
+            fails = kare(3) != 6
+            spec_value = 3 * 3
+            claims = {"A": not fails, "B": fails and spec_value == kare(3) and spec_value == 9,
+                      "C": fails and spec_value != kare(3), "D": False}
+            print(",".join(k for k, v in claims.items() if v))
+      - slug: g09
+        difficulty: authentic_application
+        independence: guided
+        prompt: |
+          Tarif: tek_mi(n), n tek bir sayıysa True, değilse False döndürür. Bu fonksiyon için üç test durumu yaz: biri 0, biri eksi bir sayı olsun. Her birinde girdiyi ve beklenen sonucu belirt ve beklenen sonuçları nereden hesapladığını söyle.
+        answer: "-"
+        rubric:
+          - id: input_and_expected
+            statement: Her test durumu için hem girdiyi hem beklenen sonucu yazar.
+          - id: expected_from_specification
+            statement: Beklenen sonuçlar tarife göre doğrudur (0 için False, örneğin -3 için True).
+          - id: required_cases
+            statement: İstenen iki durumu, 0'ı ve bir eksi sayıyı, testlerine katar.
+          - id: specification_is_source
+            statement: Beklenen sonuçları kodu çalıştırarak değil tariften hesapladığını söyler.
+        verify:
+          mode: rubric

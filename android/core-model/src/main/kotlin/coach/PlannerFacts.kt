@@ -21,6 +21,13 @@ enum class NeedTrigger(val id: String, val reasonCode: String) {
     REINFORCEMENT_OPPORTUNITY("reinforcement_opportunity", "need.reinforcement_opportunity"),
     PARALLEL_TRACK_DUE("parallel_track_due", "need.parallel_track_due"),
     INTEGRATION_OPPORTUNITY("integration_opportunity", "need.integration_opportunity"),
+
+    /**
+     * 15G (`D-120`): a learned Skill can be measured in a context built from another Topic — `MCA-v0` §6.5's "cross-topic
+     * transfer opportunities", the target-pool source no trigger opened until content could carry it. A declared
+     * extension of 3B §2.1 / `PDT-v0` §8.1; it is measured only by the month's `cross_topic_transfer` slot.
+     */
+    TRANSFER_OPPORTUNITY("transfer_opportunity", "need.transfer_opportunity"),
 }
 
 /** `PBR-v0` §4: five named bands. A smaller number is handled earlier; it is not a grade. */

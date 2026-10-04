@@ -29,10 +29,10 @@ import coach.model.VersionedRef
  * §5 role. Item choice, the planner bridge and the result are [BlueprintComposer]'s, shared with the week:
  * a monthly label adds no evidence weight (`MCA-v0` §2).
  *
- * Two roles have no state producer yet: `cross_topic_transfer` needs transfer-opportunity metadata and
- * `professional_evidence_checkpoint` needs a professional evidence profile (`MCA-v0` §6.5, §6.8). No need
- * opens either today, so no slot is ever composed under them; their owner is AŞAMA 15. Nothing here
- * invents one.
+ * `cross_topic_transfer` is opened by its owner, [TransferEngine] (15G, `D-120`), from authored transfer metadata.
+ * `professional_evidence_checkpoint` still has no state producer: it needs a professional evidence profile
+ * (`MCA-v0` §6.8), whose owner is AŞAMA 20. No need opens it, so no slot is ever composed under it, and nothing
+ * here invents one.
  */
 object MonthlyBlueprintEngine {
 
@@ -116,6 +116,9 @@ object MonthlyBlueprintEngine {
                 if (critical) Either.Role(MonthlyRole.CRITICAL_CAPABILITY_REVALIDATION)
                 else Either.Role(MonthlyRole.DELAYED_RETENTION_SAMPLING)
             NeedTrigger.INTEGRATION_OPPORTUNITY -> Either.Role(MonthlyRole.INTEGRATED_APPLICATION)
+            // 15G (`D-120`): §5's `cross_topic_transfer`, opened by its owner only for a learned Skill that has an unseen,
+            // trusted item whose context really comes from another Topic and no clean transfer measurement yet.
+            NeedTrigger.TRANSFER_OPPORTUNITY -> Either.Role(MonthlyRole.CROSS_TOPIC_TRANSFER)
             NeedTrigger.PARALLEL_TRACK_DUE ->
                 if (need.track == WeeklyBlueprintEngine.ENGLISH_TRACK) Either.Role(MonthlyRole.PARALLEL_TECHNICAL_ENGLISH)
                 else Either.Excluded(BlueprintExclusion.NOT_A_MONTHLY_MEASUREMENT)

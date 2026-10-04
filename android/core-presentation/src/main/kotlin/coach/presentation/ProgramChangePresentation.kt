@@ -98,6 +98,7 @@ object ProgramChangeCopy {
         NeedTrigger.REINFORCEMENT_OPPORTUNITY -> "pekiştirme"
         NeedTrigger.PARALLEL_TRACK_DUE -> "paralel hat"
         NeedTrigger.INTEGRATION_OPPORTUNITY -> "birlikte kullanma"
+        NeedTrigger.TRANSFER_OPPORTUNITY -> "başka bir bağlamda kullanma"
         null -> "nedeni kayıtlı değil"
     }
 }
