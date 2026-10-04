@@ -3,37 +3,49 @@ objectives:
   - id: objective.shell.pipeline_redirection.demonstrate_capability
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+          Boş bir klasörde (yok.txt yokken) bu komutları çalıştır. 2>&1 stderr'i stdout'un o anda gittiği yere, yani boruya bağlar. Son komut ne yazar?
         code: |
-          echo c > h.txt
-          echo a >> h.txt
-          echo b >> h.txt
-          sort h.txt | tail -n 1
-        answer: "c"
+          echo deniz > a.txt
+          cat a.txt yok.txt 2>&1 | wc -l
+        answer: "2"
         verify: {mode: shell, last_line: true}
       - slug: g02
         difficulty: basic
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+          Boş bir klasörde (bos adında bir şey yokken) bu komutu çalıştır. Ekranda kaç satır görünür ve bu satır(lar) nereden gelir?
         code: |
-          echo pazartesi > gun.txt
-          echo sali >> gun.txt
-          cat gun.txt | head -n 1
-        answer: "pazartesi"
-        verify: {mode: shell, last_line: true}
+          ls bos | sort
+        options:
+          A: Bir satır; ls'in stderr'e yazdığı hata mesajı. sort hiçbir satır almadığı için bir şey yazmaz.
+          B: Hiçbir satır; boru hata mesajını sort'a verdi ve sort onu sildi.
+          C: İki satır; hata mesajı ve sort'un sıraladığı hâli.
+          D: Bir satır; sort'un sıraladığı hata mesajı.
+        scan_options: false
+        answer: A
+        misconception_options: {B: pipe_carries_errors, D: pipe_carries_errors}
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            ekran=$(ls bos 2>&1 | sort 2>/dev/null)
+            stdout=$(ls bos 2>/dev/null | sort)
+            if [ -z "$stdout" ] && [ "$(printf '%s\n' "$ekran" | wc -l)" = "1" ]; then echo A; else echo C; fi
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde (yok adında bir şey yokken) bu komutları çalıştır. Son komut ne yazar?
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
         code: |
-          ls yok 2> hata.txt
-          wc -l hata.txt
-        answer: "1 hata.txt"
+          echo 4 > n.txt
+          echo 9 >> n.txt
+          echo 6 >> n.txt
+          echo 1 >> n.txt
+          sort n.txt | tail -n 2 | head -n 1
+        answer: "6"
         verify: {mode: shell, last_line: true}
       - slug: g04
         difficulty: authentic_application
@@ -60,32 +72,27 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Ekranda hangi satırlar görünür? Satırları aralarında bir boşlukla yaz.
+          Boş bir klasörde bu komutları çalıştır. Üçüncü satır ekranda bir şey yazar mı? Son komut ne yazar?
         code: |
-          ls yok 2>/dev/null | wc -l
-          echo $?
-        answer: "0 0"
-        verify: {mode: shell, script: "echo $(ls yok 2>/dev/null | wc -l; echo $?)\n"}
+          echo a > m.txt
+          echo b >> m.txt
+          cat m.txt | wc -l > sayi.txt
+          cat sayi.txt
+        answer: "2"
+        verify: {mode: shell, last_line: true}
       - slug: g06
-        difficulty: authentic_application
+        difficulty: transfer_integration
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır (b.txt yok). Son komut ne yazar? Önce ekranda bir hata mesajı görünür mü, onu da düşün.
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
         code: |
-          echo zeytin > a.txt
-          echo armut >> a.txt
-          cat a.txt b.txt 2>/dev/null | sort | head -n 1
-        options:
-          A: "armut; hata mesajı /dev/null'a gittiği için ekranda yalnız armut görünür"
-          B: "zeytin; sort dosyayı değiştirmez"
-          C: "Önce b.txt için bir hata mesajı, sonra armut"
-          D: "Hiçbir şey; dosyalardan biri olmadığı için cat hiçbir şey yazmaz"
-        scan_options: false
-        answer: A
-        verify:
-          mode: shell
-          script: "echo zeytin > a.txt\necho armut >> a.txt\ncat a.txt b.txt 2>/dev/null | sort | head -n 1 2>&1\n"
-          outcomes: {A: "armut", B: "zeytin", C: "cat: b.txt: No such file or directory\narmut", D: ""}
+          echo 3 > s.txt
+          echo 10 >> s.txt
+          echo 2 >> s.txt
+          sort s.txt | head -n 1
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "10"
+        verify: {mode: shell, last_line: true}
       - slug: g07
         difficulty: transfer_integration
         hands_on: true
@@ -109,16 +116,3 @@ objectives:
           wc -l hata.txt
         answer: "1 1 hata.txt"
         verify: {mode: shell, script: "echo tek > a.txt\necho $(cat a.txt yok.txt 2> hata.txt | wc -l; wc -l hata.txt)\n"}
-      - slug: t01
-        difficulty: transfer_integration
-        hands_on: true
-        transfer_profile: cross_topic_context
-        context_family: python_errors_to_file
-        required_skills: [skill.python.exceptions_read_basic]
-        prompt: |
-          Boş bir klasörde şu komutları çalıştır. program.py üç satır yazıyor, sonra sıfıra bölmeye çalışıp bir hata mesajıyla duruyor. Son komut ne yazar?
-        code: |
-          printf 'print("a")\nprint("b")\nprint("c")\nprint(1 // 0)\n' > program.py
-          python3 program.py 2> hatalar.txt | wc -l
-        answer: "3"
-        verify: {mode: shell, last_line: true}

@@ -17,76 +17,60 @@ objectives:
         answer: "?? alt/"
         verify: {mode: shell, last_line: true}
       - slug: g02
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Son iki komut ne yazar? Ekrana yazılanları aralarında bir boşlukla yaz.
+        code: |
+          git init -q ayni
+          cd ayni
+          echo 5 > n.txt
+          git add n.txt                     # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          git diff
+          echo $?
+        required_skills: [skill.linux.process_exit_stdout_stderr_basic, skill.shell.command_options_redirection_basic]
+        answer: "0"
+        verify: {mode: shell}
+      - slug: g03
+        difficulty: authentic_application
+        required_skills: [skill.shell.command_options_redirection_basic]
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Dosya, klasör henüz bir depo değilken oluşturuluyor; git init sonra çalışıyor. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          mkdir eski
+          cd eski
+          echo veri > tablo.txt
+          git init -q
+          git status --short
+        answer: "?? tablo.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g04
         difficulty: basic
         hands_on: true
         prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Son komut ne yazar?
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
         code: |
-          git init -q temiz
-          cd temiz
-          echo bir > a.txt
-          echo iki > b.txt
-          git add a.txt b.txt               # hazırlık
-          git commit -q -m "baslangic"      # hazırlık
-          git status --short
-        required_skills: [skill.shell.command_options_redirection_basic]
+          mkdir bos_depo
+          cd bos_depo
+          git init -q
+          ls
         options:
-          A: "Hiçbir şey yazmaz: her şey son kayıttakiyle aynı"
-          B: "Her iki dosyayı da listeler"
-          C: "?? a.txt ve ?? b.txt yazar"
-          D: " M a.txt ve  M b.txt yazar"
-        scan_options: false
-        answer: A
-        misconception_options: {B: status_lists_everything}
-        verify:
-          mode: shell
-          probe: 'echo "[$(git status --short)]"'
-          last_line: true
-          outcomes: {A: "[]", B: "[a.txt b.txt]", C: "[?? a.txt\n?? b.txt]", D: "[ M a.txt\n M b.txt]"}
-      - slug: g03
-        difficulty: authentic_application
-        hands_on: true
-        prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). Dosya iki kez değiştiriliyor, ikinci değişiklik onu son kayıttaki hâline geri getiriyor. Son komut ne yazar?
-        code: |
-          git init -q geri
-          cd geri
-          echo 1 > s.txt
-          git add s.txt                     # hazırlık
-          git commit -q -m "baslangic"      # hazırlık
-          echo 2 > s.txt
-          echo 1 > s.txt
-          git status --short
-        required_skills: [skill.shell.command_options_redirection_basic]
-        options:
-          A: "Hiçbir şey: Git içeriği karşılaştırır ve içerik son kayıttakiyle aynı"
-          B: " M s.txt: dosya değiştirildi"
-          C: "?? s.txt"
-          D: "Hata verir"
+          A: Hiçbir şey; git init'in oluşturduğu .git klasörü gizlidir ve ls onu göstermez
+          B: ".git"
+          C: README
+          D: Bir hata mesajı; boş bir depoda ls çalışmaz
         scan_options: false
         answer: A
         verify:
           mode: shell
-          probe: 'echo "[$(git status --short)]"'
-          last_line: true
-          outcomes: {A: "[]", B: "[ M s.txt]", C: "[?? s.txt]", D: "hata"}
-      - slug: g04
-        difficulty: authentic_application
-        hands_on: true
-        prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında + ile başlayan kaç satır var (+++ ile başlayan başlık satırı hariç)?
-        code: |
-          git init -q liste
-          cd liste
-          echo a > f.txt
-          git add f.txt                     # hazırlık
-          git commit -q -m "baslangic"      # hazırlık
-          echo b >> f.txt
-          echo c >> f.txt
-          git diff
-        required_skills: [skill.shell.command_options_redirection_basic]
-        answer: "2"
-        verify: {mode: shell, last_line: true, probe: 'git diff | grep -c "^+[^+]"'}
+          outcomes: {A: "", B: ".git", C: "README", D: "hata"}
+          script: |
+            mkdir bos_depo
+            cd bos_depo
+            git init -q
+            ls
       - slug: g05
         difficulty: authentic_application
         hands_on: true

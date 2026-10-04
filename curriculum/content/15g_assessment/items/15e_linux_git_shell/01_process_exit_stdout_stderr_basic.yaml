@@ -3,107 +3,129 @@ objectives:
   - id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Boş bir klasörde bu komutlar çalıştırıldı. ls hiçbir şey yazmadı. Son satırda ne görünür?
+          Bu komutlar çalıştırıldı. && ikinci komutu yalnız birincisi başarıyla biterse çalıştırır. Son satırda ne görünür?
         code: |
-          ls
+          false && echo tamam
           echo $?
-        required_skills: [skill.linux.terminal_filesystem_navigation]
+        required_skills: [skill.shell.command_options_redirection_basic]
         options:
-          A: "0; ls listeleyecek bir şey bulamasa da başarıyla biter"
-          B: "1; hiçbir şey yazmayan komut başarısız sayılır"
-          C: "2; boş klasör bir hatadır"
-          D: "Hiçbir şey; ls çıktı vermediği için $? boştur"
+          A: "1"
+          B: "0"
+          C: "tamam"
+          D: "Hiçbir şey"
         scan_options: false
         answer: A
-        misconception_options: {B: output_means_success}
         verify:
           mode: shell
           last_line: true
-          outcomes: {A: "0", B: "1", C: "2", D: ""}
+          outcomes: {A: "1", B: "0", C: "tamam", D: ""}
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu komutlar çalıştırıldı. Son satırda ne görünür?
+          Boş bir klasörde bu komut çalıştırıldı. Komut çalışırken ekranda ne görünür?
         code: |
-          false
-          echo $?
-          echo $?
+          bash -c 'echo veri; echo sorun >&2' > cikti.txt
+        required_skills: [skill.shell.command_options_redirection_basic]
         options:
-          A: "0"
-          B: "1"
-          C: "2"
-          D: Hiçbir şey
-        scan_options: false
-        answer: A
-        misconception_options: {B: status_stays}
-        verify:
-          mode: shell
-          last_line: true
-          outcomes: {A: "0", B: "1", C: "2", D: ""}
-      - slug: g03
-        difficulty: basic
-        prompt: |
-          Bu program ekrana uyari satırını yazdı ve başarıyla bitti. Bu satır hangi kanaldan geldi?
-        code: |
-          bash -c 'echo uyari >&2'
-        options:
-          A: "stderr; >&2 satırı standart hataya yönlendirir"
-          B: "stdout; ekranda görünen her şey normal çıktıdır"
-          C: "İkisinden de; terminal iki kanala birden yazar"
-          D: "Hiçbirinden; çıkış durumu olarak döner"
+          A: Yalnız sorun; veri dosyaya gitti, stderr'e yazılan sorun ekranda kaldı
+          B: Hiçbir şey; ikisi de cikti.txt'ye gitti
+          C: Yalnız veri
+          D: veri ve sorun, alt alta
         scan_options: false
         answer: A
         misconception_options: {B: error_text_is_stdout}
         verify:
           mode: shell
-          last_line: true
-          probe: |
-            p='echo uyari >&2'
-            o=$(bash -c "$p" 2>/dev/null | wc -c); e=$(bash -c "$p" 2>&1 >/dev/null | wc -c)
-            echo "$([ "$o" -gt 0 ] && echo stdout || echo -) $([ "$e" -gt 0 ] && echo stderr || echo -)"
-          outcomes: {A: "- stderr", B: "stdout -", C: "stdout stderr", D: "- -"}
-      - slug: g04
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            ekran=$(bash -c 'echo veri; echo sorun >&2' 2>&1 > cikti.txt)
+            dosya=$(cat cikti.txt)
+            if [ "$ekran" = "sorun" ] && [ "$dosya" = "veri" ]; then echo A; else echo D; fi
+      - slug: g03
         difficulty: authentic_application
         prompt: |
-          Bu komutlar çalıştırıldı. Son satırda ne görünür?
+          Boş bir klasörde (yok.txt yokken) bu komutlar çalıştırıldı. cat önce a.txt'nin içeriğini, sonra yok.txt için bir hata mesajı yazdı. Son satırda ne görünür?
         code: |
-          bash -c 'false; echo devam'
+          echo merhaba > a.txt
+          cat a.txt yok.txt
           echo $?
-        answer: "0"
-        verify: {mode: shell, last_line: true}
-      - slug: g05
-        difficulty: authentic_application
-        prompt: |
-          Bu komutlar sırayla çalıştırıldı. Son satırda ne görünür?
-        code: |
-          bash -c 'echo hazir; exit 3'
-          bash -c 'exit 0'
-          echo $?
-        answer: "0"
-        verify: {mode: shell, last_line: true}
-      - slug: g06
-        difficulty: authentic_application
-        prompt: |
-          Bu komut ekrana hiçbir şey yazmadan bitti. Program başarılı oldu mu?
-        code: |
-          bash -c 'exit 1'
+        required_skills: [skill.shell.command_options_redirection_basic]
         options:
-          A: "Hayır: çıkış durumu 1, yani başarısız; ekrana bir şey yazmaması bunu değiştirmez"
-          B: "Evet: hata mesajı yazmadığına göre başarılıdır"
-          C: "Evet: çıkış durumu 1 başarı demektir"
-          D: "Bilinemez: çıkış durumu yalnız hata mesajı varsa oluşur"
+          A: 0'dan farklı bir sayı; dosyalardan biri okunamadığı için cat başarısız bitti
+          B: "0; cat a.txt'yi yazdı, yani başarılı oldu"
+          C: Hiçbir şey; hata mesajı $?'i siler
+          D: "merhaba"
         scan_options: false
         answer: A
         misconception_options: {B: output_means_success}
         verify:
           mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            echo merhaba > a.txt
+            cat a.txt yok.txt > /dev/null 2>&1
+            durum=$?
+            if [ "$durum" -ne 0 ]; then echo A; else echo B; fi
+      - slug: g04
+        difficulty: basic
+        prompt: |
+          Bu komutlar çalıştırıldı. echo ekrana bir hata cümlesi yazıyor. Son satırda ne görünür?
+        code: |
+          echo "Hata: dosya bulunamadi"
+          echo $?
+        options:
+          A: "0; echo yazacağını yazıp başarıyla bitti, yazdığı metnin ne söylediği önemli değil"
+          B: "1; ekrana bir hata mesajı yazıldı"
+          C: "2; dosya bulunamadı"
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
           last_line: true
-          probe: |
-            bash -c 'exit 1' >/dev/null 2>&1; s=$?
-            [ "$s" -eq 0 ] && echo "basarili $s" || echo "basarisiz $s"
-          outcomes: {A: "basarisiz 1", B: "basarili 0", C: "basarili 1", D: "bilinmez"}
+          outcomes: {A: "0", B: "1", C: "2", D: ""}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu komut çalıştırıldı. Ekranda ne görünür ve programın çıkış durumu kaçtır?
+        code: |
+          bash -c 'echo bir; exit 3; echo iki'
+        options:
+          A: Yalnız bir yazılır; exit 3 programı orada bitirir, çıkış durumu 3
+          B: bir ve iki yazılır; çıkış durumu 3
+          C: bir ve iki yazılır; çıkış durumu 0, çünkü son komut echo
+          D: Hiçbir şey yazılmaz; çıkış durumu 3
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            cikti=$(bash -c 'echo bir; exit 3; echo iki')
+            durum=$?
+            if [ "$cikti" = "bir" ] && [ "$durum" = "3" ]; then echo A; else echo B; fi
+      - slug: g06
+        difficulty: transfer_integration
+        prompt: |
+          Boş bir klasörde bu komutlar sırayla çalıştırıldı. -p seçeneği, klasör zaten varsa hata vermemesini söyler. Son satırda ne görünür?
+        code: |
+          mkdir -p arsiv/2026
+          mkdir -p arsiv/2026
+          echo $?
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        options:
+          A: "0"
+          B: 0'dan farklı bir sayı; klasör zaten vardı
+          C: Hiçbir şey; mkdir -p bir şey yazmaz
+          D: "2026"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "0", B: "1", C: "", D: "2026"}
       - slug: g07
         difficulty: transfer_integration
         prompt: |
@@ -114,28 +136,6 @@ objectives:
           echo $?
         answer: "6"
         verify: {mode: shell, last_line: true}
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: python_crash_status
-        required_skills: [skill.python.exceptions_read_basic, skill.shell.command_options_redirection_basic]
-        prompt: |
-          Boş bir klasörde bu komutlar çalıştırıldı. Python programı önce basladi yazıyor, sonra sıfıra bölmeye çalışıyor. Son satırda ne görünür?
-        code: |
-          python3 -c 'print("basladi"); print(1 // 0)' > cikti.txt
-          echo $?
-        options:
-          A: "1; program bir hatayla (yakalanmamış istisnayla) bitti"
-          B: "0; program bir şey yazdı, yani başarılı oldu"
-          C: "2; sıfıra bölme hatasının kodu 2'dir"
-          D: "Hiçbir şey; çıktı dosyaya gitti"
-        scan_options: false
-        answer: A
-        misconception_options: {B: output_means_success}
-        verify:
-          mode: shell
-          last_line: true
-          outcomes: {A: "1", B: "0", C: "2", D: ""}
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

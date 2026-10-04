@@ -18,24 +18,12 @@ objectives:
         difficulty: basic
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. a.txt'nin içinde hangi satırlar kalır?
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
         code: |
-          echo x > a.txt
-          echo y > a.txt
-          echo z >> a.txt
-          cat a.txt
-        options:
-          A: "y ve z"
-          B: "x, y ve z"
-          C: "Yalnız z"
-          D: "x ve z"
-        scan_options: false
-        answer: A
-        misconception_options: {B: overwrite_appends}
-        verify:
-          mode: shell
-          script: "echo x > a.txt\necho y > a.txt\necho z >> a.txt\necho $(cat a.txt)\n"
-          outcomes: {A: "y z", B: "x y z", C: "z", D: "x z"}
+          echo kirmizi sari mavi > renkler.txt
+          wc -l renkler.txt
+        answer: "1 renkler.txt"
+        verify: {mode: shell, last_line: true}
       - slug: g03
         difficulty: basic
         hands_on: true
@@ -59,14 +47,12 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+          Boş bir klasörde bu komutları sırayla çalıştır. İkinci satırdaki mkdir başarısız olur, çünkü klasör artık vardır. Son komut ne yazar? Satırları aralarında bir boşlukla yaz.
         code: |
-          echo 1 > n.txt
-          echo 2 >> n.txt
-          echo 3 > n.txt
-          echo 4 >> n.txt
-          wc -l n.txt
-        answer: "2 n.txt"
+          mkdir kutu && echo ilk > kutu/n.txt
+          mkdir kutu && echo ikinci >> kutu/n.txt
+          cat kutu/n.txt
+        answer: "ilk"
         verify: {mode: shell, last_line: true}
       - slug: g05
         difficulty: authentic_application
@@ -120,14 +106,20 @@ objectives:
         difficulty: transfer_integration
         hands_on: true
         prompt: |
-          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+          Boş bir klasörde bu komutları sırayla çalıştır. Üçüncü satır, okuduğu dosyanın SONUNA ekliyor. Son komut ne yazar? Satırları aralarında bir boşlukla yaz.
         code: |
-          mkdir notlar
-          echo ilk > notlar/a.txt
-          echo ikinci >> notlar/a.txt
-          wc -l notlar/a.txt
-        answer: "2 notlar/a.txt"
-        verify: {mode: shell, last_line: true}
+          echo x > a.txt
+          echo y >> a.txt
+          head -n 1 a.txt >> a.txt
+          cat a.txt
+        answer: "x y x"
+        verify:
+          mode: shell
+          script: |
+            echo x > a.txt
+            echo y >> a.txt
+            head -n 1 a.txt >> a.txt
+            cat a.txt | tr '\n' ' ' | sed 's/ $//'
       - slug: t01
         difficulty: transfer_integration
         hands_on: true
