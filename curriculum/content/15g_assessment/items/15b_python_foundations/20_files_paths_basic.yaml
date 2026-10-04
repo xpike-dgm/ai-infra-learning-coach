@@ -99,8 +99,8 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına en_uzun_satir(yol) adında bir fonksiyon yaz: UTF-8 metin dosyasındaki en uzun satırı satır sonu olmadan döndürsün; aynı uzunlukta birden çok satır varsa önce geleni. Dosyada en az bir satır vardır.
-        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration, skill.python.conditionals]
+          cozum.py dosyasına bos_satir_sayisi(yol) adında bir fonksiyon yaz: UTF-8 metin dosyasında hiç karakter içermeyen (tamamen boş) satırların sayısını döndürsün. Son satırın sonunda satır sonu olması fazladan bir boş satır sayılmaz. Örnek: içerik "a", boş satır, "b" ise 1.
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.conditionals]
         harness: |
           import sys, tempfile, cozum
           from pathlib import Path
@@ -108,38 +108,33 @@ objectives:
           with tempfile.TemporaryDirectory() as d:
               yol = Path(d) / "veri.txt"
               yol.write_bytes(icerik.encode("utf-8"))
-              print("[" + cozum.en_uzun_satir(yol) + "]")
+              print(cozum.bos_satir_sayisi(yol))
         suite:
-          - {id: middle, args: ["kısa|en uzun satır|orta|"], expected_stdout: "[en uzun satır]\n"}
-          - {id: tie, args: ["abc|xyz"], expected_stdout: "[abc]\n"}
-          - {id: last_no_newline, args: ["a|bb|ccc"], expected_stdout: "[ccc]\n"}
+          - {id: one_blank, args: ["a||b|"], expected_stdout: "1\n"}
+          - {id: none, args: ["a|b|c"], expected_stdout: "0\n"}
+          - {id: empty_file, args: [""], expected_stdout: "0\n"}
+          - {id: blanks_at_end, args: ["x|||"], expected_stdout: "2\n"}
         reference: |
-          def en_uzun_satir(yol):
+          def bos_satir_sayisi(yol):
+              sayac = 0
               with open(yol, encoding="utf-8") as f:
-                  satirlar = f.read().splitlines()
-              en_uzun = satirlar[0]
-              for s in satirlar:
-                  if len(s) > len(en_uzun):
-                      en_uzun = s
-              return en_uzun
+                  for satir in f.read().splitlines():
+                      if satir == "":
+                          sayac += 1
+              return sayac
         wrong:
           - |
-            def en_uzun_satir(yol):
+            def bos_satir_sayisi(yol):
                 with open(yol, encoding="utf-8") as f:
-                    satirlar = f.read().splitlines()
-                en_uzun = satirlar[0]
-                for s in satirlar:
-                    if len(s) >= len(en_uzun):
-                        en_uzun = s
-                return en_uzun
+                    return f.read().count("\n")
           - |
-            def en_uzun_satir(yol):
-                en_uzun = ""
+            def bos_satir_sayisi(yol):
+                sayac = 0
                 with open(yol, encoding="utf-8") as f:
-                    for s in f:
-                        if len(s) > len(en_uzun):
-                            en_uzun = s
-                return en_uzun
+                    for satir in f.read().split("\n"):
+                        if satir == "":
+                            sayac += 1
+                return sayac
       - slug: g05
         difficulty: authentic_application
         prompt: |

@@ -78,29 +78,33 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına kisalt(metin, n) adında bir fonksiyon yaz: metin n karakterden uzunsa ilk n karakterinin sonuna "..." eklenmiş hâlini, değilse metnin kendisini döndürsün. Örnek: kisalt("Merhaba dünya", 7) → "Merhaba...".
+          cozum.py dosyasına ortadaki(metin) adında bir fonksiyon yaz: boş olmayan bir yazının ortasındaki karakteri döndürsün; yazının uzunluğu çiftse ortadaki İKİ karakteri döndürsün. Dilimleme kullan. Örnek: ortadaki("kalem") → "l", ortadaki("kitap") → "t", ortadaki("araba") → "a", ortadaki("elma") → "lm".
         required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
         harness: |
           import sys, cozum
-          print(cozum.kisalt(sys.argv[1], int(sys.argv[2])))
+          print("[" + cozum.ortadaki(sys.argv[1]) + "]")
         suite:
-          - {id: long, args: ["Merhaba dünya", "7"], expected_stdout: "Merhaba...\n"}
-          - {id: exact, args: ["kalem", "5"], expected_stdout: "kalem\n"}
-          - {id: short, args: ["ev", "10"], expected_stdout: "ev\n"}
+          - {id: odd, args: ["kalem"], expected_stdout: "[l]\n"}
+          - {id: even, args: ["elma"], expected_stdout: "[lm]\n"}
+          - {id: single, args: ["a"], expected_stdout: "[a]\n"}
+          - {id: two, args: ["ev"], expected_stdout: "[ev]\n"}
+          - {id: turkish, args: ["ağaçlık"], expected_stdout: "[ç]\n"}
         reference: |
-          def kisalt(metin, n):
-              if len(metin) > n:
-                  return metin[:n] + "..."
-              return metin
+          def ortadaki(metin):
+              orta = len(metin) // 2
+              if len(metin) % 2 == 1:
+                  return metin[orta]
+              return metin[orta - 1:orta + 1]
         wrong:
           - |
-            def kisalt(metin, n):
-                if len(metin) >= n:
-                    return metin[:n] + "..."
-                return metin
+            def ortadaki(metin):
+                return metin[len(metin) // 2]
           - |
-            def kisalt(metin, n):
-                return metin[:n] + "..."
+            def ortadaki(metin):
+                orta = len(metin) // 2
+                if len(metin) % 2 == 1:
+                    return metin[orta]
+                return metin[orta:orta + 2]
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -161,25 +165,26 @@ objectives:
       - slug: g07
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına fis_satiri(urun, fiyat) adında bir fonksiyon yaz: bir f-string ile "<ürün>: <fiyat> TL" biçiminde bir yazı döndürsün; fiyat her zaman iki ondalık basamakla yazılsın. Örnek: fis_satiri("Çay", 7.5) → "Çay: 7.50 TL".
+          cozum.py dosyasına sansurle(metin, kelime) adında bir fonksiyon yaz: metinde kelime'nin geçtiği her yeri, kelimenin harf sayısı kadar yıldızla (*) değiştirip döndürsün. Örnek: sansurle("kötü gün, kötü hava", "kötü") → "**** gün, **** hava".
         required_skills: [skill.python.functions_parameters_return]
         harness: |
           import sys, cozum
-          print(cozum.fis_satiri(sys.argv[1], float(sys.argv[2])))
+          print("[" + cozum.sansurle(sys.argv[1], sys.argv[2]) + "]")
         suite:
-          - {id: tea, args: ["Çay", "7.5"], expected_stdout: "Çay: 7.50 TL\n"}
-          - {id: whole, args: ["Simit", "15"], expected_stdout: "Simit: 15.00 TL\n"}
-          - {id: rounding, args: ["Su", "4.567"], expected_stdout: "Su: 4.57 TL\n"}
+          - {id: example, args: ["kötü gün, kötü hava", "kötü"], expected_stdout: "[**** gün, **** hava]\n"}
+          - {id: absent, args: ["güzel gün", "kötü"], expected_stdout: "[güzel gün]\n"}
+          - {id: inside_word, args: ["kalemlik kalem", "kalem"], expected_stdout: "[*****lik *****]\n"}
         reference: |
-          def fis_satiri(urun, fiyat):
-              return f"{urun}: {fiyat:.2f} TL"
+          def sansurle(metin, kelime):
+              return metin.replace(kelime, "*" * len(kelime))
         wrong:
           - |
-            def fis_satiri(urun, fiyat):
-                return f"{urun}: {fiyat} TL"
+            def sansurle(metin, kelime):
+                return metin.replace(kelime, "***")
           - |
-            def fis_satiri(urun, fiyat):
-                return f"{urun}: {fiyat:.1f} TL"
+            def sansurle(metin, kelime):
+                metin.replace(kelime, "*" * len(kelime))
+                return metin
       - slug: g08
         difficulty: transfer_integration
         prompt: |
@@ -308,28 +313,3 @@ objectives:
             def tarih_cevir(tarih):
                 parcalar = tarih.split("-")
                 return ".".join([parcalar[1], parcalar[2], parcalar[0]])
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: product_label_join
-        required_skills: [skill.python.list_operations, skill.python.functions_parameters_return]
-        prompt: |
-          cozum.py dosyasına etiket(urunler) adında bir fonksiyon yaz: ürün adlarından oluşan listeyi, adlar arasına virgül ve bir boşluk koyarak tek bir yazıya çevirip döndürsün. Örnek: etiket(["elma", "armut"]) → "elma, armut".
-        harness: |
-          import sys, cozum
-          print("[" + cozum.etiket(sys.argv[1:]) + "]")
-        suite:
-          - {id: two, args: ["elma", "armut"], expected_stdout: "[elma, armut]\n"}
-          - {id: three, args: ["a", "b", "c"], expected_stdout: "[a, b, c]\n"}
-          - {id: one, args: ["tek"], expected_stdout: "[tek]\n"}
-          - {id: empty, args: [], expected_stdout: "[]\n"}
-        reference: |
-          def etiket(urunler):
-              return ", ".join(urunler)
-        wrong:
-          - |
-            def etiket(urunler):
-                return str(urunler)
-          - |
-            def etiket(urunler):
-                return ",".join(urunler)

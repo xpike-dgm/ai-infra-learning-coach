@@ -26,26 +26,32 @@ objectives:
         answer: "Merhaba Ece"
         verify: {mode: stdout}
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu program çalıştırılınca ne olur?
         code: |
-          sayac = 0
-          def sifirla_ve_artir():
-              sayac = 10
-          sifirla_ve_artir()
-          print(sayac)
+          seviye = 1
+
+          def yukselt(puan):
+              if puan > 50:
+                  seviye = 2
+              return seviye
+
+          print(yukselt(80))
+          print(yukselt(20))
+        required_skills: [skill.python.conditionals]
         options:
-          A: "0"
-          B: "10"
-          C: "None"
-          D: Hata verir.
+          A: "Önce 2 yazılır, sonra UnboundLocalError ile durur"
+          B: "Önce 2, sonra 1 yazılır"
+          C: "İki kez 2 yazılır"
+          D: "Hiçbir şey yazılmadan SyntaxError verir"
         scan_options: false
         answer: A
-        misconception_options: {B: assignment_changes_global}
         verify:
-          mode: stdout
-          outcomes: {A: "0", B: "10", C: "None", D: "<hata>"}
+          mode: traceback
+          ask: type
+          shown: false
+          outcomes: {A: "UnboundLocalError", B: "1", C: "2", D: "SyntaxError"}
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -95,7 +101,7 @@ objectives:
           hesapla()
           print(yerel)
         options:
-          A: "NameError ile durur; yerel yalnız fonksiyonun içinde tanımlıdır"
+          A: "NameError ile durur"
           B: "5 yazılır"
           C: "10 yazılır"
           D: "None yazılır"
@@ -115,7 +121,7 @@ objectives:
           print(len)
           print(len([1, 2]))
         options:
-          A: "Önce 3 yazılır, sonra bir TypeError ile durur; len artık yerleşik fonksiyonu değil 3 sayısını gösterir"
+          A: "Önce 3 yazılır, sonra TypeError ile durur"
           B: "3 ve 2 yazılır"
           C: "Hiçbir şey yazılmadan SyntaxError verir"
           D: "Yalnız 2 yazılır"
@@ -178,37 +184,13 @@ objectives:
         prompt: |
           Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          for i in range(3):
-              toplam = i * 2
-          print(i, toplam)
-        required_skills: [skill.python.for_iteration]
-        answer: "2 4"
+          def kare(x):
+              return x * x
+
+          def hesap():
+              kare = 3
+              return kare
+
+          print(hesap(), kare(4))
+        answer: "3 16"
         verify: {mode: stdout}
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: loop_local_assignment
-        required_skills: [skill.python.for_iteration]
-        prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
-        code: |
-          toplam = 0
-
-          def ekle(n):
-              toplam = n
-              return toplam
-
-          for i in range(3):
-              ekle(i)
-          print(toplam)
-        options:
-          A: "0"
-          B: "2"
-          C: "3"
-          D: Hata verir; toplam fonksiyonun içinde tanımlı değildir.
-        scan_options: false
-        answer: A
-        misconception_options: {B: assignment_changes_global}
-        verify:
-          mode: stdout
-          outcomes: {A: "0", B: "2", C: "3", D: "<hata>"}

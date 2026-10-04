@@ -88,28 +88,19 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          program.py çalıştırılınca önce 12 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Stokta bulunamadığı için programı durduran ürün hangisi?
-
-          Traceback (most recent call last):
-            File "program.py", line 3, in <module>
-              print(stok[urun])
-          KeyError: 'silgi'
+          Bu program (program.py) çalıştırılınca hangi türde bir hatayla durur? Çalıştırmadan, kodu okuyarak karar ver.
         code: |
-          stok = {"kalem": 12, "defter": 4}
-          for urun in ["kalem", "silgi", "defter"]:
-              print(stok[urun])
-        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations, skill.python.for_iteration]
+          sayi = 42
+          print(len(sayi))
+        required_skills: [skill.python.list_operations, skill.python.assignment_binding]
         options:
-          A: "silgi"
-          B: "kalem"
-          C: "defter"
-          D: "urun"
+          A: "TypeError"
+          B: "ValueError"
+          C: "IndexError"
+          D: "NameError"
         scan_options: false
         answer: A
-        verify:
-          mode: traceback
-          ask: message
-          outcomes: {A: "'silgi'", B: "'kalem'", C: "'defter'", D: "'urun'"}
+        verify: {mode: traceback, ask: type, shown: false}
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -132,19 +123,21 @@ objectives:
           program.py çalıştırılınca aşağıdaki hata mesajı görünüyor. Programın ana kodunda bu hata zincirini başlatan satır kaçıncı satırdır? Yalnız sayıyı yaz.
 
           Traceback (most recent call last):
-            File "program.py", line 5, in <module>
-              print(oran(5, 0))
-            File "program.py", line 2, in oran
-              return pay / payda
+            File "program.py", line 7, in <module>
+              print(bol(x, y))
+            File "program.py", line 2, in bol
+              return a // b
           ZeroDivisionError: division by zero
         code: |
-          def oran(pay, payda):
-              return pay / payda
+          def bol(a, b):
+              return a // b
 
-          print(oran(9, 3))
-          print(oran(5, 0))
-        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
-        answer: "5"
+          x = 10
+          y = 0
+          if x > 5:
+              print(bol(x, y))
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        answer: "7"
         verify: {mode: traceback, ask: module_line}
       - slug: g08
         difficulty: transfer_integration
@@ -178,36 +171,36 @@ objectives:
 
           Traceback (most recent call last):
             File "program.py", line 10, in <module>
-              print(bas_harfler(["ada", "", "nar"]))
-            File "program.py", line 7, in bas_harfler
-              sonuc += ilk_harf(k)
-            File "program.py", line 2, in ilk_harf
-              return kelime[0]
-          IndexError: string index out of range
+              print(topla(["4", "x"]))
+            File "program.py", line 7, in topla
+              t += sayi_al(m)
+            File "program.py", line 2, in sayi_al
+              return int(metin)
+          ValueError: invalid literal for int() with base 10: 'x'
         code: |
-          def ilk_harf(kelime):
-              return kelime[0]
+          def sayi_al(metin):
+              return int(metin)
 
-          def bas_harfler(kelimeler):
-              sonuc = ""
-              for k in kelimeler:
-                  sonuc += ilk_harf(k)
-              return sonuc
+          def topla(metinler):
+              t = 0
+              for m in metinler:
+                  t += sayi_al(m)
+              return t
 
-          print(bas_harfler(["ada", "", "nar"]))
+          print(topla(["4", "x"]))
         required_skills: [skill.python.functions_parameters_return, skill.python.list_operations, skill.python.for_iteration]
         options:
-          A: "ilk_harf fonksiyonunda, 2. satırda"
-          B: "bas_harfler fonksiyonunda, 7. satırda"
+          A: "sayi_al fonksiyonunda, 2. satırda"
+          B: "topla fonksiyonunda, 7. satırda"
           C: "Programın ana kodunda, 10. satırda"
-          D: "bas_harfler fonksiyonunda, 6. satırda"
+          D: "topla fonksiyonunda, 6. satırda"
         scan_options: false
         answer: A
         misconception_options: {C: read_traceback_top_down}
         verify:
           mode: traceback
           ask: function_line
-          outcomes: {A: "ilk_harf 2", B: "bas_harfler 7", C: "<module> 10", D: "bas_harfler 6"}
+          outcomes: {A: "sayi_al 2", B: "topla 7", C: "<module> 10", D: "topla 6"}
       - slug: g10
         difficulty: transfer_integration
         prompt: |
@@ -224,24 +217,6 @@ objectives:
         scan_options: false
         answer: A
         verify: {mode: traceback, ask: type, shown: false}
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: stock_missing_key
-        required_skills: [skill.python.mapping_collections_basic, skill.python.list_operations]
-        prompt: |
-          program.py çalıştırılınca önce 5 yazılıyor, sonra aşağıdaki hata mesajı görünüyor. Hatanın türü nedir? Yalnız türün adını yaz.
-
-          Traceback (most recent call last):
-            File "program.py", line 3, in <module>
-              print(stok["kiraz"])
-          KeyError: 'kiraz'
-        code: |
-          stok = {"elma": 5, "armut": 2}
-          print(stok["elma"])
-          print(stok["kiraz"])
-        answer: "KeyError"
-        verify: {mode: traceback, ask: type}
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

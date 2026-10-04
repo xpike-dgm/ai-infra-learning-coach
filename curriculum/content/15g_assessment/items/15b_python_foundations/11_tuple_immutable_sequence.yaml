@@ -48,15 +48,15 @@ objectives:
       - slug: g03
         difficulty: basic
         prompt: |
-          cozum.py dosyasına tek_elemanli(x) adında bir fonksiyon yaz: yalnız x'ten oluşan tek elemanlı bir tuple döndürsün. Testler sonucu ve türünü yazdırır. Örnek: tek_elemanli(5) → (5,).
+          cozum.py dosyasına tek_elemanli(x) adında bir fonksiyon yaz: yalnız x'ten oluşan, tek elemanlı bir tuple döndürsün (liste değil). Testler fonksiyonun döndürdüğünü ve türünün adını yazdırır.
         required_skills: [skill.python.functions_parameters_return]
         harness: |
           import sys, cozum
           sonuc = cozum.tek_elemanli(int(sys.argv[1]))
           print(sonuc, type(sonuc).__name__)
         suite:
-          - {id: five, args: ["5"], expected_stdout: "(5,) tuple\n"}
-          - {id: zero, args: ["0"], expected_stdout: "(0,) tuple\n"}
+          - {id: eight, args: ["8"], expected_stdout: "(8,) tuple\n"}
+          - {id: negative, args: ["-1"], expected_stdout: "(-1,) tuple\n"}
         reference: |
           def tek_elemanli(x):
               return (x,)

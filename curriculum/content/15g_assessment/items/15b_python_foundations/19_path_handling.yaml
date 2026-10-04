@@ -5,28 +5,29 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          cozum.py dosyasına pathlib kullanarak dosya_adi(yol) adında bir fonksiyon yaz: yolun son parçasını (dosyanın klasörsüz adını, uzantısıyla) döndürsün. Örnek: dosya_adi("belgeler/2026/rapor.pdf") → "rapor.pdf".
+          cozum.py dosyasına pathlib kullanarak iki_ust(yol) adında bir fonksiyon yaz: dosyanın içinde bulunduğu klasörün de bir üstündeki klasörün yalnız adını döndürsün; öyle bir klasör yoksa boş yazı döndürsün. Örnek: iki_ust("proje/src/ana.py") → "proje".
         required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
         harness: |
           import sys, cozum
-          print(cozum.dosya_adi(sys.argv[1]))
+          print("[" + cozum.iki_ust(sys.argv[1]) + "]")
         suite:
-          - {id: nested, args: ["belgeler/2026/rapor.pdf"], expected_stdout: "rapor.pdf\n"}
-          - {id: bare, args: ["notlar"], expected_stdout: "notlar\n"}
-          - {id: two_dots, args: ["arsiv/yedek.tar.gz"], expected_stdout: "yedek.tar.gz\n"}
+          - {id: example, args: ["proje/src/ana.py"], expected_stdout: "[proje]\n"}
+          - {id: deep, args: ["a/b/c/d.txt"], expected_stdout: "[b]\n"}
+          - {id: one_level, args: ["src/ana.py"], expected_stdout: "[]\n"}
+          - {id: no_folder, args: ["ana.py"], expected_stdout: "[]\n"}
         reference: |
           from pathlib import Path
 
-          def dosya_adi(yol):
-              return Path(yol).name
+          def iki_ust(yol):
+              return Path(yol).parent.parent.name
         wrong:
           - |
             from pathlib import Path
 
-            def dosya_adi(yol):
-                return Path(yol).stem
+            def iki_ust(yol):
+                return Path(yol).parent.name
           - |
-            def dosya_adi(yol):
+            def iki_ust(yol):
                 return yol.split("/")[0]
       - slug: g02
         difficulty: basic
@@ -85,33 +86,34 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına pathlib kullanarak yedek_adi(yol) adında bir fonksiyon yaz: aynı klasörde, adının sonuna _yedek eklenmiş (uzantı korunarak) dosyanın yolunu düz bölüyle döndürsün. Örnek: yedek_adi("veri/not.txt") → "veri/not_yedek.txt".
+          cozum.py dosyasına pathlib kullanarak arsiv_yolu(yol) adında bir fonksiyon yaz: dosyanın kendi klasöründeki arsiv adlı alt klasöre, adının sonuna .bak eklenerek konmuş hâlinin yolunu düz bölüyle döndürsün (asıl uzantı korunur, .bak ona eklenir). Örnek: arsiv_yolu("rapor/mart.xlsx") → "rapor/arsiv/mart.xlsx.bak".
         required_skills: [skill.python.functions_parameters_return, skill.python.modules_imports_basic]
         harness: |
           import sys, cozum
-          print(cozum.yedek_adi(sys.argv[1]))
+          print(cozum.arsiv_yolu(sys.argv[1]))
         suite:
-          - {id: nested, args: ["veri/not.txt"], expected_stdout: "veri/not_yedek.txt\n"}
-          - {id: bare, args: ["ayar.ini"], expected_stdout: "ayar_yedek.ini\n"}
-          - {id: two_dots, args: ["a/arsiv.tar.gz"], expected_stdout: "a/arsiv.tar_yedek.gz\n"}
-          - {id: no_suffix, args: ["b/README"], expected_stdout: "b/README_yedek\n"}
+          - {id: example, args: ["rapor/mart.xlsx"], expected_stdout: "rapor/arsiv/mart.xlsx.bak\n"}
+          - {id: no_folder, args: ["notlar.txt"], expected_stdout: "arsiv/notlar.txt.bak\n"}
+          - {id: no_suffix, args: ["a/b/README"], expected_stdout: "a/b/arsiv/README.bak\n"}
         reference: |
           from pathlib import Path
 
-          def yedek_adi(yol):
+          def arsiv_yolu(yol):
               p = Path(yol)
-              return (p.parent / (p.stem + "_yedek" + p.suffix)).as_posix()
+              return (p.parent / "arsiv" / (p.name + ".bak")).as_posix()
         wrong:
           - |
             from pathlib import Path
 
-            def yedek_adi(yol):
+            def arsiv_yolu(yol):
                 p = Path(yol)
-                return (p.parent / (p.name + "_yedek")).as_posix()
+                return (p.parent / "arsiv" / (p.stem + ".bak")).as_posix()
           - |
-            def yedek_adi(yol):
-                ad, uzanti = yol.split(".", 1)
-                return ad + "_yedek." + uzanti
+            from pathlib import Path
+
+            def arsiv_yolu(yol):
+                p = Path(yol)
+                return (Path("arsiv") / (p.name + ".bak")).as_posix()
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -334,41 +336,3 @@ objectives:
 
             def cikti_yolu(girdi, klasor):
                 return (Path(klasor) / (Path(girdi).name + ".json")).as_posix()
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: nonempty_lines_list
-        required_skills: [skill.python.list_operations, skill.python.functions_parameters_return, skill.python.conditionals]
-        prompt: |
-          cozum.py dosyasına dolu_satirlar(yol) adında bir fonksiyon yaz (yol bir pathlib.Path nesnesidir): UTF-8 metin dosyasının boş olmayan satırlarını, satır sonları olmadan ve dosyadaki sırasıyla bir liste olarak döndürsün.
-        harness: |
-          import sys, tempfile, cozum
-          from pathlib import Path
-          icerik = sys.argv[1].replace("|", chr(10))
-          with tempfile.TemporaryDirectory() as d:
-              yol = Path(d) / "veri.txt"
-              yol.write_bytes(icerik.encode("utf-8"))
-              print(cozum.dolu_satirlar(yol))
-        suite:
-          - {id: gaps, args: ["bir||iki|"], expected_stdout: "['bir', 'iki']\n"}
-          - {id: none_empty, args: ["a|b|c"], expected_stdout: "['a', 'b', 'c']\n"}
-          - {id: empty_file, args: [""], expected_stdout: "[]\n"}
-          - {id: only_blank, args: ["||"], expected_stdout: "[]\n"}
-        reference: |
-          def dolu_satirlar(yol):
-              sonuc = []
-              for satir in yol.read_text(encoding="utf-8").splitlines():
-                  if satir != "":
-                      sonuc.append(satir)
-              return sonuc
-        wrong:
-          - |
-            def dolu_satirlar(yol):
-                return yol.read_text(encoding="utf-8").splitlines()
-          - |
-            def dolu_satirlar(yol):
-                sonuc = []
-                for satir in yol.read_text(encoding="utf-8").splitlines():
-                    if satir != " ":
-                        sonuc.append(satir)
-                return sonuc

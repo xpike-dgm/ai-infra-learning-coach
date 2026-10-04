@@ -255,34 +255,36 @@ objectives:
             def inc_cm(inc):
                 return round(inc / ORAN, 2)
       - slug: g10
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına math modülünü kullanarak bit_sayisi(n) adında bir fonksiyon yaz: pozitif bir n'nin ikili yazılışının kaç basamak olduğunu, math.floor(math.log2(n)) + 1 ile hesaplayıp döndürsün. Örnek: bit_sayisi(8) → 4 (1000).
+          cozum.py dosyasına math modülünü kullanarak tam_kare_mi(n) adında bir fonksiyon yaz: sıfır ya da pozitif bir tam sayı bir tam sayının karesiyse True, değilse False döndürsün. math modülünün isqrt fonksiyonu bir sayının karekökünün tam sayı kısmını verir (math.isqrt(10) → 3). Örnek: tam_kare_mi(49) → True, tam_kare_mi(50) → False.
         required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
         harness: |
           import sys, cozum
-          print(cozum.bit_sayisi(int(sys.argv[1])))
+          print(cozum.tam_kare_mi(int(sys.argv[1])))
         suite:
-          - {id: one, args: ["1"], expected_stdout: "1\n"}
-          - {id: eight, args: ["8"], expected_stdout: "4\n"}
-          - {id: byte_max, args: ["255"], expected_stdout: "8\n"}
-          - {id: power, args: ["256"], expected_stdout: "9\n"}
+          - {id: square, args: ["49"], expected_stdout: "True\n"}
+          - {id: not_square, args: ["50"], expected_stdout: "False\n"}
+          - {id: zero, args: ["0"], expected_stdout: "True\n"}
+          - {id: one_below, args: ["15"], expected_stdout: "False\n"}
+          - {id: large, args: ["1000000"], expected_stdout: "True\n"}
         reference: |
           import math
 
-          def bit_sayisi(n):
-              return math.floor(math.log2(n)) + 1
+          def tam_kare_mi(n):
+              k = math.isqrt(n)
+              return k * k == n
         wrong:
           - |
             import math
 
-            def bit_sayisi(n):
-                return math.ceil(math.log2(n))
+            def tam_kare_mi(n):
+                return isqrt(n) * isqrt(n) == n
           - |
             import math
 
-            def bit_sayisi(n):
-                return math.floor(math.log10(n)) + 1
+            def tam_kare_mi(n):
+                return math.isqrt(n) > 0
       - slug: g11
         difficulty: transfer_integration
         prompt: |
@@ -311,33 +313,3 @@ objectives:
 
             def ozet(sayilar):
                 return (mean(sayilar), sayilar[len(sayilar) // 2])
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: hypotenuse_math
-        required_skills: [skill.python.expression_evaluation]
-        prompt: |
-          cozum.py dosyasına hipotenus(a, b) adında bir fonksiyon yaz: dik kenarları a ve b olan dik üçgenin hipotenüsünü döndürsün. Karekökü math modülünün sqrt fonksiyonuyla al. Örnek: hipotenus(3, 4) → 5.0.
-        harness: |
-          import sys, cozum
-          print(cozum.hipotenus(int(sys.argv[1]), int(sys.argv[2])))
-        suite:
-          - {id: three_four, args: ["3", "4"], expected_stdout: "5.0\n"}
-          - {id: five_twelve, args: ["5", "12"], expected_stdout: "13.0\n"}
-          - {id: zero, args: ["0", "0"], expected_stdout: "0.0\n"}
-        reference: |
-          import math
-
-          def hipotenus(a, b):
-              return math.sqrt(a * a + b * b)
-        wrong:
-          - |
-            import math
-
-            def hipotenus(a, b):
-                return sqrt(a * a + b * b)
-          - |
-            import math
-
-            def hipotenus(a, b):
-                return a * a + b * b

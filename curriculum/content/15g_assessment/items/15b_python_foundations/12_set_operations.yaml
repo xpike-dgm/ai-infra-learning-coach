@@ -49,27 +49,37 @@ objectives:
             def ortak_yok_mu(a, b):
                 return set(a) != set(b)
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          cozum.py dosyasına harf_cesidi(kelime) adında bir fonksiyon yaz: kelimede kaç farklı karakter olduğunu döndürsün. Örnek: harf_cesidi("anana") → 2.
-        required_skills: [skill.python.functions_parameters_return]
+          cozum.py dosyasına acik_lambalar(basmalar) adında bir fonksiyon yaz: başta bütün lambalar kapalı. basmalar listesindeki her numara, o numaralı lambanın anahtarına bir kez basıldığını gösterir: kapalıysa açılır, açıksa kapanır. Sonunda açık olan lambaların numaralarını küçükten büyüğe sıralı bir liste olarak döndürsün. Bir küme kullan (add ile ekle, remove ile çıkar). Örnek: acik_lambalar([3, 1, 3, 2]) → [1, 2].
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
         harness: |
           import sys, cozum
-          print(cozum.harf_cesidi(sys.argv[1]))
+          print(cozum.acik_lambalar([int(x) for x in sys.argv[1:]]))
         suite:
-          - {id: anana, args: ["anana"], expected_stdout: "2\n"}
-          - {id: all_different, args: ["kalem"], expected_stdout: "5\n"}
-          - {id: turkish, args: ["çiçek"], expected_stdout: "4\n"}
+          - {id: example, args: ["3", "1", "3", "2"], expected_stdout: "[1, 2]\n"}
+          - {id: none, args: [], expected_stdout: "[]\n"}
+          - {id: three_presses, args: ["5", "5", "5"], expected_stdout: "[5]\n"}
+          - {id: all_off, args: ["4", "2", "2", "4"], expected_stdout: "[]\n"}
         reference: |
-          def harf_cesidi(kelime):
-              return len(set(kelime))
+          def acik_lambalar(basmalar):
+              acik = set()
+              for n in basmalar:
+                  if n in acik:
+                      acik.remove(n)
+                  else:
+                      acik.add(n)
+              return sorted(acik)
         wrong:
           - |
-            def harf_cesidi(kelime):
-                return len(kelime)
+            def acik_lambalar(basmalar):
+                return sorted(set(basmalar))
           - |
-            def harf_cesidi(kelime):
-                return len(set(kelime)) - 1
+            def acik_lambalar(basmalar):
+                acik = set()
+                for n in basmalar:
+                    acik.add(n)
+                return sorted(acik)
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -239,25 +249,32 @@ objectives:
       - slug: g10
         difficulty: transfer_integration
         prompt: |
-          cozum.py dosyasına fazlalik_sayisi(degerler) adında bir fonksiyon yaz: listeden tekrarlar atılsaydı kaç eleman eksilirdi, onu döndürsün. Örnek: fazlalik_sayisi([1, 1, 2, 2, 2]) → 3.
-        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+          cozum.py dosyasına karsilastir(a, b) adında bir fonksiyon yaz: iki listeyi tekrarlarını yok sayarak karşılaştırsın ve ortak=<ikisinde de olan farklı değer sayısı> yalniz_a=<yalnız a'da olan> yalniz_b=<yalnız b'de olan> biçiminde bir yazı döndürsün. Testler iki listeyi | ile ayırarak verir. Örnek: karsilastir([1, 2, 2, 3], [3, 4]) → "ortak=1 yalniz_a=2 yalniz_b=1".
+        required_skills: [skill.python.functions_parameters_return, skill.python.value_type_behavior]
         harness: |
           import sys, cozum
-          print(cozum.fazlalik_sayisi([int(x) for x in sys.argv[1:]]))
+          ayrac = sys.argv.index("|")
+          print("[" + cozum.karsilastir([int(x) for x in sys.argv[1:ayrac]], [int(x) for x in sys.argv[ayrac + 1:]]) + "]")
         suite:
-          - {id: repeats, args: ["1", "1", "2", "2", "2"], expected_stdout: "3\n"}
-          - {id: none, args: ["4", "5"], expected_stdout: "0\n"}
-          - {id: empty, args: [], expected_stdout: "0\n"}
+          - {id: example, args: ["1", "2", "2", "3", "|", "3", "4"], expected_stdout: "[ortak=1 yalniz_a=2 yalniz_b=1]\n"}
+          - {id: same, args: ["5", "6", "|", "6", "5", "5"], expected_stdout: "[ortak=2 yalniz_a=0 yalniz_b=0]\n"}
+          - {id: empty_b, args: ["7", "7", "|"], expected_stdout: "[ortak=0 yalniz_a=1 yalniz_b=0]\n"}
         reference: |
-          def fazlalik_sayisi(degerler):
-              return len(degerler) - len(set(degerler))
+          def karsilastir(a, b):
+              x = set(a)
+              y = set(b)
+              return "ortak=" + str(len(x & y)) + " yalniz_a=" + str(len(x - y)) + " yalniz_b=" + str(len(y - x))
         wrong:
           - |
-            def fazlalik_sayisi(degerler):
-                return len(set(degerler))
+            def karsilastir(a, b):
+                x = set(a)
+                y = set(b)
+                return "ortak=" + str(len(x | y)) + " yalniz_a=" + str(len(x - y)) + " yalniz_b=" + str(len(y - x))
           - |
-            def fazlalik_sayisi(degerler):
-                return len(degerler) - len(set(degerler)) - 1
+            def karsilastir(a, b):
+                x = set(a)
+                y = set(b)
+                return "ortak=" + str(len(x & y)) + " yalniz_a=" + str(len(a) - len(x & y)) + " yalniz_b=" + str(len(b) - len(x & y))
       - slug: g11
         difficulty: transfer_integration
         prompt: |
@@ -282,27 +299,3 @@ objectives:
           - |
             def ayni_kelimeler_mi(a, b):
                 return len(set(a)) == len(set(b))
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: common_letters
-        required_skills: [skill.python.string_text_operations, skill.python.functions_parameters_return]
-        prompt: |
-          cozum.py dosyasına ortak_harfler(a, b) adında bir fonksiyon yaz: iki kelimenin İKİSİNDE DE geçen harflerin kümesini (set) döndürsün. Örnek: ortak_harfler("elma", "armut") → {'a', 'm'}.
-        harness: |
-          import sys, cozum
-          print(sorted(cozum.ortak_harfler(sys.argv[1], sys.argv[2])))
-        suite:
-          - {id: example, args: ["elma", "armut"], expected_stdout: "['a', 'm']\n"}
-          - {id: none, args: ["abc", "xyz"], expected_stdout: "[]\n"}
-          - {id: repeated_letters, args: ["kiraz", "kaz"], expected_stdout: "['a', 'k', 'z']\n"}
-        reference: |
-          def ortak_harfler(a, b):
-              return set(a) & set(b)
-        wrong:
-          - |
-            def ortak_harfler(a, b):
-                return set(a) | set(b)
-          - |
-            def ortak_harfler(a, b):
-                return set(a) - set(b)
