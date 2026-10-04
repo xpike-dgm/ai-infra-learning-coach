@@ -1,0 +1,310 @@
+skill: skill.python.string_text_operations
+objectives:
+  - id: objective.python.string_text_operations.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına alt_cizgili(metin) adında bir fonksiyon yaz: metnin başındaki ve sonundaki boşlukları atsın, aradaki boşlukları alt çizgi (_) yapsın ve sonucu döndürsün. Örnek: alt_cizgili("  yeni dosya  ") → "yeni_dosya".
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print("[" + cozum.alt_cizgili(sys.argv[1]) + "]")
+        suite:
+          - {id: two_words, args: ["  yeni dosya  "], expected_stdout: "[yeni_dosya]\n"}
+          - {id: three_words, args: ["a b c"], expected_stdout: "[a_b_c]\n"}
+          - {id: one_word, args: [" tek"], expected_stdout: "[tek]\n"}
+        reference: |
+          def alt_cizgili(metin):
+              return metin.strip().replace(" ", "_")
+        wrong:
+          - |
+            def alt_cizgili(metin):
+                return metin.replace(" ", "_")
+          - |
+            def alt_cizgili(metin):
+                metin.strip()
+                return metin.replace(" ", "_")
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına kac_tane(metin, parca) adında bir fonksiyon yaz: parca yazısının metinde kaç kez geçtiğini döndürsün. Örnek: kac_tane("kelebek", "e") → 3.
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.kac_tane(sys.argv[1], sys.argv[2]))
+        suite:
+          - {id: letter, args: ["kelebek", "e"], expected_stdout: "3\n"}
+          - {id: syllable, args: ["banana", "na"], expected_stdout: "2\n"}
+          - {id: none, args: ["masa", "z"], expected_stdout: "0\n"}
+        reference: |
+          def kac_tane(metin, parca):
+              return metin.count(parca)
+        wrong:
+          - |
+            def kac_tane(metin, parca):
+                return metin.find(parca)
+          - |
+            def kac_tane(metin, parca):
+                return len(metin) - len(metin.replace(parca, ""))
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.py dosyasına ilk_kelime(cumle) adında bir fonksiyon yaz: boşluklarla ayrılmış kelimelerden ilkini döndürsün; cümlede hiç kelime yoksa boş yazı ("") döndürsün. Örnek: ilk_kelime("  merhaba dünya") → "merhaba".
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print("[" + cozum.ilk_kelime(sys.argv[1]) + "]")
+        suite:
+          - {id: leading_spaces, args: ["  merhaba dünya"], expected_stdout: "[merhaba]\n"}
+          - {id: one_word, args: ["tek"], expected_stdout: "[tek]\n"}
+          - {id: empty, args: ["   "], expected_stdout: "[]\n"}
+        reference: |
+          def ilk_kelime(cumle):
+              kelimeler = cumle.split()
+              if len(kelimeler) == 0:
+                  return ""
+              return kelimeler[0]
+        wrong:
+          - |
+            def ilk_kelime(cumle):
+                return cumle.split(" ")[0]
+          - |
+            def ilk_kelime(cumle):
+                kelimeler = cumle.split()
+                if len(kelimeler) == 0:
+                    return ""
+                return kelimeler[-1]
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına kisalt(metin, n) adında bir fonksiyon yaz: metin n karakterden uzunsa ilk n karakterinin sonuna "..." eklenmiş hâlini, değilse metnin kendisini döndürsün. Örnek: kisalt("Merhaba dünya", 7) → "Merhaba...".
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.kisalt(sys.argv[1], int(sys.argv[2])))
+        suite:
+          - {id: long, args: ["Merhaba dünya", "7"], expected_stdout: "Merhaba...\n"}
+          - {id: exact, args: ["kalem", "5"], expected_stdout: "kalem\n"}
+          - {id: short, args: ["ev", "10"], expected_stdout: "ev\n"}
+        reference: |
+          def kisalt(metin, n):
+              if len(metin) > n:
+                  return metin[:n] + "..."
+              return metin
+        wrong:
+          - |
+            def kisalt(metin, n):
+                if len(metin) >= n:
+                    return metin[:n] + "..."
+                return metin
+          - |
+            def kisalt(metin, n):
+                return metin[:n] + "..."
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına csv_toplam(satir) adında bir fonksiyon yaz: virgülle ayrılmış tam sayılardan oluşan bir satırdaki sayıların toplamını döndürsün. Örnek: csv_toplam("3,5,10") → 18.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.csv_toplam(sys.argv[1]))
+        suite:
+          - {id: three, args: ["3,5,10"], expected_stdout: "18\n"}
+          - {id: one, args: ["42"], expected_stdout: "42\n"}
+          - {id: negative, args: ["-1,1,7"], expected_stdout: "7\n"}
+        reference: |
+          def csv_toplam(satir):
+              toplam = 0
+              for parca in satir.split(","):
+                  toplam += int(parca)
+              return toplam
+        wrong:
+          - |
+            def csv_toplam(satir):
+                toplam = 0
+                for parca in satir.split():
+                    toplam += int(parca)
+                return toplam
+          - |
+            def csv_toplam(satir):
+                return len(satir.split(","))
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına maskele(kart) adında bir fonksiyon yaz: bir kart numarasının son dört hanesi dışındaki her karakterini * yapıp döndürsün. Numara dört haneden kısaysa olduğu gibi döndürsün. Örnek: maskele("1234567812345678") → "************5678".
+        required_skills: [skill.python.functions_parameters_return, skill.python.conditionals]
+        harness: |
+          import sys, cozum
+          print(cozum.maskele(sys.argv[1]))
+        suite:
+          - {id: sixteen, args: ["1234567812345678"], expected_stdout: "************5678\n"}
+          - {id: five, args: ["98765"], expected_stdout: "*8765\n"}
+          - {id: short, args: ["123"], expected_stdout: "123\n"}
+          - {id: four, args: ["4321"], expected_stdout: "4321\n"}
+        reference: |
+          def maskele(kart):
+              if len(kart) <= 4:
+                  return kart
+              return "*" * (len(kart) - 4) + kart[-4:]
+        wrong:
+          - |
+            def maskele(kart):
+                if len(kart) <= 4:
+                    return kart
+                return kart[:4] + "*" * (len(kart) - 4)
+          - |
+            def maskele(kart):
+                if len(kart) <= 4:
+                    return kart
+                return "*" * 12 + kart[-4:]
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.py dosyasına fis_satiri(urun, fiyat) adında bir fonksiyon yaz: bir f-string ile "<ürün>: <fiyat> TL" biçiminde bir yazı döndürsün; fiyat her zaman iki ondalık basamakla yazılsın. Örnek: fis_satiri("Çay", 7.5) → "Çay: 7.50 TL".
+        required_skills: [skill.python.functions_parameters_return]
+        harness: |
+          import sys, cozum
+          print(cozum.fis_satiri(sys.argv[1], float(sys.argv[2])))
+        suite:
+          - {id: tea, args: ["Çay", "7.5"], expected_stdout: "Çay: 7.50 TL\n"}
+          - {id: whole, args: ["Simit", "15"], expected_stdout: "Simit: 15.00 TL\n"}
+          - {id: rounding, args: ["Su", "4.567"], expected_stdout: "Su: 4.57 TL\n"}
+        reference: |
+          def fis_satiri(urun, fiyat):
+              return f"{urun}: {fiyat:.2f} TL"
+        wrong:
+          - |
+            def fis_satiri(urun, fiyat):
+                return f"{urun}: {fiyat} TL"
+          - |
+            def fis_satiri(urun, fiyat):
+                return f"{urun}: {fiyat:.1f} TL"
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına en_uzun_kelime(cumle) adında bir fonksiyon yaz: boşluklarla ayrılmış kelimelerden en uzun olanı döndürsün; aynı uzunlukta birden çok kelime varsa önce geleni. Cümlede en az bir kelime vardır.
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.conditionals, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.en_uzun_kelime(sys.argv[1]))
+        suite:
+          - {id: middle, args: ["bir uzunca cümle"], expected_stdout: "uzunca\n"}
+          - {id: tie_first, args: ["ev su"], expected_stdout: "ev\n"}
+          - {id: last, args: ["a bb ccc"], expected_stdout: "ccc\n"}
+        reference: |
+          def en_uzun_kelime(cumle):
+              en_uzun = ""
+              for k in cumle.split():
+                  if len(k) > len(en_uzun):
+                      en_uzun = k
+              return en_uzun
+        wrong:
+          - |
+            def en_uzun_kelime(cumle):
+                en_uzun = ""
+                for k in cumle.split():
+                    if len(k) >= len(en_uzun):
+                        en_uzun = k
+                return en_uzun
+          - |
+            def en_uzun_kelime(cumle):
+                return max(cumle.split())
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına palindrom_mu(cumle) adında bir fonksiyon yaz: boşluklar atılıp bütün harfler küçültüldüğünde cümle tersten de aynı okunuyorsa True, değilse False döndürsün. Testlerde yalnız İngilizce harfler (I ve İ yok) kullanılır. Örnek: palindrom_mu("Ey Edip Adanada pide ye") → True.
+        required_skills: [skill.python.functions_parameters_return, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.palindrom_mu(sys.argv[1]))
+        suite:
+          - {id: classic, args: ["Ey Edip Adanada pide ye"], expected_stdout: "True\n"}
+          - {id: not_palindrome, args: ["Merhaba dunya"], expected_stdout: "False\n"}
+          - {id: case_only, args: ["Kayak"], expected_stdout: "True\n"}
+          - {id: uneven_spaces, args: ["Ab cba"], expected_stdout: "True\n"}
+        reference: |
+          def palindrom_mu(cumle):
+              s = cumle.replace(" ", "").lower()
+              return s == s[::-1]
+        wrong:
+          - |
+            def palindrom_mu(cumle):
+                s = cumle.lower()
+                return s == s[::-1]
+          - |
+            def palindrom_mu(cumle):
+                s = cumle.replace(" ", "")
+                return s == s[::-1]
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına string modülünü kullanarak kaydir(metin, n) adında bir fonksiyon yaz: metindeki her küçük İngilizce harfi alfabede n harf ileri kaydırsın (z'den sonra a'ya döner), diğer karakterleri olduğu gibi bıraksın. Örnek: kaydir("abc xyz!", 2) → "cde zab!". İpucu: string.ascii_lowercase ve index().
+        required_skills: [skill.python.functions_parameters_return, skill.python.for_iteration, skill.python.conditionals, skill.python.modules_imports_basic, skill.python.expression_evaluation]
+        harness: |
+          import sys, cozum
+          print(cozum.kaydir(sys.argv[1], int(sys.argv[2])))
+        suite:
+          - {id: wraps, args: ["abc xyz!", "2"], expected_stdout: "cde zab!\n"}
+          - {id: zero, args: ["merhaba", "0"], expected_stdout: "merhaba\n"}
+          - {id: full_circle, args: ["kod", "26"], expected_stdout: "kod\n"}
+          - {id: uppercase_kept, args: ["Ab", "1"], expected_stdout: "Ac\n"}
+        reference: |
+          import string
+
+          def kaydir(metin, n):
+              harfler = string.ascii_lowercase
+              sonuc = ""
+              for k in metin:
+                  if k in harfler:
+                      sonuc += harfler[(harfler.index(k) + n) % 26]
+                  else:
+                      sonuc += k
+              return sonuc
+        wrong:
+          - |
+            import string
+
+            def kaydir(metin, n):
+                harfler = string.ascii_lowercase
+                sonuc = ""
+                for k in metin:
+                    if k in harfler:
+                        sonuc += harfler[harfler.index(k) + n]
+                    else:
+                        sonuc += k
+                return sonuc
+          - |
+            import string
+
+            def kaydir(metin, n):
+                harfler = string.ascii_lowercase
+                sonuc = ""
+                for k in metin:
+                    if k in harfler:
+                        sonuc += harfler[(harfler.index(k) + n) % 26]
+                return sonuc
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.py dosyasına tarih_cevir(tarih) adında bir fonksiyon yaz: "YYYY-AA-GG" biçimindeki bir tarihi "GG.AA.YYYY" biçimine çevirip döndürsün. split ve join kullan. Örnek: tarih_cevir("2026-10-04") → "04.10.2026".
+        required_skills: [skill.python.functions_parameters_return, skill.python.list_operations]
+        harness: |
+          import sys, cozum
+          print(cozum.tarih_cevir(sys.argv[1]))
+        suite:
+          - {id: today, args: ["2026-10-04"], expected_stdout: "04.10.2026\n"}
+          - {id: new_year, args: ["2000-01-01"], expected_stdout: "01.01.2000\n"}
+          - {id: end_of_year, args: ["1999-12-31"], expected_stdout: "31.12.1999\n"}
+        reference: |
+          def tarih_cevir(tarih):
+              parcalar = tarih.split("-")
+              return ".".join([parcalar[2], parcalar[1], parcalar[0]])
+        wrong:
+          - |
+            def tarih_cevir(tarih):
+                return tarih.replace("-", ".")
+          - |
+            def tarih_cevir(tarih):
+                parcalar = tarih.split("-")
+                return ".".join([parcalar[1], parcalar[2], parcalar[0]])
