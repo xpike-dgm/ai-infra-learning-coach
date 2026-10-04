@@ -1,0 +1,909 @@
+skill: skill.c.pointer_dereference
+objectives:
+  - id: objective.c.pointer_dereference.read_pointed_value
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına int fark(int *a, int *b) fonksiyonunu yaz: a'nın gösterdiği değerden b'nin gösterdiği değeri çıkarıp sonucu döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int fark(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              while (scanf("%d %d", &x, &y) == 2) {
+                  printf("%d\n", fark(&x, &y));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "10 3\n3 10\n-2 -2\n", expected_stdout: "7\n-7\n0\n"}
+        reference: |
+          int fark(int *a, int *b) {
+              return *a - *b;
+          }
+        wrong:
+          - |
+            int fark(int *a, int *b) {
+                return *b - *a;
+            }
+          - |
+            int fark(int *a, int *b) {
+                return a == b;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına int kare_deger(int *p) fonksiyonunu yaz: p'nin gösterdiği değerin karesini döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          int kare_deger(int *p);
+
+          int main(void) {
+              int x = 0;
+              while (scanf("%d", &x) == 1) {
+                  printf("%d\n", kare_deger(&x));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "4 -3 0\n", expected_stdout: "16\n9\n0\n"}
+        reference: |
+          int kare_deger(int *p) {
+              return *p * *p;
+          }
+        wrong:
+          - |
+            int kare_deger(int *p) {
+                return *p * 2;
+            }
+          - |
+            int kare_deger(int *p) {
+                return *p + *p;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına double yarisi(double *p) fonksiyonunu yaz: p'nin gösterdiği değerin yarısını döndürsün. Dersin testleri sonucu iki ondalık basamakla yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          double yarisi(double *p);
+
+          int main(void) {
+              double x = 0;
+              while (scanf("%lf", &x) == 1) {
+                  printf("%.2f\n", yarisi(&x));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "5 2.5 -1\n", expected_stdout: "2.50\n1.25\n-0.50\n"}
+        reference: |
+          double yarisi(double *p) {
+              return *p / 2;
+          }
+        wrong:
+          - |
+            double yarisi(double *p) {
+                return (int) *p / 2;
+            }
+          - |
+            double yarisi(double *p) {
+                return *p * 2;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int degerler_esit_mi(int *a, int *b) fonksiyonunu yaz: iki işaretçinin GÖSTERDİĞİ DEĞERLER eşitse 1, değilse 0 döndürsün (iki işaretçi farklı değişkenleri gösterse bile). Dersin testleri bu fonksiyonu farklı değişkenlerle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          int degerler_esit_mi(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              while (scanf("%d %d", &x, &y) == 2) {
+                  printf("%d %d\n", degerler_esit_mi(&x, &y), degerler_esit_mi(&x, &x));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "5 5\n5 6\n", expected_stdout: "1 1\n0 1\n"}
+        reference: |
+          int degerler_esit_mi(int *a, int *b) {
+              return *a == *b;
+          }
+        wrong:
+          - |
+            int degerler_esit_mi(int *a, int *b) {
+                return a == b;
+            }
+          - |
+            int degerler_esit_mi(int *a, int *b) {
+                return *a != *b;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int toplam3(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçinin gösterdiği değerlerin toplamını döndürsün; NULL olan bir işaretçi 0 sayılsın ve okunmasın. Dersin testleri bazı işaretçileri NULL verir.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals, skill.c.pointer_formation]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int toplam3(int *a, int *b, int *c);
+
+          int main(void) {
+              int x = 0, y = 0, z = 0;
+              int maske = 0;
+              while (scanf("%d %d %d %d", &x, &y, &z, &maske) == 4) {
+                  printf("%d\n", toplam3(maske & 1 ? &x : NULL, maske & 2 ? &y : NULL, maske & 4 ? &z : NULL));
+              }
+              return 0;
+          }
+        suite:
+          - {id: all, stdin: "1 2 3 7\n", expected_stdout: "6\n"}
+          - {id: some_null, stdin: "1 2 3 5\n4 5 6 2\n", expected_stdout: "4\n5\n"}
+          - {id: none, stdin: "9 9 9 0\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stddef.h>
+
+          int toplam3(int *a, int *b, int *c) {
+              int toplam = 0;
+              if (a != NULL) {
+                  toplam += *a;
+              }
+              if (b != NULL) {
+                  toplam += *b;
+              }
+              if (c != NULL) {
+                  toplam += *c;
+              }
+              return toplam;
+          }
+        wrong:
+          - |
+            #include <stddef.h>
+
+            int toplam3(int *a, int *b, int *c) {
+                if (a == NULL || b == NULL || c == NULL) {
+                    return 0;
+                }
+                return *a + *b + *c;
+            }
+          - |
+            #include <stddef.h>
+
+            int toplam3(int *a, int *b, int *c) {
+                int toplam = 0;
+                if (a != NULL) {
+                    toplam += *a;
+                }
+                if (b != NULL) {
+                    toplam += *b;
+                }
+                return toplam;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int isaret(int *p) fonksiyonunu yaz: p'nin gösterdiği değer pozitifse 1, negatifse -1, sıfırsa 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int isaret(int *p);
+
+          int main(void) {
+              int x = 0;
+              while (scanf("%d", &x) == 1) {
+                  printf("%d\n", isaret(&x));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "12 -5 0\n", expected_stdout: "1\n-1\n0\n"}
+        reference: |
+          int isaret(int *p) {
+              if (*p > 0) {
+                  return 1;
+              }
+              if (*p < 0) {
+                  return -1;
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            int isaret(int *p) {
+                if (*p > 0) {
+                    return 1;
+                }
+                return -1;
+            }
+          - |
+            int isaret(int *p) {
+                if (*p >= 0) {
+                    return 1;
+                }
+                return -1;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int buyuk_harf_mi(char *c) fonksiyonunu yaz: c'nin gösterdiği karakter 'A' ile 'Z' arasındaysa 1, değilse 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          int buyuk_harf_mi(char *c);
+
+          int main(void) {
+              char h = ' ';
+              while (scanf(" %c", &h) == 1) {
+                  printf("%d", buyuk_harf_mi(&h));
+              }
+              printf("\n");
+              return 0;
+          }
+        suite:
+          - {id: letters, stdin: "A z M a Z 5\n", expected_stdout: "101010\n"}
+        reference: |
+          int buyuk_harf_mi(char *c) {
+              return *c >= 'A' && *c <= 'Z';
+          }
+        wrong:
+          - |
+            int buyuk_harf_mi(char *c) {
+                return *c >= 'A' && *c < 'Z';
+            }
+          - |
+            int buyuk_harf_mi(char *c) {
+                return *c >= 'a' && *c <= 'z';
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int en_kucuk3(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçinin gösterdiği değerlerin en küçüğünü döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int en_kucuk3(int *a, int *b, int *c);
+
+          int main(void) {
+              int x = 0, y = 0, z = 0;
+              while (scanf("%d %d %d", &x, &y, &z) == 3) {
+                  printf("%d\n", en_kucuk3(&x, &y, &z));
+              }
+              return 0;
+          }
+        suite:
+          - {id: positions, stdin: "1 5 9\n5 1 9\n9 5 1\n", expected_stdout: "1\n1\n1\n"}
+          - {id: ties_negative, stdin: "-2 -2 4\n", expected_stdout: "-2\n"}
+        reference: |
+          int en_kucuk3(int *a, int *b, int *c) {
+              int en = *a;
+              if (*b < en) {
+                  en = *b;
+              }
+              if (*c < en) {
+                  en = *c;
+              }
+              return en;
+          }
+        wrong:
+          - |
+            int en_kucuk3(int *a, int *b, int *c) {
+                int en = *a;
+                if (*b < en) {
+                    en = *b;
+                }
+                return en;
+            }
+          - |
+            int en_kucuk3(int *a, int *b, int *c) {
+                if (*a < *b && *a < *c) {
+                    return *a;
+                }
+                if (*b < *c) {
+                    return *b;
+                }
+                return *a;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int arada_mi(int *alt, int *ust, int *x) fonksiyonunu yaz: x'in gösterdiği değer alt ile ust'un gösterdiği değerler arasındaysa (ikisi de dahil) 1, değilse 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          int arada_mi(int *alt, int *ust, int *x);
+
+          int main(void) {
+              int a = 0, u = 0, x = 0;
+              while (scanf("%d %d %d", &a, &u, &x) == 3) {
+                  printf("%d", arada_mi(&a, &u, &x));
+              }
+              printf("\n");
+              return 0;
+          }
+        suite:
+          - {id: cases, stdin: "1 10 5\n1 10 1\n1 10 10\n1 10 11\n1 10 0\n", expected_stdout: "11100\n"}
+        reference: |
+          int arada_mi(int *alt, int *ust, int *x) {
+              return *x >= *alt && *x <= *ust;
+          }
+        wrong:
+          - |
+            int arada_mi(int *alt, int *ust, int *x) {
+                return *x > *alt && *x < *ust;
+            }
+          - |
+            int arada_mi(int *alt, int *ust, int *x) {
+                return *x >= *alt || *x <= *ust;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int ilk_gecerli(int *a, int *b, int varsayilan) fonksiyonunu yaz: a NULL değilse a'nın gösterdiği değeri; a NULL ama b değilse b'nin gösterdiği değeri; ikisi de NULL ise varsayilan'ı döndürsün. NULL bir işaretçiyi okuma.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals, skill.c.pointer_formation]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int ilk_gecerli(int *a, int *b, int varsayilan);
+
+          int main(void) {
+              int x = 0, y = 0, v = 0, maske = 0;
+              while (scanf("%d %d %d %d", &x, &y, &v, &maske) == 4) {
+                  printf("%d\n", ilk_gecerli(maske & 1 ? &x : NULL, maske & 2 ? &y : NULL, v));
+              }
+              return 0;
+          }
+        suite:
+          - {id: cases, stdin: "1 2 9 3\n1 2 9 2\n1 2 9 1\n1 2 9 0\n", expected_stdout: "1\n2\n1\n9\n"}
+        reference: |
+          #include <stddef.h>
+
+          int ilk_gecerli(int *a, int *b, int varsayilan) {
+              if (a != NULL) {
+                  return *a;
+              }
+              if (b != NULL) {
+                  return *b;
+              }
+              return varsayilan;
+          }
+        wrong:
+          - |
+            #include <stddef.h>
+
+            int ilk_gecerli(int *a, int *b, int varsayilan) {
+                if (b != NULL) {
+                    return *b;
+                }
+                if (a != NULL) {
+                    return *a;
+                }
+                return varsayilan;
+            }
+          - |
+            #include <stddef.h>
+
+            int ilk_gecerli(int *a, int *b, int varsayilan) {
+                if (a != NULL) {
+                    return *a;
+                }
+                return varsayilan;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına double agirlikli(double *a, double *b, double *w) fonksiyonunu yaz: w'nin gösterdiği ağırlıkla (0 ile 1 arası) iki değerin ağırlıklı ortalamasını, *a × *w + *b × (1 − *w), döndürsün. Dersin testleri sonucu iki ondalık basamakla yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          double agirlikli(double *a, double *b, double *w);
+
+          int main(void) {
+              double x = 0, y = 0, w = 0;
+              while (scanf("%lf %lf %lf", &x, &y, &w) == 3) {
+                  printf("%.2f\n", agirlikli(&x, &y, &w));
+              }
+              return 0;
+          }
+        suite:
+          - {id: cases, stdin: "10 20 0.5\n10 20 1\n10 20 0\n4 8 0.25\n", expected_stdout: "15.00\n10.00\n20.00\n7.00\n"}
+        reference: |
+          double agirlikli(double *a, double *b, double *w) {
+              return *a * *w + *b * (1 - *w);
+          }
+        wrong:
+          - |
+            double agirlikli(double *a, double *b, double *w) {
+                return *a * *w + *b * *w;
+            }
+          - |
+            double agirlikli(double *a, double *b, double *w) {
+                return *a * (1 - *w) + *b * *w;
+            }
+  - id: objective.c.pointer_dereference.modify_value_via_pointer
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına void artir(int *p) fonksiyonunu yaz: p'nin gösterdiği değeri 1 artırsın. Dersin testleri bu fonksiyonu kendi main'iyle birkaç kez çağırır ve değişkeni yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          void artir(int *p);
+
+          int main(void) {
+              int x = 0, kez = 0;
+              scanf("%d %d", &x, &kez);
+              for (int i = 0; i < kez; i++) {
+                  artir(&x);
+              }
+              printf("%d\n", x);
+              return 0;
+          }
+        suite:
+          - {id: three_times, stdin: "5 3\n", expected_stdout: "8\n"}
+          - {id: none, stdin: "-1 0\n", expected_stdout: "-1\n"}
+        reference: |
+          void artir(int *p) {
+              *p = *p + 1;
+          }
+        wrong:
+          - |
+            void artir(int *p) {
+                int x = *p;
+                x = x + 1;
+            }
+          - |
+            void artir(int *p) {
+                *p = *p + 2;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına void ata(int *p, int deger) fonksiyonunu yaz: p'nin gösterdiği değişkene deger'i yazsın. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve değişkeni yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void ata(int *p, int deger);
+
+          int main(void) {
+              int x = 0, d = 0;
+              while (scanf("%d", &d) == 1) {
+                  ata(&x, d);
+                  printf("%d\n", x);
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "7 -3 0\n", expected_stdout: "7\n-3\n0\n"}
+        reference: |
+          void ata(int *p, int deger) {
+              *p = deger;
+          }
+        wrong:
+          - |
+            void ata(int *p, int deger) {
+                deger = *p;
+            }
+          - |
+            void ata(int *p, int deger) {
+                int yerel = 0;
+                p = &yerel;
+                *p = deger;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına void eksi_yap(int *p) fonksiyonunu yaz: p'nin gösterdiği değerin işaretini değiştirsin (5 → -5, -2 → 2). Dersin testleri değişkeni çağrıdan sonra yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void eksi_yap(int *p);
+
+          int main(void) {
+              int x = 0;
+              while (scanf("%d", &x) == 1) {
+                  eksi_yap(&x);
+                  printf("%d\n", x);
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "5 -2 0\n", expected_stdout: "-5\n2\n0\n"}
+        reference: |
+          void eksi_yap(int *p) {
+              *p = -*p;
+          }
+        wrong:
+          - |
+            void eksi_yap(int *p) {
+                *p = -1;
+            }
+          - |
+            void eksi_yap(int *p) {
+                int x = -*p;
+                p = &x;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void takas(int *a, int *b) fonksiyonunu yaz: iki işaretçinin gösterdiği değerleri yer değiştirsin. Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve iki değişkeni de yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void takas(int *a, int *b);
+
+          int main(void) {
+              int x = 0, y = 0;
+              while (scanf("%d %d", &x, &y) == 2) {
+                  takas(&x, &y);
+                  printf("%d %d\n", x, y);
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "1 2\n7 7\n-3 9\n", expected_stdout: "2 1\n7 7\n9 -3\n"}
+        reference: |
+          void takas(int *a, int *b) {
+              int t = *a;
+              *a = *b;
+              *b = t;
+          }
+        wrong:
+          - |
+            void takas(int *a, int *b) {
+                *a = *b;
+                *b = *a;
+            }
+          - |
+            void takas(int *a, int *b) {
+                int *t = a;
+                a = b;
+                b = t;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void sinirla(int *p, int alt, int ust) fonksiyonunu yaz: p'nin gösterdiği değer alt'tan küçükse alt, ust'ten büyükse ust yapsın; arasındaysa dokunmasın. Dersin testleri değişkeni çağrıdan sonra yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          void sinirla(int *p, int alt, int ust);
+
+          int main(void) {
+              int x = 0;
+              while (scanf("%d", &x) == 1) {
+                  sinirla(&x, 0, 100);
+                  printf("%d\n", x);
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "-5 50 150 0 100\n", expected_stdout: "0\n50\n100\n0\n100\n"}
+        reference: |
+          void sinirla(int *p, int alt, int ust) {
+              if (*p < alt) {
+                  *p = alt;
+              } else if (*p > ust) {
+                  *p = ust;
+              }
+          }
+        wrong:
+          - |
+            void sinirla(int *p, int alt, int ust) {
+                if (*p < alt) {
+                    *p = alt;
+                }
+            }
+          - |
+            void sinirla(int *p, int alt, int ust) {
+                if (*p < alt) {
+                    *p = ust;
+                } else if (*p > ust) {
+                    *p = alt;
+                }
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına void ekle(int *toplam, int x) fonksiyonunu yaz: x'i toplam'ın gösterdiği değişkene eklesin. Dersin testleri bu fonksiyonla girdideki bütün sayıları tek bir değişkende toplar ve sonucu yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          void ekle(int *toplam, int x);
+
+          int main(void) {
+              int toplam = 0, x = 0;
+              while (scanf("%d", &x) == 1) {
+                  ekle(&toplam, x);
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+        suite:
+          - {id: several, stdin: "4 5 -2 10\n", expected_stdout: "17\n"}
+          - {id: none, stdin: "\n", expected_stdout: "0\n"}
+        reference: |
+          void ekle(int *toplam, int x) {
+              *toplam += x;
+          }
+        wrong:
+          - |
+            void ekle(int *toplam, int x) {
+                *toplam = x;
+            }
+          - |
+            void ekle(int *toplam, int x) {
+                int t = *toplam;
+                t += x;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int oku_ve_topla(int *toplam) fonksiyonunu yaz: standart girdiden okunabilen bütün tam sayıları okusun, her birini toplam'ın gösterdiği değişkene eklesin ve kaç sayı okuduğunu döndürsün. (Değişken çağrıdan önce sıfır olmayabilir; üzerine ekle.)
+        required_skills: [skill.c.functions_basic, skill.c.standard_io_basic, skill.c.while_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          int oku_ve_topla(int *toplam);
+
+          int main(void) {
+              int t = 100;
+              int adet = oku_ve_topla(&t);
+              printf("%d %d\n", adet, t);
+              return 0;
+          }
+        suite:
+          - {id: three, stdin: "1 2 3\n", expected_stdout: "3 106\n"}
+          - {id: none, stdin: "\n", expected_stdout: "0 100\n"}
+          - {id: stops_at_text, stdin: "5 x 7\n", expected_stdout: "1 105\n"}
+        reference: |
+          #include <stdio.h>
+
+          int oku_ve_topla(int *toplam) {
+              int x = 0, adet = 0;
+              while (scanf("%d", &x) == 1) {
+                  *toplam += x;
+                  adet++;
+              }
+              return adet;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int oku_ve_topla(int *toplam) {
+                int x = 0, adet = 0;
+                *toplam = 0;
+                while (scanf("%d", &x) == 1) {
+                    *toplam += x;
+                    adet++;
+                }
+                return adet;
+            }
+          - |
+            #include <stdio.h>
+
+            int oku_ve_topla(int *toplam) {
+                int x = 0, adet = 0;
+                while (scanf("%d", &x) == 1) {
+                    *toplam = x;
+                    adet++;
+                }
+                return adet;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına void sirala3(int *a, int *b, int *c) fonksiyonunu yaz: üç işaretçinin gösterdiği değerleri, fonksiyondan sonra *a ≤ *b ≤ *c olacak biçimde yer değiştirsin. Dersin testleri üç değişkeni de yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          void sirala3(int *a, int *b, int *c);
+
+          int main(void) {
+              int x = 0, y = 0, z = 0;
+              while (scanf("%d %d %d", &x, &y, &z) == 3) {
+                  sirala3(&x, &y, &z);
+                  printf("%d %d %d\n", x, y, z);
+              }
+              return 0;
+          }
+        suite:
+          - {id: orders, stdin: "3 1 2\n9 8 7\n1 2 3\n2 3 1\n", expected_stdout: "1 2 3\n7 8 9\n1 2 3\n1 2 3\n"}
+          - {id: ties, stdin: "5 2 5\n", expected_stdout: "2 5 5\n"}
+        reference: |
+          void sirala3(int *a, int *b, int *c) {
+              int t = 0;
+              if (*a > *b) {
+                  t = *a;
+                  *a = *b;
+                  *b = t;
+              }
+              if (*b > *c) {
+                  t = *b;
+                  *b = *c;
+                  *c = t;
+              }
+              if (*a > *b) {
+                  t = *a;
+                  *a = *b;
+                  *b = t;
+              }
+          }
+        wrong:
+          - |
+            void sirala3(int *a, int *b, int *c) {
+                int t = 0;
+                if (*a > *b) {
+                    t = *a;
+                    *a = *b;
+                    *b = t;
+                }
+                if (*b > *c) {
+                    t = *b;
+                    *b = *c;
+                    *c = t;
+                }
+            }
+          - |
+            void sirala3(int *a, int *b, int *c) {
+                int t = *a;
+                *a = *c;
+                *c = t;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına void saat_ilerlet(int *saat, int *dakika, int ek) fonksiyonunu yaz: saat ve dakika'nın gösterdiği zamanı ek dakika ileri alsın; gece yarısını geçerse saat 0'dan devam etsin (ek sıfır ya da pozitif). Dersin testleri iki değişkeni de yazdırır.
+        required_skills: [skill.c.functions_basic, skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          void saat_ilerlet(int *saat, int *dakika, int ek);
+
+          int main(void) {
+              int s = 0, d = 0, e = 0;
+              while (scanf("%d %d %d", &s, &d, &e) == 3) {
+                  saat_ilerlet(&s, &d, e);
+                  printf("%d %d\n", s, d);
+              }
+              return 0;
+          }
+        suite:
+          - {id: cases, stdin: "23 50 20\n9 5 30\n10 0 125\n8 15 1440\n", expected_stdout: "0 10\n9 35\n12 5\n8 15\n"}
+        reference: |
+          void saat_ilerlet(int *saat, int *dakika, int ek) {
+              int toplam = (*saat * 60 + *dakika + ek) % (24 * 60);
+              *saat = toplam / 60;
+              *dakika = toplam % 60;
+          }
+        wrong:
+          - |
+            void saat_ilerlet(int *saat, int *dakika, int ek) {
+                int toplam = *saat * 60 + *dakika + ek;
+                *saat = toplam / 60;
+                *dakika = toplam % 60;
+            }
+          - |
+            void saat_ilerlet(int *saat, int *dakika, int ek) {
+                *dakika = (*dakika + ek) % 60;
+                *saat = (*saat + ek / 60) % 24;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int guvenli_artir(int *p) fonksiyonunu yaz: p NULL ise hiçbir şey yapmadan 0 döndürsün; değilse gösterdiği değeri 1 artırıp 1 döndürsün. NULL bir işaretçiyi okuma ya da yazma.
+        required_skills: [skill.c.functions_basic, skill.c.conditionals, skill.c.pointer_formation]
+        c_harness: |
+          #include <stdio.h>
+          #include <stddef.h>
+
+          int guvenli_artir(int *p);
+
+          int main(void) {
+              int x = 4;
+              int r1 = guvenli_artir(&x);
+              int r2 = guvenli_artir(NULL);
+              int r3 = guvenli_artir(&x);
+              printf("%d %d %d %d\n", r1, r2, r3, x);
+              return 0;
+          }
+        suite:
+          - {id: mixed, expected_stdout: "1 0 1 6\n"}
+        reference: |
+          #include <stddef.h>
+
+          int guvenli_artir(int *p) {
+              if (p == NULL) {
+                  return 0;
+              }
+              *p = *p + 1;
+              return 1;
+          }
+        wrong:
+          - |
+            #include <stddef.h>
+
+            int guvenli_artir(int *p) {
+                if (p == NULL) {
+                    return 1;
+                }
+                *p = *p + 1;
+                return 1;
+            }
+          - |
+            #include <stddef.h>
+
+            int guvenli_artir(int *p) {
+                if (p != NULL) {
+                    *p = *p + 1;
+                }
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına void dondur3(int *a, int *b, int *c) fonksiyonunu yaz: değerleri sola kaydırsın: a b'nin, b c'nin, c ise a'nın eski değerini alsın. Dersin testleri üç değişkeni de yazdırır.
+        required_skills: [skill.c.functions_basic]
+        c_harness: |
+          #include <stdio.h>
+
+          void dondur3(int *a, int *b, int *c);
+
+          int main(void) {
+              int x = 0, y = 0, z = 0;
+              while (scanf("%d %d %d", &x, &y, &z) == 3) {
+                  dondur3(&x, &y, &z);
+                  printf("%d %d %d\n", x, y, z);
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "1 2 3\n7 8 9\n", expected_stdout: "2 3 1\n8 9 7\n"}
+        reference: |
+          void dondur3(int *a, int *b, int *c) {
+              int t = *a;
+              *a = *b;
+              *b = *c;
+              *c = t;
+          }
+        wrong:
+          - |
+            void dondur3(int *a, int *b, int *c) {
+                *a = *b;
+                *b = *c;
+                *c = *a;
+            }
+          - |
+            void dondur3(int *a, int *b, int *c) {
+                int t = *c;
+                *c = *b;
+                *b = *a;
+                *a = t;
+            }
