@@ -56,23 +56,6 @@ objectives:
           mode: reference
           reference: "Wikipedia — English verbs, simple present: third-person singular -s (the test has) vs plural subject (the tests have); English plurals (tests)"
           claim: "The test has: tek özne, fiil -s alır (has). The tests have: çoğul özne (tests), fiil -s almaz."
-      - slug: g10
-        difficulty: authentic_application
-        prompt: |
-          Bir klasördeki dosyalar için bu iki cümle yazılmış. Hangisi doğru?
-        code: |
-          These files are large. This file is small.
-        options:
-          A: "Birden çok dosya büyük; bir dosya küçük"
-          B: "Bir dosya büyük; birden çok dosya küçük"
-          C: "Bütün dosyalar büyük"
-          D: "Bütün dosyalar küçük"
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "Wiktionary — these (determiner, plural of this); this (determiner, singular); large (adjective); small (adjective); Wikipedia — English verbs: is (singular) / are (plural)"
-          claim: "These files are large: birden çok dosya büyük; This file is small: bir dosya küçük."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

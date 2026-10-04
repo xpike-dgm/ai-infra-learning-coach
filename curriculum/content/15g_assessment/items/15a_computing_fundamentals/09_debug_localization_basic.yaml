@@ -94,27 +94,36 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          Amaç: 1, 2, 3 ve 4'ün toplamını yazmak (beklenen: 10). Program 4 yazıyor. Hata hangi satırda?
+          Amaç: ekrana alt alta üç kez Merhaba yazmak. Program yalnız bir kez Merhaba yazıyor. Hatanın nedeni hangisi?
         code: |
-          toplam = 0
-          for i in range(1, 5):
-              toplam = i
-          print(toplam)
+          for i in range(3):
+              mesaj = "Merhaba"
+          print(mesaj)
         required_skills: [skill.programming.iteration_reasoning]
         options:
-          A: 1. satır
-          B: 2. satır
-          C: 3. satır
-          D: 4. satır
+          A: print satırı döngünün içinde değil; döngü bittikten sonra yalnız bir kez çalışıyor
+          B: range(3) döngüyü yalnız bir kez döndürüyor
+          C: mesaj her turda silindiği için yalnız son tur yazılıyor
+          D: Merhaba yazısı tırnak içinde olduğu için bir kez yazılıyor
         scan_options: false
-        answer: C
-        misconception_options: {D: symptom_is_location}
+        answer: A
         verify:
-          mode: fault
-          observed: 4
-          intended: 10
-          line_options: {A: 1, B: 2, C: 3, D: 4}
-          fix: toplam = toplam + i
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import io, contextlib
+            def calistir(kod):
+                ekran = io.StringIO()
+                with contextlib.redirect_stdout(ekran):
+                    exec(kod, {})
+                return ekran.getvalue()
+            once = calistir('for i in range(3):\n    mesaj = "Merhaba"\nprint(mesaj)\n')
+            sonra = calistir('for i in range(3):\n    mesaj = "Merhaba"\n    print(mesaj)\n')
+            turlar = calistir('for i in range(3):\n    print(i)\n')
+            if once == "Merhaba\n" and sonra == "Merhaba\n" * 3 and turlar == "0\n1\n2\n":
+                print("A")
+            else:
+                print("B")
       - slug: g06
         difficulty: authentic_application
         prompt: |

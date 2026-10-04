@@ -4,6 +4,8 @@
 # What it adds, per content directory, from items/<directory>/<skill file>.yaml:
 # - more items for every Objective, so that each has 15–20 items outside its lesson (user decision, 2026-10-04): checked
 #   by that directory's notation, lexicon, runner and prelude exactly as its own items were, and reviewed independently;
+#   15F's lexicon leaves room for fewer structurally distinct items, so its Objectives keep an honest smaller pool and
+#   the shortfall is recorded (user decision, 2026-10-04; D-120);
 # - a new version (v2) of every task whose item list grows — the published v1 stays readable by its pinned reference;
 # - cross-topic transfer items (QAB-v0 §17, MCA-v0 §9), reserved for the month's cross_topic_transfer slot;
 # - wrong-option misconception keys ([answer_misconception], user decision), for new items and for published ones.

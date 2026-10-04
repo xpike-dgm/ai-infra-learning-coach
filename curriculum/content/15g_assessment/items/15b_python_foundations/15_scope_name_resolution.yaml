@@ -179,20 +179,3 @@ objectives:
         verify:
           mode: stdout
           outcomes: {A: "[1, 2]", B: "[]", C: "[2]", D: "<hata>"}
-      - slug: g10
-        difficulty: transfer_integration
-        prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
-        code: |
-          def sifirla():
-              toplam = 100
-              return toplam
-
-          def hesapla():
-              toplam = 5
-              sifirla()
-              return toplam + 1
-
-          print(hesapla())
-        answer: "6"
-        verify: {mode: stdout}

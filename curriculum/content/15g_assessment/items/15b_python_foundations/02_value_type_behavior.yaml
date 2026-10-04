@@ -39,13 +39,12 @@ objectives:
         verify: {mode: stdout}
       - slug: g05
         difficulty: authentic_application
-        required_skills: [skill.programming.state_assignment_model, skill.python.expression_evaluation]
+        required_skills: [skill.programming.expression_boolean_reasoning]
         prompt: |
           Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          sicaklik = -4.6
-          print(int(sicaklik), str(int(sicaklik)) + "C")
-        answer: "-4 -4C"
+          print(type(str(7)) == type("7"), type(int("7")) == type(7.0))
+        answer: "True False"
         verify: {mode: stdout}
       - slug: g06
         difficulty: authentic_application

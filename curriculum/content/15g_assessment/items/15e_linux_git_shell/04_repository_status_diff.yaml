@@ -46,33 +46,6 @@ objectives:
           git status --short
         answer: "?? tablo.txt"
         verify: {mode: shell, last_line: true}
-      - slug: g04
-        difficulty: authentic_application
-        required_skills: [skill.shell.command_options_redirection_basic]
-        hands_on: true
-        prompt: |
-          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff çıktısında - ile başlayan kaç satır var (--- ile başlayan başlık satırı hariç)?
-        code: |
-          git init -q defter
-          cd defter
-          echo pazartesi > gunler.txt
-          git add gunler.txt                 # hazırlık
-          git commit -q -m "baslangic"      # hazırlık
-          echo sali >> gunler.txt
-          echo carsamba >> gunler.txt
-          git diff
-        answer: "0"
-        verify:
-          mode: shell
-          script: |
-            git init -q defter
-            cd defter
-            echo pazartesi > gunler.txt
-            git add gunler.txt
-            git commit -q -m "baslangic"
-            echo sali >> gunler.txt
-            echo carsamba >> gunler.txt
-            git diff | grep -v '^---' | grep -c '^-' || true
       - slug: g05
         difficulty: authentic_application
         hands_on: true

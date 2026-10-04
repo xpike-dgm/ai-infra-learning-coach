@@ -37,26 +37,6 @@ objectives:
           mode: reference
           reference: "man-pages(7) — OPTIONS lists each option with its description; Wiktionary — hidden (adjective)"
           claim: "show hidden files satırının seçeneği -a'dır."
-      - slug: g04
-        difficulty: authentic_application
-        prompt: |
-          `rapor-yap` adlı bir aracın seçenek listesi bu. Aracın ekrana yalnız hata sayısını yazmasını istiyorsun. Hangi seçeneği kullanırsın?
-        code: |
-          OPTIONS
-            -q, --quiet       print only the number of errors
-            -v, --verbose     print more information
-            -V, --version     print the version
-        options:
-          A: "-q"
-          B: "-v"
-          C: "-V"
-          D: "Hiçbiri; bunun için bir seçenek yok"
-        scan_options: false
-        answer: A
-        verify:
-          mode: reference
-          reference: "man-pages(7) — OPTIONS section lists each option with its description; Wiktionary — only (adverb), number (noun), error (noun)"
-          claim: "print only the number of errors satırının seçeneği -q'dur (--quiet)."
       - slug: g06
         difficulty: authentic_application
         prompt: |

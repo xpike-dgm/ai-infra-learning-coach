@@ -37,27 +37,6 @@ objectives:
           mode: reference
           reference: "Wiktionary — local (adjective, computing): on the user's own computer, as opposed to remote"
           claim: "local folder kullanıcının kendi bilgisayarındaki klasördür."
-      - slug: g03
-        difficulty: basic
-        prompt: |
-          Bu dört öbekten hangisi bir DOSYAYI anlatır?
-        code: |
-          file name
-          file size
-          log file
-          file list
-        options:
-          A: "log file"
-          B: "file name"
-          C: "file size"
-          D: "file list"
-        scan_options: false
-        answer: A
-        misconception_options: {B: head_is_first, C: head_is_first, D: head_is_first}
-        verify:
-          mode: reference
-          reference: "Wikipedia — English noun phrases: the head noun is the last noun; earlier nouns modify it"
-          claim: "log file bir dosyadır; file name bir ad, file size bir boyut, file list bir listedir."
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -87,7 +66,6 @@ objectives:
           D: Klasördeki hedef dosya
         scan_options: false
         answer: A
-        misconception_options: {B: adjective_describes_last_only}
         verify:
           mode: reference
           reference: "Wikipedia — English noun phrases: the head (folder) is modified by default and target; Wiktionary — empty (adjective)"
@@ -109,24 +87,6 @@ objectives:
           mode: reference
           reference: "Wiktionary — total (adjective): entire; memory (noun, computing); size (noun); Wikipedia — English noun phrases (head noun last)"
           claim: "total memory size bir boyuttur: belleğin toplam boyutu."
-      - slug: g07
-        difficulty: transfer_integration
-        prompt: |
-          Bu öbek bir şeyi mi, birden çok şeyi mi anlatır; asıl şey nedir?
-        code: |
-          project log files
-        options:
-          A: Birden çok şeyi; projenin kayıt dosyalarını
-          B: Tek bir şeyi; projenin kayıt dosyasını
-          C: Birden çok şeyi; dosyaların projelerini
-          D: Tek bir şeyi; dosyaların kaydını
-        scan_options: false
-        answer: A
-        misconception_options: {C: head_is_first}
-        verify:
-          mode: reference
-          reference: "Wikipedia — English noun phrases (head noun last); English plurals (-s marks more than one)"
-          claim: "project log files: asıl şey files (çoğul, birden çok dosya); project ve log onları anlatır."
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

@@ -14,15 +14,3 @@ objectives:
           mode: reference
           reference: "Wikipedia — English verbs, simple present: third-person singular -s (has); English plurals: two + plural noun (warnings)"
           claim: "Komut tek bir şeydir, fiil -s alır (have → has); iki tane olduğu için isim çoğuldur (warnings)."
-      - slug: g08
-        difficulty: authentic_application
-        prompt: |
-          Bu notta bir hata var. Notu düzeltip tamamını yaz.
-        code: |
-          The files is empty.
-        answer: "The files are empty."
-        also_accept: ["The files are empty"]
-        verify:
-          mode: reference
-          reference: "Wikipedia — English verbs: be agrees with the subject; are with a plural subject (files)"
-          claim: "Özne çoğuldur (files), be are olur: The files are empty."

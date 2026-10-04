@@ -100,40 +100,6 @@ objectives:
                 printf("%c\n", rakam - '0');
                 return 0;
             }
-      - slug: g04
-        difficulty: authentic_application
-        prompt: |
-          cozum.c adında bir program yaz: derinlik adında bir double değişkene -12.9 değer versin; bunu seviye adında bir int değişkene açık dönüşümle (cast) atasın. Ekrana tek satırda, aralarında bir boşlukla, önce derinlik'i bir ondalık basamakla (%.1f), sonra seviye'yi (%d) yazdırsın.
-        suite:
-          - {id: negative_cast, expected_stdout: "-12.9 -12\n"}
-        reference: |
-          #include <stdio.h>
-
-          int main(void) {
-              double derinlik = -12.9;
-              int seviye = (int) derinlik;
-              printf("%.1f %d\n", derinlik, seviye);
-              return 0;
-          }
-        wrong:
-          - |
-            #include <stdio.h>
-
-            int main(void) {
-                double derinlik = -12.9;
-                int seviye = (int) derinlik - 1;
-                printf("%.1f %d\n", derinlik, seviye);
-                return 0;
-            }
-          - |
-            #include <stdio.h>
-
-            int main(void) {
-                double derinlik = -12.9;
-                double seviye = derinlik;
-                printf("%.1f %.0f\n", derinlik, seviye);
-                return 0;
-            }
       - slug: g05
         difficulty: authentic_application
         prompt: |

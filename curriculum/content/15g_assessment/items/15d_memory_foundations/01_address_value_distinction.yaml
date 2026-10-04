@@ -39,23 +39,21 @@ objectives:
 
           int main(void) {
               int a = 3;
-              int b = kare(a);
-              printf("%d\n", b);
+              printf("%d\n", kare(a));
               return 0;
           }
         required_skills: [skill.c.functions_basic]
         options:
-          A: "4: main'in a ve b'si, kare'nin s ve r'si; s, a'nın değerinin kopyasını tutan ayrı bir değişkendir"
-          B: "3: s ayrı bir değişken değildir, a'nın kendisidir"
-          C: "2: yalnız main'de bildirilenler bellekte yer tutar"
-          D: "1: a, s ve r aynı değeri taşıdığı için tek bir yerde durur"
+          A: "3: main'in a'sı, kare'nin s ve r'si; s, a'nın değerinin kopyasını tutan ayrı bir değişkendir"
+          B: "2: s ayrı bir değişken değildir, a'nın kendisidir"
+          C: "1: yalnız main'de bildirilenler bellekte yer tutar"
+          D: "4: a, s ve r'nin yanında kare(a)'nın sonucu için de bildirilmiş bir int değişken vardır"
         scan_options: false
         answer: A
-        misconception_options: {D: same_value_same_place}
         verify:
           mode: reference
           reference: "C11 §6.9.1p9 (each parameter has automatic storage duration; its identifier denotes an object); C11 §6.2.4p6 (an object with automatic storage duration lives from entry into its block until that block ends); C11 §6.5.2.2p4 (each parameter is assigned the value of the corresponding argument)"
-          claim: "Çağrı sürerken main'in a ve b'si yaşamaya devam eder, kare'nin parametresi s ve yereli r de kendi yerleri olan ayrı nesnelerdir: dört int."
+          claim: "Çağrı sürerken main'in a'sı yaşamaya devam eder, kare'nin parametresi s ve yereli r de kendi yerleri olan ayrı nesnelerdir: üç int."
       - slug: g03
         difficulty: basic
         prompt: |

@@ -62,12 +62,12 @@ objectives:
         difficulty: authentic_application
         hands_on: true
         prompt: |
-          Terminalin hangi klasörde olduğunu bilmiyorsun. Aşağıdaki komutlardan hangisi, şu an hangi klasörde olursan ol, seni /usr/share klasörüne götürür? (Ubuntu'da /usr/share her zaman vardır.)
+          Şu an /usr klasöründesin (pwd /usr yazıyor). Aşağıdaki dört komutun dördü de buradan çalıştırılınca seni /usr/bin klasörüne götürür. Bu komutu bir betiğe yazacaksın ve betik her seferinde başka bir klasörden çalıştırılacak. Hangisi, betik hangi klasörden çalıştırılırsa çalıştırılsın, hep /usr/bin'e gider? (Ubuntu'da /usr/bin her zaman vardır.)
         options:
-          A: cd /usr/share
-          B: cd usr/share
-          C: cd ../usr/share
-          D: cd share
+          A: cd /usr/bin
+          B: cd bin
+          C: cd ./bin
+          D: cd ../usr/bin
         scan_options: false
         answer: A
         verify:
@@ -75,18 +75,19 @@ objectives:
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
             kok=$(pwd)
-            mkdir -p x1/x2 y1
+            mkdir -p x1/x2
             uyan=""
             for h in A B C D; do
               case $h in
-                A) k="/usr/share" ;;
-                B) k="usr/share" ;;
-                C) k="../usr/share" ;;
-                D) k="share" ;;
+                A) k="/usr/bin" ;;
+                B) k="bin" ;;
+                C) k="./bin" ;;
+                D) k="../usr/bin" ;;
               esac
+              ( cd /usr && cd "$k" && [ "$(pwd)" = "/usr/bin" ] ) || { echo "buradan gitmiyor: $h"; exit 1; }
               ok=1
-              for bas in "$kok/x1/x2" "$kok/y1" /tmp /; do
-                ( cd "$bas" && cd "$k" 2>/dev/null && [ "$(pwd)" = "/usr/share" ] ) || ok=0
+              for bas in "$kok/x1/x2" /tmp /usr/share /; do
+                ( cd "$bas" && cd "$k" 2>/dev/null && [ "$(pwd)" = "/usr/bin" ] ) || ok=0
               done
               if [ $ok = 1 ]; then uyan="$uyan$h"; fi
             done
