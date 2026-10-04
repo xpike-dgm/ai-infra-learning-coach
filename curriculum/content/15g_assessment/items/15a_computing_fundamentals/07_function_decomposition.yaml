@@ -23,21 +23,35 @@ objectives:
           mode: stdout
           outcomes: {A: "son", B: "Merhaba\nson", C: "Merhaba", D: ""}
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          İstenen sorumluluk: "Bir sayıyı alıp üç katının bir eksiğini hesapla ve geri döndür (ekrana yazma)." Hangi fonksiyon bunu doğru yapar?
+          Aşağıdaki fonksiyon iki sayının toplamını döndürmek için yazılmış. Program yalnız bu iki satırdan ve toplam(4) çağrısından oluşuyor. Fonksiyonun tanımında ne yanlış?
+        code: |
+          def toplam(a):
+              return a + b
         options:
-          A: "def hesapla(x):\n    print(3 * x - 1)"
-          B: "def hesapla(x):\n    return 3 * x - 1"
-          C: "def hesapla(x):\n    return 3 * (x - 1)"
-          D: "def hesapla(x):\n    return x * 3"
-        answer: B
-        misconception_options: {A: print_is_return}
+          A: İhtiyaç duyduğu ikinci sayı (b) bir parametre değil; fonksiyon onu çağırandan almıyor. Tanım def toplam(a, b) olmalı ve çağrı iki değer vermeli.
+          B: return yerine print kullanılmalı.
+          C: Fonksiyon tanımlandığı anda çalışır ve b'yi kendisi bulur; tanımda yanlış yok.
+          D: Toplama işlemi fonksiyonun dışında yapılmalı.
+        scan_options: false
+        answer: A
+        misconception_options: {C: definition_runs_function}
         verify:
-          mode: functions
-          name: hesapla
-          spec: "def spec(x):\n    return 3 * x - 1"
-          cases: [[0], [1], [4], [-2]]
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            ortam = {}
+            exec("def toplam(a):\n    return a + b", ortam)
+            try:
+                ortam["toplam"](4)
+                eksik = False
+            except NameError:
+                eksik = True
+            ortam2 = {}
+            exec("def toplam(a, b):\n    return a + b", ortam2)
+            duzelir = ortam2["toplam"](4, 6) == 10
+            print("A" if eksik and duzelir else "C")
       - slug: g03
         difficulty: basic
         evidence_type: code_reading
@@ -70,26 +84,47 @@ objectives:
         answer: "9 81"
         verify: {mode: stdout}
       - slug: g05
-        difficulty: authentic_application
-        evidence_type: code_reading
+        difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ne olur?
         code: |
-          def kalan_para(cuzdan, harcama):
-              return cuzdan - harcama
-          harcama = 30
-          cuzdan = 100
-          print(kalan_para(harcama, cuzdan))
+          def kare(x):
+              print(x * x)
+
+          def toplam_kare(a, b):
+              return kare(a) + kare(b)
+
+          print(toplam_kare(2, 3))
         options:
-          A: "-70"
-          B: "70"
-          C: "130"
-          D: Hata verir; argümanların adları parametrelerle aynı sırada değil.
+          A: Önce 4 ve 9 yazılır, sonra bir TypeError ile durur; kare bir değer döndürmediği için None + None hesaplanamaz.
+          B: Yalnız 13 yazılır.
+          C: Alt alta 4, 9 ve 13 yazılır.
+          D: Hiçbir şey yazılmadan bir TypeError ile durur.
+        scan_options: false
         answer: A
-        misconception_options: {B: arguments_matched_by_name}
+        misconception_options: {C: print_is_return}
         verify:
-          mode: stdout
-          outcomes: {A: "-70", B: "70", C: "130", D: "<hata>"}
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            import io, contextlib
+            kod = "def kare(x):\n    print(x * x)\n\ndef toplam_kare(a, b):\n    return kare(a) + kare(b)\n\nprint(toplam_kare(2, 3))"
+            cikti = io.StringIO()
+            hata = None
+            with contextlib.redirect_stdout(cikti):
+                try:
+                    exec(kod, {})
+                except TypeError:
+                    hata = "TypeError"
+            yazilan = cikti.getvalue().split()
+            if hata and yazilan == ["4", "9"]:
+                print("A")
+            elif not hata and yazilan == ["13"]:
+                print("B")
+            elif not hata and yazilan == ["4", "9", "13"]:
+                print("C")
+            else:
+                print("D")
       - slug: g06
         difficulty: authentic_application
         prompt: |

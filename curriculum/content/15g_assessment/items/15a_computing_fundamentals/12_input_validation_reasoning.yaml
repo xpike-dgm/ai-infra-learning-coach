@@ -5,60 +5,73 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          Aşağıdaki kod, başına hangi satır eklenirse geçersiz yazar?
+          Bu kod kaç farklı tamsayı değeri için geçerli yazar? Yalnız sayıyı yaz.
         code: |
-          if oda >= 100 and oda <= 499:
+          if kod >= 10 and kod < 15:
               print("geçerli")
           else:
               print("geçersiz")
-        options:
-          A: oda = 100
-          B: oda = 499
-          C: oda = 500
-          D: oda = 250
-        answer: C
+        answer: "5"
         verify:
-          mode: which_input
-          target: geçersiz
-          assignments: {A: "oda = 100", B: "oda = 499", C: "oda = 500", D: "oda = 250"}
+          mode: script
+          script: |
+            sayac = 0
+            for kod in range(-100, 100):
+                if kod >= 10 and kod < 15:
+                    sayac += 1
+            print(sayac)
       - slug: g02
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Kural: bir paketin kilosu 1 ile 30 arasında olmalı (1 ve 30 dahil). Hangi koşul bu kuralı doğru ifade eder?
+          Kural: yaş 0 ile 120 arasında olmalı (ikisi dahil). Aşağıdaki doğrulama kodu yas = 200 için ne yazar?
+        code: |
+          if yas >= 0:
+              print("geçerli")
+          elif yas > 120:
+              print("çok büyük")
+          else:
+              print("eksi olamaz")
+        required_skills: [skill.programming.branching_reasoning]
         options:
-          A: kilo >= 1 and kilo <= 30
-          B: kilo >= 1 or kilo <= 30
-          C: kilo > 1 and kilo < 30
-          D: kilo <= 1 and kilo >= 30
+          A: geçerli
+          B: çok büyük
+          C: eksi olamaz
+          D: Hiçbir şey
+        scan_options: false
         answer: A
-        misconception_options: {B: or_for_range, C: boundary_inclusion_ignored}
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            options = {"A": lambda k: k >= 1 and k <= 30, "B": lambda k: k >= 1 or k <= 30,
-                       "C": lambda k: k > 1 and k < 30, "D": lambda k: k <= 1 and k >= 30}
-            rule = lambda k: 1 <= k <= 30
-            print(",".join(n for n, f in options.items() if all(f(k) == rule(k) for k in range(-20, 60))))
+            yas = 200
+            if yas >= 0:
+                yazilan = "geçerli"
+            elif yas > 120:
+                yazilan = "çok büyük"
+            else:
+                yazilan = "eksi olamaz"
+            print({"geçerli": "A", "çok büyük": "B", "eksi olamaz": "C"}.get(yazilan, "D"))
       - slug: g03
         difficulty: authentic_application
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
-          indirim = 120
-          if indirim >= 0 and indirim <= 100:
-              print(200 - indirim)
-          else:
-              print("hata: indirim en fazla 100 olabilir")
+          yuzde = 130
+          if yuzde > 100:
+              yuzde = 100
+          if yuzde < 0:
+              yuzde = 0
+          print(yuzde)
         options:
-          A: "80"
-          B: "hata: indirim en fazla 100 olabilir"
-          C: "-120"
-          D: Hiçbir şey
-        answer: B
+          A: "100"
+          B: "130"
+          C: "0"
+          D: Bir hata mesajı
+        scan_options: false
+        answer: A
         verify:
           mode: stdout
-          outcomes: {A: "80", B: "hata: indirim en fazla 100 olabilir", C: "-120", D: ""}
+          outcomes: {A: "100", B: "130", C: "0", D: "<hata>"}
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -167,7 +180,7 @@ objectives:
             reject = lambda k: not (1000 <= k <= 9999 and k % 7 == 0)
             print(",".join(n for n, f in options.items() if all(f(k) == reject(k) for k in range(900, 10100))))
       - slug: g08
-        difficulty: transfer_integration
+        difficulty: basic
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
@@ -219,25 +232,6 @@ objectives:
                 if env["s"] != rule:
                     wrong.append(str(x))
             print(",".join(wrong))
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: floor_number_validator
-        required_skills: [skill.programming.function_decomposition]
-        prompt: |
-          Kural: bir binada kat numarası 0 ile 20 arasında olmalı (0 ve 20 dahil). Kat numarası geçerliyse True, değilse False döndüren hangi fonksiyon kuralı doğru uygular?
-        options:
-          A: "def gecerli_kat(kat):\n    return kat > 0 and kat < 20"
-          B: "def gecerli_kat(kat):\n    return kat >= 0 or kat <= 20"
-          C: "def gecerli_kat(kat):\n    return kat >= 0 and kat <= 20"
-          D: "def gecerli_kat(kat):\n    return kat <= 0 and kat >= 20"
-        answer: C
-        misconception_options: {A: boundary_inclusion_ignored, B: or_for_range}
-        verify:
-          mode: functions
-          name: gecerli_kat
-          spec: "def spec(kat):\n    return 0 <= kat <= 20"
-          cases: [[-1], [0], [1], [10], [19], [20], [21]]
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

@@ -94,36 +94,29 @@ objectives:
       - slug: g05
         difficulty: authentic_application
         prompt: |
-          Bir önceki programda (a'nın iki katına 1 ekleyip 3 ile çarpmak; ikinci satırda a * 2 yerine a + 2 yazılmış) a = 5 için ekranda 33 yerine 24 görünüyordu. Bir öğrenci son satırı print(33) yaptı ve ekranda 33 gördü. Bu, hatayı düzeltmiş midir?
+          Amaç: 1'den 5'e kadar (5 dahil) kaç sayı olduğunu saymak (beklenen: 5). Program 4 yazıyor. Hata hangi satırda?
         code: |
-          a = 5
-          b = a + 2
-          c = b + 1
-          d = c * 3
-          print(33)
+          sayac = 0
+          n = 1
+          while n < 5:
+              sayac = sayac + 1
+              n = n + 1
+          print(sayac)
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning]
         options:
-          A: Evet; ekranda artık beklenen değer görünüyor.
-          B: Hayır; yalnızca belirti gizlendi. a başka bir değer olduğunda program yine yanlış sonuç verir, çünkü neden (2. satır) yerinde duruyor.
-          C: Evet; ama yalnızca a = 5 olduğu sürece önemi yok.
-          D: Hayır; print içine sayı yazılamaz.
+          A: 1. satır
+          B: 3. satır
+          C: 4. satır
+          D: 6. satır
         scan_options: false
         answer: B
-        misconception_options: {A: fix_by_forcing_output}
+        misconception_options: {D: symptom_is_location}
         verify:
-          mode: script
-          outcomes: {A: "A", B: "B", C: "C", D: "D"}
-          script: |
-            import contextlib, io
-            def run(a, last):
-                buf = io.StringIO()
-                with contextlib.redirect_stdout(buf):
-                    exec(f"a = {a}\nb = a + 2\nc = b + 1\nd = c * 3\n{last}", {})
-                return buf.getvalue().strip()
-            forced_ok_everywhere = all(run(a, "print(33)") == str((2 * a + 1) * 3) for a in (5, 1, 10))
-            forced_ok_at_5 = run(5, "print(33)") == "33"
-            claims = {"A": forced_ok_everywhere, "B": forced_ok_at_5 and not forced_ok_everywhere,
-                      "C": forced_ok_everywhere, "D": not forced_ok_at_5}
-            print(",".join(k for k, v in claims.items() if v))
+          mode: fault
+          observed: 4
+          intended: 5
+          line_options: {A: 1, B: 3, C: 4, D: 6}
+          fix: "while n <= 5:"
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -225,32 +218,6 @@ objectives:
                 "D": run(["adim = 5", "adim = 8", "print(adim)"]) != "8",
             }
             print(",".join(k for k, v in claims.items() if v))
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: range_sum_bug
-        required_skills: [skill.programming.iteration_reasoning]
-        prompt: |
-          Amaç: 1'den 5'e kadar (5 dahil) sayıların toplamını yazmak (beklenen: 15). Program 10 yazıyor. Hata hangi satırda?
-        code: |
-          toplam = 0
-          for i in range(1, 5):
-              toplam += i
-          print(toplam)
-        options:
-          A: 1. satır
-          B: 2. satır
-          C: 3. satır
-          D: 4. satır
-        scan_options: false
-        answer: B
-        misconception_options: {D: symptom_is_location}
-        verify:
-          mode: fault
-          observed: 10
-          intended: 15
-          line_options: {A: 1, B: 2, C: 3, D: 4}
-          fix: "for i in range(1, 6):"
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

@@ -5,14 +5,22 @@ objectives:
       - slug: g01
         difficulty: basic
         prompt: |
-          Tarif: ucgen_cevre(a, b, c) bir üçgenin üç kenarının toplamını döndürür. ucgen_cevre(3, 4, 5) için bir test yazıyorsun. Beklenen sonuç ne olmalı?
-        answer: "12"
+          Tarif: ucret(saat) bir otoparkın ücretini döndürür: ilk saat 10 lira, sonraki her saat 5 lira (saat en az 1). Bir arkadaşın aşağıdaki dört test durumunu yazmış. Hangisinin beklenen sonucu tarife göre YANLIŞ yazılmış?
+        options:
+          A: ucret(1) çağrılır; 10 beklenir.
+          B: ucret(2) çağrılır; 15 beklenir.
+          C: ucret(3) çağrılır; 20 beklenir.
+          D: ucret(4) çağrılır; 30 beklenir.
+        scan_options: false
+        answer: D
         verify:
           mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            def ucgen_cevre(a, b, c):
-                return a + b + c
-            print(ucgen_cevre(3, 4, 5))
+            def tarif(saat):
+                return 10 + (saat - 1) * 5
+            testler = {"A": (1, 10), "B": (2, 15), "C": (3, 20), "D": (4, 30)}
+            print(",".join(k for k, (girdi, beklenen) in testler.items() if tarif(girdi) != beklenen))
       - slug: g02
         difficulty: basic
         prompt: |
@@ -25,31 +33,28 @@ objectives:
                 return dakika * 60 + sn
             print(saniye(2, 15))
       - slug: g03
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          Bir arkadaşın test yazarken şöyle yapıyor: fonksiyonu bir girdiyle çalıştırıyor ve ekranda ne görürse onu beklenen sonuç olarak yazıyor. Bu yöntemin sorunu nedir?
+          Tarif: bilet(yas) 12 yaşından küçükler için 0, diğer herkes için 50 döndürür. Sınırdaki hataları yakalamak için üç girdilik bir test kümesi seçeceksin. Hangi küme en iyisidir?
         options:
-          A: Sorun yok; kodun verdiği sonuç en güvenilir beklenen değerdir.
-          B: Test, kod ne yapıyorsa onu doğru kabul eder; kod hatalıysa test de hatalı değeri bekler ve hatayı yakalayamaz.
-          C: Testler hiçbir zaman fonksiyon çalıştırılarak yazılmamalıdır.
-          D: Sorun yok; ama yalnızca sayı döndüren fonksiyonlar için.
+          A: bilet(11), bilet(12), bilet(13)
+          B: bilet(5), bilet(20), bilet(40)
+          C: bilet(0), bilet(50), bilet(100)
+          D: bilet(12), bilet(12), bilet(12)
         scan_options: false
-        answer: B
-        misconception_options: {A: expected_from_code}
+        answer: A
+        misconception_options: {B: any_input_detects, C: any_input_detects}
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            def spec(en, boy):
-                return 2 * (en + boy)
-            def faulty(en, boy):
-                return 2 * en + boy
-            expected_from_code = faulty(4, 5)
-            catches_with_code = faulty(4, 5) != expected_from_code
-            catches_with_spec = faulty(4, 5) != spec(4, 5)
-            claims = {"A": catches_with_code, "B": (not catches_with_code) and catches_with_spec,
-                      "C": False, "D": catches_with_code}
-            print(",".join(k for k, v in claims.items() if v))
+            def tarif(yas):
+                return 0 if yas < 12 else 50
+            hatalar = [lambda yas: 0 if yas <= 12 else 50, lambda yas: 0 if yas < 11 else 50]
+            kumeler = {"A": [11, 12, 13], "B": [5, 20, 40], "C": [0, 50, 100], "D": [12, 12, 12]}
+            iyi = [k for k, kume in kumeler.items()
+                   if all(any(h(x) != tarif(x) for x in kume) for h in hatalar)]
+            print(",".join(iyi))
       - slug: g04
         difficulty: authentic_application
         prompt: |
@@ -93,30 +98,26 @@ objectives:
       - slug: g06
         difficulty: authentic_application
         prompt: |
-          Tarif: cift_mi(n), n çift bir sayıysa True, değilse False döndürür. Aşağıdaki kod için tek bir test yazılmış: cift_mi(2) sonucunun True olması bekleniyor. Test geçiyor. Bu ne gösterir?
+          Tarif: kalan_gun(gun), 365 günlük bir yılın gun'üncü gününden sonra yılın bitmesine kaç gün kaldığını döndürür (365 − gun). Aşağıdaki kod için kalan_gun(365) çağrılıp 0 beklenen bir test yazıldı. Test ne gösterir?
         code: |
-          def cift_mi(n):
-              return n == 2
+          def kalan_gun(gun):
+              return 365 - gun - 1
+        required_skills: [skill.programming.function_decomposition]
         options:
-          A: Fonksiyonun doğru olduğunu; test geçtiğine göre fonksiyon her girdi için çalışır.
-          B: Yalnızca 2 için doğru sonuç verdiğini; örneğin 4 için yanlış sonuç verebilir ve vermektedir.
-          C: Fonksiyonun hatalı olduğunu; geçen testler hep hatalı fonksiyonlarda olur.
-          D: Hiçbir şey; testler fonksiyon hakkında bilgi vermez.
+          A: Başarısız olur; kod -1 döndürür ve test bu hatayı yakalar.
+          B: Geçer; kod 0 döndürür.
+          C: Başarısız olur; ama hata testte, çünkü beklenen -1 olmalıydı.
+          D: Geçer; çünkü 365 sınır değeridir ve sınırda testler hep geçer.
         scan_options: false
-        answer: B
-        misconception_options: {A: passing_test_proves_correct}
-        required_skills: [skill.programming.expression_boolean_reasoning]
+        answer: A
         verify:
           mode: script
           outcomes: {A: "A", B: "B", C: "C", D: "D"}
           script: |
-            def cift_mi(n):
-                return n == 2
-            passes = cift_mi(2) is True
-            wrong_elsewhere = cift_mi(4) is not True
-            claims = {"A": passes and not wrong_elsewhere, "B": passes and wrong_elsewhere,
-                      "C": False, "D": not passes}
-            print(",".join(k for k, v in claims.items() if v))
+            def kalan_gun(gun):
+                return 365 - gun - 1
+            gercek = kalan_gun(365)
+            print("A" if gercek != 0 and 365 - 365 == 0 else "B")
       - slug: g07
         difficulty: transfer_integration
         prompt: |
@@ -179,22 +180,6 @@ objectives:
             statement: Beklenen sonuçları kodu çalıştırarak değil tariften hesapladığını söyler.
         verify:
           mode: rubric
-      - slug: t01
-        difficulty: transfer_integration
-        transfer_profile: cross_topic_context
-        context_family: discount_boundary_test
-        required_skills: [skill.programming.branching_reasoning]
-        prompt: |
-          Tarif: odenecek(tutar), tutar 100 ya da daha fazlaysa tutardan 10 düşer; 100'den azsa tutarı olduğu gibi döndürür. Sınırı sınayan bir test yazıyorsun: odenecek(100) için beklenen sonuç ne olmalı?
-        answer: "90"
-        verify:
-          mode: script
-          script: |
-            def odenecek(tutar):
-                if tutar >= 100:
-                    return tutar - 10
-                return tutar
-            print(odenecek(100))
 
 # Published items: a wrong option written to follow from one misconception of the item's own Objective (D-120).
 misconception_options:

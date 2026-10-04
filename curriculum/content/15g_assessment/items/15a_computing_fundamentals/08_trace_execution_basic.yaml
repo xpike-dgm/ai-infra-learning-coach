@@ -3,46 +3,54 @@ objectives:
   - id: objective.programming.trace_execution_basic.produce_trace
     items:
       - slug: g01
-        difficulty: basic
+        difficulty: authentic_application
         prompt: |
-          İzleme tablosunda bu kodun 2. satırından sonraki durum hangisidir?
+          İzleme tablosunda bu kodun 5. satırından sonraki durum hangisidir?
         code: |
-          m = 4
-          n = m * 3
-          m = n - m
-          print(m, n)
+          a = 7
+          b = 2
+          c = a - b
+          a = c * b
+          b = b + a
         options:
-          A: m=4, n=12
-          B: m=8, n=12
-          C: m=4, n=7
-          D: m=12, n=12
+          A: a=10, b=12, c=5
+          B: a=10, b=9, c=5
+          C: a=10, b=12, c=0
+          D: a=7, b=12, c=5
+        scan_options: false
         answer: A
         verify:
-          mode: probe
-          upto: 2
-          probe: print(m, n)
-          outcomes: {A: "4 12", B: "8 12", C: "4 7", D: "12 12"}
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            a = 7
+            b = 2
+            c = a - b
+            a = c * b
+            b = b + a
+            secenekler = {"A": (10, 12, 5), "B": (10, 9, 5), "C": (10, 12, 0), "D": (7, 12, 5)}
+            print(",".join(k for k, v in secenekler.items() if v == (a, b, c)))
       - slug: g02
         difficulty: basic
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
-          s = 10
-          print(s)
-          s -= 4
-          s = s * 3
-          print(s)
+          x = 2
+          y = x
+          print(x, y)
+          x = x + 5
+          print(x, y)
         options:
-          A: 18, 18 (alt alta)
-          B: 10, 18 (alt alta)
-          C: 10, 6 (alt alta)
-          D: Yalnızca 18
+          A: "2 2 ve 7 2 (alt alta)"
+          B: "7 2 ve 7 2 (alt alta)"
+          C: "2 2 ve 7 7 (alt alta)"
+          D: "Yalnızca 7 2"
         scan_options: false
-        answer: B
-        misconception_options: {A: print_shows_final_value}
+        answer: A
+        misconception_options: {B: print_shows_final_value}
         verify:
           mode: stdout
-          outcomes: {A: "18\n18", B: "10\n18", C: "10\n6", D: "18"}
+          outcomes: {A: "2 2\n7 2", B: "7 2\n7 2", C: "2 2\n7 7", D: "7 2"}
       - slug: g03
         difficulty: authentic_application
         prompt: |
@@ -80,32 +88,15 @@ objectives:
       - slug: g04
         difficulty: authentic_application
         prompt: |
-          Bu kod satır satır izleniyor. Hangi satır çalıştıktan hemen sonra x ile y ilk kez eşit olur?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
         code: |
-          x = 2
-          y = 9
-          x = x * 3
-          y = y - x
-          x = x - 3
-        options:
-          A: 3. satır
-          B: 4. satır
-          C: 5. satır
-          D: Hiçbir satırdan sonra eşit olmazlar.
-        scan_options: false
-        answer: C
-        verify:
-          mode: script
-          outcomes: {A: "3", B: "4", C: "5", D: "None"}
-          script: |
-            lines = ["x = 2", "y = 9", "x = x * 3", "y = y - x", "x = x - 3"]
-            first = None
-            for n in range(2, len(lines) + 1):
-                env = {}
-                exec("\n".join(lines[:n]), env)
-                if first is None and env["x"] == env["y"]:
-                    first = n
-            print(first)
+          for i in range(4):
+              if i % 2 == 0:
+                  print(i * 10)
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.branching_reasoning]
+        answer: "0\n20"
+        also_accept: ["0 20"]
+        verify: {mode: stdout}
       - slug: g05
         difficulty: authentic_application
         prompt: |
@@ -157,54 +148,31 @@ objectives:
       - slug: g08
         difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
         code: |
-          x = 5
-          if x > 3:
-              x = x - 4
-          print(x)
-          if x > 3:
-              x = x + 10
-          print(x)
-        options:
-          A: 1, 1 (alt alta)
-          B: 1, 11 (alt alta)
-          C: 5, 15 (alt alta)
-          D: 11, 11 (alt alta)
-        scan_options: false
-        answer: A
-        required_skills: [skill.programming.expression_boolean_reasoning, skill.programming.branching_reasoning]
-        verify:
-          mode: stdout
-          outcomes: {A: "1\n1", B: "1\n11", C: "5\n15", D: "11\n11"}
+          a = 10
+          b = 1
+          while a > b:
+              a = a - 3
+              b = b + 1
+              print(a, b)
+        required_skills: [skill.programming.iteration_reasoning, skill.programming.expression_boolean_reasoning]
+        answer: "7 2\n4 3\n1 4"
+        also_accept: ["7 2 4 3 1 4"]
+        verify: {mode: stdout}
       - slug: g09
-        difficulty: transfer_integration
+        difficulty: authentic_application
         prompt: |
-          Bu kodda üç print satırı var. Hangisi ekrana 6 yazar?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
         code: |
-          n = 2
-          print(n)
-          n = n * n
-          print(n)
-          n = n + 2
-          print(n)
-        options:
-          A: 2. satır
-          B: 4. satır
-          C: 6. satır
-          D: Üçü de; n'nin son değeri 6'dır.
-        scan_options: false
-        answer: C
-        misconception_options: {D: print_shows_final_value}
-        verify:
-          mode: script
-          outcomes: {A: "2", B: "4", C: "6", D: "2,4,6"}
-          script: |
-            lines = ["n = 2", "print(n)", "n = n * n", "print(n)", "n = n + 2", "print(n)"]
-            env = {"printed": []}
-            body = "\n".join(line.replace("print(n)", f"printed.append(({i + 1}, n))") for i, line in enumerate(lines))
-            exec(body, env)
-            print(",".join(str(no) for no, value in env["printed"] if value == 6))
+          p = 1
+          q = 10
+          p += q
+          q -= p
+          p *= 2
+          print(p, q)
+        answer: "22 -1"
+        verify: {mode: stdout}
       - slug: t01
         difficulty: transfer_integration
         transfer_profile: cross_topic_context
