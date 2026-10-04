@@ -1,0 +1,583 @@
+skill: skill.c.while_iteration
+objectives:
+  - id: objective.c.while_iteration.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve n'yi geçmeyen 2'nin kuvvetlerini (1, 2, 4, 8, ...) her biri ayrı satırda olacak biçimde while ile yazsın. n 1'den küçükse hiçbir şey yazmasın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: twenty, stdin: "20\n", expected_stdout: "1\n2\n4\n8\n16\n"}
+          - {id: exact, stdin: "8\n", expected_stdout: "1\n2\n4\n8\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: ""}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, k = 1;
+              scanf("%d", &n);
+              while (k <= n) {
+                  printf("%d\n", k);
+                  k *= 2;
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, k = 1;
+                scanf("%d", &n);
+                while (k < n) {
+                    printf("%d\n", k);
+                    k *= 2;
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, k = 1;
+                scanf("%d", &n);
+                while (k <= n) {
+                    k *= 2;
+                    printf("%d\n", k);
+                }
+                return 0;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden pozitif bir n okusun ve rakamlarını ters sırada okuyarak oluşan sayıyı yazsın (sondaki sıfırlar başta kaybolur). Örnek: 1230 → 321.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: trailing_zero, stdin: "1230\n", expected_stdout: "321\n"}
+          - {id: single, stdin: "7\n", expected_stdout: "7\n"}
+          - {id: palindrome, stdin: "4554\n", expected_stdout: "4554\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, ters = 0;
+              scanf("%d", &n);
+              while (n > 0) {
+                  ters = ters * 10 + n % 10;
+                  n /= 10;
+              }
+              printf("%d\n", ters);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, ters = 0;
+                scanf("%d", &n);
+                while (n > 0) {
+                    ters = ters + n % 10;
+                    n /= 10;
+                }
+                printf("%d\n", ters);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, ters = 0;
+                scanf("%d", &n);
+                while (n > 10) {
+                    ters = ters * 10 + n % 10;
+                    n /= 10;
+                }
+                printf("%d\n", ters);
+                return 0;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden sıfır ya da pozitif bir a ve pozitif bir b okusun; a'dan b'yi, sonuç b'den küçük olana kadar tekrar tekrar çıkararak kaç kez çıkarabildiğini (bölümü) ve geriye kalanı aralarında bir boşlukla yazsın. / ve % kullanma.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: seventeen_five, stdin: "17 5\n", expected_stdout: "3 2\n"}
+          - {id: exact, stdin: "12 4\n", expected_stdout: "3 0\n"}
+          - {id: smaller, stdin: "3 7\n", expected_stdout: "0 3\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0, bolum = 0;
+              scanf("%d %d", &a, &b);
+              while (a >= b) {
+                  a -= b;
+                  bolum++;
+              }
+              printf("%d %d\n", bolum, a);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, bolum = 0;
+                scanf("%d %d", &a, &b);
+                while (a > b) {
+                    a -= b;
+                    bolum++;
+                }
+                printf("%d %d\n", bolum, a);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, bolum = 0;
+                scanf("%d %d", &a, &b);
+                while (a >= b) {
+                    a -= b;
+                    bolum++;
+                }
+                printf("%d %d\n", a, bolum);
+                return 0;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden iki pozitif tam sayı okusun ve en büyük ortak bölenlerini Öklid yöntemiyle bulsun: b 0 olmadığı sürece (a, b) ikilisi (b, a % b) olur; b 0 olunca a cevaptır.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: twelve_eighteen, stdin: "12 18\n", expected_stdout: "6\n"}
+          - {id: coprime, stdin: "17 5\n", expected_stdout: "1\n"}
+          - {id: multiple, stdin: "100 25\n", expected_stdout: "25\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0;
+              scanf("%d %d", &a, &b);
+              while (b != 0) {
+                  int kalan = a % b;
+                  a = b;
+                  b = kalan;
+              }
+              printf("%d\n", a);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                while (b != 0) {
+                    a = b;
+                    b = a % b;
+                }
+                printf("%d\n", a);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0;
+                scanf("%d %d", &a, &b);
+                while (b != 0) {
+                    int kalan = a % b;
+                    a = b;
+                    b = kalan;
+                }
+                printf("%d\n", b);
+                return 0;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden -1 gelene kadar tam sayılar okusun (-1 değerlendirilmez) ve okunanların en büyüğünü yazsın; -1'den önce hiç sayı gelmezse yok yazsın.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: mixed, stdin: "4 9 2 -1\n", expected_stdout: "9\n"}
+          - {id: none, stdin: "-1\n", expected_stdout: "yok\n"}
+          - {id: negatives, stdin: "-5 -3 -8 -1\n", expected_stdout: "-3\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0, en = 0, adet = 0;
+              scanf("%d", &x);
+              while (x != -1) {
+                  if (adet == 0 || x > en) {
+                      en = x;
+                  }
+                  adet++;
+                  scanf("%d", &x);
+              }
+              if (adet == 0) {
+                  printf("yok\n");
+              } else {
+                  printf("%d\n", en);
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0, en = 0, adet = 0;
+                scanf("%d", &x);
+                while (x != -1) {
+                    if (x > en) {
+                        en = x;
+                    }
+                    adet++;
+                    scanf("%d", &x);
+                }
+                if (adet == 0) {
+                    printf("yok\n");
+                } else {
+                    printf("%d\n", en);
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0, en = 0, adet = 0;
+                scanf("%d", &x);
+                while (x != -1) {
+                    if (adet == 0 || x > en) {
+                        en = x;
+                    }
+                    adet++;
+                    scanf("%d", &x);
+                }
+                printf("%d\n", en);
+                return 0;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: do-while ile, her turda bir tam sayı okuyup o ana kadarki toplamı ayrı bir satıra yazsın; okunan sayı 0 olunca (0'ı da ekleyip toplamı yazdıktan sonra) dursun. Girdi yalnız 0 olsa bile bir kez toplam yazılmalı.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "5 3 0\n", expected_stdout: "5\n8\n8\n"}
+          - {id: only_zero, stdin: "0\n", expected_stdout: "0\n"}
+          - {id: negative, stdin: "-2 7 0\n", expected_stdout: "-2\n5\n5\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 0, toplam = 0;
+              do {
+                  scanf("%d", &x);
+                  toplam += x;
+                  printf("%d\n", toplam);
+              } while (x != 0);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0, toplam = 0;
+                while (x != 0) {
+                    scanf("%d", &x);
+                    toplam += x;
+                    printf("%d\n", toplam);
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int x = 0, toplam = 0;
+                scanf("%d", &x);
+                while (x != 0) {
+                    toplam += x;
+                    printf("%d\n", toplam);
+                    scanf("%d", &x);
+                }
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          Aşağıdaki program 0'dan başlayıp 4'er artarak 18'den küçük sayıları (0 4 8 12 16) her biri ayrı satırda yazmalı ama hiç bitmiyor. Nedenini bul, düzelt ve cozum.c olarak kaydet.
+
+              #include <stdio.h>
+
+              int main(void) {
+                  int i = 0;
+                  while (i != 18) {
+                      printf("%d\n", i);
+                      i += 4;
+                  }
+                  return 0;
+              }
+        suite:
+          - {id: sequence, expected_stdout: "0\n4\n8\n12\n16\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int i = 0;
+              while (i < 18) {
+                  printf("%d\n", i);
+                  i += 4;
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int i = 0;
+                while (i <= 20) {
+                    printf("%d\n", i);
+                    i += 4;
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int i = 0;
+                while (i < 16) {
+                    printf("%d\n", i);
+                    i += 4;
+                }
+                return 0;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir topun bırakıldığı yüksekliği (santimetre, pozitif tam sayı) okusun. Top her sekişte, önceki yüksekliğin üçte ikisine (yukseklik * 2 / 3, tam sayı bölmesiyle) çıkıyor. Yükseklik 10 santimetrenin altına inene kadar kaç kez sektiğini yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: hundred, stdin: "100\n", expected_stdout: "6\n"}
+          - {id: already_low, stdin: "9\n", expected_stdout: "0\n"}
+          - {id: just_above, stdin: "15\n", expected_stdout: "2\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int yukseklik = 0, sekme = 0;
+              scanf("%d", &yukseklik);
+              while (yukseklik >= 10) {
+                  yukseklik = yukseklik * 2 / 3;
+                  sekme++;
+              }
+              printf("%d\n", sekme);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int yukseklik = 0, sekme = 0;
+                scanf("%d", &yukseklik);
+                while (yukseklik > 10) {
+                    yukseklik = yukseklik * 2 / 3;
+                    sekme++;
+                }
+                printf("%d\n", sekme);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int yukseklik = 0, sekme = 0;
+                scanf("%d", &yukseklik);
+                while (yukseklik >= 10) {
+                    yukseklik = yukseklik * (2 / 3);
+                    sekme++;
+                }
+                printf("%d\n", sekme);
+                return 0;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden 2 ya da daha büyük bir n okusun ve asal çarpanlarını tekrarlarıyla birlikte küçükten büyüğe, aralarında bir boşlukla tek satırda yazsın (son sayıdan sonra boşluk olabilir). Örnek: 12 → 2 2 3.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: twelve, stdin: "12\n", expected_stdout: "2 2 3\n"}
+          - {id: prime, stdin: "13\n", expected_stdout: "13\n"}
+          - {id: power, stdin: "32\n", expected_stdout: "2 2 2 2 2\n"}
+          - {id: mixed, stdin: "90\n", expected_stdout: "2 3 3 5\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, d = 2;
+              scanf("%d", &n);
+              while (n > 1) {
+                  while (n % d == 0) {
+                      printf("%d ", d);
+                      n /= d;
+                  }
+                  d++;
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, d = 2;
+                scanf("%d", &n);
+                while (n > 1) {
+                    if (n % d == 0) {
+                        printf("%d ", d);
+                        n /= d;
+                    }
+                    d++;
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, d = 2;
+                scanf("%d", &n);
+                while (d < n) {
+                    while (n % d == 0) {
+                        printf("%d ", d);
+                        n /= d;
+                    }
+                    d++;
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden iki pozitif tam sayı a ve b okusun. Her turda a iki katına çıkar, b ise 100 artar. a, b'ye eşit ya da ondan büyük olana kadar kaç tur geçtiğini yazsın (a başta b'den büyük ya da eşitse 0).
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: one_vs_hundred, stdin: "1 100\n", expected_stdout: "11\n"}
+          - {id: already, stdin: "50 20\n", expected_stdout: "0\n"}
+          - {id: close, stdin: "60 100\n", expected_stdout: "3\n"}
+          - {id: equal_start, stdin: "100 100\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0, b = 0, tur = 0;
+              scanf("%d %d", &a, &b);
+              while (a < b) {
+                  a *= 2;
+                  b += 100;
+                  tur++;
+              }
+              printf("%d\n", tur);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, tur = 0;
+                scanf("%d %d", &a, &b);
+                while (a < b) {
+                    a *= 2;
+                    tur++;
+                }
+                printf("%d\n", tur);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0, b = 0, tur = 0;
+                scanf("%d %d", &a, &b);
+                while (a <= b) {
+                    a *= 2;
+                    b += 100;
+                    tur++;
+                }
+                printf("%d\n", tur);
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden sıfır ya da pozitif bir n okusun; n tersten okunduğunda da aynı sayıysa evet, değilse hayir yazsın. Tersini bir while döngüsüyle kur.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: palindrome, stdin: "12321\n", expected_stdout: "evet\n"}
+          - {id: not, stdin: "123\n", expected_stdout: "hayir\n"}
+          - {id: single, stdin: "7\n", expected_stdout: "evet\n"}
+          - {id: trailing_zero, stdin: "120\n", expected_stdout: "hayir\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              int kopya = n, ters = 0;
+              while (kopya > 0) {
+                  ters = ters * 10 + kopya % 10;
+                  kopya /= 10;
+              }
+              if (ters == n) {
+                  printf("evet\n");
+              } else {
+                  printf("hayir\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int ters = 0;
+                while (n > 0) {
+                    ters = ters * 10 + n % 10;
+                    n /= 10;
+                }
+                if (ters == n) {
+                    printf("evet\n");
+                } else {
+                    printf("hayir\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                if (n % 10 == n / 10000) {
+                    printf("evet\n");
+                } else {
+                    printf("hayir\n");
+                }
+                return 0;
+            }

@@ -1,0 +1,590 @@
+skill: skill.c.for_iteration
+objectives:
+  - id: objective.c.for_iteration.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve tek satıra yan yana n tane yıldız (*) yazıp satır sonuyla bitirsin. n 0 ise yalnız satır sonu yazsın.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: four, stdin: "4\n", expected_stdout: "****\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "*\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 0; i < n; i++) {
+                  printf("*");
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 0; i <= n; i++) {
+                    printf("*");
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 0; i < n; i++) {
+                    printf("*\n");
+                }
+                return 0;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve 1'den n'e kadar (n dahil) çift sayıların toplamını yazsın. Örnek: n = 7 → 2 + 4 + 6 = 12.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: seven, stdin: "7\n", expected_stdout: "12\n"}
+          - {id: eight, stdin: "8\n", expected_stdout: "20\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, toplam = 0;
+              scanf("%d", &n);
+              for (int i = 2; i <= n; i += 2) {
+                  toplam += i;
+              }
+              printf("%d\n", toplam);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, toplam = 0;
+                scanf("%d", &n);
+                for (int i = 2; i < n; i += 2) {
+                    toplam += i;
+                }
+                printf("%d\n", toplam);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, toplam = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i += 2) {
+                    toplam += i;
+                }
+                printf("%d\n", toplam);
+                return 0;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve 1'den n'e kadar (n dahil) sayılardan kaçının 7'ye tam bölündüğünü yazsın.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: twenty, stdin: "20\n", expected_stdout: "2\n"}
+          - {id: exact, stdin: "21\n", expected_stdout: "3\n"}
+          - {id: small, stdin: "6\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, sayac = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  if (i % 7 == 0) {
+                      sayac++;
+                  }
+              }
+              printf("%d\n", sayac);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, sayac = 0;
+                scanf("%d", &n);
+                for (int i = 1; i < n; i++) {
+                    if (i % 7 == 0) {
+                        sayac++;
+                    }
+                }
+                printf("%d\n", sayac);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, sayac = 0;
+                scanf("%d", &n);
+                for (int i = 0; i <= n; i++) {
+                    if (i % 7 == 0) {
+                        sayac++;
+                    }
+                }
+                printf("%d\n", sayac);
+                return 0;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden pozitif bir n okusun ve n'nin bütün pozitif bölenlerini küçükten büyüğe, aralarında bir boşlukla tek satırda yazsın (son sayıdan sonra boşluk olabilir). Örnek: 12 → 1 2 3 4 6 12.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: twelve, stdin: "12\n", expected_stdout: "1 2 3 4 6 12\n"}
+          - {id: prime, stdin: "7\n", expected_stdout: "1 7\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  if (n % i == 0) {
+                      printf("%d ", i);
+                  }
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i < n; i++) {
+                    if (n % i == 0) {
+                        printf("%d ", i);
+                    }
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    if (i % n == 0) {
+                        printf("%d ", i);
+                    }
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden önce n'yi (en az 1), sonra n tam sayıyı okusun ve en büyüğünü yazsın.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: mixed, stdin: "4\n3 9 -2 7\n", expected_stdout: "9\n"}
+          - {id: all_negative, stdin: "3\n-8 -3 -5\n", expected_stdout: "-3\n"}
+          - {id: single, stdin: "1\n42\n", expected_stdout: "42\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, x = 0, en = 0;
+              scanf("%d", &n);
+              scanf("%d", &en);
+              for (int i = 1; i < n; i++) {
+                  scanf("%d", &x);
+                  if (x > en) {
+                      en = x;
+                  }
+              }
+              printf("%d\n", en);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, x = 0, en = 0;
+                scanf("%d", &n);
+                for (int i = 0; i < n; i++) {
+                    scanf("%d", &x);
+                    if (x > en) {
+                        en = x;
+                    }
+                }
+                printf("%d\n", en);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, x = 0, en = 0;
+                scanf("%d", &n);
+                scanf("%d", &en);
+                for (int i = 1; i < n; i++) {
+                    scanf("%d", &x);
+                    if (x < en) {
+                        en = x;
+                    }
+                }
+                printf("%d\n", en);
+                return 0;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir taban ve sıfır ya da pozitif bir üs (iki tam sayı) okusun ve taban üzeri üs değerini bir for döngüsüyle hesaplayıp yazsın. Sonuç büyüyebileceği için long long kullan.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: two_ten, stdin: "2 10\n", expected_stdout: "1024\n"}
+          - {id: zero_power, stdin: "7 0\n", expected_stdout: "1\n"}
+          - {id: negative_base, stdin: "-3 3\n", expected_stdout: "-27\n"}
+          - {id: big, stdin: "10 12\n", expected_stdout: "1000000000000\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int taban = 0, us = 0;
+              scanf("%d %d", &taban, &us);
+              long long sonuc = 1;
+              for (int i = 0; i < us; i++) {
+                  sonuc *= taban;
+              }
+              printf("%lld\n", sonuc);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int taban = 0, us = 0;
+                scanf("%d %d", &taban, &us);
+                int sonuc = 1;
+                for (int i = 0; i < us; i++) {
+                    sonuc *= taban;
+                }
+                printf("%d\n", sonuc);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int taban = 0, us = 0;
+                scanf("%d %d", &taban, &us);
+                long long sonuc = 1;
+                for (int i = 1; i < us; i++) {
+                    sonuc *= taban;
+                }
+                printf("%lld\n", sonuc);
+                return 0;
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve 2'nin ilk n kuvvetini (1, 2, 4, 8, ...) aralarında bir boşlukla tek satırda yazsın (son sayıdan sonra boşluk olabilir). n 0 ise boş bir satır yazsın. long long kullan.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: five, stdin: "5\n", expected_stdout: "1 2 4 8 16\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              long long kuvvet = 1;
+              for (int i = 0; i < n; i++) {
+                  printf("%lld ", kuvvet);
+                  kuvvet *= 2;
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                long long kuvvet = 1;
+                for (int i = 0; i < n; i++) {
+                    kuvvet *= 2;
+                    printf("%lld ", kuvvet);
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 0; i < n; i++) {
+                    long long kuvvet = 1;
+                    printf("%lld ", kuvvet);
+                    kuvvet *= 2;
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve n × n'lik çarpım tablosunu yazsın: i. satırda i × 1'den i × n'ye kadar sayılar aralarında bir boşlukla (satır sonundaki boşluk önemsiz). Örnek, n = 3: 1 2 3 / 2 4 6 / 3 6 9 satırları.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "1 2 3\n2 4 6\n3 6 9\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: four, stdin: "4\n", expected_stdout: "1 2 3 4\n2 4 6 8\n3 6 9 12\n4 8 12 16\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  for (int j = 1; j <= n; j++) {
+                      printf("%d ", i * j);
+                  }
+                  printf("\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 1; j <= n; j++) {
+                        printf("%d ", i * j);
+                    }
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 1; j <= i; j++) {
+                        printf("%d ", i * j);
+                    }
+                    printf("\n");
+                }
+                return 0;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve Fibonacci dizisinin ilk n terimini (0 1 1 2 3 ...) aralarında bir boşlukla tek satırda yazsın (son sayıdan sonra boşluk olabilir). n 0 ise boş bir satır yazsın. long long kullan.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: seven, stdin: "7\n", expected_stdout: "0 1 1 2 3 5 8\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "0\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "\n"}
+          - {id: long, stdin: "60\n", expected_stdout: "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 20365011074 32951280099 53316291173 86267571272 139583862445 225851433717 365435296162 591286729879 956722026041\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              long long a = 0, b = 1;
+              for (int i = 0; i < n; i++) {
+                  printf("%lld ", a);
+                  long long sonraki = a + b;
+                  a = b;
+                  b = sonraki;
+              }
+              printf("\n");
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                int a = 0, b = 1;
+                for (int i = 0; i < n; i++) {
+                    printf("%d ", a);
+                    int sonraki = a + b;
+                    a = b;
+                    b = sonraki;
+                }
+                printf("\n");
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                long long a = 0, b = 1;
+                for (int i = 0; i < n; i++) {
+                    printf("%lld ", a);
+                    a = b;
+                    b = a + b;
+                }
+                printf("\n");
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden bir n okusun ve n satırlık, sağa yaslı bir merdiven yazsın: i. satırda önce n − i tane nokta (.), sonra i tane # olsun. Örnek, n = 3: ..# / .## / ### satırları.
+        required_skills: [skill.c.standard_io_basic]
+        suite:
+          - {id: three, stdin: "3\n", expected_stdout: "..#\n.##\n###\n"}
+          - {id: one, stdin: "1\n", expected_stdout: "#\n"}
+          - {id: four, stdin: "4\n", expected_stdout: "...#\n..##\n.###\n####\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0;
+              scanf("%d", &n);
+              for (int i = 1; i <= n; i++) {
+                  for (int j = 0; j < n - i; j++) {
+                      printf(".");
+                  }
+                  for (int j = 0; j < i; j++) {
+                      printf("#");
+                  }
+                  printf("\n");
+              }
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 0; j < i; j++) {
+                        printf("#");
+                    }
+                    for (int j = 0; j < n - i; j++) {
+                        printf(".");
+                    }
+                    printf("\n");
+                }
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0;
+                scanf("%d", &n);
+                for (int i = 1; i <= n; i++) {
+                    for (int j = 0; j < n - i - 1; j++) {
+                        printf(".");
+                    }
+                    for (int j = 0; j < i; j++) {
+                        printf("#");
+                    }
+                    printf("\n");
+                }
+                return 0;
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c adında bir program yaz: girdiden önce n'yi (en az 1), sonra n tam sayıyı okusun ve kaç kez bir sayının kendisinden hemen önceki sayıdan büyük olduğunu (artış sayısını) yazsın. Örnek: 3 5 4 6 7 → 3.
+        required_skills: [skill.c.standard_io_basic, skill.c.conditionals]
+        suite:
+          - {id: mixed, stdin: "5\n3 5 4 6 7\n", expected_stdout: "3\n"}
+          - {id: single, stdin: "1\n9\n", expected_stdout: "0\n"}
+          - {id: equal_not_rise, stdin: "3\n2 2 2\n", expected_stdout: "0\n"}
+          - {id: falling, stdin: "4\n9 7 5 3\n", expected_stdout: "0\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int n = 0, onceki = 0, x = 0, artis = 0;
+              scanf("%d", &n);
+              scanf("%d", &onceki);
+              for (int i = 1; i < n; i++) {
+                  scanf("%d", &x);
+                  if (x > onceki) {
+                      artis++;
+                  }
+                  onceki = x;
+              }
+              printf("%d\n", artis);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, onceki = 0, x = 0, artis = 0;
+                scanf("%d", &n);
+                scanf("%d", &onceki);
+                for (int i = 1; i < n; i++) {
+                    scanf("%d", &x);
+                    if (x >= onceki) {
+                        artis++;
+                    }
+                    onceki = x;
+                }
+                printf("%d\n", artis);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int n = 0, onceki = 0, x = 0, artis = 0;
+                scanf("%d", &n);
+                scanf("%d", &onceki);
+                for (int i = 1; i < n; i++) {
+                    scanf("%d", &x);
+                    if (x > onceki) {
+                        artis++;
+                    }
+                }
+                printf("%d\n", artis);
+                return 0;
+            }

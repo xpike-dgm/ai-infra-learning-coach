@@ -1,0 +1,539 @@
+skill: skill.c.functions_basic
+objectives:
+  - id: objective.c.functions_basic.write_and_call_function
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına int mutlak(int x) fonksiyonunu yaz: x'in mutlak değerini döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle birkaç kez çağırır; kendi main'ini yazabilirsin ama testler onu çalıştırmaz.
+        required_skills: [skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int mutlak(int x);
+
+          int main(void) {
+              int x = 0;
+              while (scanf("%d", &x) == 1) {
+                  printf("%d\n", mutlak(x));
+              }
+              return 0;
+          }
+        suite:
+          - {id: mixed, stdin: "-5 7 0\n", expected_stdout: "5\n7\n0\n"}
+          - {id: negative_only, stdin: "-1\n", expected_stdout: "1\n"}
+        reference: |
+          int mutlak(int x) {
+              if (x < 0) {
+                  return -x;
+              }
+              return x;
+          }
+        wrong:
+          - |
+            int mutlak(int x) {
+                return -x;
+            }
+          - |
+            #include <stdio.h>
+
+            int mutlak(int x) {
+                if (x < 0) {
+                    printf("%d\n", -x);
+                }
+                return x;
+            }
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına int cift_mi(int n) fonksiyonunu yaz: n çiftse 1, tekse 0 döndürsün (eksi sayılar da olabilir). Dersin testleri bu fonksiyonu kendi main'iyle birkaç kez çağırır.
+        required_skills: [skill.c.expression_evaluation]
+        c_harness: |
+          #include <stdio.h>
+
+          int cift_mi(int n);
+
+          int main(void) {
+              int n = 0;
+              while (scanf("%d", &n) == 1) {
+                  printf("%d\n", cift_mi(n));
+              }
+              return 0;
+          }
+        suite:
+          - {id: mixed, stdin: "4 7 0\n", expected_stdout: "1\n0\n1\n"}
+          - {id: negatives, stdin: "-3 -8\n", expected_stdout: "0\n1\n"}
+        reference: |
+          int cift_mi(int n) {
+              return n % 2 == 0;
+          }
+        wrong:
+          - |
+            int cift_mi(int n) {
+                return n % 2 == 1;
+            }
+          - |
+            int cift_mi(int n) {
+                return n % 2;
+            }
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          cozum.c dosyasına double cevre(double r) fonksiyonunu yaz: yarıçapı r olan çemberin çevresini 2 × 3.14159 × r olarak döndürsün. Dersin testleri sonucu iki ondalık basamakla yazdırır.
+        c_harness: |
+          #include <stdio.h>
+
+          double cevre(double r);
+
+          int main(void) {
+              double r = 0;
+              while (scanf("%lf", &r) == 1) {
+                  printf("%.2f\n", cevre(r));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "1 2.5 0\n", expected_stdout: "6.28\n15.71\n0.00\n"}
+        reference: |
+          double cevre(double r) {
+              return 2 * 3.14159 * r;
+          }
+        wrong:
+          - |
+            double cevre(double r) {
+                return 3.14159 * r * r;
+            }
+          - |
+            double cevre(double r) {
+                return 2 * 3 * r;
+            }
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına long long us_al(int taban, int us) fonksiyonunu yaz: taban üzeri us değerini (us sıfır ya da pozitif) bir döngüyle hesaplayıp döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.for_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          long long us_al(int taban, int us);
+
+          int main(void) {
+              int t = 0, u = 0;
+              while (scanf("%d %d", &t, &u) == 2) {
+                  printf("%lld\n", us_al(t, u));
+              }
+              return 0;
+          }
+        suite:
+          - {id: mixed, stdin: "2 10\n5 0\n-2 3\n", expected_stdout: "1024\n1\n-8\n"}
+          - {id: big, stdin: "3 30\n", expected_stdout: "205891132094649\n"}
+        reference: |
+          long long us_al(int taban, int us) {
+              long long sonuc = 1;
+              for (int i = 0; i < us; i++) {
+                  sonuc *= taban;
+              }
+              return sonuc;
+          }
+        wrong:
+          - |
+            long long us_al(int taban, int us) {
+                int sonuc = 1;
+                for (int i = 0; i < us; i++) {
+                    sonuc *= taban;
+                }
+                return sonuc;
+            }
+          - |
+            long long us_al(int taban, int us) {
+                long long sonuc = taban;
+                for (int i = 0; i < us; i++) {
+                    sonuc *= taban;
+                }
+                return sonuc;
+            }
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int basamak_toplami(int n) fonksiyonunu yaz: sıfır ya da pozitif bir n'nin rakamlarının toplamını döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.while_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          int basamak_toplami(int n);
+
+          int main(void) {
+              int n = 0;
+              while (scanf("%d", &n) == 1) {
+                  printf("%d\n", basamak_toplami(n));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "4721 0 9\n", expected_stdout: "14\n0\n9\n"}
+          - {id: with_zeros, stdin: "1005\n", expected_stdout: "6\n"}
+        reference: |
+          int basamak_toplami(int n) {
+              int toplam = 0;
+              while (n > 0) {
+                  toplam += n % 10;
+                  n /= 10;
+              }
+              return toplam;
+          }
+        wrong:
+          - |
+            int basamak_toplami(int n) {
+                int toplam = 0;
+                while (n > 0) {
+                    toplam += n % 10;
+                    n /= 100;
+                }
+                return toplam;
+            }
+          - |
+            int basamak_toplami(int n) {
+                int toplam = 0;
+                while (n > 0) {
+                    toplam++;
+                    n /= 10;
+                }
+                return toplam;
+            }
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int gun_sayisi(int ay) fonksiyonunu yaz: artık olmayan bir yılda o aydaki gün sayısını döndürsün (Şubat 28; Nisan, Haziran, Eylül, Kasım 30; diğerleri 31); 1–12 dışındaki ay için 0 döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int gun_sayisi(int ay);
+
+          int main(void) {
+              int ay = 0;
+              while (scanf("%d", &ay) == 1) {
+                  printf("%d\n", gun_sayisi(ay));
+              }
+              return 0;
+          }
+        suite:
+          - {id: all_months, stdin: "1 2 3 4 5 6 7 8 9 10 11 12\n", expected_stdout: "31\n28\n31\n30\n31\n30\n31\n31\n30\n31\n30\n31\n"}
+          - {id: invalid, stdin: "0 13\n", expected_stdout: "0\n0\n"}
+        reference: |
+          int gun_sayisi(int ay) {
+              switch (ay) {
+                  case 2:
+                      return 28;
+                  case 4:
+                  case 6:
+                  case 9:
+                  case 11:
+                      return 30;
+                  case 1:
+                  case 3:
+                  case 5:
+                  case 7:
+                  case 8:
+                  case 10:
+                  case 12:
+                      return 31;
+                  default:
+                      return 0;
+              }
+          }
+        wrong:
+          - |
+            int gun_sayisi(int ay) {
+                if (ay == 2) {
+                    return 28;
+                }
+                if (ay % 2 == 0) {
+                    return 30;
+                }
+                return 31;
+            }
+          - |
+            int gun_sayisi(int ay) {
+                switch (ay) {
+                    case 2:
+                        return 28;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        return 30;
+                    default:
+                        return 31;
+                }
+            }
+      - slug: g07
+        difficulty: authentic_application
+        prompt: |
+          cozum.c dosyasına int aralik_toplami(int a, int b) fonksiyonunu yaz: a ≤ b olmak üzere a'dan b'ye kadar (ikisi de dahil) tam sayıların toplamını döndürsün. Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.for_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          int aralik_toplami(int a, int b);
+
+          int main(void) {
+              int a = 0, b = 0;
+              while (scanf("%d %d", &a, &b) == 2) {
+                  printf("%d\n", aralik_toplami(a, b));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "1 4\n5 5\n-2 2\n", expected_stdout: "10\n5\n0\n"}
+          - {id: wide, stdin: "10 20\n", expected_stdout: "165\n"}
+        reference: |
+          int aralik_toplami(int a, int b) {
+              int toplam = 0;
+              for (int i = a; i <= b; i++) {
+                  toplam += i;
+              }
+              return toplam;
+          }
+        wrong:
+          - |
+            int aralik_toplami(int a, int b) {
+                int toplam = 0;
+                for (int i = a; i < b; i++) {
+                    toplam += i;
+                }
+                return toplam;
+            }
+          - |
+            int aralik_toplami(int a, int b) {
+                int toplam = 0;
+                for (int i = a + 1; i <= b; i++) {
+                    toplam += i;
+                }
+                return toplam;
+            }
+      - slug: g08
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına iki fonksiyon yaz: int ebob(int a, int b) iki pozitif sayının en büyük ortak bölenini, int ekok(int a, int b) ise en küçük ortak katını döndürsün; ekok, a / ebob(a, b) * b ile ebob'u kullansın. Dersin testleri iki fonksiyonu da kendi main'iyle çağırır.
+        required_skills: [skill.c.while_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          int ebob(int a, int b);
+          int ekok(int a, int b);
+
+          int main(void) {
+              int a = 0, b = 0;
+              while (scanf("%d %d", &a, &b) == 2) {
+                  printf("%d %d\n", ebob(a, b), ekok(a, b));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "4 6\n7 5\n12 36\n", expected_stdout: "2 12\n1 35\n12 36\n"}
+        reference: |
+          int ebob(int a, int b) {
+              while (b != 0) {
+                  int kalan = a % b;
+                  a = b;
+                  b = kalan;
+              }
+              return a;
+          }
+
+          int ekok(int a, int b) {
+              return a / ebob(a, b) * b;
+          }
+        wrong:
+          - |
+            int ebob(int a, int b) {
+                while (b != 0) {
+                    int kalan = a % b;
+                    a = b;
+                    b = kalan;
+                }
+                return a;
+            }
+
+            int ekok(int a, int b) {
+                return a * b;
+            }
+          - |
+            int ebob(int a, int b) {
+                while (b != 0) {
+                    int kalan = a % b;
+                    a = b;
+                    b = kalan;
+                }
+                return b;
+            }
+
+            int ekok(int a, int b) {
+                return a * b;
+            }
+      - slug: g09
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int ters(int n) fonksiyonunu yaz: sıfır ya da pozitif bir n'nin rakamlarını ters çevirerek oluşan sayıyı döndürsün (1230 → 321). Dersin testleri ters(n) ve ters(ters(n)) değerlerini yazdırır.
+        required_skills: [skill.c.while_iteration]
+        c_harness: |
+          #include <stdio.h>
+
+          int ters(int n);
+
+          int main(void) {
+              int n = 0;
+              while (scanf("%d", &n) == 1) {
+                  printf("%d %d\n", ters(n), ters(ters(n)));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "1230 456 7\n", expected_stdout: "321 123\n654 456\n7 7\n"}
+          - {id: zero, stdin: "0\n", expected_stdout: "0 0\n"}
+        reference: |
+          int ters(int n) {
+              int sonuc = 0;
+              while (n > 0) {
+                  sonuc = sonuc * 10 + n % 10;
+                  n /= 10;
+              }
+              return sonuc;
+          }
+        wrong:
+          - |
+            int ters(int n) {
+                int sonuc = 0;
+                while (n > 0) {
+                    sonuc = sonuc + n % 10 * 10;
+                    n /= 10;
+                }
+                return sonuc;
+            }
+          - |
+            #include <stdio.h>
+
+            int ters(int n) {
+                while (n > 0) {
+                    printf("%d", n % 10);
+                    n /= 10;
+                }
+                return 0;
+            }
+      - slug: g10
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına void sirali_yaz(int a, int b, int c) fonksiyonunu yaz: üç sayıyı küçükten büyüğe, aralarında bir boşlukla tek satırda yazıp satır sonuyla bitirsin. Bu fonksiyon bir değer döndürmez. Dersin testleri onu kendi main'iyle çağırır.
+        required_skills: [skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          void sirali_yaz(int a, int b, int c);
+
+          int main(void) {
+              int a = 0, b = 0, c = 0;
+              while (scanf("%d %d %d", &a, &b, &c) == 3) {
+                  sirali_yaz(a, b, c);
+              }
+              return 0;
+          }
+        suite:
+          - {id: orders, stdin: "3 1 2\n9 8 7\n1 2 3\n", expected_stdout: "1 2 3\n7 8 9\n1 2 3\n"}
+          - {id: ties, stdin: "5 2 5\n", expected_stdout: "2 5 5\n"}
+        reference: |
+          #include <stdio.h>
+
+          void sirali_yaz(int a, int b, int c) {
+              int t = 0;
+              if (a > b) {
+                  t = a;
+                  a = b;
+                  b = t;
+              }
+              if (b > c) {
+                  t = b;
+                  b = c;
+                  c = t;
+              }
+              if (a > b) {
+                  t = a;
+                  a = b;
+                  b = t;
+              }
+              printf("%d %d %d\n", a, b, c);
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            void sirali_yaz(int a, int b, int c) {
+                int t = 0;
+                if (a > b) {
+                    t = a;
+                    a = b;
+                    b = t;
+                }
+                if (b > c) {
+                    t = b;
+                    b = c;
+                    c = t;
+                }
+                printf("%d %d %d\n", a, b, c);
+            }
+          - |
+            #include <stdio.h>
+
+            void sirali_yaz(int a, int b, int c) {
+                printf("%d %d %d\n", c, b, a);
+            }
+      - slug: g11
+        difficulty: transfer_integration
+        prompt: |
+          cozum.c dosyasına int bolen_sayisi(int n) fonksiyonunu yaz: pozitif bir n'nin kaç pozitif böleni olduğunu döndürsün (1 ve n dahil). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        required_skills: [skill.c.for_iteration, skill.c.conditionals]
+        c_harness: |
+          #include <stdio.h>
+
+          int bolen_sayisi(int n);
+
+          int main(void) {
+              int n = 0;
+              while (scanf("%d", &n) == 1) {
+                  printf("%d\n", bolen_sayisi(n));
+              }
+              return 0;
+          }
+        suite:
+          - {id: values, stdin: "12 1 13 36\n", expected_stdout: "6\n1\n2\n9\n"}
+        reference: |
+          int bolen_sayisi(int n) {
+              int sayac = 0;
+              for (int i = 1; i <= n; i++) {
+                  if (n % i == 0) {
+                      sayac++;
+                  }
+              }
+              return sayac;
+          }
+        wrong:
+          - |
+            int bolen_sayisi(int n) {
+                int sayac = 0;
+                for (int i = 1; i < n; i++) {
+                    if (n % i == 0) {
+                        sayac++;
+                    }
+                }
+                return sayac;
+            }
+          - |
+            int bolen_sayisi(int n) {
+                int sayac = 0;
+                for (int i = 2; i <= n; i++) {
+                    if (n % i == 0) {
+                        sayac++;
+                    }
+                }
+                return sayac;
+            }
