@@ -21,13 +21,21 @@ objectives:
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
-          kalan = 0
-          if kalan > 0:
-              print("devam")
+          saat = 14
+          if saat >= 9 and saat < 12:
+              print("sabah dersi")
           else:
-              print("bitti")
-        answer: "bitti"
-        verify: {mode: stdout}
+              print("öğleden sonra")
+        options:
+          A: öğleden sonra
+          B: sabah dersi
+          C: Önce sabah dersi, sonra öğleden sonra
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        verify:
+          mode: stdout
+          outcomes: {A: "öğleden sonra", B: "sabah dersi", C: "sabah dersi\nöğleden sonra", D: ""}
       - slug: g03
         difficulty: basic
         prompt: |
@@ -45,47 +53,47 @@ objectives:
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
-          puanlar = 55
-          if puanlar > 20:
-              print("A")
-          elif puanlar > 50:
-              print("B")
-          elif puanlar > 40:
-              print("C")
+          kilo = 12
+          if kilo < 5:
+              print("küçük paket")
+          elif kilo < 10:
+              print("orta paket")
+          elif kilo < 20:
+              print("büyük paket")
+          else:
+              print("kargo")
         options:
-          A: Yalnızca A
-          B: Yalnızca B
-          C: A, B ve C (üç satır)
-          D: Hiçbir şey
+          A: büyük paket
+          B: orta paket
+          C: kargo
+          D: küçük paket
         scan_options: false
         answer: A
-        misconception_options: {C: all_true_branches_run}
         verify:
           mode: stdout
-          outcomes: {A: "A", B: "B", C: "A\nB\nC", D: ""}
+          outcomes: {A: "büyük paket", B: "orta paket", C: "kargo", D: "küçük paket"}
       - slug: g05
         difficulty: authentic_application
         prompt: |
           Bu kod çalışınca ekrana ne yazılır?
         code: |
-          t = 12
-          if t > 10:
-              print("büyük")
-          if t > 5:
-              print("orta")
-          else:
-              print("küçük")
+          x = 4
+          if x > 3:
+              x = 1
+          elif x > 0:
+              x = 100
+          print(x)
         options:
-          A: Yalnızca büyük
-          B: Önce büyük, sonra orta (iki satır)
-          C: Önce büyük, sonra küçük (iki satır)
-          D: Yalnızca orta
+          A: "1"
+          B: "100"
+          C: "4"
+          D: "101"
         scan_options: false
-        answer: B
-        misconception_options: {A: separate_ifs_exclusive}
+        answer: A
+        misconception_options: {B: all_true_branches_run}
         verify:
           mode: stdout
-          outcomes: {A: "büyük", B: "büyük\norta", C: "büyük\nküçük", D: "orta"}
+          outcomes: {A: "1", B: "100", C: "4", D: "101"}
       - slug: g06
         difficulty: authentic_application
         prompt: |
@@ -110,26 +118,18 @@ objectives:
       - slug: g07
         difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
+          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi, satır satır yaz.
         code: |
-          bakiye = 100
-          if bakiye >= 80:
-              bakiye = bakiye - 80
-          if bakiye >= 80:
-              print("ikinci alım yapıldı")
+          a = 3
+          b = a * 4
+          if b - a > 10:
+              print("fark büyük")
           else:
-              print("bakiye yetersiz")
-        options:
-          A: ikinci alım yapıldı
-          B: bakiye yetersiz
-          C: Önce ikinci alım yapıldı, sonra bakiye yetersiz
-          D: Hiçbir şey
-        scan_options: false
-        answer: B
-        misconception_options: {A: condition_uses_initial_values}
-        verify:
-          mode: stdout
-          outcomes: {A: "ikinci alım yapıldı", B: "bakiye yetersiz", C: "ikinci alım yapıldı\nbakiye yetersiz", D: ""}
+              print("fark küçük")
+          print(b - a)
+        answer: "fark küçük\n9"
+        also_accept: ["fark küçük 9"]
+        verify: {mode: stdout}
       - slug: g08
         difficulty: transfer_integration
         prompt: |

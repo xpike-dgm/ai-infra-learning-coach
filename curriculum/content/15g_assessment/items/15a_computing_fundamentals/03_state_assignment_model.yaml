@@ -25,14 +25,30 @@ objectives:
       - slug: g03
         difficulty: basic
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu kodun dört satırı da çalıştıktan sonra hangi iki değişken aynı değeri tutar?
         code: |
-          ad = "Ali"
-          selam = "Merhaba"
-          ad = selam
-          print(ad, selam)
-        answer: "Merhaba Merhaba"
-        verify: {mode: stdout}
+          a = 5
+          b = a
+          a = a + 3
+          c = a - 3
+        options:
+          A: b ve c
+          B: a ve b
+          C: a ve c
+          D: Hiçbiri; üçü de farklı değer tutar
+        scan_options: false
+        answer: A
+        misconception_options: {B: copy_tracks_later_changes}
+        verify:
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            a = 5
+            b = a
+            a = a + 3
+            c = a - 3
+            claims = {"A": b == c, "B": a == b, "C": a == c, "D": a != b and b != c and a != c}
+            print(",".join(k for k, v in claims.items() if v))
       - slug: g04
         difficulty: basic
         prompt: |
@@ -100,33 +116,45 @@ objectives:
       - slug: g08
         difficulty: authentic_application
         prompt: |
-          Bir öğrenci ikinci satırı görünce "x hiçbir zaman x + 1'e eşit olamaz, bu satır hata verir" diyor. Bu kod çalışınca ne olur?
+          Bu kod ekrana 6 yazıyor. Hangi satır silinirse kod ekrana 10 yazar?
         code: |
-          x = 7
-          x = x + 1
+          x = 2
+          x = x + 3
+          x = x * 2
+          x = x - 4
           print(x)
         options:
-          A: Ekrana 8 yazılır; sağ taraf x'in o anki değeriyle hesaplanır ve sonuç x'e atanır.
-          B: Program hata verir; bir değişken kendisinden büyük bir değere eşit olamaz.
-          C: Ekrana 7 yazılır; ikinci satır bir denklem olduğu için hiçbir şeyi değiştirmez.
-          D: Ekrana 1 yazılır; x x'ten çıkarılır ve 1 eklenir.
+          A: 2. satır
+          B: 3. satır
+          C: 4. satır
+          D: Hiçbiri; hangi satır silinirse silinsin 10 yazılamaz
         scan_options: false
-        answer: A
-        misconception_options: {B: self_update_impossible}
+        answer: C
         verify:
-          mode: stdout
-          outcomes: {A: "8", B: "hata", C: "7", D: "1"}
+          mode: script
+          outcomes: {A: "A", B: "B", C: "C", D: "D"}
+          script: |
+            satirlar = ["x = 2", "x = x + 3", "x = x * 2", "x = x - 4"]
+            sonuc = []
+            for harf, sil in (("A", 1), ("B", 2), ("C", 3)):
+                ortam = {}
+                exec("\n".join(s for i, s in enumerate(satirlar) if i != sil), ortam)
+                if ortam["x"] == 10:
+                    sonuc.append(harf)
+            print(",".join(sonuc) if sonuc else "D")
       - slug: g09
         difficulty: transfer_integration
         prompt: |
-          Bu kod çalışınca ekrana ne yazılır? Cevabını ekranda göründüğü gibi yaz.
+          Bu kod çalışınca ekrana ne yazılır?
         code: |
-          a = 3
-          b = a * a
-          a = b - a
-          b = b - a
-          print(a, b)
-        answer: "6 3"
+          a = 1
+          b = 2
+          c = a + b
+          a = c * b
+          b = a - c
+          c = b + a
+          print(c)
+        answer: "9"
         verify: {mode: stdout}
       - slug: g10
         difficulty: transfer_integration

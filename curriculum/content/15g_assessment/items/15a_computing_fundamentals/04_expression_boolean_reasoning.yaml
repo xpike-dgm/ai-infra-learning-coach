@@ -43,15 +43,6 @@ objectives:
           print(not (3 > 2 and 2 > 3))
         answer: "True"
         verify: {mode: stdout}
-      - slug: g05
-        difficulty: authentic_application
-        prompt: |
-          Bu kod çalışınca ekrana ne yazılır?
-        code: |
-          x = 6
-          print(x % 2 == 0 and x % 3 == 0)
-        answer: "True"
-        verify: {mode: stdout}
       - slug: g06
         difficulty: authentic_application
         prompt: |
