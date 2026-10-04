@@ -142,3 +142,24 @@ objectives:
           mode: reference
           reference: "Wiktionary — again (adverb): another time, once more; set (verb): to adjust"
           claim: "run the tests again, testleri bir kez daha çalıştır demektir."
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: terminal_pwd_instruction
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        prompt: |
+          Bir Linux kılavuzunda bu talimat var. Talimatı izlersen terminal ne gösterir?
+        code: |
+          Type `pwd` and press Enter.
+        options:
+          A: "İçinde bulunduğun klasörün tam yolunu"
+          B: "Klasördeki dosyaların listesini"
+          C: "Hiçbir şey; talimat yalnız pwd'nin ne olduğunu anlatıyor"
+          D: "Bir önceki klasöre döner"
+        scan_options: false
+        answer: A
+        misconception_options: {C: imperative_is_description}
+        verify:
+          mode: reference
+          reference: "Wikipedia — Imperative mood (Type ... and press ...: commands to the reader); pwd(1) — print name of current/working directory"
+          claim: "Talimat pwd yazıp Enter'a basmanı ister; pwd içinde bulunulan klasörün tam yolunu yazar."

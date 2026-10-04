@@ -81,3 +81,23 @@ objectives:
           mode: reference
           reference: "Wikipedia — Simple present (agreement: plural subject + base verb, singular subject + verb-s); English plurals"
           claim: "Üç test geçti (Three tests pass), bir test başarısız (One test fails)."
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: git_status_note
+        required_skills: [skill.git.repository_status_diff]
+        prompt: |
+          Yeni bir depoda git status --short şunu yazdı:
+
+          ?? a.txt
+          ?? b.txt
+
+          Bu sonucu anlatan notu tamamla: boşluğa tek bir fiil yaz.
+        code: |
+          `git status` ___ two new files.
+        answer: "shows"
+        also_accept: ["prints", "lists"]
+        verify:
+          mode: reference
+          reference: "git-status(1) — '??' marks untracked paths; Wikipedia — Simple present (third-person singular -s)"
+          claim: "İki takip edilmeyen (yeni) dosya gösteriliyor; tek özne (`git status`) ile fiil -s alır: shows."
