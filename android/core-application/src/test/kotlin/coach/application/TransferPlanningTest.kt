@@ -33,6 +33,8 @@ import coach.model.TransferProfile
 import coach.model.UseCeiling
 import coach.model.ValidationRecord
 import coach.model.VersionedRef
+import coach.model.StudyTimestamp
+import coach.ports.ClockPort
 import coach.ports.ContentDocument
 import coach.ports.ContentPort
 import coach.ports.PersistencePort
@@ -64,7 +66,9 @@ class TransferPlanningTest {
         val objectives = mutableMapOf<VersionedRef, List<ObjectiveRow>>()
 
         override fun <T> inTransaction(block: () -> T): T = block()
-        override fun appendTruth(record: TruthRecord): Long = error("planning facts are read only")
+        val written = mutableListOf<TruthRecord>()
+        // Only the composer test writes (its blueprint row); the planning facts themselves are read only.
+        override fun appendTruth(record: TruthRecord): Long { written += record; return written.size.toLong() }
         override fun readTruth(kind: String, id: Long): TruthRecord? = null
         override fun readProjection(key: String): ProjectionRecord? = projections[key]
         override fun writeProjection(record: ProjectionRecord) = error("planning facts are read only")
@@ -189,6 +193,26 @@ class TransferPlanningTest {
             exposures += ExposureFact(transfer.ref, transfer.variantFamilyId, ExposureFact.ITEM_VERSION_SEEN)
         }
         assertEquals(1, needs(both, items = listOf(transfer, second)).size)
+    }
+
+    @Test
+    fun `the month composes its cross-topic transfer slot from the same owner, and the week never does`() {
+        val learned = store().apply {
+            val key = ResolvePrerequisites.skillStateKey(loops)
+            projections[key] = ProjectionRecord(key, "SPWX-v0", 7, 0, 1, mapOf("mastery_axis_state" to MasteryAxisState.CONFIRMED_CURRENT.id))
+        }
+        val clock = object : ClockPort {
+            override fun now() = StudyTimestamp(1_790_942_400_000, "2026-10-02", 3 * 3600)
+        }
+        fun blueprint(scope: AssessmentScope) = when (val c = ComposeAssessmentBlueprint(scope, learned, Content(listOf(transfer)), clock).compose(false)) {
+            is ComposeAssessmentBlueprint.Composed.Written -> c.blueprint
+            is ComposeAssessmentBlueprint.Composed.NothingToMeasure -> c.blueprint
+            else -> error("$c")
+        }
+        val monthly = blueprint(AssessmentScope.MONTHLY_CAPABILITY)
+        assertEquals(MonthlyRole.CROSS_TOPIC_TRANSFER, monthly.slots.single { it.targetSkill == loops }.role)
+        val weekly = blueprint(AssessmentScope.WEEKLY_BLUEPRINT)
+        assertTrue(weekly.slots.none { it.targetSkill == loops && it.role == MonthlyRole.CROSS_TOPIC_TRANSFER })
     }
 
     @Test

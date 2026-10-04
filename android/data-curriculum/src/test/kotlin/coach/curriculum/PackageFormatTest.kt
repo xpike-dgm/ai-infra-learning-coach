@@ -727,6 +727,34 @@ class PackageFormatTest {
     }
 
     @Test
+    fun `a wrong answer mapped to a label of another Objective refuses the course, even one an earlier package catalogued`() {
+        val functions = second + "\n\n[misconception]\nlogical_id=misconception.python.functions.no_return\nversion=1\n" +
+            "objective=objective.python.functions.write@v1\nname=yazdırmak döndürmektir\nopen_question=Ekrana yazmak değeri geri vermek midir?"
+        val third = supplement.replace("version=2\nsource_refs=curriculum/content/15g_assessment", "version=3\nsource_refs=curriculum/content/15g_assessment")
+        assertNull(FileContentSource(later = { listOf(functions, third) }, source = { first15g }).failure, "the label of the key's own Objective reads")
+        val other = FileContentSource(later = {
+            listOf(functions, third.replace("misconception=misconception.python.loops.off_by_one@v1", "misconception=misconception.python.functions.no_return@v1"))
+        }, source = { first15g })
+        assertTrue(other.curriculumPackages().isEmpty())
+        val failure = assertNotNull(other.failure as? PackageFormat.ParseFailure, "${other.failure}")
+        assertTrue(failure.reasons.any { "belongs to another Objective" in it }, failure.reasons.toString())
+    }
+
+    @Test
+    fun `a wrong answer mapped again by a later package refuses the course, while a new wrong answer is accepted`() {
+        val third = "curriculum_package/1\nversion=3\nsource_refs=curriculum/content/15g_assessment\nprovenance=authored_15g\n\n" +
+            "[answer_misconception]\nkey=answerkey.python.loops.count_word@v1\ntext=four\nmisconception=misconception.python.loops.off_by_one@v1"
+        val again = FileContentSource(later = { listOf(supplement, third) }, source = { first15g })
+        assertTrue(again.curriculumPackages().isEmpty())
+        val failure = assertNotNull(again.failure as? PackageFormat.ParseFailure, "${again.failure}")
+        assertTrue(failure.reasons.any { "wrong answer" in it }, failure.reasons.toString())
+
+        val other = FileContentSource(later = { listOf(supplement, third.replace("text=four", "text=two")) }, source = { first15g })
+        assertNull(other.failure)
+        assertEquals(VersionedRef("misconception.python.loops.off_by_one", 1), assertNotNull(other.answerKeyFor(itemRef)).misconceptionFor("two"))
+    }
+
+    @Test
     fun `a transfer profile names its context, or the package is refused`() {
         val failure = assertFailsWith<Exception> {
             val source = FileContentSource(later = { listOf(supplement.replace("\ncontext_family_id=context.strings", "")) }, source = { first15g })
