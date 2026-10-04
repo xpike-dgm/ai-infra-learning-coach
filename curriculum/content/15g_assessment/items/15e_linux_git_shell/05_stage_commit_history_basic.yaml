@@ -163,3 +163,30 @@ objectives:
         required_skills: [skill.shell.command_options_redirection_basic]
         answer: "M  eski.txt"
         verify: {mode: shell, last_line: true, probe: 'git status --short | grep eski'}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: script_output_not_committed
+        required_skills: [skill.python.run_repl_script, skill.shell.command_options_redirection_basic]
+        prompt: |
+          Boş bir klasörde bu komutlar çalıştırıldı. Son komut ne yazar?
+        code: |
+          git init -q proje
+          cd proje
+          echo 'print("rapor hazir")' > program.py
+          python3 program.py > rapor.txt
+          git add program.py
+          git commit -q -m program
+          git status --short
+        options:
+          A: "?? rapor.txt"
+          B: "Hiçbir şey; commit klasördeki her şeyi kaydetti"
+          C: "A  rapor.txt"
+          D: "?? program.py"
+        scan_options: false
+        answer: A
+        misconception_options: {B: commit_takes_all_changes}
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "?? rapor.txt", B: "", C: "A  rapor.txt", D: "?? program.py"}

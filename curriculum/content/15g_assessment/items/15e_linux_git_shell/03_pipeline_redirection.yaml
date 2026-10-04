@@ -110,3 +110,16 @@ objectives:
           wc -l hata.txt
         answer: "1 1 hata.txt"
         verify: {mode: shell, script: "echo tek > a.txt\necho $(cat a.txt yok.txt 2> hata.txt | wc -l; wc -l hata.txt)\n"}
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: python_errors_to_file
+        required_skills: [skill.python.exceptions_read_basic]
+        prompt: |
+          Boş bir klasörde şu komutları çalıştır. program.py üç satır yazıyor, sonra sıfıra bölmeye çalışıp bir hata mesajıyla duruyor. Son komut ne yazar?
+        code: |
+          printf 'print("a")\nprint("b")\nprint("c")\nprint(1 // 0)\n' > program.py
+          python3 program.py 2> hatalar.txt | wc -l
+        answer: "3"
+        verify: {mode: shell, last_line: true}

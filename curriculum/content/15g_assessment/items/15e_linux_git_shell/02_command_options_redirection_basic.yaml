@@ -128,3 +128,24 @@ objectives:
           wc -l notlar/a.txt
         answer: "2 notlar/a.txt"
         verify: {mode: shell, last_line: true}
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: git_log_to_file
+        required_skills: [skill.git.stage_commit_history_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          git init -q depo
+          cd depo
+          echo a > a.txt
+          git add a.txt
+          git commit -q -m ilk
+          echo b > b.txt
+          git add b.txt
+          git commit -q -m ikinci
+          git log --oneline > gecmis.txt
+          wc -l gecmis.txt
+        answer: "2 gecmis.txt"
+        verify: {mode: shell, last_line: true}

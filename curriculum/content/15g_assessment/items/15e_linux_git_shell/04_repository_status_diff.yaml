@@ -185,3 +185,20 @@ objectives:
             o=$(git status --short 2>/dev/null); e=$(git status --short 2>&1 >/dev/null | wc -c); git status --short >/dev/null 2>&1; s=$?
             echo "$([ -n "$o" ] && echo cikti || echo -) $([ "$e" -gt 0 ] && echo hata || echo -) $([ "$s" -eq 0 ] && echo sifir || echo sifirdan_farkli) $([ -d .git ] && echo depo || echo -)"
           outcomes: {A: "- hata sifirdan_farkli -", B: "- - sifir -", C: "- - sifir depo", D: "cikti - sifir -"}
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: build_output_untracked
+        required_skills: [skill.c.compile_link_run_basic, skill.shell.command_options_redirection_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır (hesap.c küçük bir C programı). Son komut ne yazar? Çıktıyı göründüğü gibi, satır satır yaz.
+        code: |
+          git init -q proje
+          cd proje
+          echo 'int main(void) { return 0; }' > hesap.c
+          gcc hesap.c -o hesap
+          git status --short
+        answer: "?? hesap\n?? hesap.c"
+        also_accept: ["?? hesap ?? hesap.c"]
+        verify: {mode: shell}

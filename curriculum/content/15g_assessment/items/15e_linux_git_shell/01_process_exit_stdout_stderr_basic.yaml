@@ -114,3 +114,25 @@ objectives:
           echo $?
         answer: "6"
         verify: {mode: shell, last_line: true}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: python_crash_status
+        required_skills: [skill.python.exceptions_read_basic, skill.shell.command_options_redirection_basic]
+        prompt: |
+          Boş bir klasörde bu komutlar çalıştırıldı. Python programı önce basladi yazıyor, sonra sıfıra bölmeye çalışıyor. Son satırda ne görünür?
+        code: |
+          python3 -c 'print("basladi"); print(1 // 0)' > cikti.txt
+          echo $?
+        options:
+          A: "1; program bir hatayla (yakalanmamış istisnayla) bitti"
+          B: "0; program bir şey yazdı, yani başarılı oldu"
+          C: "2; sıfıra bölme hatasının kodu 2'dir"
+          D: "Hiçbir şey; çıktı dosyaya gitti"
+        scan_options: false
+        answer: A
+        misconception_options: {B: output_means_success}
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "1", B: "0", C: "2", D: ""}
