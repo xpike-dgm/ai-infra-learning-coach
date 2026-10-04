@@ -588,3 +588,57 @@ objectives:
                 printf("%d\n", artis);
                 return 0;
             }
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: divisor_count_function
+        required_skills: [skill.c.functions_basic, skill.c.conditionals]
+        prompt: |
+          cozum.c dosyasına int bolen_say(int n) fonksiyonunu yaz: n'nin (n ≥ 1) pozitif bölenlerinin sayısını bir for döngüsüyle bulup döndürsün. Örnek: bolen_say(6) → 4 (1, 2, 3, 6). Dersin testleri bu fonksiyonu kendi main'iyle çağırır.
+        c_harness: |
+          #include <stdio.h>
+
+          int bolen_say(int n);
+
+          int main(void) {
+              int n = 0;
+              while (scanf("%d", &n) == 1) {
+                  printf("%d\n", bolen_say(n));
+              }
+              return 0;
+          }
+        suite:
+          - {id: one, stdin: "1\n", expected_stdout: "1\n"}
+          - {id: composite, stdin: "6 12\n", expected_stdout: "4\n6\n"}
+          - {id: prime, stdin: "7\n", expected_stdout: "2\n"}
+        reference: |
+          int bolen_say(int n) {
+              int sayac = 0;
+              for (int i = 1; i <= n; i++) {
+                  if (n % i == 0) {
+                      sayac++;
+                  }
+              }
+              return sayac;
+          }
+        wrong:
+          - |
+            int bolen_say(int n) {
+                int sayac = 0;
+                for (int i = 1; i < n; i++) {
+                    if (n % i == 0) {
+                        sayac++;
+                    }
+                }
+                return sayac;
+            }
+          - |
+            int bolen_say(int n) {
+                int sayac = 0;
+                for (int i = 2; i <= n; i++) {
+                    if (n % i == 0) {
+                        sayac++;
+                    }
+                }
+                return sayac;
+            }

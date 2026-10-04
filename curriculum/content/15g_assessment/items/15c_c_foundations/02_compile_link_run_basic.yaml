@@ -622,3 +622,59 @@ objectives:
         verify:
           mode: c_stage
           outcomes: {A: compile, B: link, C: run, D: ok}
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: two_file_link
+        required_skills: [skill.c.functions_basic]
+        prompt: |
+          Bir klasörde iki dosya var. ana.c, topla.c içinde yazılmış topla fonksiyonunu çağırıyor:
+
+          ana.c:
+          #include <stdio.h>
+          int topla(int a, int b);
+          int main(void) {
+              printf("%d\n", topla(2, 3));
+              return 0;
+          }
+
+          topla.c:
+          int topla(int a, int b) {
+              return a + b;
+          }
+
+          Yalnızca gcc ana.c -o ana komutunu çalıştırırsan ne olur?
+        options:
+          A: "Derleme hatası: topla tanımlı değil"
+          B: "Bağlama hatası: topla'nın tanımı bulunamaz"
+          C: "Program oluşur ama çalışınca çöker"
+          D: "Program oluşur ve 5 yazar"
+        scan_options: false
+        answer: B
+        misconception_options: {A: every_failure_is_compile_error}
+        verify:
+          mode: shell
+          outcomes: {A: "compile", B: "link", C: "run", D: "ok"}
+          script: |
+            cat > ana.c <<'KAYNAK'
+            #include <stdio.h>
+            int topla(int a, int b);
+            int main(void) {
+                printf("%d\n", topla(2, 3));
+                return 0;
+            }
+            KAYNAK
+            cat > topla.c <<'KAYNAK'
+            int topla(int a, int b) {
+                return a + b;
+            }
+            KAYNAK
+            gcc -c ana.c -o ana.o 2> derleme.txt || { echo compile; exit 0; }
+            if gcc ana.c -o ana 2> bag.txt; then
+                if [ "$(./ana)" = "5" ]; then echo ok; else echo run; fi
+            elif grep -q "undefined reference to .topla" bag.txt; then
+                echo link
+            else
+                echo baska
+            fi

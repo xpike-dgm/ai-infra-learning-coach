@@ -229,3 +229,44 @@ objectives:
             cd k/l
             cd ../../k/l/..
             basename "$PWD"
+      - slug: t01
+        difficulty: transfer_integration
+        hands_on: true
+        transfer_profile: cross_topic_context
+        context_family: build_output_path
+        required_skills: [skill.c.compile_link_run_basic]
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştırdın (main.c ekrana calisti yazan küçük bir C programı):
+
+          mkdir -p proje/src proje/bin
+          cd proje/src
+          (main.c dosyasını buraya yazdın)
+          gcc main.c -o ../bin/uygulama
+          cd ..
+
+          Şimdi programı çalıştırmak için hangisini yazarsın?
+        options:
+          A: "./bin/uygulama"
+          B: "./uygulama"
+          C: "../bin/uygulama"
+          D: "uygulama"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          outcomes: {A: "./bin/uygulama", B: "./uygulama", C: "../bin/uygulama", D: "uygulama"}
+          script: |
+            mkdir -p proje/src proje/bin
+            cd proje/src
+            cat > main.c <<'KAYNAK'
+            #include <stdio.h>
+            int main(void) {
+                printf("calisti\n");
+                return 0;
+            }
+            KAYNAK
+            gcc main.c -o ../bin/uygulama
+            cd ..
+            for yol in ./bin/uygulama ./uygulama ../bin/uygulama uygulama; do
+                if out=$($yol 2>/dev/null) && [ "$out" = "calisti" ]; then echo "$yol"; fi
+            done

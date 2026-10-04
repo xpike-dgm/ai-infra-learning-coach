@@ -465,3 +465,45 @@ objectives:
                 printf("%.1f\n", (double) en);
                 return 0;
             }
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: division_identity
+        required_skills: [skill.c.expression_evaluation]
+        prompt: |
+          cozum.c adında bir program yaz: aralarında boşluk olan iki pozitif tam sayı a ve b okusun; ekrana a = b * bölüm + kalan eşitliğini, aralarında birer boşlukla yazsın. Örnek: 17 5 → 17 = 5 * 3 + 2
+        suite:
+          - {id: example, stdin: "17 5\n", expected_stdout: "17 = 5 * 3 + 2\n"}
+          - {id: exact, stdin: "20 4\n", expected_stdout: "20 = 4 * 5 + 0\n"}
+          - {id: smaller, stdin: "3 7\n", expected_stdout: "3 = 7 * 0 + 3\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0;
+              int b = 0;
+              scanf("%d %d", &a, &b);
+              printf("%d = %d * %d + %d\n", a, b, a / b, a % b);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0;
+                int b = 0;
+                scanf("%d %d", &a, &b);
+                printf("%d = %d * %d + %d\n", a, a / b, b, a % b);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0;
+                int b = 0;
+                scanf("%d %d", &a, &b);
+                printf("%d=%d*%d+%d\n", a, b, a / b, a % b);
+                return 0;
+            }

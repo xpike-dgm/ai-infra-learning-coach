@@ -184,3 +184,23 @@ objectives:
         required_skills: [skill.c.declaration_type_model]
         answer: "8"
         verify: {mode: c_stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: comparison_as_count
+        required_skills: [skill.c.for_iteration]
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int sayac = 0;
+              for (int i = 1; i <= 10; i++) {
+                  sayac += (i % 3 == 0);
+              }
+              printf("%d\n", sayac);
+              return 0;
+          }
+        answer: "3"
+        verify: {mode: c_stdout}

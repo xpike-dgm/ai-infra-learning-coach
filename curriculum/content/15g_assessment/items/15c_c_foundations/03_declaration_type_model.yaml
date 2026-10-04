@@ -368,3 +368,48 @@ objectives:
                 printf("Toplam: %d\n", SAYFA);
                 return 0;
             }
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: average_of_two
+        required_skills: [skill.c.standard_io_basic, skill.c.expression_evaluation]
+        prompt: |
+          cozum.c adında bir program yaz: iki tam sayı okusun ve ortalamalarını ondalıklı olarak, virgülden (noktadan) sonra bir basamakla yazsın (printf'te %.1f). Örnek: 7 8 → 7.5
+        suite:
+          - {id: half, stdin: "7 8\n", expected_stdout: "7.5\n"}
+          - {id: whole, stdin: "4 6\n", expected_stdout: "5.0\n"}
+          - {id: negative, stdin: "-3 0\n", expected_stdout: "-1.5\n"}
+        reference: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 0;
+              int b = 0;
+              scanf("%d %d", &a, &b);
+              double ortalama = (a + b) / 2.0;
+              printf("%.1f\n", ortalama);
+              return 0;
+          }
+        wrong:
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0;
+                int b = 0;
+                scanf("%d %d", &a, &b);
+                double ortalama = (a + b) / 2;
+                printf("%.1f\n", ortalama);
+                return 0;
+            }
+          - |
+            #include <stdio.h>
+
+            int main(void) {
+                int a = 0;
+                int b = 0;
+                scanf("%d %d", &a, &b);
+                double ortalama = (double)((a + b) / 2);
+                printf("%.1f\n", ortalama);
+                return 0;
+            }
