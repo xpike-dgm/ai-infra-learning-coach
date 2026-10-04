@@ -1,0 +1,165 @@
+skill: skill.git.stage_commit_history_basic
+objectives:
+  - id: objective.git.stage_commit_history_basic.commit_and_verify_history
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar? Çıktıyı göründüğü gibi yaz.
+        code: |
+          git init -q iki_adim
+          cd iki_adim
+          echo a > x.txt
+          git add x.txt
+          echo b > x.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "AM x.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut hangi mesajları hangi sırayla yazar? Mesajları aralarında bir boşlukla yaz.
+        code: |
+          git init -q sira
+          cd sira
+          echo 1 > s.txt
+          git add s.txt
+          git commit -q -m "birinci"
+          echo 2 > s.txt
+          git add s.txt
+          git commit -q -m "ikinci"
+          git log --format=%s
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "ikinci birinci"
+        verify: {mode: shell, last_line: true, probe: 'echo $(git log --format=%s)'}
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır ("# hazırlık" satırlarını olduğu gibi kopyala). git diff --staged çıktısında + ile başlayan satır (+++ başlık satırı hariç) nedir?
+        code: |
+          git init -q kirtasiye
+          cd kirtasiye
+          echo silgi > liste.txt
+          git add liste.txt                 # hazırlık
+          git commit -q -m "baslangic"      # hazırlık
+          echo kalem >> liste.txt
+          git add liste.txt
+          git diff --staged
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "+kalem"
+        verify: {mode: shell, last_line: true, probe: 'git diff --staged | grep "^+[^+]"'}
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Kayıttan sonra son komut ne yazar?
+        code: |
+          git init -q yarim
+          cd yarim
+          echo 1 > a.txt
+          echo 2 > b.txt
+          git add a.txt
+          git commit -q -m "yalniz a"
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "?? b.txt: yalnız hazırlanmış a.txt kayda girdi"
+          B: "Hiçbir şey: commit klasördeki bütün dosyaları kaydetti"
+          C: " M b.txt"
+          D: "A  b.txt"
+        scan_options: false
+        answer: A
+        misconception_options: {B: commit_takes_all_changes}
+        verify:
+          mode: shell
+          probe: 'echo "[$(git status --short)]"'
+          last_line: true
+          outcomes: {A: "[?? b.txt]", B: "[]", C: "[ M b.txt]", D: "[A  b.txt]"}
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. git diff --staged çıktısındaki + satırı (+++ başlık satırı hariç) hangisidir?
+        code: |
+          git init -q surum
+          cd surum
+          echo v1 > n.txt
+          git add n.txt
+          echo v2 > n.txt
+          git diff --staged
+        required_skills: [skill.shell.command_options_redirection_basic]
+        options:
+          A: "+v1: git add dosyanın o anki içeriğini hazırladı"
+          B: "+v2: git add dosyayı sonraki değişiklikleriyle birlikte hazırlar"
+          C: "+v1 ve +v2"
+          D: "Hiçbiri"
+        scan_options: false
+        answer: A
+        misconception_options: {B: add_tracks_future_changes}
+        verify:
+          mode: shell
+          probe: 'echo $(git diff --staged | grep "^+[^+]")'
+          last_line: true
+          outcomes: {A: "+v1", B: "+v2", C: "+v1 +v2", D: ""}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komut ne yazar?
+        code: |
+          git init -q uclu
+          cd uclu
+          echo a > d.txt
+          git add d.txt
+          git commit -q -m "birinci"
+          echo b >> d.txt
+          git add d.txt
+          git commit -q -m "ikinci"
+          echo c >> d.txt
+          git add d.txt
+          git commit -q -m "ucuncu"
+          git log --format=%s | head -n 1
+        required_skills: [skill.shell.command_options_redirection_basic, skill.shell.pipeline_redirection]
+        answer: "ucuncu"
+        verify: {mode: shell, last_line: true}
+      - slug: g07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Kayıttan sonra git diff çıktısındaki + satırı (+++ başlık satırı hariç) nedir?
+        code: |
+          git init -q katman
+          cd katman
+          echo v1 > k.txt
+          git add k.txt
+          git commit -q -m "ilk"
+          echo v2 > k.txt
+          git add k.txt
+          echo v3 > k.txt
+          git commit -q -m "ikinci"
+          git diff
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "+v3"
+        verify: {mode: shell, last_line: true, probe: 'git diff | grep "^+[^+]"'}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde şu komutları sırayla çalıştır. Son komutun eski.txt için yazdığı satır nedir? Satırı göründüğü gibi yaz (iki sütunu ve boşlukları koruyarak).
+        code: |
+          git init -q karma
+          cd karma
+          echo 1 > eski.txt
+          git add eski.txt
+          git commit -q -m "ilk"
+          echo 2 > eski.txt
+          git add eski.txt
+          echo yeni > yeni.txt
+          git status --short
+        required_skills: [skill.shell.command_options_redirection_basic]
+        answer: "M  eski.txt"
+        verify: {mode: shell, last_line: true, probe: 'git status --short | grep eski'}

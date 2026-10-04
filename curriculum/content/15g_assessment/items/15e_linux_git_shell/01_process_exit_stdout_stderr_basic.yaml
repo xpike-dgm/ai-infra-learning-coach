@@ -1,0 +1,116 @@
+skill: skill.linux.process_exit_stdout_stderr_basic
+objectives:
+  - id: objective.linux.process_exit_stdout_stderr_basic.classify_process_outputs
+    items:
+      - slug: g01
+        difficulty: basic
+        prompt: |
+          Boş bir klasörde bu komutlar çalıştırıldı. ls hiçbir şey yazmadı. Son satırda ne görünür?
+        code: |
+          ls
+          echo $?
+        required_skills: [skill.linux.terminal_filesystem_navigation]
+        options:
+          A: "0; ls listeleyecek bir şey bulamasa da başarıyla biter"
+          B: "1; hiçbir şey yazmayan komut başarısız sayılır"
+          C: "2; boş klasör bir hatadır"
+          D: "Hiçbir şey; ls çıktı vermediği için $? boştur"
+        scan_options: false
+        answer: A
+        misconception_options: {B: output_means_success}
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "0", B: "1", C: "2", D: ""}
+      - slug: g02
+        difficulty: basic
+        prompt: |
+          Bu komutlar çalıştırıldı. Son satırda ne görünür?
+        code: |
+          false
+          echo $?
+          echo $?
+        options:
+          A: "0"
+          B: "1"
+          C: "2"
+          D: Hiçbir şey
+        scan_options: false
+        answer: A
+        misconception_options: {B: status_stays}
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "0", B: "1", C: "2", D: ""}
+      - slug: g03
+        difficulty: basic
+        prompt: |
+          Bu program ekrana uyari satırını yazdı ve başarıyla bitti. Bu satır hangi kanaldan geldi?
+        code: |
+          bash -c 'echo uyari >&2'
+        options:
+          A: "stderr; >&2 satırı standart hataya yönlendirir"
+          B: "stdout; ekranda görünen her şey normal çıktıdır"
+          C: "İkisinden de; terminal iki kanala birden yazar"
+          D: "Hiçbirinden; çıkış durumu olarak döner"
+        scan_options: false
+        answer: A
+        misconception_options: {B: error_text_is_stdout}
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            p='echo uyari >&2'
+            o=$(bash -c "$p" 2>/dev/null | wc -c); e=$(bash -c "$p" 2>&1 >/dev/null | wc -c)
+            echo "$([ "$o" -gt 0 ] && echo stdout || echo -) $([ "$e" -gt 0 ] && echo stderr || echo -)"
+          outcomes: {A: "- stderr", B: "stdout -", C: "stdout stderr", D: "- -"}
+      - slug: g04
+        difficulty: authentic_application
+        prompt: |
+          Bu komutlar çalıştırıldı. Son satırda ne görünür?
+        code: |
+          bash -c 'false; echo devam'
+          echo $?
+        answer: "0"
+        verify: {mode: shell, last_line: true}
+      - slug: g05
+        difficulty: authentic_application
+        prompt: |
+          Bu komutlar sırayla çalıştırıldı. Son satırda ne görünür?
+        code: |
+          bash -c 'echo hazir; exit 3'
+          bash -c 'exit 0'
+          echo $?
+        answer: "0"
+        verify: {mode: shell, last_line: true}
+      - slug: g06
+        difficulty: authentic_application
+        prompt: |
+          Bu komut ekrana hiçbir şey yazmadan bitti. Program başarılı oldu mu?
+        code: |
+          bash -c 'exit 1'
+        options:
+          A: "Hayır: çıkış durumu 1, yani başarısız; ekrana bir şey yazmaması bunu değiştirmez"
+          B: "Evet: hata mesajı yazmadığına göre başarılıdır"
+          C: "Evet: çıkış durumu 1 başarı demektir"
+          D: "Bilinemez: çıkış durumu yalnız hata mesajı varsa oluşur"
+        scan_options: false
+        answer: A
+        misconception_options: {B: output_means_success}
+        verify:
+          mode: shell
+          last_line: true
+          probe: |
+            bash -c 'exit 1' >/dev/null 2>&1; s=$?
+            [ "$s" -eq 0 ] && echo "basarili $s" || echo "basarisiz $s"
+          outcomes: {A: "basarisiz 1", B: "basarili 0", C: "basarili 1", D: "bilinmez"}
+      - slug: g07
+        difficulty: transfer_integration
+        prompt: |
+          Bu komutlar sırayla çalıştırıldı. İkinci satırdaki $? çift tırnak içinde, yani ikinci program çalışmadan önce kabuk tarafından yerine konur. Son satırda ne görünür?
+        code: |
+          bash -c 'exit 6'
+          bash -c "exit $?"
+          echo $?
+        answer: "6"
+        verify: {mode: shell, last_line: true}

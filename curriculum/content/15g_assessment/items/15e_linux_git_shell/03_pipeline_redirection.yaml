@@ -1,0 +1,112 @@
+skill: skill.shell.pipeline_redirection
+objectives:
+  - id: objective.shell.pipeline_redirection.demonstrate_capability
+    items:
+      - slug: g01
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+        code: |
+          echo c > h.txt
+          echo a >> h.txt
+          echo b >> h.txt
+          sort h.txt | tail -n 1
+        answer: "c"
+        verify: {mode: shell, last_line: true}
+      - slug: g02
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+        code: |
+          echo pazartesi > gun.txt
+          echo sali >> gun.txt
+          cat gun.txt | head -n 1
+        answer: "pazartesi"
+        verify: {mode: shell, last_line: true}
+      - slug: g03
+        difficulty: basic
+        hands_on: true
+        prompt: |
+          Boş bir klasörde (yok adında bir şey yokken) bu komutları çalıştır. Son komut ne yazar?
+        code: |
+          ls yok 2> hata.txt
+          wc -l hata.txt
+        answer: "1 hata.txt"
+        verify: {mode: shell, last_line: true}
+      - slug: g04
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar? (uniq'in nasıl çalıştığını düşün.)
+        code: |
+          echo b > l.txt
+          echo a >> l.txt
+          echo b >> l.txt
+          uniq l.txt | wc -l
+        options:
+          A: "3; uniq yalnız art arda gelen aynı satırları birleştirir, buradaki iki b yan yana değil"
+          B: "2; uniq dosyadaki bütün tekrarları atar"
+          C: "1"
+          D: "0"
+        scan_options: false
+        answer: A
+        verify:
+          mode: shell
+          last_line: true
+          outcomes: {A: "3", B: "2", C: "1", D: "0"}
+      - slug: g05
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Ekranda hangi satırlar görünür? Satırları aralarında bir boşlukla yaz.
+        code: |
+          ls yok 2>/dev/null | wc -l
+          echo $?
+        answer: "0 0"
+        verify: {mode: shell, script: "echo $(ls yok 2>/dev/null | wc -l; echo $?)\n"}
+      - slug: g06
+        difficulty: authentic_application
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır (b.txt yok). Son komut ne yazar? Önce ekranda bir hata mesajı görünür mü, onu da düşün.
+        code: |
+          echo zeytin > a.txt
+          echo armut >> a.txt
+          cat a.txt b.txt 2>/dev/null | sort | head -n 1
+        options:
+          A: "armut; hata mesajı /dev/null'a gittiği için ekranda yalnız armut görünür"
+          B: "zeytin; sort dosyayı değiştirmez"
+          C: "Önce b.txt için bir hata mesajı, sonra armut"
+          D: "Hiçbir şey; dosyalardan biri olmadığı için cat hiçbir şey yazmaz"
+        scan_options: false
+        answer: A
+        misconception_options: {C: pipe_carries_errors}
+        verify:
+          mode: shell
+          script: "echo zeytin > a.txt\necho armut >> a.txt\ncat a.txt b.txt 2>/dev/null | sort | head -n 1 2>&1\n"
+          outcomes: {A: "armut", B: "zeytin", C: "cat: b.txt: No such file or directory\narmut", D: ""}
+      - slug: g07
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır. Son komut ne yazar?
+        code: |
+          echo hata disk > log.txt
+          echo bilgi ag >> log.txt
+          echo hata bellek >> log.txt
+          cat log.txt | grep hata | sort | tail -n 1
+        answer: "hata disk"
+        verify: {mode: shell, last_line: true}
+      - slug: g08
+        difficulty: transfer_integration
+        hands_on: true
+        prompt: |
+          Boş bir klasörde bu komutları çalıştır (yok.txt yok). Ekranda hangi iki satır görünür? Satırları aralarında bir boşlukla yaz.
+        code: |
+          echo tek > a.txt
+          cat a.txt yok.txt 2> hata.txt | wc -l
+          wc -l hata.txt
+        answer: "1 1 hata.txt"
+        verify: {mode: shell, script: "echo tek > a.txt\necho $(cat a.txt yok.txt 2> hata.txt | wc -l; wc -l hata.txt)\n"}
