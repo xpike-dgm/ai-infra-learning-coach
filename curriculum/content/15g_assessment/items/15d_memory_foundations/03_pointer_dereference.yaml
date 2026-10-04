@@ -438,6 +438,36 @@ objectives:
             double agirlikli(double *a, double *b, double *w) {
                 return *a * (1 - *w) + *b * *w;
             }
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: pointer_after_loop
+        required_skills: [skill.c.for_iteration]
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int x = 3;
+              int *p = &x;
+              for (int i = 0; i < 2; i++) {
+                  x = x + 10;
+              }
+              printf("%d\n", *p);
+              return 0;
+          }
+        options:
+          A: "23"
+          B: "3"
+          C: "13"
+          D: "x'in adresi"
+        scan_options: false
+        answer: A
+        misconception_options: {B: p_is_the_value}
+        verify:
+          mode: c_stdout
+          outcomes: {A: "23", B: "3", C: "13", D: "<adres>"}
   - id: objective.c.pointer_dereference.modify_value_via_pointer
     items:
       - slug: g01
@@ -906,4 +936,54 @@ objectives:
                 *c = *b;
                 *b = *a;
                 *a = t;
+            }
+      - slug: t02
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: clamp_through_pointer
+        required_skills: [skill.c.conditionals, skill.c.functions_basic]
+        prompt: |
+          cozum.c dosyasına void sinirla(int *x, int alt, int ust) fonksiyonunu yaz: x'in gösterdiği değer alt'tan küçükse onu alt yapsın, ust'ten büyükse ust yapsın, arada ise değiştirmesin (alt ≤ ust). Dersin testleri bu fonksiyonu kendi main'iyle çağırır ve değişkeni yazdırır.
+        c_harness: |
+          #include <stdio.h>
+
+          void sinirla(int *x, int alt, int ust);
+
+          int main(void) {
+              int x = 0, alt = 0, ust = 0;
+              while (scanf("%d %d %d", &x, &alt, &ust) == 3) {
+                  sinirla(&x, alt, ust);
+                  printf("%d\n", x);
+              }
+              return 0;
+          }
+        suite:
+          - {id: below, stdin: "-5 0 10\n", expected_stdout: "0\n"}
+          - {id: above, stdin: "15 0 10\n", expected_stdout: "10\n"}
+          - {id: inside_and_edges, stdin: "4 0 10\n0 0 10\n10 0 10\n", expected_stdout: "4\n0\n10\n"}
+        reference: |
+          void sinirla(int *x, int alt, int ust) {
+              if (*x < alt) {
+                  *x = alt;
+              } else if (*x > ust) {
+                  *x = ust;
+              }
+          }
+        wrong:
+          - |
+            void sinirla(int *x, int alt, int ust) {
+                int deger = *x;
+                if (deger < alt) {
+                    deger = alt;
+                } else if (deger > ust) {
+                    deger = ust;
+                }
+            }
+          - |
+            void sinirla(int *x, int alt, int ust) {
+                if (*x < alt) {
+                    *x = ust;
+                } else if (*x > ust) {
+                    *x = alt;
+                }
             }

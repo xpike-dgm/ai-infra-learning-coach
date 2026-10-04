@@ -481,3 +481,50 @@ objectives:
             int ikisi_de_gecerli(int *a, int *b) {
                 return (a != NULL || b != NULL) && a != b;
             }
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: choose_address
+        required_skills: [skill.c.conditionals, skill.c.functions_basic]
+        prompt: |
+          cozum.c dosyasına int *sec(int *a, int *b, int ilk) fonksiyonunu yaz: ilk 1 ise a'yı, değilse b'yi döndürsün (yani seçilen değişkenin adresini). Dersin testleri dönen adres üzerinden değişkene yazar ve iki değişkeni de yazdırır.
+        c_harness: |
+          #include <stdio.h>
+
+          int *sec(int *a, int *b, int ilk);
+
+          int main(void) {
+              int x = 0, y = 0, ilk = 0;
+              while (scanf("%d %d %d", &x, &y, &ilk) == 3) {
+                  int *p = sec(&x, &y, ilk);
+                  *p = 99;
+                  printf("%d %d\n", x, y);
+              }
+              return 0;
+          }
+        suite:
+          - {id: first, stdin: "1 2 1\n", expected_stdout: "99 2\n"}
+          - {id: second, stdin: "1 2 0\n", expected_stdout: "1 99\n"}
+          - {id: equal_values, stdin: "5 5 0\n", expected_stdout: "5 99\n"}
+        reference: |
+          int *sec(int *a, int *b, int ilk) {
+              if (ilk == 1) {
+                  return a;
+              }
+              return b;
+          }
+        wrong:
+          - |
+            int *sec(int *a, int *b, int ilk) {
+                if (ilk == 1) {
+                    return b;
+                }
+                return a;
+            }
+          - |
+            int *sec(int *a, int *b, int ilk) {
+                if (ilk == 1) {
+                    return a;
+                }
+                return a;
+            }

@@ -255,3 +255,38 @@ objectives:
             statement: Yanlış bir iddiada bulunmaz (örneğin static değişkenin her çağrıda sıfırlandığını ya da yerel değişkenin değerini koruduğunu söylemez).
         verify:
           mode: rubric
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: static_counter_loop
+        required_skills: [skill.c.for_iteration]
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır?
+        code: |
+          #include <stdio.h>
+
+          int say(void) {
+              static int n = 0;
+              n++;
+              return n;
+          }
+
+          int main(void) {
+              int son = 0;
+              for (int i = 0; i < 3; i++) {
+                  son = say();
+              }
+              printf("%d\n", son);
+              return 0;
+          }
+        options:
+          A: "3"
+          B: "1"
+          C: "0"
+          D: "2"
+        scan_options: false
+        answer: A
+        misconception_options: {B: static_resets_each_call}
+        verify:
+          mode: c_stdout
+          outcomes: {A: "3", B: "1", C: "0", D: "2"}

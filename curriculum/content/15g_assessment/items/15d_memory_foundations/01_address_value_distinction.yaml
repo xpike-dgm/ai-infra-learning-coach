@@ -377,3 +377,24 @@ objectives:
           }
         answer: "11 3 3"
         verify: {mode: c_stdout}
+      - slug: t01
+        difficulty: transfer_integration
+        transfer_profile: cross_topic_context
+        context_family: copy_then_loop
+        required_skills: [skill.c.for_iteration]
+        prompt: |
+          Bu program çalışınca ekrana ne yazılır? (İki sayı, aralarında bir boşluk.)
+        code: |
+          #include <stdio.h>
+
+          int main(void) {
+              int a = 1;
+              int b = a;
+              for (int i = 0; i < 3; i++) {
+                  b = b * 2;
+              }
+              printf("%d %d\n", a, b);
+              return 0;
+          }
+        answer: "1 8"
+        verify: {mode: c_stdout}
